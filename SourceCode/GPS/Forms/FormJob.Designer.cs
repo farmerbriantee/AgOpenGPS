@@ -30,202 +30,123 @@
         {
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnDeleteAB = new System.Windows.Forms.Button();
-            this.btnJobClose = new AgOpenGPS.RJButton();
-            this.btnJobOpen = new AgOpenGPS.RJButton();
-            this.btnHeadlandBuild = new AgOpenGPS.RJButton();
-            this.btnHeadlandSlice = new AgOpenGPS.RJButton();
-            this.btnTramline = new AgOpenGPS.RJButton();
-            this.btnBoundary = new AgOpenGPS.RJButton();
             this.btnJobResume = new AgOpenGPS.RJButton();
-            this.btnFromExisting = new AgOpenGPS.RJButton();
+            this.btnBoundary = new AgOpenGPS.RJButton();
+            this.btnDeleteAB = new System.Windows.Forms.Button();
+            this.btnTramline = new AgOpenGPS.RJButton();
+            this.btnHeadlandBuild = new AgOpenGPS.RJButton();
+            this.btnJobClose = new AgOpenGPS.RJButton();
+            this.btnHeadlandSlice = new AgOpenGPS.RJButton();
+            this.btnJobOpen = new AgOpenGPS.RJButton();
             this.btnJobNew = new AgOpenGPS.RJButton();
-            this.btnFromKML = new AgOpenGPS.RJButton();
+            this.btnFromExisting = new AgOpenGPS.RJButton();
             this.btnInField = new AgOpenGPS.RJButton();
+            this.btnFromKML = new AgOpenGPS.RJButton();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
             // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.textBox1.Location = new System.Drawing.Point(436, 301);
+            this.textBox1.Location = new System.Drawing.Point(367, 316);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(257, 82);
+            this.textBox1.Size = new System.Drawing.Size(358, 72);
             this.textBox1.TabIndex = 88;
             this.textBox1.Text = "Field To Resume";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
-            this.panel1.Controls.Add(this.btnJobClose);
-            this.panel1.Controls.Add(this.btnJobOpen);
-            this.panel1.Controls.Add(this.btnHeadlandBuild);
-            this.panel1.Controls.Add(this.btnHeadlandSlice);
-            this.panel1.Controls.Add(this.btnTramline);
-            this.panel1.Controls.Add(this.btnBoundary);
-            this.panel1.Controls.Add(this.btnJobResume);
-            this.panel1.Controls.Add(this.btnFromExisting);
-            this.panel1.Controls.Add(this.btnJobNew);
-            this.panel1.Controls.Add(this.btnFromKML);
-            this.panel1.Controls.Add(this.btnInField);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.btnDeleteAB);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.tableLayoutPanel1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(967, 719);
+            this.panel1.Size = new System.Drawing.Size(1093, 745);
             this.panel1.TabIndex = 90;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tableLayoutPanel1.Controls.Add(this.btnJobResume, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.btnBoundary, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.btnDeleteAB, 2, 5);
+            this.tableLayoutPanel1.Controls.Add(this.btnTramline, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btnHeadlandBuild, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.btnJobClose, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnHeadlandSlice, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btnJobOpen, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnJobNew, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnFromExisting, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnInField, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnFromKML, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.textBox1, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.checkBox1, 0, 2);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.04762F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.04762F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.04762F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.761905F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.04762F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.04762F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1093, 745);
+            this.tableLayoutPanel1.TabIndex = 539;
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.Cyan;
-            this.panel2.Location = new System.Drawing.Point(11, 410);
+            this.tableLayoutPanel1.SetColumnSpan(this.panel2, 3);
+            this.panel2.Location = new System.Drawing.Point(3, 437);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(941, 6);
+            this.panel2.Size = new System.Drawing.Size(1087, 6);
             this.panel2.TabIndex = 106;
             // 
-            // btnDeleteAB
+            // btnJobResume
             // 
-            this.btnDeleteAB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(80)))));
-            this.btnDeleteAB.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnDeleteAB.FlatAppearance.BorderSize = 0;
-            this.btnDeleteAB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteAB.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.btnDeleteAB.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnDeleteAB.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnDeleteAB.Location = new System.Drawing.Point(854, 623);
-            this.btnDeleteAB.Name = "btnDeleteAB";
-            this.btnDeleteAB.Size = new System.Drawing.Size(90, 64);
-            this.btnDeleteAB.TabIndex = 4;
-            this.btnDeleteAB.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnDeleteAB.UseVisualStyleBackColor = false;
-            // 
-            // btnJobClose
-            // 
-            this.btnJobClose.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnJobClose.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.btnJobClose.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnJobClose.BorderRadius = 15;
-            this.btnJobClose.BorderSize = 2;
-            this.btnJobClose.FlatAppearance.BorderSize = 0;
-            this.btnJobClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnJobClose.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnJobClose.ForeColor = System.Drawing.Color.Black;
-            this.btnJobClose.Image = global::AgOpenGPS.Properties.Resources.FileClose;
-            this.btnJobClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnJobClose.Location = new System.Drawing.Point(699, 38);
-            this.btnJobClose.Name = "btnJobClose";
-            this.btnJobClose.Size = new System.Drawing.Size(245, 82);
-            this.btnJobClose.TabIndex = 538;
-            this.btnJobClose.Text = "Close";
-            this.btnJobClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnJobClose.TextColor = System.Drawing.Color.Black;
-            this.btnJobClose.UseVisualStyleBackColor = false;
-            this.btnJobClose.Click += new System.EventHandler(this.btnJobClose_Click);
-            // 
-            // btnJobOpen
-            // 
-            this.btnJobOpen.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnJobOpen.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.btnJobOpen.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnJobOpen.BorderRadius = 15;
-            this.btnJobOpen.BorderSize = 2;
-            this.btnJobOpen.FlatAppearance.BorderSize = 0;
-            this.btnJobOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnJobOpen.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnJobOpen.ForeColor = System.Drawing.Color.Black;
-            this.btnJobOpen.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
-            this.btnJobOpen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnJobOpen.Location = new System.Drawing.Point(699, 168);
-            this.btnJobOpen.Name = "btnJobOpen";
-            this.btnJobOpen.Size = new System.Drawing.Size(245, 82);
-            this.btnJobOpen.TabIndex = 538;
-            this.btnJobOpen.Text = "Open";
-            this.btnJobOpen.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnJobOpen.TextColor = System.Drawing.Color.Black;
-            this.btnJobOpen.UseVisualStyleBackColor = false;
-            this.btnJobOpen.Click += new System.EventHandler(this.btnJobOpen_Click);
-            // 
-            // btnHeadlandBuild
-            // 
-            this.btnHeadlandBuild.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnHeadlandBuild.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.btnHeadlandBuild.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnHeadlandBuild.BorderRadius = 15;
-            this.btnHeadlandBuild.BorderSize = 2;
-            this.btnHeadlandBuild.Enabled = false;
-            this.btnHeadlandBuild.FlatAppearance.BorderSize = 0;
-            this.btnHeadlandBuild.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHeadlandBuild.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHeadlandBuild.ForeColor = System.Drawing.Color.Black;
-            this.btnHeadlandBuild.Image = global::AgOpenGPS.Properties.Resources.ABBndLines;
-            this.btnHeadlandBuild.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHeadlandBuild.Location = new System.Drawing.Point(35, 577);
-            this.btnHeadlandBuild.Name = "btnHeadlandBuild";
-            this.btnHeadlandBuild.Size = new System.Drawing.Size(281, 96);
-            this.btnHeadlandBuild.TabIndex = 538;
-            this.btnHeadlandBuild.Text = "Headland\r\nBuild";
-            this.btnHeadlandBuild.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnHeadlandBuild.TextColor = System.Drawing.Color.Black;
-            this.btnHeadlandBuild.UseVisualStyleBackColor = false;
-            // 
-            // btnHeadlandSlice
-            // 
-            this.btnHeadlandSlice.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnHeadlandSlice.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.btnHeadlandSlice.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnHeadlandSlice.BorderRadius = 15;
-            this.btnHeadlandSlice.BorderSize = 2;
-            this.btnHeadlandSlice.Enabled = false;
-            this.btnHeadlandSlice.FlatAppearance.BorderSize = 0;
-            this.btnHeadlandSlice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHeadlandSlice.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHeadlandSlice.ForeColor = System.Drawing.Color.Black;
-            this.btnHeadlandSlice.Image = global::AgOpenGPS.Properties.Resources.HeadlandSlice;
-            this.btnHeadlandSlice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHeadlandSlice.Location = new System.Drawing.Point(35, 448);
-            this.btnHeadlandSlice.Name = "btnHeadlandSlice";
-            this.btnHeadlandSlice.Size = new System.Drawing.Size(281, 96);
-            this.btnHeadlandSlice.TabIndex = 538;
-            this.btnHeadlandSlice.Text = "Headland\r\nSlice";
-            this.btnHeadlandSlice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnHeadlandSlice.TextColor = System.Drawing.Color.Black;
-            this.btnHeadlandSlice.UseVisualStyleBackColor = false;
-            // 
-            // btnTramline
-            // 
-            this.btnTramline.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnTramline.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.btnTramline.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnTramline.BorderRadius = 15;
-            this.btnTramline.BorderSize = 2;
-            this.btnTramline.Enabled = false;
-            this.btnTramline.FlatAppearance.BorderSize = 0;
-            this.btnTramline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTramline.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTramline.ForeColor = System.Drawing.Color.Black;
-            this.btnTramline.Image = global::AgOpenGPS.Properties.Resources.TramAll;
-            this.btnTramline.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTramline.Location = new System.Drawing.Point(395, 448);
-            this.btnTramline.Name = "btnTramline";
-            this.btnTramline.Size = new System.Drawing.Size(281, 96);
-            this.btnTramline.TabIndex = 538;
-            this.btnTramline.Text = "Tramline";
-            this.btnTramline.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnTramline.TextColor = System.Drawing.Color.Black;
-            this.btnTramline.UseVisualStyleBackColor = false;
+            this.btnJobResume.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnJobResume.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnJobResume.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.btnJobResume.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnJobResume.BorderRadius = 10;
+            this.btnJobResume.BorderSize = 2;
+            this.btnJobResume.FlatAppearance.BorderSize = 0;
+            this.btnJobResume.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnJobResume.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnJobResume.ForeColor = System.Drawing.Color.Black;
+            this.btnJobResume.Image = global::AgOpenGPS.Properties.Resources.FilePrevious;
+            this.btnJobResume.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnJobResume.Location = new System.Drawing.Point(770, 302);
+            this.btnJobResume.Name = "btnJobResume";
+            this.btnJobResume.Size = new System.Drawing.Size(280, 100);
+            this.btnJobResume.TabIndex = 538;
+            this.btnJobResume.Text = "Resume";
+            this.btnJobResume.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnJobResume.TextColor = System.Drawing.Color.Black;
+            this.btnJobResume.UseVisualStyleBackColor = false;
+            this.btnJobResume.Click += new System.EventHandler(this.btnJobResume_Click);
             // 
             // btnBoundary
             // 
-            this.btnBoundary.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnBoundary.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.btnBoundary.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnBoundary.BackColor = System.Drawing.Color.Azure;
+            this.btnBoundary.BackgroundColor = System.Drawing.Color.Azure;
             this.btnBoundary.BorderColor = System.Drawing.Color.DeepSkyBlue;
             this.btnBoundary.BorderRadius = 15;
             this.btnBoundary.BorderSize = 2;
@@ -236,67 +157,160 @@
             this.btnBoundary.ForeColor = System.Drawing.Color.Black;
             this.btnBoundary.Image = global::AgOpenGPS.Properties.Resources.Boundary;
             this.btnBoundary.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBoundary.Location = new System.Drawing.Point(395, 577);
+            this.btnBoundary.Location = new System.Drawing.Point(396, 622);
             this.btnBoundary.Name = "btnBoundary";
-            this.btnBoundary.Size = new System.Drawing.Size(281, 96);
+            this.btnBoundary.Size = new System.Drawing.Size(300, 100);
             this.btnBoundary.TabIndex = 538;
             this.btnBoundary.Text = "Boundary";
             this.btnBoundary.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBoundary.TextColor = System.Drawing.Color.Black;
             this.btnBoundary.UseVisualStyleBackColor = false;
             // 
-            // btnJobResume
+            // btnDeleteAB
             // 
-            this.btnJobResume.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnJobResume.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.btnJobResume.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnJobResume.BorderRadius = 15;
-            this.btnJobResume.BorderSize = 2;
-            this.btnJobResume.FlatAppearance.BorderSize = 0;
-            this.btnJobResume.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnJobResume.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnJobResume.ForeColor = System.Drawing.Color.Black;
-            this.btnJobResume.Image = global::AgOpenGPS.Properties.Resources.FilePrevious;
-            this.btnJobResume.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnJobResume.Location = new System.Drawing.Point(699, 301);
-            this.btnJobResume.Name = "btnJobResume";
-            this.btnJobResume.Size = new System.Drawing.Size(245, 82);
-            this.btnJobResume.TabIndex = 538;
-            this.btnJobResume.Text = "Resume";
-            this.btnJobResume.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnJobResume.TextColor = System.Drawing.Color.Black;
-            this.btnJobResume.UseVisualStyleBackColor = false;
-            this.btnJobResume.Click += new System.EventHandler(this.btnJobResume_Click);
+            this.btnDeleteAB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
+            this.btnDeleteAB.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnDeleteAB.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDeleteAB.FlatAppearance.BorderSize = 0;
+            this.btnDeleteAB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteAB.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.btnDeleteAB.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnDeleteAB.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
+            this.btnDeleteAB.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDeleteAB.Location = new System.Drawing.Point(731, 602);
+            this.btnDeleteAB.Name = "btnDeleteAB";
+            this.btnDeleteAB.Size = new System.Drawing.Size(359, 140);
+            this.btnDeleteAB.TabIndex = 4;
+            this.btnDeleteAB.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnDeleteAB.UseVisualStyleBackColor = false;
             // 
-            // btnFromExisting
+            // btnTramline
             // 
-            this.btnFromExisting.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnFromExisting.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.btnFromExisting.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnFromExisting.BorderRadius = 15;
-            this.btnFromExisting.BorderSize = 2;
-            this.btnFromExisting.FlatAppearance.BorderSize = 0;
-            this.btnFromExisting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFromExisting.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFromExisting.ForeColor = System.Drawing.Color.Black;
-            this.btnFromExisting.Image = global::AgOpenGPS.Properties.Resources.FileExisting;
-            this.btnFromExisting.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFromExisting.Location = new System.Drawing.Point(367, 38);
-            this.btnFromExisting.Name = "btnFromExisting";
-            this.btnFromExisting.Size = new System.Drawing.Size(245, 82);
-            this.btnFromExisting.TabIndex = 538;
-            this.btnFromExisting.Text = "From Existing";
-            this.btnFromExisting.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnFromExisting.TextColor = System.Drawing.Color.Black;
-            this.btnFromExisting.UseVisualStyleBackColor = false;
-            this.btnFromExisting.Click += new System.EventHandler(this.btnFromExisting_Click);
+            this.btnTramline.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnTramline.BackColor = System.Drawing.Color.Azure;
+            this.btnTramline.BackgroundColor = System.Drawing.Color.Azure;
+            this.btnTramline.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnTramline.BorderRadius = 15;
+            this.btnTramline.BorderSize = 2;
+            this.btnTramline.Enabled = false;
+            this.btnTramline.FlatAppearance.BorderSize = 0;
+            this.btnTramline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTramline.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTramline.ForeColor = System.Drawing.Color.Black;
+            this.btnTramline.Image = global::AgOpenGPS.Properties.Resources.TramAll;
+            this.btnTramline.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTramline.Location = new System.Drawing.Point(396, 478);
+            this.btnTramline.Name = "btnTramline";
+            this.btnTramline.Size = new System.Drawing.Size(300, 100);
+            this.btnTramline.TabIndex = 538;
+            this.btnTramline.Text = "Tramline";
+            this.btnTramline.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTramline.TextColor = System.Drawing.Color.Black;
+            this.btnTramline.UseVisualStyleBackColor = false;
+            // 
+            // btnHeadlandBuild
+            // 
+            this.btnHeadlandBuild.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnHeadlandBuild.BackColor = System.Drawing.Color.Azure;
+            this.btnHeadlandBuild.BackgroundColor = System.Drawing.Color.Azure;
+            this.btnHeadlandBuild.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnHeadlandBuild.BorderRadius = 15;
+            this.btnHeadlandBuild.BorderSize = 2;
+            this.btnHeadlandBuild.Enabled = false;
+            this.btnHeadlandBuild.FlatAppearance.BorderSize = 0;
+            this.btnHeadlandBuild.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHeadlandBuild.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHeadlandBuild.ForeColor = System.Drawing.Color.Black;
+            this.btnHeadlandBuild.Image = global::AgOpenGPS.Properties.Resources.ABBndLines;
+            this.btnHeadlandBuild.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHeadlandBuild.Location = new System.Drawing.Point(32, 622);
+            this.btnHeadlandBuild.Name = "btnHeadlandBuild";
+            this.btnHeadlandBuild.Size = new System.Drawing.Size(300, 100);
+            this.btnHeadlandBuild.TabIndex = 538;
+            this.btnHeadlandBuild.Text = "Headland\r\nBuild";
+            this.btnHeadlandBuild.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnHeadlandBuild.TextColor = System.Drawing.Color.Black;
+            this.btnHeadlandBuild.UseVisualStyleBackColor = false;
+            // 
+            // btnJobClose
+            // 
+            this.btnJobClose.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnJobClose.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnJobClose.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.btnJobClose.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnJobClose.BorderRadius = 10;
+            this.btnJobClose.BorderSize = 2;
+            this.btnJobClose.FlatAppearance.BorderSize = 0;
+            this.btnJobClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnJobClose.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnJobClose.ForeColor = System.Drawing.Color.Black;
+            this.btnJobClose.Image = global::AgOpenGPS.Properties.Resources.FileClose;
+            this.btnJobClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnJobClose.Location = new System.Drawing.Point(770, 20);
+            this.btnJobClose.Name = "btnJobClose";
+            this.btnJobClose.Size = new System.Drawing.Size(280, 100);
+            this.btnJobClose.TabIndex = 538;
+            this.btnJobClose.Text = "Close";
+            this.btnJobClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnJobClose.TextColor = System.Drawing.Color.Black;
+            this.btnJobClose.UseVisualStyleBackColor = false;
+            this.btnJobClose.Click += new System.EventHandler(this.btnJobClose_Click);
+            // 
+            // btnHeadlandSlice
+            // 
+            this.btnHeadlandSlice.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnHeadlandSlice.BackColor = System.Drawing.Color.Azure;
+            this.btnHeadlandSlice.BackgroundColor = System.Drawing.Color.Azure;
+            this.btnHeadlandSlice.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnHeadlandSlice.BorderRadius = 15;
+            this.btnHeadlandSlice.BorderSize = 2;
+            this.btnHeadlandSlice.Enabled = false;
+            this.btnHeadlandSlice.FlatAppearance.BorderSize = 0;
+            this.btnHeadlandSlice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHeadlandSlice.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHeadlandSlice.ForeColor = System.Drawing.Color.Black;
+            this.btnHeadlandSlice.Image = global::AgOpenGPS.Properties.Resources.HeadlandSlice;
+            this.btnHeadlandSlice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHeadlandSlice.Location = new System.Drawing.Point(32, 478);
+            this.btnHeadlandSlice.Name = "btnHeadlandSlice";
+            this.btnHeadlandSlice.Size = new System.Drawing.Size(300, 100);
+            this.btnHeadlandSlice.TabIndex = 538;
+            this.btnHeadlandSlice.Text = "Headland\r\nSlice";
+            this.btnHeadlandSlice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnHeadlandSlice.TextColor = System.Drawing.Color.Black;
+            this.btnHeadlandSlice.UseVisualStyleBackColor = false;
+            // 
+            // btnJobOpen
+            // 
+            this.btnJobOpen.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnJobOpen.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnJobOpen.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.btnJobOpen.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnJobOpen.BorderRadius = 10;
+            this.btnJobOpen.BorderSize = 2;
+            this.btnJobOpen.FlatAppearance.BorderSize = 0;
+            this.btnJobOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnJobOpen.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnJobOpen.ForeColor = System.Drawing.Color.Black;
+            this.btnJobOpen.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
+            this.btnJobOpen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnJobOpen.Location = new System.Drawing.Point(770, 161);
+            this.btnJobOpen.Name = "btnJobOpen";
+            this.btnJobOpen.Size = new System.Drawing.Size(280, 100);
+            this.btnJobOpen.TabIndex = 538;
+            this.btnJobOpen.Text = "Open";
+            this.btnJobOpen.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnJobOpen.TextColor = System.Drawing.Color.Black;
+            this.btnJobOpen.UseVisualStyleBackColor = false;
+            this.btnJobOpen.Click += new System.EventHandler(this.btnJobOpen_Click);
             // 
             // btnJobNew
             // 
+            this.btnJobNew.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnJobNew.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnJobNew.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.btnJobNew.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnJobNew.BorderRadius = 15;
+            this.btnJobNew.BorderRadius = 10;
             this.btnJobNew.BorderSize = 2;
             this.btnJobNew.FlatAppearance.BorderSize = 0;
             this.btnJobNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -304,9 +318,9 @@
             this.btnJobNew.ForeColor = System.Drawing.Color.Black;
             this.btnJobNew.Image = global::AgOpenGPS.Properties.Resources.FileNew;
             this.btnJobNew.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnJobNew.Location = new System.Drawing.Point(367, 168);
+            this.btnJobNew.Location = new System.Drawing.Point(406, 161);
             this.btnJobNew.Name = "btnJobNew";
-            this.btnJobNew.Size = new System.Drawing.Size(245, 82);
+            this.btnJobNew.Size = new System.Drawing.Size(280, 100);
             this.btnJobNew.TabIndex = 538;
             this.btnJobNew.Text = "New";
             this.btnJobNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -314,35 +328,37 @@
             this.btnJobNew.UseVisualStyleBackColor = false;
             this.btnJobNew.Click += new System.EventHandler(this.btnJobNew_Click);
             // 
-            // btnFromKML
+            // btnFromExisting
             // 
-            this.btnFromKML.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnFromKML.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.btnFromKML.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnFromKML.BorderRadius = 15;
-            this.btnFromKML.BorderSize = 2;
-            this.btnFromKML.FlatAppearance.BorderSize = 0;
-            this.btnFromKML.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFromKML.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFromKML.ForeColor = System.Drawing.Color.Black;
-            this.btnFromKML.Image = global::AgOpenGPS.Properties.Resources.BoundaryLoadFromGE;
-            this.btnFromKML.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFromKML.Location = new System.Drawing.Point(35, 168);
-            this.btnFromKML.Name = "btnFromKML";
-            this.btnFromKML.Size = new System.Drawing.Size(245, 82);
-            this.btnFromKML.TabIndex = 538;
-            this.btnFromKML.Text = "From KML";
-            this.btnFromKML.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnFromKML.TextColor = System.Drawing.Color.Black;
-            this.btnFromKML.UseVisualStyleBackColor = false;
-            this.btnFromKML.Click += new System.EventHandler(this.btnFromKML_Click);
+            this.btnFromExisting.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnFromExisting.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnFromExisting.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.btnFromExisting.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnFromExisting.BorderRadius = 10;
+            this.btnFromExisting.BorderSize = 2;
+            this.btnFromExisting.FlatAppearance.BorderSize = 0;
+            this.btnFromExisting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFromExisting.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFromExisting.ForeColor = System.Drawing.Color.Black;
+            this.btnFromExisting.Image = global::AgOpenGPS.Properties.Resources.FileExisting;
+            this.btnFromExisting.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFromExisting.Location = new System.Drawing.Point(406, 20);
+            this.btnFromExisting.Name = "btnFromExisting";
+            this.btnFromExisting.Size = new System.Drawing.Size(280, 100);
+            this.btnFromExisting.TabIndex = 538;
+            this.btnFromExisting.Text = "From Existing";
+            this.btnFromExisting.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnFromExisting.TextColor = System.Drawing.Color.Black;
+            this.btnFromExisting.UseVisualStyleBackColor = false;
+            this.btnFromExisting.Click += new System.EventHandler(this.btnFromExisting_Click);
             // 
             // btnInField
             // 
+            this.btnInField.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnInField.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnInField.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.btnInField.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnInField.BorderRadius = 15;
+            this.btnInField.BorderRadius = 10;
             this.btnInField.BorderSize = 2;
             this.btnInField.FlatAppearance.BorderSize = 0;
             this.btnInField.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -350,9 +366,9 @@
             this.btnInField.ForeColor = System.Drawing.Color.Black;
             this.btnInField.Image = global::AgOpenGPS.Properties.Resources.AutoManualIsAuto;
             this.btnInField.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInField.Location = new System.Drawing.Point(35, 38);
+            this.btnInField.Location = new System.Drawing.Point(42, 20);
             this.btnInField.Name = "btnInField";
-            this.btnInField.Size = new System.Drawing.Size(245, 82);
+            this.btnInField.Size = new System.Drawing.Size(280, 100);
             this.btnInField.TabIndex = 537;
             this.btnInField.Text = "Drive In";
             this.btnInField.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -360,27 +376,68 @@
             this.btnInField.UseVisualStyleBackColor = false;
             this.btnInField.Click += new System.EventHandler(this.btnInField_Click);
             // 
+            // btnFromKML
+            // 
+            this.btnFromKML.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnFromKML.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnFromKML.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.btnFromKML.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnFromKML.BorderRadius = 10;
+            this.btnFromKML.BorderSize = 2;
+            this.btnFromKML.FlatAppearance.BorderSize = 0;
+            this.btnFromKML.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFromKML.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFromKML.ForeColor = System.Drawing.Color.Black;
+            this.btnFromKML.Image = global::AgOpenGPS.Properties.Resources.BoundaryLoadFromGE;
+            this.btnFromKML.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFromKML.Location = new System.Drawing.Point(42, 161);
+            this.btnFromKML.Name = "btnFromKML";
+            this.btnFromKML.Size = new System.Drawing.Size(280, 100);
+            this.btnFromKML.TabIndex = 538;
+            this.btnFromKML.Text = "From KML";
+            this.btnFromKML.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnFromKML.TextColor = System.Drawing.Color.Black;
+            this.btnFromKML.UseVisualStyleBackColor = false;
+            this.btnFromKML.Click += new System.EventHandler(this.btnFromKML_Click);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.ForeColor = System.Drawing.Color.White;
+            this.checkBox1.Location = new System.Drawing.Point(92, 339);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(180, 27);
+            this.checkBox1.TabIndex = 539;
+            this.checkBox1.Text = "Close on Selection";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // FormJob
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Cyan;
-            this.ClientSize = new System.Drawing.Size(975, 727);
+            this.ClientSize = new System.Drawing.Size(1101, 753);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(700, 460);
             this.Name = "FormJob";
             this.Padding = new System.Windows.Forms.Padding(4);
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Start a field";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormJob_FormClosing);
             this.Load += new System.EventHandler(this.FormJob_Load);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -401,5 +458,7 @@
         private RJButton btnHeadlandBuild;
         private RJButton btnHeadlandSlice;
         private RJButton btnTramline;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

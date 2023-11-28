@@ -665,5 +665,14 @@
     <Setting Name="setTool_isTramOuterInverted" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="setFieldMenu_size" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">980, 740</Value>
+    </Setting>
+    <Setting Name="setFieldMenu_isKeepOpen" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setFieldMenu_location" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">10, 10</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

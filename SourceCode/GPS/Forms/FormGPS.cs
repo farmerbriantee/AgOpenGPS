@@ -355,10 +355,10 @@ namespace AgOpenGPS
             panelRight.Enabled = false;
 
             oglMain.Left = 75;
-            oglMain.Width = this.Width - statusStripLeft.Width - 84;
+            oglMain.Width = this.Width - 84;
 
             panelSim.Left = 100;
-            panelSim.Width = Width - statusStripLeft.Width - 200;
+            panelSim.Width = Width - 200;
 
             timer2.Enabled = true;
 
@@ -495,6 +495,7 @@ namespace AgOpenGPS
 
             //ControlExtension.Draggable(panelSnap, true);
             ControlExtension.Draggable(oglZoom, true);
+            ControlExtension.Draggable(btnFieldMenu, true);
 
             setWorkingDirectoryToolStripMenuItem.Text = gStr.gsDirectories;
             enterSimCoordsToolStripMenuItem.Text = gStr.gsEnterSimCoords;
@@ -510,21 +511,21 @@ namespace AgOpenGPS
 
             resetEverythingToolStripMenuItem.Text = gStr.gsResetAllForSure;
 
-            steerChartStripMenu.Text = gStr.gsCharts;
+            //steerChartStripMenu.Text = gStr.gsCharts;
 
-            //Tools Menu
-            SmoothABtoolStripMenu.Text = gStr.gsSmoothABCurve;
-            deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
-            deleteAppliedAreaToolStripMenuItem.Text = gStr.gsDeleteAppliedArea;
-            deleteForSureToolStripMenuItem.Text = gStr.gsAreYouSure;
+            ////Tools Menu
+            //SmoothABtoolStripMenu.Text = gStr.gsSmoothABCurve;
+            //deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
+            //deleteAppliedAreaToolStripMenuItem.Text = gStr.gsDeleteAppliedArea;
+            //deleteForSureToolStripMenuItem.Text = gStr.gsAreYouSure;
 
-            webcamToolStrip.Text = gStr.gsWebCam;
-            offsetFixToolStrip.Text = gStr.gsOffsetFix;
-            wizardsMenu.Text = gStr.gsWizards;
-            steerWizardMenuItem.Text = gStr.gsSteerWizard;
-            steerChartToolStripMenuItem.Text = gStr.gsSteerChart;
-            headingChartToolStripMenuItem.Text = gStr.gsHeadingChart;
-            xTEChartToolStripMenuItem.Text = gStr.gsXTEChart;
+            //webcamToolStrip.Text = gStr.gsWebCam;
+            //offsetFixToolStrip.Text = gStr.gsOffsetFix;
+            //wizardsMenu.Text = gStr.gsWizards;
+            //steerWizardMenuItem.Text = gStr.gsSteerWizard;
+            //steerChartToolStripMenuItem.Text = gStr.gsSteerChart;
+            //headingChartToolStripMenuItem.Text = gStr.gsHeadingChart;
+            //xTEChartToolStripMenuItem.Text = gStr.gsXTEChart;
 
             btnChangeMappingColor.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
             //btnChangeMappingColor.Text = btnChangeMappingColor.Text.Substring(2);
@@ -1043,9 +1044,9 @@ namespace AgOpenGPS
 
         public void FieldMenuButtonEnableDisable(bool isOn)
         {
-            SmoothABtoolStripMenu.Enabled = isOn;
+            //SmoothABtoolStripMenu.Enabled = isOn;
             //toolStripBtnMakeBndContour.Enabled = isOn;
-            deleteContourPathsToolStripMenuItem.Enabled = isOn;
+            //deleteContourPathsToolStripMenuItem.Enabled = isOn;
             btnABDraw.Enabled = isOn;
             btnFlag.Visible = isOn;
 

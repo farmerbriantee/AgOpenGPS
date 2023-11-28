@@ -308,7 +308,7 @@ namespace AgOpenGPS
 
             int oglCenter = 0;
 
-            oglCenter = statusStripLeft.Width + oglMain.Width / 2;
+            oglCenter = oglMain.Width / 2;
 
             int top = 130;
 
@@ -465,7 +465,7 @@ namespace AgOpenGPS
 
             int oglCenter = 0;
 
-            oglCenter = statusStripLeft.Width + oglMain.Width / 2;
+            oglCenter = oglMain.Width / 2;
 
             int top = 130;
 

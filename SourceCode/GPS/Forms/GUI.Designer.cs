@@ -260,14 +260,14 @@ namespace AgOpenGPS
                 if (isMetric)  //metric or imperial
                 {
                     //status strip values
-                    distanceToolBtn.Text = fd.DistanceUserMeters + "\r\n" + fd.WorkedUserHectares;
+                    //distanceToolBtn.Text = fd.DistanceUserMeters + "\r\n" + fd.WorkedUserHectares;
 
                 }
                 else  //Imperial Measurements
                 {
                     //acres on the master section soft control and sections
                     //status strip values
-                    distanceToolBtn.Text = fd.DistanceUserFeet + "\r\n" + fd.WorkedUserAcres;
+                    //distanceToolBtn.Text = fd.DistanceUserFeet + "\r\n" + fd.WorkedUserAcres;
                 }
 
                 //Make sure it is off when it should
@@ -318,13 +318,13 @@ namespace AgOpenGPS
 
             isMetric = Settings.Default.setMenu_isMetric;
 
-            SmoothABtoolStripMenu.Visible = Properties.Settings.Default.setFeatures.isABSmoothOn;
-            deleteContourPathsToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isHideContourOn;
-            webcamToolStrip.Visible = Properties.Settings.Default.setFeatures.isWebCamOn;
-            offsetFixToolStrip.Visible = Properties.Settings.Default.setFeatures.isOffsetFixOn;
+            //SmoothABtoolStripMenu.Visible = Properties.Settings.Default.setFeatures.isABSmoothOn;
+            //deleteContourPathsToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isHideContourOn;
+            //webcamToolStrip.Visible = Properties.Settings.Default.setFeatures.isWebCamOn;
+            //offsetFixToolStrip.Visible = Properties.Settings.Default.setFeatures.isOffsetFixOn;
             btnContour.Visible = Properties.Settings.Default.setFeatures.isContourOn;
             btnAutoYouTurn.Visible = Properties.Settings.Default.setFeatures.isYouTurnOn;
-            btnStartAgIO.Visible = Properties.Settings.Default.setFeatures.isAgIOOn;
+            //btnStartAgIO.Visible = Properties.Settings.Default.setFeatures.isAgIOOn;
 
             btnAutoSteer.Visible = Properties.Settings.Default.setFeatures.isAutoSteerOn;
             btnCycleLines.Visible = Properties.Settings.Default.setFeatures.isCycleLinesOn;
@@ -332,7 +332,7 @@ namespace AgOpenGPS
             btnSectionMasterManual.Visible = Properties.Settings.Default.setFeatures.isManualSectionOn;
             btnSectionMasterAuto.Visible = Properties.Settings.Default.setFeatures.isAutoSectionOn;
             btnGuidance.Visible = Properties.Settings.Default.setFeatures.isCurveOn;
-            btnStanleyPure.Visible = Properties.Settings.Default.setFeatures.isSteerModeOn;
+            //btnStanleyPure.Visible = Properties.Settings.Default.setFeatures.isSteerModeOn;
 
             isUTurnOn = Properties.Settings.Default.setFeatures.isUTurnOn;
             isLateralOn = Properties.Settings.Default.setFeatures.isLateralOn;
@@ -428,11 +428,11 @@ namespace AgOpenGPS
 
             if ( Properties.Settings.Default.setVehicle_isStanleyUsed)
             {
-                btnStanleyPure.Image = Resources.ModeStanley;
+                //btnStanleyPure.Image = Resources.ModeStanley;
             }
             else
             {
-                btnStanleyPure.Image = Resources.ModePurePursuit;
+                //btnStanleyPure.Image = Resources.ModePurePursuit;
             }
 
             //set the flag mark button to red dot
@@ -716,16 +716,16 @@ namespace AgOpenGPS
                 panelAB.Visible = false;
                 panelRight.Visible = false;
 
-                oglMain.Left = 75;
-                oglMain.Width = this.Width - statusStripLeft.Width - 22; //22
+                oglMain.Left = 10;
+                oglMain.Width = this.Width - 22; //22
                 oglMain.Height = this.Height - 62;
             }
             else
             {
                 panelAB.Visible = true;
                 panelRight.Visible = true;
-                oglMain.Left = 75;
-                oglMain.Width = this.Width - statusStripLeft.Width - 84; //22
+                oglMain.Left = 10;
+                oglMain.Width = this.Width - 84; //22
                 oglMain.Height = this.Height - 120;
             }
 
@@ -1040,7 +1040,7 @@ namespace AgOpenGPS
 
         private void oglZoom_MouseClick(object sender, MouseEventArgs e)
         {
-            if ((sender as Control).IsDragging()) return;
+            //if ((sender as Control).draIsDragging()) return;
 
             if (oglZoom.Width == 180)
             {

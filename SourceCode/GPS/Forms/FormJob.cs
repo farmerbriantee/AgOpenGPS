@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgOpenGPS.Properties;
+using System;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
@@ -9,6 +10,7 @@ namespace AgOpenGPS
     {
         //class variables
         private readonly FormGPS mf = null;
+        private bool isStayOpen;
 
         public FormJob(Form callingForm)
         {
@@ -35,7 +37,9 @@ namespace AgOpenGPS
 
             btnBoundary.Visible = Properties.Settings.Default.setFeatures.isBoundaryOn;
 
-            this.Text = gStr.gsStartNewField;
+            this.Text = gStr.gsField;
+
+
         }
 
         private void FormJob_Load(object sender, EventArgs e)
@@ -69,6 +73,9 @@ namespace AgOpenGPS
                 btnHeadlandSlice.Enabled = true;
                 btnBoundary.Enabled = true;
             }
+
+            Size = Settings.Default.setFieldMenu_size;
+            Location = Settings.Default.setFieldMenu_location;
         }
 
         private void btnJobNew_Click(object sender, EventArgs e)
@@ -245,6 +252,13 @@ namespace AgOpenGPS
             double d3 = Math.Pow(Math.Sin((d2 - d1) / 2.0), 2.0) + Math.Cos(d1) * Math.Cos(d2) * Math.Pow(Math.Sin(num2 / 2.0), 2.0);
 
             return 6376500.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3)));
+        }
+
+        private void FormJob_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Settings.Default.setFieldMenu_size = Size;
+            Settings.Default.setFieldMenu_location = Location;
+            Settings.Default.Save();
         }
     }
 }

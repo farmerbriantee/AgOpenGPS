@@ -496,48 +496,6 @@ namespace AgOpenGPS
             form.Show(this);
 
         }
-        private void toolStripDropDownButtonDistance_Click(object sender, EventArgs e)
-        {
-            if (isTT)
-            {
-                MessageBox.Show(gStr.h_btnDistanceArea, gStr.gsHelp);
-                ResetHelpBtn();
-                return;
-            }
-            fd.distanceUser = 0;
-            fd.workedAreaTotalUser = 0;
-        }        
-        private void navPanelToolStrip_Click(object sender, EventArgs e)
-        {
-            //buttonPanelCounter = 0;
-            Form f = Application.OpenForms["FormGPSData"];
-
-            if (f != null)
-            {
-                f.Focus();
-                f.Close();
-            }
-
-            Form f1 = Application.OpenForms["FormFieldData"];
-
-            if (f1 != null)
-            {
-                f1.Focus();
-                f1.Close();
-            }
-
-            if (panelNavigation.Visible)
-            {
-                panelNavigation.Visible = false;
-            }
-            else
-            {
-                panelNavigation.Visible = true;
-                navPanelCounter = 2;
-                if (displayBrightness.isWmiMonitor) btnBrightnessDn.Text = (displayBrightness.GetBrightness().ToString()) + "%";
-                else btnBrightnessDn.Text = "??";
-            }
-        }
         private void toolStripMenuItemFlagRed_Click(object sender, EventArgs e)
         {
             flagColor = 0;
@@ -660,19 +618,6 @@ namespace AgOpenGPS
             form.Left = 0;
             form.Show(this);
 
-        }
-        private void stripBtnConfig_Click(object sender, EventArgs e)
-        {
-            if (isTT)
-            {
-                MessageBox.Show(gStr.h_btnConfig, gStr.gsHelp);
-                ResetHelpBtn();
-                return;
-            }
-            using (FormConfig form = new FormConfig(this))
-            {
-                form.ShowDialog(this);
-            }
         }
         #endregion
 
@@ -1177,11 +1122,11 @@ namespace AgOpenGPS
 
             if (isStanleyUsed)
             {
-                btnStanleyPure.Image = Resources.ModeStanley;
+                //btnStanleyPure.Image = Resources.ModeStanley;
             }
             else
             {
-                btnStanleyPure.Image = Resources.ModePurePursuit;
+                //btnStanleyPure.Image = Resources.ModePurePursuit;
             }
 
             Properties.Settings.Default.setVehicle_isStanleyUsed = isStanleyUsed;
@@ -1780,6 +1725,61 @@ namespace AgOpenGPS
         #endregion
 
         #region Field Menu
+        private void toolStripDropDownButtonDistance_Click(object sender, EventArgs e)
+        {
+            if (isTT)
+            {
+                MessageBox.Show(gStr.h_btnDistanceArea, gStr.gsHelp);
+                ResetHelpBtn();
+                return;
+            }
+            fd.distanceUser = 0;
+            fd.workedAreaTotalUser = 0;
+        }        
+        private void navPanelToolStrip_Click(object sender, EventArgs e)
+        {
+            //buttonPanelCounter = 0;
+            Form f = Application.OpenForms["FormGPSData"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+            }
+
+            Form f1 = Application.OpenForms["FormFieldData"];
+
+            if (f1 != null)
+            {
+                f1.Focus();
+                f1.Close();
+            }
+
+            if (panelNavigation.Visible)
+            {
+                panelNavigation.Visible = false;
+            }
+            else
+            {
+                panelNavigation.Visible = true;
+                navPanelCounter = 2;
+                if (displayBrightness.isWmiMonitor) btnBrightnessDn.Text = (displayBrightness.GetBrightness().ToString()) + "%";
+                else btnBrightnessDn.Text = "??";
+            }
+        }
+        private void stripBtnConfig_Click(object sender, EventArgs e)
+        {
+            if (isTT)
+            {
+                MessageBox.Show(gStr.h_btnConfig, gStr.gsHelp);
+                ResetHelpBtn();
+                return;
+            }
+            using (FormConfig form = new FormConfig(this))
+            {
+                form.ShowDialog(this);
+            }
+        }
         private void btnSettings_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -2168,9 +2168,5 @@ namespace AgOpenGPS
             isTT = false;
             btnHelp.Image = Resources.Help;
         }
-
-        private ToolStripMenuItem steerChartToolStripMenuItem;
-        private ToolStripMenuItem headingChartToolStripMenuItem;
-        private ToolStripMenuItem xTEChartToolStripMenuItem;
     }//end class
 }//end namespace

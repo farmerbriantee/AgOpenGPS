@@ -2675,5 +2675,41 @@ namespace AgOpenGPS.Properties {
                 this["setTool_isTramOuterInverted"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("980, 740")]
+        public global::System.Drawing.Size setFieldMenu_size {
+            get {
+                return ((global::System.Drawing.Size)(this["setFieldMenu_size"]));
+            }
+            set {
+                this["setFieldMenu_size"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setFieldMenu_isKeepOpen {
+            get {
+                return ((bool)(this["setFieldMenu_isKeepOpen"]));
+            }
+            set {
+                this["setFieldMenu_isKeepOpen"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10, 10")]
+        public global::System.Drawing.Point setFieldMenu_location {
+            get {
+                return ((global::System.Drawing.Point)(this["setFieldMenu_location"]));
+            }
+            set {
+                this["setFieldMenu_location"] = value;
+            }
+        }
     }
 }
