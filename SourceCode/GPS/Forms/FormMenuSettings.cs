@@ -25,7 +25,11 @@ namespace AgOpenGPS.Forms
 
         private void btnConfig_Click(object sender, EventArgs e)
         {
-                
+            Close();
+            using (FormConfig form = new FormConfig(mf, 0))
+            {
+                form.ShowDialog(this);
+            }
         }
 
         private void btnStartAgIO_Click(object sender, EventArgs e)
@@ -58,6 +62,67 @@ namespace AgOpenGPS.Forms
                 FormGPS.ShowWindow(processName[0].MainWindowHandle, 9);
                 FormGPS.SetForegroundWindow(processName[0].MainWindowHandle);
             }
+
+            Close();
+        }
+
+        private void btnConfgTool_Click(object sender, EventArgs e)
+        {
+            Close();
+            using (FormConfig form = new FormConfig(mf, 1))
+            {
+                form.ShowDialog(this);
+            }
+        }
+        private void btnConfigGuidance_Click(object sender, EventArgs e)
+        {
+            Close();
+            using (FormConfig form = new FormConfig(mf, 2))
+            {
+                form.ShowDialog(this);
+            }
+        }
+
+        private void btnConfigUTurn_Click(object sender, EventArgs e)
+        {
+            Close();
+            using (FormConfig form = new FormConfig(mf, 3))
+            {
+                form.ShowDialog(this);
+            }
+        }
+
+        private void btnDisplay_Click(object sender, EventArgs e)
+        {
+            //buttonPanelCounter = 0;
+            Form f = Application.OpenForms["FormGPSData"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+            }
+
+            Form f1 = Application.OpenForms["FormFieldData"];
+
+            if (f1 != null)
+            {
+                f1.Focus();
+                f1.Close();
+            }
+
+            if (mf.panelNavigation.Visible)
+            {
+                mf.panelNavigation.Visible = false;
+            }
+            else
+            {
+                mf.panelNavigation.Visible = true;
+                mf.navPanelCounter = 2;
+                if (mf.displayBrightness.isWmiMonitor) mf.btnBrightnessDn.Text = (mf.displayBrightness.GetBrightness().ToString()) + "%";
+                else mf.btnBrightnessDn.Text = "??";
+            }
+            Close();
         }
     }
 }

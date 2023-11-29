@@ -134,7 +134,6 @@
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.panelAB = new System.Windows.Forms.TableLayoutPanel();
             this.btnTramDisplayMode = new System.Windows.Forms.Button();
-            this.btnAutoSteerConfig = new System.Windows.Forms.Button();
             this.btnHydLift = new System.Windows.Forms.Button();
             this.btnHeadlandOnOff = new System.Windows.Forms.Button();
             this.btnResetToolHeading = new System.Windows.Forms.Button();
@@ -173,6 +172,7 @@
             this.timerLineAdj = new System.Windows.Forms.Timer(this.components);
             this.btnSettings = new AgOpenGPS.RJButton();
             this.btnFieldMenu = new AgOpenGPS.RJButton();
+            this.btnAutoSteerConfig = new AgOpenGPS.RJButton();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -1091,7 +1091,6 @@
             resources.ApplyResources(this.panelAB, "panelAB");
             this.panelAB.BackColor = System.Drawing.Color.Transparent;
             this.panelAB.Controls.Add(this.btnTramDisplayMode, 3, 0);
-            this.panelAB.Controls.Add(this.btnAutoSteerConfig, 6, 0);
             this.panelAB.Controls.Add(this.btnHydLift, 2, 0);
             this.panelAB.Controls.Add(this.btnHeadlandOnOff, 1, 0);
             this.panelAB.Controls.Add(this.btnResetToolHeading, 0, 0);
@@ -1112,18 +1111,6 @@
             this.btnTramDisplayMode.Name = "btnTramDisplayMode";
             this.btnTramDisplayMode.UseVisualStyleBackColor = false;
             this.btnTramDisplayMode.Click += new System.EventHandler(this.btnTramDisplayMode_Click);
-            // 
-            // btnAutoSteerConfig
-            // 
-            resources.ApplyResources(this.btnAutoSteerConfig, "btnAutoSteerConfig");
-            this.btnAutoSteerConfig.BackColor = System.Drawing.Color.Transparent;
-            this.btnAutoSteerConfig.BackgroundImage = global::AgOpenGPS.Properties.Resources.AutoSteerConf;
-            this.btnAutoSteerConfig.FlatAppearance.BorderColor = System.Drawing.Color.SaddleBrown;
-            this.btnAutoSteerConfig.FlatAppearance.BorderSize = 0;
-            this.btnAutoSteerConfig.ForeColor = System.Drawing.Color.Black;
-            this.btnAutoSteerConfig.Name = "btnAutoSteerConfig";
-            this.btnAutoSteerConfig.UseVisualStyleBackColor = false;
-            this.btnAutoSteerConfig.Click += new System.EventHandler(this.btnAutoSteerConfig_Click);
             // 
             // btnHydLift
             // 
@@ -1500,11 +1487,28 @@
             this.btnFieldMenu.UseVisualStyleBackColor = false;
             this.btnFieldMenu.Click += new System.EventHandler(this.btnFieldMenu_Click);
             // 
+            // btnAutoSteerConfig
+            // 
+            resources.ApplyResources(this.btnAutoSteerConfig, "btnAutoSteerConfig");
+            this.btnAutoSteerConfig.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnAutoSteerConfig.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.btnAutoSteerConfig.BackgroundImage = global::AgOpenGPS.Properties.Resources.AutoSteerConf;
+            this.btnAutoSteerConfig.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnAutoSteerConfig.BorderRadius = 15;
+            this.btnAutoSteerConfig.BorderSize = 3;
+            this.btnAutoSteerConfig.FlatAppearance.BorderSize = 0;
+            this.btnAutoSteerConfig.ForeColor = System.Drawing.Color.Black;
+            this.btnAutoSteerConfig.Name = "btnAutoSteerConfig";
+            this.btnAutoSteerConfig.TextColor = System.Drawing.Color.Black;
+            this.btnAutoSteerConfig.UseVisualStyleBackColor = false;
+            this.btnAutoSteerConfig.Click += new System.EventHandler(this.btnAutoSteerConfig_Click);
+            // 
             // FormGPS
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Controls.Add(this.btnAutoSteerConfig);
             this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.btnFieldMenu);
             this.Controls.Add(this.panelRight);
@@ -1657,7 +1661,6 @@
         public System.Windows.Forms.Button btnHydLift;
         private System.Windows.Forms.ToolStripMenuItem menuLanguagePolish;
         public System.Windows.Forms.Button btnDayNightMode;
-        private System.Windows.Forms.TableLayoutPanel panelNavigation;
         public System.Windows.Forms.Button btnN3D;
         public System.Windows.Forms.Button btn2D;
         public System.Windows.Forms.Button btn3D;
@@ -1718,9 +1721,10 @@
         public System.Windows.Forms.Button btnTrackCreateEdit;
         public System.Windows.Forms.Button btnAutoTrack;
         private System.Windows.Forms.Timer timerLineAdj;
-        public System.Windows.Forms.Button btnAutoSteerConfig;
         private RJButton btnFieldMenu;
         private RJButton btnSettings;
+        private RJButton btnAutoSteerConfig;
+        public System.Windows.Forms.TableLayoutPanel panelNavigation;
     }
 }
 

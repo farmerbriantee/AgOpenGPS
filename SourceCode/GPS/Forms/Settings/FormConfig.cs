@@ -16,11 +16,16 @@ namespace AgOpenGPS
 
         bool isClosing = false;
 
+        private int startMode;
+
         //constructor
-        public FormConfig(Form callingForm)
+        public FormConfig(Form callingForm, int mode)
         {
             //get copy of the calling main form
             mf = callingForm as FormGPS;
+
+            startMode = mode;
+
             InitializeComponent();
 
             tab1.Appearance = TabAppearance.FlatButtons;
@@ -28,6 +33,8 @@ namespace AgOpenGPS
             tab1.SizeMode = TabSizeMode.Fixed;
 
             HideSubMenu();
+
+
 
             nudTrailingHitchLength.Controls[0].Enabled = false;
             nudDrawbarLength.Controls[0].Enabled = false;
@@ -164,8 +171,29 @@ namespace AgOpenGPS
             if (mf.isMetric) rbtnDisplayMetric.Checked = true;
             else rbtnDisplayImperial.Checked = true;
 
-            tab1.SelectedTab = tabSummary;
-            tboxVehicleNameSave.Focus();
+            if (startMode == 0)
+            {
+                tab1.SelectedTab = tabSummary;
+                tboxVehicleNameSave.Focus();
+            }
+
+            else if (startMode == 1)
+            {
+                ShowSubMenu(panelToolSubMenu, btnTool);
+                tab1.SelectedTab = tabTSections;
+            }
+
+            else if (startMode == 2)
+            {
+                ShowSubMenu(panelVehicleSubMenu, btnVehicle);
+                tab1.SelectedTab = tabVGuidance;
+            }
+
+            else if (startMode == 3)
+            {
+                HideSubMenu();
+                tab1.SelectedTab = tabUTurn;
+            }
 
             label29.Text = gStr.gsSaveAs;
             //label3.Text = gStr.gsCurrent;

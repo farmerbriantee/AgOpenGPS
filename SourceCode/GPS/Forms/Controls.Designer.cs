@@ -618,7 +618,6 @@ namespace AgOpenGPS
             form.Top = 0;
             form.Left = 0;
             form.Show(this);
-
         }
         #endregion
 
@@ -1770,16 +1769,16 @@ namespace AgOpenGPS
         }
         private void stripBtnConfig_Click(object sender, EventArgs e)
         {
-            if (isTT)
-            {
-                MessageBox.Show(gStr.h_btnConfig, gStr.gsHelp);
-                ResetHelpBtn();
-                return;
-            }
-            using (FormConfig form = new FormConfig(this))
-            {
-                form.ShowDialog(this);
-            }
+            //if (isTT)
+            //{
+            //    MessageBox.Show(gStr.h_btnConfig, gStr.gsHelp);
+            //    ResetHelpBtn();
+            //    return;
+            //}
+            //using (FormConfig form = new FormConfig(this))
+            //{
+            //    form.ShowDialog(this);
+            //}
         }
         private void btnSettings_Click(object sender, EventArgs e)
         {

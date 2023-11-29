@@ -65,7 +65,7 @@ namespace AgOpenGPS
         public bool isFlashOnOff = false;
 
         //makes nav panel disappear after 6 seconds
-        private int navPanelCounter = 0, linePanelCounter=0, trackMethodPanelCounter=0;
+        public int navPanelCounter = 0, linePanelCounter=0, trackMethodPanelCounter=0;
 
         public uint sentenceCounter = 0;
 
