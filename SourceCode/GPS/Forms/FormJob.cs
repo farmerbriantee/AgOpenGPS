@@ -58,8 +58,6 @@ namespace AgOpenGPS
 
         private void btnJobNew_Click(object sender, EventArgs e)
         {
-            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
-
             //back to FormGPS
             DialogResult = DialogResult.Yes;
             Close();
@@ -77,31 +75,8 @@ namespace AgOpenGPS
             Close();
         }
 
-        private void btnJobTouch_Click(object sender, EventArgs e)
-        {
-            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
-
-            mf.filePickerFileAndDirectory = "";
-
-            using (FormTouchPick form = new FormTouchPick(mf))
-            {
-                //returns full field.txt file dir name
-                if (form.ShowDialog(this) == DialogResult.Yes)
-                {
-                    mf.FileOpenField(mf.filePickerFileAndDirectory);
-                    Close();
-                }
-                else
-                {
-                    return;
-                }
-            }
-        }
-
         private void btnJobOpen_Click(object sender, EventArgs e)
         {
-            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
-
             mf.filePickerFileAndDirectory = "";
 
             using (FormFilePicker form = new FormFilePicker(mf))
@@ -109,6 +84,7 @@ namespace AgOpenGPS
                 //returns full field.txt file dir name
                 if (form.ShowDialog(this) == DialogResult.Yes)
                 {
+                    if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
                     mf.FileOpenField(mf.filePickerFileAndDirectory);
                     Close();
                 }
@@ -121,8 +97,6 @@ namespace AgOpenGPS
 
         private void btnInField_Click(object sender, EventArgs e)
         {
-            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
-
             string infieldList = "";
             int numFields = 0;
 
@@ -194,6 +168,7 @@ namespace AgOpenGPS
                         //returns full field.txt file dir name
                         if (form.ShowDialog(this) == DialogResult.Yes)
                         {
+                            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
                             mf.FileOpenField(mf.filePickerFileAndDirectory);
                             Close();
                         }
@@ -239,7 +214,6 @@ namespace AgOpenGPS
 
         private void btnFromExisting_Click(object sender, EventArgs e)
         {
-            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
             //back to FormGPS
             DialogResult = DialogResult.Retry;
             Close();

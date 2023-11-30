@@ -315,7 +315,7 @@ namespace AgOpenGPS
 
                 //Move the line
                 if (nudSetDistance.Value != 0)
-                    btnSetLineDistance_Click(this,e);
+                    SetLineDistance();
 
                 btnSlice.Enabled = true;
             }
@@ -501,7 +501,7 @@ namespace AgOpenGPS
 
         private void btnALength_Click(object sender, EventArgs e)
         {
-            if (mf.hdl.sliceArr[0].trackPts.Count > 3)
+            if (mf.hdl.sliceArr.Count > 0)
             {
                 //and the beginning
                 vec3 start = new vec3(mf.hdl.sliceArr[0].trackPts[0]);
@@ -518,7 +518,7 @@ namespace AgOpenGPS
 
         private void btnBLength_Click(object sender, EventArgs e)
         {
-            if (mf.hdl.sliceArr[0].trackPts.Count > 3)
+            if (mf.hdl.sliceArr.Count > 0)
             {
                 int ptCnt = mf.hdl.sliceArr[0].trackPts.Count - 1;
 
@@ -545,9 +545,8 @@ namespace AgOpenGPS
             GL.MatrixMode(MatrixMode.Modelview);
         }
 
-        private void btnSetLineDistance_Click(object sender, EventArgs e)
+        private void SetLineDistance()
         {
-            //mf.bnd.bndList[0].hdLine?.Clear();
             mf.hdl.desList?.Clear();
 
             if (mf.hdl.sliceArr.Count < 1 ) return;
@@ -725,7 +724,7 @@ namespace AgOpenGPS
             int startBnd = 0, endBnd = 0, startLine = 0, endLine = 0;
             int isStart = 0;
 
-            if (mf.hdl.sliceArr.Count == 0 || mf.hdl.idx == -1) return;
+            if (mf.hdl.sliceArr.Count == 0) return;
 
             //save a backup
             mf.hdl.backupList?.Clear();

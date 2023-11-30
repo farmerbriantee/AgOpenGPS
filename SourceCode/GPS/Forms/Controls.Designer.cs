@@ -474,35 +474,6 @@ namespace AgOpenGPS
 
         #endregion
 
-        private void jobMenuBtn_DoubleClick(object sender, EventArgs e)
-        {
-            if (isJobStarted)
-            {
-                if (autoBtnState == btnStates.Auto)
-                {
-                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Auto Section Control");
-                    return;
-                }
-
-                if (manualBtnState == btnStates.On)
-                {
-                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Auto Section Control");
-                    return;
-                }
-
-                //close the current job and ask how to or if to save
-                Settings.Default.setF_CurrentDir = currentFieldDirectory;
-                Settings.Default.Save();
-                FileSaveEverythingBeforeClosingField();
-                panelRight.Enabled = false;
-                //boundaryToolStripBtn.Enabled = false;
-                FieldMenuButtonEnableDisable(false);
-                displayFieldName = gStr.gsNone;
-            }
-
-            FileOpenField("Resume");
-        }
-
         private void jobMenuBtn_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -516,6 +487,21 @@ namespace AgOpenGPS
             {
                 TimedMessageBox(2500, "No GPS", "You are lost with no GPS, Fix that First");
                 return;
+            }
+
+            if (isJobStarted)
+            {
+                if (autoBtnState == btnStates.Auto)
+                {
+                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Auto Section Control");
+                    return;
+                }
+
+                if (manualBtnState == btnStates.On)
+                {
+                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Auto Section Control");
+                    return;
+                }
             }
 
             using (var form = new FormJob(this))
@@ -571,62 +557,9 @@ namespace AgOpenGPS
             if (isJobStarted) toolStripBtnFieldTools.Enabled = true;
 
         }
-
-        private void btnResumeField_Click(object sender, EventArgs e)
-        {
-            if (isTT)
-            {
-                MessageBox.Show("Resumes Last Field Used", "Resume Field");
-                ResetHelpBtn();
-                return;
-            }
-
-
-            if (isJobStarted)
-            {
-                if (autoBtnState == btnStates.Auto)
-                {
-                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Auto Section Control");
-                    return;
-                }
-
-                if (manualBtnState == btnStates.On)
-                {
-                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Auto Section Control");
-                    return;
-                }
-
-                //close the current job and ask how to or if to save
-                Settings.Default.setF_CurrentDir = currentFieldDirectory;
-                Settings.Default.Save();
-                FileSaveEverythingBeforeClosingField();
-                panelRight.Enabled = false;
-                //boundaryToolStripBtn.Enabled = false;
-                FieldMenuButtonEnableDisable(false);
-                displayFieldName = gStr.gsNone;
-            }
-
-            FileOpenField("Resume");
-        }
         
-        private void toolStripBtnField_Click(object sender, EventArgs e)
-        {
-            //CloseCurrentJob();             
-        }
         public void FileSaveEverythingBeforeClosingField()
         {
-            if (autoBtnState == btnStates.Auto)
-            {
-                TimedMessageBox(2000, "Safe Shutdown", "Turn off Auto Section Control");
-                return;
-            }
-
-            if (manualBtnState == btnStates.On)
-            {
-                TimedMessageBox(2000, "Safe Shutdown", "Turn off Auto Section Control");
-                return;
-            }
-
             //turn off contour line if on
             if (ct.isContourOn) ct.StopContourLine();
 

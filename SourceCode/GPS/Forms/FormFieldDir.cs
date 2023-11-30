@@ -65,9 +65,10 @@ namespace AgOpenGPS
             //fill something in
             if (String.IsNullOrEmpty(tboxFieldName.Text.Trim()))
             {
-                Close();
                 return;
             }
+
+            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
 
             //append date time to name
 

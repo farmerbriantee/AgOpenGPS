@@ -270,6 +270,8 @@ namespace AgOpenGPS
                 return;
             }
 
+            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
+
             //get the directory and make sure it exists, create if not
             string dirNewField = mf.fieldsDirectory + tboxFieldName.Text.Trim() + "\\";
 
