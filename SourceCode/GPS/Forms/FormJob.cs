@@ -27,23 +27,6 @@ namespace AgOpenGPS
             this.Text = gStr.gsStartNewField;
         }
 
-        private void btnJobNew_Click(object sender, EventArgs e)
-        {
-            //back to FormGPS
-            DialogResult = DialogResult.Yes;
-            Close();
-        }
-
-        private void btnJobResume_Click(object sender, EventArgs e)
-        {
-            //open the Resume.txt and continue from last exit
-            mf.FileOpenField("Resume");
-
-            //back to FormGPS
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
         private void FormJob_Load(object sender, EventArgs e)
         {
             //check if directory and file exists, maybe was deleted etc
@@ -54,7 +37,7 @@ namespace AgOpenGPS
 
             if (!File.Exists(fileAndDirectory))
             {
-                textBox1.Text = "";
+                lblResumeField.Text = "";
                 btnJobResume.Enabled = false;
                 mf.currentFieldDirectory = "";
 
@@ -64,31 +47,40 @@ namespace AgOpenGPS
             }
             else
             {
-                textBox1.Text = mf.currentFieldDirectory;
+                lblResumeField.Text = mf.currentFieldDirectory;
             }
 
-            lblLatitude.Text = mf.Latitude;
-            lblLongitude.Text = mf.Longitude;
-
-            //other sat and GPS info
-            lblFixQuality.Text = mf.FixQuality;
-            lblSatsTracked.Text = mf.SatsTracked;
-
-            if (mf.isMetric)
-            {
-                lblAltitude.Text = mf.Altitude;
-            }
-            else //imperial
-            {
-                lblAltitude.Text = mf.AltitudeFeet;
-            }
-
+            Location = Properties.Settings.Default.setJobMenu_location;
+            Size = Properties.Settings.Default.setJobMenu_size;
 
             mf.CloseTopMosts();
         }
 
+        private void btnJobNew_Click(object sender, EventArgs e)
+        {
+            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
+
+            //back to FormGPS
+            DialogResult = DialogResult.Yes;
+            Close();
+        }
+
+        private void btnJobResume_Click(object sender, EventArgs e)
+        {
+            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
+
+            //open the Resume.txt and continue from last exit
+            mf.FileOpenField("Resume");
+
+            //back to FormGPS
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
         private void btnJobTouch_Click(object sender, EventArgs e)
         {
+            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
+
             mf.filePickerFileAndDirectory = "";
 
             using (FormTouchPick form = new FormTouchPick(mf))
@@ -108,6 +100,8 @@ namespace AgOpenGPS
 
         private void btnJobOpen_Click(object sender, EventArgs e)
         {
+            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
+
             mf.filePickerFileAndDirectory = "";
 
             using (FormFilePicker form = new FormFilePicker(mf))
@@ -127,6 +121,8 @@ namespace AgOpenGPS
 
         private void btnInField_Click(object sender, EventArgs e)
         {
+            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
+
             string infieldList = "";
             int numFields = 0;
 
@@ -235,6 +231,7 @@ namespace AgOpenGPS
 
         private void btnFromKML_Click(object sender, EventArgs e)
         {
+            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
             //back to FormGPS
             DialogResult = DialogResult.No;
             Close();
@@ -242,10 +239,26 @@ namespace AgOpenGPS
 
         private void btnFromExisting_Click(object sender, EventArgs e)
         {
+            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
             //back to FormGPS
             DialogResult = DialogResult.Retry;
             Close();
+        }
 
+        private void btnJobClose_Click(object sender, EventArgs e)
+        {
+            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
+
+            //back to FormGPS
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void FormJob_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.setJobMenu_location = Location;
+            Properties.Settings.Default.setJobMenu_size = Size;
+            Properties.Settings.Default.Save();
         }
     }
 }

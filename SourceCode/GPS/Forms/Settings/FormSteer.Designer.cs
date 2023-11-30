@@ -49,8 +49,12 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabSteer = new System.Windows.Forms.TabPage();
             this.label23 = new System.Windows.Forms.Label();
+            this.lblAV_Set = new System.Windows.Forms.Label();
+            this.lblAV_Act = new System.Windows.Forms.Label();
             this.lblMaxSteerAngle = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.hsbarAckerman = new System.Windows.Forms.HScrollBar();
             this.hsbarMaxSteerAngle = new System.Windows.Forms.HScrollBar();
@@ -150,10 +154,7 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.btnStanleyPure = new System.Windows.Forms.Button();
-            this.lblAV_Set = new System.Windows.Forms.Label();
-            this.lblAV_Act = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
+            this.btnExpand = new ProXoft.WinForms.RepeatButton();
             this.tabControl1.SuspendLayout();
             this.tabSteer.SuspendLayout();
             this.tabGain.SuspendLayout();
@@ -178,9 +179,9 @@
             this.lblSteerAngle.BackColor = System.Drawing.Color.Transparent;
             this.lblSteerAngle.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSteerAngle.ForeColor = System.Drawing.Color.Black;
-            this.lblSteerAngle.Location = new System.Drawing.Point(52, 5);
+            this.lblSteerAngle.Location = new System.Drawing.Point(32, 6);
             this.lblSteerAngle.Name = "lblSteerAngle";
-            this.lblSteerAngle.Size = new System.Drawing.Size(70, 23);
+            this.lblSteerAngle.Size = new System.Drawing.Size(71, 23);
             this.lblSteerAngle.TabIndex = 306;
             this.lblSteerAngle.Text = "-55.5";
             this.lblSteerAngle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -192,9 +193,9 @@
             this.lblSteerAngleActual.BackColor = System.Drawing.Color.Transparent;
             this.lblSteerAngleActual.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSteerAngleActual.ForeColor = System.Drawing.Color.Black;
-            this.lblSteerAngleActual.Location = new System.Drawing.Point(174, 5);
+            this.lblSteerAngleActual.Location = new System.Drawing.Point(139, 6);
             this.lblSteerAngleActual.Name = "lblSteerAngleActual";
-            this.lblSteerAngleActual.Size = new System.Drawing.Size(70, 23);
+            this.lblSteerAngleActual.Size = new System.Drawing.Size(71, 23);
             this.lblSteerAngleActual.TabIndex = 311;
             this.lblSteerAngleActual.Text = "-55.5";
             this.lblSteerAngleActual.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -206,9 +207,9 @@
             this.lblError.BackColor = System.Drawing.Color.Transparent;
             this.lblError.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblError.ForeColor = System.Drawing.Color.Black;
-            this.lblError.Location = new System.Drawing.Point(286, 5);
+            this.lblError.Location = new System.Drawing.Point(237, 6);
             this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(62, 23);
+            this.lblError.Size = new System.Drawing.Size(71, 23);
             this.lblError.TabIndex = 312;
             this.lblError.Text = "-30.0";
             this.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -243,12 +244,13 @@
             // label11
             // 
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(133, 5);
+            this.label11.Location = new System.Drawing.Point(109, 9);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(40, 23);
+            this.label11.Size = new System.Drawing.Size(30, 16);
             this.label11.TabIndex = 319;
             this.label11.Text = "Act:";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -257,12 +259,13 @@
             // label12
             // 
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(7, 5);
+            this.label12.Location = new System.Drawing.Point(4, 9);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(49, 23);
+            this.label12.Size = new System.Drawing.Size(31, 16);
             this.label12.TabIndex = 320;
             this.label12.Text = "Set:";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -271,12 +274,13 @@
             // label13
             // 
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(246, 5);
+            this.label13.Location = new System.Drawing.Point(210, 9);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(44, 23);
+            this.label13.Size = new System.Drawing.Size(29, 16);
             this.label13.TabIndex = 321;
             this.label13.Text = "Err:";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -437,6 +441,30 @@
             this.label23.Text = "Max Steer Angle";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lblAV_Set
+            // 
+            this.lblAV_Set.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblAV_Set.AutoSize = true;
+            this.lblAV_Set.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAV_Set.Location = new System.Drawing.Point(292, 16);
+            this.lblAV_Set.Name = "lblAV_Set";
+            this.lblAV_Set.Size = new System.Drawing.Size(51, 19);
+            this.lblAV_Set.TabIndex = 529;
+            this.lblAV_Set.Text = "-55.8";
+            this.lblAV_Set.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblAV_Act
+            // 
+            this.lblAV_Act.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblAV_Act.AutoSize = true;
+            this.lblAV_Act.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAV_Act.Location = new System.Drawing.Point(292, 40);
+            this.lblAV_Act.Name = "lblAV_Act";
+            this.lblAV_Act.Size = new System.Drawing.Size(54, 19);
+            this.lblAV_Act.TabIndex = 528;
+            this.lblAV_Act.Text = "66.89";
+            this.lblAV_Act.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // lblMaxSteerAngle
             // 
             this.lblMaxSteerAngle.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -447,6 +475,18 @@
             this.lblMaxSteerAngle.TabIndex = 303;
             this.lblMaxSteerAngle.Text = "888";
             this.lblMaxSteerAngle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label36
+            // 
+            this.label36.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.Location = new System.Drawing.Point(247, 42);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(50, 16);
+            this.label36.TabIndex = 530;
+            this.label36.Text = "AV Act:";
+            this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label17
             // 
@@ -459,6 +499,18 @@
             this.label17.TabIndex = 335;
             this.label17.Text = "Ackermann";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label38
+            // 
+            this.label38.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(246, 18);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(51, 16);
+            this.label38.TabIndex = 531;
+            this.label38.Text = "AV Set:";
+            this.label38.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label7
             // 
@@ -1364,6 +1416,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel2.Controls.Add(this.btnExpand);
             this.panel2.Controls.Add(this.lblError);
             this.panel2.Controls.Add(this.label12);
             this.panel2.Controls.Add(this.lblSteerAngle);
@@ -1811,60 +1864,29 @@
             this.btnStanleyPure.UseVisualStyleBackColor = false;
             this.btnStanleyPure.Click += new System.EventHandler(this.btnStanleyPure_Click);
             // 
-            // lblAV_Set
+            // btnExpand
             // 
-            this.lblAV_Set.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblAV_Set.AutoSize = true;
-            this.lblAV_Set.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAV_Set.Location = new System.Drawing.Point(292, 16);
-            this.lblAV_Set.Name = "lblAV_Set";
-            this.lblAV_Set.Size = new System.Drawing.Size(51, 19);
-            this.lblAV_Set.TabIndex = 529;
-            this.lblAV_Set.Text = "-55.8";
-            this.lblAV_Set.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblAV_Act
-            // 
-            this.lblAV_Act.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblAV_Act.AutoSize = true;
-            this.lblAV_Act.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAV_Act.Location = new System.Drawing.Point(292, 40);
-            this.lblAV_Act.Name = "lblAV_Act";
-            this.lblAV_Act.Size = new System.Drawing.Size(54, 19);
-            this.lblAV_Act.TabIndex = 528;
-            this.lblAV_Act.Text = "66.89";
-            this.lblAV_Act.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label36
-            // 
-            this.label36.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(247, 42);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(50, 16);
-            this.label36.TabIndex = 530;
-            this.label36.Text = "AV Act:";
-            this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label38
-            // 
-            this.label38.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(246, 18);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(51, 16);
-            this.label38.TabIndex = 531;
-            this.label38.Text = "AV Set:";
-            this.label38.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExpand.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExpand.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnExpand.FlatAppearance.BorderColor = System.Drawing.SystemColors.AppWorkspace;
+            this.btnExpand.FlatAppearance.BorderSize = 0;
+            this.btnExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExpand.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExpand.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
+            this.btnExpand.Location = new System.Drawing.Point(299, 1);
+            this.btnExpand.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnExpand.Name = "btnExpand";
+            this.btnExpand.Size = new System.Drawing.Size(62, 31);
+            this.btnExpand.TabIndex = 329;
+            this.btnExpand.UseVisualStyleBackColor = true;
+            this.btnExpand.Click += new System.EventHandler(this.expandWindow_Click);
             // 
             // FormSteer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(944, 681);
+            this.ClientSize = new System.Drawing.Size(942, 679);
             this.Controls.Add(this.label34);
             this.Controls.Add(this.btnStanleyPure);
             this.Controls.Add(this.cboxXY);
@@ -1933,6 +1955,7 @@
             this.tabInt.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxCounts)).EndInit();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPanicStopSpeed)).EndInit();
@@ -2067,5 +2090,6 @@
         private System.Windows.Forms.Label lblAV_Act;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label38;
+        private ProXoft.WinForms.RepeatButton btnExpand;
     }
 }

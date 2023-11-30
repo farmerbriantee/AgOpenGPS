@@ -176,7 +176,7 @@ namespace AgOpenGPS
                         continue;
                     }
                     delta += (arr[i - 1].heading - arr[i].heading);
-                    if (Math.Abs(delta) > 0.03)
+                    if (Math.Abs(delta) > 0.005)
                     {
                         bndList[j].turnLine.Add(arr[i]);
                         delta = 0;

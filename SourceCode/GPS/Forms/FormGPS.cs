@@ -207,7 +207,6 @@ namespace AgOpenGPS
         /// The internal simulator
         /// </summary>
         public CSim sim;
-
         /// <summary>
         /// Resource manager for gloabal strings
         /// </summary>
@@ -525,10 +524,10 @@ namespace AgOpenGPS
             SmoothABtoolStripMenu.Text = gStr.gsSmoothABCurve;
             boundariesToolStripMenuItem.Text = gStr.gsBoundary;
             headlandToolStripMenuItem.Text = gStr.gsHeadland;
+            headlandBuildToolStripMenuItem.Text = gStr.gsHeadland + " (Build)";
             deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
             deleteAppliedAreaToolStripMenuItem.Text = gStr.gsDeleteAppliedArea;
             deleteForSureToolStripMenuItem.Text = gStr.gsAreYouSure;
-            toolStripMenuItem9.Text = gStr.gsField;
             tramLinesMenuField.Text = gStr.gsTramLines;
             recordedPathStripMenu.Text = gStr.gsRecordedPathMenu;
 
@@ -1127,34 +1126,6 @@ namespace AgOpenGPS
         }
 
         //All the files that need to be saved when closing field or app
-        private void FileSaveEverythingBeforeClosingField()
-        {
-            //turn off contour line if on
-            if (ct.isContourOn) ct.StopContourLine();
-
-            //turn off all the sections
-            for (int j = 0; j < tool.numOfSections; j++)
-            {
-                section[j].sectionOnOffCycle = false;
-                section[j].sectionOffRequest = false;
-            }
-
-            //turn off patching
-            for (int j = 0; j < triStrip.Count; j++)
-            {
-                if (triStrip[j].isDrawing) triStrip[j].TurnMappingOff();
-            }
-
-            //FileSaveHeadland();
-            FileSaveBoundary();
-            FileSaveSections();
-            FileSaveContour();
-            FileSaveFieldKML();
-
-            JobClose();
-            Text = "AgOpenGPS";
-        }
-
         //an error log called by all try catches
         public void WriteErrorLog(string strErrorText)
         {

@@ -602,7 +602,7 @@ namespace AgOpenGPS
                 }
                 delta += (hdArr[i - 1].heading - hdArr[i].heading);
 
-                if (Math.Abs(delta) > 0.01)
+                if (Math.Abs(delta) > 0.005)
                 {
                     vec3 pt = new vec3(hdArr[i].easting, hdArr[i].northing, hdArr[i].heading);
 

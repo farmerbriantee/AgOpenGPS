@@ -1602,6 +1602,26 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FieldTools {
+            get {
+                object obj = ResourceManager.GetObject("FieldTools", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FileClose {
+            get {
+                object obj = ResourceManager.GetObject("FileClose", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap FileCopy {
             get {
                 object obj = ResourceManager.GetObject("FileCopy", resourceCulture);
@@ -1812,6 +1832,26 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Headache {
+            get {
+                object obj = ResourceManager.GetObject("Headache", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap HeadacheKey {
+            get {
+                object obj = ResourceManager.GetObject("HeadacheKey", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap HeadlandBuild {
             get {
                 object obj = ResourceManager.GetObject("HeadlandBuild", resourceCulture);
@@ -1845,6 +1885,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap HeadlandMenu {
             get {
                 object obj = ResourceManager.GetObject("HeadlandMenu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap HeadlandMove {
+            get {
+                object obj = ResourceManager.GetObject("HeadlandMove", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

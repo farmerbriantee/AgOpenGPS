@@ -896,7 +896,7 @@ namespace AgOpenGPS
                                         continue;
                                     }
                                     delta += (New.fenceLine[i - 1].heading - New.fenceLine[i].heading);
-                                    if (Math.Abs(delta) > 0.04)
+                                    if (Math.Abs(delta) > 0.005)
                                     {
                                         New.fenceLineEar.Add(new vec2(New.fenceLine[i].easting, New.fenceLine[i].northing));
                                         delta = 0;

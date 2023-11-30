@@ -345,7 +345,7 @@ namespace AgOpenGPS
             btnSectionMasterAuto.Visible = Properties.Settings.Default.setFeatures.isAutoSectionOn;
             btnABLine.Visible = Properties.Settings.Default.setFeatures.isABLineOn;
             btnCurve.Visible = Properties.Settings.Default.setFeatures.isCurveOn;
-            btnStanleyPure.Visible = Properties.Settings.Default.setFeatures.isSteerModeOn;
+            //btnStanleyPure.Visible = Properties.Settings.Default.setFeatures.isSteerModeOn;
 
             isUTurnOn = Properties.Settings.Default.setFeatures.isUTurnOn;
             isLateralOn = Properties.Settings.Default.setFeatures.isLateralOn;
@@ -440,14 +440,14 @@ namespace AgOpenGPS
 
             if (timerSim.Enabled) gpsHz = 10;
 
-            if ( Properties.Settings.Default.setVehicle_isStanleyUsed)
-            {
-                btnStanleyPure.Image = Resources.ModeStanley;
-            }
-            else
-            {
-                btnStanleyPure.Image = Resources.ModePurePursuit;
-            }
+            //if ( Properties.Settings.Default.setVehicle_isStanleyUsed)
+            //{
+            //    btnStanleyPure.Image = Resources.ModeStanley;
+            //}
+            //else
+            //{
+            //    btnStanleyPure.Image = Resources.ModePurePursuit;
+            //}
 
             //set the flag mark button to red dot
             btnFlag.Image = Properties.Resources.FlagRed;

@@ -131,6 +131,8 @@ namespace AgOpenGPS
 
         private void oglSelf_MouseDown(object sender, MouseEventArgs e)
         {
+            mf.bnd.bndList[0].hdLine?.Clear();
+
             Point ptt = oglSelf.PointToClient(Cursor.Position);
 
             //Convert to Origin in the center of window, 800 pixels
@@ -395,7 +397,58 @@ namespace AgOpenGPS
                     start = 99999; end = 99999;
                 }
 
-                btnSetLineDistance.PerformClick();
+                //mf.bnd.bndList[0].hdLine?.Clear();
+                mf.hdl.desList?.Clear();
+
+                if (mf.hdl.tracksArr.Count < 1 || mf.hdl.idx == -1) return;
+
+                double distAway = (double)nudSetDistance.Value * mf.ftOrMtoM;
+                mf.hdl.tracksArr[mf.hdl.idx].moveDistance += distAway;
+
+                double distSqAway = (distAway * distAway) - 0.01;
+                vec3 point;
+
+                int refCount = mf.hdl.tracksArr[mf.hdl.idx].trackPts.Count;
+                for (int i = 0; i < refCount; i++)
+                {
+                    point = new vec3(
+                    mf.hdl.tracksArr[mf.hdl.idx].trackPts[i].easting - (Math.Sin(glm.PIBy2 + mf.hdl.tracksArr[mf.hdl.idx].trackPts[i].heading) * distAway),
+                    mf.hdl.tracksArr[mf.hdl.idx].trackPts[i].northing - (Math.Cos(glm.PIBy2 + mf.hdl.tracksArr[mf.hdl.idx].trackPts[i].heading) * distAway),
+                    mf.hdl.tracksArr[mf.hdl.idx].trackPts[i].heading);
+                    bool Add = true;
+
+                    for (int t = 0; t < refCount; t++)
+                    {
+                        double dist = ((point.easting - mf.hdl.tracksArr[mf.hdl.idx].trackPts[t].easting) * (point.easting - mf.hdl.tracksArr[mf.hdl.idx].trackPts[t].easting))
+                            + ((point.northing - mf.hdl.tracksArr[mf.hdl.idx].trackPts[t].northing) * (point.northing - mf.hdl.tracksArr[mf.hdl.idx].trackPts[t].northing));
+                        if (dist < distSqAway)
+                        {
+                            Add = false;
+                            break;
+                        }
+                    }
+
+                    if (Add)
+                    {
+                        if (mf.hdl.desList.Count > 0)
+                        {
+                            double dist = ((point.easting - mf.hdl.desList[mf.hdl.desList.Count - 1].easting) * (point.easting - mf.hdl.desList[mf.hdl.desList.Count - 1].easting))
+                                + ((point.northing - mf.hdl.desList[mf.hdl.desList.Count - 1].northing) * (point.northing - mf.hdl.desList[mf.hdl.desList.Count - 1].northing));
+                            if (dist > 1)
+                                mf.hdl.desList.Add(point);
+                        }
+                        else mf.hdl.desList.Add(point);
+                    }
+                }
+
+                mf.hdl.tracksArr[mf.hdl.idx].trackPts.Clear();
+
+                for (int i = 0; i < mf.hdl.desList.Count; i++)
+                {
+                    mf.hdl.tracksArr[mf.hdl.idx].trackPts.Add(new vec3(mf.hdl.desList[i]));
+                }
+
+                mf.hdl.desList?.Clear();
             }
         }
 
@@ -444,13 +497,13 @@ namespace AgOpenGPS
 
             //draw the line building graphics
             //if (start != 99999 || end != 99999) 
-                DrawABTouchLine();
-
             //draw the actual built lines
             //if (start == 99999 && end == 99999)
             {
                 DrawBuiltLines();
             }
+
+                DrawABTouchLine();
 
             GL.Disable(EnableCap.Blend);
 
@@ -462,21 +515,11 @@ namespace AgOpenGPS
         private void DrawBuiltLines()
         {
 
-            GL.LineWidth(4);
-            GL.Color3(0.93f, 0.599f, 0.50f);
-            GL.Begin(PrimitiveType.LineStrip);
-
-            for (int i = 0; i < mf.bnd.bndList[0].hdLine.Count; i++)
-            {
-                GL.Vertex3(mf.bnd.bndList[0].hdLine[i].easting, mf.bnd.bndList[0].hdLine[i].northing, 0);
-            }
-            GL.End();
-
             if (isLinesVisible && mf.hdl.tracksArr.Count > 0)
             {
                 //GL.Enable(EnableCap.LineStipple);
                 GL.LineStipple(1, 0x7070);
-                GL.PointSize(4);
+                GL.PointSize(3);
 
                 for (int i = 0; i < mf.hdl.tracksArr.Count; i++)
                 {
@@ -524,6 +567,17 @@ namespace AgOpenGPS
                     lblMovedDistance.Text = (mf.hdl.tracksArr[mf.hdl.idx].moveDistance*mf.m2FtOrM).ToString("N1");
                 }
             }
+
+            GL.LineWidth(8);
+            GL.Color3(0.93f, 0.599f, 0.50f);
+            GL.Begin(PrimitiveType.LineStrip);
+
+            for (int i = 0; i < mf.bnd.bndList[0].hdLine.Count; i++)
+            {
+                GL.Vertex3(mf.bnd.bndList[0].hdLine[i].easting, mf.bnd.bndList[0].hdLine[i].northing, 0);
+            }
+            GL.End();
+
         }
 
         private void DrawABTouchLine()
@@ -607,58 +661,6 @@ namespace AgOpenGPS
 
         private void btnSetLineDistance_Click(object sender, EventArgs e)
         {
-            //mf.bnd.bndList[0].hdLine?.Clear();
-            mf.hdl.desList?.Clear();
-
-            if (mf.hdl.tracksArr.Count < 1 || mf.hdl.idx == -1) return;
-
-            double distAway = (double)nudSetDistance.Value * mf.ftOrMtoM;
-            mf.hdl.tracksArr[mf.hdl.idx].moveDistance += distAway;
-
-            double distSqAway = (distAway * distAway) - 0.01;
-            vec3 point;
-
-            int refCount = mf.hdl.tracksArr[mf.hdl.idx].trackPts.Count;
-            for (int i = 0; i < refCount; i++)
-            {
-                point = new vec3(
-                mf.hdl.tracksArr[mf.hdl.idx].trackPts[i].easting - (Math.Sin(glm.PIBy2 + mf.hdl.tracksArr[mf.hdl.idx].trackPts[i].heading) * distAway),
-                mf.hdl.tracksArr[mf.hdl.idx].trackPts[i].northing - (Math.Cos(glm.PIBy2 + mf.hdl.tracksArr[mf.hdl.idx].trackPts[i].heading) * distAway),
-                mf.hdl.tracksArr[mf.hdl.idx].trackPts[i].heading);
-                bool Add = true;
-
-                for (int t = 0; t < refCount; t++)
-                {
-                    double dist = ((point.easting - mf.hdl.tracksArr[mf.hdl.idx].trackPts[t].easting) * (point.easting - mf.hdl.tracksArr[mf.hdl.idx].trackPts[t].easting))
-                        + ((point.northing - mf.hdl.tracksArr[mf.hdl.idx].trackPts[t].northing) * (point.northing - mf.hdl.tracksArr[mf.hdl.idx].trackPts[t].northing));
-                    if (dist < distSqAway)
-                    {
-                        Add = false;
-                        break;
-                    }
-                }
-
-                if (Add)
-                {
-                    if (mf.hdl.desList.Count > 0)
-                    {
-                        double dist = ((point.easting - mf.hdl.desList[mf.hdl.desList.Count - 1].easting) * (point.easting - mf.hdl.desList[mf.hdl.desList.Count - 1].easting))
-                            + ((point.northing - mf.hdl.desList[mf.hdl.desList.Count - 1].northing) * (point.northing - mf.hdl.desList[mf.hdl.desList.Count - 1].northing));
-                        if (dist > 1)
-                            mf.hdl.desList.Add(point);
-                    }
-                    else mf.hdl.desList.Add(point);
-                }
-            }
-
-            mf.hdl.tracksArr[mf.hdl.idx].trackPts.Clear();
-
-            for (int i = 0; i < mf.hdl.desList.Count; i++)
-            {                
-                mf.hdl.tracksArr[mf.hdl.idx].trackPts.Add(new vec3(mf.hdl.desList[i]));
-            }
-
-            mf.hdl.desList?.Clear();
         }
 
         private void nudSetDistance_Click(object sender, EventArgs e)
@@ -814,7 +816,7 @@ namespace AgOpenGPS
                 }
                 delta += (hdArr[i - 1].heading - hdArr[i].heading);
 
-                if (Math.Abs(delta) > 0.01)
+                if (Math.Abs(delta) > 0.005)
                 {
                     vec3 pt = new vec3(hdArr[i].easting, hdArr[i].northing, hdArr[i].heading);
 
@@ -822,6 +824,7 @@ namespace AgOpenGPS
                     delta = 0;
                 }
             }
+
             mf.FileSaveHeadland();
         }
 
@@ -834,6 +837,13 @@ namespace AgOpenGPS
         private void cboxToolWidths_SelectedIndexChanged(object sender, EventArgs e)
         {
             nudSetDistance.Value = (decimal)(Math.Round((mf.tool.width-mf.tool.overlap) * cboxToolWidths.SelectedIndex, 1));
+        }
+
+        private void btnHeadlandOff_Click(object sender, EventArgs e)
+        {
+            mf.bnd.bndList[0].hdLine?.Clear();
+            mf.FileSaveHeadland();
+            Close();
         }
 
         public int GetLineIntersection(double p0x, double p0y, double p1x, double p1y,
