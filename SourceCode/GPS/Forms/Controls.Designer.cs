@@ -473,6 +473,12 @@ namespace AgOpenGPS
         }
 
         #endregion
+        private void btnLoadISOXML_Click(object sender, EventArgs e)
+        {
+            using (var form2 = new FormFieldISOXML(this))
+            { form2.ShowDialog(this); }
+        }
+
 
         private void jobMenuBtn_Click(object sender, EventArgs e)
         {
@@ -1803,13 +1809,6 @@ namespace AgOpenGPS
         //Snaps
         private void btnSnapToPivot_Click(object sender, EventArgs e)
         {
-            if (isTT)
-            {
-                MessageBox.Show(gStr.h_btnSnapToPivot, gStr.gsHelp);
-                ResetHelpBtn();
-                return;
-            }
-
             if (ABLine.isBtnABLineOn)
             {
                 ABLine.MoveABLine(ABLine.distanceFromCurrentLinePivot);

@@ -174,7 +174,7 @@ namespace AgOpenGPS
                         {
                             //btnMakeLinesFromBoundary.Visible = true;
                             btnEditAB.Visible = true;
-                            btnSnapToPivot.Visible = true;
+                            //btnSnapToPivot.Visible = true;
                             cboxpRowWidth.Visible = true;
                             btnYouSkipEnable.Visible = true;
                         }
@@ -185,7 +185,7 @@ namespace AgOpenGPS
                         {
                             //btnMakeLinesFromBoundary.Visible = false;
                             btnEditAB.Visible = false;
-                            btnSnapToPivot.Visible = false;
+                            //btnSnapToPivot.Visible = false;
                             cboxpRowWidth.Visible = false;
                             btnYouSkipEnable.Visible = false;
                         }

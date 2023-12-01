@@ -133,6 +133,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ABSnapNudgeMenu {
+            get {
+                object obj = ResourceManager.GetObject("ABSnapNudgeMenu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ABSwapPoints {
             get {
                 object obj = ResourceManager.GetObject("ABSwapPoints", resourceCulture);

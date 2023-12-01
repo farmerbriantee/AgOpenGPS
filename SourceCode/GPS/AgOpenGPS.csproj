@@ -950,6 +950,7 @@
     <None Include="btnImages\Headache.png" />
     <None Include="btnImages\HeadacheKey.png" />
     <None Include="btnImages\ISOXML.png" />
+    <None Include="btnImages\ABSnapNudgeMenu.png" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

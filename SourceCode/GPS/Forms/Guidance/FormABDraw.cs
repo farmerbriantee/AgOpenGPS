@@ -290,77 +290,6 @@ namespace AgOpenGPS
             }
         }
 
-        private void oglSelf_MouseDown(object sender, MouseEventArgs e)
-        {
-            btnCancelTouch.Enabled = true;
-
-            btnMakeABLine.Enabled = false;
-            btnMakeCurve.Enabled = false;
-
-            Point pt = oglSelf.PointToClient(Cursor.Position);
-
-            //Convert to Origin in the center of window, 800 pixels
-            fixPt.X = pt.X - 350;
-            fixPt.Y = (700 - pt.Y - 350);
-            vec3 plotPt = new vec3
-            {
-                //convert screen coordinates to field coordinates
-                easting = fixPt.X * mf.maxFieldDistance / 632.0,
-                northing = fixPt.Y * mf.maxFieldDistance / 632.0,
-                heading = 0
-            };
-
-            plotPt.easting += mf.fieldCenterX;
-            plotPt.northing += mf.fieldCenterY;
-
-            pint.easting = plotPt.easting;
-            pint.northing = plotPt.northing;
-
-            if (isA)
-            {
-                double minDistA = double.MaxValue;
-                start = 99999; end = 99999;
-
-                for (int j = 0; j < mf.bnd.bndList.Count; j++)
-                {
-                    for (int i = 0; i < mf.bnd.bndList[j].fenceLine.Count; i++)
-                    {
-                        double dist = ((pint.easting - mf.bnd.bndList[j].fenceLine[i].easting) * (pint.easting - mf.bnd.bndList[j].fenceLine[i].easting))
-                                        + ((pint.northing - mf.bnd.bndList[j].fenceLine[i].northing) * (pint.northing - mf.bnd.bndList[j].fenceLine[i].northing));
-                        if (dist < minDistA)
-                        {
-                            minDistA = dist;
-                            bndSelect = j;
-                            start = i;
-                        }
-                    }
-                }
-
-                isA = false;
-            }
-            else
-            {
-                double minDistA = double.MaxValue;
-                int j = bndSelect;
-
-                for (int i = 0; i < mf.bnd.bndList[j].fenceLine.Count; i++)
-                {
-                    double dist = ((pint.easting - mf.bnd.bndList[j].fenceLine[i].easting) * (pint.easting - mf.bnd.bndList[j].fenceLine[i].easting))
-                                    + ((pint.northing - mf.bnd.bndList[j].fenceLine[i].northing) * (pint.northing - mf.bnd.bndList[j].fenceLine[i].northing));
-                    if (dist < minDistA)
-                    {
-                        minDistA = dist;
-                        end = i;
-                    }
-                }
-
-                isA = true;
-
-                btnMakeABLine.Enabled = true;
-                btnMakeCurve.Enabled = true;
-            }
-        }
-
         private void btnMakeBoundaryCurve_Click(object sender, EventArgs e)
         {            //count the points from the boundary
             for (int q = 0; q < mf.bnd.bndList.Count; q++)
@@ -702,6 +631,77 @@ namespace AgOpenGPS
             FixLabelsABLine();
         }
 
+        private void oglSelf_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnCancelTouch.Enabled = true;
+
+            btnMakeABLine.Enabled = false;
+            btnMakeCurve.Enabled = false;
+
+            Point pt = oglSelf.PointToClient(Cursor.Position);
+
+            //Convert to Origin in the center of window, 800 pixels
+            fixPt.X = pt.X - 350;
+            fixPt.Y = (700 - pt.Y - 350);
+            vec3 plotPt = new vec3
+            {
+                //convert screen coordinates to field coordinates
+                easting = fixPt.X * mf.maxFieldDistance / 632.0,
+                northing = fixPt.Y * mf.maxFieldDistance / 632.0,
+                heading = 0
+            };
+
+            plotPt.easting += mf.fieldCenterX;
+            plotPt.northing += mf.fieldCenterY;
+
+            pint.easting = plotPt.easting;
+            pint.northing = plotPt.northing;
+
+            if (isA)
+            {
+                double minDistA = double.MaxValue;
+                start = 99999; end = 99999;
+
+                for (int j = 0; j < mf.bnd.bndList.Count; j++)
+                {
+                    for (int i = 0; i < mf.bnd.bndList[j].fenceLine.Count; i++)
+                    {
+                        double dist = ((pint.easting - mf.bnd.bndList[j].fenceLine[i].easting) * (pint.easting - mf.bnd.bndList[j].fenceLine[i].easting))
+                                        + ((pint.northing - mf.bnd.bndList[j].fenceLine[i].northing) * (pint.northing - mf.bnd.bndList[j].fenceLine[i].northing));
+                        if (dist < minDistA)
+                        {
+                            minDistA = dist;
+                            bndSelect = j;
+                            start = i;
+                        }
+                    }
+                }
+
+                isA = false;
+            }
+            else
+            {
+                double minDistA = double.MaxValue;
+                int j = bndSelect;
+
+                for (int i = 0; i < mf.bnd.bndList[j].fenceLine.Count; i++)
+                {
+                    double dist = ((pint.easting - mf.bnd.bndList[j].fenceLine[i].easting) * (pint.easting - mf.bnd.bndList[j].fenceLine[i].easting))
+                                    + ((pint.northing - mf.bnd.bndList[j].fenceLine[i].northing) * (pint.northing - mf.bnd.bndList[j].fenceLine[i].northing));
+                    if (dist < minDistA)
+                    {
+                        minDistA = dist;
+                        end = i;
+                    }
+                }
+
+                isA = true;
+
+                btnMakeABLine.Enabled = true;
+                btnMakeCurve.Enabled = true;
+            }
+        }
+
         private void oglSelf_Paint(object sender, PaintEventArgs e)
         {
             oglSelf.MakeCurrent();
@@ -728,7 +728,7 @@ namespace AgOpenGPS
                 else
                     GL.Color3(0.4f, 0.75f, 0.70f);
 
-                GL.Begin(PrimitiveType.LineLoop);
+                GL.Begin(PrimitiveType.LineStrip);
                 for (int i = 0; i < mf.bnd.bndList[j].fenceLineEar.Count; i++)
                 {
                     GL.Vertex3(mf.bnd.bndList[j].fenceLineEar[i].easting, mf.bnd.bndList[j].fenceLineEar[i].northing, 0);
@@ -963,7 +963,7 @@ namespace AgOpenGPS
             oglSelf.MakeCurrent();
             GL.Enable(EnableCap.CullFace);
             GL.CullFace(CullFaceMode.Back);
-            GL.ClearColor(0.3122f, 0.318f, 0.315f, 1.0f);
+            GL.ClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         }
 
         private void DrawSections()

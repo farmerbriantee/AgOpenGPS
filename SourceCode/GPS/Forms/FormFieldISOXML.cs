@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
+using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AgOpenGPS
@@ -16,37 +17,22 @@ namespace AgOpenGPS
         private readonly FormGPS mf = null;
         private double easting, northing, latK, lonK;
 
+        private XmlDocument iso;
+
+        string xmlFilename;
+
         public FormFieldISOXML(Form _callingForm)
         {
             //get copy of the calling main form
             mf = _callingForm as FormGPS;
 
             InitializeComponent();
-
-            label1.Text = gStr.gsEnterFieldName;
-            this.Text = gStr.gsCreateNewField;
         }
 
         private void FormFieldDir_Load(object sender, EventArgs e)
         {
             btnSave.Enabled = false;
-        }
-
-        private void tboxFieldName_TextChanged(object sender, EventArgs e)
-        {
-            System.Windows.Forms.TextBox textboxSender = (System.Windows.Forms.TextBox)sender;
-            int cursorPosition = textboxSender.SelectionStart;
-            textboxSender.Text = Regex.Replace(textboxSender.Text, glm.fileRegex, "");
-            textboxSender.SelectionStart = cursorPosition;
-
-            if (String.IsNullOrEmpty(tboxFieldName.Text.Trim()))
-            {
-                btnLoadXML.Enabled = false;
-            }
-            else
-            {
-                btnLoadXML.Enabled = true;
-            }
+            textBox1.Text = "a1a";
         }
 
         private void btnSerialCancel_Click(object sender, EventArgs e)
@@ -60,51 +46,21 @@ namespace AgOpenGPS
             Close();
         }
 
-        private void tboxFieldName_Click(object sender, EventArgs e)
-        {
-            if (mf.isKeyboardOn)
-            {
-                mf.KeyboardToText((System.Windows.Forms.TextBox)sender, this);
-                btnSerialCancel.Focus();
-            }
-        }
+        //private void btnAddDate_Click(object sender, EventArgs e)
+        //{
+        //    tboxFieldName.Text += " " + DateTime.Now.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
 
-        private void tboxTask_Click(object sender, EventArgs e)
-        {
-            if (mf.isKeyboardOn)
-            {
-                mf.KeyboardToText((System.Windows.Forms.TextBox)sender, this);
-                btnSerialCancel.Focus();
-            }
-        }
+        //}
 
-        private void tboxVehicle_Click(object sender, EventArgs e)
-        {
-            if (mf.isKeyboardOn)
-            {
-                mf.KeyboardToText((System.Windows.Forms.TextBox)sender, this);
-                btnSerialCancel.Focus();
-            }
-        }
+        //private void btnAddTime_Click(object sender, EventArgs e)
+        //{
+        //    tboxFieldName.Text += " " + DateTime.Now.ToString("HH-mm", CultureInfo.InvariantCulture);
 
-        private void btnAddDate_Click(object sender, EventArgs e)
-        {
-            tboxFieldName.Text += " " + DateTime.Now.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
-
-        }
-
-        private void btnAddTime_Click(object sender, EventArgs e)
-        {
-            tboxFieldName.Text += " " + DateTime.Now.ToString("HH-mm", CultureInfo.InvariantCulture);
-
-        }
+        //}
 
         private void btnLoadXML_Click(object sender, EventArgs e)
         {
-            tboxFieldName.Enabled = false;
-            btnAddDate.Enabled = false;
-            btnAddTime.Enabled = false;
-
+            string newFieldDir = mf.fieldsDirectory;
             //create the dialog instance
             OpenFileDialog ofd = new OpenFileDialog
             {
@@ -112,31 +68,57 @@ namespace AgOpenGPS
                 Filter = "XML files (*.XML)|*.XML",
 
                 //the initial directory, fields, for the open dialog
-                InitialDirectory = mf.fieldsDirectory
-            };
+                InitialDirectory = mf.fieldsDirectory + "xml\\"
+        };
 
             //was a file selected
             if (ofd.ShowDialog() == DialogResult.Cancel) return;
 
+            xmlFilename = ofd.FileName;
+
+            textBox2.Text = "";
+
+            iso = new XmlDocument();
+            iso.PreserveWhitespace = false;
+            iso.Load(xmlFilename);
+
+            //first field count and names
+            XmlNodeList pfd = iso.GetElementsByTagName("PFD");
+            textBox2.Text = "Fields Count: " + pfd.Count + "\r\n";
+
+            foreach (XmlNode node in pfd)
+                textBox2.Text += "Field Name: " + node.Attributes["C"].Value + "\r\n";
+        }
+
+        private void btnBuildFields_Click(object sender, EventArgs e)
+        {
             //get lat and lon from boundary in kml
-            FindLatLon(ofd.FileName);
+            FindLatLon(xmlFilename);
 
             //reset sim and world to kml position
             CreateNewField();
 
             //Load the outer boundary
             LoadKMLBoundary();
+
         }
 
-        private XmlDocument doc;
         private void LoadKMLBoundary()
         {
-
             try
             {
+                XmlNodeList nodes = iso.GetElementsByTagName("PLN");
+
+                foreach (XmlNode node in nodes) 
+                {
+                    foreach (XmlNode item in node.ChildNodes[0].ChildNodes) //PNT
+                    {
+                        string bob = item.Attributes["C"].Value;
+                    }
+                }
 
                 CBoundaryList New = new CBoundaryList();
-                foreach (XmlNode xmlNode in doc.DocumentElement.ChildNodes[0].ChildNodes)
+                foreach (XmlNode xmlNode in iso.DocumentElement.ChildNodes[0].ChildNodes)
                 {
                     if (xmlNode.Name == "PLN")
                     {
@@ -174,12 +156,10 @@ namespace AgOpenGPS
                 mf.CalculateMinMax();
 
                 btnSave.Enabled = true;
-                btnLoadXML.Enabled = false;
             }
             catch (Exception)
             {
                 btnSave.Enabled = false;
-                btnLoadXML.Enabled = false;
                 return;
             }
 
@@ -188,64 +168,69 @@ namespace AgOpenGPS
 
         private void FindLatLon(string filename)
         {
-            doc = new XmlDocument();
-            doc.PreserveWhitespace = false;
-
             try
             {
-                doc.Load(filename);
-
                 //at least 3 points
                 double counter = 0, lat = 0, lon = 0;
                 latK = lonK = 0;
 
-                foreach (XmlNode xmlNode in doc.DocumentElement.ChildNodes[0].ChildNodes)
-                {
-                    if (xmlNode.Name == "PLN")
-                    {
-                        if (xmlNode.Attributes["A"].Value == "1")
-                        {
-                            if (xmlNode.ChildNodes[0].Attributes["A"].Value == "1") //LSG
-                            {
-                                //Console.WriteLine(xmlNode.Attributes["A"].Value);
-                                foreach (XmlNode item in xmlNode.ChildNodes[0].ChildNodes) //PNT
-                                {
-                                    double.TryParse(item.Attributes["C"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
-                                    double.TryParse(item.Attributes["D"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
+                //find first polygon
+                XmlNodeList nodes = iso.GetElementsByTagName("PLN");
 
-                                    lat += latK;
-                                    lon += lonK;
-                                    counter += 1;
-                                }
-                            }
-                        }
-                    }
+                textBox2.Text += "Bnd Points: " + nodes[0].ChildNodes[0].ChildNodes.Count.ToString() + "\r\n";
+                
+                foreach (XmlNode pnt in nodes[0].ChildNodes[0].ChildNodes) //PNT
+                {
+                    double.TryParse(pnt.Attributes["C"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
+                    double.TryParse(pnt.Attributes["D"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
+
+                    lat += latK;
+                    lon += lonK;
+                    counter += 1;
                 }
+
                 lonK = lon / counter;
                 latK = lat / counter;
+
+                textBox2.Text += "Field Center Longitude: " + lonK.ToString() + "\r\n";
+                textBox2.Text += "Field Center Latitude: " + latK.ToString() + "\r\n";
+
+
+                //foreach (XmlNode xmlNode in iso.DocumentElement.ChildNodes[0].ChildNodes)
+                //{
+                //    if (xmlNode.Name == "PLN")
+                //    {
+                //        if (xmlNode.Attributes["A"].Value == "1")
+                //        {
+                //            if (xmlNode.ChildNodes[0].Attributes["A"].Value == "1") //LSG
+                //            {
+                //                //Console.WriteLine(xmlNode.Attributes["A"].Value);
+                //                foreach (XmlNode item in xmlNode.ChildNodes[0].ChildNodes) //PNT
+                //                {
+                //                    double.TryParse(item.Attributes["C"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
+                //                    double.TryParse(item.Attributes["D"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
+                //
+                //                    lat += latK;
+                //                    lon += lonK;
+                //                    counter += 1;
+                //                }
+                //            }
+                //        }
+                //    }
+                //}
             }
             catch (Exception)
             {
                 mf.TimedMessageBox(2000, "Exception", "Catch Exception");
                 return;
             }
-
-
-
         }
 
         private void CreateNewField()
         {
-            //fill something in
-            if (String.IsNullOrEmpty(tboxFieldName.Text.Trim()))
-            {
-                Close();
-                return;
-            }
-
             //append date time to name
 
-            mf.currentFieldDirectory = tboxFieldName.Text.Trim();
+            mf.currentFieldDirectory = textBox1.Text.Trim() + " " + DateTime.Now.ToString("HH-mm", CultureInfo.InvariantCulture).Trim();
 
             //get the directory and make sure it exists, create if not
             string dirNewField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
@@ -255,7 +240,7 @@ namespace AgOpenGPS
             try
             {
                 //start a new job
-                mf.JobNew();
+                //mf.JobNew();
 
                 //create it for first save
                 string directoryName = Path.GetDirectoryName(dirNewField);
@@ -291,12 +276,12 @@ namespace AgOpenGPS
 
                     //create the field file header info
 
-                    if (!mf.isJobStarted)
-                    {
-                        using (FormTimedMessage form = new FormTimedMessage(3000, gStr.gsFieldNotOpen, gStr.gsCreateNewField))
-                        { form.Show(this); }
-                        return;
-                    }
+                    //if (!mf.isJobStarted)
+                    //{
+                    //    using (FormTimedMessage form = new FormTimedMessage(3000, gStr.gsFieldNotOpen, gStr.gsCreateNewField))
+                    //    { form.Show(this); }
+                    //    return;
+                    //}
                     string myFileName, dirField;
 
                     //get the directory and make sure it exists, create if not
@@ -314,7 +299,7 @@ namespace AgOpenGPS
                         writer.WriteLine(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture));
 
                         writer.WriteLine("$FieldDir");
-                        writer.WriteLine("KML Derived");
+                        writer.WriteLine("XML Derived");
 
                         //write out the easting and northing Offsets
                         writer.WriteLine("$Offsets");

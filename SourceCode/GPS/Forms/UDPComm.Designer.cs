@@ -464,7 +464,7 @@ namespace AgOpenGPS
 
             if ((char)keyData == hotkeys[6]) // Snap/Prioritu click
             {
-                btnSnapToPivot.PerformClick();
+                btnSnapToPivot_Click(this, EventArgs.Empty);
                 return true;    // indicate that you handled this keystroke
             }
 

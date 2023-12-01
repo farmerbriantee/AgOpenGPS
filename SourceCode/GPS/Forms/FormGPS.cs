@@ -207,6 +207,7 @@ namespace AgOpenGPS
         /// The internal simulator
         /// </summary>
         public CSim sim;
+
         /// <summary>
         /// Resource manager for gloabal strings
         /// </summary>
@@ -1021,7 +1022,7 @@ namespace AgOpenGPS
             //clear out contour and Lists
             btnContour.Enabled = false;
             //btnContourPriority.Enabled = false;
-            btnSnapToPivot.Image = Properties.Resources.SnapToPivot;
+            //btnSnapToPivot.Image = Properties.Resources.SnapToPivot;
             ct.ResetContour();
             ct.isContourBtnOn = false;
             btnContour.Image = Properties.Resources.ContourOff;
@@ -1097,7 +1098,7 @@ namespace AgOpenGPS
             //lblFieldDataTopDone.Visible = isOn;
             //lblFieldDataTopRemain.Visible = isOn;
 
-            btnSnapToPivot.Visible = false;
+            //btnSnapToPivot.Visible = false;
             cboxpRowWidth.Visible = false;
             btnYouSkipEnable.Visible = false;
             btnEditAB.Visible = false;
