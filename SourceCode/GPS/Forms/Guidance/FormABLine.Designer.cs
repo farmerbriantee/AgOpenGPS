@@ -61,7 +61,6 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.panelKML = new System.Windows.Forms.Panel();
             this.btnCancelKML = new System.Windows.Forms.Button();
-            this.btnXML = new System.Windows.Forms.Button();
             this.panelAPlus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHeading)).BeginInit();
             this.panelName.SuspendLayout();
@@ -315,7 +314,6 @@
             // panelPick
             // 
             this.panelPick.BackColor = System.Drawing.Color.Transparent;
-            this.panelPick.Controls.Add(this.btnXML);
             this.panelPick.Controls.Add(this.btnSwapAB);
             this.panelPick.Controls.Add(this.btnEditName);
             this.panelPick.Controls.Add(this.btnDuplicate);
@@ -388,7 +386,7 @@
             this.btnLoadFromKML.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoadFromKML.Image = global::AgOpenGPS.Properties.Resources.BoundaryLoadFromGE;
             this.btnLoadFromKML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnLoadFromKML.Location = new System.Drawing.Point(342, 243);
+            this.btnLoadFromKML.Location = new System.Drawing.Point(324, 243);
             this.btnLoadFromKML.Name = "btnLoadFromKML";
             this.btnLoadFromKML.Size = new System.Drawing.Size(73, 63);
             this.btnLoadFromKML.TabIndex = 149;
@@ -406,7 +404,7 @@
             this.btnNewABLine.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewABLine.Image = global::AgOpenGPS.Properties.Resources.AddNew;
             this.btnNewABLine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNewABLine.Location = new System.Drawing.Point(268, 243);
+            this.btnNewABLine.Location = new System.Drawing.Point(218, 243);
             this.btnNewABLine.Name = "btnNewABLine";
             this.btnNewABLine.Size = new System.Drawing.Size(73, 63);
             this.btnNewABLine.TabIndex = 149;
@@ -425,7 +423,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.SwitchOff;
             this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(87, 243);
+            this.btnCancel.Location = new System.Drawing.Point(112, 243);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(73, 63);
             this.btnCancel.TabIndex = 421;
@@ -597,21 +595,6 @@
             this.btnCancelKML.UseVisualStyleBackColor = false;
             this.btnCancelKML.Click += new System.EventHandler(this.btnCancel_APlus_Click);
             // 
-            // btnXML
-            // 
-            this.btnXML.BackColor = System.Drawing.Color.Transparent;
-            this.btnXML.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnXML.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnXML.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnXML.Location = new System.Drawing.Point(174, 246);
-            this.btnXML.Name = "btnXML";
-            this.btnXML.Size = new System.Drawing.Size(73, 63);
-            this.btnXML.TabIndex = 425;
-            this.btnXML.Text = "XML";
-            this.btnXML.UseVisualStyleBackColor = false;
-            this.btnXML.Click += new System.EventHandler(this.btnXML_Click);
-            // 
             // FormABLine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -682,6 +665,5 @@
         private System.Windows.Forms.Button btnLoadFromKML;
         private System.Windows.Forms.Panel panelKML;
         private System.Windows.Forms.Button btnCancelKML;
-        private System.Windows.Forms.Button btnXML;
     }
 }
