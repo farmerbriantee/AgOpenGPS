@@ -234,5 +234,13 @@ namespace AgOpenGPS
             Properties.Settings.Default.setJobMenu_size = Size;
             Properties.Settings.Default.Save();
         }
+
+        private void btnFromISOXML_Click(object sender, EventArgs e)
+        {
+            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
+            //back to FormGPS
+            DialogResult = DialogResult.Abort;
+            Close();
+        }
     }
 }
