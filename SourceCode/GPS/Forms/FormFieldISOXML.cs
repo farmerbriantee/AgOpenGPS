@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -124,102 +125,62 @@ namespace AgOpenGPS
             CreateNewField();
 
             //Load the outer boundary
-            LoadKMLBoundary(ofd.FileName);
+            LoadKMLBoundary();
         }
 
-        private void LoadKMLBoundary(string filename)
+        private XmlDocument doc;
+        private void LoadKMLBoundary()
         {
-            string coordinates = null;
-            int startIndex;
 
-            using (System.IO.StreamReader reader = new System.IO.StreamReader(filename))
+            try
             {
-                try
+
+                CBoundaryList New = new CBoundaryList();
+                foreach (XmlNode xmlNode in doc.DocumentElement.ChildNodes[0].ChildNodes)
                 {
-                    while (!reader.EndOfStream)
+                    if (xmlNode.Name == "PLN")
                     {
-                        //start to read the file
-                        string line = reader.ReadLine();
-
-                        startIndex = line.IndexOf("<coordinates>");
-
-                        if (startIndex != -1)
+                        if (xmlNode.Attributes["A"].Value == "1")
                         {
-                            while (true)
+                            if (xmlNode.ChildNodes[0].Attributes["A"].Value == "1") //LSG
                             {
-                                int endIndex = line.IndexOf("</coordinates>");
-
-                                if (endIndex == -1)
+                                //Console.WriteLine(xmlNode.Attributes["A"].Value);
+                                foreach (XmlNode item in xmlNode.ChildNodes[0].ChildNodes) //PNT
                                 {
-                                    //just add the line
-                                    if (startIndex == -1) coordinates += line.Substring(0);
-                                    else coordinates += line.Substring(startIndex + 13);
-                                }
-                                else
-                                {
-                                    if (startIndex == -1) coordinates += line.Substring(0, endIndex);
-                                    else coordinates += line.Substring(startIndex + 13, endIndex - (startIndex + 13));
-                                    break;
-                                }
-                                line = reader.ReadLine();
-                                line = line.Trim();
-                                startIndex = -1;
-                            }
-
-                            line = coordinates;
-                            char[] delimiterChars = { ' ', '\t', '\r', '\n' };
-                            string[] numberSets = line.Split();
-
-                            //at least 3 points
-                            if (numberSets.Length > 2)
-                            {
-                                CBoundaryList New = new CBoundaryList();
-
-                                foreach (string item in numberSets)
-                                {
-                                    if (item.Length < 3)
-                                        continue;
-                                    string[] fix = item.Split(',');
-                                    double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
-                                    double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
+                                    double.TryParse(item.Attributes["C"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
+                                    double.TryParse(item.Attributes["D"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
 
                                     mf.pn.ConvertWGS84ToLocal(latK, lonK, out northing, out easting);
 
                                     //add the point to boundary
                                     New.fenceLine.Add(new vec3(easting, northing, 0));
                                 }
-
-                                //build the boundary, make sure is clockwise for outer counter clockwise for inner
-                                New.CalculateFenceArea(mf.bnd.bndList.Count);
-                                New.FixFenceLine(mf.bnd.bndList.Count);
-
-                                mf.bnd.bndList.Add(New);
-
-                                mf.btnABDraw.Visible = true;
-
-                                coordinates = "";
                             }
-                            else
-                            {
-                                mf.TimedMessageBox(2000, gStr.gsErrorreadingKML, gStr.gsChooseBuildDifferentone);
-                            }
-                            break;
                         }
                     }
-                    mf.FileSaveBoundary();
-                    mf.bnd.BuildTurnLines();
-                    mf.fd.UpdateFieldBoundaryGUIAreas();
-                    mf.CalculateMinMax();
+                }
 
-                    btnSave.Enabled = true;
-                    btnLoadXML.Enabled = false;
-                }
-                catch (Exception)
-                {
-                    btnSave.Enabled = false;
-                    btnLoadXML.Enabled = false;
-                    return;
-                }
+                //build the boundary, make sure is clockwise for outer counter clockwise for inner
+                New.CalculateFenceArea(mf.bnd.bndList.Count);
+                New.FixFenceLine(mf.bnd.bndList.Count);
+
+                mf.bnd.bndList.Add(New);
+
+                mf.btnABDraw.Visible = true;
+
+                mf.FileSaveBoundary();
+                mf.bnd.BuildTurnLines();
+                mf.fd.UpdateFieldBoundaryGUIAreas();
+                mf.CalculateMinMax();
+
+                btnSave.Enabled = true;
+                btnLoadXML.Enabled = false;
+            }
+            catch (Exception)
+            {
+                btnSave.Enabled = false;
+                btnLoadXML.Enabled = false;
+                return;
             }
 
             mf.bnd.isOkToAddPoints = false;
@@ -227,7 +188,7 @@ namespace AgOpenGPS
 
         private void FindLatLon(string filename)
         {
-            XmlDocument doc = new XmlDocument();
+            doc = new XmlDocument();
             doc.PreserveWhitespace = false;
 
             try
