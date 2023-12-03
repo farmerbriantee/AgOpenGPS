@@ -913,9 +913,9 @@ Adds a time stamp to the current line name. Helps make the name unique as well.<
 Makes a line between the A point set and the B point. Heading of line is calculated. You can modify the line by entering a heading or by touching B as often as you want.</value>
   </data>
   <data name="ha_btnCancel" xml:space="preserve">
-    <value>Cancel and Turn Off
+    <value>Cancel
 
-Exit the form and turn off the guidance mode. Existing lines are not deleted, it just turns them off in main display.</value>
+Exit the form and revert all changes.</value>
   </data>
   <data name="ha_btnCancelCreate" xml:space="preserve">
     <value>Cancel and Return

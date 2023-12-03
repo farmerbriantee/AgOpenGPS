@@ -34,6 +34,7 @@ namespace AgOpenGPS
 
         private void FormSteer_Load(object sender, EventArgs e)
         {
+            Location = Properties.Settings.Default.setWindow_steerSettingsLocation;
             //WAS Zero, CPD
             hsbarWasOffset.ValueChanged -= hsbarSteerAngleSensorZero_ValueChanged;
             hsbarCountsPerDegree.ValueChanged -= hsbarCountsPerDegree_ValueChanged;
@@ -348,6 +349,8 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.setAS_ModeXTE = mf.vehicle.modeXTE;
             Properties.Settings.Default.setAS_ModeTime = mf.vehicle.modeTime;
+
+            Properties.Settings.Default.setWindow_steerSettingsLocation = Location;
 
             Properties.Settings.Default.Save();
 

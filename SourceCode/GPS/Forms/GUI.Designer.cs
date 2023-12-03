@@ -778,7 +778,7 @@ namespace AgOpenGPS
                 Settings.Default.setWindow_Minimized = true;
             }
 
-            Settings.Default.setDisplay_camPitch = camera.camPitch;
+            Settings.Default.setwin = camera.camPitch;
             Properties.Settings.Default.setDisplay_camZoom = camera.zoomValue;
 
             Settings.Default.setF_UserTotalArea = fd.workedAreaTotalUser;

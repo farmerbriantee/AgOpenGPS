@@ -29,77 +29,54 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.nudMinTurnRadius = new System.Windows.Forms.NumericUpDown();
-            this.lblHalfWidth = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.nudSnapDistance = new System.Windows.Forms.NumericUpDown();
             this.btnNoSave = new System.Windows.Forms.Button();
-            this.btnLeftHalfWidth = new System.Windows.Forms.Button();
-            this.btnRightHalfWidth = new System.Windows.Forms.Button();
             this.btnContourPriority = new System.Windows.Forms.Button();
             this.btnSwapAB = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.bthOK = new System.Windows.Forms.Button();
             this.btnAdjLeft = new System.Windows.Forms.Button();
             this.btnAdjRight = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMinTurnRadius)).BeginInit();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistance)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(108, 95);
+            this.label1.Location = new System.Drawing.Point(110, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 19);
             this.label1.TabIndex = 414;
             this.label1.Text = "cm";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // nudMinTurnRadius
+            // nudSnapDistance
             // 
-            this.nudMinTurnRadius.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudMinTurnRadius.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudMinTurnRadius.InterceptArrowKeys = false;
-            this.nudMinTurnRadius.Location = new System.Drawing.Point(83, 117);
-            this.nudMinTurnRadius.Maximum = new decimal(new int[] {
+            this.nudSnapDistance.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudSnapDistance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSnapDistance.InterceptArrowKeys = false;
+            this.nudSnapDistance.Location = new System.Drawing.Point(92, 44);
+            this.nudSnapDistance.Maximum = new decimal(new int[] {
             9999,
             0,
             0,
             0});
-            this.nudMinTurnRadius.Name = "nudMinTurnRadius";
-            this.nudMinTurnRadius.ReadOnly = true;
-            this.nudMinTurnRadius.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.nudMinTurnRadius.Size = new System.Drawing.Size(85, 33);
-            this.nudMinTurnRadius.TabIndex = 411;
-            this.nudMinTurnRadius.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudMinTurnRadius.Value = new decimal(new int[] {
+            this.nudSnapDistance.Name = "nudSnapDistance";
+            this.nudSnapDistance.ReadOnly = true;
+            this.nudSnapDistance.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.nudSnapDistance.Size = new System.Drawing.Size(85, 33);
+            this.nudSnapDistance.TabIndex = 411;
+            this.nudSnapDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudSnapDistance.Value = new decimal(new int[] {
             8888,
             0,
             0,
             0});
-            this.nudMinTurnRadius.ValueChanged += new System.EventHandler(this.nudMinTurnRadius_ValueChanged);
-            this.nudMinTurnRadius.Click += new System.EventHandler(this.nudMinTurnRadius_Click);
-            // 
-            // lblHalfWidth
-            // 
-            this.lblHalfWidth.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHalfWidth.Location = new System.Drawing.Point(83, 41);
-            this.lblHalfWidth.Name = "lblHalfWidth";
-            this.lblHalfWidth.Size = new System.Drawing.Size(81, 27);
-            this.lblHalfWidth.TabIndex = 447;
-            this.lblHalfWidth.Text = "3.88";
-            this.lblHalfWidth.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(103, 19);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 19);
-            this.label2.TabIndex = 450;
-            this.label2.Text = "(m)";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.nudSnapDistance.Click += new System.EventHandler(this.nudSnapDistance_Click);
             // 
             // btnNoSave
             // 
@@ -108,45 +85,13 @@
             this.btnNoSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNoSave.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNoSave.Image = global::AgOpenGPS.Properties.Resources.FileDontSave;
-            this.btnNoSave.Location = new System.Drawing.Point(90, 258);
+            this.btnNoSave.Location = new System.Drawing.Point(97, 212);
             this.btnNoSave.Name = "btnNoSave";
             this.btnNoSave.Size = new System.Drawing.Size(72, 64);
             this.btnNoSave.TabIndex = 449;
             this.btnNoSave.UseVisualStyleBackColor = true;
             this.btnNoSave.Click += new System.EventHandler(this.btnNosave_Click);
             this.btnNoSave.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnNoSave_HelpRequested);
-            // 
-            // btnLeftHalfWidth
-            // 
-            this.btnLeftHalfWidth.BackColor = System.Drawing.Color.Transparent;
-            this.btnLeftHalfWidth.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
-            this.btnLeftHalfWidth.FlatAppearance.BorderSize = 0;
-            this.btnLeftHalfWidth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLeftHalfWidth.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnLeftHalfWidth.Image = global::AgOpenGPS.Properties.Resources.SnapLeftHalf;
-            this.btnLeftHalfWidth.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnLeftHalfWidth.Location = new System.Drawing.Point(2, 11);
-            this.btnLeftHalfWidth.Name = "btnLeftHalfWidth";
-            this.btnLeftHalfWidth.Size = new System.Drawing.Size(72, 64);
-            this.btnLeftHalfWidth.TabIndex = 2;
-            this.btnLeftHalfWidth.UseVisualStyleBackColor = false;
-            this.btnLeftHalfWidth.Click += new System.EventHandler(this.btnLeftHalfWidth_Click);
-            // 
-            // btnRightHalfWidth
-            // 
-            this.btnRightHalfWidth.BackColor = System.Drawing.Color.Transparent;
-            this.btnRightHalfWidth.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
-            this.btnRightHalfWidth.FlatAppearance.BorderSize = 0;
-            this.btnRightHalfWidth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRightHalfWidth.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnRightHalfWidth.Image = global::AgOpenGPS.Properties.Resources.SnapRightHalf;
-            this.btnRightHalfWidth.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRightHalfWidth.Location = new System.Drawing.Point(174, 11);
-            this.btnRightHalfWidth.Name = "btnRightHalfWidth";
-            this.btnRightHalfWidth.Size = new System.Drawing.Size(72, 64);
-            this.btnRightHalfWidth.TabIndex = 3;
-            this.btnRightHalfWidth.UseVisualStyleBackColor = false;
-            this.btnRightHalfWidth.Click += new System.EventHandler(this.btnRightHalfWidth_Click);
             // 
             // btnContourPriority
             // 
@@ -157,9 +102,9 @@
             this.btnContourPriority.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnContourPriority.Image = global::AgOpenGPS.Properties.Resources.SnapToPivot;
             this.btnContourPriority.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnContourPriority.Location = new System.Drawing.Point(169, 178);
+            this.btnContourPriority.Location = new System.Drawing.Point(175, 126);
             this.btnContourPriority.Name = "btnContourPriority";
-            this.btnContourPriority.Size = new System.Drawing.Size(72, 64);
+            this.btnContourPriority.Size = new System.Drawing.Size(64, 64);
             this.btnContourPriority.TabIndex = 6;
             this.btnContourPriority.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnContourPriority.UseVisualStyleBackColor = false;
@@ -172,9 +117,9 @@
             this.btnSwapAB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSwapAB.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSwapAB.Image = global::AgOpenGPS.Properties.Resources.ABSwapPoints;
-            this.btnSwapAB.Location = new System.Drawing.Point(12, 178);
+            this.btnSwapAB.Location = new System.Drawing.Point(43, 126);
             this.btnSwapAB.Name = "btnSwapAB";
-            this.btnSwapAB.Size = new System.Drawing.Size(72, 64);
+            this.btnSwapAB.Size = new System.Drawing.Size(64, 64);
             this.btnSwapAB.TabIndex = 7;
             this.btnSwapAB.UseVisualStyleBackColor = true;
             this.btnSwapAB.Click += new System.EventHandler(this.btnSwapAB_Click);
@@ -187,9 +132,9 @@
             this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.back_button;
+            this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Trash;
             this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(7, 284);
+            this.btnCancel.Location = new System.Drawing.Point(1, 284);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(72, 64);
             this.btnCancel.TabIndex = 0;
@@ -207,7 +152,7 @@
             this.bthOK.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.bthOK.Image = global::AgOpenGPS.Properties.Resources.FileSave;
             this.bthOK.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.bthOK.Location = new System.Drawing.Point(175, 284);
+            this.bthOK.Location = new System.Drawing.Point(193, 284);
             this.bthOK.Name = "bthOK";
             this.bthOK.Size = new System.Drawing.Size(72, 64);
             this.bthOK.TabIndex = 1;
@@ -225,7 +170,7 @@
             this.btnAdjLeft.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnAdjLeft.Image = global::AgOpenGPS.Properties.Resources.SnapLeft;
             this.btnAdjLeft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdjLeft.Location = new System.Drawing.Point(2, 91);
+            this.btnAdjLeft.Location = new System.Drawing.Point(3, 18);
             this.btnAdjLeft.Name = "btnAdjLeft";
             this.btnAdjLeft.Size = new System.Drawing.Size(72, 64);
             this.btnAdjLeft.TabIndex = 4;
@@ -241,31 +186,63 @@
             this.btnAdjRight.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnAdjRight.Image = global::AgOpenGPS.Properties.Resources.SnapRight;
             this.btnAdjRight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdjRight.Location = new System.Drawing.Point(174, 91);
+            this.btnAdjRight.Location = new System.Drawing.Point(191, 18);
             this.btnAdjRight.Name = "btnAdjRight";
             this.btnAdjRight.Size = new System.Drawing.Size(72, 64);
             this.btnAdjRight.TabIndex = 5;
             this.btnAdjRight.UseVisualStyleBackColor = false;
             this.btnAdjRight.Click += new System.EventHandler(this.btnAdjRight_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(213, 275);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 16);
+            this.label4.TabIndex = 460;
+            this.label4.Text = "Save";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(107, 276);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 16);
+            this.label3.TabIndex = 459;
+            this.label3.Text = "For Now";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(14, 269);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 16);
+            this.label2.TabIndex = 458;
+            this.label2.Text = "Cancel";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormEditCurve
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(253, 351);
+            this.ClientSize = new System.Drawing.Size(268, 351);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnNoSave);
-            this.Controls.Add(this.lblHalfWidth);
-            this.Controls.Add(this.btnLeftHalfWidth);
-            this.Controls.Add(this.btnRightHalfWidth);
             this.Controls.Add(this.btnContourPriority);
             this.Controls.Add(this.btnSwapAB);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.bthOK);
             this.Controls.Add(this.btnAdjLeft);
             this.Controls.Add(this.btnAdjRight);
-            this.Controls.Add(this.nudMinTurnRadius);
+            this.Controls.Add(this.nudSnapDistance);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.HelpButton = true;
@@ -277,7 +254,7 @@
             this.Text = "Edit AB Line";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormEditCurve_FormClosing);
             this.Load += new System.EventHandler(this.FormEditAB_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.nudMinTurnRadius)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistance)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,12 +267,11 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button bthOK;
         private System.Windows.Forms.Button btnSwapAB;
-        private System.Windows.Forms.NumericUpDown nudMinTurnRadius;
+        private System.Windows.Forms.NumericUpDown nudSnapDistance;
         public System.Windows.Forms.Button btnContourPriority;
-        private System.Windows.Forms.Button btnLeftHalfWidth;
-        private System.Windows.Forms.Button btnRightHalfWidth;
-        private System.Windows.Forms.Label lblHalfWidth;
         private System.Windows.Forms.Button btnNoSave;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
     }
 }

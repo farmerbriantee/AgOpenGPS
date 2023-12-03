@@ -35,8 +35,6 @@
             this.lblCurveSelected = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.headingGroupBox = new System.Windows.Forms.GroupBox();
-            this.rbtnLine = new System.Windows.Forms.RadioButton();
-            this.rbtnCurve = new System.Windows.Forms.RadioButton();
             this.nudSetDistance = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
             this.lblMovedDistance = new System.Windows.Forms.Label();
@@ -45,19 +43,24 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cboxToolWidths = new System.Windows.Forms.ComboBox();
             this.lblToolWidth = new System.Windows.Forms.Label();
+            this.pboxHelp = new System.Windows.Forms.PictureBox();
+            this.bntHelp = new System.Windows.Forms.Button();
+            this.btnHeadlandOff = new System.Windows.Forms.Button();
             this.btnCycleBackward = new System.Windows.Forms.Button();
             this.btnDeletePoints = new System.Windows.Forms.Button();
             this.btnBndLoop = new System.Windows.Forms.Button();
             this.btnDeleteHeadland = new System.Windows.Forms.Button();
             this.cboxIsSectionControlled = new System.Windows.Forms.CheckBox();
+            this.rbtnLine = new System.Windows.Forms.RadioButton();
+            this.rbtnCurve = new System.Windows.Forms.RadioButton();
             this.btnCycleForward = new System.Windows.Forms.Button();
             this.btnALength = new System.Windows.Forms.Button();
             this.btnBLength = new System.Windows.Forms.Button();
             this.btnDeleteCurve = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
-            this.btnHeadlandOff = new System.Windows.Forms.Button();
             this.headingGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSetDistance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxHelp)).BeginInit();
             this.SuspendLayout();
             // 
             // oglSelf
@@ -134,40 +137,6 @@
             this.headingGroupBox.TabIndex = 438;
             this.headingGroupBox.TabStop = false;
             this.headingGroupBox.Text = "Line Style";
-            // 
-            // rbtnLine
-            // 
-            this.rbtnLine.Appearance = System.Windows.Forms.Appearance.Button;
-            this.rbtnLine.BackColor = System.Drawing.Color.AliceBlue;
-            this.rbtnLine.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleTurquoise;
-            this.rbtnLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbtnLine.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnLine.ForeColor = System.Drawing.Color.Black;
-            this.rbtnLine.Image = global::AgOpenGPS.Properties.Resources.ABTrackAB;
-            this.rbtnLine.Location = new System.Drawing.Point(115, 32);
-            this.rbtnLine.Name = "rbtnLine";
-            this.rbtnLine.Size = new System.Drawing.Size(80, 80);
-            this.rbtnLine.TabIndex = 2;
-            this.rbtnLine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rbtnLine.UseVisualStyleBackColor = false;
-            // 
-            // rbtnCurve
-            // 
-            this.rbtnCurve.Appearance = System.Windows.Forms.Appearance.Button;
-            this.rbtnCurve.BackColor = System.Drawing.Color.AliceBlue;
-            this.rbtnCurve.Checked = true;
-            this.rbtnCurve.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleTurquoise;
-            this.rbtnCurve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbtnCurve.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnCurve.ForeColor = System.Drawing.Color.Black;
-            this.rbtnCurve.Image = global::AgOpenGPS.Properties.Resources.ABTrackCurve;
-            this.rbtnCurve.Location = new System.Drawing.Point(15, 32);
-            this.rbtnCurve.Name = "rbtnCurve";
-            this.rbtnCurve.Size = new System.Drawing.Size(80, 80);
-            this.rbtnCurve.TabIndex = 0;
-            this.rbtnCurve.TabStop = true;
-            this.rbtnCurve.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rbtnCurve.UseVisualStyleBackColor = false;
             // 
             // nudSetDistance
             // 
@@ -297,6 +266,52 @@
             this.lblToolWidth.Text = "3.86";
             this.lblToolWidth.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pboxHelp
+            // 
+            this.pboxHelp.Image = global::AgOpenGPS.Properties.Resources.HeadacheHelp;
+            this.pboxHelp.Location = new System.Drawing.Point(36, 580);
+            this.pboxHelp.Name = "pboxHelp";
+            this.pboxHelp.Size = new System.Drawing.Size(130, 113);
+            this.pboxHelp.TabIndex = 521;
+            this.pboxHelp.TabStop = false;
+            this.pboxHelp.Click += new System.EventHandler(this.pboxHelp_Click);
+            // 
+            // bntHelp
+            // 
+            this.bntHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bntHelp.BackColor = System.Drawing.Color.Transparent;
+            this.bntHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.bntHelp.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.bntHelp.FlatAppearance.BorderSize = 0;
+            this.bntHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bntHelp.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.bntHelp.Image = global::AgOpenGPS.Properties.Resources.Help;
+            this.bntHelp.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.bntHelp.Location = new System.Drawing.Point(914, 142);
+            this.bntHelp.Name = "bntHelp";
+            this.bntHelp.Size = new System.Drawing.Size(76, 70);
+            this.bntHelp.TabIndex = 520;
+            this.bntHelp.UseVisualStyleBackColor = false;
+            this.bntHelp.Click += new System.EventHandler(this.bntHelp_Click);
+            // 
+            // btnHeadlandOff
+            // 
+            this.btnHeadlandOff.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnHeadlandOff.BackColor = System.Drawing.Color.Transparent;
+            this.btnHeadlandOff.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnHeadlandOff.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnHeadlandOff.FlatAppearance.BorderSize = 0;
+            this.btnHeadlandOff.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHeadlandOff.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnHeadlandOff.Image = global::AgOpenGPS.Properties.Resources.SwitchOff;
+            this.btnHeadlandOff.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnHeadlandOff.Location = new System.Drawing.Point(825, 665);
+            this.btnHeadlandOff.Name = "btnHeadlandOff";
+            this.btnHeadlandOff.Size = new System.Drawing.Size(69, 70);
+            this.btnHeadlandOff.TabIndex = 519;
+            this.btnHeadlandOff.UseVisualStyleBackColor = false;
+            this.btnHeadlandOff.Click += new System.EventHandler(this.btnHeadlandOff_Click);
+            // 
             // btnCycleBackward
             // 
             this.btnCycleBackward.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -390,6 +405,40 @@
             this.cboxIsSectionControlled.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxIsSectionControlled.UseVisualStyleBackColor = false;
             // 
+            // rbtnLine
+            // 
+            this.rbtnLine.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnLine.BackColor = System.Drawing.Color.AliceBlue;
+            this.rbtnLine.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleTurquoise;
+            this.rbtnLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnLine.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnLine.ForeColor = System.Drawing.Color.Black;
+            this.rbtnLine.Image = global::AgOpenGPS.Properties.Resources.ABTrackAB;
+            this.rbtnLine.Location = new System.Drawing.Point(115, 32);
+            this.rbtnLine.Name = "rbtnLine";
+            this.rbtnLine.Size = new System.Drawing.Size(80, 80);
+            this.rbtnLine.TabIndex = 2;
+            this.rbtnLine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnLine.UseVisualStyleBackColor = false;
+            // 
+            // rbtnCurve
+            // 
+            this.rbtnCurve.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnCurve.BackColor = System.Drawing.Color.AliceBlue;
+            this.rbtnCurve.Checked = true;
+            this.rbtnCurve.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleTurquoise;
+            this.rbtnCurve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnCurve.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnCurve.ForeColor = System.Drawing.Color.Black;
+            this.rbtnCurve.Image = global::AgOpenGPS.Properties.Resources.ABTrackCurve;
+            this.rbtnCurve.Location = new System.Drawing.Point(15, 32);
+            this.rbtnCurve.Name = "rbtnCurve";
+            this.rbtnCurve.Size = new System.Drawing.Size(80, 80);
+            this.rbtnCurve.TabIndex = 0;
+            this.rbtnCurve.TabStop = true;
+            this.rbtnCurve.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnCurve.UseVisualStyleBackColor = false;
+            // 
             // btnCycleForward
             // 
             this.btnCycleForward.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -480,30 +529,14 @@
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // btnHeadlandOff
-            // 
-            this.btnHeadlandOff.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnHeadlandOff.BackColor = System.Drawing.Color.Transparent;
-            this.btnHeadlandOff.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnHeadlandOff.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnHeadlandOff.FlatAppearance.BorderSize = 0;
-            this.btnHeadlandOff.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHeadlandOff.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnHeadlandOff.Image = global::AgOpenGPS.Properties.Resources.SwitchOff;
-            this.btnHeadlandOff.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnHeadlandOff.Location = new System.Drawing.Point(825, 665);
-            this.btnHeadlandOff.Name = "btnHeadlandOff";
-            this.btnHeadlandOff.Size = new System.Drawing.Size(69, 70);
-            this.btnHeadlandOff.TabIndex = 519;
-            this.btnHeadlandOff.UseVisualStyleBackColor = false;
-            this.btnHeadlandOff.Click += new System.EventHandler(this.btnHeadlandOff_Click);
-            // 
             // FormHeadAche
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1009, 742);
+            this.Controls.Add(this.pboxHelp);
+            this.Controls.Add(this.bntHelp);
             this.Controls.Add(this.btnHeadlandOff);
             this.Controls.Add(this.lblToolWidth);
             this.Controls.Add(this.cboxToolWidths);
@@ -540,6 +573,7 @@
             this.Load += new System.EventHandler(this.FormHeadLine_Load);
             this.headingGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudSetDistance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxHelp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -574,5 +608,7 @@
         private System.Windows.Forms.ComboBox cboxToolWidths;
         private System.Windows.Forms.Label lblToolWidth;
         private System.Windows.Forms.Button btnHeadlandOff;
+        private System.Windows.Forms.Button bntHelp;
+        private System.Windows.Forms.PictureBox pboxHelp;
     }
 }

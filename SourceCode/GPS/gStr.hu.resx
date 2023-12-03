@@ -885,9 +885,7 @@ Az időpont hozzadása az aktuális egyenes nevéhez. Segít a név egyedivé t�
 Egyenest húz az A és B pont között. Az egyenesből irányszöget számítunk. A kívánt egyenes irányszöge módosítható közvetlenül vagy a B áthelyezésével.</value>
   </data>
   <data name="ha_btnCancel" xml:space="preserve">
-    <value>Mégsem és kikapcsol
-
-Kilép az ablakból és kikapcsolja a navigációt. A meglévő vonalak nem kerülnek törlésre, csak kikapcsolásra a főképernyőn.</value>
+    <value>Lépjen ki az űrlapból, és állítsa vissza az összes módosítást.</value>
   </data>
   <data name="ha_btnCancelCreate" xml:space="preserve">
     <value>Mégsem és vissza

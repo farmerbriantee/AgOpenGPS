@@ -2102,9 +2102,9 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel and Turn Off
+        ///   Looks up a localized string similar to Cancel
         ///
-        ///Exit the form and turn off the guidance mode. Existing lines are not deleted, it just turns them off in main display..
+        ///Exit the form and revert all changes..
         /// </summary>
         public static string ha_btnCancel {
             get {

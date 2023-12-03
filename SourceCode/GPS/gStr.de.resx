@@ -902,9 +902,7 @@ Fügt dem aktuellen Namen einen Zeitstempel hinzu. Hilft auch dabei, den Namen e
 Erstellt eine Linie zwischen dem Punkt A und dem Punkt B. Die Richtung der Linie wird berechnet. Sie können die Richtung nachkorrigieren, indem Sie die Richtung als Zahl eingeben (0=Nord, 180=Süd) oder B beliebig oft berühren.</value>
   </data>
   <data name="ha_btnCancel" xml:space="preserve">
-    <value>Abbrechen und Ausschalten
-
-Verlassen Sie das Fenster und deaktivieren Sie die automatische Lenkung. Vorhandene Linien werden nicht gelöscht, sondern nur in der Hauptanzeige ausgeblendet.</value>
+    <value>Verlassen Sie das Formular und machen Sie alle Änderungen rückgängig.</value>
   </data>
   <data name="ha_btnCancelCreate" xml:space="preserve">
     <value>Abbrechen und zurück

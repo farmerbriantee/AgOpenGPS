@@ -736,7 +736,7 @@
     <value>punkts Izveido līniju starp A punktu kopu un B punktu. Tiek aprēķināts rindas gals. Jūs varat mainīt rindu, ievadot virsrakstu vai pieskaroties B tik bieži, cik vēlaties.</value>
   </data>
   <data name="ha_btnCancel" xml:space="preserve">
-    <value>Atcelt un izslēgt Izejiet no veidlapas un izslēdziet vadības režīmu. Esošās rindas netiek dzēstas, tās vienkārši izslēdzas galvenajā displejā.</value>
+    <value>Izejiet no veidlapas un atsauciet visas izmaiņas.</value>
   </data>
   <data name="ha_btnCancelCreate" xml:space="preserve">
     <value>Cancel and Return Atceļ pašreizējo darbību un atgriež jūs atpakaļ uz sākumu.</value>

@@ -586,12 +586,7 @@ namespace AgOpenGPS
                     }
                     else if (choice == 0)
                     {
-                        Settings.Default.setF_CurrentDir = currentFieldDirectory;
-                        Settings.Default.Save();
-
                         FileSaveEverythingBeforeClosingField();
-
-                        displayFieldName = gStr.gsNone;
                     }
                 }
             }

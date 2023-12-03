@@ -49,6 +49,7 @@ namespace AgOpenGPS
             originalLine = mf.curve.numCurveLineSelected;
             mf.curve.isOkToAddDesPoints = false;
             selectedItem = -1;
+            Location = Properties.Settings.Default.setWindow_abCurveCreate;
 
             UpdateTable();
         }
@@ -757,6 +758,8 @@ namespace AgOpenGPS
                 e.Cancel = true;
                 return;
             }
+
+            Properties.Settings.Default.setWindow_abCurveCreate = Location;
         }
 
         #region Help

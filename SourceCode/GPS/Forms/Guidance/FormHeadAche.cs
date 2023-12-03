@@ -846,6 +846,17 @@ namespace AgOpenGPS
             Close();
         }
 
+        private void pboxHelp_Click(object sender, EventArgs e)
+        {
+            pboxHelp.Visible = false;
+        }
+
+        private void bntHelp_Click(object sender, EventArgs e)
+        {
+            pboxHelp.Visible = true;
+            pboxHelp.Dock = DockStyle.Fill;
+        }
+
         public int GetLineIntersection(double p0x, double p0y, double p1x, double p1y,
         double p2x, double p2y, double p3x, double p3y, ref double iEast, ref double iNorth)
         {

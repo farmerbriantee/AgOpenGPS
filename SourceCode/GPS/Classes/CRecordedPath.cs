@@ -143,7 +143,7 @@ namespace AgOpenGPS
             //has a valid dubins path been created?
             if (shuttleListCount == 0) return false;
 
-            //starPathIndx = idx;
+            //starPathIndx = idxFieldSelected;
             
             //technically all good if we get here so set all the flags
             isFollowingDubinsHome = false;

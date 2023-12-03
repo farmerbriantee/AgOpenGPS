@@ -913,6 +913,7 @@
   <ItemGroup>
     <Content Include="AOG.ico" />
     <Content Include="aChangeLog.txt" />
+    <Content Include="XML\TASKDATA_Ster.xml" />
     <None Include="btnImages\bing.png" />
     <None Include="btnImages\Config\ConT_Asymmetric.png" />
     <None Include="btnImages\Config\ConT_Symmetric.png" />
@@ -951,6 +952,8 @@
     <None Include="btnImages\HeadacheKey.png" />
     <None Include="btnImages\ISOXML.png" />
     <None Include="btnImages\ABSnapNudgeMenu.png" />
+    <None Include="btnImages\YouTurnU.png" />
+    <None Include="btnImages\HeadacheHelp.png" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

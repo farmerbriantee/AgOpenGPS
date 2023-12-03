@@ -18,27 +18,31 @@ namespace AgOpenGPS
             InitializeComponent();
 
             this.Text = gStr.gsEditABLine;
-            nudMinTurnRadius.Controls[0].Enabled = false;
+            nudSnapDistance.Controls[0].Enabled = false;
         }
 
         private void FormEditAB_Load(object sender, EventArgs e)
         {
             if (mf.isMetric)
             {
-                nudMinTurnRadius.DecimalPlaces = 0;
-                nudMinTurnRadius.Value = (int)((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn);
+                nudSnapDistance.DecimalPlaces = 0;
+                nudSnapDistance.Value = (int)((double)Properties.Settings.Default.setAS_snapDistance * mf.m2InchOrCm);
             }
             else
             {
-                nudMinTurnRadius.DecimalPlaces = 1;
-                nudMinTurnRadius.Value = (decimal)Math.Round(((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn), 1);
+                nudSnapDistance.DecimalPlaces = 1;
+                nudSnapDistance.Value = (decimal)Math.Round(((double)Properties.Settings.Default.setAS_snapDistance * mf.m2InchOrCm), 1);
             }
 
-            label1.Text = mf.unitsInCm;
+            snapAdj = Properties.Settings.Default.setAS_snapDistance;
+
+            //label1.Text = mf.unitsInCm;
             btnCancel.Focus();
-            lblHalfSnapFtM.Text = mf.unitsFtM;
-            lblHalfWidth.Text = (mf.tool.width * 0.5 * mf.m2FtOrM).ToString("N2");
+            //lblHalfSnapFtM.Text = mf.unitsFtM;
+            //lblHalfWidth.Text = (mf.tool.width * 0.5 * mf.m2FtOrM).ToString("N2");
             tboxHeading.Text = Math.Round(glm.toDegrees(mf.ABLine.abHeading), 5).ToString();
+
+            Location = Properties.Settings.Default.setWindow_abLineEditLocation;
         }
 
         private void tboxHeading_Click(object sender, EventArgs e)
@@ -60,14 +64,12 @@ namespace AgOpenGPS
             mf.ABLine.isABValid = false;
         }
 
-        private void nudMinTurnRadius_Click(object sender, EventArgs e)
+        private void nudSnapDistance_Click(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NumericUpDown)sender, this);
-        }
-
-        private void nudMinTurnRadius_ValueChanged(object sender, EventArgs e)
-        {
-            snapAdj = (double)nudMinTurnRadius.Value * mf.inOrCm2Cm * 0.01;
+            snapAdj = (double)nudSnapDistance.Value * mf.inchOrCm2m;
+            Properties.Settings.Default.setAS_snapDistance = snapAdj;
+            Properties.Settings.Default.Save();
         }
 
         private void btnAdjRight_Click(object sender, EventArgs e)
@@ -187,6 +189,9 @@ namespace AgOpenGPS
                 e.Cancel = true;
                 return;
             }
+
+            Properties.Settings.Default.setWindow_abLineEditLocation = Location;
+            Properties.Settings.Default.Save();
         }
 
         private void btnCancel_HelpRequested(object sender, HelpEventArgs hlpevent)

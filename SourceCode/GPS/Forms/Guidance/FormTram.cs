@@ -92,7 +92,7 @@ namespace AgOpenGPS
                         //array number is 1 less since it starts at zero
                         int idx = mf.curve.numCurveLineSelected - 1;
 
-                        //mf.curve.curveArr[idx].Name = textBox1.Text.Trim();
+                        //mf.curve.curveArr[idxFieldSelected].Name = textBox1.Text.Trim();
                         if (idx >= 0)
                         {
                             mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;

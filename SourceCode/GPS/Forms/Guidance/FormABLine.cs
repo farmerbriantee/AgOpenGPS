@@ -69,6 +69,8 @@ namespace AgOpenGPS
             originalLine = mf.ABLine.numABLineSelected;
 
             mf.ABLine.isABLineBeingSet = false;
+
+            Location = Properties.Settings.Default.setWindow_abLineCreate;
             UpdateLineList();
             if (lvLines.Items.Count > 0 && originalLine > 0)
             {
@@ -657,6 +659,8 @@ namespace AgOpenGPS
                 e.Cancel = true;
                 return;
             }
+
+            Properties.Settings.Default.setWindow_abLineCreate = Location;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

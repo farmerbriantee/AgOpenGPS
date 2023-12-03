@@ -479,12 +479,21 @@ namespace AgOpenGPS
             { form2.ShowDialog(this); }
         }
 
+        private void toolStripBtnFieldTools_Click(object sender, EventArgs e)
+        {
+            if (isTT)
+            {
+                MessageBox.Show("Create Boundaries, Headlands, Tramlines etc", "Field Tools");
+                ResetHelpBtn();
+                return;
+            }
+        }
 
         private void jobMenuBtn_Click(object sender, EventArgs e)
         {
             if (isTT)
             {
-                MessageBox.Show("Resumes Last Field Used", "Resume Field");
+                MessageBox.Show("Open Close Resume Fields", "Field Menu");
                 ResetHelpBtn();
                 return;
             }

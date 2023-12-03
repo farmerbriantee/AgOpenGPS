@@ -1852,6 +1852,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap HeadacheHelp {
+            get {
+                object obj = ResourceManager.GetObject("HeadacheHelp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap HeadacheKey {
             get {
                 object obj = ResourceManager.GetObject("HeadacheKey", resourceCulture);
@@ -3410,6 +3420,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap YouTurnReverse {
             get {
                 object obj = ResourceManager.GetObject("YouTurnReverse", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap YouTurnU {
+            get {
+                object obj = ResourceManager.GetObject("YouTurnU", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

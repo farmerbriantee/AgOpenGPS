@@ -884,9 +884,7 @@ Agrega una marca de tiempo al nombre de la paralela actual. Ayuda a que el nombr
 Hace una línea entre el punto A y el punto B. Se calcula el rumbo de la línea. Puede modificar la línea introduciendo un rumbo o tocando B tantas veces como desee.</value>
   </data>
   <data name="ha_btnCancel" xml:space="preserve">
-    <value>Cancelar y Apagar
-
-Sale del formulario y apaga el autoguiado. Las líneas existentes no se eliminan, simplemente las desactiva en la pantalla principal.</value>
+    <value>Salga del formulario y revierta todos los cambios.</value>
   </data>
   <data name="ha_btnCancelCreate" xml:space="preserve">
     <value>Cancelar y Volver

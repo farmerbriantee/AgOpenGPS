@@ -846,9 +846,7 @@ Le cap de la ligne est calculé une fois le point B réalisé
 La ligne peut être modifiée en rentrant manuellement un cap ou en cliquant autant de fois voulu le point B</value>
   </data>
   <data name="ha_btnCancel" xml:space="preserve">
-    <value>Supprimer puis Fermer
-Ferme la fenêtre et coupe le mode guidage
-Les lignes existantes ne sont pas supprimées, elles sont juste effacées de l'écran principal</value>
+    <value>Quittez le formulaire et annulez toutes les modifications.</value>
   </data>
   <data name="ha_btnCancelCreate" xml:space="preserve">
     <value>Supprimer puis Retour

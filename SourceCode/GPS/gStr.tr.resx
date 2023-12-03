@@ -858,9 +858,7 @@ Geçerli satır adına bir zaman damgası ekler. Adın da benzersiz olmasına ya
 A noktası kümesi ile B noktası arasında bir çizgi oluşturur. Satır başı hesaplanır. Bir başlık girerek veya B'ye istediğiniz sıklıkta dokunarak satırı değiştirebilirsiniz.</value>
   </data>
   <data name="ha_btnCancel" xml:space="preserve">
-    <value>İptal Et ve Kapat
-
-Formdan çıkın ve rehberlik modunu kapatın. Mevcut satırlar silinmez, sadece ana ekranda onları kapatır.</value>
+    <value>Formdan çıkın ve tüm değişiklikleri geri alın.</value>
   </data>
   <data name="ha_btnCancelCreate" xml:space="preserve">
     <value>İptal Et ve İade Et

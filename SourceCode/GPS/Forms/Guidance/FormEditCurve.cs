@@ -18,40 +18,42 @@ namespace AgOpenGPS
             InitializeComponent();
 
             this.Text = gStr.gsEditABCurve;
-            nudMinTurnRadius.Controls[0].Enabled = false;
+            nudSnapDistance.Controls[0].Enabled = false;
         }
 
         private void FormEditAB_Load(object sender, EventArgs e)
         {
             label1.Text = mf.unitsInCm;
-            label2.Text = mf.unitsFtM;
+            //label2.Text = mf.unitsFtM;
 
             //btnLeft.Text = "-"+Properties.Settings.Default.setDisplay_snapDistanceSmall.ToString() + "cm";
-            lblHalfWidth.Text = (mf.tool.width * 0.5 * mf.m2FtOrM).ToString("N2");
+            //lblHalfWidth.Text = (mf.tool.width * 0.5 * mf.m2FtOrM).ToString("N2");
 
             if (mf.isMetric)
             {
-                nudMinTurnRadius.DecimalPlaces = 0;
-                nudMinTurnRadius.Value = (int)((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn);
+                nudSnapDistance.DecimalPlaces = 0;
+                nudSnapDistance.Value = (int)((double)Properties.Settings.Default.setAS_snapDistance * mf.m2InchOrCm);
             }
             else
             {
-                nudMinTurnRadius.DecimalPlaces = 1;
-                nudMinTurnRadius.Value = (decimal)Math.Round(((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn), 1);
+                nudSnapDistance.DecimalPlaces = 1;
+                nudSnapDistance.Value = (decimal)Math.Round(((double)Properties.Settings.Default.setAS_snapDistance * mf.m2InchOrCm), 1);
             }
+
+            snapAdj = Properties.Settings.Default.setAS_snapDistance;
+
+            Location = Properties.Settings.Default.setWindow_curveEditLocation;
 
 
             btnCancel.Focus();
         }
 
-        private void nudMinTurnRadius_Click(object sender, EventArgs e)
+        private void nudSnapDistance_Click(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NumericUpDown)sender, this);
-        }
-
-        private void nudMinTurnRadius_ValueChanged(object sender, EventArgs e)
-        {
-            snapAdj = (double)nudMinTurnRadius.Value * mf.inOrCm2Cm * 0.01;
+            snapAdj = (double)nudSnapDistance.Value * mf.inchOrCm2m;
+            Properties.Settings.Default.setAS_snapDistance = snapAdj;
+            Properties.Settings.Default.Save();
         }
 
         private void btnAdjRight_Click(object sender, EventArgs e)
@@ -183,6 +185,9 @@ namespace AgOpenGPS
                 e.Cancel = true;
                 return;
             }
+            Properties.Settings.Default.setWindow_curveEditLocation = Location;
+            Properties.Settings.Default.Save();
+
         }
 
         private void btnCancel_HelpRequested(object sender, HelpEventArgs hlpevent)

@@ -26,12 +26,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("-62")]
-        public double setDisplay_camPitch {
+        public double setwin {
             get {
-                return ((double)(this["setDisplay_camPitch"]));
+                return ((double)(this["setwin"]));
             }
             set {
-                this["setDisplay_camPitch"] = value;
+                this["setwin"] = value;
             }
         }
         
@@ -2697,6 +2697,66 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setJobMenu_size"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("40, 40")]
+        public global::System.Drawing.Point setWindow_curveEditLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["setWindow_curveEditLocation"]));
+            }
+            set {
+                this["setWindow_curveEditLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("40, 40")]
+        public global::System.Drawing.Point setWindow_abLineEditLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["setWindow_abLineEditLocation"]));
+            }
+            set {
+                this["setWindow_abLineEditLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("40, 40")]
+        public global::System.Drawing.Point setWindow_steerSettingsLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["setWindow_steerSettingsLocation"]));
+            }
+            set {
+                this["setWindow_steerSettingsLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("40, 40")]
+        public global::System.Drawing.Point setWindow_abCurveCreate {
+            get {
+                return ((global::System.Drawing.Point)(this["setWindow_abCurveCreate"]));
+            }
+            set {
+                this["setWindow_abCurveCreate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("40, 40")]
+        public global::System.Drawing.Point setWindow_abLineCreate {
+            get {
+                return ((global::System.Drawing.Point)(this["setWindow_abLineCreate"]));
+            }
+            set {
+                this["setWindow_abLineCreate"] = value;
             }
         }
     }
