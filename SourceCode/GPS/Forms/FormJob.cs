@@ -237,12 +237,12 @@ namespace AgOpenGPS
 
         private void btnFromISOXML_Click(object sender, EventArgs e)
         {
-            mf.TimedMessageBox(2000, "Not Implemented", "Coming Soon");
-            return;
-            //if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
-            ////back to FormGPS
-            //DialogResult = DialogResult.Abort;
-            //Close();
+            //mf.TimedMessageBox(2000, "Not Implemented", "Coming Soon");
+            //return;
+            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
+            //back to FormGPS
+            DialogResult = DialogResult.Abort;
+            Close();
         }
     }
 }

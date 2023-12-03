@@ -524,7 +524,6 @@ namespace AgOpenGPS
                 var result = form.ShowDialog(this);
                 if (result == DialogResult.Yes)
                 {
-
                     //new field - ask for a directory name
                     using (var form2 = new FormFieldDir(this))
                     { form2.ShowDialog(this); }
