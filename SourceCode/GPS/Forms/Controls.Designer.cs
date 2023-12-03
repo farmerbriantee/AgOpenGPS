@@ -473,11 +473,6 @@ namespace AgOpenGPS
         }
 
         #endregion
-        private void btnLoadISOXML_Click(object sender, EventArgs e)
-        {
-            using (var form2 = new FormFieldISOXML(this))
-            { form2.ShowDialog(this); }
-        }
 
         private void toolStripBtnFieldTools_Click(object sender, EventArgs e)
         {

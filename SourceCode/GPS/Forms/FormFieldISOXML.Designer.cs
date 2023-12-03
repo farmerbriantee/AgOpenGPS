@@ -34,11 +34,13 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnSerialCancel = new System.Windows.Forms.Button();
             this.lblField = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tboxFieldName = new System.Windows.Forms.TextBox();
             this.btnBuildFields = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tree = new System.Windows.Forms.TreeView();
+            this.btnAddDate = new System.Windows.Forms.Button();
+            this.btnAddTime = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -63,7 +65,7 @@
             this.btnLoadXML.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLoadXML.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnLoadXML.Image = ((System.Drawing.Image)(resources.GetObject("btnLoadXML.Image")));
-            this.btnLoadXML.Location = new System.Drawing.Point(509, 261);
+            this.btnLoadXML.Location = new System.Drawing.Point(524, 337);
             this.btnLoadXML.Name = "btnLoadXML";
             this.btnLoadXML.Size = new System.Drawing.Size(83, 79);
             this.btnLoadXML.TabIndex = 3;
@@ -80,7 +82,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
-            this.btnSave.Location = new System.Drawing.Point(509, 479);
+            this.btnSave.Location = new System.Drawing.Point(524, 528);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(83, 79);
             this.btnSave.TabIndex = 3;
@@ -99,7 +101,7 @@
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnSerialCancel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnSerialCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnSerialCancel.Image")));
-            this.btnSerialCancel.Location = new System.Drawing.Point(509, 373);
+            this.btnSerialCancel.Location = new System.Drawing.Point(524, 433);
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(83, 79);
             this.btnSerialCancel.TabIndex = 4;
@@ -117,24 +119,27 @@
             this.lblField.TabIndex = 155;
             this.lblField.Text = "Fieldname";
             // 
-            // textBox1
+            // tboxFieldName
             // 
-            this.textBox1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(5, 37);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(490, 33);
-            this.textBox1.TabIndex = 156;
+            this.tboxFieldName.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxFieldName.Location = new System.Drawing.Point(5, 37);
+            this.tboxFieldName.Name = "tboxFieldName";
+            this.tboxFieldName.Size = new System.Drawing.Size(490, 33);
+            this.tboxFieldName.TabIndex = 156;
+            this.tboxFieldName.Click += new System.EventHandler(this.tboxFieldName_Click);
+            this.tboxFieldName.TextChanged += new System.EventHandler(this.tboxFieldName_TextChanged);
             // 
             // btnBuildFields
             // 
             this.btnBuildFields.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBuildFields.BackColor = System.Drawing.Color.Transparent;
+            this.btnBuildFields.Enabled = false;
             this.btnBuildFields.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnBuildFields.FlatAppearance.BorderSize = 0;
             this.btnBuildFields.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuildFields.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnBuildFields.Image = ((System.Drawing.Image)(resources.GetObject("btnBuildFields.Image")));
-            this.btnBuildFields.Location = new System.Drawing.Point(509, 132);
+            this.btnBuildFields.Location = new System.Drawing.Point(524, 208);
             this.btnBuildFields.Name = "btnBuildFields";
             this.btnBuildFields.Size = new System.Drawing.Size(83, 79);
             this.btnBuildFields.TabIndex = 158;
@@ -146,7 +151,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(517, 241);
+            this.label2.Location = new System.Drawing.Point(532, 317);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 23);
             this.label2.TabIndex = 159;
@@ -156,7 +161,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(526, 116);
+            this.label3.Location = new System.Drawing.Point(541, 192);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 23);
             this.label3.TabIndex = 160;
@@ -175,18 +180,52 @@
             this.tree.TabIndex = 161;
             this.tree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tree_AfterSelect);
             // 
+            // btnAddDate
+            // 
+            this.btnAddDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddDate.BackColor = System.Drawing.Color.Transparent;
+            this.btnAddDate.FlatAppearance.BorderSize = 0;
+            this.btnAddDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddDate.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnAddDate.Image = global::AgOpenGPS.Properties.Resources.JobNameCalendar;
+            this.btnAddDate.Location = new System.Drawing.Point(524, 3);
+            this.btnAddDate.Name = "btnAddDate";
+            this.btnAddDate.Size = new System.Drawing.Size(83, 79);
+            this.btnAddDate.TabIndex = 163;
+            this.btnAddDate.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAddDate.UseVisualStyleBackColor = false;
+            this.btnAddDate.Click += new System.EventHandler(this.btnAddDate_Click);
+            // 
+            // btnAddTime
+            // 
+            this.btnAddTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddTime.BackColor = System.Drawing.Color.Transparent;
+            this.btnAddTime.FlatAppearance.BorderSize = 0;
+            this.btnAddTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddTime.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnAddTime.Image = global::AgOpenGPS.Properties.Resources.JobNameTime;
+            this.btnAddTime.Location = new System.Drawing.Point(524, 88);
+            this.btnAddTime.Name = "btnAddTime";
+            this.btnAddTime.Size = new System.Drawing.Size(83, 79);
+            this.btnAddTime.TabIndex = 162;
+            this.btnAddTime.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAddTime.UseVisualStyleBackColor = false;
+            this.btnAddTime.Click += new System.EventHandler(this.btnAddTime_Click);
+            // 
             // FormFieldISOXML
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(612, 589);
+            this.ClientSize = new System.Drawing.Size(612, 612);
             this.ControlBox = false;
+            this.Controls.Add(this.btnAddDate);
+            this.Controls.Add(this.btnAddTime);
             this.Controls.Add(this.tree);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnBuildFields);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tboxFieldName);
             this.Controls.Add(this.lblField);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnLoadXML);
@@ -212,10 +251,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnLoadXML;
         private System.Windows.Forms.Label lblField;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tboxFieldName;
         private System.Windows.Forms.Button btnBuildFields;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TreeView tree;
+        private System.Windows.Forms.Button btnAddDate;
+        private System.Windows.Forms.Button btnAddTime;
     }
 }

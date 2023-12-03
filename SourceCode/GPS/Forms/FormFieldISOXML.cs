@@ -34,12 +34,14 @@ namespace AgOpenGPS
         private void FormFieldISOXML_Load(object sender, EventArgs e)
         {
             btnSave.Enabled = false;
-            textBox1.Text = "a1a";
+            tboxFieldName.Text = "";
+            btnBuildFields.Enabled = false;
         }
 
         XmlNodeList pfd;
         private void btnLoadXML_Click(object sender, EventArgs e)
         {
+            btnBuildFields.Enabled = false;
             string newFieldDir = mf.fieldsDirectory;
             tree.Nodes?.Clear();
 
@@ -134,10 +136,47 @@ namespace AgOpenGPS
                 mf.TimedMessageBox(2000, "Exception", "Catch Exception");
                 return;
             }
+
+            if (tree.Nodes.Count == 0) btnBuildFields.Enabled = false;
         }
+        private void tree_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            //top node selected (ie the field)
+            if (tree.SelectedNode.Parent == null)
+            {
+                idxFieldSelected = tree.SelectedNode.Index;
+                lblField.Text = idxFieldSelected.ToString() + " " + pfd[idxFieldSelected].Attributes["C"].Value;
+                tboxFieldName.Text = pfd[idxFieldSelected].Attributes["C"].Value;
+            }
+
+            //one of the lines or bnds selected - so set the field selected
+            else
+            {
+                idxFieldSelected = tree.SelectedNode.Parent.Index;
+                lblField.Text = idxFieldSelected.ToString() + " " + pfd[idxFieldSelected].Attributes["C"].Value;
+                tboxFieldName.Text = pfd[idxFieldSelected].Attributes["C"].Value;
+            }
+
+            if (idxFieldSelected == -1) btnBuildFields.Enabled = false;
+                else btnBuildFields.Enabled = true;
+        }
+
 
         private void btnBuildFields_Click(object sender, EventArgs e)
         {
+            mf.currentFieldDirectory = tboxFieldName.Text.Trim();
+            string dirNewField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
+
+            //create new field files.
+            string directoryName = Path.GetDirectoryName(dirNewField);
+
+            if ((!string.IsNullOrEmpty(directoryName)) && (Directory.Exists(directoryName)))
+            {
+                MessageBox.Show(gStr.gsChooseADifferentName, gStr.gsDirectoryExists, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                mf.currentFieldDirectory = "";
+                return;
+            }
+
             //this is all the PLN and GGC and LSG roots of selected field
             XmlNodeList fieldParts = pfd[idxFieldSelected].ChildNodes;
 
@@ -147,9 +186,8 @@ namespace AgOpenGPS
 
             try
             {
-
                 //extract field name from selected tree node
-                textBox1.Text = pfd[idxFieldSelected].Attributes["C"].Value;
+                //tboxFieldName.Text = pfd[idxFieldSelected].Attributes["C"].Value;
 
 
                 //Find the PLN in the field
@@ -184,11 +222,6 @@ namespace AgOpenGPS
             //reset sim and world to kml position
             //append date time to name
 
-            mf.currentFieldDirectory = textBox1.Text.Trim() + " " + DateTime.Now.ToString("HH-mm", CultureInfo.InvariantCulture).Trim();
-
-            //get the directory and make sure it exists, create if not
-            string dirNewField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
-
             mf.menustripLanguage.Enabled = false;
 
             //create new field files.
@@ -196,10 +229,9 @@ namespace AgOpenGPS
             {
                 //start a new job
                 mf.JobNew();
+                mf.menustripLanguage.Enabled = false;
 
-                //create it for first save
-                string directoryName = Path.GetDirectoryName(dirNewField);
-
+                //double check
                 if ((!string.IsNullOrEmpty(directoryName)) && (Directory.Exists(directoryName)))
                 {
                     MessageBox.Show(gStr.gsChooseADifferentName, gStr.gsDirectoryExists, MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -414,25 +446,27 @@ namespace AgOpenGPS
 
             mf.FileSaveABLines();
 
+            btnSave.Enabled = true;
+
+            //close out window
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
-
-        private void tree_AfterSelect(object sender, TreeViewEventArgs e)
+        private void tboxFieldName_TextChanged(object sender, EventArgs e)
         {
-            //top node selected (ie the field)
-            if (tree.SelectedNode.Parent == null)
-            {
-                idxFieldSelected = tree.SelectedNode.Index;
-                lblField.Text = idxFieldSelected.ToString() + " " + pfd[idxFieldSelected].Attributes["C"].Value;
-                textBox1.Text = pfd[idxFieldSelected].Attributes["C"].Value;
-            }
+            System.Windows.Forms.TextBox textboxSender = (System.Windows.Forms.TextBox)sender;
+            int cursorPosition = textboxSender.SelectionStart;
+            textboxSender.Text = Regex.Replace(textboxSender.Text, glm.fileRegex, "");
+            textboxSender.SelectionStart = cursorPosition;
+        }
 
-            //one of the lines or bnds selected - so set the field selected
-            else
+        private void tboxFieldName_Click(object sender, EventArgs e)
+        {
+            if (mf.isKeyboardOn)
             {
-                idxFieldSelected = tree.SelectedNode.Parent.Index;
-                lblField.Text = idxFieldSelected.ToString() + " " + pfd[idxFieldSelected].Attributes["C"].Value;
-                textBox1.Text = pfd[idxFieldSelected].Attributes["C"].Value;
+                mf.KeyboardToText((System.Windows.Forms.TextBox)sender, this);
+                btnSerialCancel.Focus();
             }
         }
 
@@ -447,17 +481,17 @@ namespace AgOpenGPS
             Close();
         }
 
-        //private void btnAddDate_Click(object sender, EventArgs e)
-        //{
-        //    tboxFieldName.Text += " " + DateTime.Now.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+        private void btnAddDate_Click(object sender, EventArgs e)
+        {
+            tboxFieldName.Text += " " + DateTime.Now.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
 
-        //}
+        }
 
-        //private void btnAddTime_Click(object sender, EventArgs e)
-        //{
-        //    tboxFieldName.Text += " " + DateTime.Now.ToString("HH-mm", CultureInfo.InvariantCulture);
+        private void btnAddTime_Click(object sender, EventArgs e)
+        {
+            tboxFieldName.Text += " " + DateTime.Now.ToString("HH-mm", CultureInfo.InvariantCulture);
 
-        //}
+        }
     }
 }
 
