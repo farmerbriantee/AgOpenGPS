@@ -441,7 +441,7 @@ namespace AgOpenGPS
             //Headland
 
             //Load the outer boundary first
-            if (mf.bnd.bndList.Count > 0)
+            if (mf.bnd.bndList.Count > 0 && mf.bnd.bndList[0].hdLine.Count == 0)
             {
                 try
                 {
