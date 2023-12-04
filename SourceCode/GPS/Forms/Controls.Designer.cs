@@ -573,8 +573,24 @@ namespace AgOpenGPS
 
             if (isJobStarted) toolStripBtnFieldTools.Enabled = true;
 
+            if (bnd.bndList.Count > 0 && bnd.bndList[0].hdLine.Count > 0)
+            {
+                bnd.isHeadlandOn = true;
+                btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
+                btnHeadlandOnOff.Visible = true;
+                btnHydLift.Visible = true;
+                btnHydLift.Image = Properties.Resources.HydraulicLiftOff;
+
+            }
+            else
+            {
+                bnd.isHeadlandOn = false;
+                btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
+                btnHeadlandOnOff.Visible = false;
+                btnHydLift.Visible = false;
+            }
         }
-        
+
         public void FileSaveEverythingBeforeClosingField()
         {
             //turn off contour line if on

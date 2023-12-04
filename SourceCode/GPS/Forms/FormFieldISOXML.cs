@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
@@ -91,9 +92,24 @@ namespace AgOpenGPS
                         //grab the polygons
                         if (nodePart.Name == "PLN")
                         {
+                            string bndType = "Unidentified Boundary";
+
+                            if (nodePart.Attributes["A"].Value == "1")
+                            {
+                                bndType = "Outer Boundary:";
+                            }
+                            else if (nodePart.Attributes["A"].Value == "3" || nodePart.Attributes["A"].Value == "4" ||
+                                nodePart.Attributes["A"].Value == "6")
+                            {
+                                bndType = "Inner Boundary:";
+                            }
+                            else if (nodePart.Attributes["A"].Value == "10")
+                            {
+                                bndType = "Headland:";
+                            }
                             // "A" is the Polygon Type - usually 1 or 2
-                            tree.Nodes[tree.Nodes.Count - 1].Nodes.Add(
-                                "Boundary: " + nodePart.Attributes["A"].Value +
+                            tree.Nodes[tree.Nodes.Count - 1].Nodes.Add(bndType +
+                                " " + nodePart.Attributes["A"].Value +
                                 "   Points: " + nodePart.ChildNodes[0].ChildNodes.Count);
                         }
                     }
@@ -317,22 +333,21 @@ namespace AgOpenGPS
                 mf.currentFieldDirectory = "";
             }
 
-            //Load the outer boundary
+            //Load the outer boundary first
             try
             {
+                
 
                 CBoundaryList NewList = new CBoundaryList();
-
                 foreach (XmlNode nodePart in fieldParts)
                 {
                     //grab the polygons
                     if (nodePart.Name == "PLN")
                     {
-                        if (nodePart.Attributes["A"].Value == "1")
+                        if (nodePart.Attributes["A"].Value == "1" || nodePart.Attributes["A"].Value == "9")
                         {
                             if (nodePart.ChildNodes[0].Attributes["A"].Value == "1") //LSG
                             {
-
                                 foreach (XmlNode pnt in nodePart.ChildNodes[0].ChildNodes) //PNT
                                 {
                                     double.TryParse(pnt.Attributes["C"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
@@ -346,28 +361,136 @@ namespace AgOpenGPS
                             }
                         }
                     }
+
+                    //we have outer bnd
+                    if (NewList.fenceLine.Count > 0) break;
                 }
 
-                //build the boundary, make sure is clockwise for outer counter clockwise for inner
-                NewList.CalculateFenceArea(mf.bnd.bndList.Count);
-                NewList.FixFenceLine(mf.bnd.bndList.Count);
+                {
+                    //build the boundary, make sure is clockwise for outer counter clockwise for inner
+                    NewList.CalculateFenceArea(mf.bnd.bndList.Count);
+                    NewList.FixFenceLine(mf.bnd.bndList.Count);
 
-                mf.bnd.bndList.Add(NewList);
+                    mf.bnd.bndList.Add(NewList);
 
-                mf.btnABDraw.Visible = true;
-
-                mf.FileSaveBoundary();
-                mf.bnd.BuildTurnLines();
-                mf.fd.UpdateFieldBoundaryGUIAreas();
-                mf.CalculateMinMax();
-
-                btnSave.Enabled = true;
+                    mf.FileSaveBoundary();
+                    mf.bnd.BuildTurnLines();
+                    mf.fd.UpdateFieldBoundaryGUIAreas();
+                    mf.CalculateMinMax();
+                }
             }
             catch (Exception)
             {
                 btnSave.Enabled = false;
                 return;
             }
+
+            //load inner boundaries next only if outer existed
+
+            //Load the outer boundary first
+            if (mf.bnd.bndList.Count > 0)
+            {
+                try
+                {
+                    foreach (XmlNode nodePart in fieldParts)
+                    {
+                        //grab the polygons
+                        if (nodePart.Name == "PLN")
+                        {
+                            if (nodePart.Attributes["A"].Value == "3" ||
+                                nodePart.Attributes["A"].Value == "4" ||
+                                nodePart.Attributes["A"].Value == "6")
+                            {
+                                if (nodePart.ChildNodes[0].Attributes["A"].Value == "1") //LSG
+                                {
+                                    CBoundaryList NewList = new CBoundaryList();
+                                    foreach (XmlNode pnt in nodePart.ChildNodes[0].ChildNodes) //PNT
+                                    {
+                                        double.TryParse(pnt.Attributes["C"].Value, NumberStyles.Float, 
+                                            CultureInfo.InvariantCulture, out latK);
+                                        double.TryParse(pnt.Attributes["D"].Value, NumberStyles.Float, 
+                                            CultureInfo.InvariantCulture, out lonK);
+
+                                        mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
+
+                                        //add the point to boundary
+                                        NewList.fenceLine.Add(new vec3(easting, norting, 0));
+                                    }
+
+                                    //build the boundary, make sure is clockwise for outer counter clockwise for inner
+                                    NewList.CalculateFenceArea(mf.bnd.bndList.Count);
+                                    NewList.FixFenceLine(mf.bnd.bndList.Count);
+
+                                    mf.bnd.bndList.Add(NewList);
+
+                                    mf.btnABDraw.Visible = true;
+
+                                    mf.FileSaveBoundary();
+                                    mf.bnd.BuildTurnLines();
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    btnSave.Enabled = false;
+                    return;
+                }
+            }
+            //Headland
+
+            //Load the outer boundary first
+            if (mf.bnd.bndList.Count > 0)
+            {
+                try
+                {
+                    foreach (XmlNode nodePart in fieldParts)
+                    {
+                        //grab the polygons
+                        if (nodePart.Name == "PLN")
+                        {
+                            if (nodePart.Attributes["A"].Value == "10")
+                            {
+                                if (nodePart.ChildNodes[0].Attributes["A"].Value == "1") //LSG
+                                {
+                                    List<vec3> desList = new List<vec3>();
+
+                                    foreach (XmlNode pnt in nodePart.ChildNodes[0].ChildNodes) //PNT
+                                    {
+                                        double.TryParse(pnt.Attributes["C"].Value, NumberStyles.Float,
+                                            CultureInfo.InvariantCulture, out latK);
+                                        double.TryParse(pnt.Attributes["D"].Value, NumberStyles.Float,
+                                            CultureInfo.InvariantCulture, out lonK);
+
+                                        mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
+
+                                        //add the point to boundary
+                                        desList.Add(new vec3(easting, norting, 0));
+                                    }
+
+                                    //build the boundary, make sure is clockwise for outer counter clockwise for inner
+                                    mf.hdl.CalculateHeadings(ref desList);
+
+                                    //write out the Curve Points
+                                    foreach (vec3 item in desList)
+                                    {
+                                        mf.bnd.bndList[0].hdLine.Add(item);
+                                    }
+
+                                    mf.FileSaveHeadland();
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    btnSave.Enabled = false;
+                    return;
+                }
+            }
+
 
             mf.bnd.isOkToAddPoints = false;
             mf.curve.desList?.Clear();
@@ -434,7 +557,6 @@ namespace AgOpenGPS
 
                         }
                     }//is GGP
-
                 }
 
             }

@@ -712,7 +712,6 @@ namespace AgOpenGPS
                         mf.bnd.bndList[0].hdLine.Add(item);
                     }
                 }
-
             }
 
             mf.FileSaveHeadland();

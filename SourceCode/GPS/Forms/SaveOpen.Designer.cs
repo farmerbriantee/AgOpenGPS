@@ -52,7 +52,7 @@ namespace AgOpenGPS
                     xml.WriteStartElement("PFD");//Field
                     xml.WriteAttributeString("A", "PFD-1");
                     xml.WriteAttributeString("C", currentFieldDirectory);
-                    xml.WriteAttributeString("D", "0");
+                    xml.WriteAttributeString("D", ((int)(fd.areaOuterBoundary)).ToString());
 
                     double lat = 0;
                     double lon = 0;
@@ -113,7 +113,6 @@ namespace AgOpenGPS
                             }
                         }
 
-
                         //AB Lines
                         if (ABLine.lineArr != null && ABLine.lineArr.Count > 0)
                         {
@@ -122,7 +121,7 @@ namespace AgOpenGPS
                                 xml.WriteStartElement("LSG");//Line
                                 xml.WriteAttributeString("A", "5");
                                 xml.WriteAttributeString("B", ABLine.lineArr[i].Name);
-                                xml.WriteAttributeString("C", (tool.width * 100).ToString());
+                                xml.WriteAttributeString("C", (tool.width).ToString());
                                 xml.WriteStartElement("PNT");//A
 
                                 pn.ConvertLocalToWGS84(ABLine.lineArr[i].origin.northing - (Math.Cos(ABLine.lineArr[i].heading) * 1000),
@@ -145,8 +144,7 @@ namespace AgOpenGPS
                                 xml.WriteEndElement();//B
                                 xml.WriteEndElement();//Line
                             }
-                        }
-                    
+                        }                    
 
                         //curves
                         if (curve.curveArr != null && curve.curveArr.Count > 0)
@@ -156,7 +154,7 @@ namespace AgOpenGPS
                                 xml.WriteStartElement("LSG");//Curve
                                 xml.WriteAttributeString("A", "5");
                                 xml.WriteAttributeString("B", curve.curveArr[i].Name);
-                                xml.WriteAttributeString("C", (tool.width * 100).ToString());
+                                xml.WriteAttributeString("C", (tool.width).ToString());
 
                                 for (int j = 0; j < curve.curveArr[i].curvePts.Count; j++)
                                 {
