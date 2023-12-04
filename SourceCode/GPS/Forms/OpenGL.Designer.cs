@@ -1163,7 +1163,7 @@ namespace AgOpenGPS
 
                     //NMEA log file
                     if (isLogElevation) FileSaveElevation();
-                    //FileSaveFieldKML();
+                    //ExportFieldAs_KML();
                 }
 
                 if (isAutoDayNight && tenMinuteCounter > 600)

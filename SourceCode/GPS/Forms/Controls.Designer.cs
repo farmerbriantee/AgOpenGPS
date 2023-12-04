@@ -597,7 +597,9 @@ namespace AgOpenGPS
             FileSaveBoundary();
             FileSaveSections();
             FileSaveContour();
-            FileSaveFieldKML();
+
+            ExportFieldAs_KML();
+            ExportFieldAs_ISOXML();
 
             Settings.Default.setF_CurrentDir = currentFieldDirectory;
             Settings.Default.Save();

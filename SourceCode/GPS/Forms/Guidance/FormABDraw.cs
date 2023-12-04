@@ -728,7 +728,7 @@ namespace AgOpenGPS
                 else
                     GL.Color3(0.4f, 0.75f, 0.70f);
 
-                GL.Begin(PrimitiveType.LineStrip);
+                GL.Begin(PrimitiveType.LineLoop);
                 for (int i = 0; i < mf.bnd.bndList[j].fenceLineEar.Count; i++)
                 {
                     GL.Vertex3(mf.bnd.bndList[j].fenceLineEar[i].easting, mf.bnd.bndList[j].fenceLineEar[i].northing, 0);
