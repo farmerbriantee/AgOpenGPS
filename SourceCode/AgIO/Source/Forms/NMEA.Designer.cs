@@ -204,11 +204,12 @@ namespace AgIO
                 {
                     ParseTRA();
                 }
-
+                //TODO: Skytraq also sends this data for fixed base. Thus it returns a false result. It is necessary to check dual mode. But this data is processed in the ECU.
+                /*
                 else if (words[0] == "$PSTI" && words[1] == "032")
                 {
                     ParseSTI032(); //there is also an $PSTI,030,... wich contains different data!
-                }
+                }*/
             }// while still data
 
             if (isNMEAToSend)
