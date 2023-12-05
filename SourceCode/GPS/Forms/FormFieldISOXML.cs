@@ -203,10 +203,6 @@ namespace AgOpenGPS
 
             try
             {
-                //extract field name from selected tree node
-                //tboxFieldName.Text = pfd[idxFieldSelected].Attributes["C"].Value;
-
-
                 //Find the PLN in the field
                 /*
                 < PLN A = "1" C="Area in Sq M like 12568" >
@@ -330,9 +326,6 @@ namespace AgOpenGPS
                     mf.FileCreateContour();
                     mf.FileCreateElevation();
                     mf.FileSaveFlags();
-                    //mf.FileSaveABLine();
-                    //mf.FileSaveCurveLine();
-                    //mf.FileSaveHeadland();
                 }
             }
             catch (Exception ex)
@@ -390,10 +383,6 @@ namespace AgOpenGPS
 
                     mf.bnd.bndList.Add(NewList);
 
-                    mf.FileSaveBoundary();
-                    mf.bnd.BuildTurnLines();
-                    mf.fd.UpdateFieldBoundaryGUIAreas();
-                    mf.CalculateMinMax();
                 }
             }
             catch (Exception)
@@ -401,6 +390,7 @@ namespace AgOpenGPS
                 btnSave.Enabled = false;
                 return;
             }
+
 
             //load inner boundaries next only if outer existed
 
@@ -439,11 +429,6 @@ namespace AgOpenGPS
                                     NewList.FixFenceLine(mf.bnd.bndList.Count);
 
                                     mf.bnd.bndList.Add(NewList);
-
-                                    mf.btnABDraw.Visible = true;
-
-                                    mf.FileSaveBoundary();
-                                    mf.bnd.BuildTurnLines();
                                 }
                             }
                         }
@@ -494,8 +479,6 @@ namespace AgOpenGPS
                                     {
                                         mf.bnd.bndList[0].hdLine.Add(item);
                                     }
-
-                                    mf.FileSaveHeadland();
                                 }
                             }
                         }
@@ -678,8 +661,6 @@ namespace AgOpenGPS
                                             {
                                                 mf.curve.curveArr[idx].curvePts.Add(item);
                                             }
-
-                                            mf.FileSaveCurveLines();
                                         }
                                     }
                                 }
@@ -695,7 +676,186 @@ namespace AgOpenGPS
                 return;
             }
 
+            //AB Lines or curves when > 2 PNT's
+            /*
+            LSG A = "5" B = "Line Name" >
+                < PNT A = "2" C = "51.61851540" D = "4.51137030" />
+                < PNT A = "2" C = "51.61912230" D = "4.51056060" />
+            </ LSG >
+            */
+
+            try
+            {
+                foreach (XmlNode nodePart in fieldParts)
+                {
+                    //nodePart = LSG / PNT - v3 guidance line type
+                    if (nodePart.Name == "LSG")
+                    {
+                        //GPN B=Name, C=lineType: 1 is AB 3 is Curve
+                        //AB Line ----------------------------------------------------------------
+                        if (nodePart.Attributes["A"].Value == "5" && nodePart.ChildNodes.Count < 3) //Guidance Pattern
+                        {
+                            //get the name
+                            mf.ABLine.desName = nodePart.Attributes["B"].Value;
+
+                            double.TryParse(nodePart.ChildNodes[0].Attributes["C"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
+                            double.TryParse(nodePart.ChildNodes[0].Attributes["D"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
+
+                            mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
+
+                            mf.ABLine.desPoint1.easting = easting;
+                            mf.ABLine.desPoint1.northing = norting;
+
+                            double.TryParse(nodePart.ChildNodes[1].Attributes["C"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
+                            double.TryParse(nodePart.ChildNodes[1].Attributes["D"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
+
+                            mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
+
+                            mf.ABLine.desPoint2.easting = easting;
+                            mf.ABLine.desPoint2.northing = norting;
+
+                            // heading based on AB points
+                            mf.ABLine.desHeading = Math.Atan2(mf.ABLine.desPoint2.easting - mf.ABLine.desPoint1.easting,
+                                mf.ABLine.desPoint2.northing - mf.ABLine.desPoint1.northing);
+                            if (mf.ABLine.desHeading < 0) mf.ABLine.desHeading += glm.twoPI;
+
+                            mf.ABLine.lineArr.Add(new CABLines());
+                            mf.ABLine.numABLines = mf.ABLine.lineArr.Count;
+                            mf.ABLine.numABLineSelected = mf.ABLine.numABLines;
+
+                            //index to last one. 
+                            int idx = mf.ABLine.lineArr.Count - 1;
+
+                            mf.ABLine.lineArr[idx].heading = mf.ABLine.desHeading;
+                            //calculate the new points for the reference line and points
+                            mf.ABLine.lineArr[idx].origin.easting = (mf.ABLine.desPoint1.easting + mf.ABLine.desPoint2.easting) / 2;
+                            mf.ABLine.lineArr[idx].origin.northing = (mf.ABLine.desPoint1.northing + mf.ABLine.desPoint2.northing) / 2;
+
+                            mf.ABLine.lineArr[idx].Name = mf.ABLine.desName.Trim();
+                        }
+                        //curve ------------------------------------------------------------------
+                        else if (nodePart.Attributes["A"].Value == "5" && nodePart.ChildNodes.Count > 2) //Guidance Pattern
+
+                        {
+                            //get the name
+                            mf.curve.desName = nodePart.Attributes["B"].Value;
+
+                            double.TryParse(nodePart.ChildNodes[0].Attributes["C"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
+                            double.TryParse(nodePart.ChildNodes[0].Attributes["D"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
+
+                            mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
+
+                            if (nodePart.ChildNodes.Count > 2)
+                            {
+                                mf.curve.refList?.Clear();
+                                //GGP / GPN / LSG / PNT
+                                int cnt = nodePart.ChildNodes.Count;
+
+                                for (int i = 0; i < cnt; i++)
+                                {
+                                    vec3 pt3 = new vec3();
+                                    //calculate the point inside the boundary
+                                    double.TryParse(nodePart.ChildNodes[i].Attributes["C"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
+                                    double.TryParse(nodePart.ChildNodes[i].Attributes["D"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
+                                    mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
+
+                                    pt3.easting = easting;
+                                    pt3.northing = norting;
+                                    pt3.heading = 0;
+
+                                    mf.curve.refList.Add(pt3);
+                                }
+
+                                cnt = mf.curve.refList.Count;
+                                if (cnt > 3)
+                                {
+                                    mf.curve.curveArr.Add(new CCurveLines());
+
+                                    //make sure distance isn't too big between points on Turn
+                                    for (int i = 0; i < cnt - 1; i++)
+                                    {
+                                        int j = i + 1;
+                                        //if (j == cnt) j = 0;
+                                        double distance = glm.Distance(mf.curve.refList[i], mf.curve.refList[j]);
+                                        if (distance > 1.6)
+                                        {
+                                            vec3 pointB = new vec3((mf.curve.refList[i].easting + mf.curve.refList[j].easting) / 2.0,
+                                                (mf.curve.refList[i].northing + mf.curve.refList[j].northing) / 2.0,
+                                                mf.curve.refList[i].heading);
+
+                                            mf.curve.refList.Insert(j, pointB);
+                                            cnt = mf.curve.refList.Count;
+                                            i = -1;
+                                        }
+                                    }
+
+                                    //who knows which way it actually goes
+                                    mf.curve.CalculateTurnHeadings();
+
+                                    //calculate average heading of line
+                                    double x = 0, y = 0;
+                                    mf.curve.isCurveSet = true;
+
+                                    foreach (vec3 pt in mf.curve.refList)
+                                    {
+                                        x += Math.Cos(pt.heading);
+                                        y += Math.Sin(pt.heading);
+                                    }
+                                    x /= mf.curve.refList.Count;
+                                    y /= mf.curve.refList.Count;
+                                    mf.curve.aveLineHeading = Math.Atan2(y, x);
+                                    if (mf.curve.aveLineHeading < 0) mf.curve.aveLineHeading += glm.twoPI;
+
+                                    //build the tail extensions
+                                    mf.curve.AddFirstLastPoints(ref mf.curve.refList);
+                                    mf.curve.CalculateTurnHeadings();
+
+                                    //array number is 1 less since it starts at zero
+                                    int idx = mf.curve.curveArr.Count - 1;
+
+                                    mf.curve.isCurveSet = true;
+
+                                    //mf.curve.curveArr.Add(new CCurveLines());
+                                    mf.curve.numCurveLines = mf.curve.curveArr.Count;
+                                    mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
+
+                                    //create a name
+                                    if (!string.IsNullOrEmpty(mf.curve.desName))
+                                        mf.curve.curveArr[idx].Name = mf.curve.desName;
+                                    else mf.curve.curveArr[idx].Name = 
+                                            (Math.Round(glm.toDegrees(mf.curve.aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture)
+                                            + "\u00B0" + mf.FindDirection(mf.curve.aveLineHeading) 
+                                            + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
+
+                                    mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;
+
+                                    //write out the Curve Points
+                                    foreach (vec3 item in mf.curve.refList)
+                                    {
+                                        mf.curve.curveArr[idx].curvePts.Add(new vec3(item));
+                                    }
+                                }
+                            }
+                        }
+
+                    }//is LSG
+                }
+
+            }
+            catch (Exception)
+            {
+                btnSave.Enabled = false;
+                return;
+            }
+
+            mf.FileSaveBoundary();
+            mf.bnd.BuildTurnLines();
+            mf.fd.UpdateFieldBoundaryGUIAreas();
+            mf.CalculateMinMax();
+            mf.FileSaveHeadland();
+
             mf.FileSaveABLines();
+            mf.FileSaveCurveLines();
 
             btnSave.Enabled = true;
 
