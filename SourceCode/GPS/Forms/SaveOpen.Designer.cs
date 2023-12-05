@@ -49,6 +49,7 @@ namespace AgOpenGPS
                 xml.WriteAttributeString("VersionMinor", "3");
 
                 {
+                    //PFD A = "Field ID" B = "Code" C = "Name" D = "Area sq m" E = "Customer Ref" F = "Farm Ref" >
                     xml.WriteStartElement("PFD");//Field
                     xml.WriteAttributeString("A", "PFD-1");
                     xml.WriteAttributeString("C", currentFieldDirectory);
@@ -59,6 +60,14 @@ namespace AgOpenGPS
 
                     {
                         //all the boundaries
+                        /*
+                        < PLN A = "1" C="Area in Sq M like 12568" >
+                            < LSG A = "1" >
+                                < PNT A = "2" C = "51.61918340" D = "4.51054560" />
+                                < PNT A = "2" C = "51.61915460" D = "4.51056120" />
+                            </ LSG >
+                        </ PLN >
+                        */
                         for (int i = 0; i < bnd.bndList.Count; i++)
                         {
                             xml.WriteStartElement("PLN");//BND
@@ -84,7 +93,7 @@ namespace AgOpenGPS
                             xml.WriteEndElement();//BND
                         }
 
-                        //all the headlands
+                        //all the headlands A=10
                         if (bnd.bndList.Count > 0)
                         {
                             for (int i = 0; i < bnd.bndList.Count; i++)
@@ -114,6 +123,13 @@ namespace AgOpenGPS
                         }
 
                         //AB Lines
+                        /*
+                        LSG A = "5" B = "Line Name" >
+                            < PNT A = "2" C = "51.61851540" D = "4.51137030" />
+                            < PNT A = "2" C = "51.61912230" D = "4.51056060" />
+                        </ LSG >
+                        */
+
                         if (ABLine.lineArr != null && ABLine.lineArr.Count > 0)
                         {
                             for (int i = 0; i < ABLine.lineArr.Count; i++)
@@ -127,7 +143,7 @@ namespace AgOpenGPS
                                 pn.ConvertLocalToWGS84(ABLine.lineArr[i].origin.northing - (Math.Cos(ABLine.lineArr[i].heading) * 1000),
                                     ABLine.lineArr[i].origin.easting - (Math.Sin(ABLine.lineArr[i].heading) * 1000), out lat, out lon);
 
-                                xml.WriteAttributeString("A", "6");
+                                xml.WriteAttributeString("A", "2");
                                 xml.WriteAttributeString("C", lat.ToString());
                                 xml.WriteAttributeString("D", lon.ToString());
 
@@ -137,22 +153,29 @@ namespace AgOpenGPS
                                 pn.ConvertLocalToWGS84(ABLine.lineArr[i].origin.northing + (Math.Cos(ABLine.lineArr[i].heading) * 1000),
                                     ABLine.lineArr[i].origin.easting + (Math.Sin(ABLine.lineArr[i].heading) * 1000), out lat, out lon);
 
-                                xml.WriteAttributeString("A", "7");
+                                xml.WriteAttributeString("A", "2");
 
                                 xml.WriteAttributeString("C", lat.ToString());
                                 xml.WriteAttributeString("D", lon.ToString());
                                 xml.WriteEndElement();//B
                                 xml.WriteEndElement();//Line
                             }
-                        }                    
+                        }
 
                         //curves
+                        /*
+                        LSG A = "5" B = "Name Here" >
+                            < PNT A = "2" C = "51.61851540" D = "4.51137030" />
+                            < PNT A = "2" C = "51.61912230" D = "4.51056060" />
+                            < PNT A = "2" C = "51.61962230" D = "4.51056760" />
+                        </ LSG >
+                        */
                         if (curve.curveArr != null && curve.curveArr.Count > 0)
                         {
                             for (int i = 0; i < curve.curveArr.Count; i++)
                             {
                                 xml.WriteStartElement("LSG");//Curve
-                                xml.WriteAttributeString("A", "5");
+                                xml.WriteAttributeString("A", "5"); //denotes guidance
                                 xml.WriteAttributeString("B", curve.curveArr[i].Name);
                                 xml.WriteAttributeString("C", (tool.width).ToString());
 
@@ -161,20 +184,11 @@ namespace AgOpenGPS
                                     xml.WriteStartElement("PNT");//point
                                     pn.ConvertLocalToWGS84(curve.curveArr[i].curvePts[j].northing,
                                         curve.curveArr[i].curvePts[j].easting, out lat, out lon);
-                                    if (j == 0)
-                                    {
-                                        xml.WriteAttributeString("A", "6");
-                                    }
-                                    else if (j == curve.curveArr[i].curvePts.Count - 1)
-                                    {
-                                        xml.WriteAttributeString("A", "7");
-                                    }
-                                    else
-                                    {
-                                        xml.WriteAttributeString("A", "9");
-                                    }
+                                    
+                                    xml.WriteAttributeString("A", "2");
                                     xml.WriteAttributeString("C", lat.ToString());
                                     xml.WriteAttributeString("D", lon.ToString());
+
                                     xml.WriteEndElement();//point
                                 }
                                 xml.WriteEndElement(); //Curve   
@@ -372,8 +386,6 @@ namespace AgOpenGPS
 
             if (hdl.idx > (hdl.tracksArr.Count - 1)) hdl.idx = hdl.tracksArr.Count - 1;
         }
-
-
 
         public void FileSaveCurveLines()
         {
