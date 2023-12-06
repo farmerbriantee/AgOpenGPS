@@ -218,7 +218,7 @@ namespace AgOpenGPS
 
         public void ExportFieldAs_ISOXMLv4()
         {
-            //if (bnd.bndList.Count < 1) return;//If no Bnd, Quit
+            int lineCounter = 0;
 
             //get the directory and make sure it exists, create if not
             string dirField = fieldsDirectory + currentFieldDirectory + "\\";
@@ -330,12 +330,12 @@ namespace AgOpenGPS
                             for (int i = 0; i < ABLine.lineArr.Count; i++)
                             {
                                 xml.WriteStartElement("GGP");//Guide-P
-                                string name = "GGP" + i.ToString();
+                                string name = "GGP" + lineCounter.ToString();
+                                lineCounter++;
                                 xml.WriteAttributeString("A", name);
                                 xml.WriteAttributeString("B", ABLine.lineArr[i].Name);
                                 {
                                     xml.WriteStartElement("GPN");//Guide-N
-                                    name = "GPN" + i.ToString();
                                     xml.WriteAttributeString("A", name);
                                     xml.WriteAttributeString("B", ABLine.lineArr[i].Name);
                                     xml.WriteAttributeString("C", "1");
@@ -388,12 +388,12 @@ namespace AgOpenGPS
                             for (int i = 0; i < curve.curveArr.Count; i++)
                             {
                                 xml.WriteStartElement("GGP");//Guide-P
-                                string name = "GGP" + i.ToString();
+                                string name = "GGP" + lineCounter.ToString();
+                                lineCounter++;
                                 xml.WriteAttributeString("A", name);
                                 xml.WriteAttributeString("B", ABLine.lineArr[i].Name);
                                 {
                                     xml.WriteStartElement("GPN");//Guide-N
-                                    name = "GPN" + i.ToString();
                                     xml.WriteAttributeString("A", name);
                                     xml.WriteAttributeString("B", ABLine.lineArr[i].Name);
                                     xml.WriteAttributeString("C", "1");
@@ -403,8 +403,6 @@ namespace AgOpenGPS
                                     {
                                         xml.WriteStartElement("LSG");//Curve
                                         xml.WriteAttributeString("A", "5"); //denotes guidance
-                                        xml.WriteAttributeString("B", curve.curveArr[i].Name);
-                                        //xml.WriteAttributeString("C", (tool.width).ToString());
 
                                         for (int j = 0; j < curve.curveArr[i].curvePts.Count; j++)
                                         {
@@ -431,7 +429,6 @@ namespace AgOpenGPS
                                         xml.WriteEndElement(); //end LSG curve
                                     }
                                     xml.WriteEndElement(); //Guide-N
-
                                 }
                                 xml.WriteEndElement(); //Guide-P
                             }
