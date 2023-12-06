@@ -678,7 +678,6 @@ namespace AgOpenGPS
             start = 99999; end = 99999;
             isA = true;
             mf.hdl.desList?.Clear();
-            mf.hdl.sliceArr?.Clear();
             mf.hdl.backupList?.Clear();
             mf.bnd.bndList[0].hdLine?.Clear();
 

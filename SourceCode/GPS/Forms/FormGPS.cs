@@ -718,6 +718,7 @@ namespace AgOpenGPS
 
         public bool KeypadToNUD(NumericUpDown sender, Form owner)
         {
+            var colour = sender.BackColor;
             sender.BackColor = Color.Red;
             sender.Value = Math.Round(sender.Value, sender.DecimalPlaces);
 
@@ -727,12 +728,12 @@ namespace AgOpenGPS
                 if (result == DialogResult.OK)
                 {
                     sender.Value = (decimal)form.ReturnValue;
-                    sender.BackColor = Color.AliceBlue;
+                    sender.BackColor = colour;
                     return true;
                 }
                 else if (result == DialogResult.Cancel)
                 {
-                    sender.BackColor = Color.AliceBlue;
+                    sender.BackColor = colour;
                 }
                 return false;
             }
@@ -740,6 +741,7 @@ namespace AgOpenGPS
 
         public void KeyboardToText(TextBox sender, Form owner)
         {
+            var colour = sender.BackColor;
             sender.BackColor = Color.Red;
             using (FormKeyboard form = new FormKeyboard(sender.Text))
             {
@@ -748,7 +750,7 @@ namespace AgOpenGPS
                     sender.Text = form.ReturnString;
                 }
             }
-            sender.BackColor = Color.AliceBlue;
+            sender.BackColor = colour;
         }
 
         //request a new job
@@ -1076,12 +1078,12 @@ namespace AgOpenGPS
         public void FieldMenuButtonEnableDisable(bool isOn)
         {
             SmoothABtoolStripMenu.Enabled = isOn;
-            //toolStripBtnMakeBndContour.Enabled = isOn;
             boundariesToolStripMenuItem.Enabled = isOn;
             headlandToolStripMenuItem.Enabled = isOn;
             deleteContourPathsToolStripMenuItem.Enabled = isOn;
             tramLinesMenuField.Enabled = isOn;
             recordedPathStripMenu.Enabled = isOn;
+
             btnABDraw.Enabled = isOn;
             btnFlag.Visible = isOn;
 
@@ -1089,11 +1091,6 @@ namespace AgOpenGPS
             panelAB.Visible = isOn;
 
             lblFieldStatus.Visible = isOn;
-            //lblFieldDataTopField.Visible = isOn;
-            //lblFieldDataTopDone.Visible = isOn;
-            //lblFieldDataTopRemain.Visible = isOn;
-
-            //btnSnapToPivot.Visible = false;
             cboxpRowWidth.Visible = false;
             btnYouSkipEnable.Visible = false;
             btnEditAB.Visible = false;

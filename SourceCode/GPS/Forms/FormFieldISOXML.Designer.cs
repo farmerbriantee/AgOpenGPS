@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormFieldISOXML));
             this.label1 = new System.Windows.Forms.Label();
             this.btnLoadXML = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.btnSerialCancel = new System.Windows.Forms.Button();
             this.lblField = new System.Windows.Forms.Label();
             this.tboxFieldName = new System.Windows.Forms.TextBox();
@@ -65,30 +64,13 @@
             this.btnLoadXML.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLoadXML.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnLoadXML.Image = ((System.Drawing.Image)(resources.GetObject("btnLoadXML.Image")));
-            this.btnLoadXML.Location = new System.Drawing.Point(524, 337);
+            this.btnLoadXML.Location = new System.Drawing.Point(524, 396);
             this.btnLoadXML.Name = "btnLoadXML";
             this.btnLoadXML.Size = new System.Drawing.Size(83, 79);
             this.btnLoadXML.TabIndex = 3;
             this.btnLoadXML.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnLoadXML.UseVisualStyleBackColor = false;
             this.btnLoadXML.Click += new System.EventHandler(this.btnLoadXML_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.BackColor = System.Drawing.Color.Transparent;
-            this.btnSave.Enabled = false;
-            this.btnSave.FlatAppearance.BorderSize = 0;
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
-            this.btnSave.Location = new System.Drawing.Point(524, 528);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(83, 79);
-            this.btnSave.TabIndex = 3;
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnSerialCancel
             // 
@@ -101,7 +83,7 @@
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnSerialCancel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnSerialCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnSerialCancel.Image")));
-            this.btnSerialCancel.Location = new System.Drawing.Point(524, 433);
+            this.btnSerialCancel.Location = new System.Drawing.Point(524, 521);
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(83, 79);
             this.btnSerialCancel.TabIndex = 4;
@@ -124,7 +106,7 @@
             this.tboxFieldName.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tboxFieldName.Location = new System.Drawing.Point(5, 37);
             this.tboxFieldName.Name = "tboxFieldName";
-            this.tboxFieldName.Size = new System.Drawing.Size(490, 33);
+            this.tboxFieldName.Size = new System.Drawing.Size(501, 33);
             this.tboxFieldName.TabIndex = 156;
             this.tboxFieldName.Click += new System.EventHandler(this.tboxFieldName_Click);
             this.tboxFieldName.TextChanged += new System.EventHandler(this.tboxFieldName_TextChanged);
@@ -139,7 +121,7 @@
             this.btnBuildFields.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuildFields.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnBuildFields.Image = ((System.Drawing.Image)(resources.GetObject("btnBuildFields.Image")));
-            this.btnBuildFields.Location = new System.Drawing.Point(524, 208);
+            this.btnBuildFields.Location = new System.Drawing.Point(524, 267);
             this.btnBuildFields.Name = "btnBuildFields";
             this.btnBuildFields.Size = new System.Drawing.Size(83, 79);
             this.btnBuildFields.TabIndex = 158;
@@ -151,7 +133,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(532, 317);
+            this.label2.Location = new System.Drawing.Point(532, 376);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 23);
             this.label2.TabIndex = 159;
@@ -161,7 +143,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(541, 192);
+            this.label3.Location = new System.Drawing.Point(541, 251);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 23);
             this.label3.TabIndex = 160;
@@ -175,7 +157,7 @@
             this.tree.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tree.Location = new System.Drawing.Point(7, 88);
             this.tree.Name = "tree";
-            this.tree.Size = new System.Drawing.Size(488, 496);
+            this.tree.Size = new System.Drawing.Size(499, 519);
             this.tree.TabIndex = 161;
             this.tree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tree_AfterSelect);
             // 
@@ -228,7 +210,6 @@
             this.Controls.Add(this.lblField);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnLoadXML);
-            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnSerialCancel);
             this.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -246,7 +227,6 @@
 
         #endregion
         private System.Windows.Forms.Button btnSerialCancel;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnLoadXML;
         private System.Windows.Forms.Label lblField;

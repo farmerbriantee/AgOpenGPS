@@ -35,21 +35,32 @@ namespace AgOpenGPS
         {
             //to calc heading based on next and previous points to give an average heading.
             int cnt = xList.Count;
-            if (cnt > 0)
+            if (cnt > 3)
             {                
                 vec3[] arr = new vec3[cnt];
                 cnt--;
                 xList.CopyTo(arr);
                 xList.Clear();
 
+                vec3 pt3 = arr[0];
+                pt3.heading = Math.Atan2(arr[1].easting - arr[0].easting, arr[1].northing - arr[0].northing);
+                if (pt3.heading < 0) pt3.heading += glm.twoPI;
+                xList.Add(pt3);
+
                 //middle points
                 for (int i = 1; i < cnt; i++)
                 {
-                    vec3 pt3 = arr[i];
+                    pt3 = arr[i];
                     pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
                     if (pt3.heading < 0) pt3.heading += glm.twoPI;
                     xList.Add(pt3);
                 }
+
+                pt3 = arr[arr.Length-1];
+                pt3.heading = Math.Atan2(arr[arr.Length - 1].easting - arr[arr.Length - 2].easting, 
+                    arr[arr.Length - 1].northing - arr[arr.Length - 2].northing);
+                if (pt3.heading < 0) pt3.heading += glm.twoPI;
+                xList.Add(pt3);
             }
         }
 

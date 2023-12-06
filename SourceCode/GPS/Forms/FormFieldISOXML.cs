@@ -34,7 +34,6 @@ namespace AgOpenGPS
 
         private void FormFieldISOXML_Load(object sender, EventArgs e)
         {
-            btnSave.Enabled = false;
             tboxFieldName.Text = "";
             btnBuildFields.Enabled = false;
         }
@@ -387,7 +386,6 @@ namespace AgOpenGPS
             }
             catch (Exception)
             {
-                btnSave.Enabled = false;
                 return;
             }
 
@@ -436,7 +434,6 @@ namespace AgOpenGPS
                 }
                 catch (Exception)
                 {
-                    btnSave.Enabled = false;
                     return;
                 }
             }
@@ -486,7 +483,6 @@ namespace AgOpenGPS
                 }
                 catch (Exception)
                 {
-                    btnSave.Enabled = false;
                     return;
                 }
             }
@@ -672,7 +668,6 @@ namespace AgOpenGPS
             }
             catch (Exception)
             {
-                btnSave.Enabled = false;
                 return;
             }
 
@@ -844,7 +839,6 @@ namespace AgOpenGPS
             }
             catch (Exception)
             {
-                btnSave.Enabled = false;
                 return;
             }
 
@@ -857,9 +851,11 @@ namespace AgOpenGPS
             mf.FileSaveABLines();
             mf.FileSaveCurveLines();
 
-            btnSave.Enabled = true;
-
             //close out window
+            if (mf.bnd.bndList.Count > 0) mf.btnABDraw.Visible = true;
+
+            mf.FieldMenuButtonEnableDisable(mf.bnd.bndList[0].hdLine.Count > 0);
+
             DialogResult = DialogResult.OK;
             Close();
         }

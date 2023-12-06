@@ -69,7 +69,6 @@ namespace AgOpenGPS
 
         public uint sentenceCounter = 0;
 
-
         //Timer triggers at 125 msec
         private void tmrWatchdog_tick(object sender, EventArgs e)
         {
