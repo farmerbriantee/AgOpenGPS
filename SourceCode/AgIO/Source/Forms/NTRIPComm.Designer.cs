@@ -435,10 +435,9 @@ namespace AgIO
                             {
                                 rList.Add(mess);
                                 i += (data[i + 1] << 6) + (data[i + 2])+5;
-                                if (data[i + 1] != 211)
+                                if (i == data.Length-1)
                                 {
-                                    //rList.Clear();
-                                    //break;
+                                    break;
                                 }
                             }
                             else
