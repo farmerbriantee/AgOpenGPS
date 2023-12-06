@@ -220,14 +220,14 @@ namespace AgOpenGPS
                 //}
                 curList.Clear();
 
-                //for (int i = 0; i < (arr.Length - 1); i++)
-                //{
-                //    arr[i].heading = Math.Atan2(arr[i + 1].easting - arr[i].easting, arr[i + 1].northing - arr[i].northing);
-                //    if (arr[i].heading < 0) arr[i].heading += glm.twoPI;
-                //    if (arr[i].heading >= glm.twoPI) arr[i].heading -= glm.twoPI;
-                //}
+                for (int i = 0; i < (arr.Length - 1); i++)
+                {
+                    arr[i].heading = Math.Atan2(arr[i + 1].easting - arr[i].easting, arr[i + 1].northing - arr[i].northing);
+                    if (arr[i].heading < 0) arr[i].heading += glm.twoPI;
+                    if (arr[i].heading >= glm.twoPI) arr[i].heading -= glm.twoPI;
+                }
 
-                //arr[arr.Length - 1].heading = arr[arr.Length - 2].heading;
+                arr[arr.Length - 1].heading = arr[arr.Length - 2].heading;
 
 
                 //if (mf.tool.isToolTrailing)

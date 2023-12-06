@@ -383,6 +383,7 @@ namespace AgOpenGPS
                             < PNT A = "2" C = "51.61962230" D = "4.51056760" />
                         </ LSG >
                         */
+
                         if (curve.curveArr != null && curve.curveArr.Count > 0)
                         {
                             for (int i = 0; i < curve.curveArr.Count; i++)
