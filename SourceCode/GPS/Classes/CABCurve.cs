@@ -220,14 +220,14 @@ namespace AgOpenGPS
                 //}
                 curList.Clear();
 
-                for (int i = 0; i < (arr.Length - 1); i++)
-                {
-                    arr[i].heading = Math.Atan2(arr[i + 1].easting - arr[i].easting, arr[i + 1].northing - arr[i].northing);
-                    if (arr[i].heading < 0) arr[i].heading += glm.twoPI;
-                    if (arr[i].heading >= glm.twoPI) arr[i].heading -= glm.twoPI;
-                }
+                //for (int i = 0; i < (arr.Length - 1); i++)
+                //{
+                //    arr[i].heading = Math.Atan2(arr[i + 1].easting - arr[i].easting, arr[i + 1].northing - arr[i].northing);
+                //    if (arr[i].heading < 0) arr[i].heading += glm.twoPI;
+                //    if (arr[i].heading >= glm.twoPI) arr[i].heading -= glm.twoPI;
+                //}
 
-                arr[arr.Length - 1].heading = arr[arr.Length - 2].heading;
+                //arr[arr.Length - 1].heading = arr[arr.Length - 2].heading;
 
 
                 //if (mf.tool.isToolTrailing)
@@ -270,7 +270,7 @@ namespace AgOpenGPS
                 //curList.AddRange(arr);
                 cnt = arr.Length;
                 double distance;
-                double spacing = 3;
+                double spacing = 1.5;
 
                 //add the first point of loop - it will be p1
                 curList.Add(arr[0]);
@@ -571,22 +571,6 @@ namespace AgOpenGPS
                     if (steerAngleCu < -mf.vehicle.maxSteerAngle) steerAngleCu = -mf.vehicle.maxSteerAngle;
                     if (steerAngleCu > mf.vehicle.maxSteerAngle) steerAngleCu = mf.vehicle.maxSteerAngle;
 
-                    //if (ppRadiusCu < -500) ppRadiusCu = -500;
-                    //if (ppRadiusCu > 500) ppRadiusCu = 500;
-
-                    //radiusPointCu.easting = pivot.easting + (ppRadiusCu * Math.Cos(localHeading));
-                    //radiusPointCu.northing = pivot.northing + (ppRadiusCu * Math.Sin(localHeading));
-
-                    ////angular velocity in rads/sec  = 2PI * m/sec * radians/meters
-                    //double angVel = glm.twoPI * 0.277777 * mf.pn.speed * (Math.Tan(glm.toRadians(steerAngleCu))) / mf.vehicle.wheelbase;
-
-                    ////clamp the steering angle to not exceed safe angular velocity
-                    //if (Math.Abs(angVel) > mf.vehicle.maxAngularVelocity)
-                    //{
-                    //    steerAngleCu = glm.toDegrees(steerAngleCu > 0 ?
-                    //            (Math.Atan((mf.vehicle.wheelbase * mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.avgSpeed * 0.277777)))
-                    //        : (Math.Atan((mf.vehicle.wheelbase * -mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.avgSpeed * 0.277777))));
-                    //}
 
                     if (!isHeadingSameWay)
                         distanceFromCurrentLinePivot *= -1.0;
@@ -607,7 +591,6 @@ namespace AgOpenGPS
                         steerHeadingError += Math.PI;
 
                     mf.vehicle.modeActualHeadingError = glm.toDegrees(steerHeadingError);
-
 
                     //Convert to centimeters
                     mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);

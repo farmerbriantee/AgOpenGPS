@@ -16,7 +16,6 @@ namespace AgOpenGPS
 
 
         public List<CHeadPath> tracksArr = new List<CHeadPath>();
-        public List<CHeadPath> sliceArr = new List<CHeadPath>();
 
         public int idx;
 
