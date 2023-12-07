@@ -53,7 +53,9 @@ namespace AgOpenGPS
 
             btnSlice.Enabled = false;
 
-            if (mf.bnd.bndList[0].fenceLine.Count == 0)
+            mf.bnd.bndList[0].hdLine?.Clear();
+
+            if (mf.bnd.bndList[0].fenceLine.Count > 0)
             {
                 for (int i = 0; i < mf.bnd.bndList[0].fenceLine.Count; i++)
                 {

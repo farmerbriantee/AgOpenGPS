@@ -177,6 +177,9 @@
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>Vyberte, alebo vytvorte iné</value>
   </data>
+  <data name="gsClose" xml:space="preserve">
+    <value>Zavrieť</value>
+  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Najskôr zavrite pole</value>
   </data>

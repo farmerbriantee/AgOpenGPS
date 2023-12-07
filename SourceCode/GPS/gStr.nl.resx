@@ -177,6 +177,9 @@
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>Kies of maak een ander</value>
   </data>
+  <data name="gsClose" xml:space="preserve">
+    <value>Sluiten</value>
+  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Sluit eerst perceel</value>
   </data>
@@ -395,6 +398,9 @@
   </data>
   <data name="gsOffsetFix" xml:space="preserve">
     <value>FIX verschuiving</value>
+  </data>
+  <data name="gsOpen" xml:space="preserve">
+    <value>Openen</value>
   </data>
   <data name="gsOuter" xml:space="preserve">
     <value>Buitenste</value>

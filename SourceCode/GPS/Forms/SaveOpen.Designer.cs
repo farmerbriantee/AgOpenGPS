@@ -397,7 +397,7 @@ namespace AgOpenGPS
                                     xml.WriteStartElement("GPN");//Guide-N
                                     xml.WriteAttributeString("A", name);
                                     xml.WriteAttributeString("B", curve.curveArr[i].Name);
-                                    xml.WriteAttributeString("C", "1");
+                                    xml.WriteAttributeString("C", "3");
                                     xml.WriteAttributeString("E", "1");
                                     xml.WriteAttributeString("F", "1");
                                     xml.WriteAttributeString("I", "16");

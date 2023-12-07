@@ -177,6 +177,9 @@
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>zChoose or Build a Different one</value>
   </data>
+  <data name="gsClose" xml:space="preserve">
+    <value>ZClose</value>
+  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>zClose Field First</value>
   </data>

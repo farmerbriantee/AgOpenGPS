@@ -241,6 +241,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string gsClose {
+            get {
+                return ResourceManager.GetString("gsClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close Field First.
         /// </summary>
         public static string gsCloseFieldFirst {

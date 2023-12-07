@@ -165,6 +165,9 @@
   <data name="gsCentimeters" xml:space="preserve">
     <value>Centiméter</value>
   </data>
+  <data name="gsCharts" xml:space="preserve">
+    <value>Diagramok</value>
+  </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>Válassz egy másik területet</value>
   </data>
@@ -173,6 +176,9 @@
   </data>
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>Válassz vagy készíts egy másikat</value>
+  </data>
+  <data name="gsClose" xml:space="preserve">
+    <value>Becsuk</value>
   </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Zárd be a területet először</value>
@@ -495,9 +501,6 @@
   </data>
   <data name="gsStartNewField" xml:space="preserve">
     <value>Új terület kezdése</value>
-  </data>
-  <data name="gsCharts" xml:space="preserve">
-    <value>Diagramok</value>
   </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>Kormányzás varázsló</value>

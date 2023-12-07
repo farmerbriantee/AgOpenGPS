@@ -177,6 +177,9 @@
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>Вибер.або побуд.інше</value>
   </data>
+  <data name="gsClose" xml:space="preserve">
+    <value>завершувати</value>
+  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Спершу закрити поле</value>
   </data>

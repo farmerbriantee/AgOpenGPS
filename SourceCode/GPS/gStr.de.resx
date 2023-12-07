@@ -177,6 +177,9 @@
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>Wähle oder erstellen sie ein Anderes</value>
   </data>
+  <data name="gsClose" xml:space="preserve">
+    <value>Verschließen</value>
+  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Feld vorher schließen</value>
   </data>

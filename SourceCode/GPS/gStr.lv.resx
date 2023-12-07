@@ -177,6 +177,9 @@
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>Izvēlieties vai izveidojiet citu</value>
   </data>
+  <data name="gsClose" xml:space="preserve">
+    <value>Slēgt</value>
+  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Vispirms aizveriet lauku</value>
   </data>

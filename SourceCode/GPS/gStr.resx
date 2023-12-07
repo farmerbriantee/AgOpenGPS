@@ -177,6 +177,9 @@
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>Choose or Build a Different one</value>
   </data>
+  <data name="gsClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Close Field First</value>
   </data>
@@ -257,9 +260,6 @@
   </data>
   <data name="gsEncoderCounts" xml:space="preserve">
     <value>Counts</value>
-  </data>
-  <data name="gsPastEndOfCurve" xml:space="preserve">
-    <value>Past End Of Curve</value>
   </data>
   <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
     <value>Enter Coordinates For Simulator</value>
@@ -419,6 +419,9 @@
   </data>
   <data name="gsPasses" xml:space="preserve">
     <value>Passes</value>
+  </data>
+  <data name="gsPastEndOfCurve" xml:space="preserve">
+    <value>Past End Of Curve</value>
   </data>
   <data name="gsPause" xml:space="preserve">
     <value>Pause</value>
