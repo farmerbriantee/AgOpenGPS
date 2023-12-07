@@ -145,7 +145,7 @@ namespace AgOpenGPS
                             lblFieldStatus.Text = fd.WorkedAcres + "   " + fd.WorkRateAcres;
                     }
 
-                    lblCurrentField.Text = "Field: " + displayFieldName;
+                    lblCurrentField.Text = displayFieldName;
 
                     if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
                     {

@@ -21,6 +21,7 @@ namespace AgOpenGPS
         private XmlDocument iso;
 
         string xmlFilename;
+        XmlNodeList pfd;
 
         private int idxFieldSelected = -1;
 
@@ -36,13 +37,14 @@ namespace AgOpenGPS
         {
             tboxFieldName.Text = "";
             btnBuildFields.Enabled = false;
-        }
-
-        XmlNodeList pfd;
-        private void btnLoadXML_Click(object sender, EventArgs e)
-        {
-            btnBuildFields.Enabled = false;
             string newFieldDir = mf.fieldsDirectory;
+
+            label1.Text = gStr.gsEditFieldName;
+
+            this.Text = gStr.gsCreateNewField;
+
+            lblField.Text = gStr.gsBasedOnField;
+
             tree.Nodes?.Clear();
 
             //create the dialog instance
@@ -52,108 +54,115 @@ namespace AgOpenGPS
                 Filter = "XML files (*.XML)|*.XML",
 
                 //the initial directory, fields, for the open dialog
-                InitialDirectory = mf.fieldsDirectory + "xml\\"
+                InitialDirectory = mf.fieldsDirectory
             };
 
             //was a file selected
-            if (ofd.ShowDialog() == DialogResult.Cancel) return;
-
-            xmlFilename = ofd.FileName;
-            //xmlFilename = "C:\\Users\\Grizs\\Documents\\AgOpenGPS\\Fields\\xml\\TASKDATARich3.XML";
-
-            iso = new XmlDocument();
-            iso.PreserveWhitespace = false;
-            iso.Load(xmlFilename);
-
-            //Partial Field Group
-            //PFD - A = Field ID, B = , C = Field Name, D = Area
-            pfd = iso.GetElementsByTagName("PFD");
-
-            try
+            if (ofd.ShowDialog() != DialogResult.Cancel)
             {
-                //scan thru all the fields
-                foreach (XmlNode nodePFD in pfd)
+                xmlFilename = ofd.FileName;
+                //xmlFilename = "C:\\Users\\Grizs\\Documents\\AgOpenGPS\\Fields\\xml\\TASKDATARich3.XML";
+
+                iso = new XmlDocument();
+                iso.PreserveWhitespace = false;
+                iso.Load(xmlFilename);
+
+                //Partial Field Group
+                //PFD - A = Field ID, B = , C = Field Name, D = Area
+                pfd = iso.GetElementsByTagName("PFD");
+
+                try
                 {
-                    double area;
-                    double.TryParse(nodePFD.Attributes["D"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out area);
-                    area *= 0.0001;
-
-                    // PFD - A=ID, C=FieldName, D = Area in sq m
-                    tree.Nodes.Add(nodePFD.Attributes["C"].Value + " Area: " + area + " Ha  " + nodePFD.Attributes["A"].Value);
-
-                    //nodes in current Partial Field like PLN, GGP, LSG etc
-                    XmlNodeList fieldParts = nodePFD.ChildNodes;
-
-                    //do the boundary first - find all the polygons (PLN)
-                    foreach (XmlNode nodePart in fieldParts)
+                    //scan thru all the fields
+                    foreach (XmlNode nodePFD in pfd)
                     {
-                        // PLN/LSG/PNT Count the points
-                        //grab the polygons
-                        if (nodePart.Name == "PLN")
-                        {
-                            string bndType = "Unidentified Boundary";
+                        double area;
+                        double.TryParse(nodePFD.Attributes["D"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out area);
+                        area *= 0.0001;
 
-                            if (nodePart.Attributes["A"].Value == "1")
+                        // PFD - A=ID, C=FieldName, D = Area in sq m
+                        tree.Nodes.Add(nodePFD.Attributes["C"].Value + " Area: " + area + " Ha  " + nodePFD.Attributes["A"].Value);
+
+                        //nodes in current Partial Field like PLN, GGP, LSG etc
+                        XmlNodeList fieldParts = nodePFD.ChildNodes;
+
+                        //do the boundary first - find all the polygons (PLN)
+                        foreach (XmlNode nodePart in fieldParts)
+                        {
+                            // PLN/LSG/PNT Count the points
+                            //grab the polygons
+                            if (nodePart.Name == "PLN")
                             {
-                                bndType = "Outer Boundary:";
+                                string bndType = "Unidentified Boundary";
+
+                                if (nodePart.Attributes["A"].Value == "1")
+                                {
+                                    bndType = "Outer Boundary:";
+                                }
+                                else if (nodePart.Attributes["A"].Value == "3" || nodePart.Attributes["A"].Value == "4" ||
+                                    nodePart.Attributes["A"].Value == "6")
+                                {
+                                    bndType = "Inner Boundary:";
+                                }
+                                else if (nodePart.Attributes["A"].Value == "10")
+                                {
+                                    bndType = "Headland:";
+                                }
+                                // "A" is the Polygon Type - usually 1 or 2
+                                tree.Nodes[tree.Nodes.Count - 1].Nodes.Add(bndType +
+                                    " " + nodePart.Attributes["A"].Value +
+                                    "   Points: " + nodePart.ChildNodes[0].ChildNodes.Count);
                             }
-                            else if (nodePart.Attributes["A"].Value == "3" || nodePart.Attributes["A"].Value == "4" ||
-                                nodePart.Attributes["A"].Value == "6")
-                            {
-                                bndType = "Inner Boundary:";
-                            }
-                            else if (nodePart.Attributes["A"].Value == "10")
-                            {
-                                bndType = "Headland:";
-                            }
-                            // "A" is the Polygon Type - usually 1 or 2
-                            tree.Nodes[tree.Nodes.Count - 1].Nodes.Add(bndType +
-                                " " + nodePart.Attributes["A"].Value +
-                                "   Points: " + nodePart.ChildNodes[0].ChildNodes.Count);
                         }
-                    }
 
-                    //First kind of Gudance  GGP\GPN\LSG\PNT
-                    foreach (XmlNode nodePart in fieldParts)
-                    {
-                        if (nodePart.Name == "GGP")
+                        //First kind of Gudance  GGP\GPN\LSG\PNT
+                        foreach (XmlNode nodePart in fieldParts)
                         {
-                            //in GPN "B" is the name and "C" is the type
-                            if (nodePart.ChildNodes[0].Attributes["C"].Value == "1")
-                                tree.Nodes[tree.Nodes.Count - 1].Nodes.Add("ABLine: " + nodePart.ChildNodes[0].Attributes["B"].Value);
-                            else if (nodePart.ChildNodes[0].Attributes["C"].Value == "2")
-                                tree.Nodes[tree.Nodes.Count - 1].Nodes.Add("A+: " + nodePart.ChildNodes[0].Attributes["B"].Value);
-                            else if (nodePart.ChildNodes[0].Attributes["C"].Value == "3")
-                                tree.Nodes[tree.Nodes.Count - 1].Nodes.Add("Curve: " + nodePart.ChildNodes[0].Attributes["B"].Value);
-                            else if (nodePart.ChildNodes[0].Attributes["C"].Value == "4")
-                                tree.Nodes[tree.Nodes.Count - 1].Nodes.Add("Pivot: " + nodePart.ChildNodes[0].Attributes["B"].Value);
-                            else if (nodePart.ChildNodes[0].Attributes["C"].Value == "5")
-                                tree.Nodes[tree.Nodes.Count - 1].Nodes.Add("Spiral: " + nodePart.ChildNodes[0].Attributes["B"].Value);
+                            if (nodePart.Name == "GGP")
+                            {
+                                //in GPN "B" is the name and "C" is the type
+                                if (nodePart.ChildNodes[0].Attributes["C"].Value == "1")
+                                    tree.Nodes[tree.Nodes.Count - 1].Nodes.Add("ABLine: " + nodePart.ChildNodes[0].Attributes["B"].Value);
+                                else if (nodePart.ChildNodes[0].Attributes["C"].Value == "2")
+                                    tree.Nodes[tree.Nodes.Count - 1].Nodes.Add("A+: " + nodePart.ChildNodes[0].Attributes["B"].Value);
+                                else if (nodePart.ChildNodes[0].Attributes["C"].Value == "3")
+                                    tree.Nodes[tree.Nodes.Count - 1].Nodes.Add("Curve: " + nodePart.ChildNodes[0].Attributes["B"].Value);
+                                else if (nodePart.ChildNodes[0].Attributes["C"].Value == "4")
+                                    tree.Nodes[tree.Nodes.Count - 1].Nodes.Add("Pivot: " + nodePart.ChildNodes[0].Attributes["B"].Value);
+                                else if (nodePart.ChildNodes[0].Attributes["C"].Value == "5")
+                                    tree.Nodes[tree.Nodes.Count - 1].Nodes.Add("Spiral: " + nodePart.ChildNodes[0].Attributes["B"].Value);
+                            }
                         }
-                    }
 
-                    //Second type of Gudance LSG\PNT
-                    foreach (XmlNode nodePart in fieldParts)
-                    {
-                        //LSG with a "5" in [A] means Guidance line [B] is the name of line
-                        if (nodePart.Name == "LSG" && nodePart.Attributes["A"].Value == "5")
+                        //Second type of Gudance LSG\PNT
+                        foreach (XmlNode nodePart in fieldParts)
                         {
-                            if (nodePart.ChildNodes.Count < 3)
-                                tree.Nodes[tree.Nodes.Count - 1].Nodes.Add("ABLine: " + nodePart.Attributes["B"].Value);
-                            else
-                                tree.Nodes[tree.Nodes.Count - 1].Nodes.Add("Curve: " + nodePart.Attributes["B"].Value);
+                            //LSG with a "5" in [A] means Guidance line [B] is the name of line
+                            if (nodePart.Name == "LSG" && nodePart.Attributes["A"].Value == "5")
+                            {
+                                if (nodePart.ChildNodes.Count < 3)
+                                    tree.Nodes[tree.Nodes.Count - 1].Nodes.Add("ABLine: " + nodePart.Attributes["B"].Value);
+                                else
+                                    tree.Nodes[tree.Nodes.Count - 1].Nodes.Add("Curve: " + nodePart.Attributes["B"].Value);
+                            }
                         }
                     }
                 }
-            }
-            catch (Exception)
-            {
-                mf.TimedMessageBox(2000, "Exception", "Catch Exception");
-                return;
+                catch (Exception)
+                {
+                    mf.TimedMessageBox(2000, "Exception", "Catch Exception");
+                    return;
+                }
+
+                if (tree.Nodes.Count == 0) btnBuildFields.Enabled = false;
             }
 
-            if (tree.Nodes.Count == 0) btnBuildFields.Enabled = false;
+            else
+            {
+                Close();
+            }
         }
+
         private void tree_AfterSelect(object sender, TreeViewEventArgs e)
         {
             //top node selected (ie the field)
@@ -172,8 +181,20 @@ namespace AgOpenGPS
                 tboxFieldName.Text = pfd[idxFieldSelected].Attributes["C"].Value;
             }
 
-            if (idxFieldSelected == -1) btnBuildFields.Enabled = false;
-                else btnBuildFields.Enabled = true;
+            if (idxFieldSelected == -1)
+            {
+                btnBuildFields.Enabled = false;
+                btnAddDate.Enabled = false;
+                btnAddTime.Enabled = false;
+                tboxFieldName.Enabled = false;
+            }
+            else
+            {
+                btnBuildFields.Enabled = true;
+                btnAddDate.Enabled = true;
+                btnAddTime.Enabled = true;
+                tboxFieldName .Enabled = true;  
+            }
         }
 
 
