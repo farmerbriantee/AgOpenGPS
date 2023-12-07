@@ -18,40 +18,35 @@ namespace AgOpenGPS
             InitializeComponent();
 
             this.Text = gStr.gsEditABCurve;
-            nudMinTurnRadius.Controls[0].Enabled = false;
+            //nudSnapDistance.Controls[0].Visible = false;
         }
 
         private void FormEditAB_Load(object sender, EventArgs e)
         {
             label1.Text = mf.unitsInCm;
-            label2.Text = mf.unitsFtM;
-
-            //btnLeft.Text = "-"+Properties.Settings.Default.setDisplay_snapDistanceSmall.ToString() + "cm";
-            lblHalfWidth.Text = (mf.tool.width * 0.5 * mf.m2FtOrM).ToString("N2");
 
             if (mf.isMetric)
             {
-                nudMinTurnRadius.DecimalPlaces = 0;
-                nudMinTurnRadius.Value = (int)((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn);
+                nudSnapDistance.DecimalPlaces = 0;
+                nudSnapDistance.Value = (int)((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn);
             }
             else
             {
-                nudMinTurnRadius.DecimalPlaces = 1;
-                nudMinTurnRadius.Value = (decimal)Math.Round(((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn), 1);
+                nudSnapDistance.DecimalPlaces = 1;
+                nudSnapDistance.Value = (decimal)Math.Round(((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn), 1);
             }
 
+            snapAdj = Properties.Settings.Default.setAS_snapDistance;
 
-            btnCancel.Focus();
+            //Location = Properties.Settings.Default.setWindow_curveEditLocation;
         }
 
-        private void nudMinTurnRadius_Click(object sender, EventArgs e)
+        private void nudSnapDistance_Click(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NumericUpDown)sender, this);
-        }
-
-        private void nudMinTurnRadius_ValueChanged(object sender, EventArgs e)
-        {
-            snapAdj = (double)nudMinTurnRadius.Value * mf.inOrCm2Cm * 0.01;
+            snapAdj = (double)nudSnapDistance.Value * mf.inchOrCm2m;
+            Properties.Settings.Default.setAS_snapDistance = snapAdj;
+            Properties.Settings.Default.Save();
         }
 
         private void btnAdjRight_Click(object sender, EventArgs e)
@@ -73,32 +68,6 @@ namespace AgOpenGPS
                 mf.FileSaveTracks();
 
             }
-            Close();
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            isClosing = true;
-            //if (mf.trk.isTrackSet && mf.isJobStarted)
-            //{
-            //    int last = mf.trk.numCurveLineSelected;
-            //    mf.FileLoadTracks();
-            //    if (mf.trk.tracksArr.Count > 0)
-            //    {
-            //        mf.trk.numCurveLineSelected = last;
-            //        int idx = mf.trk.numCurveLineSelected - 1;
-            //        mf.trk.tracksArr[mf.trk.idx].aveHeading = mf.trk.tracksArr[idx].aveHeading;
-
-            //        mf.trk.tracksArr[mf.trk.idx].trackPts?.Clear();
-            //        for (int i = 0; i < mf.trk.tracksArr[idx].trackPts.Count; i++)
-            //        {
-            //            mf.trk.tracksArr[mf.trk.idx].trackPts.Add(mf.trk.tracksArr[idx].trackPts[i]);
-            //        }
-            //        mf.trk.isTrackSet = true;
-            //    }
-
-            //    mf.trk.isTrackValid = false;
-            //}
             Close();
         }
 
@@ -131,33 +100,10 @@ namespace AgOpenGPS
             }
         }
 
-        private void btnContourPriority_Click(object sender, EventArgs e)
+        private void btnSnapToPivot_Click(object sender, EventArgs e)
         {
             if (mf.trk.isBtnTrackOn)
                 mf.trk.MoveABCurve(mf.isStanleyUsed ? mf.gyd.distanceFromCurrentLinePivot : mf.trk.distanceFromCurrentLinePivot);
-        }
-
-        private void btnRightHalfWidth_Click(object sender, EventArgs e)
-        {
-            double dist = mf.tool.width;
-
-            mf.trk.MoveABCurve(dist * 0.5);
-
-        }
-
-        private void btnLeftHalfWidth_Click(object sender, EventArgs e)
-        {
-            double dist = mf.tool.width;
-
-            mf.trk.MoveABCurve(-dist * 0.5);
-
-        }
-
-        private void btnNosave_Click(object sender, EventArgs e)
-        {
-            isClosing = true;
-            mf.trk.isTrackValid = false;
-            Close();
         }
 
         private void FormEditCurve_FormClosing(object sender, FormClosingEventArgs e)
@@ -169,16 +115,6 @@ namespace AgOpenGPS
             }
         }
 
-        private void btnCancel_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.ha_btnCancel, gStr.gsHelp);
-        }
-
-        private void btnNoSave_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.he_btnNoSave, gStr.gsHelp);
-        }
-
         private void btnOK_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             MessageBox.Show(gStr.he_btnOK, gStr.gsHelp);
@@ -188,5 +124,6 @@ namespace AgOpenGPS
         {
             MessageBox.Show(gStr.h_btnSnapToPivot, gStr.gsHelp);
         }
+
     }
 }
