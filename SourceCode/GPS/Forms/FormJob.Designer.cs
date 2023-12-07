@@ -32,14 +32,14 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnJobOpen = new System.Windows.Forms.Button();
             this.btnDeleteAB = new System.Windows.Forms.Button();
-            this.btnJobNew = new System.Windows.Forms.Button();
-            this.btnFromExisting = new System.Windows.Forms.Button();
             this.btnJobClose = new System.Windows.Forms.Button();
             this.btnJobResume = new System.Windows.Forms.Button();
-            this.btnFromKML = new System.Windows.Forms.Button();
             this.btnInField = new System.Windows.Forms.Button();
             this.lblResumeField = new System.Windows.Forms.Label();
+            this.btnFromExisting = new System.Windows.Forms.Button();
+            this.btnFromKML = new System.Windows.Forms.Button();
             this.btnFromISOXML = new System.Windows.Forms.Button();
+            this.btnJobNew = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -121,48 +121,6 @@
             this.btnDeleteAB.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDeleteAB.UseVisualStyleBackColor = false;
             // 
-            // btnJobNew
-            // 
-            this.btnJobNew.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnJobNew.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnJobNew.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnJobNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnJobNew.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnJobNew.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnJobNew.Image = global::AgOpenGPS.Properties.Resources.FileNew;
-            this.btnJobNew.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnJobNew.Location = new System.Drawing.Point(59, 539);
-            this.btnJobNew.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnJobNew.Name = "btnJobNew";
-            this.btnJobNew.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnJobNew.Size = new System.Drawing.Size(319, 82);
-            this.btnJobNew.TabIndex = 2;
-            this.btnJobNew.Text = "New";
-            this.btnJobNew.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnJobNew.UseVisualStyleBackColor = false;
-            this.btnJobNew.Click += new System.EventHandler(this.btnJobNew_Click);
-            // 
-            // btnFromExisting
-            // 
-            this.btnFromExisting.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnFromExisting.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnFromExisting.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnFromExisting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFromExisting.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFromExisting.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnFromExisting.Image = global::AgOpenGPS.Properties.Resources.FileExisting;
-            this.btnFromExisting.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnFromExisting.Location = new System.Drawing.Point(59, 410);
-            this.btnFromExisting.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnFromExisting.Name = "btnFromExisting";
-            this.btnFromExisting.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnFromExisting.Size = new System.Drawing.Size(319, 82);
-            this.btnFromExisting.TabIndex = 104;
-            this.btnFromExisting.Text = "From Existing";
-            this.btnFromExisting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFromExisting.UseVisualStyleBackColor = false;
-            this.btnFromExisting.Click += new System.EventHandler(this.btnFromExisting_Click);
-            // 
             // btnJobClose
             // 
             this.btnJobClose.AllowDrop = true;
@@ -206,27 +164,6 @@
             this.btnJobResume.UseVisualStyleBackColor = false;
             this.btnJobResume.Click += new System.EventHandler(this.btnJobResume_Click);
             // 
-            // btnFromKML
-            // 
-            this.btnFromKML.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnFromKML.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnFromKML.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnFromKML.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFromKML.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFromKML.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnFromKML.Image = global::AgOpenGPS.Properties.Resources.BoundaryLoadFromGE;
-            this.btnFromKML.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnFromKML.Location = new System.Drawing.Point(59, 281);
-            this.btnFromKML.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnFromKML.Name = "btnFromKML";
-            this.btnFromKML.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnFromKML.Size = new System.Drawing.Size(319, 82);
-            this.btnFromKML.TabIndex = 91;
-            this.btnFromKML.Text = "From KML";
-            this.btnFromKML.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFromKML.UseVisualStyleBackColor = false;
-            this.btnFromKML.Click += new System.EventHandler(this.btnFromKML_Click);
-            // 
             // btnInField
             // 
             this.btnInField.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -259,6 +196,48 @@
             this.lblResumeField.Text = "label1";
             this.lblResumeField.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
+            // btnFromExisting
+            // 
+            this.btnFromExisting.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnFromExisting.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnFromExisting.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnFromExisting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFromExisting.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFromExisting.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnFromExisting.Image = global::AgOpenGPS.Properties.Resources.FileExisting;
+            this.btnFromExisting.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnFromExisting.Location = new System.Drawing.Point(59, 410);
+            this.btnFromExisting.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btnFromExisting.Name = "btnFromExisting";
+            this.btnFromExisting.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnFromExisting.Size = new System.Drawing.Size(319, 82);
+            this.btnFromExisting.TabIndex = 104;
+            this.btnFromExisting.Text = "From Existing";
+            this.btnFromExisting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFromExisting.UseVisualStyleBackColor = false;
+            this.btnFromExisting.Click += new System.EventHandler(this.btnFromExisting_Click);
+            // 
+            // btnFromKML
+            // 
+            this.btnFromKML.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnFromKML.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnFromKML.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnFromKML.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFromKML.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFromKML.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnFromKML.Image = global::AgOpenGPS.Properties.Resources.BoundaryLoadFromGE;
+            this.btnFromKML.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnFromKML.Location = new System.Drawing.Point(59, 281);
+            this.btnFromKML.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btnFromKML.Name = "btnFromKML";
+            this.btnFromKML.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnFromKML.Size = new System.Drawing.Size(319, 82);
+            this.btnFromKML.TabIndex = 91;
+            this.btnFromKML.Text = "From KML";
+            this.btnFromKML.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFromKML.UseVisualStyleBackColor = false;
+            this.btnFromKML.Click += new System.EventHandler(this.btnFromKML_Click);
+            // 
             // btnFromISOXML
             // 
             this.btnFromISOXML.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -267,7 +246,7 @@
             this.btnFromISOXML.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFromISOXML.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFromISOXML.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnFromISOXML.Image = global::AgOpenGPS.Properties.Resources.FileNew;
+            this.btnFromISOXML.Image = global::AgOpenGPS.Properties.Resources.ISOXML;
             this.btnFromISOXML.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnFromISOXML.Location = new System.Drawing.Point(59, 152);
             this.btnFromISOXML.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -279,6 +258,27 @@
             this.btnFromISOXML.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFromISOXML.UseVisualStyleBackColor = false;
             this.btnFromISOXML.Click += new System.EventHandler(this.btnFromISOXML_Click);
+            // 
+            // btnJobNew
+            // 
+            this.btnJobNew.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnJobNew.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnJobNew.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnJobNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnJobNew.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnJobNew.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnJobNew.Image = global::AgOpenGPS.Properties.Resources.FileNew;
+            this.btnJobNew.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnJobNew.Location = new System.Drawing.Point(59, 539);
+            this.btnJobNew.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btnJobNew.Name = "btnJobNew";
+            this.btnJobNew.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnJobNew.Size = new System.Drawing.Size(319, 82);
+            this.btnJobNew.TabIndex = 2;
+            this.btnJobNew.Text = "New";
+            this.btnJobNew.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnJobNew.UseVisualStyleBackColor = false;
+            this.btnJobNew.Click += new System.EventHandler(this.btnJobNew_Click);
             // 
             // FormJob
             // 
