@@ -22,7 +22,9 @@ namespace AgOpenGPS
 
         private bool isA = true;
         private int start = 99999, end = 99999;
-        private int bndSelect = 0;
+        private int bndSelect = 0, mode;
+        public List<vec3> sliceArr = new List<vec3>();
+        public List<vec3> backupList = new List<vec3>();
 
         public vec3 pint = new vec3(0.0, 1.0, 0.0);
 
@@ -40,6 +42,24 @@ namespace AgOpenGPS
         {
             mf.hdl.idx = -1;
             label3.Text = mf.unitsFtM;
+
+            lblToolWidth.Text = ((mf.tool.width - mf.tool.overlap) * mf.m2FtOrM).ToString("N1") + " " + mf.unitsFtM;
+
+            start = 99999; end = 99999;
+            isA = true;
+            mf.hdl.desList?.Clear();
+            sliceArr?.Clear();
+            backupList?.Clear();
+
+            btnSlice.Enabled = false;
+
+            if (mf.bnd.bndList[0].fenceLine.Count == 0)
+            {
+                for (int i = 0; i < mf.bnd.bndList[0].fenceLine.Count; i++)
+                {
+                    mf.bnd.bndList[0].hdLine.Add(new vec3(mf.bnd.bndList[0].fenceLine[i]));
+                }
+            }
         }
 
         private void FormHeadLine_FormClosing(object sender, FormClosingEventArgs e)
@@ -51,7 +71,7 @@ namespace AgOpenGPS
                 if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
             }
 
-            if (mf.hdl.sliceArr.Count > 0)
+            if (sliceArr.Count > 0)
             {
                 mf.hdl.idx = 0;
             }
@@ -60,7 +80,12 @@ namespace AgOpenGPS
 
         private void oglSelf_MouseDown(object sender, MouseEventArgs e)
         {
-            mf.hdl.sliceArr?.Clear();
+            if (nudSetDistance.Value == 0)
+            {
+                mf.TimedMessageBox(3000, "Distance Error", "Distance Set to 0, Nothing to Move");
+                return;
+            }
+            sliceArr?.Clear();
 
             Point ptt = oglSelf.PointToClient(Cursor.Position);
 
@@ -124,9 +149,6 @@ namespace AgOpenGPS
                 //build the lines
                 if (rbtnCurve.Checked)
                 {
-                    mf.hdl.sliceArr.Add(new CHeadPath());
-                    mf.hdl.idx = mf.hdl.sliceArr.Count - 1;
-
                     bool isLoop = false;
                     int limit = end;
 
@@ -159,7 +181,7 @@ namespace AgOpenGPS
                         }
                     }
 
-                    mf.hdl.sliceArr[mf.hdl.idx].trackPts?.Clear();
+                    sliceArr?.Clear();
                     vec3 pt3 = new vec3();
 
                     if (start < end)
@@ -168,7 +190,7 @@ namespace AgOpenGPS
                         {
                             //calculate the point inside the boundary
                             pt3 = mf.bnd.bndList[bndSelect].fenceLine[i];
-                            mf.hdl.sliceArr[mf.hdl.idx].trackPts.Add(pt3);
+                            sliceArr.Add(pt3);
 
                             if (isLoop && i == mf.bnd.bndList[bndSelect].fenceLine.Count - 1)
                             {
@@ -184,7 +206,7 @@ namespace AgOpenGPS
                         {
                             //calculate the point inside the boundary
                             pt3 = mf.bnd.bndList[bndSelect].fenceLine[i];
-                            mf.hdl.sliceArr[mf.hdl.idx].trackPts.Add(pt3);
+                            sliceArr.Add(pt3);
 
                             if (isLoop && i == 0)
                             {
@@ -195,30 +217,38 @@ namespace AgOpenGPS
                         }
                     }
 
-                    //who knows which way it actually goes
-                    mf.hdl.CalculateHeadings(ref mf.hdl.sliceArr[mf.hdl.idx].trackPts);
+                    int ptCnt = sliceArr.Count - 1;
 
-                    int ptCnt = mf.hdl.sliceArr[mf.hdl.idx].trackPts.Count - 1;
-
-                    for (int i = 1; i < 50; i++)
+                    if (ptCnt > 0)
                     {
-                        vec3 pt = new vec3(mf.hdl.sliceArr[mf.hdl.idx].trackPts[ptCnt]);
-                        pt.easting += (Math.Sin(pt.heading) * i);
-                        pt.northing += (Math.Cos(pt.heading) * i);
-                        mf.hdl.sliceArr[mf.hdl.idx].trackPts.Add(pt);
+                        //who knows which way it actually goes
+                        mf.hdl.CalculateHeadings(ref sliceArr);
+
+                        for (int i = 1; i < 75; i++)
+                        {
+                            vec3 pt = new vec3(sliceArr[ptCnt]);
+                            pt.easting += (Math.Sin(pt.heading) * i);
+                            pt.northing += (Math.Cos(pt.heading) * i);
+                            sliceArr.Add(pt);
+                        }
+
+                        vec3 stat = new vec3(sliceArr[0]);
+
+                        for (int i = 1; i < 75; i++)
+                        {
+                            vec3 pt = new vec3(stat);
+                            pt.easting -= (Math.Sin(pt.heading) * i);
+                            pt.northing -= (Math.Cos(pt.heading) * i);
+                            sliceArr.Insert(0, pt);
+                        }
+
+                        mode = (int)TrackMode.Curve;
                     }
-
-                    vec3 stat = new vec3(mf.hdl.sliceArr[mf.hdl.idx].trackPts[0]);
-
-                    for (int i = 1; i < 50; i++)
+                    else
                     {
-                        vec3 pt = new vec3(stat);
-                        pt.easting -= (Math.Sin(pt.heading) * i);
-                        pt.northing -= (Math.Cos(pt.heading) * i);
-                        mf.hdl.sliceArr[mf.hdl.idx].trackPts.Insert(0, pt);
+                        start = 99999; end = 99999;
+                        return;
                     }
-
-                    mf.hdl.sliceArr[mf.hdl.idx].mode = (int)TrackMode.Curve;
 
                     //update the arrays
                     start = 99999; end = 99999;
@@ -253,18 +283,7 @@ namespace AgOpenGPS
                         mf.bnd.bndList[bndSelect].fenceLine[end].northing - mf.bnd.bndList[bndSelect].fenceLine[start].northing);
                     if (abHead < 0) abHead += glm.twoPI;
 
-                    if (mf.hdl.idx < mf.hdl.sliceArr.Count - 1)
-                    {
-                        mf.hdl.idx++;
-                        mf.hdl.sliceArr.Insert(mf.hdl.idx, new CHeadPath());
-                    }
-                    else
-                    {
-                        mf.hdl.sliceArr.Add(new CHeadPath());
-                        mf.hdl.idx = mf.hdl.sliceArr.Count - 1;
-                    }
-
-                    mf.hdl.sliceArr[mf.hdl.idx].trackPts?.Clear();
+                    sliceArr?.Clear();
 
                     ptA.heading = abHead;
                     ptB.heading = abHead;
@@ -275,37 +294,39 @@ namespace AgOpenGPS
                         ptC.easting = (Math.Sin(abHead) * i) + ptA.easting;
                         ptC.northing = (Math.Cos(abHead) * i) + ptA.northing;
                         ptC.heading = abHead;
-                        mf.hdl.sliceArr[mf.hdl.idx].trackPts.Add(ptC);
+                        sliceArr.Add(ptC);
                     }
 
-                    int ptCnt = mf.hdl.sliceArr[mf.hdl.idx].trackPts.Count - 1;
+                    int ptCnt = sliceArr.Count - 1;
 
-                    for (int i = 1; i < 30; i++)
+                    for (int i = 1; i < 75; i++)
                     {
-                        vec3 pt = new vec3(mf.hdl.sliceArr[mf.hdl.idx].trackPts[ptCnt]);
+                        vec3 pt = new vec3(sliceArr[ptCnt]);
                         pt.easting += (Math.Sin(pt.heading) * i);
                         pt.northing += (Math.Cos(pt.heading) * i);
-                        mf.hdl.sliceArr[mf.hdl.idx].trackPts.Add(pt);
+                        sliceArr.Add(pt);
                     }
 
-                    vec3 stat = new vec3(mf.hdl.sliceArr[mf.hdl.idx].trackPts[0]);
+                    vec3 stat = new vec3(sliceArr[0]);
 
-                    for (int i = 1; i < 30; i++)
+                    for (int i = 1; i < 75; i++)
                     {
                         vec3 pt = new vec3(stat);
                         pt.easting -= (Math.Sin(pt.heading) * i);
                         pt.northing -= (Math.Cos(pt.heading) * i);
-                        mf.hdl.sliceArr[mf.hdl.idx].trackPts.Insert(0, pt);
+                        sliceArr.Insert(0, pt);
                     }
 
-                    mf.hdl.sliceArr[mf.hdl.idx].mode = (int)TrackMode.AB;
+                    mode = (int)TrackMode.AB;
 
                     start = 99999; end = 99999;
                 }
 
                 //Move the line
                 if (nudSetDistance.Value != 0)
-                    btnSetLineDistance_Click(this,e);
+                    SetLineDistance();
+
+                btnSlice.Enabled = true;
             }
         }
 
@@ -356,7 +377,7 @@ namespace AgOpenGPS
             if (start != 99999 || end != 99999) DrawABTouchLine();
 
             //draw the actual built lines
-            if (start == 99999 && end == 99999)
+            //if (start == 99999 && end == 99999)
             {
                 DrawBuiltLines();
             }
@@ -370,9 +391,6 @@ namespace AgOpenGPS
 
         private void DrawBuiltLines()
         {
-            if (mf.hdl.sliceArr.Count == 0) btnSlice.Enabled = false;
-            else btnSlice.Enabled = true;
-
             GL.LineWidth(4);
             GL.Color3(0.93f, 0.599f, 0.50f);
             GL.Begin(PrimitiveType.LineStrip);
@@ -383,15 +401,13 @@ namespace AgOpenGPS
             }
             GL.End();
 
-            if (mf.hdl.sliceArr.Count > 0)
+            if (sliceArr.Count > 0)
             {
                 //GL.Enable(EnableCap.LineStipple);
                 GL.LineStipple(1, 0x7070);
                 GL.PointSize(2);
 
-                for (int i = 0; i < mf.hdl.sliceArr.Count; i++)
-                {
-                    if (mf.hdl.sliceArr[i].mode == (int)TrackMode.AB)
+                    if (mode == (int)TrackMode.AB)
                     {
                         GL.Color3(0.973f, 0.19f, 0.10f);
                     }
@@ -401,33 +417,20 @@ namespace AgOpenGPS
                     }
 
                     GL.Begin(PrimitiveType.Points);
-                    foreach (vec3 item in mf.hdl.sliceArr[i].trackPts)
-                    {
-                        GL.Vertex3(item.easting, item.northing, 0);
-                    }
-                    GL.End();
-                }
-
-                //GL.Disable(EnableCap.LineStipple);
-
-                if (mf.hdl.idx > -1)
-                {
-                    GL.LineWidth(2);
-                    GL.Color3(1.0f, 0.0f, 1.0f);
-
-                    GL.Begin(PrimitiveType.LineStrip);
-                    foreach (vec3 item in mf.hdl.sliceArr[mf.hdl.idx].trackPts)
+                    foreach (vec3 item in sliceArr)
                     {
                         GL.Vertex3(item.easting, item.northing, 0);
                     }
                     GL.End();
 
-                    GL.PointSize(8);
-                    GL.Color3(1.0f, 1.0f, 1.0f);
-                    GL.Begin(PrimitiveType.Points);
-                    GL.Vertex3(mf.hdl.sliceArr[mf.hdl.idx].trackPts[0].easting, mf.hdl.sliceArr[mf.hdl.idx].trackPts[0].northing, 0);
-                    GL.End();
-                }
+                int cnt = sliceArr.Count - 1;
+                GL.PointSize(12);
+                GL.Color3(1.0f, 0.6f, 0.3f);
+                GL.Begin(PrimitiveType.Points);
+                GL.Vertex3(sliceArr[0].easting, sliceArr[0].northing, 0);
+                GL.Color3(0.3f, 0.3f, 0.99f);
+                GL.Vertex3(sliceArr[cnt].easting, sliceArr[cnt].northing, 0);
+                GL.End();
             }
         }
 
@@ -456,43 +459,102 @@ namespace AgOpenGPS
         private void timer1_Tick(object sender, EventArgs e)
         {
             oglSelf.Refresh();
+            if (sliceArr.Count == 0) 
+            { 
+                btnSlice.Enabled = false; 
+                btnALength.Enabled = false;
+                btnBLength.Enabled = false;
+            } 
+            else
+            {
+                btnSlice.Enabled = true;
+                btnBLength.Enabled = true;
+                btnALength.Enabled = true;
+            }
+
+            if (backupList.Count == 0) btnUndo.Enabled = false; else btnUndo.Enabled = true;
+            if (nudSetDistance.Value == 0) btnBndLoop.Enabled = false; else btnBndLoop.Enabled= true;
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+            vec3[] hdArr;
+
+            if (mf.bnd.bndList[0].hdLine.Count > 0)
+            {
+                hdArr = new vec3[mf.bnd.bndList[0].hdLine.Count];
+                mf.bnd.bndList[0].hdLine.CopyTo(hdArr);
+                mf.bnd.bndList[0].hdLine?.Clear();
+
+                //does headland control sections
+                mf.bnd.isSectionControlledByHeadland = cboxIsSectionControlled.Checked;
+                Properties.Settings.Default.setHeadland_isSectionControlled = cboxIsSectionControlled.Checked;
+                Properties.Settings.Default.Save();
+
+                //middle points
+                for (int i = 1; i < hdArr.Length; i++)
+                {
+                    hdArr[i - 1].heading = Math.Atan2(hdArr[i - 1].easting - hdArr[i].easting, hdArr[i - 1].northing - hdArr[i].northing);
+                    if (hdArr[i].heading < 0) hdArr[i].heading += glm.twoPI;
+                }
+
+                double delta = 0;
+                for (int i = 0; i < hdArr.Length; i++)
+                {
+                    if (i == 0)
+                    {
+                        mf.bnd.bndList[0].hdLine.Add(new vec3(hdArr[i].easting, hdArr[i].northing, hdArr[i].heading));
+                        continue;
+                    }
+                    delta += (hdArr[i - 1].heading - hdArr[i].heading);
+
+                    if (Math.Abs(delta) > 0.005)
+                    {
+                        vec3 pt = new vec3(hdArr[i].easting, hdArr[i].northing, hdArr[i].heading);
+
+                        mf.bnd.bndList[0].hdLine.Add(pt);
+                        delta = 0;
+                    }
+                }
+                vec3 ptEnd = new vec3(hdArr[hdArr.Length-1].easting, hdArr[hdArr.Length - 1].northing, hdArr[hdArr.Length - 1].heading);
+
+                mf.bnd.bndList[0].hdLine.Add(ptEnd);
+                delta = 0;
+            }
+
             mf.FileSaveHeadland();
             Close();
         }
 
         private void btnALength_Click(object sender, EventArgs e)
         {
-            if (mf.hdl.idx > -1)
+            if (sliceArr.Count > 0)
             {
                 //and the beginning
-                vec3 start = new vec3(mf.hdl.sliceArr[mf.hdl.idx].trackPts[0]);
+                vec3 start = new vec3(sliceArr[0]);
 
                 for (int i = 1; i < 10; i++)
                 {
                     vec3 pt = new vec3(start);
                     pt.easting -= (Math.Sin(pt.heading) * i);
                     pt.northing -= (Math.Cos(pt.heading) * i);
-                    mf.hdl.sliceArr[mf.hdl.idx].trackPts.Insert(0, pt);
+                    sliceArr.Insert(0, pt);
                 }
             }
         }
 
         private void btnBLength_Click(object sender, EventArgs e)
         {
-            if (mf.hdl.idx > -1)
+            if (sliceArr.Count > 0)
             {
-                int ptCnt = mf.hdl.sliceArr[mf.hdl.idx].trackPts.Count - 1;
+                int ptCnt = sliceArr.Count - 1;
 
                 for (int i = 1; i < 10; i++)
                 {
-                    vec3 pt = new vec3(mf.hdl.sliceArr[mf.hdl.idx].trackPts[ptCnt]);
+                    vec3 pt = new vec3(sliceArr[ptCnt]);
                     pt.easting += (Math.Sin(pt.heading) * i);
                     pt.northing += (Math.Cos(pt.heading) * i);
-                    mf.hdl.sliceArr[mf.hdl.idx].trackPts.Add(pt);
+                    sliceArr.Add(pt);
                 }
             }
         }
@@ -510,32 +572,30 @@ namespace AgOpenGPS
             GL.MatrixMode(MatrixMode.Modelview);
         }
 
-        private void btnSetLineDistance_Click(object sender, EventArgs e)
+        private void SetLineDistance()
         {
-            //mf.bnd.bndList[0].hdLine?.Clear();
             mf.hdl.desList?.Clear();
 
-            if (mf.hdl.sliceArr.Count < 1 || mf.hdl.idx == -1) return;
+            if (sliceArr.Count < 1 ) return;
 
             double distAway = (double)nudSetDistance.Value * mf.ftOrMtoM;
-            mf.hdl.sliceArr[mf.hdl.idx].moveDistance += distAway;
 
             double distSqAway = (distAway * distAway) - 0.01;
             vec3 point;
 
-            int refCount = mf.hdl.sliceArr[mf.hdl.idx].trackPts.Count;
+            int refCount = sliceArr.Count;
             for (int i = 0; i < refCount; i++)
             {
                 point = new vec3(
-                mf.hdl.sliceArr[mf.hdl.idx].trackPts[i].easting - (Math.Sin(glm.PIBy2 + mf.hdl.sliceArr[mf.hdl.idx].trackPts[i].heading) * distAway),
-                mf.hdl.sliceArr[mf.hdl.idx].trackPts[i].northing - (Math.Cos(glm.PIBy2 + mf.hdl.sliceArr[mf.hdl.idx].trackPts[i].heading) * distAway),
-                mf.hdl.sliceArr[mf.hdl.idx].trackPts[i].heading);
+                sliceArr[i].easting - (Math.Sin(glm.PIBy2 + sliceArr[i].heading) * distAway),
+                sliceArr[i].northing - (Math.Cos(glm.PIBy2 + sliceArr[i].heading) * distAway),
+                sliceArr[i].heading);
                 bool Add = true;
 
                 for (int t = 0; t < refCount; t++)
                 {
-                    double dist = ((point.easting - mf.hdl.sliceArr[mf.hdl.idx].trackPts[t].easting) * (point.easting - mf.hdl.sliceArr[mf.hdl.idx].trackPts[t].easting))
-                        + ((point.northing - mf.hdl.sliceArr[mf.hdl.idx].trackPts[t].northing) * (point.northing - mf.hdl.sliceArr[mf.hdl.idx].trackPts[t].northing));
+                    double dist = ((point.easting - sliceArr[t].easting) * (point.easting - sliceArr[t].easting))
+                        + ((point.northing - sliceArr[t].northing) * (point.northing - sliceArr[t].northing));
                     if (dist < distSqAway)
                     {
                         Add = false;
@@ -556,11 +616,11 @@ namespace AgOpenGPS
                 }
             }
 
-            mf.hdl.sliceArr[mf.hdl.idx].trackPts.Clear();
+            sliceArr.Clear();
 
             for (int i = 0; i < mf.hdl.desList.Count; i++)
             {                
-                mf.hdl.sliceArr[mf.hdl.idx].trackPts.Add(new vec3(mf.hdl.desList[i]));
+                sliceArr.Add(new vec3(mf.hdl.desList[i]));
             }
 
             mf.hdl.desList?.Clear();
@@ -678,7 +738,6 @@ namespace AgOpenGPS
                         mf.bnd.bndList[0].hdLine.Add(item);
                     }
                 }
-
             }
 
             mf.FileSaveHeadland();
@@ -690,25 +749,25 @@ namespace AgOpenGPS
             int startBnd = 0, endBnd = 0, startLine = 0, endLine = 0;
             int isStart = 0;
 
-            if (mf.hdl.sliceArr.Count == 0 || mf.hdl.idx == -1) return;
+            if (sliceArr.Count == 0) return;
 
             //save a backup
-            mf.hdl.backupList?.Clear();
+            backupList?.Clear();
             foreach (var item in mf.bnd.bndList[0].hdLine)
             {
-                mf.hdl.backupList.Add(item);
+                backupList.Add(item);
             }
-                
-            for (int i = 0; i < mf.hdl.sliceArr[0].trackPts.Count - 2; i++)
+
+            for (int i = 0; i < sliceArr.Count - 2; i++)
             {
 
                 for (int k = 0; k < mf.bnd.bndList[0].hdLine.Count - 2; k++)
                 {
                     int res = GetLineIntersection(
-                    mf.hdl.sliceArr[mf.hdl.idx].trackPts[i].easting,
-                    mf.hdl.sliceArr[mf.hdl.idx].trackPts[i].northing,
-                    mf.hdl.sliceArr[mf.hdl.idx].trackPts[i + 1].easting,
-                    mf.hdl.sliceArr[mf.hdl.idx].trackPts[i + 1].northing,
+                    sliceArr[i].easting,
+                    sliceArr[i].northing,
+                    sliceArr[i + 1].easting,
+                    sliceArr[i + 1].northing,
 
                     mf.bnd.bndList[0].hdLine[k].easting,
                     mf.bnd.bndList[0].hdLine[k].northing,
@@ -718,15 +777,15 @@ namespace AgOpenGPS
                     if (res == 1)
                     {
                         if (isStart == 0)
-                        {                            
-                            startBnd = k+1;
-                            startLine = i+1;
+                        {
+                            startBnd = k + 1;
+                            startLine = i + 1;
                         }
                         else
                         {
-                            endBnd = k+1;
+                            endBnd = k + 1;
                             endLine = i;
-                        }                        
+                        }
                         isStart++;
                     }
                 }
@@ -756,7 +815,7 @@ namespace AgOpenGPS
 
                 for (int i = startLine; i < endLine; i++)
                 {
-                    mf.hdl.desList.Add(mf.hdl.sliceArr[mf.hdl.idx].trackPts[i]);
+                    mf.hdl.desList.Add(sliceArr[i]);
                 }
 
                 //build headline from desList
@@ -786,7 +845,7 @@ namespace AgOpenGPS
                 //line segment
                 for (int i = startLine; i < endLine; i++)
                 {
-                    mf.hdl.desList.Add(mf.hdl.sliceArr[mf.hdl.idx].trackPts[i]);
+                    mf.hdl.desList.Add(sliceArr[i]);
                 }
 
                 //final bnd segment
@@ -805,7 +864,8 @@ namespace AgOpenGPS
             }
 
             mf.hdl.desList?.Clear();
-            mf.hdl.sliceArr?.Clear();
+            sliceArr?.Clear();   
+
         }
 
         private void btnDeletePoints_Click(object sender, EventArgs e)
@@ -813,8 +873,8 @@ namespace AgOpenGPS
             start = 99999; end = 99999;
             isA = true;
             mf.hdl.desList?.Clear();
-            mf.hdl.sliceArr?.Clear();
-            mf.hdl.backupList?.Clear();
+            sliceArr?.Clear();
+            backupList?.Clear();
             mf.bnd.bndList[0].hdLine?.Clear();
 
             int ptCount = mf.bnd.bndList[0].fenceLine.Count;
@@ -825,18 +885,26 @@ namespace AgOpenGPS
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            nudSetDistance.Value = 0;
-        }
-
         private void btnUndo_Click(object sender, EventArgs e)
         {
             mf.bnd.bndList[0].hdLine?.Clear();
-            foreach (var item in mf.hdl.backupList)
+            foreach (var item in backupList)
             {
                 mf.bnd.bndList[0].hdLine.Add(item);
             }
+            backupList?.Clear();
+        }
+
+        private void cboxToolWidths_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            nudSetDistance.Value = (decimal)(Math.Round((mf.tool.width - mf.tool.overlap) * cboxToolWidths.SelectedIndex, 1));
+        }
+
+        private void btnHeadlandOff_Click(object sender, EventArgs e)
+        {
+            mf.bnd.bndList[0].hdLine?.Clear();
+            mf.FileSaveHeadland();
+            Close();
         }
 
         public int GetLineIntersection(double p0x, double p0y, double p1x, double p1y,

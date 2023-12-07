@@ -935,6 +935,7 @@
     <None Include="btnImages\Reset.png" />
     <None Include="btnImages\HeadlandReset.png" />
     <None Include="btnImages\FileClose.png" />
+    <None Include="btnImages\HeadacheHelp.png" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -10,7 +10,6 @@ namespace AgOpenGPS
     {
         //class variables
         private readonly FormGPS mf = null;
-        private bool isStayOpen;
 
         public FormMenuJob(Form callingForm)
         {
