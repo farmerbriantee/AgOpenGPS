@@ -26,13 +26,13 @@ namespace AgOpenGPS
             //if (bnd.bndList.Count < 1) return;//If no Bnd, Quit
 
             //get the directory and make sure it exists, create if not
-            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\zISOXML\\v3\\";
 
             string directoryName = Path.GetDirectoryName(dirField);
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
 
-            string myFileName = currentFieldDirectory + "_v33.xml";
+            string myFileName = "TASKDATA.xml";
 
             try
             {
@@ -221,13 +221,13 @@ namespace AgOpenGPS
             int lineCounter = 0;
 
             //get the directory and make sure it exists, create if not
-            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\zISOXML\\v4\\";
 
             string directoryName = Path.GetDirectoryName(dirField);
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
            
-            string myFileName = currentFieldDirectory + "_v42.xml";
+            string myFileName = "TASKDATA.xml";
 
             try
             {
@@ -392,11 +392,11 @@ namespace AgOpenGPS
                                 string name = "GGP" + lineCounter.ToString();
                                 lineCounter++;
                                 xml.WriteAttributeString("A", name);
-                                xml.WriteAttributeString("B", ABLine.lineArr[i].Name);
+                                xml.WriteAttributeString("B", curve.curveArr[i].Name);
                                 {
                                     xml.WriteStartElement("GPN");//Guide-N
                                     xml.WriteAttributeString("A", name);
-                                    xml.WriteAttributeString("B", ABLine.lineArr[i].Name);
+                                    xml.WriteAttributeString("B", curve.curveArr[i].Name);
                                     xml.WriteAttributeString("C", "1");
                                     xml.WriteAttributeString("E", "1");
                                     xml.WriteAttributeString("F", "1");
@@ -447,25 +447,25 @@ namespace AgOpenGPS
                 //Write the XML to file and close the kml
                 xml.Close();
 
-            }
-            catch (Exception)
-            {
-                //throw;
-            }
-
-            /*
-                //xml.WriteStartElement("TSK");//Task
-                //xml.WriteAttributeString("A", "TSK1");
-                //xml.WriteAttributeString("B", "Tractor Work");
-                //xml.WriteAttributeString("C", "CTR1");
-                //xml.WriteAttributeString("E", "PFD-1");
-                //xml.WriteAttributeString("G", "1");
-                //xml.WriteAttributeString("I", "1");
-                //xml.WriteAttributeString("J", "0");
-                //xml.WriteEndElement();//Task
-            */
-
         }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+    /*
+        //xml.WriteStartElement("TSK");//Task
+        //xml.WriteAttributeString("A", "TSK1");
+        //xml.WriteAttributeString("B", "Tractor Work");
+        //xml.WriteAttributeString("C", "CTR1");
+        //xml.WriteAttributeString("E", "PFD-1");
+        //xml.WriteAttributeString("G", "1");
+        //xml.WriteAttributeString("I", "1");
+        //xml.WriteAttributeString("J", "0");
+        //xml.WriteEndElement();//Task
+    */
+
+}
 
         public void FileSaveHeadLines()
         {

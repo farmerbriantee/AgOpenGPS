@@ -24,6 +24,7 @@ namespace AgOpenGPS
         private int start = 99999, end = 99999;
         private int bndSelect = 0, mode;
         public List<vec3> sliceArr = new List<vec3>();
+        public List<vec3> backupList = new List<vec3>();
 
         public vec3 pint = new vec3(0.0, 1.0, 0.0);
 
@@ -48,15 +49,16 @@ namespace AgOpenGPS
             isA = true;
             mf.hdl.desList?.Clear();
             sliceArr?.Clear();
-            mf.hdl.backupList?.Clear();
+            backupList?.Clear();
 
             btnSlice.Enabled = false;
 
-            int ptCount = mf.bnd.bndList[0].fenceLine.Count;
-
-            for (int i = 0; i < ptCount; i++)
+            if (mf.bnd.bndList[0].fenceLine.Count == 0)
             {
-                mf.bnd.bndList[0].hdLine.Add(new vec3(mf.bnd.bndList[0].fenceLine[i]));
+                for (int i = 0; i < mf.bnd.bndList[0].fenceLine.Count; i++)
+                {
+                    mf.bnd.bndList[0].hdLine.Add(new vec3(mf.bnd.bndList[0].fenceLine[i]));
+                }
             }
         }
 
@@ -375,7 +377,7 @@ namespace AgOpenGPS
             if (start != 99999 || end != 99999) DrawABTouchLine();
 
             //draw the actual built lines
-            if (start == 99999 && end == 99999)
+            //if (start == 99999 && end == 99999)
             {
                 DrawBuiltLines();
             }
@@ -457,6 +459,21 @@ namespace AgOpenGPS
         private void timer1_Tick(object sender, EventArgs e)
         {
             oglSelf.Refresh();
+            if (sliceArr.Count == 0) 
+            { 
+                btnSlice.Enabled = false; 
+                btnALength.Enabled = false;
+                btnBLength.Enabled = false;
+            } 
+            else
+            {
+                btnSlice.Enabled = true;
+                btnBLength.Enabled = true;
+                btnALength.Enabled = true;
+            }
+
+            if (backupList.Count == 0) btnUndo.Enabled = false; else btnUndo.Enabled = true;
+            if (nudSetDistance.Value == 0) btnBndLoop.Enabled = false; else btnBndLoop.Enabled= true;
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -735,10 +752,10 @@ namespace AgOpenGPS
             if (sliceArr.Count == 0) return;
 
             //save a backup
-            mf.hdl.backupList?.Clear();
+            backupList?.Clear();
             foreach (var item in mf.bnd.bndList[0].hdLine)
             {
-                mf.hdl.backupList.Add(item);
+                backupList.Add(item);
             }
 
             for (int i = 0; i < sliceArr.Count - 2; i++)
@@ -847,8 +864,7 @@ namespace AgOpenGPS
             }
 
             mf.hdl.desList?.Clear();
-            sliceArr?.Clear();
-
+            sliceArr?.Clear();   
 
         }
 
@@ -858,7 +874,7 @@ namespace AgOpenGPS
             isA = true;
             mf.hdl.desList?.Clear();
             sliceArr?.Clear();
-            mf.hdl.backupList?.Clear();
+            backupList?.Clear();
             mf.bnd.bndList[0].hdLine?.Clear();
 
             int ptCount = mf.bnd.bndList[0].fenceLine.Count;
@@ -872,10 +888,11 @@ namespace AgOpenGPS
         private void btnUndo_Click(object sender, EventArgs e)
         {
             mf.bnd.bndList[0].hdLine?.Clear();
-            foreach (var item in mf.hdl.backupList)
+            foreach (var item in backupList)
             {
                 mf.bnd.bndList[0].hdLine.Add(item);
             }
+            backupList?.Clear();
         }
 
         private void cboxToolWidths_SelectedIndexChanged(object sender, EventArgs e)

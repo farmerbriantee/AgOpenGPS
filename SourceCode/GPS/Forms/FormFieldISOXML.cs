@@ -16,7 +16,7 @@ namespace AgOpenGPS
     {
         //class variables
         private readonly FormGPS mf = null;
-        private double easting, norting, latK, lonK;
+        private double easting, norting,  lonK, latK;
 
         private XmlDocument iso;
 
@@ -196,10 +196,7 @@ namespace AgOpenGPS
             //PFD A = "Field ID" B = "Code" C = "Name" D = "Area sq m" E = "Customer Ref" F = "Farm Ref" >
             XmlNodeList fieldParts = pfd[idxFieldSelected].ChildNodes;
 
-            double counter = 0, 
-                lat = 0, lon = 0,
-                latK = lonK = 0;
-
+            double counter = 0;
             try
             {
                 //Find the PLN in the field
@@ -212,10 +209,11 @@ namespace AgOpenGPS
                 </ PLN >
                 */
 
+                double lat=0, lon=0;    
                 foreach (XmlNode nodePart in fieldParts)
                 {
                     //grab the polygons
-                    if (nodePart.Name == "PLN")
+                    if (nodePart.Name == "PLN" && nodePart.Attributes["A"].Value == "1")
                     {
 
                         foreach (XmlNode pnt in nodePart.ChildNodes[0].ChildNodes) //PNT

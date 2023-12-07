@@ -20,7 +20,6 @@ namespace AgOpenGPS
         public int idx;
 
         public List<vec3> desList = new List<vec3>();
-        public List<vec3> backupList = new List<vec3>();
 
         public CHeadLine(FormGPS _f)
         {

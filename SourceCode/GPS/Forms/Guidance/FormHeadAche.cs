@@ -136,13 +136,13 @@ namespace AgOpenGPS
             Point ptt = oglSelf.PointToClient(Cursor.Position);
 
             //Convert to Origin in the center of window, 800 pixels
-            fixPt.X = ptt.X - 350;
-            fixPt.Y = (700 - ptt.Y - 350);
+            fixPt.X = ptt.X - 500;
+            fixPt.Y = (1000 - ptt.Y - 500);
             vec3 plotPt = new vec3
             {
                 //convert screen coordinates to field coordinates
-                easting = fixPt.X * mf.maxFieldDistance / 632.0,
-                northing = fixPt.Y * mf.maxFieldDistance / 632.0,
+                easting = fixPt.X * mf.maxFieldDistance / 903.0,
+                northing = fixPt.Y * mf.maxFieldDistance / 903.0,
                 heading = 0
             };
 
@@ -569,7 +569,7 @@ namespace AgOpenGPS
             }
 
             GL.LineWidth(8);
-            GL.Color3(0.93f, 0.599f, 0.50f);
+            GL.Color3(0.93f, 0.899f, 0.50f);
             GL.Begin(PrimitiveType.LineStrip);
 
             for (int i = 0; i < mf.bnd.bndList[0].hdLine.Count; i++)
@@ -678,7 +678,6 @@ namespace AgOpenGPS
             start = 99999; end = 99999;
             isA = true;
             mf.hdl.desList?.Clear();
-            mf.hdl.backupList?.Clear();
             mf.bnd.bndList[0].hdLine?.Clear();
 
             //int ptCount = mf.bnd.bndList[0].fenceLine.Count;
