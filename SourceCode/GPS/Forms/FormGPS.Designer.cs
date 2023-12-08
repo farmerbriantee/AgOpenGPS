@@ -104,12 +104,12 @@
             this.btnGuidance = new System.Windows.Forms.Button();
             this.btnContour = new System.Windows.Forms.Button();
             this.btnAutoSteer = new System.Windows.Forms.Button();
-            this.btnAutoYouTurn = new System.Windows.Forms.Button();
+            this.btnAdjLines = new System.Windows.Forms.Button();
             this.btnSectionMasterAuto = new System.Windows.Forms.Button();
             this.btnSectionMasterManual = new System.Windows.Forms.Button();
+            this.btnAutoYouTurn = new System.Windows.Forms.Button();
             this.btnCycleLinesBk = new System.Windows.Forms.Button();
             this.btnCycleLines = new System.Windows.Forms.Button();
-            this.btnAdjLines = new System.Windows.Forms.Button();
             this.panelSim = new System.Windows.Forms.TableLayoutPanel();
             this.btnSimForward = new System.Windows.Forms.Button();
             this.btnSimSetSpeedToZero = new System.Windows.Forms.Button();
@@ -137,10 +137,10 @@
             this.btnHydLift = new System.Windows.Forms.Button();
             this.btnHeadlandOnOff = new System.Windows.Forms.Button();
             this.btnResetToolHeading = new System.Windows.Forms.Button();
-            this.btnYouSkipEnable = new System.Windows.Forms.Button();
-            this.btnFlag = new System.Windows.Forms.Button();
             this.btnChangeMappingColor = new System.Windows.Forms.Button();
             this.btnEditAB = new System.Windows.Forms.Button();
+            this.btnFlag = new System.Windows.Forms.Button();
+            this.btnYouSkipEnable = new System.Windows.Forms.Button();
             this.lblSpeed = new System.Windows.Forms.Label();
             this.lblInty = new System.Windows.Forms.Label();
             this.lblCurveLineName = new System.Windows.Forms.Label();
@@ -159,11 +159,11 @@
             this.btnTrackCreateEdit = new System.Windows.Forms.Button();
             this.btnABDraw = new System.Windows.Forms.Button();
             this.panelLineAdj = new System.Windows.Forms.TableLayoutPanel();
-            this.btnMoveLeft = new System.Windows.Forms.Button();
-            this.btnMoveRight = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.btnSnapToPivot = new System.Windows.Forms.Button();
             this.lblMoveOffset = new System.Windows.Forms.Label();
+            this.btnSnapToPivot = new System.Windows.Forms.Button();
+            this.btnMoveRight = new System.Windows.Forms.Button();
+            this.btnMoveLeft = new System.Windows.Forms.Button();
             this.btnMaximizeMainForm = new System.Windows.Forms.Button();
             this.pictureboxStart = new System.Windows.Forms.PictureBox();
             this.btnShutdown = new System.Windows.Forms.Button();
@@ -789,16 +789,16 @@
             this.btnAutoSteer.UseVisualStyleBackColor = false;
             this.btnAutoSteer.Click += new System.EventHandler(this.btnAutoSteer_Click);
             // 
-            // btnAutoYouTurn
+            // btnAdjLines
             // 
-            resources.ApplyResources(this.btnAutoYouTurn, "btnAutoYouTurn");
-            this.btnAutoYouTurn.BackColor = System.Drawing.Color.Transparent;
-            this.btnAutoYouTurn.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnAutoYouTurn.FlatAppearance.BorderSize = 0;
-            this.btnAutoYouTurn.Image = global::AgOpenGPS.Properties.Resources.YouTurnNo;
-            this.btnAutoYouTurn.Name = "btnAutoYouTurn";
-            this.btnAutoYouTurn.UseVisualStyleBackColor = false;
-            this.btnAutoYouTurn.Click += new System.EventHandler(this.btnAutoYouTurn_Click);
+            resources.ApplyResources(this.btnAdjLines, "btnAdjLines");
+            this.btnAdjLines.BackColor = System.Drawing.Color.Transparent;
+            this.btnAdjLines.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
+            this.btnAdjLines.FlatAppearance.BorderSize = 0;
+            this.btnAdjLines.Image = global::AgOpenGPS.Properties.Resources.SnapNudge;
+            this.btnAdjLines.Name = "btnAdjLines";
+            this.btnAdjLines.UseVisualStyleBackColor = false;
+            this.btnAdjLines.Click += new System.EventHandler(this.btnAdjLines_Click);
             // 
             // btnSectionMasterAuto
             // 
@@ -822,6 +822,17 @@
             this.btnSectionMasterManual.UseVisualStyleBackColor = false;
             this.btnSectionMasterManual.Click += new System.EventHandler(this.btnSectionMasterManual_Click);
             // 
+            // btnAutoYouTurn
+            // 
+            resources.ApplyResources(this.btnAutoYouTurn, "btnAutoYouTurn");
+            this.btnAutoYouTurn.BackColor = System.Drawing.Color.Transparent;
+            this.btnAutoYouTurn.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnAutoYouTurn.FlatAppearance.BorderSize = 0;
+            this.btnAutoYouTurn.Image = global::AgOpenGPS.Properties.Resources.YouTurnNo;
+            this.btnAutoYouTurn.Name = "btnAutoYouTurn";
+            this.btnAutoYouTurn.UseVisualStyleBackColor = false;
+            this.btnAutoYouTurn.Click += new System.EventHandler(this.btnAutoYouTurn_Click);
+            // 
             // btnCycleLinesBk
             // 
             resources.ApplyResources(this.btnCycleLinesBk, "btnCycleLinesBk");
@@ -843,17 +854,6 @@
             this.btnCycleLines.Name = "btnCycleLines";
             this.btnCycleLines.UseVisualStyleBackColor = false;
             this.btnCycleLines.Click += new System.EventHandler(this.btnCycleLines_Click);
-            // 
-            // btnAdjLines
-            // 
-            resources.ApplyResources(this.btnAdjLines, "btnAdjLines");
-            this.btnAdjLines.BackColor = System.Drawing.Color.Transparent;
-            this.btnAdjLines.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
-            this.btnAdjLines.FlatAppearance.BorderSize = 0;
-            this.btnAdjLines.Image = global::AgOpenGPS.Properties.Resources.SnapNudge;
-            this.btnAdjLines.Name = "btnAdjLines";
-            this.btnAdjLines.UseVisualStyleBackColor = false;
-            this.btnAdjLines.Click += new System.EventHandler(this.btnAdjLines_Click);
             // 
             // panelSim
             // 
@@ -1143,29 +1143,6 @@
             this.btnResetToolHeading.UseVisualStyleBackColor = false;
             this.btnResetToolHeading.Click += new System.EventHandler(this.btnResetToolHeading_Click);
             // 
-            // btnYouSkipEnable
-            // 
-            resources.ApplyResources(this.btnYouSkipEnable, "btnYouSkipEnable");
-            this.btnYouSkipEnable.BackColor = System.Drawing.Color.Transparent;
-            this.btnYouSkipEnable.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnYouSkipEnable.FlatAppearance.BorderSize = 0;
-            this.btnYouSkipEnable.Image = global::AgOpenGPS.Properties.Resources.YouSkipOff;
-            this.btnYouSkipEnable.Name = "btnYouSkipEnable";
-            this.btnYouSkipEnable.UseVisualStyleBackColor = false;
-            this.btnYouSkipEnable.Click += new System.EventHandler(this.btnYouSkipEnable_Click);
-            // 
-            // btnFlag
-            // 
-            resources.ApplyResources(this.btnFlag, "btnFlag");
-            this.btnFlag.BackColor = System.Drawing.Color.Transparent;
-            this.btnFlag.ContextMenuStrip = this.contextMenuStripFlag;
-            this.btnFlag.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnFlag.FlatAppearance.BorderSize = 0;
-            this.btnFlag.Image = global::AgOpenGPS.Properties.Resources.FlagRed;
-            this.btnFlag.Name = "btnFlag";
-            this.btnFlag.UseVisualStyleBackColor = false;
-            this.btnFlag.Click += new System.EventHandler(this.btnFlag_Click);
-            // 
             // btnChangeMappingColor
             // 
             resources.ApplyResources(this.btnChangeMappingColor, "btnChangeMappingColor");
@@ -1187,6 +1164,29 @@
             this.btnEditAB.Name = "btnEditAB";
             this.btnEditAB.UseVisualStyleBackColor = false;
             this.btnEditAB.Click += new System.EventHandler(this.btnEditAB_Click);
+            // 
+            // btnFlag
+            // 
+            resources.ApplyResources(this.btnFlag, "btnFlag");
+            this.btnFlag.BackColor = System.Drawing.Color.Transparent;
+            this.btnFlag.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnFlag.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnFlag.FlatAppearance.BorderSize = 0;
+            this.btnFlag.Image = global::AgOpenGPS.Properties.Resources.FlagRed;
+            this.btnFlag.Name = "btnFlag";
+            this.btnFlag.UseVisualStyleBackColor = false;
+            this.btnFlag.Click += new System.EventHandler(this.btnFlag_Click);
+            // 
+            // btnYouSkipEnable
+            // 
+            resources.ApplyResources(this.btnYouSkipEnable, "btnYouSkipEnable");
+            this.btnYouSkipEnable.BackColor = System.Drawing.Color.Transparent;
+            this.btnYouSkipEnable.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnYouSkipEnable.FlatAppearance.BorderSize = 0;
+            this.btnYouSkipEnable.Image = global::AgOpenGPS.Properties.Resources.YouSkipOff;
+            this.btnYouSkipEnable.Name = "btnYouSkipEnable";
+            this.btnYouSkipEnable.UseVisualStyleBackColor = false;
+            this.btnYouSkipEnable.Click += new System.EventHandler(this.btnYouSkipEnable_Click);
             // 
             // lblSpeed
             // 
@@ -1338,34 +1338,10 @@
             this.panelLineAdj.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.panelLineAdj.Controls.Add(this.button1, 0, 1);
             this.panelLineAdj.Controls.Add(this.lblMoveOffset, 0, 4);
-            this.panelLineAdj.Controls.Add(this.btnSnapToPivot, 1, 1);
-            this.panelLineAdj.Controls.Add(this.btnCycleLinesBk, 1, 2);
-            this.panelLineAdj.Controls.Add(this.btnCycleLines, 0, 2);
             this.panelLineAdj.Controls.Add(this.btnMoveRight, 1, 5);
             this.panelLineAdj.Controls.Add(this.btnMoveLeft, 0, 5);
+            this.panelLineAdj.Controls.Add(this.btnSnapToPivot, 1, 1);
             this.panelLineAdj.Name = "panelLineAdj";
-            // 
-            // btnMoveLeft
-            // 
-            resources.ApplyResources(this.btnMoveLeft, "btnMoveLeft");
-            this.btnMoveLeft.BackColor = System.Drawing.Color.Transparent;
-            this.btnMoveLeft.BackgroundImage = global::AgOpenGPS.Properties.Resources.SnapLeft;
-            this.btnMoveLeft.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
-            this.btnMoveLeft.FlatAppearance.BorderSize = 0;
-            this.btnMoveLeft.Name = "btnMoveLeft";
-            this.btnMoveLeft.UseVisualStyleBackColor = false;
-            this.btnMoveLeft.Click += new System.EventHandler(this.btnMoveLeft_Click);
-            // 
-            // btnMoveRight
-            // 
-            resources.ApplyResources(this.btnMoveRight, "btnMoveRight");
-            this.btnMoveRight.BackColor = System.Drawing.Color.Transparent;
-            this.btnMoveRight.BackgroundImage = global::AgOpenGPS.Properties.Resources.SnapRight;
-            this.btnMoveRight.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
-            this.btnMoveRight.FlatAppearance.BorderSize = 0;
-            this.btnMoveRight.Name = "btnMoveRight";
-            this.btnMoveRight.UseVisualStyleBackColor = false;
-            this.btnMoveRight.Click += new System.EventHandler(this.btnMoveRight_Click);
             // 
             // button1
             // 
@@ -1377,6 +1353,13 @@
             this.button1.Name = "button1";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.btnZeroMoveDistance_Click);
+            // 
+            // lblMoveOffset
+            // 
+            resources.ApplyResources(this.lblMoveOffset, "lblMoveOffset");
+            this.panelLineAdj.SetColumnSpan(this.lblMoveOffset, 2);
+            this.lblMoveOffset.ForeColor = System.Drawing.Color.Black;
+            this.lblMoveOffset.Name = "lblMoveOffset";
             // 
             // btnSnapToPivot
             // 
@@ -1390,12 +1373,27 @@
             this.btnSnapToPivot.UseVisualStyleBackColor = false;
             this.btnSnapToPivot.Click += new System.EventHandler(this.btnSnapToPivot_Click);
             // 
-            // lblMoveOffset
+            // btnMoveRight
             // 
-            resources.ApplyResources(this.lblMoveOffset, "lblMoveOffset");
-            this.panelLineAdj.SetColumnSpan(this.lblMoveOffset, 2);
-            this.lblMoveOffset.ForeColor = System.Drawing.Color.Black;
-            this.lblMoveOffset.Name = "lblMoveOffset";
+            resources.ApplyResources(this.btnMoveRight, "btnMoveRight");
+            this.btnMoveRight.BackColor = System.Drawing.Color.Transparent;
+            this.btnMoveRight.BackgroundImage = global::AgOpenGPS.Properties.Resources.SnapRight;
+            this.btnMoveRight.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
+            this.btnMoveRight.FlatAppearance.BorderSize = 0;
+            this.btnMoveRight.Name = "btnMoveRight";
+            this.btnMoveRight.UseVisualStyleBackColor = false;
+            this.btnMoveRight.Click += new System.EventHandler(this.btnMoveRight_Click);
+            // 
+            // btnMoveLeft
+            // 
+            resources.ApplyResources(this.btnMoveLeft, "btnMoveLeft");
+            this.btnMoveLeft.BackColor = System.Drawing.Color.Transparent;
+            this.btnMoveLeft.BackgroundImage = global::AgOpenGPS.Properties.Resources.SnapLeft;
+            this.btnMoveLeft.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
+            this.btnMoveLeft.FlatAppearance.BorderSize = 0;
+            this.btnMoveLeft.Name = "btnMoveLeft";
+            this.btnMoveLeft.UseVisualStyleBackColor = false;
+            this.btnMoveLeft.Click += new System.EventHandler(this.btnMoveLeft_Click);
             // 
             // btnMaximizeMainForm
             // 
@@ -1508,6 +1506,8 @@
             this.Controls.Add(this.btnAutoSteerConfig);
             this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.btnFieldMenu);
+            this.Controls.Add(this.btnCycleLinesBk);
+            this.Controls.Add(this.btnCycleLines);
             this.Controls.Add(this.panelRight);
             this.Controls.Add(this.tlpTrackMethods);
             this.Controls.Add(this.panelLineAdj);

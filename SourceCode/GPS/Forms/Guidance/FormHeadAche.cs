@@ -47,6 +47,8 @@ namespace AgOpenGPS
 
             label3.Text = mf.unitsFtM;
             lblToolWidth.Text = ((mf.tool.width - mf.tool.overlap) * mf.m2FtOrM).ToString("N1") + " " + mf.unitsFtM;
+
+            mf.bnd.bndList[0].hdLine?.Clear();
         }
 
         private void FormHeadLine_FormClosing(object sender, FormClosingEventArgs e)
@@ -136,13 +138,13 @@ namespace AgOpenGPS
             Point ptt = oglSelf.PointToClient(Cursor.Position);
 
             //Convert to Origin in the center of window, 800 pixels
-            fixPt.X = ptt.X - 500;
-            fixPt.Y = (1000 - ptt.Y - 500);
+            fixPt.X = ptt.X - 350;
+            fixPt.Y = (700 - ptt.Y - 350);
             vec3 plotPt = new vec3
             {
                 //convert screen coordinates to field coordinates
-                easting = fixPt.X * mf.maxFieldDistance / 903.0,
-                northing = fixPt.Y * mf.maxFieldDistance / 903.0,
+                easting = fixPt.X * mf.maxFieldDistance / 632.0,
+                northing = fixPt.Y * mf.maxFieldDistance / 632.0,
                 heading = 0
             };
 

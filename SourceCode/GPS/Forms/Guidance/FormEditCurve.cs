@@ -23,7 +23,7 @@ namespace AgOpenGPS
 
         private void FormEditAB_Load(object sender, EventArgs e)
         {
-            label1.Text = mf.unitsInCm;
+            //label1.Text = mf.unitsInCm;
 
             if (mf.isMetric)
             {
