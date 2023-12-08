@@ -517,7 +517,7 @@ namespace AgOpenGPS
 
                 if (manualBtnState == btnStates.On)
                 {
-                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Auto Section Control");
+                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Manual Section Control");
                     return;
                 }
             }
