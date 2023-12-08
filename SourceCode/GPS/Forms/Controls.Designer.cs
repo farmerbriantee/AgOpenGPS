@@ -4,6 +4,7 @@ using System;
 using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using AgOpenGPS.Forms;
 using AgOpenGPS.Forms.Pickers;
@@ -499,6 +500,13 @@ namespace AgOpenGPS
                 return;
             }
 
+            if (this.OwnedForms.Any())
+            {
+                TimedMessageBox(2000, gStr.gsWindowsStillOpen, gStr.gsCloseAllWindowsFirst);
+                return;
+            }
+
+
             if (isJobStarted)
             {
                 if (autoBtnState == btnStates.Auto)
@@ -593,6 +601,12 @@ namespace AgOpenGPS
 
         public void FileSaveEverythingBeforeClosingField()
         {
+            if (this.OwnedForms.Any())
+            {
+                TimedMessageBox(2000, gStr.gsWindowsStillOpen, gStr.gsCloseAllWindowsFirst);
+                return;
+            }
+
             //turn off contour line if on
             if (ct.isContourOn) ct.StopContourLine();
 

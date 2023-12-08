@@ -177,6 +177,9 @@
   <data name="gsClose" xml:space="preserve">
     <value>Chiudere</value>
   </data>
+  <data name="gsCloseAllWindowsFirst" xml:space="preserve">
+    <value>Chiudi prima tutte le finestre</value>
+  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Prima Chiudere Il Campo!</value>
   </data>
@@ -491,5 +494,8 @@
   </data>
   <data name="gsWest" xml:space="preserve">
     <value>Ovest</value>
+  </data>
+  <data name="gsWindowsStillOpen" xml:space="preserve">
+    <value>Windows ancora aperto</value>
   </data>
 </root>

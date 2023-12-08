@@ -180,6 +180,9 @@
   <data name="gsClose" xml:space="preserve">
     <value>Sluiten</value>
   </data>
+  <data name="gsCloseAllWindowsFirst" xml:space="preserve">
+    <value>Sluit eerst alle vensters</value>
+  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Sluit eerst perceel</value>
   </data>
@@ -524,6 +527,9 @@
   </data>
   <data name="gsUseSelected" xml:space="preserve">
     <value>gebruik geselecteerde</value>
+  </data>
+  <data name="gsWindowsStillOpen" xml:space="preserve">
+    <value>Ramen nog open</value>
   </data>
   <data name="gsXTEChart" xml:space="preserve">
     <value>XTE Grafiek</value>

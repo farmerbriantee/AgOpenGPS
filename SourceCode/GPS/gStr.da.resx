@@ -177,6 +177,9 @@
   <data name="gsClose" xml:space="preserve">
     <value>Lukke</value>
   </data>
+  <data name="gsCloseAllWindowsFirst" xml:space="preserve">
+    <value>Luk alle vinduer først</value>
+  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Luk Mark Først</value>
   </data>
@@ -491,5 +494,8 @@
   </data>
   <data name="gsWest" xml:space="preserve">
     <value>Vest</value>
+  </data>
+  <data name="gsWindowsStillOpen" xml:space="preserve">
+    <value>Windows stadig åben</value>
   </data>
 </root>

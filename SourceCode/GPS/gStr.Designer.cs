@@ -250,6 +250,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close All Windows First.
+        /// </summary>
+        public static string gsCloseAllWindowsFirst {
+            get {
+                return ResourceManager.GetString("gsCloseAllWindowsFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close Field First.
         /// </summary>
         public static string gsCloseFieldFirst {
@@ -1326,6 +1335,15 @@ namespace AgOpenGPS {
         public static string gsWest {
             get {
                 return ResourceManager.GetString("gsWest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Still Open.
+        /// </summary>
+        public static string gsWindowsStillOpen {
+            get {
+                return ResourceManager.GetString("gsWindowsStillOpen", resourceCulture);
             }
         }
         

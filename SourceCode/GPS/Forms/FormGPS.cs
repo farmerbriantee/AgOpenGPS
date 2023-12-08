@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Media;
 using System.Net.Sockets;
 using System.Reflection;
@@ -550,6 +551,13 @@ namespace AgOpenGPS
 
         private void FormGPS_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (this.OwnedForms.Any())
+            {
+                TimedMessageBox(2000, gStr.gsWindowsStillOpen, gStr.gsCloseAllWindowsFirst);
+                e.Cancel = true;
+                return;
+            }
+
             if (isJobStarted)
             {
                 if (autoBtnState == btnStates.Auto)

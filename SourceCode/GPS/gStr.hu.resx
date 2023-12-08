@@ -180,6 +180,9 @@
   <data name="gsClose" xml:space="preserve">
     <value>Becsuk</value>
   </data>
+  <data name="gsCloseAllWindowsFirst" xml:space="preserve">
+    <value>Először zárja be az összes ablakot</value>
+  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Zárd be a területet először</value>
   </data>
@@ -534,6 +537,9 @@
   </data>
   <data name="gsWest" xml:space="preserve">
     <value>Nyugat</value>
+  </data>
+  <data name="gsWindowsStillOpen" xml:space="preserve">
+    <value>A Windows továbbra is nyitva van</value>
   </data>
   <data name="gsWizards" xml:space="preserve">
     <value>Varázslók</value>

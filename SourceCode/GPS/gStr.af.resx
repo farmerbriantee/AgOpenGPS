@@ -180,6 +180,9 @@
   <data name="gsClose" xml:space="preserve">
     <value>ZClose</value>
   </data>
+  <data name="gsCloseAllWindowsFirst" xml:space="preserve">
+    <value>zClose All Windows First</value>
+  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>zClose Field First</value>
   </data>
@@ -539,6 +542,9 @@
   </data>
   <data name="gsWest" xml:space="preserve">
     <value>zWest</value>
+  </data>
+  <data name="gsWindowsStillOpen" xml:space="preserve">
+    <value>zWindows Still Open</value>
   </data>
   <data name="gsWizards" xml:space="preserve">
     <value>zWizards</value>

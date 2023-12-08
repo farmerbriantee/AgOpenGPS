@@ -180,6 +180,9 @@
   <data name="gsClose" xml:space="preserve">
     <value>Verschließen</value>
   </data>
+  <data name="gsCloseAllWindowsFirst" xml:space="preserve">
+    <value>Schließen Sie zunächst alle Fenster</value>
+  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Feld vorher schließen</value>
   </data>
@@ -530,6 +533,9 @@
   </data>
   <data name="gsWest" xml:space="preserve">
     <value>Westen</value>
+  </data>
+  <data name="gsWindowsStillOpen" xml:space="preserve">
+    <value>Windows ist immer noch geöffnet</value>
   </data>
   <data name="gsXTEChart" xml:space="preserve">
     <value>Abweichung von der Linie (XTE)</value>
