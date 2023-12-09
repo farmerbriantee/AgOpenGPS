@@ -32,8 +32,8 @@ namespace AgOpenGPS
 
             if (ct.isContourBtnOn)
             {
-                btnCycleLines.Image = Properties.Resources.ColorLocked;
-                btnCycleLinesBk.Visible = false;
+                //btnCycleLines.Image = Properties.Resources.ColorLocked;
+                //btnCycleLinesBk.Visible = false;
                 DisableYouTurnButtons();
                 guidanceLookAheadTime = 0.5;
             }
@@ -47,8 +47,8 @@ namespace AgOpenGPS
                     trk.isTrackValid = false;
                 }
 
-                btnCycleLines.Image = Properties.Resources.ABLineCycle;
-                btnCycleLinesBk.Visible = true;
+                //btnCycleLines.Image = Properties.Resources.ABLineCycle;
+                //btnCycleLinesBk.Visible = true;
                 guidanceLookAheadTime = Properties.Settings.Default.setAS_guidanceLookAheadTime;
             }
         }
@@ -136,15 +136,11 @@ namespace AgOpenGPS
             {
                 btnAutoTrack.BackColor = Color.LightSalmon;
                 btnGuidance.BackColor = Color.Transparent;
-                btnCycleLines.Enabled = true;
-                btnCycleLinesBk.Enabled = true;
             }
             else
             {
                 btnAutoTrack.BackColor = Color.LightGreen;
                 btnGuidance.BackColor = Color.LightGreen;
-                btnCycleLines.Enabled = false;
-                btnCycleLinesBk.Enabled = false;
             }
 
             if (tlpTrackMethods.Visible)
@@ -275,200 +271,72 @@ namespace AgOpenGPS
                 p_239.pgn[p_239.uturn] = 0;
             }
         }
-        private void btnCycleLines_Click(object sender, EventArgs e)
-        {
-            if (isTT)
-            {
-                if (!ct.isContourBtnOn)
-                    MessageBox.Show(gStr.h_btnCycleLines, gStr.gsHelp);
-                else
-                    MessageBox.Show(gStr.h_btnLockToContour, gStr.gsHelp);
 
-                ResetHelpBtn();
-                return;
-            }
-            
-            if (ct.isContourBtnOn)
-            {
-                ct.SetLockToLine();
-                return;
-            }
+        //public bool isPanelLineAdjShow = false;
+        //private void timerLineAdj_Tick(object sender, EventArgs e)
+        //{
+        //    if (isPanelLineAdjShow)
+        //    {
+        //        panelLineAdj.Visible = true;
+        //        panelLineAdj.Top = 125;
+        //        panelLineAdj.Left -= 20;
+        //        linePanelCounter = 2;
+        //        if (panelLineAdj.Left < this.Width - 240) timerLineAdj.Enabled = false;
+        //    }
+        //    else
+        //    {
+        //        panelLineAdj.Top = 125;
+        //        panelLineAdj.Left += 20;
+        //        linePanelCounter = 2;
+        //        if (panelLineAdj.Left > this.Width - 100)
+        //        {
+        //            timerLineAdj.Enabled = false;
+        //            panelLineAdj.Visible = false;
+        //        }
+        //    }
+        //}
 
-            if (trk.tracksArr.Count == 0) return; 
-
-            //reset to generate new reference
-            trk.isTrackValid = false;
-
-            if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
-
-            if (trk.isBtnTrackOn && trk.tracksArr.Count > 0)
-            {
-                bool isVis = false;
-
-                //make sure one is visible
-                for (int i = 0; i < trk.tracksArr.Count; i++)
-                {
-                    if (trk.tracksArr[i].isVisible)
-                    {
-                        isVis = true;
-                        break;
-                    }
-                }
-
-                if (!isVis) return;
-
-                while (isVis)
-                {
-                    trk.idx++;
-
-                    if (trk.idx > (trk.tracksArr.Count-1)) trk.idx = 0;
-
-                    if (trk.tracksArr[trk.idx].isVisible) break;
-                }
-
-                yt.ResetYouTurn();
-            }
-        }
-        private void btnCycleLinesBk_Click(object sender, EventArgs e)
-        {
-            if (isTT)
-            {
-                if (!ct.isContourBtnOn)
-                    MessageBox.Show(gStr.h_btnCycleLines, gStr.gsHelp);
-                else
-                    MessageBox.Show(gStr.h_btnLockToContour, gStr.gsHelp);
-
-                ResetHelpBtn();
-                return;
-            }
-
-            if (ct.isContourBtnOn)
-            {
-                ct.SetLockToLine();
-                return;
-            }
-
-            if (trk.idx == -1) return;
-
-            //reset to generate new reference
-            trk.isTrackValid = false;
-
-            if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
-
-            if (trk.isBtnTrackOn && trk.tracksArr.Count > 0)
-            {
-                bool isVis = false;
-
-                //make sure one is visible
-                for (int i = 0; i < trk.tracksArr.Count; i++)
-                {
-                    if (trk.tracksArr[i].isVisible)
-                    {
-                        isVis = true;
-                        break;
-                    }
-                }
-
-                if (!isVis) return;
-
-                while (isVis)
-                {
-                    trk.idx--;
-
-                    if (trk.idx < 0 ) trk.idx = trk.tracksArr.Count-1;
-
-                    if (trk.tracksArr[trk.idx].isVisible) break;
-                }
-
-                yt.ResetYouTurn();
-            }
-        }
-
-        public bool isPanelLineAdjShow = false;
-        private void timerLineAdj_Tick(object sender, EventArgs e)
-        {
-            if (isPanelLineAdjShow)
-            {
-                panelLineAdj.Visible = true;
-                panelLineAdj.Top = 125;
-                panelLineAdj.Left -= 20;
-                linePanelCounter = 2;
-                if (panelLineAdj.Left < this.Width - 240) timerLineAdj.Enabled = false;
-            }
-            else
-            {
-                panelLineAdj.Top = 125;
-                panelLineAdj.Left += 20;
-                linePanelCounter = 2;
-                if (panelLineAdj.Left > this.Width - 100)
-                {
-                    timerLineAdj.Enabled = false;
-                    panelLineAdj.Visible = false;
-                }
-            }
-        }
-
-        private void btnAdjLines_Click(object sender, EventArgs e)
-        {
-            if (trk.idx == -1) return;
-
-            isPanelLineAdjShow = !isPanelLineAdjShow;
-
-            if (isPanelLineAdjShow) panelLineAdj.Left = this.Width - 100;
-            else panelLineAdj.Left = this.Width - 240;
-
-            FileSaveTracks();
-
-            timerLineAdj.Enabled = true;
-
-            UpdateMoveDistance();   
-        }
-
-        private void UpdateMoveDistance()
-        {
-            lblMoveOffset.Text = trk.tracksArr[trk.idx].moveDistance.ToString("N2");
-        }
         //Snaps
-        private void btnSnapToPivot_Click(object sender, EventArgs e)
-        {
-            if (isTT)
-            {
-                MessageBox.Show(gStr.h_btnSnapToPivot, gStr.gsHelp);
-                ResetHelpBtn();
-                return;
-            }
+        //private void btnSnapToPivot_Click(object sender, EventArgs e)
+        //{
+        //    if (isTT)
+        //    {
+        //        MessageBox.Show(gStr.h_btnSnapToPivot, gStr.gsHelp);
+        //        ResetHelpBtn();
+        //        return;
+        //    }
 
-            if (trk.isBtnTrackOn)
-            {
-                trk.MoveABCurve(trk.distanceFromCurrentLinePivot);
-                linePanelCounter = 2;
-                UpdateMoveDistance();
-            }
-            else
-            {
-                var form = new FormTimedMessage(2000, (gStr.gsNoGuidanceLines), (gStr.gsTurnOnContourOrMakeABLine));
-                form.Show(this);
-            }
-        }
-        private void btnZeroMoveDistance_Click(object sender, EventArgs e)
-        {
-            trk.RemoveMoveDistance();
-            linePanelCounter = 3;
-            UpdateMoveDistance();
-        }
-        private void btnMoveLeft_Click(object sender, EventArgs e)
-        {
-            trk.MoveABCurve(-0.1);
-            linePanelCounter = 3;
-            UpdateMoveDistance();
-        }
+        //    if (trk.isBtnTrackOn)
+        //    {
+        //        trk.MoveABCurve(trk.distanceFromCurrentLinePivot);
+        //        linePanelCounter = 2;
+        //        UpdateMoveDistance();
+        //    }
+        //    else
+        //    {
+        //        var form = new FormTimedMessage(2000, (gStr.gsNoGuidanceLines), (gStr.gsTurnOnContourOrMakeABLine));
+        //        form.Show(this);
+        //    }
+        //}
+        //private void btnZeroMoveDistance_Click(object sender, EventArgs e)
+        //{
+        //    trk.RemoveMoveDistance();
+        //    linePanelCounter = 3;
+        //    UpdateMoveDistance();
+        //}
+        //private void btnMoveLeft_Click(object sender, EventArgs e)
+        //{
+        //    trk.MoveABCurve(-0.1);
+        //    linePanelCounter = 3;
+        //    UpdateMoveDistance();
+        //}
 
-        private void btnMoveRight_Click(object sender, EventArgs e)
-        {
-            trk.MoveABCurve(0.1);
-            linePanelCounter = 3;
-            UpdateMoveDistance();
-        }
+        //private void btnMoveRight_Click(object sender, EventArgs e)
+        //{
+        //    trk.MoveABCurve(0.1);
+        //    linePanelCounter = 3;
+        //    UpdateMoveDistance();
+        //}
         #endregion
 
         #region Left Panel Menu
@@ -1116,22 +984,22 @@ namespace AgOpenGPS
 
         #region Bottom Menu
 
-         private void btnStanleyPure_Click(object sender, EventArgs e)
-        {
-            isStanleyUsed = !isStanleyUsed;
+        // private void btnStanleyPure_Click(object sender, EventArgs e)
+        //{
+        //    isStanleyUsed = !isStanleyUsed;
 
-            if (isStanleyUsed)
-            {
-                //btnStanleyPure.Image = Resources.ModeStanley;
-            }
-            else
-            {
-                //btnStanleyPure.Image = Resources.ModePurePursuit;
-            }
+        //    if (isStanleyUsed)
+        //    {
+        //        //btnStanleyPure.Image = Resources.ModeStanley;
+        //    }
+        //    else
+        //    {
+        //        //btnStanleyPure.Image = Resources.ModePurePursuit;
+        //    }
 
-            Properties.Settings.Default.setVehicle_isStanleyUsed = isStanleyUsed;
-            Properties.Settings.Default.Save();
-        }
+        //    Properties.Settings.Default.setVehicle_isStanleyUsed = isStanleyUsed;
+        //    Properties.Settings.Default.Save();
+        //}
 
         private void btnResetToolHeading_Click(object sender, EventArgs e)
         {
@@ -1422,7 +1290,8 @@ namespace AgOpenGPS
                 else TimedMessageBox(2000, gStr.gsCurveNotOn, gStr.gsTurnABCurveOn);
             }
         }
-         private void deleteContourPathsToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void deleteContourPathsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //FileCreateContour();
             ct.stripList?.Clear();

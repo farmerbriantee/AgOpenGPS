@@ -813,14 +813,8 @@ namespace AgOpenGPS
             btnZone7.Enabled = true;
             btnZone8.Enabled = true;
 
-
             btnContour.Enabled = true;
             btnGuidance.Enabled = true;
-            btnCycleLines.Image = Properties.Resources.ABLineCycle;
-            btnCycleLines.Enabled = true;
-            btnCycleLinesBk.Image = Properties.Resources.ABLineCycleBk;
-            btnCycleLinesBk.Enabled = true;
-
             btnAutoSteer.Enabled = true;
 
             DisableYouTurnButtons();
@@ -994,16 +988,10 @@ namespace AgOpenGPS
             //clear out contour and Lists
             btnContour.Enabled = false;
             //btnContourPriority.Enabled = false;
-            btnSnapToPivot.Image = Properties.Resources.SnapToPivot;
             ct.ResetContour();
             ct.isContourBtnOn = false;
             btnContour.Image = Properties.Resources.ContourOff;
             ct.isContourOn = false;
-
-            btnCycleLines.Image = Properties.Resources.ABLineCycle;
-            btnCycleLines.Enabled = false;
-            btnCycleLinesBk.Image = Properties.Resources.ABLineCycleBk;
-            btnCycleLinesBk.Enabled = false;
 
             //AutoSteer
             btnAutoSteer.Enabled = false;

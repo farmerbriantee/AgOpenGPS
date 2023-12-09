@@ -8,7 +8,6 @@ namespace AgOpenGPS
         private readonly FormGPS mf = null;
 
         private double snapAdj = 0;
-        private bool isClosing;
 
         public FormEditCurve(Form callingForm)
         {
@@ -23,20 +22,11 @@ namespace AgOpenGPS
 
         private void FormEditAB_Load(object sender, EventArgs e)
         {
-            //label1.Text = mf.unitsInCm;
+            nudSnapDistance.DecimalPlaces = 0;
+            nudSnapDistance.Value = (int)((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn);
 
-            if (mf.isMetric)
-            {
-                nudSnapDistance.DecimalPlaces = 0;
-                nudSnapDistance.Value = (int)((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn);
-            }
-            else
-            {
-                nudSnapDistance.DecimalPlaces = 1;
-                nudSnapDistance.Value = (decimal)Math.Round(((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn), 1);
-            }
-
-            snapAdj = Properties.Settings.Default.setAS_snapDistance;
+            snapAdj = Properties.Settings.Default.setAS_snapDistance * mf.inchOrCm2m;
+            UpdateMoveLabel();
 
             //Location = Properties.Settings.Default.setWindow_curveEditLocation;
         }
@@ -45,23 +35,24 @@ namespace AgOpenGPS
         {
             mf.KeypadToNUD((NumericUpDown)sender, this);
             snapAdj = (double)nudSnapDistance.Value * mf.inchOrCm2m;
-            Properties.Settings.Default.setAS_snapDistance = snapAdj;
+            Properties.Settings.Default.setAS_snapDistance = (double)nudSnapDistance.Value;
             Properties.Settings.Default.Save();
         }
 
         private void btnAdjRight_Click(object sender, EventArgs e)
         {
             mf.trk.MoveABCurve(snapAdj);
+            UpdateMoveLabel();
         }
 
         private void btnAdjLeft_Click(object sender, EventArgs e)
         {
             mf.trk.MoveABCurve(-snapAdj);
+            UpdateMoveLabel();
         }
 
         private void bntOk_Click(object sender, EventArgs e)
         {
-            isClosing = true;
             if (mf.trk.idx != -1 && mf.trk.tracksArr[mf.trk.idx].trackPts.Count > 0)
             {
                 //save entire list
@@ -103,16 +94,17 @@ namespace AgOpenGPS
         private void btnSnapToPivot_Click(object sender, EventArgs e)
         {
             if (mf.trk.isBtnTrackOn)
-                mf.trk.MoveABCurve(mf.isStanleyUsed ? mf.gyd.distanceFromCurrentLinePivot : mf.trk.distanceFromCurrentLinePivot);
+                mf.trk.MoveABCurve(mf.trk.distanceFromCurrentLinePivot);
+            UpdateMoveLabel();
         }
 
         private void FormEditCurve_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!isClosing)
-            {
-                e.Cancel = true;
-                return;
-            }
+            //if (!isClosing)
+            //{
+            //    e.Cancel = true;
+            //    return;
+            //}
         }
 
         private void btnOK_HelpRequested(object sender, HelpEventArgs hlpevent)
@@ -125,5 +117,107 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.h_btnSnapToPivot, gStr.gsHelp);
         }
 
+        private void btnCycleLines_Click(object sender, EventArgs e)
+        {
+
+            if (mf.ct.isContourBtnOn)
+            {
+                mf.ct.SetLockToLine();
+                return;
+            }
+
+            if (mf.trk.tracksArr.Count == 0) return;
+
+            //reset to generate new reference
+            mf.trk.isTrackValid = false;
+
+            if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+
+            if (mf.trk.isBtnTrackOn && mf.trk.tracksArr.Count > 0)
+            {
+                bool isVis = false;
+
+                //make sure one is visible
+                for (int i = 0; i < mf.trk.tracksArr.Count; i++)
+                {
+                    if (mf.trk.tracksArr[i].isVisible)
+                    {
+                        isVis = true;
+                        break;
+                    }
+                }
+
+                if (!isVis) return;
+
+                while (isVis)
+                {
+                    mf.trk.idx++;
+
+                    if (mf.trk.idx > (mf.trk.tracksArr.Count - 1)) mf.trk.idx = 0;
+
+                    if (mf.trk.tracksArr[mf.trk.idx].isVisible) break;
+                }
+
+                mf.yt.ResetYouTurn();
+                UpdateMoveLabel();
+            }
+        }
+
+        private void btnCycleLinesBk_Click(object sender, EventArgs e)
+        {
+            if (mf.ct.isContourBtnOn)
+            {
+                mf.ct.SetLockToLine();
+                return;
+            }
+
+            if (mf.trk.idx == -1) return;
+
+            //reset to generate new reference
+            mf.trk.isTrackValid = false;
+
+            if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+
+            if (mf.trk.isBtnTrackOn && mf.trk.tracksArr.Count > 0)
+            {
+                bool isVis = false;
+
+                //make sure one is visible
+                for (int i = 0; i < mf.trk.tracksArr.Count; i++)
+                {
+                    if (mf.trk.tracksArr[i].isVisible)
+                    {
+                        isVis = true;
+                        break;
+                    }
+                }
+
+                if (!isVis) return;
+
+                while (isVis)
+                {
+                    mf.trk.idx--;
+
+                    if (mf.trk.idx < 0) mf.trk.idx = mf.trk.tracksArr.Count - 1;
+
+                    if (mf.trk.tracksArr[mf.trk.idx].isVisible) break;
+                }
+                UpdateMoveLabel();
+
+
+                mf.yt.ResetYouTurn();
+            }
+        }
+
+        private void btnZeroMove_Click(object sender, EventArgs e)
+        {
+            mf.trk.RemoveMoveDistance();
+            UpdateMoveLabel();
+        }
+
+        private void UpdateMoveLabel()
+        {
+            lblMoveDistance.Text = ((int)(mf.trk.tracksArr[mf.trk.idx].moveDistance * mf.m2InchOrCm)).ToString();
+        }
     }
 }

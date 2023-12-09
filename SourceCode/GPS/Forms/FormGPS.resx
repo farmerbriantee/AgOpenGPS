@@ -162,53 +162,11 @@
   <data name="menuStrip1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 22pt</value>
   </data>
-  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="menuStrip1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 52</value>
-  </data>
-  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>49</value>
-  </data>
-  <data name="menuStrip1.Text" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
-    <value>40</value>
-  </data>
   <data name="fileToolStripMenuItem.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="fileToolStripMenuItem.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="fileToolStripMenuItem.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 64</value>
-  </data>
   <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
     <value>316, 6</value>
-  </data>
-  <data name="menustripLanguage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>319, 40</value>
-  </data>
-  <data name="menustripLanguage.Text" xml:space="preserve">
-    <value>Language</value>
   </data>
   <data name="menuLanguageDanish.Size" type="System.Drawing.Size, System.Drawing">
     <value>389, 40</value>
@@ -312,6 +270,12 @@
   <data name="menuLanguageTest.Text" xml:space="preserve">
     <value>Test</value>
   </data>
+  <data name="menustripLanguage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 40</value>
+  </data>
+  <data name="menustripLanguage.Text" xml:space="preserve">
+    <value>Language</value>
+  </data>
   <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
     <value>316, 6</value>
   </data>
@@ -363,17 +327,17 @@
   <data name="simulatorOnToolStripMenuItem.Text" xml:space="preserve">
     <value>Simulator On</value>
   </data>
-  <data name="resetALLToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>319, 40</value>
-  </data>
-  <data name="resetALLToolStripMenuItem.Text" xml:space="preserve">
-    <value>Reset All</value>
-  </data>
   <data name="resetEverythingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>312, 40</value>
   </data>
   <data name="resetEverythingToolStripMenuItem.Text" xml:space="preserve">
     <value>Reset To Default</value>
+  </data>
+  <data name="resetALLToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 40</value>
+  </data>
+  <data name="resetALLToolStripMenuItem.Text" xml:space="preserve">
+    <value>Reset All</value>
   </data>
   <data name="hotKeysToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>319, 40</value>
@@ -393,6 +357,42 @@
   <data name="helpMenuItem.Text" xml:space="preserve">
     <value>Help</value>
   </data>
+  <data name="fileToolStripMenuItem.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="fileToolStripMenuItem.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 64</value>
+  </data>
+  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="menuStrip1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 52</value>
+  </data>
+  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
+  </data>
+  <data name="menuStrip1.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
+    <value>37</value>
+  </data>
   <metadata name="tmrWatchdog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
@@ -401,15 +401,6 @@
   </metadata>
   <data name="contextMenuStripFlag.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
-  </data>
-  <data name="contextMenuStripFlag.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 312</value>
-  </data>
-  <data name="&gt;&gt;contextMenuStripFlag.Name" xml:space="preserve">
-    <value>contextMenuStripFlag</value>
-  </data>
-  <data name="&gt;&gt;contextMenuStripFlag.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="toolStripMenuItemFlagRed.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -458,6 +449,15 @@
   </data>
   <data name="toolStripMenuFlagForm.Text" xml:space="preserve">
     <value>toolStripMenuItem3</value>
+  </data>
+  <data name="contextMenuStripFlag.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 312</value>
+  </data>
+  <data name="&gt;&gt;contextMenuStripFlag.Name" xml:space="preserve">
+    <value>contextMenuStripFlag</value>
+  </data>
+  <data name="&gt;&gt;contextMenuStripFlag.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="cboxpRowWidth.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -523,7 +523,7 @@
     <value>panelAB</value>
   </data>
   <data name="&gt;&gt;cboxpRowWidth.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>8</value>
   </data>
   <data name="oglZoom.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 12</value>
@@ -547,7 +547,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;oglZoom.ZOrder" xml:space="preserve">
-    <value>46</value>
+    <value>43</value>
   </data>
   <data name="btnResetSim.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -592,7 +592,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnResetSteerAngle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>174, 4</value>
+    <value>162, 4</value>
   </data>
   <data name="btnResetSteerAngle.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 31</value>
@@ -631,10 +631,10 @@
     <value>NoControl</value>
   </data>
   <data name="hsbarSteerAngle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 1</value>
+    <value>209, 1</value>
   </data>
   <data name="hsbarSteerAngle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 37</value>
+    <value>99, 37</value>
   </data>
   <data name="hsbarSteerAngle.TabIndex" type="System.Int32, mscorlib">
     <value>179</value>
@@ -661,7 +661,7 @@
     <value>59, 1</value>
   </data>
   <data name="hsbarStepDistance.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 37</value>
+    <value>99, 37</value>
   </data>
   <data name="hsbarStepDistance.TabIndex" type="System.Int32, mscorlib">
     <value>178</value>
@@ -718,7 +718,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSection8Man.ZOrder" xml:space="preserve">
-    <value>32</value>
+    <value>29</value>
   </data>
   <data name="btnSection7Man.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -760,7 +760,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSection7Man.ZOrder" xml:space="preserve">
-    <value>33</value>
+    <value>30</value>
   </data>
   <data name="btnSection6Man.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -802,7 +802,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSection6Man.ZOrder" xml:space="preserve">
-    <value>34</value>
+    <value>31</value>
   </data>
   <data name="btnSection5Man.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -844,7 +844,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSection5Man.ZOrder" xml:space="preserve">
-    <value>35</value>
+    <value>32</value>
   </data>
   <data name="btnSection4Man.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -886,7 +886,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSection4Man.ZOrder" xml:space="preserve">
-    <value>36</value>
+    <value>33</value>
   </data>
   <data name="btnSection3Man.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -928,7 +928,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSection3Man.ZOrder" xml:space="preserve">
-    <value>37</value>
+    <value>34</value>
   </data>
   <data name="btnSection2Man.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -970,7 +970,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSection2Man.ZOrder" xml:space="preserve">
-    <value>38</value>
+    <value>35</value>
   </data>
   <data name="btnSection1Man.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -1012,7 +1012,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSection1Man.ZOrder" xml:space="preserve">
-    <value>39</value>
+    <value>36</value>
   </data>
   <data name="btnSection9Man.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -1054,7 +1054,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSection9Man.ZOrder" xml:space="preserve">
-    <value>44</value>
+    <value>41</value>
   </data>
   <data name="btnSection10Man.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -1096,7 +1096,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSection10Man.ZOrder" xml:space="preserve">
-    <value>43</value>
+    <value>40</value>
   </data>
   <data name="btnSection11Man.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -1138,7 +1138,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSection11Man.ZOrder" xml:space="preserve">
-    <value>42</value>
+    <value>39</value>
   </data>
   <data name="btnSection12Man.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -1180,7 +1180,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSection12Man.ZOrder" xml:space="preserve">
-    <value>41</value>
+    <value>38</value>
   </data>
   <data name="oglMain.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -1207,7 +1207,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;oglMain.ZOrder" xml:space="preserve">
-    <value>45</value>
+    <value>42</value>
   </data>
   <metadata name="oglBack.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1237,7 +1237,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;oglBack.ZOrder" xml:space="preserve">
-    <value>47</value>
+    <value>44</value>
   </data>
   <data name="lblHz.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1281,105 +1281,6 @@ PPS</value>
   </data>
   <data name="panelRight.ColumnCount" type="System.Int32, mscorlib">
     <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnGuidance.Name" xml:space="preserve">
-    <value>btnGuidance</value>
-  </data>
-  <data name="&gt;&gt;btnGuidance.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnGuidance.Parent" xml:space="preserve">
-    <value>panelRight</value>
-  </data>
-  <data name="&gt;&gt;btnGuidance.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnContour.Name" xml:space="preserve">
-    <value>btnContour</value>
-  </data>
-  <data name="&gt;&gt;btnContour.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnContour.Parent" xml:space="preserve">
-    <value>panelRight</value>
-  </data>
-  <data name="&gt;&gt;btnContour.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnAutoSteer.Name" xml:space="preserve">
-    <value>btnAutoSteer</value>
-  </data>
-  <data name="&gt;&gt;btnAutoSteer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnAutoSteer.Parent" xml:space="preserve">
-    <value>panelRight</value>
-  </data>
-  <data name="&gt;&gt;btnAutoSteer.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnAdjLines.Name" xml:space="preserve">
-    <value>btnAdjLines</value>
-  </data>
-  <data name="&gt;&gt;btnAdjLines.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnAdjLines.Parent" xml:space="preserve">
-    <value>panelRight</value>
-  </data>
-  <data name="&gt;&gt;btnAdjLines.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;btnSectionMasterAuto.Name" xml:space="preserve">
-    <value>btnSectionMasterAuto</value>
-  </data>
-  <data name="&gt;&gt;btnSectionMasterAuto.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnSectionMasterAuto.Parent" xml:space="preserve">
-    <value>panelRight</value>
-  </data>
-  <data name="&gt;&gt;btnSectionMasterAuto.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;btnSectionMasterManual.Name" xml:space="preserve">
-    <value>btnSectionMasterManual</value>
-  </data>
-  <data name="&gt;&gt;btnSectionMasterManual.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnSectionMasterManual.Parent" xml:space="preserve">
-    <value>panelRight</value>
-  </data>
-  <data name="&gt;&gt;btnSectionMasterManual.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="panelRight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1001, 60</value>
-  </data>
-  <data name="panelRight.RowCount" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="panelRight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 627</value>
-  </data>
-  <data name="panelRight.TabIndex" type="System.Int32, mscorlib">
-    <value>320</value>
-  </data>
-  <data name="&gt;&gt;panelRight.Name" xml:space="preserve">
-    <value>panelRight</value>
-  </data>
-  <data name="&gt;&gt;panelRight.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panelRight.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panelRight.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="panelRight.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnGuidance" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnContour" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnAutoSteer" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnAdjLines" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnSectionMasterAuto" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnSectionMasterManual" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Percent,10.16876,Percent,10.16876,Percent,10.16876,Percent,10.00176,Percent,10.00176,Percent,12.44664,Percent,12.34786,Percent,12.34786,Percent,12.34786" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="btnGuidance.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -1507,39 +1408,6 @@ PPS</value>
   <data name="&gt;&gt;btnAutoSteer.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="btnAdjLines.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="btnAdjLines.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnAdjLines.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt</value>
-  </data>
-  <data name="btnAdjLines.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnAdjLines.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 129</value>
-  </data>
-  <data name="btnAdjLines.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 56</value>
-  </data>
-  <data name="btnAdjLines.TabIndex" type="System.Int32, mscorlib">
-    <value>532</value>
-  </data>
-  <data name="&gt;&gt;btnAdjLines.Name" xml:space="preserve">
-    <value>btnAdjLines</value>
-  </data>
-  <data name="&gt;&gt;btnAdjLines.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnAdjLines.Parent" xml:space="preserve">
-    <value>panelRight</value>
-  </data>
-  <data name="&gt;&gt;btnAdjLines.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="btnSectionMasterAuto.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
   </data>
@@ -1586,7 +1454,7 @@ PPS</value>
     <value>panelRight</value>
   </data>
   <data name="&gt;&gt;btnSectionMasterAuto.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="btnSectionMasterManual.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -1631,130 +1499,76 @@ PPS</value>
     <value>panelRight</value>
   </data>
   <data name="&gt;&gt;btnSectionMasterManual.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="btnEditAB.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnEditAB.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="btnEditAB.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnEditAB.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 12pt, style=Bold</value>
+  </data>
+  <data name="btnEditAB.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnEditAB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 130</value>
+  </data>
+  <data name="btnEditAB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 55</value>
+  </data>
+  <data name="btnEditAB.TabIndex" type="System.Int32, mscorlib">
+    <value>489</value>
+  </data>
+  <data name="btnEditAB.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
+  </data>
+  <data name="btnEditAB.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;btnEditAB.Name" xml:space="preserve">
+    <value>btnEditAB</value>
+  </data>
+  <data name="&gt;&gt;btnEditAB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnEditAB.Parent" xml:space="preserve">
+    <value>panelRight</value>
+  </data>
+  <data name="&gt;&gt;btnEditAB.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="btnAutoYouTurn.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
+  <data name="panelRight.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1001, 60</value>
   </data>
-  <data name="btnAutoYouTurn.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="panelRight.RowCount" type="System.Int32, mscorlib">
+    <value>9</value>
   </data>
-  <data name="btnAutoYouTurn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
+  <data name="panelRight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 627</value>
   </data>
-  <data name="btnAutoYouTurn.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt</value>
+  <data name="panelRight.TabIndex" type="System.Int32, mscorlib">
+    <value>320</value>
   </data>
-  <data name="btnAutoYouTurn.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;panelRight.Name" xml:space="preserve">
+    <value>panelRight</value>
   </data>
-  <data name="btnAutoYouTurn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>900, 3</value>
+  <data name="&gt;&gt;panelRight.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnAutoYouTurn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 57</value>
-  </data>
-  <data name="btnAutoYouTurn.TabIndex" type="System.Int32, mscorlib">
-    <value>132</value>
-  </data>
-  <data name="btnAutoYouTurn.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomCenter</value>
-  </data>
-  <data name="&gt;&gt;btnAutoYouTurn.Name" xml:space="preserve">
-    <value>btnAutoYouTurn</value>
-  </data>
-  <data name="&gt;&gt;btnAutoYouTurn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnAutoYouTurn.Parent" xml:space="preserve">
-    <value>panelAB</value>
-  </data>
-  <data name="&gt;&gt;btnAutoYouTurn.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="btnCycleLinesBk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="btnCycleLinesBk.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Center</value>
-  </data>
-  <data name="btnCycleLinesBk.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="btnCycleLinesBk.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnCycleLinesBk.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 11.25pt, style=Bold</value>
-  </data>
-  <data name="btnCycleLinesBk.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnCycleLinesBk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>342, 114</value>
-  </data>
-  <data name="btnCycleLinesBk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 56</value>
-  </data>
-  <data name="btnCycleLinesBk.TabIndex" type="System.Int32, mscorlib">
-    <value>252</value>
-  </data>
-  <data name="btnCycleLinesBk.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomCenter</value>
-  </data>
-  <data name="&gt;&gt;btnCycleLinesBk.Name" xml:space="preserve">
-    <value>btnCycleLinesBk</value>
-  </data>
-  <data name="&gt;&gt;btnCycleLinesBk.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCycleLinesBk.Parent" xml:space="preserve">
+  <data name="&gt;&gt;panelRight.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnCycleLinesBk.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;panelRight.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="btnCycleLines.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="btnCycleLines.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Center</value>
-  </data>
-  <data name="btnCycleLines.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="btnCycleLines.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnCycleLines.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 11.25pt, style=Bold</value>
-  </data>
-  <data name="btnCycleLines.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnCycleLines.Location" type="System.Drawing.Point, System.Drawing">
-    <value>437, 125</value>
-  </data>
-  <data name="btnCycleLines.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 56</value>
-  </data>
-  <data name="btnCycleLines.TabIndex" type="System.Int32, mscorlib">
-    <value>251</value>
-  </data>
-  <data name="btnCycleLines.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomCenter</value>
-  </data>
-  <data name="&gt;&gt;btnCycleLines.Name" xml:space="preserve">
-    <value>btnCycleLines</value>
-  </data>
-  <data name="&gt;&gt;btnCycleLines.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCycleLines.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnCycleLines.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="panelRight.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnGuidance" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnContour" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnAutoSteer" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnSectionMasterAuto" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnSectionMasterManual" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnEditAB" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Percent,10.16876,Percent,10.16876,Percent,10.16876,Percent,10.00176,Percent,10.00176,Percent,12.44664,Percent,12.34786,Percent,12.34786,Percent,12.34786" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="panelSim.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
@@ -1764,69 +1578,6 @@ PPS</value>
   </data>
   <data name="panelSim.ColumnCount" type="System.Int32, mscorlib">
     <value>7</value>
-  </data>
-  <data name="&gt;&gt;btnSimForward.Name" xml:space="preserve">
-    <value>btnSimForward</value>
-  </data>
-  <data name="&gt;&gt;btnSimForward.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnSimForward.Parent" xml:space="preserve">
-    <value>panelSim</value>
-  </data>
-  <data name="&gt;&gt;btnSimForward.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnSimSetSpeedToZero.Name" xml:space="preserve">
-    <value>btnSimSetSpeedToZero</value>
-  </data>
-  <data name="&gt;&gt;btnSimSetSpeedToZero.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnSimSetSpeedToZero.Parent" xml:space="preserve">
-    <value>panelSim</value>
-  </data>
-  <data name="&gt;&gt;btnSimSetSpeedToZero.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnSimReverse.Name" xml:space="preserve">
-    <value>btnSimReverse</value>
-  </data>
-  <data name="&gt;&gt;btnSimReverse.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnSimReverse.Parent" xml:space="preserve">
-    <value>panelSim</value>
-  </data>
-  <data name="&gt;&gt;btnSimReverse.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="panelSim.Location" type="System.Drawing.Point, System.Drawing">
-    <value>311, 577</value>
-  </data>
-  <data name="panelSim.RowCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="panelSim.Size" type="System.Drawing.Size, System.Drawing">
-    <value>513, 39</value>
-  </data>
-  <data name="panelSim.TabIndex" type="System.Int32, mscorlib">
-    <value>325</value>
-  </data>
-  <data name="&gt;&gt;panelSim.Name" xml:space="preserve">
-    <value>panelSim</value>
-  </data>
-  <data name="&gt;&gt;panelSim.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panelSim.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panelSim.ZOrder" xml:space="preserve">
-    <value>31</value>
-  </data>
-  <data name="panelSim.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnSimForward" Row="0" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="btnSimSetSpeedToZero" Row="0" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="btnSimReverse" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="hsbarStepDistance" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnResetSteerAngle" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnResetSim" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="hsbarSteerAngle" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,57,Percent,50,Absolute,49,Percent,50,Absolute,50,Absolute,76,Absolute,50" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="btnSimForward.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Zoom</value>
@@ -1841,7 +1592,7 @@ PPS</value>
     <value>NoControl</value>
   </data>
   <data name="btnSimForward.Location" type="System.Drawing.Point, System.Drawing">
-    <value>464, 4</value>
+    <value>440, 4</value>
   </data>
   <data name="btnSimForward.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 31</value>
@@ -1877,7 +1628,7 @@ PPS</value>
     <value>NoControl</value>
   </data>
   <data name="btnSimSetSpeedToZero.Location" type="System.Drawing.Point, System.Drawing">
-    <value>387, 4</value>
+    <value>363, 4</value>
   </data>
   <data name="btnSimSetSpeedToZero.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 31</value>
@@ -1910,7 +1661,7 @@ PPS</value>
     <value>NoControl</value>
   </data>
   <data name="btnSimReverse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>336, 4</value>
+    <value>312, 4</value>
   </data>
   <data name="btnSimReverse.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 31</value>
@@ -1929,6 +1680,33 @@ PPS</value>
   </data>
   <data name="&gt;&gt;btnSimReverse.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="panelSim.Location" type="System.Drawing.Point, System.Drawing">
+    <value>311, 577</value>
+  </data>
+  <data name="panelSim.RowCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="panelSim.Size" type="System.Drawing.Size, System.Drawing">
+    <value>513, 39</value>
+  </data>
+  <data name="panelSim.TabIndex" type="System.Int32, mscorlib">
+    <value>325</value>
+  </data>
+  <data name="&gt;&gt;panelSim.Name" xml:space="preserve">
+    <value>panelSim</value>
+  </data>
+  <data name="&gt;&gt;panelSim.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelSim.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panelSim.ZOrder" xml:space="preserve">
+    <value>28</value>
+  </data>
+  <data name="panelSim.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnSimForward" Row="0" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="btnSimSetSpeedToZero" Row="0" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="btnSimReverse" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="hsbarStepDistance" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnResetSteerAngle" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnResetSim" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="hsbarSteerAngle" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,57,Percent,50,Absolute,49,Percent,50,Absolute,50,Absolute,76,Absolute,74" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="btnSection16Man.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -1970,7 +1748,7 @@ PPS</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSection16Man.ZOrder" xml:space="preserve">
-    <value>29</value>
+    <value>26</value>
   </data>
   <data name="btnSection15Man.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -2012,7 +1790,7 @@ PPS</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSection15Man.ZOrder" xml:space="preserve">
-    <value>28</value>
+    <value>25</value>
   </data>
   <data name="btnSection14Man.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -2054,7 +1832,7 @@ PPS</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSection14Man.ZOrder" xml:space="preserve">
-    <value>27</value>
+    <value>24</value>
   </data>
   <data name="btnSection13Man.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -2096,172 +1874,10 @@ PPS</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSection13Man.ZOrder" xml:space="preserve">
-    <value>26</value>
+    <value>23</value>
   </data>
   <data name="panelNavigation.ColumnCount" type="System.Int32, mscorlib">
     <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnN3D.Name" xml:space="preserve">
-    <value>btnN3D</value>
-  </data>
-  <data name="&gt;&gt;btnN3D.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnN3D.Parent" xml:space="preserve">
-    <value>panelNavigation</value>
-  </data>
-  <data name="&gt;&gt;btnN3D.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnBrightnessDn.Name" xml:space="preserve">
-    <value>btnBrightnessDn</value>
-  </data>
-  <data name="&gt;&gt;btnBrightnessDn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnBrightnessDn.Parent" xml:space="preserve">
-    <value>panelNavigation</value>
-  </data>
-  <data name="&gt;&gt;btnBrightnessDn.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnBrightnessUp.Name" xml:space="preserve">
-    <value>btnBrightnessUp</value>
-  </data>
-  <data name="&gt;&gt;btnBrightnessUp.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnBrightnessUp.Parent" xml:space="preserve">
-    <value>panelNavigation</value>
-  </data>
-  <data name="&gt;&gt;btnBrightnessUp.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnDayNightMode.Name" xml:space="preserve">
-    <value>btnDayNightMode</value>
-  </data>
-  <data name="&gt;&gt;btnDayNightMode.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnDayNightMode.Parent" xml:space="preserve">
-    <value>panelNavigation</value>
-  </data>
-  <data name="&gt;&gt;btnDayNightMode.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;btnZoomIn.Name" xml:space="preserve">
-    <value>btnZoomIn</value>
-  </data>
-  <data name="&gt;&gt;btnZoomIn.Type" xml:space="preserve">
-    <value>ProXoft.WinForms.RepeatButton, RepeatButtonControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnZoomIn.Parent" xml:space="preserve">
-    <value>panelNavigation</value>
-  </data>
-  <data name="&gt;&gt;btnZoomIn.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;btnpTiltUp.Name" xml:space="preserve">
-    <value>btnpTiltUp</value>
-  </data>
-  <data name="&gt;&gt;btnpTiltUp.Type" xml:space="preserve">
-    <value>ProXoft.WinForms.RepeatButton, RepeatButtonControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnpTiltUp.Parent" xml:space="preserve">
-    <value>panelNavigation</value>
-  </data>
-  <data name="&gt;&gt;btnpTiltUp.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;btnpTiltDown.Name" xml:space="preserve">
-    <value>btnpTiltDown</value>
-  </data>
-  <data name="&gt;&gt;btnpTiltDown.Type" xml:space="preserve">
-    <value>ProXoft.WinForms.RepeatButton, RepeatButtonControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnpTiltDown.Parent" xml:space="preserve">
-    <value>panelNavigation</value>
-  </data>
-  <data name="&gt;&gt;btnpTiltDown.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;btnN2D.Name" xml:space="preserve">
-    <value>btnN2D</value>
-  </data>
-  <data name="&gt;&gt;btnN2D.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnN2D.Parent" xml:space="preserve">
-    <value>panelNavigation</value>
-  </data>
-  <data name="&gt;&gt;btnN2D.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;btnZoomOut.Name" xml:space="preserve">
-    <value>btnZoomOut</value>
-  </data>
-  <data name="&gt;&gt;btnZoomOut.Type" xml:space="preserve">
-    <value>ProXoft.WinForms.RepeatButton, RepeatButtonControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnZoomOut.Parent" xml:space="preserve">
-    <value>panelNavigation</value>
-  </data>
-  <data name="&gt;&gt;btnZoomOut.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;btn3D.Name" xml:space="preserve">
-    <value>btn3D</value>
-  </data>
-  <data name="&gt;&gt;btn3D.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btn3D.Parent" xml:space="preserve">
-    <value>panelNavigation</value>
-  </data>
-  <data name="&gt;&gt;btn3D.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;btn2D.Name" xml:space="preserve">
-    <value>btn2D</value>
-  </data>
-  <data name="&gt;&gt;btn2D.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btn2D.Parent" xml:space="preserve">
-    <value>panelNavigation</value>
-  </data>
-  <data name="&gt;&gt;btn2D.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="panelNavigation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>121, 86</value>
-  </data>
-  <data name="panelNavigation.RowCount" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="panelNavigation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 458</value>
-  </data>
-  <data name="panelNavigation.TabIndex" type="System.Int32, mscorlib">
-    <value>468</value>
-  </data>
-  <data name="panelNavigation.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;panelNavigation.Name" xml:space="preserve">
-    <value>panelNavigation</value>
-  </data>
-  <data name="&gt;&gt;panelNavigation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panelNavigation.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panelNavigation.ZOrder" xml:space="preserve">
-    <value>25</value>
-  </data>
-  <data name="panelNavigation.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnN3D" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnBrightnessDn" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnBrightnessUp" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnDayNightMode" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnZoomIn" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnpTiltUp" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnpTiltDown" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnN2D" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblHz" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnZoomOut" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btn3D" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btn2D" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="btnN3D.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -2671,6 +2287,36 @@ PPS</value>
   <data name="&gt;&gt;btn2D.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
+  <data name="panelNavigation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>121, 86</value>
+  </data>
+  <data name="panelNavigation.RowCount" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="panelNavigation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 458</value>
+  </data>
+  <data name="panelNavigation.TabIndex" type="System.Int32, mscorlib">
+    <value>468</value>
+  </data>
+  <data name="panelNavigation.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;panelNavigation.Name" xml:space="preserve">
+    <value>panelNavigation</value>
+  </data>
+  <data name="&gt;&gt;panelNavigation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelNavigation.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panelNavigation.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="panelNavigation.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnN3D" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnBrightnessDn" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnBrightnessUp" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnDayNightMode" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnZoomIn" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnpTiltUp" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnpTiltDown" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnN2D" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblHz" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnZoomOut" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btn3D" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btn2D" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
   <data name="lblFieldStatus.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2702,7 +2348,7 @@ PPS</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblFieldStatus.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>17</value>
   </data>
   <metadata name="timer2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>156, 13</value>
@@ -2712,129 +2358,6 @@ PPS</value>
   </data>
   <data name="panelAB.ColumnCount" type="System.Int32, mscorlib">
     <value>10</value>
-  </data>
-  <data name="&gt;&gt;btnTramDisplayMode.Name" xml:space="preserve">
-    <value>btnTramDisplayMode</value>
-  </data>
-  <data name="&gt;&gt;btnTramDisplayMode.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnTramDisplayMode.Parent" xml:space="preserve">
-    <value>panelAB</value>
-  </data>
-  <data name="&gt;&gt;btnTramDisplayMode.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnHydLift.Name" xml:space="preserve">
-    <value>btnHydLift</value>
-  </data>
-  <data name="&gt;&gt;btnHydLift.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnHydLift.Parent" xml:space="preserve">
-    <value>panelAB</value>
-  </data>
-  <data name="&gt;&gt;btnHydLift.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnHeadlandOnOff.Name" xml:space="preserve">
-    <value>btnHeadlandOnOff</value>
-  </data>
-  <data name="&gt;&gt;btnHeadlandOnOff.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnHeadlandOnOff.Parent" xml:space="preserve">
-    <value>panelAB</value>
-  </data>
-  <data name="&gt;&gt;btnHeadlandOnOff.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnResetToolHeading.Name" xml:space="preserve">
-    <value>btnResetToolHeading</value>
-  </data>
-  <data name="&gt;&gt;btnResetToolHeading.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnResetToolHeading.Parent" xml:space="preserve">
-    <value>panelAB</value>
-  </data>
-  <data name="&gt;&gt;btnResetToolHeading.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;btnChangeMappingColor.Name" xml:space="preserve">
-    <value>btnChangeMappingColor</value>
-  </data>
-  <data name="&gt;&gt;btnChangeMappingColor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnChangeMappingColor.Parent" xml:space="preserve">
-    <value>panelAB</value>
-  </data>
-  <data name="&gt;&gt;btnChangeMappingColor.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;btnEditAB.Name" xml:space="preserve">
-    <value>btnEditAB</value>
-  </data>
-  <data name="&gt;&gt;btnEditAB.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnEditAB.Parent" xml:space="preserve">
-    <value>panelAB</value>
-  </data>
-  <data name="&gt;&gt;btnEditAB.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;btnFlag.Name" xml:space="preserve">
-    <value>btnFlag</value>
-  </data>
-  <data name="&gt;&gt;btnFlag.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnFlag.Parent" xml:space="preserve">
-    <value>panelAB</value>
-  </data>
-  <data name="&gt;&gt;btnFlag.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;btnYouSkipEnable.Name" xml:space="preserve">
-    <value>btnYouSkipEnable</value>
-  </data>
-  <data name="&gt;&gt;btnYouSkipEnable.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnYouSkipEnable.Parent" xml:space="preserve">
-    <value>panelAB</value>
-  </data>
-  <data name="&gt;&gt;btnYouSkipEnable.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="panelAB.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 635</value>
-  </data>
-  <data name="panelAB.RowCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="panelAB.Size" type="System.Drawing.Size, System.Drawing">
-    <value>976, 64</value>
-  </data>
-  <data name="panelAB.TabIndex" type="System.Int32, mscorlib">
-    <value>480</value>
-  </data>
-  <data name="&gt;&gt;panelAB.Name" xml:space="preserve">
-    <value>panelAB</value>
-  </data>
-  <data name="&gt;&gt;panelAB.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panelAB.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panelAB.ZOrder" xml:space="preserve">
-    <value>48</value>
-  </data>
-  <data name="panelAB.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnTramDisplayMode" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="btnHydLift" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnHeadlandOnOff" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnAutoYouTurn" Row="0" RowSpan="1" Column="9" ColumnSpan="1" /&gt;&lt;Control Name="btnResetToolHeading" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnChangeMappingColor" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="btnEditAB" Row="0" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="btnFlag" Row="0" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="btnYouSkipEnable" Row="0" RowSpan="1" Column="7" ColumnSpan="1" /&gt;&lt;Control Name="cboxpRowWidth" Row="0" RowSpan="1" Column="8" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,7.453548,Percent,9.609069,Percent,9.609069,Percent,9.609069,Percent,9.609069,Percent,9.609069,Percent,9.609069,Percent,9.609069,Percent,9.609069,Percent,8.091847" /&gt;&lt;Rows Styles="Percent,100,Absolute,64" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="btnTramDisplayMode.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -2956,6 +2479,45 @@ PPS</value>
   <data name="&gt;&gt;btnHeadlandOnOff.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="btnAutoYouTurn.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnAutoYouTurn.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="btnAutoYouTurn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnAutoYouTurn.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 14.25pt</value>
+  </data>
+  <data name="btnAutoYouTurn.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnAutoYouTurn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>900, 3</value>
+  </data>
+  <data name="btnAutoYouTurn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 57</value>
+  </data>
+  <data name="btnAutoYouTurn.TabIndex" type="System.Int32, mscorlib">
+    <value>132</value>
+  </data>
+  <data name="btnAutoYouTurn.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
+  </data>
+  <data name="&gt;&gt;btnAutoYouTurn.Name" xml:space="preserve">
+    <value>btnAutoYouTurn</value>
+  </data>
+  <data name="&gt;&gt;btnAutoYouTurn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnAutoYouTurn.Parent" xml:space="preserve">
+    <value>panelAB</value>
+  </data>
+  <data name="&gt;&gt;btnAutoYouTurn.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="btnResetToolHeading.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
   </data>
@@ -3046,48 +2608,6 @@ PPS</value>
   <data name="&gt;&gt;btnChangeMappingColor.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="btnEditAB.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="btnEditAB.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Zoom</value>
-  </data>
-  <data name="btnEditAB.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnEditAB.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 12pt, style=Bold</value>
-  </data>
-  <data name="btnEditAB.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnEditAB.Location" type="System.Drawing.Point, System.Drawing">
-    <value>498, 4</value>
-  </data>
-  <data name="btnEditAB.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 55</value>
-  </data>
-  <data name="btnEditAB.TabIndex" type="System.Int32, mscorlib">
-    <value>489</value>
-  </data>
-  <data name="btnEditAB.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomCenter</value>
-  </data>
-  <data name="btnEditAB.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;btnEditAB.Name" xml:space="preserve">
-    <value>btnEditAB</value>
-  </data>
-  <data name="&gt;&gt;btnEditAB.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnEditAB.Parent" xml:space="preserve">
-    <value>panelAB</value>
-  </data>
-  <data name="&gt;&gt;btnEditAB.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
   <data name="btnFlag.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
   </data>
@@ -3122,7 +2642,7 @@ PPS</value>
     <value>panelAB</value>
   </data>
   <data name="&gt;&gt;btnFlag.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
   </data>
   <data name="btnYouSkipEnable.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -3158,7 +2678,34 @@ PPS</value>
     <value>panelAB</value>
   </data>
   <data name="&gt;&gt;btnYouSkipEnable.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
+  </data>
+  <data name="panelAB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 635</value>
+  </data>
+  <data name="panelAB.RowCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="panelAB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>976, 64</value>
+  </data>
+  <data name="panelAB.TabIndex" type="System.Int32, mscorlib">
+    <value>480</value>
+  </data>
+  <data name="&gt;&gt;panelAB.Name" xml:space="preserve">
+    <value>panelAB</value>
+  </data>
+  <data name="&gt;&gt;panelAB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelAB.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panelAB.ZOrder" xml:space="preserve">
+    <value>45</value>
+  </data>
+  <data name="panelAB.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnTramDisplayMode" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="btnHydLift" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnHeadlandOnOff" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnAutoYouTurn" Row="0" RowSpan="1" Column="9" ColumnSpan="1" /&gt;&lt;Control Name="btnResetToolHeading" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnChangeMappingColor" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="btnFlag" Row="0" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="btnYouSkipEnable" Row="0" RowSpan="1" Column="7" ColumnSpan="1" /&gt;&lt;Control Name="cboxpRowWidth" Row="0" RowSpan="1" Column="8" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,7.453548,Percent,9.609069,Percent,9.609069,Percent,9.609069,Percent,9.609069,Percent,9.609069,Percent,9.609069,Percent,9.609069,Percent,9.609069,Percent,8.091847" /&gt;&lt;Rows Styles="Percent,100,Absolute,64" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="lblSpeed.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -3197,7 +2744,7 @@ PPS</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblSpeed.ZOrder" xml:space="preserve">
-    <value>50</value>
+    <value>47</value>
   </data>
   <data name="lblInty.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -3233,7 +2780,7 @@ PPS</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblInty.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>19</value>
   </data>
   <data name="lblCurveLineName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top</value>
@@ -3269,7 +2816,7 @@ PPS</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblCurveLineName.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>16</value>
   </data>
   <data name="lblCurrentField.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3302,7 +2849,7 @@ PPS</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblCurrentField.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>15</value>
   </data>
   <data name="lblFix.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -3341,7 +2888,7 @@ PPS</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblFix.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>18</value>
   </data>
   <data name="btnZone1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -3383,7 +2930,7 @@ PPS</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnZone1.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>14</value>
   </data>
   <data name="btnZone2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -3425,7 +2972,7 @@ PPS</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnZone2.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>13</value>
   </data>
   <data name="btnZone3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -3467,7 +3014,7 @@ PPS</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnZone3.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>12</value>
   </data>
   <data name="btnZone4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -3509,7 +3056,7 @@ PPS</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnZone4.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>11</value>
   </data>
   <data name="btnZone5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -3551,7 +3098,7 @@ PPS</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnZone5.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>10</value>
   </data>
   <data name="btnZone6.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -3593,7 +3140,7 @@ PPS</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnZone6.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>9</value>
   </data>
   <data name="btnZone7.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -3635,7 +3182,7 @@ PPS</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnZone7.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>8</value>
   </data>
   <data name="btnZone8.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -3677,76 +3224,10 @@ PPS</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnZone8.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>7</value>
   </data>
   <data name="tlpTrackMethods.ColumnCount" type="System.Int32, mscorlib">
     <value>3</value>
-  </data>
-  <data name="&gt;&gt;btnAutoTrack.Name" xml:space="preserve">
-    <value>btnAutoTrack</value>
-  </data>
-  <data name="&gt;&gt;btnAutoTrack.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnAutoTrack.Parent" xml:space="preserve">
-    <value>tlpTrackMethods</value>
-  </data>
-  <data name="&gt;&gt;btnAutoTrack.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnTrackCreateEdit.Name" xml:space="preserve">
-    <value>btnTrackCreateEdit</value>
-  </data>
-  <data name="&gt;&gt;btnTrackCreateEdit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnTrackCreateEdit.Parent" xml:space="preserve">
-    <value>tlpTrackMethods</value>
-  </data>
-  <data name="&gt;&gt;btnTrackCreateEdit.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnABDraw.Name" xml:space="preserve">
-    <value>btnABDraw</value>
-  </data>
-  <data name="&gt;&gt;btnABDraw.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnABDraw.Parent" xml:space="preserve">
-    <value>tlpTrackMethods</value>
-  </data>
-  <data name="&gt;&gt;btnABDraw.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="tlpTrackMethods.Location" type="System.Drawing.Point, System.Drawing">
-    <value>469, 451</value>
-  </data>
-  <data name="tlpTrackMethods.RowCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tlpTrackMethods.Size" type="System.Drawing.Size, System.Drawing">
-    <value>312, 112</value>
-  </data>
-  <data name="tlpTrackMethods.TabIndex" type="System.Int32, mscorlib">
-    <value>533</value>
-  </data>
-  <data name="tlpTrackMethods.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;tlpTrackMethods.Name" xml:space="preserve">
-    <value>tlpTrackMethods</value>
-  </data>
-  <data name="&gt;&gt;tlpTrackMethods.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tlpTrackMethods.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tlpTrackMethods.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="tlpTrackMethods.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnAutoTrack" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnTrackCreateEdit" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnABDraw" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,25,Percent,25,Percent,25" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="btnAutoTrack.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -3865,395 +3346,35 @@ PPS</value>
   <data name="&gt;&gt;btnABDraw.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="panelLineAdj.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
+  <data name="tlpTrackMethods.Location" type="System.Drawing.Point, System.Drawing">
+    <value>469, 451</value>
   </data>
-  <data name="panelLineAdj.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="panelLineAdj.ColumnCount" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="button1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="button1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="button1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt</value>
-  </data>
-  <data name="button1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 94</value>
-  </data>
-  <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 48</value>
-  </data>
-  <data name="button1.TabIndex" type="System.Int32, mscorlib">
-    <value>533</value>
-  </data>
-  <data name="&gt;&gt;button1.Name" xml:space="preserve">
-    <value>button1</value>
-  </data>
-  <data name="&gt;&gt;button1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
-    <value>panelLineAdj</value>
-  </data>
-  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="lblMoveOffset.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="lblMoveOffset.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 18pt, style=Bold</value>
-  </data>
-  <data name="lblMoveOffset.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblMoveOffset.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 277</value>
-  </data>
-  <data name="lblMoveOffset.Size" type="System.Drawing.Size, System.Drawing">
-    <value>122, 34</value>
-  </data>
-  <data name="lblMoveOffset.TabIndex" type="System.Int32, mscorlib">
-    <value>534</value>
-  </data>
-  <data name="lblMoveOffset.Text" xml:space="preserve">
-    <value>0.25 &gt;</value>
-  </data>
-  <data name="lblMoveOffset.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;lblMoveOffset.Name" xml:space="preserve">
-    <value>lblMoveOffset</value>
-  </data>
-  <data name="&gt;&gt;lblMoveOffset.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblMoveOffset.Parent" xml:space="preserve">
-    <value>panelLineAdj</value>
-  </data>
-  <data name="&gt;&gt;lblMoveOffset.ZOrder" xml:space="preserve">
+  <data name="tlpTrackMethods.RowCount" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="btnMoveRight.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
+  <data name="tlpTrackMethods.Size" type="System.Drawing.Size, System.Drawing">
+    <value>312, 112</value>
   </data>
-  <data name="btnMoveRight.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnMoveRight.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt</value>
-  </data>
-  <data name="btnMoveRight.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnMoveRight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>95, 317</value>
-  </data>
-  <data name="btnMoveRight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 14</value>
-  </data>
-  <data name="btnMoveRight.TabIndex" type="System.Int32, mscorlib">
+  <data name="tlpTrackMethods.TabIndex" type="System.Int32, mscorlib">
     <value>533</value>
   </data>
-  <data name="&gt;&gt;btnMoveRight.Name" xml:space="preserve">
-    <value>btnMoveRight</value>
-  </data>
-  <data name="&gt;&gt;btnMoveRight.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnMoveRight.Parent" xml:space="preserve">
-    <value>panelLineAdj</value>
-  </data>
-  <data name="&gt;&gt;btnMoveRight.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="btnMoveLeft.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="btnMoveLeft.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnMoveLeft.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt</value>
-  </data>
-  <data name="btnMoveLeft.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnMoveLeft.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 317</value>
-  </data>
-  <data name="btnMoveLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 14</value>
-  </data>
-  <data name="btnMoveLeft.TabIndex" type="System.Int32, mscorlib">
-    <value>532</value>
-  </data>
-  <data name="&gt;&gt;btnMoveLeft.Name" xml:space="preserve">
-    <value>btnMoveLeft</value>
-  </data>
-  <data name="&gt;&gt;btnMoveLeft.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnMoveLeft.Parent" xml:space="preserve">
-    <value>panelLineAdj</value>
-  </data>
-  <data name="&gt;&gt;btnMoveLeft.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="btnSnapToPivot.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="btnSnapToPivot.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Stretch</value>
-  </data>
-  <data name="btnSnapToPivot.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnSnapToPivot.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 12pt, style=Bold</value>
-  </data>
-  <data name="btnSnapToPivot.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnSnapToPivot.Location" type="System.Drawing.Point, System.Drawing">
-    <value>92, 93</value>
-  </data>
-  <data name="btnSnapToPivot.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="btnSnapToPivot.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
-  </data>
-  <data name="btnSnapToPivot.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 51</value>
-  </data>
-  <data name="btnSnapToPivot.TabIndex" type="System.Int32, mscorlib">
-    <value>477</value>
-  </data>
-  <data name="&gt;&gt;btnSnapToPivot.Name" xml:space="preserve">
-    <value>btnSnapToPivot</value>
-  </data>
-  <data name="&gt;&gt;btnSnapToPivot.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnSnapToPivot.Parent" xml:space="preserve">
-    <value>panelLineAdj</value>
-  </data>
-  <data name="&gt;&gt;btnSnapToPivot.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="panelLineAdj.Location" type="System.Drawing.Point, System.Drawing">
-    <value>837, 80</value>
-  </data>
-  <data name="panelLineAdj.RowCount" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="panelLineAdj.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 312</value>
-  </data>
-  <data name="panelLineAdj.TabIndex" type="System.Int32, mscorlib">
-    <value>531</value>
-  </data>
-  <data name="panelLineAdj.Visible" type="System.Boolean, mscorlib">
+  <data name="tlpTrackMethods.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="&gt;&gt;panelLineAdj.Name" xml:space="preserve">
-    <value>panelLineAdj</value>
+  <data name="&gt;&gt;tlpTrackMethods.Name" xml:space="preserve">
+    <value>tlpTrackMethods</value>
   </data>
-  <data name="&gt;&gt;panelLineAdj.Type" xml:space="preserve">
+  <data name="&gt;&gt;tlpTrackMethods.Type" xml:space="preserve">
     <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;panelLineAdj.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tlpTrackMethods.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;panelLineAdj.ZOrder" xml:space="preserve">
-    <value>9</value>
+  <data name="&gt;&gt;tlpTrackMethods.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
-  <data name="panelLineAdj.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="button1" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblMoveOffset" Row="4" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="btnMoveRight" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnMoveLeft" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnSnapToPivot" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,49.40476,Percent,50.59524" /&gt;&lt;Rows Styles="Absolute,77,Absolute,83,Absolute,29,Absolute,86,Absolute,39,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="btnMaximizeMainForm.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="btnMaximizeMainForm.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Center</value>
-  </data>
-  <data name="btnMaximizeMainForm.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnMaximizeMainForm.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 20.25pt, style=Bold</value>
-  </data>
-  <data name="btnMaximizeMainForm.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnMaximizeMainForm.Location" type="System.Drawing.Point, System.Drawing">
-    <value>936, 11</value>
-  </data>
-  <data name="btnMaximizeMainForm.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 43</value>
-  </data>
-  <data name="btnMaximizeMainForm.TabIndex" type="System.Int32, mscorlib">
-    <value>482</value>
-  </data>
-  <data name="&gt;&gt;btnMaximizeMainForm.Name" xml:space="preserve">
-    <value>btnMaximizeMainForm</value>
-  </data>
-  <data name="&gt;&gt;btnMaximizeMainForm.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnMaximizeMainForm.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnMaximizeMainForm.ZOrder" xml:space="preserve">
-    <value>23</value>
-  </data>
-  <data name="pictureboxStart.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="pictureboxStart.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Stretch</value>
-  </data>
-  <data name="pictureboxStart.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="pictureboxStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>917, 556</value>
-  </data>
-  <data name="pictureboxStart.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 60</value>
-  </data>
-  <data name="pictureboxStart.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>CenterImage</value>
-  </data>
-  <data name="pictureboxStart.TabIndex" type="System.Int32, mscorlib">
-    <value>473</value>
-  </data>
-  <data name="&gt;&gt;pictureboxStart.Name" xml:space="preserve">
-    <value>pictureboxStart</value>
-  </data>
-  <data name="&gt;&gt;pictureboxStart.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pictureboxStart.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;pictureboxStart.ZOrder" xml:space="preserve">
-    <value>24</value>
-  </data>
-  <data name="btnShutdown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="btnShutdown.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Zoom</value>
-  </data>
-  <data name="btnShutdown.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnShutdown.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnShutdown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1013, 11</value>
-  </data>
-  <data name="btnShutdown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 43</value>
-  </data>
-  <data name="btnShutdown.TabIndex" type="System.Int32, mscorlib">
-    <value>447</value>
-  </data>
-  <data name="&gt;&gt;btnShutdown.Name" xml:space="preserve">
-    <value>btnShutdown</value>
-  </data>
-  <data name="&gt;&gt;btnShutdown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnShutdown.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnShutdown.ZOrder" xml:space="preserve">
-    <value>30</value>
-  </data>
-  <data name="btnHelp.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="btnHelp.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Center</value>
-  </data>
-  <data name="btnHelp.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnHelp.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 20.25pt, style=Bold</value>
-  </data>
-  <data name="btnHelp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnHelp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>798, 16</value>
-  </data>
-  <data name="btnHelp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 37</value>
-  </data>
-  <data name="btnHelp.TabIndex" type="System.Int32, mscorlib">
-    <value>495</value>
-  </data>
-  <data name="&gt;&gt;btnHelp.Name" xml:space="preserve">
-    <value>btnHelp</value>
-  </data>
-  <data name="&gt;&gt;btnHelp.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnHelp.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnHelp.ZOrder" xml:space="preserve">
-    <value>49</value>
-  </data>
-  <data name="btnMinimizeMainForm.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="btnMinimizeMainForm.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Center</value>
-  </data>
-  <data name="btnMinimizeMainForm.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnMinimizeMainForm.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 20.25pt, style=Bold</value>
-  </data>
-  <data name="btnMinimizeMainForm.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnMinimizeMainForm.Location" type="System.Drawing.Point, System.Drawing">
-    <value>859, 11</value>
-  </data>
-  <data name="btnMinimizeMainForm.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 43</value>
-  </data>
-  <data name="btnMinimizeMainForm.TabIndex" type="System.Int32, mscorlib">
-    <value>481</value>
-  </data>
-  <data name="&gt;&gt;btnMinimizeMainForm.Name" xml:space="preserve">
-    <value>btnMinimizeMainForm</value>
-  </data>
-  <data name="&gt;&gt;btnMinimizeMainForm.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnMinimizeMainForm.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnMinimizeMainForm.ZOrder" xml:space="preserve">
-    <value>51</value>
+  <data name="tlpTrackMethods.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnAutoTrack" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnTrackCreateEdit" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnABDraw" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,25,Percent,25,Percent,25" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <metadata name="timerLineAdj.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1061, 16</value>
@@ -4350,6 +3471,180 @@ PPS</value>
   </data>
   <data name="&gt;&gt;btnFieldMenu.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="btnMaximizeMainForm.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="btnMaximizeMainForm.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="btnMaximizeMainForm.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnMaximizeMainForm.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 20.25pt, style=Bold</value>
+  </data>
+  <data name="btnMaximizeMainForm.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnMaximizeMainForm.Location" type="System.Drawing.Point, System.Drawing">
+    <value>936, 11</value>
+  </data>
+  <data name="btnMaximizeMainForm.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 43</value>
+  </data>
+  <data name="btnMaximizeMainForm.TabIndex" type="System.Int32, mscorlib">
+    <value>482</value>
+  </data>
+  <data name="&gt;&gt;btnMaximizeMainForm.Name" xml:space="preserve">
+    <value>btnMaximizeMainForm</value>
+  </data>
+  <data name="&gt;&gt;btnMaximizeMainForm.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnMaximizeMainForm.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnMaximizeMainForm.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="pictureboxStart.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="pictureboxStart.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
+  </data>
+  <data name="pictureboxStart.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="pictureboxStart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>917, 556</value>
+  </data>
+  <data name="pictureboxStart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 60</value>
+  </data>
+  <data name="pictureboxStart.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>CenterImage</value>
+  </data>
+  <data name="pictureboxStart.TabIndex" type="System.Int32, mscorlib">
+    <value>473</value>
+  </data>
+  <data name="&gt;&gt;pictureboxStart.Name" xml:space="preserve">
+    <value>pictureboxStart</value>
+  </data>
+  <data name="&gt;&gt;pictureboxStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureboxStart.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pictureboxStart.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="btnShutdown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="btnShutdown.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="btnShutdown.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnShutdown.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnShutdown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1013, 11</value>
+  </data>
+  <data name="btnShutdown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 43</value>
+  </data>
+  <data name="btnShutdown.TabIndex" type="System.Int32, mscorlib">
+    <value>447</value>
+  </data>
+  <data name="&gt;&gt;btnShutdown.Name" xml:space="preserve">
+    <value>btnShutdown</value>
+  </data>
+  <data name="&gt;&gt;btnShutdown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnShutdown.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnShutdown.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="btnHelp.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="btnHelp.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="btnHelp.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnHelp.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 20.25pt, style=Bold</value>
+  </data>
+  <data name="btnHelp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnHelp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>798, 16</value>
+  </data>
+  <data name="btnHelp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 37</value>
+  </data>
+  <data name="btnHelp.TabIndex" type="System.Int32, mscorlib">
+    <value>495</value>
+  </data>
+  <data name="&gt;&gt;btnHelp.Name" xml:space="preserve">
+    <value>btnHelp</value>
+  </data>
+  <data name="&gt;&gt;btnHelp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnHelp.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnHelp.ZOrder" xml:space="preserve">
+    <value>46</value>
+  </data>
+  <data name="btnMinimizeMainForm.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="btnMinimizeMainForm.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="btnMinimizeMainForm.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnMinimizeMainForm.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 20.25pt, style=Bold</value>
+  </data>
+  <data name="btnMinimizeMainForm.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnMinimizeMainForm.Location" type="System.Drawing.Point, System.Drawing">
+    <value>859, 11</value>
+  </data>
+  <data name="btnMinimizeMainForm.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 43</value>
+  </data>
+  <data name="btnMinimizeMainForm.TabIndex" type="System.Int32, mscorlib">
+    <value>481</value>
+  </data>
+  <data name="&gt;&gt;btnMinimizeMainForm.Name" xml:space="preserve">
+    <value>btnMinimizeMainForm</value>
+  </data>
+  <data name="&gt;&gt;btnMinimizeMainForm.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnMinimizeMainForm.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnMinimizeMainForm.ZOrder" xml:space="preserve">
+    <value>48</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

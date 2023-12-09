@@ -434,7 +434,7 @@ namespace AgOpenGPS
 
             if ((char)keyData == hotkeys[1]) //open the steer chart
             {
-                btnCycleLines.PerformClick();
+                //btnCycleLines.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 
@@ -464,7 +464,7 @@ namespace AgOpenGPS
 
             if ((char)keyData == hotkeys[6]) // Snap/Prioritu click
             {
-                btnSnapToPivot.PerformClick();
+                //btnSnapToPivot.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 

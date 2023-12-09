@@ -64,6 +64,7 @@ namespace AgOpenGPS
         {
             //constructor
             mf = _f;
+            idx = -1;
         }
 
         public int FindClosestRefTrack(vec3 pivot)
@@ -213,6 +214,15 @@ namespace AgOpenGPS
 
             refPoint2.easting = tracksArr[idx].trackPts[rA].easting + (Math.Sin(tracksArr[idx].trackPts[rA].heading) * 300.0);
             refPoint2.northing = tracksArr[idx].trackPts[rA].northing + (Math.Cos(tracksArr[idx].trackPts[rA].heading) * 300.0);
+
+            if (idx > -1 && tracksArr[idx].moveDistance != 0)
+            {
+                refPoint1.easting += (Math.Sin(tracksArr[idx].trackPts[rA].heading + glm.PIBy2) * tracksArr[idx].moveDistance);
+                refPoint1.northing += (Math.Cos(tracksArr[idx].trackPts[rA].heading + glm.PIBy2) * tracksArr[idx].moveDistance);
+
+                refPoint2.easting += (Math.Sin(tracksArr[idx].trackPts[rA].heading + glm.PIBy2) * tracksArr[idx].moveDistance);
+                refPoint2.northing += (Math.Cos(tracksArr[idx].trackPts[rA].heading + glm.PIBy2) * tracksArr[idx].moveDistance);
+            }
 
             //x2-x1
             double dx = refPoint2.easting - refPoint1.easting;

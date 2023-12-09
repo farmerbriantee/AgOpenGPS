@@ -1078,8 +1078,8 @@ namespace AgOpenGPS
             if (!ABLine.isLateralTriggered && !trk.isLateralTriggered)
             {
                 double guidanceLookDist = (Math.Max(tool.width * 0.5, avgSpeed * 0.277777 * guidanceLookAheadTime));
-                guidanceLookPos.easting = pivotAxlePos.easting + (Math.Sin(fixHeading) * guidanceLookDist);
-                guidanceLookPos.northing = pivotAxlePos.northing + (Math.Cos(fixHeading) * guidanceLookDist);
+                guidanceLookPos.easting = pivotAxlePos.easting;// + (Math.Sin(fixHeading) * guidanceLookDist);
+                guidanceLookPos.northing = pivotAxlePos.northing;// + (Math.Cos(fixHeading) * guidanceLookDist);
             }
 
             //determine where the rigid vehicle hitch ends
