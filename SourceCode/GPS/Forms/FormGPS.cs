@@ -19,6 +19,7 @@ using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
+
     //the main form object
     public partial class FormGPS : Form
     {
@@ -69,7 +70,6 @@ namespace AgOpenGPS
 
         //the currentversion of software
         public string currentVersionStr, inoVersionStr;
-
         public int inoVersionInt;
 
         //create instance of a stopwatch for timing of frames and NMEA hz determination
@@ -94,7 +94,6 @@ namespace AgOpenGPS
 
         //For field saving in background
         private int minuteCounter = 1;
-
         private int tenMinuteCounter = 1;
 
         //whether or not to use Stanley control
@@ -260,8 +259,10 @@ namespace AgOpenGPS
         /// </summary>
         public CWindowsSettingsBrightnessController displayBrightness;
 
+
         #endregion // Class Props and instances
 
+        // Constructor, Initializes a new instance of the "FormGPS" class.
         public FormGPS()
         {
             //winform initialization
@@ -349,6 +350,7 @@ namespace AgOpenGPS
             displayBrightness = new CWindowsSettingsBrightnessController(Properties.Settings.Default.setDisplay_isBrightnessOn);
         }
 
+        //Initialize items before the form Loads or is visible
         private void FormGPS_Load(object sender, EventArgs e)
         {
             this.MouseWheel += ZoomByMouseWheel;
@@ -383,6 +385,7 @@ namespace AgOpenGPS
             inoV += int.Parse(fullVers[2], CultureInfo.InvariantCulture);
             inoVersionInt = inoV;
             inoVersionStr = inoV.ToString();
+
 
             if (Settings.Default.setF_workingDirectory == "Default")
                 baseDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\AgOpenGPS\\";
@@ -450,6 +453,8 @@ namespace AgOpenGPS
                 }
             }
 
+
+
             // load all the gui elements in gui.designer.cs
             LoadSettings();
 
@@ -505,6 +510,7 @@ namespace AgOpenGPS
             enterSimCoordsToolStripMenuItem.Text = gStr.gsEnterSimCoords;
             aboutToolStripMenuItem.Text = gStr.gsAbout;
             menustripLanguage.Text = gStr.gsLanguage;
+
 
             simulatorOnToolStripMenuItem.Text = gStr.gsSimulatorOn;
 
@@ -568,6 +574,7 @@ namespace AgOpenGPS
                     return;
                 }
 
+
                 bool closing = true;
                 int choice = SaveOrNot(closing);
 
@@ -593,7 +600,7 @@ namespace AgOpenGPS
             }
 
             SaveFormGPSWindowSettings();
-            //FileUpdateAllFieldsKML();
+            FileUpdateAllFieldsKML();
 
             if (loopBackSocket != null)
             {
@@ -610,8 +617,10 @@ namespace AgOpenGPS
 
             if (displayBrightness.isWmiMonitor)
                 displayBrightness.SetBrightness(Settings.Default.setDisplay_brightnessSystem);
+
         }
 
+        //called everytime window is resized, clean up button positions
         private void FormGPS_Resize(object sender, EventArgs e)
         {
             FixPanelsAndMenus();
@@ -630,13 +639,12 @@ namespace AgOpenGPS
                 f1.Left = this.Left + GPSDataWindowLeft;
             }
         }
-
         private void FormGPS_Move(object sender, EventArgs e)
         {
             Form f = Application.OpenForms["FormGPSData"];
             if (f != null)
             {
-                f.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
+                f.Top = this.Top + this.Height/2 - GPSDataWindowTopOffset;
                 f.Left = this.Left + GPSDataWindowLeft;
             }
             Form f1 = Application.OpenForms["FormFieldData"];
@@ -646,6 +654,8 @@ namespace AgOpenGPS
                 f1.Left = this.Left + GPSDataWindowLeft;
             }
         }
+
+        // Load Bitmaps And Convert To Textures
 
         public void CheckSettingsNotNull()
         {
@@ -751,6 +761,7 @@ namespace AgOpenGPS
             sender.BackColor = colour;
         }
 
+        //request a new job
         public void JobNew()
         {
             if (Settings.Default.setMenu_isOGLZoomOn == 1)
@@ -824,6 +835,7 @@ namespace AgOpenGPS
             btnZone7.Enabled = true;
             btnZone8.Enabled = true;
 
+
             btnABLine.Enabled = true;
             btnContour.Enabled = true;
             btnCurve.Enabled = true;
@@ -858,6 +870,7 @@ namespace AgOpenGPS
             SetZoom();
         }
 
+        //close the current job
         public void JobClose()
         {
             recPath.resumeState = 0;
@@ -878,7 +891,7 @@ namespace AgOpenGPS
 
             recPath.recList.Clear();
             recPath.StopDrivingRecordedPath();
-            panelDrag.Visible = false;
+            panelDrag.Visible = false;  
 
             //make sure hydraulic lift is off
             p_239.pgn[p_239.hydLift] = 0;
@@ -937,6 +950,7 @@ namespace AgOpenGPS
             btnZone6.Enabled = false;
             btnZone7.Enabled = false;
             btnZone8.Enabled = false;
+
 
             btnSection1Man.Enabled = false;
             btnSection2Man.Enabled = false;
@@ -1094,10 +1108,10 @@ namespace AgOpenGPS
         public void SetZoom()
         {
             //match grid to cam distance and redo perspective
-            if (camera.camSetDistance > -50) camera.gridZoom = 10;
-            else if (camera.camSetDistance > -150) camera.gridZoom = 20;
-            else if (camera.camSetDistance > -250) camera.gridZoom = 40;
-            else if (camera.camSetDistance > -500) camera.gridZoom = 80;
+            if (camera.camSetDistance > -50 ) camera.gridZoom = 10;
+            else if (camera.camSetDistance > -150 ) camera.gridZoom = 20;
+            else if (camera.camSetDistance > -250 ) camera.gridZoom = 40;
+            else if (camera.camSetDistance > -500 ) camera.gridZoom = 80;
             else if (camera.camSetDistance > -1000) camera.gridZoom = 160;
             else if (camera.camSetDistance > -2000) camera.gridZoom = 320;
             else if (camera.camSetDistance > -5000) camera.gridZoom = 640;
@@ -1138,18 +1152,20 @@ namespace AgOpenGPS
             FormTimedMessage form = new FormTimedMessage(timeout, s1, s2);
             form.Show(this);
         }
+    
     }//class FormGPS
+
 }//namespace AgOpenGPS
 
-// Generates a random number within a range.
-//public double RandomNumber(double min, double max)
-//{
-//    return min + _random.NextDouble() * (max - min);
-//}
+        // Generates a random number within a range.       
+        //public double RandomNumber(double min, double max)
+        //{
+        //    return min + _random.NextDouble() * (max - min);
+        //}
 
-//private readonly Random _random = new Random();
+        //private readonly Random _random = new Random();
 
-//form is closing so tidy up and save settings
+        //form is closing so tidy up and save settings
 
 /*The order is:
  *

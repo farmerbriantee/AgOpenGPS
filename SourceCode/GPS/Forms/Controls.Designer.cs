@@ -629,8 +629,8 @@ namespace AgOpenGPS
             FileSaveContour();
 
             ExportFieldAs_KML();
-            //ExportFieldAs_ISOXMLv3();
-            //ExportFieldAs_ISOXMLv4();
+            ExportFieldAs_ISOXMLv3();
+            ExportFieldAs_ISOXMLv4();
 
             Settings.Default.setF_CurrentDir = currentFieldDirectory;
             Settings.Default.Save();
