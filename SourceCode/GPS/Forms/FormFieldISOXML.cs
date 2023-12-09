@@ -665,9 +665,16 @@ namespace AgOpenGPS
                                             mf.curve.numCurveLines = mf.curve.curveArr.Count;
                                             mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
 
-                                            //create a name
-                                            mf.curve.curveArr[idx].Name = (Math.Round(glm.toDegrees(mf.curve.aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture)
-                                                 + "\u00B0" + mf.FindDirection(mf.curve.aveLineHeading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
+                                            if (string.IsNullOrEmpty(mf.curve.desName))
+                                            {
+                                                //create a name
+                                                mf.curve.curveArr[idx].Name = (Math.Round(glm.toDegrees(mf.curve.aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture)
+                                                     + "\u00B0" + mf.FindDirection(mf.curve.aveLineHeading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
+                                            }
+                                            else
+                                            {
+                                                mf.curve.curveArr[idx].Name = mf.curve.desName;
+                                            }
 
                                             mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;
 

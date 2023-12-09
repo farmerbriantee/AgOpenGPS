@@ -228,8 +228,8 @@ namespace AgOpenGPS
 
         private void btnJobClose_Click(object sender, EventArgs e)
         {
-            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
 
+            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
             //back to FormGPS
             DialogResult = DialogResult.OK;
             Close();

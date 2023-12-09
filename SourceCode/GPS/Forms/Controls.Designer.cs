@@ -601,11 +601,11 @@ namespace AgOpenGPS
 
         public void FileSaveEverythingBeforeClosingField()
         {
-            if (this.OwnedForms.Any())
-            {
-                TimedMessageBox(2000, gStr.gsWindowsStillOpen, gStr.gsCloseAllWindowsFirst);
-                return;
-            }
+            ////if (this.OwnedForms.Any())
+            ////{
+            ////    TimedMessageBox(2000, gStr.gsWindowsStillOpen, gStr.gsCloseAllWindowsFirst);
+            ////    return;
+            ////}
 
             //turn off contour line if on
             if (ct.isContourOn) ct.StopContourLine();
@@ -629,8 +629,8 @@ namespace AgOpenGPS
             FileSaveContour();
 
             ExportFieldAs_KML();
-            ExportFieldAs_ISOXMLv3();
-            ExportFieldAs_ISOXMLv4();
+            //ExportFieldAs_ISOXMLv3();
+            //ExportFieldAs_ISOXMLv4();
 
             Settings.Default.setF_CurrentDir = currentFieldDirectory;
             Settings.Default.Save();
