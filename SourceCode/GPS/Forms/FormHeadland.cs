@@ -126,7 +126,6 @@ namespace AgOpenGPS
         {
             headLineTemplate.Clear();
 
-
             //Builds line
             nudDistance.Value = 0;
             //nudSetDistance.Value = 0;
@@ -517,7 +516,6 @@ namespace AgOpenGPS
         private void btnReset_Click(object sender, EventArgs e)
         {
             BuildHeadLineTemplateFromBoundary();
-
         }
 
         private void nudDistance_Click(object sender, EventArgs e)
@@ -687,6 +685,7 @@ namespace AgOpenGPS
         }
 
         #region Help
+
         private void cboxToolWidths_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             MessageBox.Show(gStr.hh_cboxToolWidths, gStr.gsHelp);
@@ -737,13 +736,12 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.hh_btnExit, gStr.gsHelp);
         }
 
-        #endregion
-
+        #endregion Help
     }
 }
 
 /*
-            
+
             MessageBox.Show(gStr, gStr.gsHelp);
 
             DialogResult result2 = MessageBox.Show(gStr, gStr.gsHelp,

@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
@@ -20,12 +19,12 @@ namespace AgOpenGPS
     {
         /// <summary>
         /// Sets the progress bar value, without using 'Windows Aero' animation.
-        /// This is to work around a known WinForms issue where the progress bar 
-        /// is slow to update. 
+        /// This is to work around a known WinForms issue where the progress bar
+        /// is slow to update.
         /// </summary>
         public static void SetProgressNoAnimation(this ProgressBar pb, int value)
         {
-            // To get around the progressive animation, we need to move the 
+            // To get around the progressive animation, we need to move the
             // progress bar backwards.
             if (value == pb.Maximum)
             {
@@ -96,5 +95,4 @@ namespace AgOpenGPS
     //        base.OnPaint(e);
     //    }
     //}
-
 }

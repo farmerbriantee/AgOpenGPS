@@ -48,16 +48,15 @@ namespace AgOpenGPS
         {
             Close();
         }
+
         private void btnAddDate_Click(object sender, EventArgs e)
         {
             tboxFieldName.Text += " " + DateTime.Now.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
-
         }
 
         private void btnAddTime_Click(object sender, EventArgs e)
         {
             tboxFieldName.Text += " " + DateTime.Now.ToString("HH-mm", CultureInfo.InvariantCulture);
-
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -97,7 +96,6 @@ namespace AgOpenGPS
                     mf.pn.latStart = mf.pn.latitude; mf.pn.lonStart = mf.pn.longitude;
 
                     mf.pn.SetLocalMetersPerDegree();
-
 
                     //make sure directory exists, or create it
                     if ((!string.IsNullOrEmpty(directoryName)) && (!Directory.Exists(directoryName)))
@@ -156,6 +154,5 @@ namespace AgOpenGPS
                 btnSerialCancel.Focus();
             }
         }
-
     }
 }

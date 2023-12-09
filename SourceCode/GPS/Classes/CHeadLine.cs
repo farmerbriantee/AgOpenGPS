@@ -1,19 +1,15 @@
-﻿using OpenTK.Graphics.OpenGL;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
-    public enum TrackMode { None = 0, AB = 2, Curve = 4, bndTrackOuter = 8, bndTrackInner = 16, bndCurve = 32 };//, Heading, Circle, Spiral
+    public enum TrackMode
+    { None = 0, AB = 2, Curve = 4, bndTrackOuter = 8, bndTrackInner = 16, bndCurve = 32 };//, Heading, Circle, Spiral
 
     public class CHeadLine
     {
         //pointers to mainform controls
         private readonly FormGPS mf;
-
 
         public List<CHeadPath> tracksArr = new List<CHeadPath>();
 
@@ -34,7 +30,7 @@ namespace AgOpenGPS
             //to calc heading based on next and previous points to give an average heading.
             int cnt = xList.Count;
             if (cnt > 3)
-            {                
+            {
                 vec3[] arr = new vec3[cnt];
                 cnt--;
                 xList.CopyTo(arr);
@@ -54,8 +50,8 @@ namespace AgOpenGPS
                     xList.Add(pt3);
                 }
 
-                pt3 = arr[arr.Length-1];
-                pt3.heading = Math.Atan2(arr[arr.Length - 1].easting - arr[arr.Length - 2].easting, 
+                pt3 = arr[arr.Length - 1];
+                pt3.heading = Math.Atan2(arr[arr.Length - 1].easting - arr[arr.Length - 2].easting,
                     arr[arr.Length - 1].northing - arr[arr.Length - 2].northing);
                 if (pt3.heading < 0) pt3.heading += glm.twoPI;
                 xList.Add(pt3);
@@ -100,7 +96,7 @@ namespace AgOpenGPS
             }
             else
             {
-                for (int i = 1; i < 1000; i+=5)
+                for (int i = 1; i < 1000; i += 5)
                 {
                     vec3 pt = new vec3(xList[ptCnt]);
                     pt.easting += (Math.Sin(pt.heading) * i);
@@ -111,7 +107,7 @@ namespace AgOpenGPS
                 //and the beginning
                 start = new vec3(xList[0]);
 
-                for (int i = 1; i < 1000; i+=5)
+                for (int i = 1; i < 1000; i += 5)
                 {
                     vec3 pt = new vec3(start);
                     pt.easting -= (Math.Sin(pt.heading) * i);
@@ -130,6 +126,3 @@ namespace AgOpenGPS
         public int mode = 0;
     }
 }
-
-
-

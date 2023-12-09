@@ -44,7 +44,6 @@ namespace AgOpenGPS
 
             Location = Properties.Settings.Default.setWindow_curveEditLocation;
 
-
             btnCancel.Focus();
         }
 
@@ -89,7 +88,6 @@ namespace AgOpenGPS
                 mf.FileSaveCurveLines();
                 mf.curve.moveDistance = 0;
                 mf.curve.isCurveValid = false;
-
             }
             Close();
         }
@@ -160,7 +158,6 @@ namespace AgOpenGPS
             double dist = mf.tool.width;
 
             mf.curve.MoveABCurve(dist * 0.5);
-
         }
 
         private void btnLeftHalfWidth_Click(object sender, EventArgs e)
@@ -168,7 +165,6 @@ namespace AgOpenGPS
             double dist = mf.tool.width;
 
             mf.curve.MoveABCurve(-dist * 0.5);
-
         }
 
         private void btnNosave_Click(object sender, EventArgs e)
@@ -187,7 +183,6 @@ namespace AgOpenGPS
             }
             Properties.Settings.Default.setWindow_curveEditLocation = Location;
             Properties.Settings.Default.Save();
-
         }
 
         private void btnCancel_HelpRequested(object sender, HelpEventArgs hlpevent)

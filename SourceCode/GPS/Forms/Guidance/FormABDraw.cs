@@ -860,7 +860,7 @@ namespace AgOpenGPS
 
                         int ptCnt = mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].curvePts.Count - 1;
 
-                        GL.Color3(0.5f, 0.5f,1.0f);
+                        GL.Color3(0.5f, 0.5f, 1.0f);
                         GL.Vertex3(mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].curvePts[ptCnt].easting,
                                     mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].curvePts[ptCnt].northing,
                                     0);

@@ -1,7 +1,6 @@
 ﻿using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -77,7 +76,6 @@ namespace AgOpenGPS
             //    arr[i].northing = mf.bnd.bndArr[0].bndLine[i].northing;
             //    arr[i].heading = mf.bnd.bndArr[0].bndLine[i].northing;
             //}
-
         }
 
         private void oglSelf_MouseDown(object sender, MouseEventArgs e)
@@ -102,9 +100,7 @@ namespace AgOpenGPS
 
             pint.easting = plotPt.easting;
             pint.northing = plotPt.northing;
-
         }
-
 
         private void oglSelf_Paint(object sender, PaintEventArgs e)
         {
@@ -135,7 +131,6 @@ namespace AgOpenGPS
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-
             Close();
         }
 

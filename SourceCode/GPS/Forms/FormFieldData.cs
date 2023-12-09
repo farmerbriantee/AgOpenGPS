@@ -2,9 +2,7 @@
 //Copyright BrianTee, copy right out of it.
 
 using System;
-using System.Globalization;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace AgOpenGPS
 {
@@ -35,7 +33,6 @@ namespace AgOpenGPS
 
                 if (mf.bnd.bndList.Count > 0)
                 {
-
                     lblTotalArea.Text = mf.fd.AreaBoundaryLessInnersHectares;
                     lblApplied.Text = mf.fd.WorkedHectares;
                     lblAcresRemain.Text = mf.fd.WorkedAreaRemainHectares;
@@ -48,7 +45,6 @@ namespace AgOpenGPS
                     lblRemainPercent.Text = "-";
                     lblApplied.Text = mf.fd.WorkedHectares;
                 }
-
             }
             else //imperial
             {
@@ -62,7 +58,7 @@ namespace AgOpenGPS
                 }
                 else
                 {
-                    lblTotalArea.Text =   "-";
+                    lblTotalArea.Text = "-";
                     lblAcresRemain.Text = "-";
                     lblTimeRemaining.Text = "-";
                     lblRemainPercent.Text = "-";
@@ -72,10 +68,6 @@ namespace AgOpenGPS
         }
     }
 }
-
-
-
-
 
 //lblLookOnLeft.Text = mf.tool.lookAheadDistanceOnPixelsLeft.ToString("N0");
 //lblLookOnRight.Text = mf.tool.lookAheadDistanceOnPixelsRight.ToString("N0");

@@ -177,10 +177,7 @@ namespace AgOpenGPS
             //double tt = 0.25;
 
             //vec2 pos = 0.5 * (a + (tt*b) + (tt * tt * c) + (tt * tt * tt * d));
-
-
         }
-
 
         // Catmull Rom gradient calculation
         public static double CatmullGradient(double t, vec3 p0, vec3 p1, vec3 p2, vec3 p3)
@@ -326,8 +323,6 @@ namespace AgOpenGPS
                 + Math.Pow(first.northing - second.northing, 2));
         }
 
-
-
         //not normalized distance, no square root
         public static double DistanceSquared(double northing1, double easting1, double northing2, double easting2)
         {
@@ -354,6 +349,7 @@ namespace AgOpenGPS
             Math.Pow(first.easting - second.easting, 2)
             + Math.Pow(first.northing - second.northing, 2));
         }
+
         public static double DistanceSquared(vec2 first, vec2 second)
         {
             return (
@@ -396,6 +392,5 @@ namespace AgOpenGPS
             g.Dispose();
             return newBitmap;
         }
-
     }
 }

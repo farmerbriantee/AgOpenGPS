@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -12,6 +11,7 @@ namespace AgOpenGPS
     {
         //access to the main GPS form and all its variables
         private readonly FormGPS mf;
+
         private double aveLineHeading;
         private int originalLine = 0;
         private bool isClosing;
@@ -44,7 +44,7 @@ namespace AgOpenGPS
             panelAPlus.Visible = false;
             panelName.Visible = false;
 
-            this.Size = new System.Drawing.Size(620,475);
+            this.Size = new System.Drawing.Size(620, 475);
 
             originalLine = mf.curve.numCurveLineSelected;
             mf.curve.isOkToAddDesPoints = false;
@@ -64,7 +64,7 @@ namespace AgOpenGPS
                 //outer inner
                 Button a = new Button
                 {
-                    Margin = new Padding(6,10,10,10),
+                    Margin = new Padding(6, 10, 10, 10),
                     Size = new Size(50, 25),
                     Name = i.ToString(),
                     TextAlign = ContentAlignment.MiddleCenter,
@@ -93,7 +93,6 @@ namespace AgOpenGPS
                 };
                 t.Font = backupfont;
                 t.Click += LineSelected_Click;
-
 
                 if (mf.curve.curveArr[i].isVisible)
                     t.ForeColor = System.Drawing.Color.Black;
@@ -205,7 +204,7 @@ namespace AgOpenGPS
 
         private void btnMoveUp_Click(object sender, EventArgs e)
         {
-            if (selectedItem == -1 || selectedItem == 0) 
+            if (selectedItem == -1 || selectedItem == 0)
                 return;
 
             mf.curve.curveArr.Reverse(selectedItem - 1, 2);
@@ -215,7 +214,7 @@ namespace AgOpenGPS
 
         private void btnMoveDn_Click(object sender, EventArgs e)
         {
-            if (selectedItem == -1 || selectedItem == (mf.curve.curveArr.Count-1))
+            if (selectedItem == -1 || selectedItem == (mf.curve.curveArr.Count - 1))
                 return;
 
             mf.curve.curveArr.Reverse(selectedItem, 2);
@@ -314,7 +313,7 @@ namespace AgOpenGPS
                 panelAPlus.Visible = false;
                 panelName.Visible = false;
 
-                this.Size = new System.Drawing.Size(620,475);
+                this.Size = new System.Drawing.Size(620, 475);
             }
         }
 
@@ -373,7 +372,7 @@ namespace AgOpenGPS
             panelEditName.Visible = false;
             panelName.Visible = false;
 
-            this.Size = new System.Drawing.Size(620,475);
+            this.Size = new System.Drawing.Size(620, 475);
         }
 
         private void textBox_Click(object sender, EventArgs e)
@@ -410,7 +409,7 @@ namespace AgOpenGPS
             panelAPlus.Visible = false;
             panelName.Visible = false;
 
-            this.Size = new System.Drawing.Size(620,475);
+            this.Size = new System.Drawing.Size(620, 475);
 
             mf.curve.desList?.Clear();
             UpdateTable();
@@ -494,7 +493,6 @@ namespace AgOpenGPS
                         //at least 3 points
                         if (numberSets.Length > 1)
                         {
-
                             foreach (string item in numberSets)
                             {
                                 string[] fix = item.Split(',');
@@ -550,7 +548,6 @@ namespace AgOpenGPS
                 }
                 catch (System.IO.FileNotFoundException)
                 {
-
                     Console.WriteLine("Bad or Missing Curve-KML file");
                 }
             }
@@ -579,7 +576,6 @@ namespace AgOpenGPS
                 {
                     selectedItem = -1;
                     mf.curve.numCurveLineSelected = 1;
-
 
                     mf.curve.aveLineHeading = mf.curve.curveArr[0].aveHeading;
                     mf.curve.refList?.Clear();
@@ -611,10 +607,8 @@ namespace AgOpenGPS
 
             if (selectedItem > -1)
             {
-
                 int idx = selectedItem;
                 mf.curve.numCurveLineSelected = idx + 1;
-
 
                 mf.curve.aveLineHeading = mf.curve.curveArr[idx].aveHeading;
                 mf.curve.refList?.Clear();
@@ -651,7 +645,6 @@ namespace AgOpenGPS
             {
                 int idx = selectedItem;
 
-
                 panelPick.Visible = false;
                 panelName.Visible = true;
                 this.Size = new System.Drawing.Size(270, 360);
@@ -677,7 +670,6 @@ namespace AgOpenGPS
         {
             if (selectedItem > -1)
             {
-
                 int idx = selectedItem;
 
                 textBox2.Text = mf.curve.curveArr[idx].Name;
@@ -715,7 +707,6 @@ namespace AgOpenGPS
         {
             if (selectedItem > -1)
             {
-
                 int idx = selectedItem;
                 mf.curve.numCurveLineSelected = idx + 1;
 
@@ -859,6 +850,6 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.ha_textBox1, gStr.gsHelp);
         }
 
-        #endregion
+        #endregion Help
     }
 }

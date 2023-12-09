@@ -2,7 +2,6 @@
 //Copyright BrianTee, copy right out of it.
 
 using System;
-using System.Globalization;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -48,7 +47,6 @@ namespace AgOpenGPS
 
             lbludpWatchCounts.Text = mf.udpWatchCounts.ToString();
 
-
             if (mf.isMetric)
             {
                 lblAltitude.Text = mf.Altitude;
@@ -73,7 +71,6 @@ namespace AgOpenGPS
     }
 }
 
-
 //lblAreaAppliedMinusOverlap.Text = ((fd.actualAreaCovered * glm.m2ac).ToString("N2"));
 //lblAreaMinusActualApplied.Text = (((mf.fd.areaBoundaryOuterLessInner - mf.fd.actualAreaCovered) * glm.m2ac).ToString("N2"));
 //lblOverlapPercent.Text = (fd.overlapPercent.ToString("N2")) + "%";
@@ -83,7 +80,6 @@ namespace AgOpenGPS
 //lblAreaMinusActualApplied.Text = (((mf.fd.areaBoundaryOuterLessInner - mf.fd.actualAreaCovered) * glm.m2ha).ToString("N2"));
 //lblOverlapPercent.Text = (fd.overlapPercent.ToString("N2")) + "%";
 //lblAreaOverlapped.Text = (((fd.workedAreaTotal - fd.actualAreaCovered) * glm.m2ha).ToString("N3"));
-
 
 //lblLookOnLeft.Text = mf.tool.lookAheadDistanceOnPixelsLeft.ToString("N0");
 //lblLookOnRight.Text = mf.tool.lookAheadDistanceOnPixelsRight.ToString("N0");

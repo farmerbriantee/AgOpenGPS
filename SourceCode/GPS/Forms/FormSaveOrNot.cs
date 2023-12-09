@@ -15,8 +15,7 @@ namespace AgOpenGPS
             {
                 btnOk.Image = Properties.Resources.ExitAOG;
                 btnOpenField.Visible = false;
-                label1.Visible = false; 
-
+                label1.Visible = false;
             }
             else
             {

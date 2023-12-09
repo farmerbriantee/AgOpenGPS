@@ -77,7 +77,6 @@ namespace AgOpenGPS
                                 latStart = (double.Parse(offs[0], CultureInfo.InvariantCulture));
                                 lonStart = (double.Parse(offs[1], CultureInfo.InvariantCulture));
 
-
                                 distance = Math.Pow((latStart - mf.pn.latitude), 2) + Math.Pow((lonStart - mf.pn.longitude), 2);
                                 distance = Math.Sqrt(distance);
                                 distance *= 100;
@@ -101,7 +100,6 @@ namespace AgOpenGPS
 
                             fileList.Add(fieldDirectory);
                             fileList.Add("Error");
-
                         }
                     }
                 }
@@ -185,7 +183,6 @@ namespace AgOpenGPS
                     if (area == 0) fileList.Add("No Bndry");
                     else fileList.Add(Math.Round(area, 1).ToString("N1").PadLeft(10));
                 }
-
                 else
                 {
                     fileList.Add("Error");
@@ -229,7 +226,6 @@ namespace AgOpenGPS
                 Close();
                 return;
             }
-
         }
 
         private void tboxFieldName_TextChanged(object sender, EventArgs e)
@@ -292,7 +288,6 @@ namespace AgOpenGPS
 
             string line;
             string offsets, convergence, startFix;
-
 
             using (StreamReader reader = new StreamReader(fileStr))
             {
@@ -360,7 +355,6 @@ namespace AgOpenGPS
                     if (File.Exists(fileToCopy))
                         File.Copy(fileToCopy, destinationDirectory);
                 }
-
                 else
                 {
                     //create blank Contour and Section files
@@ -384,7 +378,6 @@ namespace AgOpenGPS
                 destinationDirectory = directoryName + "\\BackPic.png";
                 if (File.Exists(fileToCopy))
                     File.Copy(fileToCopy, destinationDirectory);
-
 
                 fileToCopy = templateDirectoryName + "\\Boundary.txt";
                 destinationDirectory = directoryName + "\\Boundary.txt";
@@ -441,7 +434,6 @@ namespace AgOpenGPS
                         writer.WriteLine("$RecPath");
                         writer.WriteLine("0");
                     }
-
                 }
 
                 if (chkHeadland.Checked)
@@ -511,7 +503,6 @@ namespace AgOpenGPS
             order += 1;
             if (order == 3) order = 0;
 
-
             for (int i = 0; i < fileList.Count; i += 3)
             {
                 if (order == 0)
@@ -557,7 +548,6 @@ namespace AgOpenGPS
                     this.chArea.Text = gStr.gsArea;
                     this.chArea.Width = 140;
                 }
-
                 else
                 {
                     this.chName.Text = gStr.gsArea;
@@ -574,7 +564,6 @@ namespace AgOpenGPS
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-
         }
 
         private void lvLines_SelectedIndexChanged(object sender, EventArgs e)
@@ -608,7 +597,7 @@ namespace AgOpenGPS
 
         private void btnBackSpace_MouseDown(object sender, MouseEventArgs e)
         {
-            if (tboxFieldName.Text.Length>0)
+            if (tboxFieldName.Text.Length > 0)
                 tboxFieldName.Text = tboxFieldName.Text.Remove(tboxFieldName.Text.Length - 1, 1);
         }
     }

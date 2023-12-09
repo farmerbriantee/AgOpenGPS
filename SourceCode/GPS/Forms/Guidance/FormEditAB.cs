@@ -58,7 +58,6 @@ namespace AgOpenGPS
                     mf.ABLine.SetABLineByHeading();
                 }
                 else tboxHeading.Text = Math.Round(glm.toDegrees(mf.ABLine.abHeading), 5).ToString();
-
             }
 
             mf.ABLine.isABValid = false;
@@ -87,7 +86,7 @@ namespace AgOpenGPS
             isClosing = true;
             if (mf.ABLine.isABLineSet && mf.ABLine.isABLineLoaded)
             {
-                //index to last one. 
+                //index to last one.
                 int idx = mf.ABLine.numABLineSelected - 1;
 
                 if (idx >= 0)

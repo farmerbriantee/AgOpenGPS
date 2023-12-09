@@ -56,7 +56,7 @@ namespace AgIO
                     //load up the listview
                     string[] fieldNames = { temp.ToString("#######").PadLeft(10), data[0].Trim(), data[1].Trim(),
                                                     data[2].Trim(), data[3].Trim(), data[4].Trim() };
-                    
+
                     itm = new ListViewItem(fieldNames);
                     lvLines.Items.Add(itm);
                 }
@@ -81,7 +81,6 @@ namespace AgIO
             {
                 if (order == 0)
                     nt.tboxMount.Text = (lvLines.SelectedItems[0].SubItems[1].Text);
-
                 else
                     nt.tboxMount.Text = (lvLines.SelectedItems[0].SubItems[0].Text);
 
@@ -99,7 +98,7 @@ namespace AgIO
                     nt.tboxMount.Text = (lvLines.SelectedItems[0].SubItems[1].Text);
                     tboxMount.Text = (lvLines.SelectedItems[0].SubItems[1].Text);
                 }
-                else 
+                else
                 {
                     nt.tboxMount.Text = (lvLines.SelectedItems[0].SubItems[0].Text);
                     tboxMount.Text = (lvLines.SelectedItems[0].SubItems[0].Text);
@@ -183,7 +182,7 @@ namespace AgIO
             double num1 = longitude * (Math.PI / 180.0);
             double d2 = otherLatitude * (Math.PI / 180.0);
             double num2 = otherLongitude * (Math.PI / 180.0) - num1;
-            double d3 = Math.Pow(Math.Sin((d2 - d1) / 2.0), 2.0) + Math.Cos(d1) 
+            double d3 = Math.Pow(Math.Sin((d2 - d1) / 2.0), 2.0) + Math.Cos(d1)
                 * Math.Cos(d2) * Math.Pow(Math.Sin(num2 / 2.0), 2.0);
 
             return 6376500.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3)));

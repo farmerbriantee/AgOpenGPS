@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace AgIO
 {
-    public partial class FormPGN: Form
+    public partial class FormPGN : Form
     {
         public FormPGN()
         {

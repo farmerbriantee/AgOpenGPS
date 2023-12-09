@@ -10,10 +10,12 @@ namespace AgOpenGPS
 {
     public class CFeatureSettings
     {
-        public CFeatureSettings() { }
+        public CFeatureSettings()
+        { }
 
         //public bool ;
         public bool isHeadlandOn = true;
+
         public bool isTramOn = true;
         public bool isBoundaryOn = true;
         public bool isBndContourOn = true;
@@ -66,8 +68,6 @@ namespace AgOpenGPS
             isAutoSteerOn = _feature.isAutoSteerOn;
             isLateralOn = _feature.isLateralOn;
             isUTurnOn = _feature.isUTurnOn;
-
-
         }
     }
 
@@ -86,7 +86,6 @@ namespace AgOpenGPS
             }
 
             //var appSettings = Properties.Settings.Default;
-
 
             try
             {
@@ -149,7 +148,7 @@ namespace AgOpenGPS
         {
             if (!File.Exists(settingsFilePath))
             {
-                return(false);
+                return (false);
             }
             try
             {
@@ -170,7 +169,7 @@ namespace AgOpenGPS
                     if (line == null)
                     {
                         MessageBox.Show("Fatal Error with Settings File");
-                        return(false);
+                        return (false);
                     }
 
                     if (line.Contains("ies.Vehicle"))
@@ -212,14 +211,13 @@ namespace AgOpenGPS
             //    var texx  = File.ReadLine();
             //    if (texx == "        <AgOpenGPS.Properties.Vehicle>")
             //    {
-
             //    }
             //    //"        <AgOpenGPS.Properties.Vehicle>"
             //}
             catch (Exception)
             {
                 MessageBox.Show("Fatal Error with Settings File");
-                return(false); 
+                return (false);
             }
 
             try
@@ -236,7 +234,6 @@ namespace AgOpenGPS
                 //ConfigurationManager.RefreshSection(sectionName);
                 Properties.Settings.Default.Reload();
 
-
                 config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal);
                 sectionName = Properties.Settings.Default.Context["GroupName"].ToString();
 
@@ -249,14 +246,12 @@ namespace AgOpenGPS
                 Properties.Settings.Default.Reload();
                 return (true);
             }
-
             catch (Exception) // Should make this more specific
             {
                 // Could not import settings.
                 Properties.Settings.Default.Reload();
                 MessageBox.Show("Fatal Error with Settings File");
-                return(false);
-
+                return (false);
             }
         }
     }

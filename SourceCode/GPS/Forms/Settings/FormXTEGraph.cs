@@ -40,7 +40,7 @@ namespace AgOpenGPS
 
                 dataPWM = ((int)(mf.vehicle.modeActualXTE * 100)).ToString(CultureInfo.InvariantCulture);
 
-                dataSteerAngle =(Math.Round(mf.vehicle.modeActualHeadingError,1)).ToString(CultureInfo.InvariantCulture);
+                dataSteerAngle = (Math.Round(mf.vehicle.modeActualHeadingError, 1)).ToString(CultureInfo.InvariantCulture);
 
                 lblSteerAng.Text = dataSteerAngle + "\u00B0";
                 lblPWM.Text = dataPWM + " cm";
@@ -57,7 +57,6 @@ namespace AgOpenGPS
 
             unoChart.Series["S"].Points.AddXY(nextX, dataSteerAngle);
             unoChart.Series["PWM"].Points.AddXY(nextX5, dataPWM);
-
 
             //if (isScroll)
             while (s.Points.Count > 120)
@@ -79,13 +78,12 @@ namespace AgOpenGPS
             unoChart.ChartAreas[0].AxisY.Maximum = 80;
             unoChart.ResetAutoValues();
 
-            lblMax.Text = ((int)(unoChart.ChartAreas[0].AxisY.Maximum )).ToString() + " cm";
-            lblMin.Text = ((int)(unoChart.ChartAreas[0].AxisY.Minimum )).ToString() + " cm";
+            lblMax.Text = ((int)(unoChart.ChartAreas[0].AxisY.Maximum)).ToString() + " cm";
+            lblMin.Text = ((int)(unoChart.ChartAreas[0].AxisY.Minimum)).ToString() + " cm";
 
             isAuto = false;
             //lblMax.Text = "Auto";
             //lblMin.Text = "0";
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -102,7 +100,7 @@ namespace AgOpenGPS
                 unoChart.ResetAutoValues();
                 lblMax.Text = (unoChart.ChartAreas[0].AxisY.Maximum).ToString() + " cm";
                 lblMin.Text = (unoChart.ChartAreas[0].AxisY.Minimum).ToString() + " cm";
-                isAuto = false; 
+                isAuto = false;
                 return;
             }
 
@@ -114,9 +112,7 @@ namespace AgOpenGPS
                 lblMax.Text = (unoChart.ChartAreas[0].AxisY.Maximum).ToString() + " cm";
                 lblMin.Text = (unoChart.ChartAreas[0].AxisY.Minimum).ToString() + " cm";
                 return;
-
             }
-
 
             unoChart.ChartAreas[0].AxisY.Minimum *= 2;
             unoChart.ChartAreas[0].AxisY.Maximum *= 2;

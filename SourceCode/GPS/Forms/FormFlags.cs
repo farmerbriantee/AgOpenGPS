@@ -30,6 +30,7 @@ namespace AgOpenGPS
             lblFlagSelected.Text = mf.flagPts[mf.flagNumberPicked - 1].ID.ToString();
             tboxFlagNotes.Text = mf.flagPts[mf.flagNumberPicked - 1].notes;
         }
+
         private void FormFlags_Load(object sender, EventArgs e)
         {
             UpdateLabels();
@@ -79,7 +80,6 @@ namespace AgOpenGPS
 
         private void tboxFlagNotes_TextChanged(object sender, EventArgs e)
         {
-
             //mf.flagPts[mf.flagNumberPicked - 1].notes = tboxFlagNotes.Text;
         }
 
@@ -101,8 +101,8 @@ namespace AgOpenGPS
                     mf.flagPts[mf.flagNumberPicked - 1].easting, mf.flagPts[mf.flagNumberPicked - 1].northing).ToString("N2") + " m";
             else lblDistanceToFlag.Text = (glm.Distance(steerAxlePosRP,
                 mf.flagPts[mf.flagNumberPicked - 1].easting, mf.flagPts[mf.flagNumberPicked - 1].northing) * glm.m2ft).ToString("N2") + " m";
-
         }
+
         /*
         private void MakeDubinsLineFromPivotToFlag()
         {
@@ -135,6 +135,7 @@ namespace AgOpenGPS
             };
         }
         */
+
         private void tboxFlagNotes_Click(object sender, EventArgs e)
         {
             if (mf.isKeyboardOn)
@@ -142,7 +143,6 @@ namespace AgOpenGPS
                 mf.KeyboardToText((TextBox)sender, this);
                 btnExit.Focus();
             }
-
         }
     }
 }

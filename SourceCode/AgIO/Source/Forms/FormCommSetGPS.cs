@@ -57,7 +57,6 @@ namespace AgIO
                 btnOpenRTCM.Enabled = false;
                 labelRtcmBaud.Text = mf.spGPS.BaudRate.ToString();
                 labelRtcmPort.Text = mf.spGPS.PortName;
-
             }
             else
             {
@@ -67,7 +66,6 @@ namespace AgIO
                 btnOpenRTCM.Enabled = true;
                 labelRtcmBaud.Text = "-";
                 labelRtcmPort.Text = "-";
-
             }
 
             //load the port box with valid port names
@@ -177,6 +175,7 @@ namespace AgIO
             mf.spGPS.BaudRate = Convert.ToInt32(cboxBaud.Text);
             FormLoop.baudRateGPS = Convert.ToInt32(cboxBaud.Text);
         }
+
         private void cboxBaud2_SelectedIndexChanged(object sender, EventArgs e)
         {
             mf.spGPS2.BaudRate = Convert.ToInt32(cboxBaud2.Text);

@@ -83,7 +83,6 @@ namespace AgOpenGPS
             GL.Vertex3(mf.bnd.closestTurnPt.easting, mf.bnd.closestTurnPt.northing, 0);
             GL.End();
 
-
             if (bndBeingMadePts.Count > 0)
             {
                 //the boundary so far
@@ -128,6 +127,5 @@ namespace AgOpenGPS
                 GL.End();
             }
         }
-        
     }
 }

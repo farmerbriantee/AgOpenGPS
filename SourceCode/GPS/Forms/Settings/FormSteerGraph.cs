@@ -79,7 +79,6 @@ namespace AgOpenGPS
 
             lblMax.Text = ((int)(unoChart.ChartAreas[0].AxisY.Maximum * 0.01)).ToString();
             lblMin.Text = ((int)(unoChart.ChartAreas[0].AxisY.Minimum * 0.01)).ToString();
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -96,7 +95,7 @@ namespace AgOpenGPS
                 unoChart.ResetAutoValues();
                 lblMax.Text = ((int)(unoChart.ChartAreas[0].AxisY.Maximum * 0.01)).ToString();
                 lblMin.Text = ((int)(unoChart.ChartAreas[0].AxisY.Minimum * 0.01)).ToString();
-                isAuto = false; 
+                isAuto = false;
                 return;
             }
 

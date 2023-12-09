@@ -1,11 +1,8 @@
-﻿using OpenTK;
-using OpenTK.Graphics.OpenGL;
+﻿using OpenTK.Graphics.OpenGL;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -13,10 +10,10 @@ namespace AgOpenGPS
     public partial class FormMap : Form
     {
         //access to the main GPS form and all its variables
-        private readonly FormGPS mf = null;        
+        private readonly FormGPS mf = null;
 
         private bool isClosing;
-        Track bingLine = new Track(new TrackStyle(new Pen(Color.White, 4)));
+        private Track bingLine = new Track(new TrackStyle(new Pen(Color.White, 4)));
         private bool isColorMap = true;
 
         public FormMap(Form callingForm)
@@ -48,7 +45,7 @@ namespace AgOpenGPS
             mapControl.Center = new GeoPoint((float)mf.pn.longitude, (float)mf.pn.latitude);
 
             mapControl.Invalidate();
-            
+
             if (mf.worldGrid.isGeoMap)
             {
                 cboxDrawMap.Checked = true;
@@ -206,7 +203,6 @@ namespace AgOpenGPS
                         mapControl.Markers.Remove(mark);
                         break;
                     }
-
                 }
                 // mapControl.Markers.Clear();
 
@@ -273,7 +269,7 @@ namespace AgOpenGPS
             {
                 if (mf.bnd.bndList == null || mf.bnd.bndList.Count == 0) return;
                 int cnt = mf.bnd.bndList.Count;
-                mf.bnd.bndList.RemoveAt(cnt-1);
+                mf.bnd.bndList.RemoveAt(cnt - 1);
 
                 mf.FileSaveBoundary();
                 mf.bnd.BuildTurnLines();
@@ -299,7 +295,6 @@ namespace AgOpenGPS
             btnAddFence.Enabled = false;
             btnDeletePoint.Enabled = false;
             gboxField.Enabled = true;
-
         }
 
         private void cboxEnableLineDraw_Click(object sender, EventArgs e)
@@ -320,7 +315,7 @@ namespace AgOpenGPS
                 mapControl.Markers.Clear();
                 mapControl.Invalidate();
 
-                btnDeleteAll.Enabled = false;   
+                btnDeleteAll.Enabled = false;
                 btnAddFence.Enabled = false;
                 btnDeletePoint.Enabled = false;
                 gboxField.Enabled = true;
@@ -382,7 +377,7 @@ namespace AgOpenGPS
         }
 
         private void btnGray_Click(object sender, EventArgs e)
-        {            
+        {
             isColorMap = !isColorMap;
             if (isColorMap)
             {
@@ -451,19 +446,19 @@ namespace AgOpenGPS
                     bitmap = glm.MakeGrayscale3(bitmap);
                 }
 
-                String fileAndDirectory = mf.fieldsDirectory + mf.currentFieldDirectory+ "\\BackPic.png";
+                String fileAndDirectory = mf.fieldsDirectory + mf.currentFieldDirectory + "\\BackPic.png";
                 try
                 {
-                    if (File.Exists(fileAndDirectory ))
+                    if (File.Exists(fileAndDirectory))
                         File.Delete(fileAndDirectory);
                     bitmap.Save(fileAndDirectory, ImageFormat.Png);
 
                     GL.BindTexture(TextureTarget.Texture2D, mf.texture[20]);
-                    BitmapData bitmapData = bitmap.LockBits(new 
-                        Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, 
+                    BitmapData bitmapData = bitmap.LockBits(new
+                        Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly,
                         System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                    GL.TexImage2D(TextureTarget.Texture2D, 0, 
-                        PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, 
+                    GL.TexImage2D(TextureTarget.Texture2D, 0,
+                        PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0,
                         OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
                     bitmap.UnlockBits(bitmapData);
                 }
@@ -498,8 +493,6 @@ namespace AgOpenGPS
                 lblPoints.Text = bingLine.Count.ToString();
             else
                 lblPoints.Text = "";
-
-
         }
 
         private void btnReCenter_Click(object sender, EventArgs e)

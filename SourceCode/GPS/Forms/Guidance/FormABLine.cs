@@ -1,13 +1,10 @@
 ﻿//Please, if you use this, share the improvements
 
 using System;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml;
-using System.Xml.Linq;
-using static System.Windows.Forms.LinkLabel;
 
 namespace AgOpenGPS
 {
@@ -53,7 +50,6 @@ namespace AgOpenGPS
             panelName.Left = 3;
             panelKML.Top = 3;
             panelKML.Left = 3;
-            
 
             panelEditName.Top = 3;
             panelEditName.Left = 3;
@@ -128,7 +124,7 @@ namespace AgOpenGPS
             mf.ABLine.desPoint2.northing = 99999;
 
             nudHeading.Enabled = true;
-           
+
             nudHeading.Value = (decimal)(glm.toDegrees(mf.ABLine.desHeading));
 
             BuildDesLine();
@@ -203,7 +199,6 @@ namespace AgOpenGPS
                 "\u00B0 " + mf.FindDirection(mf.ABLine.desHeading);
 
             textBox1.Text = mf.ABLine.desName;
-
         }
 
         private void BtnNewABLine_Click(object sender, EventArgs e)
@@ -220,8 +215,8 @@ namespace AgOpenGPS
             btnEnter_APlus.Enabled = false;
 
             this.Size = new System.Drawing.Size(270, 360);
-
         }
+
         private void btnEditName_Click(object sender, EventArgs e)
         {
             if (lvLines.SelectedItems.Count > 0)
@@ -237,7 +232,6 @@ namespace AgOpenGPS
 
         private void btnSaveKML_Click(object sender, EventArgs e)
         {
-
         }
 
         private void btnXML_Click(object sender, EventArgs e)
@@ -283,7 +277,7 @@ namespace AgOpenGPS
                 doc.Load(fileAndDirectory);
                 shortName = Path.GetFileName(fileAndDirectory);
                 shortName = shortName.Substring(0, shortName.Length - 4);
-                
+
                 foreach (XmlNode xmlNode in doc.DocumentElement.ChildNodes[0].ChildNodes)
                 {
                     if (xmlNode.Name == "LSG")
@@ -318,29 +312,26 @@ namespace AgOpenGPS
                             mf.ABLine.numABLines = mf.ABLine.lineArr.Count;
                             mf.ABLine.numABLineSelected = mf.ABLine.numABLines;
 
-                            //index to last one. 
+                            //index to last one.
                             int idx = mf.ABLine.lineArr.Count - 1;
 
                             mf.ABLine.lineArr[idx].heading = mf.ABLine.desHeading;
                             //calculate the new points for the reference line and points
-                            mf.ABLine.lineArr[idx].origin.easting = (mf.ABLine.desPoint1.easting+mf.ABLine.desPoint2.easting)/2;
-                            mf.ABLine.lineArr[idx].origin.northing = (mf.ABLine.desPoint1.northing + mf.ABLine.desPoint2.northing)/ 2; 
+                            mf.ABLine.lineArr[idx].origin.easting = (mf.ABLine.desPoint1.easting + mf.ABLine.desPoint2.easting) / 2;
+                            mf.ABLine.lineArr[idx].origin.northing = (mf.ABLine.desPoint1.northing + mf.ABLine.desPoint2.northing) / 2;
 
                             //name
                             if (textBox2.Text.Trim() == "") textBox2.Text = "No Name " + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
                             mf.ABLine.lineArr[idx].Name = mf.ABLine.desName.Trim();
-
                         }
-
                     }
                     else if (xmlNode.Name == "PLN")
                     {
                         Console.WriteLine(xmlNode.Attributes["A"].Value);
                     }
-
                 }
-                    
+
                 mf.FileSaveABLines();
 
                 panelPick.Visible = true;
@@ -353,16 +344,14 @@ namespace AgOpenGPS
                 UpdateLineList();
                 lvLines.Focus();
                 mf.ABLine.isABLineBeingSet = false;
-                
+
                 return;
             }
             catch (System.IO.FileNotFoundException)
             {
-
                 Console.WriteLine("Bad or Missing Curve-KML file");
             }
-        }       
-
+        }
 
         private void btnLoadFromKML_Click(object sender, EventArgs e)
         {
@@ -374,25 +363,25 @@ namespace AgOpenGPS
 
             this.Size = new System.Drawing.Size(270, 360);
 
-                string fileAndDirectory;
+            string fileAndDirectory;
+            {
+                //create the dialog instance
+                OpenFileDialog ofd = new OpenFileDialog
                 {
-                    //create the dialog instance
-                    OpenFileDialog ofd = new OpenFileDialog
-                    {
-                        //set the filter to text KML only
-                        Filter = "KML files (*.KML)|*.KML",
+                    //set the filter to text KML only
+                    Filter = "KML files (*.KML)|*.KML",
 
-                        //the initial directory, fields, for the open dialog
-                        InitialDirectory = mf.fieldsDirectory + mf.currentFieldDirectory
-                    };
+                    //the initial directory, fields, for the open dialog
+                    InitialDirectory = mf.fieldsDirectory + mf.currentFieldDirectory
+                };
 
-                    //was a file selected
-                    if (ofd.ShowDialog(this) == DialogResult.Cancel) return;
-                    else fileAndDirectory = ofd.FileName;
-                }
+                //was a file selected
+                if (ofd.ShowDialog(this) == DialogResult.Cancel) return;
+                else fileAndDirectory = ofd.FileName;
+            }
 
-                string coordinates = null;
-                int startIndex;
+            string coordinates = null;
+            int startIndex;
 
             using (StreamReader reader = new StreamReader(fileAndDirectory))
             {
@@ -435,7 +424,6 @@ namespace AgOpenGPS
                             //2 points
                             if (numberSets.Length == 2)
                             {
-
                                 string[] fix = numberSets[0].Split(',');
                                 double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
                                 double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
@@ -450,7 +438,6 @@ namespace AgOpenGPS
                                 double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
 
                                 mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
-
 
                                 mf.ABLine.desPoint2.easting = easting;
                                 mf.ABLine.desPoint2.northing = norting;
@@ -485,8 +472,7 @@ namespace AgOpenGPS
                 {
                     return;
                 }
-            }            
-
+            }
         }
 
         private void btnSaveEditName_Click(object sender, EventArgs e)
@@ -501,20 +487,20 @@ namespace AgOpenGPS
             mf.ABLine.lineArr[idx].Name = textBox2.Text.Trim();
             mf.FileSaveABLines();
 
-            this.Size = new System.Drawing.Size(565,360);
+            this.Size = new System.Drawing.Size(565, 360);
 
             UpdateLineList();
             lvLines.Focus();
             mf.ABLine.isABLineBeingSet = false;
-
         }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             mf.ABLine.lineArr.Add(new CABLines());
             mf.ABLine.numABLines = mf.ABLine.lineArr.Count;
             mf.ABLine.numABLineSelected = mf.ABLine.numABLines;
 
-            //index to last one. 
+            //index to last one.
             int idx = mf.ABLine.lineArr.Count - 1;
 
             mf.ABLine.lineArr[idx].heading = mf.ABLine.desHeading;
@@ -546,7 +532,6 @@ namespace AgOpenGPS
             {
                 int idx = lvLines.SelectedIndices[0];
 
-
                 panelPick.Visible = false;
                 panelName.Visible = true;
                 this.Size = new System.Drawing.Size(270, 360);
@@ -556,7 +541,7 @@ namespace AgOpenGPS
 
                 mf.ABLine.desHeading = mf.ABLine.lineArr[idx].heading;
 
-                //calculate the new points for the reference line and points                
+                //calculate the new points for the reference line and points
                 mf.ABLine.desPoint1.easting = mf.ABLine.lineArr[idx].origin.easting;
                 mf.ABLine.desPoint1.northing = mf.ABLine.lineArr[idx].origin.northing;
 
@@ -564,7 +549,6 @@ namespace AgOpenGPS
 
                 textBox1.Text = mf.ABLine.desName;
             }
-
         }
 
         private void btnListUse_Click(object sender, EventArgs e)
@@ -604,6 +588,7 @@ namespace AgOpenGPS
                 Close();
             }
         }
+
         private void btnSwapAB_Click(object sender, EventArgs e)
         {
             if (lvLines.SelectedItems.Count > 0)
@@ -611,10 +596,8 @@ namespace AgOpenGPS
                 mf.ABLine.isABValid = false;
                 int idx = lvLines.SelectedIndices[0];
 
-
                 mf.ABLine.lineArr[idx].heading += Math.PI;
                 if (mf.ABLine.lineArr[idx].heading > glm.twoPI) mf.ABLine.lineArr[idx].heading -= glm.twoPI;
-
 
                 mf.FileSaveABLines();
 
@@ -649,7 +632,6 @@ namespace AgOpenGPS
             }
             UpdateLineList();
             lvLines.Focus();
-
         }
 
         private void FormABLine_FormClosing(object sender, FormClosingEventArgs e)
@@ -697,7 +679,7 @@ namespace AgOpenGPS
         {
             using (var form = new FormEnterAB(mf))
             {
-                if (form.ShowDialog(this) == DialogResult.OK) 
+                if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     panelAPlus.Visible = false;
                     panelName.Visible = true;
@@ -722,6 +704,7 @@ namespace AgOpenGPS
         }
 
         #region Help
+
         private void btnListDelete_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             MessageBox.Show(gStr.ha_btnListDelete, gStr.gsHelp);
@@ -822,7 +805,6 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.ha_textBox1, gStr.gsHelp);
         }
 
-        #endregion
-
+        #endregion Help
     }
 }

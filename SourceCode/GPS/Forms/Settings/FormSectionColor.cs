@@ -56,22 +56,22 @@ namespace AgOpenGPS
             if (Settings.Default.setColor_isMultiColorSections) cboxIsMulti.Checked = true;
             else cboxIsMulti.Checked = false;
 
-                btnC01.BackColor = Color.FromArgb(customSectionColorsList[0]).CheckColorFor255();
-                btnC02.BackColor = Color.FromArgb(customSectionColorsList[1]).CheckColorFor255();
-                btnC03.BackColor = Color.FromArgb(customSectionColorsList[2]).CheckColorFor255();
-                btnC04.BackColor = Color.FromArgb(customSectionColorsList[3]).CheckColorFor255();
-                btnC05.BackColor = Color.FromArgb(customSectionColorsList[4]).CheckColorFor255();
-                btnC06.BackColor = Color.FromArgb(customSectionColorsList[5]).CheckColorFor255();
-                btnC07.BackColor = Color.FromArgb(customSectionColorsList[6]).CheckColorFor255();
-                btnC08.BackColor = Color.FromArgb(customSectionColorsList[7]).CheckColorFor255();
-                btnC09.BackColor = Color.FromArgb(customSectionColorsList[8]).CheckColorFor255();
-                btnC10.BackColor = Color.FromArgb(customSectionColorsList[9]).CheckColorFor255();
-                btnC11.BackColor = Color.FromArgb(customSectionColorsList[10]).CheckColorFor255();
-                btnC12.BackColor = Color.FromArgb(customSectionColorsList[11]).CheckColorFor255();
-                btnC13.BackColor = Color.FromArgb(customSectionColorsList[12]).CheckColorFor255();
-                btnC14.BackColor = Color.FromArgb(customSectionColorsList[13]).CheckColorFor255();
-                btnC15.BackColor = Color.FromArgb(customSectionColorsList[14]).CheckColorFor255();
-                btnC16.BackColor = Color.FromArgb(customSectionColorsList[15]).CheckColorFor255();
+            btnC01.BackColor = Color.FromArgb(customSectionColorsList[0]).CheckColorFor255();
+            btnC02.BackColor = Color.FromArgb(customSectionColorsList[1]).CheckColorFor255();
+            btnC03.BackColor = Color.FromArgb(customSectionColorsList[2]).CheckColorFor255();
+            btnC04.BackColor = Color.FromArgb(customSectionColorsList[3]).CheckColorFor255();
+            btnC05.BackColor = Color.FromArgb(customSectionColorsList[4]).CheckColorFor255();
+            btnC06.BackColor = Color.FromArgb(customSectionColorsList[5]).CheckColorFor255();
+            btnC07.BackColor = Color.FromArgb(customSectionColorsList[6]).CheckColorFor255();
+            btnC08.BackColor = Color.FromArgb(customSectionColorsList[7]).CheckColorFor255();
+            btnC09.BackColor = Color.FromArgb(customSectionColorsList[8]).CheckColorFor255();
+            btnC10.BackColor = Color.FromArgb(customSectionColorsList[9]).CheckColorFor255();
+            btnC11.BackColor = Color.FromArgb(customSectionColorsList[10]).CheckColorFor255();
+            btnC12.BackColor = Color.FromArgb(customSectionColorsList[11]).CheckColorFor255();
+            btnC13.BackColor = Color.FromArgb(customSectionColorsList[12]).CheckColorFor255();
+            btnC14.BackColor = Color.FromArgb(customSectionColorsList[13]).CheckColorFor255();
+            btnC15.BackColor = Color.FromArgb(customSectionColorsList[14]).CheckColorFor255();
+            btnC16.BackColor = Color.FromArgb(customSectionColorsList[15]).CheckColorFor255();
 
             if (!cboxIsMulti.Checked)
             {
@@ -116,7 +116,6 @@ namespace AgOpenGPS
             cb16.Enabled = set;
 
             chkUse.Enabled = set;
-
         }
 
         private void SaveCustomColor()
@@ -131,16 +130,16 @@ namespace AgOpenGPS
 
         private void bntOK_Click(object sender, EventArgs e)
         {
-            mf.tool.secColors[0] = Settings.Default.setColor_sec01  = cb01.BackColor.CheckColorFor255();
-            mf.tool.secColors[1] = Settings.Default.setColor_sec02  = cb02.BackColor.CheckColorFor255();
-            mf.tool.secColors[2] = Settings.Default.setColor_sec03  = cb03.BackColor.CheckColorFor255();
-            mf.tool.secColors[3] = Settings.Default.setColor_sec04  = cb04.BackColor.CheckColorFor255();
-            mf.tool.secColors[4] = Settings.Default.setColor_sec05  = cb05.BackColor.CheckColorFor255();
-            mf.tool.secColors[5] = Settings.Default.setColor_sec06  = cb06.BackColor.CheckColorFor255();
-            mf.tool.secColors[6] = Settings.Default.setColor_sec07  = cb07.BackColor.CheckColorFor255();
-            mf.tool.secColors[7] = Settings.Default.setColor_sec08  = cb08.BackColor.CheckColorFor255();
-            mf.tool.secColors[8] = Settings.Default.setColor_sec09  = cb09.BackColor.CheckColorFor255();
-            mf.tool.secColors[9] = Settings.Default.setColor_sec10  = cb10.BackColor.CheckColorFor255();
+            mf.tool.secColors[0] = Settings.Default.setColor_sec01 = cb01.BackColor.CheckColorFor255();
+            mf.tool.secColors[1] = Settings.Default.setColor_sec02 = cb02.BackColor.CheckColorFor255();
+            mf.tool.secColors[2] = Settings.Default.setColor_sec03 = cb03.BackColor.CheckColorFor255();
+            mf.tool.secColors[3] = Settings.Default.setColor_sec04 = cb04.BackColor.CheckColorFor255();
+            mf.tool.secColors[4] = Settings.Default.setColor_sec05 = cb05.BackColor.CheckColorFor255();
+            mf.tool.secColors[5] = Settings.Default.setColor_sec06 = cb06.BackColor.CheckColorFor255();
+            mf.tool.secColors[6] = Settings.Default.setColor_sec07 = cb07.BackColor.CheckColorFor255();
+            mf.tool.secColors[7] = Settings.Default.setColor_sec08 = cb08.BackColor.CheckColorFor255();
+            mf.tool.secColors[8] = Settings.Default.setColor_sec09 = cb09.BackColor.CheckColorFor255();
+            mf.tool.secColors[9] = Settings.Default.setColor_sec10 = cb10.BackColor.CheckColorFor255();
             mf.tool.secColors[10] = Settings.Default.setColor_sec11 = cb11.BackColor.CheckColorFor255();
             mf.tool.secColors[11] = Settings.Default.setColor_sec12 = cb12.BackColor.CheckColorFor255();
             mf.tool.secColors[12] = Settings.Default.setColor_sec13 = cb13.BackColor.CheckColorFor255();
@@ -173,13 +172,12 @@ namespace AgOpenGPS
                 groupBox1.Text = "Select Preset Color";
                 chkUse.Image = Properties.Resources.ColorLocked;
             }
-
         }
 
         private void UpdateColor(Color col)
         {
             col = col.CheckColorFor255();
-            if (cb01.Checked) cb01.BackColor =      col;
+            if (cb01.Checked) cb01.BackColor = col;
             else if (cb02.Checked) cb02.BackColor = col;
             else if (cb03.Checked) cb03.BackColor = col;
             else if (cb04.Checked) cb04.BackColor = col;
@@ -214,7 +212,6 @@ namespace AgOpenGPS
                 cb16.Checked = false;
 
             isUse = false;
-
         }
 
         private void btnC01_Click(object sender, EventArgs e)
@@ -227,16 +224,15 @@ namespace AgOpenGPS
             }
             else if (isChange)
             {
-
                 using (FormColorPicker form = new FormColorPicker(mf, butt.BackColor))
                 {
-                    int.TryParse((butt.Name.Substring(4,2)), out int buttNumber);
+                    int.TryParse((butt.Name.Substring(4, 2)), out int buttNumber);
 
                     if (form.ShowDialog(this) == DialogResult.OK)
                     {
-                        int iCol = (form.useThisColor.A << 24) | (form.useThisColor.R << 16) 
+                        int iCol = (form.useThisColor.A << 24) | (form.useThisColor.R << 16)
                             | (form.useThisColor.G << 8) | form.useThisColor.B;
-                        (customSectionColorsList[buttNumber-1]) = iCol;
+                        (customSectionColorsList[buttNumber - 1]) = iCol;
                         butt.BackColor = form.useThisColor;
                     }
                 }
@@ -278,7 +274,7 @@ namespace AgOpenGPS
             cb14.Checked =
             cb15.Checked =
             cb16.Checked = false;
-            
+
             cbox.Checked = true;
             isUse = true;
             isChange = false;

@@ -62,7 +62,6 @@ namespace AgOpenGPS
                 }
             }
 
-
             //make sure distance isn't too big between points on Turn
             int bndCount = turnLine.Count;
             for (int i = 0; i < bndCount; i++)

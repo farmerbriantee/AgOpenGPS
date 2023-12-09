@@ -2,15 +2,9 @@
 using OpenTK.Graphics.OpenGL;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace AgOpenGPS
 {
@@ -72,7 +66,7 @@ namespace AgOpenGPS
         private void FixLabelsCurve()
         {
             lblNumCu.Text = mf.hdl.tracksArr.Count.ToString();
-            lblCurveSelected.Text = (mf.hdl.idx+1).ToString();
+            lblCurveSelected.Text = (mf.hdl.idx + 1).ToString();
         }
 
         private void btnCycleForward_Click(object sender, EventArgs e)
@@ -99,7 +93,7 @@ namespace AgOpenGPS
             if (mf.hdl.tracksArr.Count > 0)
             {
                 mf.hdl.idx--;
-                if (mf.hdl.idx < 0 ) mf.hdl.idx =(mf.hdl.tracksArr.Count - 1);
+                if (mf.hdl.idx < 0) mf.hdl.idx = (mf.hdl.tracksArr.Count - 1);
             }
             else
             {
@@ -210,7 +204,6 @@ namespace AgOpenGPS
                     bool isLoop = false;
                     int limit = end;
 
-
                     if ((Math.Abs(start - end)) > (mf.bnd.bndList[bndSelect].fenceLine.Count * 0.5))
                     {
                         if (start < end)
@@ -230,7 +223,6 @@ namespace AgOpenGPS
                             end = mf.bnd.bndList[bndSelect].fenceLine.Count;
                         }
                     }
-
                     else
                     {
                         if (start > end)
@@ -313,7 +305,6 @@ namespace AgOpenGPS
                     FixLabelsCurve();
                     btnExit.Focus();
                 }
-
                 else if (rbtnLine.Checked)
                 {
                     if ((Math.Abs(start - end)) > (mf.bnd.bndList[bndSelect].fenceLine.Count * 0.5))
@@ -323,7 +314,6 @@ namespace AgOpenGPS
                             (start, end) = (end, start);
                         }
                     }
-
                     else
                     {
                         if (start > end)
@@ -498,17 +488,16 @@ namespace AgOpenGPS
             //GL.End();
 
             //draw the line building graphics
-            //if (start != 99999 || end != 99999) 
+            //if (start != 99999 || end != 99999)
             //draw the actual built lines
             //if (start == 99999 && end == 99999)
             {
                 DrawBuiltLines();
             }
 
-                DrawABTouchLine();
+            DrawABTouchLine();
 
             GL.Disable(EnableCap.Blend);
-
 
             GL.Flush();
             oglSelf.SwapBuffers();
@@ -516,7 +505,6 @@ namespace AgOpenGPS
 
         private void DrawBuiltLines()
         {
-
             if (isLinesVisible && mf.hdl.tracksArr.Count > 0)
             {
                 //GL.Enable(EnableCap.LineStipple);
@@ -565,8 +553,7 @@ namespace AgOpenGPS
                     GL.Vertex3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[cnt].easting, mf.hdl.tracksArr[mf.hdl.idx].trackPts[cnt].northing, 0);
                     GL.End();
 
-
-                    lblMovedDistance.Text = (mf.hdl.tracksArr[mf.hdl.idx].moveDistance*mf.m2FtOrM).ToString("N1");
+                    lblMovedDistance.Text = (mf.hdl.tracksArr[mf.hdl.idx].moveDistance * mf.m2FtOrM).ToString("N1");
                 }
             }
 
@@ -579,7 +566,6 @@ namespace AgOpenGPS
                 GL.Vertex3(mf.bnd.bndList[0].hdLine[i].easting, mf.bnd.bndList[0].hdLine[i].northing, 0);
             }
             GL.End();
-
         }
 
         private void DrawABTouchLine()
@@ -673,6 +659,7 @@ namespace AgOpenGPS
 
         // Returns 1 if the lines intersect, otherwis
         public double iE = 0, iN = 0;
+
         public List<int> crossings = new List<int>(1);
 
         private void btnDeleteHeadland_Click(object sender, EventArgs e)
@@ -713,7 +700,6 @@ namespace AgOpenGPS
 
                 for (int i = 0; i < mf.hdl.tracksArr[lineNum].trackPts.Count - 2; i++)
                 {
-
                     for (int k = 0; k < mf.hdl.tracksArr[nextLine].trackPts.Count - 2; k++)
                     {
                         int res = GetLineIntersection(
@@ -836,7 +822,7 @@ namespace AgOpenGPS
 
         private void cboxToolWidths_SelectedIndexChanged(object sender, EventArgs e)
         {
-            nudSetDistance.Value = (decimal)(Math.Round((mf.tool.width-mf.tool.overlap) * cboxToolWidths.SelectedIndex, 1));
+            nudSetDistance.Value = (decimal)(Math.Round((mf.tool.width - mf.tool.overlap) * cboxToolWidths.SelectedIndex, 1));
         }
 
         private void btnHeadlandOff_Click(object sender, EventArgs e)
@@ -885,7 +871,6 @@ namespace AgOpenGPS
 
             return 0; // No collision
         }
-
 
         private void oglSelf_Load(object sender, EventArgs e)
         {

@@ -601,12 +601,6 @@ namespace AgOpenGPS
 
         public void FileSaveEverythingBeforeClosingField()
         {
-            ////if (this.OwnedForms.Any())
-            ////{
-            ////    TimedMessageBox(2000, gStr.gsWindowsStillOpen, gStr.gsCloseAllWindowsFirst);
-            ////    return;
-            ////}
-
             //turn off contour line if on
             if (ct.isContourOn) ct.StopContourLine();
 

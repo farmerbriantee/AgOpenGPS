@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AgOpenGPS.Forms
@@ -16,7 +9,9 @@ namespace AgOpenGPS.Forms
     {
         //class variables
         private readonly FormGPS mf = null;
+
         public string filename = String.Empty;
+
         public FormRecordName(Form _callingForm)
         {
             //get copy of the calling main form

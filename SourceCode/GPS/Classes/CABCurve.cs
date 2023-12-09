@@ -1,12 +1,11 @@
 ﻿using OpenTK.Graphics.OpenGL;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 
 namespace AgOpenGPS
 {
-    public enum Mode { None = 0, AB = 2, Curve = 4, Contour = 8, RecPath = 16, bCurve = 32 };//, Heading, Circle, Spiral
+    public enum Mode
+    { None = 0, AB = 2, Curve = 4, Contour = 8, RecPath = 16, bCurve = 32 };//, Heading, Circle, Spiral
 
     public class CABCurve
     {
@@ -40,6 +39,7 @@ namespace AgOpenGPS
 
         //the list of points of the ref line.
         public List<vec3> refList = new List<vec3>();
+
         //the list of points of curve to drive on
         public List<vec3> curList = new List<vec3>();
 
@@ -57,8 +57,10 @@ namespace AgOpenGPS
         public string desName = "**";
 
         public double pivotDistanceError, pivotDistanceErrorLast, pivotDerivative, pivotDerivativeSmoothed, lastCurveDistance = 10000;
+
         //derivative counters
         private int counter2;
+
         public double inty;
 
         public CABCurve(FormGPS _f)
@@ -154,8 +156,8 @@ namespace AgOpenGPS
             //distanceFromRefLine -= (0.5 * widthMinusOverlap);
 
             double RefDist = (distanceFromRefLine + (isHeadingSameWay ? mf.tool.offset : -mf.tool.offset)) / widthMinusOverlap;
-            if (RefDist < 0) howManyPathsAway = (int)(RefDist-0.5);
-            else howManyPathsAway = (int)(RefDist+0.5);
+            if (RefDist < 0) howManyPathsAway = (int)(RefDist - 0.5);
+            else howManyPathsAway = (int)(RefDist + 0.5);
 
             //build current list
             isCurveValid = true;
@@ -164,12 +166,11 @@ namespace AgOpenGPS
             curList?.Clear();
 
             double distAway = widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset);
-            
+
             //bnd line
             //distAway += (0.5 * widthMinusOverlap);
             //distAway -= 2;
             //offset calc
-
 
             if (howManyPathsAway > -1) howManyPathsAway += 1;
 
@@ -193,7 +194,7 @@ namespace AgOpenGPS
                         break;
                     }
                 }
- 
+
                 if (Add)
                 {
                     if (curList.Count > 0)
@@ -228,7 +229,6 @@ namespace AgOpenGPS
                 }
 
                 arr[arr.Length - 1].heading = arr[arr.Length - 2].heading;
-
 
                 //if (mf.tool.isToolTrailing)
                 //{
@@ -266,7 +266,7 @@ namespace AgOpenGPS
                 //    arr[arr.Length - 1].heading = arr[arr.Length - 2].heading;
                 //}
 
-                //replace the array 
+                //replace the array
                 //curList.AddRange(arr);
                 cnt = arr.Length;
                 double distance;
@@ -365,7 +365,7 @@ namespace AgOpenGPS
             if (refList == null || refList.Count < 5) return;
 
             //build new current ref line if required
-            if (!isCurveValid || ((mf.secondsSinceStart - lastSecond) > 0.66 
+            if (!isCurveValid || ((mf.secondsSinceStart - lastSecond) > 0.66
                 && (!mf.isAutoSteerBtnOn || mf.mc.steerSwitchHigh)))
                 BuildCurveCurrentList(pivot);
 
@@ -434,7 +434,6 @@ namespace AgOpenGPS
                     if (A > B) { C = A; A = B; B = C; }
 
                     currentLocationIndex = A;
-
 
                     //get the distance from currently active AB line
 
@@ -571,11 +570,10 @@ namespace AgOpenGPS
                     if (steerAngleCu < -mf.vehicle.maxSteerAngle) steerAngleCu = -mf.vehicle.maxSteerAngle;
                     if (steerAngleCu > mf.vehicle.maxSteerAngle) steerAngleCu = mf.vehicle.maxSteerAngle;
 
-
                     if (!isHeadingSameWay)
                         distanceFromCurrentLinePivot *= -1.0;
 
-                    //used for acquire/hold mode 
+                    //used for acquire/hold mode
                     mf.vehicle.modeActualXTE = (distanceFromCurrentLinePivot);
 
                     double steerHeadingError = (pivot.heading - curList[A].heading);
@@ -616,7 +614,7 @@ namespace AgOpenGPS
             }
 
             int ptCount = refList.Count;
-            if (refList == null|| refList.Count == 0)  return;
+            if (refList == null || refList.Count == 0) return;
 
             GL.LineWidth(mf.ABLine.lineWidth);
             GL.Color3(0.96, 0.2f, 0.2f);
@@ -669,7 +667,6 @@ namespace AgOpenGPS
                     ////GL.Vertex3(refList[refList.Count - 1].easting, curList[curList.Count - 1].northing, 0);
                     //GL.End();
 
-
                     if (!mf.isStanleyUsed && mf.camera.camSetDistance > -200)
                     {
                         //Draw lookahead Point
@@ -718,7 +715,7 @@ namespace AgOpenGPS
             }
 
             double widd = 0;
-            
+
             for (int i = cntr; i <= mf.tram.passes; i++)
             {
                 mf.tram.tramArr = new List<vec2>
@@ -730,7 +727,7 @@ namespace AgOpenGPS
 
                 widd = (mf.tram.tramWidth * 0.5) - mf.tool.halfWidth - mf.tram.halfWheelTrack;
                 widd += (mf.tram.tramWidth * i);
-                
+
                 double distSqAway = widd * widd * 0.999999;
 
                 for (int j = 0; j < refCount; j += 1)
@@ -867,7 +864,7 @@ namespace AgOpenGPS
             smooList?.Clear();
 
             if (arr == null || cnt < 1) return;
-            if (smooList == null) return;   
+            if (smooList == null) return;
 
             for (int i = 0; i < cnt; i++)
             {
@@ -1040,6 +1037,3 @@ namespace AgOpenGPS
         public bool isVisible = true;
     }
 }
-
-
-

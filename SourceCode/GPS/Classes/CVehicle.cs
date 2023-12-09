@@ -47,7 +47,6 @@ namespace AgOpenGPS
 
         public double functionSpeedLimit;
 
-
         public CVehicle(FormGPS _f)
         {
             //constructor
@@ -101,7 +100,8 @@ namespace AgOpenGPS
         }
 
         public int modeTimeCounter = 0;
-        public double  goalDistance = 0;
+        public double goalDistance = 0;
+
         public double UpdateGoalPointDistance()
         {
             double xTE = Math.Abs(modeActualXTE);
@@ -135,7 +135,6 @@ namespace AgOpenGPS
 
         public void DrawVehicle()
         {
-
             //draw vehicle
             GL.Rotate(glm.toDegrees(-mf.fixHeading), 0.0, 0.0, 1.0);
             //mf.font.DrawText3D(0, 0, "&TGF");
@@ -280,7 +279,6 @@ namespace AgOpenGPS
                     //disable, straight color
                     GL.Disable(EnableCap.Texture2D);
                     //GL.Disable(EnableCap.Blend);
-
                 }
                 else if (vehicleType == 1) //Harvestor
                 {
@@ -389,7 +387,6 @@ namespace AgOpenGPS
 
                     GL.PopMatrix();
 
-
                     GL.BindTexture(TextureTarget.Texture2D, mf.texture[16]);        // Select Our Texture
 
                     GL.PushMatrix();
@@ -405,7 +402,6 @@ namespace AgOpenGPS
 
                     GL.PopMatrix();
                     GL.Disable(EnableCap.Texture2D);
-
                 }
             }
             else
@@ -430,7 +426,6 @@ namespace AgOpenGPS
                     GL.Vertex3(0, wheelbase, 0);
                 }
                 GL.End();
-
             }
 
             if (mf.camera.camSetDistance > -75 && mf.isFirstHeadingSet)

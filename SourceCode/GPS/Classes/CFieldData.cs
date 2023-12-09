@@ -77,16 +77,16 @@ namespace AgOpenGPS
         }
 
         //User Distance strings
-        public string DistanceUserMeters => Convert.ToString(Math.Round(distanceUser,3));
+        public string DistanceUserMeters => Convert.ToString(Math.Round(distanceUser, 3));
 
-        public string DistanceUserFeet => Convert.ToString(Math.Round((distanceUser * glm.m2ft),1));
+        public string DistanceUserFeet => Convert.ToString(Math.Round((distanceUser * glm.m2ft), 1));
 
         //remaining area to be worked
         public string WorkedAreaRemainHectares => ((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ha).ToString("N2") + " ha";
 
         public string WorkedAreaRemainAcres => ((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ac).ToString("N2") + " ac";
 
-        //overlap strings          
+        //overlap strings
 
         public string WorkedAreaRemainPercentage
         {
@@ -156,7 +156,7 @@ namespace AgOpenGPS
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("Field: {0}", mf.displayFieldName);
-            sb.AppendLine(); 
+            sb.AppendLine();
             sb.AppendFormat("Total Hectares: {0}", AreaBoundaryLessInnersHectares);
             sb.AppendLine();
             sb.AppendFormat("Worked Hectares: {0}", WorkedHectares);
@@ -177,7 +177,5 @@ namespace AgOpenGPS
             sb.AppendLine();
             return sb.ToString();
         }
-
-
     }
 }

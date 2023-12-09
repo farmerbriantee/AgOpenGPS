@@ -2,7 +2,6 @@
 
 namespace AgOpenGPS
 {
-
     internal sealed class CSunTimes
     {
         #region Private Data Members
@@ -20,11 +19,12 @@ namespace AgOpenGPS
         private readonly double[] mDecensionArr = new double[3] { 0.0, 0.0, 0.0 };
         private readonly double[] mVHzArr = new double[3] { 0.0, 0.0, 0.0 };
 
-        #endregion
+        #endregion Private Data Members
 
         private static readonly CSunTimes mInstance = new CSunTimes();    // The singleton instance
 
-        private CSunTimes() { }
+        private CSunTimes()
+        { }
 
         public static CSunTimes Instance => mInstance;
 
@@ -61,7 +61,7 @@ namespace AgOpenGPS
                 double ra1 = mSunPositionInSkyArr[0];
                 double dec1 = mSunPositionInSkyArr[1];
 
-                // make continuous 
+                // make continuous
                 if (ra1 < ra0)
                     ra1 += 2 * Math.PI;
 
@@ -139,7 +139,7 @@ namespace AgOpenGPS
             return jd;
         }
 
-        // sun's position using fundamental arguments 
+        // sun's position using fundamental arguments
         // (Van Flandern & Pulkkinen, 1979)
         private void CalculateSunPosition(double jd, double ct)
         {
@@ -172,7 +172,7 @@ namespace AgOpenGPS
             s = w / Math.Sqrt(u - v * v);
             mSunPositionInSkyArr[0] = lo + Math.Atan(s / Math.Sqrt(1 - s * s));
 
-            // ...and declination 
+            // ...and declination
             s = v / Math.Sqrt(u);
             mSunPositionInSkyArr[1] = Math.Atan(s / Math.Sqrt(1 - s * s));
         }
@@ -238,6 +238,6 @@ namespace AgOpenGPS
             return mVHzArr[2];
         }
 
-        #endregion  // Private Methods
+        #endregion Private Methods
     }
 }

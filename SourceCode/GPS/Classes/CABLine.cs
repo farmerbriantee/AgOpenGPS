@@ -14,10 +14,12 @@ namespace AgOpenGPS
 
         //the current AB guidance line
         public vec3 currentABLineP1 = new vec3(0.0, 0.0, 0.0);
+
         public vec3 currentABLineP2 = new vec3(0.0, 1.0, 0.0);
 
         public double distanceFromCurrentLinePivot;
         public double distanceFromRefLine;
+
         //pure pursuit values
         public vec2 goalPointAB = new vec2(0, 0);
 
@@ -35,14 +37,18 @@ namespace AgOpenGPS
         //public bool isOnTramLine;
         //public int tramBasedOn;
         public double ppRadiusAB;
+
         public vec2 radiusPointAB = new vec2(0, 0);
         public double rEastAB, rNorthAB;
+
         //the reference line endpoints
         public vec2 refABLineP1 = new vec2(0.0, 0.0);
+
         public vec2 refABLineP2 = new vec2(0.0, 1.0);
 
         //the two inital A and B points
         public vec2 refPoint1 = new vec2(0.2, 0.15);
+
         public vec2 refPoint2 = new vec2(0.3, 0.3);
 
         public double snapDistance, lastSecond = 0;
@@ -51,6 +57,7 @@ namespace AgOpenGPS
 
         //design
         public vec2 desPoint1 = new vec2(0.2, 0.15);
+
         public vec2 desPoint2 = new vec2(0.3, 0.3);
         public double desHeading = 0;
         public vec2 desP1 = new vec2(0.0, 0.0);
@@ -58,14 +65,17 @@ namespace AgOpenGPS
         public string desName = "";
 
         public double pivotDistanceError, pivotDistanceErrorLast, pivotDerivative, pivotDerivativeSmoothed;
+
         //derivative counters
         private int counter2;
+
         public double inty;
         public double steerAngleSmoothed, pivotErrorTotal;
         public double distSteerError, lastDistSteerError, derivativeDistError;
 
         //Color tramColor = Color.YellowGreen;
         public int tramPassEvery;
+
         //pointers to mainform controls
         private readonly FormGPS mf;
 
@@ -78,8 +88,8 @@ namespace AgOpenGPS
             abLength = Properties.Settings.Default.setAB_lineLength;
         }
 
-        double shadowOffset = 0;
-        double widthMinusOverlap = 0;
+        private double shadowOffset = 0;
+        private double widthMinusOverlap = 0;
 
         public void BuildCurrentABLineList(vec3 pivot)
         {
@@ -135,7 +145,7 @@ namespace AgOpenGPS
             double dx, dy;
 
             //build new current ref line if required
-            if (!isABValid || ((mf.secondsSinceStart - lastSecond) > 0.66 
+            if (!isABValid || ((mf.secondsSinceStart - lastSecond) > 0.66
                 && (!mf.isAutoSteerBtnOn || mf.mc.steerSwitchHigh)))
                 BuildCurrentABLineList(pivot);
 
@@ -297,7 +307,7 @@ namespace AgOpenGPS
                 if (!isHeadingSameWay)
                     distanceFromCurrentLinePivot *= -1.0;
 
-                //used for acquire/hold mode 
+                //used for acquire/hold mode
                 mf.vehicle.modeActualXTE = (distanceFromCurrentLinePivot);
 
                 double steerHeadingError = (pivot.heading - abHeading);
@@ -486,7 +496,7 @@ namespace AgOpenGPS
                     GL.LineWidth(2);
                     GL.Color3(0.53f, 0.530f, 0.950f);
                     GL.Begin(PrimitiveType.Lines);
-                    for (int ii = 0; ii < numSegments-15; ii++)
+                    for (int ii = 0; ii < numSegments - 15; ii++)
                     {
                         //glVertex2f(x + cx, y + cy);//output vertex
                         GL.Vertex3(x + radiusPointAB.easting, y + radiusPointAB.northing, 0);//output vertex
@@ -555,7 +565,7 @@ namespace AgOpenGPS
                     cntr = 1;
             }
 
-            double widd = 0; 
+            double widd = 0;
 
             for (int i = cntr; i < mf.tram.passes; i++)
             {
@@ -566,7 +576,7 @@ namespace AgOpenGPS
 
                 mf.tram.tramList.Add(mf.tram.tramArr);
 
-                widd  = (mf.tram.tramWidth * 0.5) - mf.tool.halfWidth - mf.tram.halfWheelTrack;
+                widd = (mf.tram.tramWidth * 0.5) - mf.tool.halfWidth - mf.tram.halfWheelTrack;
                 widd += (mf.tram.tramWidth * i);
 
                 for (int j = 0; j < tramRef.Count; j++)

@@ -11,7 +11,9 @@
         // ---- Section control switches to AOG  ---------------------------------------------------------
         //PGN - 32736 - 127.249 0x7FF9
         public byte[] ss = new byte[9];
+
         public byte[] ssP = new byte[9];
+
         public int
             swHeader = 0,
             swMain = 1,
@@ -28,7 +30,7 @@
         public int actualSteerAngleChart = 0, sensorData = -1;
 
         //for the workswitch
-        public bool isWorkSwitchActiveLow, isRemoteWorkSystemOn, isWorkSwitchEnabled, 
+        public bool isWorkSwitchActiveLow, isRemoteWorkSystemOn, isWorkSwitchEnabled,
             isWorkSwitchManualSections, isSteerWorkSwitchManualSections, isSteerWorkSwitchEnabled;
 
         public bool workSwitchHigh, oldWorkSwitchHigh, steerSwitchHigh, oldSteerSwitchHigh, oldSteerSwitchRemote;

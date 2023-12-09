@@ -1,8 +1,6 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
@@ -17,6 +15,7 @@ namespace AgIO
 
         //used to send communication check pgn= C8 or 200
         private byte[] sendIPToModules = { 0x80, 0x81, 0x7F, 201, 5, 201, 201, 192, 168, 5, 0x47 };
+
         private byte[] ipCurrent = { 192, 168, 5 };
         private byte[] ipNew = { 192, 168, 5 };
 
@@ -51,11 +50,11 @@ namespace AgIO
             ScanNetwork();
         }
 
-        int tickCounter = 0;
+        private int tickCounter = 0;
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if(!mf.scanReply.isNewData)
+            if (!mf.scanReply.isNewData)
             {
                 mf.ipAutoSet[0] = 99;
                 mf.ipAutoSet[1] = 99;
@@ -96,7 +95,7 @@ namespace AgIO
             }
 
             if (tickCounter == 4)
-            {                
+            {
                 if (mf.btnSteer.BackColor == Color.LimeGreen) lblBtnSteer.BackColor = Color.LimeGreen;
                 else lblBtnSteer.BackColor = Color.Red;
 
@@ -118,7 +117,7 @@ namespace AgIO
             }
             else
             {
-                 lblSubTimer.Text = "-";
+                lblSubTimer.Text = "-";
             }
             tickCounter++;
         }
@@ -137,7 +136,7 @@ namespace AgIO
             //Send out 255x4 to each installed network interface
             foreach (var nic in NetworkInterface.GetAllNetworkInterfaces())
             {
-                if (nic.Supports(NetworkInterfaceComponent.IPv4) )
+                if (nic.Supports(NetworkInterfaceComponent.IPv4))
                 {
                     foreach (var info in nic.GetIPProperties().UnicastAddresses)
                     {
@@ -161,13 +160,13 @@ namespace AgIO
                                         + properties.UnicastPacketsReceived).ToString() + "\r\n\r\n";
                                 }
 
-                                if ( nic.OperationalStatus == OperationalStatus.Up 
+                                if (nic.OperationalStatus == OperationalStatus.Up
                                     && info.IPv4Mask != null)
                                 {
                                     byte[] data = info.Address.GetAddressBytes();
                                     if (data[0] == ipCurrent[0] && data[1] == ipCurrent[1] && data[2] == ipCurrent[2])
                                     {
-                                        isSubnetMatchCard = true;   
+                                        isSubnetMatchCard = true;
                                     }
 
                                     //send scan reply out each network interface
@@ -289,14 +288,14 @@ namespace AgIO
 
         private void btnAutoSet_Click(object sender, EventArgs e)
         {
-                nudFirstIP.Value = mf.scanReply.subnet[0];
-                nudSecndIP.Value = mf.scanReply.subnet[1];
-                nudThirdIP.Value = mf.scanReply.subnet[2];
-                ipNew[0] = mf.scanReply.subnet[0];
-                ipNew[1] = mf.scanReply.subnet[1];
-                ipNew[2] = mf.scanReply.subnet[2];
-                btnSerialCancel.Image = Properties.Resources.Cancel64;
-                pboxSendSteer.Visible = true;
+            nudFirstIP.Value = mf.scanReply.subnet[0];
+            nudSecndIP.Value = mf.scanReply.subnet[1];
+            nudThirdIP.Value = mf.scanReply.subnet[2];
+            ipNew[0] = mf.scanReply.subnet[0];
+            ipNew[1] = mf.scanReply.subnet[1];
+            ipNew[2] = mf.scanReply.subnet[2];
+            btnSerialCancel.Image = Properties.Resources.Cancel64;
+            pboxSendSteer.Visible = true;
         }
 
         private void nudFirstIP_Click(object sender, EventArgs e)
@@ -312,7 +311,7 @@ namespace AgIO
 
         private void cboxUp_Click(object sender, EventArgs e)
         {
-            if(cboxUp.Checked)
+            if (cboxUp.Checked)
             {
                 cboxUp.Text = "Up";
             }
@@ -330,7 +329,6 @@ namespace AgIO
         private void btnHelp_Click(object sender, EventArgs e)
         {
             //System.Diagnostics.Process.Start(gStr.gsEthernetHelp);
-
         }
 
         private void btnSerialCancel_Click(object sender, EventArgs e)

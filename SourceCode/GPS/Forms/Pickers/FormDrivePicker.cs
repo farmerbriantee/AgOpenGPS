@@ -22,10 +22,10 @@ namespace AgOpenGPS
                 lvLines.Items.Add(itm);
             }
         }
+
         private void FormFilePicker_Load(object sender, EventArgs e)
         {
         }
-
 
         private void btnOpenExistingLv_Click(object sender, EventArgs e)
         {
@@ -41,6 +41,5 @@ namespace AgOpenGPS
         {
             mf.filePickerFileAndDirectory = "";
         }
-
     }
 }

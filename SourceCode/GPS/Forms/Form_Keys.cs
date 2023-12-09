@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -103,7 +102,7 @@ namespace AgOpenGPS
             LoadButtonText();
         }
 
-        void LoadButtonText()
+        private void LoadButtonText()
         {
             btnAutosteer.Text = mf.hotkeys[0].ToString();
             btnCycleLines.Text = mf.hotkeys[1].ToString();

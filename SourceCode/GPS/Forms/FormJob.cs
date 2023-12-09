@@ -42,7 +42,6 @@ namespace AgOpenGPS
                 btnJobResume.Enabled = false;
                 mf.currentFieldDirectory = "";
 
-
                 Properties.Settings.Default.setF_CurrentDir = "";
                 Properties.Settings.Default.Save();
             }
@@ -54,7 +53,6 @@ namespace AgOpenGPS
             if (mf.isJobStarted)
             {
                 btnJobResume.Enabled = false;
-
             }
 
             Location = Properties.Settings.Default.setJobMenu_location;
@@ -151,16 +149,12 @@ namespace AgOpenGPS
                                         infieldList += "," + Path.GetFileName(dir);
                                 }
                             }
-
                         }
                         catch (Exception)
                         {
                             FormTimedMessage form = new FormTimedMessage(2000, gStr.gsFieldFileIsCorrupt, gStr.gsChooseADifferentField);
                         }
                     }
-
-
-
                 }
             }
 
@@ -197,7 +191,6 @@ namespace AgOpenGPS
                 FormTimedMessage form2 = new FormTimedMessage(2000, gStr.gsNoFieldsFound, gStr.gsFieldNotOpen);
                 form2.Show(this);
             }
-
         }
 
         public double GetDistance(double longitude, double latitude, double otherLongitude, double otherLatitude)
@@ -228,7 +221,6 @@ namespace AgOpenGPS
 
         private void btnJobClose_Click(object sender, EventArgs e)
         {
-
             if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
             //back to FormGPS
             DialogResult = DialogResult.OK;

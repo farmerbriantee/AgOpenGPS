@@ -2,14 +2,8 @@
 using OpenTK.Graphics.OpenGL;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace AgOpenGPS
 {
@@ -154,7 +148,6 @@ namespace AgOpenGPS
                     bool isLoop = false;
                     int limit = end;
 
-
                     if ((Math.Abs(start - end)) > (mf.bnd.bndList[bndSelect].fenceLine.Count * 0.5))
                     {
                         if (start < end)
@@ -174,7 +167,6 @@ namespace AgOpenGPS
                             end = mf.bnd.bndList[bndSelect].fenceLine.Count;
                         }
                     }
-
                     else
                     {
                         if (start > end)
@@ -257,7 +249,6 @@ namespace AgOpenGPS
 
                     btnExit.Focus();
                 }
-
                 else if (rbtnLine.Checked)
                 {
                     if ((Math.Abs(start - end)) > (mf.bnd.bndList[bndSelect].fenceLine.Count * 0.5))
@@ -267,7 +258,6 @@ namespace AgOpenGPS
                             (start, end) = (end, start);
                         }
                     }
-
                     else
                     {
                         if (start > end)
@@ -386,7 +376,6 @@ namespace AgOpenGPS
 
             GL.Disable(EnableCap.Blend);
 
-
             GL.Flush();
             oglSelf.SwapBuffers();
         }
@@ -409,21 +398,21 @@ namespace AgOpenGPS
                 GL.LineStipple(1, 0x7070);
                 GL.PointSize(2);
 
-                    if (mode == (int)TrackMode.AB)
-                    {
-                        GL.Color3(0.973f, 0.19f, 0.10f);
-                    }
-                    else
-                    {
-                        GL.Color3(0.3f, 0.99f, 0.20f);
-                    }
+                if (mode == (int)TrackMode.AB)
+                {
+                    GL.Color3(0.973f, 0.19f, 0.10f);
+                }
+                else
+                {
+                    GL.Color3(0.3f, 0.99f, 0.20f);
+                }
 
-                    GL.Begin(PrimitiveType.Points);
-                    foreach (vec3 item in sliceArr)
-                    {
-                        GL.Vertex3(item.easting, item.northing, 0);
-                    }
-                    GL.End();
+                GL.Begin(PrimitiveType.Points);
+                foreach (vec3 item in sliceArr)
+                {
+                    GL.Vertex3(item.easting, item.northing, 0);
+                }
+                GL.End();
 
                 int cnt = sliceArr.Count - 1;
                 GL.PointSize(12);
@@ -461,12 +450,12 @@ namespace AgOpenGPS
         private void timer1_Tick(object sender, EventArgs e)
         {
             oglSelf.Refresh();
-            if (sliceArr.Count == 0) 
-            { 
-                btnSlice.Enabled = false; 
+            if (sliceArr.Count == 0)
+            {
+                btnSlice.Enabled = false;
                 btnALength.Enabled = false;
                 btnBLength.Enabled = false;
-            } 
+            }
             else
             {
                 btnSlice.Enabled = true;
@@ -475,7 +464,7 @@ namespace AgOpenGPS
             }
 
             if (backupList.Count == 0) btnUndo.Enabled = false; else btnUndo.Enabled = true;
-            if (nudSetDistance.Value == 0) btnBndLoop.Enabled = false; else btnBndLoop.Enabled= true;
+            if (nudSetDistance.Value == 0) btnBndLoop.Enabled = false; else btnBndLoop.Enabled = true;
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -518,7 +507,7 @@ namespace AgOpenGPS
                         delta = 0;
                     }
                 }
-                vec3 ptEnd = new vec3(hdArr[hdArr.Length-1].easting, hdArr[hdArr.Length - 1].northing, hdArr[hdArr.Length - 1].heading);
+                vec3 ptEnd = new vec3(hdArr[hdArr.Length - 1].easting, hdArr[hdArr.Length - 1].northing, hdArr[hdArr.Length - 1].heading);
 
                 mf.bnd.bndList[0].hdLine.Add(ptEnd);
                 delta = 0;
@@ -578,7 +567,7 @@ namespace AgOpenGPS
         {
             mf.hdl.desList?.Clear();
 
-            if (sliceArr.Count < 1 ) return;
+            if (sliceArr.Count < 1) return;
 
             double distAway = (double)nudSetDistance.Value * mf.ftOrMtoM;
 
@@ -621,7 +610,7 @@ namespace AgOpenGPS
             sliceArr.Clear();
 
             for (int i = 0; i < mf.hdl.desList.Count; i++)
-            {                
+            {
                 sliceArr.Add(new vec3(mf.hdl.desList[i]));
             }
 
@@ -636,6 +625,7 @@ namespace AgOpenGPS
 
         // Returns 1 if the lines intersect, otherwis
         public double iE = 0, iN = 0;
+
         public List<int> crossings = new List<int>(1);
 
         private void btnBndLoop_Click(object sender, EventArgs e)
@@ -743,7 +733,6 @@ namespace AgOpenGPS
             }
 
             mf.FileSaveHeadland();
-            
         }
 
         private void btnSlice_Click(object sender, EventArgs e)
@@ -762,7 +751,6 @@ namespace AgOpenGPS
 
             for (int i = 0; i < sliceArr.Count - 2; i++)
             {
-
                 for (int k = 0; k < mf.bnd.bndList[0].hdLine.Count - 2; k++)
                 {
                     int res = GetLineIntersection(
@@ -866,8 +854,7 @@ namespace AgOpenGPS
             }
 
             mf.hdl.desList?.Clear();
-            sliceArr?.Clear();   
-
+            sliceArr?.Clear();
         }
 
         private void btnDeletePoints_Click(object sender, EventArgs e)
@@ -937,7 +924,6 @@ namespace AgOpenGPS
 
             return 0; // No collision
         }
-
 
         private void oglSelf_Load(object sender, EventArgs e)
         {

@@ -15,7 +15,6 @@ namespace AgOpenGPS
         {
             mf = callingForm as FormGPS;
 
-
             InitializeComponent();
 
             //btnStop.Text = gStr.gsDone;
@@ -24,6 +23,7 @@ namespace AgOpenGPS
             this.Text = gStr.gsStopRecordPauseBoundary;
             nudOffset.Controls[0].Enabled = false;
         }
+
         private void FormBoundaryPlayer_Load(object sender, EventArgs e)
         {
             //mf.bnd.isOkToAddPoints = false;
@@ -63,11 +63,11 @@ namespace AgOpenGPS
             btnPausePlay.Focus();
             if (mf.isMetric)
             {
-                mf.bnd.createBndOffset = (double)nudOffset.Value*0.01;
+                mf.bnd.createBndOffset = (double)nudOffset.Value * 0.01;
             }
             else
             {
-                mf.bnd.createBndOffset = (double)nudOffset.Value/39.3701;
+                mf.bnd.createBndOffset = (double)nudOffset.Value / 39.3701;
                 double ftInches = (double)nudOffset.Value;
                 lblMetersInches.Text = ((int)(ftInches / 12)).ToString() + "' " + (ftInches % 12).ToString("N1") + '"';
             }
@@ -128,7 +128,7 @@ namespace AgOpenGPS
             mf.bnd.isOkToAddPoints = false;
             mf.bnd.isBndBeingMade = false;
             mf.bnd.bndBeingMadePts.Clear();
-            
+
             //close window
             isClosing = true;
             Close();
@@ -158,7 +158,6 @@ namespace AgOpenGPS
 
         private void btnAddPoint_Click(object sender, EventArgs e)
         {
-
             mf.bnd.isOkToAddPoints = true;
             mf.AddBoundaryPoint();
             mf.bnd.isOkToAddPoints = false;
@@ -198,6 +197,7 @@ namespace AgOpenGPS
         }
 
         #region Help
+
         private void nudOffset_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             MessageBox.Show(gStr.hb_nudOffset, gStr.gsHelp);
@@ -233,12 +233,12 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.hb_btnStop, gStr.gsHelp);
         }
 
-        #endregion
+        #endregion Help
     }
 }
 
 /*
-            
+
             MessageBox.Show(gStr, gStr.gsHelp);
 
             DialogResult result2 = MessageBox.Show(gStr, gStr.gsHelp,

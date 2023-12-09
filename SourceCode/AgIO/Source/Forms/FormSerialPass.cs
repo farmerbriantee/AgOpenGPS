@@ -49,7 +49,6 @@ namespace AgIO
                 cboxRadioPort.Enabled = true;
                 cboxBaud.Enabled = true;
             }
-
         }
 
         private void btnSerialOK_Click(object sender, EventArgs e)
@@ -79,10 +78,8 @@ namespace AgIO
             Close();
         }
 
-
         private void btnSerialCancel_Click(object sender, EventArgs e)
         {
-
         }
 
         private void btnOpenSerial_Click(object sender, EventArgs e)

@@ -23,13 +23,14 @@ namespace AgOpenGPS
             //Language keys
             this.Text = gStr.gsColors;
         }
+
         private void FormDisplaySettings_Load(object sender, EventArgs e)
         {
             daySet = mf.isDay;
             hsbarSmooth.Value = Properties.Settings.Default.setDisplay_camSmooth;
             lblSmoothCam.Text = hsbarSmooth.Value.ToString() + "%";
-
         }
+
         private void bntOK_Click(object sender, EventArgs e)
         {
             if (daySet != mf.isDay) mf.SwapDayNightMode();
@@ -104,7 +105,6 @@ namespace AgOpenGPS
                     mf.fieldColorDay = form.useThisColor;
                 }
             }
-
 
             Settings.Default.setDisplay_colorFieldDay = mf.fieldColorDay;
             Settings.Default.Save();

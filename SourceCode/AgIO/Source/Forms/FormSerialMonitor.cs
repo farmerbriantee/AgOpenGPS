@@ -1,13 +1,7 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.IO.Ports;
-using System.Linq;
-using System.Net;
-using System.Net.NetworkInformation;
-using System.Net.Sockets;
 using System.Windows.Forms;
 
 namespace AgIO
@@ -42,11 +36,11 @@ namespace AgIO
         }
 
         #region IMUSerialPort //--------------------------------------------------------------------
+
         private void ReceivePort(string sentence)
         {
             textBoxRcv.AppendText(sentence);
         }
-
 
         //open the Arduino serial port
         public void OpenPort()
@@ -66,7 +60,6 @@ namespace AgIO
                 //WriteErrorLog("Opening Machine Port" + e.ToString());
 
                 //MessageBox.Show(e.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "No Arduino Port Active");
-
 
                 //Properties.Settings.Default.setPort_wasConnected = false;
                 //Properties.Settings.Default.Save();
@@ -93,7 +86,6 @@ namespace AgIO
                 {
                     sp.Close();
                 }
-
                 catch (Exception e)
                 {
                     //WriteErrorLog("Closing Machine Serial Port" + e.ToString());
@@ -118,8 +110,8 @@ namespace AgIO
                 }
             }
         }
-        #endregion ----------------------------------------------------------------
 
+        #endregion IMUSerialPort //--------------------------------------------------------------------
 
         private void btnSerialCancel_Click(object sender, EventArgs e)
         {
@@ -164,7 +156,6 @@ namespace AgIO
                 btnOpenSerial.Enabled = true;
                 MessageBox.Show("Unable to connect to Port");
             }
-
         }
 
         private void btnRescan_Click(object sender, EventArgs e)
@@ -194,7 +185,6 @@ namespace AgIO
                 btnCloseSerial.Enabled = false;
                 btnOpenSerial.Enabled = true;
             }
-
         }
 
         private void btnLog_Click(object sender, EventArgs e)
@@ -232,7 +222,7 @@ namespace AgIO
 
         private void FormSerialMonitor_FormClosing(object sender, FormClosingEventArgs e)
         {
-            mf.isLogMonitorOn=false;
+            mf.isLogMonitorOn = false;
         }
 
         private void btnClear_Click(object sender, EventArgs e)

@@ -1,10 +1,7 @@
 ﻿//Please, if you use this, share the improvements
 
-using AgOpenGPS.Properties;
-using OpenTK.Graphics.OpenGL;
 using System;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -14,7 +11,7 @@ namespace AgOpenGPS
         //class variables
         private readonly FormGPS mf = null;
 
-        bool isClosing = false;
+        private bool isClosing = false;
 
         //constructor
         public FormConfig(Form callingForm)
@@ -95,7 +92,7 @@ namespace AgOpenGPS
             nudDualHeadingOffset.Controls[0].Enabled = false;
 
             nudMaxAngularVelocity.Controls[0].Enabled = false;
-            
+
             nudGuidanceSpeedLimit.Controls[0].Enabled = false;
             nudMaxSteerSpeed.Controls[0].Enabled = false;
             nudMinSteerSpeed.Controls[0].Enabled = false;
@@ -280,7 +277,7 @@ namespace AgOpenGPS
             chkDisplayGrid.Checked = mf.isGridOn;
             chkDisplaySpeedo.Checked = mf.isSpeedoOn;
             chkDisplayDayNight.Checked = mf.isAutoDayNight;
-            chkDisplayStartFullScreen.Checked = Properties.Settings.Default.setDisplay_isStartFullScreen; 
+            chkDisplayStartFullScreen.Checked = Properties.Settings.Default.setDisplay_isStartFullScreen;
             chkSvennArrow.Checked = mf.isSvennArrowOn;
             chkDisplayExtraGuides.Checked = mf.isSideGuideLines;
             chkDisplayLogNMEA.Checked = mf.isLogNMEA;
@@ -314,6 +311,5 @@ namespace AgOpenGPS
                 btnVehicleDelete.Enabled = false;
             }
         }
-
     }
 }

@@ -38,7 +38,6 @@ namespace AgIO
 
         private void RegisterKeypad1_ButtonPressed(object sender, KeyPressEventArgs e)
         {
-
             if (isFirstKey)
             {
                 tboxNumber.Text = "";
@@ -82,7 +81,7 @@ namespace AgIO
                         tboxNumber.Text = "0" + tboxNumber.Text;
                     }
 
-                    //neg sign then added a decimal, insert a 0 
+                    //neg sign then added a decimal, insert a 0
                     if (tboxNumber.Text.IndexOf("-") == 0 && tboxNumber.Text.IndexOf(Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator) == 1)
                     {
                         tboxNumber.Text = "-0" + Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator;

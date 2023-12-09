@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.Eventing.Reader;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -59,9 +58,11 @@ namespace AgOpenGPS
                 case 0:
                     btnMode.BackgroundImage = Properties.Resources.TramAll;
                     break;
+
                 case 1:
                     btnMode.BackgroundImage = Properties.Resources.TramLines;
                     break;
+
                 case 2:
                     btnMode.BackgroundImage = Properties.Resources.TramOuter;
                     break;
@@ -266,9 +267,11 @@ namespace AgOpenGPS
                 case 0:
                     btnMode.BackgroundImage = Properties.Resources.TramAll;
                     break;
+
                 case 1:
                     btnMode.BackgroundImage = Properties.Resources.TramLines;
                     break;
+
                 case 2:
                     btnMode.BackgroundImage = Properties.Resources.TramOuter;
                     break;
@@ -281,6 +284,7 @@ namespace AgOpenGPS
         }
 
         #region Help
+
         private void btnAdjLeft_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             MessageBox.Show(gStr.ht_btnAdjHalfToolWidth, gStr.gsHelp);
@@ -326,13 +330,12 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.ht_btnSave, gStr.gsHelp);
         }
 
-        #endregion
+        #endregion Help
     }
 }
 
-
 /*
-            
+
             MessageBox.Show(gStr, gStr.gsHelp);
 
             DialogResult result2 = MessageBox.Show(gStr, gStr.gsHelp,

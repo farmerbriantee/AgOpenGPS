@@ -29,14 +29,11 @@ namespace AgOpenGPS
             Thru.Text = gStr.gsDriveThru;
             Area.Text = gStr.gsArea;
             btnDelete.Enabled = false;
-
         }
-
 
         private void FormBoundary_Load(object sender, EventArgs e)
         {
             this.Size = new Size(566, 377);
-
 
             //update the list view with real data
             UpdateChart();
@@ -49,8 +46,8 @@ namespace AgOpenGPS
             panelChoose.Visible = false;
             panelKML.Visible = false;
             mf.CloseTopMosts();
-
         }
+
         private void UpdateChart()
         {
             int inner = 1;
@@ -79,7 +76,6 @@ namespace AgOpenGPS
                 //a.BackColor = Color.Transparent;
                 //a.FlatAppearance.MouseOverBackColor = BackColor;
                 //a.FlatAppearance.MouseDownBackColor = BackColor;
-
 
                 //area
                 Button b = new Button
@@ -214,7 +210,6 @@ namespace AgOpenGPS
 
             if (result3 == DialogResult.Yes)
             {
-
                 btnDelete.Enabled = false;
 
                 if (mf.bnd.bndList.Count > fenceSelected)
@@ -267,7 +262,6 @@ namespace AgOpenGPS
 
             if (result3 == DialogResult.Yes)
             {
-
                 ResetAllBoundary();
 
                 mf.bnd.isOkToAddPoints = false;
@@ -277,7 +271,6 @@ namespace AgOpenGPS
             {
                 mf.TimedMessageBox(1500, gStr.gsNothingDeleted, gStr.gsActionHasBeenCancelled);
             }
-
         }
 
         private void btnReturn_Click(object sender, EventArgs e)
@@ -318,7 +311,6 @@ namespace AgOpenGPS
             }
         }
 
-
         private void btnLoadBoundaryFromGE_Click(object sender, EventArgs e)
         {
             if (sender is Button button)
@@ -345,7 +337,6 @@ namespace AgOpenGPS
 
                 using (StreamReader reader = new StreamReader(fileAndDirectory))
                 {
-
                     if (button.Name == "btnLoadMultiBoundaryFromGE") ResetAllBoundary();
 
                     try
@@ -440,7 +431,6 @@ namespace AgOpenGPS
             this.Size = new Size(566, 377);
 
             UpdateChart();
-
         }
 
         private void btnDriveOrExt_Click(object sender, EventArgs e)
@@ -513,12 +503,12 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.hb_btnLoadBoundaryFromGE, gStr.gsHelp);
         }
 
-        #endregion
+        #endregion Help
     }
 }
 
 /*
-            
+
             MessageBox.Show(gStr, gStr.gsHelp);
 
             DialogResult result2 = MessageBox.Show(gStr, gStr.gsHelp,

@@ -12,7 +12,7 @@ namespace AgIO
             lblTitle.Text = titleStr;
             lblMessage2.Text = messageStr;
 
-            timer1.Interval = timeInMsec;            
+            timer1.Interval = timeInMsec;
 
             int messWidth = messageStr.Length;
             Width = messWidth * 15 + 120;

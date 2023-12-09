@@ -2,13 +2,9 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Reflection;
-using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
-using System.Xml.Linq;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AgOpenGPS
 {
@@ -16,12 +12,13 @@ namespace AgOpenGPS
     {
         //class variables
         private readonly FormGPS mf = null;
-        private double easting, norting,  lonK, latK;
+
+        private double easting, norting, lonK, latK;
 
         private XmlDocument iso;
 
-        string xmlFilename;
-        XmlNodeList pfd;
+        private string xmlFilename;
+        private XmlNodeList pfd;
 
         private int idxFieldSelected = -1;
 
@@ -156,7 +153,6 @@ namespace AgOpenGPS
 
                 if (tree.Nodes.Count == 0) btnBuildFields.Enabled = false;
             }
-
             else
             {
                 Close();
@@ -193,10 +189,9 @@ namespace AgOpenGPS
                 btnBuildFields.Enabled = true;
                 btnAddDate.Enabled = true;
                 btnAddTime.Enabled = true;
-                tboxFieldName .Enabled = true;  
+                tboxFieldName.Enabled = true;
             }
         }
-
 
         private void btnBuildFields_Click(object sender, EventArgs e)
         {
@@ -230,13 +225,12 @@ namespace AgOpenGPS
                 </ PLN >
                 */
 
-                double lat=0, lon=0;    
+                double lat = 0, lon = 0;
                 foreach (XmlNode nodePart in fieldParts)
                 {
                     //grab the polygons
                     if (nodePart.Name == "PLN" && nodePart.Attributes["A"].Value == "1")
                     {
-
                         foreach (XmlNode pnt in nodePart.ChildNodes[0].ChildNodes) //PNT
                         {
                             double.TryParse(pnt.Attributes["C"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
@@ -251,7 +245,6 @@ namespace AgOpenGPS
 
                 lonK = lon / counter;
                 latK = lat / counter;
-
             }
             catch (Exception)
             {
@@ -400,14 +393,12 @@ namespace AgOpenGPS
                     NewList.FixFenceLine(mf.bnd.bndList.Count);
 
                     mf.bnd.bndList.Add(NewList);
-
                 }
             }
             catch (Exception)
             {
                 return;
             }
-
 
             //load inner boundaries next only if outer existed
 
@@ -430,9 +421,9 @@ namespace AgOpenGPS
                                     CBoundaryList NewList = new CBoundaryList();
                                     foreach (XmlNode pnt in nodePart.ChildNodes[0].ChildNodes) //PNT
                                     {
-                                        double.TryParse(pnt.Attributes["C"].Value, NumberStyles.Float, 
+                                        double.TryParse(pnt.Attributes["C"].Value, NumberStyles.Float,
                                             CultureInfo.InvariantCulture, out latK);
-                                        double.TryParse(pnt.Attributes["D"].Value, NumberStyles.Float, 
+                                        double.TryParse(pnt.Attributes["D"].Value, NumberStyles.Float,
                                             CultureInfo.InvariantCulture, out lonK);
 
                                         mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
@@ -563,7 +554,7 @@ namespace AgOpenGPS
                                     mf.ABLine.numABLines = mf.ABLine.lineArr.Count;
                                     mf.ABLine.numABLineSelected = mf.ABLine.numABLines;
 
-                                    //index to last one. 
+                                    //index to last one.
                                     int idx = mf.ABLine.lineArr.Count - 1;
 
                                     mf.ABLine.lineArr[idx].heading = mf.ABLine.desHeading;
@@ -604,11 +595,11 @@ namespace AgOpenGPS
                                             double.TryParse(nodePart.ChildNodes[0].ChildNodes[0].ChildNodes[i].Attributes["C"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
                                             double.TryParse(nodePart.ChildNodes[0].ChildNodes[0].ChildNodes[i].Attributes["D"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
                                             mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
-                                            
+
                                             pt3.easting = easting;
                                             pt3.northing = norting;
                                             pt3.heading = 0;
-                                            
+
                                             mf.curve.refList.Add(pt3);
                                         }
 
@@ -690,7 +681,6 @@ namespace AgOpenGPS
                         }
                     }//is GGP
                 }
-
             }
             catch (Exception)
             {
@@ -744,7 +734,7 @@ namespace AgOpenGPS
                             mf.ABLine.numABLines = mf.ABLine.lineArr.Count;
                             mf.ABLine.numABLineSelected = mf.ABLine.numABLines;
 
-                            //index to last one. 
+                            //index to last one.
                             int idx = mf.ABLine.lineArr.Count - 1;
 
                             mf.ABLine.lineArr[idx].heading = mf.ABLine.desHeading;
@@ -843,9 +833,9 @@ namespace AgOpenGPS
                                     //create a name
                                     if (!string.IsNullOrEmpty(mf.curve.desName))
                                         mf.curve.curveArr[idx].Name = mf.curve.desName;
-                                    else mf.curve.curveArr[idx].Name = 
+                                    else mf.curve.curveArr[idx].Name =
                                             (Math.Round(glm.toDegrees(mf.curve.aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture)
-                                            + "\u00B0" + mf.FindDirection(mf.curve.aveLineHeading) 
+                                            + "\u00B0" + mf.FindDirection(mf.curve.aveLineHeading)
                                             + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
                                     mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;
@@ -858,10 +848,8 @@ namespace AgOpenGPS
                                 }
                             }
                         }
-
                     }//is LSG
                 }
-
             }
             catch (Exception)
             {
@@ -917,14 +905,11 @@ namespace AgOpenGPS
         private void btnAddDate_Click(object sender, EventArgs e)
         {
             tboxFieldName.Text += " " + DateTime.Now.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
-
         }
 
         private void btnAddTime_Click(object sender, EventArgs e)
         {
             tboxFieldName.Text += " " + DateTime.Now.ToString("HH-mm", CultureInfo.InvariantCulture);
-
         }
     }
 }
-

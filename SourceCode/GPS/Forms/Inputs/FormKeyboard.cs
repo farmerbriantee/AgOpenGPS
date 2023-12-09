@@ -1,8 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Drawing;
-using System.Globalization;
-using System.Threading;
+﻿using System;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -10,9 +6,9 @@ namespace AgOpenGPS
     public partial class FormKeyboard : Form
     {
         public string ReturnString { get; set; }
+
         public FormKeyboard(string currentString)
         {
-
             InitializeComponent();
 
             this.Text = "Enter a Value";
@@ -39,7 +35,6 @@ namespace AgOpenGPS
 
         private void RegisterKeyboard1_ButtonPressed(object sender, KeyPressEventArgs e)
         {
-
             //if (isFirstKey)
             //{
             //    keyboardString.Text = "";
@@ -84,7 +79,7 @@ namespace AgOpenGPS
             }
 
             //if its a character just add it
-            else 
+            else
             {
                 keyboardString.Text += e.KeyChar;
             }
@@ -96,4 +91,3 @@ namespace AgOpenGPS
         }
     }
 }
-

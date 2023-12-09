@@ -10,6 +10,7 @@ namespace AgOpenGPS
     {
         //class variables
         private readonly FormGPS mf = null;
+
         private double easting, northing, latK, lonK;
 
         public FormFieldKML(Form _callingForm)
@@ -115,13 +116,11 @@ namespace AgOpenGPS
         private void btnAddDate_Click(object sender, EventArgs e)
         {
             tboxFieldName.Text += " " + DateTime.Now.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
-
         }
 
         private void btnAddTime_Click(object sender, EventArgs e)
         {
             tboxFieldName.Text += " " + DateTime.Now.ToString("HH-mm", CultureInfo.InvariantCulture);
-
         }
 
         private void LoadKMLBoundary(string filename)
@@ -296,7 +295,6 @@ namespace AgOpenGPS
                             //}
                         }
                     }
-
                 }
                 catch (Exception)
                 {
@@ -306,7 +304,6 @@ namespace AgOpenGPS
             }
 
             mf.bnd.isOkToAddPoints = false;
-
         }
 
         private void CreateNewField()
