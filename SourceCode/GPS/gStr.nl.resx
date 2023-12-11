@@ -246,12 +246,6 @@
   <data name="gsEast" xml:space="preserve">
     <value>Oost</value>
   </data>
-  <data name="gsEditABCurve" xml:space="preserve">
-    <value>Aanpassen AB-curve</value>
-  </data>
-  <data name="gsEditABLine" xml:space="preserve">
-    <value>Aanpassen AB-lijn</value>
-  </data>
   <data name="gsEditFieldName" xml:space="preserve">
     <value>Bewerk perceel naam</value>
   </data>

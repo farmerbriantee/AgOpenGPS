@@ -18,8 +18,7 @@ namespace AgOpenGPS
 
             UpdateMoveLabel();
 
-            //this.Text = gStr.gsEditABCurve;
-            //nudSnapDistance.Controls[0].Visible = false;
+            this.Text = gStr.gsEditTrack;
         }
 
         private void FormEditTrack_Load(object sender, EventArgs e)

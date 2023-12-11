@@ -246,12 +246,6 @@
   <data name="gsEast" xml:space="preserve">
     <value>Ost</value>
   </data>
-  <data name="gsEditABCurve" xml:space="preserve">
-    <value>A-B Kurve bearbeiten</value>
-  </data>
-  <data name="gsEditABLine" xml:space="preserve">
-    <value>A-B Linie bearbeiten</value>
-  </data>
   <data name="gsEditFieldName" xml:space="preserve">
     <value>Feldname ändern</value>
   </data>

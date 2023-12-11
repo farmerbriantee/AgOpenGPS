@@ -234,12 +234,6 @@
   <data name="gsEast" xml:space="preserve">
     <value>Wschód</value>
   </data>
-  <data name="gsEditABCurve" xml:space="preserve">
-    <value>Edytuj krzywą AB</value>
-  </data>
-  <data name="gsEditABLine" xml:space="preserve">
-    <value>Edytuj linię AB</value>
-  </data>
   <data name="gsEncoderCounts" xml:space="preserve">
     <value>Liczba impulsów enkodera</value>
   </data>

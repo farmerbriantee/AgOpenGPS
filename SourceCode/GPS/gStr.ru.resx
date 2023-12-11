@@ -246,12 +246,6 @@
   <data name="gsEast" xml:space="preserve">
     <value>Восток</value>
   </data>
-  <data name="gsEditABCurve" xml:space="preserve">
-    <value>Редактировать кривую AB</value>
-  </data>
-  <data name="gsEditABLine" xml:space="preserve">
-    <value>Редактировать прямую AB</value>
-  </data>
   <data name="gsEditFieldName" xml:space="preserve">
     <value> Изменить имя поля</value>
   </data>

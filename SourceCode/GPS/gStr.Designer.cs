@@ -457,29 +457,20 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit AB Curve.
-        /// </summary>
-        public static string gsEditABCurve {
-            get {
-                return ResourceManager.GetString("gsEditABCurve", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Edit AB Line.
-        /// </summary>
-        public static string gsEditABLine {
-            get {
-                return ResourceManager.GetString("gsEditABLine", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Edit Field Name.
         /// </summary>
         public static string gsEditFieldName {
             get {
                 return ResourceManager.GetString("gsEditFieldName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Tracks.
+        /// </summary>
+        public static string gsEditTrack {
+            get {
+                return ResourceManager.GetString("gsEditTrack", resourceCulture);
             }
         }
         

@@ -237,12 +237,6 @@
   <data name="gsEast" xml:space="preserve">
     <value>Est</value>
   </data>
-  <data name="gsEditABCurve" xml:space="preserve">
-    <value>Modifica Curva AB</value>
-  </data>
-  <data name="gsEditABLine" xml:space="preserve">
-    <value>Modifica Linea AB</value>
-  </data>
   <data name="gsEncoderCounts" xml:space="preserve">
     <value>Conteggi Encoder</value>
   </data>

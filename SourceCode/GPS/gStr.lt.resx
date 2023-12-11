@@ -246,12 +246,6 @@
   <data name="gsEast" xml:space="preserve">
     <value>Į rytus</value>
   </data>
-  <data name="gsEditABCurve" xml:space="preserve">
-    <value>Redaguoti AB kreivę</value>
-  </data>
-  <data name="gsEditABLine" xml:space="preserve">
-    <value>Redaguoti AB liniją</value>
-  </data>
   <data name="gsEditFieldName" xml:space="preserve">
     <value>Redaguoti lauko pavadinimą</value>
   </data>

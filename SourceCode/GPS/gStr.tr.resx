@@ -237,12 +237,6 @@
   <data name="gsEast" xml:space="preserve">
     <value>Doğu</value>
   </data>
-  <data name="gsEditABCurve" xml:space="preserve">
-    <value>AB Eğrisini Düzenle</value>
-  </data>
-  <data name="gsEditABLine" xml:space="preserve">
-    <value>AB Çizgisini Düzenle</value>
-  </data>
   <data name="gsEncoderCounts" xml:space="preserve">
     <value>Sayımlar</value>
   </data>
