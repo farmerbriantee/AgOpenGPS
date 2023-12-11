@@ -2039,37 +2039,37 @@ namespace AgOpenGPS
         int lenth = 4;
         private void DrawCompassText()
         {
-            int center = oglMain.Width / -2 + 10;
+            GL.Enable(EnableCap.Texture2D);
+            GL.BindTexture(TextureTarget.Texture2D, texture[22]);        // Select Our Texture
+            GL.Color3(0.90f, 0.90f, 0.93f);
 
-            GL.LineWidth(6);
-            GL.Color3(0, 0.0, 0);
-            GL.Begin(PrimitiveType.Lines);
-            //-
-            GL.Vertex3(-center - 17, 170, 0);
-            GL.Vertex3(-center - 39, 170, 0);
+            int center = oglMain.Width / 2 - 60;
 
-            //+
-            GL.Vertex3(-center - 17, 85, 0);
-            GL.Vertex3(-center - 39, 85, 0);
-
-            GL.Vertex3(-center - 27, 74, 0);
-            GL.Vertex3(-center - 27, 96, 0);
-
+            int two3 = oglMain.Width / 2;
+            GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
+            {
+                GL.TexCoord2(0, 0); GL.Vertex2(center + 50, 70); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(center, 70); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(center, 120); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(center + 50, 120); //
+            }
             GL.End();
 
-            GL.LineWidth(2);
-            GL.Color3(0, 0.9, 0);
-            GL.Begin(PrimitiveType.Lines);
-            GL.Vertex3(-center - 17, 170, 0);
-            GL.Vertex3(-center - 39, 170, 0);
-
-            GL.Vertex3(-center - 18, 85, 0);
-            GL.Vertex3(-center - 38, 85, 0);
-
-            GL.Vertex3(-center - 27, 74, 0);
-            GL.Vertex3(-center - 27, 96, 0);
+            GL.BindTexture(TextureTarget.Texture2D, texture[23]);        // Select Our Texture
+            GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
+            {
+                GL.TexCoord2(0, 0); GL.Vertex2(center + 50, 150); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(center, 150); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(center, 200); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(center + 50, 200); //
+            }
             GL.End();
+            GL.Disable(EnableCap.Texture2D);
 
+
+
+
+            center = oglMain.Width / -2 + 10;
             //center += 10;
             GL.Color3(0.9852f, 0.982f, 0.983f);
             strHeading = (fixHeading * 57.2957795).ToString("N1");
