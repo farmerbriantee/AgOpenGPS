@@ -2043,25 +2043,25 @@ namespace AgOpenGPS
             GL.BindTexture(TextureTarget.Texture2D, texture[22]);        // Select Our Texture
             GL.Color3(0.90f, 0.90f, 0.93f);
 
-            int center = oglMain.Width / 2 - 60;
+            int center = oglMain.Width / 2 - 80;
 
             int two3 = oglMain.Width / 2;
             GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
             {
-                GL.TexCoord2(0, 0); GL.Vertex2(center + 50, 70); // 
-                GL.TexCoord2(1, 0); GL.Vertex2(center, 70); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(center, 120); // 
-                GL.TexCoord2(0, 1); GL.Vertex2(center + 50, 120); //
+                GL.TexCoord2(0, 0); GL.Vertex2(center, 50); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(center + 48, 50); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(center+ 48, 98); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(center , 98); //
             }
             GL.End();
 
             GL.BindTexture(TextureTarget.Texture2D, texture[23]);        // Select Our Texture
             GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
             {
-                GL.TexCoord2(0, 0); GL.Vertex2(center + 50, 150); // 
-                GL.TexCoord2(1, 0); GL.Vertex2(center, 150); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(center, 200); // 
-                GL.TexCoord2(0, 1); GL.Vertex2(center + 50, 200); //
+                GL.TexCoord2(0, 0); GL.Vertex2(center, 150); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(center + 48, 150); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(center + 48, 198); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(center, 198); //
             }
             GL.End();
             GL.Disable(EnableCap.Texture2D);
