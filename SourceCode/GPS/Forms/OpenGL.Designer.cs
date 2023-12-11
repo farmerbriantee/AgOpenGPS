@@ -452,6 +452,37 @@ namespace AgOpenGPS
 
                     if (pn.age > pn.ageAlarm) DrawAge();
 
+                    GL.Enable(EnableCap.Texture2D);
+
+                    GL.BindTexture(TextureTarget.Texture2D, texture[22]);        // Select Our Texture
+                    GL.Color3(0.90f, 0.90f, 0.93f);
+
+                    int two3 = oglMain.Width / 2;
+                    GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
+                    {
+                        GL.TexCoord2(0, 0); GL.Vertex2(20 - two3, oglMain.Height - 180); // 
+                        GL.TexCoord2(1, 0); GL.Vertex2(100 - two3, oglMain.Height - 180); // 
+                        GL.TexCoord2(1, 1); GL.Vertex2(100 - two3, oglMain.Height - 100); // 
+                        GL.TexCoord2(0, 1); GL.Vertex2(20 - two3, oglMain.Height - 100); //
+                    }
+                    GL.End();
+
+                    GL.BindTexture(TextureTarget.Texture2D, texture[23]);        // Select Our Texture
+                    GL.Color3(0.90f, 0.90f, 0.93f);
+
+                    GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
+                    {
+                        GL.TexCoord2(0, 0); GL.Vertex2(20 - two3, oglMain.Height - 280); // 
+                        GL.TexCoord2(1, 0); GL.Vertex2(100 - two3, oglMain.Height - 280); // 
+                        GL.TexCoord2(1, 1); GL.Vertex2(100 - two3, oglMain.Height - 200); // 
+                        GL.TexCoord2(0, 1); GL.Vertex2(20 - two3, oglMain.Height - 200); //
+                    }
+                    GL.End();
+
+
+                    GL.Disable(EnableCap.Texture2D);
+
+
                     GL.Flush();//finish openGL commands
                     GL.PopMatrix();//  Pop the modelview.
 

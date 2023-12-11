@@ -36,6 +36,7 @@
             this.btnConfgTool = new AgOpenGPS.RJButton();
             this.btnConfig = new AgOpenGPS.RJButton();
             this.btnDisplay = new AgOpenGPS.RJButton();
+            this.btnDeleteAB = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,8 +52,9 @@
             this.tableLayoutPanel1.Controls.Add(this.btnStanleyPure, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnConfigGuidance, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnConfgTool, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnConfig, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnDisplay, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.btnConfig, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnDisplay, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnDeleteAB, 2, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -197,7 +199,7 @@
             this.btnConfig.ForeColor = System.Drawing.Color.Black;
             this.btnConfig.Image = global::AgOpenGPS.Properties.Resources.Settings48;
             this.btnConfig.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConfig.Location = new System.Drawing.Point(544, 392);
+            this.btnConfig.Location = new System.Drawing.Point(283, 266);
             this.btnConfig.Name = "btnConfig";
             this.btnConfig.Size = new System.Drawing.Size(213, 92);
             this.btnConfig.TabIndex = 539;
@@ -221,7 +223,7 @@
             this.btnDisplay.ForeColor = System.Drawing.Color.Black;
             this.btnDisplay.Image = global::AgOpenGPS.Properties.Resources.NavigationSettings;
             this.btnDisplay.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDisplay.Location = new System.Drawing.Point(283, 392);
+            this.btnDisplay.Location = new System.Drawing.Point(23, 141);
             this.btnDisplay.Name = "btnDisplay";
             this.btnDisplay.Size = new System.Drawing.Size(213, 92);
             this.btnDisplay.TabIndex = 546;
@@ -230,6 +232,24 @@
             this.btnDisplay.TextColor = System.Drawing.Color.Black;
             this.btnDisplay.UseVisualStyleBackColor = false;
             this.btnDisplay.Click += new System.EventHandler(this.btnDisplay_Click);
+            // 
+            // btnDeleteAB
+            // 
+            this.btnDeleteAB.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnDeleteAB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
+            this.btnDeleteAB.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnDeleteAB.FlatAppearance.BorderSize = 0;
+            this.btnDeleteAB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteAB.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.btnDeleteAB.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnDeleteAB.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
+            this.btnDeleteAB.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDeleteAB.Location = new System.Drawing.Point(560, 410);
+            this.btnDeleteAB.Name = "btnDeleteAB";
+            this.btnDeleteAB.Size = new System.Drawing.Size(180, 57);
+            this.btnDeleteAB.TabIndex = 547;
+            this.btnDeleteAB.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnDeleteAB.UseVisualStyleBackColor = false;
             // 
             // FormMenuSettings
             // 
@@ -260,5 +280,6 @@
         private RJButton btnConfigGuidance;
         private RJButton btnDisplay;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button btnDeleteAB;
     }
 }

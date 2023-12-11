@@ -1377,7 +1377,7 @@
             this.btnSettings.BackColor = System.Drawing.Color.Gainsboro;
             this.btnSettings.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.btnSettings.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnSettings.BorderRadius = 15;
+            this.btnSettings.BorderRadius = 50;
             this.btnSettings.BorderSize = 3;
             this.btnSettings.FlatAppearance.BorderSize = 0;
             this.btnSettings.ForeColor = System.Drawing.Color.Black;

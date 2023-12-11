@@ -592,7 +592,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnResetSteerAngle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 4</value>
+    <value>152, 4</value>
   </data>
   <data name="btnResetSteerAngle.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 31</value>
@@ -631,10 +631,10 @@
     <value>NoControl</value>
   </data>
   <data name="hsbarSteerAngle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>204, 1</value>
+    <value>199, 1</value>
   </data>
   <data name="hsbarSteerAngle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 37</value>
+    <value>89, 37</value>
   </data>
   <data name="hsbarSteerAngle.TabIndex" type="System.Int32, mscorlib">
     <value>179</value>
@@ -661,7 +661,7 @@
     <value>59, 1</value>
   </data>
   <data name="hsbarStepDistance.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 37</value>
+    <value>89, 37</value>
   </data>
   <data name="hsbarStepDistance.TabIndex" type="System.Int32, mscorlib">
     <value>178</value>
@@ -1592,7 +1592,7 @@ PPS</value>
     <value>NoControl</value>
   </data>
   <data name="btnSimForward.Location" type="System.Drawing.Point, System.Drawing">
-    <value>430, 4</value>
+    <value>420, 4</value>
   </data>
   <data name="btnSimForward.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 31</value>
@@ -1628,7 +1628,7 @@ PPS</value>
     <value>NoControl</value>
   </data>
   <data name="btnSimSetSpeedToZero.Location" type="System.Drawing.Point, System.Drawing">
-    <value>353, 4</value>
+    <value>343, 4</value>
   </data>
   <data name="btnSimSetSpeedToZero.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 31</value>
@@ -1661,7 +1661,7 @@ PPS</value>
     <value>NoControl</value>
   </data>
   <data name="btnSimReverse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>302, 4</value>
+    <value>292, 4</value>
   </data>
   <data name="btnSimReverse.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 31</value>
@@ -1706,7 +1706,7 @@ PPS</value>
     <value>28</value>
   </data>
   <data name="panelSim.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnSimForward" Row="0" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="btnSimSetSpeedToZero" Row="0" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="btnSimReverse" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="hsbarStepDistance" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnResetSteerAngle" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnResetSim" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="hsbarSteerAngle" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,57,Percent,50,Absolute,49,Percent,50,Absolute,50,Absolute,76,Absolute,84" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnSimForward" Row="0" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="btnSimSetSpeedToZero" Row="0" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="btnSimReverse" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="hsbarStepDistance" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnResetSteerAngle" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnResetSim" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="hsbarSteerAngle" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,57,Percent,50,Absolute,49,Percent,50,Absolute,50,Absolute,76,Absolute,94" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="btnSection16Man.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -3611,13 +3611,16 @@ PPS</value>
     <value>NoControl</value>
   </data>
   <data name="btnAutoSteerConfig.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 211</value>
+    <value>18, 98</value>
   </data>
   <data name="btnAutoSteerConfig.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 59</value>
   </data>
   <data name="btnAutoSteerConfig.TabIndex" type="System.Int32, mscorlib">
     <value>536</value>
+  </data>
+  <data name="btnAutoSteerConfig.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;btnAutoSteerConfig.Name" xml:space="preserve">
     <value>btnAutoSteerConfig</value>
@@ -3634,6 +3637,9 @@ PPS</value>
   <data name="btnSettings.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
   </data>
+  <data name="btnSettings.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
   <data name="btnSettings.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
@@ -3641,10 +3647,10 @@ PPS</value>
     <value>NoControl</value>
   </data>
   <data name="btnSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 392</value>
+    <value>15, 241</value>
   </data>
   <data name="btnSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 72</value>
+    <value>100, 99</value>
   </data>
   <data name="btnSettings.TabIndex" type="System.Int32, mscorlib">
     <value>535</value>
@@ -3664,6 +3670,9 @@ PPS</value>
   <data name="btnFieldMenu.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
   </data>
+  <data name="btnFieldMenu.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
   <data name="btnFieldMenu.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
@@ -3671,10 +3680,10 @@ PPS</value>
     <value>NoControl</value>
   </data>
   <data name="btnFieldMenu.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 491</value>
+    <value>15, 163</value>
   </data>
   <data name="btnFieldMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 72</value>
+    <value>134, 72</value>
   </data>
   <data name="btnFieldMenu.TabIndex" type="System.Int32, mscorlib">
     <value>534</value>
@@ -3781,9 +3790,6 @@ PPS</value>
         Af//gAD//wAA//8AAH/+AAB//gAAP/wYGD/8DBgf+BwYH/gYGB/4OAwf+HgPH/gYGB/4DBgf/A54H/wf
         +D/+AYQ//gCAf/8AgP//gAH//8AD///wD/8=
 </value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>949, 700</value>

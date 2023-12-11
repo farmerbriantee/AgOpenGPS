@@ -17,7 +17,7 @@ namespace AgOpenGPS
 
             InitializeComponent();
 
-            this.Text = gStr.gsEditABLine;
+            this.Text = gStr.gsEditTrack;
             nudLatitude.Controls[0].Enabled = false;
             nudLongitude.Controls[0].Enabled = false;
             nudLatitudeB.Controls[0].Enabled = false;

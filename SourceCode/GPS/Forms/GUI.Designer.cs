@@ -9,6 +9,7 @@ using System.Globalization;
 using System.IO;
 using System.Media;
 using System.Reflection;
+using AgOpenGPS.Forms;
 
 namespace AgOpenGPS
 {
@@ -1001,6 +1002,68 @@ namespace AgOpenGPS
                         return;
                     }
                 }
+
+
+                int two3 = oglMain.Width / 2;
+                if (point.X > 20 && point.X < 100)
+                {
+                    //Field Job Menu
+                    int b = oglMain.Height - point.Y;
+                    if (point.Y < oglMain.Height - 100 && point.Y > oglMain.Height - 180)
+                    {
+                        using (var form = new FormMenuJob(this))
+                        {
+                            var result = form.ShowDialog(this);
+
+                            if (result == DialogResult.Yes)
+                            {
+                                //new field - ask for a directory name
+                                using (var form2 = new FormFieldDir(this))
+                                { form2.ShowDialog(this); }
+                            }
+
+                            //load from  KML
+                            else if (result == DialogResult.No)
+                            {
+                                //ask for a directory name
+                                using (var form2 = new FormFieldKML(this))
+                                { form2.ShowDialog(this); }
+                            }
+
+                            //load from Existing
+                            else if (result == DialogResult.Retry)
+                            {
+                                //ask for a field to copy
+                                using (var form2 = new FormFieldExisting(this))
+                                { form2.ShowDialog(this); }
+                            }
+
+                            if (isJobStarted)
+                            {
+                                double distance = Math.Pow((pn.latStart - pn.latitude), 2) + Math.Pow((pn.lonStart - pn.longitude), 2);
+                                distance = Math.Sqrt(distance);
+                                distance *= 100;
+                                if (distance > 10) TimedMessageBox(2500, "High Field Start Distance Warning", "Field Start is "
+                                    + distance.ToString("N1") + " km From current position");
+                            }
+                        }
+
+                        return;
+                    }
+
+                    //Config
+                    if (point.Y < oglMain.Height - 200 && point.Y > oglMain.Height - 280)
+                    {
+                        using (FormMenuSettings form = new FormMenuSettings(this))
+                        {
+                            form.ShowDialog(this);
+                        }
+
+                        return;
+                    }
+                }
+
+
 
                 //check for help touch on steer circle
                 if (isTT)
