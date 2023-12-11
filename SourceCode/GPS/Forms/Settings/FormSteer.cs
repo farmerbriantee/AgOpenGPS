@@ -81,16 +81,16 @@ namespace AgOpenGPS
             hsbarMaxSteerAngle.Value = (Int16)Properties.Settings.Default.setVehicle_maxSteerAngle;
             lblMaxSteerAngle.Text = hsbarMaxSteerAngle.Value.ToString();
 
-            mf.vehicle.stanleyDistanceErrorGain = Properties.Settings.Default.stanleyDistanceErrorGain;
+            mf.vehicle.stanleyDistanceErrorGain = Properties.Settings.Default.setAS_stanleyDistanceErrorGain;
             hsbarStanleyGain.Value = (Int16)(mf.vehicle.stanleyDistanceErrorGain * 10);
             lblStanleyGain.Text = mf.vehicle.stanleyDistanceErrorGain.ToString();
 
-            mf.vehicle.stanleyHeadingErrorGain = Properties.Settings.Default.stanleyHeadingErrorGain;
+            mf.vehicle.stanleyHeadingErrorGain = Properties.Settings.Default.setAS_stanleyHeadingErrorGain;
             hsbarHeadingErrorGain.Value = (Int16)(mf.vehicle.stanleyHeadingErrorGain * 10);
             lblHeadingErrorGain.Text = mf.vehicle.stanleyHeadingErrorGain.ToString();
 
-            mf.vehicle.stanleyIntegralGainAB = Properties.Settings.Default.stanleyIntegralGainAB;
-            hsbarIntegral.Value = (int)(Properties.Settings.Default.stanleyIntegralGainAB * 100);
+            mf.vehicle.stanleyIntegralGainAB = Properties.Settings.Default.setAS_stanleyIntegralGainAB;
+            hsbarIntegral.Value = (int)(Properties.Settings.Default.setAS_stanleyIntegralGainAB * 100);
             lblIntegralPercent.Text = ((int)(mf.vehicle.stanleyIntegralGainAB * 100)).ToString();
 
             mf.vehicle.purePursuitIntegralGain = Properties.Settings.Default.purePursuitIntegralGainAB;
@@ -326,9 +326,9 @@ namespace AgOpenGPS
             Properties.Settings.Default.setVehicle_goalPointLookAheadHold = mf.vehicle.goalPointLookAheadHold;
             Properties.Settings.Default.setVehicle_goalPointLookAheadMult = mf.vehicle.goalPointLookAheadMult;
 
-            Properties.Settings.Default.stanleyHeadingErrorGain = mf.vehicle.stanleyHeadingErrorGain;
-            Properties.Settings.Default.stanleyDistanceErrorGain = mf.vehicle.stanleyDistanceErrorGain;
-            Properties.Settings.Default.stanleyIntegralGainAB = mf.vehicle.stanleyIntegralGainAB;
+            Properties.Settings.Default.setAS_stanleyHeadingErrorGain = mf.vehicle.stanleyHeadingErrorGain;
+            Properties.Settings.Default.setAS_stanleyDistanceErrorGain = mf.vehicle.stanleyDistanceErrorGain;
+            Properties.Settings.Default.setAS_stanleyIntegralGainAB = mf.vehicle.stanleyIntegralGainAB;
             Properties.Settings.Default.purePursuitIntegralGainAB = mf.vehicle.purePursuitIntegralGain;
             Properties.Settings.Default.setVehicle_maxSteerAngle = mf.vehicle.maxSteerAngle;
 
@@ -393,9 +393,9 @@ namespace AgOpenGPS
                 Properties.Settings.Default.setVehicle_goalPointLookAheadHold = 3;
                 Properties.Settings.Default.setVehicle_goalPointLookAheadMult = 1;
 
-                Properties.Settings.Default.stanleyHeadingErrorGain = 1;
-                Properties.Settings.Default.stanleyDistanceErrorGain = 1;
-                Properties.Settings.Default.stanleyIntegralGainAB = 0.15;
+                Properties.Settings.Default.setAS_stanleyHeadingErrorGain = 1;
+                Properties.Settings.Default.setAS_stanleyDistanceErrorGain = 1;
+                Properties.Settings.Default.setAS_stanleyIntegralGainAB = 0.15;
 
                 Properties.Settings.Default.purePursuitIntegralGainAB = 0.15;
 

@@ -269,11 +269,11 @@
     <Compile Include="Forms\FormHeadland.Designer.cs">
       <DependentUpon>FormHeadland.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Guidance\FormEditCurve.cs">
+    <Compile Include="Forms\Guidance\FormEditTrack.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Guidance\FormEditCurve.Designer.cs">
-      <DependentUpon>FormEditCurve.cs</DependentUpon>
+    <Compile Include="Forms\Guidance\FormEditTrack.Designer.cs">
+      <DependentUpon>FormEditTrack.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Pickers\FormFilePicker.cs">
       <SubType>Form</SubType>
@@ -640,8 +640,8 @@
     <EmbeddedResource Include="Forms\FormHeadland.resx">
       <DependentUpon>FormHeadland.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Guidance\FormEditCurve.resx">
-      <DependentUpon>FormEditCurve.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Guidance\FormEditTrack.resx">
+      <DependentUpon>FormEditTrack.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Pickers\FormFilePicker.resx">
       <DependentUpon>FormFilePicker.cs</DependentUpon>

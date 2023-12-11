@@ -96,7 +96,7 @@ namespace AgOpenGPS
             else
             {
                 tlpTrackMethods.Top = 135;
-                tlpTrackMethods.Left = this.Width - 390;
+                tlpTrackMethods.Left = this.Width - tlpTrackMethods.Width - 80;
                 tlpTrackMethods.Visible = true;
                 trackMethodPanelCounter = 1;
             }            
@@ -129,19 +129,19 @@ namespace AgOpenGPS
             }
         }
 
-        private void btnAutoTrack_Click(object sender, EventArgs e)
+        private void cboxAutoTrack_Click(object sender, EventArgs e)
         {
-            trk.isAutoTrack = !trk.isAutoTrack;
-            if (!trk.isAutoTrack)
+            trk.isAutoTrack = cboxAutoTrack.Checked;
+
+            if (tlpTrackMethods.Visible)
             {
-                btnAutoTrack.BackColor = Color.LightSalmon;
-                btnGuidance.BackColor = Color.Transparent;
+                tlpTrackMethods.Visible = false;
             }
-            else
-            {
-                btnAutoTrack.BackColor = Color.LightGreen;
-                btnGuidance.BackColor = Color.LightGreen;
-            }
+        }
+
+        private void cboxAutoSnapToPivot_Click(object sender, EventArgs e)
+        {
+            trk.isAutoSnapToPivot = cboxAutoSnapToPivot.Checked;
 
             if (tlpTrackMethods.Visible)
             {
@@ -218,6 +218,8 @@ namespace AgOpenGPS
                     var form = new FormTimedMessage(2000,(gStr.gsNoGuidanceLines),(gStr.gsTurnOnContourOrMakeABLine));
                     form.Show(this);
                 }
+
+                if (trk.isAutoSnapToPivot && isAutoSteerBtnOn) trk.SnapToPivot();
             }
         }
         private void btnAutoYouTurn_Click(object sender, EventArgs e)
@@ -1041,7 +1043,7 @@ namespace AgOpenGPS
 
             if (trk.idx > -1 && trk.isBtnTrackOn)
             {
-                Form form = new FormEditCurve(this);
+                Form form = new FormEditTrack(this);
                 form.Show(this);
             }
             else

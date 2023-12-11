@@ -68,8 +68,8 @@ namespace AgOpenGPS
             goalPointLookAheadHold = Properties.Settings.Default.setVehicle_goalPointLookAheadHold;
             goalPointLookAheadMult = Properties.Settings.Default.setVehicle_goalPointLookAheadMult;
 
-            stanleyDistanceErrorGain = Properties.Settings.Default.stanleyDistanceErrorGain;
-            stanleyHeadingErrorGain = Properties.Settings.Default.stanleyHeadingErrorGain;
+            stanleyDistanceErrorGain = Properties.Settings.Default.setAS_stanleyDistanceErrorGain;
+            stanleyHeadingErrorGain = Properties.Settings.Default.setAS_stanleyHeadingErrorGain;
 
             maxAngularVelocity = Properties.Settings.Default.setVehicle_maxAngularVelocity;
             maxSteerAngle = Properties.Settings.Default.setVehicle_maxSteerAngle;
@@ -78,8 +78,8 @@ namespace AgOpenGPS
 
             trackWidth = Properties.Settings.Default.setVehicle_trackWidth;
 
-            stanleyIntegralGainAB = Properties.Settings.Default.stanleyIntegralGainAB;
-            stanleyIntegralDistanceAwayTriggerAB = Properties.Settings.Default.stanleyIntegralDistanceAwayTriggerAB;
+            stanleyIntegralGainAB = Properties.Settings.Default.setAS_stanleyIntegralGainAB;
+            stanleyIntegralDistanceAwayTriggerAB = Properties.Settings.Default.setAS_stanleyIntegralDistanceAwayTriggerAB;
 
             purePursuitIntegralGain = Properties.Settings.Default.purePursuitIntegralGainAB;
             vehicleType = Properties.Settings.Default.setVehicle_vehicleType;

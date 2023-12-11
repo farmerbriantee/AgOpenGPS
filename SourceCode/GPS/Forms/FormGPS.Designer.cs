@@ -152,18 +152,19 @@
             this.btnZone7 = new System.Windows.Forms.Button();
             this.btnZone8 = new System.Windows.Forms.Button();
             this.tlpTrackMethods = new System.Windows.Forms.TableLayoutPanel();
-            this.btnAutoTrack = new System.Windows.Forms.Button();
+            this.cboxAutoTrack = new System.Windows.Forms.CheckBox();
+            this.cboxAutoSnapToPivot = new System.Windows.Forms.CheckBox();
             this.btnTrackCreateEdit = new System.Windows.Forms.Button();
             this.btnABDraw = new System.Windows.Forms.Button();
             this.timerLineAdj = new System.Windows.Forms.Timer(this.components);
-            this.btnAutoSteerConfig = new AgOpenGPS.RJButton();
-            this.btnSettings = new AgOpenGPS.RJButton();
-            this.btnFieldMenu = new AgOpenGPS.RJButton();
             this.btnMaximizeMainForm = new System.Windows.Forms.Button();
             this.pictureboxStart = new System.Windows.Forms.PictureBox();
             this.btnShutdown = new System.Windows.Forms.Button();
             this.btnHelp = new System.Windows.Forms.Button();
             this.btnMinimizeMainForm = new System.Windows.Forms.Button();
+            this.btnAutoSteerConfig = new AgOpenGPS.RJButton();
+            this.btnSettings = new AgOpenGPS.RJButton();
+            this.btnFieldMenu = new AgOpenGPS.RJButton();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -1250,21 +1251,36 @@
             // tlpTrackMethods
             // 
             resources.ApplyResources(this.tlpTrackMethods, "tlpTrackMethods");
-            this.tlpTrackMethods.Controls.Add(this.btnAutoTrack, 0, 0);
-            this.tlpTrackMethods.Controls.Add(this.btnTrackCreateEdit, 2, 0);
-            this.tlpTrackMethods.Controls.Add(this.btnABDraw, 1, 0);
+            this.tlpTrackMethods.Controls.Add(this.cboxAutoTrack, 0, 0);
+            this.tlpTrackMethods.Controls.Add(this.cboxAutoSnapToPivot, 0, 0);
+            this.tlpTrackMethods.Controls.Add(this.btnTrackCreateEdit, 3, 0);
+            this.tlpTrackMethods.Controls.Add(this.btnABDraw, 2, 0);
             this.tlpTrackMethods.Name = "tlpTrackMethods";
             // 
-            // btnAutoTrack
+            // cboxAutoTrack
             // 
-            resources.ApplyResources(this.btnAutoTrack, "btnAutoTrack");
-            this.btnAutoTrack.BackColor = System.Drawing.Color.LightSalmon;
-            this.btnAutoTrack.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnAutoTrack.FlatAppearance.BorderSize = 0;
-            this.btnAutoTrack.Image = global::AgOpenGPS.Properties.Resources.AutoTrack;
-            this.btnAutoTrack.Name = "btnAutoTrack";
-            this.btnAutoTrack.UseVisualStyleBackColor = false;
-            this.btnAutoTrack.Click += new System.EventHandler(this.btnAutoTrack_Click);
+            resources.ApplyResources(this.cboxAutoTrack, "cboxAutoTrack");
+            this.cboxAutoTrack.BackColor = System.Drawing.Color.Transparent;
+            this.cboxAutoTrack.Checked = true;
+            this.cboxAutoTrack.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxAutoTrack.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cboxAutoTrack.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
+            this.cboxAutoTrack.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.cboxAutoTrack.Image = global::AgOpenGPS.Properties.Resources.AutoTrack;
+            this.cboxAutoTrack.Name = "cboxAutoTrack";
+            this.cboxAutoTrack.UseVisualStyleBackColor = false;
+            // 
+            // cboxAutoSnapToPivot
+            // 
+            resources.ApplyResources(this.cboxAutoSnapToPivot, "cboxAutoSnapToPivot");
+            this.cboxAutoSnapToPivot.BackColor = System.Drawing.Color.Transparent;
+            this.cboxAutoSnapToPivot.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cboxAutoSnapToPivot.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
+            this.cboxAutoSnapToPivot.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.cboxAutoSnapToPivot.Image = global::AgOpenGPS.Properties.Resources.SnapToPivot;
+            this.cboxAutoSnapToPivot.Name = "cboxAutoSnapToPivot";
+            this.cboxAutoSnapToPivot.UseVisualStyleBackColor = false;
+            this.cboxAutoSnapToPivot.Click += new System.EventHandler(this.cboxAutoSnapToPivot_Click);
             // 
             // btnTrackCreateEdit
             // 
@@ -1287,54 +1303,6 @@
             this.btnABDraw.Name = "btnABDraw";
             this.btnABDraw.UseVisualStyleBackColor = false;
             this.btnABDraw.Click += new System.EventHandler(this.btnABDraw_Click);
-            // 
-            // btnAutoSteerConfig
-            // 
-            resources.ApplyResources(this.btnAutoSteerConfig, "btnAutoSteerConfig");
-            this.btnAutoSteerConfig.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnAutoSteerConfig.BackgroundColor = System.Drawing.Color.Gainsboro;
-            this.btnAutoSteerConfig.BackgroundImage = global::AgOpenGPS.Properties.Resources.AutoSteerConf;
-            this.btnAutoSteerConfig.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnAutoSteerConfig.BorderRadius = 15;
-            this.btnAutoSteerConfig.BorderSize = 3;
-            this.btnAutoSteerConfig.FlatAppearance.BorderSize = 0;
-            this.btnAutoSteerConfig.ForeColor = System.Drawing.Color.Black;
-            this.btnAutoSteerConfig.Name = "btnAutoSteerConfig";
-            this.btnAutoSteerConfig.TextColor = System.Drawing.Color.Black;
-            this.btnAutoSteerConfig.UseVisualStyleBackColor = false;
-            this.btnAutoSteerConfig.Click += new System.EventHandler(this.btnAutoSteerConfig_Click);
-            // 
-            // btnSettings
-            // 
-            resources.ApplyResources(this.btnSettings, "btnSettings");
-            this.btnSettings.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnSettings.BackgroundColor = System.Drawing.Color.Gainsboro;
-            this.btnSettings.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnSettings.BorderRadius = 15;
-            this.btnSettings.BorderSize = 3;
-            this.btnSettings.FlatAppearance.BorderSize = 0;
-            this.btnSettings.ForeColor = System.Drawing.Color.Black;
-            this.btnSettings.Image = global::AgOpenGPS.Properties.Resources.Settings48;
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.TextColor = System.Drawing.Color.Black;
-            this.btnSettings.UseVisualStyleBackColor = false;
-            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
-            // 
-            // btnFieldMenu
-            // 
-            resources.ApplyResources(this.btnFieldMenu, "btnFieldMenu");
-            this.btnFieldMenu.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnFieldMenu.BackgroundColor = System.Drawing.Color.Gainsboro;
-            this.btnFieldMenu.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnFieldMenu.BorderRadius = 15;
-            this.btnFieldMenu.BorderSize = 3;
-            this.btnFieldMenu.FlatAppearance.BorderSize = 0;
-            this.btnFieldMenu.ForeColor = System.Drawing.Color.Black;
-            this.btnFieldMenu.Image = global::AgOpenGPS.Properties.Resources.JobActive;
-            this.btnFieldMenu.Name = "btnFieldMenu";
-            this.btnFieldMenu.TextColor = System.Drawing.Color.Black;
-            this.btnFieldMenu.UseVisualStyleBackColor = false;
-            this.btnFieldMenu.Click += new System.EventHandler(this.btnFieldMenu_Click);
             // 
             // btnMaximizeMainForm
             // 
@@ -1386,6 +1354,54 @@
             this.btnMinimizeMainForm.Name = "btnMinimizeMainForm";
             this.btnMinimizeMainForm.UseVisualStyleBackColor = false;
             this.btnMinimizeMainForm.Click += new System.EventHandler(this.btnMinimizeMainForm_Click);
+            // 
+            // btnAutoSteerConfig
+            // 
+            resources.ApplyResources(this.btnAutoSteerConfig, "btnAutoSteerConfig");
+            this.btnAutoSteerConfig.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnAutoSteerConfig.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.btnAutoSteerConfig.BackgroundImage = global::AgOpenGPS.Properties.Resources.AutoSteerConf;
+            this.btnAutoSteerConfig.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnAutoSteerConfig.BorderRadius = 15;
+            this.btnAutoSteerConfig.BorderSize = 3;
+            this.btnAutoSteerConfig.FlatAppearance.BorderSize = 0;
+            this.btnAutoSteerConfig.ForeColor = System.Drawing.Color.Black;
+            this.btnAutoSteerConfig.Name = "btnAutoSteerConfig";
+            this.btnAutoSteerConfig.TextColor = System.Drawing.Color.Black;
+            this.btnAutoSteerConfig.UseVisualStyleBackColor = false;
+            this.btnAutoSteerConfig.Click += new System.EventHandler(this.btnAutoSteerConfig_Click);
+            // 
+            // btnSettings
+            // 
+            resources.ApplyResources(this.btnSettings, "btnSettings");
+            this.btnSettings.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnSettings.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.btnSettings.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnSettings.BorderRadius = 15;
+            this.btnSettings.BorderSize = 3;
+            this.btnSettings.FlatAppearance.BorderSize = 0;
+            this.btnSettings.ForeColor = System.Drawing.Color.Black;
+            this.btnSettings.Image = global::AgOpenGPS.Properties.Resources.Settings48;
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.TextColor = System.Drawing.Color.Black;
+            this.btnSettings.UseVisualStyleBackColor = false;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            // 
+            // btnFieldMenu
+            // 
+            resources.ApplyResources(this.btnFieldMenu, "btnFieldMenu");
+            this.btnFieldMenu.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnFieldMenu.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.btnFieldMenu.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnFieldMenu.BorderRadius = 15;
+            this.btnFieldMenu.BorderSize = 3;
+            this.btnFieldMenu.FlatAppearance.BorderSize = 0;
+            this.btnFieldMenu.ForeColor = System.Drawing.Color.Black;
+            this.btnFieldMenu.Image = global::AgOpenGPS.Properties.Resources.JobActive;
+            this.btnFieldMenu.Name = "btnFieldMenu";
+            this.btnFieldMenu.TextColor = System.Drawing.Color.Black;
+            this.btnFieldMenu.UseVisualStyleBackColor = false;
+            this.btnFieldMenu.Click += new System.EventHandler(this.btnFieldMenu_Click);
             // 
             // FormGPS
             // 
@@ -1592,12 +1608,13 @@
         private System.Windows.Forms.ToolStripMenuItem menuLanguageLithuanian;
         private System.Windows.Forms.TableLayoutPanel tlpTrackMethods;
         public System.Windows.Forms.Button btnTrackCreateEdit;
-        public System.Windows.Forms.Button btnAutoTrack;
         private System.Windows.Forms.Timer timerLineAdj;
         private RJButton btnFieldMenu;
         private RJButton btnSettings;
         private RJButton btnAutoSteerConfig;
         public System.Windows.Forms.TableLayoutPanel panelNavigation;
+        private System.Windows.Forms.CheckBox cboxAutoSnapToPivot;
+        private System.Windows.Forms.CheckBox cboxAutoTrack;
     }
 }
 

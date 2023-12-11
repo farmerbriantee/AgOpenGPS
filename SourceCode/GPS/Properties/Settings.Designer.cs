@@ -1995,24 +1995,24 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public double stanleyDistanceErrorGain {
+        public double setAS_stanleyDistanceErrorGain {
             get {
-                return ((double)(this["stanleyDistanceErrorGain"]));
+                return ((double)(this["setAS_stanleyDistanceErrorGain"]));
             }
             set {
-                this["stanleyDistanceErrorGain"] = value;
+                this["setAS_stanleyDistanceErrorGain"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public double stanleyHeadingErrorGain {
+        public double setAS_stanleyHeadingErrorGain {
             get {
-                return ((double)(this["stanleyHeadingErrorGain"]));
+                return ((double)(this["setAS_stanleyHeadingErrorGain"]));
             }
             set {
-                this["stanleyHeadingErrorGain"] = value;
+                this["setAS_stanleyHeadingErrorGain"] = value;
             }
         }
         
@@ -2259,12 +2259,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0.25")]
-        public double stanleyIntegralDistanceAwayTriggerAB {
+        public double setAS_stanleyIntegralDistanceAwayTriggerAB {
             get {
-                return ((double)(this["stanleyIntegralDistanceAwayTriggerAB"]));
+                return ((double)(this["setAS_stanleyIntegralDistanceAwayTriggerAB"]));
             }
             set {
-                this["stanleyIntegralDistanceAwayTriggerAB"] = value;
+                this["setAS_stanleyIntegralDistanceAwayTriggerAB"] = value;
             }
         }
         
@@ -2319,12 +2319,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0.15")]
-        public double stanleyIntegralGainAB {
+        public double setAS_stanleyIntegralGainAB {
             get {
-                return ((double)(this["stanleyIntegralGainAB"]));
+                return ((double)(this["setAS_stanleyIntegralGainAB"]));
             }
             set {
-                this["stanleyIntegralGainAB"] = value;
+                this["setAS_stanleyIntegralGainAB"] = value;
             }
         }
         
@@ -2679,12 +2679,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("980, 740")]
-        public global::System.Drawing.Size setFieldMenu_size {
+        public global::System.Drawing.Size setWindow_formFieldMenuSize {
             get {
-                return ((global::System.Drawing.Size)(this["setFieldMenu_size"]));
+                return ((global::System.Drawing.Size)(this["setWindow_formFieldMenuSize"]));
             }
             set {
-                this["setFieldMenu_size"] = value;
+                this["setWindow_formFieldMenuSize"] = value;
             }
         }
         
@@ -2702,13 +2702,37 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10, 10")]
-        public global::System.Drawing.Point setFieldMenu_location {
+        [global::System.Configuration.DefaultSettingValueAttribute("50, 50")]
+        public global::System.Drawing.Point setWindow_formEditTrackLocation {
             get {
-                return ((global::System.Drawing.Point)(this["setFieldMenu_location"]));
+                return ((global::System.Drawing.Point)(this["setWindow_formEditTrackLocation"]));
             }
             set {
-                this["setFieldMenu_location"] = value;
+                this["setWindow_formEditTrackLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
+        public global::System.Drawing.Point setWindow_formFieldMenuLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["setWindow_formFieldMenuLocation"]));
+            }
+            set {
+                this["setWindow_formFieldMenuLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("200, 400")]
+        public global::System.Drawing.Size setWindow_formEditTrackSize {
+            get {
+                return ((global::System.Drawing.Size)(this["setWindow_formEditTrackSize"]));
+            }
+            set {
+                this["setWindow_formEditTrackSize"] = value;
             }
         }
     }

@@ -73,8 +73,8 @@ namespace AgOpenGPS
                 btnBoundary.Enabled = true;
             }
 
-            Size = Settings.Default.setFieldMenu_size;
-            Location = Settings.Default.setFieldMenu_location;
+            Size = Settings.Default.setWindow_formFieldMenuSize;
+            Location = Settings.Default.setWindow_formFieldMenuLocation;
         }
 
         private void btnJobNew_Click(object sender, EventArgs e)
@@ -255,8 +255,8 @@ namespace AgOpenGPS
 
         private void FormJob_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Settings.Default.setFieldMenu_size = Size;
-            Settings.Default.setFieldMenu_location = Location;
+            Settings.Default.setWindow_formFieldMenuSize = Size;
+            Settings.Default.setWindow_formFieldMenuLocation = Location;
             Settings.Default.setFieldMenu_isKeepOpen = cboxCloseOnSelection.Checked;
             Settings.Default.Save();
         }

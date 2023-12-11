@@ -592,7 +592,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnResetSteerAngle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>162, 4</value>
+    <value>157, 4</value>
   </data>
   <data name="btnResetSteerAngle.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 31</value>
@@ -631,10 +631,10 @@
     <value>NoControl</value>
   </data>
   <data name="hsbarSteerAngle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>209, 1</value>
+    <value>204, 1</value>
   </data>
   <data name="hsbarSteerAngle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 37</value>
+    <value>94, 37</value>
   </data>
   <data name="hsbarSteerAngle.TabIndex" type="System.Int32, mscorlib">
     <value>179</value>
@@ -661,7 +661,7 @@
     <value>59, 1</value>
   </data>
   <data name="hsbarStepDistance.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 37</value>
+    <value>94, 37</value>
   </data>
   <data name="hsbarStepDistance.TabIndex" type="System.Int32, mscorlib">
     <value>178</value>
@@ -1592,7 +1592,7 @@ PPS</value>
     <value>NoControl</value>
   </data>
   <data name="btnSimForward.Location" type="System.Drawing.Point, System.Drawing">
-    <value>440, 4</value>
+    <value>430, 4</value>
   </data>
   <data name="btnSimForward.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 31</value>
@@ -1628,7 +1628,7 @@ PPS</value>
     <value>NoControl</value>
   </data>
   <data name="btnSimSetSpeedToZero.Location" type="System.Drawing.Point, System.Drawing">
-    <value>363, 4</value>
+    <value>353, 4</value>
   </data>
   <data name="btnSimSetSpeedToZero.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 31</value>
@@ -1661,7 +1661,7 @@ PPS</value>
     <value>NoControl</value>
   </data>
   <data name="btnSimReverse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>312, 4</value>
+    <value>302, 4</value>
   </data>
   <data name="btnSimReverse.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 31</value>
@@ -1706,7 +1706,7 @@ PPS</value>
     <value>28</value>
   </data>
   <data name="panelSim.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnSimForward" Row="0" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="btnSimSetSpeedToZero" Row="0" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="btnSimReverse" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="hsbarStepDistance" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnResetSteerAngle" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnResetSim" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="hsbarSteerAngle" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,57,Percent,50,Absolute,49,Percent,50,Absolute,50,Absolute,76,Absolute,74" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnSimForward" Row="0" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="btnSimSetSpeedToZero" Row="0" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="btnSimReverse" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="hsbarStepDistance" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnResetSteerAngle" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnResetSim" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="hsbarSteerAngle" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,57,Percent,50,Absolute,49,Percent,50,Absolute,50,Absolute,76,Absolute,84" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="btnSection16Man.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -3227,46 +3227,91 @@ PPS</value>
     <value>7</value>
   </data>
   <data name="tlpTrackMethods.ColumnCount" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>4</value>
   </data>
-  <data name="btnAutoTrack.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="cboxAutoTrack.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="btnAutoTrack.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Center</value>
+  <data name="cboxAutoTrack.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+    <value>Button</value>
   </data>
-  <data name="btnAutoTrack.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+  <data name="cboxAutoTrack.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="btnAutoTrack.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 12pt</value>
+  <data name="cboxAutoTrack.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 15.75pt, style=Bold</value>
   </data>
-  <data name="btnAutoTrack.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="cboxAutoTrack.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="btnAutoTrack.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+  <data name="cboxAutoTrack.Location" type="System.Drawing.Point, System.Drawing">
+    <value>111, 3</value>
   </data>
-  <data name="btnAutoTrack.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 106</value>
+  <data name="cboxAutoTrack.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
   </data>
-  <data name="btnAutoTrack.TabIndex" type="System.Int32, mscorlib">
-    <value>252</value>
+  <data name="cboxAutoTrack.Size" type="System.Drawing.Size, System.Drawing">
+    <value>102, 96</value>
   </data>
-  <data name="btnAutoTrack.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopCenter</value>
+  <data name="cboxAutoTrack.TabIndex" type="System.Int32, mscorlib">
+    <value>469</value>
   </data>
-  <data name="&gt;&gt;btnAutoTrack.Name" xml:space="preserve">
-    <value>btnAutoTrack</value>
+  <data name="cboxAutoTrack.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
   </data>
-  <data name="&gt;&gt;btnAutoTrack.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;cboxAutoTrack.Name" xml:space="preserve">
+    <value>cboxAutoTrack</value>
   </data>
-  <data name="&gt;&gt;btnAutoTrack.Parent" xml:space="preserve">
+  <data name="&gt;&gt;cboxAutoTrack.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboxAutoTrack.Parent" xml:space="preserve">
     <value>tlpTrackMethods</value>
   </data>
-  <data name="&gt;&gt;btnAutoTrack.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;cboxAutoTrack.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="cboxAutoSnapToPivot.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="cboxAutoSnapToPivot.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+    <value>Button</value>
+  </data>
+  <data name="cboxAutoSnapToPivot.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="cboxAutoSnapToPivot.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 15.75pt, style=Bold</value>
+  </data>
+  <data name="cboxAutoSnapToPivot.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cboxAutoSnapToPivot.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="cboxAutoSnapToPivot.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="cboxAutoSnapToPivot.Size" type="System.Drawing.Size, System.Drawing">
+    <value>102, 96</value>
+  </data>
+  <data name="cboxAutoSnapToPivot.TabIndex" type="System.Int32, mscorlib">
+    <value>468</value>
+  </data>
+  <data name="cboxAutoSnapToPivot.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;cboxAutoSnapToPivot.Name" xml:space="preserve">
+    <value>cboxAutoSnapToPivot</value>
+  </data>
+  <data name="&gt;&gt;cboxAutoSnapToPivot.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboxAutoSnapToPivot.Parent" xml:space="preserve">
+    <value>tlpTrackMethods</value>
+  </data>
+  <data name="&gt;&gt;cboxAutoSnapToPivot.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="btnTrackCreateEdit.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -3284,10 +3329,10 @@ PPS</value>
     <value>NoControl</value>
   </data>
   <data name="btnTrackCreateEdit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>220, 18</value>
+    <value>327, 3</value>
   </data>
   <data name="btnTrackCreateEdit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 75</value>
+    <value>103, 96</value>
   </data>
   <data name="btnTrackCreateEdit.TabIndex" type="System.Int32, mscorlib">
     <value>251</value>
@@ -3305,7 +3350,7 @@ PPS</value>
     <value>tlpTrackMethods</value>
   </data>
   <data name="&gt;&gt;btnTrackCreateEdit.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnABDraw.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -3323,10 +3368,10 @@ PPS</value>
     <value>NoControl</value>
   </data>
   <data name="btnABDraw.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 10</value>
+    <value>219, 3</value>
   </data>
   <data name="btnABDraw.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 92</value>
+    <value>102, 96</value>
   </data>
   <data name="btnABDraw.TabIndex" type="System.Int32, mscorlib">
     <value>250</value>
@@ -3344,16 +3389,16 @@ PPS</value>
     <value>tlpTrackMethods</value>
   </data>
   <data name="&gt;&gt;btnABDraw.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="tlpTrackMethods.Location" type="System.Drawing.Point, System.Drawing">
-    <value>469, 451</value>
+    <value>336, 461</value>
   </data>
   <data name="tlpTrackMethods.RowCount" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="tlpTrackMethods.Size" type="System.Drawing.Size, System.Drawing">
-    <value>312, 112</value>
+    <value>433, 102</value>
   </data>
   <data name="tlpTrackMethods.TabIndex" type="System.Int32, mscorlib">
     <value>533</value>
@@ -3374,104 +3419,11 @@ PPS</value>
     <value>6</value>
   </data>
   <data name="tlpTrackMethods.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnAutoTrack" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnTrackCreateEdit" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnABDraw" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,25,Percent,25,Percent,25" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="cboxAutoTrack" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cboxAutoSnapToPivot" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnTrackCreateEdit" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="btnABDraw" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,25,Percent,25,Percent,25,Percent,25" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <metadata name="timerLineAdj.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1061, 16</value>
   </metadata>
-  <data name="btnAutoSteerConfig.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="btnAutoSteerConfig.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Zoom</value>
-  </data>
-  <data name="btnAutoSteerConfig.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnAutoSteerConfig.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnAutoSteerConfig.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 211</value>
-  </data>
-  <data name="btnAutoSteerConfig.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 59</value>
-  </data>
-  <data name="btnAutoSteerConfig.TabIndex" type="System.Int32, mscorlib">
-    <value>536</value>
-  </data>
-  <data name="&gt;&gt;btnAutoSteerConfig.Name" xml:space="preserve">
-    <value>btnAutoSteerConfig</value>
-  </data>
-  <data name="&gt;&gt;btnAutoSteerConfig.Type" xml:space="preserve">
-    <value>AgOpenGPS.RJButton, AgOpenGPS, Version=6.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnAutoSteerConfig.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnAutoSteerConfig.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="btnSettings.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="btnSettings.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnSettings.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 392</value>
-  </data>
-  <data name="btnSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 72</value>
-  </data>
-  <data name="btnSettings.TabIndex" type="System.Int32, mscorlib">
-    <value>535</value>
-  </data>
-  <data name="&gt;&gt;btnSettings.Name" xml:space="preserve">
-    <value>btnSettings</value>
-  </data>
-  <data name="&gt;&gt;btnSettings.Type" xml:space="preserve">
-    <value>AgOpenGPS.RJButton, AgOpenGPS, Version=6.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnSettings.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnSettings.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="btnFieldMenu.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="btnFieldMenu.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnFieldMenu.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnFieldMenu.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 491</value>
-  </data>
-  <data name="btnFieldMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 72</value>
-  </data>
-  <data name="btnFieldMenu.TabIndex" type="System.Int32, mscorlib">
-    <value>534</value>
-  </data>
-  <data name="&gt;&gt;btnFieldMenu.Name" xml:space="preserve">
-    <value>btnFieldMenu</value>
-  </data>
-  <data name="&gt;&gt;btnFieldMenu.Type" xml:space="preserve">
-    <value>AgOpenGPS.RJButton, AgOpenGPS, Version=6.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnFieldMenu.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnFieldMenu.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="btnMaximizeMainForm.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
@@ -3646,6 +3598,99 @@ PPS</value>
   <data name="&gt;&gt;btnMinimizeMainForm.ZOrder" xml:space="preserve">
     <value>48</value>
   </data>
+  <data name="btnAutoSteerConfig.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="btnAutoSteerConfig.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="btnAutoSteerConfig.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnAutoSteerConfig.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnAutoSteerConfig.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 211</value>
+  </data>
+  <data name="btnAutoSteerConfig.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 59</value>
+  </data>
+  <data name="btnAutoSteerConfig.TabIndex" type="System.Int32, mscorlib">
+    <value>536</value>
+  </data>
+  <data name="&gt;&gt;btnAutoSteerConfig.Name" xml:space="preserve">
+    <value>btnAutoSteerConfig</value>
+  </data>
+  <data name="&gt;&gt;btnAutoSteerConfig.Type" xml:space="preserve">
+    <value>AgOpenGPS.RJButton, AgOpenGPS, Version=6.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;btnAutoSteerConfig.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnAutoSteerConfig.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="btnSettings.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="btnSettings.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnSettings.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 392</value>
+  </data>
+  <data name="btnSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 72</value>
+  </data>
+  <data name="btnSettings.TabIndex" type="System.Int32, mscorlib">
+    <value>535</value>
+  </data>
+  <data name="&gt;&gt;btnSettings.Name" xml:space="preserve">
+    <value>btnSettings</value>
+  </data>
+  <data name="&gt;&gt;btnSettings.Type" xml:space="preserve">
+    <value>AgOpenGPS.RJButton, AgOpenGPS, Version=6.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;btnSettings.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnSettings.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btnFieldMenu.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="btnFieldMenu.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnFieldMenu.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnFieldMenu.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 491</value>
+  </data>
+  <data name="btnFieldMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 72</value>
+  </data>
+  <data name="btnFieldMenu.TabIndex" type="System.Int32, mscorlib">
+    <value>534</value>
+  </data>
+  <data name="&gt;&gt;btnFieldMenu.Name" xml:space="preserve">
+    <value>btnFieldMenu</value>
+  </data>
+  <data name="&gt;&gt;btnFieldMenu.Type" xml:space="preserve">
+    <value>AgOpenGPS.RJButton, AgOpenGPS, Version=6.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;btnFieldMenu.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnFieldMenu.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -3736,6 +3781,9 @@ PPS</value>
         Af//gAD//wAA//8AAH/+AAB//gAAP/wYGD/8DBgf+BwYH/gYGB/4OAwf+HgPH/gYGB/4DBgf/A54H/wf
         +D/+AYQ//gCAf/8AgP//gAH//8AD///wD/8=
 </value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>949, 700</value>

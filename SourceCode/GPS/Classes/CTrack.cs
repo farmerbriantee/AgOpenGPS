@@ -58,7 +58,7 @@ namespace AgOpenGPS
         private int counter2;
         public double inty;
 
-        public bool isAutoTrack = false;
+        public bool isAutoTrack = false, isAutoSnapToPivot = false;
 
         public CTrack(FormGPS _f)
         {
@@ -1129,6 +1129,12 @@ namespace AgOpenGPS
         {
             curPts?.Clear();
             idx = -1;
+        }
+
+        public void SnapToPivot()
+        {
+            if (isBtnTrackOn)
+                MoveABCurve(distanceFromCurrentLinePivot);
         }
     }
 
