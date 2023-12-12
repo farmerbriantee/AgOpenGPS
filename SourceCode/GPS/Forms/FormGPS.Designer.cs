@@ -160,7 +160,6 @@
             this.btnShutdown = new System.Windows.Forms.Button();
             this.btnHelp = new System.Windows.Forms.Button();
             this.btnMinimizeMainForm = new System.Windows.Forms.Button();
-            this.btnAutoSteerConfig = new AgOpenGPS.RJButton();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -1327,28 +1326,11 @@
             this.btnMinimizeMainForm.UseVisualStyleBackColor = false;
             this.btnMinimizeMainForm.Click += new System.EventHandler(this.btnMinimizeMainForm_Click);
             // 
-            // btnAutoSteerConfig
-            // 
-            resources.ApplyResources(this.btnAutoSteerConfig, "btnAutoSteerConfig");
-            this.btnAutoSteerConfig.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnAutoSteerConfig.BackgroundColor = System.Drawing.Color.Gainsboro;
-            this.btnAutoSteerConfig.BackgroundImage = global::AgOpenGPS.Properties.Resources.AutoSteerConf;
-            this.btnAutoSteerConfig.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnAutoSteerConfig.BorderRadius = 15;
-            this.btnAutoSteerConfig.BorderSize = 3;
-            this.btnAutoSteerConfig.FlatAppearance.BorderSize = 0;
-            this.btnAutoSteerConfig.ForeColor = System.Drawing.Color.Black;
-            this.btnAutoSteerConfig.Name = "btnAutoSteerConfig";
-            this.btnAutoSteerConfig.TextColor = System.Drawing.Color.Black;
-            this.btnAutoSteerConfig.UseVisualStyleBackColor = false;
-            this.btnAutoSteerConfig.Click += new System.EventHandler(this.btnAutoSteerConfig_Click);
-            // 
             // FormGPS
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Controls.Add(this.btnAutoSteerConfig);
             this.Controls.Add(this.panelRight);
             this.Controls.Add(this.tlpTrackMethods);
             this.Controls.Add(this.btnZone8);
@@ -1545,7 +1527,6 @@
         private System.Windows.Forms.TableLayoutPanel tlpTrackMethods;
         public System.Windows.Forms.Button btnTrackCreateEdit;
         private System.Windows.Forms.Timer timerLineAdj;
-        private RJButton btnAutoSteerConfig;
         public System.Windows.Forms.TableLayoutPanel panelNavigation;
         private System.Windows.Forms.CheckBox cboxAutoSnapToPivot;
         private System.Windows.Forms.CheckBox cboxAutoTrack;

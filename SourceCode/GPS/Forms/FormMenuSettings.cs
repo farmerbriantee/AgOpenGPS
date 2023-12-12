@@ -124,5 +124,25 @@ namespace AgOpenGPS.Forms
             }
             Close();
         }
+
+        private void btnSteerSettings_Click(object sender, EventArgs e)
+        {
+            //check if window already exists
+            Form fc = Application.OpenForms["FormSteer"];
+
+            if (fc != null)
+            {
+                fc.Focus();
+                fc.Close();
+                return;
+            }
+
+            //
+            Form form = new FormSteer(mf);
+            form.Top = 0;
+            form.Left = 0;
+            form.Show(mf);
+            Close();
+        }
     }
 }

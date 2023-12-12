@@ -37,6 +37,7 @@
             this.btnConfig = new AgOpenGPS.RJButton();
             this.btnDisplay = new AgOpenGPS.RJButton();
             this.btnDeleteAB = new System.Windows.Forms.Button();
+            this.btnSteerSettings = new AgOpenGPS.RJButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,12 +50,13 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.btnConfigUTurn, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnStartAgIO, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnStanleyPure, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnConfigGuidance, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnConfgTool, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnConfig, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnDisplay, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnDeleteAB, 2, 3);
+            this.tableLayoutPanel1.Controls.Add(this.btnConfig, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.btnDisplay, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnSteerSettings, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnStanleyPure, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -63,7 +65,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(781, 502);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(755, 512);
             this.tableLayoutPanel1.TabIndex = 547;
             // 
             // btnConfigUTurn
@@ -80,7 +82,7 @@
             this.btnConfigUTurn.ForeColor = System.Drawing.Color.Black;
             this.btnConfigUTurn.Image = global::AgOpenGPS.Properties.Resources.Con_UTurnMenu;
             this.btnConfigUTurn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConfigUTurn.Location = new System.Drawing.Point(544, 16);
+            this.btnConfigUTurn.Location = new System.Drawing.Point(522, 18);
             this.btnConfigUTurn.Name = "btnConfigUTurn";
             this.btnConfigUTurn.Size = new System.Drawing.Size(213, 92);
             this.btnConfigUTurn.TabIndex = 544;
@@ -104,7 +106,7 @@
             this.btnStartAgIO.ForeColor = System.Drawing.Color.Black;
             this.btnStartAgIO.Image = global::AgOpenGPS.Properties.Resources.AgIO;
             this.btnStartAgIO.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStartAgIO.Location = new System.Drawing.Point(23, 392);
+            this.btnStartAgIO.Location = new System.Drawing.Point(19, 402);
             this.btnStartAgIO.Name = "btnStartAgIO";
             this.btnStartAgIO.Size = new System.Drawing.Size(213, 92);
             this.btnStartAgIO.TabIndex = 540;
@@ -128,11 +130,11 @@
             this.btnStanleyPure.ForeColor = System.Drawing.Color.Black;
             this.btnStanleyPure.Image = global::AgOpenGPS.Properties.Resources.ModePurePursuit;
             this.btnStanleyPure.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStanleyPure.Location = new System.Drawing.Point(283, 141);
+            this.btnStanleyPure.Location = new System.Drawing.Point(270, 146);
             this.btnStanleyPure.Name = "btnStanleyPure";
             this.btnStanleyPure.Size = new System.Drawing.Size(213, 92);
             this.btnStanleyPure.TabIndex = 541;
-            this.btnStanleyPure.Text = "Steer Mode";
+            this.btnStanleyPure.Text = "Mode";
             this.btnStanleyPure.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnStanleyPure.TextColor = System.Drawing.Color.Black;
             this.btnStanleyPure.UseVisualStyleBackColor = false;
@@ -151,7 +153,7 @@
             this.btnConfigGuidance.ForeColor = System.Drawing.Color.Black;
             this.btnConfigGuidance.Image = global::AgOpenGPS.Properties.Resources.ConS_ModulesSteer;
             this.btnConfigGuidance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConfigGuidance.Location = new System.Drawing.Point(544, 141);
+            this.btnConfigGuidance.Location = new System.Drawing.Point(522, 146);
             this.btnConfigGuidance.Name = "btnConfigGuidance";
             this.btnConfigGuidance.Size = new System.Drawing.Size(213, 92);
             this.btnConfigGuidance.TabIndex = 545;
@@ -175,7 +177,7 @@
             this.btnConfgTool.ForeColor = System.Drawing.Color.Black;
             this.btnConfgTool.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementSection;
             this.btnConfgTool.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConfgTool.Location = new System.Drawing.Point(544, 266);
+            this.btnConfgTool.Location = new System.Drawing.Point(522, 274);
             this.btnConfgTool.Name = "btnConfgTool";
             this.btnConfgTool.Size = new System.Drawing.Size(213, 92);
             this.btnConfgTool.TabIndex = 542;
@@ -199,7 +201,7 @@
             this.btnConfig.ForeColor = System.Drawing.Color.Black;
             this.btnConfig.Image = global::AgOpenGPS.Properties.Resources.Settings48;
             this.btnConfig.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConfig.Location = new System.Drawing.Point(283, 266);
+            this.btnConfig.Location = new System.Drawing.Point(270, 402);
             this.btnConfig.Name = "btnConfig";
             this.btnConfig.Size = new System.Drawing.Size(213, 92);
             this.btnConfig.TabIndex = 539;
@@ -223,7 +225,7 @@
             this.btnDisplay.ForeColor = System.Drawing.Color.Black;
             this.btnDisplay.Image = global::AgOpenGPS.Properties.Resources.NavigationSettings;
             this.btnDisplay.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDisplay.Location = new System.Drawing.Point(23, 141);
+            this.btnDisplay.Location = new System.Drawing.Point(19, 18);
             this.btnDisplay.Name = "btnDisplay";
             this.btnDisplay.Size = new System.Drawing.Size(213, 92);
             this.btnDisplay.TabIndex = 546;
@@ -244,19 +246,43 @@
             this.btnDeleteAB.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnDeleteAB.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnDeleteAB.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDeleteAB.Location = new System.Drawing.Point(560, 410);
+            this.btnDeleteAB.Location = new System.Drawing.Point(538, 419);
             this.btnDeleteAB.Name = "btnDeleteAB";
             this.btnDeleteAB.Size = new System.Drawing.Size(180, 57);
             this.btnDeleteAB.TabIndex = 547;
             this.btnDeleteAB.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDeleteAB.UseVisualStyleBackColor = false;
             // 
+            // btnSteerSettings
+            // 
+            this.btnSteerSettings.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnSteerSettings.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSteerSettings.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSteerSettings.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnSteerSettings.BorderRadius = 10;
+            this.btnSteerSettings.BorderSize = 2;
+            this.btnSteerSettings.FlatAppearance.BorderSize = 0;
+            this.btnSteerSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSteerSettings.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSteerSettings.ForeColor = System.Drawing.Color.Black;
+            this.btnSteerSettings.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOn;
+            this.btnSteerSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSteerSettings.Location = new System.Drawing.Point(270, 274);
+            this.btnSteerSettings.Name = "btnSteerSettings";
+            this.btnSteerSettings.Size = new System.Drawing.Size(213, 92);
+            this.btnSteerSettings.TabIndex = 548;
+            this.btnSteerSettings.Text = "Steer";
+            this.btnSteerSettings.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSteerSettings.TextColor = System.Drawing.Color.Black;
+            this.btnSteerSettings.UseVisualStyleBackColor = false;
+            this.btnSteerSettings.Click += new System.EventHandler(this.btnSteerSettings_Click);
+            // 
             // FormMenuSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(50)))));
-            this.ClientSize = new System.Drawing.Size(781, 502);
+            this.ClientSize = new System.Drawing.Size(755, 512);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
@@ -281,5 +307,6 @@
         private RJButton btnDisplay;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button btnDeleteAB;
+        private RJButton btnSteerSettings;
     }
 }
