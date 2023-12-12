@@ -487,7 +487,7 @@ namespace AgOpenGPS
                 //double offs = mf.trk.distanceFromCurrentLinePivot * 0.3;
                 double svennDist = mf.camera.camSetDistance * -0.07;
                 double svennWidth = svennDist * 0.22;
-                GL.LineWidth(mf.ABLine.lineWidth);
+                GL.LineWidth(mf.trk.lineWidth);
                 GL.Color3(1.2, 1.25, 0.10);
                 GL.Begin(PrimitiveType.LineStrip);
                 {
@@ -499,12 +499,12 @@ namespace AgOpenGPS
             }
 
             //Paths away text
-            if (mf.trk.isBtnTrackOn && mf.trk.idx != -1 && !mf.ct.isContourBtnOn)
+            if (mf.trk.isBtnGuidanceOn && mf.trk.idx != -1 && !mf.ct.isContourBtnOn)
             {
                 string heading = mf.trk.isHeadingSameWay ? " A-B" : " B-A";
                 GL.Color4(1.269, 1.25, 1.2510, 0.87);
-                if (mf.trk.howManyPathsAway > 0) mf.font.DrawTextVehicle(2, wheelbase + 1, mf.trk.howManyPathsAway.ToString() + "R " + mf.trk.tracksArr[mf.trk.idx].moveDistance.ToString("N2")+heading, 1);
-                else mf.font.DrawTextVehicle(2, wheelbase + 1, mf.trk.howManyPathsAway.ToString() + "L " + mf.trk.tracksArr[mf.trk.idx].moveDistance.ToString("N2")+heading, 1);
+                if (mf.trk.howManyPathsAway > 0) mf.font.DrawTextVehicle(2, wheelbase + 1, mf.trk.howManyPathsAway.ToString() + "R " + mf.trk.tracksArr[mf.trk.idx].nudgeDistance.ToString("N2")+heading, 1);
+                else mf.font.DrawTextVehicle(2, wheelbase + 1, mf.trk.howManyPathsAway.ToString() + "L " + mf.trk.tracksArr[mf.trk.idx].nudgeDistance.ToString("N2")+heading, 1);
             }
 
             GL.LineWidth(1);

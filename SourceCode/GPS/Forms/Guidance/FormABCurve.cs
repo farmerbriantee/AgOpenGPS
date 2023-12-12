@@ -265,13 +265,13 @@ namespace AgOpenGPS
             }
             else
             {
-                //mf.trk.moveDistance = 0;
+                //mf.trk.nudgeDistance = 0;
                 //mf.trk.isOkToAddDesPoints = false;
                 //mf.trk.isTrackSet = false;
                 //mf.trk.tracksArr[mf.trk.idx].trackPts?.Clear();
                 //mf.trk.isTrackSet = false;
                 //mf.DisableYouTurnButtons();
-                //mf.trk.isBtnTrackOn = false;
+                //mf.trk.isBtnGuidanceOn = false;
                 //mf.btnCurve.Image = Properties.Resources.TrackOff;
                 //if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
                 //if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
@@ -342,7 +342,7 @@ namespace AgOpenGPS
             mf.DisableYouTurnButtons();
             //mf.btnContourPriority.Enabled = false;
             //mf.trk.ResetTrack();
-            mf.trk.isBtnTrackOn = false;
+            mf.trk.isBtnGuidanceOn = false;
             mf.btnGuidance.Image = Properties.Resources.TrackOff;
             if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
             if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
@@ -478,7 +478,7 @@ namespace AgOpenGPS
         #region Curve
         private void btnAPoint_Click(object sender, System.EventArgs e)
         {
-            //mf.trk.moveDistance = 0;
+            //mf.trk.nudgeDistance = 0;
             //clear out the reference list
             lblCurveExists.Text = gStr.gsDriving;
             btnBPoint.Enabled = true;
@@ -615,7 +615,7 @@ namespace AgOpenGPS
                 mf.trk.tracksArr[mf.trk.idx].ptA = new vec3(ptA);
                 mf.trk.tracksArr[mf.trk.idx].ptB = new vec3(ptB);
 
-                mf.trk.tracksArr[mf.trk.idx].moveDistance = 0;
+                mf.trk.tracksArr[mf.trk.idx].nudgeDistance = 0;
 
                 mf.trk.tracksArr[mf.trk.idx].mode = (int)TrackMode.Curve;
 
@@ -1011,7 +1011,7 @@ namespace AgOpenGPS
         #region ABLine
         private void btnABAPoint_Click(object sender, EventArgs e)
         {
-            //mf.curve.moveDistance = 0;
+            //mf.curve.nudgeDistance = 0;
             //clear out the reference list
             lblCurveExists.Text = gStr.gsDriving;
             btnBPoint.Enabled = true;
@@ -1134,7 +1134,7 @@ namespace AgOpenGPS
             mf.trk.tracksArr[mf.trk.idx].ptA = ptA;
             mf.trk.tracksArr[mf.trk.idx].ptB = ptB;
 
-            mf.trk.tracksArr[mf.trk.idx].moveDistance = 0;
+            mf.trk.tracksArr[mf.trk.idx].nudgeDistance = 0;
 
             mf.trk.tracksArr[mf.trk.idx].mode = (int)TrackMode.AB;
 
@@ -1165,7 +1165,7 @@ namespace AgOpenGPS
             mf.trk.tracksArr[mf.trk.idx].name = "Outer Boundary Curve";
             mf.trk.tracksArr[mf.trk.idx].mode = (int)TrackMode.bndTrackOuter;
 
-            mf.trk.tracksArr[mf.trk.idx].moveDistance = 0;
+            mf.trk.tracksArr[mf.trk.idx].nudgeDistance = 0;
 
             mf.trk.tracksArr[mf.trk.idx].ptA = new vec3(mf.trk.tracksArr[mf.trk.idx].trackPts[0]);
             mf.trk.tracksArr[mf.trk.idx].ptB = new vec3(mf.trk.tracksArr[mf.trk.idx].trackPts[mf.trk.tracksArr[mf.trk.idx].trackPts.Count - 1]);
@@ -1209,7 +1209,7 @@ namespace AgOpenGPS
                 //create a name
                 mf.trk.tracksArr[mf.trk.idx].name = "Inner Boundary Curve " + q.ToString();
 
-                mf.trk.tracksArr[mf.trk.idx].moveDistance = 0;
+                mf.trk.tracksArr[mf.trk.idx].nudgeDistance = 0;
 
                 mf.trk.tracksArr[mf.trk.idx].ptA = new vec3(mf.trk.tracksArr[mf.trk.idx].trackPts[0]);
                 mf.trk.tracksArr[mf.trk.idx].ptB = new vec3(mf.trk.tracksArr[mf.trk.idx].trackPts[mf.trk.tracksArr[mf.trk.idx].trackPts.Count - 1]);

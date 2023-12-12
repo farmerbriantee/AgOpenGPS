@@ -56,10 +56,10 @@
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.textBox1.Location = new System.Drawing.Point(307, 255);
+            this.textBox1.Location = new System.Drawing.Point(270, 200);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(299, 55);
+            this.textBox1.Size = new System.Drawing.Size(261, 55);
             this.textBox1.TabIndex = 88;
             this.textBox1.Text = "Field To Resume\r\nGoes here";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -71,7 +71,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(915, 594);
+            this.panel1.Size = new System.Drawing.Size(802, 479);
             this.panel1.TabIndex = 90;
             // 
             // tableLayoutPanel1
@@ -105,7 +105,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.761905F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.04762F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.04762F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(915, 594);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(802, 479);
             this.tableLayoutPanel1.TabIndex = 539;
             // 
             // btnJobResume
@@ -122,9 +122,9 @@
             this.btnJobResume.ForeColor = System.Drawing.Color.Black;
             this.btnJobResume.Image = global::AgOpenGPS.Properties.Resources.FilePrevious;
             this.btnJobResume.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnJobResume.Location = new System.Drawing.Point(637, 232);
+            this.btnJobResume.Location = new System.Drawing.Point(543, 185);
             this.btnJobResume.Name = "btnJobResume";
-            this.btnJobResume.Size = new System.Drawing.Size(250, 100);
+            this.btnJobResume.Size = new System.Drawing.Size(250, 85);
             this.btnJobResume.TabIndex = 538;
             this.btnJobResume.Text = "Resume";
             this.btnJobResume.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -137,9 +137,9 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.Cyan;
             this.tableLayoutPanel1.SetColumnSpan(this.panel2, 3);
-            this.panel2.Location = new System.Drawing.Point(3, 350);
+            this.panel2.Location = new System.Drawing.Point(3, 281);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(909, 6);
+            this.panel2.Size = new System.Drawing.Size(796, 6);
             this.panel2.TabIndex = 106;
             // 
             // btnBoundary
@@ -157,9 +157,9 @@
             this.btnBoundary.ForeColor = System.Drawing.Color.Black;
             this.btnBoundary.Image = global::AgOpenGPS.Properties.Resources.Boundary;
             this.btnBoundary.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBoundary.Location = new System.Drawing.Point(331, 487);
+            this.btnBoundary.Location = new System.Drawing.Point(275, 389);
             this.btnBoundary.Name = "btnBoundary";
-            this.btnBoundary.Size = new System.Drawing.Size(250, 100);
+            this.btnBoundary.Size = new System.Drawing.Size(250, 87);
             this.btnBoundary.TabIndex = 538;
             this.btnBoundary.Text = "Boundary";
             this.btnBoundary.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -177,9 +177,9 @@
             this.btnDeleteAB.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnDeleteAB.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnDeleteAB.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDeleteAB.Location = new System.Drawing.Point(612, 483);
+            this.btnDeleteAB.Location = new System.Drawing.Point(537, 389);
             this.btnDeleteAB.Name = "btnDeleteAB";
-            this.btnDeleteAB.Size = new System.Drawing.Size(300, 108);
+            this.btnDeleteAB.Size = new System.Drawing.Size(262, 87);
             this.btnDeleteAB.TabIndex = 4;
             this.btnDeleteAB.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDeleteAB.UseVisualStyleBackColor = false;
@@ -199,9 +199,9 @@
             this.btnTramline.ForeColor = System.Drawing.Color.Black;
             this.btnTramline.Image = global::AgOpenGPS.Properties.Resources.TramAll;
             this.btnTramline.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTramline.Location = new System.Drawing.Point(331, 373);
+            this.btnTramline.Location = new System.Drawing.Point(275, 298);
             this.btnTramline.Name = "btnTramline";
-            this.btnTramline.Size = new System.Drawing.Size(250, 100);
+            this.btnTramline.Size = new System.Drawing.Size(250, 85);
             this.btnTramline.TabIndex = 538;
             this.btnTramline.Text = "Tramline";
             this.btnTramline.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -223,9 +223,9 @@
             this.btnHeadlandBuild.ForeColor = System.Drawing.Color.Black;
             this.btnHeadlandBuild.Image = global::AgOpenGPS.Properties.Resources.ABBndLines;
             this.btnHeadlandBuild.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHeadlandBuild.Location = new System.Drawing.Point(27, 487);
+            this.btnHeadlandBuild.Location = new System.Drawing.Point(8, 389);
             this.btnHeadlandBuild.Name = "btnHeadlandBuild";
-            this.btnHeadlandBuild.Size = new System.Drawing.Size(250, 100);
+            this.btnHeadlandBuild.Size = new System.Drawing.Size(250, 87);
             this.btnHeadlandBuild.TabIndex = 538;
             this.btnHeadlandBuild.Text = "Headland\r\nBuild";
             this.btnHeadlandBuild.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -246,9 +246,9 @@
             this.btnJobClose.ForeColor = System.Drawing.Color.Black;
             this.btnJobClose.Image = global::AgOpenGPS.Properties.Resources.FileClose;
             this.btnJobClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnJobClose.Location = new System.Drawing.Point(637, 6);
+            this.btnJobClose.Location = new System.Drawing.Point(543, 3);
             this.btnJobClose.Name = "btnJobClose";
-            this.btnJobClose.Size = new System.Drawing.Size(250, 100);
+            this.btnJobClose.Size = new System.Drawing.Size(250, 85);
             this.btnJobClose.TabIndex = 538;
             this.btnJobClose.Text = "Close";
             this.btnJobClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -271,9 +271,9 @@
             this.btnHeadlandSlice.ForeColor = System.Drawing.Color.Black;
             this.btnHeadlandSlice.Image = global::AgOpenGPS.Properties.Resources.HeadlandSlice;
             this.btnHeadlandSlice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHeadlandSlice.Location = new System.Drawing.Point(27, 373);
+            this.btnHeadlandSlice.Location = new System.Drawing.Point(8, 298);
             this.btnHeadlandSlice.Name = "btnHeadlandSlice";
-            this.btnHeadlandSlice.Size = new System.Drawing.Size(250, 100);
+            this.btnHeadlandSlice.Size = new System.Drawing.Size(250, 85);
             this.btnHeadlandSlice.TabIndex = 538;
             this.btnHeadlandSlice.Text = "Headland\r\nSlice";
             this.btnHeadlandSlice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -294,9 +294,9 @@
             this.btnJobOpen.ForeColor = System.Drawing.Color.Black;
             this.btnJobOpen.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
             this.btnJobOpen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnJobOpen.Location = new System.Drawing.Point(637, 119);
+            this.btnJobOpen.Location = new System.Drawing.Point(543, 94);
             this.btnJobOpen.Name = "btnJobOpen";
-            this.btnJobOpen.Size = new System.Drawing.Size(250, 100);
+            this.btnJobOpen.Size = new System.Drawing.Size(250, 85);
             this.btnJobOpen.TabIndex = 538;
             this.btnJobOpen.Text = "Open";
             this.btnJobOpen.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -318,9 +318,9 @@
             this.btnJobNew.ForeColor = System.Drawing.Color.Black;
             this.btnJobNew.Image = global::AgOpenGPS.Properties.Resources.FileNew;
             this.btnJobNew.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnJobNew.Location = new System.Drawing.Point(331, 119);
+            this.btnJobNew.Location = new System.Drawing.Point(275, 94);
             this.btnJobNew.Name = "btnJobNew";
-            this.btnJobNew.Size = new System.Drawing.Size(250, 100);
+            this.btnJobNew.Size = new System.Drawing.Size(250, 85);
             this.btnJobNew.TabIndex = 538;
             this.btnJobNew.Text = "New";
             this.btnJobNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -342,9 +342,9 @@
             this.btnFromExisting.ForeColor = System.Drawing.Color.Black;
             this.btnFromExisting.Image = global::AgOpenGPS.Properties.Resources.FileExisting;
             this.btnFromExisting.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFromExisting.Location = new System.Drawing.Point(331, 6);
+            this.btnFromExisting.Location = new System.Drawing.Point(275, 3);
             this.btnFromExisting.Name = "btnFromExisting";
-            this.btnFromExisting.Size = new System.Drawing.Size(250, 100);
+            this.btnFromExisting.Size = new System.Drawing.Size(250, 85);
             this.btnFromExisting.TabIndex = 538;
             this.btnFromExisting.Text = "From Existing";
             this.btnFromExisting.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -366,9 +366,9 @@
             this.btnInField.ForeColor = System.Drawing.Color.Black;
             this.btnInField.Image = global::AgOpenGPS.Properties.Resources.AutoManualIsAuto;
             this.btnInField.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInField.Location = new System.Drawing.Point(27, 6);
+            this.btnInField.Location = new System.Drawing.Point(8, 3);
             this.btnInField.Name = "btnInField";
-            this.btnInField.Size = new System.Drawing.Size(250, 100);
+            this.btnInField.Size = new System.Drawing.Size(250, 85);
             this.btnInField.TabIndex = 537;
             this.btnInField.Text = "Drive In";
             this.btnInField.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -390,9 +390,9 @@
             this.btnFromKML.ForeColor = System.Drawing.Color.Black;
             this.btnFromKML.Image = global::AgOpenGPS.Properties.Resources.BoundaryLoadFromGE;
             this.btnFromKML.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFromKML.Location = new System.Drawing.Point(27, 119);
+            this.btnFromKML.Location = new System.Drawing.Point(8, 94);
             this.btnFromKML.Name = "btnFromKML";
-            this.btnFromKML.Size = new System.Drawing.Size(250, 100);
+            this.btnFromKML.Size = new System.Drawing.Size(250, 85);
             this.btnFromKML.TabIndex = 538;
             this.btnFromKML.Text = "From KML";
             this.btnFromKML.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -407,7 +407,7 @@
             this.cboxCloseOnSelection.Checked = true;
             this.cboxCloseOnSelection.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxCloseOnSelection.ForeColor = System.Drawing.Color.White;
-            this.cboxCloseOnSelection.Location = new System.Drawing.Point(62, 269);
+            this.cboxCloseOnSelection.Location = new System.Drawing.Point(43, 214);
             this.cboxCloseOnSelection.Name = "cboxCloseOnSelection";
             this.cboxCloseOnSelection.Size = new System.Drawing.Size(180, 27);
             this.cboxCloseOnSelection.TabIndex = 539;
@@ -419,7 +419,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Cyan;
-            this.ClientSize = new System.Drawing.Size(923, 602);
+            this.ClientSize = new System.Drawing.Size(810, 487);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Tahoma", 14.25F);

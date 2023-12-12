@@ -742,7 +742,7 @@ namespace AgOpenGPS
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setDisplay_lineWidth = (int)nudLineWidth.Value;
-                mf.ABLine.lineWidth = Properties.Settings.Default.setDisplay_lineWidth;
+                mf.trk.lineWidth = Properties.Settings.Default.setDisplay_lineWidth;
             }
         }
 

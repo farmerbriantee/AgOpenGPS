@@ -1606,7 +1606,7 @@ namespace AgOpenGPS
         {
             int ptCount = ytList.Count;
             if (ptCount < 3) return;
-            GL.PointSize(mf.ABLine.lineWidth);
+            GL.PointSize(mf.trk.lineWidth);
 
             if (isYouTurnTriggered)
                 GL.Color3(0.95f, 0.5f, 0.95f);

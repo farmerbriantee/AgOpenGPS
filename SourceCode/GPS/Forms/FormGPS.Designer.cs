@@ -120,11 +120,9 @@
             this.btnBrightnessDn = new System.Windows.Forms.Button();
             this.btnBrightnessUp = new System.Windows.Forms.Button();
             this.btnDayNightMode = new System.Windows.Forms.Button();
-            this.btnZoomIn = new ProXoft.WinForms.RepeatButton();
             this.btnpTiltUp = new ProXoft.WinForms.RepeatButton();
             this.btnpTiltDown = new ProXoft.WinForms.RepeatButton();
             this.btnN2D = new System.Windows.Forms.Button();
-            this.btnZoomOut = new ProXoft.WinForms.RepeatButton();
             this.btn3D = new System.Windows.Forms.Button();
             this.btn2D = new System.Windows.Forms.Button();
             this.lblFieldStatus = new System.Windows.Forms.Label();
@@ -163,8 +161,6 @@
             this.btnHelp = new System.Windows.Forms.Button();
             this.btnMinimizeMainForm = new System.Windows.Forms.Button();
             this.btnAutoSteerConfig = new AgOpenGPS.RJButton();
-            this.btnSettings = new AgOpenGPS.RJButton();
-            this.btnFieldMenu = new AgOpenGPS.RJButton();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -896,15 +892,13 @@
             this.panelNavigation.BackColor = System.Drawing.Color.White;
             resources.ApplyResources(this.panelNavigation, "panelNavigation");
             this.panelNavigation.Controls.Add(this.btnN3D, 1, 2);
-            this.panelNavigation.Controls.Add(this.btnBrightnessDn, 0, 5);
-            this.panelNavigation.Controls.Add(this.btnBrightnessUp, 0, 5);
-            this.panelNavigation.Controls.Add(this.btnDayNightMode, 0, 4);
-            this.panelNavigation.Controls.Add(this.btnZoomIn, 1, 3);
+            this.panelNavigation.Controls.Add(this.btnBrightnessDn, 0, 4);
+            this.panelNavigation.Controls.Add(this.btnBrightnessUp, 0, 4);
+            this.panelNavigation.Controls.Add(this.btnDayNightMode, 0, 3);
             this.panelNavigation.Controls.Add(this.btnpTiltUp, 1, 0);
             this.panelNavigation.Controls.Add(this.btnpTiltDown, 0, 0);
             this.panelNavigation.Controls.Add(this.btnN2D, 0, 2);
-            this.panelNavigation.Controls.Add(this.lblHz, 1, 4);
-            this.panelNavigation.Controls.Add(this.btnZoomOut, 0, 3);
+            this.panelNavigation.Controls.Add(this.lblHz, 1, 3);
             this.panelNavigation.Controls.Add(this.btn3D, 1, 1);
             this.panelNavigation.Controls.Add(this.btn2D, 0, 1);
             this.panelNavigation.Name = "panelNavigation";
@@ -950,17 +944,6 @@
             this.btnDayNightMode.UseVisualStyleBackColor = false;
             this.btnDayNightMode.Click += new System.EventHandler(this.btnDayNightMode_Click);
             // 
-            // btnZoomIn
-            // 
-            resources.ApplyResources(this.btnZoomIn, "btnZoomIn");
-            this.btnZoomIn.BackColor = System.Drawing.Color.Transparent;
-            this.btnZoomIn.BackgroundImage = global::AgOpenGPS.Properties.Resources.ZoomIn48;
-            this.btnZoomIn.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
-            this.btnZoomIn.FlatAppearance.BorderSize = 0;
-            this.btnZoomIn.Name = "btnZoomIn";
-            this.btnZoomIn.UseVisualStyleBackColor = false;
-            this.btnZoomIn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomIn_MouseDown);
-            // 
             // btnpTiltUp
             // 
             resources.ApplyResources(this.btnpTiltUp, "btnpTiltUp");
@@ -993,17 +976,6 @@
             this.btnN2D.Name = "btnN2D";
             this.btnN2D.UseVisualStyleBackColor = false;
             this.btnN2D.Click += new System.EventHandler(this.btnN2D_Click);
-            // 
-            // btnZoomOut
-            // 
-            resources.ApplyResources(this.btnZoomOut, "btnZoomOut");
-            this.btnZoomOut.BackColor = System.Drawing.Color.Transparent;
-            this.btnZoomOut.BackgroundImage = global::AgOpenGPS.Properties.Resources.ZoomOut48;
-            this.btnZoomOut.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
-            this.btnZoomOut.FlatAppearance.BorderSize = 0;
-            this.btnZoomOut.Name = "btnZoomOut";
-            this.btnZoomOut.UseVisualStyleBackColor = false;
-            this.btnZoomOut.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomOut_MouseDown);
             // 
             // btn3D
             // 
@@ -1371,46 +1343,12 @@
             this.btnAutoSteerConfig.UseVisualStyleBackColor = false;
             this.btnAutoSteerConfig.Click += new System.EventHandler(this.btnAutoSteerConfig_Click);
             // 
-            // btnSettings
-            // 
-            resources.ApplyResources(this.btnSettings, "btnSettings");
-            this.btnSettings.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnSettings.BackgroundColor = System.Drawing.Color.Gainsboro;
-            this.btnSettings.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnSettings.BorderRadius = 50;
-            this.btnSettings.BorderSize = 3;
-            this.btnSettings.FlatAppearance.BorderSize = 0;
-            this.btnSettings.ForeColor = System.Drawing.Color.Black;
-            this.btnSettings.Image = global::AgOpenGPS.Properties.Resources.Settings48;
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.TextColor = System.Drawing.Color.Black;
-            this.btnSettings.UseVisualStyleBackColor = false;
-            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
-            // 
-            // btnFieldMenu
-            // 
-            resources.ApplyResources(this.btnFieldMenu, "btnFieldMenu");
-            this.btnFieldMenu.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnFieldMenu.BackgroundColor = System.Drawing.Color.Gainsboro;
-            this.btnFieldMenu.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnFieldMenu.BorderRadius = 15;
-            this.btnFieldMenu.BorderSize = 3;
-            this.btnFieldMenu.FlatAppearance.BorderSize = 0;
-            this.btnFieldMenu.ForeColor = System.Drawing.Color.Black;
-            this.btnFieldMenu.Image = global::AgOpenGPS.Properties.Resources.JobActive;
-            this.btnFieldMenu.Name = "btnFieldMenu";
-            this.btnFieldMenu.TextColor = System.Drawing.Color.Black;
-            this.btnFieldMenu.UseVisualStyleBackColor = false;
-            this.btnFieldMenu.Click += new System.EventHandler(this.btnFieldMenu_Click);
-            // 
             // FormGPS
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Controls.Add(this.btnAutoSteerConfig);
-            this.Controls.Add(this.btnSettings);
-            this.Controls.Add(this.btnFieldMenu);
             this.Controls.Add(this.panelRight);
             this.Controls.Add(this.tlpTrackMethods);
             this.Controls.Add(this.btnZone8);
@@ -1489,8 +1427,6 @@
         private System.Windows.Forms.Button btnSection4Man;
         private System.Windows.Forms.Button btnSection5Man;
         private System.Windows.Forms.Label lblSpeed;
-        private ProXoft.WinForms.RepeatButton btnZoomOut;
-        private ProXoft.WinForms.RepeatButton btnZoomIn;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripFlag;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemFlagRed;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuFlagGrn;
@@ -1609,8 +1545,6 @@
         private System.Windows.Forms.TableLayoutPanel tlpTrackMethods;
         public System.Windows.Forms.Button btnTrackCreateEdit;
         private System.Windows.Forms.Timer timerLineAdj;
-        private RJButton btnFieldMenu;
-        private RJButton btnSettings;
         private RJButton btnAutoSteerConfig;
         public System.Windows.Forms.TableLayoutPanel panelNavigation;
         private System.Windows.Forms.CheckBox cboxAutoSnapToPivot;

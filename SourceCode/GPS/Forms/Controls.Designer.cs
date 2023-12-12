@@ -40,10 +40,9 @@ namespace AgOpenGPS
 
             else
             {
-                if (ABLine.isBtnABLineOn | trk.isBtnTrackOn)
+                if (trk.isBtnGuidanceOn)
                 {
                     EnableYouTurnButtons();
-                    ABLine.isABValid = false;
                     trk.isTrackValid = false;
                 }
 
@@ -74,11 +73,11 @@ namespace AgOpenGPS
             //if contour is on, turn it off
             if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
 
-            if (!trk.isBtnTrackOn && trk.tracksArr.Count > 0)
+            if (!trk.isBtnGuidanceOn && trk.tracksArr.Count > 0)
             {
                 //display the trk
                 EnableYouTurnButtons();
-                trk.isBtnTrackOn = true;
+                trk.isBtnGuidanceOn = true;
                 btnGuidance.Image = Properties.Resources.TrackOn;
 
                 if (trk.idx == -1)
@@ -122,7 +121,7 @@ namespace AgOpenGPS
             }
 
 
-            if ((!trk.isBtnTrackOn && trk.tracksArr.Count == 0) || trk.isBtnTrackOn)
+            if ((!trk.isBtnGuidanceOn && trk.tracksArr.Count == 0) || trk.isBtnGuidanceOn)
             {
                 Form form = new FormABCurve(this);
                 form.Show(this);
@@ -207,7 +206,7 @@ namespace AgOpenGPS
             }
             else
             {
-                if (ABLine.isBtnABLineOn | ct.isContourBtnOn | trk.isBtnTrackOn)
+                if (ABLine.isBtnABLineOn | ct.isContourBtnOn | trk.isBtnGuidanceOn)
                 {
                     isAutoSteerBtnOn = true;
                     btnAutoSteer.Image = Properties.Resources.AutoSteerOn;
@@ -244,7 +243,7 @@ namespace AgOpenGPS
                 //new direction so reset where to put turn diagnostic
                 yt.ResetCreatedYouTurn();
 
-                if (ABLine.isBtnABLineOn || trk.isBtnTrackOn)
+                if (ABLine.isBtnABLineOn || trk.isBtnGuidanceOn)
                 {
                     //if (!isAutoSteerBtnOn) btnAutoSteer.PerformClick();
                 }
@@ -308,9 +307,9 @@ namespace AgOpenGPS
         //        return;
         //    }
 
-        //    if (trk.isBtnTrackOn)
+        //    if (trk.isBtnGuidanceOn)
         //    {
-        //        trk.MoveABCurve(trk.distanceFromCurrentLinePivot);
+        //        trk.NudgeTrack(trk.distanceFromCurrentLinePivot);
         //        linePanelCounter = 2;
         //        UpdateMoveDistance();
         //    }
@@ -322,20 +321,20 @@ namespace AgOpenGPS
         //}
         //private void btnZeroMoveDistance_Click(object sender, EventArgs e)
         //{
-        //    trk.RemoveMoveDistance();
+        //    trk.NudgeDistanceReset();
         //    linePanelCounter = 3;
         //    UpdateMoveDistance();
         //}
         //private void btnMoveLeft_Click(object sender, EventArgs e)
         //{
-        //    trk.MoveABCurve(-0.1);
+        //    trk.NudgeTrack(-0.1);
         //    linePanelCounter = 3;
         //    UpdateMoveDistance();
         //}
 
         //private void btnMoveRight_Click(object sender, EventArgs e)
         //{
-        //    trk.MoveABCurve(0.1);
+        //    trk.NudgeTrack(0.1);
         //    linePanelCounter = 3;
         //    UpdateMoveDistance();
         //}
@@ -1041,7 +1040,7 @@ namespace AgOpenGPS
                 return;
             }
 
-            if (trk.idx > -1 && trk.isBtnTrackOn)
+            if (trk.idx > -1 && trk.isBtnGuidanceOn)
             {
                 Form form = new FormEditTrack(this);
                 form.Show(this);
@@ -1279,7 +1278,7 @@ namespace AgOpenGPS
 
         private void SmoothABtoolStripMenu_Click(object sender, EventArgs e)
         {
-            if (isJobStarted && trk.isBtnTrackOn)
+            if (isJobStarted && trk.isBtnGuidanceOn)
             {
                 using (var form = new FormSmoothAB(this))
                 {
@@ -1779,7 +1778,7 @@ namespace AgOpenGPS
                 form99.Left = Width - 275;
                 form99.Top = 100;
             }
-            else if (trk.idx > -1 && trk.isBtnTrackOn)
+            else if (trk.idx > -1 && trk.isBtnGuidanceOn)
             {
                 Form form97 = new FormTram(this, true);
                 form97.Show(this);

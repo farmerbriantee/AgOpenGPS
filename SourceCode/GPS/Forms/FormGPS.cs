@@ -495,8 +495,6 @@ namespace AgOpenGPS
 
             //ControlExtension.Draggable(panelSnap, true);
             ControlExtension.Draggable(oglZoom, true);
-            ControlExtension.Draggable(btnFieldMenu, true);
-            ControlExtension.Draggable(btnSettings, true);
 
             setWorkingDirectoryToolStripMenuItem.Text = gStr.gsDirectories;
             enterSimCoordsToolStripMenuItem.Text = gStr.gsEnterSimCoords;
@@ -674,7 +672,7 @@ namespace AgOpenGPS
                 Properties.Resources.z_SteerDot,GetTractorBrand(Settings.Default.setBrand_TBrand),Properties.Resources.z_QuestionMark,
                 Properties.Resources.z_FrontWheels,Get4WDBrandFront(Settings.Default.setBrand_WDBrand), Get4WDBrandRear(Settings.Default.setBrand_WDBrand),
                 GetHarvesterBrand(Settings.Default.setBrand_HBrand), Properties.Resources.z_LateralManual, Resources.z_bingMap, Resources.z_NoGPS,
-                Resources.JobActive, Resources.Settings48
+                Resources.JobActive, Resources.Settings48, Resources.ZoomIn48, Resources.ZoomOut48
             };
 
             texture = new uint[oglTextures.Length];
@@ -974,7 +972,7 @@ namespace AgOpenGPS
             btnGuidance.Image = Properties.Resources.TrackOff;
             btnGuidance.BackColor = Color.Transparent;
 
-            trk.isBtnTrackOn = false;
+            trk.isBtnGuidanceOn = false;
             trk.isAutoTrack = false;
             trk.ResetTrack();
             trk.tracksArr?.Clear();

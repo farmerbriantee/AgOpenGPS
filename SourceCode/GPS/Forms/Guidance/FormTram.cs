@@ -122,18 +122,9 @@ namespace AgOpenGPS
         {
             mf.tram.displayMode = 1;
 
-            if (isCurve)
-            {
-                if (Dist != 0)
-                    mf.trk.MoveABCurve(Dist);
-                mf.trk.BuildTram();
-            }
-            else
-            {
-                if (Dist != 0)
-                    mf.ABLine.MoveABLine(Dist);
-                mf.ABLine.BuildTram();
-            }
+            if (Dist != 0)
+                mf.trk.NudgeTrack(Dist);
+            mf.trk.BuildTram();
         }
 
         private void btnExit_Click(object sender, EventArgs e)

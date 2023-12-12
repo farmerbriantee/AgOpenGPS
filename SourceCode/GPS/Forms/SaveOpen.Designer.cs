@@ -47,7 +47,7 @@ namespace AgOpenGPS
                             writer.WriteLine(hdl.tracksArr[i].name);
 
 
-                            //write out the moveDistance
+                            //write out the nudgeDistance
                             writer.WriteLine(hdl.tracksArr[i].moveDistance.ToString(CultureInfo.InvariantCulture));
 
                             //write out the mode
@@ -216,8 +216,8 @@ namespace AgOpenGPS
                             writer.WriteLine(Math.Round(trk.tracksArr[i].ptB.easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
                                                 Math.Round(trk.tracksArr[i].ptB.northing, 3).ToString(CultureInfo.InvariantCulture) + ",0");
 
-                            //write out the moveDistance
-                            writer.WriteLine(trk.tracksArr[i].moveDistance.ToString(CultureInfo.InvariantCulture));
+                            //write out the nudgeDistance
+                            writer.WriteLine(trk.tracksArr[i].nudgeDistance.ToString(CultureInfo.InvariantCulture));
 
                             //write out the mode
                             writer.WriteLine(trk.tracksArr[i].mode.ToString(CultureInfo.InvariantCulture));
@@ -322,7 +322,7 @@ namespace AgOpenGPS
                             trk.tracksArr[trk.idx].ptB = (vecPt);
 
                             line = reader.ReadLine();
-                            trk.tracksArr[trk.idx].moveDistance = double.Parse(line, CultureInfo.InvariantCulture);
+                            trk.tracksArr[trk.idx].nudgeDistance = double.Parse(line, CultureInfo.InvariantCulture);
 
                             line = reader.ReadLine();
                             trk.tracksArr[trk.idx].mode = int.Parse(line, CultureInfo.InvariantCulture);

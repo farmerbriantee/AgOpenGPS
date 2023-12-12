@@ -18,7 +18,7 @@ namespace AgOpenGPS
 
             UpdateMoveLabel();
 
-            this.Text = gStr.gsEditTrack;
+            this.Text = "";
         }
 
         private void FormEditTrack_Load(object sender, EventArgs e)
@@ -26,12 +26,10 @@ namespace AgOpenGPS
             nudSnapDistance.DecimalPlaces = 0;
             nudSnapDistance.Value = (int)((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn);
 
-            snapAdj = Properties.Settings.Default.setAS_snapDistance * mf.inchOrCm2m;
+            snapAdj = Properties.Settings.Default.setAS_snapDistance * 0.01;
             Location = Properties.Settings.Default.setWindow_formEditTrackLocation;
             Size = Properties.Settings.Default.setWindow_formEditTrackSize;
             UpdateMoveLabel();
-
-            //Location = Properties.Settings.Default.setWindow_curveEditLocation;
         }
         private void FormEditTrack_MouseEnter(object sender, EventArgs e)
         {
@@ -55,10 +53,12 @@ namespace AgOpenGPS
         {
             if (mf.trk.idx > -1)
             {
-                if (mf.trk.tracksArr[mf.trk.idx].moveDistance < 0)
-                    lblOffset.Text = "< " + ((int)(mf.trk.tracksArr[mf.trk.idx].moveDistance * mf.m2InchOrCm * -1)).ToString();
+                if (mf.trk.tracksArr[mf.trk.idx].nudgeDistance == 0 )
+                    lblOffset.Text = ((int)(mf.trk.tracksArr[mf.trk.idx].nudgeDistance * mf.m2InchOrCm * -1)).ToString() + mf.unitsInCm;
+                else if (mf.trk.tracksArr[mf.trk.idx].nudgeDistance < 0)
+                    lblOffset.Text = "< " + ((int)(mf.trk.tracksArr[mf.trk.idx].nudgeDistance * mf.m2InchOrCm * -1)).ToString() + mf.unitsInCm;
                 else
-                    lblOffset.Text = ((int)(mf.trk.tracksArr[mf.trk.idx].moveDistance * mf.m2InchOrCm)).ToString() + " >";
+                    lblOffset.Text = ((int)(mf.trk.tracksArr[mf.trk.idx].nudgeDistance * mf.m2InchOrCm)).ToString() + " >" + mf.unitsInCm;
                 mf.Activate();
             }
         }
@@ -79,7 +79,7 @@ namespace AgOpenGPS
 
             if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
 
-            if (mf.trk.isBtnTrackOn && mf.trk.tracksArr.Count > 0)
+            if (mf.trk.isBtnGuidanceOn && mf.trk.tracksArr.Count > 0)
             {
                 bool isVis = false;
 
@@ -124,7 +124,7 @@ namespace AgOpenGPS
 
             if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
 
-            if (mf.trk.isBtnTrackOn && mf.trk.tracksArr.Count > 0)
+            if (mf.trk.isBtnGuidanceOn && mf.trk.tracksArr.Count > 0)
             {
                 bool isVis = false;
 
@@ -157,7 +157,7 @@ namespace AgOpenGPS
 
         private void btnZeroMove_Click(object sender, EventArgs e)
         {
-            mf.trk.RemoveMoveDistance();
+            mf.trk.NudgeDistanceReset();
             UpdateMoveLabel();
         }
 
@@ -200,13 +200,13 @@ namespace AgOpenGPS
 
         private void btnAdjRight_Click(object sender, EventArgs e)
         {
-            mf.trk.MoveABCurve(snapAdj);
+            mf.trk.NudgeTrack(snapAdj);
             UpdateMoveLabel();
         }
 
         private void btnAdjLeft_Click(object sender, EventArgs e)
         {
-            mf.trk.MoveABCurve(-snapAdj);
+            mf.trk.NudgeTrack(-snapAdj);
             UpdateMoveLabel();
         }
 
@@ -231,10 +231,10 @@ namespace AgOpenGPS
         {
             if (mf.trk.idx > -1 && mf.trk.tracksArr.Count > 0)
             {
-                if (mf.trk.tracksArr[mf.trk.idx].moveDistance < 0)
-                    lblOffset.Text = "< " + ((int)(mf.trk.tracksArr[mf.trk.idx].moveDistance * mf.m2InchOrCm * -1)).ToString();
+                if (mf.trk.tracksArr[mf.trk.idx].nudgeDistance < 0)
+                    lblOffset.Text = "< " + ((int)(mf.trk.tracksArr[mf.trk.idx].nudgeDistance * mf.m2InchOrCm * -1)).ToString();
                 else
-                    lblOffset.Text = ((int)(mf.trk.tracksArr[mf.trk.idx].moveDistance * mf.m2InchOrCm)).ToString() + " >";
+                    lblOffset.Text = ((int)(mf.trk.tracksArr[mf.trk.idx].nudgeDistance * mf.m2InchOrCm)).ToString() + " >";
             }
         }
     }

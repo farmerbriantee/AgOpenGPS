@@ -15,12 +15,13 @@ namespace AgOpenGPS
         private readonly FormGPS mf;
 
         //flag for starting stop adding points
-        public bool isBtnTrackOn, isOkToAddDesPoints;
+        public bool isBtnGuidanceOn, isOkToAddDesPoints;
 
         public double distanceFromCurrentLinePivot;
         public double distanceFromRefLine;
 
         public bool isHeadingSameWay = true;
+        public int lineWidth;
 
         public double howManyPathsAway;
         public vec2 refPoint1 = new vec2(1, 1), refPoint2 = new vec2(2, 2);
@@ -136,7 +137,7 @@ namespace AgOpenGPS
             return trak;
         }
 
-        public void BuildCurveCurrentList(vec3 pivot)
+        public void BuildTrackCurrentList(vec3 pivot)
         {
             //auto trach routine
             if (mf.trk.isAutoTrack)
@@ -215,13 +216,13 @@ namespace AgOpenGPS
             refPoint2.easting = tracksArr[idx].trackPts[rA].easting + (Math.Sin(tracksArr[idx].trackPts[rA].heading) * 300.0);
             refPoint2.northing = tracksArr[idx].trackPts[rA].northing + (Math.Cos(tracksArr[idx].trackPts[rA].heading) * 300.0);
 
-            if (idx > -1 && tracksArr[idx].moveDistance != 0)
+            if (idx > -1 && tracksArr[idx].nudgeDistance != 0)
             {
-                refPoint1.easting += (Math.Sin(tracksArr[idx].trackPts[rA].heading + glm.PIBy2) * tracksArr[idx].moveDistance);
-                refPoint1.northing += (Math.Cos(tracksArr[idx].trackPts[rA].heading + glm.PIBy2) * tracksArr[idx].moveDistance);
+                refPoint1.easting += (Math.Sin(tracksArr[idx].trackPts[rA].heading + glm.PIBy2) * tracksArr[idx].nudgeDistance);
+                refPoint1.northing += (Math.Cos(tracksArr[idx].trackPts[rA].heading + glm.PIBy2) * tracksArr[idx].nudgeDistance);
 
-                refPoint2.easting += (Math.Sin(tracksArr[idx].trackPts[rA].heading + glm.PIBy2) * tracksArr[idx].moveDistance);
-                refPoint2.northing += (Math.Cos(tracksArr[idx].trackPts[rA].heading + glm.PIBy2) * tracksArr[idx].moveDistance);
+                refPoint2.easting += (Math.Sin(tracksArr[idx].trackPts[rA].heading + glm.PIBy2) * tracksArr[idx].nudgeDistance);
+                refPoint2.northing += (Math.Cos(tracksArr[idx].trackPts[rA].heading + glm.PIBy2) * tracksArr[idx].nudgeDistance);
             }
 
             //x2-x1
@@ -247,7 +248,7 @@ namespace AgOpenGPS
             //build the current line
             curPts?.Clear();
 
-            double distAway = widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset) + tracksArr[idx].moveDistance;
+            double distAway = widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset) + tracksArr[idx].nudgeDistance;
             
             //bnd line
             distAway += (0.5 * widthMinusOverlap);
@@ -443,14 +444,14 @@ namespace AgOpenGPS
             lastSecond = mf.secondsSinceStart;
         }
 
-        public void GetCurrentCurveLine(vec3 pivot, vec3 steer)
+        public void GetCurrentTrackGuidance(vec3 pivot, vec3 steer)
         {
             if (idx == -1 || tracksArr.Count == 0 || tracksArr[idx].trackPts.Count == 0 ) return;
 
             //build new current ref line if required
             if (!isTrackValid || ((mf.secondsSinceStart - lastSecond) > 0.66 
                 && (!mf.isAutoSteerBtnOn || mf.mc.steerSwitchHigh)))
-                BuildCurveCurrentList(pivot);
+                BuildTrackCurrentList(pivot);
 
             double dist, dx, dz;
             double minDistA = 1000000, minDistB = 1000000;
@@ -705,7 +706,7 @@ namespace AgOpenGPS
             }
         }
 
-        public void DrawCurve()
+        public void DrawTrack()
         {
             if (desList.Count > 0 && desList != null)
             {
@@ -718,8 +719,8 @@ namespace AgOpenGPS
             if (tracksArr == null || idx == -1 || tracksArr.Count == 0) return;
             int ptCount = tracksArr[idx].trackPts.Count;
 
-            GL.LineWidth(mf.ABLine.lineWidth);
-            GL.LineWidth(8);
+            GL.LineWidth(mf.trk.lineWidth*2);
+
             GL.Color3(0.96, 0.2f, 0.2f);
             GL.Begin(PrimitiveType.Lines);
             for (int h = 0; h < ptCount; h+=2) GL.Vertex3(tracksArr[idx].trackPts[h].easting, tracksArr[idx].trackPts[h].northing, 0);
@@ -744,7 +745,7 @@ namespace AgOpenGPS
             {
                 if (smooList == null || smooList.Count == 0) return;
 
-                GL.LineWidth(mf.ABLine.lineWidth);
+                GL.LineWidth(mf.trk.lineWidth);
                 GL.Color3(0.930f, 0.92f, 0.260f);
                 GL.Begin(PrimitiveType.Lines);
                 for (int h = 0; h < smooList.Count; h++) GL.Vertex3(smooList[h].easting, smooList[h].northing, 0);
@@ -755,21 +756,10 @@ namespace AgOpenGPS
                 if (curPts.Count > 0 )
                 {
                     GL.Color3(0.95f, 0.2f, 0.95f);
-                    GL.LineWidth(mf.ABLine.lineWidth);
+                    GL.LineWidth(mf.trk.lineWidth);
                     GL.Begin(PrimitiveType.LineStrip);
                     for (int h = 0; h < curPts.Count; h++) GL.Vertex3(curPts[h].easting, curPts[h].northing, 0);
                     GL.End();
-
-                    //GL.PointSize(8);
-                    //GL.Color3(0.95f, 0.82f, 0.95f);
-                    //GL.Begin(PrimitiveType.Points);
-
-                    //GL.Vertex3(tracksArr[idx].trackPts[tracksArr[idx].trackPts.Count - 1].easting, tracksArr[idx].trackPts[tracksArr[idx].trackPts.Count - 1].northing, 0);
-                    //GL.Vertex3(tracksArr[idx].trackPts[0].easting, tracksArr[idx].trackPts[0].northing, 0);
-                    ////GL.Vertex3(tracksArr[idx].trackPts[tracksArr[idx].trackPts.Count - 1].easting, curPts[curPts.Count - 1].northing, 0);
-                    ////GL.Vertex3(tracksArr[idx].trackPts[tracksArr[idx].trackPts.Count - 1].easting, curPts[curPts.Count - 1].northing, 0);
-                    //GL.End();
-
 
                     if (!mf.isStanleyUsed && mf.camera.camSetDistance > -200)
                     {
@@ -1023,23 +1013,23 @@ namespace AgOpenGPS
             }
         }
 
-        public void MoveABCurve(double dist)
+        public void NudgeTrack(double dist)
         {
             isTrackValid = false;
             lastSecond = 0;
 
-            tracksArr[idx].moveDistance += isHeadingSameWay ? dist : -dist;
+            tracksArr[idx].nudgeDistance += isHeadingSameWay ? dist : -dist;
 
-            if (tracksArr[idx].moveDistance > 0.5*mf.tool.width) tracksArr[idx].moveDistance -= mf.tool.width;
-            else if (tracksArr[idx].moveDistance < -0.5 * mf.tool.width) tracksArr[idx].moveDistance += mf.tool.width;
+            if (tracksArr[idx].nudgeDistance > 0.5*mf.tool.width) tracksArr[idx].nudgeDistance -= mf.tool.width;
+            else if (tracksArr[idx].nudgeDistance < -0.5 * mf.tool.width) tracksArr[idx].nudgeDistance += mf.tool.width;
         }
 
-        public void RemoveMoveDistance()
+        public void NudgeDistanceReset()
         {
             isTrackValid = false;
             lastSecond = 0;
 
-            tracksArr[idx].moveDistance = 0;                
+            tracksArr[idx].nudgeDistance = 0;                
         }
 
         public bool PointOnLine(vec3 pt1, vec3 pt2, vec3 pt)
@@ -1133,8 +1123,8 @@ namespace AgOpenGPS
 
         public void SnapToPivot()
         {
-            if (isBtnTrackOn)
-                MoveABCurve(distanceFromCurrentLinePivot);
+            if (isBtnGuidanceOn)
+                NudgeTrack(distanceFromCurrentLinePivot);
         }
     }
 
@@ -1144,7 +1134,7 @@ namespace AgOpenGPS
         public double aveHeading = 3;
         public string name = "aa";
         public bool isVisible = true;
-        public double moveDistance = 0;
+        public double nudgeDistance = 0;
         public vec3 ptA = new vec3();
         public vec3 ptB = new vec3();
         public int mode = 0;

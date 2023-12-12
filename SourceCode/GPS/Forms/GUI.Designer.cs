@@ -159,7 +159,7 @@ namespace AgOpenGPS
 
                     lblCurrentField.Text = "Field: " + displayFieldName;
 
-                    if (trk.idx > -1 && trk.isBtnTrackOn)
+                    if (trk.idx > -1 && trk.isBtnGuidanceOn)
                     {
                         lblCurveLineName.Text = trk.tracksArr[trk.idx].name;
                     }
@@ -175,7 +175,7 @@ namespace AgOpenGPS
 
                 if (isJobStarted)
                 {
-                    if (ABLine.isBtnABLineOn || trk.isBtnTrackOn)
+                    if (ABLine.isBtnABLineOn || trk.isBtnGuidanceOn)
                     {
                         if (!btnEditAB.Visible)
                         {
@@ -214,14 +214,14 @@ namespace AgOpenGPS
 
                 if (isStanleyUsed)
                 {
-                    if (trk.isBtnTrackOn || ABLine.isBtnABLineOn)
+                    if (trk.isBtnGuidanceOn || ABLine.isBtnABLineOn)
                     {
                         lblInty.Text = gyd.inty.ToString("N3");
                     }
                 }
                 else
                 {
-                    if (trk.isBtnTrackOn)
+                    if (trk.isBtnGuidanceOn)
                     {
                         lblInty.Text = trk.inty.ToString("N3");
                     }
@@ -272,7 +272,7 @@ namespace AgOpenGPS
                 }
 
                 //Make sure it is off when it should
-                if ((!ABLine.isBtnABLineOn && !ct.isContourBtnOn && !trk.isBtnTrackOn && isAutoSteerBtnOn)
+                if ((!ABLine.isBtnABLineOn && !ct.isContourBtnOn && !trk.isBtnGuidanceOn && isAutoSteerBtnOn)
                     ) btnAutoSteer.PerformClick();
 
                 //the main formgps window
@@ -824,7 +824,7 @@ namespace AgOpenGPS
                 //0 at bottom for opengl, 0 at top for windows, so invert Y value
                 Point point = oglMain.PointToClient(Cursor.Position);
 
-                if (point.Y < 90 && point.Y > 30 && (ABLine.isBtnABLineOn || trk.isBtnTrackOn))
+                if (point.Y < 90 && point.Y > 30 && (ABLine.isBtnABLineOn || trk.isBtnGuidanceOn))
                 {
 
                     int middle = oglMain.Width / 2 + oglMain.Width / 5;
@@ -902,7 +902,7 @@ namespace AgOpenGPS
                     }
                 }
 
-                if (point.Y < 150 && point.Y > 90 && (ABLine.isBtnABLineOn || trk.isBtnTrackOn))
+                if (point.Y < 150 && point.Y > 90 && (ABLine.isBtnABLineOn || trk.isBtnGuidanceOn))
                 {
                     int middle = oglMain.Width / 2 - oglMain.Width / 4;
                     if (point.X > middle - 140 && point.X < middle && isLateralOn)

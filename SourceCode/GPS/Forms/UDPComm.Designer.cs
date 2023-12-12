@@ -440,7 +440,7 @@ namespace AgOpenGPS
 
             if ((char)keyData == hotkeys[2])
             {
-                btnFieldMenu.PerformClick();
+                //btnFieldMenu.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 
@@ -470,19 +470,19 @@ namespace AgOpenGPS
 
             if ((char)keyData == hotkeys[7])
             {
-                if (ABLine.isBtnABLineOn)
-                    ABLine.MoveABLine((double)Properties.Settings.Default.setAS_snapDistance * -0.01);
-                else
-                    trk.MoveABCurve(((double)Properties.Settings.Default.setAS_snapDistance * -0.01));
+                //if (ABLine.isBtnABLineOn)
+                //    ABLine.MoveABLine((double)Properties.Settings.Default.setAS_snapDistance * -0.01);
+                //else
+                //    trk.NudgeTrack(((double)Properties.Settings.Default.setAS_snapDistance * -0.01));
                 return true;
             }
 
             if ((char)keyData == hotkeys[8])
             {
-                if (ABLine.isBtnABLineOn)
-                    ABLine.MoveABLine(((double)Properties.Settings.Default.setAS_snapDistance * 0.01));
-                else
-                    trk.MoveABCurve(((double)Properties.Settings.Default.setAS_snapDistance * 0.01));
+                //if (ABLine.isBtnABLineOn)
+                //    ABLine.MoveABLine(((double)Properties.Settings.Default.setAS_snapDistance * 0.01));
+                //else
+                //    trk.NudgeTrack(((double)Properties.Settings.Default.setAS_snapDistance * 0.01));
                 return true;
             }
 

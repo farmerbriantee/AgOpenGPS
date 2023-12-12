@@ -47,7 +47,6 @@ namespace AgOpenGPS
 
         public double snapDistance, lastSecond = 0;
         public double steerAngleAB;
-        public int lineWidth;
 
         //design
         public vec2 desPoint1 = new vec2(0.2, 0.15);
@@ -74,7 +73,7 @@ namespace AgOpenGPS
             //constructor
             mf = _f;
             //isOnTramLine = true;
-            lineWidth = Properties.Settings.Default.setDisplay_lineWidth;
+            //lineWidth = Properties.Settings.Default.setDisplay_lineWidth;
             abLength = Properties.Settings.Default.setAB_lineLength;
         }
 
@@ -346,7 +345,7 @@ namespace AgOpenGPS
             GL.PointSize(1.0f);
 
             //Draw reference AB line
-            GL.LineWidth(lineWidth);
+            //GL.LineWidth(lineWidth);
             GL.Enable(EnableCap.LineStipple);
             GL.LineStipple(1, 0x0F00);
             GL.Begin(PrimitiveType.Lines);
@@ -385,7 +384,7 @@ namespace AgOpenGPS
             GL.End();
 
             //draw current AB Line
-            GL.LineWidth(lineWidth);
+            //GL.LineWidth(lineWidth);
             GL.Begin(PrimitiveType.Lines);
             GL.Color3(0.95f, 0.20f, 0.950f);
             GL.Vertex3(currentABLineP1.easting, currentABLineP1.northing, 0.0);
@@ -395,7 +394,7 @@ namespace AgOpenGPS
             //ABLine currently being designed
             if (isABLineBeingSet)
             {
-                GL.LineWidth(lineWidth);
+                //GL.LineWidth(lineWidth);
                 GL.Begin(PrimitiveType.Lines);
                 GL.Color3(0.95f, 0.20f, 0.950f);
                 GL.Vertex3(desP1.easting, desP1.northing, 0.0);
@@ -419,7 +418,7 @@ namespace AgOpenGPS
                 GL.Enable(EnableCap.LineStipple);
                 GL.LineStipple(1, 0x0303);
 
-                GL.LineWidth(lineWidth);
+                //GL.LineWidth(lineWidth);
                 GL.Begin(PrimitiveType.Lines);
 
                 /*
