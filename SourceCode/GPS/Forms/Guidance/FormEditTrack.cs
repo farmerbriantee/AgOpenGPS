@@ -23,10 +23,19 @@ namespace AgOpenGPS
 
         private void FormEditTrack_Load(object sender, EventArgs e)
         {
-            nudSnapDistance.DecimalPlaces = 0;
-            nudSnapDistance.Value = (int)((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn);
+            if (mf.isMetric)
+            {
+                nudSnapDistance.DecimalPlaces = 0;
+                nudSnapDistance.Value = (int)((double)Properties.Settings.Default.setAS_snapDistance * mf.m2InchOrCm);
+            }
+            else
+            {
+                nudSnapDistance.DecimalPlaces = 1;
+                nudSnapDistance.Value = (decimal)Math.Round(((double)Properties.Settings.Default.setAS_snapDistance * mf.m2InchOrCm), 1);
+            }
 
-            snapAdj = Properties.Settings.Default.setAS_snapDistance * 0.01;
+            snapAdj = Properties.Settings.Default.setAS_snapDistance;
+
             Location = Properties.Settings.Default.setWindow_formEditTrackLocation;
             Size = Properties.Settings.Default.setWindow_formEditTrackSize;
             UpdateMoveLabel();
@@ -194,7 +203,7 @@ namespace AgOpenGPS
         {
             mf.KeypadToNUD((NumericUpDown)sender, this);
             snapAdj = (double)nudSnapDistance.Value * mf.inchOrCm2m;
-            Properties.Settings.Default.setAS_snapDistance = (double)nudSnapDistance.Value;
+            Properties.Settings.Default.setAS_snapDistance = snapAdj;
             Properties.Settings.Default.Save();
         }
 
