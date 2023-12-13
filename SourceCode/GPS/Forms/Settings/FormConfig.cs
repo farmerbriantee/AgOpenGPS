@@ -34,8 +34,6 @@ namespace AgOpenGPS
 
             HideSubMenu();
 
-
-
             nudTrailingHitchLength.Controls[0].Enabled = false;
             nudDrawbarLength.Controls[0].Enabled = false;
             nudTankHitch.Controls[0].Enabled = false;

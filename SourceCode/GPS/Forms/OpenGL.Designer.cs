@@ -52,6 +52,90 @@ namespace AgOpenGPS
         int deadCam = 0;
 
         StringBuilder sb = new StringBuilder();
+
+        private void DrawMainButtons()
+        {
+            GL.Enable(EnableCap.Texture2D);
+            GL.Color3(0.90f, 0.90f, 0.93f);
+            
+            int leftSide = oglMain.Width / -2 + 20;
+
+            int rightSide = oglMain.Width / 2 - 80;
+
+            //Zoom In +
+            GL.BindTexture(TextureTarget.Texture2D, btnTexture[(int)btnTex.zoomIn48]);        // Select Our Texture
+            GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
+            {
+                GL.TexCoord2(0, 0); GL.Vertex2(leftSide, 50); //    // left side
+                GL.TexCoord2(1, 0); GL.Vertex2(leftSide+48, 50); // // right side
+                GL.TexCoord2(1, 1); GL.Vertex2(leftSide+48, 98); // // right side
+                GL.TexCoord2(0, 1); GL.Vertex2(leftSide, 98); //    //left side
+            }
+            GL.End();
+
+            //Zoom Out -
+            GL.BindTexture(TextureTarget.Texture2D, btnTexture[(int)btnTex.zoomOut48]);        // Select Our Texture
+            GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
+            {
+                GL.TexCoord2(0, 0); GL.Vertex2(leftSide, 150); //   // left side
+                GL.TexCoord2(1, 0); GL.Vertex2(leftSide + 48, 150); // right side// 
+                GL.TexCoord2(1, 1); GL.Vertex2(leftSide + 48, 198); // right side// 
+                GL.TexCoord2(0, 1); GL.Vertex2(leftSide, 198); //   //left side
+            }
+            GL.End();
+
+            GL.BindTexture(TextureTarget.Texture2D, btnTexture[(int)btnTex.jobActive]);        // Select Our Texture
+            GL.Color3(0.90f, 0.90f, 0.93f);
+
+            // Field menu
+            GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
+            {
+                GL.TexCoord2(0, 0); GL.Vertex2(leftSide, oglMain.Height - 180); //  // left side
+                GL.TexCoord2(1, 0); GL.Vertex2(leftSide + 64, oglMain.Height - 180);// right side // 
+                GL.TexCoord2(1, 1); GL.Vertex2(leftSide + 64, oglMain.Height - 116);// right side // 
+                GL.TexCoord2(0, 1); GL.Vertex2(leftSide, oglMain.Height - 116); //  //left side
+            }
+            GL.End();
+
+            //Settings menu
+            GL.BindTexture(TextureTarget.Texture2D, btnTexture[(int)btnTex.fieldTools]);        // Select Our Texture
+            GL.Color3(0.90f, 0.90f, 0.93f);
+
+            GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
+            {
+                GL.TexCoord2(0, 0); GL.Vertex2(leftSide, oglMain.Height - 280);     // left side
+                GL.TexCoord2(1, 0); GL.Vertex2(leftSide + 64, oglMain.Height - 280);// right side
+                GL.TexCoord2(1, 1); GL.Vertex2(leftSide + 64, oglMain.Height - 216);// right side
+                GL.TexCoord2(0, 1); GL.Vertex2(leftSide, oglMain.Height - 216);     //left side
+            }
+            GL.End();
+
+            GL.BindTexture(TextureTarget.Texture2D, btnTexture[(int)btnTex.settings48]);        // Select Our Texture
+            GL.Color3(0.90f, 0.90f, 0.93f);
+
+            GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
+            {
+                GL.TexCoord2(0, 0); GL.Vertex2(leftSide, oglMain.Height - 380);     // left side
+                GL.TexCoord2(1, 0); GL.Vertex2(leftSide + 64, oglMain.Height - 380);// right side
+                GL.TexCoord2(1, 1); GL.Vertex2(leftSide + 64, oglMain.Height - 316);// right side
+                GL.TexCoord2(0, 1); GL.Vertex2(leftSide, oglMain.Height - 316);     //left side
+            }
+            GL.End();
+
+            //GL.BindTexture(TextureTarget.Texture2D, btnTexture[(int)btnTex.settings48]);        // Select Our Texture
+            //GL.Color3(0.90f, 0.90f, 0.93f);
+
+            //GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
+            //{
+            //    GL.TexCoord2(0, 0); GL.Vertex2(rightSide, oglMain.Height - 280); // // left side
+            //    GL.TexCoord2(1, 0); GL.Vertex2(rightSide + 64, oglMain.Height - 280);// right side; // 
+            //    GL.TexCoord2(1, 1); GL.Vertex2(rightSide + 64, oglMain.Height - 216);// right side; // 
+            //    GL.TexCoord2(0, 1); GL.Vertex2(rightSide, oglMain.Height - 216); // //left side
+            //}
+            //GL.End();
+
+            GL.Disable(EnableCap.Texture2D);
+        }
         private void oglMain_Paint(object sender, PaintEventArgs e)
         {
             if (sentenceCounter > 299)
@@ -409,7 +493,6 @@ namespace AgOpenGPS
 
                     if ((isAutoSteerBtnOn || yt.isYouTurnBtnOn) && !ct.isContourBtnOn) DrawManUTurnBtn();
 
-                    //if (isCompassOn) DrawCompass();
                     DrawCompassText();
 
                     if (isSpeedoOn) DrawSpeedo();
@@ -436,37 +519,8 @@ namespace AgOpenGPS
 
                     if (pn.age > pn.ageAlarm) DrawAge();
 
-                    GL.Enable(EnableCap.Texture2D);
-
-                    GL.BindTexture(TextureTarget.Texture2D, texture[22]);        // Select Our Texture
-                    GL.Color3(0.90f, 0.90f, 0.93f);
-
-                    int two3 = oglMain.Width / 2;
-                    GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
-                    {
-                        GL.TexCoord2(0, 0); GL.Vertex2(20 - two3, oglMain.Height - 180); // 
-                        GL.TexCoord2(1, 0); GL.Vertex2(84 - two3, oglMain.Height - 180); // 
-                        GL.TexCoord2(1, 1); GL.Vertex2(84 - two3, oglMain.Height - 116); // 
-                        GL.TexCoord2(0, 1); GL.Vertex2(20 - two3, oglMain.Height - 116); //
-                    }
-                    GL.End();
-
-                    //
-                    GL.BindTexture(TextureTarget.Texture2D, texture[23]);        // Select Our Texture
-                    GL.Color3(0.90f, 0.90f, 0.93f);
-
-                    GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
-                    {
-                        GL.TexCoord2(0, 0); GL.Vertex2(20 - two3, oglMain.Height - 280); // 
-                        GL.TexCoord2(1, 0); GL.Vertex2(84 - two3, oglMain.Height - 280); // 
-                        GL.TexCoord2(1, 1); GL.Vertex2(84 - two3, oglMain.Height - 216); // 
-                        GL.TexCoord2(0, 1); GL.Vertex2(20 - two3, oglMain.Height - 216); //
-                    }
-                    GL.End();
-
-
-                    GL.Disable(EnableCap.Texture2D);
-
+                    //draw the user buttons on the OGLMain surface
+                    DrawMainButtons();
 
                     GL.Flush();//finish openGL commands
                     GL.PopMatrix();//  Pop the modelview.
@@ -2048,42 +2102,13 @@ namespace AgOpenGPS
         }
 
         string strHeading = "-0-";
-        int lenth = 4;
         private void DrawCompassText()
         {
-            GL.Enable(EnableCap.Texture2D);
-            GL.BindTexture(TextureTarget.Texture2D, texture[24]);        // Select Our Texture
-            GL.Color3(0.90f, 0.90f, 0.93f);
-
-            int center = oglMain.Width / 2 - 80;
-
-            int two3 = oglMain.Width / 2;
-            GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
-            {
-                GL.TexCoord2(0, 0); GL.Vertex2(center, 50); // 
-                GL.TexCoord2(1, 0); GL.Vertex2(center + 48, 50); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(center + 48, 98); // 
-                GL.TexCoord2(0, 1); GL.Vertex2(center, 98); //
-            }
-            GL.End();
-
-            GL.BindTexture(TextureTarget.Texture2D, texture[25]);        // Select Our Texture
-            GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
-            {
-                GL.TexCoord2(0, 0); GL.Vertex2(center, 150); // 
-                GL.TexCoord2(1, 0); GL.Vertex2(center + 48, 150); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(center + 48, 198); // 
-                GL.TexCoord2(0, 1); GL.Vertex2(center, 198); //
-            }
-            GL.End();
-            GL.Disable(EnableCap.Texture2D);
-
-            center = oglMain.Width / -2 + 10;
+            int center = oglMain.Width / -2 + 10;
             //center += 10;
             GL.Color3(0.9852f, 0.982f, 0.983f);
             strHeading = (fixHeading * 57.2957795).ToString("N1");
-            lenth = 15 * strHeading.Length;
-            font.DrawText(oglMain.Width / 2 - lenth, 5, strHeading, 0.8);
+            font.DrawText((oglMain.Width / 2) - (15 * strHeading.Length), 5, strHeading, 0.8);
 
             //GPS Step
             if (distanceCurrentStepFixDisplay < 0.03 * 100)
@@ -2271,6 +2296,7 @@ namespace AgOpenGPS
             GL.PopMatrix();
 
         }
+
         private void DrawSpeedo()
         {
             GL.PushMatrix();
@@ -2322,6 +2348,7 @@ namespace AgOpenGPS
             GL.PopMatrix();
 
         }
+
         private void DrawLostRTK()
         {
             GL.Color3(0.9752f, 0.752f, 0.40f);

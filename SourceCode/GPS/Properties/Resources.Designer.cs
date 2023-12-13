@@ -1562,6 +1562,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FieldTools {
+            get {
+                object obj = ResourceManager.GetObject("FieldTools", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap FileClose {
             get {
                 object obj = ResourceManager.GetObject("FileClose", resourceCulture);
@@ -2003,6 +2013,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap ImplementSettings {
             get {
                 object obj = ResourceManager.GetObject("ImplementSettings", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ISOXML {
+            get {
+                object obj = ResourceManager.GetObject("ISOXML", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

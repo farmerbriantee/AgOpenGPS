@@ -160,6 +160,7 @@
             this.btnShutdown = new System.Windows.Forms.Button();
             this.btnHelp = new System.Windows.Forms.Button();
             this.btnMinimizeMainForm = new System.Windows.Forms.Button();
+            this.btnMenuActions = new System.Windows.Forms.Button();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -739,7 +740,6 @@
             this.panelRight.Controls.Add(this.btnAutoSteer, 0, 8);
             this.panelRight.Controls.Add(this.btnSectionMasterAuto, 0, 7);
             this.panelRight.Controls.Add(this.btnSectionMasterManual, 0, 6);
-            this.panelRight.Controls.Add(this.btnEditAB, 0, 2);
             this.panelRight.Name = "panelRight";
             // 
             // btnGuidance
@@ -1226,6 +1226,7 @@
             this.tlpTrackMethods.Controls.Add(this.cboxAutoSnapToPivot, 0, 0);
             this.tlpTrackMethods.Controls.Add(this.btnTrackCreateEdit, 3, 0);
             this.tlpTrackMethods.Controls.Add(this.btnABDraw, 2, 0);
+            this.tlpTrackMethods.Controls.Add(this.btnEditAB, 4, 0);
             this.tlpTrackMethods.Name = "tlpTrackMethods";
             // 
             // cboxAutoTrack
@@ -1247,7 +1248,7 @@
             this.cboxAutoSnapToPivot.BackColor = System.Drawing.Color.Transparent;
             this.cboxAutoSnapToPivot.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.cboxAutoSnapToPivot.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
-            this.cboxAutoSnapToPivot.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.cboxAutoSnapToPivot.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.cboxAutoSnapToPivot.Image = global::AgOpenGPS.Properties.Resources.SnapToPivot;
             this.cboxAutoSnapToPivot.Name = "cboxAutoSnapToPivot";
             this.cboxAutoSnapToPivot.UseVisualStyleBackColor = false;
@@ -1326,12 +1327,23 @@
             this.btnMinimizeMainForm.UseVisualStyleBackColor = false;
             this.btnMinimizeMainForm.Click += new System.EventHandler(this.btnMinimizeMainForm_Click);
             // 
+            // btnMenuActions
+            // 
+            resources.ApplyResources(this.btnMenuActions, "btnMenuActions");
+            this.btnMenuActions.BackColor = System.Drawing.Color.Transparent;
+            this.btnMenuActions.FlatAppearance.BorderSize = 0;
+            this.btnMenuActions.Image = global::AgOpenGPS.Properties.Resources.WindowNightMode;
+            this.btnMenuActions.Name = "btnMenuActions";
+            this.btnMenuActions.UseVisualStyleBackColor = false;
+            this.btnMenuActions.Click += new System.EventHandler(this.btnMenuActions_Click);
+            // 
             // FormGPS
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Controls.Add(this.panelRight);
+            this.Controls.Add(this.btnMenuActions);
             this.Controls.Add(this.tlpTrackMethods);
             this.Controls.Add(this.btnZone8);
             this.Controls.Add(this.btnZone7);
@@ -1530,6 +1542,7 @@
         public System.Windows.Forms.TableLayoutPanel panelNavigation;
         private System.Windows.Forms.CheckBox cboxAutoSnapToPivot;
         private System.Windows.Forms.CheckBox cboxAutoTrack;
+        public System.Windows.Forms.Button btnMenuActions;
     }
 }
 

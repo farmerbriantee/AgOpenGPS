@@ -82,6 +82,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\Control.Draggable.dll</HintPath>
     </Reference>
+    <Reference Include="FourUI">
+      <HintPath>..\..\..\FourUI\bin\Debug\FourUI.dll</HintPath>
+    </Reference>
     <Reference Include="Keypad, Version=5.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\Keypad.dll</HintPath>
@@ -103,6 +106,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -172,6 +176,12 @@
     </Compile>
     <Compile Include="CustomControl1.Designer.cs">
       <DependentUpon>CustomControl1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormActions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormActions.Designer.cs">
+      <DependentUpon>FormActions.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormFieldKML.cs">
       <SubType>Form</SubType>
@@ -588,6 +598,9 @@
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\vec3.cs" />
+    <EmbeddedResource Include="Forms\FormActions.resx">
+      <DependentUpon>FormActions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormFieldKML.resx">
       <DependentUpon>FormFieldKML.cs</DependentUpon>
     </EmbeddedResource>
@@ -936,6 +949,8 @@
     <None Include="btnImages\HeadlandReset.png" />
     <None Include="btnImages\FileClose.png" />
     <None Include="btnImages\HeadacheHelp.png" />
+    <None Include="btnImages\FieldTools.png" />
+    <None Include="btnImages\ISOXML.png" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

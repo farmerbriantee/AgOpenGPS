@@ -66,6 +66,7 @@ namespace AgOpenGPS
 
         //texture holders
         public uint[] texture;
+        public uint[] btnTexture;
 
         //the currentversion of software
         public string currentVersionStr, inoVersionStr;
@@ -202,6 +203,15 @@ namespace AgOpenGPS
         /// The boundary object
         /// </summary>
         public CBoundary bnd;
+
+        private void btnMenuActions_Click(object sender, EventArgs e)
+        {
+            using (FormActions form = new FormActions(this))
+            {
+                form.ShowDialog(this);
+            }
+
+        }
 
         /// <summary>
         /// The internal simulator
@@ -658,6 +668,11 @@ namespace AgOpenGPS
             }
         }
 
+        enum btnTex
+        {
+            jobActive=0, settings48, zoomIn48, zoomOut48, fieldTools
+        }
+
         // Load Bitmaps And Convert To Textures
         public void LoadGLTextures()
         {
@@ -671,8 +686,7 @@ namespace AgOpenGPS
                 Properties.Resources.z_Lift,Properties.Resources.z_SkyNight,Properties.Resources.z_SteerPointer,
                 Properties.Resources.z_SteerDot,GetTractorBrand(Settings.Default.setBrand_TBrand),Properties.Resources.z_QuestionMark,
                 Properties.Resources.z_FrontWheels,Get4WDBrandFront(Settings.Default.setBrand_WDBrand), Get4WDBrandRear(Settings.Default.setBrand_WDBrand),
-                GetHarvesterBrand(Settings.Default.setBrand_HBrand), Properties.Resources.z_LateralManual, Resources.z_bingMap, Resources.z_NoGPS,
-                Resources.JobActive, Resources.Settings48, Resources.ZoomIn48, Resources.ZoomOut48
+                GetHarvesterBrand(Settings.Default.setBrand_HBrand), Properties.Resources.z_LateralManual, Resources.z_bingMap, Resources.z_NoGPS
             };
 
             texture = new uint[oglTextures.Length];
@@ -690,15 +704,34 @@ namespace AgOpenGPS
                     GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, 9729);
                 }
             }
+
+            Bitmap[] btnTextures = new Bitmap[]
+            {
+                Resources.JobActive, Resources.Settings48, Resources.ZoomIn48, Resources.ZoomOut48, Resources.FieldTools
+            };
+
+            btnTexture = new uint[btnTextures.Length];
+
+            for (int h = 0; h < btnTextures.Length; h++)
+            {
+                using (Bitmap bitmap = btnTextures[h])
+                {
+                    GL.GenTextures(1, out btnTexture[h]);
+                    GL.BindTexture(TextureTarget.Texture2D, btnTexture[h]);
+                    BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                    GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
+                    bitmap.UnlockBits(bitmapData);
+                    GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, 9729);
+                    GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, 9729);
+                }
+            }
         }
 
-        //dialog for requesting user to save or cancel
         //make the start picture disappear
         private void timer2_Tick(object sender, EventArgs e)
         {
             this.Controls.Remove(pictureboxStart);
             pictureboxStart.Dispose();
-            //panel1.SendToBack();
             timer2.Enabled = false;
             timer2.Dispose();
         }

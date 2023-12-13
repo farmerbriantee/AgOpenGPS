@@ -296,7 +296,7 @@ namespace AgOpenGPS
                 //reset the counter
                 displayUpdateOneFifthCounter = oneFifthSecond;
 
-                btnAutoSteerConfig.Text = SetSteerAngle + "\r\n" + ActualSteerAngle;
+                //btnAutoSteerConfig.Text = SetSteerAngle + "\r\n" + ActualSteerAngle;
 
                 secondsSinceStart = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
 
@@ -818,13 +818,12 @@ namespace AgOpenGPS
         //Mouse Clicks 
         private void oglMain_MouseDown(object sender, MouseEventArgs e)
         {
-
             if (e.Button == MouseButtons.Left)
             {
                 //0 at bottom for opengl, 0 at top for windows, so invert Y value
                 Point point = oglMain.PointToClient(Cursor.Position);
 
-                if (point.Y < 90 && point.Y > 30 && (ABLine.isBtnABLineOn || trk.isBtnGuidanceOn))
+                if (point.Y < 90 && point.Y > 30 && (trk.isBtnGuidanceOn))
                 {
 
                     int middle = oglMain.Width / 2 + oglMain.Width / 5;
@@ -849,9 +848,7 @@ namespace AgOpenGPS
                             MessageBox.Show(gStr.h_lblManualTurnCancelTouch, gStr.gsHelp);
                             ResetHelpBtn();
                             return;
-                        }
-
-                        
+                        }                        
 
                         if (yt.isYouTurnTriggered)
                         {
@@ -902,7 +899,7 @@ namespace AgOpenGPS
                     }
                 }
 
-                if (point.Y < 150 && point.Y > 90 && (ABLine.isBtnABLineOn || trk.isBtnGuidanceOn))
+                if (point.Y < 150 && point.Y > 90 && (trk.isBtnGuidanceOn))
                 {
                     int middle = oglMain.Width / 2 - oglMain.Width / 4;
                     if (point.X > middle - 140 && point.X < middle && isLateralOn)
@@ -1003,13 +1000,13 @@ namespace AgOpenGPS
                     }
                 }
 
-
+                //left side buttons
                 int two3 = oglMain.Width / 2;
                 if (point.X > 20 && point.X < 100)
                 {
                     //Field Job Menu
                     int b = oglMain.Height - point.Y;
-                    if (point.Y < oglMain.Height - 100 && point.Y > oglMain.Height - 180)
+                    if (point.Y < oglMain.Height - 115 && point.Y > oglMain.Height - 180)
                     {
                         using (var form = new FormMenuJob(this))
                         {
@@ -1047,23 +1044,53 @@ namespace AgOpenGPS
                                     + distance.ToString("N1") + " km From current position");
                             }
                         }
+                        return;
+                    }
 
+                    //Actions
+                    if (point.Y < oglMain.Height - 220 && point.Y > oglMain.Height - 290)
+                    {
+                        using (FormActions form = new FormActions(this))
+                        {
+                            form.ShowDialog(this);
+                        }
                         return;
                     }
 
                     //Config
-                    if (point.Y < oglMain.Height - 200 && point.Y > oglMain.Height - 280)
+                    if (point.Y < oglMain.Height - 315 && point.Y > oglMain.Height - 380)
                     {
                         using (FormMenuSettings form = new FormMenuSettings(this))
                         {
                             form.ShowDialog(this);
                         }
-
                         return;
                     }
+
+                    //Zoom--
+                    if (point.Y > 142 && point.Y < 192)
+                    {
+                        if (camera.zoomValue <= 20) camera.zoomValue += camera.zoomValue * 0.2;
+                        else camera.zoomValue += camera.zoomValue * 0.1;
+                        if (camera.zoomValue > 180) camera.zoomValue = 180;
+                        camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
+                        SetZoom();
+                        return;
+                    }
+
+                    //Zoom++
+                    if (point.Y > 44 && point.Y < 100)
+                    {
+                        if (camera.zoomValue <= 20)
+                        { if ((camera.zoomValue -= camera.zoomValue * 0.2) < 6.0) camera.zoomValue = 6.0; }
+                        else { if ((camera.zoomValue -= camera.zoomValue * 0.1) < 6.0) camera.zoomValue = 6.0; }
+
+                        camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
+                        SetZoom();
+                        return;
+                    }
+
                 }
-
-
 
                 //check for help touch on steer circle
                 if (isTT)

@@ -25,20 +25,7 @@ namespace AgOpenGPS
             btnFromKML.Text = gStr.gsFromKml;
             btnFromExisting.Text = gStr.gsFromExisting;
 
-            btnTramline.Text = gStr.gsTramLines;
-            btnBoundary.Text = gStr.gsBoundary;
-            btnHeadlandBuild.Text = gStr.gsHeadland;
-            btnHeadlandSlice.Text = gStr.gsHeadland;
-
-            btnTramline.Visible = Properties.Settings.Default.setFeatures.isTramOn;
-            btnHeadlandBuild.Visible = Properties.Settings.Default.setFeatures.isHeadlandOn;
-            btnHeadlandSlice.Visible = Properties.Settings.Default.setFeatures.isHeadlandOn;
-
-            btnBoundary.Visible = Properties.Settings.Default.setFeatures.isBoundaryOn;
-
             this.Text = gStr.gsField;
-
-            cboxCloseOnSelection.Checked = Properties.Settings.Default.setFieldMenu_isKeepOpen;
         }
 
         private void FormJob_Load(object sender, EventArgs e)
@@ -65,14 +52,6 @@ namespace AgOpenGPS
 
             mf.CloseTopMosts();
 
-            if (mf.isJobStarted)
-            {
-                btnTramline.Enabled = true;
-                btnHeadlandBuild.Enabled = true;
-                btnHeadlandSlice.Enabled = true;
-                btnBoundary.Enabled = true;
-            }
-
             Size = Settings.Default.setWindow_formFieldMenuSize;
             Location = Settings.Default.setWindow_formFieldMenuLocation;
         }
@@ -96,7 +75,6 @@ namespace AgOpenGPS
             //back to FormGPS
             //DialogResult = DialogResult.OK;
             mf.FileOpenField("Resume");
-            if (cboxCloseOnSelection.Checked) Close();
         }
 
         private void btnJobOpen_Click(object sender, EventArgs e)
@@ -257,7 +235,6 @@ namespace AgOpenGPS
         {
             Settings.Default.setWindow_formFieldMenuSize = Size;
             Settings.Default.setWindow_formFieldMenuLocation = Location;
-            Settings.Default.setFieldMenu_isKeepOpen = cboxCloseOnSelection.Checked;
             Settings.Default.Save();
         }
     }
