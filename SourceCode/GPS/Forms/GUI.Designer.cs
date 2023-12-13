@@ -230,14 +230,14 @@ namespace AgOpenGPS
 
                 if (recPath.isDrivingRecordedPath) lblInty.Text = recPath.inty.ToString("N3");
 
-                if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
-                {
-                    btnEditAB.Text = ((int)(ABLine.moveDistance * 100)).ToString();
-                }
-                if (curve.isBtnCurveOn && !ct.isContourBtnOn)
-                {
-                    btnEditAB.Text = ((int)(curve.moveDistance * 100)).ToString();
-                }
+                //if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
+                //{
+                //    btnEditAB.Text = ((int)(ABLine.moveDistance * 100)).ToString();
+                //}
+                //if (curve.isBtnCurveOn && !ct.isContourBtnOn)
+                //{
+                //    btnEditAB.Text = ((int)(curve.moveDistance * 100)).ToString();
+                //}
 
                 //statusbar flash red undefined headland
                 if (mc.isOutOfBounds && panelSim.BackColor == Color.Transparent

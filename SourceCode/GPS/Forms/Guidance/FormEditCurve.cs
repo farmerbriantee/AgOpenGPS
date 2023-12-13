@@ -28,15 +28,15 @@ namespace AgOpenGPS
             if (mf.isMetric)
             {
                 nudSnapDistance.DecimalPlaces = 0;
-                nudSnapDistance.Value = (int)((double)Properties.Settings.Default.setAS_snapDistance * mf.m2InchOrCm);
+                nudSnapDistance.Value = (int)((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn);
             }
             else
             {
                 nudSnapDistance.DecimalPlaces = 1;
-                nudSnapDistance.Value = (decimal)Math.Round(((double)Properties.Settings.Default.setAS_snapDistance * mf.m2InchOrCm), 1);
+                nudSnapDistance.Value = (decimal)Math.Round(((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn), 1);
             }
 
-            snapAdj = Properties.Settings.Default.setAS_snapDistance;
+            snapAdj = Properties.Settings.Default.setAS_snapDistance * 0.01;
 
             Location = Properties.Settings.Default.setWindow_curveEditLocation;
 
@@ -47,7 +47,7 @@ namespace AgOpenGPS
         {
             mf.KeypadToNUD((NumericUpDown)sender, this);
             snapAdj = (double)nudSnapDistance.Value * mf.inchOrCm2m;
-            Properties.Settings.Default.setAS_snapDistance = snapAdj;
+            Properties.Settings.Default.setAS_snapDistance = snapAdj*100;
             Properties.Settings.Default.Save();
         }
 

@@ -99,7 +99,7 @@
       <Value Profile="(Default)">-111.160047</Value>
     </Setting>
     <Setting Name="setAS_snapDistance" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.01</Value>
+      <Value Profile="(Default)">20</Value>
     </Setting>
     <Setting Name="setF_isWorkSwitchManualSections" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
