@@ -102,10 +102,10 @@
             this.lblHz = new System.Windows.Forms.Label();
             this.panelRight = new System.Windows.Forms.TableLayoutPanel();
             this.btnGuidance = new System.Windows.Forms.Button();
-            this.btnContour = new System.Windows.Forms.Button();
             this.btnAutoSteer = new System.Windows.Forms.Button();
             this.btnSectionMasterAuto = new System.Windows.Forms.Button();
             this.btnSectionMasterManual = new System.Windows.Forms.Button();
+            this.btnContour = new System.Windows.Forms.Button();
             this.btnEditAB = new System.Windows.Forms.Button();
             this.panelSim = new System.Windows.Forms.TableLayoutPanel();
             this.btnSimForward = new System.Windows.Forms.Button();
@@ -160,7 +160,12 @@
             this.btnShutdown = new System.Windows.Forms.Button();
             this.btnHelp = new System.Windows.Forms.Button();
             this.btnMinimizeMainForm = new System.Windows.Forms.Button();
-            this.btnMenuActions = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnMenuHeadache = new System.Windows.Forms.Button();
+            this.btnMenuTramlines = new System.Windows.Forms.Button();
+            this.btnMenuBoundary = new System.Windows.Forms.Button();
+            this.btnMenuHeadland = new System.Windows.Forms.Button();
+            this.btnMenuActionsForm = new System.Windows.Forms.Button();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -170,6 +175,7 @@
             this.panelAB.SuspendLayout();
             this.tlpTrackMethods.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureboxStart)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStripOpenGL
@@ -736,7 +742,6 @@
             // 
             resources.ApplyResources(this.panelRight, "panelRight");
             this.panelRight.Controls.Add(this.btnGuidance, 0, 1);
-            this.panelRight.Controls.Add(this.btnContour, 0, 0);
             this.panelRight.Controls.Add(this.btnAutoSteer, 0, 8);
             this.panelRight.Controls.Add(this.btnSectionMasterAuto, 0, 7);
             this.panelRight.Controls.Add(this.btnSectionMasterManual, 0, 6);
@@ -752,17 +757,6 @@
             this.btnGuidance.Name = "btnGuidance";
             this.btnGuidance.UseVisualStyleBackColor = false;
             this.btnGuidance.Click += new System.EventHandler(this.btnGuidance_Click);
-            // 
-            // btnContour
-            // 
-            resources.ApplyResources(this.btnContour, "btnContour");
-            this.btnContour.BackColor = System.Drawing.Color.Transparent;
-            this.btnContour.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnContour.FlatAppearance.BorderSize = 0;
-            this.btnContour.Image = global::AgOpenGPS.Properties.Resources.ContourOff;
-            this.btnContour.Name = "btnContour";
-            this.btnContour.UseVisualStyleBackColor = false;
-            this.btnContour.Click += new System.EventHandler(this.btnContour_Click);
             // 
             // btnAutoSteer
             // 
@@ -796,6 +790,17 @@
             this.btnSectionMasterManual.Name = "btnSectionMasterManual";
             this.btnSectionMasterManual.UseVisualStyleBackColor = false;
             this.btnSectionMasterManual.Click += new System.EventHandler(this.btnSectionMasterManual_Click);
+            // 
+            // btnContour
+            // 
+            resources.ApplyResources(this.btnContour, "btnContour");
+            this.btnContour.BackColor = System.Drawing.Color.Transparent;
+            this.btnContour.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnContour.FlatAppearance.BorderSize = 0;
+            this.btnContour.Image = global::AgOpenGPS.Properties.Resources.ContourOff;
+            this.btnContour.Name = "btnContour";
+            this.btnContour.UseVisualStyleBackColor = false;
+            this.btnContour.Click += new System.EventHandler(this.btnContour_Click);
             // 
             // btnEditAB
             // 
@@ -1223,6 +1228,7 @@
             // 
             resources.ApplyResources(this.tlpTrackMethods, "tlpTrackMethods");
             this.tlpTrackMethods.Controls.Add(this.cboxAutoTrack, 0, 0);
+            this.tlpTrackMethods.Controls.Add(this.btnContour, 5, 0);
             this.tlpTrackMethods.Controls.Add(this.cboxAutoSnapToPivot, 0, 0);
             this.tlpTrackMethods.Controls.Add(this.btnTrackCreateEdit, 3, 0);
             this.tlpTrackMethods.Controls.Add(this.btnABDraw, 2, 0);
@@ -1327,23 +1333,77 @@
             this.btnMinimizeMainForm.UseVisualStyleBackColor = false;
             this.btnMinimizeMainForm.Click += new System.EventHandler(this.btnMinimizeMainForm_Click);
             // 
-            // btnMenuActions
+            // tableLayoutPanel1
             // 
-            resources.ApplyResources(this.btnMenuActions, "btnMenuActions");
-            this.btnMenuActions.BackColor = System.Drawing.Color.Transparent;
-            this.btnMenuActions.FlatAppearance.BorderSize = 0;
-            this.btnMenuActions.Image = global::AgOpenGPS.Properties.Resources.WindowNightMode;
-            this.btnMenuActions.Name = "btnMenuActions";
-            this.btnMenuActions.UseVisualStyleBackColor = false;
-            this.btnMenuActions.Click += new System.EventHandler(this.btnMenuActions_Click);
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.Controls.Add(this.btnMenuHeadache, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnMenuTramlines, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnMenuBoundary, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnMenuHeadland, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnMenuActionsForm, 4, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            // 
+            // btnMenuHeadache
+            // 
+            resources.ApplyResources(this.btnMenuHeadache, "btnMenuHeadache");
+            this.btnMenuHeadache.BackColor = System.Drawing.Color.Transparent;
+            this.btnMenuHeadache.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnMenuHeadache.FlatAppearance.BorderSize = 0;
+            this.btnMenuHeadache.Image = global::AgOpenGPS.Properties.Resources.ABBndLines;
+            this.btnMenuHeadache.Name = "btnMenuHeadache";
+            this.btnMenuHeadache.UseVisualStyleBackColor = false;
+            this.btnMenuHeadache.Click += new System.EventHandler(this.btnMenuHeadache_Click);
+            // 
+            // btnMenuTramlines
+            // 
+            resources.ApplyResources(this.btnMenuTramlines, "btnMenuTramlines");
+            this.btnMenuTramlines.BackColor = System.Drawing.Color.Transparent;
+            this.btnMenuTramlines.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnMenuTramlines.FlatAppearance.BorderSize = 0;
+            this.btnMenuTramlines.Image = global::AgOpenGPS.Properties.Resources.TramAll;
+            this.btnMenuTramlines.Name = "btnMenuTramlines";
+            this.btnMenuTramlines.UseVisualStyleBackColor = false;
+            this.btnMenuTramlines.Click += new System.EventHandler(this.btnMenuTramlines_Click);
+            // 
+            // btnMenuBoundary
+            // 
+            resources.ApplyResources(this.btnMenuBoundary, "btnMenuBoundary");
+            this.btnMenuBoundary.BackColor = System.Drawing.Color.Transparent;
+            this.btnMenuBoundary.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnMenuBoundary.FlatAppearance.BorderSize = 0;
+            this.btnMenuBoundary.Image = global::AgOpenGPS.Properties.Resources.Boundary;
+            this.btnMenuBoundary.Name = "btnMenuBoundary";
+            this.btnMenuBoundary.UseVisualStyleBackColor = false;
+            this.btnMenuBoundary.Click += new System.EventHandler(this.btnMenuBoundary_Click);
+            // 
+            // btnMenuHeadland
+            // 
+            resources.ApplyResources(this.btnMenuHeadland, "btnMenuHeadland");
+            this.btnMenuHeadland.BackColor = System.Drawing.Color.Transparent;
+            this.btnMenuHeadland.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnMenuHeadland.FlatAppearance.BorderSize = 0;
+            this.btnMenuHeadland.Image = global::AgOpenGPS.Properties.Resources.HeadlandMenu;
+            this.btnMenuHeadland.Name = "btnMenuHeadland";
+            this.btnMenuHeadland.UseVisualStyleBackColor = false;
+            this.btnMenuHeadland.Click += new System.EventHandler(this.btnMenuHeadland_Click);
+            // 
+            // btnMenuActionsForm
+            // 
+            resources.ApplyResources(this.btnMenuActionsForm, "btnMenuActionsForm");
+            this.btnMenuActionsForm.BackColor = System.Drawing.Color.Transparent;
+            this.btnMenuActionsForm.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnMenuActionsForm.FlatAppearance.BorderSize = 0;
+            this.btnMenuActionsForm.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
+            this.btnMenuActionsForm.Name = "btnMenuActionsForm";
+            this.btnMenuActionsForm.UseVisualStyleBackColor = false;
             // 
             // FormGPS
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.panelRight);
-            this.Controls.Add(this.btnMenuActions);
             this.Controls.Add(this.tlpTrackMethods);
             this.Controls.Add(this.btnZone8);
             this.Controls.Add(this.btnZone7);
@@ -1406,6 +1466,7 @@
             this.panelAB.ResumeLayout(false);
             this.tlpTrackMethods.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureboxStart)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1542,7 +1603,12 @@
         public System.Windows.Forms.TableLayoutPanel panelNavigation;
         private System.Windows.Forms.CheckBox cboxAutoSnapToPivot;
         private System.Windows.Forms.CheckBox cboxAutoTrack;
-        public System.Windows.Forms.Button btnMenuActions;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        public System.Windows.Forms.Button btnMenuHeadache;
+        public System.Windows.Forms.Button btnMenuTramlines;
+        public System.Windows.Forms.Button btnMenuBoundary;
+        public System.Windows.Forms.Button btnMenuHeadland;
+        public System.Windows.Forms.Button btnMenuActionsForm;
     }
 }
 

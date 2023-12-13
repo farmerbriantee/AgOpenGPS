@@ -1595,6 +1595,84 @@ namespace AgOpenGPS
         #endregion
 
         #region Field Menu
+
+        private void btnMenuBoundary_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                DialogResult diaRes = DialogResult.None;
+
+                using (var form = new FormBoundary(this))
+                {
+                    if (form.ShowDialog(this) == DialogResult.OK)
+                    {
+                        Form form2 = new FormBoundaryPlayer(this);
+                        form2.Show(this);
+                    }
+                    diaRes = form.DialogResult;
+                }
+                if (diaRes == DialogResult.Yes)
+                {
+                    var form3 = new FormMap(this);
+                    form3.Show(this);
+                }
+            }
+            else { TimedMessageBox(3000, gStr.gsFieldNotOpen, gStr.gsStartNewField); }
+        }
+
+        private void btnMenuHeadland_Click(object sender, EventArgs e)
+        {
+            if (bnd.bndList.Count == 0)
+            {
+                TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
+                return;
+            }
+
+            GetHeadland();
+        }
+
+        private void btnMenuHeadache_Click(object sender, EventArgs e)
+        {
+            if (bnd.bndList.Count == 0)
+            {
+                TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
+                return;
+            }
+
+            GetHeadAche();
+        }
+
+        private void btnMenuTramlines_Click(object sender, EventArgs e)
+        {
+            if (ct.isContourBtnOn) btnContour.PerformClick();
+
+            if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
+            {
+                Form form99 = new FormTram(this, false);
+                form99.Show(this);
+                form99.Left = Width - 275;
+                form99.Top = 100;
+            }
+            else if (trk.idx > -1 && trk.isBtnGuidanceOn)
+            {
+                Form form97 = new FormTram(this, true);
+                form97.Show(this);
+                form97.Left = Width - 275;
+                form97.Top = 100;
+            }
+            else
+            {
+                var form = new FormTimedMessage(1500, gStr.gsNoABLineActive, gStr.gsPleaseEnterABLine);
+                form.Show(this);
+                panelRight.Enabled = true;
+                //ABLine.isEditing = false;
+                return;
+            }
+        }
+
+
+
+
         private void toolStripDropDownButtonDistance_Click(object sender, EventArgs e)
         {
             if (isTT)
