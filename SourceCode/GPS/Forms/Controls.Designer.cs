@@ -1747,39 +1747,6 @@ namespace AgOpenGPS
 
         }
 
-        private void btnOpenConfig_Click(object sender, EventArgs e)
-        {
-
-            Process[] processName = Process.GetProcessesByName("Nav");
-            if (processName.Length == 0)
-            {
-                //Start application here
-                DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
-                string strPath = di.ToString();
-                strPath += "\\Nav.exe";
-                try
-                {
-                    //TimedMessageBox(2000, "Please Wait", "Starting AgIO");
-                    ProcessStartInfo processInfo = new ProcessStartInfo();
-                    processInfo.FileName = strPath;
-                    //processInfo.ErrorDialog = true;
-                    //processInfo.UseShellExecute = false;
-                    processInfo.WorkingDirectory = Path.GetDirectoryName(strPath);
-                    Process proc = Process.Start(processInfo);
-                }
-                catch
-                {
-                    TimedMessageBox(2000, "No File Found", "Can't Find Tetris");
-                }
-            }
-            else
-            {
-                //Set foreground window
-                ShowWindow(processName[0].MainWindowHandle, 9);
-                SetForegroundWindow(processName[0].MainWindowHandle);
-            }
-        }
-
         private void btnTramDisplayMode_Click(object sender, EventArgs e)
         {
             if (isTT)

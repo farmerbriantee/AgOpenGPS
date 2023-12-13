@@ -24,10 +24,6 @@ namespace AgOpenGPS
         private void FormEditAB_Load(object sender, EventArgs e)
         {
             label1.Text = mf.unitsInCm;
-            //label2.Text = mf.unitsFtM;
-
-            //btnLeft.Text = "-"+Properties.Settings.Default.setDisplay_snapDistanceSmall.ToString() + "cm";
-            //lblHalfWidth.Text = (mf.tool.width * 0.5 * mf.m2FtOrM).ToString("N2");
 
             if (mf.isMetric)
             {

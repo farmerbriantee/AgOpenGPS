@@ -2049,9 +2049,9 @@ namespace AgOpenGPS
             GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
             {
                 GL.TexCoord2(0, 0); GL.Vertex2(center, 50); // 
-                GL.TexCoord2(1, 0); GL.Vertex2(center + 48, 50); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(center+ 48, 98); // 
-                GL.TexCoord2(0, 1); GL.Vertex2(center , 98); //
+                GL.TexCoord2(1, 0); GL.Vertex2(center + 32, 50); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(center+ 32, 82); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(center , 82); //
             }
             GL.End();
 
@@ -2059,9 +2059,9 @@ namespace AgOpenGPS
             GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
             {
                 GL.TexCoord2(0, 0); GL.Vertex2(center, 150); // 
-                GL.TexCoord2(1, 0); GL.Vertex2(center + 48, 150); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(center + 48, 198); // 
-                GL.TexCoord2(0, 1); GL.Vertex2(center, 198); //
+                GL.TexCoord2(1, 0); GL.Vertex2(center + 32, 150); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(center + 32, 182); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(center, 182); //
             }
             GL.End();
             GL.Disable(EnableCap.Texture2D);

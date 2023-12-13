@@ -19,6 +19,8 @@ namespace AgOpenGPS
 
             this.Text = gStr.gsEditABLine;
             nudSnapDistance.Controls[0].Enabled = false;
+
+            label1.Text = mf.unitsInCm;
         }
 
         private void FormEditAB_Load(object sender, EventArgs e)
