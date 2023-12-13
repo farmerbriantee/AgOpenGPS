@@ -2043,7 +2043,7 @@ namespace AgOpenGPS
             GL.BindTexture(TextureTarget.Texture2D, texture[22]);        // Select Our Texture
             GL.Color3(0.90f, 0.90f, 0.93f);
 
-            int center = oglMain.Width / 2 - 80;
+            int center = oglMain.Width / 2 - 60;
 
             int two3 = oglMain.Width / 2;
             GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
