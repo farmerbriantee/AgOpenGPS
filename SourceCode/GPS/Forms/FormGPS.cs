@@ -210,38 +210,6 @@ namespace AgOpenGPS
         /// </summary>
         public CSim sim;
 
-        private void btnPanUp_Click(object sender, EventArgs e)
-        {
-            camera.dragY -= (camera.camSetDistance/50);
-        }
-
-        private void btnPanRight_Click(object sender, EventArgs e)
-        {
-            camera.dragX -= (camera.camSetDistance / 50);
-        }
-
-        private void btnPanDn_Click(object sender, EventArgs e)
-        {
-            camera.dragY += (camera.camSetDistance / 50);
-        }
-
-        private void btnPanLeft_Click(object sender, EventArgs e)
-        {
-            camera.dragX += (camera.camSetDistance / 50);
-        }
-
-        private void panToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            panelPan.Visible = true;
-        }
-
-        private void btnPanCancel_Click(object sender, EventArgs e)
-        {
-            camera.dragX = 0;
-            camera.dragY = 0;
-            panelPan.Visible = false;
-        }
-
 
         /// <summary>
         /// Resource manager for gloabal strings

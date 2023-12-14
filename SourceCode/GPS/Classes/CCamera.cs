@@ -12,7 +12,7 @@ namespace AgOpenGPS
         private double camYaw;
 
         public double camPitch;
-        public double dragX = 0, dragY = 0;
+        public double panX = 0, panY = 0;
         public double camSetDistance = -75;
 
         public double gridZoom;
@@ -43,9 +43,13 @@ namespace AgOpenGPS
             camYaw = _fixHeading;
 
             //back the camera up
-            GL.Translate(dragX,dragY, camSetDistance * 0.5);
+            GL.Translate(0,0, camSetDistance * 0.5);
+
             //rotate the camera down to look at fix
             GL.Rotate(camPitch, 1.0, 0.0, 0.0);
+
+            //pan if set
+            GL.Translate(panX, panY, 0); 
 
             ////draw the guide
             //GL.Begin(PrimitiveType.Triangles);
