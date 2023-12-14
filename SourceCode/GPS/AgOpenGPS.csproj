@@ -950,6 +950,8 @@
     <None Include="btnImages\ABSnapNudgeMenu.png" />
     <None Include="btnImages\YouTurnU.png" />
     <None Include="btnImages\HeadacheHelp.png" />
+    <None Include="btnImages\Pan.png" />
+    <None Include="btnImages\PanBackground.png" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />

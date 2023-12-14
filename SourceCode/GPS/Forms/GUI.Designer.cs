@@ -966,7 +966,8 @@ namespace AgOpenGPS
                 int centerLeft = oglMain.Width / 2;
                 int centerUp = oglMain.Height / 2;
 
-                if (point.X > centerLeft - 40 && point.X < centerLeft + 40 && point.Y > centerUp - 60 && point.Y < centerUp + 60)
+                if (point.X > centerLeft - 40 && point.X < centerLeft + 40 
+                    && point.Y > centerUp - 60 && point.Y < centerUp + 60)
                 {
                     if (isTT)
                     {
@@ -975,13 +976,23 @@ namespace AgOpenGPS
                         return;
                     }
 
-
                     Array.Clear(stepFixPts, 0, stepFixPts.Length);
                     isFirstHeadingSet = false;
                     isReverse = false;
                     TimedMessageBox(2000, "Reset Direction", "Drive Forward > 1.5 kmh");
                     return;
                 }
+
+                if (point.X > 30 && point.X < 60)
+                {
+                    if (point.Y > 50 && point.Y < 80)
+                    {
+                        panelPan.Visible = true;
+                    }
+
+                }
+
+
 
                 //prevent flag selection if flag form is up
                 Form fc = Application.OpenForms["FormFlags"];
@@ -1028,6 +1039,8 @@ namespace AgOpenGPS
                         return;
                     }
                 }
+
+
 
                 mouseX = point.X;
                 mouseY = oglMain.Height - point.Y;

@@ -456,6 +456,9 @@ namespace AgOpenGPS
 
                     if (pn.age > pn.ageAlarm) DrawAge();
 
+                    //just in case
+                    GL.Disable(EnableCap.LineStipple);
+
                     GL.Flush();//finish openGL commands
                     GL.PopMatrix();//  Pop the modelview.
 
@@ -2045,7 +2048,6 @@ namespace AgOpenGPS
 
             int center = oglMain.Width / 2 - 60;
 
-            int two3 = oglMain.Width / 2;
             GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
             {
                 GL.TexCoord2(0, 0); GL.Vertex2(center, 50); // 
@@ -2062,6 +2064,18 @@ namespace AgOpenGPS
                 GL.TexCoord2(1, 0); GL.Vertex2(center + 32, 150); // 
                 GL.TexCoord2(1, 1); GL.Vertex2(center + 32, 182); // 
                 GL.TexCoord2(0, 1); GL.Vertex2(center, 182); //
+            }
+            GL.End();
+
+            //Pan
+            center = oglMain.Width / -2 + 30;
+            GL.BindTexture(TextureTarget.Texture2D, texture[24]);        // Select Our Texture
+            GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
+            {
+                GL.TexCoord2(0, 0); GL.Vertex2(center, 50); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(center + 32, 50); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(center + 32, 82); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(center, 82); //
             }
             GL.End();
             GL.Disable(EnableCap.Texture2D);

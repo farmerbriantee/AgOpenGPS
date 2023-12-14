@@ -2227,6 +2227,31 @@ namespace AgOpenGPS
             camera.panX += (camera.camSetDistance / 25);
         }
 
+        private void btnUpLeft_Click(object sender, EventArgs e)
+        {
+            camera.panY -= (camera.camSetDistance / 25);
+            camera.panX += (camera.camSetDistance / 25);
+        }
+
+        private void btnUpRight_Click(object sender, EventArgs e)
+        {
+            camera.panY -= (camera.camSetDistance / 25);
+            camera.panX -= (camera.camSetDistance / 25);
+        }
+
+        private void btnDownRight_Click(object sender, EventArgs e)
+        {
+            camera.panY += (camera.camSetDistance / 25);
+            camera.panX -= (camera.camSetDistance / 25);
+        }
+
+        private void btnDownLeft_Click(object sender, EventArgs e)
+        {
+            camera.panY += (camera.camSetDistance / 25);
+            camera.panX += (camera.camSetDistance / 25);
+        }
+
+
         private void panToolStripMenuItem_Click(object sender, EventArgs e)
         {
             panelPan.Visible = true;
