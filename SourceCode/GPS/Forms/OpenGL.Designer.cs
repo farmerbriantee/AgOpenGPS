@@ -235,8 +235,8 @@ namespace AgOpenGPS
                                     //draw the triangle in each triangle strip
                                     GL.Begin(PrimitiveType.TriangleStrip);
 
-                                    if (isDay) GL.Color4((byte)triList[0].easting, (byte)triList[0].northing, (byte)triList[0].heading, (byte)152);
-                                    else GL.Color4((byte)triList[0].easting, (byte)triList[0].northing, (byte)triList[0].heading, (byte)(152 * 0.5));
+                                    GL.Color4((byte)triList[0].easting, (byte)triList[0].northing, (byte)triList[0].heading, (byte)152);
+                                    //else GL.Color4((byte)triList[0].easting, (byte)triList[0].northing, (byte)triList[0].heading, (byte)(152 * 0.5));
 
                                     //if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
                                     if (count2 >= (mipmap + 2))
@@ -270,8 +270,8 @@ namespace AgOpenGPS
                             {
                                 if (tool.isMultiColoredSections)
                                 {
-                                    if (isDay) GL.Color4(tool.secColors[j].R, tool.secColors[j].G, tool.secColors[j].B, (byte)152);
-                                    else GL.Color4(tool.secColors[j].R, tool.secColors[j].G, tool.secColors[j].B, (byte)(152 * 0.5));
+                                    GL.Color4(tool.secColors[j].R, tool.secColors[j].G, tool.secColors[j].B, (byte)152);
+                                    //else GL.Color4(tool.secColors[j].R, tool.secColors[j].G, tool.secColors[j].B, (byte)(152 * 0.5));
                                 }
                                 patchCount = triStrip[j].patchList.Count;
 

@@ -589,7 +589,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("130, 130, 150")]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 100, 125")]
         public global::System.Drawing.Color setDisplay_colorFieldDay {
             get {
                 return ((global::System.Drawing.Color)(this["setDisplay_colorFieldDay"]));

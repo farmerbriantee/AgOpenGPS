@@ -144,7 +144,7 @@
       <Value Profile="(Default)">27, 151, 160</Value>
     </Setting>
     <Setting Name="setDisplay_colorFieldDay" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">130, 130, 150</Value>
+      <Value Profile="(Default)">100, 100, 125</Value>
     </Setting>
     <Setting Name="setDisplay_isDayMode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
