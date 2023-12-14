@@ -117,8 +117,8 @@ namespace AgOpenGPS
 
             //get Hz from timeslice
             nowHz = 1 / timeSliceOfLastFix;
-            if (nowHz > 11) nowHz = 10;
-            if (nowHz < 7) nowHz = 8;
+            if (nowHz > 20) nowHz = 20;
+            if (nowHz < 3) nowHz = 3;
 
             //simple comp filter
             gpsHz = 0.98 * gpsHz + 0.02 * nowHz;
