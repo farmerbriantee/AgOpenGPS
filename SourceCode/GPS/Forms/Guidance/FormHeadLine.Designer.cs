@@ -51,6 +51,10 @@
             this.btnSlice = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnAShrink = new System.Windows.Forms.Button();
+            this.btnBShrink = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.headingGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSetDistance)).BeginInit();
             this.SuspendLayout();
@@ -83,12 +87,11 @@
             this.headingGroupBox.Controls.Add(this.rbtnCurve);
             this.headingGroupBox.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.headingGroupBox.ForeColor = System.Drawing.Color.Black;
-            this.headingGroupBox.Location = new System.Drawing.Point(795, 12);
+            this.headingGroupBox.Location = new System.Drawing.Point(902, 2);
             this.headingGroupBox.Name = "headingGroupBox";
-            this.headingGroupBox.Size = new System.Drawing.Size(202, 125);
+            this.headingGroupBox.Size = new System.Drawing.Size(102, 229);
             this.headingGroupBox.TabIndex = 438;
             this.headingGroupBox.TabStop = false;
-            this.headingGroupBox.Text = "Line Style";
             // 
             // rbtnLine
             // 
@@ -99,7 +102,7 @@
             this.rbtnLine.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnLine.ForeColor = System.Drawing.Color.Black;
             this.rbtnLine.Image = global::AgOpenGPS.Properties.Resources.ABTrackAB;
-            this.rbtnLine.Location = new System.Drawing.Point(115, 32);
+            this.rbtnLine.Location = new System.Drawing.Point(15, 129);
             this.rbtnLine.Name = "rbtnLine";
             this.rbtnLine.Size = new System.Drawing.Size(80, 80);
             this.rbtnLine.TabIndex = 2;
@@ -167,7 +170,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(901, 246);
+            this.label4.Location = new System.Drawing.Point(762, 466);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(21, 16);
             this.label4.TabIndex = 508;
@@ -185,7 +188,7 @@
             this.btnDeletePoints.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnDeletePoints.Image = global::AgOpenGPS.Properties.Resources.HeadlandReset;
             this.btnDeletePoints.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDeletePoints.Location = new System.Drawing.Point(730, 506);
+            this.btnDeletePoints.Location = new System.Drawing.Point(869, 515);
             this.btnDeletePoints.Name = "btnDeletePoints";
             this.btnDeletePoints.Size = new System.Drawing.Size(81, 71);
             this.btnDeletePoints.TabIndex = 506;
@@ -198,7 +201,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(756, 458);
+            this.label2.Location = new System.Drawing.Point(753, 578);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 16);
             this.label2.TabIndex = 515;
@@ -216,7 +219,7 @@
             this.btnUndo.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnUndo.Image = global::AgOpenGPS.Properties.Resources.back_button;
             this.btnUndo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnUndo.Location = new System.Drawing.Point(730, 395);
+            this.btnUndo.Location = new System.Drawing.Point(727, 515);
             this.btnUndo.Name = "btnUndo";
             this.btnUndo.Size = new System.Drawing.Size(81, 71);
             this.btnUndo.TabIndex = 514;
@@ -234,7 +237,7 @@
             this.btnBndLoop.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnBndLoop.Image = global::AgOpenGPS.Properties.Resources.HeadlandBuild;
             this.btnBndLoop.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBndLoop.Location = new System.Drawing.Point(869, 175);
+            this.btnBndLoop.Location = new System.Drawing.Point(730, 395);
             this.btnBndLoop.Name = "btnBndLoop";
             this.btnBndLoop.Size = new System.Drawing.Size(81, 71);
             this.btnBndLoop.TabIndex = 504;
@@ -273,7 +276,7 @@
             this.btnALength.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnALength.Image = global::AgOpenGPS.Properties.Resources.DrawLineExtendA;
             this.btnALength.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnALength.Location = new System.Drawing.Point(723, 136);
+            this.btnALength.Location = new System.Drawing.Point(723, 126);
             this.btnALength.Name = "btnALength";
             this.btnALength.Size = new System.Drawing.Size(54, 85);
             this.btnALength.TabIndex = 352;
@@ -291,7 +294,7 @@
             this.btnBLength.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnBLength.Image = global::AgOpenGPS.Properties.Resources.DrawLineExtendB;
             this.btnBLength.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBLength.Location = new System.Drawing.Point(723, 45);
+            this.btnBLength.Location = new System.Drawing.Point(723, 39);
             this.btnBLength.Name = "btnBLength";
             this.btnBLength.Size = new System.Drawing.Size(54, 85);
             this.btnBLength.TabIndex = 351;
@@ -397,7 +400,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(755, 576);
+            this.label1.Location = new System.Drawing.Point(894, 585);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(39, 16);
             this.label1.TabIndex = 520;
@@ -417,12 +420,78 @@
             this.label5.Text = "Snip";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(828, 213);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(43, 16);
+            this.label6.TabIndex = 530;
+            this.label6.Text = "Shrink";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnAShrink
+            // 
+            this.btnAShrink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAShrink.BackColor = System.Drawing.Color.Linen;
+            this.btnAShrink.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAShrink.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
+            this.btnAShrink.FlatAppearance.BorderSize = 2;
+            this.btnAShrink.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAShrink.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnAShrink.Image = global::AgOpenGPS.Properties.Resources.DrawLineShrinkA;
+            this.btnAShrink.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnAShrink.Location = new System.Drawing.Point(823, 126);
+            this.btnAShrink.Name = "btnAShrink";
+            this.btnAShrink.Size = new System.Drawing.Size(54, 85);
+            this.btnAShrink.TabIndex = 529;
+            this.btnAShrink.UseVisualStyleBackColor = false;
+            this.btnAShrink.Click += new System.EventHandler(this.btnAShrink_Click);
+            // 
+            // btnBShrink
+            // 
+            this.btnBShrink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBShrink.BackColor = System.Drawing.Color.Azure;
+            this.btnBShrink.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnBShrink.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnBShrink.FlatAppearance.BorderSize = 2;
+            this.btnBShrink.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBShrink.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnBShrink.Image = global::AgOpenGPS.Properties.Resources.DrawLineShrinkB;
+            this.btnBShrink.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnBShrink.Location = new System.Drawing.Point(823, 39);
+            this.btnBShrink.Name = "btnBShrink";
+            this.btnBShrink.Size = new System.Drawing.Size(54, 85);
+            this.btnBShrink.TabIndex = 528;
+            this.btnBShrink.UseVisualStyleBackColor = false;
+            this.btnBShrink.Click += new System.EventHandler(this.btnBShrink_Click);
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(727, 215);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(48, 16);
+            this.label7.TabIndex = 531;
+            this.label7.Text = "Expand";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormHeadLine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1009, 712);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.btnAShrink);
+            this.Controls.Add(this.btnBShrink);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSlice);
@@ -483,5 +552,9 @@
         private System.Windows.Forms.Button btnSlice;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnAShrink;
+        private System.Windows.Forms.Button btnBShrink;
+        private System.Windows.Forms.Label label7;
     }
 }

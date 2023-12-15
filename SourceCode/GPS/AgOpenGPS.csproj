@@ -952,6 +952,8 @@
     <None Include="btnImages\HeadacheHelp.png" />
     <None Include="btnImages\Pan.png" />
     <None Include="btnImages\PanBackground.png" />
+    <None Include="btnImages\DrawLineShrinkA.png" />
+    <None Include="btnImages\DrawLineShrinkB.png" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />

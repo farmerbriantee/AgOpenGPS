@@ -498,6 +498,9 @@ namespace AgOpenGPS
 
                             //write out the mode
                             writer.WriteLine(hdl.tracksArr[i].mode.ToString(CultureInfo.InvariantCulture));
+                            
+                            //write out the A_Point index
+                            writer.WriteLine(hdl.tracksArr[i].a_point.ToString(CultureInfo.InvariantCulture));
 
                             //write out the points of ref line
                             int cnt2 = hdl.tracksArr[i].trackPts.Count;
@@ -585,6 +588,9 @@ namespace AgOpenGPS
                             hdl.tracksArr[hdl.idx].mode = int.Parse(line, CultureInfo.InvariantCulture);
 
                             line = reader.ReadLine();
+                            hdl.tracksArr[hdl.idx].a_point = int.Parse(line, CultureInfo.InvariantCulture);
+
+                            line = reader.ReadLine();
                             int numPoints = int.Parse(line);
 
                             if (numPoints > 3)
@@ -610,21 +616,38 @@ namespace AgOpenGPS
                             }
                         }
                     }
+
                     catch (Exception er)
                     {
-                        var form = new FormTimedMessage(2000, gStr.gsCurveLineFileIsCorrupt, gStr.gsButFieldIsLoaded);
+                        hdl.tracksArr?.Clear();
+
+                        var form = new FormTimedMessage(2000, "Headline Error", "Lines Deleted");
                         form.Show(this);
+
+                        dirField = fieldsDirectory + currentFieldDirectory + "\\";
+                        directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
+
+                        if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+                        { Directory.CreateDirectory(directoryName); }
+
+                        filename = directoryName + "\\HeadLines.txt";
+
+                        using (StreamWriter writer = new StreamWriter(filename, false))
+                        {
+                            try
+                            {
+                                writer.WriteLine("$HeadLines");
+                                return;
+
+                            }
+                            catch { }
+                        }
                         WriteErrorLog("Load Head Lines" + er.ToString());
                     }
                 }
             }
 
-            if (hdl.tracksArr.Count == 0)
-            {
-                hdl.idx = -1;
-            }
-
-            if (hdl.idx > (hdl.tracksArr.Count - 1)) hdl.idx = hdl.tracksArr.Count - 1;
+            hdl.idx = -1;
         }
 
         public void FileSaveCurveLines()

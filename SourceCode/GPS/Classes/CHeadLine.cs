@@ -124,5 +124,6 @@ namespace AgOpenGPS
         public string name = "aa";
         public double moveDistance = 0;
         public int mode = 0;
+        public int a_point = 0;
     }
 }

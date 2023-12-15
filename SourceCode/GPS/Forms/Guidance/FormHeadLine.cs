@@ -218,7 +218,7 @@ namespace AgOpenGPS
                         //who knows which way it actually goes
                         mf.hdl.CalculateHeadings(ref sliceArr);
 
-                        for (int i = 1; i < 75; i++)
+                        for (int i = 1; i < 30; i++)
                         {
                             vec3 pt = new vec3(sliceArr[ptCnt]);
                             pt.easting += (Math.Sin(pt.heading) * i);
@@ -228,7 +228,7 @@ namespace AgOpenGPS
 
                         vec3 stat = new vec3(sliceArr[0]);
 
-                        for (int i = 1; i < 75; i++)
+                        for (int i = 1; i < 30; i++)
                         {
                             vec3 pt = new vec3(stat);
                             pt.easting -= (Math.Sin(pt.heading) * i);
@@ -291,7 +291,7 @@ namespace AgOpenGPS
 
                     int ptCnt = sliceArr.Count - 1;
 
-                    for (int i = 1; i < 75; i++)
+                    for (int i = 1; i < 30; i++)
                     {
                         vec3 pt = new vec3(sliceArr[ptCnt]);
                         pt.easting += (Math.Sin(pt.heading) * i);
@@ -301,7 +301,7 @@ namespace AgOpenGPS
 
                     vec3 stat = new vec3(sliceArr[0]);
 
-                    for (int i = 1; i < 75; i++)
+                    for (int i = 1; i < 30; i++)
                     {
                         vec3 pt = new vec3(stat);
                         pt.easting -= (Math.Sin(pt.heading) * i);
@@ -517,39 +517,6 @@ namespace AgOpenGPS
             Close();
         }
 
-        private void btnALength_Click(object sender, EventArgs e)
-        {
-            if (sliceArr.Count > 0)
-            {
-                //and the beginning
-                vec3 start = new vec3(sliceArr[0]);
-
-                for (int i = 1; i < 10; i++)
-                {
-                    vec3 pt = new vec3(start);
-                    pt.easting -= (Math.Sin(pt.heading) * i);
-                    pt.northing -= (Math.Cos(pt.heading) * i);
-                    sliceArr.Insert(0, pt);
-                }
-            }
-        }
-
-        private void btnBLength_Click(object sender, EventArgs e)
-        {
-            if (sliceArr.Count > 0)
-            {
-                int ptCnt = sliceArr.Count - 1;
-
-                for (int i = 1; i < 10; i++)
-                {
-                    vec3 pt = new vec3(sliceArr[ptCnt]);
-                    pt.easting += (Math.Sin(pt.heading) * i);
-                    pt.northing += (Math.Cos(pt.heading) * i);
-                    sliceArr.Add(pt);
-                }
-            }
-        }
-
         private void oglSelf_Resize(object sender, EventArgs e)
         {
             oglSelf.MakeCurrent();
@@ -689,6 +656,11 @@ namespace AgOpenGPS
                         }
                         else mf.hdl.desList.Add(pt3);
                     }
+                }
+
+                if (mf.hdl.desList.Count == 0)
+                {
+                    return;
                 }
 
                 pt3 = new vec3(mf.hdl.desList[0]);
@@ -887,6 +859,51 @@ namespace AgOpenGPS
         private void cboxToolWidths_SelectedIndexChanged(object sender, EventArgs e)
         {
             nudSetDistance.Value = (decimal)(Math.Round((mf.tool.width - mf.tool.overlap) * cboxToolWidths.SelectedIndex, 1));
+        }
+
+        private void btnALength_Click(object sender, EventArgs e)
+        {
+            if (sliceArr.Count > 0)
+            {
+                //and the beginning
+                vec3 start = new vec3(sliceArr[0]);
+
+                for (int i = 1; i < 10; i++)
+                {
+                    vec3 pt = new vec3(start);
+                    pt.easting -= (Math.Sin(pt.heading) * i);
+                    pt.northing -= (Math.Cos(pt.heading) * i);
+                    sliceArr.Insert(0, pt);
+                }
+            }
+        }
+
+        private void btnBLength_Click(object sender, EventArgs e)
+        {
+            if (sliceArr.Count > 0)
+            {
+                int ptCnt = sliceArr.Count - 1;
+
+                for (int i = 1; i < 10; i++)
+                {
+                    vec3 pt = new vec3(sliceArr[ptCnt]);
+                    pt.easting += (Math.Sin(pt.heading) * i);
+                    pt.northing += (Math.Cos(pt.heading) * i);
+                    sliceArr.Add(pt);
+                }
+            }
+        }
+
+        private void btnBShrink_Click(object sender, EventArgs e)
+        {
+                if (sliceArr.Count > 8)
+                    sliceArr.RemoveRange(sliceArr.Count - 5, 5);
+        }
+
+        private void btnAShrink_Click(object sender, EventArgs e)
+        {
+            if (sliceArr.Count > 8)
+                sliceArr.RemoveRange(0, 5);
         }
 
         private void btnHeadlandOff_Click(object sender, EventArgs e)

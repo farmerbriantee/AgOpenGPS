@@ -128,6 +128,7 @@ namespace AgOpenGPS
         private void oglSelf_MouseDown(object sender, MouseEventArgs e)
         {
             mf.bnd.bndList[0].hdLine?.Clear();
+            mf.hdl.idx = -1;
 
             Point ptt = oglSelf.PointToClient(Cursor.Position);
 
@@ -231,6 +232,7 @@ namespace AgOpenGPS
                         }
                     }
 
+                    mf.hdl.tracksArr[mf.hdl.idx].a_point = start;
                     mf.hdl.tracksArr[mf.hdl.idx].trackPts?.Clear();
                     vec3 pt3 = new vec3();
 
@@ -342,6 +344,7 @@ namespace AgOpenGPS
                         mf.hdl.idx = mf.hdl.tracksArr.Count - 1;
                     }
 
+                    mf.hdl.tracksArr[mf.hdl.idx].a_point = start;
                     mf.hdl.tracksArr[mf.hdl.idx].trackPts?.Clear();
 
                     ptA.heading = abHead;
@@ -358,7 +361,7 @@ namespace AgOpenGPS
 
                     int ptCnt = mf.hdl.tracksArr[mf.hdl.idx].trackPts.Count - 1;
 
-                    for (int i = 1; i < 10; i++)
+                    for (int i = 1; i < 30; i++)
                     {
                         vec3 pt = new vec3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[ptCnt]);
                         pt.easting += (Math.Sin(pt.heading) * i);
@@ -368,7 +371,7 @@ namespace AgOpenGPS
 
                     vec3 stat = new vec3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[0]);
 
-                    for (int i = 1; i < 10; i++)
+                    for (int i = 1; i < 30; i++)
                     {
                         vec3 pt = new vec3(stat);
                         pt.easting -= (Math.Sin(pt.heading) * i);
@@ -545,11 +548,19 @@ namespace AgOpenGPS
                     GL.End();
 
                     int cnt = mf.hdl.tracksArr[mf.hdl.idx].trackPts.Count - 1;
-                    GL.PointSize(12);
-                    GL.Color3(1.0f, 0.6f, 0.3f);
+                    GL.PointSize(28);
+                    GL.Color3(0,0,0);
                     GL.Begin(PrimitiveType.Points);
                     GL.Vertex3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[0].easting, mf.hdl.tracksArr[mf.hdl.idx].trackPts[0].northing, 0);
-                    GL.Color3(0.3f, 0.3f, 0.99f);
+                    GL.Color3(0,0,0);
+                    GL.Vertex3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[cnt].easting, mf.hdl.tracksArr[mf.hdl.idx].trackPts[cnt].northing, 0);
+                    GL.End();
+
+                    GL.PointSize(20);
+                    GL.Color3(1.0f, 0.7f, 0.35f);
+                    GL.Begin(PrimitiveType.Points);
+                    GL.Vertex3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[0].easting, mf.hdl.tracksArr[mf.hdl.idx].trackPts[0].northing, 0);
+                    GL.Color3(0.6f, 0.75f, 0.99f);
                     GL.Vertex3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[cnt].easting, mf.hdl.tracksArr[mf.hdl.idx].trackPts[cnt].northing, 0);
                     GL.End();
 
@@ -571,7 +582,7 @@ namespace AgOpenGPS
         private void DrawABTouchLine()
         {
             GL.Color3(0.65, 0.650, 0.0);
-            GL.PointSize(16);
+            GL.PointSize(24);
             GL.Begin(PrimitiveType.Points);
 
             GL.Color3(0, 0, 0);
@@ -579,13 +590,13 @@ namespace AgOpenGPS
             if (end != 99999) GL.Vertex3(mf.bnd.bndList[bndSelect].fenceLine[end].easting, mf.bnd.bndList[bndSelect].fenceLine[end].northing, 0);
             GL.End();
 
-            GL.PointSize(10);
+            GL.PointSize(16);
             GL.Begin(PrimitiveType.Points);
 
             GL.Color3(1.0f, 0.75f, 0.350f);
             if (start != 99999) GL.Vertex3(mf.bnd.bndList[bndSelect].fenceLine[start].easting, mf.bnd.bndList[bndSelect].fenceLine[start].northing, 0);
 
-            GL.Color3(0.5f, 0.5f, 1.0f);
+            GL.Color3(0.5f, 0.75f, 1.0f);
             if (end != 99999) GL.Vertex3(mf.bnd.bndList[bndSelect].fenceLine[end].easting, mf.bnd.bndList[bndSelect].fenceLine[end].northing, 0);
             GL.End();
         }
@@ -599,39 +610,6 @@ namespace AgOpenGPS
         {
             mf.FileSaveHeadLines();
             Close();
-        }
-
-        private void btnALength_Click(object sender, EventArgs e)
-        {
-            if (mf.hdl.idx > -1)
-            {
-                //and the beginning
-                vec3 start = new vec3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[0]);
-
-                for (int i = 1; i < 10; i++)
-                {
-                    vec3 pt = new vec3(start);
-                    pt.easting -= (Math.Sin(pt.heading) * i);
-                    pt.northing -= (Math.Cos(pt.heading) * i);
-                    mf.hdl.tracksArr[mf.hdl.idx].trackPts.Insert(0, pt);
-                }
-            }
-        }
-
-        private void btnBLength_Click(object sender, EventArgs e)
-        {
-            if (mf.hdl.idx > -1)
-            {
-                int ptCnt = mf.hdl.tracksArr[mf.hdl.idx].trackPts.Count - 1;
-
-                for (int i = 1; i < 10; i++)
-                {
-                    vec3 pt = new vec3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[ptCnt]);
-                    pt.easting += (Math.Sin(pt.heading) * i);
-                    pt.northing += (Math.Cos(pt.heading) * i);
-                    mf.hdl.tracksArr[mf.hdl.idx].trackPts.Add(pt);
-                }
-            }
         }
 
         private void oglSelf_Resize(object sender, EventArgs e)
@@ -679,6 +657,13 @@ namespace AgOpenGPS
 
         private void btnBndLoop_Click(object sender, EventArgs e)
         {
+            //sort the lines
+            mf.hdl.tracksArr.Sort((p, q) => p.a_point.CompareTo(q.a_point));
+            mf.FileSaveHeadLines();
+
+            mf.hdl.idx = -1;
+
+            //build the headland
             mf.bnd.bndList[0].hdLine?.Clear();
 
             int numOfLines = mf.hdl.tracksArr.Count;
@@ -841,6 +826,57 @@ namespace AgOpenGPS
         {
             pboxHelp.Visible = true;
             pboxHelp.Dock = DockStyle.Fill;
+        }
+
+        private void btnBLength_Click(object sender, EventArgs e)
+        {
+            if (mf.hdl.idx > -1)
+            {
+                int ptCnt = mf.hdl.tracksArr[mf.hdl.idx].trackPts.Count - 1;
+
+                for (int i = 1; i < 10; i++)
+                {
+                    vec3 pt = new vec3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[ptCnt]);
+                    pt.easting += (Math.Sin(pt.heading) * i);
+                    pt.northing += (Math.Cos(pt.heading) * i);
+                    mf.hdl.tracksArr[mf.hdl.idx].trackPts.Add(pt);
+                }
+            }
+        }
+
+        private void btnBShrink_Click(object sender, EventArgs e)
+        {
+            if (mf.hdl.idx > -1)
+            {
+                if (mf.hdl.tracksArr[mf.hdl.idx].trackPts.Count > 8)
+                    mf.hdl.tracksArr[mf.hdl.idx].trackPts.RemoveRange(mf.hdl.tracksArr[mf.hdl.idx].trackPts.Count-5, 5);
+            }
+        }
+
+        private void btnALength_Click(object sender, EventArgs e)
+        {
+            if (mf.hdl.idx > -1)
+            {
+                //and the beginning
+                vec3 start = new vec3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[0]);
+
+                for (int i = 1; i < 10; i++)
+                {
+                    vec3 pt = new vec3(start);
+                    pt.easting -= (Math.Sin(pt.heading) * i);
+                    pt.northing -= (Math.Cos(pt.heading) * i);
+                    mf.hdl.tracksArr[mf.hdl.idx].trackPts.Insert(0, pt);
+                }
+            }
+        }
+
+        private void btnAShrink_Click(object sender, EventArgs e)
+        {
+            if (mf.hdl.idx > -1)
+            {
+                if (mf.hdl.tracksArr[mf.hdl.idx].trackPts.Count > 8)
+                    mf.hdl.tracksArr[mf.hdl.idx].trackPts.RemoveRange(0, 5);
+            }
         }
 
         public int GetLineIntersection(double p0x, double p0y, double p1x, double p1y,
