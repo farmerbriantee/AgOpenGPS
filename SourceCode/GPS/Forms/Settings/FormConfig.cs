@@ -103,51 +103,21 @@ namespace AgOpenGPS
             //since we reset, save current state
             mf.SaveFormGPSWindowSettings();
 
-            if (mf.isMetric)
-            {
-                lblInchesCm.Text = gStr.gsCentimeters;
-                lblInchCm2.Text = gStr.gsCentimeters;
-                lblFeetMeters.Text = gStr.gsMeters;
-                lblSecTotalWidthFeet.Visible = false;
-                lblSecTotalWidthInches.Visible = false;
-                lblSecTotalWidthMeters.Visible = true;
-            }
-            else
-            {
-                lblInchesCm.Text = gStr.gsInches;
-                lblInchCm2.Text = gStr.gsInches;
-                lblFeetMeters.Text = "Feet";
-                lblSecTotalWidthFeet.Visible = true;
-                lblSecTotalWidthInches.Visible = true;
-                lblSecTotalWidthMeters.Visible = false;
 
                 //metric or imp on spinners min/maxes
-                FixMinMaxSpinners();
-            }
-
-            //update the first child form summary data items
-            UpdateSummary();
+            if (!mf.isMetric)  FixMinMaxSpinners();            
 
             //the pick a saved vehicle box
             UpdateVehicleListView();
 
-            //the tool size in bottom panel
-            if (mf.isMetric)
-            {
-                lblSecTotalWidthMeters.Text = (mf.tool.width * 100) + " cm";
-            }
-            else
-            {
-                double toFeet = mf.tool.width * 100 * 0.0328084;
-                lblSecTotalWidthFeet.Text = Convert.ToString((int)toFeet) + "'";
-                double temp = Math.Round((toFeet - Math.Truncate(toFeet)) * 12, 0);
-                lblSecTotalWidthInches.Text = Convert.ToString(temp) + '"';
-            }
+            tabTSections_Enter(this, e);
+            SectionFeetInchesTotalWidthLabelUpdate();
 
             tab1.SelectedTab = tabSummary;
             tboxVehicleNameSave.Focus();
 
             label29.Text = gStr.gsSaveAs;
+            UpdateSummary();
             //label3.Text = gStr.gsCurrent;
         }
 
@@ -253,8 +223,9 @@ namespace AgOpenGPS
 
         private void tabSummary_Enter(object sender, EventArgs e)
         {
-
+            SectionFeetInchesTotalWidthLabelUpdate();
             lblSummaryVehicleName.Text = Properties.Settings.Default.setVehicle_vehicleName;
+            UpdateSummary();
         }
 
         private void tabSummary_Leave(object sender, EventArgs e)

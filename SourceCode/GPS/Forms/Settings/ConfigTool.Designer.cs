@@ -30,6 +30,8 @@ namespace AgOpenGPS
         #region Config
         private void tabTConfig_Enter(object sender, EventArgs e)
         {
+            lblInchCm2.Text=mf.unitsInCm.ToString();
+
             if (Properties.Settings.Default.setTool_isToolFront)
             {
                 rbtnTBT.Checked = false;
@@ -1347,7 +1349,24 @@ namespace AgOpenGPS
         {
             if (mf.isMetric)
             {
-                lblSecTotalWidthMeters.Text = (Convert.ToDouble(lblVehicleToolWidth.Text)).ToString("N0") + " cm";
+                lblInchesCm.Text = gStr.gsCentimeters;
+                lblFeetMeters.Text = gStr.gsMeters;
+                lblSecTotalWidthFeet.Visible = false;
+                lblSecTotalWidthInches.Visible = false;
+                lblSecTotalWidthMeters.Visible = true;
+            }
+            else
+            {
+                lblInchesCm.Text = gStr.gsInches;
+                lblFeetMeters.Text = "Feet";
+                lblSecTotalWidthFeet.Visible = true;
+                lblSecTotalWidthInches.Visible = true;
+                lblSecTotalWidthMeters.Visible = false;
+            }
+
+            if (mf.isMetric)
+            {
+                lblSecTotalWidthMeters.Text = ((int)(mf.tool.width * 100)).ToString() + " cm";
             }
             else
             {

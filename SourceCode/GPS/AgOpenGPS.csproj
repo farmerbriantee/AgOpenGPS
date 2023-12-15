@@ -955,6 +955,7 @@
     <None Include="btnImages\DrawLineShrinkA.png" />
     <None Include="btnImages\DrawLineShrinkB.png" />
     <None Include="btnImages\Config\Con_Display.png" />
+    <None Include="btnImages\Config\ConS_Pins.png" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />

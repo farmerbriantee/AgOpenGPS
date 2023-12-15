@@ -22,7 +22,7 @@ namespace AgOpenGPS
             ClearToolSubBackgrounds();
             ClearMachineSubBackgrounds();
             ClearDataSubBackgrounds();
-
+            ClearNoSubBackgrounds();
 
             if (subMenu.Visible == false)
             {
@@ -55,58 +55,111 @@ namespace AgOpenGPS
             }
         }
 
-        private void btnHome_Click(object sender, EventArgs e)
-        {
-            tab1.SelectedTab = tabSummary;
-            HideSubMenu();
-            UpdateSummary();
-        }
-
         private void UpdateSummary()
         {
             //lblSumWheelbase.Text = Properties.Settings.Default.setVehicle_wheelbase.ToString();
             //lblSumToolWidth.Text = mf.tool.toolWidth.ToString();
             lblSumNumSections.Text = mf.tool.numOfSections.ToString();
 
-            string snapDist = mf.isMetric? 
-                Properties.Settings.Default.setAS_snapDistance.ToString() : 
-                (Properties.Settings.Default.setAS_snapDistance*mf.cm2CmOrIn).ToString("N1");
+            string snapDist = mf.isMetric ?
+                Properties.Settings.Default.setAS_snapDistance.ToString() :
+                (Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn).ToString("N1");
 
             lblNudgeDistance.Text = snapDist + mf.unitsInCm.ToString();
             lblUnits.Text = mf.isMetric ? "Metric" : "Imperial";
 
             lblCurrentVehicle.Text = Properties.Settings.Default.setVehicle_vehicleName;
+
+            lblTramWidth.Text = (mf.isMetric ?
+                (Properties.Settings.Default.setTram_tramWidth * mf.m2InchOrCm).ToString() :
+                (Properties.Settings.Default.setTram_tramWidth * mf.m2InchOrCm).ToString("N1")) +
+                mf.unitsInCm;
+
+            lblToolOffset.Text = (mf.isMetric ?
+                (Properties.Settings.Default.setVehicle_toolOffset * mf.m2InchOrCm).ToString() :
+                (Properties.Settings.Default.setVehicle_toolOffset * mf.m2InchOrCm).ToString("N1")) +
+                mf.unitsInCm;
+
+            lblOverlap.Text = (mf.isMetric ?
+                (Properties.Settings.Default.setVehicle_toolOverlap * mf.m2InchOrCm).ToString() :
+                (Properties.Settings.Default.setVehicle_toolOverlap * mf.m2InchOrCm).ToString("N1")) +
+                mf.unitsInCm;
+
+            lblLookahead.Text = Properties.Settings.Default.setVehicle_toolLookAheadOn.ToString() + " sec";
+
             //lblSumCurrentTool.Text = Properties.Tool.Default.toolSettings.toolFileName.ToString();
             //lblSumCurrentDataSource.Text = Properties.DataSource.Default.dataSourceSettings.dataSourceFileName.ToString();
             //lblSumFixType.Text = Properties.DataSource.Default.dataSourceSettings.fixFrom.ToString();
         }
 
         #region No Sub menu Buttons
+
+        private void ClearNoSubBackgrounds()
+        {
+            btnTram.BackColor = SystemColors.GradientInactiveCaption;
+            btnUTurn.BackColor = SystemColors.GradientInactiveCaption;
+            btnDisplay.BackColor = SystemColors.GradientInactiveCaption;
+            btnFeatureHides.BackColor = SystemColors.GradientInactiveCaption;
+        }
         private void btnTram_Click(object sender, EventArgs e)
         {
             HideSubMenu();
-            tab1.SelectedTab = tabTram;
+            ClearNoSubBackgrounds();
+            if (tab1.SelectedTab == tabTram)
+            {
+                tab1.SelectedTab = tabSummary;
+            }
+            else
+            {
+                tab1.SelectedTab = tabTram;
+                btnTram.BackColor = SystemColors.GradientActiveCaption;
+            }
         }
 
         private void btnUTurn_Click(object sender, EventArgs e)
         {
             HideSubMenu();
-            tab1.SelectedTab = tabUTurn;
+            ClearNoSubBackgrounds();
+            if (tab1.SelectedTab != tabUTurn)
+            {
+                tab1.SelectedTab = tabSummary;
+            }
+            else
+            {
+                tab1.SelectedTab = tabUTurn;
+                btnUTurn.BackColor = SystemColors.GradientActiveCaption;
+            }
         }
 
         private void btnFeatureHides_Click(object sender, EventArgs e)
         {
             HideSubMenu();
-            tab1.SelectedTab = tabBtns;
+            ClearNoSubBackgrounds();
+            if (tab1.SelectedTab == tabBtns)
+            {
+                tab1.SelectedTab = tabSummary;
+            }
+            else
+            {
+                tab1.SelectedTab = tabBtns;
+                btnFeatureHides.BackColor = SystemColors.GradientActiveCaption;
+            }
         }
 
         private void btnDisplay_Click(object sender, EventArgs e)
         {
             HideSubMenu();
-            tab1.SelectedTab = tabDisplay;
+            ClearNoSubBackgrounds();
+            if (tab1.SelectedTab == tabDisplay)
+            {
+                tab1.SelectedTab = tabSummary;
+            }
+            else
+            {
+                tab1.SelectedTab = tabDisplay;
+                btnDisplay.BackColor = SystemColors.GradientActiveCaption;
+            }
         }
-
-
 
         #endregion
 
@@ -117,7 +170,6 @@ namespace AgOpenGPS
             btnSubVehicleType.BackColor = Color.Gold;
             lblCurrentVehicle.Text = gStr.gsCurrent + mf.vehicleFileName;
             UpdateVehicleListView();
-            UpdateSummary();
         }
 
         private void ClearVehicleSubBackgrounds()
@@ -196,7 +248,6 @@ namespace AgOpenGPS
             ShowSubMenu(panelToolSubMenu, btnTool);
             btnSubToolType.BackColor=Color.Gold;
             UpdateVehicleListView();
-            UpdateSummary();
         }
 
         private void ClearToolSubBackgrounds()
@@ -256,7 +307,6 @@ namespace AgOpenGPS
             ShowSubMenu(panelDataSourcesSubMenu, btnDataSources);
             btnSubHeading.BackColor=Color.Gold;
             UpdateVehicleListView();
-            UpdateSummary();
         }
 
         private void btnSubHeading_Click(object sender, EventArgs e)
@@ -288,7 +338,6 @@ namespace AgOpenGPS
             btnMachineModule.BackColor = Color.Gold;
             lblCurrentVehicle.Text = gStr.gsCurrent + mf.vehicleFileName;
             UpdateVehicleListView();
-            UpdateSummary();
         }
 
         private void btnMachineModule_Click(object sender, EventArgs e)

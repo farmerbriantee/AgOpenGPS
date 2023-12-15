@@ -178,7 +178,7 @@
     <value>Wähle oder erstellen sie ein Anderes</value>
   </data>
   <data name="gsClose" xml:space="preserve">
-    <value>Verschließen</value>
+    <value>Schließen</value>
   </data>
   <data name="gsCloseAllWindowsFirst" xml:space="preserve">
     <value>Schließen Sie zunächst alle Fenster</value>
