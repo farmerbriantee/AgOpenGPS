@@ -1055,12 +1055,12 @@ namespace AgOpenGPS
             if (isMetric)
             {
                 TimedMessageBox(2000, gStr.gsTooFast, gStr.gsSlowDownBelow + " " 
-                    + vehicle.functionSpeedLimit.ToString() + " "+ gStr.gsKMH);
+                    + vehicle.functionSpeedLimit.ToString("N0") + " "+ gStr.gsKMH);
             }
             else
             {
                 TimedMessageBox(2000, gStr.gsTooFast, gStr.gsSlowDownBelow + " "
-                    + (vehicle.functionSpeedLimit* 0.621371).ToString() + " " + gStr.gsMPH);
+                    + (vehicle.functionSpeedLimit* 0.621371).ToString("N1") + " " + gStr.gsMPH);
            }
         }
 

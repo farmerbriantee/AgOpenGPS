@@ -18,14 +18,32 @@ namespace AgOpenGPS
 
         private void ShowSubMenu(Panel subMenu, Button btn)
         {
+            ClearVehicleSubBackgrounds();
+            ClearToolSubBackgrounds();
+            ClearMachineSubBackgrounds();
+            ClearDataSubBackgrounds();
+
+
             if (subMenu.Visible == false)
             {
                 HideSubMenu();
                 subMenu.Visible = true;
-                if (subMenu.Name == "panelVehicleSubMenu") tab1.SelectedTab = tabVConfig;
-                else if (subMenu.Name == "panelToolSubMenu") tab1.SelectedTab = tabTConfig;
-                else if (subMenu.Name == "panelDataSourcesSubMenu") tab1.SelectedTab = tabDHeading;
-                else if (subMenu.Name == "panelArduinoSubMenu") tab1.SelectedTab = tabAMachine;
+                if (subMenu.Name == "panelVehicleSubMenu")
+                {
+                    tab1.SelectedTab = tabVConfig;
+                }
+                else if (subMenu.Name == "panelToolSubMenu")
+                {
+                    tab1.SelectedTab = tabTConfig;
+                }
+                else if (subMenu.Name == "panelDataSourcesSubMenu")
+                {
+                    tab1.SelectedTab = tabDHeading;
+                }
+                else if (subMenu.Name == "panelArduinoSubMenu")
+                {
+                    tab1.SelectedTab = tabAMachine;
+                }
                 else if (btn.Name == "btnUTurn") tab1.SelectedTab = tabUTurn;
                 else if (btn.Name == "btnFeatureHides") tab1.SelectedTab = tabBtns;
                 else if (btn.Name == "btnDisplay") tab1.SelectedTab = tabDisplay;
@@ -36,8 +54,6 @@ namespace AgOpenGPS
                 subMenu.Visible = false;
             }
         }
-
-        #region Top Menu Btns
 
         private void btnHome_Click(object sender, EventArgs e)
         {
@@ -50,7 +66,14 @@ namespace AgOpenGPS
         {
             //lblSumWheelbase.Text = Properties.Settings.Default.setVehicle_wheelbase.ToString();
             //lblSumToolWidth.Text = mf.tool.toolWidth.ToString();
-            //lblSumNumSections.Text = mf.tool.numOfSections.ToString();
+            lblSumNumSections.Text = mf.tool.numOfSections.ToString();
+
+            string snapDist = mf.isMetric? 
+                Properties.Settings.Default.setAS_snapDistance.ToString() : 
+                (Properties.Settings.Default.setAS_snapDistance*mf.cm2CmOrIn).ToString("N1");
+
+            lblNudgeDistance.Text = snapDist + mf.unitsInCm.ToString();
+            lblUnits.Text = mf.isMetric ? "Metric" : "Imperial";
 
             lblCurrentVehicle.Text = Properties.Settings.Default.setVehicle_vehicleName;
             //lblSumCurrentTool.Text = Properties.Tool.Default.toolSettings.toolFileName.ToString();
@@ -58,6 +81,83 @@ namespace AgOpenGPS
             //lblSumFixType.Text = Properties.DataSource.Default.dataSourceSettings.fixFrom.ToString();
         }
 
+        #region No Sub menu Buttons
+        private void btnTram_Click(object sender, EventArgs e)
+        {
+            HideSubMenu();
+            tab1.SelectedTab = tabTram;
+        }
+
+        private void btnUTurn_Click(object sender, EventArgs e)
+        {
+            HideSubMenu();
+            tab1.SelectedTab = tabUTurn;
+        }
+
+        private void btnFeatureHides_Click(object sender, EventArgs e)
+        {
+            HideSubMenu();
+            tab1.SelectedTab = tabBtns;
+        }
+
+        private void btnDisplay_Click(object sender, EventArgs e)
+        {
+            HideSubMenu();
+            tab1.SelectedTab = tabDisplay;
+        }
+
+
+
+        #endregion
+
+        #region Vehicle Sub Menu Btns
+        private void btnVehicle_Click(object sender, EventArgs e)
+        {
+            ShowSubMenu(panelVehicleSubMenu, btnVehicle);
+            btnSubVehicleType.BackColor = Color.Gold;
+            lblCurrentVehicle.Text = gStr.gsCurrent + mf.vehicleFileName;
+            UpdateVehicleListView();
+            UpdateSummary();
+        }
+
+        private void ClearVehicleSubBackgrounds()
+        {
+            btnSubVehicleType.BackColor = Color.FloralWhite;
+            btnSubAntenna.BackColor = Color.FloralWhite;
+            btnSubDimensions.BackColor = Color.FloralWhite;
+            btnSubGuidance.BackColor = Color.FloralWhite;
+        }
+        private void btnSubVehicleType_Click(object sender, EventArgs e)
+        {
+            ClearVehicleSubBackgrounds();
+            tab1.SelectedTab = tabVConfig;
+            btnSubVehicleType.BackColor = Color.Gold;
+        }
+
+        private void btnSubDimensions_Click(object sender, EventArgs e)
+        {
+            ClearVehicleSubBackgrounds();
+            tab1.SelectedTab = tabVDimensions;
+            btnSubDimensions.BackColor = Color.Gold;
+        }
+
+        private void btnSubAntenna_Click(object sender, EventArgs e)
+        {
+            ClearVehicleSubBackgrounds();
+            tab1.SelectedTab = tabVAntenna;
+            btnSubAntenna.BackColor = Color.Gold;
+        }
+
+        private void btnSubGuidance_Click(object sender, EventArgs e)
+        {
+            ClearVehicleSubBackgrounds();
+            tab1.SelectedTab = tabVGuidance;
+            btnSubGuidance.BackColor = Color.Gold;               
+        }
+
+        #endregion Region
+
+        #region Tool Sub Menu
         private void btnTool_Click(object sender, EventArgs e)
         {
             if (mf.isJobStarted)
@@ -91,148 +191,118 @@ namespace AgOpenGPS
                 mf.AllZonesAndButtonsToState(btnStates.Off);
 
                 mf.LineUpAllZoneButtons();
-
             }
 
             ShowSubMenu(panelToolSubMenu, btnTool);
-            //tab1.SelectedTab = tabSummary;
+            btnSubToolType.BackColor=Color.Gold;
             UpdateVehicleListView();
             UpdateSummary();
         }
 
-        private void btnDataSources_Click(object sender, EventArgs e)
+        private void ClearToolSubBackgrounds()
         {
-            ShowSubMenu(panelDataSourcesSubMenu, btnDataSources);
-            //tab1.SelectedTab = tabSummary;
-            //lblCurrentData.Text = gStr.gsCurrent + mf.dataSourceFileName;
-            UpdateVehicleListView();
-            UpdateSummary();
+            btnSubToolType.BackColor = Color.FloralWhite;
+            btnSubHitch.BackColor = Color.FloralWhite;
+            btnSubSections.BackColor = Color.FloralWhite;
+            btnSubSwitches.BackColor = Color.FloralWhite;
+            btnSubToolSettings.BackColor = Color.FloralWhite;
         }
 
-        private void btnVehicle_Click(object sender, EventArgs e)
-        {
-            ShowSubMenu(panelVehicleSubMenu, btnVehicle);
-            //tab1.SelectedTab = tabSummary;
-            lblCurrentVehicle.Text = gStr.gsCurrent + mf.vehicleFileName;
-            UpdateVehicleListView();
-            UpdateSummary();
-        }
-
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void btnTram_Click(object sender, EventArgs e)
-        {
-            HideSubMenu();
-            tab1.SelectedTab = tabTram;
-        }
-
-        private void btnUTurn_Click(object sender, EventArgs e)
-        {
-            HideSubMenu();
-            tab1.SelectedTab = tabUTurn;
-        }
-
-        private void btnFeatureHides_Click(object sender, EventArgs e)
-        {
-            HideSubMenu();
-            tab1.SelectedTab = tabBtns;
-        }
-
-        private void btnDisplay_Click(object sender, EventArgs e)
-        {
-            HideSubMenu();
-            tab1.SelectedTab = tabDisplay;
-        }
-
-        private void btnArduino_Click(object sender, EventArgs e)
-        {
-            ShowSubMenu(panelArduinoSubMenu, btnArduino);
-            //tab1.SelectedTab = tabSummary;
-
-            lblCurrentVehicle.Text = gStr.gsCurrent + mf.vehicleFileName;
-            UpdateVehicleListView();
-            UpdateSummary();
-        }
-
-
-        #endregion
-
-        #region Vehicle Sub Menu Btns
-        private void btnSubVehicleType_Click(object sender, EventArgs e)
-        {
-            tab1.SelectedTab = tabVConfig;
-        }
-
-        private void btnSubDimensions_Click(object sender, EventArgs e)
-        {
-            tab1.SelectedTab = tabVDimensions;
-        }
-
-        private void btnSubAntenna_Click(object sender, EventArgs e)
-        {
-            tab1.SelectedTab = tabVAntenna;
-        }
-
-        private void btnSubGuidance_Click(object sender, EventArgs e)
-        {
-            tab1.SelectedTab = tabVGuidance;
-        }
-
-        #endregion Region
-
-        #region Tool Sub Menu
         private void btnSubToolType_Click(object sender, EventArgs e)
         {
+            ClearToolSubBackgrounds();
             tab1.SelectedTab = tabTConfig;
+            btnSubToolType.BackColor = Color.Gold;
         }
 
         private void btnSubHitch_Click(object sender, EventArgs e)
         {
+            ClearToolSubBackgrounds();
             tab1.SelectedTab = tabTHitch;
+            btnSubHitch.BackColor= Color.Gold;
         }
 
         private void btnSubSections_Click(object sender, EventArgs e)
         {
+            ClearToolSubBackgrounds();
             tab1.SelectedTab = tabTSections;
+            btnSubSections.BackColor= Color.Gold;
         }
 
         private void btnSubSwitches_Click(object sender, EventArgs e)
         {
+            ClearToolSubBackgrounds();
             tab1.SelectedTab = tabTSwitches;
+            btnSubSwitches .BackColor = Color.Gold;
         }
 
         private void btnSubToolSettings_Click(object sender, EventArgs e)
         {
+            ClearToolSubBackgrounds();
             tab1.SelectedTab = tabTSettings;
+            btnSubToolSettings.BackColor = Color.Gold;
         }
         #endregion
 
         #region SubMenu Data Sources
-        private void btnSubRoll_Click(object sender, EventArgs e)
+
+        private void ClearDataSubBackgrounds()
         {
-            tab1.SelectedTab = tabDRoll;
+            btnSubHeading.BackColor = Color.FloralWhite;
+            btnSubRoll.BackColor = Color.FloralWhite;
+        }
+        private void btnDataSources_Click(object sender, EventArgs e)
+        {
+            ShowSubMenu(panelDataSourcesSubMenu, btnDataSources);
+            btnSubHeading.BackColor=Color.Gold;
+            UpdateVehicleListView();
+            UpdateSummary();
         }
 
         private void btnSubHeading_Click(object sender, EventArgs e)
         {
+            ClearDataSubBackgrounds();
             tab1.SelectedTab = tabDHeading;
+            btnSubHeading.BackColor=Color.Gold;
+        }
+
+        private void btnSubRoll_Click(object sender, EventArgs e)
+        {
+            ClearDataSubBackgrounds();
+            tab1.SelectedTab = tabDRoll;
+            btnSubRoll.BackColor=Color.Gold;
         }
 
         #endregion
 
         #region Module
+        private void ClearMachineSubBackgrounds()
+        {
+            btnMachineModule.BackColor = Color.FloralWhite;
+            btnMachineRelay.BackColor = Color.FloralWhite;
+        }
+
+        private void btnArduino_Click(object sender, EventArgs e)
+        {
+            ShowSubMenu(panelArduinoSubMenu, btnArduino);
+            btnMachineModule.BackColor = Color.Gold;
+            lblCurrentVehicle.Text = gStr.gsCurrent + mf.vehicleFileName;
+            UpdateVehicleListView();
+            UpdateSummary();
+        }
 
         private void btnMachineModule_Click(object sender, EventArgs e)
         {
+            ClearMachineSubBackgrounds();
             tab1.SelectedTab = tabAMachine;
+            btnMachineModule.BackColor = Color.Gold;
         }
 
         private void btnMachineRelay_Click(object sender, EventArgs e)
         {
+            ClearMachineSubBackgrounds();
             tab1.SelectedTab = tabRelay;
+            btnMachineRelay.BackColor= Color.Gold;
         }
         #endregion
     }

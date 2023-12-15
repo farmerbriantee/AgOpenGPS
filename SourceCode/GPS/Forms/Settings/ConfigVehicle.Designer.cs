@@ -20,8 +20,6 @@ namespace AgOpenGPS
         {
             if (tboxVehicleNameSave.Text.Trim().Length > 0)
             {
-                SaveDisplaySettings();
-
                 SettingsIO.ExportAll(mf.vehiclesDirectory + tboxVehicleNameSave.Text.Trim() + ".XML");
                 lblCurrentVehicle.Text = tboxVehicleNameSave.Text.Trim();
                 Properties.Settings.Default.setVehicle_vehicleName = tboxVehicleNameSave.Text.Trim();
@@ -332,8 +330,6 @@ namespace AgOpenGPS
                         if (mf.isMetric) rbtnDisplayMetric.Checked = true;
                         else rbtnDisplayImperial.Checked = true;
 
-                        SaveDisplaySettings();
-
                         lblCurrentVehicle.Text = Properties.Settings.Default.setVehicle_vehicleName;
 
                         if (mf.isMetric)
@@ -355,7 +351,7 @@ namespace AgOpenGPS
 
                         if (mf.isMetric)
                         {
-                            lblSecTotalWidthMeters.Text = (mf.tool.width * 100).ToString() + " cm";
+                            lblSecTotalWidthMeters.Text = (mf.tool.width * 100).ToString("N0") + " cm";
                         }
                         else
                         {
@@ -426,6 +422,8 @@ namespace AgOpenGPS
                 form.Show(this);
                 UpdateVehicleListView();
             }
+
+            UpdateSummary();
         }
 
         private void btnVehicleDelete_Click(object sender, EventArgs e)
@@ -474,34 +472,6 @@ namespace AgOpenGPS
             btnVehicleDelete.Enabled = false;
 
             lvVehicles.SelectedItems.Clear();
-        }
-
-        private void rbtnDisplayImperial_Click(object sender, EventArgs e)
-        {
-            mf.TimedMessageBox(2000, "Units Set", "Imperial");
-            mf.isMetric = false;
-            Properties.Settings.Default.setMenu_isMetric = mf.isMetric;
-            Properties.Settings.Default.Save();
-            isClosing = true;
-            Close();
-        }
-
-        private void rbtnDisplayMetric_Click(object sender, EventArgs e)
-        {
-            mf.TimedMessageBox(2000, "Units Set", "Metric");
-            mf.isMetric = true;
-            Properties.Settings.Default.setMenu_isMetric = mf.isMetric;
-            Properties.Settings.Default.Save();
-            isClosing = true;
-            Close();
-            //FormConfig_Load(this, e);
-        }
-
-        private void nudMenusOnTime_Click(object sender, EventArgs e)
-        {
-            if (mf.KeypadToNUD((NumericUpDown)sender, this))
-            {
-            }
         }
 
         private void SaveDisplaySettings()
@@ -612,10 +582,6 @@ namespace AgOpenGPS
             else if (mf.vehicle.vehicleType == 1) pictureBox1.Image = Properties.Resources.RadiusWheelBaseHarvester;
             else if (mf.vehicle.vehicleType == 2) pictureBox1.Image = Properties.Resources.RadiusWheelBase4WD;
 
-        }
-
-        private void tabVDimensions_Leave(object sender, EventArgs e)
-        {
         }
 
         private void nudMinTurnRadius_Click(object sender, EventArgs e)

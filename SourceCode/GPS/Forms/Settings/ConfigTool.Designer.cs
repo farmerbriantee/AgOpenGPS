@@ -1347,7 +1347,7 @@ namespace AgOpenGPS
         {
             if (mf.isMetric)
             {
-                lblSecTotalWidthMeters.Text = Convert.ToDouble(lblVehicleToolWidth.Text) + " cm";
+                lblSecTotalWidthMeters.Text = (Convert.ToDouble(lblVehicleToolWidth.Text)).ToString("N0") + " cm";
             }
             else
             {
