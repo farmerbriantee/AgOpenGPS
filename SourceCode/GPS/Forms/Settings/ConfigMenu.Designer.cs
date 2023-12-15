@@ -28,6 +28,7 @@ namespace AgOpenGPS
                 else if (subMenu.Name == "panelArduinoSubMenu") tab1.SelectedTab = tabAMachine;
                 else if (btn.Name == "btnUTurn") tab1.SelectedTab = tabUTurn;
                 else if (btn.Name == "btnFeatureHides") tab1.SelectedTab = tabBtns;
+                else if (btn.Name == "btnDisplay") tab1.SelectedTab = tabDisplay;
             }
             else
             {
@@ -138,6 +139,12 @@ namespace AgOpenGPS
         {
             HideSubMenu();
             tab1.SelectedTab = tabBtns;
+        }
+
+        private void btnDisplay_Click(object sender, EventArgs e)
+        {
+            HideSubMenu();
+            tab1.SelectedTab = tabDisplay;
         }
 
         private void btnArduino_Click(object sender, EventArgs e)

@@ -100,7 +100,7 @@ namespace AgOpenGPS
 
         private void FormConfig_Load(object sender, EventArgs e)
         {
-            //seince we rest, save current state
+            //since we reset, save current state
             mf.SaveFormGPSWindowSettings();
 
             if (mf.isMetric)
@@ -144,23 +144,6 @@ namespace AgOpenGPS
                 lblSecTotalWidthInches.Text = Convert.ToString(temp) + '"';
             }
 
-            chkDisplaySky.Checked = mf.isSkyOn;
-            chkDisplayBrightness.Checked = mf.isBrightnessOn;
-            chkDisplayFloor.Checked = mf.isTextureOn;
-            chkDisplayGrid.Checked = mf.isGridOn;
-            chkDisplaySpeedo.Checked = mf.isSpeedoOn;
-            chkDisplayDayNight.Checked = mf.isAutoDayNight;
-            chkDisplayStartFullScreen.Checked = Properties.Settings.Default.setDisplay_isStartFullScreen;
-            chkDisplayExtraGuides.Checked = mf.isSideGuideLines;
-            chkSvennArrow.Checked = mf.isSvennArrowOn;
-            chkDisplayLogNMEA.Checked = mf.isLogNMEA;
-            chkDisplayPolygons.Checked = mf.isDrawPolygons;
-            chkDisplayLightbar.Checked = mf.isLightbarOn;
-            chkDisplayKeyboard.Checked = mf.isKeyboardOn;
-
-            if (mf.isMetric) rbtnDisplayMetric.Checked = true;
-            else rbtnDisplayImperial.Checked = true;
-
             tab1.SelectedTab = tabSummary;
             tboxVehicleNameSave.Focus();
 
@@ -175,6 +158,7 @@ namespace AgOpenGPS
                 e.Cancel = true;
                 return;
             }
+
             SaveDisplaySettings();
 
             //reload all the settings from default and user.config
@@ -271,29 +255,12 @@ namespace AgOpenGPS
 
         private void tabSummary_Enter(object sender, EventArgs e)
         {
-            chkDisplaySky.Checked = mf.isSkyOn;
-            chkDisplayBrightness.Checked = mf.isBrightnessOn;
-            chkDisplayFloor.Checked = mf.isTextureOn;
-            chkDisplayGrid.Checked = mf.isGridOn;
-            chkDisplaySpeedo.Checked = mf.isSpeedoOn;
-            chkDisplayDayNight.Checked = mf.isAutoDayNight;
-            chkDisplayStartFullScreen.Checked = Properties.Settings.Default.setDisplay_isStartFullScreen;
-            chkSvennArrow.Checked = mf.isSvennArrowOn;
-            chkDisplayExtraGuides.Checked = mf.isSideGuideLines;
-            chkDisplayLogNMEA.Checked = mf.isLogNMEA;
-            chkDisplayPolygons.Checked = mf.isDrawPolygons;
-            chkDisplayLightbar.Checked = mf.isLightbarOn;
-            chkDisplayKeyboard.Checked = mf.isKeyboardOn;
-
-            if (mf.isMetric) rbtnDisplayMetric.Checked = true;
-            else rbtnDisplayImperial.Checked = true;
 
             lblSummaryVehicleName.Text = Properties.Settings.Default.setVehicle_vehicleName;
         }
 
         private void tabSummary_Leave(object sender, EventArgs e)
         {
-            SaveDisplaySettings();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -310,6 +277,31 @@ namespace AgOpenGPS
                 btnVehicleLoad.Enabled = false;
                 btnVehicleDelete.Enabled = false;
             }
+        }
+
+        private void tabDisplay_Enter(object sender, EventArgs e)
+        {
+            chkDisplaySky.Checked = mf.isSkyOn;
+            chkDisplayBrightness.Checked = mf.isBrightnessOn;
+            chkDisplayFloor.Checked = mf.isTextureOn;
+            chkDisplayGrid.Checked = mf.isGridOn;
+            chkDisplaySpeedo.Checked = mf.isSpeedoOn;
+            chkDisplayDayNight.Checked = mf.isAutoDayNight;
+            chkDisplayStartFullScreen.Checked = Properties.Settings.Default.setDisplay_isStartFullScreen;
+            chkSvennArrow.Checked = mf.isSvennArrowOn;
+            chkDisplayExtraGuides.Checked = mf.isSideGuideLines;
+            chkDisplayLogNMEA.Checked = mf.isLogNMEA;
+            chkDisplayPolygons.Checked = mf.isDrawPolygons;
+            chkDisplayLightbar.Checked = mf.isLightbarOn;
+            chkDisplayKeyboard.Checked = mf.isKeyboardOn;
+
+            if (mf.isMetric) rbtnDisplayMetric.Checked = true;
+            else rbtnDisplayImperial.Checked = true;
+        }
+
+        private void tabDisplay_Leave(object sender, EventArgs e)
+        {
+            SaveDisplaySettings();
         }
     }
 }
