@@ -8990,6 +8990,7 @@
             this.rbtnDisplayImperial.TabStop = true;
             this.rbtnDisplayImperial.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbtnDisplayImperial.UseVisualStyleBackColor = false;
+            this.rbtnDisplayImperial.Click += new System.EventHandler(this.rbtnDisplayImperial_Click);
             // 
             // rbtnDisplayMetric
             // 
@@ -9008,6 +9009,7 @@
             this.rbtnDisplayMetric.TabIndex = 468;
             this.rbtnDisplayMetric.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbtnDisplayMetric.UseVisualStyleBackColor = false;
+            this.rbtnDisplayMetric.Click += new System.EventHandler(this.rbtnDisplayMetric_Click);
             // 
             // label15
             // 
