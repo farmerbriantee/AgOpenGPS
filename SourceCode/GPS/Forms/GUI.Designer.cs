@@ -194,6 +194,9 @@ namespace AgOpenGPS
                 //save nmea log file
                 if (isLogNMEA) FileSaveNMEA();
 
+                //update button lines numbers
+                UpdateGuidanceLineButtonNumbers();
+
             }//end every 3 seconds
 
             //every second update all status ///////////////////////////   1 1 1 1 1 1 ////////////////////////////
@@ -309,7 +312,15 @@ namespace AgOpenGPS
 
                 //lblAV.Text = ABLine.angVel.ToString("N3");
             }
-        }//wait till timer fires again.  
+        }//wait till timer fires again.
+         
+
+        private void UpdateGuidanceLineButtonNumbers()
+        {
+            btnABLine.Text = ABLine.numABLineSelected.ToString() + " - " + ABLine.lineArr.Count.ToString();
+            btnCurve.Text = curve.numCurveLineSelected.ToString() + " - " + curve.curveArr.Count.ToString();
+        }
+
 
         private void IsBetweenSunriseSunset(double lat, double lon)
         {

@@ -362,7 +362,9 @@ namespace AgOpenGPS
                 curve.isCurveSet = true;
                 yt.ResetYouTurn();
                 lblCurveLineName.Text = curve.curveArr[idx].Name;
+
             }
+            UpdateGuidanceLineButtonNumbers();
         }
         private void btnCycleLinesBk_Click(object sender, EventArgs e)
         {
@@ -449,6 +451,8 @@ namespace AgOpenGPS
                 yt.ResetYouTurn();
                 lblCurveLineName.Text = curve.curveArr[idx].Name;
             }
+
+            UpdateGuidanceLineButtonNumbers();
         }
         private void SetABLine(int num)
         {
