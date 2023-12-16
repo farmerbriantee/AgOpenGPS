@@ -17,8 +17,6 @@ namespace AgOpenGPS
 
             InitializeComponent();
 
-            //btnStop.Text = gStr.gsDone;
-            //btnPausePlay.Text = gStr.gsRecord;
             label1.Text = gStr.gsArea + ":";
             this.Text = gStr.gsStopRecordPauseBoundary;
             nudOffset.Controls[0].Enabled = false;
@@ -26,7 +24,6 @@ namespace AgOpenGPS
 
         private void FormBoundaryPlayer_Load(object sender, EventArgs e)
         {
-            //mf.bnd.isOkToAddPoints = false;
             if (mf.isMetric)
             {
                 nudOffset.Maximum = 4999;
@@ -39,7 +36,6 @@ namespace AgOpenGPS
                 nudOffset.Value = (decimal)(mf.tool.width * 0.5 * 39.3701);
                 double ftInches = (double)nudOffset.Value;
                 lblMetersInches.Text = ((int)(ftInches / 12)).ToString() + "' " + ((int)(ftInches % 12)).ToString() + '"';
-                //lblMetersInches.Text = gStr.gsInches;
             }
             btnPausePlay.Image = Properties.Resources.BoundaryRecord;
             btnLeftRight.Image = mf.bnd.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;

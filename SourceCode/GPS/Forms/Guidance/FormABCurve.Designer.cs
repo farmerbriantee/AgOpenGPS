@@ -125,7 +125,7 @@
             this.btnAddTime.FlatAppearance.BorderSize = 0;
             this.btnAddTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddTime.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddTime.Image = global::AgOpenGPS.Properties.Resources.Time;
+            this.btnAddTime.Image = global::AgOpenGPS.Properties.Resources.JobNameTime;
             this.btnAddTime.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnAddTime.Location = new System.Drawing.Point(87, 133);
             this.btnAddTime.Name = "btnAddTime";
@@ -498,7 +498,7 @@
             this.btnAddTimeEdit.FlatAppearance.BorderSize = 0;
             this.btnAddTimeEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddTimeEdit.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddTimeEdit.Image = global::AgOpenGPS.Properties.Resources.Time;
+            this.btnAddTimeEdit.Image = global::AgOpenGPS.Properties.Resources.JobNameTime;
             this.btnAddTimeEdit.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnAddTimeEdit.Location = new System.Drawing.Point(87, 133);
             this.btnAddTimeEdit.Name = "btnAddTimeEdit";

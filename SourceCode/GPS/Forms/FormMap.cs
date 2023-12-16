@@ -39,7 +39,7 @@ namespace AgOpenGPS
             mapControl.Tracks.Add(bingLine);
         }
 
-        private void FormHeadland_Load(object sender, EventArgs e)
+        private void FormMap_Load(object sender, EventArgs e)
         {
             mapControl.ZoomLevel = 15;//mapControl
             mapControl.Center = new GeoPoint((float)mf.pn.longitude, (float)mf.pn.latitude);
@@ -63,7 +63,7 @@ namespace AgOpenGPS
             else cboxDrawMap.Image = Properties.Resources.MappingOff;
         }
 
-        private void FormHeadland_FormClosing(object sender, FormClosingEventArgs e)
+        private void FormMap_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!isClosing)
             {

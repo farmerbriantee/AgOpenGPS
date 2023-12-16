@@ -142,9 +142,6 @@
   <data name="ConS_VehicleLines" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Config\ConS_VehicleLines.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="BoundaryCurveLineInner" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\BoundaryCurveLineInner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SemiCircle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\SemiCircle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -192,9 +189,6 @@
   </data>
   <data name="VehFileLoad" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\VehFileLoad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="WindowRestore" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\Config\WindowRestore.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ConU_UturnRadius" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Config\ConU_UturnRadius.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -355,9 +349,6 @@
   <data name="HeadlandOff" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\HeadlandOff.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ConT_TramBBuffOn" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\Config\ConT_TramBBuffOn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ConSt_InvertRelay" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Config\ConSt_InvertRelay.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -390,9 +381,6 @@
   </data>
   <data name="ConF_HydLiftSound" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Config\ConF_HydLiftSound.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ConT_Inner" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\Config\ConT_Inner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ConV_MaxAngVel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Config\ConV_MaxAngVel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -535,9 +523,6 @@
   <data name="Settings48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Settings48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SnapRightHalf" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\SnapRightHalf.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="z_TractorUrsus" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Config\Tractor\z_TractorUrsus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -673,9 +658,6 @@
   <data name="HeadlandOn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\HeadlandOn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Camera54" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\Camera54.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="HydUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HydUp.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -712,9 +694,6 @@
   <data name="MapColor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\MapColor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ConSt_SteerForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\Config\ConSt_SteerForm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="CameraNorth64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\CameraNorth64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -727,14 +706,8 @@
   <data name="Con_ModulesMenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Config\Con_ModulesMenu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="KeyHole" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\KeyHole.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Con_SourcesHead" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Config\Con_SourcesHead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MakeBoundary" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\MakeBoundary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BoundaryLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\BoundaryLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -813,9 +786,6 @@
   </data>
   <data name="boundaryStop" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\boundaryStop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ConT_Outer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\Config\ConT_Outer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AutoStop" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\AutoStop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -988,9 +958,6 @@
   <data name="ABLineOn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\ABLineOn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="LatLon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\LatLon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ConV_MinAutoSteer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Config\ConV_MinAutoSteer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1078,9 +1045,6 @@
   <data name="z_HarvesterJD" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Config\Harvester\z_HarvesterJD.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ZeroPitchRoll" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\ZeroPitchRoll.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="TramLines" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\TramLines.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1116,9 +1080,6 @@
   </data>
   <data name="OK64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\OK64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Time" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\Time.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="z_TractorMassey" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Config\Tractor\z_TractorMassey.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -1225,9 +1186,6 @@
   <data name="z_TractorSteyr" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Config\Tractor\z_TractorSteyr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ConU_UturnStepDistance" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\Config\ConU_UturnStepDistance.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ContourOn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\ContourOn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1284,5 +1242,14 @@
   </data>
   <data name="ConS_Pins" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Config\ConS_Pins.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LatLon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\LatLon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WindowRestore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\Config\WindowRestore.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SnapRightHalf" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\SnapRightHalf.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

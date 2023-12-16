@@ -401,7 +401,7 @@
             // tabSteer
             // 
             this.tabSteer.AutoScroll = true;
-            this.tabSteer.BackColor = System.Drawing.Color.Gainsboro;
+            this.tabSteer.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tabSteer.BackgroundImage = global::AgOpenGPS.Properties.Resources.Sf_SteerTab;
             this.tabSteer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.tabSteer.Controls.Add(this.label23);

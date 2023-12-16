@@ -167,44 +167,44 @@ namespace AgOpenGPS
         private void btnVehicle_Click(object sender, EventArgs e)
         {
             ShowSubMenu(panelVehicleSubMenu, btnVehicle);
-            btnSubVehicleType.BackColor = Color.Gold;
+            btnSubVehicleType.BackColor = SystemColors.GradientActiveCaption;
             lblCurrentVehicle.Text = gStr.gsCurrent + mf.vehicleFileName;
             UpdateVehicleListView();
         }
 
         private void ClearVehicleSubBackgrounds()
         {
-            btnSubVehicleType.BackColor = Color.FloralWhite;
-            btnSubAntenna.BackColor = Color.FloralWhite;
-            btnSubDimensions.BackColor = Color.FloralWhite;
-            btnSubGuidance.BackColor = Color.FloralWhite;
+            btnSubVehicleType.BackColor = SystemColors.GradientInactiveCaption;
+            btnSubAntenna.BackColor = SystemColors.GradientInactiveCaption;
+            btnSubDimensions.BackColor = SystemColors.GradientInactiveCaption;
+            btnSubGuidance.BackColor = SystemColors.GradientInactiveCaption;
         }
         private void btnSubVehicleType_Click(object sender, EventArgs e)
         {
             ClearVehicleSubBackgrounds();
             tab1.SelectedTab = tabVConfig;
-            btnSubVehicleType.BackColor = Color.Gold;
+            btnSubVehicleType.BackColor = SystemColors.GradientActiveCaption;
         }
 
         private void btnSubDimensions_Click(object sender, EventArgs e)
         {
             ClearVehicleSubBackgrounds();
             tab1.SelectedTab = tabVDimensions;
-            btnSubDimensions.BackColor = Color.Gold;
+            btnSubDimensions.BackColor = SystemColors.GradientActiveCaption;
         }
 
         private void btnSubAntenna_Click(object sender, EventArgs e)
         {
             ClearVehicleSubBackgrounds();
             tab1.SelectedTab = tabVAntenna;
-            btnSubAntenna.BackColor = Color.Gold;
+            btnSubAntenna.BackColor = SystemColors.GradientActiveCaption;
         }
 
         private void btnSubGuidance_Click(object sender, EventArgs e)
         {
             ClearVehicleSubBackgrounds();
             tab1.SelectedTab = tabVGuidance;
-            btnSubGuidance.BackColor = Color.Gold;               
+            btnSubGuidance.BackColor = SystemColors.GradientActiveCaption;               
         }
 
         #endregion Region
@@ -246,52 +246,52 @@ namespace AgOpenGPS
             }
 
             ShowSubMenu(panelToolSubMenu, btnTool);
-            btnSubToolType.BackColor=Color.Gold;
+            btnSubToolType.BackColor=SystemColors.GradientActiveCaption;
             UpdateVehicleListView();
         }
 
         private void ClearToolSubBackgrounds()
         {
-            btnSubToolType.BackColor = Color.FloralWhite;
-            btnSubHitch.BackColor = Color.FloralWhite;
-            btnSubSections.BackColor = Color.FloralWhite;
-            btnSubSwitches.BackColor = Color.FloralWhite;
-            btnSubToolSettings.BackColor = Color.FloralWhite;
+            btnSubToolType.BackColor = SystemColors.GradientInactiveCaption;
+            btnSubHitch.BackColor = SystemColors.GradientInactiveCaption;
+            btnSubSections.BackColor = SystemColors.GradientInactiveCaption;
+            btnSubSwitches.BackColor = SystemColors.GradientInactiveCaption;
+            btnSubToolSettings.BackColor = SystemColors.GradientInactiveCaption;
         }
 
         private void btnSubToolType_Click(object sender, EventArgs e)
         {
             ClearToolSubBackgrounds();
             tab1.SelectedTab = tabTConfig;
-            btnSubToolType.BackColor = Color.Gold;
+            btnSubToolType.BackColor = SystemColors.GradientActiveCaption;
         }
 
         private void btnSubHitch_Click(object sender, EventArgs e)
         {
             ClearToolSubBackgrounds();
             tab1.SelectedTab = tabTHitch;
-            btnSubHitch.BackColor= Color.Gold;
+            btnSubHitch.BackColor= SystemColors.GradientActiveCaption;
         }
 
         private void btnSubSections_Click(object sender, EventArgs e)
         {
             ClearToolSubBackgrounds();
             tab1.SelectedTab = tabTSections;
-            btnSubSections.BackColor= Color.Gold;
+            btnSubSections.BackColor= SystemColors.GradientActiveCaption;
         }
 
         private void btnSubSwitches_Click(object sender, EventArgs e)
         {
             ClearToolSubBackgrounds();
             tab1.SelectedTab = tabTSwitches;
-            btnSubSwitches .BackColor = Color.Gold;
+            btnSubSwitches .BackColor = SystemColors.GradientActiveCaption;
         }
 
         private void btnSubToolSettings_Click(object sender, EventArgs e)
         {
             ClearToolSubBackgrounds();
             tab1.SelectedTab = tabTSettings;
-            btnSubToolSettings.BackColor = Color.Gold;
+            btnSubToolSettings.BackColor = SystemColors.GradientActiveCaption;
         }
         #endregion
 
@@ -299,13 +299,13 @@ namespace AgOpenGPS
 
         private void ClearDataSubBackgrounds()
         {
-            btnSubHeading.BackColor = Color.FloralWhite;
-            btnSubRoll.BackColor = Color.FloralWhite;
+            btnSubHeading.BackColor = SystemColors.GradientInactiveCaption;
+            btnSubRoll.BackColor = SystemColors.GradientInactiveCaption;
         }
         private void btnDataSources_Click(object sender, EventArgs e)
         {
             ShowSubMenu(panelDataSourcesSubMenu, btnDataSources);
-            btnSubHeading.BackColor=Color.Gold;
+            btnSubHeading.BackColor=SystemColors.GradientActiveCaption;
             UpdateVehicleListView();
         }
 
@@ -313,14 +313,14 @@ namespace AgOpenGPS
         {
             ClearDataSubBackgrounds();
             tab1.SelectedTab = tabDHeading;
-            btnSubHeading.BackColor=Color.Gold;
+            btnSubHeading.BackColor=SystemColors.GradientActiveCaption;
         }
 
         private void btnSubRoll_Click(object sender, EventArgs e)
         {
             ClearDataSubBackgrounds();
             tab1.SelectedTab = tabDRoll;
-            btnSubRoll.BackColor=Color.Gold;
+            btnSubRoll.BackColor=SystemColors.GradientActiveCaption;
         }
 
         #endregion
@@ -328,14 +328,14 @@ namespace AgOpenGPS
         #region Module
         private void ClearMachineSubBackgrounds()
         {
-            btnMachineModule.BackColor = Color.FloralWhite;
-            btnMachineRelay.BackColor = Color.FloralWhite;
+            btnMachineModule.BackColor = SystemColors.GradientInactiveCaption;
+            btnMachineRelay.BackColor = SystemColors.GradientInactiveCaption;
         }
 
         private void btnArduino_Click(object sender, EventArgs e)
         {
             ShowSubMenu(panelArduinoSubMenu, btnArduino);
-            btnMachineModule.BackColor = Color.Gold;
+            btnMachineModule.BackColor = SystemColors.GradientActiveCaption;
             lblCurrentVehicle.Text = gStr.gsCurrent + mf.vehicleFileName;
             UpdateVehicleListView();
         }
@@ -344,14 +344,14 @@ namespace AgOpenGPS
         {
             ClearMachineSubBackgrounds();
             tab1.SelectedTab = tabAMachine;
-            btnMachineModule.BackColor = Color.Gold;
+            btnMachineModule.BackColor = SystemColors.GradientActiveCaption;
         }
 
         private void btnMachineRelay_Click(object sender, EventArgs e)
         {
             ClearMachineSubBackgrounds();
             tab1.SelectedTab = tabRelay;
-            btnMachineRelay.BackColor= Color.Gold;
+            btnMachineRelay.BackColor= SystemColors.GradientActiveCaption;
         }
         #endregion
     }

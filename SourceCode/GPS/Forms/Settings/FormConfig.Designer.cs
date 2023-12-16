@@ -57,7 +57,6 @@
             this.btnSubDimensions = new System.Windows.Forms.Button();
             this.btnSubVehicleType = new System.Windows.Forms.Button();
             this.btnVehicle = new System.Windows.Forms.Button();
-            this.panelChildForm = new System.Windows.Forms.Panel();
             this.tab1 = new System.Windows.Forms.TabControl();
             this.tabSummary = new System.Windows.Forms.TabPage();
             this.label172 = new System.Windows.Forms.Label();
@@ -74,8 +73,6 @@
             this.label168 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.lblSummaryVehicleName = new System.Windows.Forms.Label();
             this.label57 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -85,6 +82,8 @@
             this.chVehicle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tboxVehicleNameSave = new System.Windows.Forms.TextBox();
             this.btnVehicleSave = new System.Windows.Forms.Button();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.tabVConfig = new System.Windows.Forms.TabPage();
             this.lblOpacityPercent = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -551,7 +550,6 @@
             this.panelDataSourcesSubMenu.SuspendLayout();
             this.panelToolSubMenu.SuspendLayout();
             this.panelVehicleSubMenu.SuspendLayout();
-            this.panelChildForm.SuspendLayout();
             this.tab1.SuspendLayout();
             this.tabSummary.SuspendLayout();
             this.tabVConfig.SuspendLayout();
@@ -691,7 +689,7 @@
             this.panelLeftSideMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeftSideMenu.Location = new System.Drawing.Point(4, 4);
             this.panelLeftSideMenu.Name = "panelLeftSideMenu";
-            this.panelLeftSideMenu.Size = new System.Drawing.Size(111, 707);
+            this.panelLeftSideMenu.Size = new System.Drawing.Size(120, 707);
             this.panelLeftSideMenu.TabIndex = 110;
             // 
             // btnDisplay
@@ -705,10 +703,10 @@
             this.btnDisplay.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnDisplay.Image = global::AgOpenGPS.Properties.Resources.Con_Display;
             this.btnDisplay.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDisplay.Location = new System.Drawing.Point(0, 1493);
+            this.btnDisplay.Location = new System.Drawing.Point(0, 1490);
             this.btnDisplay.Name = "btnDisplay";
             this.btnDisplay.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnDisplay.Size = new System.Drawing.Size(111, 78);
+            this.btnDisplay.Size = new System.Drawing.Size(120, 78);
             this.btnDisplay.TabIndex = 2;
             this.btnDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDisplay.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -726,10 +724,10 @@
             this.btnFeatureHides.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnFeatureHides.Image = global::AgOpenGPS.Properties.Resources.Con_FeatureMenu;
             this.btnFeatureHides.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFeatureHides.Location = new System.Drawing.Point(0, 1418);
+            this.btnFeatureHides.Location = new System.Drawing.Point(0, 1415);
             this.btnFeatureHides.Name = "btnFeatureHides";
             this.btnFeatureHides.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnFeatureHides.Size = new System.Drawing.Size(111, 75);
+            this.btnFeatureHides.Size = new System.Drawing.Size(120, 75);
             this.btnFeatureHides.TabIndex = 4;
             this.btnFeatureHides.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFeatureHides.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -747,10 +745,10 @@
             this.btnTram.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnTram.Image = global::AgOpenGPS.Properties.Resources.Con_TramMenu;
             this.btnTram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTram.Location = new System.Drawing.Point(0, 1343);
+            this.btnTram.Location = new System.Drawing.Point(0, 1340);
             this.btnTram.Name = "btnTram";
             this.btnTram.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnTram.Size = new System.Drawing.Size(111, 75);
+            this.btnTram.Size = new System.Drawing.Size(120, 75);
             this.btnTram.TabIndex = 3;
             this.btnTram.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTram.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -763,14 +761,14 @@
             this.panelArduinoSubMenu.Controls.Add(this.btnMachineRelay);
             this.panelArduinoSubMenu.Controls.Add(this.btnMachineModule);
             this.panelArduinoSubMenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelArduinoSubMenu.Location = new System.Drawing.Point(0, 1183);
+            this.panelArduinoSubMenu.Location = new System.Drawing.Point(0, 1180);
             this.panelArduinoSubMenu.Name = "panelArduinoSubMenu";
-            this.panelArduinoSubMenu.Size = new System.Drawing.Size(111, 160);
+            this.panelArduinoSubMenu.Size = new System.Drawing.Size(120, 160);
             this.panelArduinoSubMenu.TabIndex = 116;
             // 
             // btnMachineRelay
             // 
-            this.btnMachineRelay.BackColor = System.Drawing.Color.FloralWhite;
+            this.btnMachineRelay.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnMachineRelay.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnMachineRelay.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnMachineRelay.FlatAppearance.BorderSize = 0;
@@ -782,7 +780,7 @@
             this.btnMachineRelay.Location = new System.Drawing.Point(0, 80);
             this.btnMachineRelay.Name = "btnMachineRelay";
             this.btnMachineRelay.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnMachineRelay.Size = new System.Drawing.Size(111, 80);
+            this.btnMachineRelay.Size = new System.Drawing.Size(120, 80);
             this.btnMachineRelay.TabIndex = 3;
             this.btnMachineRelay.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMachineRelay.UseVisualStyleBackColor = false;
@@ -790,7 +788,7 @@
             // 
             // btnMachineModule
             // 
-            this.btnMachineModule.BackColor = System.Drawing.Color.FloralWhite;
+            this.btnMachineModule.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnMachineModule.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnMachineModule.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnMachineModule.FlatAppearance.BorderSize = 0;
@@ -802,7 +800,7 @@
             this.btnMachineModule.Location = new System.Drawing.Point(0, 0);
             this.btnMachineModule.Name = "btnMachineModule";
             this.btnMachineModule.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnMachineModule.Size = new System.Drawing.Size(111, 80);
+            this.btnMachineModule.Size = new System.Drawing.Size(120, 80);
             this.btnMachineModule.TabIndex = 1;
             this.btnMachineModule.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMachineModule.UseVisualStyleBackColor = false;
@@ -819,10 +817,10 @@
             this.btnArduino.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnArduino.Image = global::AgOpenGPS.Properties.Resources.Con_ModulesMenu;
             this.btnArduino.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnArduino.Location = new System.Drawing.Point(0, 1111);
+            this.btnArduino.Location = new System.Drawing.Point(0, 1108);
             this.btnArduino.Name = "btnArduino";
             this.btnArduino.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnArduino.Size = new System.Drawing.Size(111, 72);
+            this.btnArduino.Size = new System.Drawing.Size(120, 72);
             this.btnArduino.TabIndex = 115;
             this.btnArduino.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnArduino.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -840,10 +838,10 @@
             this.btnUTurn.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnUTurn.Image = global::AgOpenGPS.Properties.Resources.Con_UTurnMenu;
             this.btnUTurn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUTurn.Location = new System.Drawing.Point(0, 1036);
+            this.btnUTurn.Location = new System.Drawing.Point(0, 1033);
             this.btnUTurn.Name = "btnUTurn";
             this.btnUTurn.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnUTurn.Size = new System.Drawing.Size(111, 75);
+            this.btnUTurn.Size = new System.Drawing.Size(120, 75);
             this.btnUTurn.TabIndex = 116;
             this.btnUTurn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUTurn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -856,14 +854,14 @@
             this.panelDataSourcesSubMenu.Controls.Add(this.btnSubRoll);
             this.panelDataSourcesSubMenu.Controls.Add(this.btnSubHeading);
             this.panelDataSourcesSubMenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelDataSourcesSubMenu.Location = new System.Drawing.Point(0, 874);
+            this.panelDataSourcesSubMenu.Location = new System.Drawing.Point(0, 873);
             this.panelDataSourcesSubMenu.Name = "panelDataSourcesSubMenu";
-            this.panelDataSourcesSubMenu.Size = new System.Drawing.Size(111, 162);
+            this.panelDataSourcesSubMenu.Size = new System.Drawing.Size(120, 160);
             this.panelDataSourcesSubMenu.TabIndex = 7;
             // 
             // btnSubRoll
             // 
-            this.btnSubRoll.BackColor = System.Drawing.Color.FloralWhite;
+            this.btnSubRoll.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnSubRoll.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnSubRoll.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnSubRoll.FlatAppearance.BorderSize = 0;
@@ -875,7 +873,7 @@
             this.btnSubRoll.Location = new System.Drawing.Point(0, 80);
             this.btnSubRoll.Name = "btnSubRoll";
             this.btnSubRoll.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubRoll.Size = new System.Drawing.Size(111, 80);
+            this.btnSubRoll.Size = new System.Drawing.Size(120, 80);
             this.btnSubRoll.TabIndex = 0;
             this.btnSubRoll.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubRoll.UseVisualStyleBackColor = false;
@@ -883,7 +881,7 @@
             // 
             // btnSubHeading
             // 
-            this.btnSubHeading.BackColor = System.Drawing.Color.FloralWhite;
+            this.btnSubHeading.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnSubHeading.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnSubHeading.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnSubHeading.FlatAppearance.BorderSize = 0;
@@ -895,7 +893,7 @@
             this.btnSubHeading.Location = new System.Drawing.Point(0, 0);
             this.btnSubHeading.Name = "btnSubHeading";
             this.btnSubHeading.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnSubHeading.Size = new System.Drawing.Size(111, 80);
+            this.btnSubHeading.Size = new System.Drawing.Size(120, 80);
             this.btnSubHeading.TabIndex = 1;
             this.btnSubHeading.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubHeading.UseVisualStyleBackColor = false;
@@ -912,10 +910,10 @@
             this.btnDataSources.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnDataSources.Image = global::AgOpenGPS.Properties.Resources.Con_SourcesMenu;
             this.btnDataSources.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDataSources.Location = new System.Drawing.Point(0, 799);
+            this.btnDataSources.Location = new System.Drawing.Point(0, 798);
             this.btnDataSources.Name = "btnDataSources";
             this.btnDataSources.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnDataSources.Size = new System.Drawing.Size(111, 75);
+            this.btnDataSources.Size = new System.Drawing.Size(120, 75);
             this.btnDataSources.TabIndex = 114;
             this.btnDataSources.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDataSources.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -924,21 +922,21 @@
             // 
             // panelToolSubMenu
             // 
-            this.panelToolSubMenu.BackColor = System.Drawing.Color.FloralWhite;
+            this.panelToolSubMenu.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.panelToolSubMenu.Controls.Add(this.btnSubSwitches);
             this.panelToolSubMenu.Controls.Add(this.btnSubToolSettings);
             this.panelToolSubMenu.Controls.Add(this.btnSubSections);
             this.panelToolSubMenu.Controls.Add(this.btnSubHitch);
             this.panelToolSubMenu.Controls.Add(this.btnSubToolType);
             this.panelToolSubMenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelToolSubMenu.Location = new System.Drawing.Point(0, 439);
+            this.panelToolSubMenu.Location = new System.Drawing.Point(0, 438);
             this.panelToolSubMenu.Name = "panelToolSubMenu";
-            this.panelToolSubMenu.Size = new System.Drawing.Size(111, 360);
+            this.panelToolSubMenu.Size = new System.Drawing.Size(120, 360);
             this.panelToolSubMenu.TabIndex = 4;
             // 
             // btnSubSwitches
             // 
-            this.btnSubSwitches.BackColor = System.Drawing.Color.FloralWhite;
+            this.btnSubSwitches.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnSubSwitches.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnSubSwitches.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnSubSwitches.FlatAppearance.BorderSize = 0;
@@ -950,7 +948,7 @@
             this.btnSubSwitches.Location = new System.Drawing.Point(0, 288);
             this.btnSubSwitches.Name = "btnSubSwitches";
             this.btnSubSwitches.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubSwitches.Size = new System.Drawing.Size(111, 72);
+            this.btnSubSwitches.Size = new System.Drawing.Size(120, 72);
             this.btnSubSwitches.TabIndex = 1;
             this.btnSubSwitches.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubSwitches.UseVisualStyleBackColor = false;
@@ -958,7 +956,7 @@
             // 
             // btnSubToolSettings
             // 
-            this.btnSubToolSettings.BackColor = System.Drawing.Color.FloralWhite;
+            this.btnSubToolSettings.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnSubToolSettings.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnSubToolSettings.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnSubToolSettings.FlatAppearance.BorderSize = 0;
@@ -970,7 +968,7 @@
             this.btnSubToolSettings.Location = new System.Drawing.Point(0, 216);
             this.btnSubToolSettings.Name = "btnSubToolSettings";
             this.btnSubToolSettings.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnSubToolSettings.Size = new System.Drawing.Size(111, 72);
+            this.btnSubToolSettings.Size = new System.Drawing.Size(120, 72);
             this.btnSubToolSettings.TabIndex = 4;
             this.btnSubToolSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubToolSettings.UseVisualStyleBackColor = false;
@@ -978,7 +976,7 @@
             // 
             // btnSubSections
             // 
-            this.btnSubSections.BackColor = System.Drawing.Color.FloralWhite;
+            this.btnSubSections.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnSubSections.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnSubSections.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnSubSections.FlatAppearance.BorderSize = 0;
@@ -990,7 +988,7 @@
             this.btnSubSections.Location = new System.Drawing.Point(0, 144);
             this.btnSubSections.Name = "btnSubSections";
             this.btnSubSections.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubSections.Size = new System.Drawing.Size(111, 72);
+            this.btnSubSections.Size = new System.Drawing.Size(120, 72);
             this.btnSubSections.TabIndex = 0;
             this.btnSubSections.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubSections.UseVisualStyleBackColor = false;
@@ -998,7 +996,7 @@
             // 
             // btnSubHitch
             // 
-            this.btnSubHitch.BackColor = System.Drawing.Color.FloralWhite;
+            this.btnSubHitch.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnSubHitch.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnSubHitch.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnSubHitch.FlatAppearance.BorderSize = 0;
@@ -1010,7 +1008,7 @@
             this.btnSubHitch.Location = new System.Drawing.Point(0, 72);
             this.btnSubHitch.Name = "btnSubHitch";
             this.btnSubHitch.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnSubHitch.Size = new System.Drawing.Size(111, 72);
+            this.btnSubHitch.Size = new System.Drawing.Size(120, 72);
             this.btnSubHitch.TabIndex = 5;
             this.btnSubHitch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubHitch.UseVisualStyleBackColor = false;
@@ -1018,7 +1016,7 @@
             // 
             // btnSubToolType
             // 
-            this.btnSubToolType.BackColor = System.Drawing.Color.FloralWhite;
+            this.btnSubToolType.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnSubToolType.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnSubToolType.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnSubToolType.FlatAppearance.BorderSize = 0;
@@ -1030,7 +1028,7 @@
             this.btnSubToolType.Location = new System.Drawing.Point(0, 0);
             this.btnSubToolType.Name = "btnSubToolType";
             this.btnSubToolType.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubToolType.Size = new System.Drawing.Size(111, 72);
+            this.btnSubToolType.Size = new System.Drawing.Size(120, 72);
             this.btnSubToolType.TabIndex = 6;
             this.btnSubToolType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubToolType.UseVisualStyleBackColor = false;
@@ -1047,10 +1045,10 @@
             this.btnTool.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnTool.Image = global::AgOpenGPS.Properties.Resources.Con_ImplementMenu;
             this.btnTool.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTool.Location = new System.Drawing.Point(0, 364);
+            this.btnTool.Location = new System.Drawing.Point(0, 363);
             this.btnTool.Name = "btnTool";
             this.btnTool.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.btnTool.Size = new System.Drawing.Size(111, 75);
+            this.btnTool.Size = new System.Drawing.Size(120, 75);
             this.btnTool.TabIndex = 3;
             this.btnTool.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTool.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -1068,7 +1066,7 @@
             this.panelVehicleSubMenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelVehicleSubMenu.Location = new System.Drawing.Point(0, 75);
             this.panelVehicleSubMenu.Name = "panelVehicleSubMenu";
-            this.panelVehicleSubMenu.Size = new System.Drawing.Size(111, 289);
+            this.panelVehicleSubMenu.Size = new System.Drawing.Size(120, 288);
             this.panelVehicleSubMenu.TabIndex = 2;
             // 
             // button1
@@ -1089,7 +1087,7 @@
             // 
             // btnSubGuidance
             // 
-            this.btnSubGuidance.BackColor = System.Drawing.Color.LightPink;
+            this.btnSubGuidance.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnSubGuidance.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnSubGuidance.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnSubGuidance.FlatAppearance.BorderSize = 0;
@@ -1101,7 +1099,7 @@
             this.btnSubGuidance.Location = new System.Drawing.Point(0, 216);
             this.btnSubGuidance.Name = "btnSubGuidance";
             this.btnSubGuidance.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnSubGuidance.Size = new System.Drawing.Size(111, 72);
+            this.btnSubGuidance.Size = new System.Drawing.Size(120, 72);
             this.btnSubGuidance.TabIndex = 3;
             this.btnSubGuidance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubGuidance.UseVisualStyleBackColor = false;
@@ -1109,7 +1107,7 @@
             // 
             // btnSubAntenna
             // 
-            this.btnSubAntenna.BackColor = System.Drawing.Color.LightBlue;
+            this.btnSubAntenna.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnSubAntenna.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnSubAntenna.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnSubAntenna.FlatAppearance.BorderSize = 0;
@@ -1121,7 +1119,7 @@
             this.btnSubAntenna.Location = new System.Drawing.Point(0, 144);
             this.btnSubAntenna.Name = "btnSubAntenna";
             this.btnSubAntenna.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubAntenna.Size = new System.Drawing.Size(111, 72);
+            this.btnSubAntenna.Size = new System.Drawing.Size(120, 72);
             this.btnSubAntenna.TabIndex = 2;
             this.btnSubAntenna.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubAntenna.UseVisualStyleBackColor = false;
@@ -1129,7 +1127,7 @@
             // 
             // btnSubDimensions
             // 
-            this.btnSubDimensions.BackColor = System.Drawing.Color.PaleGreen;
+            this.btnSubDimensions.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnSubDimensions.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnSubDimensions.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnSubDimensions.FlatAppearance.BorderSize = 0;
@@ -1141,7 +1139,7 @@
             this.btnSubDimensions.Location = new System.Drawing.Point(0, 72);
             this.btnSubDimensions.Name = "btnSubDimensions";
             this.btnSubDimensions.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnSubDimensions.Size = new System.Drawing.Size(111, 72);
+            this.btnSubDimensions.Size = new System.Drawing.Size(120, 72);
             this.btnSubDimensions.TabIndex = 1;
             this.btnSubDimensions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubDimensions.UseVisualStyleBackColor = false;
@@ -1149,7 +1147,7 @@
             // 
             // btnSubVehicleType
             // 
-            this.btnSubVehicleType.BackColor = System.Drawing.Color.Gold;
+            this.btnSubVehicleType.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnSubVehicleType.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnSubVehicleType.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnSubVehicleType.FlatAppearance.BorderSize = 0;
@@ -1161,7 +1159,7 @@
             this.btnSubVehicleType.Location = new System.Drawing.Point(0, 0);
             this.btnSubVehicleType.Name = "btnSubVehicleType";
             this.btnSubVehicleType.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubVehicleType.Size = new System.Drawing.Size(111, 72);
+            this.btnSubVehicleType.Size = new System.Drawing.Size(120, 72);
             this.btnSubVehicleType.TabIndex = 0;
             this.btnSubVehicleType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubVehicleType.UseVisualStyleBackColor = false;
@@ -1181,23 +1179,12 @@
             this.btnVehicle.Location = new System.Drawing.Point(0, 0);
             this.btnVehicle.Name = "btnVehicle";
             this.btnVehicle.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.btnVehicle.Size = new System.Drawing.Size(111, 75);
+            this.btnVehicle.Size = new System.Drawing.Size(120, 75);
             this.btnVehicle.TabIndex = 113;
             this.btnVehicle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnVehicle.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVehicle.UseVisualStyleBackColor = false;
             this.btnVehicle.Click += new System.EventHandler(this.btnVehicle_Click);
-            // 
-            // panelChildForm
-            // 
-            this.panelChildForm.AutoScroll = true;
-            this.panelChildForm.BackColor = System.Drawing.Color.Aqua;
-            this.panelChildForm.Controls.Add(this.tab1);
-            this.panelChildForm.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelChildForm.Location = new System.Drawing.Point(115, 4);
-            this.panelChildForm.Name = "panelChildForm";
-            this.panelChildForm.Size = new System.Drawing.Size(866, 636);
-            this.panelChildForm.TabIndex = 111;
             // 
             // tab1
             // 
@@ -1220,12 +1207,13 @@
             this.tab1.Controls.Add(this.tabTram);
             this.tab1.Controls.Add(this.tabBtns);
             this.tab1.Controls.Add(this.tabDisplay);
+            this.tab1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tab1.ItemSize = new System.Drawing.Size(60, 40);
-            this.tab1.Location = new System.Drawing.Point(5, 1);
+            this.tab1.Location = new System.Drawing.Point(124, 4);
             this.tab1.Name = "tab1";
             this.tab1.Padding = new System.Drawing.Point(0, 0);
             this.tab1.SelectedIndex = 0;
-            this.tab1.Size = new System.Drawing.Size(860, 633);
+            this.tab1.Size = new System.Drawing.Size(861, 632);
             this.tab1.TabIndex = 0;
             // 
             // tabSummary
@@ -1245,8 +1233,6 @@
             this.tabSummary.Controls.Add(this.label168);
             this.tabSummary.Controls.Add(this.label23);
             this.tabSummary.Controls.Add(this.label11);
-            this.tabSummary.Controls.Add(this.label29);
-            this.tabSummary.Controls.Add(this.label3);
             this.tabSummary.Controls.Add(this.lblSummaryVehicleName);
             this.tabSummary.Controls.Add(this.label57);
             this.tabSummary.Controls.Add(this.label13);
@@ -1255,11 +1241,13 @@
             this.tabSummary.Controls.Add(this.lvVehicles);
             this.tabSummary.Controls.Add(this.tboxVehicleNameSave);
             this.tabSummary.Controls.Add(this.btnVehicleSave);
-            this.tabSummary.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.tabSummary.Controls.Add(this.label29);
+            this.tabSummary.Controls.Add(this.label3);
+            this.tabSummary.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.tabSummary.Location = new System.Drawing.Point(4, 44);
             this.tabSummary.Name = "tabSummary";
             this.tabSummary.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSummary.Size = new System.Drawing.Size(852, 585);
+            this.tabSummary.Size = new System.Drawing.Size(853, 584);
             this.tabSummary.TabIndex = 0;
             this.tabSummary.Text = "tSum";
             this.tabSummary.Enter += new System.EventHandler(this.tabSummary_Enter);
@@ -1267,11 +1255,11 @@
             // 
             // label172
             // 
-            this.label172.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label172.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label172.BackColor = System.Drawing.Color.Transparent;
             this.label172.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label172.ForeColor = System.Drawing.Color.DimGray;
-            this.label172.Location = new System.Drawing.Point(0, 188);
+            this.label172.Location = new System.Drawing.Point(3, 188);
             this.label172.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label172.Name = "label172";
             this.label172.Size = new System.Drawing.Size(120, 32);
@@ -1281,11 +1269,11 @@
             // 
             // lblOverlap
             // 
-            this.lblOverlap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblOverlap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblOverlap.BackColor = System.Drawing.Color.Transparent;
             this.lblOverlap.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOverlap.ForeColor = System.Drawing.Color.Black;
-            this.lblOverlap.Location = new System.Drawing.Point(118, 194);
+            this.lblOverlap.Location = new System.Drawing.Point(121, 194);
             this.lblOverlap.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblOverlap.Name = "lblOverlap";
             this.lblOverlap.Size = new System.Drawing.Size(114, 23);
@@ -1295,11 +1283,11 @@
             // 
             // label171
             // 
-            this.label171.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label171.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label171.BackColor = System.Drawing.Color.Transparent;
             this.label171.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label171.ForeColor = System.Drawing.Color.DimGray;
-            this.label171.Location = new System.Drawing.Point(0, 220);
+            this.label171.Location = new System.Drawing.Point(3, 220);
             this.label171.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label171.Name = "label171";
             this.label171.Size = new System.Drawing.Size(120, 32);
@@ -1309,11 +1297,11 @@
             // 
             // lblLookahead
             // 
-            this.lblLookahead.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLookahead.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblLookahead.BackColor = System.Drawing.Color.Transparent;
             this.lblLookahead.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLookahead.ForeColor = System.Drawing.Color.Black;
-            this.lblLookahead.Location = new System.Drawing.Point(118, 224);
+            this.lblLookahead.Location = new System.Drawing.Point(121, 224);
             this.lblLookahead.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblLookahead.Name = "lblLookahead";
             this.lblLookahead.Size = new System.Drawing.Size(114, 23);
@@ -1323,11 +1311,11 @@
             // 
             // label170
             // 
-            this.label170.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label170.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label170.BackColor = System.Drawing.Color.Transparent;
             this.label170.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label170.ForeColor = System.Drawing.Color.DimGray;
-            this.label170.Location = new System.Drawing.Point(0, 156);
+            this.label170.Location = new System.Drawing.Point(3, 156);
             this.label170.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label170.Name = "label170";
             this.label170.Size = new System.Drawing.Size(120, 32);
@@ -1337,11 +1325,11 @@
             // 
             // lblToolOffset
             // 
-            this.lblToolOffset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblToolOffset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblToolOffset.BackColor = System.Drawing.Color.Transparent;
             this.lblToolOffset.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblToolOffset.ForeColor = System.Drawing.Color.Black;
-            this.lblToolOffset.Location = new System.Drawing.Point(118, 162);
+            this.lblToolOffset.Location = new System.Drawing.Point(121, 162);
             this.lblToolOffset.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblToolOffset.Name = "lblToolOffset";
             this.lblToolOffset.Size = new System.Drawing.Size(114, 23);
@@ -1351,11 +1339,11 @@
             // 
             // label169
             // 
-            this.label169.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label169.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label169.BackColor = System.Drawing.Color.Transparent;
             this.label169.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label169.ForeColor = System.Drawing.Color.DimGray;
-            this.label169.Location = new System.Drawing.Point(0, 322);
+            this.label169.Location = new System.Drawing.Point(3, 322);
             this.label169.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label169.Name = "label169";
             this.label169.Size = new System.Drawing.Size(120, 32);
@@ -1365,11 +1353,11 @@
             // 
             // lblUnits
             // 
-            this.lblUnits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUnits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblUnits.BackColor = System.Drawing.Color.Transparent;
             this.lblUnits.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUnits.ForeColor = System.Drawing.Color.Black;
-            this.lblUnits.Location = new System.Drawing.Point(118, 85);
+            this.lblUnits.Location = new System.Drawing.Point(121, 85);
             this.lblUnits.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblUnits.Name = "lblUnits";
             this.lblUnits.Size = new System.Drawing.Size(114, 23);
@@ -1379,25 +1367,25 @@
             // 
             // lblTramWidth
             // 
-            this.lblTramWidth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTramWidth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTramWidth.BackColor = System.Drawing.Color.Transparent;
             this.lblTramWidth.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTramWidth.ForeColor = System.Drawing.Color.Black;
-            this.lblTramWidth.Location = new System.Drawing.Point(118, 328);
+            this.lblTramWidth.Location = new System.Drawing.Point(121, 328);
             this.lblTramWidth.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblTramWidth.Name = "lblTramWidth";
-            this.lblTramWidth.Size = new System.Drawing.Size(134, 23);
+            this.lblTramWidth.Size = new System.Drawing.Size(122, 23);
             this.lblTramWidth.TabIndex = 509;
             this.lblTramWidth.Text = "2400 cm";
             this.lblTramWidth.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblNudgeDistance
             // 
-            this.lblNudgeDistance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNudgeDistance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblNudgeDistance.BackColor = System.Drawing.Color.Transparent;
             this.lblNudgeDistance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNudgeDistance.ForeColor = System.Drawing.Color.Black;
-            this.lblNudgeDistance.Location = new System.Drawing.Point(118, 276);
+            this.lblNudgeDistance.Location = new System.Drawing.Point(121, 276);
             this.lblNudgeDistance.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblNudgeDistance.Name = "lblNudgeDistance";
             this.lblNudgeDistance.Size = new System.Drawing.Size(114, 23);
@@ -1407,11 +1395,11 @@
             // 
             // lblSumNumSections
             // 
-            this.lblSumNumSections.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSumNumSections.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblSumNumSections.BackColor = System.Drawing.Color.Transparent;
             this.lblSumNumSections.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSumNumSections.ForeColor = System.Drawing.Color.Black;
-            this.lblSumNumSections.Location = new System.Drawing.Point(118, 134);
+            this.lblSumNumSections.Location = new System.Drawing.Point(121, 134);
             this.lblSumNumSections.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblSumNumSections.Name = "lblSumNumSections";
             this.lblSumNumSections.Size = new System.Drawing.Size(114, 23);
@@ -1421,11 +1409,11 @@
             // 
             // label168
             // 
-            this.label168.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label168.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label168.BackColor = System.Drawing.Color.Transparent;
             this.label168.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label168.ForeColor = System.Drawing.Color.DimGray;
-            this.label168.Location = new System.Drawing.Point(33, 84);
+            this.label168.Location = new System.Drawing.Point(36, 84);
             this.label168.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label168.Name = "label168";
             this.label168.Size = new System.Drawing.Size(90, 23);
@@ -1435,11 +1423,11 @@
             // 
             // label23
             // 
-            this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label23.BackColor = System.Drawing.Color.Transparent;
             this.label23.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.DimGray;
-            this.label23.Location = new System.Drawing.Point(30, 275);
+            this.label23.Location = new System.Drawing.Point(33, 275);
             this.label23.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(90, 23);
@@ -1449,11 +1437,11 @@
             // 
             // label11
             // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.DimGray;
-            this.label11.Location = new System.Drawing.Point(30, 133);
+            this.label11.Location = new System.Drawing.Point(33, 133);
             this.label11.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(90, 23);
@@ -1461,51 +1449,23 @@
             this.label11.Text = "Sections:";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label29
-            // 
-            this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label29.BackColor = System.Drawing.Color.Transparent;
-            this.label29.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.ForeColor = System.Drawing.Color.Black;
-            this.label29.Location = new System.Drawing.Point(163, 49);
-            this.label29.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(158, 23);
-            this.label29.TabIndex = 497;
-            this.label29.Text = "Save As:";
-            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(323, 14);
-            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 23);
-            this.label3.TabIndex = 504;
-            this.label3.Text = "Current:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // lblSummaryVehicleName
             // 
-            this.lblSummaryVehicleName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSummaryVehicleName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblSummaryVehicleName.BackColor = System.Drawing.Color.Transparent;
             this.lblSummaryVehicleName.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSummaryVehicleName.ForeColor = System.Drawing.Color.Black;
-            this.lblSummaryVehicleName.Location = new System.Drawing.Point(403, 13);
+            this.lblSummaryVehicleName.Location = new System.Drawing.Point(288, 13);
             this.lblSummaryVehicleName.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblSummaryVehicleName.Name = "lblSummaryVehicleName";
-            this.lblSummaryVehicleName.Size = new System.Drawing.Size(376, 23);
+            this.lblSummaryVehicleName.Size = new System.Drawing.Size(420, 23);
             this.lblSummaryVehicleName.TabIndex = 503;
             this.lblSummaryVehicleName.Text = "Vehicle Name";
             this.lblSummaryVehicleName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label57
             // 
+            this.label57.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label57.AutoSize = true;
             this.label57.BackColor = System.Drawing.Color.Transparent;
             this.label57.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1520,6 +1480,7 @@
             // 
             // label13
             // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1534,6 +1495,7 @@
             // 
             // btnVehicleLoad
             // 
+            this.btnVehicleLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnVehicleLoad.BackColor = System.Drawing.Color.Transparent;
             this.btnVehicleLoad.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnVehicleLoad.FlatAppearance.BorderSize = 0;
@@ -1551,6 +1513,7 @@
             // 
             // btnVehicleDelete
             // 
+            this.btnVehicleDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnVehicleDelete.BackColor = System.Drawing.Color.Transparent;
             this.btnVehicleDelete.FlatAppearance.BorderSize = 0;
             this.btnVehicleDelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Turquoise;
@@ -1567,7 +1530,7 @@
             // 
             // lvVehicles
             // 
-            this.lvVehicles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvVehicles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lvVehicles.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.lvVehicles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chVehicle});
@@ -1577,11 +1540,11 @@
             this.lvVehicles.HideSelection = false;
             this.lvVehicles.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.lvVehicles.LabelWrap = false;
-            this.lvVehicles.Location = new System.Drawing.Point(258, 63);
+            this.lvVehicles.Location = new System.Drawing.Point(249, 85);
             this.lvVehicles.Margin = new System.Windows.Forms.Padding(0);
             this.lvVehicles.MultiSelect = false;
             this.lvVehicles.Name = "lvVehicles";
-            this.lvVehicles.Size = new System.Drawing.Size(490, 507);
+            this.lvVehicles.Size = new System.Drawing.Size(512, 483);
             this.lvVehicles.TabIndex = 454;
             this.lvVehicles.TileSize = new System.Drawing.Size(490, 35);
             this.lvVehicles.UseCompatibleStateImageBehavior = false;
@@ -1595,10 +1558,10 @@
             // 
             // tboxVehicleNameSave
             // 
-            this.tboxVehicleNameSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tboxVehicleNameSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tboxVehicleNameSave.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.tboxVehicleNameSave.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxVehicleNameSave.Location = new System.Drawing.Point(324, 44);
+            this.tboxVehicleNameSave.Location = new System.Drawing.Point(287, 44);
             this.tboxVehicleNameSave.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxVehicleNameSave.Name = "tboxVehicleNameSave";
             this.tboxVehicleNameSave.Size = new System.Drawing.Size(424, 33);
@@ -1610,7 +1573,7 @@
             // 
             // btnVehicleSave
             // 
-            this.btnVehicleSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnVehicleSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnVehicleSave.BackColor = System.Drawing.Color.Transparent;
             this.btnVehicleSave.Enabled = false;
             this.btnVehicleSave.FlatAppearance.BorderSize = 0;
@@ -1618,13 +1581,42 @@
             this.btnVehicleSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVehicleSave.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.btnVehicleSave.Image = global::AgOpenGPS.Properties.Resources.VehFileSaveAs;
-            this.btnVehicleSave.Location = new System.Drawing.Point(775, 33);
+            this.btnVehicleSave.Location = new System.Drawing.Point(734, 25);
             this.btnVehicleSave.Name = "btnVehicleSave";
             this.btnVehicleSave.Size = new System.Drawing.Size(52, 52);
             this.btnVehicleSave.TabIndex = 457;
             this.btnVehicleSave.UseVisualStyleBackColor = false;
             this.btnVehicleSave.Click += new System.EventHandler(this.btnVehicleSave_Click);
             this.btnVehicleSave.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnVehicleSave_HelpRequested);
+            // 
+            // label29
+            // 
+            this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label29.BackColor = System.Drawing.Color.Transparent;
+            this.label29.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.ForeColor = System.Drawing.Color.Black;
+            this.label29.Location = new System.Drawing.Point(131, 49);
+            this.label29.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(158, 23);
+            this.label29.TabIndex = 497;
+            this.label29.Text = "Save As:";
+            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(209, 14);
+            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(80, 23);
+            this.label3.TabIndex = 504;
+            this.label3.Text = "Current:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tabVConfig
             // 
@@ -1642,7 +1634,7 @@
             this.tabVConfig.Controls.Add(this.cboxIsImage);
             this.tabVConfig.Location = new System.Drawing.Point(4, 44);
             this.tabVConfig.Name = "tabVConfig";
-            this.tabVConfig.Size = new System.Drawing.Size(852, 585);
+            this.tabVConfig.Size = new System.Drawing.Size(853, 584);
             this.tabVConfig.TabIndex = 4;
             this.tabVConfig.Text = "vConfig";
             this.tabVConfig.Enter += new System.EventHandler(this.tabVConfig_Enter);
@@ -2283,7 +2275,7 @@
             this.tabVAntenna.Controls.Add(this.pboxAntenna);
             this.tabVAntenna.Location = new System.Drawing.Point(4, 44);
             this.tabVAntenna.Name = "tabVAntenna";
-            this.tabVAntenna.Size = new System.Drawing.Size(852, 585);
+            this.tabVAntenna.Size = new System.Drawing.Size(853, 584);
             this.tabVAntenna.TabIndex = 12;
             this.tabVAntenna.Text = "vAnt";
             this.tabVAntenna.Enter += new System.EventHandler(this.tabVAntenna_Enter);
@@ -2387,7 +2379,7 @@
             this.tabVDimensions.Controls.Add(this.pictureBox1);
             this.tabVDimensions.Location = new System.Drawing.Point(4, 44);
             this.tabVDimensions.Name = "tabVDimensions";
-            this.tabVDimensions.Size = new System.Drawing.Size(852, 585);
+            this.tabVDimensions.Size = new System.Drawing.Size(853, 584);
             this.tabVDimensions.TabIndex = 13;
             this.tabVDimensions.Text = "vDim";
             this.tabVDimensions.Enter += new System.EventHandler(this.tabVDimensions_Enter);
@@ -2565,7 +2557,7 @@
             this.tabVGuidance.Controls.Add(this.pictureBox2);
             this.tabVGuidance.Location = new System.Drawing.Point(4, 44);
             this.tabVGuidance.Name = "tabVGuidance";
-            this.tabVGuidance.Size = new System.Drawing.Size(852, 585);
+            this.tabVGuidance.Size = new System.Drawing.Size(853, 584);
             this.tabVGuidance.TabIndex = 14;
             this.tabVGuidance.Text = "vGuid";
             this.tabVGuidance.Enter += new System.EventHandler(this.tabVGuidance_Enter);
@@ -3201,7 +3193,7 @@
             this.tabTConfig.Controls.Add(this.gboxAttachment);
             this.tabTConfig.Location = new System.Drawing.Point(4, 44);
             this.tabTConfig.Name = "tabTConfig";
-            this.tabTConfig.Size = new System.Drawing.Size(852, 585);
+            this.tabTConfig.Size = new System.Drawing.Size(853, 584);
             this.tabTConfig.TabIndex = 11;
             this.tabTConfig.Text = "tConfig";
             this.tabTConfig.Enter += new System.EventHandler(this.tabTConfig_Enter);
@@ -3294,7 +3286,7 @@
             this.tabTHitch.Controls.Add(this.picboxToolHitch);
             this.tabTHitch.Location = new System.Drawing.Point(4, 44);
             this.tabTHitch.Name = "tabTHitch";
-            this.tabTHitch.Size = new System.Drawing.Size(852, 585);
+            this.tabTHitch.Size = new System.Drawing.Size(853, 584);
             this.tabTHitch.TabIndex = 5;
             this.tabTHitch.Text = "tHitch";
             this.tabTHitch.Enter += new System.EventHandler(this.tabTHitch_Enter);
@@ -3452,7 +3444,7 @@
             this.tabTSections.ForeColor = System.Drawing.Color.Black;
             this.tabTSections.Location = new System.Drawing.Point(4, 44);
             this.tabTSections.Name = "tabTSections";
-            this.tabTSections.Size = new System.Drawing.Size(852, 585);
+            this.tabTSections.Size = new System.Drawing.Size(853, 584);
             this.tabTSections.TabIndex = 7;
             this.tabTSections.Text = "tSect";
             this.tabTSections.Enter += new System.EventHandler(this.tabTSections_Enter);
@@ -4968,7 +4960,7 @@
             this.tabTSwitches.Controls.Add(this.grpSwitch);
             this.tabTSwitches.Location = new System.Drawing.Point(4, 44);
             this.tabTSwitches.Name = "tabTSwitches";
-            this.tabTSwitches.Size = new System.Drawing.Size(852, 585);
+            this.tabTSwitches.Size = new System.Drawing.Size(853, 584);
             this.tabTSwitches.TabIndex = 9;
             this.tabTSwitches.Text = "tSwit";
             this.tabTSwitches.Enter += new System.EventHandler(this.tabTSwitches_Enter);
@@ -5155,7 +5147,7 @@
             this.tabTSettings.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.tabTSettings.Location = new System.Drawing.Point(4, 44);
             this.tabTSettings.Name = "tabTSettings";
-            this.tabTSettings.Size = new System.Drawing.Size(852, 585);
+            this.tabTSettings.Size = new System.Drawing.Size(853, 584);
             this.tabTSettings.TabIndex = 10;
             this.tabTSettings.Text = "TSettings";
             this.tabTSettings.Enter += new System.EventHandler(this.tabTSettings_Enter);
@@ -5394,7 +5386,7 @@
             this.tabDHeading.Controls.Add(this.cboxIsRTK);
             this.tabDHeading.Location = new System.Drawing.Point(4, 44);
             this.tabDHeading.Name = "tabDHeading";
-            this.tabDHeading.Size = new System.Drawing.Size(852, 585);
+            this.tabDHeading.Size = new System.Drawing.Size(853, 584);
             this.tabDHeading.TabIndex = 15;
             this.tabDHeading.Text = "dHead";
             this.tabDHeading.Enter += new System.EventHandler(this.tabDHeading_Enter);
@@ -5852,7 +5844,7 @@
             this.tabDRoll.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.tabDRoll.Location = new System.Drawing.Point(4, 44);
             this.tabDRoll.Name = "tabDRoll";
-            this.tabDRoll.Size = new System.Drawing.Size(852, 585);
+            this.tabDRoll.Size = new System.Drawing.Size(853, 584);
             this.tabDRoll.TabIndex = 16;
             this.tabDRoll.Text = "dRoll";
             this.tabDRoll.Enter += new System.EventHandler(this.tabDRoll_Enter);
@@ -6104,7 +6096,7 @@
             this.tabUTurn.Controls.Add(this.btnDistanceDn);
             this.tabUTurn.Location = new System.Drawing.Point(4, 44);
             this.tabUTurn.Name = "tabUTurn";
-            this.tabUTurn.Size = new System.Drawing.Size(852, 585);
+            this.tabUTurn.Size = new System.Drawing.Size(853, 584);
             this.tabUTurn.TabIndex = 18;
             this.tabUTurn.Text = "uTurn";
             this.tabUTurn.Enter += new System.EventHandler(this.tabUTurn_Enter);
@@ -6435,6 +6427,7 @@
             // 
             // tabRelay
             // 
+            this.tabRelay.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tabRelay.Controls.Add(this.cboxPin23);
             this.tabRelay.Controls.Add(this.cboxPin22);
             this.tabRelay.Controls.Add(this.cboxPin21);
@@ -6492,10 +6485,9 @@
             this.tabRelay.Location = new System.Drawing.Point(4, 44);
             this.tabRelay.Name = "tabRelay";
             this.tabRelay.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRelay.Size = new System.Drawing.Size(852, 585);
+            this.tabRelay.Size = new System.Drawing.Size(853, 584);
             this.tabRelay.TabIndex = 24;
             this.tabRelay.Text = "aRelay";
-            this.tabRelay.UseVisualStyleBackColor = true;
             this.tabRelay.Enter += new System.EventHandler(this.tabRelay_Enter);
             this.tabRelay.Leave += new System.EventHandler(this.tabRelay_Leave);
             // 
@@ -7637,7 +7629,7 @@
             this.tabAMachine.Controls.Add(this.btnSendMachinePGN);
             this.tabAMachine.Location = new System.Drawing.Point(4, 44);
             this.tabAMachine.Name = "tabAMachine";
-            this.tabAMachine.Size = new System.Drawing.Size(852, 585);
+            this.tabAMachine.Size = new System.Drawing.Size(853, 584);
             this.tabAMachine.TabIndex = 20;
             this.tabAMachine.Text = "aMach";
             this.tabAMachine.Enter += new System.EventHandler(this.tabAMachine_Enter);
@@ -8085,7 +8077,7 @@
             this.tabTram.ForeColor = System.Drawing.Color.Black;
             this.tabTram.Location = new System.Drawing.Point(4, 44);
             this.tabTram.Name = "tabTram";
-            this.tabTram.Size = new System.Drawing.Size(852, 585);
+            this.tabTram.Size = new System.Drawing.Size(853, 584);
             this.tabTram.TabIndex = 21;
             this.tabTram.Text = "tTram";
             this.tabTram.Enter += new System.EventHandler(this.tabTram_Enter);
@@ -8188,6 +8180,7 @@
             // 
             // tabBtns
             // 
+            this.tabBtns.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tabBtns.Controls.Add(this.label62);
             this.tabBtns.Controls.Add(this.label61);
             this.tabBtns.Controls.Add(this.label121);
@@ -8243,10 +8236,9 @@
             this.tabBtns.Controls.Add(this.cboxFeatureTram);
             this.tabBtns.Location = new System.Drawing.Point(4, 44);
             this.tabBtns.Name = "tabBtns";
-            this.tabBtns.Size = new System.Drawing.Size(852, 585);
+            this.tabBtns.Size = new System.Drawing.Size(853, 584);
             this.tabBtns.TabIndex = 22;
             this.tabBtns.Text = "fBtns";
-            this.tabBtns.UseVisualStyleBackColor = true;
             this.tabBtns.Enter += new System.EventHandler(this.tabBtns_Enter);
             this.tabBtns.Leave += new System.EventHandler(this.tabBtns_Leave);
             // 
@@ -9029,7 +9021,7 @@
             this.cboxFeatureBoundary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxFeatureBoundary.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxFeatureBoundary.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboxFeatureBoundary.Image = global::AgOpenGPS.Properties.Resources.MakeBoundary;
+            this.cboxFeatureBoundary.Image = global::AgOpenGPS.Properties.Resources.Boundary;
             this.cboxFeatureBoundary.Location = new System.Drawing.Point(57, 267);
             this.cboxFeatureBoundary.Name = "cboxFeatureBoundary";
             this.cboxFeatureBoundary.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -9082,6 +9074,7 @@
             // 
             // tabDisplay
             // 
+            this.tabDisplay.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tabDisplay.Controls.Add(this.chkSvennArrow);
             this.tabDisplay.Controls.Add(this.chkDisplayBrightness);
             this.tabDisplay.Controls.Add(this.chkDisplayFloor);
@@ -9112,10 +9105,9 @@
             this.tabDisplay.Location = new System.Drawing.Point(4, 44);
             this.tabDisplay.Name = "tabDisplay";
             this.tabDisplay.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDisplay.Size = new System.Drawing.Size(852, 585);
+            this.tabDisplay.Size = new System.Drawing.Size(853, 584);
             this.tabDisplay.TabIndex = 25;
             this.tabDisplay.Text = "fDisp";
-            this.tabDisplay.UseVisualStyleBackColor = true;
             this.tabDisplay.Enter += new System.EventHandler(this.tabDisplay_Enter);
             this.tabDisplay.Leave += new System.EventHandler(this.tabDisplay_Leave);
             // 
@@ -9582,7 +9574,7 @@
             this.lblCurrentVehicle.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.lblCurrentVehicle.ForeColor = System.Drawing.Color.Black;
             this.lblCurrentVehicle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblCurrentVehicle.Location = new System.Drawing.Point(7, 4);
+            this.lblCurrentVehicle.Location = new System.Drawing.Point(17, 4);
             this.lblCurrentVehicle.Name = "lblCurrentVehicle";
             this.lblCurrentVehicle.Size = new System.Drawing.Size(138, 23);
             this.lblCurrentVehicle.TabIndex = 450;
@@ -9663,9 +9655,9 @@
             this.panelBottom.Controls.Add(this.label22);
             this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelBottom.ForeColor = System.Drawing.Color.Lime;
-            this.panelBottom.Location = new System.Drawing.Point(115, 645);
+            this.panelBottom.Location = new System.Drawing.Point(124, 645);
             this.panelBottom.Name = "panelBottom";
-            this.panelBottom.Size = new System.Drawing.Size(866, 66);
+            this.panelBottom.Size = new System.Drawing.Size(861, 66);
             this.panelBottom.TabIndex = 112;
             // 
             // lblFeetMeters
@@ -9689,7 +9681,7 @@
             this.btnOK.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOK.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnOK.Location = new System.Drawing.Point(781, 1);
+            this.btnOK.Location = new System.Drawing.Point(776, 1);
             this.btnOK.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(80, 62);
@@ -9721,10 +9713,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.BackColor = System.Drawing.Color.Cyan;
-            this.ClientSize = new System.Drawing.Size(985, 715);
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.ClientSize = new System.Drawing.Size(989, 715);
+            this.Controls.Add(this.tab1);
             this.Controls.Add(this.panelBottom);
-            this.Controls.Add(this.panelChildForm);
             this.Controls.Add(this.panelLeftSideMenu);
             this.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -9743,7 +9735,6 @@
             this.panelDataSourcesSubMenu.ResumeLayout(false);
             this.panelToolSubMenu.ResumeLayout(false);
             this.panelVehicleSubMenu.ResumeLayout(false);
-            this.panelChildForm.ResumeLayout(false);
             this.tab1.ResumeLayout(false);
             this.tabSummary.ResumeLayout(false);
             this.tabSummary.PerformLayout();
@@ -9900,7 +9891,6 @@
         private System.Windows.Forms.Button btnSubAntenna;
         private System.Windows.Forms.Button btnSubDimensions;
         private System.Windows.Forms.Button btnSubVehicleType;
-        private System.Windows.Forms.Panel panelChildForm;
         private System.Windows.Forms.TabControl tab1;
         private System.Windows.Forms.TabPage tabSummary;
         private System.Windows.Forms.Panel panelBottom;

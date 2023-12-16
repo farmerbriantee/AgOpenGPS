@@ -168,12 +168,6 @@
       <DependentUpon>CBoundaryList.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\CTool.cs" />
-    <Compile Include="CustomControl1.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CustomControl1.Designer.cs">
-      <DependentUpon>CustomControl1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FormFieldISOXML.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -269,18 +263,6 @@
     </Compile>
     <Compile Include="Forms\Pickers\FormRecordPicker.Designer.cs">
       <DependentUpon>FormRecordPicker.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Pickers\FormTouchPick.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Pickers\FormTouchPick.Designer.cs">
-      <DependentUpon>FormTouchPick.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormHeadland.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormHeadland.Designer.cs">
-      <DependentUpon>FormHeadland.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Guidance\FormEditCurve.cs">
       <SubType>Form</SubType>
@@ -661,12 +643,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Pickers\FormRecordPicker.resx">
       <DependentUpon>FormRecordPicker.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Pickers\FormTouchPick.resx">
-      <DependentUpon>FormTouchPick.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormHeadland.resx">
-      <DependentUpon>FormHeadland.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Guidance\FormEditCurve.resx">
       <DependentUpon>FormEditCurve.cs</DependentUpon>

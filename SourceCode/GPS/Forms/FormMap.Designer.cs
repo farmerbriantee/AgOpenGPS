@@ -369,8 +369,8 @@
             this.Name = "FormMap";
             this.ShowInTaskbar = false;
             this.Text = "Bing Maps for Background";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormHeadland_FormClosing);
-            this.Load += new System.EventHandler(this.FormHeadland_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMap_FormClosing);
+            this.Load += new System.EventHandler(this.FormMap_Load);
             this.gboxField.ResumeLayout(false);
             this.gboxField.PerformLayout();
             this.gboxBoundary.ResumeLayout(false);
