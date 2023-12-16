@@ -28,25 +28,22 @@ namespace AgOpenGPS
 
         private void FormABCurve_Load(object sender, EventArgs e)
         {
-            panelPick.Top = 3;
-            panelPick.Left = 3;
-            panelAPlus.Top = 3;
-            panelAPlus.Left = 3;
-            panelName.Top = 3;
-            panelName.Left = 3;
-
-            panelEditName.Top = 3;
-            panelEditName.Left = 3;
+            panelPick.Top = 3; panelPick.Left = 3;
+            panelAPlus.Top = 3; panelAPlus.Left = 3;
+            panelName.Top = 3; panelName.Left = 3;
+            panelKML.Top = 3; panelKML.Left = 3;
+            panelEditName.Top = 3; panelEditName.Left = 3;
 
             panelEditName.Visible = false;
-
             panelPick.Visible = true;
             panelAPlus.Visible = false;
             panelName.Visible = false;
+            panelKML.Visible = false;
 
             this.Size = new System.Drawing.Size(620, 475);
 
             originalLine = mf.curve.numCurveLineSelected;
+
             mf.curve.isOkToAddDesPoints = false;
             selectedItem = -1;
             Location = Properties.Settings.Default.setWindow_abCurveCreate;

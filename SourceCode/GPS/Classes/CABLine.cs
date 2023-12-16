@@ -703,5 +703,6 @@ namespace AgOpenGPS
         public vec2 origin = new vec2();
         public double heading = 0;
         public string Name = "aa";
+        public bool isVisible = true;
     }
 }

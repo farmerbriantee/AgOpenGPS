@@ -317,8 +317,8 @@ namespace AgOpenGPS
 
         private void UpdateGuidanceLineButtonNumbers()
         {
-            btnABLine.Text = ABLine.numABLineSelected.ToString() + " - " + ABLine.lineArr.Count.ToString();
-            btnCurve.Text = curve.numCurveLineSelected.ToString() + " - " + curve.curveArr.Count.ToString();
+            btnABLine.Text = ABLine.numABLineSelected.ToString() + " / " + ABLine.lineArr.Count.ToString();
+            btnCurve.Text = curve.numCurveLineSelected.ToString() + " / " + curve.curveArr.Count.ToString();
         }
 
 

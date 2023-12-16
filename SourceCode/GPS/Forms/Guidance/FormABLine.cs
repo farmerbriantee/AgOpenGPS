@@ -1,6 +1,7 @@
 ﻿//Please, if you use this, share the improvements
 
 using System;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
@@ -15,6 +16,7 @@ namespace AgOpenGPS
 
         private int originalLine = 0;
         private bool isClosing;
+        private int selectedItem = -1;
 
         private double easting, norting, latK, lonK;
 
@@ -29,30 +31,12 @@ namespace AgOpenGPS
 
         private void FormABLine_Load(object sender, EventArgs e)
         {
-            //tboxABLineName.Enabled = false;
-            //btnAddToFile.Enabled = false;
-            //btnAddAndGo.Enabled = false;
-            //btnAPoint.Enabled = false;
-            //btnBPoint.Enabled = false;
-            //cboxHeading.Enabled = false;
-            //tboxHeading.Enabled = false;
-            //tboxABLineName.Text = "";
-            //tboxABLineName.Enabled = false;
 
-            //small window
-            //ShowFullPanel(true);
-
-            panelPick.Top = 3;
-            panelPick.Left = 3;
-            panelAPlus.Top = 3;
-            panelAPlus.Left = 3;
-            panelName.Top = 3;
-            panelName.Left = 3;
-            panelKML.Top = 3;
-            panelKML.Left = 3;
-
-            panelEditName.Top = 3;
-            panelEditName.Left = 3;
+            panelPick.Top = 3; panelPick.Left = 3;
+            panelAPlus.Top = 3; panelAPlus.Left = 3;
+            panelName.Top = 3; panelName.Left = 3;
+            panelKML.Top = 3; panelKML.Left = 3;
+            panelEditName.Top = 3; panelEditName.Left = 3;
 
             panelPick.Visible = true;
             panelAPlus.Visible = false;
@@ -60,40 +44,110 @@ namespace AgOpenGPS
             panelEditName.Visible = false;
             panelKML.Visible = false;
 
-            this.Size = new System.Drawing.Size(565, 360);
+            this.Size = new System.Drawing.Size(620, 475);
 
             originalLine = mf.ABLine.numABLineSelected;
 
             mf.ABLine.isABLineBeingSet = false;
+            selectedItem = -1;
 
             Location = Properties.Settings.Default.setWindow_abLineCreate;
-            UpdateLineList();
-            if (lvLines.Items.Count > 0 && originalLine > 0)
+
+            UpdateTable();
+        }
+
+        private void UpdateTable()
+        {
+            Font backupfont = new Font(Font.FontFamily, 18F, FontStyle.Regular);
+            flp.Controls.Clear();
+
+            for (int i = 0; i < mf.ABLine.lineArr.Count; i++)
             {
-                lvLines.Items[originalLine - 1].EnsureVisible();
-                lvLines.Items[originalLine - 1].Selected = true;
-                lvLines.Select();
+                //outer inner
+                Button a = new Button
+                {
+                    Margin = new Padding(6, 10, 10, 10),
+                    Size = new Size(50, 25),
+                    Name = i.ToString(),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                };
+                a.Click += A_Click;
+
+                if (mf.ABLine.lineArr[i].isVisible)
+                    a.BackColor = System.Drawing.Color.Green;
+                else
+                    a.BackColor = System.Drawing.Color.Red;
+
+                TextBox t = new TextBox
+                {
+                    Margin = new Padding(3),
+                    Size = new Size(330, 35),
+                    Text = mf.ABLine.lineArr[i].Name,
+                    Name = i.ToString(),
+                };
+                t.Font = backupfont;
+                t.Click += LineSelected_Click;
+
+                if (mf.ABLine.lineArr[i].isVisible)
+                    t.ForeColor = System.Drawing.Color.Black;
+                else
+                    t.ForeColor = System.Drawing.Color.Gray;
+
+                if (i == selectedItem)
+                {
+                    t.BackColor = System.Drawing.Color.LightBlue;
+                }
+                else
+                {
+                    t.BackColor = System.Drawing.SystemColors.ButtonFace;
+                }
+
+                flp.Controls.Add(a);
+                flp.Controls.Add(t);
             }
         }
 
-        private void UpdateLineList()
+        private void A_Click(object sender, EventArgs e)
         {
-            lvLines.Clear();
-            ListViewItem itm;
-
-            foreach (CABLines item in mf.ABLine.lineArr)
+            if (sender is Button b)
             {
-                itm = new ListViewItem(item.Name);
-                lvLines.Items.Add(itm);
+                mf.ABLine.lineArr[Convert.ToInt32(b.Name)].isVisible = !mf.ABLine.lineArr[Convert.ToInt32(b.Name)].isVisible;
+                selectedItem = -1;
+                UpdateTable();
             }
+        }
 
-            // go to bottom of list - if there is a bottom
-            if (lvLines.Items.Count > 0)
+        private void LineSelected_Click(object sender, EventArgs e)
+        {
+            if (sender is TextBox t)
             {
-                lvLines.Items[lvLines.Items.Count - 1].EnsureVisible();
-                lvLines.Items[lvLines.Items.Count - 1].Selected = true;
-                lvLines.Select();
+                if (selectedItem == Convert.ToInt32(t.Name))
+                    selectedItem = -1;
+                else
+                    selectedItem = Convert.ToInt32(t.Name);
+
+                UpdateTable();
             }
+        }
+
+        private void btnMoveUp_Click(object sender, EventArgs e)
+        {
+            if (selectedItem == -1 || selectedItem == 0)
+                return;
+
+            mf.ABLine.lineArr.Reverse(selectedItem - 1, 2);
+            selectedItem--;
+            UpdateTable();
+        }
+
+        private void btnMoveDn_Click(object sender, EventArgs e)
+        {
+            if (selectedItem == -1 || selectedItem == (mf.ABLine.lineArr.Count - 1))
+                return;
+
+            mf.ABLine.lineArr.Reverse(selectedItem, 2);
+            selectedItem++;
+            UpdateTable();
         }
 
         private void btnCancel_APlus_Click(object sender, EventArgs e)
@@ -104,9 +158,8 @@ namespace AgOpenGPS
             panelName.Visible = false;
             panelKML.Visible = false;
 
-            this.Size = new System.Drawing.Size(565, 360);
+            this.Size = new System.Drawing.Size(620, 475);
 
-            UpdateLineList();
             mf.ABLine.isABLineBeingSet = false;
             btnBPoint.BackColor = System.Drawing.Color.Transparent;
         }
@@ -203,7 +256,6 @@ namespace AgOpenGPS
 
         private void BtnNewABLine_Click(object sender, EventArgs e)
         {
-            lvLines.SelectedItems.Clear();
             panelPick.Visible = false;
             panelAPlus.Visible = true;
             panelName.Visible = false;
@@ -219,9 +271,10 @@ namespace AgOpenGPS
 
         private void btnEditName_Click(object sender, EventArgs e)
         {
-            if (lvLines.SelectedItems.Count > 0)
+            if (selectedItem > -1)
             {
-                int idx = lvLines.SelectedIndices[0];
+                int idx = selectedItem;
+
                 textBox2.Text = mf.ABLine.lineArr[idx].Name;
 
                 panelPick.Visible = false;
@@ -230,132 +283,8 @@ namespace AgOpenGPS
             }
         }
 
-        private void btnSaveKML_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void btnXML_Click(object sender, EventArgs e)
-        {
-            lvLines.SelectedItems.Clear();
-            panelPick.Visible = false;
-            panelAPlus.Visible = false;
-            panelName.Visible = false;
-            panelKML.Visible = true;
-
-            this.Size = new System.Drawing.Size(270, 360);
-
-            string fileAndDirectory;
-            {
-                //create the dialog instance
-                OpenFileDialog ofd = new OpenFileDialog
-                {
-                    //set the filter to text KML only
-                    Filter = "ISO-XML files (*.XML)|*.XML",
-
-                    //the initial directory, fields, for the open dialog
-                    InitialDirectory = mf.fieldsDirectory + mf.currentFieldDirectory
-                };
-
-                //was a file selected
-                if (ofd.ShowDialog(this) == DialogResult.Cancel) return;
-                else fileAndDirectory = ofd.FileName;
-            }
-
-            double lonK = 0;
-            double latK = 0;
-            double easting = 0;
-            double norting = 0;
-            string shortName = "";
-
-            mf.curve.desList?.Clear();
-
-            XmlDocument doc = new XmlDocument();
-            doc.PreserveWhitespace = false;
-
-            try
-            {
-                doc.Load(fileAndDirectory);
-                shortName = Path.GetFileName(fileAndDirectory);
-                shortName = shortName.Substring(0, shortName.Length - 4);
-
-                foreach (XmlNode xmlNode in doc.DocumentElement.ChildNodes[0].ChildNodes)
-                {
-                    if (xmlNode.Name == "LSG")
-                    {
-                        if (xmlNode.Attributes["A"].Value == "5") //AB Line
-                        {
-                            //get the name
-                            mf.ABLine.desName = xmlNode.Attributes["B"].Value;
-
-                            double.TryParse(xmlNode.ChildNodes[0].Attributes["C"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
-                            double.TryParse(xmlNode.ChildNodes[0].Attributes["D"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
-
-                            mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
-
-                            mf.ABLine.desPoint1.easting = easting;
-                            mf.ABLine.desPoint1.northing = norting;
-
-                            double.TryParse(xmlNode.ChildNodes[1].Attributes["C"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
-                            double.TryParse(xmlNode.ChildNodes[1].Attributes["D"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
-
-                            mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
-
-                            mf.ABLine.desPoint2.easting = easting;
-                            mf.ABLine.desPoint2.northing = norting;
-
-                            // heading based on AB points
-                            mf.ABLine.desHeading = Math.Atan2(mf.ABLine.desPoint2.easting - mf.ABLine.desPoint1.easting,
-                                mf.ABLine.desPoint2.northing - mf.ABLine.desPoint1.northing);
-                            if (mf.ABLine.desHeading < 0) mf.ABLine.desHeading += glm.twoPI;
-
-                            mf.ABLine.lineArr.Add(new CABLines());
-                            mf.ABLine.numABLines = mf.ABLine.lineArr.Count;
-                            mf.ABLine.numABLineSelected = mf.ABLine.numABLines;
-
-                            //index to last one.
-                            int idx = mf.ABLine.lineArr.Count - 1;
-
-                            mf.ABLine.lineArr[idx].heading = mf.ABLine.desHeading;
-                            //calculate the new points for the reference line and points
-                            mf.ABLine.lineArr[idx].origin.easting = (mf.ABLine.desPoint1.easting + mf.ABLine.desPoint2.easting) / 2;
-                            mf.ABLine.lineArr[idx].origin.northing = (mf.ABLine.desPoint1.northing + mf.ABLine.desPoint2.northing) / 2;
-
-                            //name
-                            if (textBox2.Text.Trim() == "") textBox2.Text = "No Name " + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
-
-                            mf.ABLine.lineArr[idx].Name = mf.ABLine.desName.Trim();
-                        }
-                    }
-                    else if (xmlNode.Name == "PLN")
-                    {
-                        Console.WriteLine(xmlNode.Attributes["A"].Value);
-                    }
-                }
-
-                mf.FileSaveABLines();
-
-                panelPick.Visible = true;
-                panelAPlus.Visible = false;
-                panelName.Visible = false;
-                panelKML.Visible = false;
-
-                this.Size = new System.Drawing.Size(565, 360);
-
-                UpdateLineList();
-                lvLines.Focus();
-                mf.ABLine.isABLineBeingSet = false;
-
-                return;
-            }
-            catch (System.IO.FileNotFoundException)
-            {
-                Console.WriteLine("Bad or Missing Curve-KML file");
-            }
-        }
-
         private void btnLoadFromKML_Click(object sender, EventArgs e)
         {
-            lvLines.SelectedItems.Clear();
             panelPick.Visible = false;
             panelAPlus.Visible = false;
             panelName.Visible = false;
@@ -479,7 +408,7 @@ namespace AgOpenGPS
         {
             if (textBox2.Text.Trim() == "") textBox2.Text = "No Name " + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
-            int idx = lvLines.SelectedIndices[0];
+            int idx = selectedItem;
 
             panelEditName.Visible = false;
             panelPick.Visible = true;
@@ -487,10 +416,10 @@ namespace AgOpenGPS
             mf.ABLine.lineArr[idx].Name = textBox2.Text.Trim();
             mf.FileSaveABLines();
 
-            this.Size = new System.Drawing.Size(565, 360);
+            this.Size = new System.Drawing.Size(620, 475);
 
-            UpdateLineList();
-            lvLines.Focus();
+            UpdateTable();
+            flp.Focus();
             mf.ABLine.isABLineBeingSet = false;
         }
 
@@ -519,18 +448,17 @@ namespace AgOpenGPS
             panelAPlus.Visible = false;
             panelName.Visible = false;
 
-            this.Size = new System.Drawing.Size(565, 360);
+            this.Size = new System.Drawing.Size(620, 475);
 
-            UpdateLineList();
-            lvLines.Focus();
+            UpdateTable();
             mf.ABLine.isABLineBeingSet = false;
         }
 
         private void btnDuplicate_Click(object sender, EventArgs e)
         {
-            if (lvLines.SelectedItems.Count > 0)
+            if (selectedItem > -1)
             {
-                int idx = lvLines.SelectedIndices[0];
+                int idx = selectedItem;
 
                 panelPick.Visible = false;
                 panelName.Visible = true;
@@ -558,9 +486,9 @@ namespace AgOpenGPS
             //reset to generate new reference
             mf.ABLine.isABValid = false;
 
-            if (lvLines.SelectedItems.Count > 0)
+            if (selectedItem > -1)
             {
-                int idx = lvLines.SelectedIndices[0];
+                int idx = selectedItem;
                 mf.ABLine.numABLineSelected = idx + 1;
 
                 mf.ABLine.abHeading = mf.ABLine.lineArr[idx].heading;
@@ -591,28 +519,29 @@ namespace AgOpenGPS
 
         private void btnSwapAB_Click(object sender, EventArgs e)
         {
-            if (lvLines.SelectedItems.Count > 0)
+            if (selectedItem > -1)
             {
+                int idx = selectedItem;
                 mf.ABLine.isABValid = false;
-                int idx = lvLines.SelectedIndices[0];
 
                 mf.ABLine.lineArr[idx].heading += Math.PI;
                 if (mf.ABLine.lineArr[idx].heading > glm.twoPI) mf.ABLine.lineArr[idx].heading -= glm.twoPI;
 
                 mf.FileSaveABLines();
 
-                UpdateLineList();
-                lvLines.Focus();
+                UpdateTable();
+                flp.Focus();
+
+                mf.TimedMessageBox(1500, "A B Swapped", "Line is Reversed");
+
             }
         }
 
         private void btnListDelete_Click(object sender, EventArgs e)
         {
-            if (lvLines.SelectedItems.Count > 0)
+            if (selectedItem > -1)
             {
-                int num = lvLines.SelectedIndices[0];
-                mf.ABLine.lineArr.RemoveAt(num);
-                lvLines.SelectedItems[0].Remove();
+                mf.ABLine.lineArr.RemoveAt(selectedItem);
 
                 mf.ABLine.numABLines = mf.ABLine.lineArr.Count;
                 if (mf.ABLine.numABLineSelected > mf.ABLine.numABLines) mf.ABLine.numABLineSelected = mf.ABLine.numABLines;
@@ -630,8 +559,8 @@ namespace AgOpenGPS
                 if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
                 if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
             }
-            UpdateLineList();
-            lvLines.Focus();
+            UpdateTable();
+            flp.Focus();
         }
 
         private void FormABLine_FormClosing(object sender, FormClosingEventArgs e)

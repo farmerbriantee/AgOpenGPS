@@ -75,7 +75,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(72, 13);
+            this.label5.Location = new System.Drawing.Point(72, 22);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(39, 13);
             this.label5.TabIndex = 262;
@@ -85,7 +85,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(484, 13);
+            this.label3.Location = new System.Drawing.Point(484, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(25, 13);
             this.label3.TabIndex = 260;
@@ -98,7 +98,7 @@
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOk.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.btnOk.Image = global::AgOpenGPS.Properties.Resources.ExitAOG;
-            this.btnOk.Location = new System.Drawing.Point(456, 29);
+            this.btnOk.Location = new System.Drawing.Point(456, 38);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(97, 64);
             this.btnOk.TabIndex = 0;
@@ -112,7 +112,7 @@
             this.btnReturn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReturn.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.btnReturn.Image = global::AgOpenGPS.Properties.Resources.back_button;
-            this.btnReturn.Location = new System.Drawing.Point(41, 29);
+            this.btnReturn.Location = new System.Drawing.Point(41, 38);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(97, 64);
             this.btnReturn.TabIndex = 5;
