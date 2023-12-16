@@ -520,7 +520,7 @@
             this.btnListDelete.FlatAppearance.BorderSize = 0;
             this.btnListDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnListDelete.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold);
-            this.btnListDelete.Image = global::AgOpenGPS.Properties.Resources.HideContour;
+            this.btnListDelete.Image = global::AgOpenGPS.Properties.Resources.Trash;
             this.btnListDelete.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnListDelete.Location = new System.Drawing.Point(7, 356);
             this.btnListDelete.Margin = new System.Windows.Forms.Padding(0);

@@ -37,7 +37,6 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOpenGoogleEarth = new System.Windows.Forms.Button();
-            this.btnDeleteAll = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.panelChoose = new System.Windows.Forms.Panel();
             this.btnCancelChoose = new System.Windows.Forms.Button();
@@ -103,7 +102,6 @@
             this.panelMain.Controls.Add(this.Thru);
             this.panelMain.Controls.Add(this.Boundary);
             this.panelMain.Controls.Add(this.btnOpenGoogleEarth);
-            this.panelMain.Controls.Add(this.btnDeleteAll);
             this.panelMain.Controls.Add(this.btnDelete);
             this.panelMain.Location = new System.Drawing.Point(4, 4);
             this.panelMain.Name = "panelMain";
@@ -184,7 +182,7 @@
             this.btnOpenGoogleEarth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenGoogleEarth.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenGoogleEarth.Image = global::AgOpenGPS.Properties.Resources.GoogleEarth;
-            this.btnOpenGoogleEarth.Location = new System.Drawing.Point(186, 19);
+            this.btnOpenGoogleEarth.Location = new System.Drawing.Point(162, 19);
             this.btnOpenGoogleEarth.Name = "btnOpenGoogleEarth";
             this.btnOpenGoogleEarth.Size = new System.Drawing.Size(62, 63);
             this.btnOpenGoogleEarth.TabIndex = 213;
@@ -193,28 +191,13 @@
             this.btnOpenGoogleEarth.Click += new System.EventHandler(this.btnOpenGoogleEarth_Click);
             this.btnOpenGoogleEarth.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnOpenGoogleEarth_HelpRequested);
             // 
-            // btnDeleteAll
-            // 
-            this.btnDeleteAll.FlatAppearance.BorderSize = 0;
-            this.btnDeleteAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteAll.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteAll.Image = global::AgOpenGPS.Properties.Resources.BoundaryDeleteAll;
-            this.btnDeleteAll.Location = new System.Drawing.Point(0, 19);
-            this.btnDeleteAll.Name = "btnDeleteAll";
-            this.btnDeleteAll.Size = new System.Drawing.Size(62, 63);
-            this.btnDeleteAll.TabIndex = 100;
-            this.btnDeleteAll.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnDeleteAll.UseVisualStyleBackColor = true;
-            this.btnDeleteAll.Click += new System.EventHandler(this.btnDeleteAll_Click);
-            this.btnDeleteAll.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnDeleteAll_HelpRequested);
-            // 
             // btnDelete
             // 
             this.btnDelete.FlatAppearance.BorderSize = 0;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Image = global::AgOpenGPS.Properties.Resources.BoundaryDelete;
-            this.btnDelete.Location = new System.Drawing.Point(82, 19);
+            this.btnDelete.Image = global::AgOpenGPS.Properties.Resources.Trash;
+            this.btnDelete.Location = new System.Drawing.Point(37, 19);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(62, 63);
             this.btnDelete.TabIndex = 65;
@@ -420,7 +403,6 @@
 
         #endregion
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnDeleteAll;
         private System.Windows.Forms.Label Boundary;
         private System.Windows.Forms.Label Thru;
         private System.Windows.Forms.Label Area;

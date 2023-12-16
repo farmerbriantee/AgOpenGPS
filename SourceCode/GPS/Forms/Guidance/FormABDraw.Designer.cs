@@ -383,7 +383,7 @@
             this.btnDeleteABLine.FlatAppearance.BorderSize = 0;
             this.btnDeleteABLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteABLine.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnDeleteABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineDelete;
+            this.btnDeleteABLine.Image = global::AgOpenGPS.Properties.Resources.Trash;
             this.btnDeleteABLine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnDeleteABLine.Location = new System.Drawing.Point(934, 506);
             this.btnDeleteABLine.Name = "btnDeleteABLine";
@@ -402,7 +402,7 @@
             this.btnDeleteCurve.FlatAppearance.BorderSize = 0;
             this.btnDeleteCurve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteCurve.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnDeleteCurve.Image = global::AgOpenGPS.Properties.Resources.HideContour;
+            this.btnDeleteCurve.Image = global::AgOpenGPS.Properties.Resources.Trash;
             this.btnDeleteCurve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnDeleteCurve.Location = new System.Drawing.Point(934, 356);
             this.btnDeleteCurve.Name = "btnDeleteCurve";

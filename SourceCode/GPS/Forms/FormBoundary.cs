@@ -190,7 +190,7 @@ namespace AgOpenGPS
                 else if (fenceSelected > 0)
                     btnDelete.Enabled = true;
 
-                btnDeleteAll.Enabled = fenceSelected == -1;
+                //btnDeleteAll.Enabled = fenceSelected == -1;
             }
             UpdateChart();
         }

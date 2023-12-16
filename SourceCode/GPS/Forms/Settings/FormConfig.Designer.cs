@@ -1536,7 +1536,7 @@
             this.btnVehicleLoad.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Turquoise;
             this.btnVehicleLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVehicleLoad.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.btnVehicleLoad.Image = global::AgOpenGPS.Properties.Resources.VehFileLoad;
+            this.btnVehicleLoad.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
             this.btnVehicleLoad.Location = new System.Drawing.Point(764, 156);
             this.btnVehicleLoad.Name = "btnVehicleLoad";
             this.btnVehicleLoad.Size = new System.Drawing.Size(81, 49);
@@ -1553,7 +1553,7 @@
             this.btnVehicleDelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Turquoise;
             this.btnVehicleDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVehicleDelete.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.btnVehicleDelete.Image = global::AgOpenGPS.Properties.Resources.VehFileDelete;
+            this.btnVehicleDelete.Image = global::AgOpenGPS.Properties.Resources.Trash;
             this.btnVehicleDelete.Location = new System.Drawing.Point(764, 259);
             this.btnVehicleDelete.Name = "btnVehicleDelete";
             this.btnVehicleDelete.Size = new System.Drawing.Size(81, 49);
@@ -1614,7 +1614,7 @@
             this.btnVehicleSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Turquoise;
             this.btnVehicleSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVehicleSave.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.btnVehicleSave.Image = global::AgOpenGPS.Properties.Resources.VehFileSaveAs;
+            this.btnVehicleSave.Image = global::AgOpenGPS.Properties.Resources.FileSaveAs;
             this.btnVehicleSave.Location = new System.Drawing.Point(734, 25);
             this.btnVehicleSave.Name = "btnVehicleSave";
             this.btnVehicleSave.Size = new System.Drawing.Size(52, 52);
@@ -9005,7 +9005,7 @@
             this.cboxFeatureHideContour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxFeatureHideContour.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxFeatureHideContour.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboxFeatureHideContour.Image = global::AgOpenGPS.Properties.Resources.HideContour;
+            this.cboxFeatureHideContour.Image = global::AgOpenGPS.Properties.Resources.Trash;
             this.cboxFeatureHideContour.Location = new System.Drawing.Point(200, 163);
             this.cboxFeatureHideContour.Name = "cboxFeatureHideContour";
             this.cboxFeatureHideContour.RightToLeft = System.Windows.Forms.RightToLeft.Yes;

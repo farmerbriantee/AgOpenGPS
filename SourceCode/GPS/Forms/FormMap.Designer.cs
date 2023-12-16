@@ -167,7 +167,7 @@
             this.btnDeleteAll.Enabled = false;
             this.btnDeleteAll.FlatAppearance.BorderSize = 0;
             this.btnDeleteAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteAll.Image = global::AgOpenGPS.Properties.Resources.BoundaryDelete;
+            this.btnDeleteAll.Image = global::AgOpenGPS.Properties.Resources.Trash;
             this.btnDeleteAll.Location = new System.Drawing.Point(13, 286);
             this.btnDeleteAll.Name = "btnDeleteAll";
             this.btnDeleteAll.Size = new System.Drawing.Size(61, 61);

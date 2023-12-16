@@ -108,7 +108,7 @@
             this.btnRestart.FlatAppearance.BorderSize = 0;
             this.btnRestart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRestart.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btnRestart.Image = global::AgOpenGPS.Properties.Resources.BoundaryDelete;
+            this.btnRestart.Image = global::AgOpenGPS.Properties.Resources.Trash;
             this.btnRestart.Location = new System.Drawing.Point(5, 100);
             this.btnRestart.Name = "btnRestart";
             this.btnRestart.Size = new System.Drawing.Size(89, 70);
