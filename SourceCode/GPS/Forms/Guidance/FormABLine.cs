@@ -502,6 +502,22 @@ namespace AgOpenGPS
                 Close();
             }
 
+            else if (mf.ABLine.lineArr.Count > 0)
+            {
+                int idx = mf.ABLine.lineArr.Count-1;
+                mf.ABLine.numABLineSelected = idx + 1;
+
+                mf.ABLine.abHeading = mf.ABLine.lineArr[idx].heading;
+                mf.ABLine.refPoint1 = mf.ABLine.lineArr[idx].origin;
+
+                mf.ABLine.SetABLineByHeading();
+
+                mf.EnableYouTurnButtons();
+
+                //Go back with Line enabled
+                Close();
+            }
+
             //no item selected
             else
             {
@@ -630,6 +646,19 @@ namespace AgOpenGPS
                     btnCancel_APlus.PerformClick();
                 }
             }
+        }
+
+        private bool isOn = true;
+        private void btnHideShow_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < mf.ABLine.lineArr.Count; i++)
+            {
+                mf.ABLine.lineArr[i].isVisible = isOn;
+            }
+
+            isOn = !isOn;
+
+            UpdateTable();
         }
 
         #region Help

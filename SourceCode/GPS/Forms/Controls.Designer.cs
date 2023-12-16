@@ -10,6 +10,7 @@ using AgOpenGPS.Forms;
 using AgOpenGPS.Forms.Pickers;
 using AgOpenGPS.Properties;
 using Microsoft.Win32;
+using static OpenTK.Graphics.OpenGL.GL;
 
 namespace AgOpenGPS
 {
@@ -301,6 +302,7 @@ namespace AgOpenGPS
 
             if (ABLine.numABLines == 0 && curve.numCurveLines == 0) return; 
 
+            bool isVis = false;
                 //reset to generate new reference
             ABLine.isABValid = false;
             curve.isCurveValid = false;
@@ -311,22 +313,40 @@ namespace AgOpenGPS
             {
                 ABLine.moveDistance = 0;
 
-                ABLine.numABLineSelected++;
-                if (ABLine.numABLineSelected > ABLine.numABLines) ABLine.numABLineSelected = 1;
-                ABLine.refPoint1 = ABLine.lineArr[ABLine.numABLineSelected - 1].origin;
-                //ABLine.refPoint2 = ABLine.lineArr[ABLine.numABLineSelected - 1].ref2;
-                ABLine.abHeading = ABLine.lineArr[ABLine.numABLineSelected - 1].heading;
+                for (int i = 0; i < ABLine.lineArr.Count; i++)
+                {
+                    if (ABLine.lineArr[i].isVisible)
+                    {
+                        isVis = true;
+                        break;
+                    }
+                }
+
+                if (!isVis) return;
+
+                int idx = ABLine.numABLineSelected - 1;
+
+                while (isVis)
+                {
+                    ABLine.numABLineSelected++;
+
+                    if (ABLine.numABLineSelected > ABLine.numABLines) ABLine.numABLineSelected = 1;
+                        idx = ABLine.numABLineSelected - 1;
+
+                    if (ABLine.lineArr[idx].isVisible) break;
+                }
+
+                ABLine.refPoint1 = ABLine.lineArr[idx].origin;
+                ABLine.abHeading = ABLine.lineArr[idx].heading;
                 ABLine.SetABLineByHeading();
                 ABLine.isABLineSet = true;
                 ABLine.isABLineLoaded = true;
                 yt.ResetYouTurn();
-                lblCurveLineName.Text = ABLine.lineArr[ABLine.numABLineSelected - 1].Name;
+                lblCurveLineName.Text = ABLine.lineArr[idx].Name;
             }
             else if (curve.isBtnCurveOn && curve.numCurveLines > 0)
             {
                 curve.moveDistance = 0;
-
-                bool isVis = false;
 
                 //make sure one is visible
                 for (int i = 0; i < curve.curveArr.Count; i++)
@@ -390,6 +410,7 @@ namespace AgOpenGPS
             //reset to generate new reference
             ABLine.isABValid = false;
             curve.isCurveValid = false;
+            bool isVis = false;
 
             if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
 
@@ -397,24 +418,40 @@ namespace AgOpenGPS
             {
                 ABLine.moveDistance = 0;
 
-                ABLine.numABLineSelected--;
+                for (int i = 0; i < ABLine.lineArr.Count; i++)
+                {
+                    if (ABLine.lineArr[i].isVisible)
+                    {
+                        isVis = true;
+                        break;
+                    }
+                } 
 
-                if (ABLine.numABLineSelected==0) ABLine.numABLineSelected = ABLine.numABLines;
-                ABLine.refPoint1 = ABLine.lineArr[ABLine.numABLineSelected - 1].origin;
-                //ABLine.refPoint2 = ABLine.lineArr[ABLine.numABLineSelected - 1].ref2;
-                ABLine.abHeading = ABLine.lineArr[ABLine.numABLineSelected - 1].heading;
+                if (!isVis) return;
+
+                int idx = ABLine.numABLineSelected - 1;
+
+                while (isVis)
+                {
+                    ABLine.numABLineSelected--;
+
+                    if (ABLine.numABLineSelected <1 )  ABLine.numABLineSelected = ABLine.numABLines;
+                    idx = ABLine.numABLineSelected - 1;
+
+                    if (ABLine.lineArr[idx].isVisible) break;
+                }
+
+                ABLine.refPoint1 = ABLine.lineArr[idx].origin;
+                ABLine.abHeading = ABLine.lineArr[idx].heading;
                 ABLine.SetABLineByHeading();
                 ABLine.isABLineSet = true;
                 ABLine.isABLineLoaded = true;
                 yt.ResetYouTurn();
-                lblCurveLineName.Text = ABLine.lineArr[ABLine.numABLineSelected - 1].Name;
+                lblCurveLineName.Text = ABLine.lineArr[idx].Name; 
             }
             else if (curve.isBtnCurveOn && curve.numCurveLines > 0)
             {
                 curve.moveDistance = 0;
-
-
-                bool isVis = false;
 
                 //make sure one is visible
                 for (int i = 0; i < curve.curveArr.Count; i++)

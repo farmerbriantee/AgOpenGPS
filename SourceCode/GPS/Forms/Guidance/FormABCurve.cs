@@ -599,6 +599,7 @@ namespace AgOpenGPS
             //reset to generate new reference
             mf.curve.isCurveValid = false;
             mf.curve.moveDistance = 0;
+            mf.curve.desList?.Clear();
 
             mf.FileSaveCurveLines();
 
@@ -618,18 +619,33 @@ namespace AgOpenGPS
 
                 Close();
             }
+            else if (mf.curve.curveArr.Count > 0)
+            {
+                int idx = mf.curve.curveArr.Count - 1;
+                mf.curve.numCurveLineSelected = idx + 1;
+
+                mf.curve.aveLineHeading = mf.curve.curveArr[idx].aveHeading;
+                mf.curve.refList?.Clear();
+                for (int i = 0; i < mf.curve.curveArr[idx].curvePts.Count; i++)
+                {
+                    mf.curve.refList.Add(mf.curve.curveArr[idx].curvePts[i]);
+                }
+                mf.curve.isCurveSet = true;
+                mf.yt.ResetYouTurn();
+
+                Close();
+            }
             else
             {
-                //mf.curve.moveDistance = 0;
-                //mf.curve.isOkToAddDesPoints = false;
-                //mf.curve.isCurveSet = false;
-                //mf.curve.refList?.Clear();
-                //mf.curve.isCurveSet = false;
-                //mf.DisableYouTurnButtons();
-                //mf.curve.isBtnCurveOn = false;
-                //mf.btnCurve.Image = Properties.Resources.CurveOff;
-                //if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                //if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
+                mf.curve.isOkToAddDesPoints = false;
+                mf.curve.isCurveSet = false;
+                mf.curve.refList?.Clear();
+                mf.curve.isCurveSet = false;
+                mf.DisableYouTurnButtons();
+                mf.curve.isBtnCurveOn = false;
+                mf.btnCurve.Image = Properties.Resources.CurveOff;
+                if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+                if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
 
                 //mf.curve.numCurveLineSelected = 0;
                 Close();
@@ -750,6 +766,19 @@ namespace AgOpenGPS
             Properties.Settings.Default.setWindow_abCurveCreate = Location;
         }
 
+        private bool isOn = true;
+        private void btnHideShow_Click(object sender, EventArgs e)
+        {
+                for (int i = 0; i < mf.curve.curveArr.Count; i++)
+                {
+                    mf.curve.curveArr[i].isVisible = isOn;
+                }
+
+                isOn = !isOn;
+
+                UpdateTable();
+        }
+
         #region Help
 
         private void btnListDelete_HelpRequested(object sender, HelpEventArgs hlpevent)
@@ -848,5 +877,6 @@ namespace AgOpenGPS
         }
 
         #endregion Help
+
     }
 }
