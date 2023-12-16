@@ -265,7 +265,7 @@
             // btnFlipOffset
             // 
             this.btnFlipOffset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFlipOffset.BackColor = System.Drawing.Color.Transparent;
+            this.btnFlipOffset.BackColor = System.Drawing.Color.Azure;
             this.btnFlipOffset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnFlipOffset.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnFlipOffset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

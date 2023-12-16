@@ -57,8 +57,11 @@ namespace AgOpenGPS
 
         private void UpdateSummary()
         {
-            //lblSumWheelbase.Text = Properties.Settings.Default.setVehicle_wheelbase.ToString();
-            //lblSumToolWidth.Text = mf.tool.toolWidth.ToString();
+            lblSumWheelbase.Text = (mf.isMetric ?
+                (Properties.Settings.Default.setVehicle_wheelbase * mf.m2InchOrCm).ToString("N0") :
+                (Properties.Settings.Default.setVehicle_wheelbase * mf.m2InchOrCm).ToString("N0"))
+                + mf.unitsInCm;
+
             lblSumNumSections.Text = mf.tool.numOfSections.ToString();
 
             string snapDist = mf.isMetric ?
@@ -68,12 +71,12 @@ namespace AgOpenGPS
             lblNudgeDistance.Text = snapDist + mf.unitsInCm.ToString();
             lblUnits.Text = mf.isMetric ? "Metric" : "Imperial";
 
-            lblCurrentVehicle.Text = Properties.Settings.Default.setVehicle_vehicleName;
+            lblCurrentVehicle.Text = gStr.gsCurrent + ": "+ mf.vehicleFileName;
+            lblSummaryVehicleName.Text = lblCurrentVehicle.Text;
 
-            lblTramWidth.Text = (mf.isMetric ?
-                (Properties.Settings.Default.setTram_tramWidth * mf.m2InchOrCm).ToString() :
-                (Properties.Settings.Default.setTram_tramWidth * mf.m2InchOrCm).ToString("N1")) +
-                mf.unitsInCm;
+            lblTramWidth.Text = mf.isMetric ?
+                ((Properties.Settings.Default.setTram_tramWidth).ToString() + " m") :
+                ConvertMeterToFeet(Properties.Settings.Default.setTram_tramWidth);
 
             lblToolOffset.Text = (mf.isMetric ?
                 (Properties.Settings.Default.setVehicle_toolOffset * mf.m2InchOrCm).ToString() :
@@ -86,10 +89,15 @@ namespace AgOpenGPS
                 mf.unitsInCm;
 
             lblLookahead.Text = Properties.Settings.Default.setVehicle_toolLookAheadOn.ToString() + " sec";
+        }
 
-            //lblSumCurrentTool.Text = Properties.Tool.Default.toolSettings.toolFileName.ToString();
-            //lblSumCurrentDataSource.Text = Properties.DataSource.Default.dataSourceSettings.dataSourceFileName.ToString();
-            //lblSumFixType.Text = Properties.DataSource.Default.dataSourceSettings.fixFrom.ToString();
+        public string ConvertMeterToFeet(double meter)
+        {
+            double toFeet = meter * 3.28;
+            string feetInch = Convert.ToString((int)toFeet) + "' ";
+            double temp = Math.Round((toFeet - Math.Truncate(toFeet)) * 12, 0);
+            feetInch += Convert.ToString(temp) + '"';
+            return feetInch;
         }
 
         #region No Sub menu Buttons
@@ -120,7 +128,7 @@ namespace AgOpenGPS
         {
             HideSubMenu();
             ClearNoSubBackgrounds();
-            if (tab1.SelectedTab != tabUTurn)
+            if (tab1.SelectedTab == tabUTurn)
             {
                 tab1.SelectedTab = tabSummary;
             }
@@ -168,7 +176,7 @@ namespace AgOpenGPS
         {
             ShowSubMenu(panelVehicleSubMenu, btnVehicle);
             btnSubVehicleType.BackColor = SystemColors.GradientActiveCaption;
-            lblCurrentVehicle.Text = gStr.gsCurrent + mf.vehicleFileName;
+            UpdateSummary();
             UpdateVehicleListView();
         }
 
@@ -336,7 +344,6 @@ namespace AgOpenGPS
         {
             ShowSubMenu(panelArduinoSubMenu, btnArduino);
             btnMachineModule.BackColor = SystemColors.GradientActiveCaption;
-            lblCurrentVehicle.Text = gStr.gsCurrent + mf.vehicleFileName;
             UpdateVehicleListView();
         }
 

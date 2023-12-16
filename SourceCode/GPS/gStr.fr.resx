@@ -208,10 +208,7 @@
     <value>Créer un nouveau champ</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Courant (A)</value>
-  </data>
-  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
-    <value>Courant (A)</value>
+    <value>Courant</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>Fichier Courbe corrompu</value>

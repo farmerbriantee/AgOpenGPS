@@ -276,7 +276,7 @@
             this.btnALength.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnALength.Image = global::AgOpenGPS.Properties.Resources.DrawLineExtendA;
             this.btnALength.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnALength.Location = new System.Drawing.Point(723, 126);
+            this.btnALength.Location = new System.Drawing.Point(723, 123);
             this.btnALength.Name = "btnALength";
             this.btnALength.Size = new System.Drawing.Size(54, 85);
             this.btnALength.TabIndex = 352;
@@ -294,7 +294,7 @@
             this.btnBLength.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnBLength.Image = global::AgOpenGPS.Properties.Resources.DrawLineExtendB;
             this.btnBLength.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBLength.Location = new System.Drawing.Point(723, 39);
+            this.btnBLength.Location = new System.Drawing.Point(723, 36);
             this.btnBLength.Name = "btnBLength";
             this.btnBLength.Size = new System.Drawing.Size(54, 85);
             this.btnBLength.TabIndex = 351;
@@ -426,7 +426,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(828, 213);
+            this.label6.Location = new System.Drawing.Point(828, 210);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(43, 16);
             this.label6.TabIndex = 530;
@@ -444,7 +444,7 @@
             this.btnAShrink.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnAShrink.Image = global::AgOpenGPS.Properties.Resources.DrawLineShrinkA;
             this.btnAShrink.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAShrink.Location = new System.Drawing.Point(823, 126);
+            this.btnAShrink.Location = new System.Drawing.Point(823, 123);
             this.btnAShrink.Name = "btnAShrink";
             this.btnAShrink.Size = new System.Drawing.Size(54, 85);
             this.btnAShrink.TabIndex = 529;
@@ -462,7 +462,7 @@
             this.btnBShrink.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnBShrink.Image = global::AgOpenGPS.Properties.Resources.DrawLineShrinkB;
             this.btnBShrink.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBShrink.Location = new System.Drawing.Point(823, 39);
+            this.btnBShrink.Location = new System.Drawing.Point(823, 36);
             this.btnBShrink.Name = "btnBShrink";
             this.btnBShrink.Size = new System.Drawing.Size(54, 85);
             this.btnBShrink.TabIndex = 528;
@@ -475,7 +475,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(727, 215);
+            this.label7.Location = new System.Drawing.Point(727, 212);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(48, 16);
             this.label7.TabIndex = 531;

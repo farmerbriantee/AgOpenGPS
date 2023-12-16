@@ -14,14 +14,11 @@ namespace AgOpenGPS
             if (closing)
             {
                 btnOk.Image = Properties.Resources.ExitAOG;
-                btnOpenField.Visible = false;
-                label1.Visible = false;
             }
             else
             {
                 btnOk.Image = Properties.Resources.FieldClose;
                 label3.Text = "Close";
-                label1.Text = gStr.gsField;
             }
         }
 

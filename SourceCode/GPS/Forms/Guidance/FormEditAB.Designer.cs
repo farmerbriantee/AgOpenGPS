@@ -199,7 +199,7 @@
             "90",
             "180",
             "270"});
-            this.cboxDegrees.Location = new System.Drawing.Point(19, 218);
+            this.cboxDegrees.Location = new System.Drawing.Point(13, 218);
             this.cboxDegrees.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxDegrees.Name = "cboxDegrees";
             this.cboxDegrees.Size = new System.Drawing.Size(78, 37);

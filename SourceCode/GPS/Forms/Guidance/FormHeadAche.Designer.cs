@@ -313,7 +313,7 @@
             this.btnAShrink.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnAShrink.Image = global::AgOpenGPS.Properties.Resources.DrawLineShrinkA;
             this.btnAShrink.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAShrink.Location = new System.Drawing.Point(818, 120);
+            this.btnAShrink.Location = new System.Drawing.Point(818, 118);
             this.btnAShrink.Name = "btnAShrink";
             this.btnAShrink.Size = new System.Drawing.Size(53, 85);
             this.btnAShrink.TabIndex = 525;
@@ -331,7 +331,7 @@
             this.btnBShrink.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnBShrink.Image = global::AgOpenGPS.Properties.Resources.DrawLineShrinkB;
             this.btnBShrink.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBShrink.Location = new System.Drawing.Point(818, 33);
+            this.btnBShrink.Location = new System.Drawing.Point(818, 31);
             this.btnBShrink.Name = "btnBShrink";
             this.btnBShrink.Size = new System.Drawing.Size(53, 85);
             this.btnBShrink.TabIndex = 524;
@@ -460,7 +460,7 @@
             this.btnALength.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnALength.Image = global::AgOpenGPS.Properties.Resources.DrawLineExtendA;
             this.btnALength.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnALength.Location = new System.Drawing.Point(717, 119);
+            this.btnALength.Location = new System.Drawing.Point(717, 117);
             this.btnALength.Name = "btnALength";
             this.btnALength.Size = new System.Drawing.Size(53, 85);
             this.btnALength.TabIndex = 352;
@@ -478,7 +478,7 @@
             this.btnBLength.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnBLength.Image = global::AgOpenGPS.Properties.Resources.DrawLineExtendB;
             this.btnBLength.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBLength.Location = new System.Drawing.Point(717, 33);
+            this.btnBLength.Location = new System.Drawing.Point(717, 31);
             this.btnBLength.Name = "btnBLength";
             this.btnBLength.Size = new System.Drawing.Size(53, 85);
             this.btnBLength.TabIndex = 351;
@@ -527,7 +527,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(719, 209);
+            this.label2.Location = new System.Drawing.Point(719, 207);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 16);
             this.label2.TabIndex = 526;
@@ -540,7 +540,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(823, 209);
+            this.label6.Location = new System.Drawing.Point(823, 207);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(43, 16);
             this.label6.TabIndex = 527;

@@ -208,10 +208,7 @@
     <value>Create New Field</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Current (A)</value>
-  </data>
-  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
-    <value>Current (A)</value>
+    <value>Current</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>Curve Line File Corrupt</value>

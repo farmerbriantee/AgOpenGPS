@@ -13,11 +13,6 @@ namespace AgOpenGPS
             //get copy of the calling main form
             mf = callingForm as FormGPS;
             InitializeComponent();
-
-            //this.bntOK.Text = gStr.gsForNow;
-            //this.btnSave.Text = gStr.gsToFile;
-
-            //this.Text = gStr.gsSmoothABCurve;
         }
 
         private void UpdateLabels()
@@ -78,18 +73,9 @@ namespace AgOpenGPS
             mf.flagPts[mf.flagNumberPicked - 1].notes = tboxFlagNotes.Text;
         }
 
-        private void tboxFlagNotes_TextChanged(object sender, EventArgs e)
-        {
-            //mf.flagPts[mf.flagNumberPicked - 1].notes = tboxFlagNotes.Text;
-        }
-
         private void tboxFlagNotes_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == '\r') e.Handled = true;
-        }
-
-        private void btnDriveToFlag_Click(object sender, EventArgs e)
-        {
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -102,39 +88,6 @@ namespace AgOpenGPS
             else lblDistanceToFlag.Text = (glm.Distance(steerAxlePosRP,
                 mf.flagPts[mf.flagNumberPicked - 1].easting, mf.flagPts[mf.flagNumberPicked - 1].northing) * glm.m2ft).ToString("N2") + " m";
         }
-
-        /*
-        private void MakeDubinsLineFromPivotToFlag()
-        {
-            //if (mf.ABLine.isBtnABLineOn)
-            //{
-            //    mf.ABLine.isBtnABLineOn = false;
-            //    mf.btnABLine.Image = Properties.Resources.ABLineOff;
-            //}
-
-            CDubins.turningRadius = mf.vehicle.minTurningRadius * 3.0;
-            CDubins dubPath = new CDubins();
-
-            // current psition
-            vec3 steerAxlePosRP = mf.pivotAxlePos;
-
-            //bump it back so you can line up to point
-            vec3 goal = new vec3
-            {
-                easting = mf.flagPts[mf.flagNumberPicked - 1].easting - (Math.Sin(mf.flagPts[mf.flagNumberPicked - 1].heading) * 6),
-                northing = mf.flagPts[mf.flagNumberPicked - 1].northing - (Math.Cos(mf.flagPts[mf.flagNumberPicked - 1].heading) * 6),
-                heading = mf.flagPts[mf.flagNumberPicked - 1].heading
-            };
-
-            //bump it forward
-            vec3 pt2 = new vec3
-            {
-                easting = steerAxlePosRP.easting + (Math.Sin(steerAxlePosRP.heading) * 6),
-                northing = steerAxlePosRP.northing + (Math.Cos(steerAxlePosRP.heading) * 6),
-                heading = steerAxlePosRP.heading
-            };
-        }
-        */
 
         private void tboxFlagNotes_Click(object sender, EventArgs e)
         {

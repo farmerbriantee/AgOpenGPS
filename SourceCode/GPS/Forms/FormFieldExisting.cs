@@ -383,6 +383,12 @@ namespace AgOpenGPS
                 destinationDirectory = directoryName + "\\Boundary.txt";
                 if (File.Exists(fileToCopy))
                     File.Copy(fileToCopy, destinationDirectory);
+
+
+                fileToCopy = templateDirectoryName + "\\Headlines.txt";
+                destinationDirectory = directoryName + "\\Headlines.txt";
+                if (File.Exists(fileToCopy))
+                    File.Copy(fileToCopy, destinationDirectory);
                 else
                     using (StreamWriter writer = new StreamWriter(dirNewField + "\\Boundary.txt"))
                     {

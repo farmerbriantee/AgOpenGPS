@@ -205,10 +205,7 @@
     <value>Izveidot jaunu lauku</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Strāva (A)</value>
-  </data>
-  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
-    <value>Strāva (A)</value>
+    <value>Strāva</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>Līknes līnijas fails ir bojāts</value>

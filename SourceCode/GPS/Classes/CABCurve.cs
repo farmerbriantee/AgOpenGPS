@@ -125,8 +125,6 @@ namespace AgOpenGPS
             //reset the line over jump
             isLateralTriggered = false;
 
-            //if (rA >= refCount - 1 || rB >= refCount) return;
-
             if (rA > rB) { C = rA; rA = rB; rB = C; }
 
             //same way as line creation or not
@@ -152,9 +150,6 @@ namespace AgOpenGPS
                                 * refPoint1.northing) - (refPoint2.northing * refPoint1.easting))
                                 / Math.Sqrt((dz * dz) + (dx * dx));
 
-            //bnd line
-            //distanceFromRefLine -= (0.5 * widthMinusOverlap);
-
             double RefDist = (distanceFromRefLine + (isHeadingSameWay ? mf.tool.offset : -mf.tool.offset)) / widthMinusOverlap;
             if (RefDist < 0) howManyPathsAway = (int)(RefDist - 0.5);
             else howManyPathsAway = (int)(RefDist + 0.5);
@@ -166,11 +161,6 @@ namespace AgOpenGPS
             curList?.Clear();
 
             double distAway = widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset);
-
-            //bnd line
-            //distAway += (0.5 * widthMinusOverlap);
-            //distAway -= 2;
-            //offset calc
 
             if (howManyPathsAway > -1) howManyPathsAway += 1;
 
@@ -500,7 +490,6 @@ namespace AgOpenGPS
                     rEastCu = curList[A].easting + (U * dx);
                     rNorthCu = curList[A].northing + (U * dz);
                     manualUturnHeading = curList[A].heading;
-                    //double minx, maxx, miny, maxy;
 
                     //update base on autosteer settings and distance from line
                     double goalPointDistance = mf.vehicle.UpdateGoalPointDistance();

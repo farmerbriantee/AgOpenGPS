@@ -208,10 +208,7 @@
     <value>Crear nueva Parcela</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Actual (A)</value>
-  </data>
-  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
-    <value>Actual (A)</value>
+    <value>Actual</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>Fichero de línea curva corrupto</value>

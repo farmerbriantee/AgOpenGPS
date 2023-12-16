@@ -208,10 +208,7 @@
     <value>Створ.нове поле</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Поточна (А)</value>
-  </data>
-  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
-    <value>Поточна (А)</value>
+    <value>Поточна</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>Файл Кривої Лінії Пошкоджено</value>

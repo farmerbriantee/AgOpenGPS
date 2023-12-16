@@ -66,24 +66,6 @@ namespace AgOpenGPS
             }
         }
 
-        private void tboxTask_Click(object sender, EventArgs e)
-        {
-            if (mf.isKeyboardOn)
-            {
-                mf.KeyboardToText((TextBox)sender, this);
-                btnSerialCancel.Focus();
-            }
-        }
-
-        private void tboxVehicle_Click(object sender, EventArgs e)
-        {
-            if (mf.isKeyboardOn)
-            {
-                mf.KeyboardToText((TextBox)sender, this);
-                btnSerialCancel.Focus();
-            }
-        }
-
         private void btnLoadKML_Click(object sender, EventArgs e)
         {
             tboxFieldName.Enabled = false;
@@ -316,7 +298,6 @@ namespace AgOpenGPS
             }
 
             //append date time to name
-
             mf.currentFieldDirectory = tboxFieldName.Text.Trim();
 
             //get the directory and make sure it exists, create if not
@@ -362,7 +343,6 @@ namespace AgOpenGPS
                     mf.displayFieldName = mf.currentFieldDirectory;
 
                     //create the field file header info
-
                     if (!mf.isJobStarted)
                     {
                         using (FormTimedMessage form = new FormTimedMessage(3000, gStr.gsFieldNotOpen, gStr.gsCreateNewField))

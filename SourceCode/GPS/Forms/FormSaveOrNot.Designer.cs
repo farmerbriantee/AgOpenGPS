@@ -31,8 +31,6 @@
             this.lblQuestion = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnOpenField = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnOk = new System.Windows.Forms.Button();
@@ -62,48 +60,22 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(80)))));
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.btnOpenField);
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.btnOk);
             this.panel1.Controls.Add(this.btnReturn);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(5, 5);
+            this.panel1.Location = new System.Drawing.Point(8, 10);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(608, 144);
+            this.panel1.Size = new System.Drawing.Size(580, 129);
             this.panel1.TabIndex = 260;
-            // 
-            // label1
-            // 
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(255, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 13);
-            this.label1.TabIndex = 264;
-            this.label1.Text = "Open";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnOpenField
-            // 
-            this.btnOpenField.BackColor = System.Drawing.Color.Transparent;
-            this.btnOpenField.FlatAppearance.BorderSize = 0;
-            this.btnOpenField.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpenField.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.btnOpenField.Image = global::AgOpenGPS.Properties.Resources.JobActive;
-            this.btnOpenField.Location = new System.Drawing.Point(258, 45);
-            this.btnOpenField.Name = "btnOpenField";
-            this.btnOpenField.Size = new System.Drawing.Size(97, 64);
-            this.btnOpenField.TabIndex = 263;
-            this.btnOpenField.UseVisualStyleBackColor = false;
-            this.btnOpenField.Click += new System.EventHandler(this.btnOpenField_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(55, 29);
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(72, 13);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(39, 13);
             this.label5.TabIndex = 262;
@@ -112,8 +84,8 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(520, 29);
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(484, 13);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(25, 13);
             this.label3.TabIndex = 260;
@@ -126,7 +98,7 @@
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOk.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.btnOk.Image = global::AgOpenGPS.Properties.Resources.ExitAOG;
-            this.btnOk.Location = new System.Drawing.Point(492, 45);
+            this.btnOk.Location = new System.Drawing.Point(456, 29);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(97, 64);
             this.btnOk.TabIndex = 0;
@@ -140,7 +112,7 @@
             this.btnReturn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReturn.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.btnReturn.Image = global::AgOpenGPS.Properties.Resources.back_button;
-            this.btnReturn.Location = new System.Drawing.Point(24, 45);
+            this.btnReturn.Location = new System.Drawing.Point(41, 29);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(97, 64);
             this.btnReturn.TabIndex = 5;
@@ -151,8 +123,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.BackColor = System.Drawing.Color.Cyan;
-            this.ClientSize = new System.Drawing.Size(618, 154);
+            this.BackColor = System.Drawing.Color.Black;
+            this.ClientSize = new System.Drawing.Size(598, 154);
             this.ControlBox = false;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblQuestion);
@@ -179,7 +151,5 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnOpenField;
-        private System.Windows.Forms.Label label1;
     }
 }

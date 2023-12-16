@@ -208,10 +208,7 @@
     <value>Új terület készítése</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Áramerősség (A)</value>
-  </data>
-  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
-    <value>Amper (A)</value>
+    <value>Áramerősség</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>Görbe fájl hibás</value>

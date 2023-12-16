@@ -210,9 +210,6 @@
   <data name="gsCurrent" xml:space="preserve">
     <value>zCurrent</value>
   </data>
-  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
-    <value>zCurrent</value>
-  </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>zCurve Line File Corrupt</value>
   </data>

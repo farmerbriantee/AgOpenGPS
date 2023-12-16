@@ -208,10 +208,7 @@
     <value>Maak nieuw perceel</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Huidig (A)</value>
-  </data>
-  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
-    <value>Huidig (A)</value>
+    <value>Huidig</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>AB Curve lijn corrupt</value>

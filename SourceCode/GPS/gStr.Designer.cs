@@ -331,20 +331,11 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current (A).
+        ///   Looks up a localized string similar to Current.
         /// </summary>
         public static string gsCurrent {
             get {
                 return ResourceManager.GetString("gsCurrent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Current (A).
-        /// </summary>
-        public static string gsCurrentSensorValueLabel {
-            get {
-                return ResourceManager.GetString("gsCurrentSensorValueLabel", resourceCulture);
             }
         }
         

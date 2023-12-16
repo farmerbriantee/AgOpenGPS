@@ -43,7 +43,6 @@
             this.tboxFlagNotes = new System.Windows.Forms.TextBox();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnDeleteFlag = new System.Windows.Forms.Button();
-            this.btnDriveToFlag = new System.Windows.Forms.Button();
             this.lblHeading = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -207,7 +206,6 @@
             this.tboxFlagNotes.TabIndex = 209;
             this.tboxFlagNotes.Text = "Default";
             this.tboxFlagNotes.Click += new System.EventHandler(this.tboxFlagNotes_Click);
-            this.tboxFlagNotes.TextChanged += new System.EventHandler(this.tboxFlagNotes_TextChanged);
             this.tboxFlagNotes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tboxFlagNotes_KeyPress);
             this.tboxFlagNotes.Leave += new System.EventHandler(this.tboxFlagNotes_Leave);
             // 
@@ -246,25 +244,6 @@
             this.btnDeleteFlag.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDeleteFlag.UseVisualStyleBackColor = true;
             this.btnDeleteFlag.Click += new System.EventHandler(this.btnDeleteFlag_Click);
-            // 
-            // btnDriveToFlag
-            // 
-            this.btnDriveToFlag.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDriveToFlag.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDriveToFlag.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnDriveToFlag.FlatAppearance.BorderSize = 0;
-            this.btnDriveToFlag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDriveToFlag.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnDriveToFlag.Image = global::AgOpenGPS.Properties.Resources.AutoSteerConf;
-            this.btnDriveToFlag.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDriveToFlag.Location = new System.Drawing.Point(109, 238);
-            this.btnDriveToFlag.Name = "btnDriveToFlag";
-            this.btnDriveToFlag.Size = new System.Drawing.Size(78, 55);
-            this.btnDriveToFlag.TabIndex = 212;
-            this.btnDriveToFlag.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnDriveToFlag.UseVisualStyleBackColor = true;
-            this.btnDriveToFlag.Visible = false;
-            this.btnDriveToFlag.Click += new System.EventHandler(this.btnDriveToFlag_Click);
             // 
             // lblHeading
             // 
@@ -326,13 +305,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(300, 318);
             this.ControlBox = false;
             this.Controls.Add(this.lblDistanceToFlag);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblHeading);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.btnDriveToFlag);
             this.Controls.Add(this.btnDeleteFlag);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.tboxFlagNotes);
@@ -374,7 +353,6 @@
         private System.Windows.Forms.TextBox tboxFlagNotes;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnDeleteFlag;
-        private System.Windows.Forms.Button btnDriveToFlag;
         private System.Windows.Forms.Label lblHeading;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Timer timer1;

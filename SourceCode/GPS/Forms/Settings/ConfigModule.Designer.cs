@@ -537,19 +537,6 @@ namespace AgOpenGPS
             }
         }
 
-        private void btnTriggerDistanceDn_Click(object sender, EventArgs e)
-        {
-            mf.yt.uturnDistanceFromBoundary--;
-            if (mf.yt.uturnDistanceFromBoundary < 0.1) mf.yt.uturnDistanceFromBoundary = 0.1;
-            UpdateUturnText();
-        }
-
-        private void btnTriggerDistanceUp_Click(object sender, EventArgs e)
-        {
-            if (mf.yt.uturnDistanceFromBoundary++ > 50) mf.yt.uturnDistanceFromBoundary = 50;
-            UpdateUturnText();
-        }
-
         private void btnDistanceDn_Click(object sender, EventArgs e)
         {
             if (mf.yt.youTurnStartOffset-- < 4) mf.yt.youTurnStartOffset = 3;

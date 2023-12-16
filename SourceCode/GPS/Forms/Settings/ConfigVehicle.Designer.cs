@@ -21,7 +21,6 @@ namespace AgOpenGPS
             if (tboxVehicleNameSave.Text.Trim().Length > 0)
             {
                 SettingsIO.ExportAll(mf.vehiclesDirectory + tboxVehicleNameSave.Text.Trim() + ".XML");
-                lblCurrentVehicle.Text = tboxVehicleNameSave.Text.Trim();
                 Properties.Settings.Default.setVehicle_vehicleName = tboxVehicleNameSave.Text.Trim();
                 Properties.Settings.Default.Save();
                 tboxVehicleNameSave.Text = "";
@@ -30,6 +29,7 @@ namespace AgOpenGPS
             }
 
             UpdateVehicleListView();
+            UpdateSummary();
         }
 
         private void tboxVehicleNameSave_TextChanged(object sender, EventArgs e)
@@ -312,25 +312,6 @@ namespace AgOpenGPS
 
                         //reset AOG
                         mf.LoadSettings();
-
-                        chkDisplayBrightness.Checked = mf.isBrightnessOn;
-                        chkDisplaySky.Checked = mf.isSkyOn;
-                        chkDisplayFloor.Checked = mf.isTextureOn;
-                        chkDisplayGrid.Checked = mf.isGridOn;
-                        chkDisplaySpeedo.Checked = mf.isSpeedoOn;
-                        chkDisplayDayNight.Checked = mf.isAutoDayNight;
-                        chkSvennArrow.Checked = mf.isSvennArrowOn;
-                        chkDisplayExtraGuides.Checked = mf.isSideGuideLines;
-                        chkDisplayLogNMEA.Checked = mf.isLogNMEA;
-                        chkDisplayPolygons.Checked = mf.isDrawPolygons;
-                        chkDisplayLightbar.Checked = mf.isLightbarOn;
-                        chkDisplayKeyboard.Checked = mf.isKeyboardOn;
-                        chkDisplayStartFullScreen.Checked = Properties.Settings.Default.setDisplay_isStartFullScreen;
-
-                        if (mf.isMetric) rbtnDisplayMetric.Checked = true;
-                        else rbtnDisplayImperial.Checked = true;
-
-                        lblCurrentVehicle.Text = Properties.Settings.Default.setVehicle_vehicleName;
 
                         SectionFeetInchesTotalWidthLabelUpdate();
 

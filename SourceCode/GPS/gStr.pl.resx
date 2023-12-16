@@ -199,10 +199,7 @@
     <value>Utwórz nowe pole</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Prąd (A)</value>
-  </data>
-  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
-    <value>Prąd czujnika (A)</value>
+    <value>Prąd</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>Plik linii krzywej jest uszkodzony</value>

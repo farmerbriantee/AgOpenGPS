@@ -202,10 +202,7 @@
     <value>Yeni Alan Oluştur</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Akım (A)</value>
-  </data>
-  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
-    <value>Akım (A)</value>
+    <value>Akım</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>Eğri Çizgi Dosyası Bozuk</value>

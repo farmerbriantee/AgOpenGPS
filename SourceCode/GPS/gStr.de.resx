@@ -208,10 +208,7 @@
     <value>Neues Feld erstellen</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Strom (A)</value>
-  </data>
-  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
-    <value>Strom (A)</value>
+    <value>Strom</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>A-B Kurven Datei fehlerhaft</value>

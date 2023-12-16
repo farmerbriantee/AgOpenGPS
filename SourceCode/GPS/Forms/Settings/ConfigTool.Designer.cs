@@ -1367,6 +1367,7 @@ namespace AgOpenGPS
             if (mf.isMetric)
             {
                 lblSecTotalWidthMeters.Text = ((int)(mf.tool.width * 100)).ToString() + " cm";
+                lblSummaryWidth.Text = mf.tool.width.ToString("N2") + " m";
             }
             else
             {
@@ -1374,6 +1375,8 @@ namespace AgOpenGPS
                 lblSecTotalWidthFeet.Text = Convert.ToString((int)toFeet) + "'";
                 double temp = Math.Round((toFeet - Math.Truncate(toFeet)) * 12, 0);
                 lblSecTotalWidthInches.Text = Convert.ToString(temp) + '"';
+
+                lblSummaryWidth.Text = lblSecTotalWidthFeet.Text + " " + lblSecTotalWidthInches.Text;
             }
         }
 

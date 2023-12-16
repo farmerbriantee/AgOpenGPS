@@ -120,7 +120,7 @@
             // 
             // btnAddTime
             // 
-            this.btnAddTime.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnAddTime.BackColor = System.Drawing.Color.Transparent;
             this.btnAddTime.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnAddTime.FlatAppearance.BorderSize = 0;
             this.btnAddTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -138,7 +138,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnAdd.BackColor = System.Drawing.Color.Transparent;
             this.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnAdd.FlatAppearance.BorderSize = 0;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -209,6 +209,7 @@
             // 
             // btnMoveUp
             // 
+            this.btnMoveUp.BackColor = System.Drawing.Color.Transparent;
             this.btnMoveUp.FlatAppearance.BorderSize = 0;
             this.btnMoveUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMoveUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -217,11 +218,12 @@
             this.btnMoveUp.Name = "btnMoveUp";
             this.btnMoveUp.Size = new System.Drawing.Size(78, 57);
             this.btnMoveUp.TabIndex = 430;
-            this.btnMoveUp.UseVisualStyleBackColor = true;
+            this.btnMoveUp.UseVisualStyleBackColor = false;
             this.btnMoveUp.Click += new System.EventHandler(this.btnMoveUp_Click);
             // 
             // btnMoveDn
             // 
+            this.btnMoveDn.BackColor = System.Drawing.Color.Transparent;
             this.btnMoveDn.FlatAppearance.BorderSize = 0;
             this.btnMoveDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMoveDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -230,7 +232,7 @@
             this.btnMoveDn.Name = "btnMoveDn";
             this.btnMoveDn.Size = new System.Drawing.Size(78, 57);
             this.btnMoveDn.TabIndex = 429;
-            this.btnMoveDn.UseVisualStyleBackColor = true;
+            this.btnMoveDn.UseVisualStyleBackColor = false;
             this.btnMoveDn.Click += new System.EventHandler(this.btnMoveDn_Click);
             // 
             // flp
@@ -275,7 +277,7 @@
             // 
             // btnEditName
             // 
-            this.btnEditName.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnEditName.BackColor = System.Drawing.Color.Transparent;
             this.btnEditName.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnEditName.FlatAppearance.BorderSize = 0;
             this.btnEditName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -292,7 +294,7 @@
             // 
             // btnDuplicate
             // 
-            this.btnDuplicate.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnDuplicate.BackColor = System.Drawing.Color.Transparent;
             this.btnDuplicate.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnDuplicate.FlatAppearance.BorderSize = 0;
             this.btnDuplicate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -493,7 +495,7 @@
             // 
             // btnAddTimeEdit
             // 
-            this.btnAddTimeEdit.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnAddTimeEdit.BackColor = System.Drawing.Color.Transparent;
             this.btnAddTimeEdit.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnAddTimeEdit.FlatAppearance.BorderSize = 0;
             this.btnAddTimeEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -511,7 +513,7 @@
             // 
             // btnSaveEditName
             // 
-            this.btnSaveEditName.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnSaveEditName.BackColor = System.Drawing.Color.Transparent;
             this.btnSaveEditName.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnSaveEditName.FlatAppearance.BorderSize = 0;
             this.btnSaveEditName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
