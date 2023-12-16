@@ -321,7 +321,7 @@ namespace AgOpenGPS
                 if (panelSim.Visible == true)
                 {
                     top = Height - 100;
-                    panelSim.Top = Height - 60;
+                    panelSim.Top = Height - 65;
                 }
 
             }
@@ -331,7 +331,7 @@ namespace AgOpenGPS
                 if (panelSim.Visible == true)
                 {
                     top = Height - 160;
-                    panelSim.Top = Height - 120;
+                    panelSim.Top = Height - 125;
                 }
             }
 

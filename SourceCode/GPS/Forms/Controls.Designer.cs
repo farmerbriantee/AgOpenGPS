@@ -342,7 +342,7 @@ namespace AgOpenGPS
                 ABLine.isABLineSet = true;
                 ABLine.isABLineLoaded = true;
                 yt.ResetYouTurn();
-                lblCurveLineName.Text = ABLine.lineArr[idx].Name;
+                //lblCurveLineName.Text = ABLine.lineArr[idx].Name;
             }
             else if (curve.isBtnCurveOn && curve.numCurveLines > 0)
             {
@@ -381,7 +381,7 @@ namespace AgOpenGPS
                 }
                 curve.isCurveSet = true;
                 yt.ResetYouTurn();
-                lblCurveLineName.Text = curve.curveArr[idx].Name;
+                //lblCurveLineName.Text = curve.curveArr[idx].Name;
 
             }
             UpdateGuidanceLineButtonNumbers();
@@ -447,7 +447,7 @@ namespace AgOpenGPS
                 ABLine.isABLineSet = true;
                 ABLine.isABLineLoaded = true;
                 yt.ResetYouTurn();
-                lblCurveLineName.Text = ABLine.lineArr[idx].Name; 
+                //lblCurveLineName.Text = ABLine.lineArr[idx].Name; 
             }
             else if (curve.isBtnCurveOn && curve.numCurveLines > 0)
             {
@@ -486,7 +486,7 @@ namespace AgOpenGPS
                 }
                 curve.isCurveSet = true;
                 yt.ResetYouTurn();
-                lblCurveLineName.Text = curve.curveArr[idx].Name;
+                //lblCurveLineName.Text = curve.curveArr[idx].Name;
             }
 
             UpdateGuidanceLineButtonNumbers();

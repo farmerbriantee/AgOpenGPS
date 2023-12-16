@@ -210,6 +210,11 @@ namespace AgOpenGPS
         /// </summary>
         public CSim sim;
 
+        private void panelAB_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
 
         /// <summary>
         /// Resource manager for gloabal strings

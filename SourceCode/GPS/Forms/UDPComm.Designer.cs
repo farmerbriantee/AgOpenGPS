@@ -368,7 +368,7 @@ namespace AgOpenGPS
         //for moving and sizing borderless window
         protected override void WndProc(ref Message m)
         {
-            const int RESIZE_HANDLE_SIZE = 20;
+            const int RESIZE_HANDLE_SIZE = 10;
 
             switch (m.Msg)
             {

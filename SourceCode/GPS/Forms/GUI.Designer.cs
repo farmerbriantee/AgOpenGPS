@@ -146,21 +146,23 @@ namespace AgOpenGPS
                     }
 
                     lblCurrentField.Text = displayFieldName;
-
+                    string GuideLine;
                     if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
                     {
-                        lblCurveLineName.Text = "Cur-" + curve.curveArr[curve.numCurveLineSelected - 1].Name;
+                        GuideLine = curve.curveArr[curve.numCurveLineSelected - 1].Name;
                     }
 
                     else if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
                     {
-                        lblCurveLineName.Text = "AB-" + ABLine.lineArr[ABLine.numABLineSelected - 1].Name;
+                        GuideLine = ABLine.lineArr[ABLine.numABLineSelected - 1].Name;
                     }
-                    else lblCurveLineName.Text = string.Empty;
-                }
+                    else GuideLine = string.Empty;
+
+                    lblCurrentField.Text += " -> " + GuideLine;
+                        }
                 else
                 {
-                    lblCurveLineName.Text = lblFieldStatus.Text = string.Empty;
+                    lblFieldStatus.Text = string.Empty;
                     lblCurrentField.Text = (tool.width * m2FtOrM).ToString("N2") + unitsFtM + " - " + vehicleFileName;
                 }
 
@@ -733,7 +735,7 @@ namespace AgOpenGPS
         private void FixPanelsAndMenus()
         {
             panelAB.Size = new System.Drawing.Size(780 + ((Width - 900) / 2), 64);
-            panelAB.Location = new Point((Width - 900) / 3 + 64, this.Height - 66);
+            panelAB.Location = new Point((Width - 900) / 3 + 64, this.Height - 86);
 
             if (!isJobStarted)
             {
@@ -742,7 +744,7 @@ namespace AgOpenGPS
 
                 oglMain.Left = 75;
                 oglMain.Width = this.Width - statusStripLeft.Width - 22; //22
-                oglMain.Height = this.Height - 62;
+                oglMain.Height = this.Height - 64;
             }
             else
             {
@@ -750,7 +752,7 @@ namespace AgOpenGPS
                 panelRight.Visible = true;
                 oglMain.Left = 75;
                 oglMain.Width = this.Width - statusStripLeft.Width - 84; //22
-                oglMain.Height = this.Height - 120;
+                oglMain.Height = this.Height - 125;
             }
 
             if (tool.isSectionsNotZones)
