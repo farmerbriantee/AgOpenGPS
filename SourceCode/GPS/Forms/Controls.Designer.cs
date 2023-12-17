@@ -1376,30 +1376,6 @@ namespace AgOpenGPS
                 }
             }
         }
-        private void topFieldViewToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (Settings.Default.setMenu_isOGLZoomOn == 1)
-            {
-                Settings.Default.setMenu_isOGLZoomOn = 0;
-                Settings.Default.Save();
-                topFieldViewToolStripMenuItem.Checked = false;
-                oglZoom.Width = 400;
-                oglZoom.Height = 400;
-                oglZoom.SendToBack();
-            }
-            else
-            {
-                Settings.Default.setMenu_isOGLZoomOn = 1;
-                Settings.Default.Save();
-                topFieldViewToolStripMenuItem.Checked = true;
-                oglZoom.Visible = true;
-                oglZoom.Width = 300;
-                oglZoom.Height = 300;
-                oglZoom.Left = 80;
-                oglZoom.Top = 80;
-                if (isJobStarted) oglZoom.BringToFront();
-            }
-        }
         private void helpMenuItem_Click(object sender, EventArgs e)
         {
              using (var form = new Form_Help(this))
@@ -2477,6 +2453,30 @@ namespace AgOpenGPS
         #endregion
 
         #region Sim controls
+
+
+        private void btnSimSpeedUp_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (sim.stepDistance < 0)
+            {
+                sim.stepDistance = 0;
+                return;
+            }
+            if (sim.stepDistance < 0.2 ) sim.stepDistance += 0.02;
+            else 
+                sim.stepDistance *= 1.15;
+
+            if (sim.stepDistance > 7.5) sim.stepDistance = 7.5;
+        }
+
+        private void btnSpeedDn_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (sim.stepDistance < 0.2 && sim.stepDistance > -0.51) sim.stepDistance -= 0.02;
+            else sim.stepDistance *= 0.8;
+            if (sim.stepDistance < -0.5) sim.stepDistance = -0.5;
+        }
+
+
         private void timerSim_Tick(object sender, EventArgs e)
         {
             if (recPath.isDrivingRecordedPath || isAutoSteerBtnOn && (guidanceLineDistanceOff != 32000))
@@ -2488,10 +2488,6 @@ namespace AgOpenGPS
         {
             sim.steerAngleScrollBar = (hsbarSteerAngle.Value - 400) * 0.1;
             btnResetSteerAngle.Text = sim.steerAngleScrollBar.ToString("N1");
-        }
-        private void hsbarStepDistance_Scroll(object sender, ScrollEventArgs e)
-        {
-            sim.stepDistance = ((double)(hsbarStepDistance.Value)) / 5.0 / gpsHz;
         }
         private void btnResetSteerAngle_Click(object sender, EventArgs e)
         {
@@ -2507,7 +2503,6 @@ namespace AgOpenGPS
         private void btnSimSetSpeedToZero_Click(object sender, EventArgs e)
         {
             sim.stepDistance = 0;
-            hsbarStepDistance.Value = 0;
         }
 
         private void btnSimReverse_Click(object sender, EventArgs e)

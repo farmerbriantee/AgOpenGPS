@@ -255,7 +255,6 @@ namespace AgOpenGPS
             chkDisplayFloor.Checked = mf.isTextureOn;
             chkDisplayGrid.Checked = mf.isGridOn;
             chkDisplaySpeedo.Checked = mf.isSpeedoOn;
-            chkDisplayDayNight.Checked = mf.isAutoDayNight;
             chkDisplayStartFullScreen.Checked = Properties.Settings.Default.setDisplay_isStartFullScreen;
             chkSvennArrow.Checked = mf.isSvennArrowOn;
             chkDisplayExtraGuides.Checked = mf.isSideGuideLines;

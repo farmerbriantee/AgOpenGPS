@@ -48,7 +48,7 @@ namespace AgOpenGPS
 
         //Is it in 2D or 3D, metric or imperial, display lightbar, display grid etc
         public bool isMetric = true, isLightbarOn = true, isGridOn, isFullScreen;
-        public bool isUTurnAlwaysOn, isCompassOn, isSpeedoOn, isAutoDayNight, isSideGuideLines = true;
+        public bool isUTurnAlwaysOn, isCompassOn, isSpeedoOn, isSideGuideLines = true;
         public bool isPureDisplayOn = true, isSkyOn = true, isRollMeterOn = false, isTextureOn = true;
         public bool isDay = true, isDayTime = true, isBrightnessOn = true;
         public bool isKeyboardOn = true, isAutoStartAgIO = true, isSvennArrowOn = true;
@@ -121,6 +121,8 @@ namespace AgOpenGPS
  
                 lblFix.Text = FixQuality + pn.age.ToString("N1");
 
+                lblTime.Text = DateTime.Now.ToString("T");
+
                 if (isJobStarted)
                 {
                     if (isMetric)
@@ -129,7 +131,9 @@ namespace AgOpenGPS
                             lblFieldStatus.Text = fd.AreaBoundaryLessInnersHectares + "   "
                                 + fd.WorkedHectares + "    "
                                 + fd.TimeTillFinished + "   "
-                                + fd.WorkRateHectares;
+                                + fd.WorkRateHectares + "   "
+                                + fd.WorkedAreaRemainPercentage + "  Actual: " +
+                                (fd.actualAreaCovered * .0001).ToString("N2") + " Ha  " + fd.overlapPercent.ToString() + "%";
                         else
                             lblFieldStatus.Text = fd.WorkedHectares + "   " + fd.WorkRateHectares;
 
@@ -140,7 +144,8 @@ namespace AgOpenGPS
                             lblFieldStatus.Text = fd.AreaBoundaryLessInnersAcres + "   "
                                 + fd.WorkedAcres + "    "
                                 + fd.TimeTillFinished + "   "
-                                + fd.WorkRateAcres;
+                                + fd.WorkRateAcres + "  "
+                                + fd.WorkedAreaRemainPercentage;
                         else
                             lblFieldStatus.Text = fd.WorkedAcres + "   " + fd.WorkRateAcres;
                     }
@@ -323,13 +328,6 @@ namespace AgOpenGPS
             btnCurve.Text = curve.numCurveLineSelected.ToString() + " / " + curve.curveArr.Count.ToString();
         }
 
-
-        private void IsBetweenSunriseSunset(double lat, double lon)
-        {
-            CSunTimes.Instance.CalculateSunRiseSetTimes(pn.latitude, pn.longitude, dateToday, ref sunrise, ref sunset);
-            //isDay = (DateTime.Now.Ticks < sunset.Ticks && DateTime.Now.Ticks > sunrise.Ticks);
-        }
-
         public void LoadSettings()
         {            //metric settings
 
@@ -417,7 +415,6 @@ namespace AgOpenGPS
 
             isCompassOn = Settings.Default.setMenu_isCompassOn;
             isSpeedoOn = Settings.Default.setMenu_isSpeedoOn;
-            isAutoDayNight = Settings.Default.setDisplay_isAutoDayNight;
             isSideGuideLines = Settings.Default.setMenu_isSideGuideLines;
             isSvennArrowOn = Settings.Default.setDisplay_isSvennArrowOn;
 
@@ -734,8 +731,8 @@ namespace AgOpenGPS
 
         private void FixPanelsAndMenus()
         {
-            panelAB.Size = new System.Drawing.Size(780 + ((Width - 900) / 2), 64);
-            panelAB.Location = new Point((Width - 900) / 3 + 64, this.Height - 86);
+            panelAB.Size = new System.Drawing.Size(780 + ((Width - 900) / 2), 67);
+            panelAB.Location = new Point((Width - 900) / 3 + 67, this.Height - 86);
 
             if (!isJobStarted)
             {
@@ -744,7 +741,7 @@ namespace AgOpenGPS
 
                 oglMain.Left = 75;
                 oglMain.Width = this.Width - statusStripLeft.Width - 22; //22
-                oglMain.Height = this.Height - 64;
+                oglMain.Height = this.Height - 67;
             }
             else
             {
@@ -1077,29 +1074,6 @@ namespace AgOpenGPS
            }
         }
 
-        private void oglZoom_MouseClick(object sender, MouseEventArgs e)
-        {
-            if ((sender as Control).IsDragging()) return;
-
-            if (oglZoom.Width == 180)
-            {
-                oglZoom.Width = 300;
-                oglZoom.Height = 300;
-            }
-
-            else if (oglZoom.Width == 300)
-            {
-                oglZoom.Top = 55;
-                oglZoom.Left = 3;
-                oglZoom.Width = this.Width-6;
-                oglZoom.Height = this.Height-61;
-            }
-            else if (oglZoom.Width > 300)
-            {
-                oglZoom.Width = 180;
-                oglZoom.Height = 180;
-            }
-        }
         public void SwapDirection()
         {
             if (!yt.isYouTurnTriggered)
@@ -1168,8 +1142,8 @@ namespace AgOpenGPS
                     return "Sim: ";
                 else if (pn.fixQuality == 0) return "Invalid: ";
                 else if (pn.fixQuality == 1) return "GPS single: ";
-                else if (pn.fixQuality == 2) return "DGPS : ";
-                else if (pn.fixQuality == 3) return "PPS : ";
+                else if (pn.fixQuality == 2) return "DGPS: ";
+                else if (pn.fixQuality == 3) return "PPS: ";
                 else if (pn.fixQuality == 4) return "RTK fix: ";
                 else if (pn.fixQuality == 5) return "Float: ";
                 else if (pn.fixQuality == 6) return "Estimate: ";

@@ -48,7 +48,7 @@ namespace AgOpenGPS
         public void AverageTheSpeed()
         {
             //average the speed
-            if (speed > 70) speed = 70;
+            //if (speed > 70) speed = 70;
             mf.avgSpeed = (mf.avgSpeed * 0.75) + (speed * 0.25);
         }
 

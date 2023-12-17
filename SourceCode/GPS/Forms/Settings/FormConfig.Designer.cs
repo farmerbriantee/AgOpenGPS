@@ -525,14 +525,12 @@
             this.chkSpeedo = new System.Windows.Forms.Label();
             this.chkSky = new System.Windows.Forms.Label();
             this.chkExtraGuides = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
             this.chkGrid = new System.Windows.Forms.Label();
             this.chkDisplayLightbar = new System.Windows.Forms.CheckBox();
             this.chkDisplayKeyboard = new System.Windows.Forms.CheckBox();
             this.chkDisplayPolygons = new System.Windows.Forms.CheckBox();
             this.chkDisplayStartFullScreen = new System.Windows.Forms.CheckBox();
             this.chkDisplayLogNMEA = new System.Windows.Forms.CheckBox();
-            this.chkDisplayDayNight = new System.Windows.Forms.CheckBox();
             this.chkDisplayGrid = new System.Windows.Forms.CheckBox();
             this.chkDisplaySky = new System.Windows.Forms.CheckBox();
             this.chkDisplaySpeedo = new System.Windows.Forms.CheckBox();
@@ -9137,14 +9135,12 @@
             this.tabDisplay.Controls.Add(this.chkSpeedo);
             this.tabDisplay.Controls.Add(this.chkSky);
             this.tabDisplay.Controls.Add(this.chkExtraGuides);
-            this.tabDisplay.Controls.Add(this.label27);
             this.tabDisplay.Controls.Add(this.chkGrid);
             this.tabDisplay.Controls.Add(this.chkDisplayLightbar);
             this.tabDisplay.Controls.Add(this.chkDisplayKeyboard);
             this.tabDisplay.Controls.Add(this.chkDisplayPolygons);
             this.tabDisplay.Controls.Add(this.chkDisplayStartFullScreen);
             this.tabDisplay.Controls.Add(this.chkDisplayLogNMEA);
-            this.tabDisplay.Controls.Add(this.chkDisplayDayNight);
             this.tabDisplay.Controls.Add(this.chkDisplayGrid);
             this.tabDisplay.Controls.Add(this.chkDisplaySky);
             this.tabDisplay.Controls.Add(this.chkDisplaySpeedo);
@@ -9169,7 +9165,7 @@
             this.chkSvennArrow.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkSvennArrow.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkSvennArrow.Image = global::AgOpenGPS.Properties.Resources.SvennArrow;
-            this.chkSvennArrow.Location = new System.Drawing.Point(534, 262);
+            this.chkSvennArrow.Location = new System.Drawing.Point(534, 161);
             this.chkSvennArrow.Name = "chkSvennArrow";
             this.chkSvennArrow.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkSvennArrow.Size = new System.Drawing.Size(100, 69);
@@ -9277,7 +9273,7 @@
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(541, 334);
+            this.label15.Location = new System.Drawing.Point(541, 233);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(81, 16);
             this.label15.TabIndex = 529;
@@ -9288,7 +9284,7 @@
             this.label42.AutoSize = true;
             this.label42.BackColor = System.Drawing.Color.Transparent;
             this.label42.ForeColor = System.Drawing.Color.Black;
-            this.label42.Location = new System.Drawing.Point(357, 235);
+            this.label42.Location = new System.Drawing.Point(357, 233);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(66, 16);
             this.label42.TabIndex = 527;
@@ -9321,7 +9317,7 @@
             this.label36.AutoSize = true;
             this.label36.BackColor = System.Drawing.Color.Transparent;
             this.label36.ForeColor = System.Drawing.Color.Black;
-            this.label36.Location = new System.Drawing.Point(357, 436);
+            this.label36.Location = new System.Drawing.Point(357, 433);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(60, 16);
             this.label36.TabIndex = 522;
@@ -9332,7 +9328,7 @@
             this.label33.AutoSize = true;
             this.label33.BackColor = System.Drawing.Color.Transparent;
             this.label33.ForeColor = System.Drawing.Color.Black;
-            this.label33.Location = new System.Drawing.Point(540, 136);
+            this.label33.Location = new System.Drawing.Point(540, 130);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(60, 16);
             this.label33.TabIndex = 521;
@@ -9343,7 +9339,7 @@
             this.label31.AutoSize = true;
             this.label31.BackColor = System.Drawing.Color.Transparent;
             this.label31.ForeColor = System.Drawing.Color.Black;
-            this.label31.Location = new System.Drawing.Point(357, 336);
+            this.label31.Location = new System.Drawing.Point(357, 332);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(53, 16);
             this.label31.TabIndex = 520;
@@ -9376,7 +9372,7 @@
             this.chkSky.AutoSize = true;
             this.chkSky.BackColor = System.Drawing.Color.Transparent;
             this.chkSky.ForeColor = System.Drawing.Color.Black;
-            this.chkSky.Location = new System.Drawing.Point(357, 134);
+            this.chkSky.Location = new System.Drawing.Point(357, 130);
             this.chkSky.Name = "chkSky";
             this.chkSky.Size = new System.Drawing.Size(27, 16);
             this.chkSky.TabIndex = 514;
@@ -9387,29 +9383,18 @@
             this.chkExtraGuides.AutoSize = true;
             this.chkExtraGuides.BackColor = System.Drawing.Color.Transparent;
             this.chkExtraGuides.ForeColor = System.Drawing.Color.Black;
-            this.chkExtraGuides.Location = new System.Drawing.Point(538, 235);
+            this.chkExtraGuides.Location = new System.Drawing.Point(164, 233);
             this.chkExtraGuides.Name = "chkExtraGuides";
             this.chkExtraGuides.Size = new System.Drawing.Size(65, 16);
             this.chkExtraGuides.TabIndex = 519;
             this.chkExtraGuides.Text = "Guidelines";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.BackColor = System.Drawing.Color.Transparent;
-            this.label27.ForeColor = System.Drawing.Color.Black;
-            this.label27.Location = new System.Drawing.Point(166, 231);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(91, 16);
-            this.label27.TabIndex = 517;
-            this.label27.Text = "Auto Day Night";
             // 
             // chkGrid
             // 
             this.chkGrid.AutoSize = true;
             this.chkGrid.BackColor = System.Drawing.Color.Transparent;
             this.chkGrid.ForeColor = System.Drawing.Color.Black;
-            this.chkGrid.Location = new System.Drawing.Point(166, 534);
+            this.chkGrid.Location = new System.Drawing.Point(166, 536);
             this.chkGrid.Name = "chkGrid";
             this.chkGrid.Size = new System.Drawing.Size(30, 16);
             this.chkGrid.TabIndex = 515;
@@ -9512,27 +9497,6 @@
             this.chkDisplayLogNMEA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplayLogNMEA.UseVisualStyleBackColor = false;
             // 
-            // chkDisplayDayNight
-            // 
-            this.chkDisplayDayNight.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chkDisplayDayNight.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.chkDisplayDayNight.Checked = true;
-            this.chkDisplayDayNight.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDisplayDayNight.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.chkDisplayDayNight.FlatAppearance.BorderSize = 2;
-            this.chkDisplayDayNight.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
-            this.chkDisplayDayNight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkDisplayDayNight.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkDisplayDayNight.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.chkDisplayDayNight.Image = global::AgOpenGPS.Properties.Resources.ConD_AutoDayNight;
-            this.chkDisplayDayNight.Location = new System.Drawing.Point(162, 161);
-            this.chkDisplayDayNight.Name = "chkDisplayDayNight";
-            this.chkDisplayDayNight.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkDisplayDayNight.Size = new System.Drawing.Size(100, 69);
-            this.chkDisplayDayNight.TabIndex = 507;
-            this.chkDisplayDayNight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.chkDisplayDayNight.UseVisualStyleBackColor = false;
-            // 
             // chkDisplayGrid
             // 
             this.chkDisplayGrid.Appearance = System.Windows.Forms.Appearance.Button;
@@ -9605,7 +9569,7 @@
             this.chkDisplayExtraGuides.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDisplayExtraGuides.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkDisplayExtraGuides.Image = global::AgOpenGPS.Properties.Resources.ConD_ExtraGuides;
-            this.chkDisplayExtraGuides.Location = new System.Drawing.Point(534, 161);
+            this.chkDisplayExtraGuides.Location = new System.Drawing.Point(160, 161);
             this.chkDisplayExtraGuides.Name = "chkDisplayExtraGuides";
             this.chkDisplayExtraGuides.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkDisplayExtraGuides.Size = new System.Drawing.Size(100, 69);
@@ -10413,13 +10377,11 @@
         private System.Windows.Forms.CheckBox chkDisplayPolygons;
         private System.Windows.Forms.CheckBox chkDisplayStartFullScreen;
         private System.Windows.Forms.CheckBox chkDisplayLogNMEA;
-        private System.Windows.Forms.CheckBox chkDisplayDayNight;
         private System.Windows.Forms.CheckBox chkDisplayGrid;
         private System.Windows.Forms.CheckBox chkDisplaySky;
         private System.Windows.Forms.CheckBox chkDisplaySpeedo;
         private System.Windows.Forms.CheckBox chkDisplayExtraGuides;
         private System.Windows.Forms.Label chkExtraGuides;
-        private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label chkGrid;
         private System.Windows.Forms.Button btnDisplay;
         private System.Windows.Forms.Label label11;

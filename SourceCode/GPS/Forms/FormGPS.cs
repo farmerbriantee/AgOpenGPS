@@ -210,12 +210,6 @@ namespace AgOpenGPS
         /// </summary>
         public CSim sim;
 
-        private void panelAB_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-
         /// <summary>
         /// Resource manager for gloabal strings
         /// </summary>
@@ -459,20 +453,11 @@ namespace AgOpenGPS
             // load all the gui elements in gui.designer.cs
             LoadSettings();
 
-            if (Settings.Default.setMenu_isOGLZoomOn == 1)
-                topFieldViewToolStripMenuItem.Checked = true;
-            else topFieldViewToolStripMenuItem.Checked = false;
-
-            oglZoom.Width = 400;
-            oglZoom.Height = 400;
-            oglZoom.Visible = true;
-            oglZoom.Left = 300;
-            oglZoom.Top = 80;
-
-            if (!topFieldViewToolStripMenuItem.Checked)
-            {
-                oglZoom.SendToBack();
-            }
+            oglZoom.Width = 300;
+            oglZoom.Height = 300;
+            //oglZoom.Visible = false;
+            oglZoom.Left = 100;
+            oglZoom.Top = 100;
 
             if (Properties.Settings.Default.setDisplay_isAutoStartAgIO)
             {
@@ -503,8 +488,6 @@ namespace AgOpenGPS
             //nmea limiter
             udpWatch.Start();
 
-            //ControlExtension.Draggable(panelSnap, true);
-            ControlExtension.Draggable(oglZoom, true);
             ControlExtension.Draggable(panelDrag, true);
 
             setWorkingDirectoryToolStripMenuItem.Text = gStr.gsDirectories;
@@ -513,13 +496,9 @@ namespace AgOpenGPS
             menustripLanguage.Text = gStr.gsLanguage;
 
             simulatorOnToolStripMenuItem.Text = gStr.gsSimulatorOn;
-
             resetALLToolStripMenuItem.Text = gStr.gsResetAll;
             colorsToolStripMenuItem1.Text = gStr.gsColors;
-            topFieldViewToolStripMenuItem.Text = gStr.gsTopFieldView;
-
             resetEverythingToolStripMenuItem.Text = gStr.gsResetAllForSure;
-
             steerChartStripMenu.Text = gStr.gsCharts;
 
             //Tools Menu
@@ -776,12 +755,9 @@ namespace AgOpenGPS
         //request a new job
         public void JobNew()
         {
-            if (Settings.Default.setMenu_isOGLZoomOn == 1)
-            {
-                oglZoom.BringToFront();
-                oglZoom.Width = 300;
-                oglZoom.Height = 300;
-            }
+            //oglZoom.BringToFront();
+            oglZoom.Width = 300;
+            oglZoom.Height = 300;
 
             //SendSteerSettingsOutAutoSteerPort();
             isJobStarted = true;

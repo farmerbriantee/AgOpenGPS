@@ -16,7 +16,6 @@ namespace AgOpenGPS
         private double camDistanceFactor = -4;
 
         int mouseX = 0, mouseY = 0;
-        private int zoomUpdateCounter = 0;
         public int steerModuleConnectedCounter = 0;
 
         //data buffer for pixels read from off screen buffer
@@ -57,6 +56,7 @@ namespace AgOpenGPS
             if (sentenceCounter > 299)
             {
                 //sentenceCounter = 0;
+                oglMain.MakeCurrent();
                 GL.Enable(EnableCap.Blend);
                 GL.ClearColor(0.122f, 0.1258f, 0.1275f, 1.0f);
 
@@ -64,7 +64,6 @@ namespace AgOpenGPS
                 GL.LoadIdentity();
 
                 //match grid to cam distance and redo perspective
-                oglMain.MakeCurrent();
                 //GL.MatrixMode(MatrixMode.Projection);
                 //GL.LoadIdentity();
                 //Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(0.7f, oglMain.AspectRatio, 1f, 100);
@@ -156,6 +155,7 @@ namespace AgOpenGPS
                 if (isGPSPositionInitialized)
                 {
                     oglMain.MakeCurrent();
+
                     if (!isInit)
                     {
                         oglMain_Resize(oglMain, EventArgs.Empty);
@@ -493,14 +493,14 @@ namespace AgOpenGPS
                     }
 
                     //draw the zoom window
-                    if (isJobStarted && oglZoom.Width != 400)
-                    {
-                        if (threeSeconds != zoomUpdateCounter)
-                        {
-                            zoomUpdateCounter = threeSeconds;
-                            oglZoom.Refresh();
-                        }
-                    }
+                    //if (isJobStarted && oglZoom.Width != 400)
+                    //{
+                    //    if (threeSeconds != zoomUpdateCounter)
+                    //    {
+                    //        zoomUpdateCounter = threeSeconds;
+                    //        oglZoom.Refresh();
+                    //    }
+                    //}
                 }
             }
         }
@@ -627,7 +627,7 @@ namespace AgOpenGPS
                         GL.Vertex3(tram.tramBndInnerArr[h].easting, tram.tramBndInnerArr[h].northing, 0);
                     GL.End();
                 }
-            }            
+            }
 
             //draw 240 green for boundary
             if (bnd.bndList.Count > 0)
@@ -958,19 +958,19 @@ namespace AgOpenGPS
                 //Mapping timers
                 if (section[j].sectionOnRequest && !section[j].isMappingOn && section[j].mappingOnTimer == 0)
                 {
-                    section[j].mappingOnTimer = (int)(tool.lookAheadOnSetting * (gpsHz/2) - 1);
+                    section[j].mappingOnTimer = (int)(tool.lookAheadOnSetting * (gpsHz / 2) - 1);
                 }
                 else if (section[j].sectionOnRequest && section[j].isMappingOn && section[j].mappingOffTimer > 1)
                 {
                     section[j].mappingOffTimer = 0;
-                    section[j].mappingOnTimer = (int)(tool.lookAheadOnSetting * (gpsHz/2) - 1);
+                    section[j].mappingOnTimer = (int)(tool.lookAheadOnSetting * (gpsHz / 2) - 1);
                 }
 
                 if (tool.lookAheadOffSetting > 0)
                 {
                     if (section[j].sectionOffRequest && section[j].isMappingOn && section[j].mappingOffTimer == 0)
                     {
-                        section[j].mappingOffTimer = (int)(tool.lookAheadOffSetting * (gpsHz/2) + 4);
+                        section[j].mappingOffTimer = (int)(tool.lookAheadOffSetting * (gpsHz / 2) + 4);
                     }
                 }
                 else if (tool.turnOffDelay > 0)
@@ -1025,7 +1025,7 @@ namespace AgOpenGPS
             //there has been a status change of section on/off
             if (number != lastNumber)
             {
-                int sectionOnOffZones = 0, patchingZones=0;
+                int sectionOnOffZones = 0, patchingZones = 0;
 
                 //everything off
                 if (number == 0)
@@ -1147,13 +1147,13 @@ namespace AgOpenGPS
 
 
                 lastNumber = number;
-            }        
+            }
 
             //send the byte out to section machines
             BuildMachineByte();
 
             //if a minute has elapsed save the field in case of crash and to be able to resume            
-            if (minuteCounter > 30 && sentenceCounter < 20)
+            if (minuteCounter > 10 && sentenceCounter < 20)
             {
                 tmrWatchdog.Enabled = false;
 
@@ -1169,27 +1169,6 @@ namespace AgOpenGPS
                     //ExportFieldAs_KML();
                 }
 
-                if (isAutoDayNight && tenMinuteCounter > 600)
-                {
-                    tenMinuteCounter = 0;
-                    isDayTime = (DateTime.Now.Ticks < sunset.Ticks && DateTime.Now.Ticks > sunrise.Ticks);
-
-                    if (isDayTime != isDay)
-                    {
-                        isDay = isDayTime;
-                        isDay = !isDay;
-                        SwapDayNightMode();
-                    }
-
-                    if (sunrise.Date != DateTime.Today)
-                    {
-                        IsBetweenSunriseSunset(pn.latitude, pn.longitude);
-
-                        //set display accordingly
-                        isDayTime = (DateTime.Now.Ticks < sunset.Ticks && DateTime.Now.Ticks > sunrise.Ticks);                    
-                    }
-                }
-
                 //if its the next day, calc sunrise sunset for next day
                 minuteCounter = 0;
 
@@ -1198,6 +1177,10 @@ namespace AgOpenGPS
 
                 //go see if data ready for draw and position updates
                 tmrWatchdog.Enabled = true;
+
+                //calc overlap
+                oglZoom.Refresh();
+
             }
             //this is the end of the "frame". Now we wait for next NMEA sentence with a valid fix. 
         }
@@ -1235,245 +1218,250 @@ namespace AgOpenGPS
 
             if (isJobStarted)
             {
-                //GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
-                //GL.LoadIdentity();                  // Reset The View
+                oglZoom.MakeCurrent();
+
+                GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
+                GL.LoadIdentity();                  // Reset The View
 
                 CalculateMinMax();
-                ////back the camera up
-                //GL.Translate(0, 0, -maxFieldDistance);
-                //GL.Enable(EnableCap.Blend);
+                //back the camera up
+                GL.Translate(0, 0, -maxFieldDistance);
+                GL.Enable(EnableCap.Blend);
 
-                ////translate to that spot in the world 
-                //GL.Translate(-fieldCenterX, -fieldCenterY, 0);
+                //translate to that spot in the world 
+                GL.Translate(-fieldCenterX, -fieldCenterY, 0);
 
-                //GL.Color4(0.5, 0.5, 0.5, 0.5);
-                ////draw patches j= # of sections
-                //int count2;
+                GL.Color4(0.5, 0.5, 0.5, 0.5);
+                //draw patches
+                int count2;
 
-                //for (int j = 0; j < tool.numSuperSection; j++)
-                //{
-                //    //every time the section turns off and on is a new patch
-                //    int patchCount = section[j].patchList.Count;
+                for (int j = 0; j < triStrip.Count; j++)
+                {
+                    //every time the section turns off and on is a new patch
+                    int patchCount = triStrip[j].patchList.Count;
 
-                //    if (patchCount > 0)
-                //    {
-                //        //for every new chunk of patch
-                //        foreach (var triList in section[j].patchList)
-                //        {
-                //            //draw the triangle in each triangle strip
-                //            GL.Begin(PrimitiveType.TriangleStrip);
-                //            count2 = triList.Count;
-                //            //int mipmap = 2;
+                    if (patchCount > 0)
+                    {
+                        //for every new chunk of patch
+                        foreach (var triList in triStrip[j].patchList)
+                        {
+                            //draw the triangle in each triangle strip
+                            GL.Begin(PrimitiveType.TriangleStrip);
+                            count2 = triList.Count;
+                            int mipmap = 2;
 
-                //            ////if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
-                //            //if (count2 >= (mipmap))
-                //            //{
-                //            //    int step = mipmap;
-                //            //    for (int i = 0; i < count2; i += step)
-                //            //    {
-                //            //        GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
-                //            //        GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
+                            ////if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
+                            //if (count2 >= (mipmap))
+                            //{
+                            //    int step = mipmap;
+                            //    for (int i = 0; i < count2; i += step)
+                            //    {
+                            //        GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
+                            //        GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
 
-                //            //        //too small to mipmap it
-                //            //        if (count2 - i <= (mipmap + 2))
-                //            //            step = 0;
-                //            //    }
-                //            //}
+                            //        //too small to mipmap it
+                            //        if (count2 - i <= (mipmap))
+                            //            break;
+                            //    }
+                            //}
 
-                //            //else 
-                //            //{
-                //            for (int i = 1; i < count2; i++) GL.Vertex3(triList[i].easting, triList[i].northing, 0);
-                //            //}
-                //            GL.End();
+                            //else
+                            //{
+                                for (int i = 1; i < count2; i++) GL.Vertex3(triList[i].easting, triList[i].northing, 0);
+                            //}
+                            GL.End();
 
-                //        }
-                //    }
-                //} //end of section patches
+                        }
+                    }
+                } //end of section patches
+
+                GL.Flush();
+
+                //oglZoom.SwapBuffers();
+
+
+                int grnHeight = oglZoom.Height;
+                int grnWidth = oglZoom.Width;
+                byte[] overPix = new byte[grnHeight * grnWidth + 1];
+
+                GL.ReadPixels(0, 0, grnWidth, grnWidth, OpenTK.Graphics.OpenGL.PixelFormat.Green, PixelType.UnsignedByte, overPix);
+
+                int once = 0;
+                int twice = 0;
+                int more = 0;
+                int level = 0;
+                double total = 0;
+                double total2 = 0;
+
+                //50, 96, 112                
+                for (int i = 0; i < grnHeight * grnWidth; i++)
+                {
+
+                    if (overPix[i] > 105)
+                    {
+                        more++;
+                        level = overPix[i];
+                    }
+                    else if (overPix[i] > 85)
+                    {
+                        twice++;
+                        level = overPix[i];
+                    }
+                    else if (overPix[i] > 50)
+                    {
+                        once++;
+                    }
+                }
+                total = once + twice + more;
+                total2 = total + twice + more + more;
+
+                if (total2 > 0)
+                {
+                    fd.actualAreaCovered = (total / total2 * fd.workedAreaTotal);
+                    fd.overlapPercent = Math.Round(((1 - total / total2) * 100), 2);
+                }
+                else
+                {
+                    fd.actualAreaCovered = fd.overlapPercent = 0;
+                }
 
                 //GL.Flush();
-
-                //int grnHeight = oglZoom.Height;
-                //int grnWidth = oglZoom.Width;
-                //byte[] overPix = new byte[grnHeight * grnWidth + 1];
-
-                //GL.ReadPixels(0, 0, grnWidth, grnWidth, OpenTK.Graphics.OpenGL.PixelFormat.Green, PixelType.UnsignedByte, overPix);
-
-                //int once = 0;
-                //int twice = 0;
-                //int more = 0;
-                //int level = 0;
-                //double total = 0;
-                //double total2 = 0;
-
-                ////50, 96, 112                
-                //for (int i = 0; i < grnHeight * grnWidth; i++)
-                //{
-
-                //    if (overPix[i] > 105)
-                //    {
-                //        more++;
-                //        level = overPix[i];
-                //    }
-                //    else if (overPix[i] > 85)
-                //    {
-                //        twice++;
-                //        level = overPix[i];
-                //    }
-                //    else if (overPix[i] > 50)
-                //    {
-                //        once++;
-                //    }
-                //}
-                //total = once + twice + more;
-                //total2 = total + twice + more + more;
-
-                //if (total2 > 0)
-                //{
-                //    fd.actualAreaCovered = (total / total2 * fd.workedAreaTotal);
-                //    fd.overlapPercent = Math.Round(((1 - total / total2) * 100), 2);
-                //}
-                //else
-                //{
-                //    fd.actualAreaCovered = fd.overlapPercent = 0;
-                //}
-
-                ////GL.Flush();
                 ////oglZoom.MakeCurrent();
                 ////oglZoom.SwapBuffers();
 
-                if (oglZoom.Width != 400)
-                {
-                    oglZoom.MakeCurrent();
+                //if (oglZoom.Width != 400)
+                //{
+                //    oglZoom.MakeCurrent();
 
-                    GL.Disable(EnableCap.Blend);
+                //    GL.Disable(EnableCap.Blend);
 
-                    GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
-                    GL.LoadIdentity();                  // Reset The View
+                //    GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
+                //    GL.LoadIdentity();                  // Reset The View
 
-                    //back the camera up
-                    GL.Translate(0, 0, -maxFieldDistance*0.92);
+                //    //back the camera up
+                //    GL.Translate(0, 0, -maxFieldDistance*0.92);
 
-                    //translate to that spot in the world 
-                    GL.Translate(-fieldCenterX, -fieldCenterY, 0);
+                //    //translate to that spot in the world 
+                //    GL.Translate(-fieldCenterX, -fieldCenterY, 0);
 
-                    //draw the ABLine
-                    if ((ABLine.isABLineSet | ABLine.isABLineBeingSet) && ABLine.isBtnABLineOn)
-                    {
-                        //Draw reference AB line
-                        GL.LineWidth(1);
-                        GL.Enable(EnableCap.LineStipple);
-                        GL.LineStipple(1, 0x00F0);
+                //    //draw the ABLine
+                //    if ((ABLine.isABLineSet | ABLine.isABLineBeingSet) && ABLine.isBtnABLineOn)
+                //    {
+                //        //Draw reference AB line
+                //        GL.LineWidth(1);
+                //        GL.Enable(EnableCap.LineStipple);
+                //        GL.LineStipple(1, 0x00F0);
 
-                        GL.Begin(PrimitiveType.Lines);
-                        GL.Color3(0.9f, 0.2f, 0.2f);
-                        GL.Vertex3(ABLine.refABLineP1.easting, ABLine.refABLineP1.northing, 0);
-                        GL.Vertex3(ABLine.refABLineP2.easting, ABLine.refABLineP2.northing, 0);
-                        GL.End();
-                        GL.Disable(EnableCap.LineStipple);
+                //        GL.Begin(PrimitiveType.Lines);
+                //        GL.Color3(0.9f, 0.2f, 0.2f);
+                //        GL.Vertex3(ABLine.refABLineP1.easting, ABLine.refABLineP1.northing, 0);
+                //        GL.Vertex3(ABLine.refABLineP2.easting, ABLine.refABLineP2.northing, 0);
+                //        GL.End();
+                //        GL.Disable(EnableCap.LineStipple);
 
-                        //raw current AB Line
-                        GL.Begin(PrimitiveType.Lines);
-                        GL.Color3(0.9f, 0.20f, 0.90f);
-                        GL.Vertex3(ABLine.currentABLineP1.easting, ABLine.currentABLineP1.northing, 0.0);
-                        GL.Vertex3(ABLine.currentABLineP2.easting, ABLine.currentABLineP2.northing, 0.0);
-                        GL.End();
-                    }
+                //        //raw current AB Line
+                //        GL.Begin(PrimitiveType.Lines);
+                //        GL.Color3(0.9f, 0.20f, 0.90f);
+                //        GL.Vertex3(ABLine.currentABLineP1.easting, ABLine.currentABLineP1.northing, 0.0);
+                //        GL.Vertex3(ABLine.currentABLineP2.easting, ABLine.currentABLineP2.northing, 0.0);
+                //        GL.End();
+                //    }
 
-                    //draw curve if there is one
-                    if (curve.isCurveSet && curve.isBtnCurveOn)
-                    {
-                        int ptC = curve.curList.Count;
-                        if (ptC > 0)
-                        {
-                            GL.LineWidth(2);
-                            GL.Color3(0.925f, 0.2f, 0.90f);
-                            GL.Begin(PrimitiveType.LineStrip);
-                            for (int h = 0; h < ptC; h++) GL.Vertex3(curve.curList[h].easting, curve.curList[h].northing, 0);
-                            GL.End();
-                        }
-                    }
+                //    //draw curve if there is one
+                //    if (curve.isCurveSet && curve.isBtnCurveOn)
+                //    {
+                //        int ptC = curve.curList.Count;
+                //        if (ptC > 0)
+                //        {
+                //            GL.LineWidth(2);
+                //            GL.Color3(0.925f, 0.2f, 0.90f);
+                //            GL.Begin(PrimitiveType.LineStrip);
+                //            for (int h = 0; h < ptC; h++) GL.Vertex3(curve.curList[h].easting, curve.curList[h].northing, 0);
+                //            GL.End();
+                //        }
+                //    }
 
-                    //draw all the fences
-                    bnd.DrawFenceLines();
+                //    //draw all the fences
+                //    bnd.DrawFenceLines();
 
-                    GL.PointSize(8.0f);
-                    GL.Begin(PrimitiveType.Points);
-                    GL.Color3(0.95f, 0.90f, 0.0f);
-                    GL.Vertex3(pivotAxlePos.easting, pivotAxlePos.northing, 0.0);
-                    GL.End();
+                //    GL.PointSize(8.0f);
+                //    GL.Begin(PrimitiveType.Points);
+                //    GL.Color3(0.95f, 0.90f, 0.0f);
+                //    GL.Vertex3(pivotAxlePos.easting, pivotAxlePos.northing, 0.0);
+                //    GL.End();
 
-                    GL.PointSize(1.0f);
+                //    GL.PointSize(1.0f);
 
-                    if (isDay) GL.Color3(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B);
-                    else GL.Color3(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B);
+                //    if (isDay) GL.Color3(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B);
+                //    else GL.Color3(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B);
 
-                    //GL.Color3((byte)0, (byte)200, (byte)0);
-                    int cnt, step, patchCount;
-                    int mipmap = 8;
+                //    //GL.Color3((byte)0, (byte)200, (byte)0);
+                //    int cnt, step, patchCount;
+                //    int mipmap = 8;
 
-                    //draw patches j= # of sections
-                    for (int j = 0; j < triStrip.Count; j++)
-                    {
-                        //every time the section turns off and on is a new patch
-                        patchCount = triStrip[j].patchList.Count;
+                //    //draw patches j= # of sections
+                //    for (int j = 0; j < triStrip.Count; j++)
+                //    {
+                //        //every time the section turns off and on is a new patch
+                //        patchCount = triStrip[j].patchList.Count;
 
-                        if (patchCount > 0)
-                        {
-                            //for every new chunk of patch
-                            foreach (var triList in triStrip[j].patchList)
-                            {
-                                //draw the triangle in each triangle strip
-                                GL.Begin(PrimitiveType.TriangleStrip);
-                                cnt = triList.Count;
+                //        if (patchCount > 0)
+                //        {
+                //            //for every new chunk of patch
+                //            foreach (var triList in triStrip[j].patchList)
+                //            {
+                //                //draw the triangle in each triangle strip
+                //                GL.Begin(PrimitiveType.TriangleStrip);
+                //                cnt = triList.Count;
 
-                                //if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
-                                if (cnt >= (mipmap))
-                                {
-                                    step = mipmap;
-                                    for (int i = 1; i < cnt; i += step)
-                                    {
-                                        GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
-                                        GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
+                //                //if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
+                //                if (cnt >= (mipmap))
+                //                {
+                //                    step = mipmap;
+                //                    for (int i = 1; i < cnt; i += step)
+                //                    {
+                //                        GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
+                //                        GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
 
-                                        //too small to mipmap it
-                                        if (cnt - i <= (mipmap + 2))
-                                            step = 0;
-                                    }
-                                }
+                //                        //too small to mipmap it
+                //                        if (cnt - i <= (mipmap + 2))
+                //                            step = 0;
+                //                    }
+                //                }
 
-                                else
-                                {
-                                    for (int i = 1; i < cnt; i++)
-                                        GL.Vertex3(triList[i].easting, triList[i].northing, 0);
-                                }
-                                GL.End();
+                //                else
+                //                {
+                //                    for (int i = 1; i < cnt; i++)
+                //                        GL.Vertex3(triList[i].easting, triList[i].northing, 0);
+                //                }
+                //                GL.End();
 
-                            }
-                        }
-                    } //end of section patches
+                //            }
+                //        }
+                //    } //end of section patches
 
-                    GL.Flush();
+                //    GL.Flush();
 
-                    //byte[] overPix = new byte[oglZoom.Height * oglZoom.Width + 1];
+                //    //byte[] overPix = new byte[oglZoom.Height * oglZoom.Width + 1];
 
-                    //GL.ReadPixels(0, 0, oglZoom.Width, oglZoom.Width, OpenTK.Graphics.OpenGL.PixelFormat.Green, PixelType.UnsignedByte, overPix);
+                //    //GL.ReadPixels(0, 0, oglZoom.Width, oglZoom.Width, OpenTK.Graphics.OpenGL.PixelFormat.Green, PixelType.UnsignedByte, overPix);
 
-                    //int more = 0;
+                //    //int more = 0;
 
-                    //for (int i = 0; i < oglZoom.Width * oglZoom.Width; i++)
-                    //{
+                //    //for (int i = 0; i < oglZoom.Width * oglZoom.Width; i++)
+                //    //{
 
-                    //    if (overPix[i] == 200)
-                    //    {
-                    //        more++;
-                    //    }
-                    //}
+                //    //    if (overPix[i] == 200)
+                //    //    {
+                //    //        more++;
+                //    //    }
+                //    //}
 
-                    //double scale = ((maxFieldDistance * maxFieldDistance) / (oglZoom.Height * oglZoom.Width) * (double)more)/10000;
+                //    //double scale = ((maxFieldDistance * maxFieldDistance) / (oglZoom.Height * oglZoom.Width) * (double)more)/10000;
 
-                    oglZoom.MakeCurrent();
-                    oglZoom.SwapBuffers();
-                }
+                //    oglZoom.MakeCurrent();
+                //    oglZoom.SwapBuffers();
+                //}
             }
         }
 
@@ -1585,8 +1573,8 @@ namespace AgOpenGPS
             int bottomSide = oglMain.Height - sizer/3;
 
             //draw the clock
-            GL.Color4(0.9752f, 0.80f, 0.3f, 0.98);
-            font.DrawText(center -210, oglMain.Height - 26, DateTime.Now.ToString("T"), 0.8);
+            //GL.Color4(0.9752f, 0.80f, 0.3f, 0.98);
+            //font.DrawText(center -210, oglMain.Height - 26, DateTime.Now.ToString("T"), 0.8);
 
             GL.PushMatrix();
             GL.Enable(EnableCap.Texture2D);

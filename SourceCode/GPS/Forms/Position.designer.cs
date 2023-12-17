@@ -802,30 +802,33 @@ namespace AgOpenGPS
 
                 p_254.pgn[p_254.lineDistance] = unchecked((byte)distanceX2);
 
-                if (isAutoSteerBtnOn && avgSpeed > vehicle.maxSteerSpeed)
+                if (!timerSim.Enabled)
                 {
-                    btnAutoSteer.PerformClick();
-                    if (isMetric)
-                        TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + vehicle.maxSteerSpeed.ToString("N0") + " Kmh");
-                    else
-                        TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + (vehicle.maxSteerSpeed* 0.621371).ToString("N1") + " MPH");
-                }
-
-                if (isAutoSteerBtnOn && avgSpeed < vehicle.minSteerSpeed)
-                {
-                    minSteerSpeedTimer++;
-                    if (minSteerSpeedTimer > 80)
+                    if (isAutoSteerBtnOn && avgSpeed > vehicle.maxSteerSpeed)
                     {
                         btnAutoSteer.PerformClick();
                         if (isMetric)
-                            TimedMessageBox(3000, "AutoSteer Disabled", "Below Minimum Safe Steering Speed: " + vehicle.minSteerSpeed.ToString("N0") + " Kmh");
+                            TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + vehicle.maxSteerSpeed.ToString("N0") + " Kmh");
                         else
-                            TimedMessageBox(3000, "AutoSteer Disabled", "Below Minimum Safe Steering Speed: " + (vehicle.minSteerSpeed * 0.621371).ToString("N1") + " MPH");
+                            TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + (vehicle.maxSteerSpeed * 0.621371).ToString("N1") + " MPH");
                     }
-                }
-                else
-                {
-                    minSteerSpeedTimer = 0;
+
+                    if (isAutoSteerBtnOn && avgSpeed < vehicle.minSteerSpeed)
+                    {
+                        minSteerSpeedTimer++;
+                        if (minSteerSpeedTimer > 80)
+                        {
+                            btnAutoSteer.PerformClick();
+                            if (isMetric)
+                                TimedMessageBox(3000, "AutoSteer Disabled", "Below Minimum Safe Steering Speed: " + vehicle.minSteerSpeed.ToString("N0") + " Kmh");
+                            else
+                                TimedMessageBox(3000, "AutoSteer Disabled", "Below Minimum Safe Steering Speed: " + (vehicle.minSteerSpeed * 0.621371).ToString("N1") + " MPH");
+                        }
+                    }
+                    else
+                    {
+                        minSteerSpeedTimer = 0;
+                    }
                 }
 
                 double tanSteerAngle = Math.Tan(glm.toRadians(((double)(guidanceLineSteerAngle)) * 0.01));
@@ -1479,8 +1482,6 @@ namespace AgOpenGPS
                 //send out initial zero settings
                 if (isGPSPositionInitialized)
                 {
-                    IsBetweenSunriseSunset(pn.latitude, pn.longitude);
-
                     //set display accordingly
                     isDayTime = (DateTime.Now.Ticks < sunset.Ticks && DateTime.Now.Ticks > sunrise.Ticks);
 

@@ -368,7 +368,7 @@ namespace AgOpenGPS
         //for moving and sizing borderless window
         protected override void WndProc(ref Message m)
         {
-            const int RESIZE_HANDLE_SIZE = 10;
+            const int RESIZE_HANDLE_SIZE = 7;
 
             switch (m.Msg)
             {
@@ -604,20 +604,19 @@ namespace AgOpenGPS
             //speed up
             if (keyData == Keys.Up)
             {
-                if (sim.stepDistance < 0.04 && sim.stepDistance > -0.04) sim.stepDistance += 0.001;
-                else sim.stepDistance += 0.02;
-                if (sim.stepDistance > 1.9) sim.stepDistance = 1.9;
-                hsbarStepDistance.Value = (int)(sim.stepDistance * 5 * gpsHz);
+                if (sim.stepDistance < 0.4 && sim.stepDistance > -0.36) sim.stepDistance += 0.005;
+                else 
+                    sim.stepDistance += 0.02;
+                if (sim.stepDistance > 7.5) sim.stepDistance = 7.5;
                 return true;
             }
 
             //slow down
             if (keyData == Keys.Down)
             {
-                if (sim.stepDistance < 0.04 && sim.stepDistance > -0.04) sim.stepDistance -= 0.001;
+                if (sim.stepDistance < 0.2 && sim.stepDistance > -0.04) sim.stepDistance -= 0.005;
                 else sim.stepDistance -= 0.02;
                 if (sim.stepDistance < -0.35) sim.stepDistance = -0.35;
-                hsbarStepDistance.Value = (int)(sim.stepDistance * 5 * gpsHz);
                 return true;
             }
 
@@ -625,7 +624,6 @@ namespace AgOpenGPS
             if (keyData == Keys.OemPeriod)
             {
                 sim.stepDistance = 0;
-                hsbarStepDistance.Value = 0;
                 return true;
             }
 
@@ -678,7 +676,6 @@ namespace AgOpenGPS
             if (keyData == Keys.OemQuotes)
             {
                 sim.stepDistance = 0;
-                hsbarStepDistance.Value = 0;
                 return true;
             }
 

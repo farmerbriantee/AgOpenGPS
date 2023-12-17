@@ -434,7 +434,6 @@ namespace AgOpenGPS
             mf.isTextureOn = chkDisplayFloor.Checked;
             mf.isGridOn = chkDisplayGrid.Checked;
             mf.isSpeedoOn = chkDisplaySpeedo.Checked;
-            mf.isAutoDayNight = chkDisplayDayNight.Checked;
             mf.isSideGuideLines = chkDisplayExtraGuides.Checked;
             mf.isLogNMEA = chkDisplayLogNMEA.Checked;
             mf.isDrawPolygons = chkDisplayPolygons.Checked;
@@ -452,7 +451,6 @@ namespace AgOpenGPS
             Properties.Settings.Default.setMenu_isCompassOn = mf.isCompassOn;
             Properties.Settings.Default.setDisplay_isSvennArrowOn = mf.isSvennArrowOn;
             Properties.Settings.Default.setMenu_isSpeedoOn = mf.isSpeedoOn;
-            Properties.Settings.Default.setDisplay_isAutoDayNight = mf.isAutoDayNight;
             Properties.Settings.Default.setDisplay_isStartFullScreen = chkDisplayStartFullScreen.Checked;
             Properties.Settings.Default.setMenu_isSideGuideLines = mf.isSideGuideLines;
             //Properties.Settings.Default.setMenu_isLogNMEA = mf.isLogNMEA;
