@@ -128,12 +128,20 @@ namespace AgOpenGPS
                     if (isMetric)
                     {
                         if (bnd.bndList.Count > 0)
+                        {
                             lblFieldStatus.Text = fd.AreaBoundaryLessInnersHectares + "   "
                                 + fd.WorkedHectares + "    "
                                 + fd.TimeTillFinished + "   "
                                 + fd.WorkRateHectares + "   "
-                                + fd.WorkedAreaRemainPercentage + "  Actual: " +
-                                (fd.actualAreaCovered * .0001).ToString("N2") + " Ha  " + fd.overlapPercent.ToString() + "%";
+                                + fd.WorkedAreaRemainPercentage;
+                            if (this.Width > 1100)
+                            {
+                                lblFieldStatus.Text += "  Actual: " + (fd.actualAreaCovered * .0001).ToString("N2") + " Ha  "
+                                    + fd.overlapPercent.ToString() + "%";
+                            }
+
+
+                        }
                         else
                             lblFieldStatus.Text = fd.WorkedHectares + "   " + fd.WorkRateHectares;
 

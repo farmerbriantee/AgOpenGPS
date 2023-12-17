@@ -1894,13 +1894,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFieldStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblFieldStatus.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFieldStatus.Location = new System.Drawing.Point(80, 18);
+            this.lblFieldStatus.Location = new System.Drawing.Point(77, 18);
             this.lblFieldStatus.Margin = new System.Windows.Forms.Padding(0);
             this.lblFieldStatus.Name = "lblFieldStatus";
             this.lblFieldStatus.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.lblFieldStatus.Size = new System.Drawing.Size(461, 27);
+            this.lblFieldStatus.Size = new System.Drawing.Size(459, 30);
             this.lblFieldStatus.TabIndex = 469;
-            this.lblFieldStatus.Text = "25 Ha";
+            this.lblFieldStatus.Text = "hA";
             this.lblFieldStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblFieldStatus.Click += new System.EventHandler(this.lblFieldStatus_Click);
             // 
