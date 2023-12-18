@@ -1201,7 +1201,7 @@ namespace AgOpenGPS
         #endregion
 
         #region Top Panel
-        private void lblFieldStatus_Click(object sender, EventArgs e)
+        private void btnFieldStats_Click(object sender, EventArgs e)
         {
             Form f = Application.OpenForms["FormGPSData"];
 
@@ -1219,6 +1219,8 @@ namespace AgOpenGPS
                 fff.Close();
                 return;
             }
+
+            if (!isJobStarted) return;
 
 
             Form form = new FormFieldData(this);

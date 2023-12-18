@@ -63,6 +63,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ABDraw {
+            get {
+                object obj = ResourceManager.GetObject("ABDraw", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ABLineCycle {
             get {
                 object obj = ResourceManager.GetObject("ABLineCycle", resourceCulture);
@@ -2273,16 +2283,6 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap PointDone {
             get {
                 object obj = ResourceManager.GetObject("PointDone", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap PointStart {
-            get {
-                object obj = ResourceManager.GetObject("PointStart", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
