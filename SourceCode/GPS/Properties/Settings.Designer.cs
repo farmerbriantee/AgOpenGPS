@@ -2282,18 +2282,6 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
-        public double setVehicle_startSpeed {
-            get {
-                return ((double)(this["setVehicle_startSpeed"]));
-            }
-            set {
-                this["setVehicle_startSpeed"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1.9")]
         public double setVehicle_trackWidth {
             get {
@@ -2757,6 +2745,18 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setWindow_abLineCreate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setAS_isAutoSnapToPivot {
+            get {
+                return ((bool)(this["setAS_isAutoSnapToPivot"]));
+            }
+            set {
+                this["setAS_isAutoSnapToPivot"] = value;
             }
         }
     }

@@ -1412,6 +1412,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ConV_SteerPivotSnap {
+            get {
+                object obj = ResourceManager.GetObject("ConV_SteerPivotSnap", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap CurveOff {
             get {
                 object obj = ResourceManager.GetObject("CurveOff", resourceCulture);
@@ -1505,6 +1515,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap Fendt {
             get {
                 object obj = ResourceManager.GetObject("Fendt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FieldStats {
+            get {
+                object obj = ResourceManager.GetObject("FieldStats", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

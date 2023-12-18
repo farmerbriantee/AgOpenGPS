@@ -1570,7 +1570,7 @@ namespace AgOpenGPS
         {
             int sizer = oglMain.Height/10;
             int center = oglMain.Width / 2 - sizer;
-            int bottomSide = oglMain.Height - sizer/3;
+            int bottomSide = oglMain.Height - sizer/2;
 
             //draw the clock
             //GL.Color4(0.9752f, 0.80f, 0.3f, 0.98);
@@ -1874,109 +1874,6 @@ namespace AgOpenGPS
             }
         }
 
-        private void DrawRollBar()
-        {
-            //double set = guidanceLineSteerAngle * 0.01 * (40 / vehicle.maxSteerAngle);
-            //double actual = actualSteerAngleDisp * 0.01 * (40 / vehicle.maxSteerAngle);
-            //double hiit = 0;
-
-            GL.PushMatrix();
-            GL.Translate(oglMain.Width / -2 + 70, oglMain.Height-30, 0);
-
-            GL.LineWidth(1);
-            GL.Color3(0.24f, 0.64f, 0.74f);
-            double wiid = 42;
-
-            //If roll is used rotate graphic based on roll angle
- 
-            GL.Begin(PrimitiveType.Lines);
-            GL.Vertex2(-wiid - 15,0);
-            GL.Vertex2(-wiid-2, 0);
-            GL.Vertex2(wiid+2, 0);
-            GL.Vertex2(wiid + 15, 0);
-            GL.End();
-
-            GL.Rotate(ahrs.imuRoll, 0.0f, 0.0f, 1.0f);
-
-            GL.Color3(0.74f, 0.74f, 0.14f);
-            GL.LineWidth(2);
-
-            GL.Begin(PrimitiveType.LineStrip);
-            GL.Vertex2(-wiid + 10, 15);
-            GL.Vertex2(-wiid, 0);
-            GL.Vertex2(wiid, 0);
-            GL.Vertex2(wiid - 10, 15);
-            GL.End();
-
-            string head = Math.Round(ahrs.imuRoll, 1).ToString();
-            int center = -(int)(((head.Length) * 6));
-
-            font.DrawText(center, 0, head, 0.8);
-
-            //GL.Translate(0, 10, 0);
-
-            //{
-            //    if (actualSteerAngleDisp > 0)
-            //    {
-            //        GL.LineWidth(1);
-            //        GL.Begin(PrimitiveType.LineStrip);
-
-            //        GL.Color3(0.0f, 0.75930f, 0.0f);
-            //        GL.Vertex2(0, hiit);
-            //        GL.Vertex2(actual, hiit + 8);
-            //        GL.Vertex2(0, hiit + 16);
-            //        GL.Vertex2(0, hiit);
-
-            //        GL.End();
-            //    }
-            //    else
-            //    {
-            //        //actual
-            //        GL.LineWidth(1);
-            //        GL.Begin(PrimitiveType.LineStrip);
-
-            //        GL.Color3(0.75930f, 0.0f, 0.0f);
-            //        GL.Vertex2(-0, hiit);
-            //        GL.Vertex2(actual, hiit + 8);
-            //        GL.Vertex2(-0, hiit + 16);
-            //        GL.Vertex2(-0, hiit);
-
-            //        GL.End();
-            //    }
-            //}
-
-            //if (guidanceLineSteerAngle > 0)
-            //{
-            //    GL.LineWidth(1);
-            //    GL.Begin(PrimitiveType.LineStrip);
-
-            //    GL.Color3(0.75930f, 0.75930f, 0.0f);
-            //    GL.Vertex2(0, hiit);
-            //    GL.Vertex2(set, hiit + 8);
-            //    GL.Vertex2(0, hiit + 16);
-            //    GL.Vertex2(0, hiit);
-
-            //    GL.End();
-            //}
-            //else
-            //{
-            //    GL.LineWidth(1);
-            //    GL.Begin(PrimitiveType.LineStrip);
-
-            //    GL.Color3(0.75930f, 0.75930f, 0.0f);
-            //    GL.Vertex2(-0, hiit);
-            //    GL.Vertex2(set, hiit + 8);
-            //    GL.Vertex2(-0, hiit + 16);
-            //    GL.Vertex2(-0, hiit);
-
-            //    GL.End();
-            //}
-
-            //return back
-            GL.PopMatrix();
-            GL.LineWidth(1);
-        }
-
         private void DrawSky()
         {
             //GL.Translate(0, 0, 0.9);
@@ -2067,10 +1964,6 @@ namespace AgOpenGPS
             }
             GL.End();
             GL.Disable(EnableCap.Texture2D);
-
-
-
-
             center = oglMain.Width / -2 + 10;
             //center += 10;
             GL.Color3(0.9852f, 0.982f, 0.983f);

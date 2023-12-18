@@ -58,8 +58,6 @@ namespace AgOpenGPS
                 lblHeadingDistance.Text = "50 " + gStr.gsCentimeters;
             }
 
-            nudStartSpeed.Value = (decimal)Properties.Settings.Default.setVehicle_startSpeed;
-
             cboxIsDualAsIMU.Checked = Properties.Settings.Default.setIMU_isDualAsIMU;
 
             if (mf.ahrs.imuHeading != 99999)
@@ -159,15 +157,6 @@ namespace AgOpenGPS
                 mf.isFirstHeadingSet = false;
             }
 
-        }
-
-        private void nudStartSpeed_Click(object sender, EventArgs e)
-        {
-            if (mf.KeypadToNUD((NumericUpDown)sender, this))
-            {
-                Properties.Settings.Default.setVehicle_startSpeed = (double)nudStartSpeed.Value;
-                mf.isFirstHeadingSet = false;
-            }
         }
 
         private void hsbarFusion_ValueChanged(object sender, EventArgs e)

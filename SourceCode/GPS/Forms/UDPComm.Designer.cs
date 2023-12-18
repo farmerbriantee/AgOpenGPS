@@ -604,18 +604,18 @@ namespace AgOpenGPS
             //speed up
             if (keyData == Keys.Up)
             {
-                if (sim.stepDistance < 0.4 && sim.stepDistance > -0.36) sim.stepDistance += 0.005;
+                if (sim.stepDistance < 0.4 && sim.stepDistance > -0.36) sim.stepDistance += 0.01;
                 else 
-                    sim.stepDistance += 0.02;
-                if (sim.stepDistance > 7.5) sim.stepDistance = 7.5;
+                    sim.stepDistance += 0.04;
+                if (sim.stepDistance > 4) sim.stepDistance = 4;
                 return true;
             }
 
             //slow down
             if (keyData == Keys.Down)
             {
-                if (sim.stepDistance < 0.2 && sim.stepDistance > -0.04) sim.stepDistance -= 0.005;
-                else sim.stepDistance -= 0.02;
+                if (sim.stepDistance < 0.2 && sim.stepDistance > -0.04) sim.stepDistance -= 0.01;
+                else sim.stepDistance -= 0.04;
                 if (sim.stepDistance < -0.35) sim.stepDistance = -0.35;
                 return true;
             }

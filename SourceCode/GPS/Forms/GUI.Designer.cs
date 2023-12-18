@@ -141,12 +141,11 @@ namespace AgOpenGPS
                         if (bnd.bndList.Count > 0)
                             lblFieldStatus.Text = fd.AreaBoundaryLessInnersAcres + " - "
                                 + fd.WorkedAcres + " = "
-                                + fd.WorkedAreaRemainAcres + " *"
-                                + fd.ActualAreaWorkedAcres + " *"
-                                + fd.ActualOverlapPercent + "  "
-                                + fd.WorkedAreaRemainPercentage + "  "
-                                + fd.TimeTillFinished + "  "
-                                + fd.WorkRateAcres;
+                                + fd.WorkedAreaRemainAcres + ")  "
+                                + fd.WorkedAreaRemainPercentage + "  ("
+                                + fd.AreaBoundaryLessInnersAcres + " - "
+                                + fd.ActualAreaWorkedAcres + " = "
+                                + fd.ActualRemainAcres + ")";
                         else
                             lblFieldStatus.Text =
                                 fd.WorkedAcres + "  *"
@@ -345,8 +344,7 @@ namespace AgOpenGPS
 
                 //lblAV.Text = ABLine.angVel.ToString("N3");
             }
-        }//wait till timer fires again.
-         
+        }//wait till timer fires again.         
 
         private void UpdateGuidanceLineButtonNumbers()
         {
@@ -385,6 +383,7 @@ namespace AgOpenGPS
 
             isUTurnOn = Properties.Settings.Default.setFeatures.isUTurnOn;
             isLateralOn = Properties.Settings.Default.setFeatures.isLateralOn;
+            isAutoSnapToPivot = Properties.Settings.Default.setAS_isAutoSnapToPivot;
 
             if (isMetric)
             {
@@ -417,8 +416,6 @@ namespace AgOpenGPS
 
             udpWatchLimit = Properties.Settings.Default.SetGPS_udpWatchMsec;
             pn.headingTrueDualOffset = Properties.Settings.Default.setGPS_dualHeadingOffset;
-
-            startSpeed = Settings.Default.setVehicle_startSpeed;
 
             frameDayColor = Properties.Settings.Default.setDisplay_colorDayFrame.CheckColorFor255();
             frameNightColor = Properties.Settings.Default.setDisplay_colorNightFrame.CheckColorFor255();

@@ -141,6 +141,8 @@
             this.nudMinTurnRadius = new System.Windows.Forms.NumericUpDown();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabVGuidance = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cboxAutoSnapToPivot = new System.Windows.Forms.CheckBox();
             this.nudMinSteerSpeed = new System.Windows.Forms.NumericUpDown();
             this.label165 = new System.Windows.Forms.Label();
             this.label166 = new System.Windows.Forms.Label();
@@ -322,8 +324,6 @@
             this.headingGroupBox = new System.Windows.Forms.GroupBox();
             this.rbtnHeadingHDT = new System.Windows.Forms.RadioButton();
             this.rbtnHeadingFix = new System.Windows.Forms.RadioButton();
-            this.nudStartSpeed = new System.Windows.Forms.NumericUpDown();
-            this.label9 = new System.Windows.Forms.Label();
             this.cboxIsRTK_KillAutoSteer = new System.Windows.Forms.CheckBox();
             this.cboxIsRTK = new System.Windows.Forms.CheckBox();
             this.tabDRoll = new System.Windows.Forms.TabPage();
@@ -642,7 +642,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudDualHeadingOffset)).BeginInit();
             this.gboxSingle.SuspendLayout();
             this.headingGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudStartSpeed)).BeginInit();
             this.tabDRoll.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             this.tabUTurn.SuspendLayout();
@@ -2560,6 +2559,8 @@
             // tabVGuidance
             // 
             this.tabVGuidance.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabVGuidance.Controls.Add(this.label3);
+            this.tabVGuidance.Controls.Add(this.cboxAutoSnapToPivot);
             this.tabVGuidance.Controls.Add(this.nudMinSteerSpeed);
             this.tabVGuidance.Controls.Add(this.label165);
             this.tabVGuidance.Controls.Add(this.label166);
@@ -2607,6 +2608,40 @@
             this.tabVGuidance.Text = "vGuid";
             this.tabVGuidance.Enter += new System.EventHandler(this.tabVGuidance_Enter);
             this.tabVGuidance.Leave += new System.EventHandler(this.tabVGuidance_Leave);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label3.Location = new System.Drawing.Point(226, 178);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(75, 18);
+            this.label3.TabIndex = 493;
+            this.label3.Text = "Auto Snap";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cboxAutoSnapToPivot
+            // 
+            this.cboxAutoSnapToPivot.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxAutoSnapToPivot.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxAutoSnapToPivot.Checked = true;
+            this.cboxAutoSnapToPivot.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxAutoSnapToPivot.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.cboxAutoSnapToPivot.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxAutoSnapToPivot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxAutoSnapToPivot.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxAutoSnapToPivot.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cboxAutoSnapToPivot.Image = global::AgOpenGPS.Properties.Resources.ConV_SteerPivotSnap;
+            this.cboxAutoSnapToPivot.Location = new System.Drawing.Point(219, 199);
+            this.cboxAutoSnapToPivot.Name = "cboxAutoSnapToPivot";
+            this.cboxAutoSnapToPivot.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cboxAutoSnapToPivot.Size = new System.Drawing.Size(90, 100);
+            this.cboxAutoSnapToPivot.TabIndex = 492;
+            this.cboxAutoSnapToPivot.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.cboxAutoSnapToPivot.UseVisualStyleBackColor = false;
+            this.cboxAutoSnapToPivot.Click += new System.EventHandler(this.cboxAutoSnapToPivot_Click);
             // 
             // nudMinSteerSpeed
             // 
@@ -2733,7 +2768,7 @@
             this.nudMaxAngularVelocity.BackColor = System.Drawing.Color.AliceBlue;
             this.nudMaxAngularVelocity.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudMaxAngularVelocity.InterceptArrowKeys = false;
-            this.nudMaxAngularVelocity.Location = new System.Drawing.Point(565, 501);
+            this.nudMaxAngularVelocity.Location = new System.Drawing.Point(542, 501);
             this.nudMaxAngularVelocity.Minimum = new decimal(new int[] {
             5,
             0,
@@ -2799,7 +2834,7 @@
             this.label159.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label159.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label159.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label159.Location = new System.Drawing.Point(564, 399);
+            this.label159.Location = new System.Drawing.Point(541, 399);
             this.label159.Name = "label159";
             this.label159.Size = new System.Drawing.Size(107, 18);
             this.label159.TabIndex = 478;
@@ -2826,7 +2861,7 @@
             this.label162.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label162.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label162.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label162.Location = new System.Drawing.Point(570, 556);
+            this.label162.Location = new System.Drawing.Point(547, 556);
             this.label162.Name = "label162";
             this.label162.Size = new System.Drawing.Size(90, 18);
             this.label162.TabIndex = 481;
@@ -2876,7 +2911,7 @@
             this.label111.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label111.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label111.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label111.Location = new System.Drawing.Point(33, 178);
+            this.label111.Location = new System.Drawing.Point(33, 157);
             this.label111.Name = "label111";
             this.label111.Size = new System.Drawing.Size(105, 18);
             this.label111.TabIndex = 468;
@@ -2957,7 +2992,7 @@
             this.nudABLength.BackColor = System.Drawing.Color.AliceBlue;
             this.nudABLength.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudABLength.InterceptArrowKeys = false;
-            this.nudABLength.Location = new System.Drawing.Point(150, 199);
+            this.nudABLength.Location = new System.Drawing.Point(17, 257);
             this.nudABLength.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -2987,7 +3022,7 @@
             this.label79.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label79.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label79.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label79.Location = new System.Drawing.Point(190, 255);
+            this.label79.Location = new System.Drawing.Point(57, 313);
             this.label79.Name = "label79";
             this.label79.Size = new System.Drawing.Size(33, 18);
             this.label79.TabIndex = 456;
@@ -3132,7 +3167,7 @@
             this.cboxSteerInReverse.Location = new System.Drawing.Point(372, 201);
             this.cboxSteerInReverse.Name = "cboxSteerInReverse";
             this.cboxSteerInReverse.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cboxSteerInReverse.Size = new System.Drawing.Size(88, 103);
+            this.cboxSteerInReverse.Size = new System.Drawing.Size(90, 100);
             this.cboxSteerInReverse.TabIndex = 473;
             this.cboxSteerInReverse.Text = "Reverse";
             this.cboxSteerInReverse.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -3144,7 +3179,7 @@
             this.pictureBox15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox15.Image = global::AgOpenGPS.Properties.Resources.ConV_MaxAngVel;
-            this.pictureBox15.Location = new System.Drawing.Point(561, 420);
+            this.pictureBox15.Location = new System.Drawing.Point(538, 420);
             this.pictureBox15.Name = "pictureBox15";
             this.pictureBox15.Size = new System.Drawing.Size(118, 75);
             this.pictureBox15.TabIndex = 480;
@@ -3175,7 +3210,7 @@
             // 
             this.pictureBox14.BackgroundImage = global::AgOpenGPS.Properties.Resources.ConV_ABLineLength;
             this.pictureBox14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox14.Location = new System.Drawing.Point(23, 199);
+            this.pictureBox14.Location = new System.Drawing.Point(23, 178);
             this.pictureBox14.Name = "pictureBox14";
             this.pictureBox14.Size = new System.Drawing.Size(115, 73);
             this.pictureBox14.TabIndex = 458;
@@ -5425,8 +5460,6 @@
             this.tabDHeading.Controls.Add(this.label118);
             this.tabDHeading.Controls.Add(this.gboxSingle);
             this.tabDHeading.Controls.Add(this.headingGroupBox);
-            this.tabDHeading.Controls.Add(this.nudStartSpeed);
-            this.tabDHeading.Controls.Add(this.label9);
             this.tabDHeading.Controls.Add(this.cboxIsRTK_KillAutoSteer);
             this.tabDHeading.Controls.Add(this.cboxIsRTK);
             this.tabDHeading.Location = new System.Drawing.Point(4, 44);
@@ -5780,56 +5813,6 @@
             this.rbtnHeadingFix.UseVisualStyleBackColor = false;
             this.rbtnHeadingFix.CheckedChanged += new System.EventHandler(this.rbtnHeadingFix_CheckedChanged);
             this.rbtnHeadingFix.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.rbtnHeadingFix_HelpRequested);
-            // 
-            // nudStartSpeed
-            // 
-            this.nudStartSpeed.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudStartSpeed.DecimalPlaces = 2;
-            this.nudStartSpeed.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudStartSpeed.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.nudStartSpeed.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nudStartSpeed.InterceptArrowKeys = false;
-            this.nudStartSpeed.Location = new System.Drawing.Point(772, 41);
-            this.nudStartSpeed.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.nudStartSpeed.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nudStartSpeed.Name = "nudStartSpeed";
-            this.nudStartSpeed.ReadOnly = true;
-            this.nudStartSpeed.Size = new System.Drawing.Size(47, 21);
-            this.nudStartSpeed.TabIndex = 3;
-            this.nudStartSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudStartSpeed.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudStartSpeed.Visible = false;
-            this.nudStartSpeed.Click += new System.EventHandler(this.nudStartSpeed_Click);
-            this.nudStartSpeed.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudStartSpeed_HelpRequested);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(769, 21);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(64, 13);
-            this.label9.TabIndex = 306;
-            this.label9.Text = "Start Speed";
-            this.label9.Visible = false;
             // 
             // cboxIsRTK_KillAutoSteer
             // 
@@ -9847,7 +9830,6 @@
             this.gboxSingle.ResumeLayout(false);
             this.gboxSingle.PerformLayout();
             this.headingGroupBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nudStartSpeed)).EndInit();
             this.tabDRoll.ResumeLayout(false);
             this.tabDRoll.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
@@ -9925,8 +9907,6 @@
         private System.Windows.Forms.GroupBox headingGroupBox;
         private System.Windows.Forms.RadioButton rbtnHeadingHDT;
         private System.Windows.Forms.RadioButton rbtnHeadingFix;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.NumericUpDown nudStartSpeed;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label lblRollFilterPercent;
@@ -10402,5 +10382,7 @@
         private System.Windows.Forms.Label label173;
         private System.Windows.Forms.Label label174;
         private System.Windows.Forms.Label lblSumWheelbase;
+        private System.Windows.Forms.CheckBox cboxAutoSnapToPivot;
+        private System.Windows.Forms.Label label3;
     }
 }

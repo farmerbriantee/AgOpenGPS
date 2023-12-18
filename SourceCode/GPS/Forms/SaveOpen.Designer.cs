@@ -1651,6 +1651,9 @@ namespace AgOpenGPS
                         }
                     }
                 }
+
+                //update field data
+                oglZoom.Refresh();
             }
 
         }//end of open file

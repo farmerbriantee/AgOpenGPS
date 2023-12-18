@@ -222,6 +222,7 @@ namespace AgOpenGPS
                     isAutoSteerBtnOn = true;
                     btnAutoSteer.Image = Properties.Resources.AutoSteerOn;
                     if (sounds.isSteerSoundOn) sounds.sndAutoSteerOn.Play();
+                    if (isAutoSnapToPivot) SnapToPivot();
                 }
                 else
                 {
@@ -1838,6 +1839,11 @@ namespace AgOpenGPS
         //Snaps
         private void btnSnapToPivot_Click(object sender, EventArgs e)
         {
+            SnapToPivot();
+        }
+
+        public void SnapToPivot()
+        {
             if (ABLine.isBtnABLineOn)
             {
                 ABLine.MoveABLine(ABLine.distanceFromCurrentLinePivot);
@@ -1852,6 +1858,8 @@ namespace AgOpenGPS
                 form.Show(this);
             }
         }
+
+
         private void SnapRight()
         {
             if (!ct.isContourBtnOn)
