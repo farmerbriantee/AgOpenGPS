@@ -141,8 +141,6 @@
             this.nudMinTurnRadius = new System.Windows.Forms.NumericUpDown();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabVGuidance = new System.Windows.Forms.TabPage();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cboxAutoSnapToPivot = new System.Windows.Forms.CheckBox();
             this.nudMinSteerSpeed = new System.Windows.Forms.NumericUpDown();
             this.label165 = new System.Windows.Forms.Label();
             this.label166 = new System.Windows.Forms.Label();
@@ -157,7 +155,6 @@
             this.label159 = new System.Windows.Forms.Label();
             this.label113 = new System.Windows.Forms.Label();
             this.label162 = new System.Windows.Forms.Label();
-            this.label112 = new System.Windows.Forms.Label();
             this.nudGuidanceSpeedLimit = new System.Windows.Forms.NumericUpDown();
             this.label111 = new System.Windows.Forms.Label();
             this.label110 = new System.Windows.Forms.Label();
@@ -168,7 +165,6 @@
             this.label79 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             this.nudSnapDistance = new System.Windows.Forms.NumericUpDown();
             this.nudLineWidth = new System.Windows.Forms.NumericUpDown();
             this.label108 = new System.Windows.Forms.Label();
@@ -181,7 +177,6 @@
             this.pictureBox14 = new System.Windows.Forms.PictureBox();
             this.cboxAutoSteerAuto = new System.Windows.Forms.CheckBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabTConfig = new System.Windows.Forms.TabPage();
             this.gboxAttachment = new System.Windows.Forms.GroupBox();
@@ -586,7 +581,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabTConfig.SuspendLayout();
             this.gboxAttachment.SuspendLayout();
@@ -2559,8 +2553,6 @@
             // tabVGuidance
             // 
             this.tabVGuidance.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tabVGuidance.Controls.Add(this.label3);
-            this.tabVGuidance.Controls.Add(this.cboxAutoSnapToPivot);
             this.tabVGuidance.Controls.Add(this.nudMinSteerSpeed);
             this.tabVGuidance.Controls.Add(this.label165);
             this.tabVGuidance.Controls.Add(this.label166);
@@ -2575,7 +2567,6 @@
             this.tabVGuidance.Controls.Add(this.label159);
             this.tabVGuidance.Controls.Add(this.label113);
             this.tabVGuidance.Controls.Add(this.label162);
-            this.tabVGuidance.Controls.Add(this.label112);
             this.tabVGuidance.Controls.Add(this.nudGuidanceSpeedLimit);
             this.tabVGuidance.Controls.Add(this.label111);
             this.tabVGuidance.Controls.Add(this.label110);
@@ -2586,7 +2577,6 @@
             this.tabVGuidance.Controls.Add(this.label79);
             this.tabVGuidance.Controls.Add(this.label21);
             this.tabVGuidance.Controls.Add(this.label20);
-            this.tabVGuidance.Controls.Add(this.label17);
             this.tabVGuidance.Controls.Add(this.nudSnapDistance);
             this.tabVGuidance.Controls.Add(this.nudLineWidth);
             this.tabVGuidance.Controls.Add(this.label108);
@@ -2599,7 +2589,6 @@
             this.tabVGuidance.Controls.Add(this.pictureBox14);
             this.tabVGuidance.Controls.Add(this.cboxAutoSteerAuto);
             this.tabVGuidance.Controls.Add(this.pictureBox5);
-            this.tabVGuidance.Controls.Add(this.pictureBox4);
             this.tabVGuidance.Controls.Add(this.pictureBox2);
             this.tabVGuidance.Location = new System.Drawing.Point(4, 44);
             this.tabVGuidance.Name = "tabVGuidance";
@@ -2608,40 +2597,6 @@
             this.tabVGuidance.Text = "vGuid";
             this.tabVGuidance.Enter += new System.EventHandler(this.tabVGuidance_Enter);
             this.tabVGuidance.Leave += new System.EventHandler(this.tabVGuidance_Leave);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(226, 178);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(75, 18);
-            this.label3.TabIndex = 493;
-            this.label3.Text = "Auto Snap";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // cboxAutoSnapToPivot
-            // 
-            this.cboxAutoSnapToPivot.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxAutoSnapToPivot.BackColor = System.Drawing.Color.AliceBlue;
-            this.cboxAutoSnapToPivot.Checked = true;
-            this.cboxAutoSnapToPivot.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cboxAutoSnapToPivot.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.cboxAutoSnapToPivot.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
-            this.cboxAutoSnapToPivot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxAutoSnapToPivot.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxAutoSnapToPivot.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboxAutoSnapToPivot.Image = global::AgOpenGPS.Properties.Resources.ConV_SteerPivotSnap;
-            this.cboxAutoSnapToPivot.Location = new System.Drawing.Point(219, 199);
-            this.cboxAutoSnapToPivot.Name = "cboxAutoSnapToPivot";
-            this.cboxAutoSnapToPivot.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cboxAutoSnapToPivot.Size = new System.Drawing.Size(90, 100);
-            this.cboxAutoSnapToPivot.TabIndex = 492;
-            this.cboxAutoSnapToPivot.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.cboxAutoSnapToPivot.UseVisualStyleBackColor = false;
-            this.cboxAutoSnapToPivot.Click += new System.EventHandler(this.cboxAutoSnapToPivot_Click);
             // 
             // nudMinSteerSpeed
             // 
@@ -2868,19 +2823,6 @@
             this.label162.Text = "Degrees/sec";
             this.label162.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label112
-            // 
-            this.label112.AutoSize = true;
-            this.label112.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label112.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label112.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label112.Location = new System.Drawing.Point(20, 15);
-            this.label112.Name = "label112";
-            this.label112.Size = new System.Drawing.Size(189, 18);
-            this.label112.TabIndex = 469;
-            this.label112.Text = "LightBar - Distance per Pixel";
-            this.label112.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // nudGuidanceSpeedLimit
             // 
             this.nudGuidanceSpeedLimit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -2911,7 +2853,7 @@
             this.label111.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label111.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label111.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label111.Location = new System.Drawing.Point(33, 157);
+            this.label111.Location = new System.Drawing.Point(49, 188);
             this.label111.Name = "label111";
             this.label111.Size = new System.Drawing.Size(105, 18);
             this.label111.TabIndex = 468;
@@ -2992,7 +2934,7 @@
             this.nudABLength.BackColor = System.Drawing.Color.AliceBlue;
             this.nudABLength.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudABLength.InterceptArrowKeys = false;
-            this.nudABLength.Location = new System.Drawing.Point(17, 257);
+            this.nudABLength.Location = new System.Drawing.Point(176, 219);
             this.nudABLength.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -3022,7 +2964,7 @@
             this.label79.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label79.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label79.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label79.Location = new System.Drawing.Point(57, 313);
+            this.label79.Location = new System.Drawing.Point(216, 275);
             this.label79.Name = "label79";
             this.label79.Size = new System.Drawing.Size(33, 18);
             this.label79.TabIndex = 456;
@@ -3054,18 +2996,6 @@
             this.label20.TabIndex = 454;
             this.label20.Text = "cm";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label17
-            // 
-            this.label17.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label17.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label17.Location = new System.Drawing.Point(146, 51);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(98, 49);
-            this.label17.TabIndex = 453;
-            this.label17.Text = "Set to 1 cm / Dot";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // nudSnapDistance
             // 
@@ -3210,7 +3140,7 @@
             // 
             this.pictureBox14.BackgroundImage = global::AgOpenGPS.Properties.Resources.ConV_ABLineLength;
             this.pictureBox14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox14.Location = new System.Drawing.Point(23, 178);
+            this.pictureBox14.Location = new System.Drawing.Point(39, 209);
             this.pictureBox14.Name = "pictureBox14";
             this.pictureBox14.Size = new System.Drawing.Size(115, 73);
             this.pictureBox14.TabIndex = 458;
@@ -3246,16 +3176,6 @@
             this.pictureBox5.Size = new System.Drawing.Size(118, 75);
             this.pictureBox5.TabIndex = 96;
             this.pictureBox5.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BackgroundImage = global::AgOpenGPS.Properties.Resources.ConV_CmPixel;
-            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox4.Location = new System.Drawing.Point(23, 39);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(115, 73);
-            this.pictureBox4.TabIndex = 95;
-            this.pictureBox4.TabStop = false;
             // 
             // pictureBox2
             // 
@@ -9768,7 +9688,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabTConfig.ResumeLayout(false);
             this.gboxAttachment.ResumeLayout(false);
@@ -10028,9 +9947,7 @@
         private System.Windows.Forms.NumericUpDown nudVehicleTrack;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox6;
@@ -10115,7 +10032,6 @@
         private System.Windows.Forms.Label label107;
         private System.Windows.Forms.NumericUpDown nudGuidanceLookAhead;
         private System.Windows.Forms.Label label113;
-        private System.Windows.Forms.Label label112;
         private System.Windows.Forms.Label label111;
         private System.Windows.Forms.Label label110;
         private System.Windows.Forms.Label label109;
@@ -10382,7 +10298,5 @@
         private System.Windows.Forms.Label label173;
         private System.Windows.Forms.Label label174;
         private System.Windows.Forms.Label lblSumWheelbase;
-        private System.Windows.Forms.CheckBox cboxAutoSnapToPivot;
-        private System.Windows.Forms.Label label3;
     }
 }

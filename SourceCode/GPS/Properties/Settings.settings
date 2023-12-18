@@ -683,8 +683,5 @@
     <Setting Name="setWindow_abLineCreate" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">40, 40</Value>
     </Setting>
-    <Setting Name="setAS_isAutoSnapToPivot" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
   </Settings>
 </SettingsFile>

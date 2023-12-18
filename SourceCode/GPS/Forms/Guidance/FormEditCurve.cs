@@ -24,6 +24,7 @@ namespace AgOpenGPS
         private void FormEditAB_Load(object sender, EventArgs e)
         {
             label1.Text = mf.unitsInCm;
+            cboxAutoSnapToPivot.Checked = mf.isAutoSnapToPivot;
 
             if (mf.isMetric)
             {
@@ -47,7 +48,7 @@ namespace AgOpenGPS
         {
             mf.KeypadToNUD((NumericUpDown)sender, this);
             snapAdj = (double)nudSnapDistance.Value * mf.inchOrCm2m;
-            Properties.Settings.Default.setAS_snapDistance = snapAdj*100;
+            Properties.Settings.Default.setAS_snapDistance = snapAdj * 100;
             Properties.Settings.Default.Save();
         }
 
@@ -199,6 +200,11 @@ namespace AgOpenGPS
         private void btnContourPriority_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             MessageBox.Show(gStr.h_btnSnapToPivot, gStr.gsHelp);
+        }
+
+        private void cboxAutoSnapToPivot_Click(object sender, EventArgs e)
+        {
+            mf.isAutoSnapToPivot = cboxAutoSnapToPivot.Checked;
         }
     }
 }

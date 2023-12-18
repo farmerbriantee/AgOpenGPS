@@ -73,12 +73,23 @@ namespace AgOpenGPS
                 return;
             }
 
-            //check if window already exists
-            Form cf = Application.OpenForms["FormABCurve"];
+            f = null;
 
-            if (cf != null)
+            f = Application.OpenForms["FormEditAB"];
+
+            if (f != null)
             {
-                cf.Close();
+                f.Focus();
+                return;
+            }
+            f = null;
+
+            //check if window already exists
+            f = Application.OpenForms["FormABCurve"];
+
+            if (f != null)
+            {
+                f.Focus();
                 return;
             }
 
@@ -150,11 +161,20 @@ namespace AgOpenGPS
                 return;
             }
 
+            f = null;
+            f = Application.OpenForms["FormEditCurve"];
+
+            if (f != null)
+            {
+                f.Focus();
+                return;
+            }
+
             Form af = Application.OpenForms["FormABLine"];
 
             if (af != null)
             {
-                af.Close();
+                af.Focus();
                 return;
             }
 

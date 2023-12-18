@@ -106,7 +106,7 @@ namespace AgOpenGPS
             }
 
             ////////////////////////////////////////////// 10 second ///////////////////////////////////////////////////////
-            //every 3 second update status
+            //every 10 second update status
             if (tenSeconds != 0)
             {
                 //reset the counter
@@ -123,10 +123,10 @@ namespace AgOpenGPS
                                 + fd.WorkedAreaRemainPercentage + "  ("
                                 + fd.AreaBoundaryLessInnersHectares + " - "
                                 + fd.ActualAreaWorkedHectares + " = "
-                                + fd.ActualRemainHectares + ")";
-                            //+ fd.ActualOverlapPercent
-                            //+ fd.TimeTillFinished + "  "
-                            //+ fd.WorkRateHectares;
+                                + fd.ActualRemainHectares + ")  "
+                                + fd.ActualOverlapPercent + "  "
+                                + fd.TimeTillFinished + "  "
+                                + fd.WorkRateHectares;
                         }
                         else
                             lblFieldStatus.Text =
@@ -145,7 +145,10 @@ namespace AgOpenGPS
                                 + fd.WorkedAreaRemainPercentage + "  ("
                                 + fd.AreaBoundaryLessInnersAcres + " - "
                                 + fd.ActualAreaWorkedAcres + " = "
-                                + fd.ActualRemainAcres + ")";
+                                + fd.ActualRemainAcres + ")  "
+                                + fd.ActualOverlapPercent + "  "
+                                + fd.TimeTillFinished + "  "
+                                + fd.WorkRateHectares;
                         else
                             lblFieldStatus.Text =
                                 fd.WorkedAcres + "  *"
@@ -209,6 +212,17 @@ namespace AgOpenGPS
                             cboxpRowWidth.Visible = true;
                             btnYouSkipEnable.Visible = true;
                         }
+
+                        if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
+                        {
+                            lblGuidanceLine.Text = curve.curveArr[curve.numCurveLineSelected - 1].Name;
+                        }
+
+                        else if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
+                        {
+                            lblGuidanceLine.Text = ABLine.lineArr[ABLine.numABLineSelected - 1].Name;
+                        }
+                        else lblGuidanceLine.Text = gStr.gsNoGuidanceLines;
                     }
                     else
                     {
@@ -221,7 +235,10 @@ namespace AgOpenGPS
                             btnYouSkipEnable.Visible = false;
                         }
                     }
+
                 }
+
+
 
                 //save nmea log file
                 if (isLogNMEA) FileSaveNMEA();
@@ -383,7 +400,6 @@ namespace AgOpenGPS
 
             isUTurnOn = Properties.Settings.Default.setFeatures.isUTurnOn;
             isLateralOn = Properties.Settings.Default.setFeatures.isLateralOn;
-            isAutoSnapToPivot = Properties.Settings.Default.setAS_isAutoSnapToPivot;
 
             if (isMetric)
             {

@@ -2747,17 +2747,5 @@ namespace AgOpenGPS.Properties {
                 this["setWindow_abLineCreate"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setAS_isAutoSnapToPivot {
-            get {
-                return ((bool)(this["setAS_isAutoSnapToPivot"]));
-            }
-            set {
-                this["setAS_isAutoSnapToPivot"] = value;
-            }
-        }
     }
 }

@@ -40,6 +40,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.cboxAutoSnapToPivot = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistance)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,7 +104,7 @@
             this.btnContourPriority.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnContourPriority.Image = global::AgOpenGPS.Properties.Resources.SnapToPivot;
             this.btnContourPriority.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnContourPriority.Location = new System.Drawing.Point(175, 126);
+            this.btnContourPriority.Location = new System.Drawing.Point(192, 126);
             this.btnContourPriority.Name = "btnContourPriority";
             this.btnContourPriority.Size = new System.Drawing.Size(64, 64);
             this.btnContourPriority.TabIndex = 6;
@@ -117,7 +119,7 @@
             this.btnSwapAB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSwapAB.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSwapAB.Image = global::AgOpenGPS.Properties.Resources.ABSwapPoints;
-            this.btnSwapAB.Location = new System.Drawing.Point(43, 126);
+            this.btnSwapAB.Location = new System.Drawing.Point(102, 126);
             this.btnSwapAB.Name = "btnSwapAB";
             this.btnSwapAB.Size = new System.Drawing.Size(64, 64);
             this.btnSwapAB.TabIndex = 7;
@@ -226,12 +228,45 @@
             this.label2.Text = "Cancel";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // cboxAutoSnapToPivot
+            // 
+            this.cboxAutoSnapToPivot.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxAutoSnapToPivot.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxAutoSnapToPivot.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.cboxAutoSnapToPivot.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxAutoSnapToPivot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxAutoSnapToPivot.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxAutoSnapToPivot.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cboxAutoSnapToPivot.Image = global::AgOpenGPS.Properties.Resources.SnapToPivot;
+            this.cboxAutoSnapToPivot.Location = new System.Drawing.Point(12, 126);
+            this.cboxAutoSnapToPivot.Margin = new System.Windows.Forms.Padding(0);
+            this.cboxAutoSnapToPivot.Name = "cboxAutoSnapToPivot";
+            this.cboxAutoSnapToPivot.Size = new System.Drawing.Size(64, 64);
+            this.cboxAutoSnapToPivot.TabIndex = 474;
+            this.cboxAutoSnapToPivot.Text = "A";
+            this.cboxAutoSnapToPivot.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.cboxAutoSnapToPivot.UseVisualStyleBackColor = false;
+            this.cboxAutoSnapToPivot.Click += new System.EventHandler(this.cboxAutoSnapToPivot_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(9, 190);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(70, 32);
+            this.label5.TabIndex = 477;
+            this.label5.Text = "Auto Snap \r\n To Pivot";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormEditCurve
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(268, 351);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.cboxAutoSnapToPivot);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -273,5 +308,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox cboxAutoSnapToPivot;
+        private System.Windows.Forms.Label label5;
     }
 }

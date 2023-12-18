@@ -25,6 +25,8 @@ namespace AgOpenGPS
 
         private void FormEditAB_Load(object sender, EventArgs e)
         {
+            cboxAutoSnapToPivot.Checked = mf.isAutoSnapToPivot;
+
             if (mf.isMetric)
             {
                 nudSnapDistance.DecimalPlaces = 0;
@@ -174,6 +176,11 @@ namespace AgOpenGPS
             isClosing = true;
             mf.ABLine.isABValid = false;
             Close();
+        }
+
+        private void cboxAutoSnapToPivot_Click(object sender, EventArgs e)
+        {
+            mf.isAutoSnapToPivot = cboxAutoSnapToPivot.Checked;
         }
 
         private void cboxDegrees_SelectedIndexChanged(object sender, EventArgs e)

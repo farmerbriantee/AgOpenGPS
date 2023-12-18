@@ -614,7 +614,6 @@ namespace AgOpenGPS
 
             //cboxConstantContour.Checked = Properties.Settings.Default.setAS_isConstantContourOn;
             cboxSteerInReverse.Checked = Properties.Settings.Default.setAS_isSteerInReverse;
-            cboxAutoSnapToPivot.Checked = Properties.Settings.Default.setAS_isAutoSnapToPivot;
 
             label20.Text = mf.unitsInCm;
             label79.Text = mf.unitsFtM;
@@ -624,7 +623,6 @@ namespace AgOpenGPS
         {
             Properties.Settings.Default.setAS_isAutoSteerAutoOn = cboxAutoSteerAuto.Checked;
             Properties.Settings.Default.setAS_isSteerInReverse = cboxSteerInReverse.Checked;
-            Properties.Settings.Default.setAS_isAutoSnapToPivot = cboxAutoSnapToPivot.Checked;
             Properties.Settings.Default.Save();
         }
 
@@ -648,12 +646,6 @@ namespace AgOpenGPS
         {
             Properties.Settings.Default.setAS_isSteerInReverse = cboxSteerInReverse.Checked;
             mf.isSteerInReverse = cboxSteerInReverse.Checked;
-
-        }
-        private void cboxAutoSnapToPivot_Click(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.setAS_isAutoSnapToPivot = cboxAutoSnapToPivot.Checked;
-            mf.isAutoSnapToPivot = cboxAutoSnapToPivot.Checked;
 
         }
 

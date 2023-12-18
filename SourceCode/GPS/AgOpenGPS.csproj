@@ -594,6 +594,7 @@
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\vec3.cs" />
+    <Compile Include="Settings.cs" />
     <EmbeddedResource Include="Forms\FormFieldISOXML.resx">
       <DependentUpon>FormFieldISOXML.cs</DependentUpon>
     </EmbeddedResource>
