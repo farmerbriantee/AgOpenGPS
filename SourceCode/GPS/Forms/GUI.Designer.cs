@@ -129,50 +129,57 @@ namespace AgOpenGPS
                     {
                         if (bnd.bndList.Count > 0)
                         {
-                            lblFieldStatus.Text = fd.AreaBoundaryLessInnersHectares + "   "
-                                + fd.WorkedHectares + "    "
-                                + fd.TimeTillFinished + "   "
-                                + fd.WorkRateHectares + "   "
-                                + fd.WorkedAreaRemainPercentage;
-                            if (this.Width > 1100)
-                            {
-                                lblFieldStatus.Text += "  Actual: " + (fd.actualAreaCovered * .0001).ToString("N2") + " Ha  "
-                                    + fd.overlapPercent.ToString() + "%";
-                            }
-
-
+                            lblFieldStatus.Text = "("+ fd.AreaBoundaryLessInnersHectares + " - "
+                                + fd.WorkedHectares + " = "
+                                + fd.WorkedAreaRemainHectares + ")  "
+                                + fd.WorkedAreaRemainPercentage + "  ("
+                                + fd.AreaBoundaryLessInnersHectares + " - "
+                                + fd.ActualAreaWorkedHectares + " = "
+                                + fd.ActualRemainHectares + ")";
+                                //+ fd.ActualOverlapPercent
+                                //+ fd.TimeTillFinished + "  "
+                                //+ fd.WorkRateHectares;
                         }
                         else
-                            lblFieldStatus.Text = fd.WorkedHectares + "   " + fd.WorkRateHectares;
+                            lblFieldStatus.Text =
+                                fd.WorkedHectares + "  *"
+                                + fd.ActualAreaWorkedHectares + " *"
+                                + fd.ActualOverlapPercent + "   "
+                                + fd.WorkRateHectares;
 
                     }
                     else //imperial
                     {
                         if (bnd.bndList.Count > 0)
-                            lblFieldStatus.Text = fd.AreaBoundaryLessInnersAcres + "   "
-                                + fd.WorkedAcres + "    "
-                                + fd.TimeTillFinished + "   "
-                                + fd.WorkRateAcres + "  "
-                                + fd.WorkedAreaRemainPercentage;
+                            lblFieldStatus.Text = fd.AreaBoundaryLessInnersAcres + " - "
+                                + fd.WorkedAcres + " = "
+                                + fd.WorkedAreaRemainAcres + " *"
+                                + fd.ActualAreaWorkedAcres + " *"
+                                + fd.ActualOverlapPercent + "  "
+                                + fd.WorkedAreaRemainPercentage + "  "
+                                + fd.TimeTillFinished + "  "
+                                + fd.WorkRateAcres;
                         else
-                            lblFieldStatus.Text = fd.WorkedAcres + "   " + fd.WorkRateAcres;
+                            lblFieldStatus.Text =
+                                fd.WorkedAcres + "  *"
+                                + fd.ActualAreaWorkedAcres + " *"
+                                + fd.ActualOverlapPercent + "   "
+                                + fd.WorkRateAcres;
                     }
 
                     lblCurrentField.Text = displayFieldName;
-                    string GuideLine;
+
                     if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
                     {
-                        GuideLine = curve.curveArr[curve.numCurveLineSelected - 1].Name;
+                        lblGuidanceLine.Text = curve.curveArr[curve.numCurveLineSelected - 1].Name;
                     }
 
                     else if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
                     {
-                        GuideLine = ABLine.lineArr[ABLine.numABLineSelected - 1].Name;
+                        lblGuidanceLine.Text = ABLine.lineArr[ABLine.numABLineSelected - 1].Name;
                     }
-                    else GuideLine = string.Empty;
-
-                    lblCurrentField.Text += " -> " + GuideLine;
-                        }
+                    else lblGuidanceLine.Text = "Guidance Line";
+                }
                 else
                 {
                     lblFieldStatus.Text = string.Empty;
@@ -739,7 +746,7 @@ namespace AgOpenGPS
 
         private void FixPanelsAndMenus()
         {
-            panelAB.Size = new System.Drawing.Size(780 + ((Width - 900) / 2), 67);
+            panelAB.Size = new System.Drawing.Size(760 + ((Width - 900) / 2), 67);
             panelAB.Location = new Point((Width - 900) / 3 + 67, this.Height - 86);
 
             if (!isJobStarted)
@@ -755,8 +762,8 @@ namespace AgOpenGPS
             {
                 panelAB.Visible = true;
                 panelRight.Visible = true;
-                oglMain.Left = 75;
-                oglMain.Width = this.Width - statusStripLeft.Width - 84; //22
+                oglMain.Left = 80;
+                oglMain.Width = this.Width - statusStripLeft.Width - 100; //22
                 oglMain.Height = this.Height - 125;
             }
 

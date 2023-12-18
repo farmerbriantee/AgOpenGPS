@@ -43,6 +43,10 @@ namespace AgOpenGPS
             lblToolWidth.Text = ((mf.tool.width - mf.tool.overlap) * mf.m2FtOrM).ToString("N1") + " " + mf.unitsFtM;
 
             mf.bnd.bndList[0].hdLine?.Clear();
+
+            cboxIsSectionControlled.Checked = Properties.Settings.Default.setHeadland_isSectionControlled;
+            if (cboxIsSectionControlled.Checked) cboxIsSectionControlled.Image = Properties.Resources.HeadlandSectionOn;
+            else cboxIsSectionControlled.Image = Properties.Resources.HeadlandSectionOff;
         }
 
         private void FormHeadLine_FormClosing(object sender, FormClosingEventArgs e)
@@ -609,6 +613,11 @@ namespace AgOpenGPS
         private void btnExit_Click(object sender, EventArgs e)
         {
             mf.FileSaveHeadLines();
+            //does headland control sections
+            mf.bnd.isSectionControlledByHeadland = cboxIsSectionControlled.Checked;
+            Properties.Settings.Default.setHeadland_isSectionControlled = cboxIsSectionControlled.Checked;
+            Properties.Settings.Default.Save();
+
             Close();
         }
 
@@ -623,10 +632,6 @@ namespace AgOpenGPS
             GL.LoadMatrix(ref mat);
 
             GL.MatrixMode(MatrixMode.Modelview);
-        }
-
-        private void btnSetLineDistance_Click(object sender, EventArgs e)
-        {
         }
 
         private void nudSetDistance_Click(object sender, EventArgs e)
@@ -765,11 +770,6 @@ namespace AgOpenGPS
                 return;
             }
 
-            //does headland control sections
-            mf.bnd.isSectionControlledByHeadland = cboxIsSectionControlled.Checked;
-            Properties.Settings.Default.setHeadland_isSectionControlled = cboxIsSectionControlled.Checked;
-            Properties.Settings.Default.Save();
-
             //middle points
             for (int i = 1; i < hdArr.Length; i++)
             {
@@ -877,6 +877,12 @@ namespace AgOpenGPS
                 if (mf.hdl.tracksArr[mf.hdl.idx].trackPts.Count > 8)
                     mf.hdl.tracksArr[mf.hdl.idx].trackPts.RemoveRange(0, 5);
             }
+        }
+
+        private void cboxIsSectionControlled_Click(object sender, EventArgs e)
+        {
+            if (cboxIsSectionControlled.Checked) cboxIsSectionControlled.Image = Properties.Resources.HeadlandSectionOn;
+            else cboxIsSectionControlled.Image = Properties.Resources.HeadlandSectionOff;
         }
 
         public int GetLineIntersection(double p0x, double p0y, double p1x, double p1y,

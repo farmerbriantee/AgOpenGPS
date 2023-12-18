@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Policy;
 using System.Text;
 
 namespace AgOpenGPS
@@ -62,8 +63,8 @@ namespace AgOpenGPS
         {
             get
             {
-                if (workedAreaTotal < 404048) return (workedAreaTotal * 0.000247105).ToString("N2") + " ac";
-                else return (workedAreaTotal * 0.000247105).ToString("N1") + " ac";
+                if (workedAreaTotal < 404048) return (workedAreaTotal * 0.000247105).ToString("N2");
+                else return (workedAreaTotal * 0.000247105).ToString("N1");
             }
         }
 
@@ -71,8 +72,8 @@ namespace AgOpenGPS
         {
             get
             {
-                if (workedAreaTotal < 99000) return (workedAreaTotal * 0.0001).ToString("N2") + " ha";
-                else return (workedAreaTotal * 0.0001).ToString("N1") + " ha";
+                if (workedAreaTotal < 99000) return (workedAreaTotal * 0.0001).ToString("N2");
+                else return (workedAreaTotal * 0.0001).ToString("N1");
             }
         }
 
@@ -82,11 +83,9 @@ namespace AgOpenGPS
         public string DistanceUserFeet => Convert.ToString(Math.Round((distanceUser * glm.m2ft), 1));
 
         //remaining area to be worked
-        public string WorkedAreaRemainHectares => ((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ha).ToString("N2") + " ha";
+        public string WorkedAreaRemainHectares => ((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ha).ToString("N2") ;
 
-        public string WorkedAreaRemainAcres => ((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ac).ToString("N2") + " ac";
-
-        //overlap strings
+        public string WorkedAreaRemainAcres => ((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ac).ToString("N2");
 
         public string WorkedAreaRemainPercentage
         {
@@ -104,6 +103,16 @@ namespace AgOpenGPS
                 }
             }
         }
+
+        //overlap strings
+        public string ActualAreaWorkedHectares => (actualAreaCovered * glm.m2ha).ToString("N2");
+        public string ActualAreaWorkedAcres => (actualAreaCovered * glm.m2ac).ToString("N2");
+
+        public string ActualRemainHectares => ((areaBoundaryOuterLessInner - actualAreaCovered) * glm.m2ha).ToString("N2");
+        public string ActualRemainAcres => ((areaBoundaryOuterLessInner - actualAreaCovered) * glm.m2ac).ToString("N2");
+
+        public string ActualOverlapPercent => overlapPercent.ToString() + "%  ";
+
 
         public string TimeTillFinished
         {

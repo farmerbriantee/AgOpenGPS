@@ -56,6 +56,10 @@ namespace AgOpenGPS
                     mf.bnd.bndList[0].hdLine.Add(new vec3(mf.bnd.bndList[0].fenceLine[i]));
                 }
             }
+
+            cboxIsSectionControlled.Checked = Properties.Settings.Default.setHeadland_isSectionControlled;
+            if (cboxIsSectionControlled.Checked) cboxIsSectionControlled.Image = Properties.Resources.HeadlandSectionOn;
+            else cboxIsSectionControlled.Image = Properties.Resources.HeadlandSectionOff;
         }
 
         private void FormHeadLine_FormClosing(object sender, FormClosingEventArgs e)
@@ -396,7 +400,7 @@ namespace AgOpenGPS
             {
                 //GL.Enable(EnableCap.LineStipple);
                 GL.LineStipple(1, 0x7070);
-                GL.PointSize(2);
+                GL.PointSize(4);
 
                 if (mode == (int)TrackMode.AB)
                 {
@@ -415,11 +419,11 @@ namespace AgOpenGPS
                 GL.End();
 
                 int cnt = sliceArr.Count - 1;
-                GL.PointSize(12);
+                GL.PointSize(16);
                 GL.Color3(1.0f, 0.6f, 0.3f);
                 GL.Begin(PrimitiveType.Points);
                 GL.Vertex3(sliceArr[0].easting, sliceArr[0].northing, 0);
-                GL.Color3(0.3f, 0.3f, 0.99f);
+                GL.Color3(0.5f, 0.73f, 0.99f);
                 GL.Vertex3(sliceArr[cnt].easting, sliceArr[cnt].northing, 0);
                 GL.End();
             }
@@ -427,8 +431,7 @@ namespace AgOpenGPS
 
         private void DrawABTouchLine()
         {
-            GL.Color3(0.65, 0.650, 0.0);
-            GL.PointSize(16);
+            GL.PointSize(24);
             GL.Begin(PrimitiveType.Points);
 
             GL.Color3(0, 0, 0);
@@ -436,13 +439,13 @@ namespace AgOpenGPS
             if (end != 99999) GL.Vertex3(mf.bnd.bndList[bndSelect].fenceLine[end].easting, mf.bnd.bndList[bndSelect].fenceLine[end].northing, 0);
             GL.End();
 
-            GL.PointSize(10);
+            GL.PointSize(18);
             GL.Begin(PrimitiveType.Points);
 
             GL.Color3(1.0f, 0.75f, 0.350f);
             if (start != 99999) GL.Vertex3(mf.bnd.bndList[bndSelect].fenceLine[start].easting, mf.bnd.bndList[bndSelect].fenceLine[start].northing, 0);
 
-            GL.Color3(0.5f, 0.5f, 1.0f);
+            GL.Color3(0.5f, 0.75f, 1.0f);
             if (end != 99999) GL.Vertex3(mf.bnd.bndList[bndSelect].fenceLine[end].easting, mf.bnd.bndList[bndSelect].fenceLine[end].northing, 0);
             GL.End();
         }
@@ -455,12 +458,16 @@ namespace AgOpenGPS
                 btnSlice.Enabled = false;
                 btnALength.Enabled = false;
                 btnBLength.Enabled = false;
+                btnAShrink.Enabled = false;
+                btnBShrink.Enabled = false;
             }
             else
             {
                 btnSlice.Enabled = true;
                 btnBLength.Enabled = true;
                 btnALength.Enabled = true;
+                btnAShrink.Enabled = true;
+                btnBShrink.Enabled = true;
             }
 
             if (backupList.Count == 0) btnUndo.Enabled = false; else btnUndo.Enabled = true;
@@ -904,6 +911,12 @@ namespace AgOpenGPS
         {
             if (sliceArr.Count > 8)
                 sliceArr.RemoveRange(0, 5);
+        }
+
+        private void cboxIsSectionControlled_Click(object sender, EventArgs e)
+        {
+            if (cboxIsSectionControlled.Checked) cboxIsSectionControlled.Image = Properties.Resources.HeadlandSectionOn;
+            else cboxIsSectionControlled.Image = Properties.Resources.HeadlandSectionOff;
         }
 
         private void btnHeadlandOff_Click(object sender, EventArgs e)

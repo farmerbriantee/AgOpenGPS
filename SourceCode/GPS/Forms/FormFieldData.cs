@@ -15,57 +15,65 @@ namespace AgOpenGPS
             mf = callingForm as FormGPS;
             InitializeComponent();
         }
+        private void FormFieldData_Load(object sender, EventArgs e)
+        {
+            timer1_Tick(this, EventArgs.Empty);
+        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             //lblEastingField.Text = Math.Round(mf.pn.fix.easting, 1).ToString();
             //lblNorthingField.Text = Math.Round(mf.pn.fix.northing, 1).ToString();
 
-            lblLatitude.Text = mf.Latitude;
-            lblLongitude.Text = mf.Longitude;
-
-            lblTimeRemaining.Text = mf.fd.TimeTillFinished;
-            lblRemainPercent.Text = mf.fd.WorkedAreaRemainPercentage;
+            lblOverlapPercent.Text = mf.fd.ActualOverlapPercent;
 
             if (mf.isMetric)
             {
                 lblWorkRate.Text = mf.fd.WorkRateHectares;
+                lblApplied.Text = mf.fd.WorkedHectares;
+                lblActualLessOverlap.Text = mf.fd.ActualAreaWorkedHectares;
 
-                if (mf.bnd.bndList.Count > 0)
-                {
-                    lblTotalArea.Text = mf.fd.AreaBoundaryLessInnersHectares;
-                    lblApplied.Text = mf.fd.WorkedHectares;
-                    lblAcresRemain.Text = mf.fd.WorkedAreaRemainHectares;
-                }
-                else
-                {
-                    lblTotalArea.Text = "-";
-                    lblAcresRemain.Text = "-";
-                    lblTimeRemaining.Text = "-";
-                    lblRemainPercent.Text = "-";
-                    lblApplied.Text = mf.fd.WorkedHectares;
-                }
             }
-            else //imperial
+            else
             {
                 lblWorkRate.Text = mf.fd.WorkRateAcres;
+                lblApplied.Text = mf.fd.WorkedAcres;
+                lblActualLessOverlap.Text = mf.fd.ActualAreaWorkedAcres;
+            }
 
-                if (mf.bnd.bndList.Count > 0)
+            if (mf.bnd.bndList.Count > 0)
+            {
+                lblTimeRemaining.Text = mf.fd.TimeTillFinished;
+                lblRemainPercent.Text = mf.fd.WorkedAreaRemainPercentage;
+
+                if (mf.isMetric)
                 {
-                    lblTotalArea.Text = mf.fd.AreaBoundaryLessInnersAcres;
-                    lblApplied.Text = mf.fd.WorkedAcres;
-                    lblAcresRemain.Text = mf.fd.WorkedAreaRemainAcres;
+                    lblTotalArea.Text = mf.fd.AreaBoundaryLessInnersHectares;
+                    lblAreaRemain.Text = mf.fd.WorkedAreaRemainHectares;
+                    lblActualRemain.Text = mf.fd.ActualRemainHectares;
                 }
                 else
                 {
-                    lblTotalArea.Text = "-";
-                    lblAcresRemain.Text = "-";
-                    lblTimeRemaining.Text = "-";
-                    lblRemainPercent.Text = "-";
-                    lblApplied.Text = mf.fd.WorkedAcres;
+                    lblTotalArea.Text = mf.fd.AreaBoundaryLessInnersAcres;
+                    lblAreaRemain.Text = mf.fd.WorkedAreaRemainAcres;
+                    lblActualRemain.Text = mf.fd.ActualRemainAcres;
                 }
             }
+            else
+            {
+                lblTotalArea.Text = "-";
+                lblAreaRemain.Text = "-";
+                lblTimeRemaining.Text = "-";
+                lblRemainPercent.Text = "-";
+
+                //if (mf.isMetric) lblActualLessOverlap.Text = 
+                //        ((100-mf.fd.overlapPercent) * 0.01 * mf.fd.workedAreaTotal * glm.m2ha).ToString("N2");
+                //else
+                //    lblActualLessOverlap.Text =
+                //    ((100-mf.fd.overlapPercent) * 0.01 * mf.fd.workedAreaTotal * glm.m2ac).ToString("N2");
+            }
         }
+
     }
 }
 

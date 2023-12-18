@@ -121,7 +121,7 @@ namespace AgOpenGPS
         public string filePickerFileAndDirectory;
 
         //the position of the GPS Data window within the FormGPS window
-        public int GPSDataWindowLeft = 76, GPSDataWindowTopOffset = 160;
+        public int GPSDataWindowLeft = 76, GPSDataWindowTopOffset = 220;
 
         //the autoManual drive button. Assume in Auto
         public bool isInAutoDrive = true;
@@ -453,9 +453,9 @@ namespace AgOpenGPS
             // load all the gui elements in gui.designer.cs
             LoadSettings();
 
-            oglZoom.Width = 300;
-            oglZoom.Height = 300;
-            //oglZoom.Visible = false;
+            //for field data and overlap
+            oglZoom.Width = 400;
+            oglZoom.Height = 400;
             oglZoom.Left = 100;
             oglZoom.Top = 100;
 
@@ -755,10 +755,6 @@ namespace AgOpenGPS
         //request a new job
         public void JobNew()
         {
-            //oglZoom.BringToFront();
-            oglZoom.Width = 300;
-            oglZoom.Height = 300;
-
             //SendSteerSettingsOutAutoSteerPort();
             isJobStarted = true;
             startCounter = 0;

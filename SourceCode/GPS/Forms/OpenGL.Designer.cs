@@ -1153,7 +1153,7 @@ namespace AgOpenGPS
             BuildMachineByte();
 
             //if a minute has elapsed save the field in case of crash and to be able to resume            
-            if (minuteCounter > 10 && sentenceCounter < 20)
+            if (minuteCounter > 30 && sentenceCounter < 20)
             {
                 tmrWatchdog.Enabled = false;
 
@@ -1716,7 +1716,7 @@ namespace AgOpenGPS
 
         private void DrawLightBar(double Width, double Height, double offlineDistance)
         {
-            double down = 13;
+            double down = 30;
             GL.LineWidth(1);
             //GL.Translate(0, 0, 0.01);
             //offlineDistance *= -1;
@@ -1846,16 +1846,16 @@ namespace AgOpenGPS
                 if (avgPivotDistance > 0.0)
                 {
                     GL.Color3(0.9752f, 0.50f, 0.3f);
-                    hede = "< " + (Math.Abs(avgPivotDistance)).ToString("N0");
+                    hede = (Math.Abs(avgPivotDistance)).ToString("N0");
                 }
                 else
                 {
                     GL.Color3(0.50f, 0.952f, 0.3f);
-                    hede = (Math.Abs(avgPivotDistance)).ToString("N0") + " >";
+                    hede = (Math.Abs(avgPivotDistance)).ToString("N0");
                 }
 
                 int center = -(int)(((double)(hede.Length) * 0.5) * 16);
-                font.DrawText(center, 0, hede, 1);
+                font.DrawText(center, 12, hede, 1);
 
                 ////draw the modeTimeCounter
                 //if (!isStanleyUsed)
@@ -2173,10 +2173,6 @@ namespace AgOpenGPS
         {
             if (isReverseWithIMU)
             {
-                GL.Color3(0.952f, 0.980f, 0.980f);
-                int lenny = (gStr.gsIfWrongDirectionTapVehicle.Length * 12) / 2;
-                font.DrawText(-lenny, 150, gStr.gsIfWrongDirectionTapVehicle, 0.8f);
-
                 GL.Color3(0.952f, 0.9520f, 0.0f);
                             
                 GL.PushMatrix();

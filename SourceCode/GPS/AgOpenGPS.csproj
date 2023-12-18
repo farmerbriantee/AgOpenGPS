@@ -932,6 +932,9 @@
     <None Include="btnImages\Config\Con_Display.png" />
     <None Include="btnImages\Config\ConS_Pins.png" />
     <None Include="btnImages\ABLinesHideShow.png" />
+    <None Include="btnImages\HeadlandSectionOff.png" />
+    <None Include="btnImages\HeadlandSectionOn.png" />
+    <None Include="btnImages\ABShrinkGrow.png" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />

@@ -17,7 +17,6 @@ namespace AgOpenGPS
             }
             else
             {
-                btnOk.Image = Properties.Resources.FieldClose;
                 label3.Text = "Close";
             }
         }
