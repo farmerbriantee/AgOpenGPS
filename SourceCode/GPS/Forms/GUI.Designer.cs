@@ -79,6 +79,11 @@ namespace AgOpenGPS
                 return;
             }
 
+            if (tenSecondCounter++ >= 40)
+            {
+                tenSecondCounter = 0;
+                tenSeconds++;
+            }
             if (threeSecondCounter++ >= 12)
             {
                 threeSecondCounter = 0;
@@ -100,45 +105,28 @@ namespace AgOpenGPS
                 oneFifthSecond++;
             }
 
-            /////////////////////////////////////////////////////////   333333333333333  ////////////////////////////////////////
+            ////////////////////////////////////////////// 10 second ///////////////////////////////////////////////////////
             //every 3 second update status
-            if (displayUpdateThreeSecondCounter != threeSeconds)
+            if (tenSeconds != 0)
             {
                 //reset the counter
-                displayUpdateThreeSecondCounter = threeSeconds;
-
-                //check to make sure the grid is big enough
-                //worldGrid.checkZoomWorldGrid(pn.fix.northing, pn.fix.easting);
-
-                //hide the NAv panel in 6  secs
-                if (panelNavigation.Visible)
-                {
-                    if (navPanelCounter-- < 2) panelNavigation.Visible = false;
-                }
-
-                if (panelNavigation.Visible)
-                    lblHz.Text = gpsHz.ToString("N1") + " ~ " + (frameTime.ToString("N1")) + " " + FixQuality;
- 
-                lblFix.Text = FixQuality + pn.age.ToString("N1");
-
-                lblTime.Text = DateTime.Now.ToString("T");
-
+                tenSeconds = 0;
                 if (isJobStarted)
                 {
                     if (isMetric)
                     {
                         if (bnd.bndList.Count > 0)
                         {
-                            lblFieldStatus.Text = "("+ fd.AreaBoundaryLessInnersHectares + " - "
+                            lblFieldStatus.Text = "(" + fd.AreaBoundaryLessInnersHectares + " - "
                                 + fd.WorkedHectares + " = "
                                 + fd.WorkedAreaRemainHectares + ")  "
                                 + fd.WorkedAreaRemainPercentage + "  ("
                                 + fd.AreaBoundaryLessInnersHectares + " - "
                                 + fd.ActualAreaWorkedHectares + " = "
                                 + fd.ActualRemainHectares + ")";
-                                //+ fd.ActualOverlapPercent
-                                //+ fd.TimeTillFinished + "  "
-                                //+ fd.WorkRateHectares;
+                            //+ fd.ActualOverlapPercent
+                            //+ fd.TimeTillFinished + "  "
+                            //+ fd.WorkRateHectares;
                         }
                         else
                             lblFieldStatus.Text =
@@ -185,7 +173,30 @@ namespace AgOpenGPS
                     lblFieldStatus.Text = string.Empty;
                     lblCurrentField.Text = (tool.width * m2FtOrM).ToString("N2") + unitsFtM + " - " + vehicleFileName;
                 }
+            }
 
+            /////////////////////////////////////////////////////////   333333333333333  ////////////////////////////////////////
+            //every 3 second update status
+            if (displayUpdateThreeSecondCounter != threeSeconds)
+            {
+                //reset the counter
+                displayUpdateThreeSecondCounter = threeSeconds;
+
+                //check to make sure the grid is big enough
+                //worldGrid.checkZoomWorldGrid(pn.fix.northing, pn.fix.easting);
+
+                //hide the NAv panel in 6  secs
+                if (panelNavigation.Visible)
+                {
+                    if (navPanelCounter-- < 2) panelNavigation.Visible = false;
+                }
+
+                if (panelNavigation.Visible)
+                    lblHz.Text = gpsHz.ToString("N1") + " ~ " + (frameTime.ToString("N1")) + " " + FixQuality;
+
+                lblFix.Text = FixQuality + pn.age.ToString("N1");
+
+                lblTime.Text = DateTime.Now.ToString("T");
 
                 if (isJobStarted)
                 {

@@ -103,6 +103,7 @@ namespace AgOpenGPS
         //used to update the screen status bar etc
         private int displayUpdateHalfSecondCounter = 0, displayUpdateOneSecondCounter = 0, displayUpdateOneFifthCounter = 0, displayUpdateThreeSecondCounter = 0;
 
+        private int tenSecondCounter = 0, tenSeconds = 0;
         private int threeSecondCounter = 0, threeSeconds = 0;
         private int oneSecondCounter = 0, oneSecond = 0;
         private int oneHalfSecondCounter = 0, oneHalfSecond = 0;
