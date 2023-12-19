@@ -117,15 +117,17 @@ namespace AgOpenGPS
                     {
                         if (bnd.bndList.Count > 0)
                         {
-                            lblFieldStatus.Text = "(" + fd.AreaBoundaryLessInnersHectares + " - "
-                                + fd.WorkedHectares + " = "
-                                + fd.WorkedAreaRemainHectares + ")  "
-                                + fd.WorkedAreaRemainPercentage + "  ("
-                                + fd.AreaBoundaryLessInnersHectares + " - "
+                            lblFieldStatus.Text = 
+                                  fd.AreaBoundaryLessInnersHectares + " - "
                                 + fd.ActualAreaWorkedHectares + " = "
-                                + fd.ActualRemainHectares + ")  "
-                                + fd.ActualOverlapPercent + "  "
+                                + fd.ActualRemainHectares + "  "
+                                + fd.ActualOverlapPercent + "| "
+
+                                + fd.AreaBoundaryLessInnersHectares + " - "
+                                + fd.WorkedHectares + " = "
+                                + fd.WorkedAreaRemainHectares + " | "
                                 + fd.TimeTillFinished + "  "
+                                + fd.WorkedAreaRemainPercentage + "  "
                                 + fd.WorkRateHectares;
                         }
                         else
@@ -141,14 +143,14 @@ namespace AgOpenGPS
                         if (bnd.bndList.Count > 0)
                             lblFieldStatus.Text = fd.AreaBoundaryLessInnersAcres + " - "
                                 + fd.WorkedAcres + " = "
-                                + fd.WorkedAreaRemainAcres + ")  "
-                                + fd.WorkedAreaRemainPercentage + "  ("
+                                + fd.WorkedAreaRemainAcres + " | "
                                 + fd.AreaBoundaryLessInnersAcres + " - "
                                 + fd.ActualAreaWorkedAcres + " = "
-                                + fd.ActualRemainAcres + ")  "
+                                + fd.ActualRemainAcres + "  "
                                 + fd.ActualOverlapPercent + "  "
                                 + fd.TimeTillFinished + "  "
-                                + fd.WorkRateHectares;
+                                + fd.WorkedAreaRemainPercentage + "  "
+                                + fd.WorkRateAcres;
                         else
                             lblFieldStatus.Text =
                                 fd.WorkedAcres + "  *"
@@ -755,6 +757,7 @@ namespace AgOpenGPS
             Properties.Settings.Default.Save();
         }
 
+        public bool isPanelABHidden = false;
         private void FixPanelsAndMenus()
         {
             panelAB.Size = new System.Drawing.Size(760 + ((Width - 900) / 2), 67);
@@ -771,11 +774,21 @@ namespace AgOpenGPS
             }
             else
             {
-                panelAB.Visible = true;
-                panelRight.Visible = true;
-                oglMain.Left = 80;
-                oglMain.Width = this.Width - statusStripLeft.Width - 100; //22
-                oglMain.Height = this.Height - 125;
+                if (isPanelABHidden)
+                {
+                    panelAB.Visible = false;
+                    oglMain.Left = 80;
+                    oglMain.Width = this.Width - statusStripLeft.Width - 100; //22
+                    oglMain.Height = this.Height - 71;
+                }
+                else
+                {
+                    panelAB.Visible = true;
+                    panelRight.Visible = true;
+                    oglMain.Left = 80;
+                    oglMain.Width = this.Width - statusStripLeft.Width - 100; //22
+                    oglMain.Height = this.Height - 125;
+                }
             }
 
             if (tool.isSectionsNotZones)
@@ -1026,9 +1039,16 @@ namespace AgOpenGPS
                         panelPan.Visible = true;
                     }
 
+                    if (isJobStarted)
+                    {
+                        if (point.Y > oglMain.Height - 60 && point.Y < oglMain.Height - 30) 
+                        {
+                            isPanelABHidden = !isPanelABHidden;
+                            FixPanelsAndMenus();
+                            return;
+                        }
+                    }
                 }
-
-
 
                 //prevent flag selection if flag form is up
                 Form fc = Application.OpenForms["FormFlags"];
@@ -1245,17 +1265,6 @@ namespace AgOpenGPS
         }
 
         #endregion properties 
-
-        public enum textures : uint
-        {
-            SkyDay, Floor, Font,
-            Turn, TurnCancel, TurnManual,
-            Compass, Speedo, SpeedoNeedle,
-            Lift, SkyNight, SteerPointer,
-            SteerDot, Tractor, QuestionMark,
-            FrontWheels, FourWDFront, FourWDRear,
-            Harvester, Lateral, bingGrid, NoGPS
-        }
 
         //Load Bitmaps brand
         public Bitmap GetTractorBrand(TBrand brand)

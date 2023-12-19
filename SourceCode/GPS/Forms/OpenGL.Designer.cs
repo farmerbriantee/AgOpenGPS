@@ -1963,6 +1963,22 @@ namespace AgOpenGPS
                 GL.TexCoord2(0, 1); GL.Vertex2(center, 82); //
             }
             GL.End();
+
+            //hide show bottom menu
+            if (isJobStarted)
+            {
+                int hite = oglMain.Height - 30;
+                GL.BindTexture(TextureTarget.Texture2D, texture[25]);        // Select Our Texture
+                GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
+                {
+                    GL.TexCoord2(0, 0); GL.Vertex2(center, hite - 32); // 
+                    GL.TexCoord2(1, 0); GL.Vertex2(center + 32, hite - 32); // 
+                    GL.TexCoord2(1, 1); GL.Vertex2(center + 32, hite); // 
+                    GL.TexCoord2(0, 1); GL.Vertex2(center, hite); //
+                }
+                GL.End();
+            }
+
             GL.Disable(EnableCap.Texture2D);
             center = oglMain.Width / -2 + 10;
             //center += 10;

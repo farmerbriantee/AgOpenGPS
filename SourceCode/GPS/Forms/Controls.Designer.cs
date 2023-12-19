@@ -547,7 +547,7 @@ namespace AgOpenGPS
             }
         }
 
-        private void jobMenuBtn_Click(object sender, EventArgs e)
+        private void btnJobMenu_Click(object sender, EventArgs e)
         {
             if (isTT)
             {
@@ -1048,7 +1048,19 @@ namespace AgOpenGPS
             }
             fd.distanceUser = 0;
             fd.workedAreaTotalUser = 0;
-        }        
+        }  
+        
+        private void lblFieldStatus_Click(object sender, EventArgs e)
+        {
+            if (isTT)
+            {
+                MessageBox.Show(gStr.h_FieldData, gStr.gsHelp);
+                ResetHelpBtn();
+                return;
+            }
+        }
+
+
         private void navPanelToolStrip_Click(object sender, EventArgs e)
         {
             //buttonPanelCounter = 0;
@@ -1205,7 +1217,7 @@ namespace AgOpenGPS
             form.Show(this);
 
         }
-        private void stripBtnConfig_Click(object sender, EventArgs e)
+        private void btnConfig_Click(object sender, EventArgs e)
         {
             if (isTT)
             {

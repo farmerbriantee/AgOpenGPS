@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="gsCloseAllWindowsFirst" xml:space="preserve">
-    <value>Close All Windows First</value>
-  </data>
   <data name="gsABCurve" xml:space="preserve">
     <value>AB Curve</value>
   </data>
@@ -182,6 +179,9 @@
   </data>
   <data name="gsClose" xml:space="preserve">
     <value>Close</value>
+  </data>
+  <data name="gsCloseAllWindowsFirst" xml:space="preserve">
+    <value>Close All Windows First</value>
   </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Close Field First</value>
@@ -548,6 +548,13 @@
   </data>
   <data name="gsXTEChart" xml:space="preserve">
     <value>XTE Chart</value>
+  </data>
+  <data name="h_FieldData" xml:space="preserve">
+    <value>First 3 numbers are Total Field Area minus Actual covered area
+Then the percent of actual area overlapped
+Then the Total Area minus machine travelled area. 
+Time till finished based on work area
+Percent completed and work rate.</value>
   </data>
   <data name="h_btn2D" xml:space="preserve">
     <value>2D View Button.</value>

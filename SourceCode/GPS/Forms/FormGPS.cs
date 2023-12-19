@@ -365,8 +365,8 @@ namespace AgOpenGPS
             oglMain.Left = 75;
             oglMain.Width = this.Width - statusStripLeft.Width - 84;
 
-            panelSim.Left = 100;
-            panelSim.Width = Width - statusStripLeft.Width - 200;
+            panelSim.Left = Width/2 -275;
+            panelSim.Width = 600;
 
             timer2.Enabled = true;
 
@@ -672,6 +672,16 @@ namespace AgOpenGPS
                 Settings.Default.setFeatures = new CFeatureSettings();
             }
         }
+        public enum textures : uint
+        {
+            SkyDay, Floor, Font,
+            Turn, TurnCancel, TurnManual,
+            Compass, Speedo, SpeedoNeedle,
+            Lift, SkyNight, SteerPointer,
+            SteerDot, Tractor, QuestionMark,
+            FrontWheels, FourWDFront, FourWDRear,
+            Harvester, Lateral, bingGrid, NoGPS, ZoomIn48, ZoomOut48, Pan, MenuHideShow
+        }
 
         public void LoadGLTextures()
         {
@@ -686,7 +696,7 @@ namespace AgOpenGPS
                 Properties.Resources.z_SteerDot,GetTractorBrand(Settings.Default.setBrand_TBrand),Properties.Resources.z_QuestionMark,
                 Properties.Resources.z_FrontWheels,Get4WDBrandFront(Settings.Default.setBrand_WDBrand), Get4WDBrandRear(Settings.Default.setBrand_WDBrand),
                 GetHarvesterBrand(Settings.Default.setBrand_HBrand), Properties.Resources.z_LateralManual, Resources.z_bingMap, 
-                Resources.z_NoGPS, Resources.ZoomIn48, Resources.ZoomOut48, Resources.Pan
+                Resources.z_NoGPS, Resources.ZoomIn48, Resources.ZoomOut48, Resources.Pan, Resources.MenuHideShow
             };
 
             texture = new uint[oglTextures.Length];
@@ -757,6 +767,7 @@ namespace AgOpenGPS
         public void JobNew()
         {
             //SendSteerSettingsOutAutoSteerPort();
+            isPanelABHidden = false;
             isJobStarted = true;
             startCounter = 0;
 
@@ -857,6 +868,7 @@ namespace AgOpenGPS
         //close the current job
         public void JobClose()
         {
+            isPanelABHidden = false;
             recPath.resumeState = 0;
             btnResumePath.Image = Properties.Resources.pathResumeStart;
             recPath.currentPositonIndex = 0;

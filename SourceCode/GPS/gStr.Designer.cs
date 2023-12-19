@@ -1776,6 +1776,19 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to First 3 numbers are Total Field Area minus Actual covered area
+        ///Then the percent of actual area overlapped
+        ///Then the Total Area minus machine travelled area. 
+        ///Time till finished based on work area
+        ///Percent completed and work rate..
+        /// </summary>
+        public static string h_FieldData {
+            get {
+                return ResourceManager.GetString("h_FieldData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ackerman Compensation Slider
         ///
         ///Ackermann steering geometry is a geometric arrangement of

@@ -488,7 +488,7 @@ namespace AgOpenGPS
 
             if ((char)keyData == (hotkeys[9])) //open the vehicle Settings
             {
-                stripBtnConfig.PerformClick();
+                btnConfig.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 
