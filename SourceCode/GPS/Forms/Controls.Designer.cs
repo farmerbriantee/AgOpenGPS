@@ -1243,17 +1243,16 @@ namespace AgOpenGPS
                 f.Close();
             }
 
-            Form fff = Application.OpenForms["FormFieldData"];
+            f = Application.OpenForms["FormFieldData"];
 
-            if (fff != null)
+            f = null;
+            if (f != null)
             {
-                fff.Focus();
-                fff.Close();
+                f.Focus();
                 return;
             }
 
             if (!isJobStarted) return;
-
 
             Form form = new FormFieldData(this);
             form.Show(this);
@@ -1267,7 +1266,7 @@ namespace AgOpenGPS
 
         }
 
-        private void lblSpeed_Click(object sender, EventArgs e)
+        private void btnGPSData_Click(object sender, EventArgs e)
         {
             if (isTT)
             {
@@ -1285,17 +1284,14 @@ namespace AgOpenGPS
                 return;
             }
 
-            Form f1 = Application.OpenForms["FormFieldData"];
+            f = null;
+            f = Application.OpenForms["FormFieldData"];
 
-            if (f1 != null)
+            if (f != null)
             {
-                f1.Focus();
-                f1.Close();
+                f.Focus();
+                f.Close();
             }
-
-
-
-            //isGPSSentencesOn = true;
 
             Form form = new FormGPSData(this);
             form.Show(this);

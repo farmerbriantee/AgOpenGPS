@@ -940,6 +940,11 @@
     <None Include="btnImages\FieldStats.png" />
     <None Include="btnImages\ABDraw.png" />
     <None Include="btnImages\MenuHideShow.png" />
+    <None Include="btnImages\GPSQuality.png" />
+    <None Include="btnImages\SatBlue.png" />
+    <None Include="btnImages\SatGreen.png" />
+    <None Include="btnImages\SatRed.png" />
+    <None Include="btnImages\SatYellow.png" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />

@@ -69,6 +69,8 @@ namespace AgOpenGPS
 
         public uint sentenceCounter = 0;
 
+        private int currentFieldTextCounter = 0;
+
         //Timer triggers at 125 msec
         private void tmrWatchdog_tick(object sender, EventArgs e)
         {
@@ -119,15 +121,16 @@ namespace AgOpenGPS
                         {
                             lblFieldStatus.Text = 
                                   fd.AreaBoundaryLessInnersHectares + " - "
-                                + fd.ActualAreaWorkedHectares + " = "
-                                + fd.ActualRemainHectares + "  "
-                                + fd.ActualOverlapPercent + "| "
+                                + fd.WorkedHectares + " = "
+                                + fd.WorkedAreaRemainHectares + "  "
+                                + fd.WorkedAreaRemainPercentage + " | "
 
                                 + fd.AreaBoundaryLessInnersHectares + " - "
-                                + fd.WorkedHectares + " = "
-                                + fd.WorkedAreaRemainHectares + " | "
+                                + fd.ActualAreaWorkedHectares + " = "
+                                + fd.ActualRemainHectares + "  "
+                                + fd.ActualOverlapPercent + "  "
+
                                 + fd.TimeTillFinished + "  "
-                                + fd.WorkedAreaRemainPercentage + "  "
                                 + fd.WorkRateHectares;
                         }
                         else
@@ -141,15 +144,18 @@ namespace AgOpenGPS
                     else //imperial
                     {
                         if (bnd.bndList.Count > 0)
-                            lblFieldStatus.Text = fd.AreaBoundaryLessInnersAcres + " - "
+                            lblFieldStatus.Text =
+                                  fd.AreaBoundaryLessInnersAcres + " - "
                                 + fd.WorkedAcres + " = "
-                                + fd.WorkedAreaRemainAcres + " | "
+                                + fd.WorkedAreaRemainAcres + "  "
+                                + fd.WorkedAreaRemainPercentage + " | "
+
                                 + fd.AreaBoundaryLessInnersAcres + " - "
                                 + fd.ActualAreaWorkedAcres + " = "
                                 + fd.ActualRemainAcres + "  "
                                 + fd.ActualOverlapPercent + "  "
+
                                 + fd.TimeTillFinished + "  "
-                                + fd.WorkedAreaRemainPercentage + "  "
                                 + fd.WorkRateAcres;
                         else
                             lblFieldStatus.Text =
@@ -163,6 +169,69 @@ namespace AgOpenGPS
                 {
                     lblFieldStatus.Text = string.Empty;
                 }
+
+                if (isJobStarted)
+                {
+                    switch (currentFieldTextCounter)
+                    {
+                        case 0:
+
+                            lblCurrentField.Text = displayFieldName;
+                            break;
+
+                        case 1:
+
+                            lblCurrentField.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss");
+                            break;
+
+                        case 2:
+
+                            if (isMetric)
+                            {
+                                lblCurrentField.Text = gStr.gsField + ": " + fd.AreaBoundaryLessInnersHectares
+                                    + "  Applied: " + fd.WorkedHectares
+                                    + "  Actual: " + fd.ActualAreaWorkedHectares
+                                    + "  To Go: " + fd.WorkedAreaRemainPercentage;
+                            }
+                            else
+                            {
+                                lblCurrentField.Text = gStr.gsField + ": " + fd.AreaBoundaryLessInnersAcres
+                                    + "  Applied: " + fd.WorkedAcres
+                                    + "  Actual: " + fd.ActualAreaWorkedAcres
+                                    + "  To Go: " + fd.WorkedAreaRemainPercentage;
+                            }
+                            break;
+
+
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (currentFieldTextCounter)
+                    {
+                        case 0:
+                            lblCurrentField.Text = (tool.width * m2FtOrM).ToString("N2") + unitsFtM + " - " + vehicleFileName;
+                            break;
+
+                        case 1:
+
+                            lblCurrentField.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss");
+                            break;
+
+                        case 2:
+
+                            lblCurrentField.Text = "Lat: " + pn.latitude.ToString("N7") + "   Lon: " + pn.longitude.ToString("N7");
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+
+                if (++currentFieldTextCounter > 2) currentFieldTextCounter = 0;
+
             }
 
             /////////////////////////////////////////////////////////   333333333333333  ////////////////////////////////////////
@@ -183,10 +252,7 @@ namespace AgOpenGPS
                     lblHz.Text = gpsHz.ToString("N1") + " ~ " + (frameTime.ToString("N1")) + " " + FixQuality;
 
                 //fix
-                lblFix.Text = FixQuality + pn.age.ToString("N1");
-
-                //Time
-                lblTime.Text = DateTime.Now.ToString("T");
+                if (timerSim.Enabled && pn.fixQuality++ > 5) pn.fixQuality = 2;
 
                 if (isJobStarted)
                 {
@@ -221,13 +287,11 @@ namespace AgOpenGPS
                     }
 
                     //current field at top left
-                    lblCurrentField.Text = displayFieldName;
                 }
                 else //idle - no job
                 {
-                    lblCurrentField.Text = (tool.width * m2FtOrM).ToString("N2") + unitsFtM + " - " + vehicleFileName;
+                    lblGuidanceLine.Text = "";
                 }
-
 
                 //save nmea log file
                 if (isLogNMEA) FileSaveNMEA();
@@ -246,6 +310,24 @@ namespace AgOpenGPS
                 //counter used for saving field in background
                 minuteCounter++;
                 tenMinuteCounter++;
+
+                lblFix.Text = FixQuality + pn.age.ToString("N1");
+
+                switch (pn.fixQuality)
+                {
+                    case 4:
+                        btnGPSData.BackColor = Color.PaleGreen;
+                        break;
+                    case 5:
+                        btnGPSData.BackColor = Color.Orange;
+                        break;
+                    case 2:
+                        btnGPSData.BackColor = Color.Yellow;
+                        break;                               
+                    default:
+                        btnGPSData.BackColor = Color.Red;
+                        break;
+                }
 
                 if (isStanleyUsed)
                 {
@@ -779,7 +861,7 @@ namespace AgOpenGPS
                     panelAB.Visible = false;
                     panelLeft.Visible = false;
                     oglMain.Left = 30;
-                    oglMain.Width = this.Width - 100; //22
+                    oglMain.Width = this.Width - 115; //22
                     oglMain.Height = this.Height - 68;
                 }
                 else
@@ -1107,7 +1189,6 @@ namespace AgOpenGPS
 
             ResetHelpBtn();
         }
-
         private void SpeedLimitExceeded()
         {
             if (isMetric)
@@ -1186,14 +1267,12 @@ namespace AgOpenGPS
         {
             get
             {
-                if (timerSim.Enabled)
-                    return "Sim: ";
-                else if (pn.fixQuality == 0) return "Invalid: ";
+                if (pn.fixQuality == 0) return "Invalid: ";
                 else if (pn.fixQuality == 1) return "GPS single: ";
                 else if (pn.fixQuality == 2) return "DGPS: ";
                 else if (pn.fixQuality == 3) return "PPS: ";
                 else if (pn.fixQuality == 4) return "RTK fix: ";
-                else if (pn.fixQuality == 5) return "Float: ";
+                else if (pn.fixQuality == 5) return "RTK Float: ";
                 else if (pn.fixQuality == 6) return "Estimate: ";
                 else if (pn.fixQuality == 7) return "Man IP: ";
                 else if (pn.fixQuality == 8) return "Sim: ";

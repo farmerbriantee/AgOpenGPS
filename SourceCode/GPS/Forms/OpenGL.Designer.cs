@@ -1568,9 +1568,9 @@ namespace AgOpenGPS
 
         private void DrawSteerCircle()
         {
-            int sizer = oglMain.Height/10;
-            int center = oglMain.Width / 2 - sizer;
-            int bottomSide = oglMain.Height - sizer/2;
+            int sizer = 60;
+            int center = oglMain.Width / 2 - 60;
+            int bottomSide = oglMain.Height - 30;
 
             //draw the clock
             //GL.Color4(0.9752f, 0.80f, 0.3f, 0.98);
@@ -1716,7 +1716,7 @@ namespace AgOpenGPS
 
         private void DrawLightBar(double Width, double Height, double offlineDistance)
         {
-            double down = 30;
+            double down = 25;
             GL.LineWidth(1);
             //GL.Translate(0, 0, 0.01);
             //offlineDistance *= -1;
@@ -1855,7 +1855,7 @@ namespace AgOpenGPS
                 }
 
                 int center = -(int)(((double)(hede.Length) * 0.5) * 16);
-                font.DrawText(center, 12, hede, 1);
+                font.DrawText(center, 8, hede, 1.2);
 
                 ////draw the modeTimeCounter
                 //if (!isStanleyUsed)
@@ -1985,12 +1985,12 @@ namespace AgOpenGPS
             GL.Color3(0.9852f, 0.982f, 0.983f);
             strHeading = (fixHeading * 57.2957795).ToString("N1");
             lenth = 15 * strHeading.Length;
-            font.DrawText(oglMain.Width / 2 - lenth, 5, strHeading, 0.8);
+            font.DrawText(oglMain.Width / 2 - lenth, 10, strHeading, 0.8);
 
             //GPS Step
             if (distanceCurrentStepFixDisplay < 0.03*100)
                 GL.Color3(0.98f, 0.82f, 0.653f);
-            font.DrawText(center, 5, distanceCurrentStepFixDisplay.ToString("N1") + "cm", 0.8);
+            font.DrawText(center, 10, distanceCurrentStepFixDisplay.ToString("N1") + "cm", 0.8);
 
             if (isMaxAngularVelocity)
             {

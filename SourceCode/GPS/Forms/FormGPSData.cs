@@ -31,7 +31,6 @@ namespace AgOpenGPS
             lblLongitude.Text = mf.Longitude;
 
             //other sat and GPS info
-            lblStatus.Text = mf.FixQuality;
             lblSatsTracked.Text = mf.SatsTracked;
             lblHDOP.Text = mf.HDOP;
             //lblSpeed.Text = mf.avgSpeed.ToString("N2");

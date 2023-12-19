@@ -55,9 +55,9 @@ namespace AgOpenGPS
         public string DistanceUserFeet => Convert.ToString(Math.Round((distanceUser * glm.m2ft), 1));
 
         //remaining area to be worked
-        public string WorkedAreaRemainHectares => ((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ha).ToString("N1") ;
+        public string WorkedAreaRemainHectares => ((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ha).ToString("N2") ;
 
-        public string WorkedAreaRemainAcres => ((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ac).ToString("N1");
+        public string WorkedAreaRemainAcres => ((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ac).ToString("N2");
 
         public string WorkedAreaRemainPercentage
         {
@@ -80,8 +80,8 @@ namespace AgOpenGPS
         public string ActualAreaWorkedHectares => (actualAreaCovered * glm.m2ha).ToString("N1");
         public string ActualAreaWorkedAcres => (actualAreaCovered * glm.m2ac).ToString("N1");
 
-        public string ActualRemainHectares => ((areaBoundaryOuterLessInner - actualAreaCovered) * glm.m2ha).ToString("N1");
-        public string ActualRemainAcres => ((areaBoundaryOuterLessInner - actualAreaCovered) * glm.m2ac).ToString("N1");
+        public string ActualRemainHectares => ((areaBoundaryOuterLessInner - actualAreaCovered) * glm.m2ha).ToString("N2");
+        public string ActualRemainAcres => ((areaBoundaryOuterLessInner - actualAreaCovered) * glm.m2ac).ToString("N2");
 
         public string ActualOverlapPercent => overlapPercent.ToString("N1") + "% ";
 
@@ -93,7 +93,7 @@ namespace AgOpenGPS
                 {
                     TimeSpan timeSpan = TimeSpan.FromHours(((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ha
                         / (mf.tool.width * mf.avgSpeed * 0.1)));
-                    return timeSpan.Hours.ToString("00") + "' " + timeSpan.Minutes.ToString("00") + '"';
+                    return timeSpan.Hours.ToString("00:") + timeSpan.Minutes.ToString("00") + '"';
                 }
                 else return "\u221E Hrs";
             }

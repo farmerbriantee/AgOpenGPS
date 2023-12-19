@@ -306,14 +306,12 @@ namespace AgOpenGPS
             btnZone7.Visible = false;
             btnZone8.Visible = false;
 
-            int oglCenter = 0;
 
-            oglCenter = statusStripLeft.Width + oglMain.Width / 2;
+            int oglCenter = isPanelABHidden ? oglCenter = oglMain.Width / 2 + 30 : statusStripLeft.Width + oglMain.Width / 2;
 
             int top = 130;
 
             int buttonMaxWidth = 400, buttonHeight = 25;
-
 
             if ((Height - oglMain.Height) < 80) //max size - buttons hid
             {
@@ -323,7 +321,6 @@ namespace AgOpenGPS
                     top = Height - 120;
                     panelSim.Top = Height - 78;
                 }
-
             }
             else //buttons exposed
             {
@@ -463,9 +460,7 @@ namespace AgOpenGPS
         public void LineUpAllZoneButtons()
         {
 
-            int oglCenter = 0;
-
-            oglCenter = statusStripLeft.Width + oglMain.Width / 2;
+            int oglCenter = isPanelABHidden?oglCenter = oglMain.Width / 2 + 30:statusStripLeft.Width + oglMain.Width / 2;
 
             int top = 130;
 

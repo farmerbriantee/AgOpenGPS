@@ -1642,16 +1642,6 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap FileNewAndGo {
-            get {
-                object obj = ResourceManager.GetObject("FileNewAndGo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap FileOpen {
             get {
                 object obj = ResourceManager.GetObject("FileOpen", resourceCulture);
@@ -1765,6 +1755,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap GoogleEarth {
             get {
                 object obj = ResourceManager.GetObject("GoogleEarth", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap GPSQuality {
+            get {
+                object obj = ResourceManager.GetObject("GPSQuality", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -122,7 +122,7 @@ namespace AgOpenGPS
         public string filePickerFileAndDirectory;
 
         //the position of the GPS Data window within the FormGPS window
-        public int GPSDataWindowLeft = 76, GPSDataWindowTopOffset = 220;
+        public int GPSDataWindowLeft = 80, GPSDataWindowTopOffset = 220;
 
         //the autoManual drive button. Assume in Auto
         public bool isInAutoDrive = true;
@@ -770,6 +770,8 @@ namespace AgOpenGPS
             isJobStarted = true;
             startCounter = 0;
 
+            btnFieldStats.Visible = true;
+
             btnSectionMasterManual.Enabled = true;
             manualBtnState = btnStates.Off;
             btnSectionMasterManual.Image = Properties.Resources.ManualOff;
@@ -884,6 +886,8 @@ namespace AgOpenGPS
             bnd.isHeadlandOn = false;
             btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
             btnHeadlandOnOff.Visible = false;
+
+            btnFieldStats.Visible = false;
 
             recPath.recList.Clear();
             recPath.StopDrivingRecordedPath();
