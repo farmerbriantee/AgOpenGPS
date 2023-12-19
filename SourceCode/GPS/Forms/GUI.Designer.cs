@@ -768,23 +768,25 @@ namespace AgOpenGPS
                 panelAB.Visible = false;
                 panelRight.Visible = false;
 
-                oglMain.Left = 75;
+                oglMain.Left = 80;
                 oglMain.Width = this.Width - statusStripLeft.Width - 22; //22
-                oglMain.Height = this.Height - 71;
+                oglMain.Height = this.Height - 72;
             }
             else
             {
                 if (isPanelABHidden)
                 {
                     panelAB.Visible = false;
-                    oglMain.Left = 80;
-                    oglMain.Width = this.Width - statusStripLeft.Width - 100; //22
-                    oglMain.Height = this.Height - 71;
+                    panelLeft.Visible = false;
+                    oglMain.Left = 30;
+                    oglMain.Width = this.Width - 100; //22
+                    oglMain.Height = this.Height - 68;
                 }
                 else
                 {
                     panelAB.Visible = true;
                     panelRight.Visible = true;
+                    panelLeft.Visible = true;
                     oglMain.Left = 80;
                     oglMain.Width = this.Width - statusStripLeft.Width - 100; //22
                     oglMain.Height = this.Height - 125;

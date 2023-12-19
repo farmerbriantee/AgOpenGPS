@@ -767,7 +767,6 @@ namespace AgOpenGPS
         public void JobNew()
         {
             //SendSteerSettingsOutAutoSteerPort();
-            isPanelABHidden = false;
             isJobStarted = true;
             startCounter = 0;
 
@@ -859,16 +858,17 @@ namespace AgOpenGPS
             this.menustripLanguage.Enabled = false;
             panelRight.Enabled = true;
             //boundaryToolStripBtn.Enabled = true;
+            isPanelABHidden = false;
 
             FieldMenuButtonEnableDisable(true);
             FixPanelsAndMenus();
             SetZoom();
+
         }
 
         //close the current job
         public void JobClose()
         {
-            isPanelABHidden = false;
             recPath.resumeState = 0;
             btnResumePath.Image = Properties.Resources.pathResumeStart;
             recPath.currentPositonIndex = 0;
@@ -1061,6 +1061,8 @@ namespace AgOpenGPS
             recPath.recList?.Clear();
             recPath.shortestDubinsList?.Clear();
             recPath.shuttleDubinsList?.Clear();
+            
+            isPanelABHidden = false;
 
             FixPanelsAndMenus();
             SetZoom();
