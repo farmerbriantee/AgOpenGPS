@@ -1028,7 +1028,7 @@
             this.oglMain.Location = new System.Drawing.Point(75, 39);
             this.oglMain.Margin = new System.Windows.Forms.Padding(0);
             this.oglMain.Name = "oglMain";
-            this.oglMain.Size = new System.Drawing.Size(862, 639);
+            this.oglMain.Size = new System.Drawing.Size(862, 635);
             this.oglMain.TabIndex = 180;
             this.oglMain.VSync = false;
             this.oglMain.Load += new System.EventHandler(this.oglMain_Load);
@@ -1925,7 +1925,7 @@
             this.panelAB.Controls.Add(this.btnHydLift, 4, 0);
             this.panelAB.Controls.Add(this.btnHeadlandOnOff, 5, 0);
             this.panelAB.Controls.Add(this.btnEditAB, 8, 0);
-            this.panelAB.Location = new System.Drawing.Point(78, 679);
+            this.panelAB.Location = new System.Drawing.Point(78, 675);
             this.panelAB.Name = "panelAB";
             this.panelAB.RowCount = 1;
             this.panelAB.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -2364,12 +2364,12 @@
             this.lblTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTime.AutoSize = true;
             this.lblTime.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTime.Location = new System.Drawing.Point(880, 4);
+            this.lblTime.Location = new System.Drawing.Point(849, 4);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(120, 19);
             this.lblTime.TabIndex = 531;
             this.lblTime.Text = "12:22:22 PM";
-            this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // tableLayoutPanel2
             // 
@@ -2385,12 +2385,12 @@
             this.tableLayoutPanel2.Controls.Add(this.lblGuidanceLine, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.lblFix, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.lblTime, 3, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(9, 742);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(27, 739);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1003, 27);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(972, 27);
             this.tableLayoutPanel2.TabIndex = 533;
             // 
             // lblFieldStatus
@@ -2412,7 +2412,7 @@
             this.lblGuidanceLine.AutoSize = true;
             this.lblGuidanceLine.BackColor = System.Drawing.Color.Transparent;
             this.lblGuidanceLine.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGuidanceLine.Location = new System.Drawing.Point(814, 2);
+            this.lblGuidanceLine.Location = new System.Drawing.Point(783, 2);
             this.lblGuidanceLine.Name = "lblGuidanceLine";
             this.lblGuidanceLine.Size = new System.Drawing.Size(60, 23);
             this.lblGuidanceLine.TabIndex = 534;

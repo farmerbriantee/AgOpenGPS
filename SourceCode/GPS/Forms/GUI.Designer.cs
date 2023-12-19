@@ -156,24 +156,10 @@ namespace AgOpenGPS
                                 + fd.ActualOverlapPercent + "   "
                                 + fd.WorkRateAcres;
                     }
-
-                    lblCurrentField.Text = displayFieldName;
-
-                    if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
-                    {
-                        lblGuidanceLine.Text = curve.curveArr[curve.numCurveLineSelected - 1].Name;
-                    }
-
-                    else if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
-                    {
-                        lblGuidanceLine.Text = ABLine.lineArr[ABLine.numABLineSelected - 1].Name;
-                    }
-                    else lblGuidanceLine.Text = "Guidance Line";
                 }
                 else
                 {
                     lblFieldStatus.Text = string.Empty;
-                    lblCurrentField.Text = (tool.width * m2FtOrM).ToString("N2") + unitsFtM + " - " + vehicleFileName;
                 }
             }
 
@@ -184,20 +170,20 @@ namespace AgOpenGPS
                 //reset the counter
                 displayUpdateThreeSecondCounter = threeSeconds;
 
-                //check to make sure the grid is big enough
-                //worldGrid.checkZoomWorldGrid(pn.fix.northing, pn.fix.easting);
-
-                //hide the NAv panel in 6  secs
+                //hide the Nav panel in 6  secs
                 if (panelNavigation.Visible)
                 {
                     if (navPanelCounter-- < 2) panelNavigation.Visible = false;
                 }
 
+                //small Hz details in panel
                 if (panelNavigation.Visible)
                     lblHz.Text = gpsHz.ToString("N1") + " ~ " + (frameTime.ToString("N1")) + " " + FixQuality;
 
+                //fix
                 lblFix.Text = FixQuality + pn.age.ToString("N1");
 
+                //Time
                 lblTime.Text = DateTime.Now.ToString("T");
 
                 if (isJobStarted)
@@ -206,9 +192,7 @@ namespace AgOpenGPS
                     {
                         if (!btnEditAB.Visible)
                         {
-                            //btnMakeLinesFromBoundary.Visible = true;
                             btnEditAB.Visible = true;
-                            //btnSnapToPivot.Visible = true;
                             cboxpRowWidth.Visible = true;
                             btnYouSkipEnable.Visible = true;
                         }
@@ -222,22 +206,25 @@ namespace AgOpenGPS
                         {
                             lblGuidanceLine.Text = ABLine.lineArr[ABLine.numABLineSelected - 1].Name;
                         }
-                        else lblGuidanceLine.Text = gStr.gsNoGuidanceLines;
+                        else lblGuidanceLine.Text = gStr.gsNoGuidanceLines;                        
                     }
                     else
                     {
                         if (btnEditAB.Visible)
                         {
-                            //btnMakeLinesFromBoundary.Visible = false;
                             btnEditAB.Visible = false;
-                            //btnSnapToPivot.Visible = false;
                             cboxpRowWidth.Visible = false;
                             btnYouSkipEnable.Visible = false;
                         }
                     }
 
+                    //current field at top left
+                    lblCurrentField.Text = displayFieldName;
                 }
-
+                else //idle - no job
+                {
+                    lblCurrentField.Text = (tool.width * m2FtOrM).ToString("N2") + unitsFtM + " - " + vehicleFileName;
+                }
 
 
                 //save nmea log file
@@ -771,7 +758,7 @@ namespace AgOpenGPS
         private void FixPanelsAndMenus()
         {
             panelAB.Size = new System.Drawing.Size(760 + ((Width - 900) / 2), 67);
-            panelAB.Location = new Point((Width - 900) / 3 + 67, this.Height - 86);
+            panelAB.Location = new Point((Width - 900) / 3 + 67, this.Height - 90);
 
             if (!isJobStarted)
             {
@@ -780,7 +767,7 @@ namespace AgOpenGPS
 
                 oglMain.Left = 75;
                 oglMain.Width = this.Width - statusStripLeft.Width - 22; //22
-                oglMain.Height = this.Height - 67;
+                oglMain.Height = this.Height - 71;
             }
             else
             {
