@@ -390,9 +390,9 @@ namespace AgOpenGPS
                 if (File.Exists(fileToCopy))
                     File.Copy(fileToCopy, destinationDirectory);
                 else
-                    using (StreamWriter writer = new StreamWriter(dirNewField + "\\Boundary.txt"))
+                    using (StreamWriter writer = new StreamWriter(dirNewField + "\\Headlines.txt"))
                     {
-                        writer.WriteLine("$Boundary");
+                        writer.WriteLine("$Headlines");
                     }
 
                 if (chkFlags.Checked)

@@ -1191,7 +1191,6 @@ namespace AgOpenGPS
                 else return "Unknown: ";
             }
         }
-
         public string GyroInDegrees
         {
             get
