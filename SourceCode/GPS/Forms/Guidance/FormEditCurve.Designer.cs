@@ -254,9 +254,9 @@
             this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(9, 190);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 32);
+            this.label5.Size = new System.Drawing.Size(66, 16);
             this.label5.TabIndex = 477;
-            this.label5.Text = "Auto Snap \r\n To Pivot";
+            this.label5.Text = "Auto Snap";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormEditCurve
