@@ -553,7 +553,7 @@ namespace AgOpenGPS
 
             if (f != null)
             {
-                isPanVisible = false;
+                isPanFormVisible = false;
                 f.Focus();
                 f.Close();
             }
@@ -666,8 +666,8 @@ namespace AgOpenGPS
             f = Application.OpenForms["FormPan"];
             if (f != null)
             {
-                f.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
-                f.Left = this.Left + GPSDataWindowLeft+ 50;
+                f.Top = this.Top + 75;
+                f.Left = this.Left + this.Width - 380;
             }
 
         }
@@ -680,11 +680,19 @@ namespace AgOpenGPS
                 f.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
                 f.Left = this.Left + GPSDataWindowLeft;
             }
-            Form f1 = Application.OpenForms["FormFieldData"];
-            if (f1 != null)
+            f = null;
+            f = Application.OpenForms["FormFieldData"];
+            if (f != null)
             {
-                f1.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
-                f1.Left = this.Left + GPSDataWindowLeft;
+                f.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
+                f.Left = this.Left + GPSDataWindowLeft;
+            }
+            f = null;
+            f = Application.OpenForms["FormPan"];
+            if (f != null)
+            {
+                f.Top = this.Top + 75;
+                f.Left = this.Left + this.Width - 380;
             }
         }
 

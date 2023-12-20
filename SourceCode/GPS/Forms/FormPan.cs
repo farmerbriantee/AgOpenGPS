@@ -66,8 +66,13 @@ namespace AgOpenGPS
         {
             mf.camera.panX = 0;
             mf.camera.panY = 0;
-            mf.isPanVisible = false;
+            mf.isPanFormVisible = false;
             Close();
+        }
+
+        private void FormPan_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            mf.isPanFormVisible = false;
         }
     }
 }

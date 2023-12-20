@@ -588,7 +588,7 @@ namespace AgOpenGPS
 
             if (f != null)
             {
-                isPanVisible = false;
+                isPanFormVisible = false;
                 f.Focus();
                 f.Close();
             }

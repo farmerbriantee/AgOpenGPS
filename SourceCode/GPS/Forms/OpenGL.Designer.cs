@@ -1953,7 +1953,7 @@ namespace AgOpenGPS
             if (isJobStarted)
             {
                 center = oglMain.Width / -2 + 30;
-                if (!isPanVisible)
+                if (!isPanFormVisible)
                 {
                     GL.BindTexture(TextureTarget.Texture2D, texture[24]);        // Select Our Texture
                     GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip

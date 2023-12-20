@@ -63,7 +63,7 @@ namespace AgOpenGPS
         public DateTime sunrise = DateTime.Now;
         public DateTime sunset = DateTime.Now;
 
-        public bool isFlashOnOff = false, isPanVisible = false;
+        public bool isFlashOnOff = false, isPanFormVisible = false;
 
         //makes nav panel disappear after 6 seconds
         private int navPanelCounter = 0;
@@ -1119,7 +1119,7 @@ namespace AgOpenGPS
                 {
                     if (point.Y > 50 && point.Y < 80)
                     {
-                        isPanVisible = true;
+                        isPanFormVisible = true;
                         Form f = Application.OpenForms["FormPan"];
 
                         if (f != null)
@@ -1131,8 +1131,8 @@ namespace AgOpenGPS
                         Form form = new FormPan(this);
                         form.Show(this);
 
-                        form.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
-                        form.Left = this.Left + GPSDataWindowLeft;
+                        form.Top = this.Top + 75;
+                        form.Left = this.Left + this.Width-380;
                     }
 
                     if (isJobStarted)
