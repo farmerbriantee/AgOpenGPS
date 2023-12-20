@@ -2292,60 +2292,6 @@ namespace AgOpenGPS
 
         #endregion
 
-        #region Pan
-        private void btnPanUp_Click(object sender, EventArgs e)
-        {
-            camera.panY -= (camera.camSetDistance/25);
-        }
-
-        private void btnPanRight_Click(object sender, EventArgs e)
-        {
-            camera.panX -= (camera.camSetDistance / 25);
-        }
-
-        private void btnPanDn_Click(object sender, EventArgs e)
-        {
-            camera.panY += (camera.camSetDistance / 25);
-        }
-
-        private void btnPanLeft_Click(object sender, EventArgs e)
-        {
-            camera.panX += (camera.camSetDistance / 25);
-        }
-
-        private void btnUpLeft_Click(object sender, EventArgs e)
-        {
-            camera.panY -= (camera.camSetDistance / 25);
-            camera.panX += (camera.camSetDistance / 25);
-        }
-
-        private void btnUpRight_Click(object sender, EventArgs e)
-        {
-            camera.panY -= (camera.camSetDistance / 25);
-            camera.panX -= (camera.camSetDistance / 25);
-        }
-
-        private void btnDownRight_Click(object sender, EventArgs e)
-        {
-            camera.panY += (camera.camSetDistance / 25);
-            camera.panX -= (camera.camSetDistance / 25);
-        }
-
-        private void btnDownLeft_Click(object sender, EventArgs e)
-        {
-            camera.panY += (camera.camSetDistance / 25);
-            camera.panX += (camera.camSetDistance / 25);
-        }
-
-        private void btnPanCancel_Click(object sender, EventArgs e)
-        {
-            camera.panX = 0;
-            camera.panY = 0;
-            panelPan.Visible = false;
-        }
-
-        #endregion
-
         #region Nav Panel
         private void btn2D_Click(object sender, EventArgs e)
         {
@@ -2582,7 +2528,6 @@ namespace AgOpenGPS
 
         #endregion
 
-
         private void lblInty_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -2592,7 +2537,6 @@ namespace AgOpenGPS
                 return;
             }
         }
-
 
         public void FixTramModeButton()
         {

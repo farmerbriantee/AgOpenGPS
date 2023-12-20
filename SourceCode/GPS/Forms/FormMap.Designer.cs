@@ -338,7 +338,7 @@
             this.btnReCenter.BackColor = System.Drawing.Color.Transparent;
             this.btnReCenter.FlatAppearance.BorderSize = 0;
             this.btnReCenter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReCenter.Image = global::AgOpenGPS.Properties.Resources.WindowRestore;
+            this.btnReCenter.Image = global::AgOpenGPS.Properties.Resources.WindowMaximize;
             this.btnReCenter.Location = new System.Drawing.Point(630, 297);
             this.btnReCenter.Name = "btnReCenter";
             this.btnReCenter.Size = new System.Drawing.Size(61, 61);

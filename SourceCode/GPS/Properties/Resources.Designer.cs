@@ -1492,6 +1492,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FieldDataBackground {
+            get {
+                object obj = ResourceManager.GetObject("FieldDataBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap FieldStats {
             get {
                 object obj = ResourceManager.GetObject("FieldStats", resourceCulture);
@@ -2328,16 +2338,6 @@ namespace AgOpenGPS.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ResumeField {
-            get {
-                object obj = ResourceManager.GetObject("ResumeField", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream rtk_lost {
@@ -3040,16 +3040,6 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap WindowNightMode {
             get {
                 object obj = ResourceManager.GetObject("WindowNightMode", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap WindowRestore {
-            get {
-                object obj = ResourceManager.GetObject("WindowRestore", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

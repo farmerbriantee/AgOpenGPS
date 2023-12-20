@@ -184,16 +184,6 @@
             this.lblCurrentField = new System.Windows.Forms.Label();
             this.btnGPSData = new System.Windows.Forms.Button();
             this.btnFieldStats = new System.Windows.Forms.Button();
-            this.panelPan = new System.Windows.Forms.TableLayoutPanel();
-            this.btnDownLeft = new System.Windows.Forms.Button();
-            this.btnPanUp = new System.Windows.Forms.Button();
-            this.btnUpLeft = new System.Windows.Forms.Button();
-            this.btnPanLeft = new System.Windows.Forms.Button();
-            this.btnPanRight = new System.Windows.Forms.Button();
-            this.btnPanCancel = new System.Windows.Forms.Button();
-            this.btnPanDn = new System.Windows.Forms.Button();
-            this.btnDownRight = new System.Windows.Forms.Button();
-            this.btnUpRight = new System.Windows.Forms.Button();
             this.btnMaximizeMainForm = new System.Windows.Forms.Button();
             this.pictureboxStart = new System.Windows.Forms.PictureBox();
             this.btnShutdown = new System.Windows.Forms.Button();
@@ -209,7 +199,6 @@
             this.panelNavigation.SuspendLayout();
             this.panelAB.SuspendLayout();
             this.panelLeft.SuspendLayout();
-            this.panelPan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureboxStart)).BeginInit();
             this.SuspendLayout();
             // 
@@ -626,10 +615,10 @@
             // 
             this.oglZoom.BackColor = System.Drawing.Color.Black;
             this.oglZoom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.oglZoom.Location = new System.Drawing.Point(101, 59);
+            this.oglZoom.Location = new System.Drawing.Point(100, 58);
             this.oglZoom.Margin = new System.Windows.Forms.Padding(0);
             this.oglZoom.Name = "oglZoom";
-            this.oglZoom.Size = new System.Drawing.Size(61, 65);
+            this.oglZoom.Size = new System.Drawing.Size(60, 65);
             this.oglZoom.TabIndex = 182;
             this.oglZoom.VSync = false;
             this.oglZoom.Load += new System.EventHandler(this.oglZoom_Load);
@@ -1013,7 +1002,7 @@
             this.oglMain.Location = new System.Drawing.Point(81, 39);
             this.oglMain.Margin = new System.Windows.Forms.Padding(0);
             this.oglMain.Name = "oglMain";
-            this.oglMain.Size = new System.Drawing.Size(832, 587);
+            this.oglMain.Size = new System.Drawing.Size(832, 588);
             this.oglMain.TabIndex = 180;
             this.oglMain.VSync = false;
             this.oglMain.Load += new System.EventHandler(this.oglMain_Load);
@@ -1027,7 +1016,7 @@
             this.oglBack.BackColor = System.Drawing.Color.Black;
             this.oglBack.ForeColor = System.Drawing.Color.Transparent;
             this.oglBack.Location = new System.Drawing.Point(122, 70);
-            this.oglBack.Margin = new System.Windows.Forms.Padding(1);
+            this.oglBack.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.oglBack.Name = "oglBack";
             this.oglBack.Size = new System.Drawing.Size(500, 300);
             this.oglBack.TabIndex = 181;
@@ -1654,7 +1643,7 @@
             // 
             // panelNavigation
             // 
-            this.panelNavigation.BackColor = System.Drawing.Color.White;
+            this.panelNavigation.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelNavigation.ColumnCount = 2;
             this.panelNavigation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelNavigation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -2074,7 +2063,6 @@
             this.lblSpeed.TabIndex = 116;
             this.lblSpeed.Text = "88.88";
             this.lblSpeed.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.lblSpeed.Click += new System.EventHandler(this.btnGPSData_Click);
             // 
             // lblInty
             // 
@@ -2331,8 +2319,9 @@
             this.btnAutoSteerConfig.BackColor = System.Drawing.Color.Transparent;
             this.btnAutoSteerConfig.BackgroundImage = global::AgOpenGPS.Properties.Resources.AutoSteerConf;
             this.btnAutoSteerConfig.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAutoSteerConfig.FlatAppearance.BorderColor = System.Drawing.Color.SaddleBrown;
             this.btnAutoSteerConfig.FlatAppearance.BorderSize = 0;
+            this.btnAutoSteerConfig.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnAutoSteerConfig.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnAutoSteerConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAutoSteerConfig.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAutoSteerConfig.ForeColor = System.Drawing.Color.Black;
@@ -2414,197 +2403,6 @@
             this.btnFieldStats.UseVisualStyleBackColor = false;
             this.btnFieldStats.Visible = false;
             this.btnFieldStats.Click += new System.EventHandler(this.btnFieldStats_Click);
-            // 
-            // panelPan
-            // 
-            this.panelPan.BackColor = System.Drawing.Color.Black;
-            this.panelPan.BackgroundImage = global::AgOpenGPS.Properties.Resources.PanBackground;
-            this.panelPan.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panelPan.ColumnCount = 3;
-            this.panelPan.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.panelPan.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.panelPan.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.panelPan.Controls.Add(this.btnDownLeft, 0, 2);
-            this.panelPan.Controls.Add(this.btnPanUp, 1, 0);
-            this.panelPan.Controls.Add(this.btnUpLeft, 0, 0);
-            this.panelPan.Controls.Add(this.btnPanLeft, 0, 1);
-            this.panelPan.Controls.Add(this.btnPanRight, 2, 1);
-            this.panelPan.Controls.Add(this.btnPanCancel, 1, 1);
-            this.panelPan.Controls.Add(this.btnPanDn, 1, 2);
-            this.panelPan.Controls.Add(this.btnUpRight, 2, 0);
-            this.panelPan.Controls.Add(this.btnDownRight, 2, 2);
-            this.panelPan.Location = new System.Drawing.Point(101, 59);
-            this.panelPan.Name = "panelPan";
-            this.panelPan.RowCount = 3;
-            this.panelPan.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.panelPan.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.panelPan.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.panelPan.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 68F));
-            this.panelPan.Size = new System.Drawing.Size(150, 150);
-            this.panelPan.TabIndex = 530;
-            this.panelPan.Visible = false;
-            // 
-            // btnDownLeft
-            // 
-            this.btnDownLeft.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDownLeft.BackColor = System.Drawing.Color.Transparent;
-            this.btnDownLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDownLeft.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnDownLeft.FlatAppearance.BorderSize = 0;
-            this.btnDownLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDownLeft.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDownLeft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDownLeft.Location = new System.Drawing.Point(3, 114);
-            this.btnDownLeft.Name = "btnDownLeft";
-            this.btnDownLeft.Size = new System.Drawing.Size(34, 33);
-            this.btnDownLeft.TabIndex = 478;
-            this.btnDownLeft.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnDownLeft.UseVisualStyleBackColor = false;
-            this.btnDownLeft.Click += new System.EventHandler(this.btnDownLeft_Click);
-            // 
-            // btnPanUp
-            // 
-            this.btnPanUp.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnPanUp.BackColor = System.Drawing.Color.Transparent;
-            this.btnPanUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnPanUp.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnPanUp.FlatAppearance.BorderSize = 0;
-            this.btnPanUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPanUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPanUp.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPanUp.Location = new System.Drawing.Point(56, 3);
-            this.btnPanUp.Name = "btnPanUp";
-            this.btnPanUp.Size = new System.Drawing.Size(34, 33);
-            this.btnPanUp.TabIndex = 471;
-            this.btnPanUp.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnPanUp.UseVisualStyleBackColor = false;
-            this.btnPanUp.Click += new System.EventHandler(this.btnPanUp_Click);
-            // 
-            // btnUpLeft
-            // 
-            this.btnUpLeft.BackColor = System.Drawing.Color.Transparent;
-            this.btnUpLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnUpLeft.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnUpLeft.FlatAppearance.BorderSize = 0;
-            this.btnUpLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpLeft.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpLeft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnUpLeft.Location = new System.Drawing.Point(3, 3);
-            this.btnUpLeft.Name = "btnUpLeft";
-            this.btnUpLeft.Size = new System.Drawing.Size(34, 33);
-            this.btnUpLeft.TabIndex = 475;
-            this.btnUpLeft.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnUpLeft.UseVisualStyleBackColor = false;
-            this.btnUpLeft.Click += new System.EventHandler(this.btnUpLeft_Click);
-            // 
-            // btnPanLeft
-            // 
-            this.btnPanLeft.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnPanLeft.BackColor = System.Drawing.Color.Transparent;
-            this.btnPanLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnPanLeft.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnPanLeft.FlatAppearance.BorderSize = 0;
-            this.btnPanLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPanLeft.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPanLeft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPanLeft.Location = new System.Drawing.Point(3, 57);
-            this.btnPanLeft.Name = "btnPanLeft";
-            this.btnPanLeft.Size = new System.Drawing.Size(34, 33);
-            this.btnPanLeft.TabIndex = 472;
-            this.btnPanLeft.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnPanLeft.UseVisualStyleBackColor = false;
-            this.btnPanLeft.Click += new System.EventHandler(this.btnPanLeft_Click);
-            // 
-            // btnPanRight
-            // 
-            this.btnPanRight.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnPanRight.BackColor = System.Drawing.Color.Transparent;
-            this.btnPanRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnPanRight.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnPanRight.FlatAppearance.BorderSize = 0;
-            this.btnPanRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPanRight.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPanRight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPanRight.Location = new System.Drawing.Point(113, 57);
-            this.btnPanRight.Name = "btnPanRight";
-            this.btnPanRight.Size = new System.Drawing.Size(34, 33);
-            this.btnPanRight.TabIndex = 472;
-            this.btnPanRight.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnPanRight.UseVisualStyleBackColor = false;
-            this.btnPanRight.Click += new System.EventHandler(this.btnPanRight_Click);
-            // 
-            // btnPanCancel
-            // 
-            this.btnPanCancel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnPanCancel.BackColor = System.Drawing.Color.Transparent;
-            this.btnPanCancel.BackgroundImage = global::AgOpenGPS.Properties.Resources.boundaryStop;
-            this.btnPanCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnPanCancel.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnPanCancel.FlatAppearance.BorderSize = 0;
-            this.btnPanCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPanCancel.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPanCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPanCancel.Location = new System.Drawing.Point(54, 53);
-            this.btnPanCancel.Name = "btnPanCancel";
-            this.btnPanCancel.Size = new System.Drawing.Size(39, 41);
-            this.btnPanCancel.TabIndex = 474;
-            this.btnPanCancel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnPanCancel.UseVisualStyleBackColor = false;
-            this.btnPanCancel.Click += new System.EventHandler(this.btnPanCancel_Click);
-            // 
-            // btnPanDn
-            // 
-            this.btnPanDn.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnPanDn.BackColor = System.Drawing.Color.Transparent;
-            this.btnPanDn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnPanDn.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnPanDn.FlatAppearance.BorderSize = 0;
-            this.btnPanDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPanDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPanDn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPanDn.Location = new System.Drawing.Point(56, 114);
-            this.btnPanDn.Name = "btnPanDn";
-            this.btnPanDn.Size = new System.Drawing.Size(34, 33);
-            this.btnPanDn.TabIndex = 470;
-            this.btnPanDn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnPanDn.UseVisualStyleBackColor = false;
-            this.btnPanDn.Click += new System.EventHandler(this.btnPanDn_Click);
-            // 
-            // btnDownRight
-            // 
-            this.btnDownRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDownRight.BackColor = System.Drawing.Color.Transparent;
-            this.btnDownRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDownRight.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnDownRight.FlatAppearance.BorderSize = 0;
-            this.btnDownRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDownRight.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDownRight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDownRight.Location = new System.Drawing.Point(113, 114);
-            this.btnDownRight.Name = "btnDownRight";
-            this.btnDownRight.Size = new System.Drawing.Size(34, 33);
-            this.btnDownRight.TabIndex = 477;
-            this.btnDownRight.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnDownRight.UseVisualStyleBackColor = false;
-            this.btnDownRight.Click += new System.EventHandler(this.btnDownRight_Click);
-            // 
-            // btnUpRight
-            // 
-            this.btnUpRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpRight.BackColor = System.Drawing.Color.Transparent;
-            this.btnUpRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnUpRight.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnUpRight.FlatAppearance.BorderSize = 0;
-            this.btnUpRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpRight.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpRight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnUpRight.Location = new System.Drawing.Point(113, 3);
-            this.btnUpRight.Name = "btnUpRight";
-            this.btnUpRight.Size = new System.Drawing.Size(34, 33);
-            this.btnUpRight.TabIndex = 476;
-            this.btnUpRight.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnUpRight.UseVisualStyleBackColor = false;
-            this.btnUpRight.Click += new System.EventHandler(this.btnUpRight_Click);
             // 
             // btnMaximizeMainForm
             // 
@@ -2707,7 +2505,6 @@
             this.Controls.Add(this.lblFix);
             this.Controls.Add(this.btnGPSData);
             this.Controls.Add(this.btnFieldStats);
-            this.Controls.Add(this.panelPan);
             this.Controls.Add(this.panelLeft);
             this.Controls.Add(this.btnZone8);
             this.Controls.Add(this.btnZone7);
@@ -2776,7 +2573,6 @@
             this.panelNavigation.ResumeLayout(false);
             this.panelAB.ResumeLayout(false);
             this.panelLeft.ResumeLayout(false);
-            this.panelPan.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureboxStart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -2932,16 +2728,6 @@
         public System.Windows.Forms.Button btnCycleLinesBk;
         private System.Windows.Forms.TableLayoutPanel panelLeft;
         private System.Windows.Forms.ToolStripMenuItem headlandBuildToolStripMenuItem;
-        private System.Windows.Forms.TableLayoutPanel panelPan;
-        public System.Windows.Forms.Button btnPanDn;
-        public System.Windows.Forms.Button btnPanUp;
-        public System.Windows.Forms.Button btnPanLeft;
-        public System.Windows.Forms.Button btnPanRight;
-        public System.Windows.Forms.Button btnPanCancel;
-        public System.Windows.Forms.Button btnDownLeft;
-        public System.Windows.Forms.Button btnUpLeft;
-        public System.Windows.Forms.Button btnUpRight;
-        public System.Windows.Forms.Button btnDownRight;
         private ProXoft.WinForms.RepeatButton btnSimSpeedUp;
         private ProXoft.WinForms.RepeatButton btnSpeedDn;
         private System.Windows.Forms.Label lblCurrentField;

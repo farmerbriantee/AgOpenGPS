@@ -2,6 +2,7 @@
 //Copyright BrianTee, copy right out of it.
 
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -58,9 +59,6 @@ namespace AgOpenGPS
 
         private void FormGPSData_Load(object sender, EventArgs e)
         {
-            //lblSunrise.Text = mf.sunrise.ToString("HH:mm");
-            //lblVersion.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
-            //lblSunset.Text = mf.sunset.ToString("HH:mm");
         }
 
         private void FormGPSData_FormClosing(object sender, FormClosingEventArgs e)

@@ -303,6 +303,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Black;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(176, 356);
             this.Controls.Add(this.lblWorkRate);
             this.Controls.Add(this.lblActualRemain);
