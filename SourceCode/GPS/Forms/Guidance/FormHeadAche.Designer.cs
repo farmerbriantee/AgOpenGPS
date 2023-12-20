@@ -223,7 +223,7 @@
             this.lblMovedDistance.Name = "lblMovedDistance";
             this.lblMovedDistance.Size = new System.Drawing.Size(56, 26);
             this.lblMovedDistance.TabIndex = 506;
-            this.lblMovedDistance.Text = "40.2";
+            this.lblMovedDistance.Text = "0";
             this.lblMovedDistance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label3

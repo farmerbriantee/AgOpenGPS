@@ -865,7 +865,7 @@ namespace AgOpenGPS
             FieldMenuButtonEnableDisable(true);
             FixPanelsAndMenus();
             SetZoom();
-
+            minuteCounter = 25;
         }
 
         //close the current job

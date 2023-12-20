@@ -363,7 +363,7 @@ namespace AgOpenGPS
                 ABLine.isABLineSet = true;
                 ABLine.isABLineLoaded = true;
                 yt.ResetYouTurn();
-                lblGuidanceLine.Text = ABLine.lineArr[idx].Name;
+                guidanceLineText = ABLine.lineArr[idx].Name;
             }
             else if (curve.isBtnCurveOn && curve.numCurveLines > 0)
             {
@@ -402,9 +402,12 @@ namespace AgOpenGPS
                 }
                 curve.isCurveSet = true;
                 yt.ResetYouTurn();
-                lblGuidanceLine.Text = curve.curveArr[idx].Name;
+                guidanceLineText = curve.curveArr[idx].Name;
 
             }
+
+            lblFieldStatus.Text = fieldData + " ----- " + guidanceLineText;
+
             UpdateGuidanceLineButtonNumbers();
         }
         private void btnCycleLinesBk_Click(object sender, EventArgs e)
@@ -468,7 +471,7 @@ namespace AgOpenGPS
                 ABLine.isABLineSet = true;
                 ABLine.isABLineLoaded = true;
                 yt.ResetYouTurn();
-                lblGuidanceLine.Text = ABLine.lineArr[idx].Name; 
+                guidanceLineText = ABLine.lineArr[idx].Name; 
             }
             else if (curve.isBtnCurveOn && curve.numCurveLines > 0)
             {
@@ -507,9 +510,10 @@ namespace AgOpenGPS
                 }
                 curve.isCurveSet = true;
                 yt.ResetYouTurn();
-                lblGuidanceLine.Text = curve.curveArr[idx].Name;
+                guidanceLineText = curve.curveArr[idx].Name;
             }
 
+            lblFieldStatus.Text = fieldData + "  :  " + guidanceLineText;
             UpdateGuidanceLineButtonNumbers();
         }
         private void SetABLine(int num)

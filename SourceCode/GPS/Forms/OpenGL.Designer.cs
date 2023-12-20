@@ -1156,6 +1156,7 @@ namespace AgOpenGPS
             if (minuteCounter > 30 && sentenceCounter < 20)
             {
                 tmrWatchdog.Enabled = false;
+                minuteCounter = 0;
 
                 //don't save if no gps
                 if (isJobStarted)
@@ -1168,9 +1169,6 @@ namespace AgOpenGPS
                     if (isLogElevation) FileSaveElevation();
                     //ExportFieldAs_KML();
                 }
-
-                //if its the next day, calc sunrise sunset for next day
-                minuteCounter = 0;
 
                 //set saving flag off
                 isSavingFile = false;
@@ -1215,7 +1213,6 @@ namespace AgOpenGPS
 
         private void oglZoom_Paint(object sender, PaintEventArgs e)
         {
-
             if (isJobStarted)
             {
                 oglZoom.MakeCurrent();
@@ -1250,25 +1247,25 @@ namespace AgOpenGPS
                             count2 = triList.Count;
                             int mipmap = 2;
 
-                            ////if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
-                            //if (count2 >= (mipmap))
-                            //{
-                            //    int step = mipmap;
-                            //    for (int i = 0; i < count2; i += step)
-                            //    {
-                            //        GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
-                            //        GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
+                            //if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
+                            if (count2 >= (mipmap))
+                            {
+                                int step = mipmap;
+                                for (int i = 1; i < count2; i += step)
+                                {
+                                    GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
+                                    GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
 
-                            //        //too small to mipmap it
-                            //        if (count2 - i <= (mipmap))
-                            //            break;
-                            //    }
-                            //}
+                                    //too small to mipmap it
+                                    if (count2 - i <= (mipmap))
+                                        break;
+                                }
+                            }
 
-                            //else
-                            //{
+                            else
+                            {
                                 for (int i = 1; i < count2; i++) GL.Vertex3(triList[i].easting, triList[i].northing, 0);
-                            //}
+                            }
                             GL.End();
 
                         }
@@ -1953,20 +1950,20 @@ namespace AgOpenGPS
             GL.End();
 
             //Pan
-            center = oglMain.Width / -2 + 30;
-            GL.BindTexture(TextureTarget.Texture2D, texture[24]);        // Select Our Texture
-            GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
-            {
-                GL.TexCoord2(0, 0); GL.Vertex2(center, 50); // 
-                GL.TexCoord2(1, 0); GL.Vertex2(center + 32, 50); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(center + 32, 82); // 
-                GL.TexCoord2(0, 1); GL.Vertex2(center, 82); //
-            }
-            GL.End();
-
-            //hide show bottom menu
             if (isJobStarted)
             {
+                center = oglMain.Width / -2 + 30;
+                GL.BindTexture(TextureTarget.Texture2D, texture[24]);        // Select Our Texture
+                GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
+                {
+                    GL.TexCoord2(0, 0); GL.Vertex2(center, 50); // 
+                    GL.TexCoord2(1, 0); GL.Vertex2(center + 32, 50); // 
+                    GL.TexCoord2(1, 1); GL.Vertex2(center + 32, 82); // 
+                    GL.TexCoord2(0, 1); GL.Vertex2(center, 82); //
+                }
+                GL.End();
+
+                //hide show bottom menu
                 int hite = oglMain.Height - 30;
                 GL.BindTexture(TextureTarget.Texture2D, texture[25]);        // Select Our Texture
                 GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
