@@ -126,9 +126,9 @@ namespace AgOpenGPS
                                 + fd.WorkedHectares + " = "
                                 + fd.WorkedAreaRemainHectares + " | "
 
-                                //+ fd.ActualAreaWorkedHectares + " = "
+                                + fd.ActualAreaWorkedHectares + " = "
                                 + fd.ActualRemainHectares + "  "
-                                + fd.ActualOverlapPercent + "  "
+                                + fd.ActualOverlapPercent + " | "
 
                                 + fd.TimeTillFinished + "  "
                                 + fd.WorkRateHectares;
@@ -150,9 +150,9 @@ namespace AgOpenGPS
                                 + fd.WorkedAcres + " = "
                                 + fd.WorkedAreaRemainAcres +  " | "
 
-                                //+ fd.ActualAreaWorkedAcres + " = "
+                                + fd.ActualAreaWorkedAcres + " = "
                                 + fd.ActualRemainAcres + "  "
-                                + fd.ActualOverlapPercent + "  "
+                                + fd.ActualOverlapPercent + " | "
 
                                 + fd.TimeTillFinished + "  "
                                 + fd.WorkRateAcres;

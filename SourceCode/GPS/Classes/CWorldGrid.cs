@@ -131,7 +131,7 @@ namespace AgOpenGPS
 
             if (mf.isDay)
             {
-                GL.Color3(0.5, 0.5, 0.5);
+                GL.Color3(0.35, 0.35, 0.35);
             }
             else
             {

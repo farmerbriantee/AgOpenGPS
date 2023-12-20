@@ -643,7 +643,7 @@
             this.panelDrag.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.panelDrag.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.panelDrag.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.panelDrag.Size = new System.Drawing.Size(64, 320);
+            this.panelDrag.Size = new System.Drawing.Size(64, 381);
             this.panelDrag.TabIndex = 445;
             this.panelDrag.Visible = false;
             // 
@@ -680,7 +680,7 @@
             this.btnPickPath.ForeColor = System.Drawing.Color.DarkGray;
             this.btnPickPath.Image = global::AgOpenGPS.Properties.Resources.FileExplorerWindows;
             this.btnPickPath.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPickPath.Location = new System.Drawing.Point(0, 227);
+            this.btnPickPath.Location = new System.Drawing.Point(0, 287);
             this.btnPickPath.Margin = new System.Windows.Forms.Padding(0);
             this.btnPickPath.Name = "btnPickPath";
             this.btnPickPath.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -701,7 +701,7 @@
             this.btnPathRecordStop.ForeColor = System.Drawing.Color.DarkGray;
             this.btnPathRecordStop.Image = global::AgOpenGPS.Properties.Resources.BoundaryRecord;
             this.btnPathRecordStop.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPathRecordStop.Location = new System.Drawing.Point(0, 149);
+            this.btnPathRecordStop.Location = new System.Drawing.Point(0, 187);
             this.btnPathRecordStop.Margin = new System.Windows.Forms.Padding(0);
             this.btnPathRecordStop.Name = "btnPathRecordStop";
             this.btnPathRecordStop.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -722,7 +722,7 @@
             this.btnResumePath.ForeColor = System.Drawing.Color.Red;
             this.btnResumePath.Image = global::AgOpenGPS.Properties.Resources.pathResumeStart;
             this.btnResumePath.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResumePath.Location = new System.Drawing.Point(0, 76);
+            this.btnResumePath.Location = new System.Drawing.Point(0, 98);
             this.btnResumePath.Margin = new System.Windows.Forms.Padding(0);
             this.btnResumePath.Name = "btnResumePath";
             this.btnResumePath.RightToLeft = System.Windows.Forms.RightToLeft.No;
