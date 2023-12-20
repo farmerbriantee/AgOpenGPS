@@ -574,12 +574,23 @@ namespace AgOpenGPS
                 f.Close();
             }
 
-            Form f1 = Application.OpenForms["FormFieldData"];
+            f = null;
+            f = Application.OpenForms["FormFieldData"];
 
-            if (f1 != null)
+            if (f != null)
             {
-                f1.Focus();
-                f1.Close();
+                f.Focus();
+                f.Close();
+            }
+
+            f = null;
+            f = Application.OpenForms["FormPan"];
+
+            if (f != null)
+            {
+                isPanVisible = false;
+                f.Focus();
+                f.Close();
             }
 
             if (this.OwnedForms.Any())
@@ -2324,12 +2335,6 @@ namespace AgOpenGPS
         {
             camera.panY += (camera.camSetDistance / 25);
             camera.panX += (camera.camSetDistance / 25);
-        }
-
-
-        private void panToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            panelPan.Visible = true;
         }
 
         private void btnPanCancel_Click(object sender, EventArgs e)

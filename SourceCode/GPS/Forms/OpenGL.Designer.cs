@@ -1953,15 +1953,18 @@ namespace AgOpenGPS
             if (isJobStarted)
             {
                 center = oglMain.Width / -2 + 30;
-                GL.BindTexture(TextureTarget.Texture2D, texture[24]);        // Select Our Texture
-                GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
+                if (!isPanVisible)
                 {
-                    GL.TexCoord2(0, 0); GL.Vertex2(center, 50); // 
-                    GL.TexCoord2(1, 0); GL.Vertex2(center + 32, 50); // 
-                    GL.TexCoord2(1, 1); GL.Vertex2(center + 32, 82); // 
-                    GL.TexCoord2(0, 1); GL.Vertex2(center, 82); //
+                    GL.BindTexture(TextureTarget.Texture2D, texture[24]);        // Select Our Texture
+                    GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
+                    {
+                        GL.TexCoord2(0, 0); GL.Vertex2(center, 50); // 
+                        GL.TexCoord2(1, 0); GL.Vertex2(center + 32, 50); // 
+                        GL.TexCoord2(1, 1); GL.Vertex2(center + 32, 82); // 
+                        GL.TexCoord2(0, 1); GL.Vertex2(center, 82); //
+                    }
+                    GL.End();
                 }
-                GL.End();
 
                 //hide show bottom menu
                 int hite = oglMain.Height - 30;
