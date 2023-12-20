@@ -2334,15 +2334,15 @@
             this.btnAutoSteerConfig.FlatAppearance.BorderColor = System.Drawing.Color.SaddleBrown;
             this.btnAutoSteerConfig.FlatAppearance.BorderSize = 0;
             this.btnAutoSteerConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAutoSteerConfig.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAutoSteerConfig.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAutoSteerConfig.ForeColor = System.Drawing.Color.Black;
             this.btnAutoSteerConfig.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAutoSteerConfig.Location = new System.Drawing.Point(5, 485);
+            this.btnAutoSteerConfig.Location = new System.Drawing.Point(1, 485);
             this.btnAutoSteerConfig.Margin = new System.Windows.Forms.Padding(0);
             this.btnAutoSteerConfig.Name = "btnAutoSteerConfig";
             this.btnAutoSteerConfig.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.btnAutoSteerConfig.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnAutoSteerConfig.Size = new System.Drawing.Size(61, 59);
+            this.btnAutoSteerConfig.Size = new System.Drawing.Size(70, 59);
             this.btnAutoSteerConfig.TabIndex = 475;
             this.btnAutoSteerConfig.Text = "-38.8.";
             this.btnAutoSteerConfig.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -2431,8 +2431,8 @@
             this.panelPan.Controls.Add(this.btnPanRight, 2, 1);
             this.panelPan.Controls.Add(this.btnPanCancel, 1, 1);
             this.panelPan.Controls.Add(this.btnPanDn, 1, 2);
-            this.panelPan.Controls.Add(this.btnDownRight, 2, 2);
             this.panelPan.Controls.Add(this.btnUpRight, 2, 0);
+            this.panelPan.Controls.Add(this.btnDownRight, 2, 2);
             this.panelPan.Location = new System.Drawing.Point(101, 59);
             this.panelPan.Name = "panelPan";
             this.panelPan.RowCount = 3;

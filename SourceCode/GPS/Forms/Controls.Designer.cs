@@ -1247,12 +1247,13 @@ namespace AgOpenGPS
                 f.Close();
             }
 
+            f = null;
             f = Application.OpenForms["FormFieldData"];
 
-            f = null;
             if (f != null)
             {
                 f.Focus();
+                f.Close();
                 return;
             }
 
