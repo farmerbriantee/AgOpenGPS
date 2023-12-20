@@ -121,23 +121,22 @@ namespace AgOpenGPS
                         if (bnd.bndList.Count > 0)
                         {
                             fieldData =
-                                  fd.AreaBoundaryLessInnersHectares + " - "
-                                + fd.WorkedHectares + " = "
-                                + fd.WorkedAreaRemainHectares + "  "
-                                + fd.WorkedAreaRemainPercentage + " | "
-
+                                 fd.WorkedAreaRemainPercentage + "  "
                                 + fd.AreaBoundaryLessInnersHectares + " - "
-                                + fd.ActualAreaWorkedHectares + " = "
-                                + fd.ActualRemainHectares + "  "
-                                + fd.ActualOverlapPercent;// + "  "
+                                + fd.WorkedHectares + " = "
+                                + fd.WorkedAreaRemainHectares + " | "
 
-                                //+ fd.TimeTillFinished + "  "
-                                //+ fd.WorkRateHectares;
+                                //+ fd.ActualAreaWorkedHectares + " = "
+                                + fd.ActualRemainHectares + "  "
+                                + fd.ActualOverlapPercent + "  "
+
+                                + fd.TimeTillFinished + "  "
+                                + fd.WorkRateHectares;
                         }
                         else
-                            fieldData =
-                                fd.WorkedHectares + "  *"
-                                + fd.ActualAreaWorkedHectares + " *"
+                            fieldData = "Applied: "
+                                + fd.WorkedHectares + "  Actual: "
+                                + fd.ActualAreaWorkedHectares + "  "
                                 + fd.ActualOverlapPercent + "   "
                                 + fd.WorkRateHectares;
 
@@ -146,21 +145,20 @@ namespace AgOpenGPS
                     {
                         if (bnd.bndList.Count > 0)
                             fieldData =
-                                  fd.AreaBoundaryLessInnersAcres + " - "
-                                + fd.WorkedAcres + " = "
-                                + fd.WorkedAreaRemainAcres + "  "
-                                + fd.WorkedAreaRemainPercentage + " | "
-
+                                 fd.WorkedAreaRemainPercentage + "  "
                                 + fd.AreaBoundaryLessInnersAcres + " - "
-                                + fd.ActualAreaWorkedAcres + " = "
-                                + fd.ActualRemainAcres + "  "
-                                + fd.ActualOverlapPercent;// + "  "
+                                + fd.WorkedAcres + " = "
+                                + fd.WorkedAreaRemainAcres +  " | "
 
-                                //+ fd.TimeTillFinished + "  "
-                                //+ fd.WorkRateAcres;
+                                //+ fd.ActualAreaWorkedAcres + " = "
+                                + fd.ActualRemainAcres + "  "
+                                + fd.ActualOverlapPercent + "  "
+
+                                + fd.TimeTillFinished + "  "
+                                + fd.WorkRateAcres;
                         else
-                            fieldData =
-                                fd.WorkedAcres + "  *"
+                            fieldData = "Applied: "
+                                + fd.WorkedAcres + "  Actual: "
                                 + fd.ActualAreaWorkedAcres + " *"
                                 + fd.ActualOverlapPercent + "   "
                                 + fd.WorkRateAcres;

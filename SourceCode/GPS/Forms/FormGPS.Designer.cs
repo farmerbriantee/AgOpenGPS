@@ -554,7 +554,7 @@
             this.toolStripMenuItemFlagRed.Name = "toolStripMenuItemFlagRed";
             this.toolStripMenuItemFlagRed.Size = new System.Drawing.Size(70, 70);
             this.toolStripMenuItemFlagRed.Text = ".";
-            this.toolStripMenuItemFlagRed.Click += new System.EventHandler(this.toolStripMenuItemFlagRed_Click);
+            this.toolStripMenuItemFlagRed.Click += new System.EventHandler(this.toolStripMenuYel_Click);
             // 
             // toolStripMenuFlagGrn
             // 
@@ -578,7 +578,7 @@
             this.toolStripMenuFlagYel.Name = "toolStripMenuFlagYel";
             this.toolStripMenuFlagYel.Size = new System.Drawing.Size(70, 70);
             this.toolStripMenuFlagYel.Text = ".";
-            this.toolStripMenuFlagYel.Click += new System.EventHandler(this.toolStripMenuYel_Click);
+            this.toolStripMenuFlagYel.Click += new System.EventHandler(this.toolStripMenuItemFlagRed_Click);
             // 
             // toolStripSeparator12
             // 
@@ -2387,7 +2387,7 @@
             this.btnGPSData.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGPSData.Image = global::AgOpenGPS.Properties.Resources.GPSQuality;
             this.btnGPSData.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnGPSData.Location = new System.Drawing.Point(554, 4);
+            this.btnGPSData.Location = new System.Drawing.Point(563, 4);
             this.btnGPSData.Name = "btnGPSData";
             this.btnGPSData.Size = new System.Drawing.Size(52, 32);
             this.btnGPSData.TabIndex = 536;
@@ -2407,7 +2407,7 @@
             this.btnFieldStats.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFieldStats.Image = global::AgOpenGPS.Properties.Resources.FieldStats;
             this.btnFieldStats.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnFieldStats.Location = new System.Drawing.Point(452, 3);
+            this.btnFieldStats.Location = new System.Drawing.Point(479, 3);
             this.btnFieldStats.Name = "btnFieldStats";
             this.btnFieldStats.Size = new System.Drawing.Size(52, 32);
             this.btnFieldStats.TabIndex = 535;
