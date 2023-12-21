@@ -868,9 +868,7 @@ namespace AgOpenGPS
             btnCurve.Enabled = true;
             btnABDraw.Enabled = true;
             btnCycleLines.Image = Properties.Resources.ABLineCycle;
-            btnCycleLines.Enabled = true;
             btnCycleLinesBk.Image = Properties.Resources.ABLineCycleBk;
-            btnCycleLinesBk.Enabled = true;
 
             ABLine.abHeading = 0.00;
             btnAutoSteer.Enabled = true;

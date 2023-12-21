@@ -37,6 +37,7 @@ namespace AgOpenGPS
             {
                 btnCycleLines.Image = Properties.Resources.ColorLocked;
                 btnCycleLinesBk.Visible = false;
+                btnCycleLines.Enabled = true;
                 //turn off youturn...
                 DisableYouTurnButtons();
                 guidanceLookAheadTime = 0.5;
@@ -1368,7 +1369,6 @@ namespace AgOpenGPS
             }
         }
 
-
         private void setWorkingDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -1919,6 +1919,27 @@ namespace AgOpenGPS
             SnapToPivot();
         }
 
+        public void MoveRecPath(double dist)
+        {
+
+            //int cnt = recList.Count;
+
+            //List<CRecPathPt> _recList = new List<CRecPathPt>();
+
+
+            //for (int i = 0; i < cnt; i++)
+            //{
+
+            //    recList[i].easting += Math.Cos(recList[i].heading) * dist;
+            //    recList[i].northing -= Math.Sin(recList[i].heading) * dist;
+            //    _recList.Add(recList[i]);
+            //}
+            //mf.recPath.recList.Clear();
+            //for (int i = 0; i < cnt; i++)
+            //{
+            //    mf.recPath.recList.Add(_recList[i]);
+            //}
+        }
         public void SnapToPivot()
         {
             if (ABLine.isBtnABLineOn)
@@ -2612,7 +2633,7 @@ namespace AgOpenGPS
                 btnHelp.Image = Resources.HelpCancel;
             else
             {
-                btnHelp.Image = Resources.Help;
+                btnHelp.Image = Resources.HelpSmall;
                 isTT = false;
             }
         }

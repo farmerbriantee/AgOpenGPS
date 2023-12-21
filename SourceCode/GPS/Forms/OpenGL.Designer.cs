@@ -1677,13 +1677,26 @@ namespace AgOpenGPS
             {
                 GL.PointSize(8.0f);
                 GL.Begin(PrimitiveType.Points);
-                if (flagPts[f].color == 0) GL.Color3((byte)255, (byte)0, (byte)flagPts[f].ID);
-                if (flagPts[f].color == 1) GL.Color3((byte)0, (byte)255, (byte)flagPts[f].ID);
-                if (flagPts[f].color == 2) GL.Color3((byte)255, (byte)255, (byte)flagPts[f].ID);
+                string flagColor = "&";
+                if (flagPts[f].color == 0)
+                {
+                    GL.Color3((byte)255, (byte)0, (byte)flagPts[f].ID);
+                }
+                if (flagPts[f].color == 1)
+                {
+                    GL.Color3((byte)0, (byte)255, (byte)flagPts[f].ID);
+                    flagColor = "|";
+                }
+                if (flagPts[f].color == 2)
+                {
+                    GL.Color3((byte)255, (byte)255, (byte)flagPts[f].ID);
+                    flagColor = "~";
+                }
+
                 GL.Vertex3(flagPts[f].easting, flagPts[f].northing, 0);
                 GL.End();
 
-                font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&" + flagPts[f].notes);
+                font.DrawText3D(flagPts[f].easting, flagPts[f].northing, flagColor + flagPts[f].notes);
                 //else
                 //    font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&");
             }

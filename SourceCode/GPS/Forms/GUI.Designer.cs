@@ -87,7 +87,7 @@ namespace AgOpenGPS
                 tenSecondCounter = 0;
                 tenSeconds++;
             }
-            if (threeSecondCounter++ >= 12)
+            if (threeSecondCounter++ >= 9)
             {
                 threeSecondCounter = 0;
                 threeSeconds++;
@@ -267,11 +267,32 @@ namespace AgOpenGPS
                         if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
                         {
                             guidanceLineText = curve.curveArr[curve.numCurveLineSelected - 1].Name;
+                            if (curve.numCurveLines > 1)
+                            {
+                                btnCycleLines.Enabled = true;
+                                btnCycleLinesBk.Enabled = true;
+                            }
+                            else
+                            {
+                                btnCycleLines.Enabled = false;
+                                btnCycleLinesBk.Enabled = false;
+                            }
+
                         }
 
                         else if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
                         {
                             guidanceLineText = ABLine.lineArr[ABLine.numABLineSelected - 1].Name;
+                            if (ABLine.numABLines > 1)
+                            {
+                                btnCycleLines.Enabled = true;
+                                btnCycleLinesBk.Enabled = true;
+                            }
+                            else
+                            {
+                                btnCycleLines.Enabled = false;
+                                btnCycleLinesBk.Enabled = false;
+                            }
                         }
                         else guidanceLineText = gStr.gsNoGuidanceLines;                        
                     }
@@ -282,6 +303,11 @@ namespace AgOpenGPS
                             btnEditAB.Visible = false;
                             cboxpRowWidth.Visible = false;
                             btnYouSkipEnable.Visible = false;
+                            if (!ct.isContourBtnOn)
+                            {
+                                btnCycleLines.Enabled = false;
+                                btnCycleLinesBk.Enabled = false;
+                            }
                         }
                     }
                 }
