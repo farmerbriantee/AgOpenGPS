@@ -516,6 +516,29 @@ namespace AgOpenGPS
             Properties.Settings.Default.setDisplay_colorFieldNight = fieldColorNight;
             Properties.Settings.Default.Save();
 
+            //load up colors
+            textColorDay = Settings.Default.setDisplay_colorTextDay.CheckColorFor255();
+            textColorNight = Settings.Default.setDisplay_colorTextNight.CheckColorFor255();
+
+            //load the string of custom colors
+            string[] words = Properties.Settings.Default.setDisplay_customColors.Split(',');
+            for (int i = 0; i < 16; i++)
+            {
+                Color test;
+                customColorsList[i] = int.Parse(words[i], CultureInfo.InvariantCulture);
+                test = Color.FromArgb(customColorsList[i]).CheckColorFor255();
+                int iCol = (test.A << 24) | (test.R << 16) | (test.G << 8) | test.B;
+                customColorsList[i] = iCol;
+            }
+
+            Properties.Settings.Default.setDisplay_customColors = "";
+            for (int i = 0; i < 15; i++)
+                Properties.Settings.Default.setDisplay_customColors += customColorsList[i].ToString() + ",";
+            Properties.Settings.Default.setDisplay_customColors += customColorsList[15].ToString();
+
+            Properties.Settings.Default.Save();
+
+
             isSkyOn = Settings.Default.setMenu_isSkyOn;
             isTextureOn = Settings.Default.setDisplay_isTextureOn;
 
@@ -569,33 +592,6 @@ namespace AgOpenGPS
 
             //set the flag mark button to red dot
             btnFlag.Image = Properties.Resources.FlagRed;
-
-            //load the string of custom colors
-            string[] words = Properties.Settings.Default.setDisplay_customColors.Split(',');
-            for (int i = 0; i < 16; i++)
-            {
-                Color test;
-                customColorsList[i] = int.Parse(words[i], CultureInfo.InvariantCulture);
-                test = Color.FromArgb(customColorsList[i]).CheckColorFor255();
-                int iCol = (test.A << 24) | (test.R << 16) | (test.G << 8) | test.B;
-                customColorsList[i] = iCol;
-            }
-
-            Properties.Settings.Default.setDisplay_customColors = "";
-            for (int i = 0; i < 15; i++)
-                Properties.Settings.Default.setDisplay_customColors += customColorsList[i].ToString() + ",";
-            Properties.Settings.Default.setDisplay_customColors += customColorsList[15].ToString();
-
-            Properties.Settings.Default.Save();
-
-
-            //load up colors
-            fieldColorDay = (Settings.Default.setDisplay_colorFieldDay.CheckColorFor255());
-            sectionColorDay = (Settings.Default.setDisplay_colorSectionsDay.CheckColorFor255());
-            fieldColorNight = (Settings.Default.setDisplay_colorFieldNight.CheckColorFor255());
-
-            textColorDay = Settings.Default.setDisplay_colorTextDay.CheckColorFor255();
-            textColorNight = Settings.Default.setDisplay_colorTextNight.CheckColorFor255();
 
             vehicleColor = Settings.Default.setDisplay_colorVehicle.CheckColorFor255();
 

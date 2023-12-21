@@ -956,6 +956,7 @@
     <None Include="btnImages\SatRed.png" />
     <None Include="btnImages\SatYellow.png" />
     <None Include="btnImages\FieldDataBackground.png" />
+    <None Include="btnImages\ResetColors.png" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />

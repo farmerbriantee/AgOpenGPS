@@ -601,6 +601,15 @@ namespace AgOpenGPS
                 return true;
             }
 
+            //UTurn
+            if (keyData == Keys.U)
+            {
+                sim.headingTrue += Math.PI;
+                ABLine.isABValid = false;
+                curve.isCurveValid = false;
+                if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+            }
+
             //speed up
             if (keyData == Keys.Up)
             {

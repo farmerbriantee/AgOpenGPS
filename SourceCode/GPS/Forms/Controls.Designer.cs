@@ -2516,8 +2516,8 @@ namespace AgOpenGPS
             sim.headingTrue += Math.PI;
             ABLine.isABValid = false;
             curve.isCurveValid = false;
+            if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
         }
-
 
         private void hsbarSteerAngle_Scroll(object sender, ScrollEventArgs e)
         {
