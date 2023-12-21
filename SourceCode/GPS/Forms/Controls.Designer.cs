@@ -1158,6 +1158,8 @@ namespace AgOpenGPS
                 form.Show(this);
             }            
         }
+
+
         private void btnFlag_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -1357,6 +1359,16 @@ namespace AgOpenGPS
         #region File Menu
 
         //File drop down items
+
+        private void flagByLatLonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormEnterFlag(this))
+            {
+                form.ShowDialog(this);
+            }
+        }
+
+
         private void setWorkingDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (isJobStarted)

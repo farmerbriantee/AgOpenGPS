@@ -167,6 +167,12 @@
       <DependentUpon>CBoundaryList.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\CTool.cs" />
+    <Compile Include="Forms\FormEnterFlag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormEnterFlag.Designer.cs">
+      <DependentUpon>FormEnterFlag.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormPan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -601,6 +607,9 @@
     </Compile>
     <Compile Include="Classes\vec3.cs" />
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="Forms\FormEnterFlag.resx">
+      <DependentUpon>FormEnterFlag.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormPan.resx">
       <DependentUpon>FormPan.cs</DependentUpon>
       <SubType>Designer</SubType>

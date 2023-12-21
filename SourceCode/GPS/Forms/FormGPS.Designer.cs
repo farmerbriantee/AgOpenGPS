@@ -130,6 +130,7 @@
             this.deleteForSureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.webcamToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.offsetFixToolStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.flagByLatLonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripBtnFieldTools = new System.Windows.Forms.ToolStripDropDownButton();
             this.boundariesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.headlandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1340,7 +1341,8 @@
             this.deleteContourPathsToolStripMenuItem,
             this.deleteAppliedAreaToolStripMenuItem,
             this.webcamToolStrip,
-            this.offsetFixToolStrip});
+            this.offsetFixToolStrip,
+            this.flagByLatLonToolStripMenuItem});
             this.toolStripDropDownButton4.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripDropDownButton4.Image = global::AgOpenGPS.Properties.Resources.SpecialFunctions;
             this.toolStripDropDownButton4.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -1461,6 +1463,14 @@
             this.offsetFixToolStrip.Text = "Offset Fix";
             this.offsetFixToolStrip.Click += new System.EventHandler(this.offsetFixToolStrip_Click);
             // 
+            // flagByLatLonToolStripMenuItem
+            // 
+            this.flagByLatLonToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.FlagRed;
+            this.flagByLatLonToolStripMenuItem.Name = "flagByLatLonToolStripMenuItem";
+            this.flagByLatLonToolStripMenuItem.Size = new System.Drawing.Size(426, 70);
+            this.flagByLatLonToolStripMenuItem.Text = "Flag by Lat Lon";
+            this.flagByLatLonToolStripMenuItem.Click += new System.EventHandler(this.flagByLatLonToolStripMenuItem_Click);
+            // 
             // toolStripBtnFieldTools
             // 
             this.toolStripBtnFieldTools.AutoSize = false;
@@ -1538,7 +1548,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 47F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
             this.panelSim.Controls.Add(this.btnSimReverseDirection, 8, 0);
             this.panelSim.Controls.Add(this.btnSpeedDn, 5, 0);
             this.panelSim.Controls.Add(this.btnSimSpeedUp, 7, 0);
@@ -1562,7 +1572,7 @@
             this.btnSimReverseDirection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimReverseDirection.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimReverseDirection.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimReverseDirection.Location = new System.Drawing.Point(613, 4);
+            this.btnSimReverseDirection.Location = new System.Drawing.Point(609, 4);
             this.btnSimReverseDirection.Name = "btnSimReverseDirection";
             this.btnSimReverseDirection.Size = new System.Drawing.Size(40, 25);
             this.btnSimReverseDirection.TabIndex = 537;
@@ -1579,7 +1589,7 @@
             this.btnSpeedDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSpeedDn.Location = new System.Drawing.Point(374, 4);
             this.btnSpeedDn.Name = "btnSpeedDn";
-            this.btnSpeedDn.Size = new System.Drawing.Size(77, 25);
+            this.btnSpeedDn.Size = new System.Drawing.Size(75, 25);
             this.btnSpeedDn.TabIndex = 533;
             this.btnSpeedDn.UseVisualStyleBackColor = false;
             this.btnSpeedDn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSpeedDn_MouseDown);
@@ -1592,9 +1602,9 @@
             this.btnSimSpeedUp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSimSpeedUp.FlatAppearance.BorderSize = 0;
             this.btnSimSpeedUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSimSpeedUp.Location = new System.Drawing.Point(529, 4);
+            this.btnSimSpeedUp.Location = new System.Drawing.Point(527, 4);
             this.btnSimSpeedUp.Name = "btnSimSpeedUp";
-            this.btnSimSpeedUp.Size = new System.Drawing.Size(77, 25);
+            this.btnSimSpeedUp.Size = new System.Drawing.Size(75, 25);
             this.btnSimSpeedUp.TabIndex = 532;
             this.btnSimSpeedUp.UseVisualStyleBackColor = false;
             this.btnSimSpeedUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSimSpeedUp_MouseDown);
@@ -1608,7 +1618,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(458, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(456, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(64, 25);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -2780,6 +2790,7 @@
         private System.Windows.Forms.Button btnGPSData;
         public System.Windows.Forms.Button btnSwapABRecordedPath;
         private System.Windows.Forms.Button btnSimReverseDirection;
+        private System.Windows.Forms.ToolStripMenuItem flagByLatLonToolStripMenuItem;
     }
 }
 
