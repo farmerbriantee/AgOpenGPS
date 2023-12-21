@@ -1,6 +1,7 @@
 ﻿//Please, if you use this, share the improvements
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.IO;
@@ -981,6 +982,24 @@ namespace AgOpenGPS
                 recPath.resumeState = 0;
                 btnResumePath.Image = Properties.Resources.pathResumeStart;
                 TimedMessageBox(1500, "Resume Style", "Start At Beginning");
+            }
+        }
+        private void btnSwapABRecordedPath_Click(object sender, EventArgs e)
+        {
+            int cnt = recPath.recList.Count;
+            List<CRecPathPt> _recList = new List<CRecPathPt>();
+
+            for (int i = cnt - 1; i > -1; i--)
+            {
+                recPath.recList[i].heading += (glm.PIBy2) + (glm.PIBy2);
+                if (recPath.recList[i].heading < -glm.twoPI) recPath.recList[i].heading += glm.twoPI;
+
+                _recList.Add(recPath.recList[i]);
+            }
+            recPath.recList.Clear();
+            for (int i = 0; i < cnt; i++)
+            {
+                recPath.recList.Add(_recList[i]);
             }
         }
 
@@ -2492,6 +2511,13 @@ namespace AgOpenGPS
                 sim.DoSimTick(guidanceLineSteerAngle * 0.01);
             else sim.DoSimTick(sim.steerAngleScrollBar);
         }
+        private void btnSimReverseDirection_Click(object sender, EventArgs e)
+        {
+            sim.headingTrue += Math.PI;
+            ABLine.isABValid = false;
+            curve.isCurveValid = false;
+        }
+
 
         private void hsbarSteerAngle_Scroll(object sender, ScrollEventArgs e)
         {

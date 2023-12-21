@@ -82,6 +82,7 @@
             this.btnPickPath = new System.Windows.Forms.Button();
             this.btnPathRecordStop = new System.Windows.Forms.Button();
             this.btnResumePath = new System.Windows.Forms.Button();
+            this.btnSwapABRecordedPath = new System.Windows.Forms.Button();
             this.btnResetSim = new System.Windows.Forms.Button();
             this.btnResetSteerAngle = new System.Windows.Forms.Button();
             this.timerSim = new System.Windows.Forms.Timer(this.components);
@@ -136,6 +137,7 @@
             this.tramLinesMenuField = new System.Windows.Forms.ToolStripMenuItem();
             this.recordedPathStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.panelSim = new System.Windows.Forms.TableLayoutPanel();
+            this.btnSimReverseDirection = new System.Windows.Forms.Button();
             this.btnSpeedDn = new ProXoft.WinForms.RepeatButton();
             this.btnSimSpeedUp = new ProXoft.WinForms.RepeatButton();
             this.btnSimSetSpeedToZero = new System.Windows.Forms.Button();
@@ -635,14 +637,16 @@
             this.panelDrag.Controls.Add(this.btnPickPath, 0, 3);
             this.panelDrag.Controls.Add(this.btnPathRecordStop, 0, 2);
             this.panelDrag.Controls.Add(this.btnResumePath, 0, 1);
+            this.panelDrag.Controls.Add(this.btnSwapABRecordedPath, 0, 4);
             this.panelDrag.Location = new System.Drawing.Point(641, 47);
             this.panelDrag.Name = "panelDrag";
-            this.panelDrag.RowCount = 5;
-            this.panelDrag.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.panelDrag.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.panelDrag.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.panelDrag.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.panelDrag.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.panelDrag.RowCount = 6;
+            this.panelDrag.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.panelDrag.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.panelDrag.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.panelDrag.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.panelDrag.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.panelDrag.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.panelDrag.Size = new System.Drawing.Size(64, 381);
             this.panelDrag.TabIndex = 445;
             this.panelDrag.Visible = false;
@@ -680,7 +684,7 @@
             this.btnPickPath.ForeColor = System.Drawing.Color.DarkGray;
             this.btnPickPath.Image = global::AgOpenGPS.Properties.Resources.FileExplorerWindows;
             this.btnPickPath.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPickPath.Location = new System.Drawing.Point(0, 287);
+            this.btnPickPath.Location = new System.Drawing.Point(0, 227);
             this.btnPickPath.Margin = new System.Windows.Forms.Padding(0);
             this.btnPickPath.Name = "btnPickPath";
             this.btnPickPath.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -701,7 +705,7 @@
             this.btnPathRecordStop.ForeColor = System.Drawing.Color.DarkGray;
             this.btnPathRecordStop.Image = global::AgOpenGPS.Properties.Resources.BoundaryRecord;
             this.btnPathRecordStop.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPathRecordStop.Location = new System.Drawing.Point(0, 187);
+            this.btnPathRecordStop.Location = new System.Drawing.Point(0, 149);
             this.btnPathRecordStop.Margin = new System.Windows.Forms.Padding(0);
             this.btnPathRecordStop.Name = "btnPathRecordStop";
             this.btnPathRecordStop.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -722,7 +726,7 @@
             this.btnResumePath.ForeColor = System.Drawing.Color.Red;
             this.btnResumePath.Image = global::AgOpenGPS.Properties.Resources.pathResumeStart;
             this.btnResumePath.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResumePath.Location = new System.Drawing.Point(0, 98);
+            this.btnResumePath.Location = new System.Drawing.Point(0, 76);
             this.btnResumePath.Margin = new System.Windows.Forms.Padding(0);
             this.btnResumePath.Name = "btnResumePath";
             this.btnResumePath.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -730,6 +734,27 @@
             this.btnResumePath.TabIndex = 472;
             this.btnResumePath.UseVisualStyleBackColor = false;
             this.btnResumePath.Click += new System.EventHandler(this.btnResumePath_Click);
+            // 
+            // btnSwapABRecordedPath
+            // 
+            this.btnSwapABRecordedPath.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnSwapABRecordedPath.BackColor = System.Drawing.Color.Transparent;
+            this.btnSwapABRecordedPath.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSwapABRecordedPath.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnSwapABRecordedPath.FlatAppearance.BorderSize = 0;
+            this.btnSwapABRecordedPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSwapABRecordedPath.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSwapABRecordedPath.ForeColor = System.Drawing.Color.DarkGray;
+            this.btnSwapABRecordedPath.Image = global::AgOpenGPS.Properties.Resources.ABSwapPoints;
+            this.btnSwapABRecordedPath.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSwapABRecordedPath.Location = new System.Drawing.Point(0, 293);
+            this.btnSwapABRecordedPath.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSwapABRecordedPath.Name = "btnSwapABRecordedPath";
+            this.btnSwapABRecordedPath.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnSwapABRecordedPath.Size = new System.Drawing.Size(64, 61);
+            this.btnSwapABRecordedPath.TabIndex = 470;
+            this.btnSwapABRecordedPath.UseVisualStyleBackColor = false;
+            this.btnSwapABRecordedPath.Click += new System.EventHandler(this.btnSwapABRecordedPath_Click);
             // 
             // btnResetSim
             // 
@@ -1504,7 +1529,7 @@
             this.panelSim.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.panelSim.BackColor = System.Drawing.Color.Transparent;
             this.panelSim.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.panelSim.ColumnCount = 8;
+            this.panelSim.ColumnCount = 9;
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 18F));
@@ -1513,18 +1538,36 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 47F));
+            this.panelSim.Controls.Add(this.btnSimReverseDirection, 8, 0);
             this.panelSim.Controls.Add(this.btnSpeedDn, 5, 0);
             this.panelSim.Controls.Add(this.btnSimSpeedUp, 7, 0);
             this.panelSim.Controls.Add(this.btnResetSim, 0, 0);
             this.panelSim.Controls.Add(this.btnSimSetSpeedToZero, 6, 0);
             this.panelSim.Controls.Add(this.btnResetSteerAngle, 1, 0);
             this.panelSim.Controls.Add(this.hsbarSteerAngle, 3, 0);
-            this.panelSim.Location = new System.Drawing.Point(283, 587);
+            this.panelSim.Location = new System.Drawing.Point(152, 588);
             this.panelSim.Name = "panelSim";
             this.panelSim.RowCount = 1;
             this.panelSim.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelSim.Size = new System.Drawing.Size(538, 33);
+            this.panelSim.Size = new System.Drawing.Size(659, 33);
             this.panelSim.TabIndex = 325;
+            // 
+            // btnSimReverseDirection
+            // 
+            this.btnSimReverseDirection.BackColor = System.Drawing.Color.Transparent;
+            this.btnSimReverseDirection.BackgroundImage = global::AgOpenGPS.Properties.Resources.Youturn80;
+            this.btnSimReverseDirection.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSimReverseDirection.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnSimReverseDirection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSimReverseDirection.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.btnSimReverseDirection.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSimReverseDirection.Location = new System.Drawing.Point(613, 4);
+            this.btnSimReverseDirection.Name = "btnSimReverseDirection";
+            this.btnSimReverseDirection.Size = new System.Drawing.Size(40, 25);
+            this.btnSimReverseDirection.TabIndex = 537;
+            this.btnSimReverseDirection.UseVisualStyleBackColor = false;
+            this.btnSimReverseDirection.Click += new System.EventHandler(this.btnSimReverseDirection_Click);
             // 
             // btnSpeedDn
             // 
@@ -1536,7 +1579,7 @@
             this.btnSpeedDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSpeedDn.Location = new System.Drawing.Point(374, 4);
             this.btnSpeedDn.Name = "btnSpeedDn";
-            this.btnSpeedDn.Size = new System.Drawing.Size(41, 25);
+            this.btnSpeedDn.Size = new System.Drawing.Size(77, 25);
             this.btnSpeedDn.TabIndex = 533;
             this.btnSpeedDn.UseVisualStyleBackColor = false;
             this.btnSpeedDn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSpeedDn_MouseDown);
@@ -1549,9 +1592,9 @@
             this.btnSimSpeedUp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSimSpeedUp.FlatAppearance.BorderSize = 0;
             this.btnSimSpeedUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSimSpeedUp.Location = new System.Drawing.Point(493, 4);
+            this.btnSimSpeedUp.Location = new System.Drawing.Point(529, 4);
             this.btnSimSpeedUp.Name = "btnSimSpeedUp";
-            this.btnSimSpeedUp.Size = new System.Drawing.Size(41, 25);
+            this.btnSimSpeedUp.Size = new System.Drawing.Size(77, 25);
             this.btnSimSpeedUp.TabIndex = 532;
             this.btnSimSpeedUp.UseVisualStyleBackColor = false;
             this.btnSimSpeedUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSimSpeedUp_MouseDown);
@@ -1562,11 +1605,10 @@
             this.btnSimSetSpeedToZero.BackgroundImage = global::AgOpenGPS.Properties.Resources.AutoStop;
             this.btnSimSetSpeedToZero.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSimSetSpeedToZero.ContextMenuStrip = this.contextMenuStripFlag;
-            this.btnSimSetSpeedToZero.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(422, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(458, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(64, 25);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -2736,6 +2778,8 @@
         public System.Windows.Forms.Button btnJobMenu;
         public System.Windows.Forms.Button btnConfig;
         private System.Windows.Forms.Button btnGPSData;
+        public System.Windows.Forms.Button btnSwapABRecordedPath;
+        private System.Windows.Forms.Button btnSimReverseDirection;
     }
 }
 
