@@ -31,7 +31,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnNoSave = new System.Windows.Forms.Button();
             this.btnContourPriority = new System.Windows.Forms.Button();
-            this.btnSwapAB = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnAdjLeft = new System.Windows.Forms.Button();
@@ -42,8 +41,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.cboxAutoSnapToPivot = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.btnNudgeHalfToolRight = new System.Windows.Forms.Button();
+            this.btnNudgeHalfToolLeft = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistance)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,7 +50,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(116, 13);
+            this.label1.Location = new System.Drawing.Point(116, 72);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 19);
             this.label1.TabIndex = 414;
@@ -60,12 +59,12 @@
             // 
             // btnNoSave
             // 
-            this.btnNoSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnNoSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNoSave.FlatAppearance.BorderSize = 0;
             this.btnNoSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNoSave.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNoSave.Image = global::AgOpenGPS.Properties.Resources.FileDontSave;
-            this.btnNoSave.Location = new System.Drawing.Point(105, 281);
+            this.btnNoSave.Location = new System.Drawing.Point(105, 301);
             this.btnNoSave.Name = "btnNoSave";
             this.btnNoSave.Size = new System.Drawing.Size(63, 62);
             this.btnNoSave.TabIndex = 448;
@@ -82,7 +81,7 @@
             this.btnContourPriority.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnContourPriority.Image = global::AgOpenGPS.Properties.Resources.SnapToPivot;
             this.btnContourPriority.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnContourPriority.Location = new System.Drawing.Point(192, 106);
+            this.btnContourPriority.Location = new System.Drawing.Point(192, 115);
             this.btnContourPriority.Name = "btnContourPriority";
             this.btnContourPriority.Size = new System.Drawing.Size(76, 67);
             this.btnContourPriority.TabIndex = 3;
@@ -91,22 +90,9 @@
             this.btnContourPriority.Click += new System.EventHandler(this.btnContourPriority_Click);
             this.btnContourPriority.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnContourPriority_HelpRequested);
             // 
-            // btnSwapAB
-            // 
-            this.btnSwapAB.FlatAppearance.BorderSize = 0;
-            this.btnSwapAB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSwapAB.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSwapAB.Image = global::AgOpenGPS.Properties.Resources.ABSwapPoints;
-            this.btnSwapAB.Location = new System.Drawing.Point(98, 106);
-            this.btnSwapAB.Name = "btnSwapAB";
-            this.btnSwapAB.Size = new System.Drawing.Size(76, 67);
-            this.btnSwapAB.TabIndex = 5;
-            this.btnSwapAB.UseVisualStyleBackColor = true;
-            this.btnSwapAB.Click += new System.EventHandler(this.btnSwapAB_Click);
-            // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.BackColor = System.Drawing.Color.Transparent;
             this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -115,7 +101,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(2, 347);
+            this.btnCancel.Location = new System.Drawing.Point(2, 301);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(63, 62);
             this.btnCancel.TabIndex = 0;
@@ -125,7 +111,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.BackColor = System.Drawing.Color.Transparent;
             this.btnOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.Yes;
@@ -134,7 +120,7 @@
             this.btnOK.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnOK.Image = global::AgOpenGPS.Properties.Resources.FileSave;
             this.btnOK.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnOK.Location = new System.Drawing.Point(208, 347);
+            this.btnOK.Location = new System.Drawing.Point(208, 301);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(63, 62);
             this.btnOK.TabIndex = 1;
@@ -179,7 +165,7 @@
             // 
             this.tboxHeading.BackColor = System.Drawing.Color.AliceBlue;
             this.tboxHeading.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxHeading.Location = new System.Drawing.Point(123, 225);
+            this.tboxHeading.Location = new System.Drawing.Point(117, 222);
             this.tboxHeading.MaxLength = 10;
             this.tboxHeading.Name = "tboxHeading";
             this.tboxHeading.Size = new System.Drawing.Size(140, 36);
@@ -201,7 +187,7 @@
             "90",
             "180",
             "270"});
-            this.cboxDegrees.Location = new System.Drawing.Point(13, 225);
+            this.cboxDegrees.Location = new System.Drawing.Point(13, 222);
             this.cboxDegrees.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxDegrees.Name = "cboxDegrees";
             this.cboxDegrees.Size = new System.Drawing.Size(78, 37);
@@ -235,9 +221,10 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 325);
+            this.label2.Location = new System.Drawing.Point(12, 285);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 16);
             this.label2.TabIndex = 455;
@@ -246,9 +233,10 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(110, 346);
+            this.label3.Location = new System.Drawing.Point(112, 285);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 16);
             this.label3.TabIndex = 456;
@@ -257,53 +245,56 @@
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(222, 331);
+            this.label4.Location = new System.Drawing.Point(222, 285);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 16);
             this.label4.TabIndex = 457;
             this.label4.Text = "Save";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // cboxAutoSnapToPivot
+            // btnNudgeHalfToolRight
             // 
-            this.cboxAutoSnapToPivot.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxAutoSnapToPivot.BackColor = System.Drawing.Color.AliceBlue;
-            this.cboxAutoSnapToPivot.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.cboxAutoSnapToPivot.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
-            this.cboxAutoSnapToPivot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxAutoSnapToPivot.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxAutoSnapToPivot.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboxAutoSnapToPivot.Image = global::AgOpenGPS.Properties.Resources.SnapToPivot;
-            this.cboxAutoSnapToPivot.Location = new System.Drawing.Point(10, 109);
-            this.cboxAutoSnapToPivot.Margin = new System.Windows.Forms.Padding(0);
-            this.cboxAutoSnapToPivot.Name = "cboxAutoSnapToPivot";
-            this.cboxAutoSnapToPivot.Size = new System.Drawing.Size(64, 64);
-            this.cboxAutoSnapToPivot.TabIndex = 475;
-            this.cboxAutoSnapToPivot.Text = "A";
-            this.cboxAutoSnapToPivot.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.cboxAutoSnapToPivot.UseVisualStyleBackColor = false;
-            this.cboxAutoSnapToPivot.Click += new System.EventHandler(this.cboxAutoSnapToPivot_Click);
+            this.btnNudgeHalfToolRight.BackColor = System.Drawing.Color.Transparent;
+            this.btnNudgeHalfToolRight.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
+            this.btnNudgeHalfToolRight.FlatAppearance.BorderSize = 0;
+            this.btnNudgeHalfToolRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNudgeHalfToolRight.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnNudgeHalfToolRight.Image = global::AgOpenGPS.Properties.Resources.SnapRightHalf;
+            this.btnNudgeHalfToolRight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnNudgeHalfToolRight.Location = new System.Drawing.Point(83, 115);
+            this.btnNudgeHalfToolRight.Name = "btnNudgeHalfToolRight";
+            this.btnNudgeHalfToolRight.Size = new System.Drawing.Size(76, 67);
+            this.btnNudgeHalfToolRight.TabIndex = 477;
+            this.btnNudgeHalfToolRight.UseVisualStyleBackColor = false;
+            this.btnNudgeHalfToolRight.Click += new System.EventHandler(this.btnNudgeHalfToolRight_Click);
             // 
-            // label5
+            // btnNudgeHalfToolLeft
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(10, 173);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(66, 16);
-            this.label5.TabIndex = 476;
-            this.label5.Text = "Auto Snap";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnNudgeHalfToolLeft.BackColor = System.Drawing.Color.Transparent;
+            this.btnNudgeHalfToolLeft.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
+            this.btnNudgeHalfToolLeft.FlatAppearance.BorderSize = 0;
+            this.btnNudgeHalfToolLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNudgeHalfToolLeft.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnNudgeHalfToolLeft.Image = global::AgOpenGPS.Properties.Resources.SnapLeftHalf;
+            this.btnNudgeHalfToolLeft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnNudgeHalfToolLeft.Location = new System.Drawing.Point(5, 115);
+            this.btnNudgeHalfToolLeft.Name = "btnNudgeHalfToolLeft";
+            this.btnNudgeHalfToolLeft.Size = new System.Drawing.Size(76, 67);
+            this.btnNudgeHalfToolLeft.TabIndex = 478;
+            this.btnNudgeHalfToolLeft.UseVisualStyleBackColor = false;
+            this.btnNudgeHalfToolLeft.Click += new System.EventHandler(this.btnNudgeHalfToolLeft_Click);
             // 
             // FormEditAB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(275, 413);
-            this.Controls.Add(this.cboxAutoSnapToPivot);
+            this.ClientSize = new System.Drawing.Size(275, 367);
+            this.Controls.Add(this.btnNudgeHalfToolLeft);
+            this.Controls.Add(this.btnNudgeHalfToolRight);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -311,14 +302,12 @@
             this.Controls.Add(this.tboxHeading);
             this.Controls.Add(this.btnNoSave);
             this.Controls.Add(this.btnContourPriority);
-            this.Controls.Add(this.btnSwapAB);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnAdjLeft);
             this.Controls.Add(this.btnAdjRight);
             this.Controls.Add(this.nudSnapDistance);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.label5);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.HelpButton = true;
             this.MaximizeBox = false;
@@ -341,7 +330,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.Button btnSwapAB;
         public System.Windows.Forms.Button btnContourPriority;
         private System.Windows.Forms.Button btnNoSave;
         private System.Windows.Forms.TextBox tboxHeading;
@@ -350,7 +338,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox cboxAutoSnapToPivot;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnNudgeHalfToolRight;
+        private System.Windows.Forms.Button btnNudgeHalfToolLeft;
     }
 }

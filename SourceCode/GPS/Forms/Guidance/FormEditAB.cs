@@ -25,8 +25,6 @@ namespace AgOpenGPS
 
         private void FormEditAB_Load(object sender, EventArgs e)
         {
-            cboxAutoSnapToPivot.Checked = mf.isAutoSnapToPivot;
-
             if (mf.isMetric)
             {
                 nudSnapDistance.DecimalPlaces = 0;
@@ -157,16 +155,16 @@ namespace AgOpenGPS
             }
         }
 
-        private void btnRightHalfWidth_Click(object sender, EventArgs e)
+        private void btnNudgeHalfToolRight_Click(object sender, EventArgs e)
         {
-            double dist = mf.tool.width;
+            double dist = mf.tool.width - mf.tool.overlap;
 
             mf.ABLine.MoveABLine(dist * 0.5);
         }
 
-        private void btnLeftHalfWidth_Click(object sender, EventArgs e)
+        private void btnNudgeHalfToolLeft_Click(object sender, EventArgs e)
         {
-            double dist = mf.tool.width;
+            double dist = mf.tool.width - mf.tool.overlap;
 
             mf.ABLine.MoveABLine(-dist * 0.5);
         }
@@ -176,11 +174,6 @@ namespace AgOpenGPS
             isClosing = true;
             mf.ABLine.isABValid = false;
             Close();
-        }
-
-        private void cboxAutoSnapToPivot_Click(object sender, EventArgs e)
-        {
-            mf.isAutoSnapToPivot = cboxAutoSnapToPivot.Checked;
         }
 
         private void cboxDegrees_SelectedIndexChanged(object sender, EventArgs e)
@@ -221,5 +214,6 @@ namespace AgOpenGPS
         {
             MessageBox.Show(gStr.h_btnSnapToPivot, gStr.gsHelp);
         }
+
     }
 }
