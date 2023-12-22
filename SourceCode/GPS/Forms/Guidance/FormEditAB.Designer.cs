@@ -43,16 +43,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnNudgeHalfToolRight = new System.Windows.Forms.Button();
             this.btnNudgeHalfToolLeft = new System.Windows.Forms.Button();
+            this.lblHalfToolWidth = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistance)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(116, 72);
+            this.label1.Location = new System.Drawing.Point(93, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 19);
+            this.label1.Size = new System.Drawing.Size(94, 19);
             this.label1.TabIndex = 414;
             this.label1.Text = "cm";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -81,7 +81,7 @@
             this.btnContourPriority.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnContourPriority.Image = global::AgOpenGPS.Properties.Resources.SnapToPivot;
             this.btnContourPriority.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnContourPriority.Location = new System.Drawing.Point(192, 115);
+            this.btnContourPriority.Location = new System.Drawing.Point(192, 112);
             this.btnContourPriority.Name = "btnContourPriority";
             this.btnContourPriority.Size = new System.Drawing.Size(76, 67);
             this.btnContourPriority.TabIndex = 3;
@@ -200,7 +200,7 @@
             this.nudSnapDistance.DecimalPlaces = 1;
             this.nudSnapDistance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudSnapDistance.InterceptArrowKeys = false;
-            this.nudSnapDistance.Location = new System.Drawing.Point(92, 35);
+            this.nudSnapDistance.Location = new System.Drawing.Point(92, 31);
             this.nudSnapDistance.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -264,7 +264,7 @@
             this.btnNudgeHalfToolRight.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnNudgeHalfToolRight.Image = global::AgOpenGPS.Properties.Resources.SnapRightHalf;
             this.btnNudgeHalfToolRight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNudgeHalfToolRight.Location = new System.Drawing.Point(83, 115);
+            this.btnNudgeHalfToolRight.Location = new System.Drawing.Point(83, 112);
             this.btnNudgeHalfToolRight.Name = "btnNudgeHalfToolRight";
             this.btnNudgeHalfToolRight.Size = new System.Drawing.Size(76, 67);
             this.btnNudgeHalfToolRight.TabIndex = 477;
@@ -280,12 +280,22 @@
             this.btnNudgeHalfToolLeft.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnNudgeHalfToolLeft.Image = global::AgOpenGPS.Properties.Resources.SnapLeftHalf;
             this.btnNudgeHalfToolLeft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNudgeHalfToolLeft.Location = new System.Drawing.Point(5, 115);
+            this.btnNudgeHalfToolLeft.Location = new System.Drawing.Point(5, 112);
             this.btnNudgeHalfToolLeft.Name = "btnNudgeHalfToolLeft";
             this.btnNudgeHalfToolLeft.Size = new System.Drawing.Size(76, 67);
             this.btnNudgeHalfToolLeft.TabIndex = 478;
             this.btnNudgeHalfToolLeft.UseVisualStyleBackColor = false;
             this.btnNudgeHalfToolLeft.Click += new System.EventHandler(this.btnNudgeHalfToolLeft_Click);
+            // 
+            // lblHalfToolWidth
+            // 
+            this.lblHalfToolWidth.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHalfToolWidth.Location = new System.Drawing.Point(35, 96);
+            this.lblHalfToolWidth.Name = "lblHalfToolWidth";
+            this.lblHalfToolWidth.Size = new System.Drawing.Size(94, 19);
+            this.lblHalfToolWidth.TabIndex = 479;
+            this.lblHalfToolWidth.Text = "cm";
+            this.lblHalfToolWidth.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormEditAB
             // 
@@ -293,6 +303,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(275, 367);
+            this.Controls.Add(this.lblHalfToolWidth);
             this.Controls.Add(this.btnNudgeHalfToolLeft);
             this.Controls.Add(this.btnNudgeHalfToolRight);
             this.Controls.Add(this.label4);
@@ -340,5 +351,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnNudgeHalfToolRight;
         private System.Windows.Forms.Button btnNudgeHalfToolLeft;
+        private System.Windows.Forms.Label lblHalfToolWidth;
     }
 }

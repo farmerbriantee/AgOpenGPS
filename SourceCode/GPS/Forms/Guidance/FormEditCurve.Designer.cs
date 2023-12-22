@@ -41,16 +41,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnNudgeHalfToolLeft = new System.Windows.Forms.Button();
             this.btnNudgeHalfToolRight = new System.Windows.Forms.Button();
+            this.lblHalfToolWidth = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistance)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(110, 22);
+            this.label1.Location = new System.Drawing.Point(84, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 19);
+            this.label1.Size = new System.Drawing.Size(87, 19);
             this.label1.TabIndex = 414;
             this.label1.Text = "cm";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -60,7 +60,7 @@
             this.nudSnapDistance.BackColor = System.Drawing.Color.AliceBlue;
             this.nudSnapDistance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudSnapDistance.InterceptArrowKeys = false;
-            this.nudSnapDistance.Location = new System.Drawing.Point(92, 44);
+            this.nudSnapDistance.Location = new System.Drawing.Point(92, 32);
             this.nudSnapDistance.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -251,12 +251,23 @@
             this.btnNudgeHalfToolRight.UseVisualStyleBackColor = false;
             this.btnNudgeHalfToolRight.Click += new System.EventHandler(this.btnNudgeHalfToolRight_Click);
             // 
+            // lblHalfToolWidth
+            // 
+            this.lblHalfToolWidth.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHalfToolWidth.Location = new System.Drawing.Point(37, 100);
+            this.lblHalfToolWidth.Name = "lblHalfToolWidth";
+            this.lblHalfToolWidth.Size = new System.Drawing.Size(87, 19);
+            this.lblHalfToolWidth.TabIndex = 481;
+            this.lblHalfToolWidth.Text = "cm";
+            this.lblHalfToolWidth.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormEditCurve
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(268, 297);
+            this.Controls.Add(this.lblHalfToolWidth);
             this.Controls.Add(this.btnNudgeHalfToolLeft);
             this.Controls.Add(this.btnNudgeHalfToolRight);
             this.Controls.Add(this.label4);
@@ -300,5 +311,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnNudgeHalfToolLeft;
         private System.Windows.Forms.Button btnNudgeHalfToolRight;
+        private System.Windows.Forms.Label lblHalfToolWidth;
     }
 }

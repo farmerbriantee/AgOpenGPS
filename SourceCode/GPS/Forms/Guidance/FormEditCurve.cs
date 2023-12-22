@@ -40,6 +40,8 @@ namespace AgOpenGPS
 
             Location = Properties.Settings.Default.setWindow_curveEditLocation;
 
+            lblHalfToolWidth.Text = ((mf.tool.width-mf.tool.overlap) *0.5 * mf.m2InchOrCm).ToString("N0") + mf.unitsInCm;
+
             btnCancel.Focus();
         }
 

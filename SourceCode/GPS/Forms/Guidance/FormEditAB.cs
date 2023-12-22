@@ -43,6 +43,7 @@ namespace AgOpenGPS
             //lblHalfSnapFtM.Text = mf.unitsFtM;
             //lblHalfWidth.Text = (mf.tool.width * 0.5 * mf.m2FtOrM).ToString("N2");
             tboxHeading.Text = Math.Round(glm.toDegrees(mf.ABLine.abHeading), 5).ToString();
+            lblHalfToolWidth.Text = ((mf.tool.width - mf.tool.overlap) * 0.5 * mf.m2InchOrCm).ToString("N0") + mf.unitsInCm;
 
             Location = Properties.Settings.Default.setWindow_abLineEditLocation;
         }

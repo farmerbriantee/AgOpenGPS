@@ -967,6 +967,8 @@
     <None Include="btnImages\FieldDataBackground.png" />
     <None Include="btnImages\ResetColors.png" />
     <None Include="btnImages\HelpSmall.png" />
+    <None Include="btnImages\TrashContourRef.png" />
+    <None Include="btnImages\TrashApplied.png" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />

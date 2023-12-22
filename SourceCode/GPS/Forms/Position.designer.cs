@@ -35,6 +35,8 @@ namespace AgOpenGPS
         public vec3 pivotAxlePos = new vec3(0, 0, 0);
         public vec3 steerAxlePos = new vec3(0, 0, 0);
         public vec3 toolPos = new vec3(0, 0, 0);
+        public vec3 toolPivotPos = new vec3(0, 0, 0);
+
         public vec3 tankPos = new vec3(0, 0, 0);
         public vec2 hitchPos = new vec2(0, 0);
 

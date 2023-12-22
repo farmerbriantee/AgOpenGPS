@@ -272,13 +272,13 @@ namespace AgOpenGPS
 
                     GL.Begin(PrimitiveType.TriangleFan);
                     {
-                        GL.Vertex3(mf.section[j].positionLeft, trailingTool, 0);
-                        GL.Vertex3(mf.section[j].positionLeft, trailingTool - hite, 0);
+                        GL.Vertex3(mf.section[j].positionLeft, trailingTool-5, 0);
+                        GL.Vertex3(mf.section[j].positionLeft, trailingTool - hite-5, 0);
 
-                        GL.Vertex3(mid, trailingTool - hite * 1.5, 0);
+                        GL.Vertex3(mid, trailingTool - hite * 1.5 -5, 0);
 
-                        GL.Vertex3(mf.section[j].positionRight, trailingTool - hite, 0);
-                        GL.Vertex3(mf.section[j].positionRight, trailingTool, 0);
+                        GL.Vertex3(mf.section[j].positionRight, trailingTool - hite-5, 0);
+                        GL.Vertex3(mf.section[j].positionRight, trailingTool-5, 0);
                     }
                     GL.End();
 
