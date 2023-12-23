@@ -3299,12 +3299,12 @@
             this.btnRunPivotOffsetForm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnRunPivotOffsetForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRunPivotOffsetForm.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnRunPivotOffsetForm.Image = global::AgOpenGPS.Properties.Resources.FlagDelete;
             this.btnRunPivotOffsetForm.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnRunPivotOffsetForm.Location = new System.Drawing.Point(41, 23);
             this.btnRunPivotOffsetForm.Name = "btnRunPivotOffsetForm";
             this.btnRunPivotOffsetForm.Size = new System.Drawing.Size(120, 64);
             this.btnRunPivotOffsetForm.TabIndex = 212;
+            this.btnRunPivotOffsetForm.Text = "Pivot Offset";
             this.btnRunPivotOffsetForm.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnRunPivotOffsetForm.UseVisualStyleBackColor = true;
             this.btnRunPivotOffsetForm.Click += new System.EventHandler(this.btnRunPivotOffsetForm_Click);

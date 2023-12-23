@@ -122,6 +122,7 @@ namespace AgOpenGPS
                 nudTrailingHitchLength.Left = 0;
                 nudDrawbarLength.Left = 342;
                 nudTankHitch.Left = 0;
+                btnRunPivotOffsetForm.Visible = false;
 
                 picboxToolHitch.BackgroundImage = Properties.Resources.ToolHitchPageFront;
             }
@@ -135,6 +136,8 @@ namespace AgOpenGPS
                 nudDrawbarLength.Left = 644;
                 nudTankHitch.Left = 433;
 
+                btnRunPivotOffsetForm.Visible = true;
+
                 picboxToolHitch.BackgroundImage = Properties.Resources.ToolHitchPageTBT;
             }
             else if (Properties.Settings.Default.setTool_isToolRearFixed)
@@ -147,6 +150,8 @@ namespace AgOpenGPS
                 nudDrawbarLength.Left = 220;
                 nudTankHitch.Left = 0;
 
+                btnRunPivotOffsetForm.Visible = false;
+
                 picboxToolHitch.BackgroundImage = Properties.Resources.ToolHitchPageRear;
             }
             else if (Properties.Settings.Default.setTool_isToolTrailing)
@@ -158,6 +163,8 @@ namespace AgOpenGPS
                 nudTrailingHitchLength.Left = 290;
                 nudDrawbarLength.Left = 575;
                 nudTankHitch.Left = 0;
+
+                btnRunPivotOffsetForm.Visible = true;
 
                 picboxToolHitch.BackgroundImage = Properties.Resources.ToolHitchPageTrailing;
             }
