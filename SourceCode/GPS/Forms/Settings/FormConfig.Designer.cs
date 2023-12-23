@@ -184,6 +184,7 @@
             this.rbtnFront = new System.Windows.Forms.RadioButton();
             this.rbtnTrailing = new System.Windows.Forms.RadioButton();
             this.tabTHitch = new System.Windows.Forms.TabPage();
+            this.nudTrailingToolToPivotLength = new System.Windows.Forms.NumericUpDown();
             this.nudTrailingHitchLength = new System.Windows.Forms.NumericUpDown();
             this.nudDrawbarLength = new System.Windows.Forms.NumericUpDown();
             this.nudTankHitch = new System.Windows.Forms.NumericUpDown();
@@ -584,6 +585,7 @@
             this.tabTConfig.SuspendLayout();
             this.gboxAttachment.SuspendLayout();
             this.tabTHitch.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTrailingToolToPivotLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTrailingHitchLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDrawbarLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTankHitch)).BeginInit();
@@ -3279,6 +3281,7 @@
             // tabTHitch
             // 
             this.tabTHitch.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabTHitch.Controls.Add(this.nudTrailingToolToPivotLength);
             this.tabTHitch.Controls.Add(this.nudTrailingHitchLength);
             this.tabTHitch.Controls.Add(this.nudDrawbarLength);
             this.tabTHitch.Controls.Add(this.nudTankHitch);
@@ -3290,6 +3293,35 @@
             this.tabTHitch.Text = "tHitch";
             this.tabTHitch.Enter += new System.EventHandler(this.tabTHitch_Enter);
             this.tabTHitch.Leave += new System.EventHandler(this.tabTHitch_Leave);
+            // 
+            // nudTrailingToolToPivotLength
+            // 
+            this.nudTrailingToolToPivotLength.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudTrailingToolToPivotLength.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudTrailingToolToPivotLength.InterceptArrowKeys = false;
+            this.nudTrailingToolToPivotLength.Location = new System.Drawing.Point(17, 112);
+            this.nudTrailingToolToPivotLength.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.nudTrailingToolToPivotLength.Minimum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            -2147483648});
+            this.nudTrailingToolToPivotLength.Name = "nudTrailingToolToPivotLength";
+            this.nudTrailingToolToPivotLength.ReadOnly = true;
+            this.nudTrailingToolToPivotLength.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.nudTrailingToolToPivotLength.Size = new System.Drawing.Size(124, 52);
+            this.nudTrailingToolToPivotLength.TabIndex = 4;
+            this.nudTrailingToolToPivotLength.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudTrailingToolToPivotLength.Value = new decimal(new int[] {
+            51,
+            0,
+            0,
+            0});
+            this.nudTrailingToolToPivotLength.Click += new System.EventHandler(this.nudTrailingToolToPivotLength_Click);
             // 
             // nudTrailingHitchLength
             // 
@@ -9695,6 +9727,7 @@
             this.tabTConfig.ResumeLayout(false);
             this.gboxAttachment.ResumeLayout(false);
             this.tabTHitch.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudTrailingToolToPivotLength)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTrailingHitchLength)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDrawbarLength)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTankHitch)).EndInit();
@@ -10301,5 +10334,6 @@
         private System.Windows.Forms.Label label173;
         private System.Windows.Forms.Label label174;
         private System.Windows.Forms.Label lblSumWheelbase;
+        private System.Windows.Forms.NumericUpDown nudTrailingToolToPivotLength;
     }
 }

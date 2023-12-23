@@ -969,6 +969,7 @@
     <None Include="btnImages\HelpSmall.png" />
     <None Include="btnImages\TrashContourRef.png" />
     <None Include="btnImages\TrashApplied.png" />
+    <None Include="btnImages\Images\z_Tool.png" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />

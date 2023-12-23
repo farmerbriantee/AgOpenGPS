@@ -186,7 +186,7 @@ namespace AgOpenGPS
             if (!mf.isFirstHeadingSet)
             {
                 GL.Enable(EnableCap.Texture2D);
-                GL.Color4(1.25f, 1.25f, 1.275f, 0.75);
+                GL.Color4(1,1,1, 0.75);
                 GL.BindTexture(TextureTarget.Texture2D, mf.texture[14]);        // Select Our Texture
                 GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
                 GL.TexCoord2(1, 0); GL.Vertex2(5, 5); // Top Right

@@ -67,7 +67,7 @@ namespace AgOpenGPS
             {
                 bool isLookRightIn = false;
 
-                vec3 toolFix = mf.toolPos;
+                vec3 toolFix = mf.toolPivotPos;
                 double sinAB = Math.Sin(toolFix.heading);
                 double cosAB = Math.Cos(toolFix.heading);
 

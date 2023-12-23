@@ -130,10 +130,12 @@ namespace AgOpenGPS
                 nudTrailingHitchLength.Visible = true;
                 nudDrawbarLength.Visible = true;
                 nudTankHitch.Visible = true;
+                nudTrailingToolToPivotLength.Visible = true;
 
-                nudTrailingHitchLength.Left = 152;
+                nudTrailingHitchLength.Left = 240;
                 nudDrawbarLength.Left = 644;
                 nudTankHitch.Left = 433;
+                nudTrailingToolToPivotLength.Left = 90;
 
                 picboxToolHitch.BackgroundImage = Properties.Resources.ToolHitchPageTBT;
             }
@@ -158,14 +160,15 @@ namespace AgOpenGPS
                 nudTrailingHitchLength.Left = 290;
                 nudDrawbarLength.Left = 575;
                 nudTankHitch.Left = 0;
+                nudTrailingToolToPivotLength.Left = 55;
 
                 picboxToolHitch.BackgroundImage = Properties.Resources.ToolHitchPageTrailing;
             }
 
-            double dis = (Math.Abs(Properties.Settings.Default.setVehicle_hitchLength) * mf.m2InchOrCm);
             nudDrawbarLength.Value = (decimal)(Math.Abs(Properties.Settings.Default.setVehicle_hitchLength)*mf.m2InchOrCm);
             nudTrailingHitchLength.Value = (decimal)(Math.Abs(Properties.Settings.Default.setTool_toolTrailingHitchLength) * mf.m2InchOrCm);
             nudTankHitch.Value = (decimal)(Math.Abs(Properties.Settings.Default.setVehicle_tankTrailingHitchLength) * mf.m2InchOrCm);
+            nudTrailingToolToPivotLength.Value = (decimal)(Properties.Settings.Default.setTool_trailingToolToPivotLength * mf.m2InchOrCm);
         }
 
         private void tabTHitch_Leave(object sender, EventArgs e)
@@ -203,16 +206,23 @@ namespace AgOpenGPS
             {
                 mf.tool.trailingHitchLength = (double)nudTrailingHitchLength.Value * -mf.inchOrCm2m;
                 Properties.Settings.Default.setTool_toolTrailingHitchLength = mf.tool.trailingHitchLength;
-
             }
         }
 
+        private void nudTrailingToolToPivotLength_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                mf.tool.trailingToolToPivotLength = (double)nudTrailingToolToPivotLength.Value * mf.inchOrCm2m;
+                Properties.Settings.Default.setTool_trailingToolToPivotLength = mf.tool.trailingToolToPivotLength;
+            }
+        }
 
-        #endregion
+            #endregion
 
-        #region Settings
+            #region Settings
 
-        private void tabTSettings_Enter(object sender, EventArgs e)
+            private void tabTSettings_Enter(object sender, EventArgs e)
         {
             nudLookAhead.Value =    (decimal)Properties.Settings.Default.setVehicle_toolLookAheadOn;
             nudLookAheadOff.Value = (decimal)Properties.Settings.Default.setVehicle_toolLookAheadOff;

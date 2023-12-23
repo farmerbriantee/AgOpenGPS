@@ -2747,5 +2747,17 @@ namespace AgOpenGPS.Properties {
                 this["setWindow_abLineCreate"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.5")]
+        public double setTool_trailingToolToPivotLength {
+            get {
+                return ((double)(this["setTool_trailingToolToPivotLength"]));
+            }
+            set {
+                this["setTool_trailingToolToPivotLength"] = value;
+            }
+        }
     }
 }
