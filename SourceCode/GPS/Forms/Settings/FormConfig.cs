@@ -27,7 +27,6 @@ namespace AgOpenGPS
             HideSubMenu();
 
             nudTrailingHitchLength.Controls[0].Enabled = false;
-            nudTrailingToolToPivotLength.Controls[0].Enabled = false;
             nudDrawbarLength.Controls[0].Enabled = false;
             nudTankHitch.Controls[0].Enabled = false;
 
@@ -145,9 +144,6 @@ namespace AgOpenGPS
 
             nudTrailingHitchLength.Maximum = Math.Round(nudTrailingHitchLength.Maximum / 2.54M);
             nudTrailingHitchLength.Minimum = Math.Round(nudTrailingHitchLength.Minimum / 2.54M);
-
-            nudTrailingToolToPivotLength.Maximum = Math.Round(nudTrailingToolToPivotLength.Maximum / 2.54M);
-            nudTrailingToolToPivotLength.Minimum = Math.Round(nudTrailingToolToPivotLength.Minimum / 2.54M);
 
             nudSnapDistance.Maximum = Math.Round(nudSnapDistance.Maximum / 2.54M);
             nudSnapDistance.Minimum = Math.Round(nudSnapDistance.Minimum / 2.54M);

@@ -215,6 +215,12 @@
     <Compile Include="Forms\FormFieldExisting.Designer.cs">
       <DependentUpon>FormFieldExisting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormTemp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormTemp.Designer.cs">
+      <DependentUpon>FormTemp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Form_Keys.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -304,6 +310,12 @@
     </Compile>
     <Compile Include="Forms\Settings\FormCorrection.Designer.cs">
       <DependentUpon>FormCorrection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Settings\FormToolPivot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings\FormToolPivot.Designer.cs">
+      <DependentUpon>FormToolPivot.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Settings\FormSectionColor.cs">
       <SubType>Form</SubType>
@@ -633,6 +645,9 @@
     <EmbeddedResource Include="Forms\FormFieldExisting.resx">
       <DependentUpon>FormFieldExisting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormTemp.resx">
+      <DependentUpon>FormTemp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form_Keys.resx">
       <DependentUpon>Form_Keys.cs</DependentUpon>
     </EmbeddedResource>
@@ -677,6 +692,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\FormCorrection.resx">
       <DependentUpon>FormCorrection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings\FormToolPivot.resx">
+      <DependentUpon>FormToolPivot.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\FormSectionColor.resx">
       <DependentUpon>FormSectionColor.cs</DependentUpon>
@@ -970,6 +988,9 @@
     <None Include="btnImages\TrashContourRef.png" />
     <None Include="btnImages\TrashApplied.png" />
     <None Include="btnImages\Images\z_Tool.png" />
+    <None Include="btnImages\ToolHitchPivotOffset.png" />
+    <None Include="btnImages\ToolHitchPivotOffsetNeg.png" />
+    <None Include="btnImages\ToolHitchPivotOffsetPos.png" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />
