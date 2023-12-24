@@ -91,6 +91,35 @@ namespace AgOpenGPS
         private double shadowOffset = 0;
         private double widthMinusOverlap = 0;
 
+        public bool LoadABLine(int idx)
+        {
+            if (lineArr[idx].isVisible)
+            {
+                refPoint1 = lineArr[idx].origin;
+                abHeading = lineArr[idx].heading;
+                SetABLineByHeading();
+                isABLineSet = true;
+                isABLineLoaded = true;
+                mf.yt.ResetYouTurn();
+                mf.guidanceLineText = lineArr[idx].Name;
+                return true;
+            }
+            else
+            { return false; }
+        }
+
+        public int FindNextVisibleLine()
+        {
+            while (true)
+            {
+                numABLineSelected++;
+
+                if (numABLineSelected > numABLines) numABLineSelected = 1;
+
+                if (lineArr[numABLineSelected - 1].isVisible) return numABLineSelected;
+            }
+        }
+
         public void BuildCurrentABLineList(vec3 pivot)
         {
             double dx, dy;

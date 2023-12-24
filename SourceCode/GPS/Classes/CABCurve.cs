@@ -71,6 +71,32 @@ namespace AgOpenGPS
             curList.Capacity = 1024;
         }
 
+        public void LoadCurve( int idx)
+        {
+            aveLineHeading = curveArr[idx].aveHeading;
+            refList?.Clear();
+            for (int i = 0; i < curveArr[idx].curvePts.Count; i++)
+            {
+                refList.Add(curveArr[idx].curvePts[i]);
+            }
+            isCurveSet = true;
+            mf.yt.ResetYouTurn();
+            mf.guidanceLineText = curveArr[idx].Name;
+        }
+
+        public int FindNextVisibleCurve()
+        {
+            while (true)
+            {
+                numCurveLineSelected++;
+
+                if (numCurveLineSelected > numCurveLines) numCurveLineSelected = 1;
+
+                if (curveArr[numCurveLineSelected - 1].isVisible) return numCurveLineSelected;
+            }
+        }
+
+
         public void BuildCurveCurrentList(vec3 pivot)
         {
             double minDistA = 1000000, minDistB;

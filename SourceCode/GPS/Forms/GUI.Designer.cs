@@ -267,34 +267,58 @@ namespace AgOpenGPS
                         if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
                         {
                             guidanceLineText = curve.curveArr[curve.numCurveLineSelected - 1].Name;
-                            if (curve.numCurveLines > 1)
-                            {
-                                btnCycleLines.Enabled = true;
-                                btnCycleLinesBk.Enabled = true;
-                            }
-                            else
-                            {
-                                btnCycleLines.Enabled = false;
-                                btnCycleLinesBk.Enabled = false;
-                            }
-
                         }
-
                         else if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
                         {
                             guidanceLineText = ABLine.lineArr[ABLine.numABLineSelected - 1].Name;
-                            if (ABLine.numABLines > 1)
+                        }
+                        else guidanceLineText = gStr.gsNoGuidanceLines;
+
+                        int abVis = 0, curveVis = 0;
+
+                        ABLine.numABLines = ABLine.lineArr.Count;
+                        curve.numCurveLines = curve.curveArr.Count;
+
+                        //if (ABLine.numABLines > 0)
+                        {
+                            for (int i = 0; i < ABLine.lineArr.Count; i++)
                             {
-                                btnCycleLines.Enabled = true;
-                                btnCycleLinesBk.Enabled = true;
-                            }
-                            else
-                            {
-                                btnCycleLines.Enabled = false;
-                                btnCycleLinesBk.Enabled = false;
+                                if (ABLine.lineArr[i].isVisible)
+                                {
+                                    abVis++;
+                                }
                             }
                         }
-                        else guidanceLineText = gStr.gsNoGuidanceLines;                        
+
+                        if (ABLine.numABLineSelected == 0) abVis = 0;
+
+                        //if (curve.numCurveLines > 0)
+                        {
+                            for (int i = 0; i < curve.curveArr.Count; i++)
+                            {
+                                if (curve.curveArr[i].isVisible)
+                                {
+                                    curveVis++;
+                                }
+                            }
+                        }
+
+                        if (curve.numCurveLineSelected == 0) curveVis = 0;
+                        if (ABLine.numABLineSelected == 0) abVis = 0;
+
+                        //only 1 visible line
+                        if ((abVis + curveVis) < 2)
+                        {
+                            btnCycleLines.Enabled = false;
+                            btnCycleLinesBk.Enabled = false;
+                        }
+                        else
+                        {
+                            btnCycleLines.Enabled = true;
+                            btnCycleLinesBk.Enabled = true;
+                        }
+
+                        UpdateGuidanceLineButtonNumbers();
                     }
                     else
                     {

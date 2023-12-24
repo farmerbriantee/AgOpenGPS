@@ -575,8 +575,11 @@ namespace AgOpenGPS
                 if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
                 if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
             }
+
+            selectedItem = -1;
             UpdateTable();
             flp.Focus();
+
         }
 
         private void FormABLine_FormClosing(object sender, FormClosingEventArgs e)

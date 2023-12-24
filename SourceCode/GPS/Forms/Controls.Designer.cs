@@ -304,6 +304,7 @@ namespace AgOpenGPS
                 p_239.pgn[p_239.uturn] = 0;
             }
         }
+
         private void btnCycleLines_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -323,89 +324,126 @@ namespace AgOpenGPS
                 return;
             }
 
-            if (ABLine.numABLines == 0 && curve.numCurveLines == 0) return; 
+            int abVis = 0, curveVis = 0;
 
-            bool isVis = false;
-                //reset to generate new reference
-            ABLine.isABValid = false;
-            curve.isCurveValid = false;
+            ABLine.numABLines = ABLine.lineArr.Count;
+            curve.numCurveLines = curve.curveArr.Count;
 
-            if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
-
-            if (ABLine.isBtnABLineOn && ABLine.numABLines > 0)
+            //if (ABLine.numABLines > 0)
             {
-                ABLine.moveDistance = 0;
-
                 for (int i = 0; i < ABLine.lineArr.Count; i++)
                 {
                     if (ABLine.lineArr[i].isVisible)
                     {
-                        isVis = true;
-                        break;
+                        abVis++;
                     }
                 }
-
-                if (!isVis) return;
-
-                int idx = ABLine.numABLineSelected - 1;
-
-                while (isVis)
-                {
-                    ABLine.numABLineSelected++;
-
-                    if (ABLine.numABLineSelected > ABLine.numABLines) ABLine.numABLineSelected = 1;
-                        idx = ABLine.numABLineSelected - 1;
-
-                    if (ABLine.lineArr[idx].isVisible) break;
-                }
-
-                ABLine.refPoint1 = ABLine.lineArr[idx].origin;
-                ABLine.abHeading = ABLine.lineArr[idx].heading;
-                ABLine.SetABLineByHeading();
-                ABLine.isABLineSet = true;
-                ABLine.isABLineLoaded = true;
-                yt.ResetYouTurn();
-                guidanceLineText = ABLine.lineArr[idx].Name;
             }
-            else if (curve.isBtnCurveOn && curve.numCurveLines > 0)
-            {
-                curve.moveDistance = 0;
 
-                //make sure one is visible
+            if (ABLine.numABLineSelected == 0) abVis = 0;
+
+            //if (curve.numCurveLines > 0)
+            {
                 for (int i = 0; i < curve.curveArr.Count; i++)
                 {
                     if (curve.curveArr[i].isVisible)
                     {
-                        isVis = true;
-                        break;
+                        curveVis++;
                     }
                 }
+            }
 
-                if (!isVis) return;
+            if (curve.numCurveLineSelected == 0) curveVis = 0;
+            if (ABLine.numABLineSelected == 0) abVis = 0;
 
-                int idx = curve.numCurveLineSelected - 1;
+            //only 1 visible line
+            if ((abVis + curveVis) < 2) return;
 
-                while (isVis)
-                {
-                    curve.numCurveLineSelected++;
+            int mode = 0;
 
-                    if (curve.numCurveLineSelected > curve.numCurveLines) curve.numCurveLineSelected = 1;
+            //no AB, at least 2 curve
+            if (abVis == 0) mode = 1;
 
-                    idx = curve.numCurveLineSelected - 1;
+            //no curve, at least 2 AB
+            else if (curveVis == 0) mode = 2;
 
-                    if (curve.curveArr[idx].isVisible) break;
-                }
+            //both AB and curves to switch to
+            else mode = 3;
 
-                curve.aveLineHeading = curve.curveArr[idx].aveHeading;
-                curve.refList?.Clear();
-                for (int i = 0; i < curve.curveArr[idx].curvePts.Count; i++)
-                {
-                    curve.refList.Add(curve.curveArr[idx].curvePts[i]);
-                }
-                curve.isCurveSet = true;
-                yt.ResetYouTurn();
-                guidanceLineText = curve.curveArr[idx].Name;
+            int idx;
 
+            switch (mode)
+            {
+                //only curve lines
+                case 1:
+
+                    idx = curve.FindNextVisibleCurve() - 1;
+                    curve.LoadCurve(idx);
+                    break;
+
+                case 2:
+
+                    idx = ABLine.FindNextVisibleLine() - 1;
+                    ABLine.LoadABLine(idx);
+                    break;
+
+                case 3:
+
+                    if (ABLine.isBtnABLineOn)
+                    {
+                        if (abVis == 1) //jump to curves
+                        {
+                            idx = curve.FindNextVisibleCurve() - 1;
+                            curve.LoadCurve(idx);
+                            btnCurve.PerformClick();
+                            return;
+                        }
+
+                        //end of the list of lines?
+                        int last = ABLine.numABLineSelected;
+                        idx = ABLine.FindNextVisibleLine()-1;
+
+                        if (ABLine.numABLineSelected < last) //jump to curve
+                        {
+                            ABLine.numABLineSelected = last;
+                            idx = curve.FindNextVisibleCurve() - 1;
+                            curve.LoadCurve(idx);
+                            btnCurve.PerformClick();
+                            return;
+                        }
+                        else
+                        {
+                            ABLine.LoadABLine(idx);
+                            break;
+                        }
+                    }
+                    else //curve button on
+                    {
+                        if (curveVis == 1) //jump to lines
+                        {
+                            idx = ABLine.FindNextVisibleLine() - 1;
+                            ABLine.LoadABLine(idx);
+                            btnABLine.PerformClick();
+                            return;
+                        }
+                        //end of the list of curves?
+                        int last = curve.numCurveLineSelected;
+                        idx = curve.FindNextVisibleCurve() - 1;
+
+                        if (curve.numCurveLineSelected < last) //jump to curve
+                        {
+                            curve.numCurveLineSelected = last;
+                            idx = ABLine.FindNextVisibleLine() - 1;
+                            ABLine.LoadABLine(idx);
+                            btnABLine.PerformClick();
+                            return;
+                        }
+                        else
+                        {
+                            curve.LoadCurve(idx);
+                            break;
+                        }
+                    }
             }
 
             lblFieldStatus.Text = fieldData + " ----- " + guidanceLineText;
