@@ -579,7 +579,6 @@ namespace AgOpenGPS
             selectedItem = -1;
             UpdateTable();
             flp.Focus();
-
         }
 
         private void FormABLine_FormClosing(object sender, FormClosingEventArgs e)
