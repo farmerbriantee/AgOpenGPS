@@ -384,13 +384,13 @@ namespace AgOpenGPS
             {
                 if (textBox1.Text.Length == 0) textBox2.Text = "No Name " + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
-                mf.curve.curveArr.Add(new CCurveLines());
+                mf.curve.curveArr.Add(new CCurveLine());
 
                 //array number is 1 less since it starts at zero
                 int idx = mf.curve.curveArr.Count - 1;
 
                 mf.curve.curveArr[idx].Name = textBox1.Text.Trim();
-                mf.curve.curveArr[idx].aveHeading = aveLineHeading;
+                mf.curve.curveArr[idx].heading = aveLineHeading;
 
                 //write out the Curve Points
                 foreach (vec3 item in mf.curve.desList)
@@ -574,7 +574,7 @@ namespace AgOpenGPS
                     selectedItem = -1;
                     mf.curve.numCurveLineSelected = 1;
 
-                    mf.curve.aveLineHeading = mf.curve.curveArr[0].aveHeading;
+                    mf.curve.aveLineHeading = mf.curve.curveArr[0].heading;
                     mf.curve.refList?.Clear();
                     for (int i = 0; i < mf.curve.curveArr[0].curvePts.Count; i++)
                     {
@@ -608,7 +608,7 @@ namespace AgOpenGPS
                 int idx = selectedItem;
                 mf.curve.numCurveLineSelected = idx + 1;
 
-                mf.curve.aveLineHeading = mf.curve.curveArr[idx].aveHeading;
+                mf.curve.aveLineHeading = mf.curve.curveArr[idx].heading;
                 mf.curve.refList?.Clear();
                 for (int i = 0; i < mf.curve.curveArr[idx].curvePts.Count; i++)
                 {
@@ -624,7 +624,7 @@ namespace AgOpenGPS
                 int idx = mf.curve.curveArr.Count - 1;
                 mf.curve.numCurveLineSelected = idx + 1;
 
-                mf.curve.aveLineHeading = mf.curve.curveArr[idx].aveHeading;
+                mf.curve.aveLineHeading = mf.curve.curveArr[idx].heading;
                 mf.curve.refList?.Clear();
                 for (int i = 0; i < mf.curve.curveArr[idx].curvePts.Count; i++)
                 {
@@ -668,7 +668,7 @@ namespace AgOpenGPS
                 textBox1.Text = mf.curve.curveArr[idx].Name + " Copy";
                 mf.curve.desName = textBox1.Text;
 
-                aveLineHeading = mf.curve.curveArr[idx].aveHeading;
+                aveLineHeading = mf.curve.curveArr[idx].heading;
                 mf.curve.desList?.Clear();
 
                 for (int i = 0; i < mf.curve.curveArr[idx].curvePts.Count; i++)
@@ -733,9 +733,9 @@ namespace AgOpenGPS
                     mf.curve.curveArr[idx].curvePts.CopyTo(arr);
                     mf.curve.curveArr[idx].curvePts.Clear();
 
-                    mf.curve.curveArr[idx].aveHeading += Math.PI;
-                    if (mf.curve.curveArr[idx].aveHeading < 0) mf.curve.curveArr[idx].aveHeading += glm.twoPI;
-                    if (mf.curve.curveArr[idx].aveHeading > glm.twoPI) mf.curve.curveArr[idx].aveHeading -= glm.twoPI;
+                    mf.curve.curveArr[idx].heading += Math.PI;
+                    if (mf.curve.curveArr[idx].heading < 0) mf.curve.curveArr[idx].heading += glm.twoPI;
+                    if (mf.curve.curveArr[idx].heading > glm.twoPI) mf.curve.curveArr[idx].heading -= glm.twoPI;
 
                     for (int i = 1; i < cnt; i++)
                     {

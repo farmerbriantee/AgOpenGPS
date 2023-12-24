@@ -505,7 +505,7 @@ namespace AgOpenGPS
                     if (ABLine.lineArr[idx].isVisible) break;
                 }
 
-                ABLine.refPoint1 = ABLine.lineArr[idx].origin;
+                ABLine.refPoint1 = ABLine.lineArr[idx].ptA;
                 ABLine.abHeading = ABLine.lineArr[idx].heading;
                 ABLine.SetABLineByHeading();
                 ABLine.isABLineSet = true;
@@ -542,7 +542,7 @@ namespace AgOpenGPS
                     if (curve.curveArr[idx].isVisible) break;
                 }
 
-                curve.aveLineHeading = curve.curveArr[idx].aveHeading;
+                curve.aveLineHeading = curve.curveArr[idx].heading;
                 curve.refList?.Clear();
                 for (int i = 0; i < curve.curveArr[idx].curvePts.Count; i++)
                 {
@@ -558,7 +558,7 @@ namespace AgOpenGPS
         }
         private void SetABLine(int num)
         {
-                ABLine.refPoint1 = ABLine.lineArr[ABLine.numABLineSelected - 1].origin;
+                ABLine.refPoint1 = ABLine.lineArr[ABLine.numABLineSelected - 1].ptA;
                 //ABLine.refPoint2 = ABLine.lineArr[ABLine.numABLineSelected - 1].ref2;
                 ABLine.abHeading = ABLine.lineArr[ABLine.numABLineSelected - 1].heading;
                 ABLine.SetABLineByHeading();
@@ -569,7 +569,7 @@ namespace AgOpenGPS
         private void SetCurveLine(int num)
         {
                 int idx = curve.numCurveLineSelected - 1;
-                curve.aveLineHeading = curve.curveArr[idx].aveHeading;
+                curve.aveLineHeading = curve.curveArr[idx].heading;
                 curve.refList?.Clear();
                 for (int i = 0; i < curve.curveArr[idx].curvePts.Count; i++)
                 {

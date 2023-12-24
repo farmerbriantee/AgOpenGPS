@@ -434,8 +434,8 @@ namespace AgOpenGPS
 
             mf.ABLine.lineArr[idx].heading = mf.ABLine.desHeading;
             //calculate the new points for the reference line and points
-            mf.ABLine.lineArr[idx].origin.easting = mf.ABLine.desPoint1.easting;
-            mf.ABLine.lineArr[idx].origin.northing = mf.ABLine.desPoint1.northing;
+            mf.ABLine.lineArr[idx].ptA.easting = mf.ABLine.desPoint1.easting;
+            mf.ABLine.lineArr[idx].ptA.northing = mf.ABLine.desPoint1.northing;
 
             //name
             if (textBox2.Text.Trim() == "") textBox2.Text = "No Name " + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
@@ -470,8 +470,8 @@ namespace AgOpenGPS
                 mf.ABLine.desHeading = mf.ABLine.lineArr[idx].heading;
 
                 //calculate the new points for the reference line and points
-                mf.ABLine.desPoint1.easting = mf.ABLine.lineArr[idx].origin.easting;
-                mf.ABLine.desPoint1.northing = mf.ABLine.lineArr[idx].origin.northing;
+                mf.ABLine.desPoint1.easting = mf.ABLine.lineArr[idx].ptA.easting;
+                mf.ABLine.desPoint1.northing = mf.ABLine.lineArr[idx].ptA.northing;
 
                 mf.ABLine.desName = mf.ABLine.lineArr[idx].Name + " Copy";
 
@@ -492,7 +492,7 @@ namespace AgOpenGPS
                 mf.ABLine.numABLineSelected = idx + 1;
 
                 mf.ABLine.abHeading = mf.ABLine.lineArr[idx].heading;
-                mf.ABLine.refPoint1 = mf.ABLine.lineArr[idx].origin;
+                mf.ABLine.refPoint1 = mf.ABLine.lineArr[idx].ptA;
 
                 mf.ABLine.SetABLineByHeading();
 
@@ -508,7 +508,7 @@ namespace AgOpenGPS
                 mf.ABLine.numABLineSelected = idx + 1;
 
                 mf.ABLine.abHeading = mf.ABLine.lineArr[idx].heading;
-                mf.ABLine.refPoint1 = mf.ABLine.lineArr[idx].origin;
+                mf.ABLine.refPoint1 = mf.ABLine.lineArr[idx].ptA;
 
                 mf.ABLine.SetABLineByHeading();
 

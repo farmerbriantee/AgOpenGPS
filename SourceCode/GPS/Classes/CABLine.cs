@@ -95,7 +95,7 @@ namespace AgOpenGPS
         {
             if (lineArr[idx].isVisible)
             {
-                refPoint1 = lineArr[idx].origin;
+                refPoint1 = lineArr[idx].ptA;
                 abHeading = lineArr[idx].heading;
                 SetABLineByHeading();
                 isABLineSet = true;
@@ -729,7 +729,7 @@ namespace AgOpenGPS
 
     public class CABLines
     {
-        public vec2 origin = new vec2();
+        public vec2 ptA = new vec2();
         public double heading = 0;
         public string Name = "aa";
         public bool isVisible = true;

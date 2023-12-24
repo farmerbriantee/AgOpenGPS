@@ -46,7 +46,7 @@ namespace AgOpenGPS
         public bool isSmoothWindowOpen;
         public List<vec3> smooList = new List<vec3>();
 
-        public List<CCurveLines> curveArr = new List<CCurveLines>();
+        public List<CCurveLine> curveArr = new List<CCurveLine>();
         public int numCurveLines, numCurveLineSelected;
 
         public bool isCurveValid, isLateralTriggered;
@@ -73,7 +73,7 @@ namespace AgOpenGPS
 
         public void LoadCurve( int idx)
         {
-            aveLineHeading = curveArr[idx].aveHeading;
+            aveLineHeading = curveArr[idx].heading;
             refList?.Clear();
             for (int i = 0; i < curveArr[idx].curvePts.Count; i++)
             {
@@ -1044,11 +1044,15 @@ namespace AgOpenGPS
         }
     }
 
-    public class CCurveLines
+    public class CCurveLine
     {
         public List<vec3> curvePts = new List<vec3>();
-        public double aveHeading = 3;
+        public double heading = 3;
         public string Name = "aa";
         public bool isVisible = true;
+        public vec2 ptA = new vec2();
+        public vec2 ptB = new vec2();
+        public int Mode = 0;
+        public double nudgeDistance = 0;
     }
 }

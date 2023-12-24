@@ -96,7 +96,7 @@ namespace AgOpenGPS
                         //mf.curve.curveArr[idxFieldSelected].Name = textBox1.Text.Trim();
                         if (idx >= 0)
                         {
-                            mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;
+                            mf.curve.curveArr[idx].heading = mf.curve.aveLineHeading;
                             mf.curve.curveArr[idx].curvePts.Clear();
                             //write out the Curve Points
                             foreach (vec3 item in mf.curve.refList)
@@ -118,8 +118,8 @@ namespace AgOpenGPS
                     {
                         mf.ABLine.lineArr[idx].heading = mf.ABLine.abHeading;
                         //calculate the new points for the reference line and points
-                        mf.ABLine.lineArr[idx].origin.easting = mf.ABLine.refPoint1.easting;
-                        mf.ABLine.lineArr[idx].origin.northing = mf.ABLine.refPoint1.northing;
+                        mf.ABLine.lineArr[idx].ptA.easting = mf.ABLine.refPoint1.easting;
+                        mf.ABLine.lineArr[idx].ptA.northing = mf.ABLine.refPoint1.northing;
                     }
 
                     mf.FileSaveABLines();

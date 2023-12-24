@@ -56,7 +56,7 @@ namespace AgOpenGPS
         {
             if (mf.ABLine.numABLineSelected > 0)
             {
-                mf.ABLine.refPoint1 = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].origin;
+                mf.ABLine.refPoint1 = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].ptA;
                 mf.ABLine.abHeading = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].heading;
                 mf.ABLine.SetABLineByHeading();
 
@@ -83,7 +83,7 @@ namespace AgOpenGPS
             if (mf.curve.numCurveLineSelected > 0)
             {
                 int idx = mf.curve.numCurveLineSelected - 1;
-                mf.curve.aveLineHeading = mf.curve.curveArr[idx].aveHeading;
+                mf.curve.aveLineHeading = mf.curve.curveArr[idx].heading;
                 mf.curve.refList?.Clear();
                 foreach (vec3 v in mf.curve.curveArr[idx].curvePts) mf.curve.refList.Add(v);
                 mf.curve.isCurveSet = true;
@@ -383,7 +383,7 @@ namespace AgOpenGPS
 
                     //double offset = ((double)nudDistance.Value) / 200.0;
 
-                    mf.curve.curveArr.Add(new CCurveLines());
+                    mf.curve.curveArr.Add(new CCurveLine());
                     mf.curve.numCurveLines = mf.curve.curveArr.Count;
                     mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
 
@@ -395,7 +395,7 @@ namespace AgOpenGPS
 
                     if (q > 0) mf.curve.curveArr[idx].Name = "Inner Boundary Curve " + q.ToString();
 
-                    mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;
+                    mf.curve.curveArr[idx].heading = mf.curve.aveLineHeading;
 
                     //write out the Curve Points
                     foreach (vec3 item in mf.curve.refList)
@@ -541,7 +541,7 @@ namespace AgOpenGPS
 
                 mf.curve.isCurveSet = true;
 
-                mf.curve.curveArr.Add(new CCurveLines());
+                mf.curve.curveArr.Add(new CCurveLine());
                 mf.curve.numCurveLines = mf.curve.curveArr.Count;
                 mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
 
@@ -552,7 +552,7 @@ namespace AgOpenGPS
                 mf.curve.curveArr[idx].Name = (Math.Round(glm.toDegrees(mf.curve.aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture)
                      + "\u00B0" + mf.FindDirection(mf.curve.aveLineHeading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
-                mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;
+                mf.curve.curveArr[idx].heading = mf.curve.aveLineHeading;
 
                 //write out the Curve Points
                 foreach (vec3 item in mf.curve.refList)
@@ -615,8 +615,8 @@ namespace AgOpenGPS
 
             mf.ABLine.lineArr[idx].heading = abHead;
             //calculate the new points for the reference line and points
-            mf.ABLine.lineArr[idx].origin.easting = (Math.Sin(headingCalc) * (offset)) + mf.bnd.bndList[bndSelect].fenceLine[start].easting;
-            mf.ABLine.lineArr[idx].origin.northing = (Math.Cos(headingCalc) * (offset)) + mf.bnd.bndList[bndSelect].fenceLine[start].northing;
+            mf.ABLine.lineArr[idx].ptA.easting = (Math.Sin(headingCalc) * (offset)) + mf.bnd.bndList[bndSelect].fenceLine[start].easting;
+            mf.ABLine.lineArr[idx].ptA.northing = (Math.Cos(headingCalc) * (offset)) + mf.bnd.bndList[bndSelect].fenceLine[start].northing;
 
             //create a name
             mf.ABLine.lineArr[idx].Name = (Math.Round(glm.toDegrees(mf.ABLine.lineArr[idx].heading), 1)).ToString(CultureInfo.InvariantCulture)
@@ -775,8 +775,8 @@ namespace AgOpenGPS
 
                     foreach (CABLines item in mf.ABLine.lineArr)
                     {
-                        GL.Vertex3(item.origin.easting - (Math.Sin(item.heading) * mf.ABLine.abLength), item.origin.northing - (Math.Cos(item.heading) * mf.ABLine.abLength), 0);
-                        GL.Vertex3(item.origin.easting + (Math.Sin(item.heading) * mf.ABLine.abLength), item.origin.northing + (Math.Cos(item.heading) * mf.ABLine.abLength), 0);
+                        GL.Vertex3(item.ptA.easting - (Math.Sin(item.heading) * mf.ABLine.abLength), item.ptA.northing - (Math.Cos(item.heading) * mf.ABLine.abLength), 0);
+                        GL.Vertex3(item.ptA.easting + (Math.Sin(item.heading) * mf.ABLine.abLength), item.ptA.northing + (Math.Cos(item.heading) * mf.ABLine.abLength), 0);
                     }
 
                     GL.End();
@@ -791,10 +791,10 @@ namespace AgOpenGPS
                     GL.LineWidth(4);
                     GL.Begin(PrimitiveType.Lines);
 
-                    GL.Vertex3(mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].origin.easting - (Math.Sin(mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].heading) * mf.ABLine.abLength),
-                        mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].origin.northing - (Math.Cos(mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].heading) * mf.ABLine.abLength), 0);
-                    GL.Vertex3(mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].origin.easting + (Math.Sin(mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].heading) * mf.ABLine.abLength),
-                        mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].origin.northing + (Math.Cos(mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].heading) * mf.ABLine.abLength), 0);
+                    GL.Vertex3(mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].ptA.easting - (Math.Sin(mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].heading) * mf.ABLine.abLength),
+                        mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].ptA.northing - (Math.Cos(mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].heading) * mf.ABLine.abLength), 0);
+                    GL.Vertex3(mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].ptA.easting + (Math.Sin(mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].heading) * mf.ABLine.abLength),
+                        mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].ptA.northing + (Math.Cos(mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].heading) * mf.ABLine.abLength), 0);
 
                     GL.End();
                 }

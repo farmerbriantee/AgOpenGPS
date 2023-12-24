@@ -141,8 +141,8 @@ namespace AgOpenGPS
                                 {
                                     xml.WriteStartElement("PNT");//A
 
-                                    pn.ConvertLocalToWGS84(ABLine.lineArr[i].origin.northing - (Math.Cos(ABLine.lineArr[i].heading) * 1000),
-                                        ABLine.lineArr[i].origin.easting - (Math.Sin(ABLine.lineArr[i].heading) * 1000), out lat, out lon);
+                                    pn.ConvertLocalToWGS84(ABLine.lineArr[i].ptA.northing - (Math.Cos(ABLine.lineArr[i].heading) * 1000),
+                                        ABLine.lineArr[i].ptA.easting - (Math.Sin(ABLine.lineArr[i].heading) * 1000), out lat, out lon);
 
                                     xml.WriteAttributeString("A", "2");
                                     xml.WriteAttributeString("C", lat.ToString());
@@ -151,8 +151,8 @@ namespace AgOpenGPS
                                     xml.WriteEndElement();//A
                                     xml.WriteStartElement("PNT");//B
 
-                                    pn.ConvertLocalToWGS84(ABLine.lineArr[i].origin.northing + (Math.Cos(ABLine.lineArr[i].heading) * 1000),
-                                        ABLine.lineArr[i].origin.easting + (Math.Sin(ABLine.lineArr[i].heading) * 1000), out lat, out lon);
+                                    pn.ConvertLocalToWGS84(ABLine.lineArr[i].ptA.northing + (Math.Cos(ABLine.lineArr[i].heading) * 1000),
+                                        ABLine.lineArr[i].ptA.easting + (Math.Sin(ABLine.lineArr[i].heading) * 1000), out lat, out lon);
 
                                     xml.WriteAttributeString("A", "2");
 
@@ -348,8 +348,8 @@ namespace AgOpenGPS
                                         {
                                             xml.WriteStartElement("PNT");//A
 
-                                            pn.ConvertLocalToWGS84(ABLine.lineArr[i].origin.northing - (Math.Cos(ABLine.lineArr[i].heading) * 1000),
-                                                ABLine.lineArr[i].origin.easting - (Math.Sin(ABLine.lineArr[i].heading) * 1000), out lat, out lon);
+                                            pn.ConvertLocalToWGS84(ABLine.lineArr[i].ptA.northing - (Math.Cos(ABLine.lineArr[i].heading) * 1000),
+                                                ABLine.lineArr[i].ptA.easting - (Math.Sin(ABLine.lineArr[i].heading) * 1000), out lat, out lon);
 
                                             xml.WriteAttributeString("A", "6");
                                             xml.WriteAttributeString("C", lat.ToString());
@@ -358,8 +358,8 @@ namespace AgOpenGPS
                                             xml.WriteEndElement();//A
                                             xml.WriteStartElement("PNT");//B
 
-                                            pn.ConvertLocalToWGS84(ABLine.lineArr[i].origin.northing + (Math.Cos(ABLine.lineArr[i].heading) * 1000),
-                                                ABLine.lineArr[i].origin.easting + (Math.Sin(ABLine.lineArr[i].heading) * 1000), out lat, out lon);
+                                            pn.ConvertLocalToWGS84(ABLine.lineArr[i].ptA.northing + (Math.Cos(ABLine.lineArr[i].heading) * 1000),
+                                                ABLine.lineArr[i].ptA.easting + (Math.Sin(ABLine.lineArr[i].heading) * 1000), out lat, out lon);
 
                                             xml.WriteAttributeString("A", "7");
 
@@ -679,7 +679,7 @@ namespace AgOpenGPS
                             writer.WriteLine(curve.curveArr[i].Name);
 
                             //write out the aveheading
-                            writer.WriteLine(curve.curveArr[i].aveHeading.ToString(CultureInfo.InvariantCulture));
+                            writer.WriteLine(curve.curveArr[i].heading.ToString(CultureInfo.InvariantCulture));
 
                             //write out the points of ref line
                             int cnt2 = curve.curveArr[i].curvePts.Count;
@@ -757,13 +757,13 @@ namespace AgOpenGPS
 
                         while (!reader.EndOfStream)
                         {
-                            curve.curveArr.Add(new CCurveLines());
+                            curve.curveArr.Add(new CCurveLine());
 
                             //read header $CurveLine
                             curve.curveArr[curve.numCurveLines].Name = reader.ReadLine();
                             // get the average heading
                             line = reader.ReadLine();
-                            curve.curveArr[curve.numCurveLines].aveHeading = double.Parse(line, CultureInfo.InvariantCulture);
+                            curve.curveArr[curve.numCurveLines].heading = double.Parse(line, CultureInfo.InvariantCulture);
 
                             line = reader.ReadLine();
                             int numPoints = int.Parse(line);
@@ -829,8 +829,8 @@ namespace AgOpenGPS
                         //make it culture invariant
                         string line = item.Name
                             + ',' + (Math.Round(glm.toDegrees(item.heading), 8)).ToString(CultureInfo.InvariantCulture)
-                            + ',' + (Math.Round(item.origin.easting, 3)).ToString(CultureInfo.InvariantCulture)
-                            + ',' + (Math.Round(item.origin.northing, 3)).ToString(CultureInfo.InvariantCulture);
+                            + ',' + (Math.Round(item.ptA.easting, 3)).ToString(CultureInfo.InvariantCulture)
+                            + ',' + (Math.Round(item.ptA.northing, 3)).ToString(CultureInfo.InvariantCulture);
 
                         //write out to file
                         writer.WriteLine(line);
@@ -892,8 +892,8 @@ namespace AgOpenGPS
 
 
                             ABLine.lineArr[i].heading = glm.toRadians(double.Parse(words[1], CultureInfo.InvariantCulture));
-                            ABLine.lineArr[i].origin.easting = double.Parse(words[2], CultureInfo.InvariantCulture);
-                            ABLine.lineArr[i].origin.northing = double.Parse(words[3], CultureInfo.InvariantCulture);
+                            ABLine.lineArr[i].ptA.easting = double.Parse(words[2], CultureInfo.InvariantCulture);
+                            ABLine.lineArr[i].ptA.northing = double.Parse(words[3], CultureInfo.InvariantCulture);
                             ABLine.numABLines++;
                         }
                     }
@@ -1045,7 +1045,7 @@ namespace AgOpenGPS
             if (ABLine.lineArr.Count > 0)
             {
                 ABLine.numABLineSelected = 1;
-                ABLine.refPoint1 = ABLine.lineArr[ABLine.numABLineSelected - 1].origin;
+                ABLine.refPoint1 = ABLine.lineArr[ABLine.numABLineSelected - 1].ptA;
                 //ABLine.refPoint2 = ABLine.lineArr[ABLine.numABLineSelected - 1].ref2;
                 ABLine.abHeading = ABLine.lineArr[ABLine.numABLineSelected - 1].heading;
                 ABLine.SetABLineByHeading();
@@ -1065,7 +1065,7 @@ namespace AgOpenGPS
             {
                 curve.numCurveLineSelected = 1;
                 int idx = curve.numCurveLineSelected - 1;
-                curve.aveLineHeading = curve.curveArr[idx].aveHeading;
+                curve.aveLineHeading = curve.curveArr[idx].heading;
 
                 curve.refList?.Clear();
                 for (int i = 0; i < curve.curveArr[idx].curvePts.Count; i++)
@@ -2546,10 +2546,10 @@ namespace AgOpenGPS
                 kml.WriteElementString("tessellate", "1");
                 kml.WriteStartElement("coordinates");
 
-                linePts = pn.GetLocalToWSG84_KML(ABLine.lineArr[i].origin.easting - (Math.Sin(ABLine.lineArr[i].heading) * ABLine.abLength),
-                    ABLine.lineArr[i].origin.northing - (Math.Cos(ABLine.lineArr[i].heading) * ABLine.abLength));
-                linePts += pn.GetLocalToWSG84_KML(ABLine.lineArr[i].origin.easting + (Math.Sin(ABLine.lineArr[i].heading) * ABLine.abLength),
-                    ABLine.lineArr[i].origin.northing + (Math.Cos(ABLine.lineArr[i].heading) * ABLine.abLength));
+                linePts = pn.GetLocalToWSG84_KML(ABLine.lineArr[i].ptA.easting - (Math.Sin(ABLine.lineArr[i].heading) * ABLine.abLength),
+                    ABLine.lineArr[i].ptA.northing - (Math.Cos(ABLine.lineArr[i].heading) * ABLine.abLength));
+                linePts += pn.GetLocalToWSG84_KML(ABLine.lineArr[i].ptA.easting + (Math.Sin(ABLine.lineArr[i].heading) * ABLine.abLength),
+                    ABLine.lineArr[i].ptA.northing + (Math.Cos(ABLine.lineArr[i].heading) * ABLine.abLength));
                 kml.WriteRaw(linePts);
 
                 kml.WriteEndElement(); // <coordinates>

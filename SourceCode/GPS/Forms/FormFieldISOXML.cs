@@ -559,8 +559,8 @@ namespace AgOpenGPS
 
                                     mf.ABLine.lineArr[idx].heading = mf.ABLine.desHeading;
                                     //calculate the new points for the reference line and points
-                                    mf.ABLine.lineArr[idx].origin.easting = (mf.ABLine.desPoint1.easting + mf.ABLine.desPoint2.easting) / 2;
-                                    mf.ABLine.lineArr[idx].origin.northing = (mf.ABLine.desPoint1.northing + mf.ABLine.desPoint2.northing) / 2;
+                                    mf.ABLine.lineArr[idx].ptA.easting = (mf.ABLine.desPoint1.easting + mf.ABLine.desPoint2.easting) / 2;
+                                    mf.ABLine.lineArr[idx].ptA.northing = (mf.ABLine.desPoint1.northing + mf.ABLine.desPoint2.northing) / 2;
 
                                     mf.ABLine.lineArr[idx].Name = mf.ABLine.desName.Trim();
                                 }
@@ -606,7 +606,7 @@ namespace AgOpenGPS
                                         cnt = mf.curve.refList.Count;
                                         if (cnt > 3)
                                         {
-                                            mf.curve.curveArr.Add(new CCurveLines());
+                                            mf.curve.curveArr.Add(new CCurveLine());
 
                                             //make sure distance isn't too big between points on Turn
                                             for (int i = 0; i < cnt - 1; i++)
@@ -652,7 +652,7 @@ namespace AgOpenGPS
 
                                             mf.curve.isCurveSet = true;
 
-                                            //mf.curve.curveArr.Add(new CCurveLines());
+                                            //mf.curve.curveArr.Add(new CCurveLine());
                                             mf.curve.numCurveLines = mf.curve.curveArr.Count;
                                             mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
 
@@ -667,7 +667,7 @@ namespace AgOpenGPS
                                                 mf.curve.curveArr[idx].Name = mf.curve.desName;
                                             }
 
-                                            mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;
+                                            mf.curve.curveArr[idx].heading = mf.curve.aveLineHeading;
 
                                             //write out the Curve Points
                                             foreach (vec3 item in mf.curve.refList)
@@ -739,8 +739,8 @@ namespace AgOpenGPS
 
                             mf.ABLine.lineArr[idx].heading = mf.ABLine.desHeading;
                             //calculate the new points for the reference line and points
-                            mf.ABLine.lineArr[idx].origin.easting = (mf.ABLine.desPoint1.easting + mf.ABLine.desPoint2.easting) / 2;
-                            mf.ABLine.lineArr[idx].origin.northing = (mf.ABLine.desPoint1.northing + mf.ABLine.desPoint2.northing) / 2;
+                            mf.ABLine.lineArr[idx].ptA.easting = (mf.ABLine.desPoint1.easting + mf.ABLine.desPoint2.easting) / 2;
+                            mf.ABLine.lineArr[idx].ptA.northing = (mf.ABLine.desPoint1.northing + mf.ABLine.desPoint2.northing) / 2;
 
                             mf.ABLine.lineArr[idx].Name = mf.ABLine.desName.Trim();
                         }
@@ -780,7 +780,7 @@ namespace AgOpenGPS
                                 cnt = mf.curve.refList.Count;
                                 if (cnt > 3)
                                 {
-                                    mf.curve.curveArr.Add(new CCurveLines());
+                                    mf.curve.curveArr.Add(new CCurveLine());
 
                                     //make sure distance isn't too big between points on Turn
                                     for (int i = 0; i < cnt - 1; i++)
@@ -826,7 +826,7 @@ namespace AgOpenGPS
 
                                     mf.curve.isCurveSet = true;
 
-                                    //mf.curve.curveArr.Add(new CCurveLines());
+                                    //mf.curve.curveArr.Add(new CCurveLine());
                                     mf.curve.numCurveLines = mf.curve.curveArr.Count;
                                     mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
 
@@ -838,7 +838,7 @@ namespace AgOpenGPS
                                             + "\u00B0" + mf.FindDirection(mf.curve.aveLineHeading)
                                             + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
-                                    mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;
+                                    mf.curve.curveArr[idx].heading = mf.curve.aveLineHeading;
 
                                     //write out the Curve Points
                                     foreach (vec3 item in mf.curve.refList)
