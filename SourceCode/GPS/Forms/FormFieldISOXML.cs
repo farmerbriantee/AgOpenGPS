@@ -534,23 +534,23 @@ namespace AgOpenGPS
 
                                     mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
 
-                                    mf.ABLine.desPoint1.easting = easting;
-                                    mf.ABLine.desPoint1.northing = norting;
+                                    mf.ABLine.desPointA.easting = easting;
+                                    mf.ABLine.desPointA.northing = norting;
 
                                     double.TryParse(nodePart.ChildNodes[0].ChildNodes[0].ChildNodes[1].Attributes["C"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
                                     double.TryParse(nodePart.ChildNodes[0].ChildNodes[0].ChildNodes[1].Attributes["D"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
 
                                     mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
 
-                                    mf.ABLine.desPoint2.easting = easting;
-                                    mf.ABLine.desPoint2.northing = norting;
+                                    mf.ABLine.desPointB.easting = easting;
+                                    mf.ABLine.desPointB.northing = norting;
 
                                     // heading based on AB points
-                                    mf.ABLine.desHeading = Math.Atan2(mf.ABLine.desPoint2.easting - mf.ABLine.desPoint1.easting,
-                                        mf.ABLine.desPoint2.northing - mf.ABLine.desPoint1.northing);
+                                    mf.ABLine.desHeading = Math.Atan2(mf.ABLine.desPointB.easting - mf.ABLine.desPointA.easting,
+                                        mf.ABLine.desPointB.northing - mf.ABLine.desPointA.northing);
                                     if (mf.ABLine.desHeading < 0) mf.ABLine.desHeading += glm.twoPI;
 
-                                    mf.ABLine.lineArr.Add(new CABLines());
+                                    mf.ABLine.lineArr.Add(new CRefLine());
                                     mf.ABLine.numABLines = mf.ABLine.lineArr.Count;
                                     mf.ABLine.numABLineSelected = mf.ABLine.numABLines;
 
@@ -559,8 +559,8 @@ namespace AgOpenGPS
 
                                     mf.ABLine.lineArr[idx].heading = mf.ABLine.desHeading;
                                     //calculate the new points for the reference line and points
-                                    mf.ABLine.lineArr[idx].ptA.easting = (mf.ABLine.desPoint1.easting + mf.ABLine.desPoint2.easting) / 2;
-                                    mf.ABLine.lineArr[idx].ptA.northing = (mf.ABLine.desPoint1.northing + mf.ABLine.desPoint2.northing) / 2;
+                                    mf.ABLine.lineArr[idx].ptA.easting = (mf.ABLine.desPointA.easting + mf.ABLine.desPointB.easting) / 2;
+                                    mf.ABLine.lineArr[idx].ptA.northing = (mf.ABLine.desPointA.northing + mf.ABLine.desPointB.northing) / 2;
 
                                     mf.ABLine.lineArr[idx].Name = mf.ABLine.desName.Trim();
                                 }
@@ -606,7 +606,7 @@ namespace AgOpenGPS
                                         cnt = mf.curve.refList.Count;
                                         if (cnt > 3)
                                         {
-                                            mf.curve.curveArr.Add(new CCurveLine());
+                                            mf.curve.curveArr.Add(new CRefCurve());
 
                                             //make sure distance isn't too big between points on Turn
                                             for (int i = 0; i < cnt - 1; i++)
@@ -652,7 +652,7 @@ namespace AgOpenGPS
 
                                             mf.curve.isCurveSet = true;
 
-                                            //mf.curve.curveArr.Add(new CCurveLine());
+                                            //mf.curve.curveArr.Add(new CRefCurve());
                                             mf.curve.numCurveLines = mf.curve.curveArr.Count;
                                             mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
 
@@ -714,23 +714,23 @@ namespace AgOpenGPS
 
                             mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
 
-                            mf.ABLine.desPoint1.easting = easting;
-                            mf.ABLine.desPoint1.northing = norting;
+                            mf.ABLine.desPointA.easting = easting;
+                            mf.ABLine.desPointA.northing = norting;
 
                             double.TryParse(nodePart.ChildNodes[1].Attributes["C"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
                             double.TryParse(nodePart.ChildNodes[1].Attributes["D"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
 
                             mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
 
-                            mf.ABLine.desPoint2.easting = easting;
-                            mf.ABLine.desPoint2.northing = norting;
+                            mf.ABLine.desPointB.easting = easting;
+                            mf.ABLine.desPointB.northing = norting;
 
                             // heading based on AB points
-                            mf.ABLine.desHeading = Math.Atan2(mf.ABLine.desPoint2.easting - mf.ABLine.desPoint1.easting,
-                                mf.ABLine.desPoint2.northing - mf.ABLine.desPoint1.northing);
+                            mf.ABLine.desHeading = Math.Atan2(mf.ABLine.desPointB.easting - mf.ABLine.desPointA.easting,
+                                mf.ABLine.desPointB.northing - mf.ABLine.desPointA.northing);
                             if (mf.ABLine.desHeading < 0) mf.ABLine.desHeading += glm.twoPI;
 
-                            mf.ABLine.lineArr.Add(new CABLines());
+                            mf.ABLine.lineArr.Add(new CRefLine());
                             mf.ABLine.numABLines = mf.ABLine.lineArr.Count;
                             mf.ABLine.numABLineSelected = mf.ABLine.numABLines;
 
@@ -739,8 +739,8 @@ namespace AgOpenGPS
 
                             mf.ABLine.lineArr[idx].heading = mf.ABLine.desHeading;
                             //calculate the new points for the reference line and points
-                            mf.ABLine.lineArr[idx].ptA.easting = (mf.ABLine.desPoint1.easting + mf.ABLine.desPoint2.easting) / 2;
-                            mf.ABLine.lineArr[idx].ptA.northing = (mf.ABLine.desPoint1.northing + mf.ABLine.desPoint2.northing) / 2;
+                            mf.ABLine.lineArr[idx].ptA.easting = (mf.ABLine.desPointA.easting + mf.ABLine.desPointB.easting) / 2;
+                            mf.ABLine.lineArr[idx].ptA.northing = (mf.ABLine.desPointA.northing + mf.ABLine.desPointB.northing) / 2;
 
                             mf.ABLine.lineArr[idx].Name = mf.ABLine.desName.Trim();
                         }
@@ -780,7 +780,7 @@ namespace AgOpenGPS
                                 cnt = mf.curve.refList.Count;
                                 if (cnt > 3)
                                 {
-                                    mf.curve.curveArr.Add(new CCurveLine());
+                                    mf.curve.curveArr.Add(new CRefCurve());
 
                                     //make sure distance isn't too big between points on Turn
                                     for (int i = 0; i < cnt - 1; i++)
@@ -826,7 +826,7 @@ namespace AgOpenGPS
 
                                     mf.curve.isCurveSet = true;
 
-                                    //mf.curve.curveArr.Add(new CCurveLine());
+                                    //mf.curve.curveArr.Add(new CRefCurve());
                                     mf.curve.numCurveLines = mf.curve.curveArr.Count;
                                     mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
 

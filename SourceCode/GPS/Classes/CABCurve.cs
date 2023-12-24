@@ -46,7 +46,7 @@ namespace AgOpenGPS
         public bool isSmoothWindowOpen;
         public List<vec3> smooList = new List<vec3>();
 
-        public List<CCurveLine> curveArr = new List<CCurveLine>();
+        public List<CRefCurve> curveArr = new List<CRefCurve>();
         public int numCurveLines, numCurveLineSelected;
 
         public bool isCurveValid, isLateralTriggered;
@@ -1044,7 +1044,7 @@ namespace AgOpenGPS
         }
     }
 
-    public class CCurveLine
+    public class CRefCurve
     {
         public List<vec3> curvePts = new List<vec3>();
         public double heading = 3;

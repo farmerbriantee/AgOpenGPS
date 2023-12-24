@@ -384,7 +384,7 @@ namespace AgOpenGPS
             {
                 if (textBox1.Text.Length == 0) textBox2.Text = "No Name " + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
-                mf.curve.curveArr.Add(new CCurveLine());
+                mf.curve.curveArr.Add(new CRefCurve());
 
                 //array number is 1 less since it starts at zero
                 int idx = mf.curve.curveArr.Count - 1;

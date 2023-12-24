@@ -757,7 +757,7 @@ namespace AgOpenGPS
 
                         while (!reader.EndOfStream)
                         {
-                            curve.curveArr.Add(new CCurveLine());
+                            curve.curveArr.Add(new CRefCurve());
 
                             //read header $CurveLine
                             curve.curveArr[curve.numCurveLines].Name = reader.ReadLine();
@@ -886,7 +886,7 @@ namespace AgOpenGPS
 
                             if (words.Length != 4) break;
 
-                            ABLine.lineArr.Add(new CABLines());
+                            ABLine.lineArr.Add(new CRefLine());
 
                             ABLine.lineArr[i].Name = words[0];
 
@@ -1045,19 +1045,16 @@ namespace AgOpenGPS
             if (ABLine.lineArr.Count > 0)
             {
                 ABLine.numABLineSelected = 1;
-                ABLine.refPoint1 = ABLine.lineArr[ABLine.numABLineSelected - 1].ptA;
-                //ABLine.refPoint2 = ABLine.lineArr[ABLine.numABLineSelected - 1].ref2;
+                ABLine.refPtA = ABLine.lineArr[ABLine.numABLineSelected - 1].ptA;
+                //ABLine.refPtB = ABLine.lineArr[ABLine.numABLineSelected - 1].ref2;
                 ABLine.abHeading = ABLine.lineArr[ABLine.numABLineSelected - 1].heading;
                 ABLine.SetABLineByHeading();
                 ABLine.isABLineSet = false;
-                ABLine.isABLineLoaded = true;
             }
             else
             {
                 ABLine.isABLineSet = false;
-                ABLine.isABLineLoaded = false;
             }
-
 
             //CurveLines
             FileLoadCurveLines();
@@ -2236,8 +2233,8 @@ namespace AgOpenGPS
         //            else writer.WriteLine(false);
 
         //            writer.WriteLine(ABLine.abHeading.ToString(CultureInfo.InvariantCulture));
-        //            writer.WriteLine(ABLine.refPoint1.easting.ToString(CultureInfo.InvariantCulture) + "," + ABLine.refPoint1.northing.ToString(CultureInfo.InvariantCulture));
-        //            writer.WriteLine(ABLine.refPoint2.easting.ToString(CultureInfo.InvariantCulture) + "," + ABLine.refPoint2.northing.ToString(CultureInfo.InvariantCulture));
+        //            writer.WriteLine(ABLine.refPtA.easting.ToString(CultureInfo.InvariantCulture) + "," + ABLine.refPtA.northing.ToString(CultureInfo.InvariantCulture));
+        //            writer.WriteLine(ABLine.refPtB.easting.ToString(CultureInfo.InvariantCulture) + "," + ABLine.refPtB.northing.ToString(CultureInfo.InvariantCulture));
         //            writer.WriteLine(ABLine.tramPassEvery.ToString(CultureInfo.InvariantCulture) + "," + ABLine.passBasedOn.ToString(CultureInfo.InvariantCulture));
         //        }
 

@@ -56,14 +56,13 @@ namespace AgOpenGPS
         {
             if (mf.ABLine.numABLineSelected > 0)
             {
-                mf.ABLine.refPoint1 = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].ptA;
+                mf.ABLine.refPtA = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].ptA;
                 mf.ABLine.abHeading = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].heading;
                 mf.ABLine.SetABLineByHeading();
 
                 if (mf.ABLine.isBtnABLineOn)
                 {
                     mf.ABLine.isABLineSet = true;
-                    mf.ABLine.isABLineLoaded = true;
                 }
                 else
                 {
@@ -74,7 +73,6 @@ namespace AgOpenGPS
             {
                 mf.ABLine.DeleteAB();
                 mf.ABLine.isABLineSet = false;
-                mf.ABLine.isABLineLoaded = false;
             }
 
             mf.FileSaveABLines();
@@ -103,7 +101,6 @@ namespace AgOpenGPS
                     if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
                     if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
                     mf.ABLine.isABLineSet = false;
-                    mf.ABLine.isABLineLoaded = false;
                     mf.btnABLine.Image = Properties.Resources.ABLineOff;
                     mf.ABLine.isBtnABLineOn = false;
                 }
@@ -383,7 +380,7 @@ namespace AgOpenGPS
 
                     //double offset = ((double)nudDistance.Value) / 200.0;
 
-                    mf.curve.curveArr.Add(new CCurveLine());
+                    mf.curve.curveArr.Add(new CRefCurve());
                     mf.curve.numCurveLines = mf.curve.curveArr.Count;
                     mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
 
@@ -541,7 +538,7 @@ namespace AgOpenGPS
 
                 mf.curve.isCurveSet = true;
 
-                mf.curve.curveArr.Add(new CCurveLine());
+                mf.curve.curveArr.Add(new CRefCurve());
                 mf.curve.numCurveLines = mf.curve.curveArr.Count;
                 mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
 
@@ -607,7 +604,7 @@ namespace AgOpenGPS
 
             double headingCalc = abHead + glm.PIBy2;
 
-            mf.ABLine.lineArr.Add(new CABLines());
+            mf.ABLine.lineArr.Add(new CRefLine());
             mf.ABLine.numABLines = mf.ABLine.lineArr.Count;
             mf.ABLine.numABLineSelected = mf.ABLine.numABLines;
 
@@ -773,7 +770,7 @@ namespace AgOpenGPS
                     GL.LineWidth(2);
                     GL.Begin(PrimitiveType.Lines);
 
-                    foreach (CABLines item in mf.ABLine.lineArr)
+                    foreach (CRefLine item in mf.ABLine.lineArr)
                     {
                         GL.Vertex3(item.ptA.easting - (Math.Sin(item.heading) * mf.ABLine.abLength), item.ptA.northing - (Math.Cos(item.heading) * mf.ABLine.abLength), 0);
                         GL.Vertex3(item.ptA.easting + (Math.Sin(item.heading) * mf.ABLine.abLength), item.ptA.northing + (Math.Cos(item.heading) * mf.ABLine.abLength), 0);

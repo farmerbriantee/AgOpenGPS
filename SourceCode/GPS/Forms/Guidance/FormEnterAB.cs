@@ -113,16 +113,16 @@ namespace AgOpenGPS
             {
                 mf.pn.ConvertWGS84ToLocal((double)nudLatitude.Value, (double)nudLongitude.Value, out nort, out east);
 
-                mf.ABLine.desPoint1.easting = east;
-                mf.ABLine.desPoint1.northing = nort;
+                mf.ABLine.desPointA.easting = east;
+                mf.ABLine.desPointA.northing = nort;
 
                 mf.pn.ConvertWGS84ToLocal((double)nudLatitudeB.Value, (double)nudLongitudeB.Value, out nort, out east);
-                mf.ABLine.desPoint2.easting = east;
-                mf.ABLine.desPoint2.northing = nort;
+                mf.ABLine.desPointB.easting = east;
+                mf.ABLine.desPointB.northing = nort;
 
                 // heading based on AB points
-                mf.ABLine.desHeading = Math.Atan2(mf.ABLine.desPoint2.easting - mf.ABLine.desPoint1.easting,
-                    mf.ABLine.desPoint2.northing - mf.ABLine.desPoint1.northing);
+                mf.ABLine.desHeading = Math.Atan2(mf.ABLine.desPointB.easting - mf.ABLine.desPointA.easting,
+                    mf.ABLine.desPointB.northing - mf.ABLine.desPointA.northing);
                 if (mf.ABLine.desHeading < 0) mf.ABLine.desHeading += glm.twoPI;
 
                 nudHeading.Value = (decimal)(glm.toDegrees(mf.ABLine.desHeading));
@@ -132,8 +132,8 @@ namespace AgOpenGPS
                 mf.pn.ConvertWGS84ToLocal((double)nudLatitude.Value, (double)nudLongitude.Value, out nort, out east);
 
                 mf.ABLine.desHeading = glm.toRadians((double)nudHeading.Value);
-                mf.ABLine.desPoint1.easting = east;
-                mf.ABLine.desPoint1.northing = nort;
+                mf.ABLine.desPointA.easting = east;
+                mf.ABLine.desPointA.northing = nort;
             }
 
             textBox1.Text = "Manual AB " +

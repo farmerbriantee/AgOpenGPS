@@ -41,13 +41,13 @@ namespace AgOpenGPS
 
             if (mf.ABLine.isHeadingSameWay)
             {
-                eAB = mf.ABLine.currentABLineP2.easting;
-                nAB = mf.ABLine.currentABLineP2.northing;
+                eAB = mf.ABLine.currentLinePtB.easting;
+                nAB = mf.ABLine.currentLinePtB.northing;
             }
             else
             {
-                eAB = mf.ABLine.currentABLineP1.easting;
-                nAB = mf.ABLine.currentABLineP1.northing;
+                eAB = mf.ABLine.currentLinePtA.easting;
+                nAB = mf.ABLine.currentLinePtA.northing;
             }
 
             turnClosestList.Clear();

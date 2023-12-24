@@ -87,7 +87,7 @@ namespace AgOpenGPS
         private void bntOk_Click(object sender, EventArgs e)
         {
             isClosing = true;
-            if (mf.ABLine.isABLineSet && mf.ABLine.isABLineLoaded)
+            if (mf.ABLine.isABLineSet)
             {
                 //index to last one.
                 int idx = mf.ABLine.numABLineSelected - 1;
@@ -96,8 +96,8 @@ namespace AgOpenGPS
                 {
                     mf.ABLine.lineArr[idx].heading = mf.ABLine.abHeading;
                     //calculate the new points for the reference line and points
-                    mf.ABLine.lineArr[idx].ptA.easting = mf.ABLine.refPoint1.easting;
-                    mf.ABLine.lineArr[idx].ptA.northing = mf.ABLine.refPoint1.northing;
+                    mf.ABLine.lineArr[idx].ptA.easting = mf.ABLine.refPtA.easting;
+                    mf.ABLine.lineArr[idx].ptA.northing = mf.ABLine.refPtA.northing;
                 }
 
                 mf.FileSaveABLines();
@@ -113,39 +113,22 @@ namespace AgOpenGPS
         private void btnCancel_Click(object sender, EventArgs e)
         {
             isClosing = true;
-            if (mf.ABLine.isABLineSet && mf.ABLine.isABLineLoaded && mf.isJobStarted)
+            if (mf.ABLine.isABLineSet && mf.isJobStarted)
             {
                 int last = mf.ABLine.numABLineSelected;
                 mf.FileLoadABLines();
 
                 mf.ABLine.numABLineSelected = last;
-                mf.ABLine.refPoint1 = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].ptA;
+                mf.ABLine.refPtA = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].ptA;
                 mf.ABLine.abHeading = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].heading;
                 mf.ABLine.SetABLineByHeading();
                 mf.ABLine.isABLineSet = true;
-                mf.ABLine.isABLineLoaded = true;
                 mf.ABLine.moveDistance = 0;
 
                 mf.panelRight.Enabled = true;
                 mf.ABLine.isABValid = false;
             }
             Close();
-        }
-
-        private void btnSwapAB_Click(object sender, EventArgs e)
-        {
-            mf.ABLine.abHeading += Math.PI;
-            if (mf.ABLine.abHeading > glm.twoPI) mf.ABLine.abHeading -= glm.twoPI;
-
-            mf.ABLine.refABLineP1.easting = mf.ABLine.refPoint1.easting - (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
-            mf.ABLine.refABLineP1.northing = mf.ABLine.refPoint1.northing - (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
-            mf.ABLine.refABLineP2.easting = mf.ABLine.refPoint1.easting + (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
-            mf.ABLine.refABLineP2.northing = mf.ABLine.refPoint1.northing + (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
-
-            mf.ABLine.refPoint2.easting = mf.ABLine.refABLineP2.easting;
-            mf.ABLine.refPoint2.northing = mf.ABLine.refABLineP2.northing;
-            tboxHeading.Text = Math.Round(glm.toDegrees(mf.ABLine.abHeading), 5).ToString();
-            mf.ABLine.isABValid = false;
         }
 
         private void btnContourPriority_Click(object sender, EventArgs e)

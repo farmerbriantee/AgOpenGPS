@@ -118,8 +118,8 @@ namespace AgOpenGPS
                     {
                         mf.ABLine.lineArr[idx].heading = mf.ABLine.abHeading;
                         //calculate the new points for the reference line and points
-                        mf.ABLine.lineArr[idx].ptA.easting = mf.ABLine.refPoint1.easting;
-                        mf.ABLine.lineArr[idx].ptA.northing = mf.ABLine.refPoint1.northing;
+                        mf.ABLine.lineArr[idx].ptA.easting = mf.ABLine.refPtA.easting;
+                        mf.ABLine.lineArr[idx].ptA.northing = mf.ABLine.refPtA.northing;
                     }
 
                     mf.FileSaveABLines();
@@ -230,14 +230,14 @@ namespace AgOpenGPS
                 mf.ABLine.abHeading += Math.PI;
                 if (mf.ABLine.abHeading > glm.twoPI) mf.ABLine.abHeading -= glm.twoPI;
 
-                mf.ABLine.refABLineP1.easting = mf.ABLine.refPoint1.easting - (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
-                mf.ABLine.refABLineP1.northing = mf.ABLine.refPoint1.northing - (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
+                mf.ABLine.refLineA.easting = mf.ABLine.refPtA.easting - (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
+                mf.ABLine.refLineA.northing = mf.ABLine.refPtA.northing - (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
 
-                mf.ABLine.refABLineP2.easting = mf.ABLine.refPoint1.easting + (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
-                mf.ABLine.refABLineP2.northing = mf.ABLine.refPoint1.northing + (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
+                mf.ABLine.refLineB.easting = mf.ABLine.refPtA.easting + (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
+                mf.ABLine.refLineB.northing = mf.ABLine.refPtA.northing + (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
 
-                mf.ABLine.refPoint2.easting = mf.ABLine.refABLineP2.easting;
-                mf.ABLine.refPoint2.northing = mf.ABLine.refABLineP2.northing;
+                mf.ABLine.refPtB.easting = mf.ABLine.refLineB.easting;
+                mf.ABLine.refPtB.northing = mf.ABLine.refLineB.northing;
             }
             MoveBuildTramLine(0);
         }

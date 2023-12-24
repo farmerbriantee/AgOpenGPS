@@ -189,7 +189,7 @@ namespace AgOpenGPS
             btnCurve.Image = Properties.Resources.CurveOff;
 
             //if there is a line in memory, just use it.
-            if (ABLine.isBtnABLineOn == false && ABLine.isABLineLoaded)
+            if (ABLine.isBtnABLineOn == false && ABLine.numABLines > 0)
             {                
                 ABLine.isABLineSet = true;
                 EnableYouTurnButtons();
@@ -505,11 +505,10 @@ namespace AgOpenGPS
                     if (ABLine.lineArr[idx].isVisible) break;
                 }
 
-                ABLine.refPoint1 = ABLine.lineArr[idx].ptA;
+                ABLine.refPtA = ABLine.lineArr[idx].ptA;
                 ABLine.abHeading = ABLine.lineArr[idx].heading;
                 ABLine.SetABLineByHeading();
                 ABLine.isABLineSet = true;
-                ABLine.isABLineLoaded = true;
                 yt.ResetYouTurn();
                 guidanceLineText = ABLine.lineArr[idx].Name; 
             }
@@ -555,28 +554,6 @@ namespace AgOpenGPS
 
             lblFieldStatus.Text = fieldData + "  :  " + guidanceLineText;
             UpdateGuidanceLineButtonNumbers();
-        }
-        private void SetABLine(int num)
-        {
-                ABLine.refPoint1 = ABLine.lineArr[ABLine.numABLineSelected - 1].ptA;
-                //ABLine.refPoint2 = ABLine.lineArr[ABLine.numABLineSelected - 1].ref2;
-                ABLine.abHeading = ABLine.lineArr[ABLine.numABLineSelected - 1].heading;
-                ABLine.SetABLineByHeading();
-                ABLine.isABLineSet = true;
-                ABLine.isABLineLoaded = true;
-                yt.ResetYouTurn();
-        }
-        private void SetCurveLine(int num)
-        {
-                int idx = curve.numCurveLineSelected - 1;
-                curve.aveLineHeading = curve.curveArr[idx].heading;
-                curve.refList?.Clear();
-                for (int i = 0; i < curve.curveArr[idx].curvePts.Count; i++)
-                {
-                    curve.refList.Add(curve.curveArr[idx].curvePts[i]);
-                }
-                curve.isCurveSet = true;
-                yt.ResetYouTurn();
         }
 
         #endregion
