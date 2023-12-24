@@ -8,8 +8,6 @@ namespace AgOpenGPS
     {
         private readonly FormGPS mf = null;
 
-        private bool isAB = true;
-
         public FormEnterFlag(Form callingForm)
         {
             //get copy of the calling main form

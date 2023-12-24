@@ -1046,7 +1046,7 @@ namespace AgOpenGPS
             curve.isBtnCurveOn = false;
             curve.isCurveSet = false;
             curve.ResetCurveLine();
-            curve.curveArr?.Clear();
+            curve.gArr?.Clear();
             curve.numCurveLineSelected = 0;
 
             //clean up tram

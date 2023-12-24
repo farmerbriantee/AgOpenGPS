@@ -66,25 +66,25 @@ namespace AgOpenGPS
         private void bntOk_Click(object sender, EventArgs e)
         {
             isClosing = true;
-            if (mf.curve.isCurveSet && mf.curve.refList.Count > 0)
+            if (mf.curve.isCurveSet && mf.curve.refCurve.curvePts.Count > 0)
             {
                 //array number is 1 less since it starts at zero
                 int idx = mf.curve.numCurveLineSelected - 1;
 
                 if (idx >= 0)
                 {
-                    mf.curve.curveArr[idx].heading = mf.curve.aveLineHeading;
-                    mf.curve.curveArr[idx].curvePts.Clear();
+                    mf.curve.gArr[idx].heading = mf.curve.refCurve.heading;
+                    mf.curve.gArr[idx].curvePts.Clear();
                     //write out the Curve Points
-                    foreach (vec3 item in mf.curve.refList)
+                    foreach (vec3 item in mf.curve.refCurve.curvePts)
                     {
-                        mf.curve.curveArr[idx].curvePts.Add(item);
+                        mf.curve.gArr[idx].curvePts.Add(item);
                     }
                 }
 
                 //save entire list
                 mf.FileSaveCurveLines();
-                mf.curve.moveDistance = 0;
+                mf.curve.refCurve.nudgeDistance = 0;
                 mf.curve.isCurveValid = false;
             }
             Close();
@@ -97,16 +97,16 @@ namespace AgOpenGPS
             {
                 int last = mf.curve.numCurveLineSelected;
                 mf.FileLoadCurveLines();
-                if (mf.curve.curveArr.Count > 0)
+                if (mf.curve.gArr.Count > 0)
                 {
                     mf.curve.numCurveLineSelected = last;
                     int idx = mf.curve.numCurveLineSelected - 1;
-                    mf.curve.aveLineHeading = mf.curve.curveArr[idx].heading;
+                    mf.curve.refCurve.heading = mf.curve.gArr[idx].heading;
 
-                    mf.curve.refList?.Clear();
-                    for (int i = 0; i < mf.curve.curveArr[idx].curvePts.Count; i++)
+                    mf.curve.refCurve.curvePts?.Clear();
+                    for (int i = 0; i < mf.curve.gArr[idx].curvePts.Count; i++)
                     {
-                        mf.curve.refList.Add(mf.curve.curveArr[idx].curvePts[i]);
+                        mf.curve.refCurve.curvePts.Add(mf.curve.gArr[idx].curvePts[i]);
                     }
                     mf.curve.isCurveSet = true;
                 }
@@ -120,19 +120,19 @@ namespace AgOpenGPS
         {
             mf.curve.isCurveValid = false;
             mf.curve.lastSecond = 0;
-            int cnt = mf.curve.refList.Count;
+            int cnt = mf.curve.refCurve.curvePts.Count;
             if (cnt > 0)
             {
-                mf.curve.refList.Reverse();
+                mf.curve.refCurve.curvePts.Reverse();
 
                 vec3[] arr = new vec3[cnt];
                 cnt--;
-                mf.curve.refList.CopyTo(arr);
-                mf.curve.refList.Clear();
+                mf.curve.refCurve.curvePts.CopyTo(arr);
+                mf.curve.refCurve.curvePts.Clear();
 
-                mf.curve.aveLineHeading += Math.PI;
-                if (mf.curve.aveLineHeading < 0) mf.curve.aveLineHeading += glm.twoPI;
-                if (mf.curve.aveLineHeading > glm.twoPI) mf.curve.aveLineHeading -= glm.twoPI;
+                mf.curve.refCurve.heading += Math.PI;
+                if (mf.curve.refCurve.heading < 0) mf.curve.refCurve.heading += glm.twoPI;
+                if (mf.curve.refCurve.heading > glm.twoPI) mf.curve.refCurve.heading -= glm.twoPI;
 
                 for (int i = 1; i < cnt; i++)
                 {
@@ -140,7 +140,7 @@ namespace AgOpenGPS
                     pt3.heading += Math.PI;
                     if (pt3.heading > glm.twoPI) pt3.heading -= glm.twoPI;
                     if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                    mf.curve.refList.Add(pt3);
+                    mf.curve.refCurve.curvePts.Add(pt3);
                 }
             }
         }

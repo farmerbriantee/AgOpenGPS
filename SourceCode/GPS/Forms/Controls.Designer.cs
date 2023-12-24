@@ -327,7 +327,7 @@ namespace AgOpenGPS
             int abVis = 0, curveVis = 0;
 
             ABLine.numABLines = ABLine.lineArr.Count;
-            curve.numCurveLines = curve.curveArr.Count;
+            curve.numCurveLines = curve.gArr.Count;
 
             //if (ABLine.numABLines > 0)
             {
@@ -344,9 +344,9 @@ namespace AgOpenGPS
 
             //if (curve.numCurveLines > 0)
             {
-                for (int i = 0; i < curve.curveArr.Count; i++)
+                for (int i = 0; i < curve.gArr.Count; i++)
                 {
-                    if (curve.curveArr[i].isVisible)
+                    if (curve.gArr[i].isVisible)
                     {
                         curveVis++;
                     }
@@ -514,12 +514,12 @@ namespace AgOpenGPS
             }
             else if (curve.isBtnCurveOn && curve.numCurveLines > 0)
             {
-                curve.moveDistance = 0;
+                curve.refCurve.nudgeDistance = 0;
 
                 //make sure one is visible
-                for (int i = 0; i < curve.curveArr.Count; i++)
+                for (int i = 0; i < curve.gArr.Count; i++)
                 {
-                    if (curve.curveArr[i].isVisible)
+                    if (curve.gArr[i].isVisible)
                     {
                         isVis = true;
                         break;
@@ -538,18 +538,17 @@ namespace AgOpenGPS
 
                     idx = curve.numCurveLineSelected - 1;
 
-                    if (curve.curveArr[idx].isVisible) break;
+                    if (curve.gArr[idx].isVisible) break;
                 }
 
-                curve.aveLineHeading = curve.curveArr[idx].heading;
-                curve.refList?.Clear();
-                for (int i = 0; i < curve.curveArr[idx].curvePts.Count; i++)
+                curve.refCurve.curvePts?.Clear();
+                for (int i = 0; i < curve.gArr[idx].curvePts.Count; i++)
                 {
-                    curve.refList.Add(curve.curveArr[idx].curvePts[i]);
+                    curve.refCurve.curvePts.Add(curve.gArr[idx].curvePts[i]);
                 }
                 curve.isCurveSet = true;
                 yt.ResetYouTurn();
-                guidanceLineText = curve.curveArr[idx].Name;
+                guidanceLineText = curve.gArr[idx].Name;
             }
 
             lblFieldStatus.Text = fieldData + "  :  " + guidanceLineText;
@@ -2071,7 +2070,7 @@ namespace AgOpenGPS
             {
                 form.ShowDialog(this);
                 ABLine.moveDistance = 0;
-                curve.moveDistance = 0;
+                curve.refCurve.nudgeDistance = 0;
             }
         }
         private void btnYouSkipEnable_Click(object sender, EventArgs e)

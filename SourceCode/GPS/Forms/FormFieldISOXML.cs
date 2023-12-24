@@ -584,7 +584,7 @@ namespace AgOpenGPS
 
                                     if (nodePart.ChildNodes[0].ChildNodes[0].ChildNodes.Count > 2)
                                     {
-                                        mf.curve.refList?.Clear();
+                                        mf.curve.refCurve.curvePts?.Clear();
                                         //GGP / GPN / LSG / PNT
                                         int cnt = nodePart.ChildNodes[0].ChildNodes[0].ChildNodes.Count;
 
@@ -600,28 +600,28 @@ namespace AgOpenGPS
                                             pt3.northing = norting;
                                             pt3.heading = 0;
 
-                                            mf.curve.refList.Add(pt3);
+                                            mf.curve.refCurve.curvePts.Add(pt3);
                                         }
 
-                                        cnt = mf.curve.refList.Count;
+                                        cnt = mf.curve.refCurve.curvePts.Count;
                                         if (cnt > 3)
                                         {
-                                            mf.curve.curveArr.Add(new CRefCurve());
+                                            mf.curve.gArr.Add(new CRefCurve());
 
                                             //make sure distance isn't too big between points on Turn
                                             for (int i = 0; i < cnt - 1; i++)
                                             {
                                                 int j = i + 1;
                                                 //if (j == cnt) j = 0;
-                                                double distance = glm.Distance(mf.curve.refList[i], mf.curve.refList[j]);
+                                                double distance = glm.Distance(mf.curve.refCurve.curvePts[i], mf.curve.refCurve.curvePts[j]);
                                                 if (distance > 1.6)
                                                 {
-                                                    vec3 pointB = new vec3((mf.curve.refList[i].easting + mf.curve.refList[j].easting) / 2.0,
-                                                        (mf.curve.refList[i].northing + mf.curve.refList[j].northing) / 2.0,
-                                                        mf.curve.refList[i].heading);
+                                                    vec3 pointB = new vec3((mf.curve.refCurve.curvePts[i].easting + mf.curve.refCurve.curvePts[j].easting) / 2.0,
+                                                        (mf.curve.refCurve.curvePts[i].northing + mf.curve.refCurve.curvePts[j].northing) / 2.0,
+                                                        mf.curve.refCurve.curvePts[i].heading);
 
-                                                    mf.curve.refList.Insert(j, pointB);
-                                                    cnt = mf.curve.refList.Count;
+                                                    mf.curve.refCurve.curvePts.Insert(j, pointB);
+                                                    cnt = mf.curve.refCurve.curvePts.Count;
                                                     i = -1;
                                                 }
                                             }
@@ -633,46 +633,46 @@ namespace AgOpenGPS
                                             double x = 0, y = 0;
                                             mf.curve.isCurveSet = true;
 
-                                            foreach (vec3 pt in mf.curve.refList)
+                                            foreach (vec3 pt in mf.curve.refCurve.curvePts)
                                             {
                                                 x += Math.Cos(pt.heading);
                                                 y += Math.Sin(pt.heading);
                                             }
-                                            x /= mf.curve.refList.Count;
-                                            y /= mf.curve.refList.Count;
-                                            mf.curve.aveLineHeading = Math.Atan2(y, x);
-                                            if (mf.curve.aveLineHeading < 0) mf.curve.aveLineHeading += glm.twoPI;
+                                            x /= mf.curve.refCurve.curvePts.Count;
+                                            y /= mf.curve.refCurve.curvePts.Count;
+                                            mf.curve.refCurve.heading = Math.Atan2(y, x);
+                                            if (mf.curve.refCurve.heading < 0) mf.curve.refCurve.heading += glm.twoPI;
 
                                             //build the tail extensions
-                                            mf.curve.AddFirstLastPoints(ref mf.curve.refList);
+                                            mf.curve.AddFirstLastPoints(ref mf.curve.refCurve.curvePts);
                                             mf.curve.CalculateTurnHeadings();
 
                                             //array number is 1 less since it starts at zero
-                                            int idx = mf.curve.curveArr.Count - 1;
+                                            int idx = mf.curve.gArr.Count - 1;
 
                                             mf.curve.isCurveSet = true;
 
-                                            //mf.curve.curveArr.Add(new CRefCurve());
-                                            mf.curve.numCurveLines = mf.curve.curveArr.Count;
+                                            //mf.curve.gArr.Add(new CRefCurve());
+                                            mf.curve.numCurveLines = mf.curve.gArr.Count;
                                             mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
 
                                             if (string.IsNullOrEmpty(mf.curve.desName))
                                             {
                                                 //create a name
-                                                mf.curve.curveArr[idx].Name = (Math.Round(glm.toDegrees(mf.curve.aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture)
-                                                     + "\u00B0" + mf.FindDirection(mf.curve.aveLineHeading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
+                                                mf.curve.gArr[idx].Name = (Math.Round(glm.toDegrees(mf.curve.refCurve.heading), 1)).ToString(CultureInfo.InvariantCulture)
+                                                     + "\u00B0" + mf.FindDirection(mf.curve.refCurve.heading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
                                             }
                                             else
                                             {
-                                                mf.curve.curveArr[idx].Name = mf.curve.desName;
+                                                mf.curve.gArr[idx].Name = mf.curve.desName;
                                             }
 
-                                            mf.curve.curveArr[idx].heading = mf.curve.aveLineHeading;
+                                            mf.curve.gArr[idx].heading = mf.curve.refCurve.heading;
 
                                             //write out the Curve Points
-                                            foreach (vec3 item in mf.curve.refList)
+                                            foreach (vec3 item in mf.curve.refCurve.curvePts)
                                             {
-                                                mf.curve.curveArr[idx].curvePts.Add(item);
+                                                mf.curve.gArr[idx].curvePts.Add(item);
                                             }
                                         }
                                     }
@@ -758,7 +758,7 @@ namespace AgOpenGPS
 
                             if (nodePart.ChildNodes.Count > 2)
                             {
-                                mf.curve.refList?.Clear();
+                                mf.curve.refCurve.curvePts?.Clear();
                                 //GGP / GPN / LSG / PNT
                                 int cnt = nodePart.ChildNodes.Count;
 
@@ -774,28 +774,28 @@ namespace AgOpenGPS
                                     pt3.northing = norting;
                                     pt3.heading = 0;
 
-                                    mf.curve.refList.Add(pt3);
+                                    mf.curve.refCurve.curvePts.Add(pt3);
                                 }
 
-                                cnt = mf.curve.refList.Count;
+                                cnt = mf.curve.refCurve.curvePts.Count;
                                 if (cnt > 3)
                                 {
-                                    mf.curve.curveArr.Add(new CRefCurve());
+                                    mf.curve.gArr.Add(new CRefCurve());
 
                                     //make sure distance isn't too big between points on Turn
                                     for (int i = 0; i < cnt - 1; i++)
                                     {
                                         int j = i + 1;
                                         //if (j == cnt) j = 0;
-                                        double distance = glm.Distance(mf.curve.refList[i], mf.curve.refList[j]);
+                                        double distance = glm.Distance(mf.curve.refCurve.curvePts[i], mf.curve.refCurve.curvePts[j]);
                                         if (distance > 1.6)
                                         {
-                                            vec3 pointB = new vec3((mf.curve.refList[i].easting + mf.curve.refList[j].easting) / 2.0,
-                                                (mf.curve.refList[i].northing + mf.curve.refList[j].northing) / 2.0,
-                                                mf.curve.refList[i].heading);
+                                            vec3 pointB = new vec3((mf.curve.refCurve.curvePts[i].easting + mf.curve.refCurve.curvePts[j].easting) / 2.0,
+                                                (mf.curve.refCurve.curvePts[i].northing + mf.curve.refCurve.curvePts[j].northing) / 2.0,
+                                                mf.curve.refCurve.curvePts[i].heading);
 
-                                            mf.curve.refList.Insert(j, pointB);
-                                            cnt = mf.curve.refList.Count;
+                                            mf.curve.refCurve.curvePts.Insert(j, pointB);
+                                            cnt = mf.curve.refCurve.curvePts.Count;
                                             i = -1;
                                         }
                                     }
@@ -807,43 +807,43 @@ namespace AgOpenGPS
                                     double x = 0, y = 0;
                                     mf.curve.isCurveSet = true;
 
-                                    foreach (vec3 pt in mf.curve.refList)
+                                    foreach (vec3 pt in mf.curve.refCurve.curvePts)
                                     {
                                         x += Math.Cos(pt.heading);
                                         y += Math.Sin(pt.heading);
                                     }
-                                    x /= mf.curve.refList.Count;
-                                    y /= mf.curve.refList.Count;
-                                    mf.curve.aveLineHeading = Math.Atan2(y, x);
-                                    if (mf.curve.aveLineHeading < 0) mf.curve.aveLineHeading += glm.twoPI;
+                                    x /= mf.curve.refCurve.curvePts.Count;
+                                    y /= mf.curve.refCurve.curvePts.Count;
+                                    mf.curve.refCurve.heading = Math.Atan2(y, x);
+                                    if (mf.curve.refCurve.heading < 0) mf.curve.refCurve.heading += glm.twoPI;
 
                                     //build the tail extensions
-                                    mf.curve.AddFirstLastPoints(ref mf.curve.refList);
+                                    mf.curve.AddFirstLastPoints(ref mf.curve.refCurve.curvePts);
                                     mf.curve.CalculateTurnHeadings();
 
                                     //array number is 1 less since it starts at zero
-                                    int idx = mf.curve.curveArr.Count - 1;
+                                    int idx = mf.curve.gArr.Count - 1;
 
                                     mf.curve.isCurveSet = true;
 
-                                    //mf.curve.curveArr.Add(new CRefCurve());
-                                    mf.curve.numCurveLines = mf.curve.curveArr.Count;
+                                    //mf.curve.gArr.Add(new CRefCurve());
+                                    mf.curve.numCurveLines = mf.curve.gArr.Count;
                                     mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
 
                                     //create a name
                                     if (!string.IsNullOrEmpty(mf.curve.desName))
-                                        mf.curve.curveArr[idx].Name = mf.curve.desName;
-                                    else mf.curve.curveArr[idx].Name =
-                                            (Math.Round(glm.toDegrees(mf.curve.aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture)
-                                            + "\u00B0" + mf.FindDirection(mf.curve.aveLineHeading)
+                                        mf.curve.gArr[idx].Name = mf.curve.desName;
+                                    else mf.curve.gArr[idx].Name =
+                                            (Math.Round(glm.toDegrees(mf.curve.refCurve.heading), 1)).ToString(CultureInfo.InvariantCulture)
+                                            + "\u00B0" + mf.FindDirection(mf.curve.refCurve.heading)
                                             + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
-                                    mf.curve.curveArr[idx].heading = mf.curve.aveLineHeading;
+                                    mf.curve.gArr[idx].heading = mf.curve.refCurve.heading;
 
                                     //write out the Curve Points
-                                    foreach (vec3 item in mf.curve.refList)
+                                    foreach (vec3 item in mf.curve.refCurve.curvePts)
                                     {
-                                        mf.curve.curveArr[idx].curvePts.Add(new vec3(item));
+                                        mf.curve.gArr[idx].curvePts.Add(new vec3(item));
                                     }
                                 }
                             }

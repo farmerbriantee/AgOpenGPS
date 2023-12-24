@@ -266,7 +266,7 @@ namespace AgOpenGPS
 
                         if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
                         {
-                            guidanceLineText = curve.curveArr[curve.numCurveLineSelected - 1].Name;
+                            guidanceLineText = curve.gArr[curve.numCurveLineSelected - 1].Name;
                         }
                         else if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
                         {
@@ -277,7 +277,7 @@ namespace AgOpenGPS
                         int abVis = 0, curveVis = 0;
 
                         ABLine.numABLines = ABLine.lineArr.Count;
-                        curve.numCurveLines = curve.curveArr.Count;
+                        curve.numCurveLines = curve.gArr.Count;
 
                         //if (ABLine.numABLines > 0)
                         {
@@ -294,9 +294,9 @@ namespace AgOpenGPS
 
                         //if (curve.numCurveLines > 0)
                         {
-                            for (int i = 0; i < curve.curveArr.Count; i++)
+                            for (int i = 0; i < curve.gArr.Count; i++)
                             {
-                                if (curve.curveArr[i].isVisible)
+                                if (curve.gArr[i].isVisible)
                                 {
                                     curveVis++;
                                 }
@@ -408,7 +408,7 @@ namespace AgOpenGPS
                 //}
                 //if (curve.isBtnCurveOn && !ct.isContourBtnOn)
                 //{
-                //    btnEditAB.Text = ((int)(curve.moveDistance * 100)).ToString();
+                //    btnEditAB.Text = ((int)(curve.refCurve.nudgeDistance * 100)).ToString();
                 //}
 
                 //statusbar flash red undefined headland
@@ -486,7 +486,7 @@ namespace AgOpenGPS
         private void UpdateGuidanceLineButtonNumbers()
         {
             btnABLine.Text = ABLine.numABLineSelected.ToString() + " / " + ABLine.lineArr.Count.ToString();
-            btnCurve.Text = curve.numCurveLineSelected.ToString() + " / " + curve.curveArr.Count.ToString();
+            btnCurve.Text = curve.numCurveLineSelected.ToString() + " / " + curve.gArr.Count.ToString();
         }
 
         public void LoadSettings()

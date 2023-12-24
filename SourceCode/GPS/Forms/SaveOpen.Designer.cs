@@ -172,20 +172,20 @@ namespace AgOpenGPS
                             < PNT A = "2" C = "51.61962230" D = "4.51056760" />
                         </ LSG >
                         */
-                        if (curve.curveArr != null && curve.curveArr.Count > 0)
+                        if (curve.gArr != null && curve.gArr.Count > 0)
                         {
-                            for (int i = 0; i < curve.curveArr.Count; i++)
+                            for (int i = 0; i < curve.gArr.Count; i++)
                             {
                                 xml.WriteStartElement("LSG");//Curve
                                 xml.WriteAttributeString("A", "5"); //denotes guidance
-                                xml.WriteAttributeString("B", curve.curveArr[i].Name);
+                                xml.WriteAttributeString("B", curve.gArr[i].Name);
                                 //xml.WriteAttributeString("C", (tool.width).ToString());
 
-                                for (int j = 0; j < curve.curveArr[i].curvePts.Count; j++)
+                                for (int j = 0; j < curve.gArr[i].curvePts.Count; j++)
                                 {
                                     xml.WriteStartElement("PNT");//point
-                                    pn.ConvertLocalToWGS84(curve.curveArr[i].curvePts[j].northing,
-                                        curve.curveArr[i].curvePts[j].easting, out lat, out lon);
+                                    pn.ConvertLocalToWGS84(curve.gArr[i].curvePts[j].northing,
+                                        curve.gArr[i].curvePts[j].easting, out lat, out lon);
 
                                     xml.WriteAttributeString("A", "2");
                                     xml.WriteAttributeString("C", lat.ToString());
@@ -384,19 +384,19 @@ namespace AgOpenGPS
                         </ LSG >
                         */
 
-                        if (curve.curveArr != null && curve.curveArr.Count > 0)
+                        if (curve.gArr != null && curve.gArr.Count > 0)
                         {
-                            for (int i = 0; i < curve.curveArr.Count; i++)
+                            for (int i = 0; i < curve.gArr.Count; i++)
                             {
                                 xml.WriteStartElement("GGP");//Guide-P
                                 string name = "GGP" + lineCounter.ToString();
                                 lineCounter++;
                                 xml.WriteAttributeString("A", name);
-                                xml.WriteAttributeString("B", curve.curveArr[i].Name);
+                                xml.WriteAttributeString("B", curve.gArr[i].Name);
                                 {
                                     xml.WriteStartElement("GPN");//Guide-N
                                     xml.WriteAttributeString("A", name);
-                                    xml.WriteAttributeString("B", curve.curveArr[i].Name);
+                                    xml.WriteAttributeString("B", curve.gArr[i].Name);
                                     xml.WriteAttributeString("C", "3");
                                     xml.WriteAttributeString("E", "1");
                                     xml.WriteAttributeString("F", "1");
@@ -405,16 +405,16 @@ namespace AgOpenGPS
                                         xml.WriteStartElement("LSG");//Curve
                                         xml.WriteAttributeString("A", "5"); //denotes guidance
 
-                                        for (int j = 0; j < curve.curveArr[i].curvePts.Count; j++)
+                                        for (int j = 0; j < curve.gArr[i].curvePts.Count; j++)
                                         {
                                             xml.WriteStartElement("PNT");//point
-                                            pn.ConvertLocalToWGS84(curve.curveArr[i].curvePts[j].northing,
-                                                curve.curveArr[i].curvePts[j].easting, out lat, out lon);
+                                            pn.ConvertLocalToWGS84(curve.gArr[i].curvePts[j].northing,
+                                                curve.gArr[i].curvePts[j].easting, out lat, out lon);
                                             if (j == 0)
                                             {
                                                 xml.WriteAttributeString("A", "6");
                                             }
-                                            else if (j == curve.curveArr[i].curvePts.Count - 1)
+                                            else if (j == curve.gArr[i].curvePts.Count - 1)
                                             {
                                                 xml.WriteAttributeString("A", "7");
                                             }
@@ -652,7 +652,7 @@ namespace AgOpenGPS
 
         public void FileSaveCurveLines()
         {
-            curve.moveDistance = 0;
+            curve.refCurve.nudgeDistance = 0;
 
             string dirField = fieldsDirectory + currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
@@ -662,7 +662,7 @@ namespace AgOpenGPS
 
             string filename = directoryName + "\\CurveLines.txt";
 
-            int cnt = curve.curveArr.Count;
+            int cnt = curve.gArr.Count;
             curve.numCurveLines = cnt;
 
             using (StreamWriter writer = new StreamWriter(filename, false))
@@ -676,21 +676,21 @@ namespace AgOpenGPS
                         for (int i = 0; i < cnt; i++)
                         {
                             //write out the Name
-                            writer.WriteLine(curve.curveArr[i].Name);
+                            writer.WriteLine(curve.gArr[i].Name);
 
                             //write out the aveheading
-                            writer.WriteLine(curve.curveArr[i].heading.ToString(CultureInfo.InvariantCulture));
+                            writer.WriteLine(curve.gArr[i].heading.ToString(CultureInfo.InvariantCulture));
 
                             //write out the points of ref line
-                            int cnt2 = curve.curveArr[i].curvePts.Count;
+                            int cnt2 = curve.gArr[i].curvePts.Count;
 
                             writer.WriteLine(cnt2.ToString(CultureInfo.InvariantCulture));
-                            if (curve.curveArr[i].curvePts.Count > 0)
+                            if (curve.gArr[i].curvePts.Count > 0)
                             {
                                 for (int j = 0; j < cnt2; j++)
-                                    writer.WriteLine(Math.Round(curve.curveArr[i].curvePts[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                                        Math.Round(curve.curveArr[i].curvePts[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                                            Math.Round(curve.curveArr[i].curvePts[j].heading, 5).ToString(CultureInfo.InvariantCulture));
+                                    writer.WriteLine(Math.Round(curve.gArr[i].curvePts[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                                        Math.Round(curve.gArr[i].curvePts[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                                            Math.Round(curve.gArr[i].curvePts[j].heading, 5).ToString(CultureInfo.InvariantCulture));
                             }
                         }
                     }
@@ -714,9 +714,9 @@ namespace AgOpenGPS
 
         public void FileLoadCurveLines()
         {
-            curve.moveDistance = 0;
+            curve.refCurve.nudgeDistance = 0;
 
-            curve.curveArr?.Clear();
+            curve.gArr?.Clear();
             curve.numCurveLines = 0;
 
             //get the directory and make sure it exists, create if not
@@ -757,20 +757,20 @@ namespace AgOpenGPS
 
                         while (!reader.EndOfStream)
                         {
-                            curve.curveArr.Add(new CRefCurve());
+                            curve.gArr.Add(new CRefCurve());
 
                             //read header $CurveLine
-                            curve.curveArr[curve.numCurveLines].Name = reader.ReadLine();
+                            curve.gArr[curve.numCurveLines].Name = reader.ReadLine();
                             // get the average heading
                             line = reader.ReadLine();
-                            curve.curveArr[curve.numCurveLines].heading = double.Parse(line, CultureInfo.InvariantCulture);
+                            curve.gArr[curve.numCurveLines].heading = double.Parse(line, CultureInfo.InvariantCulture);
 
                             line = reader.ReadLine();
                             int numPoints = int.Parse(line);
 
                             if (numPoints > 1)
                             {
-                                curve.curveArr[curve.numCurveLines].curvePts?.Clear();
+                                curve.gArr[curve.numCurveLines].curvePts?.Clear();
 
                                 for (int i = 0; i < numPoints; i++)
                                 {
@@ -779,15 +779,15 @@ namespace AgOpenGPS
                                     vec3 vecPt = new vec3(double.Parse(words[0], CultureInfo.InvariantCulture),
                                         double.Parse(words[1], CultureInfo.InvariantCulture),
                                         double.Parse(words[2], CultureInfo.InvariantCulture));
-                                    curve.curveArr[curve.numCurveLines].curvePts.Add(vecPt);
+                                    curve.gArr[curve.numCurveLines].curvePts.Add(vecPt);
                                 }
                                 curve.numCurveLines++;
                             }
                             else
                             {
-                                if (curve.curveArr.Count > 0)
+                                if (curve.gArr.Count > 0)
                                 {
-                                    curve.curveArr.RemoveAt(curve.numCurveLines);
+                                    curve.gArr.RemoveAt(curve.numCurveLines);
                                 }
                             }
                         }
@@ -1058,23 +1058,23 @@ namespace AgOpenGPS
 
             //CurveLines
             FileLoadCurveLines();
-            if (curve.curveArr.Count > 0)
+            if (curve.gArr.Count > 0)
             {
                 curve.numCurveLineSelected = 1;
                 int idx = curve.numCurveLineSelected - 1;
-                curve.aveLineHeading = curve.curveArr[idx].heading;
+                curve.refCurve.heading = curve.gArr[idx].heading;
 
-                curve.refList?.Clear();
-                for (int i = 0; i < curve.curveArr[idx].curvePts.Count; i++)
+                curve.refCurve.curvePts?.Clear();
+                for (int i = 0; i < curve.gArr[idx].curvePts.Count; i++)
                 {
-                    curve.refList.Add(curve.curveArr[idx].curvePts[i]);
+                    curve.refCurve.curvePts.Add(curve.gArr[idx].curvePts[i]);
                 }
                 curve.isCurveSet = true;
             }
             else
             {
                 curve.isCurveSet = false;
-                curve.refList?.Clear();
+                curve.refCurve.curvePts?.Clear();
             }
             
             //section patches
@@ -2270,16 +2270,16 @@ namespace AgOpenGPS
         //            writer.WriteLine("$CurveLine");
 
         //            //write out the aveheading
-        //            writer.WriteLine(curve.aveLineHeading.ToString(CultureInfo.InvariantCulture));
+        //            writer.WriteLine(curve.refCurve.heading.ToString(CultureInfo.InvariantCulture));
 
         //            //write out the points of ref line
-        //            writer.WriteLine(curve.refList.Count.ToString(CultureInfo.InvariantCulture));
-        //            if (curve.refList.Count > 0)
+        //            writer.WriteLine(curve.refCurve.curvePts.Count.ToString(CultureInfo.InvariantCulture));
+        //            if (curve.refCurve.curvePts.Count > 0)
         //            {
-        //                for (int j = 0; j < curve.refList.Count; j++)
-        //                    writer.WriteLine(Math.Round(curve.refList[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
-        //                                        Math.Round(curve.refList[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
-        //                                            Math.Round(curve.refList[j].heading, 5).ToString(CultureInfo.InvariantCulture));
+        //                for (int j = 0; j < curve.refCurve.curvePts.Count; j++)
+        //                    writer.WriteLine(Math.Round(curve.refCurve.curvePts[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
+        //                                        Math.Round(curve.refCurve.curvePts[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
+        //                                            Math.Round(curve.refCurve.curvePts[j].heading, 5).ToString(CultureInfo.InvariantCulture));
         //            }
         //        }
 
@@ -2562,13 +2562,13 @@ namespace AgOpenGPS
             kml.WriteElementString("name", "Curve_Lines");
             kml.WriteElementString("visibility", "0");
 
-            for (int i = 0; i < curve.curveArr.Count; i++)
+            for (int i = 0; i < curve.gArr.Count; i++)
             {
                 linePts = "";
                 kml.WriteStartElement("Placemark");
                 kml.WriteElementString("visibility", "0");
 
-                kml.WriteElementString("name", curve.curveArr[i].Name);
+                kml.WriteElementString("name", curve.gArr[i].Name);
                 kml.WriteStartElement("Style");
 
                 kml.WriteStartElement("LineStyle");
@@ -2581,9 +2581,9 @@ namespace AgOpenGPS
                 kml.WriteElementString("tessellate", "1");
                 kml.WriteStartElement("coordinates");
 
-                for (int j = 0; j < curve.curveArr[i].curvePts.Count; j++)
+                for (int j = 0; j < curve.gArr[i].curvePts.Count; j++)
                 {
-                    linePts += pn.GetLocalToWSG84_KML(curve.curveArr[i].curvePts[j].easting, curve.curveArr[i].curvePts[j].northing);
+                    linePts += pn.GetLocalToWSG84_KML(curve.gArr[i].curvePts[j].easting, curve.gArr[i].curvePts[j].northing);
                 }
                 kml.WriteRaw(linePts);
 
