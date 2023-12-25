@@ -93,15 +93,15 @@ namespace AgOpenGPS
                         //array number is 1 less since it starts at zero
                         int idx = mf.curve.numCurveLineSelected - 1;
 
-                        //mf.curve.gArr[idxFieldSelected].Name = textBox1.Text.Trim();
+                        //mf.trk.gArr[idxFieldSelected].Name = textBox1.Text.Trim();
                         if (idx >= 0)
                         {
-                            mf.curve.gArr[idx].heading = mf.curve.refCurve.heading;
-                            mf.curve.gArr[idx].curvePts.Clear();
+                            mf.trk.gArr[idx].heading = mf.curve.refCurve.heading;
+                            mf.trk.gArr[idx].curvePts.Clear();
                             //write out the Curve Points
                             foreach (vec3 item in mf.curve.refCurve.curvePts)
                             {
-                                mf.curve.gArr[idx].curvePts.Add(item);
+                                mf.trk.gArr[idx].curvePts.Add(item);
                             }
                         }
 
@@ -116,10 +116,10 @@ namespace AgOpenGPS
 
                     if (idx >= 0)
                     {
-                        mf.ABLine.lineArr[idx].heading = mf.ABLine.abHeading;
+                        mf.trk.gArr[idx].heading = mf.ABLine.abHeading;
                         //calculate the new points for the reference line and points
-                        mf.ABLine.lineArr[idx].ptA.easting = mf.ABLine.refPtA.easting;
-                        mf.ABLine.lineArr[idx].ptA.northing = mf.ABLine.refPtA.northing;
+                        mf.trk.gArr[idx].ptA.easting = mf.ABLine.refPtA.easting;
+                        mf.trk.gArr[idx].ptA.northing = mf.ABLine.refPtA.northing;
                     }
 
                     mf.FileSaveABLines();

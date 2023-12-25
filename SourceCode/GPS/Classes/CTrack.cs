@@ -14,7 +14,7 @@ namespace AgOpenGPS
         //pointers to mainform controls
         private readonly FormGPS mf;
 
-        public List<CTrk> tracksArr = new List<CTrk>();
+        public List<CTrk> gArr = new List<CTrk>();
 
         public int idx;
 

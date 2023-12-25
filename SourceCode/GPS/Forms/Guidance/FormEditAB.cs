@@ -94,10 +94,10 @@ namespace AgOpenGPS
 
                 if (idx >= 0)
                 {
-                    mf.ABLine.lineArr[idx].heading = mf.ABLine.abHeading;
+                    mf.trk.gArr[idx].heading = mf.ABLine.abHeading;
                     //calculate the new points for the reference line and points
-                    mf.ABLine.lineArr[idx].ptA.easting = mf.ABLine.refPtA.easting;
-                    mf.ABLine.lineArr[idx].ptA.northing = mf.ABLine.refPtA.northing;
+                    mf.trk.gArr[idx].ptA.easting = mf.ABLine.refPtA.easting;
+                    mf.trk.gArr[idx].ptA.northing = mf.ABLine.refPtA.northing;
                 }
 
                 mf.FileSaveABLines();
@@ -119,8 +119,8 @@ namespace AgOpenGPS
                 mf.FileLoadABLines();
 
                 mf.ABLine.numABLineSelected = last;
-                mf.ABLine.refPtA = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].ptA;
-                mf.ABLine.abHeading = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].heading;
+                mf.ABLine.refPtA = mf.trk.gArr[mf.ABLine.numABLineSelected - 1].ptA;
+                mf.ABLine.abHeading = mf.trk.gArr[mf.ABLine.numABLineSelected - 1].heading;
                 mf.ABLine.SetABLineByHeading();
                 mf.ABLine.isABLineSet = true;
                 mf.ABLine.moveDistance = 0;

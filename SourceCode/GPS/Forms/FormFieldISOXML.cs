@@ -550,19 +550,19 @@ namespace AgOpenGPS
                                         mf.ABLine.desPointB.northing - mf.ABLine.desPointA.northing);
                                     if (mf.ABLine.desHeading < 0) mf.ABLine.desHeading += glm.twoPI;
 
-                                    mf.ABLine.lineArr.Add(new CTrk());
-                                    mf.ABLine.numABLines = mf.ABLine.lineArr.Count;
+                                    mf.trk.gArr.Add(new CTrk());
+                                    mf.ABLine.numABLines = mf.trk.gArr.Count;
                                     mf.ABLine.numABLineSelected = mf.ABLine.numABLines;
 
                                     //index to last one.
-                                    int idx = mf.ABLine.lineArr.Count - 1;
+                                    int idx = mf.trk.gArr.Count - 1;
 
-                                    mf.ABLine.lineArr[idx].heading = mf.ABLine.desHeading;
+                                    mf.trk.gArr[idx].heading = mf.ABLine.desHeading;
                                     //calculate the new points for the reference line and points
-                                    mf.ABLine.lineArr[idx].ptA.easting = (mf.ABLine.desPointA.easting + mf.ABLine.desPointB.easting) / 2;
-                                    mf.ABLine.lineArr[idx].ptA.northing = (mf.ABLine.desPointA.northing + mf.ABLine.desPointB.northing) / 2;
+                                    mf.trk.gArr[idx].ptA.easting = (mf.ABLine.desPointA.easting + mf.ABLine.desPointB.easting) / 2;
+                                    mf.trk.gArr[idx].ptA.northing = (mf.ABLine.desPointA.northing + mf.ABLine.desPointB.northing) / 2;
 
-                                    mf.ABLine.lineArr[idx].Name = mf.ABLine.desName.Trim();
+                                    mf.trk.gArr[idx].Name = mf.ABLine.desName.Trim();
                                 }
                             } //LSG
                         }
@@ -606,7 +606,7 @@ namespace AgOpenGPS
                                         cnt = mf.curve.refCurve.curvePts.Count;
                                         if (cnt > 3)
                                         {
-                                            mf.curve.gArr.Add(new CTrk());
+                                            mf.trk.gArr.Add(new CTrk());
 
                                             //make sure distance isn't too big between points on Turn
                                             for (int i = 0; i < cnt - 1; i++)
@@ -648,31 +648,31 @@ namespace AgOpenGPS
                                             mf.curve.CalculateTurnHeadings();
 
                                             //array number is 1 less since it starts at zero
-                                            int idx = mf.curve.gArr.Count - 1;
+                                            int idx = mf.trk.gArr.Count - 1;
 
                                             mf.curve.isCurveSet = true;
 
-                                            //mf.curve.gArr.Add(new CTrk());
-                                            mf.curve.numCurveLines = mf.curve.gArr.Count;
+                                            //trk.gArr.Add(new CTrk());
+                                            mf.curve.numCurveLines = mf.trk.gArr.Count;
                                             mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
 
                                             if (string.IsNullOrEmpty(mf.curve.desName))
                                             {
                                                 //create a name
-                                                mf.curve.gArr[idx].Name = (Math.Round(glm.toDegrees(mf.curve.refCurve.heading), 1)).ToString(CultureInfo.InvariantCulture)
+                                                mf.trk.gArr[idx].Name = (Math.Round(glm.toDegrees(mf.curve.refCurve.heading), 1)).ToString(CultureInfo.InvariantCulture)
                                                      + "\u00B0" + mf.FindDirection(mf.curve.refCurve.heading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
                                             }
                                             else
                                             {
-                                                mf.curve.gArr[idx].Name = mf.curve.desName;
+                                                mf.trk.gArr[idx].Name = mf.curve.desName;
                                             }
 
-                                            mf.curve.gArr[idx].heading = mf.curve.refCurve.heading;
+                                            mf.trk.gArr[idx].heading = mf.curve.refCurve.heading;
 
                                             //write out the Curve Points
                                             foreach (vec3 item in mf.curve.refCurve.curvePts)
                                             {
-                                                mf.curve.gArr[idx].curvePts.Add(item);
+                                                mf.trk.gArr[idx].curvePts.Add(item);
                                             }
                                         }
                                     }
@@ -730,19 +730,19 @@ namespace AgOpenGPS
                                 mf.ABLine.desPointB.northing - mf.ABLine.desPointA.northing);
                             if (mf.ABLine.desHeading < 0) mf.ABLine.desHeading += glm.twoPI;
 
-                            mf.ABLine.lineArr.Add(new CTrk());
-                            mf.ABLine.numABLines = mf.ABLine.lineArr.Count;
+                            mf.trk.gArr.Add(new CTrk());
+                            mf.ABLine.numABLines = mf.trk.gArr.Count;
                             mf.ABLine.numABLineSelected = mf.ABLine.numABLines;
 
                             //index to last one.
-                            int idx = mf.ABLine.lineArr.Count - 1;
+                            int idx = mf.trk.gArr.Count - 1;
 
-                            mf.ABLine.lineArr[idx].heading = mf.ABLine.desHeading;
+                            mf.trk.gArr[idx].heading = mf.ABLine.desHeading;
                             //calculate the new points for the reference line and points
-                            mf.ABLine.lineArr[idx].ptA.easting = (mf.ABLine.desPointA.easting + mf.ABLine.desPointB.easting) / 2;
-                            mf.ABLine.lineArr[idx].ptA.northing = (mf.ABLine.desPointA.northing + mf.ABLine.desPointB.northing) / 2;
+                            mf.trk.gArr[idx].ptA.easting = (mf.ABLine.desPointA.easting + mf.ABLine.desPointB.easting) / 2;
+                            mf.trk.gArr[idx].ptA.northing = (mf.ABLine.desPointA.northing + mf.ABLine.desPointB.northing) / 2;
 
-                            mf.ABLine.lineArr[idx].Name = mf.ABLine.desName.Trim();
+                            mf.trk.gArr[idx].Name = mf.ABLine.desName.Trim();
                         }
                         //curve ------------------------------------------------------------------
                         else if (nodePart.Attributes["A"].Value == "5" && nodePart.ChildNodes.Count > 2) //Guidance Pattern
@@ -780,7 +780,7 @@ namespace AgOpenGPS
                                 cnt = mf.curve.refCurve.curvePts.Count;
                                 if (cnt > 3)
                                 {
-                                    mf.curve.gArr.Add(new CTrk());
+                                    mf.trk.gArr.Add(new CTrk());
 
                                     //make sure distance isn't too big between points on Turn
                                     for (int i = 0; i < cnt - 1; i++)
@@ -822,28 +822,28 @@ namespace AgOpenGPS
                                     mf.curve.CalculateTurnHeadings();
 
                                     //array number is 1 less since it starts at zero
-                                    int idx = mf.curve.gArr.Count - 1;
+                                    int idx = mf.trk.gArr.Count - 1;
 
                                     mf.curve.isCurveSet = true;
 
-                                    //mf.curve.gArr.Add(new CTrk());
-                                    mf.curve.numCurveLines = mf.curve.gArr.Count;
+                                    //mf.trk.gArr.Add(new CTrk());
+                                    mf.curve.numCurveLines = mf.trk.gArr.Count;
                                     mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
 
                                     //create a name
                                     if (!string.IsNullOrEmpty(mf.curve.desName))
-                                        mf.curve.gArr[idx].Name = mf.curve.desName;
-                                    else mf.curve.gArr[idx].Name =
+                                        mf.trk.gArr[idx].Name = mf.curve.desName;
+                                    else mf.trk.gArr[idx].Name =
                                             (Math.Round(glm.toDegrees(mf.curve.refCurve.heading), 1)).ToString(CultureInfo.InvariantCulture)
                                             + "\u00B0" + mf.FindDirection(mf.curve.refCurve.heading)
                                             + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
-                                    mf.curve.gArr[idx].heading = mf.curve.refCurve.heading;
+                                    mf.trk.gArr[idx].heading = mf.curve.refCurve.heading;
 
                                     //write out the Curve Points
                                     foreach (vec3 item in mf.curve.refCurve.curvePts)
                                     {
-                                        mf.curve.gArr[idx].curvePts.Add(new vec3(item));
+                                        mf.trk.gArr[idx].curvePts.Add(new vec3(item));
                                     }
                                 }
                             }

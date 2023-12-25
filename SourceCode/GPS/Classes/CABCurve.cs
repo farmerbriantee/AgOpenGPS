@@ -38,8 +38,6 @@ namespace AgOpenGPS
         //the list of points of curve to drive on
         public List<vec3> curList = new List<vec3>();
 
-        public List<CTrk> gArr = new List<CTrk>();
-
         //the current curve reference line.
         public CTrk refCurve = new CTrk();
         public int numCurveLines, numCurveLineSelected;
@@ -69,15 +67,15 @@ namespace AgOpenGPS
 
         public void LoadCurve( int idx)
         {
-            refCurve.heading = gArr[idx].heading;
+            refCurve.heading = mf.trk.gArr[idx].heading;
             refCurve.curvePts?.Clear();
-            for (int i = 0; i < gArr[idx].curvePts.Count; i++)
+            for (int i = 0; i <  mf.trk.gArr[idx].curvePts.Count; i++)
             {
-                refCurve.curvePts.Add(gArr[idx].curvePts[i]);
+                refCurve.curvePts.Add(mf.trk.gArr[idx].curvePts[i]);
             }
             isCurveSet = true;
             mf.yt.ResetYouTurn();
-            mf.guidanceLineText = gArr[idx].Name;
+            mf.guidanceLineText = mf.trk.gArr[idx].Name;
         }
 
         public int FindNextVisibleCurve()
@@ -88,7 +86,7 @@ namespace AgOpenGPS
 
                 if (numCurveLineSelected > numCurveLines) numCurveLineSelected = 1;
 
-                if (gArr[numCurveLineSelected - 1].isVisible) return numCurveLineSelected;
+                if (mf.trk.gArr[numCurveLineSelected - 1].isVisible) return numCurveLineSelected;
             }
         }
 
@@ -333,8 +331,8 @@ namespace AgOpenGPS
                 if (pt33.heading < 0) pt33.heading += glm.twoPI;
                 curList.Add(pt33);
 
-                if (mf.curve.gArr == null || mf.curve.gArr.Count == 0) return;
-                if (mf.bnd.bndList.Count > 0 && !(mf.curve.gArr[mf.curve.numCurveLineSelected - 1].Name == "Boundary Curve"))
+                if (mf.trk.gArr == null || mf.trk.gArr.Count == 0) return;
+                if (mf.bnd.bndList.Count > 0 && !(mf.trk.gArr[mf.curve.numCurveLineSelected - 1].Name == "Boundary Curve"))
                 {
                     int ptCnt = curList.Count - 1;
 

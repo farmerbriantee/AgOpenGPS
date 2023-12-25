@@ -326,14 +326,14 @@ namespace AgOpenGPS
 
             int abVis = 0, curveVis = 0;
 
-            ABLine.numABLines = ABLine.lineArr.Count;
-            curve.numCurveLines = curve.gArr.Count;
+            ABLine.numABLines = trk.gArr.Count();
+            curve.numCurveLines = trk.gArr.Count;
 
             //if (ABLine.numABLines > 0)
             {
-                for (int i = 0; i < ABLine.lineArr.Count; i++)
+                for (int i = 0; i < trk.gArr.Count; i++)
                 {
-                    if (ABLine.lineArr[i].isVisible)
+                    if (trk.gArr[i].isVisible)
                     {
                         abVis++;
                     }
@@ -344,9 +344,9 @@ namespace AgOpenGPS
 
             //if (curve.numCurveLines > 0)
             {
-                for (int i = 0; i < curve.gArr.Count; i++)
+                for (int i = 0; i < trk.gArr.Count; i++)
                 {
-                    if (curve.gArr[i].isVisible)
+                    if (trk.gArr[i].isVisible)
                     {
                         curveVis++;
                     }
@@ -482,9 +482,9 @@ namespace AgOpenGPS
             {
                 ABLine.moveDistance = 0;
 
-                for (int i = 0; i < ABLine.lineArr.Count; i++)
+                for (int i = 0; i < trk.gArr.Count; i++)
                 {
-                    if (ABLine.lineArr[i].isVisible)
+                    if (trk.gArr[i].isVisible)
                     {
                         isVis = true;
                         break;
@@ -502,24 +502,24 @@ namespace AgOpenGPS
                     if (ABLine.numABLineSelected <1 )  ABLine.numABLineSelected = ABLine.numABLines;
                     idx = ABLine.numABLineSelected - 1;
 
-                    if (ABLine.lineArr[idx].isVisible) break;
+                    if (trk.gArr[idx].isVisible) break;
                 }
 
-                ABLine.refPtA = ABLine.lineArr[idx].ptA;
-                ABLine.abHeading = ABLine.lineArr[idx].heading;
+                ABLine.refPtA = trk.gArr[idx].ptA;
+                ABLine.abHeading = trk.gArr[idx].heading;
                 ABLine.SetABLineByHeading();
                 ABLine.isABLineSet = true;
                 yt.ResetYouTurn();
-                guidanceLineText = ABLine.lineArr[idx].Name; 
+                guidanceLineText = trk.gArr[idx].Name; 
             }
             else if (curve.isBtnCurveOn && curve.numCurveLines > 0)
             {
                 curve.refCurve.nudgeDistance = 0;
 
                 //make sure one is visible
-                for (int i = 0; i < curve.gArr.Count; i++)
+                for (int i = 0; i < trk.gArr.Count; i++)
                 {
-                    if (curve.gArr[i].isVisible)
+                    if (trk.gArr[i].isVisible)
                     {
                         isVis = true;
                         break;
@@ -538,17 +538,17 @@ namespace AgOpenGPS
 
                     idx = curve.numCurveLineSelected - 1;
 
-                    if (curve.gArr[idx].isVisible) break;
+                    if (trk.gArr[idx].isVisible) break;
                 }
 
                 curve.refCurve.curvePts?.Clear();
-                for (int i = 0; i < curve.gArr[idx].curvePts.Count; i++)
+                for (int i = 0; i < trk.gArr[idx].curvePts.Count; i++)
                 {
-                    curve.refCurve.curvePts.Add(curve.gArr[idx].curvePts[i]);
+                    curve.refCurve.curvePts.Add(trk.gArr[idx].curvePts[i]);
                 }
                 curve.isCurveSet = true;
                 yt.ResetYouTurn();
-                guidanceLineText = curve.gArr[idx].Name;
+                guidanceLineText = trk.gArr[idx].Name;
             }
 
             lblFieldStatus.Text = fieldData + "  :  " + guidanceLineText;

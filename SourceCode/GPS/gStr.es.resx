@@ -862,7 +862,7 @@ Naranja: módulo de autoguiado conectado y habilitado, el interruptor de direcci
 Verde: conectado, habilitado y con autoguiado. Completamente funcional.</value>
   </data>
   <data name="h_lblSwapDirectionCancel" xml:space="preserve">
-    <value>Esta área muestra la distancia hasta el inicio del próximo giro en U. Normalmente hay 2 funciones aquí. Cuando no esté en un giro en U, tocar esta área permite girar en la dirección opuesta. Si está haciendo un giro en U, tocar esta área cancela el giro en U, así que tenga cuidado y agarre el volante.</value>
+    <value>Esta área muestra la distancia hasta el inicio del próximo giro en U. Normalmente hay 2 funciones aquí. Cuando no esté en un giro en U, tocar esta área permite girar en la dirección opuesta. Si está haciendo un giro en U, tocar esta área cancela el giro en U, así que tenga cuidado y amf.trk.gArre el volante.</value>
   </data>
   <data name="h_lblVehicleDirectionResetTouch" xml:space="preserve">
     <value>Tocar para cambiar de dirección

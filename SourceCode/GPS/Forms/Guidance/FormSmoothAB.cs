@@ -72,12 +72,12 @@ namespace AgOpenGPS
 
                 if (idx >= 0)
                 {
-                    mf.curve.gArr[idx].heading = mf.curve.refCurve.heading;
-                    mf.curve.gArr[idx].curvePts.Clear();
+                    mf.trk.gArr[idx].heading = mf.curve.refCurve.heading;
+                    mf.trk.gArr[idx].curvePts.Clear();
                     //write out the Curve Points
                     foreach (vec3 item in mf.curve.refCurve.curvePts)
                     {
-                        mf.curve.gArr[idx].curvePts.Add(item);
+                        mf.trk.gArr[idx].curvePts.Add(item);
                     }
                 }
 

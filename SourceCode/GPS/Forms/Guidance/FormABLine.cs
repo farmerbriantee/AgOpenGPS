@@ -61,7 +61,7 @@ namespace AgOpenGPS
             Font backupfont = new Font(Font.FontFamily, 18F, FontStyle.Regular);
             flp.Controls.Clear();
 
-            for (int i = 0; i < mf.ABLine.lineArr.Count; i++)
+            for (int i = 0; i < mf.trk.gArr.Count; i++)
             {
                 //outer inner
                 Button a = new Button
@@ -73,7 +73,7 @@ namespace AgOpenGPS
                 };
                 a.Click += A_Click;
 
-                if (mf.ABLine.lineArr[i].isVisible)
+                if (mf.trk.gArr[i].isVisible)
                     a.BackColor = System.Drawing.Color.Green;
                 else
                     a.BackColor = System.Drawing.Color.Red;
@@ -82,13 +82,13 @@ namespace AgOpenGPS
                 {
                     Margin = new Padding(3),
                     Size = new Size(330, 35),
-                    Text = mf.ABLine.lineArr[i].Name,
+                    Text = mf.trk.gArr[i].Name,
                     Name = i.ToString(),
                 };
                 t.Font = backupfont;
                 t.Click += LineSelected_Click;
 
-                if (mf.ABLine.lineArr[i].isVisible)
+                if (mf.trk.gArr[i].isVisible)
                     t.ForeColor = System.Drawing.Color.Black;
                 else
                     t.ForeColor = System.Drawing.Color.Gray;
@@ -111,7 +111,7 @@ namespace AgOpenGPS
         {
             if (sender is Button b)
             {
-                mf.ABLine.lineArr[Convert.ToInt32(b.Name)].isVisible = !mf.ABLine.lineArr[Convert.ToInt32(b.Name)].isVisible;
+                mf.trk.gArr[Convert.ToInt32(b.Name)].isVisible = !mf.trk.gArr[Convert.ToInt32(b.Name)].isVisible;
                 selectedItem = -1;
                 UpdateTable();
             }
@@ -135,17 +135,17 @@ namespace AgOpenGPS
             if (selectedItem == -1 || selectedItem == 0)
                 return;
 
-            mf.ABLine.lineArr.Reverse(selectedItem - 1, 2);
+            mf.trk.gArr.Reverse(selectedItem - 1, 2);
             selectedItem--;
             UpdateTable();
         }
 
         private void btnMoveDn_Click(object sender, EventArgs e)
         {
-            if (selectedItem == -1 || selectedItem == (mf.ABLine.lineArr.Count - 1))
+            if (selectedItem == -1 || selectedItem == (mf.trk.gArr.Count - 1))
                 return;
 
-            mf.ABLine.lineArr.Reverse(selectedItem, 2);
+            mf.trk.gArr.Reverse(selectedItem, 2);
             selectedItem++;
             UpdateTable();
         }
@@ -275,7 +275,7 @@ namespace AgOpenGPS
             {
                 int idx = selectedItem;
 
-                textBox2.Text = mf.ABLine.lineArr[idx].Name;
+                textBox2.Text = mf.trk.gArr[idx].Name;
 
                 panelPick.Visible = false;
                 panelEditName.Visible = true;
@@ -413,7 +413,7 @@ namespace AgOpenGPS
             panelEditName.Visible = false;
             panelPick.Visible = true;
 
-            mf.ABLine.lineArr[idx].Name = textBox2.Text.Trim();
+            mf.trk.gArr[idx].Name = textBox2.Text.Trim();
             mf.FileSaveABLines();
 
             this.Size = new System.Drawing.Size(620, 475);
@@ -425,22 +425,22 @@ namespace AgOpenGPS
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            mf.ABLine.lineArr.Add(new CTrk());
-            mf.ABLine.numABLines = mf.ABLine.lineArr.Count;
+            mf.trk.gArr.Add(new CTrk());
+            mf.ABLine.numABLines = mf.trk.gArr.Count;
             mf.ABLine.numABLineSelected = mf.ABLine.numABLines;
 
             //index to last one.
-            int idx = mf.ABLine.lineArr.Count - 1;
+            int idx = mf.trk.gArr.Count - 1;
 
-            mf.ABLine.lineArr[idx].heading = mf.ABLine.desHeading;
+            mf.trk.gArr[idx].heading = mf.ABLine.desHeading;
             //calculate the new points for the reference line and points
-            mf.ABLine.lineArr[idx].ptA.easting = mf.ABLine.desPointA.easting;
-            mf.ABLine.lineArr[idx].ptA.northing = mf.ABLine.desPointA.northing;
+            mf.trk.gArr[idx].ptA.easting = mf.ABLine.desPointA.easting;
+            mf.trk.gArr[idx].ptA.northing = mf.ABLine.desPointA.northing;
 
             //name
             if (textBox2.Text.Trim() == "") textBox2.Text = "No Name " + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
-            mf.ABLine.lineArr[idx].Name = textBox1.Text.Trim();
+            mf.trk.gArr[idx].Name = textBox1.Text.Trim();
 
             mf.FileSaveABLines();
 
@@ -467,13 +467,13 @@ namespace AgOpenGPS
                 panelAPlus.Visible = false;
                 panelName.Visible = true;
 
-                mf.ABLine.desHeading = mf.ABLine.lineArr[idx].heading;
+                mf.ABLine.desHeading = mf.trk.gArr[idx].heading;
 
                 //calculate the new points for the reference line and points
-                mf.ABLine.desPointA.easting = mf.ABLine.lineArr[idx].ptA.easting;
-                mf.ABLine.desPointA.northing = mf.ABLine.lineArr[idx].ptA.northing;
+                mf.ABLine.desPointA.easting = mf.trk.gArr[idx].ptA.easting;
+                mf.ABLine.desPointA.northing = mf.trk.gArr[idx].ptA.northing;
 
-                mf.ABLine.desName = mf.ABLine.lineArr[idx].Name + " Copy";
+                mf.ABLine.desName = mf.trk.gArr[idx].Name + " Copy";
 
                 textBox1.Text = mf.ABLine.desName;
             }
@@ -491,8 +491,8 @@ namespace AgOpenGPS
                 int idx = selectedItem;
                 mf.ABLine.numABLineSelected = idx + 1;
 
-                mf.ABLine.abHeading = mf.ABLine.lineArr[idx].heading;
-                mf.ABLine.refPtA = mf.ABLine.lineArr[idx].ptA;
+                mf.ABLine.abHeading = mf.trk.gArr[idx].heading;
+                mf.ABLine.refPtA = mf.trk.gArr[idx].ptA;
 
                 mf.ABLine.SetABLineByHeading();
 
@@ -502,13 +502,13 @@ namespace AgOpenGPS
                 Close();
             }
 
-            else if (mf.ABLine.lineArr.Count > 0)
+            else if (mf.trk.gArr.Count > 0)
             {
-                int idx = mf.ABLine.lineArr.Count-1;
+                int idx = mf.trk.gArr.Count-1;
                 mf.ABLine.numABLineSelected = idx + 1;
 
-                mf.ABLine.abHeading = mf.ABLine.lineArr[idx].heading;
-                mf.ABLine.refPtA = mf.ABLine.lineArr[idx].ptA;
+                mf.ABLine.abHeading = mf.trk.gArr[idx].heading;
+                mf.ABLine.refPtA = mf.trk.gArr[idx].ptA;
 
                 mf.ABLine.SetABLineByHeading();
 
@@ -539,8 +539,8 @@ namespace AgOpenGPS
                 int idx = selectedItem;
                 mf.ABLine.isABValid = false;
 
-                mf.ABLine.lineArr[idx].heading += Math.PI;
-                if (mf.ABLine.lineArr[idx].heading > glm.twoPI) mf.ABLine.lineArr[idx].heading -= glm.twoPI;
+                mf.trk.gArr[idx].heading += Math.PI;
+                if (mf.trk.gArr[idx].heading > glm.twoPI) mf.trk.gArr[idx].heading -= glm.twoPI;
 
                 mf.FileSaveABLines();
 
@@ -556,9 +556,9 @@ namespace AgOpenGPS
         {
             if (selectedItem > -1)
             {
-                mf.ABLine.lineArr.RemoveAt(selectedItem);
+                mf.trk.gArr.RemoveAt(selectedItem);
 
-                mf.ABLine.numABLines = mf.ABLine.lineArr.Count;
+                mf.ABLine.numABLines = mf.trk.gArr.Count;
                 if (mf.ABLine.numABLineSelected > mf.ABLine.numABLines) mf.ABLine.numABLineSelected = mf.ABLine.numABLines;
 
                 if (mf.ABLine.numABLines == 0)
@@ -651,9 +651,9 @@ namespace AgOpenGPS
         private bool isOn = true;
         private void btnHideShow_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < mf.ABLine.lineArr.Count; i++)
+            for (int i = 0; i < mf.trk.gArr.Count; i++)
             {
-                mf.ABLine.lineArr[i].isVisible = isOn;
+                mf.trk.gArr[i].isVisible = isOn;
             }
 
             isOn = !isOn;

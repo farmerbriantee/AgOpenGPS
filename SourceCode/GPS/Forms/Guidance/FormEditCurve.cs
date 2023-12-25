@@ -73,12 +73,12 @@ namespace AgOpenGPS
 
                 if (idx >= 0)
                 {
-                    mf.curve.gArr[idx].heading = mf.curve.refCurve.heading;
-                    mf.curve.gArr[idx].curvePts.Clear();
+                    mf.trk.gArr[idx].heading = mf.curve.refCurve.heading;
+                    mf.trk.gArr[idx].curvePts.Clear();
                     //write out the Curve Points
                     foreach (vec3 item in mf.curve.refCurve.curvePts)
                     {
-                        mf.curve.gArr[idx].curvePts.Add(item);
+                        mf.trk.gArr[idx].curvePts.Add(item);
                     }
                 }
 
@@ -97,16 +97,16 @@ namespace AgOpenGPS
             {
                 int last = mf.curve.numCurveLineSelected;
                 mf.FileLoadCurveLines();
-                if (mf.curve.gArr.Count > 0)
+                if (mf.trk.gArr.Count > 0)
                 {
                     mf.curve.numCurveLineSelected = last;
                     int idx = mf.curve.numCurveLineSelected - 1;
-                    mf.curve.refCurve.heading = mf.curve.gArr[idx].heading;
+                    mf.curve.refCurve.heading = mf.trk.gArr[idx].heading;
 
                     mf.curve.refCurve.curvePts?.Clear();
-                    for (int i = 0; i < mf.curve.gArr[idx].curvePts.Count; i++)
+                    for (int i = 0; i < mf.trk.gArr[idx].curvePts.Count; i++)
                     {
-                        mf.curve.refCurve.curvePts.Add(mf.curve.gArr[idx].curvePts[i]);
+                        mf.curve.refCurve.curvePts.Add(mf.trk.gArr[idx].curvePts[i]);
                     }
                     mf.curve.isCurveSet = true;
                 }

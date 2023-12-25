@@ -24,7 +24,7 @@ namespace AgOpenGPS
         public vec2 goalPointAB = new vec2(0, 0);
 
         //List of all available ABLines
-        public List<CTrk> lineArr = new List<CTrk>();
+        public CTrk refLine = new CTrk();
 
         public int numABLines, numABLineSelected;
 
@@ -95,14 +95,14 @@ namespace AgOpenGPS
 
         public bool LoadABLine(int idx)
         {
-            if (lineArr[idx].isVisible)
+            if (mf.trk.gArr[idx].isVisible)
             {
-                refPtA = lineArr[idx].ptA;
-                abHeading = lineArr[idx].heading;
+                refPtA = mf.trk.gArr[idx].ptA;
+                abHeading = mf.trk.gArr[idx].heading;
                 SetABLineByHeading();
                 isABLineSet = true;
                 mf.yt.ResetYouTurn();
-                mf.guidanceLineText = lineArr[idx].Name;
+                mf.guidanceLineText = mf.trk.gArr[idx].Name;
                 return true;
             }
             else
@@ -117,7 +117,7 @@ namespace AgOpenGPS
 
                 if (numABLineSelected > numABLines) numABLineSelected = 1;
 
-                if (lineArr[numABLineSelected - 1].isVisible) return numABLineSelected;
+                if (mf.trk.gArr[numABLineSelected - 1].isVisible) return numABLineSelected;
             }
         }
 

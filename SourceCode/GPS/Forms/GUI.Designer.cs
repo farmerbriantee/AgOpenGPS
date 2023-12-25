@@ -266,24 +266,24 @@ namespace AgOpenGPS
 
                         if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
                         {
-                            guidanceLineText = curve.gArr[curve.numCurveLineSelected - 1].Name;
+                            guidanceLineText = trk.gArr[curve.numCurveLineSelected - 1].Name;
                         }
                         else if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
                         {
-                            guidanceLineText = ABLine.lineArr[ABLine.numABLineSelected - 1].Name;
+                            guidanceLineText = trk.gArr[ABLine.numABLineSelected - 1].Name;
                         }
                         else guidanceLineText = gStr.gsNoGuidanceLines;
 
                         int abVis = 0, curveVis = 0;
 
-                        ABLine.numABLines = ABLine.lineArr.Count;
-                        curve.numCurveLines = curve.gArr.Count;
+                        ABLine.numABLines = trk.gArr.Count;
+                        curve.numCurveLines = trk.gArr.Count;
 
                         //if (ABLine.numABLines > 0)
                         {
-                            for (int i = 0; i < ABLine.lineArr.Count; i++)
+                            for (int i = 0; i < trk.gArr.Count; i++)
                             {
-                                if (ABLine.lineArr[i].isVisible)
+                                if (trk.gArr[i].isVisible)
                                 {
                                     abVis++;
                                 }
@@ -294,9 +294,9 @@ namespace AgOpenGPS
 
                         //if (curve.numCurveLines > 0)
                         {
-                            for (int i = 0; i < curve.gArr.Count; i++)
+                            for (int i = 0; i < trk.gArr.Count; i++)
                             {
-                                if (curve.gArr[i].isVisible)
+                                if (trk.gArr[i].isVisible)
                                 {
                                     curveVis++;
                                 }
@@ -485,8 +485,8 @@ namespace AgOpenGPS
 
         private void UpdateGuidanceLineButtonNumbers()
         {
-            btnABLine.Text = ABLine.numABLineSelected.ToString() + " / " + ABLine.lineArr.Count.ToString();
-            btnCurve.Text = curve.numCurveLineSelected.ToString() + " / " + curve.gArr.Count.ToString();
+            btnABLine.Text = ABLine.numABLineSelected.ToString() + " / " + trk.gArr.Count.ToString();
+            btnCurve.Text = curve.numCurveLineSelected.ToString() + " / " + trk.gArr.Count.ToString();
         }
 
         public void LoadSettings()
@@ -1193,7 +1193,7 @@ namespace AgOpenGPS
                 }
 
                 //prevent flag selection if flag form is up
-                Form fc = Application.OpenForms["FormFlags"];
+                Form fc = Application.OpenForms["Forags"];
                 if (fc != null)
                 {
                     fc.Focus();

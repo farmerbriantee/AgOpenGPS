@@ -1044,7 +1044,6 @@ namespace AgOpenGPS
             btnABLine.Image = Properties.Resources.ABLineOff;
             ABLine.isBtnABLineOn = false;
             ABLine.DeleteAB();
-            ABLine.lineArr?.Clear();
             ABLine.numABLineSelected = 0;
             tram.tramList?.Clear();
 
@@ -1054,7 +1053,7 @@ namespace AgOpenGPS
             curve.isBtnCurveOn = false;
             curve.isCurveSet = false;
             curve.ResetCurveLine();
-            curve.gArr?.Clear();
+            trk.gArr?.Clear();
             curve.numCurveLineSelected = 0;
 
             //clean up tram
