@@ -149,6 +149,7 @@
       <DependentUpon>CBoundary.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\CSim.cs" />
+    <Compile Include="Classes\CTrack.cs" />
     <Compile Include="Classes\CTram.cs" />
     <Compile Include="Classes\CYouTurn.cs" />
     <Compile Include="Classes\CFlag.cs" />

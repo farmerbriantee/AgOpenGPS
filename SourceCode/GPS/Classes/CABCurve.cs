@@ -4,9 +4,6 @@ using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
-    public enum Mode
-    { None = 0, AB = 2, Curve = 4, Contour = 8, RecPath = 16, bCurve = 32 };//, Heading, Circle, Spiral
-
     public class CABCurve
     {
         //pointers to mainform controls
@@ -41,10 +38,10 @@ namespace AgOpenGPS
         //the list of points of curve to drive on
         public List<vec3> curList = new List<vec3>();
 
-        public List<CRefCurve> gArr = new List<CRefCurve>();
+        public List<CTrk> gArr = new List<CTrk>();
 
         //the current curve reference line.
-        public CRefCurve refCurve = new CRefCurve();
+        public CTrk refCurve = new CTrk();
         public int numCurveLines, numCurveLineSelected;
 
 
@@ -1043,7 +1040,7 @@ namespace AgOpenGPS
         }
     }
 
-    public class CRefCurve
+    public class CTrk
     {
         public List<vec3> curvePts = new List<vec3>();
         public double heading = 3;

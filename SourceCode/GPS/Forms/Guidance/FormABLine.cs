@@ -425,7 +425,7 @@ namespace AgOpenGPS
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            mf.ABLine.lineArr.Add(new CRefLine());
+            mf.ABLine.lineArr.Add(new CTrk());
             mf.ABLine.numABLines = mf.ABLine.lineArr.Count;
             mf.ABLine.numABLineSelected = mf.ABLine.numABLines;
 

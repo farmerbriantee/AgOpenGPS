@@ -380,7 +380,7 @@ namespace AgOpenGPS
 
                     //double offset = ((double)nudDistance.Value) / 200.0;
 
-                    mf.curve.gArr.Add(new CRefCurve());
+                    mf.curve.gArr.Add(new CTrk());
                     mf.curve.numCurveLines = mf.curve.gArr.Count;
                     mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
 
@@ -538,7 +538,7 @@ namespace AgOpenGPS
 
                 mf.curve.isCurveSet = true;
 
-                mf.curve.gArr.Add(new CRefCurve());
+                mf.curve.gArr.Add(new CTrk());
                 mf.curve.numCurveLines = mf.curve.gArr.Count;
                 mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
 
@@ -604,7 +604,7 @@ namespace AgOpenGPS
 
             double headingCalc = abHead + glm.PIBy2;
 
-            mf.ABLine.lineArr.Add(new CRefLine());
+            mf.ABLine.lineArr.Add(new CTrk());
             mf.ABLine.numABLines = mf.ABLine.lineArr.Count;
             mf.ABLine.numABLineSelected = mf.ABLine.numABLines;
 
@@ -770,7 +770,7 @@ namespace AgOpenGPS
                     GL.LineWidth(2);
                     GL.Begin(PrimitiveType.Lines);
 
-                    foreach (CRefLine item in mf.ABLine.lineArr)
+                    foreach (CTrk item in mf.ABLine.lineArr)
                     {
                         GL.Vertex3(item.ptA.easting - (Math.Sin(item.heading) * mf.ABLine.abLength), item.ptA.northing - (Math.Cos(item.heading) * mf.ABLine.abLength), 0);
                         GL.Vertex3(item.ptA.easting + (Math.Sin(item.heading) * mf.ABLine.abLength), item.ptA.northing + (Math.Cos(item.heading) * mf.ABLine.abLength), 0);

@@ -3,9 +3,6 @@ using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
-    public enum TrackMode
-    { None = 0, AB = 2, Curve = 4, bndTrackOuter = 8, bndTrackInner = 16, bndCurve = 32 };//, Heading, Circle, Spiral
-
     public class CHeadLine
     {
         //pointers to mainform controls

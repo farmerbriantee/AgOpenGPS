@@ -172,6 +172,11 @@ namespace AgOpenGPS
         public CContour ct;
 
         /// <summary>
+        /// Contour Mode Instance
+        /// </summary>
+        public CTrack trk;
+
+        /// <summary>
         /// ABCurve instance
         /// </summary>
         public CABCurve curve;
@@ -303,6 +308,9 @@ namespace AgOpenGPS
 
             //new instance of contour mode
             curve = new CABCurve(this);
+
+            //new track instance
+            trk = new CTrack(this);
 
             //new instance of contour mode
             hdl = new CHeadLine(this);

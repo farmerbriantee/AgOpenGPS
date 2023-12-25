@@ -550,7 +550,7 @@ namespace AgOpenGPS
                                         mf.ABLine.desPointB.northing - mf.ABLine.desPointA.northing);
                                     if (mf.ABLine.desHeading < 0) mf.ABLine.desHeading += glm.twoPI;
 
-                                    mf.ABLine.lineArr.Add(new CRefLine());
+                                    mf.ABLine.lineArr.Add(new CTrk());
                                     mf.ABLine.numABLines = mf.ABLine.lineArr.Count;
                                     mf.ABLine.numABLineSelected = mf.ABLine.numABLines;
 
@@ -606,7 +606,7 @@ namespace AgOpenGPS
                                         cnt = mf.curve.refCurve.curvePts.Count;
                                         if (cnt > 3)
                                         {
-                                            mf.curve.gArr.Add(new CRefCurve());
+                                            mf.curve.gArr.Add(new CTrk());
 
                                             //make sure distance isn't too big between points on Turn
                                             for (int i = 0; i < cnt - 1; i++)
@@ -652,7 +652,7 @@ namespace AgOpenGPS
 
                                             mf.curve.isCurveSet = true;
 
-                                            //mf.curve.gArr.Add(new CRefCurve());
+                                            //mf.curve.gArr.Add(new CTrk());
                                             mf.curve.numCurveLines = mf.curve.gArr.Count;
                                             mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
 
@@ -730,7 +730,7 @@ namespace AgOpenGPS
                                 mf.ABLine.desPointB.northing - mf.ABLine.desPointA.northing);
                             if (mf.ABLine.desHeading < 0) mf.ABLine.desHeading += glm.twoPI;
 
-                            mf.ABLine.lineArr.Add(new CRefLine());
+                            mf.ABLine.lineArr.Add(new CTrk());
                             mf.ABLine.numABLines = mf.ABLine.lineArr.Count;
                             mf.ABLine.numABLineSelected = mf.ABLine.numABLines;
 
@@ -780,7 +780,7 @@ namespace AgOpenGPS
                                 cnt = mf.curve.refCurve.curvePts.Count;
                                 if (cnt > 3)
                                 {
-                                    mf.curve.gArr.Add(new CRefCurve());
+                                    mf.curve.gArr.Add(new CTrk());
 
                                     //make sure distance isn't too big between points on Turn
                                     for (int i = 0; i < cnt - 1; i++)
@@ -826,7 +826,7 @@ namespace AgOpenGPS
 
                                     mf.curve.isCurveSet = true;
 
-                                    //mf.curve.gArr.Add(new CRefCurve());
+                                    //mf.curve.gArr.Add(new CTrk());
                                     mf.curve.numCurveLines = mf.curve.gArr.Count;
                                     mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
 

@@ -24,7 +24,7 @@ namespace AgOpenGPS
         public vec2 goalPointAB = new vec2(0, 0);
 
         //List of all available ABLines
-        public List<CRefLine> lineArr = new List<CRefLine>();
+        public List<CTrk> lineArr = new List<CTrk>();
 
         public int numABLines, numABLineSelected;
 
@@ -723,17 +723,5 @@ namespace AgOpenGPS
 
             isABValid = false;
         }
-    }
-
-    public class CRefLine
-    {
-        public List<vec3> curvePts = new List<vec3>();
-        public double heading = 3;
-        public string Name = "aa";
-        public bool isVisible = true;
-        public vec2 ptA = new vec2();
-        public vec2 ptB = new vec2();
-        public int Mode = 0;
-        public double nudgeDistance = 0;
     }
 }

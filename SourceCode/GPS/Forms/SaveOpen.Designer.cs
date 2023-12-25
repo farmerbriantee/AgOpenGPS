@@ -757,7 +757,7 @@ namespace AgOpenGPS
 
                         while (!reader.EndOfStream)
                         {
-                            curve.gArr.Add(new CRefCurve());
+                            curve.gArr.Add(new CTrk());
 
                             //read header $CurveLine
                             curve.gArr[curve.numCurveLines].Name = reader.ReadLine();
@@ -886,7 +886,7 @@ namespace AgOpenGPS
 
                             if (words.Length != 4) break;
 
-                            ABLine.lineArr.Add(new CRefLine());
+                            ABLine.lineArr.Add(new CTrk());
 
                             ABLine.lineArr[i].Name = words[0];
 
