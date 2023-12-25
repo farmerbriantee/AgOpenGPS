@@ -18,6 +18,8 @@ namespace AgOpenGPS
 
         public int idx;
 
+        public bool isLine;
+
         public bool isAutoTrack = false, isAutoSnapToPivot = false;
 
         public CTrack(FormGPS _f)
@@ -26,6 +28,61 @@ namespace AgOpenGPS
             mf = _f;
             idx = -1;
         }
+
+        public bool LoadABLine(int idx)
+        {
+            //if (mf.trk.gArr[idx].isVisible)
+            //{
+            //    refPtA = mf.trk.gArr[idx].ptA;
+            //    abHeading = mf.trk.gArr[idx].heading;
+            //    SetABLineByHeading();
+            //    isABLineSet = true;
+            //    mf.yt.ResetYouTurn();
+            //    mf.guidanceLineText = mf.trk.gArr[idx].name;
+            //    return true;
+            //}
+            //else
+            { return false; }
+        }
+        public void LoadCurve(int idx)
+        {
+            //refCurve.heading = mf.trk.gArr[idx].heading;
+            //refCurve.curvePts?.Clear();
+            //for (int i = 0; i < mf.trk.gArr[idx].curvePts.Count; i++)
+            //{
+            //    refCurve.curvePts.Add(mf.trk.gArr[idx].curvePts[i]);
+            //}
+            //isCurveSet = true;
+            //mf.yt.ResetYouTurn();
+            //mf.guidanceLineText = mf.trk.gArr[idx].name;
+        }
+
+
+        public int FindNextVisibleLine()
+        {
+            //while (true)
+            //{
+            //    numABLineSelected++;
+
+            //    if (numABLineSelected > numABLines) numABLineSelected = 1;
+
+            //    if (mf.trk.gArr[numABLineSelected - 1].isVisible) return numABLineSelected;
+            //}
+            return 0;
+        }
+    }
+    public class CTrk
+    {
+        public List<vec3> curvePts = new List<vec3>();
+        public double heading = 3;
+        public string name = "aa";
+        public bool isVisible = true;
+        public vec2 ptA = new vec2();
+        public vec2 ptB = new vec2();
+        public int mode = 0;
+        public double nudgeDistance = 0;
+    }
+}
 
         //public int FindClosestRefTrack(vec3 pivot)
         //{
@@ -402,9 +459,5 @@ namespace AgOpenGPS
 
         //    lastSecond = mf.secondsSinceStart;
         //}
-    }
-
-}
-
 
 

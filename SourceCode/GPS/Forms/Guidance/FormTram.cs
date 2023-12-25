@@ -86,45 +86,45 @@ namespace AgOpenGPS
         {
             if (isSaving)
             {
-                if (isCurve)
-                {
-                    if (mf.curve.refCurve.curvePts.Count > 0)
-                    {
-                        //array number is 1 less since it starts at zero
-                        int idx = mf.curve.numCurveLineSelected - 1;
+                //if (isCurve)
+                //{
+                //    if (mf.curve.refCurve.curvePts.Count > 0)
+                //    {
+                //        //array number is 1 less since it starts at zero
+                //        int idx = mf.curve.numCurveLineSelected - 1;
 
-                        //mf.trk.gArr[idxFieldSelected].Name = textBox1.Text.Trim();
-                        if (idx >= 0)
-                        {
-                            mf.trk.gArr[idx].heading = mf.curve.refCurve.heading;
-                            mf.trk.gArr[idx].curvePts.Clear();
-                            //write out the Curve Points
-                            foreach (vec3 item in mf.curve.refCurve.curvePts)
-                            {
-                                mf.trk.gArr[idx].curvePts.Add(item);
-                            }
-                        }
+                //        //mf.trk.gArr[idxFieldSelected].name = textBox1.Text.Trim();
+                //        if (idx >= 0)
+                //        {
+                //            mf.trk.gArr[idx].heading = mf.curve.refCurve.heading;
+                //            mf.trk.gArr[idx].curvePts.Clear();
+                //            //write out the Curve Points
+                //            foreach (vec3 item in mf.curve.refCurve.curvePts)
+                //            {
+                //                mf.trk.gArr[idx].curvePts.Add(item);
+                //            }
+                //        }
 
-                        //save entire list
-                        mf.FileSaveCurveLines();
-                        mf.curve.refCurve.nudgeDistance = 0;
-                    }
-                }
-                else
-                {
-                    int idx = mf.ABLine.numABLineSelected - 1;
+                //        //save entire list
+                //        mf.FileSaveCurveLines();
+                //        mf.curve.refCurve.nudgeDistance = 0;
+                //    }
+                //}
+                //else
+                //{
+                //    int idx = mf.ABLine.numABLineSelected - 1;
 
-                    if (idx >= 0)
-                    {
-                        mf.trk.gArr[idx].heading = mf.ABLine.abHeading;
-                        //calculate the new points for the reference line and points
-                        mf.trk.gArr[idx].ptA.easting = mf.ABLine.refPtA.easting;
-                        mf.trk.gArr[idx].ptA.northing = mf.ABLine.refPtA.northing;
-                    }
+                //    if (idx >= 0)
+                //    {
+                //        mf.trk.gArr[idx].heading = mf.ABLine.abHeading;
+                //        //calculate the new points for the reference line and points
+                //        mf.trk.gArr[idx].ptA.easting = mf.ABLine.refPtA.easting;
+                //        mf.trk.gArr[idx].ptA.northing = mf.ABLine.refPtA.northing;
+                //    }
 
-                    mf.FileSaveABLines();
-                    mf.ABLine.moveDistance = 0;
-                }
+                //    mf.FileSaveABLines();
+                //    mf.ABLine.moveDistance = 0;
+                //}
             }
             else
             {

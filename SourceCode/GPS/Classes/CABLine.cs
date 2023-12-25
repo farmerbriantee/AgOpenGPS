@@ -26,8 +26,6 @@ namespace AgOpenGPS
         //List of all available ABLines
         public CTrk refLine = new CTrk();
 
-        public int numABLines, numABLineSelected;
-
         public double howManyPathsAway, moveDistance;
         public bool isABLineBeingSet;
         public bool isABLineSet;
@@ -93,33 +91,6 @@ namespace AgOpenGPS
         private double shadowOffset = 0;
         private double widthMinusOverlap = 0;
 
-        public bool LoadABLine(int idx)
-        {
-            if (mf.trk.gArr[idx].isVisible)
-            {
-                refPtA = mf.trk.gArr[idx].ptA;
-                abHeading = mf.trk.gArr[idx].heading;
-                SetABLineByHeading();
-                isABLineSet = true;
-                mf.yt.ResetYouTurn();
-                mf.guidanceLineText = mf.trk.gArr[idx].Name;
-                return true;
-            }
-            else
-            { return false; }
-        }
-
-        public int FindNextVisibleLine()
-        {
-            while (true)
-            {
-                numABLineSelected++;
-
-                if (numABLineSelected > numABLines) numABLineSelected = 1;
-
-                if (mf.trk.gArr[numABLineSelected - 1].isVisible) return numABLineSelected;
-            }
-        }
 
         public void BuildCurrentABLineList(vec3 pivot)
         {

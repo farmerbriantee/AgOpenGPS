@@ -19,7 +19,6 @@ namespace AgOpenGPS
 
         public double howManyPathsAway;
         public vec2 refPoint1 = new vec2(1, 1), refPoint2 = new vec2(2, 2);
-
     
         private int A, B, C;
         private int rA, rB;
@@ -40,8 +39,6 @@ namespace AgOpenGPS
 
         //the current curve reference line.
         public CTrk refCurve = new CTrk();
-        public int numCurveLines, numCurveLineSelected;
-
 
         public bool isCurveValid, isLateralTriggered;
 
@@ -64,32 +61,6 @@ namespace AgOpenGPS
             refCurve.curvePts.Capacity = 1024;
             curList.Capacity = 1024;
         }
-
-        public void LoadCurve( int idx)
-        {
-            refCurve.heading = mf.trk.gArr[idx].heading;
-            refCurve.curvePts?.Clear();
-            for (int i = 0; i <  mf.trk.gArr[idx].curvePts.Count; i++)
-            {
-                refCurve.curvePts.Add(mf.trk.gArr[idx].curvePts[i]);
-            }
-            isCurveSet = true;
-            mf.yt.ResetYouTurn();
-            mf.guidanceLineText = mf.trk.gArr[idx].Name;
-        }
-
-        public int FindNextVisibleCurve()
-        {
-            while (true)
-            {
-                numCurveLineSelected++;
-
-                if (numCurveLineSelected > numCurveLines) numCurveLineSelected = 1;
-
-                if (mf.trk.gArr[numCurveLineSelected - 1].isVisible) return numCurveLineSelected;
-            }
-        }
-
 
         public void BuildCurveCurrentList(vec3 pivot)
         {
@@ -332,7 +303,7 @@ namespace AgOpenGPS
                 curList.Add(pt33);
 
                 if (mf.trk.gArr == null || mf.trk.gArr.Count == 0) return;
-                if (mf.bnd.bndList.Count > 0 && !(mf.trk.gArr[mf.curve.numCurveLineSelected - 1].Name == "Boundary Curve"))
+                if (mf.bnd.bndList.Count > 0 && !(mf.trk.gArr[mf.trk.gArr.Count - 1].name == "Boundary Curve"))
                 {
                     int ptCnt = curList.Count - 1;
 
@@ -1038,15 +1009,4 @@ namespace AgOpenGPS
         }
     }
 
-    public class CTrk
-    {
-        public List<vec3> curvePts = new List<vec3>();
-        public double heading = 3;
-        public string Name = "aa";
-        public bool isVisible = true;
-        public vec2 ptA = new vec2();
-        public vec2 ptB = new vec2();
-        public int Mode = 0;
-        public double nudgeDistance = 0;
-    }
 }

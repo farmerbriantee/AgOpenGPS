@@ -14,7 +14,6 @@ namespace AgOpenGPS
         //access to the main GPS form and all its variables
         private readonly FormGPS mf = null;
 
-        private int originalLine = 0;
         private bool isClosing;
         private int selectedItem = -1;
 
@@ -45,8 +44,6 @@ namespace AgOpenGPS
             panelKML.Visible = false;
 
             this.Size = new System.Drawing.Size(620, 475);
-
-            originalLine = mf.ABLine.numABLineSelected;
 
             mf.ABLine.isABLineBeingSet = false;
             selectedItem = -1;
@@ -82,7 +79,7 @@ namespace AgOpenGPS
                 {
                     Margin = new Padding(3),
                     Size = new Size(330, 35),
-                    Text = mf.trk.gArr[i].Name,
+                    Text = mf.trk.gArr[i].name,
                     Name = i.ToString(),
                 };
                 t.Font = backupfont;
@@ -275,7 +272,7 @@ namespace AgOpenGPS
             {
                 int idx = selectedItem;
 
-                textBox2.Text = mf.trk.gArr[idx].Name;
+                textBox2.Text = mf.trk.gArr[idx].name;
 
                 panelPick.Visible = false;
                 panelEditName.Visible = true;
@@ -413,7 +410,7 @@ namespace AgOpenGPS
             panelEditName.Visible = false;
             panelPick.Visible = true;
 
-            mf.trk.gArr[idx].Name = textBox2.Text.Trim();
+            mf.trk.gArr[idx].name = textBox2.Text.Trim();
             mf.FileSaveABLines();
 
             this.Size = new System.Drawing.Size(620, 475);
@@ -426,8 +423,6 @@ namespace AgOpenGPS
         private void btnAdd_Click(object sender, EventArgs e)
         {
             mf.trk.gArr.Add(new CTrk());
-            mf.ABLine.numABLines = mf.trk.gArr.Count;
-            mf.ABLine.numABLineSelected = mf.ABLine.numABLines;
 
             //index to last one.
             int idx = mf.trk.gArr.Count - 1;
@@ -440,7 +435,7 @@ namespace AgOpenGPS
             //name
             if (textBox2.Text.Trim() == "") textBox2.Text = "No Name " + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
-            mf.trk.gArr[idx].Name = textBox1.Text.Trim();
+            mf.trk.gArr[idx].name = textBox1.Text.Trim();
 
             mf.FileSaveABLines();
 
@@ -473,7 +468,7 @@ namespace AgOpenGPS
                 mf.ABLine.desPointA.easting = mf.trk.gArr[idx].ptA.easting;
                 mf.ABLine.desPointA.northing = mf.trk.gArr[idx].ptA.northing;
 
-                mf.ABLine.desName = mf.trk.gArr[idx].Name + " Copy";
+                mf.ABLine.desName = mf.trk.gArr[idx].name + " Copy";
 
                 textBox1.Text = mf.ABLine.desName;
             }
@@ -489,7 +484,6 @@ namespace AgOpenGPS
             if (selectedItem > -1)
             {
                 int idx = selectedItem;
-                mf.ABLine.numABLineSelected = idx + 1;
 
                 mf.ABLine.abHeading = mf.trk.gArr[idx].heading;
                 mf.ABLine.refPtA = mf.trk.gArr[idx].ptA;
@@ -505,7 +499,6 @@ namespace AgOpenGPS
             else if (mf.trk.gArr.Count > 0)
             {
                 int idx = mf.trk.gArr.Count-1;
-                mf.ABLine.numABLineSelected = idx + 1;
 
                 mf.ABLine.abHeading = mf.trk.gArr[idx].heading;
                 mf.ABLine.refPtA = mf.trk.gArr[idx].ptA;
@@ -524,7 +517,6 @@ namespace AgOpenGPS
                 mf.btnABLine.Image = Properties.Resources.ABLineOff;
                 mf.ABLine.isBtnABLineOn = false;
                 mf.ABLine.isABLineSet = false;
-                mf.ABLine.numABLineSelected = 0;
                 mf.DisableYouTurnButtons();
                 if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
                 if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
@@ -558,10 +550,6 @@ namespace AgOpenGPS
             {
                 mf.trk.gArr.RemoveAt(selectedItem);
 
-                mf.ABLine.numABLines = mf.trk.gArr.Count;
-                if (mf.ABLine.numABLineSelected > mf.ABLine.numABLines) mf.ABLine.numABLineSelected = mf.ABLine.numABLines;
-
-                if (mf.ABLine.numABLines == 0)
                 {
                     mf.ABLine.DeleteAB();
                     if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
@@ -598,7 +586,6 @@ namespace AgOpenGPS
             mf.btnABLine.Image = Properties.Resources.ABLineOff;
             mf.ABLine.isBtnABLineOn = false;
             mf.ABLine.isABLineSet = false;
-            mf.ABLine.numABLineSelected = 0;
             mf.DisableYouTurnButtons();
             if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
             if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();

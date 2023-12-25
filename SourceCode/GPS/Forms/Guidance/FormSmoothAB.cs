@@ -68,16 +68,15 @@ namespace AgOpenGPS
             if (mf.curve.refCurve.curvePts.Count > 0)
             {
                 //array number is 1 less since it starts at zero
-                int idx = mf.curve.numCurveLineSelected - 1;
 
-                if (idx >= 0)
+                if (mf.trk.idx >= 0)
                 {
-                    mf.trk.gArr[idx].heading = mf.curve.refCurve.heading;
-                    mf.trk.gArr[idx].curvePts.Clear();
+                    mf.trk.gArr[mf.trk.idx].heading = mf.curve.refCurve.heading;
+                    mf.trk.gArr[mf.trk.idx].curvePts.Clear();
                     //write out the Curve Points
                     foreach (vec3 item in mf.curve.refCurve.curvePts)
                     {
-                        mf.trk.gArr[idx].curvePts.Add(item);
+                        mf.trk.gArr[mf.trk.idx].curvePts.Add(item);
                     }
                 }
 

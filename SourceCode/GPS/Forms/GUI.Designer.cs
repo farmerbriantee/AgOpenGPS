@@ -264,20 +264,13 @@ namespace AgOpenGPS
                             btnYouSkipEnable.Visible = true;
                         }
 
-                        if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
+                        if (trk.idx != -1 && curve.isBtnCurveOn)
                         {
-                            guidanceLineText = trk.gArr[curve.numCurveLineSelected - 1].Name;
-                        }
-                        else if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
-                        {
-                            guidanceLineText = trk.gArr[ABLine.numABLineSelected - 1].Name;
+                            guidanceLineText = trk.gArr[trk.idx].name;
                         }
                         else guidanceLineText = gStr.gsNoGuidanceLines;
 
                         int abVis = 0, curveVis = 0;
-
-                        ABLine.numABLines = trk.gArr.Count;
-                        curve.numCurveLines = trk.gArr.Count;
 
                         //if (ABLine.numABLines > 0)
                         {
@@ -290,7 +283,7 @@ namespace AgOpenGPS
                             }
                         }
 
-                        if (ABLine.numABLineSelected == 0) abVis = 0;
+                        //if (ABLine.numABLineSelected == 0) abVis = 0;
 
                         //if (curve.numCurveLines > 0)
                         {
@@ -303,20 +296,6 @@ namespace AgOpenGPS
                             }
                         }
 
-                        if (curve.numCurveLineSelected == 0) curveVis = 0;
-                        if (ABLine.numABLineSelected == 0) abVis = 0;
-
-                        //only 1 visible line
-                        if ((abVis + curveVis) < 2)
-                        {
-                            btnCycleLines.Enabled = false;
-                            btnCycleLinesBk.Enabled = false;
-                        }
-                        else
-                        {
-                            btnCycleLines.Enabled = true;
-                            btnCycleLinesBk.Enabled = true;
-                        }
 
                         UpdateGuidanceLineButtonNumbers();
                     }
@@ -485,8 +464,8 @@ namespace AgOpenGPS
 
         private void UpdateGuidanceLineButtonNumbers()
         {
-            btnABLine.Text = ABLine.numABLineSelected.ToString() + " / " + trk.gArr.Count.ToString();
-            btnCurve.Text = curve.numCurveLineSelected.ToString() + " / " + trk.gArr.Count.ToString();
+            //btnABLine.Text = ABLine.numABLineSelected.ToString() + " / " + trk.gArr.Count.ToString();
+            //btnCurve.Text = curve.numCurveLineSelected.ToString() + " / " + trk.gArr.Count.ToString();
         }
 
         public void LoadSettings()

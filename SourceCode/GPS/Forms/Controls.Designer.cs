@@ -189,7 +189,7 @@ namespace AgOpenGPS
             btnCurve.Image = Properties.Resources.CurveOff;
 
             //if there is a line in memory, just use it.
-            if (ABLine.isBtnABLineOn == false && ABLine.numABLines > 0)
+            if (ABLine.isBtnABLineOn == false)
             {                
                 ABLine.isABLineSet = true;
                 EnableYouTurnButtons();
@@ -324,10 +324,7 @@ namespace AgOpenGPS
                 return;
             }
 
-            int abVis = 0, curveVis = 0;
-
-            ABLine.numABLines = trk.gArr.Count();
-            curve.numCurveLines = trk.gArr.Count;
+            int abVis = 0;
 
             //if (ABLine.numABLines > 0)
             {
@@ -340,111 +337,6 @@ namespace AgOpenGPS
                 }
             }
 
-            if (ABLine.numABLineSelected == 0) abVis = 0;
-
-            //if (curve.numCurveLines > 0)
-            {
-                for (int i = 0; i < trk.gArr.Count; i++)
-                {
-                    if (trk.gArr[i].isVisible)
-                    {
-                        curveVis++;
-                    }
-                }
-            }
-
-            if (curve.numCurveLineSelected == 0) curveVis = 0;
-            if (ABLine.numABLineSelected == 0) abVis = 0;
-
-            //only 1 visible line
-            if ((abVis + curveVis) < 2) return;
-
-            int mode = 0;
-
-            //no AB, at least 2 curve
-            if (abVis == 0) mode = 1;
-
-            //no curve, at least 2 AB
-            else if (curveVis == 0) mode = 2;
-
-            //both AB and curves to switch to
-            else mode = 3;
-
-            int idx;
-
-            switch (mode)
-            {
-                //only curve lines
-                case 1:
-
-                    idx = curve.FindNextVisibleCurve() - 1;
-                    curve.LoadCurve(idx);
-                    break;
-
-                case 2:
-
-                    idx = ABLine.FindNextVisibleLine() - 1;
-                    ABLine.LoadABLine(idx);
-                    break;
-
-                case 3:
-
-                    if (ABLine.isBtnABLineOn)
-                    {
-                        if (abVis == 1) //jump to curves
-                        {
-                            idx = curve.FindNextVisibleCurve() - 1;
-                            curve.LoadCurve(idx);
-                            btnCurve.PerformClick();
-                            return;
-                        }
-
-                        //end of the list of lines?
-                        int last = ABLine.numABLineSelected;
-                        idx = ABLine.FindNextVisibleLine()-1;
-
-                        if (ABLine.numABLineSelected < last) //jump to curve
-                        {
-                            ABLine.numABLineSelected = last;
-                            idx = curve.FindNextVisibleCurve() - 1;
-                            curve.LoadCurve(idx);
-                            btnCurve.PerformClick();
-                            return;
-                        }
-                        else
-                        {
-                            ABLine.LoadABLine(idx);
-                            break;
-                        }
-                    }
-                    else //curve button on
-                    {
-                        if (curveVis == 1) //jump to lines
-                        {
-                            idx = ABLine.FindNextVisibleLine() - 1;
-                            ABLine.LoadABLine(idx);
-                            btnABLine.PerformClick();
-                            return;
-                        }
-                        //end of the list of curves?
-                        int last = curve.numCurveLineSelected;
-                        idx = curve.FindNextVisibleCurve() - 1;
-
-                        if (curve.numCurveLineSelected < last) //jump to curve
-                        {
-                            curve.numCurveLineSelected = last;
-                            idx = ABLine.FindNextVisibleLine() - 1;
-                            ABLine.LoadABLine(idx);
-                            btnABLine.PerformClick();
-                            return;
-                        }
-                        else
-                        {
-                            curve.LoadCurve(idx);
-                            break;
-                        }
-                    }
-            }
 
             lblFieldStatus.Text = fieldData + " ----- " + guidanceLineText;
 
@@ -468,91 +360,6 @@ namespace AgOpenGPS
                 ct.SetLockToLine();
                 return;
             }
-
-            if (ABLine.numABLines == 0 && curve.numCurveLines == 0) return;
-
-            //reset to generate new reference
-            ABLine.isABValid = false;
-            curve.isCurveValid = false;
-            bool isVis = false;
-
-            if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
-
-            if (ABLine.isBtnABLineOn && ABLine.numABLines > 0)
-            {
-                ABLine.moveDistance = 0;
-
-                for (int i = 0; i < trk.gArr.Count; i++)
-                {
-                    if (trk.gArr[i].isVisible)
-                    {
-                        isVis = true;
-                        break;
-                    }
-                } 
-
-                if (!isVis) return;
-
-                int idx = ABLine.numABLineSelected - 1;
-
-                while (isVis)
-                {
-                    ABLine.numABLineSelected--;
-
-                    if (ABLine.numABLineSelected <1 )  ABLine.numABLineSelected = ABLine.numABLines;
-                    idx = ABLine.numABLineSelected - 1;
-
-                    if (trk.gArr[idx].isVisible) break;
-                }
-
-                ABLine.refPtA = trk.gArr[idx].ptA;
-                ABLine.abHeading = trk.gArr[idx].heading;
-                ABLine.SetABLineByHeading();
-                ABLine.isABLineSet = true;
-                yt.ResetYouTurn();
-                guidanceLineText = trk.gArr[idx].Name; 
-            }
-            else if (curve.isBtnCurveOn && curve.numCurveLines > 0)
-            {
-                curve.refCurve.nudgeDistance = 0;
-
-                //make sure one is visible
-                for (int i = 0; i < trk.gArr.Count; i++)
-                {
-                    if (trk.gArr[i].isVisible)
-                    {
-                        isVis = true;
-                        break;
-                    }
-                }
-
-                if (!isVis) return;
-
-                int idx = curve.numCurveLineSelected - 1;
-
-                while (isVis)
-                {
-                    curve.numCurveLineSelected--;
-
-                    if (curve.numCurveLineSelected < 1 ) curve.numCurveLineSelected = curve.numCurveLines;
-
-                    idx = curve.numCurveLineSelected - 1;
-
-                    if (trk.gArr[idx].isVisible) break;
-                }
-
-                curve.refCurve.curvePts?.Clear();
-                for (int i = 0; i < trk.gArr[idx].curvePts.Count; i++)
-                {
-                    curve.refCurve.curvePts.Add(trk.gArr[idx].curvePts[i]);
-                }
-                curve.isCurveSet = true;
-                yt.ResetYouTurn();
-                guidanceLineText = trk.gArr[idx].Name;
-            }
-
-            lblFieldStatus.Text = fieldData + "  :  " + guidanceLineText;
-            UpdateGuidanceLineButtonNumbers();
         }
 
         #endregion
@@ -752,14 +559,14 @@ namespace AgOpenGPS
         {
             if (ct.isContourBtnOn) btnContour.PerformClick(); 
 
-            if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
+            if (ABLine.isBtnABLineOn)
             {
                 Form form99 = new FormTram(this, false);
                 form99.Show(this);
                 form99.Left = Width - 275;
                 form99.Top = 100;
             }
-            else if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
+            else if (curve.isBtnCurveOn)
             {
                 Form form97 = new FormTram(this, true);
                 form97.Show(this);
@@ -1826,12 +1633,12 @@ namespace AgOpenGPS
                 return;
             }
 
-            if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
-            {
-                Form form = new FormEditAB(this);
-                form.Show(this);
-            }
-            else if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
+            //if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
+            //{
+            //    Form form = new FormEditAB(this);
+            //    form.Show(this);
+            //}
+            else if (trk.idx > -1 && curve.isBtnCurveOn)
             {
                 Form form = new FormEditCurve(this);
                 form.Show(this);

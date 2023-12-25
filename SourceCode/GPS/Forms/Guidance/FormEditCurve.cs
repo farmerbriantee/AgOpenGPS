@@ -68,17 +68,14 @@ namespace AgOpenGPS
             isClosing = true;
             if (mf.curve.isCurveSet && mf.curve.refCurve.curvePts.Count > 0)
             {
-                //array number is 1 less since it starts at zero
-                int idx = mf.curve.numCurveLineSelected - 1;
-
-                if (idx >= 0)
+                if (mf.trk.idx >= 0)
                 {
-                    mf.trk.gArr[idx].heading = mf.curve.refCurve.heading;
-                    mf.trk.gArr[idx].curvePts.Clear();
+                    mf.trk.gArr[mf.trk.idx].heading = mf.curve.refCurve.heading;
+                    mf.trk.gArr[mf.trk.idx].curvePts.Clear();
                     //write out the Curve Points
                     foreach (vec3 item in mf.curve.refCurve.curvePts)
                     {
-                        mf.trk.gArr[idx].curvePts.Add(item);
+                        mf.trk.gArr[mf.trk.idx].curvePts.Add(item);
                     }
                 }
 
@@ -93,26 +90,25 @@ namespace AgOpenGPS
         private void btnCancel_Click(object sender, EventArgs e)
         {
             isClosing = true;
-            if (mf.curve.isCurveSet && mf.isJobStarted)
-            {
-                int last = mf.curve.numCurveLineSelected;
-                mf.FileLoadCurveLines();
-                if (mf.trk.gArr.Count > 0)
-                {
-                    mf.curve.numCurveLineSelected = last;
-                    int idx = mf.curve.numCurveLineSelected - 1;
-                    mf.curve.refCurve.heading = mf.trk.gArr[idx].heading;
+            //if (mf.curve.isCurveSet && mf.isJobStarted)
+            //{
+            //    int last = mf.curve.numCurveLineSelected;
+            //    mf.FileLoadCurveLines();
+            //    if (mf.trk.gArr.Count > 0)
+            //    {
+            //        mf.curve.numCurveLineSelected = last;
+            //        mf.curve.refCurve.heading = mf.trk.gArr[mf.trk.idx].heading;
 
-                    mf.curve.refCurve.curvePts?.Clear();
-                    for (int i = 0; i < mf.trk.gArr[idx].curvePts.Count; i++)
-                    {
-                        mf.curve.refCurve.curvePts.Add(mf.trk.gArr[idx].curvePts[i]);
-                    }
-                    mf.curve.isCurveSet = true;
-                }
+            //        mf.curve.refCurve.curvePts?.Clear();
+            //        for (int i = 0; i < mf.trk.gArr[idx].curvePts.Count; i++)
+            //        {
+            //            mf.curve.refCurve.curvePts.Add(mf.trk.gArr[idx].curvePts[i]);
+            //        }
+            //        mf.curve.isCurveSet = true;
+            //    }
 
-                mf.curve.isCurveValid = false;
-            }
+            //    mf.curve.isCurveValid = false;
+            //}
             Close();
         }
 

@@ -42,7 +42,7 @@ namespace AgOpenGPS
 
             this.Size = new System.Drawing.Size(620, 475);
 
-            originalLine = mf.curve.numCurveLineSelected;
+            originalLine = mf.trk.idx;
 
             mf.curve.isOkToAddDesPoints = false;
             selectedItem = -1;
@@ -85,7 +85,7 @@ namespace AgOpenGPS
                 {
                     Margin = new Padding(3),
                     Size = new Size(330, 35),
-                    Text = mf.trk.gArr[i].Name,
+                    Text = mf.trk.gArr[i].name,
                     Name = i.ToString(),
                 };
                 t.Font = backupfont;
@@ -355,7 +355,7 @@ namespace AgOpenGPS
             if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
             if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
 
-            mf.curve.numCurveLineSelected = 0;
+            mf.trk.idx = -1;
             Close();
         }
 
@@ -389,7 +389,7 @@ namespace AgOpenGPS
                 //array number is 1 less since it starts at zero
                 int idx = mf.trk.gArr.Count - 1;
 
-                mf.trk.gArr[idx].Name = textBox1.Text.Trim();
+                mf.trk.gArr[idx].name = textBox1.Text.Trim();
                 mf.trk.gArr[idx].heading = aveLineHeading;
 
                 //write out the Curve Points
@@ -558,12 +558,8 @@ namespace AgOpenGPS
             {
                 mf.trk.gArr.RemoveAt(selectedItem);
 
-                //everything changed, so make sure its right
-                mf.curve.numCurveLines = mf.trk.gArr.Count;
-                if (mf.curve.numCurveLineSelected > mf.curve.numCurveLines) mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
-
                 //if there are no saved ones, empty out current curve line and turn off
-                if (mf.curve.numCurveLines == 0)
+                if (mf.trk.gArr.Count == 0)
                 {
                     mf.curve.ResetCurveLine();
                     if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
@@ -572,16 +568,16 @@ namespace AgOpenGPS
                 else
                 {
                     selectedItem = -1;
-                    mf.curve.numCurveLineSelected = 1;
 
-                    mf.curve.refCurve.heading = mf.trk.gArr[0].heading;
-                    mf.curve.refCurve.curvePts?.Clear();
-                    for (int i = 0; i < mf.trk.gArr[0].curvePts.Count; i++)
-                    {
-                        mf.curve.refCurve.curvePts.Add(mf.trk.gArr[0].curvePts[i]);
-                    }
-                    mf.curve.isCurveSet = true;
-                    mf.yt.ResetYouTurn();
+                    //TODO
+                    //mf.curve.refCurve.heading = mf.trk.gArr[0].heading;
+                    //mf.curve.refCurve.curvePts?.Clear();
+                    //for (int i = 0; i < mf.trk.gArr[0].curvePts.Count; i++)
+                    //{
+                    //    mf.curve.refCurve.curvePts.Add(mf.trk.gArr[0].curvePts[i]);
+                    //}
+                    //mf.curve.isCurveSet = true;
+                    //mf.yt.ResetYouTurn();
                 }
 
                 mf.FileSaveCurveLines();
@@ -605,14 +601,14 @@ namespace AgOpenGPS
 
             if (selectedItem > -1)
             {
-                int idx = selectedItem;
-                mf.curve.numCurveLineSelected = idx + 1;
+                mf.trk.idx = selectedItem;
 
-                mf.curve.refCurve.heading = mf.trk.gArr[idx].heading;
+                //todo
+                mf.curve.refCurve.heading = mf.trk.gArr[mf.trk.idx].heading;
                 mf.curve.refCurve.curvePts?.Clear();
-                for (int i = 0; i < mf.trk.gArr[idx].curvePts.Count; i++)
+                for (int i = 0; i < mf.trk.gArr[mf.trk.idx].curvePts.Count; i++)
                 {
-                    mf.curve.refCurve.curvePts.Add(mf.trk.gArr[idx].curvePts[i]);
+                    mf.curve.refCurve.curvePts.Add(mf.trk.gArr[mf.trk.idx].curvePts[i]);
                 }
                 mf.curve.isCurveSet = true;
                 mf.yt.ResetYouTurn();
@@ -621,14 +617,13 @@ namespace AgOpenGPS
             }
             else if (mf.trk.gArr.Count > 0)
             {
-                int idx = mf.trk.gArr.Count - 1;
-                mf.curve.numCurveLineSelected = idx + 1;
+                mf.trk.idx = mf.trk.gArr.Count - 1;
 
-                mf.curve.refCurve.heading = mf.trk.gArr[idx].heading;
+                mf.curve.refCurve.heading = mf.trk.gArr[mf.trk.idx].heading;
                 mf.curve.refCurve.curvePts?.Clear();
-                for (int i = 0; i < mf.trk.gArr[idx].curvePts.Count; i++)
+                for (int i = 0; i < mf.trk.gArr[mf.trk.idx].curvePts.Count; i++)
                 {
-                    mf.curve.refCurve.curvePts.Add(mf.trk.gArr[idx].curvePts[i]);
+                    mf.curve.refCurve.curvePts.Add(mf.trk.gArr[mf.trk.idx].curvePts[i]);
                 }
                 mf.curve.isCurveSet = true;
                 mf.yt.ResetYouTurn();
@@ -665,7 +660,7 @@ namespace AgOpenGPS
                 panelAPlus.Visible = false;
                 panelName.Visible = true;
 
-                textBox1.Text = mf.trk.gArr[idx].Name + " Copy";
+                textBox1.Text = mf.trk.gArr[idx].name + " Copy";
                 mf.curve.desName = textBox1.Text;
 
                 aveLineHeading = mf.trk.gArr[idx].heading;
@@ -685,7 +680,7 @@ namespace AgOpenGPS
             {
                 int idx = selectedItem;
 
-                textBox2.Text = mf.trk.gArr[idx].Name;
+                textBox2.Text = mf.trk.gArr[idx].name;
 
                 panelPick.Visible = false;
                 panelEditName.Visible = true;
@@ -720,22 +715,21 @@ namespace AgOpenGPS
         {
             if (selectedItem > -1)
             {
-                int idx = selectedItem;
-                mf.curve.numCurveLineSelected = idx + 1;
+                mf.trk.idx = selectedItem;
 
-                int cnt = mf.trk.gArr[idx].curvePts.Count;
+                int cnt = mf.trk.gArr[mf.trk.idx].curvePts.Count;
                 if (cnt > 0)
                 {
-                    mf.trk.gArr[idx].curvePts.Reverse();
+                    mf.trk.gArr[mf.trk.idx].curvePts.Reverse();
 
                     vec3[] arr = new vec3[cnt];
                     cnt--;
-                    mf.trk.gArr[idx].curvePts.CopyTo(arr);
-                    mf.trk.gArr[idx].curvePts.Clear();
+                    mf.trk.gArr[mf.trk.idx].curvePts.CopyTo(arr);
+                    mf.trk.gArr[mf.trk.idx].curvePts.Clear();
 
-                    mf.trk.gArr[idx].heading += Math.PI;
-                    if (mf.trk.gArr[idx].heading < 0) mf.trk.gArr[idx].heading += glm.twoPI;
-                    if (mf.trk.gArr[idx].heading > glm.twoPI) mf.trk.gArr[idx].heading -= glm.twoPI;
+                    mf.trk.gArr[mf.trk.idx].heading += Math.PI;
+                    if (mf.trk.gArr[mf.trk.idx].heading < 0) mf.trk.gArr[mf.trk.idx].heading += glm.twoPI;
+                    if (mf.trk.gArr[mf.trk.idx].heading > glm.twoPI) mf.trk.gArr[mf.trk.idx].heading -= glm.twoPI;
 
                     for (int i = 1; i < cnt; i++)
                     {
@@ -743,7 +737,7 @@ namespace AgOpenGPS
                         pt3.heading += Math.PI;
                         if (pt3.heading > glm.twoPI) pt3.heading -= glm.twoPI;
                         if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                        mf.trk.gArr[idx].curvePts.Add(pt3);
+                        mf.trk.gArr[mf.trk.idx].curvePts.Add(pt3);
                     }
                 }
 

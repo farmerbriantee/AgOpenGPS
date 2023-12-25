@@ -87,23 +87,23 @@ namespace AgOpenGPS
         private void bntOk_Click(object sender, EventArgs e)
         {
             isClosing = true;
-            if (mf.ABLine.isABLineSet)
-            {
-                //index to last one.
-                int idx = mf.ABLine.numABLineSelected - 1;
+            //if (mf.ABLine.isABLineSet)
+            //{
+            //    //index to last one.
+            //    int idx = mf.ABLine.numABLineSelected - 1;
 
-                if (idx >= 0)
-                {
-                    mf.trk.gArr[idx].heading = mf.ABLine.abHeading;
-                    //calculate the new points for the reference line and points
-                    mf.trk.gArr[idx].ptA.easting = mf.ABLine.refPtA.easting;
-                    mf.trk.gArr[idx].ptA.northing = mf.ABLine.refPtA.northing;
-                }
+            //    if (idx >= 0)
+            //    {
+            //        mf.trk.gArr[idx].heading = mf.ABLine.abHeading;
+            //        //calculate the new points for the reference line and points
+            //        mf.trk.gArr[idx].ptA.easting = mf.ABLine.refPtA.easting;
+            //        mf.trk.gArr[idx].ptA.northing = mf.ABLine.refPtA.northing;
+            //    }
 
-                mf.FileSaveABLines();
+            //    mf.FileSaveABLines();
 
-                mf.panelRight.Enabled = true;
-            }
+            //    mf.panelRight.Enabled = true;
+            //}
             mf.ABLine.moveDistance = 0;
             mf.ABLine.isABValid = false;
 
@@ -113,21 +113,21 @@ namespace AgOpenGPS
         private void btnCancel_Click(object sender, EventArgs e)
         {
             isClosing = true;
-            if (mf.ABLine.isABLineSet && mf.isJobStarted)
-            {
-                int last = mf.ABLine.numABLineSelected;
-                mf.FileLoadABLines();
+            //if (mf.ABLine.isABLineSet && mf.isJobStarted)
+            //{
+            //    int last = mf.ABLine.numABLineSelected;
+            //    mf.FileLoadABLines();
 
-                mf.ABLine.numABLineSelected = last;
-                mf.ABLine.refPtA = mf.trk.gArr[mf.ABLine.numABLineSelected - 1].ptA;
-                mf.ABLine.abHeading = mf.trk.gArr[mf.ABLine.numABLineSelected - 1].heading;
-                mf.ABLine.SetABLineByHeading();
-                mf.ABLine.isABLineSet = true;
-                mf.ABLine.moveDistance = 0;
+            //    mf.ABLine.numABLineSelected = last;
+            //    mf.ABLine.refPtA = mf.trk.gArr[mf.ABLine.numABLineSelected - 1].ptA;
+            //    mf.ABLine.abHeading = mf.trk.gArr[mf.ABLine.numABLineSelected - 1].heading;
+            //    mf.ABLine.SetABLineByHeading();
+            //    mf.ABLine.isABLineSet = true;
+            //    mf.ABLine.moveDistance = 0;
 
-                mf.panelRight.Enabled = true;
-                mf.ABLine.isABValid = false;
-            }
+            //    mf.panelRight.Enabled = true;
+            //    mf.ABLine.isABValid = false;
+            //}
             Close();
         }
 
