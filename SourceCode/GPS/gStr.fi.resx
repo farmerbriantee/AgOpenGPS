@@ -117,4 +117,442 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="gsABCurve" xml:space="preserve">
+    <value>Ab -käyrä</value>
+  </data>
+  <data name="gsABline" xml:space="preserve">
+    <value>Ab -linja</value>
+  </data>
+  <data name="gsAbout" xml:space="preserve">
+    <value>Tietoja...</value>
+  </data>
+  <data name="gsActionHasBeenCancelled" xml:space="preserve">
+    <value>Toiminto on peruttu</value>
+  </data>
+  <data name="gsActual" xml:space="preserve">
+    <value>Todellinen</value>
+  </data>
+  <data name="gsAgressiveness" xml:space="preserve">
+    <value>Agerssiivisuus</value>
+  </data>
+  <data name="gsAreYouSure" xml:space="preserve">
+    <value>Oletko varma ?</value>
+  </data>
+  <data name="gsArea" xml:space="preserve">
+    <value>Alue</value>
+  </data>
+  <data name="gsAutoSteerConfiguration" xml:space="preserve">
+    <value>Automaattiohjauksen asetukset</value>
+  </data>
+  <data name="gsAutoSteerPort" xml:space="preserve">
+    <value>Automaattiohjauksen portti</value>
+  </data>
+  <data name="gsBasedOnField" xml:space="preserve">
+    <value>Perustuen peltoon:</value>
+  </data>
+  <data name="gsBoundary" xml:space="preserve">
+    <value>Raja</value>
+  </data>
+  <data name="gsBoundaryLineFilesAreCorrupt" xml:space="preserve">
+    <value>Rajaviivatiedosto korruptoitunut</value>
+  </data>
+  <data name="gsBoundaryMenu" xml:space="preserve">
+    <value>Rajakäyrä</value>
+  </data>
+  <data name="gsButFieldIsLoaded" xml:space="preserve">
+    <value>Mutta pelto on ladattu</value>
+  </data>
+  <data name="gsCentimeters" xml:space="preserve">
+    <value>Senttimetri</value>
+  </data>
+  <data name="gsCharts" xml:space="preserve">
+    <value>Kaaviot</value>
+  </data>
+  <data name="gsChooseADifferentField" xml:space="preserve">
+    <value>Valitse toinen pelto</value>
+  </data>
+  <data name="gsChooseADifferentName" xml:space="preserve">
+    <value>Valitse toinen nimi</value>
+  </data>
+  <data name="gsChooseBuildDifferentone" xml:space="preserve">
+    <value>Valitse tai rakenna toinen</value>
+  </data>
+  <data name="gsClose" xml:space="preserve">
+    <value>Sulje</value>
+  </data>
+  <data name="gsCloseAllWindowsFirst" xml:space="preserve">
+    <value>Sulje ensin kaikki ikkunat</value>
+  </data>
+  <data name="gsCloseFieldFirst" xml:space="preserve">
+    <value>Sulje ensin pelto</value>
+  </data>
+  <data name="gsColors" xml:space="preserve">
+    <value>Värit</value>
+  </data>
+  <data name="gsCompletelyDeleteBoundary" xml:space="preserve">
+    <value>Poista raja kokonaan</value>
+  </data>
+  <data name="gsContourFileIsCorrupt" xml:space="preserve">
+    <value>Käyrätiedosto korruptoitunut</value>
+  </data>
+  <data name="gsContourOn" xml:space="preserve">
+    <value>Rajakäyrä päälle</value>
+  </data>
+  <data name="gsCouldntGenerateValidPath" xml:space="preserve">
+    <value>Ei kelvollista polkua</value>
+  </data>
+  <data name="gsCreateABoundaryFirst" xml:space="preserve">
+    <value>Luo ensin raja</value>
+  </data>
+  <data name="gsCreateNewField" xml:space="preserve">
+    <value>Luo uusi pelto</value>
+  </data>
+  <data name="gsCurrent" xml:space="preserve">
+    <value>Nykyinen</value>
+  </data>
+  <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
+    <value>Käyräviivatetiedosto korruptoitunut</value>
+  </data>
+  <data name="gsCurveNotOn" xml:space="preserve">
+    <value>Käyrä ei ole päällä</value>
+  </data>
+  <data name="gsDeleteAllContoursAndSections" xml:space="preserve">
+    <value>Poista kaikki osiot ja ääriviivat</value>
+  </data>
+  <data name="gsDeleteAppliedArea" xml:space="preserve">
+    <value>Poista käsitelty alue</value>
+  </data>
+  <data name="gsDeleteContourPaths" xml:space="preserve">
+    <value>Poista ääriviivat</value>
+  </data>
+  <data name="gsDeleteForSure" xml:space="preserve">
+    <value>Haluatko varmasti poistaa?</value>
+  </data>
+  <data name="gsDirectories" xml:space="preserve">
+    <value>Hakemisto</value>
+  </data>
+  <data name="gsDirectoryExists" xml:space="preserve">
+    <value>Hakemisto on olemassa</value>
+  </data>
+  <data name="gsDistance" xml:space="preserve">
+    <value>Etäisyys</value>
+  </data>
+  <data name="gsDriveIn" xml:space="preserve">
+    <value>Aja pellolle</value>
+  </data>
+  <data name="gsDriveThru" xml:space="preserve">
+    <value>Aja läpi</value>
+  </data>
+  <data name="gsDriving" xml:space="preserve">
+    <value>Ajaa</value>
+  </data>
+  <data name="gsEast" xml:space="preserve">
+    <value>Itä</value>
+  </data>
+  <data name="gsEditABCurve" xml:space="preserve">
+    <value>Muokkaa AB -käyrää</value>
+  </data>
+  <data name="gsEditABLine" xml:space="preserve">
+    <value>Muokkaa AB -linjaa</value>
+  </data>
+  <data name="gsEditFieldName" xml:space="preserve">
+    <value>Muokkaa pellon nimi</value>
+  </data>
+  <data name="gsEncoderCounts" xml:space="preserve">
+    <value>Pulssia</value>
+  </data>
+  <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
+    <value>Syötä simulaattorin koordinaatit</value>
+  </data>
+  <data name="gsEnterFieldName" xml:space="preserve">
+    <value>Kirjoita pellon nimi</value>
+  </data>
+  <data name="gsEnterSimCoords" xml:space="preserve">
+    <value>Simulaattorin koordinaatit</value>
+  </data>
+  <data name="gsError" xml:space="preserve">
+    <value>Virhe</value>
+  </data>
+  <data name="gsErrorreadingKML" xml:space="preserve">
+    <value>Virhe KML-tiedoston lukemisessa</value>
+  </data>
+  <data name="gsField" xml:space="preserve">
+    <value>Pelto</value>
+  </data>
+  <data name="gsFieldFileIsCorrupt" xml:space="preserve">
+    <value>Peltotiedosto on korruptoitunut</value>
+  </data>
+  <data name="gsFieldIsOpen" xml:space="preserve">
+    <value>Pelto on auki</value>
+  </data>
+  <data name="gsFieldNotOpen" xml:space="preserve">
+    <value>Pelto ei ole auki</value>
+  </data>
+  <data name="gsFileError" xml:space="preserve">
+    <value>Tiedostovirhe</value>
+  </data>
+  <data name="gsFlagFileIsCorrupt" xml:space="preserve">
+    <value>Lipputiedosto korruptoitunut</value>
+  </data>
+  <data name="gsForNow" xml:space="preserve">
+    <value>Toistaiseksi</value>
+  </data>
+  <data name="gsFromExisting" xml:space="preserve">
+    <value>Olemassa olevasta</value>
+  </data>
+  <data name="gsFromKml" xml:space="preserve">
+    <value>KML: stä</value>
+  </data>
+  <data name="gsGuidanceStopped" xml:space="preserve">
+    <value>Ohjaus pysähtynyt</value>
+  </data>
+  <data name="gsHeadingChart" xml:space="preserve">
+    <value>Suunta kaavio</value>
+  </data>
+  <data name="gsHeadland" xml:space="preserve">
+    <value>Päiste</value>
+  </data>
+  <data name="gsHeadlandForm" xml:space="preserve">
+    <value>Luo ja muokkaa päiste</value>
+  </data>
+  <data name="gsHelp" xml:space="preserve">
+    <value>Ohje</value>
+  </data>
+  <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
+    <value>Jos väärä suunta napauta ajoneuvoa</value>
+  </data>
+  <data name="gsInches" xml:space="preserve">
+    <value>Tuuma</value>
+  </data>
+  <data name="gsInner" xml:space="preserve">
+    <value>Sisäinen</value>
+  </data>
+  <data name="gsKMH" xml:space="preserve">
+    <value>kmh</value>
+  </data>
+  <data name="gsLanguage" xml:space="preserve">
+    <value>Kieli</value>
+  </data>
+  <data name="gsMPH" xml:space="preserve">
+    <value>mph</value>
+  </data>
+  <data name="gsMachinePort" xml:space="preserve">
+    <value>Koneportti</value>
+  </data>
+  <data name="gsMakeBoundaryContours" xml:space="preserve">
+    <value>Rajakäyrän luonti</value>
+  </data>
+  <data name="gsManual" xml:space="preserve">
+    <value>Manuaalinen</value>
+  </data>
+  <data name="gsMeters" xml:space="preserve">
+    <value>Metri</value>
+  </data>
+  <data name="gsMissingABLinesFile" xml:space="preserve">
+    <value>Puuttuva AB-linja -tiedosto</value>
+  </data>
+  <data name="gsMissingBoundaryFile" xml:space="preserve">
+    <value>Puuttuva rajatiedosto</value>
+  </data>
+  <data name="gsMissingContourFile" xml:space="preserve">
+    <value>Puuttuva muototiedosto</value>
+  </data>
+  <data name="gsMissingFlagsFile" xml:space="preserve">
+    <value>Puuttuva lipputiedosto</value>
+  </data>
+  <data name="gsMissingSectionFile" xml:space="preserve">
+    <value>Puuttuva lohkotiedosto</value>
+  </data>
+  <data name="gsN_East" xml:space="preserve">
+    <value>Koillinen</value>
+  </data>
+  <data name="gsN_West" xml:space="preserve">
+    <value>Luode</value>
+  </data>
+  <data name="gsNew" xml:space="preserve">
+    <value>Uusi</value>
+  </data>
+  <data name="gsNoABLineActive" xml:space="preserve">
+    <value>Ei aktiivista AB-linjaa</value>
+  </data>
+  <data name="gsNoBoundary" xml:space="preserve">
+    <value>Ei rajaa</value>
+  </data>
+  <data name="gsNoFieldsFound" xml:space="preserve">
+    <value>Peltoja ei löydy</value>
+  </data>
+  <data name="gsNoGuidanceLines" xml:space="preserve">
+    <value>Ei ohjauslinjoja</value>
+  </data>
+  <data name="gsNoSettingsWithIMU" xml:space="preserve">
+    <value>Ei asetuksia IMU: n kanssa</value>
+  </data>
+  <data name="gsNone" xml:space="preserve">
+    <value>Ei mitään</value>
+  </data>
+  <data name="gsNoneUsed" xml:space="preserve">
+    <value>Ei mitään käytetty</value>
+  </data>
+  <data name="gsNorth" xml:space="preserve">
+    <value>Pohjoinen</value>
+  </data>
+  <data name="gsNothingDeleted" xml:space="preserve">
+    <value>Mitään ei poistettu</value>
+  </data>
+  <data name="gsOffset" xml:space="preserve">
+    <value>Siirto</value>
+  </data>
+  <data name="gsOffsetFix" xml:space="preserve">
+    <value>Pellon Keskitys</value>
+  </data>
+  <data name="gsOpen" xml:space="preserve">
+    <value>Avaa</value>
+  </data>
+  <data name="gsOuter" xml:space="preserve">
+    <value>Ulko</value>
+  </data>
+  <data name="gsOvershootReduction" xml:space="preserve">
+    <value>Ylitysvähennys</value>
+  </data>
+  <data name="gsPass" xml:space="preserve">
+    <value>Veto #</value>
+  </data>
+  <data name="gsPasses" xml:space="preserve">
+    <value>Ajouria</value>
+  </data>
+  <data name="gsPastEndOfCurve" xml:space="preserve">
+    <value>Käyrän entinen loppu</value>
+  </data>
+  <data name="gsPause" xml:space="preserve">
+    <value>Tauko</value>
+  </data>
+  <data name="gsPleaseEnterABLine" xml:space="preserve">
+    <value>Anna ABLINE</value>
+  </data>
+  <data name="gsPressureSensorValueLabel" xml:space="preserve">
+    <value>Paine (bar)</value>
+  </data>
+  <data name="gsProblemMakingPath" xml:space="preserve">
+    <value>Ongelman polun luonnissa</value>
+  </data>
+  <data name="gsProgramWillExitPleaseRestart" xml:space="preserve">
+    <value>Ohjelma sulkeutuu, ole hyvä ja käynnistä uudelleen</value>
+  </data>
+  <data name="gsReallyResetEverything" xml:space="preserve">
+    <value>Haluatko todella nollata kaikki</value>
+  </data>
+  <data name="gsRecord" xml:space="preserve">
+    <value>Tallenna</value>
+  </data>
+  <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
+    <value>Tallennettu polkutiedosto korruptoitu</value>
+  </data>
+  <data name="gsRecordedPathMenu" xml:space="preserve">
+    <value>Tallennettu polku</value>
+  </data>
+  <data name="gsResetAll" xml:space="preserve">
+    <value>Nollaa kaikki</value>
+  </data>
+  <data name="gsResetAllForSure" xml:space="preserve">
+    <value>Nollaa kaikki varmasti?</value>
+  </data>
+  <data name="gsResume" xml:space="preserve">
+    <value>Jatkaa</value>
+  </data>
+  <data name="gsS_East" xml:space="preserve">
+    <value>Kaakko</value>
+  </data>
+  <data name="gsS_West" xml:space="preserve">
+    <value>Lounas</value>
+  </data>
+  <data name="gsSaveAndReturn" xml:space="preserve">
+    <value>Tallenna ja palaa</value>
+  </data>
+  <data name="gsSaveAs" xml:space="preserve">
+    <value>Tallenna nimellä</value>
+  </data>
+  <data name="gsSentToMachineModule" xml:space="preserve">
+    <value>Lähetetty konemoduuliin</value>
+  </data>
+  <data name="gsSetPoint" xml:space="preserve">
+    <value>Asetuspiste</value>
+  </data>
+  <data name="gsShiftGPSPosition" xml:space="preserve">
+    <value>Siirrä GPS -sijainti (CM)</value>
+  </data>
+  <data name="gsSimulatorOn" xml:space="preserve">
+    <value>Simulaattori päällä</value>
+  </data>
+  <data name="gsSlowDownBelow" xml:space="preserve">
+    <value>Hidasta alle</value>
+  </data>
+  <data name="gsSmoothABCurve" xml:space="preserve">
+    <value>Tasoita AB -käyrä</value>
+  </data>
+  <data name="gsSort" xml:space="preserve">
+    <value>Järjestä</value>
+  </data>
+  <data name="gsSouth" xml:space="preserve">
+    <value>Etelä</value>
+  </data>
+  <data name="gsSpacing" xml:space="preserve">
+    <value>Etäisyys (cm)</value>
+  </data>
+  <data name="gsStartDeleteABoundary" xml:space="preserve">
+    <value>Aloita tai poista raja</value>
+  </data>
+  <data name="gsStartNewField" xml:space="preserve">
+    <value>Aloita uusi pelto</value>
+  </data>
+  <data name="gsSteerChart" xml:space="preserve">
+    <value>Ohjaus kaavio</value>
+  </data>
+  <data name="gsSteerWizard" xml:space="preserve">
+    <value>Ohjauksen asetukset (avustettu)</value>
+  </data>
+  <data name="gsStopRecordPauseBoundary" xml:space="preserve">
+    <value>Rajan luominen</value>
+  </data>
+  <data name="gsToFile" xml:space="preserve">
+    <value>Arkistoida</value>
+  </data>
+  <data name="gsTooFast" xml:space="preserve">
+    <value>Liian nopea</value>
+  </data>
+  <data name="gsTopFieldView" xml:space="preserve">
+    <value>Pellon esikatselu</value>
+  </data>
+  <data name="gsTramLines" xml:space="preserve">
+    <value>Ruiskutusurat</value>
+  </data>
+  <data name="gsTurnABCurveOn" xml:space="preserve">
+    <value>Kytke AB -käyrä päälle</value>
+  </data>
+  <data name="gsTurnOnContourOrMakeABLine" xml:space="preserve">
+    <value>Kytke päälle reunakäyrä tai AB-linja/käyrä</value>
+  </data>
+  <data name="gsUseSelected" xml:space="preserve">
+    <value>Käytä valittuja</value>
+  </data>
+  <data name="gsWebCam" xml:space="preserve">
+    <value>Kamera</value>
+  </data>
+  <data name="gsWest" xml:space="preserve">
+    <value>Länsi</value>
+  </data>
+  <data name="gsWindowsStillOpen" xml:space="preserve">
+    <value>Windows on edelleen auki</value>
+  </data>
+  <data name="gsWizards" xml:space="preserve">
+    <value>Avustajat</value>
+  </data>
+  <data name="gsXTEChart" xml:space="preserve">
+    <value>XTE kaavio</value>
+  </data>
+  <data name="h_btn2D" xml:space="preserve">
+    <value>2D -näkymä -painike.</value>
+  </data>
+  <data name="h_btn3D" xml:space="preserve">
+    <value>3D -näkymä -painike.</value>
+  </data>
 </root>
