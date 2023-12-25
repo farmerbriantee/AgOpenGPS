@@ -721,6 +721,9 @@ namespace AgOpenGPS
             }
 
             if (trk.idx > (trk.gArr.Count - 1)) trk.idx = trk.gArr.Count - 1;
+
+            FileSaveABLines();
+            FileSaveCurveLines();
         }
 
         public void FileLoadTracks()
@@ -738,10 +741,10 @@ namespace AgOpenGPS
 
             if (!File.Exists(filename))
             {
-                using (StreamWriter writer = new StreamWriter(filename))
-                {
-                    writer.WriteLine("$TrackLines");
-                }
+                FileLoadABLines();
+                FileLoadCurveLines();
+                FileSaveTracks();
+                return;
             }
 
             //get the file of previous AB Lines
@@ -1207,49 +1210,12 @@ namespace AgOpenGPS
                 }
             }
 
-            // ABLine -------------------------------------------------------------------------------------------------
+            // Tracks -------------------------------------------------------------------------------------------------
 
             trk.gArr?.Clear();
-            FileLoadABLines();
-
-            //if (trk.gArr.Count > 0)
-            //{
-            //    ABLine.numABLineSelected = 1;
-            //    ABLine.refPtA = trk.gArr[ABLine.numABLineSelected - 1].ptA;
-            //    //ABLine.refPtB = trk.gArr[ABLine.numABLineSelected - 1].ref2;
-            //    ABLine.abHeading = trk.gArr[ABLine.numABLineSelected - 1].heading;
-            //    ABLine.SetABLineByHeading();
-            //    ABLine.isABLineSet = false;
-            //}
-            //else
-            //{
-            //    ABLine.isABLineSet = false;
-            //}
-
-            //CurveLines
-            FileLoadCurveLines();
-
-            FileSaveTracks();   
 
             FileLoadTracks();
-            //if (trk.gArr.Count > 0)
-            //{
-            //    curve.numCurveLineSelected = 1;
-            //    int idx = curve.numCurveLineSelected - 1;
-            //    curve.refCurve.heading = trk.gArr[idx].heading;
 
-            //    curve.refCurve.curvePts?.Clear();
-            //    for (int i = 0; i < trk.gArr[idx].curvePts.Count; i++)
-            //    {
-            //        curve.refCurve.curvePts.Add(trk.gArr[idx].curvePts[i]);
-            //    }
-            //    curve.isCurveSet = true;
-            //}
-            //else
-            //{
-            //    curve.isCurveSet = false;
-            //    curve.refCurve.curvePts?.Clear();
-            //}
             
             //section patches
             fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Sections.txt";
