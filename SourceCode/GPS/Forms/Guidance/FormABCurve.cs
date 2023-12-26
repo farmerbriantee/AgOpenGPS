@@ -343,12 +343,9 @@ namespace AgOpenGPS
             isClosing = true;
             mf.curve.isCurveValid = false;
             mf.curve.isOkToAddDesPoints = false;
-            mf.curve.isCurveSet = false;
             mf.curve.desList?.Clear();
-            mf.curve.isCurveSet = false;
             mf.DisableYouTurnButtons();
             //mf.btnContourPriority.Enabled = false;
-            //mf.curve.ResetCurveLine();
             mf.curve.isBtnCurveOn = false;
             mf.btnCurve.Image = Properties.Resources.CurveOff;
             if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();

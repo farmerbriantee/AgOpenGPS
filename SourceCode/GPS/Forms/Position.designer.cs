@@ -931,7 +931,7 @@ namespace AgOpenGPS
                             }
                             else
                             {
-                                if (ABLine.isABLineSet)
+                                if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
                                 {
                                     yt.BuildABLineDubinsYouTurn(yt.isYouTurnRight);
                                 }

@@ -95,14 +95,11 @@ namespace AgOpenGPS
                 return;
             }
 
-
             //if contour is on, turn it off
             if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
 
             //turn off ABLine 
             ABLine.isABLineBeingSet = false;
-            ABLine.isABLineSet = false;
-            //lblDistanceOffLine.Visible = false;
 
             //change image to reflect on off
             btnABLine.Image = Properties.Resources.ABLineOff;
@@ -113,10 +110,9 @@ namespace AgOpenGPS
 
             curve.isCurveValid = false;
 
-            if (curve.isBtnCurveOn == false && curve.isCurveSet)
+            if (curve.isBtnCurveOn == false)
             {
                 //display the curve
-                curve.isCurveSet = true;
                 EnableYouTurnButtons();
                 btnCurve.Image = Properties.Resources.CurveOn;
                 curve.isBtnCurveOn = true;
@@ -191,7 +187,6 @@ namespace AgOpenGPS
             //if there is a line in memory, just use it.
             if (ABLine.isBtnABLineOn == false)
             {                
-                ABLine.isABLineSet = true;
                 EnableYouTurnButtons();
                 btnABLine.Image = Properties.Resources.ABLineOn;
                 ABLine.isBtnABLineOn = true;
@@ -338,6 +333,9 @@ namespace AgOpenGPS
                 //    }
                 //}
             }
+
+            ABLine.isABValid = false;
+            curve.isCurveValid = false; 
 
 
             lblFieldStatus.Text = fieldData + " ----- " + guidanceLineText;
@@ -693,27 +691,15 @@ namespace AgOpenGPS
 
             DisableYouTurnButtons();
 
-            //if ABLine isn't set, turn off the YouTurn
-            if (ABLine.isABLineSet)
+            if (trk.idx > -1 && trk.gArr.Count > 0)
             {
-                //ABLine.DeleteAB();
-                ABLine.isABLineBeingSet = false;
-                ABLine.isABLineSet = false;
-                //lblDistanceOffLine.Visible = false;
-
-                //change image to reflect on off
-                btnABLine.Image = Properties.Resources.ABLineOff;
-                ABLine.isBtnABLineOn = false;
-            }
-
-            if (curve.isCurveSet)
-            {
-
-                //make sure the other stuff is off
-                curve.isCurveSet = false;
-                //btnContourPriority.Enabled = false;
-                curve.isBtnCurveOn = false;
-                btnCurve.Image = Properties.Resources.CurveOff;
+                if (trk.gArr[trk.idx].mode == (int)TrackMode.Curve)
+                {
+                    //make sure the other stuff is off
+                    //btnContourPriority.Enabled = false;
+                    curve.isBtnCurveOn = false;
+                    btnCurve.Image = Properties.Resources.CurveOff;
+                }
             }
 
             #endregion
@@ -1783,61 +1769,61 @@ namespace AgOpenGPS
 
         private void SnapRight()
         {
-            if (!ct.isContourBtnOn)
-            {
-                if (ABLine.isABLineSet)
-                {
-                    //snap distance is in cm
-                    yt.ResetCreatedYouTurn();
-                    double dist = 0.01 * Properties.Settings.Default.setAS_snapDistance;
+            //if (!ct.isContourBtnOn)
+            //{
+            //    //if (ABLine.isABLineSet)
+            //    {
+            //        //snap distance is in cm
+            //        yt.ResetCreatedYouTurn();
+            //        double dist = 0.01 * Properties.Settings.Default.setAS_snapDistance;
 
-                    ABLine.MoveABLine(dist);
-                }
-                else if (curve.isCurveSet)
-                {
-                    //snap distance is in cm
-                    yt.ResetCreatedYouTurn();
-                    double dist = 0.01 * Properties.Settings.Default.setAS_snapDistance;
-                    curve.MoveABCurve(dist);
+            //        ABLine.MoveABLine(dist);
+            //    }
+            //    else if (curve.isCurveSet)
+            //    {
+            //        //snap distance is in cm
+            //        yt.ResetCreatedYouTurn();
+            //        double dist = 0.01 * Properties.Settings.Default.setAS_snapDistance;
+            //        curve.MoveABCurve(dist);
 
-                }
-                else
-                {
-                    var form = new FormTimedMessage(2000, (gStr.gsNoGuidanceLines), (gStr.gsTurnOnContourOrMakeABLine));
-                    form.Show(this);
-                }
-            }
+            //    }
+            //    else
+            //    {
+            //        var form = new FormTimedMessage(2000, (gStr.gsNoGuidanceLines), (gStr.gsTurnOnContourOrMakeABLine));
+            //        form.Show(this);
+            //    }
+            //}
 
         }
         private void SnapLeft()
         {
-            if (!ct.isContourBtnOn)
-            {
-                if (ABLine.isABLineSet)
-                {
-                    //snap distance is in cm
-                    yt.ResetCreatedYouTurn();
-                    double dist = 0.01 * Properties.Settings.Default.setAS_snapDistance;
+            //if (!ct.isContourBtnOn)
+            //{
+            //    if (ABLine.isABLineSet)
+            //    {
+            //        //snap distance is in cm
+            //        yt.ResetCreatedYouTurn();
+            //        double dist = 0.01 * Properties.Settings.Default.setAS_snapDistance;
 
-                    ABLine.MoveABLine(-dist);
+            //        ABLine.MoveABLine(-dist);
 
-                    //FileSaveABLine();
-                }
-                else if (curve.isCurveSet)
-                {
-                    //snap distance is in cm
-                    yt.ResetCreatedYouTurn();
-                    double dist = 0.01 * Properties.Settings.Default.setAS_snapDistance;
+            //        //FileSaveABLine();
+            //    }
+            //    else if (curve.isCurveSet)
+            //    {
+            //        //snap distance is in cm
+            //        yt.ResetCreatedYouTurn();
+            //        double dist = 0.01 * Properties.Settings.Default.setAS_snapDistance;
 
-                    curve.MoveABCurve(-dist);
+            //        curve.MoveABCurve(-dist);
 
-                }
-                else
-                {
-                    var form = new FormTimedMessage(2000, (gStr.gsNoGuidanceLines), (gStr.gsTurnOnContourOrMakeABLine));
-                    form.Show(this);
-                }
-            }
+            //    }
+            //    else
+            //    {
+            //        var form = new FormTimedMessage(2000, (gStr.gsNoGuidanceLines), (gStr.gsTurnOnContourOrMakeABLine));
+            //        form.Show(this);
+            //    }
+            //}
         }
         private void btnSnapRight_Click(object sender, EventArgs e)
         {

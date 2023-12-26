@@ -1138,15 +1138,18 @@ namespace AgOpenGPS
                 pt3Phase = 0;
             }
 
-            if (mf.ABLine.isABLineSet)
+            if (mf.trk.idx > -1 && mf.trk.gArr.Count > 0)
             {
-                mf.ABLine.isLateralTriggered = true;
-                mf.ABLine.isABValid = false;
-            }
-            else
-            {
-                mf.curve.isLateralTriggered = true;
-                mf.curve.isCurveValid = false;
+                if (mf.trk.gArr[mf.trk.idx].mode == (int)TrackMode.AB)
+                {
+                    mf.ABLine.isLateralTriggered = true;
+                    mf.ABLine.isABValid = false;
+                }
+                else
+                {
+                    mf.curve.isLateralTriggered = true;
+                    mf.curve.isCurveValid = false;
+                }
             }
         }
 
@@ -1189,21 +1192,24 @@ namespace AgOpenGPS
         {
             double head;
             //point on AB line closest to pivot axle point from ABLine PurePursuit
-            if (mf.ABLine.isABLineSet)
+            if (mf.trk.idx > -1 && mf.trk.gArr.Count > 0)
             {
-                rEastYT = mf.ABLine.rEastAB;
-                rNorthYT = mf.ABLine.rNorthAB;
-                isHeadingSameWay = mf.ABLine.isHeadingSameWay;
-                head = mf.ABLine.abHeading;
-                mf.ABLine.isLateralTriggered = true;
-            }
-            else if (mf.curve.isCurveSet)
-            {
-                rEastYT = mf.curve.rEastCu;
-                rNorthYT = mf.curve.rNorthCu;
-                isHeadingSameWay = mf.curve.isHeadingSameWay;
-                head = mf.curve.manualUturnHeading;
-                mf.curve.isLateralTriggered = true;
+                if (mf.trk.gArr[mf.trk.idx].mode == (int)TrackMode.AB)
+                {
+                    rEastYT = mf.ABLine.rEastAB;
+                    rNorthYT = mf.ABLine.rNorthAB;
+                    isHeadingSameWay = mf.ABLine.isHeadingSameWay;
+                    head = mf.ABLine.abHeading;
+                    mf.ABLine.isLateralTriggered = true;
+                }
+                else
+                {
+                    rEastYT = mf.curve.rEastCu;
+                    rNorthYT = mf.curve.rNorthCu;
+                    isHeadingSameWay = mf.curve.isHeadingSameWay;
+                    head = mf.curve.manualUturnHeading;
+                    mf.curve.isLateralTriggered = true;
+                }
             }
             else return;
 
@@ -1239,21 +1245,25 @@ namespace AgOpenGPS
 
             double head;
             //point on AB line closest to pivot axle point from ABLine PurePursuit
-            if (mf.ABLine.isABLineSet)
+            if (mf.trk.idx > -1 && mf.trk.gArr.Count > 0)
             {
-                rEastYT = mf.ABLine.rEastAB;
-                rNorthYT = mf.ABLine.rNorthAB;
-                isHeadingSameWay = mf.ABLine.isHeadingSameWay;
-                head = mf.ABLine.abHeading;
-                mf.ABLine.isLateralTriggered = true;
-            }
-            else if (mf.curve.isCurveSet)
-            {
-                rEastYT = mf.curve.rEastCu;
-                rNorthYT = mf.curve.rNorthCu;
-                isHeadingSameWay = mf.curve.isHeadingSameWay;
-                head = mf.curve.manualUturnHeading;
-                mf.curve.isLateralTriggered = true;
+                if (mf.trk.gArr[mf.trk.idx].mode == (int)TrackMode.AB)
+                {
+                    rEastYT = mf.ABLine.rEastAB;
+                    rNorthYT = mf.ABLine.rNorthAB;
+                    isHeadingSameWay = mf.ABLine.isHeadingSameWay;
+                    head = mf.ABLine.abHeading;
+                    mf.ABLine.isLateralTriggered = true;
+                }
+
+                else
+                {
+                    rEastYT = mf.curve.rEastCu;
+                    rNorthYT = mf.curve.rNorthCu;
+                    isHeadingSameWay = mf.curve.isHeadingSameWay;
+                    head = mf.curve.manualUturnHeading;
+                    mf.curve.isLateralTriggered = true;
+                }
             }
             else return;
 

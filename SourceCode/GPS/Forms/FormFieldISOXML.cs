@@ -633,7 +633,6 @@ namespace AgOpenGPS
 
                                             //calculate average heading of line
                                             double x = 0, y = 0;
-                                            mf.curve.isCurveSet = true;
 
                                             foreach (vec3 pt in mf.curve.desList)
                                             {
@@ -648,8 +647,6 @@ namespace AgOpenGPS
                                             //build the tail extensions
                                             mf.curve.AddFirstLastPoints(ref mf.curve.desList);
                                             mf.curve.CalculateTurnHeadings();
-
-                                            mf.curve.isCurveSet = true;
 
                                             if (string.IsNullOrEmpty(mf.curve.desName))
                                             {

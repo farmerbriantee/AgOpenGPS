@@ -513,7 +513,7 @@ namespace AgOpenGPS
             {
                 mf.btnABLine.Image = Properties.Resources.ABLineOff;
                 mf.ABLine.isBtnABLineOn = false;
-                mf.ABLine.isABLineSet = false;
+                mf.trk.idx = -1;
                 mf.DisableYouTurnButtons();
                 if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
                 if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
@@ -580,7 +580,6 @@ namespace AgOpenGPS
 
             mf.btnABLine.Image = Properties.Resources.ABLineOff;
             mf.ABLine.isBtnABLineOn = false;
-            mf.ABLine.isABLineSet = false;
             mf.DisableYouTurnButtons();
             if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
             if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();

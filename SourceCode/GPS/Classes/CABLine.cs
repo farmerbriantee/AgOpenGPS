@@ -28,7 +28,6 @@ namespace AgOpenGPS
 
         public double howManyPathsAway, moveDistance;
         public bool isABLineBeingSet;
-        public bool isABLineSet;
         public bool isHeadingSameWay = true;
         public bool isBtnABLineOn;
 
@@ -626,21 +625,6 @@ namespace AgOpenGPS
             }
         }
 
-        public void DeleteAB()
-        {
-            mf.trk.gArr[mf.trk.idx].ptA = new vec2(0.0, 0.0);
-            mf.trk.gArr[mf.trk.idx].ptB = new vec2(0.0, 1.0);
-
-            mf.trk.gArr[mf.trk.idx].endPtA = new vec2(0.0, 0.0);
-            mf.trk.gArr[mf.trk.idx].endPtB = new vec2(0.0, 1.0);
-
-            currentLinePtA = new vec3(0.0, 0.0, 0.0);
-            currentLinePtB = new vec3(0.0, 1.0, 0.0);
-
-            abHeading = 0.0;
-            howManyPathsAway = 0.0;
-            isABLineSet = false;
-        }
 
         public void SetABLineByBPoint()
         {
@@ -657,8 +641,6 @@ namespace AgOpenGPS
 
             mf.trk.gArr[mf.trk.idx].endPtB.easting = mf.trk.gArr[mf.trk.idx].ptA.easting + (Math.Sin(abHeading) * abLength);
             mf.trk.gArr[mf.trk.idx].endPtB.northing = mf.trk.gArr[mf.trk.idx].ptA.northing + (Math.Cos(abHeading) * abLength);
-
-            isABLineSet = true;
         }
 
         public void SetABLineByHeading()
@@ -672,8 +654,6 @@ namespace AgOpenGPS
 
             mf.trk.gArr[mf.trk.idx].ptB.easting = mf.trk.gArr[mf.trk.idx].endPtB.easting;
             mf.trk.gArr[mf.trk.idx].ptB.northing = mf.trk.gArr[mf.trk.idx].endPtB.northing;
-
-            isABLineSet = true;
         }
 
         public void MoveABLine(double dist)

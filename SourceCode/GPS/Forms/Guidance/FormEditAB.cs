@@ -133,7 +133,7 @@ namespace AgOpenGPS
 
         private void btnContourPriority_Click(object sender, EventArgs e)
         {
-            if (mf.ABLine.isABLineSet)
+            //if (mf.ABLine.isABLineSet)
             {
                 mf.ABLine.MoveABLine(mf.ABLine.distanceFromCurrentLinePivot);
             }

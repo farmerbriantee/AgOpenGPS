@@ -10,7 +10,7 @@ namespace AgOpenGPS
         private readonly FormGPS mf;
 
         //flag for starting stop adding points
-        public bool isBtnCurveOn, isCurveSet, isOkToAddDesPoints;
+        public bool isBtnCurveOn, isOkToAddDesPoints;
 
         public double distanceFromCurrentLinePivot;
         public double distanceFromRefLine;
@@ -640,7 +640,7 @@ namespace AgOpenGPS
             }
             else //normal. Smoothing window is not open.
             {
-                if (curList.Count > 0 && isCurveSet)
+                if (curList.Count > 0 )
                 {
                     GL.LineWidth(mf.ABLine.lineWidth);
                     GL.Color3(0.95f, 0.2f, 0.95f);
@@ -1016,7 +1016,6 @@ namespace AgOpenGPS
         {
             curList?.Clear();
             mf.trk.idx = -1;
-            isCurveSet = false;
         }
     }
 

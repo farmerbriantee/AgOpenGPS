@@ -77,12 +77,11 @@ namespace AgOpenGPS
             if (mf.trk.idx == -1)
             {
                 if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
-                
-                mf.curve.isCurveSet = false;
-                mf.ABLine.refLine = null;
-                mf.ABLine.isABLineSet = false;
+                if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();                
             }
+
+            mf.curve.isCurveValid = false;
+            mf.ABLine.isABValid = false;
         }
 
         private void FixLabelsCurve()
@@ -426,7 +425,6 @@ namespace AgOpenGPS
 
                 //calculate average heading of line
                 double x = 0, y = 0;
-                mf.curve.isCurveSet = true;
 
                 foreach (vec3 pt in mf.curve.desList)
                 {
@@ -467,7 +465,6 @@ namespace AgOpenGPS
             }
             else
             {
-                mf.curve.isCurveSet = false;
                 mf.curve.desList?.Clear();
             }
             btnExit.Focus();
