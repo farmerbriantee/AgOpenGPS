@@ -102,8 +102,8 @@ namespace AgOpenGPS
             ABLine.isABLineBeingSet = false;
 
             //change image to reflect on off
-            btnABLine.Image = Properties.Resources.ABLineOff;
-            ABLine.isBtnABLineOn = false;
+            //btnABLine.Image = Properties.Resources.ABLineOff;
+            //ABLine.isBtnABLineOn = false;
 
             //new direction so reset where to put turn diagnostic
             //yt.ResetCreatedYouTurn();
@@ -183,15 +183,6 @@ namespace AgOpenGPS
                 
             curve.isBtnCurveOn = false;
             btnCurve.Image = Properties.Resources.CurveOff;
-
-            //if there is a line in memory, just use it.
-            if (ABLine.isBtnABLineOn == false)
-            {                
-                EnableYouTurnButtons();
-                btnABLine.Image = Properties.Resources.ABLineOn;
-                ABLine.isBtnABLineOn = true;
-                return;
-            }
             
             //check if window already exists, return if true
             Form fc = Application.OpenForms["FormABLine"];
@@ -201,10 +192,6 @@ namespace AgOpenGPS
                 fc.Focus();
                 return;
             }
-
-            //Bring up the form
-            ABLine.isBtnABLineOn = true;
-            btnABLine.Image = Properties.Resources.ABLineOn;
 
             //turn off youturn...
             //DisableYouTurnButtons();

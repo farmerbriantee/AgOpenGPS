@@ -511,7 +511,6 @@ namespace AgOpenGPS
             //no item selected
             else
             {
-                mf.btnABLine.Image = Properties.Resources.ABLineOff;
                 mf.ABLine.isBtnABLineOn = false;
                 mf.trk.idx = -1;
                 mf.DisableYouTurnButtons();
@@ -578,7 +577,7 @@ namespace AgOpenGPS
         {
             isClosing = true;
 
-            mf.btnABLine.Image = Properties.Resources.ABLineOff;
+            //mf.btnABLine.Image = Properties.Resources.ABLineOff;
             mf.ABLine.isBtnABLineOn = false;
             mf.DisableYouTurnButtons();
             if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();

@@ -874,7 +874,6 @@ namespace AgOpenGPS
             btnZone7.Enabled = true;
             btnZone8.Enabled = true;
 
-            btnABLine.Enabled = true;
             btnContour.Enabled = true;
             btnCurve.Enabled = true;
             btnABDraw.Enabled = true;
@@ -1040,8 +1039,6 @@ namespace AgOpenGPS
             flagPts.Clear();
 
             //ABLine
-            btnABLine.Enabled = false;
-            btnABLine.Image = Properties.Resources.ABLineOff;
             ABLine.isBtnABLineOn = false;
             tram.tramList?.Clear();
 

@@ -107,7 +107,6 @@
             this.btnCycleLinesBk = new System.Windows.Forms.Button();
             this.btnCurve = new System.Windows.Forms.Button();
             this.btnContour = new System.Windows.Forms.Button();
-            this.btnABLine = new System.Windows.Forms.Button();
             this.btnCycleLines = new System.Windows.Forms.Button();
             this.btnAutoSteer = new System.Windows.Forms.Button();
             this.btnAutoYouTurn = new System.Windows.Forms.Button();
@@ -1074,7 +1073,6 @@
             this.panelRight.Controls.Add(this.btnCycleLinesBk, 0, 4);
             this.panelRight.Controls.Add(this.btnCurve, 0, 1);
             this.panelRight.Controls.Add(this.btnContour, 0, 0);
-            this.panelRight.Controls.Add(this.btnABLine, 0, 2);
             this.panelRight.Controls.Add(this.btnCycleLines, 0, 3);
             this.panelRight.Controls.Add(this.btnAutoSteer, 0, 8);
             this.panelRight.Controls.Add(this.btnAutoYouTurn, 0, 7);
@@ -1156,28 +1154,6 @@
             this.btnContour.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnContour.UseVisualStyleBackColor = false;
             this.btnContour.Click += new System.EventHandler(this.btnContour_Click);
-            // 
-            // btnABLine
-            // 
-            this.btnABLine.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnABLine.BackColor = System.Drawing.Color.Transparent;
-            this.btnABLine.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnABLine.Enabled = false;
-            this.btnABLine.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnABLine.FlatAppearance.BorderSize = 0;
-            this.btnABLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnABLine.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOff;
-            this.btnABLine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnABLine.Location = new System.Drawing.Point(0, 144);
-            this.btnABLine.Margin = new System.Windows.Forms.Padding(0);
-            this.btnABLine.Name = "btnABLine";
-            this.btnABLine.Size = new System.Drawing.Size(75, 67);
-            this.btnABLine.TabIndex = 0;
-            this.btnABLine.Text = "2 / 3";
-            this.btnABLine.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnABLine.UseVisualStyleBackColor = false;
-            this.btnABLine.Click += new System.EventHandler(this.btnABLine_Click);
             // 
             // btnCycleLines
             // 
@@ -1547,7 +1523,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 67F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 69F));
             this.panelSim.Controls.Add(this.btnSimReverseDirection, 8, 0);
             this.panelSim.Controls.Add(this.btnSpeedDn, 5, 0);
             this.panelSim.Controls.Add(this.btnSimSpeedUp, 7, 0);
@@ -1571,7 +1547,7 @@
             this.btnSimReverseDirection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimReverseDirection.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimReverseDirection.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimReverseDirection.Location = new System.Drawing.Point(593, 4);
+            this.btnSimReverseDirection.Location = new System.Drawing.Point(591, 4);
             this.btnSimReverseDirection.Name = "btnSimReverseDirection";
             this.btnSimReverseDirection.Size = new System.Drawing.Size(40, 25);
             this.btnSimReverseDirection.TabIndex = 537;
@@ -1588,7 +1564,7 @@
             this.btnSpeedDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSpeedDn.Location = new System.Drawing.Point(374, 4);
             this.btnSpeedDn.Name = "btnSpeedDn";
-            this.btnSpeedDn.Size = new System.Drawing.Size(67, 25);
+            this.btnSpeedDn.Size = new System.Drawing.Size(66, 25);
             this.btnSpeedDn.TabIndex = 533;
             this.btnSpeedDn.UseVisualStyleBackColor = false;
             this.btnSpeedDn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSpeedDn_MouseDown);
@@ -1601,9 +1577,9 @@
             this.btnSimSpeedUp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSimSpeedUp.FlatAppearance.BorderSize = 0;
             this.btnSimSpeedUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSimSpeedUp.Location = new System.Drawing.Point(519, 4);
+            this.btnSimSpeedUp.Location = new System.Drawing.Point(518, 4);
             this.btnSimSpeedUp.Name = "btnSimSpeedUp";
-            this.btnSimSpeedUp.Size = new System.Drawing.Size(67, 25);
+            this.btnSimSpeedUp.Size = new System.Drawing.Size(66, 25);
             this.btnSimSpeedUp.TabIndex = 532;
             this.btnSimSpeedUp.UseVisualStyleBackColor = false;
             this.btnSimSpeedUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSimSpeedUp_MouseDown);
@@ -1617,7 +1593,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(448, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(447, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(64, 25);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -2673,7 +2649,6 @@
         private System.Windows.Forms.Button btnSection11Man;
         private System.Windows.Forms.Button btnSection12Man;
         private System.Windows.Forms.ToolStripMenuItem enterSimCoordsToolStripMenuItem;
-        public System.Windows.Forms.Button btnABLine;
         public System.Windows.Forms.Button btnAutoYouTurn;
         public System.Windows.Forms.Button btnAutoSteer;
         private System.Windows.Forms.HScrollBar hsbarSteerAngle;
