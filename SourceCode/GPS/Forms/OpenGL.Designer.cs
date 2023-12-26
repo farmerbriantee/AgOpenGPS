@@ -311,8 +311,13 @@ namespace AgOpenGPS
                     }
                     else// draw the current and reference AB Lines or CurveAB Ref and line
                     {
-                        if (ABLine.isABLineSet | ABLine.isABLineBeingSet) ABLine.DrawABLines();
-                        if (curve.isBtnCurveOn) curve.DrawCurve();
+                        if (trk.idx > -1 && curve.isBtnCurveOn)
+                        {
+                            if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
+                                ABLine.DrawABLines();
+                            else
+                                curve.DrawCurve();
+                        }
                     }
 
                     recPath.DrawRecordedLine();

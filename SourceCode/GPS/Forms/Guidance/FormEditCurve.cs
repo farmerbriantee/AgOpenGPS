@@ -66,24 +66,22 @@ namespace AgOpenGPS
         private void bntOk_Click(object sender, EventArgs e)
         {
             isClosing = true;
-            if (mf.curve.isCurveSet && mf.curve.refCurve.curvePts.Count > 0)
-            {
-                if (mf.trk.idx >= 0)
-                {
-                    mf.trk.gArr[mf.trk.idx].heading = mf.curve.refCurve.heading;
-                    mf.trk.gArr[mf.trk.idx].curvePts.Clear();
-                    //write out the Curve Points
-                    foreach (vec3 item in mf.curve.refCurve.curvePts)
-                    {
-                        mf.trk.gArr[mf.trk.idx].curvePts.Add(item);
-                    }
-                }
+            //if (mf.curve.isCurveSet && mf.trk.gArr[mf.trk.idx].curvePts.Count > 0)
+            //{
+            //    if (mf.trk.idx >= 0)
+            //    {
+            //        mf.trk.gArr[mf.trk.idx].curvePts.Clear();
+            //        //write out the Curve Points
+            //        foreach (vec3 item in mf.curve.refCurve.curvePts)
+            //        {
+            //            mf.trk.gArr[mf.trk.idx].curvePts.Add(item);
+            //        }
+            //    }
 
-                //save entire list
-                mf.FileSaveCurveLines();
-                mf.curve.refCurve.nudgeDistance = 0;
-                mf.curve.isCurveValid = false;
-            }
+            //    //save entire list
+            //    mf.FileSaveCurveLines();
+            //    mf.curve.isCurveValid = false;
+            //}
             Close();
         }
 
@@ -116,27 +114,27 @@ namespace AgOpenGPS
         {
             mf.curve.isCurveValid = false;
             mf.curve.lastSecond = 0;
-            int cnt = mf.curve.refCurve.curvePts.Count;
+            int cnt = mf.trk.gArr[mf.trk.idx].curvePts.Count;
             if (cnt > 0)
             {
-                mf.curve.refCurve.curvePts.Reverse();
+                mf.trk.gArr[mf.trk.idx].curvePts.Reverse();
 
                 vec3[] arr = new vec3[cnt];
                 cnt--;
-                mf.curve.refCurve.curvePts.CopyTo(arr);
-                mf.curve.refCurve.curvePts.Clear();
+                mf.trk.gArr[mf.trk.idx].curvePts.CopyTo(arr);
+                mf.trk.gArr[mf.trk.idx].curvePts.Clear();
 
-                mf.curve.refCurve.heading += Math.PI;
-                if (mf.curve.refCurve.heading < 0) mf.curve.refCurve.heading += glm.twoPI;
-                if (mf.curve.refCurve.heading > glm.twoPI) mf.curve.refCurve.heading -= glm.twoPI;
+                mf.trk.gArr[mf.trk.idx].heading += Math.PI;
+                if (mf.trk.gArr[mf.trk.idx].heading < 0) mf.trk.gArr[mf.trk.idx].heading += glm.twoPI;
+                if (mf.trk.gArr[mf.trk.idx].heading > glm.twoPI) mf.trk.gArr[mf.trk.idx].heading -= glm.twoPI;
 
                 for (int i = 1; i < cnt; i++)
                 {
-                    vec3 pt3 = arr[i];
+                    vec3 pt3 = new vec3(arr[i]);
                     pt3.heading += Math.PI;
                     if (pt3.heading > glm.twoPI) pt3.heading -= glm.twoPI;
                     if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                    mf.curve.refCurve.curvePts.Add(pt3);
+                    mf.trk.gArr[mf.trk.idx].curvePts.Add(pt3);
                 }
             }
         }

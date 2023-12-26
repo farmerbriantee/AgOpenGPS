@@ -65,28 +65,8 @@ namespace AgOpenGPS
             mf.curve.SaveSmoothList();
             mf.curve.smooList?.Clear();
 
-            if (mf.curve.refCurve.curvePts.Count > 0)
-            {
-                //array number is 1 less since it starts at zero
-
-                if (mf.trk.idx >= 0)
-                {
-                    mf.trk.gArr[mf.trk.idx].heading = mf.curve.refCurve.heading;
-                    mf.trk.gArr[mf.trk.idx].curvePts.Clear();
-                    //write out the Curve Points
-                    foreach (vec3 item in mf.curve.refCurve.curvePts)
-                    {
-                        mf.trk.gArr[mf.trk.idx].curvePts.Add(item);
-                    }
-                }
-
-                //save entire list
-                mf.FileSaveCurveLines();
-                mf.curve.refCurve.nudgeDistance = 0;
-
-                //mf.layoutPanelRight.Enabled = true;
-                //Close();
-            }
+            //save entire list
+            mf.FileSaveTracks();
 
             //mf.FileSaveCurveLines();
             Close();

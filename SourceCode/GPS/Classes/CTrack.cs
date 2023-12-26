@@ -30,23 +30,6 @@ namespace AgOpenGPS
             idx = -1;
         }
 
-        public void LoadGuidanceLine()
-        {
-            if (gArr[idx].mode == (int)TrackMode.AB)
-            {
-                mf.ABLine.refLine = new CTrk(gArr[idx]);
-                mf.curve.refCurve = null;
-                mf.curve.isCurveSet = false;
-            }
-            else
-            {
-                mf.curve.refCurve = new CTrk(gArr[idx]);
-                mf.ABLine.refLine = null;
-                mf.ABLine.isABLineSet = false;
-            }
-
-        }
-
         public bool LoadABLine(int idx)
         {
             //if (mf.trk.gArr[idx].isVisible)
@@ -97,6 +80,8 @@ namespace AgOpenGPS
         public bool isVisible;
         public vec2 ptA;
         public vec2 ptB;
+        public vec2 endPtA;
+        public vec2 endPtB;
         public int mode;
         public double nudgeDistance;
 
@@ -108,6 +93,8 @@ namespace AgOpenGPS
             isVisible = true;
             ptA = new vec2();
             ptB = new vec2();
+            endPtA = new vec2();
+            endPtB = new vec2();
             mode = 0;
             nudgeDistance = 0;
         }
@@ -118,8 +105,10 @@ namespace AgOpenGPS
             heading = _trk.heading;
             name = _trk.name;
             isVisible = _trk.isVisible;
-            ptA = new vec2();
-            ptB = new vec2();
+            ptA = _trk.ptA;
+            ptB = _trk.ptB;
+            endPtA = new vec2();
+            endPtB = new vec2();
             mode = _trk.mode;
             nudgeDistance = _trk.nudgeDistance;
         }

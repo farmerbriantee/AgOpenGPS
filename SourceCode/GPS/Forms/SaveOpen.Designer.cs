@@ -837,8 +837,6 @@ namespace AgOpenGPS
 
         public void FileSaveCurveLines()
         {
-            curve.refCurve.nudgeDistance = 0;
-
             string dirField = fieldsDirectory + currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
 
@@ -896,10 +894,6 @@ namespace AgOpenGPS
 
         public void FileLoadCurveLines()
         {
-            curve.refCurve.nudgeDistance = 0;
-
-            //trk.gArr?.Clear();
-
             //get the directory and make sure it exists, create if not
             string dirField = fieldsDirectory + currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField);

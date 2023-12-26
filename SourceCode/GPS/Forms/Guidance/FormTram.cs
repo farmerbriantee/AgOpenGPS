@@ -88,7 +88,7 @@ namespace AgOpenGPS
             {
                 //if (isCurve)
                 //{
-                //    if (mf.curve.refCurve.curvePts.Count > 0)
+                //    if (mf.trk.gArr[mf.trk.idx].curvePts.Count > 0)
                 //    {
                 //        //array number is 1 less since it starts at zero
                 //        int idx = mf.curve.numCurveLineSelected - 1;
@@ -96,10 +96,10 @@ namespace AgOpenGPS
                 //        //mf.trk.gArr[idxFieldSelected].name = textBox1.Text.Trim();
                 //        if (idx >= 0)
                 //        {
-                //            mf.trk.gArr[idx].heading = mf.curve.refCurve.heading;
+                //            mf.trk.gArr[idx].heading = mf.trk.gArr[mf.trk.idx].heading;
                 //            mf.trk.gArr[idx].curvePts.Clear();
                 //            //write out the Curve Points
-                //            foreach (vec3 item in mf.curve.refCurve.curvePts)
+                //            foreach (vec3 item in mf.trk.gArr[mf.trk.idx].curvePts)
                 //            {
                 //                mf.trk.gArr[idx].curvePts.Add(item);
                 //            }
@@ -107,7 +107,7 @@ namespace AgOpenGPS
 
                 //        //save entire list
                 //        mf.FileSaveCurveLines();
-                //        mf.curve.refCurve.nudgeDistance = 0;
+                //        mf.trk.gArr[mf.trk.idx].nudgeDistance = 0;
                 //    }
                 //}
                 //else
@@ -201,19 +201,19 @@ namespace AgOpenGPS
         {
             if (isCurve)
             {
-                int cnt = mf.curve.refCurve.curvePts.Count;
+                int cnt = mf.trk.gArr[mf.trk.idx].curvePts.Count;
                 if (cnt > 0)
                 {
-                    mf.curve.refCurve.curvePts.Reverse();
+                    mf.trk.gArr[mf.trk.idx].curvePts.Reverse();
 
                     vec3[] arr = new vec3[cnt];
                     cnt--;
-                    mf.curve.refCurve.curvePts.CopyTo(arr);
-                    mf.curve.refCurve.curvePts.Clear();
+                    mf.trk.gArr[mf.trk.idx].curvePts.CopyTo(arr);
+                    mf.trk.gArr[mf.trk.idx].curvePts.Clear();
 
-                    mf.curve.refCurve.heading += Math.PI;
-                    if (mf.curve.refCurve.heading < 0) mf.curve.refCurve.heading += glm.twoPI;
-                    if (mf.curve.refCurve.heading > glm.twoPI) mf.curve.refCurve.heading -= glm.twoPI;
+                    mf.trk.gArr[mf.trk.idx].heading += Math.PI;
+                    if (mf.trk.gArr[mf.trk.idx].heading < 0) mf.trk.gArr[mf.trk.idx].heading += glm.twoPI;
+                    if (mf.trk.gArr[mf.trk.idx].heading > glm.twoPI) mf.trk.gArr[mf.trk.idx].heading -= glm.twoPI;
 
                     for (int i = 1; i < cnt; i++)
                     {
@@ -221,7 +221,7 @@ namespace AgOpenGPS
                         pt3.heading += Math.PI;
                         if (pt3.heading > glm.twoPI) pt3.heading -= glm.twoPI;
                         if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                        mf.curve.refCurve.curvePts.Add(pt3);
+                        mf.trk.gArr[mf.trk.idx].curvePts.Add(pt3);
                     }
                 }
             }
@@ -230,14 +230,11 @@ namespace AgOpenGPS
                 mf.ABLine.abHeading += Math.PI;
                 if (mf.ABLine.abHeading > glm.twoPI) mf.ABLine.abHeading -= glm.twoPI;
 
-                mf.ABLine.refLineEndA.easting = mf.trk.gArr[mf.trk.idx].ptA.easting - (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
-                mf.ABLine.refLineEndA.northing = mf.trk.gArr[mf.trk.idx].ptA.northing - (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
-
-                mf.ABLine.refLineEndB.easting = mf.trk.gArr[mf.trk.idx].ptA.easting + (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
-                mf.ABLine.refLineEndB.northing = mf.trk.gArr[mf.trk.idx].ptA.northing + (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
-
-                mf.trk.gArr[mf.trk.idx].ptB.easting = mf.ABLine.refLineEndB.easting;
-                mf.trk.gArr[mf.trk.idx].ptB.northing = mf.ABLine.refLineEndB.northing;
+                mf.trk.gArr[mf.trk.idx].endPtA.easting = mf.trk.gArr[mf.trk.idx].ptA.easting - (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
+                mf.trk.gArr[mf.trk.idx].endPtA.northing = mf.trk.gArr[mf.trk.idx].ptA.northing - (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
+                
+                mf.trk.gArr[mf.trk.idx].endPtB.easting = mf.trk.gArr[mf.trk.idx].ptA.easting + (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
+                mf.trk.gArr[mf.trk.idx].endPtB.northing = mf.trk.gArr[mf.trk.idx].ptA.northing + (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
             }
             MoveBuildTramLine(0);
         }

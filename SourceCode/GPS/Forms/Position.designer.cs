@@ -746,15 +746,12 @@ namespace AgOpenGPS
             }
             else
             {
-                if (curve.isCurveSet && curve.isBtnCurveOn)
+                if (trk.idx > -1 && curve.isBtnCurveOn)
                 {
-                    //do the calcs for AB Curve
-                    curve.GetCurrentCurveLine(pivotAxlePos, steerAxlePos);
-                }
-
-                if (ABLine.isABLineSet && ABLine.isBtnABLineOn)
-                {
-                    ABLine.GetCurrentABLine(pivotAxlePos, steerAxlePos);
+                    if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
+                        ABLine.GetCurrentABLine(pivotAxlePos, steerAxlePos);
+                    else
+                        curve.GetCurrentCurveLine(pivotAxlePos, steerAxlePos);
                 }
             }
 

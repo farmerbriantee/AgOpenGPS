@@ -342,10 +342,9 @@ namespace AgOpenGPS
         {
             isClosing = true;
             mf.curve.isCurveValid = false;
-            mf.curve.refCurve.nudgeDistance = 0;
             mf.curve.isOkToAddDesPoints = false;
             mf.curve.isCurveSet = false;
-            mf.curve.refCurve.curvePts?.Clear();
+            mf.curve.desList?.Clear();
             mf.curve.isCurveSet = false;
             mf.DisableYouTurnButtons();
             //mf.btnContourPriority.Enabled = false;
@@ -552,8 +551,6 @@ namespace AgOpenGPS
 
         private void btnListDelete_Click(object sender, EventArgs e)
         {
-            mf.curve.refCurve.nudgeDistance = 0;
-
             if (selectedItem > -1)
             {
                 mf.trk.gArr.RemoveAt(selectedItem);
@@ -571,10 +568,10 @@ namespace AgOpenGPS
 
                     //TODO
                     //mf.curve.refCurve.heading = mf.trk.gArr[0].heading;
-                    //mf.curve.refCurve.curvePts?.Clear();
+                    //mf.curve.desList?.Clear();
                     //for (int i = 0; i < mf.trk.gArr[0].curvePts.Count; i++)
                     //{
-                    //    mf.curve.refCurve.curvePts.Add(mf.trk.gArr[0].curvePts[i]);
+                    //    mf.curve.desList.Add(mf.trk.gArr[0].curvePts[i]);
                     //}
                     //mf.curve.isCurveSet = true;
                     //mf.yt.ResetYouTurn();
@@ -594,7 +591,6 @@ namespace AgOpenGPS
             isClosing = true;
             //reset to generate new reference
             mf.curve.isCurveValid = false;
-            mf.curve.refCurve.nudgeDistance = 0;
             mf.curve.desList?.Clear();
 
             mf.FileSaveCurveLines();
@@ -602,15 +598,6 @@ namespace AgOpenGPS
             if (selectedItem > -1)
             {
                 mf.trk.idx = selectedItem;
-
-                //todo
-                mf.curve.refCurve.heading = mf.trk.gArr[mf.trk.idx].heading;
-                mf.curve.refCurve.curvePts?.Clear();
-                for (int i = 0; i < mf.trk.gArr[mf.trk.idx].curvePts.Count; i++)
-                {
-                    mf.curve.refCurve.curvePts.Add(mf.trk.gArr[mf.trk.idx].curvePts[i]);
-                }
-                mf.curve.isCurveSet = true;
                 mf.yt.ResetYouTurn();
 
                 Close();
@@ -618,24 +605,13 @@ namespace AgOpenGPS
             else if (mf.trk.gArr.Count > 0)
             {
                 mf.trk.idx = mf.trk.gArr.Count - 1;
-
-                mf.curve.refCurve.heading = mf.trk.gArr[mf.trk.idx].heading;
-                mf.curve.refCurve.curvePts?.Clear();
-                for (int i = 0; i < mf.trk.gArr[mf.trk.idx].curvePts.Count; i++)
-                {
-                    mf.curve.refCurve.curvePts.Add(mf.trk.gArr[mf.trk.idx].curvePts[i]);
-                }
-                mf.curve.isCurveSet = true;
                 mf.yt.ResetYouTurn();
 
                 Close();
             }
             else
             {
-                mf.curve.isOkToAddDesPoints = false;
-                mf.curve.isCurveSet = false;
-                mf.curve.refCurve.curvePts?.Clear();
-                mf.curve.isCurveSet = false;
+                mf.trk.idx = -1;
                 mf.DisableYouTurnButtons();
                 mf.curve.isBtnCurveOn = false;
                 mf.btnCurve.Image = Properties.Resources.CurveOff;

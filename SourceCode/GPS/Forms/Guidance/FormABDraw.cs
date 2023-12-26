@@ -74,57 +74,15 @@ namespace AgOpenGPS
             if (mf.trk.gArr.Count > 0 && mf.trk.idx == -1)
                 mf.trk.idx = mf.trk.gArr.Count - 1;
 
-            if (mf.trk.idx > -1)
-            {
-                mf.trk.LoadGuidanceLine();
-            }
-            else
+            if (mf.trk.idx == -1)
             {
                 if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
                 if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
                 
-                mf.curve.refCurve = null;
                 mf.curve.isCurveSet = false;
                 mf.ABLine.refLine = null;
                 mf.ABLine.isABLineSet = false;
             }
-            //curve
-            //if (mf.curve.numCurveLineSelected > 0)
-            //{
-            //    int idx = mf.trk.idx;
-            //    mf.curve.refCurve.heading = mf.trk.gArr[idx].heading;
-            //    mf.curve.desList?.Clear();
-            //    foreach (vec3 v in mf.trk.gArr[idx].curvePts) mf.curve.desList.Add(v);
-            //    mf.curve.isCurveSet = true;
-            //}
-            //else
-            //{
-            //}
-
-                //mf.FileSaveCurveLines();
-
-                //if (mf.ABLine.isBtnABLineOn)
-                //{
-                //    if (mf.ABLine.numABLineSelected == 0)
-                //    {
-                //        if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                //        if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
-                //        mf.ABLine.isABLineSet = false;
-                //        mf.btnABLine.Image = Properties.Resources.ABLineOff;
-                //        mf.ABLine.isBtnABLineOn = false;
-                //    }
-                //}
-
-                //if (mf.curve.isBtnCurveOn)
-                //{
-                //    if (mf.curve.numCurveLineSelected == 0)
-                //    {
-                //        mf.curve.isCurveSet = false;
-                //        mf.curve.desList?.Clear();
-                //        mf.curve.isBtnCurveOn = false;
-                //        mf.btnCurve.Image = Properties.Resources.CurveOff;
-                //    }
-                //}
         }
 
         private void FixLabelsCurve()
@@ -477,8 +435,8 @@ namespace AgOpenGPS
                 }
                 x /= mf.curve.desList.Count;
                 y /= mf.curve.desList.Count;
-                mf.curve.refCurve.heading = Math.Atan2(y, x);
-                if (mf.curve.refCurve.heading < 0) mf.curve.refCurve.heading += glm.twoPI;
+                mf.trk.gArr[mf.trk.idx].heading = Math.Atan2(y, x);
+                if (mf.trk.gArr[mf.trk.idx].heading < 0) mf.trk.gArr[mf.trk.idx].heading += glm.twoPI;
 
                 //build the tail extensions
                 mf.curve.AddFirstLastPoints(ref mf.curve.desList);
@@ -489,10 +447,9 @@ namespace AgOpenGPS
                 mf.trk.idx = mf.trk.gArr.Count - 1;
 
                 //create a name
-                mf.trk.gArr[mf.trk.idx].name = "Cu-"+(Math.Round(glm.toDegrees(mf.curve.refCurve.heading), 1)).ToString(CultureInfo.InvariantCulture)
-                     + "\u00B0" + mf.FindDirection(mf.curve.refCurve.heading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
+                mf.trk.gArr[mf.trk.idx].name = "Cu-"+(Math.Round(glm.toDegrees(mf.trk.gArr[mf.trk.idx].heading), 1)).ToString(CultureInfo.InvariantCulture)
+                     + "\u00B0" + mf.FindDirection(mf.trk.gArr[mf.trk.idx].heading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
-                mf.trk.gArr[mf.trk.idx].heading = mf.curve.refCurve.heading;
                 mf.trk.gArr[mf.trk.idx].mode = (int)TrackMode.Curve;
 
                 //write out the Curve Points
