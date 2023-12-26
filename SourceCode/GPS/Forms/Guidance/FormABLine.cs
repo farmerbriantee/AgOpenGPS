@@ -165,13 +165,13 @@ namespace AgOpenGPS
         {
             vec3 fix = new vec3(mf.pivotAxlePos);
 
-            mf.ABLine.desPointA.easting = fix.easting + Math.Cos(fix.heading) * mf.tool.offset;
-            mf.ABLine.desPointA.northing = fix.northing - Math.Sin(fix.heading) * mf.tool.offset;
+            mf.ABLine.desPtA.easting = fix.easting + Math.Cos(fix.heading) * mf.tool.offset;
+            mf.ABLine.desPtA.northing = fix.northing - Math.Sin(fix.heading) * mf.tool.offset;
             if (fix.heading >= glm.twoPI) fix.heading -= glm.twoPI;
             mf.ABLine.desHeading = fix.heading;
 
-            mf.ABLine.desPointB.easting = 99999;
-            mf.ABLine.desPointB.northing = 99999;
+            mf.ABLine.desPtB.easting = 99999;
+            mf.ABLine.desPtB.northing = 99999;
 
             nudHeading.Enabled = true;
 
@@ -192,12 +192,12 @@ namespace AgOpenGPS
 
             btnBPoint.BackColor = System.Drawing.Color.Teal;
 
-            mf.ABLine.desPointB.easting = fix.easting + Math.Cos(fix.heading) * mf.tool.offset;
-            mf.ABLine.desPointB.northing = fix.northing - Math.Sin(fix.heading) * mf.tool.offset;
+            mf.ABLine.desPtB.easting = fix.easting + Math.Cos(fix.heading) * mf.tool.offset;
+            mf.ABLine.desPtB.northing = fix.northing - Math.Sin(fix.heading) * mf.tool.offset;
 
             // heading based on AB points
-            mf.ABLine.desHeading = Math.Atan2(mf.ABLine.desPointB.easting - mf.ABLine.desPointA.easting,
-                mf.ABLine.desPointB.northing - mf.ABLine.desPointA.northing);
+            mf.ABLine.desHeading = Math.Atan2(mf.ABLine.desPtB.easting - mf.ABLine.desPtA.easting,
+                mf.ABLine.desPtB.northing - mf.ABLine.desPtA.northing);
             if (mf.ABLine.desHeading < 0) mf.ABLine.desHeading += glm.twoPI;
 
             nudHeading.Value = (decimal)(glm.toDegrees(mf.ABLine.desHeading));
@@ -218,10 +218,10 @@ namespace AgOpenGPS
             mf.ABLine.desHeading = glm.toRadians((double)nudHeading.Value);
 
             //sin x cos z for endpoints, opposite for additional lines
-            mf.ABLine.desPtA.easting = mf.ABLine.desPointA.easting - (Math.Sin(mf.ABLine.desHeading) * mf.ABLine.abLength);
-            mf.ABLine.desPtA.northing = mf.ABLine.desPointA.northing - (Math.Cos(mf.ABLine.desHeading) * mf.ABLine.abLength);
-            mf.ABLine.desPtB.easting = mf.ABLine.desPointA.easting + (Math.Sin(mf.ABLine.desHeading) * mf.ABLine.abLength);
-            mf.ABLine.desPtB.northing = mf.ABLine.desPointA.northing + (Math.Cos(mf.ABLine.desHeading) * mf.ABLine.abLength);
+            mf.ABLine.desLineEndA.easting = mf.ABLine.desPtA.easting - (Math.Sin(mf.ABLine.desHeading) * mf.ABLine.abLength);
+            mf.ABLine.desLineEndA.northing = mf.ABLine.desPtA.northing - (Math.Cos(mf.ABLine.desHeading) * mf.ABLine.abLength);
+            mf.ABLine.desLineEndB.easting = mf.ABLine.desPtA.easting + (Math.Sin(mf.ABLine.desHeading) * mf.ABLine.abLength);
+            mf.ABLine.desLineEndB.northing = mf.ABLine.desPtA.northing + (Math.Cos(mf.ABLine.desHeading) * mf.ABLine.abLength);
         }
 
         private void textBox1_Click(object sender, EventArgs e)
@@ -356,8 +356,8 @@ namespace AgOpenGPS
 
                                 mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
 
-                                mf.ABLine.desPointA.easting = easting;
-                                mf.ABLine.desPointA.northing = norting;
+                                mf.ABLine.desPtA.easting = easting;
+                                mf.ABLine.desPtA.northing = norting;
 
                                 fix = numberSets[1].Split(',');
                                 double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
@@ -365,12 +365,12 @@ namespace AgOpenGPS
 
                                 mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
 
-                                mf.ABLine.desPointB.easting = easting;
-                                mf.ABLine.desPointB.northing = norting;
+                                mf.ABLine.desPtB.easting = easting;
+                                mf.ABLine.desPtB.northing = norting;
 
                                 // heading based on AB points
-                                mf.ABLine.desHeading = Math.Atan2(mf.ABLine.desPointB.easting - mf.ABLine.desPointA.easting,
-                                    mf.ABLine.desPointB.northing - mf.ABLine.desPointA.northing);
+                                mf.ABLine.desHeading = Math.Atan2(mf.ABLine.desPtB.easting - mf.ABLine.desPtA.easting,
+                                    mf.ABLine.desPtB.northing - mf.ABLine.desPtA.northing);
                                 if (mf.ABLine.desHeading < 0) mf.ABLine.desHeading += glm.twoPI;
 
                                 mf.ABLine.desName = "AB " +
@@ -429,8 +429,8 @@ namespace AgOpenGPS
 
             mf.trk.gArr[idx].heading = mf.ABLine.desHeading;
             //calculate the new points for the reference line and points
-            mf.trk.gArr[idx].ptA.easting = mf.ABLine.desPointA.easting;
-            mf.trk.gArr[idx].ptA.northing = mf.ABLine.desPointA.northing;
+            mf.trk.gArr[idx].ptA.easting = mf.ABLine.desPtA.easting;
+            mf.trk.gArr[idx].ptA.northing = mf.ABLine.desPtA.northing;
 
             //name
             if (textBox2.Text.Trim() == "") textBox2.Text = "No Name " + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
@@ -465,8 +465,8 @@ namespace AgOpenGPS
                 mf.ABLine.desHeading = mf.trk.gArr[idx].heading;
 
                 //calculate the new points for the reference line and points
-                mf.ABLine.desPointA.easting = mf.trk.gArr[idx].ptA.easting;
-                mf.ABLine.desPointA.northing = mf.trk.gArr[idx].ptA.northing;
+                mf.ABLine.desPtA.easting = mf.trk.gArr[idx].ptA.easting;
+                mf.ABLine.desPtA.northing = mf.trk.gArr[idx].ptA.northing;
 
                 mf.ABLine.desName = mf.trk.gArr[idx].name + " Copy";
 
@@ -499,9 +499,6 @@ namespace AgOpenGPS
             else if (mf.trk.gArr.Count > 0)
             {
                 int idx = mf.trk.gArr.Count-1;
-
-                mf.ABLine.abHeading = mf.trk.gArr[idx].heading;
-                mf.trk.gArr[mf.trk.idx].ptA = mf.trk.gArr[idx].ptA;
 
                 mf.ABLine.SetABLineByHeading();
 
@@ -549,9 +546,7 @@ namespace AgOpenGPS
             if (selectedItem > -1)
             {
                 mf.trk.gArr.RemoveAt(selectedItem);
-
                 {
-                    mf.ABLine.DeleteAB();
                     if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
                     if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
                 }
@@ -623,10 +618,10 @@ namespace AgOpenGPS
                     textBox1.Text = mf.ABLine.desName;
 
                     //sin x cos z for endpoints, opposite for additional lines
-                    mf.ABLine.desPtA.easting = mf.ABLine.desPointA.easting - (Math.Sin(mf.ABLine.desHeading) * mf.ABLine.abLength);
-                    mf.ABLine.desPtA.northing = mf.ABLine.desPointA.northing - (Math.Cos(mf.ABLine.desHeading) * mf.ABLine.abLength);
-                    mf.ABLine.desPtB.easting = mf.ABLine.desPointA.easting + (Math.Sin(mf.ABLine.desHeading) * mf.ABLine.abLength);
-                    mf.ABLine.desPtB.northing = mf.ABLine.desPointA.northing + (Math.Cos(mf.ABLine.desHeading) * mf.ABLine.abLength);
+                    mf.ABLine.desLineEndA.easting = mf.ABLine.desPtA.easting - (Math.Sin(mf.ABLine.desHeading) * mf.ABLine.abLength);
+                    mf.ABLine.desLineEndA.northing = mf.ABLine.desPtA.northing - (Math.Cos(mf.ABLine.desHeading) * mf.ABLine.abLength);
+                    mf.ABLine.desLineEndB.easting = mf.ABLine.desPtA.easting + (Math.Sin(mf.ABLine.desHeading) * mf.ABLine.abLength);
+                    mf.ABLine.desLineEndB.northing = mf.ABLine.desPtA.northing + (Math.Cos(mf.ABLine.desHeading) * mf.ABLine.abLength);
                 }
                 else
                 {

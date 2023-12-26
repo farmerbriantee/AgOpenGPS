@@ -230,14 +230,14 @@ namespace AgOpenGPS
                 mf.ABLine.abHeading += Math.PI;
                 if (mf.ABLine.abHeading > glm.twoPI) mf.ABLine.abHeading -= glm.twoPI;
 
-                mf.ABLine.refLineA.easting = mf.trk.gArr[mf.trk.idx].ptA.easting - (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
-                mf.ABLine.refLineA.northing = mf.trk.gArr[mf.trk.idx].ptA.northing - (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
+                mf.ABLine.refLineEndA.easting = mf.trk.gArr[mf.trk.idx].ptA.easting - (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
+                mf.ABLine.refLineEndA.northing = mf.trk.gArr[mf.trk.idx].ptA.northing - (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
 
-                mf.ABLine.refLineB.easting = mf.trk.gArr[mf.trk.idx].ptA.easting + (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
-                mf.ABLine.refLineB.northing = mf.trk.gArr[mf.trk.idx].ptA.northing + (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
+                mf.ABLine.refLineEndB.easting = mf.trk.gArr[mf.trk.idx].ptA.easting + (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
+                mf.ABLine.refLineEndB.northing = mf.trk.gArr[mf.trk.idx].ptA.northing + (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
 
-                mf.trk.gArr[mf.trk.idx].ptB.easting = mf.ABLine.refLineB.easting;
-                mf.trk.gArr[mf.trk.idx].ptB.northing = mf.ABLine.refLineB.northing;
+                mf.trk.gArr[mf.trk.idx].ptB.easting = mf.ABLine.refLineEndB.easting;
+                mf.trk.gArr[mf.trk.idx].ptB.northing = mf.ABLine.refLineEndB.northing;
             }
             MoveBuildTramLine(0);
         }

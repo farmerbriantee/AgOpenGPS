@@ -941,17 +941,32 @@ namespace AgOpenGPS
                             trk.gArr.Add(new CTrk());
 
                             //read header $CurveLine
-                            trk.gArr[trk.gArr.Count-1].name = "Cu-" + reader.ReadLine();
+                            string nam = reader.ReadLine();
+
+                            if (nam.Length > 4 && nam.Substring(0, 5) == "Bound")
+                            {
+                                trk.gArr[trk.gArr.Count - 1].name = nam;
+                                trk.gArr[trk.gArr.Count - 1].mode = (int)TrackMode.bndCurve;
+                            }
+                            else
+                            {
+                                if (nam.Length > 2 && nam.Substring(0, 2) != "Cu")
+                                    trk.gArr[trk.gArr.Count - 1].name = "Cu-" + nam;
+                                else
+                                    trk.gArr[trk.gArr.Count - 1].name = nam;
+
+                                trk.gArr[trk.gArr.Count - 1].mode = (int)TrackMode.Curve;
+                            }
+
                             // get the average heading
                             line = reader.ReadLine();
                             trk.gArr[trk.gArr.Count - 1].heading = double.Parse(line, CultureInfo.InvariantCulture);
 
-                            trk.gArr[trk.gArr.Count - 1].mode = (int)TrackMode.Curve;
 
                             line = reader.ReadLine();
                             int numPoints = int.Parse(line);
 
-                            if (numPoints > 1)
+                            if (numPoints > 1) 
                             {
                                 trk.gArr[trk.gArr.Count - 1].curvePts?.Clear();
 
@@ -964,6 +979,12 @@ namespace AgOpenGPS
                                         double.Parse(words[2], CultureInfo.InvariantCulture));
                                     trk.gArr[trk.gArr.Count - 1].curvePts.Add(vecPt);
                                 }
+
+                                trk.gArr[trk.gArr.Count - 1].ptB.easting = trk.gArr[trk.gArr.Count - 1].curvePts[0].easting;
+                                trk.gArr[trk.gArr.Count - 1].ptB.northing = trk.gArr[trk.gArr.Count - 1].curvePts[0].northing;
+                                
+                                trk.gArr[trk.gArr.Count - 1].ptB.easting = trk.gArr[trk.gArr.Count - 1].curvePts[trk.gArr[trk.gArr.Count - 1].curvePts.Count - 1].easting;
+                                trk.gArr[trk.gArr.Count - 1].ptB.northing = trk.gArr[trk.gArr.Count - 1].curvePts[trk.gArr[trk.gArr.Count - 1].curvePts.Count - 1].northing;
                             }
                             else
                             {
@@ -1062,13 +1083,20 @@ namespace AgOpenGPS
 
                             trk.gArr.Add(new CTrk());
 
-                            trk.gArr[i].name = "AB-"+ words[0];
-                            trk.gArr[i].mode = 2;
+                            if (words[0].Length > 2 && words[0].Substring(0, 2) != "AB")
+                                trk.gArr[i].name = "AB-" + words[0];
+                            else
+                                trk.gArr[i].name = words[0];
+
+                            trk.gArr[i].mode = (int)TrackMode.AB;
 
 
                             trk.gArr[i].heading = glm.toRadians(double.Parse(words[1], CultureInfo.InvariantCulture));
                             trk.gArr[i].ptA.easting = double.Parse(words[2], CultureInfo.InvariantCulture);
                             trk.gArr[i].ptA.northing = double.Parse(words[3], CultureInfo.InvariantCulture);
+
+                            trk.gArr[i].ptB.easting = trk.gArr[i].ptA.easting + (Math.Sin(trk.gArr[i].heading) * 100);
+                            trk.gArr[i].ptB.northing = trk.gArr[i].ptA.northing + (Math.Cos(trk.gArr[i].heading) * 100);
                         }
                     }
                     catch (Exception er)

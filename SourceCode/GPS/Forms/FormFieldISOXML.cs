@@ -534,20 +534,20 @@ namespace AgOpenGPS
 
                                     mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
 
-                                    mf.ABLine.desPointA.easting = easting;
-                                    mf.ABLine.desPointA.northing = norting;
+                                    mf.ABLine.desPtA.easting = easting;
+                                    mf.ABLine.desPtA.northing = norting;
 
                                     double.TryParse(nodePart.ChildNodes[0].ChildNodes[0].ChildNodes[1].Attributes["C"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
                                     double.TryParse(nodePart.ChildNodes[0].ChildNodes[0].ChildNodes[1].Attributes["D"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
 
                                     mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
 
-                                    mf.ABLine.desPointB.easting = easting;
-                                    mf.ABLine.desPointB.northing = norting;
+                                    mf.ABLine.desPtB.easting = easting;
+                                    mf.ABLine.desPtB.northing = norting;
 
                                     // heading based on AB points
-                                    mf.ABLine.desHeading = Math.Atan2(mf.ABLine.desPointB.easting - mf.ABLine.desPointA.easting,
-                                        mf.ABLine.desPointB.northing - mf.ABLine.desPointA.northing);
+                                    mf.ABLine.desHeading = Math.Atan2(mf.ABLine.desPtB.easting - mf.ABLine.desPtA.easting,
+                                        mf.ABLine.desPtB.northing - mf.ABLine.desPtA.northing);
                                     if (mf.ABLine.desHeading < 0) mf.ABLine.desHeading += glm.twoPI;
 
                                     mf.trk.gArr.Add(new CTrk());
@@ -559,8 +559,8 @@ namespace AgOpenGPS
                                     mf.trk.gArr[idx].mode = (int)TrackMode.AB;
 
                                     //calculate the new points for the reference line and points
-                                    mf.trk.gArr[idx].ptA.easting = (mf.ABLine.desPointA.easting + mf.ABLine.desPointB.easting) / 2;
-                                    mf.trk.gArr[idx].ptA.northing = (mf.ABLine.desPointA.northing + mf.ABLine.desPointB.northing) / 2;
+                                    mf.trk.gArr[idx].ptA.easting = (mf.ABLine.desPtA.easting + mf.ABLine.desPtB.easting) / 2;
+                                    mf.trk.gArr[idx].ptA.northing = (mf.ABLine.desPtA.northing + mf.ABLine.desPtB.northing) / 2;
 
                                     mf.trk.gArr[idx].name = mf.ABLine.desName.Trim();
 
@@ -713,20 +713,20 @@ namespace AgOpenGPS
 
                             mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
 
-                            mf.ABLine.desPointA.easting = easting;
-                            mf.ABLine.desPointA.northing = norting;
+                            mf.ABLine.desPtA.easting = easting;
+                            mf.ABLine.desPtA.northing = norting;
 
                             double.TryParse(nodePart.ChildNodes[1].Attributes["C"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
                             double.TryParse(nodePart.ChildNodes[1].Attributes["D"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
 
                             mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
 
-                            mf.ABLine.desPointB.easting = easting;
-                            mf.ABLine.desPointB.northing = norting;
+                            mf.ABLine.desPtB.easting = easting;
+                            mf.ABLine.desPtB.northing = norting;
 
                             // heading based on AB points
-                            mf.ABLine.desHeading = Math.Atan2(mf.ABLine.desPointB.easting - mf.ABLine.desPointA.easting,
-                                mf.ABLine.desPointB.northing - mf.ABLine.desPointA.northing);
+                            mf.ABLine.desHeading = Math.Atan2(mf.ABLine.desPtB.easting - mf.ABLine.desPtA.easting,
+                                mf.ABLine.desPtB.northing - mf.ABLine.desPtA.northing);
                             if (mf.ABLine.desHeading < 0) mf.ABLine.desHeading += glm.twoPI;
 
                             mf.trk.gArr.Add(new CTrk());
@@ -738,8 +738,8 @@ namespace AgOpenGPS
                             mf.trk.gArr[idx].mode = (int)TrackMode.AB;
 
                             //calculate the new points for the reference line and points
-                            mf.trk.gArr[idx].ptA.easting = (mf.ABLine.desPointA.easting + mf.ABLine.desPointB.easting) / 2;
-                            mf.trk.gArr[idx].ptA.northing = (mf.ABLine.desPointA.northing + mf.ABLine.desPointB.northing) / 2;
+                            mf.trk.gArr[idx].ptA.easting = (mf.ABLine.desPtA.easting + mf.ABLine.desPtB.easting) / 2;
+                            mf.trk.gArr[idx].ptA.northing = (mf.ABLine.desPtA.northing + mf.ABLine.desPtB.northing) / 2;
 
                             mf.trk.gArr[idx].name = mf.ABLine.desName.Trim();
                         }

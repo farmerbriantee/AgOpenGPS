@@ -1351,8 +1351,8 @@ namespace AgOpenGPS
 
                 //        GL.Begin(PrimitiveType.Lines);
                 //        GL.Color3(0.9f, 0.2f, 0.2f);
-                //        GL.Vertex3(ABLine.refLineA.easting, ABLine.refLineA.northing, 0);
-                //        GL.Vertex3(ABLine.refLineB.easting, ABLine.refLineB.northing, 0);
+                //        GL.Vertex3(ABLine.refLineEndA.easting, ABLine.refLineEndA.northing, 0);
+                //        GL.Vertex3(ABLine.refLineEndB.easting, ABLine.refLineEndB.northing, 0);
                 //        GL.End();
                 //        GL.Disable(EnableCap.LineStipple);
 

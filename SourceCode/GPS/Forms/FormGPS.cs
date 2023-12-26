@@ -1043,7 +1043,6 @@ namespace AgOpenGPS
             btnABLine.Enabled = false;
             btnABLine.Image = Properties.Resources.ABLineOff;
             ABLine.isBtnABLineOn = false;
-            ABLine.DeleteAB();
             tram.tramList?.Clear();
 
             //curve line
