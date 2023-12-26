@@ -1039,7 +1039,6 @@ namespace AgOpenGPS
             flagPts.Clear();
 
             //ABLine
-            ABLine.isBtnABLineOn = false;
             tram.tramList?.Clear();
 
             //curve line

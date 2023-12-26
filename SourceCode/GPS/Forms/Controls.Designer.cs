@@ -45,7 +45,7 @@ namespace AgOpenGPS
 
             else
             {
-                if (ABLine.isBtnABLineOn | curve.isBtnCurveOn)
+                if (curve.isBtnCurveOn)
                 {
                     EnableYouTurnButtons();
                     ABLine.isABValid = false;
@@ -221,7 +221,7 @@ namespace AgOpenGPS
             }
             else
             {
-                if (ABLine.isBtnABLineOn | ct.isContourBtnOn | curve.isBtnCurveOn)
+                if (ct.isContourBtnOn | curve.isBtnCurveOn)
                 {
                     isAutoSteerBtnOn = true;
                     btnAutoSteer.Image = Properties.Resources.AutoSteerOn;
@@ -257,7 +257,7 @@ namespace AgOpenGPS
                 //new direction so reset where to put turn diagnostic
                 yt.ResetCreatedYouTurn();
 
-                if (ABLine.isBtnABLineOn || curve.isBtnCurveOn)
+                if (curve.isBtnCurveOn)
                 {
                     //if (!isAutoSteerBtnOn) btnAutoSteer.PerformClick();
                 }
@@ -544,29 +544,29 @@ namespace AgOpenGPS
 
         private void tramLinesMenuField_Click(object sender, EventArgs e)
         {
-            if (ct.isContourBtnOn) btnContour.PerformClick(); 
+            if (ct.isContourBtnOn) btnContour.PerformClick();
 
-            if (ABLine.isBtnABLineOn)
+            if (trk.idx == -1)
+            {
+                var form = new FormTimedMessage(1500, gStr.gsNoABLineActive, gStr.gsPleaseEnterABLine);
+                form.Show(this);
+                panelRight.Enabled = true;
+                return;
+            }
+
+            if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
             {
                 Form form99 = new FormTram(this, false);
                 form99.Show(this);
                 form99.Left = Width - 275;
                 form99.Top = 100;
             }
-            else if (curve.isBtnCurveOn)
+            else
             {
                 Form form97 = new FormTram(this, true);
                 form97.Show(this);
                 form97.Left = Width - 275;
                 form97.Top = 100;
-            }
-            else
-            {
-                var form = new FormTimedMessage(1500, gStr.gsNoABLineActive, gStr.gsPleaseEnterABLine);
-                form.Show(this);
-                panelRight.Enabled = true;
-                //ABLine.isEditing = false;
-                return;
             }
         }
         private void headlandToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1738,19 +1738,19 @@ namespace AgOpenGPS
         }
         public void SnapToPivot()
         {
-            if (ABLine.isBtnABLineOn)
-            {
-                ABLine.MoveABLine(ABLine.distanceFromCurrentLinePivot);
-            }
-            else if (curve.isBtnCurveOn)
-            {
-                curve.MoveABCurve(curve.distanceFromCurrentLinePivot);
-            }
-            else
-            {
-                var form = new FormTimedMessage(2000, (gStr.gsNoGuidanceLines), (gStr.gsTurnOnContourOrMakeABLine));
-                form.Show(this);
-            }
+            //if (ABLine.isBtnABLineOn)
+            //{
+            //    ABLine.MoveABLine(ABLine.distanceFromCurrentLinePivot);
+            //}
+            //else if (curve.isBtnCurveOn)
+            //{
+            //    curve.MoveABCurve(curve.distanceFromCurrentLinePivot);
+            //}
+            //else
+            //{
+            //    var form = new FormTimedMessage(2000, (gStr.gsNoGuidanceLines), (gStr.gsTurnOnContourOrMakeABLine));
+            //    form.Show(this);
+            //}
         }
 
 

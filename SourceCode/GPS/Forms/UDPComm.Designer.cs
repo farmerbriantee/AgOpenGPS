@@ -470,19 +470,25 @@ namespace AgOpenGPS
 
             if ((char)keyData == hotkeys[7])
             {
-                if (ABLine.isBtnABLineOn)
-                    ABLine.MoveABLine((double)Properties.Settings.Default.setAS_snapDistance * -0.01);
-                else
-                    curve.MoveABCurve(((double)Properties.Settings.Default.setAS_snapDistance * -0.01));
+                if (trk.idx > -1)
+                {
+                    if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
+                        ABLine.MoveABLine((double)Properties.Settings.Default.setAS_snapDistance * -0.01);
+                    else
+                        curve.MoveABCurve(((double)Properties.Settings.Default.setAS_snapDistance * -0.01));
+                }
                 return true;
             }
 
             if ((char)keyData == hotkeys[8])
             {
-                if (ABLine.isBtnABLineOn)
-                    ABLine.MoveABLine(((double)Properties.Settings.Default.setAS_snapDistance * 0.01));
-                else
-                    curve.MoveABCurve(((double)Properties.Settings.Default.setAS_snapDistance * 0.01));
+                if (trk.idx > -1)
+                {
+                    if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
+                        ABLine.MoveABLine(((double)Properties.Settings.Default.setAS_snapDistance * 0.01));
+                    else
+                        curve.MoveABCurve(((double)Properties.Settings.Default.setAS_snapDistance * 0.01));
+                }
                 return true;
             }
 

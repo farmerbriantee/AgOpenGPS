@@ -167,7 +167,6 @@
             this.btnHeadlandOnOff = new System.Windows.Forms.Button();
             this.btnEditAB = new System.Windows.Forms.Button();
             this.lblSpeed = new System.Windows.Forms.Label();
-            this.lblInty = new System.Windows.Forms.Label();
             this.lblFix = new System.Windows.Forms.Label();
             this.btnZone1 = new System.Windows.Forms.Button();
             this.btnZone2 = new System.Windows.Forms.Button();
@@ -1523,7 +1522,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 69F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 71F));
             this.panelSim.Controls.Add(this.btnSimReverseDirection, 8, 0);
             this.panelSim.Controls.Add(this.btnSpeedDn, 5, 0);
             this.panelSim.Controls.Add(this.btnSimSpeedUp, 7, 0);
@@ -1547,7 +1546,7 @@
             this.btnSimReverseDirection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimReverseDirection.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimReverseDirection.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimReverseDirection.Location = new System.Drawing.Point(591, 4);
+            this.btnSimReverseDirection.Location = new System.Drawing.Point(589, 4);
             this.btnSimReverseDirection.Name = "btnSimReverseDirection";
             this.btnSimReverseDirection.Size = new System.Drawing.Size(40, 25);
             this.btnSimReverseDirection.TabIndex = 537;
@@ -1564,7 +1563,7 @@
             this.btnSpeedDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSpeedDn.Location = new System.Drawing.Point(374, 4);
             this.btnSpeedDn.Name = "btnSpeedDn";
-            this.btnSpeedDn.Size = new System.Drawing.Size(66, 25);
+            this.btnSpeedDn.Size = new System.Drawing.Size(65, 25);
             this.btnSpeedDn.TabIndex = 533;
             this.btnSpeedDn.UseVisualStyleBackColor = false;
             this.btnSpeedDn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSpeedDn_MouseDown);
@@ -1577,9 +1576,9 @@
             this.btnSimSpeedUp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSimSpeedUp.FlatAppearance.BorderSize = 0;
             this.btnSimSpeedUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSimSpeedUp.Location = new System.Drawing.Point(518, 4);
+            this.btnSimSpeedUp.Location = new System.Drawing.Point(517, 4);
             this.btnSimSpeedUp.Name = "btnSimSpeedUp";
-            this.btnSimSpeedUp.Size = new System.Drawing.Size(66, 25);
+            this.btnSimSpeedUp.Size = new System.Drawing.Size(65, 25);
             this.btnSimSpeedUp.TabIndex = 532;
             this.btnSimSpeedUp.UseVisualStyleBackColor = false;
             this.btnSimSpeedUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSimSpeedUp_MouseDown);
@@ -1593,7 +1592,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(447, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(446, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(64, 25);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -2091,18 +2090,6 @@
             this.lblSpeed.Text = "88.88";
             this.lblSpeed.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
-            // lblInty
-            // 
-            this.lblInty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblInty.AutoSize = true;
-            this.lblInty.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInty.Location = new System.Drawing.Point(-359, 392);
-            this.lblInty.Name = "lblInty";
-            this.lblInty.Size = new System.Drawing.Size(15, 16);
-            this.lblInty.TabIndex = 485;
-            this.lblInty.Text = "0";
-            this.lblInty.Click += new System.EventHandler(this.lblInty_Click);
-            // 
             // lblFix
             // 
             this.lblFix.AutoSize = true;
@@ -2541,7 +2528,6 @@
             this.Controls.Add(this.btnZone3);
             this.Controls.Add(this.btnZone2);
             this.Controls.Add(this.btnZone1);
-            this.Controls.Add(this.lblInty);
             this.Controls.Add(this.btnMaximizeMainForm);
             this.Controls.Add(this.pictureboxStart);
             this.Controls.Add(this.panelNavigation);
@@ -2721,7 +2707,6 @@
         private System.Windows.Forms.Button btnMaximizeMainForm;
         private System.Windows.Forms.ToolStripMenuItem resetALLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetEverythingToolStripMenuItem;
-        private System.Windows.Forms.Label lblInty;
         public System.Windows.Forms.Button btnTramDisplayMode;
         public System.Windows.Forms.Button btnYouSkipEnable;
         private System.Windows.Forms.Label lblFix;

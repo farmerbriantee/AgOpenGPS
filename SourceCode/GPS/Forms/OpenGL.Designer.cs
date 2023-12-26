@@ -378,33 +378,36 @@ namespace AgOpenGPS
 
                     if (camera.camSetDistance > -150)
                     {
-                        if (ABLine.isBtnABLineOn)
+                        if (trk.idx > -1)
                         {
-                            GL.PointSize(16);
-                            GL.Begin(PrimitiveType.Points);
-                            GL.Color3(0, 0, 0);
-                            GL.Vertex3(ABLine.goalPointAB.easting, ABLine.goalPointAB.northing, 0.0);
-                            GL.End();
+                            if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
+                            {
+                                GL.PointSize(16);
+                                GL.Begin(PrimitiveType.Points);
+                                GL.Color3(0, 0, 0);
+                                GL.Vertex3(ABLine.goalPointAB.easting, ABLine.goalPointAB.northing, 0.0);
+                                GL.End();
 
-                            GL.PointSize(10);
-                            GL.Begin(PrimitiveType.Points);
-                            GL.Color3(0.98, 0.98, 0.098);
-                            GL.Vertex3(ABLine.goalPointAB.easting, ABLine.goalPointAB.northing, 0.0);
-                            GL.End();
-                        }
-                        else if (curve.isBtnCurveOn)
-                        {
-                            GL.PointSize(16);
-                            GL.Begin(PrimitiveType.Points);
-                            GL.Color3(0, 0, 0);
-                            GL.Vertex3(curve.goalPointCu.easting, curve.goalPointCu.northing, 0.0);
-                            GL.End();
+                                GL.PointSize(10);
+                                GL.Begin(PrimitiveType.Points);
+                                GL.Color3(0.98, 0.98, 0.098);
+                                GL.Vertex3(ABLine.goalPointAB.easting, ABLine.goalPointAB.northing, 0.0);
+                                GL.End();
+                            }
+                            else
+                            {
+                                GL.PointSize(16);
+                                GL.Begin(PrimitiveType.Points);
+                                GL.Color3(0, 0, 0);
+                                GL.Vertex3(curve.goalPointCu.easting, curve.goalPointCu.northing, 0.0);
+                                GL.End();
 
-                            GL.PointSize(10);
-                            GL.Begin(PrimitiveType.Points);
-                            GL.Color3(0.98, 0.98, 0.098);
-                            GL.Vertex3(curve.goalPointCu.easting, curve.goalPointCu.northing, 0.0);
-                            GL.End();
+                                GL.PointSize(10);
+                                GL.Begin(PrimitiveType.Points);
+                                GL.Color3(0.98, 0.98, 0.098);
+                                GL.Vertex3(curve.goalPointCu.easting, curve.goalPointCu.northing, 0.0);
+                                GL.End();
+                            }
                         }
                     }
 
@@ -606,7 +609,7 @@ namespace AgOpenGPS
 
             //draw 245 green for the tram tracks
 
-            if (tram.displayMode != 0 && (curve.isBtnCurveOn || ABLine.isBtnABLineOn))
+            if (tram.displayMode != 0 && (curve.isBtnCurveOn))
             {
                 GL.Color3((byte)0, (byte)245, (byte)0);
                 GL.LineWidth(8);
@@ -1845,7 +1848,7 @@ namespace AgOpenGPS
 
             GL.Disable(EnableCap.DepthTest);
 
-            if (ct.isContourBtnOn || ABLine.isBtnABLineOn || curve.isBtnCurveOn || recPath.isDrivingRecordedPath)
+            if (ct.isContourBtnOn || curve.isBtnCurveOn || recPath.isDrivingRecordedPath)
             {
 
                 //if (guidanceLineDistanceOff != 32000 && guidanceLineDistanceOff != 32020)

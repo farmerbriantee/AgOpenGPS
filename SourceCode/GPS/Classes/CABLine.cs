@@ -29,7 +29,6 @@ namespace AgOpenGPS
         public double howManyPathsAway, moveDistance;
         public bool isABLineBeingSet;
         public bool isHeadingSameWay = true;
-        public bool isBtnABLineOn;
 
         //public bool isOnTramLine;
         //public int tramBasedOn;

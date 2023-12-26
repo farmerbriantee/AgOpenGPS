@@ -255,7 +255,7 @@ namespace AgOpenGPS
 
                 if (isJobStarted)
                 {
-                    if (ABLine.isBtnABLineOn || curve.isBtnCurveOn)
+                    if (curve.isBtnCurveOn)
                     {
                         if (!btnEditAB.Visible)
                         {
@@ -357,29 +357,29 @@ namespace AgOpenGPS
                         break;
                 }
 
-                if (isStanleyUsed)
-                {
-                    if (curve.isBtnCurveOn || ABLine.isBtnABLineOn)
-                    {
-                        lblInty.Text = gyd.inty.ToString("N3");
-                    }
-                }
-                else
-                {
-                    if (curve.isBtnCurveOn)
-                    {
-                        lblInty.Text = curve.inty.ToString("N3");
-                    }
+                //if (isStanleyUsed)
+                //{
+                //    if (curve.isBtnCurveOn )
+                //    {
+                //        lblInty.Text = gyd.inty.ToString("N3");
+                //    }
+                //}
+                //else
+                //{
+                //    if (curve.isBtnCurveOn)
+                //    {
+                //        lblInty.Text = curve.inty.ToString("N3");
+                //    }
 
-                    else if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
-                    {
-                        lblInty.Text = ABLine.inty.ToString("N3");
-                    }
+                //    else if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
+                //    {
+                //        lblInty.Text = ABLine.inty.ToString("N3");
+                //    }
 
-                    else if (ct.isContourBtnOn) lblInty.Text = ct.inty.ToString("N3");
-                }
+                //    else if (ct.isContourBtnOn) lblInty.Text = ct.inty.ToString("N3");
+                //}
 
-                if (recPath.isDrivingRecordedPath) lblInty.Text = recPath.inty.ToString("N3");
+                //if (recPath.isDrivingRecordedPath) lblInty.Text = recPath.inty.ToString("N3");
 
                 //if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
                 //{
@@ -428,7 +428,7 @@ namespace AgOpenGPS
                 }
 
                 //Make sure it is off when it should
-                if ((!ABLine.isBtnABLineOn && !ct.isContourBtnOn && !curve.isBtnCurveOn && isAutoSteerBtnOn)
+                if ((!ct.isContourBtnOn && !curve.isBtnCurveOn && isAutoSteerBtnOn)
                     ) btnAutoSteer.PerformClick();
 
                 //the main formgps window
@@ -493,6 +493,7 @@ namespace AgOpenGPS
             btnCycleLinesBk.Visible = Properties.Settings.Default.setFeatures.isCycleLinesOn;
             btnSectionMasterManual.Visible = Properties.Settings.Default.setFeatures.isManualSectionOn;
             btnSectionMasterAuto.Visible = Properties.Settings.Default.setFeatures.isAutoSectionOn;
+            //btnABLine.Visible = Properties.Settings.Default.setFeatures.isABLineOn;
             btnCurve.Visible = Properties.Settings.Default.setFeatures.isCurveOn;
             //btnStanleyPure.Visible = Properties.Settings.Default.setFeatures.isSteerModeOn;
 
@@ -994,7 +995,7 @@ namespace AgOpenGPS
                 //0 at bottom for opengl, 0 at top for windows, so invert Y value
                 Point point = oglMain.PointToClient(Cursor.Position);
 
-                if (point.Y < 90 && point.Y > 30 && (ABLine.isBtnABLineOn || curve.isBtnCurveOn))
+                if (point.Y < 90 && point.Y > 30 && (curve.isBtnCurveOn))
                 {
 
                     int middle = oglMain.Width / 2 + oglMain.Width / 5;
@@ -1072,7 +1073,7 @@ namespace AgOpenGPS
                     }
                 }
 
-                if (point.Y < 150 && point.Y > 90 && (ABLine.isBtnABLineOn || curve.isBtnCurveOn))
+                if (point.Y < 150 && point.Y > 90 && (curve.isBtnCurveOn))
                 {
                     int middle = oglMain.Width / 2 - oglMain.Width / 4;
                     if (point.X > middle - 140 && point.X < middle && isLateralOn)
