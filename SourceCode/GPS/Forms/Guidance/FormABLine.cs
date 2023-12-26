@@ -486,7 +486,7 @@ namespace AgOpenGPS
                 int idx = selectedItem;
 
                 mf.ABLine.abHeading = mf.trk.gArr[idx].heading;
-                mf.ABLine.refPtA = mf.trk.gArr[idx].ptA;
+                mf.trk.gArr[mf.trk.idx].ptA = mf.trk.gArr[idx].ptA;
 
                 mf.ABLine.SetABLineByHeading();
 
@@ -501,7 +501,7 @@ namespace AgOpenGPS
                 int idx = mf.trk.gArr.Count-1;
 
                 mf.ABLine.abHeading = mf.trk.gArr[idx].heading;
-                mf.ABLine.refPtA = mf.trk.gArr[idx].ptA;
+                mf.trk.gArr[mf.trk.idx].ptA = mf.trk.gArr[idx].ptA;
 
                 mf.ABLine.SetABLineByHeading();
 

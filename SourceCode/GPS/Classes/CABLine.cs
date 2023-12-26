@@ -44,11 +44,6 @@ namespace AgOpenGPS
 
         public vec2 refLineB = new vec2(0.0, 1.0);
 
-        //the two inital A and B points
-        public vec2 refPtA = new vec2(0.2, 0.15);
-
-        public vec2 refPtB = new vec2(0.3, 0.3);
-
         public double snapDistance, lastSecond = 0;
         public double steerAngleAB;
         public int lineWidth;
@@ -124,8 +119,8 @@ namespace AgOpenGPS
             shadowOffset = isHeadingSameWay ? mf.tool.offset : -mf.tool.offset;
 
             //depending which way you are going, the offset can be either side
-            vec2 point1 = new vec2((Math.Cos(-abHeading) * (widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset))) + refPtA.easting,
-            (Math.Sin(-abHeading) * ((widthMinusOverlap * howManyPathsAway) + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset))) + refPtA.northing);
+            vec2 point1 = new vec2((Math.Cos(-abHeading) * (widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset))) + mf.trk.gArr[mf.trk.idx].ptA.easting,
+            (Math.Sin(-abHeading) * ((widthMinusOverlap * howManyPathsAway) + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset))) + mf.trk.gArr[mf.trk.idx].ptA.northing);
 
             //create the new line extent points for current ABLine based on original heading of AB line
             currentLinePtA.easting = point1.easting - (Math.Sin(abHeading) * abLength);
@@ -341,17 +336,17 @@ namespace AgOpenGPS
             GL.Begin(PrimitiveType.Points);
 
             GL.Color3(0.95f, 0.0f, 0.0f);
-            GL.Vertex3(refPtA.easting, refPtA.northing, 0.0);
+            GL.Vertex3(mf.trk.gArr[mf.trk.idx].ptA.easting, mf.trk.gArr[mf.trk.idx].ptA.northing, 0.0);
             GL.Color3(0.0f, 0.90f, 0.95f);
-            GL.Vertex3(refPtB.easting, refPtB.northing, 0.0);
+            GL.Vertex3(mf.trk.gArr[mf.trk.idx].ptB.easting, mf.trk.gArr[mf.trk.idx].ptB.northing, 0.0);
             GL.Color3(0.00990f, 0.990f, 0.095f);
             GL.Vertex3(mf.bnd.iE, mf.bnd.iN, 0.0);
             GL.End();
 
             if (mf.font.isFontOn && !isABLineBeingSet)
             {
-                mf.font.DrawText3D(refPtA.easting, refPtA.northing, "&A");
-                mf.font.DrawText3D(refPtB.easting, refPtB.northing, "&B");
+                mf.font.DrawText3D(mf.trk.gArr[mf.trk.idx].ptA.easting, mf.trk.gArr[mf.trk.idx].ptA.northing, "&A");
+                mf.font.DrawText3D(mf.trk.gArr[mf.trk.idx].ptB.easting, mf.trk.gArr[mf.trk.idx].ptB.northing, "&B");
             }
 
             GL.PointSize(1.0f);
@@ -436,8 +431,8 @@ namespace AgOpenGPS
                 /*
                 for (double i = -2.5; i < 3; i++)
                 {
-                    GL.Vertex3((cosHeading * ((mf.tool.toolWidth - mf.tool.toolOverlap) * (howManyPathsAway + i))) + refPtA.easting, (sinHeading * ((mf.tool.toolWidth - mf.tool.toolOverlap) * (howManyPathsAway + i))) + refPtA.northing, 0);
-                    GL.Vertex3((cosHeading * ((mf.tool.toolWidth - mf.tool.toolOverlap) * (howManyPathsAway + i))) + refPtB.easting, (sinHeading * ((mf.tool.toolWidth - mf.tool.toolOverlap) * (howManyPathsAway + i))) + refPtB.northing, 0);
+                    GL.Vertex3((cosHeading * ((mf.tool.toolWidth - mf.tool.toolOverlap) * (howManyPathsAway + i))) + mf.trk.gArr[mf.trk.idx].ptA.easting, (sinHeading * ((mf.tool.toolWidth - mf.tool.toolOverlap) * (howManyPathsAway + i))) + mf.trk.gArr[mf.trk.idx].ptA.northing, 0);
+                    GL.Vertex3((cosHeading * ((mf.tool.toolWidth - mf.tool.toolOverlap) * (howManyPathsAway + i))) + mf.trk.gArr[mf.trk.idx].ptB.easting, (sinHeading * ((mf.tool.toolWidth - mf.tool.toolOverlap) * (howManyPathsAway + i))) + mf.trk.gArr[mf.trk.idx].ptB.northing, 0);
                 }
                 */
 
@@ -627,8 +622,8 @@ namespace AgOpenGPS
 
         public void DeleteAB()
         {
-            refPtA = new vec2(0.0, 0.0);
-            refPtB = new vec2(0.0, 1.0);
+            mf.trk.gArr[mf.trk.idx].ptA = new vec2(0.0, 0.0);
+            mf.trk.gArr[mf.trk.idx].ptB = new vec2(0.0, 1.0);
 
             refLineA = new vec2(0.0, 0.0);
             refLineB = new vec2(0.0, 1.0);
@@ -643,19 +638,19 @@ namespace AgOpenGPS
 
         public void SetABLineByBPoint()
         {
-            refPtB.easting = mf.pn.fix.easting;
-            refPtB.northing = mf.pn.fix.northing;
+            mf.trk.gArr[mf.trk.idx].ptB.easting = mf.pn.fix.easting;
+            mf.trk.gArr[mf.trk.idx].ptB.northing = mf.pn.fix.northing;
 
             //calculate the AB Heading
-            abHeading = Math.Atan2(refPtB.easting - refPtA.easting, refPtB.northing - refPtA.northing);
+            abHeading = Math.Atan2(mf.trk.gArr[mf.trk.idx].ptB.easting - mf.trk.gArr[mf.trk.idx].ptA.easting, mf.trk.gArr[mf.trk.idx].ptB.northing - mf.trk.gArr[mf.trk.idx].ptA.northing);
             if (abHeading < 0) abHeading += glm.twoPI;
 
             //sin x cos z for endpoints, opposite for additional lines
-            refLineA.easting = refPtA.easting - (Math.Sin(abHeading) * abLength);
-            refLineA.northing = refPtA.northing - (Math.Cos(abHeading) * abLength);
+            refLineA.easting = mf.trk.gArr[mf.trk.idx].ptA.easting - (Math.Sin(abHeading) * abLength);
+            refLineA.northing = mf.trk.gArr[mf.trk.idx].ptA.northing - (Math.Cos(abHeading) * abLength);
 
-            refLineB.easting = refPtA.easting + (Math.Sin(abHeading) * abLength);
-            refLineB.northing = refPtA.northing + (Math.Cos(abHeading) * abLength);
+            refLineB.easting = mf.trk.gArr[mf.trk.idx].ptA.easting + (Math.Sin(abHeading) * abLength);
+            refLineB.northing = mf.trk.gArr[mf.trk.idx].ptA.northing + (Math.Cos(abHeading) * abLength);
 
             isABLineSet = true;
         }
@@ -663,14 +658,14 @@ namespace AgOpenGPS
         public void SetABLineByHeading()
         {
             //heading is set in the AB Form
-            refLineA.easting = refPtA.easting - (Math.Sin(abHeading) * abLength);
-            refLineA.northing = refPtA.northing - (Math.Cos(abHeading) * abLength);
+            refLineA.easting = mf.trk.gArr[mf.trk.idx].ptA.easting - (Math.Sin(abHeading) * abLength);
+            refLineA.northing = mf.trk.gArr[mf.trk.idx].ptA.northing - (Math.Cos(abHeading) * abLength);
 
-            refLineB.easting = refPtA.easting + (Math.Sin(abHeading) * abLength);
-            refLineB.northing = refPtA.northing + (Math.Cos(abHeading) * abLength);
+            refLineB.easting = mf.trk.gArr[mf.trk.idx].ptA.easting + (Math.Sin(abHeading) * abLength);
+            refLineB.northing = mf.trk.gArr[mf.trk.idx].ptA.northing + (Math.Cos(abHeading) * abLength);
 
-            refPtB.easting = refLineB.easting;
-            refPtB.northing = refLineB.northing;
+            mf.trk.gArr[mf.trk.idx].ptB.easting = refLineB.easting;
+            mf.trk.gArr[mf.trk.idx].ptB.northing = refLineB.northing;
 
             isABLineSet = true;
         }
@@ -680,17 +675,17 @@ namespace AgOpenGPS
             moveDistance += isHeadingSameWay ? dist : -dist;
 
             //calculate the new points for the reference line and points
-            refPtA.easting += Math.Cos(abHeading) * (isHeadingSameWay ? dist : -dist);
-            refPtA.northing -= Math.Sin(abHeading) * (isHeadingSameWay ? dist : -dist);
+            mf.trk.gArr[mf.trk.idx].ptA.easting += Math.Cos(abHeading) * (isHeadingSameWay ? dist : -dist);
+            mf.trk.gArr[mf.trk.idx].ptA.northing -= Math.Sin(abHeading) * (isHeadingSameWay ? dist : -dist);
 
-            refLineA.easting = refPtA.easting - (Math.Sin(abHeading) * abLength);
-            refLineA.northing = refPtA.northing - (Math.Cos(abHeading) * abLength);
+            refLineA.easting = mf.trk.gArr[mf.trk.idx].ptA.easting - (Math.Sin(abHeading) * abLength);
+            refLineA.northing = mf.trk.gArr[mf.trk.idx].ptA.northing - (Math.Cos(abHeading) * abLength);
 
-            refLineB.easting = refPtA.easting + (Math.Sin(abHeading) * abLength);
-            refLineB.northing = refPtA.northing + (Math.Cos(abHeading) * abLength);
+            refLineB.easting = mf.trk.gArr[mf.trk.idx].ptA.easting + (Math.Sin(abHeading) * abLength);
+            refLineB.northing = mf.trk.gArr[mf.trk.idx].ptA.northing + (Math.Cos(abHeading) * abLength);
 
-            refPtB.easting = refLineB.easting;
-            refPtB.northing = refLineB.northing;
+            mf.trk.gArr[mf.trk.idx].ptB.easting = refLineB.easting;
+            mf.trk.gArr[mf.trk.idx].ptB.northing = refLineB.northing;
 
             isABValid = false;
         }
