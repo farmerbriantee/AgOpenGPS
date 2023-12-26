@@ -22,7 +22,6 @@ namespace AgOpenGPS
 
         public bool isAutoTrack = false, isAutoSnapToPivot = false;
 
-
         public CTrack(FormGPS _f)
         {
             //constructor

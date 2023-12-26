@@ -324,17 +324,19 @@ namespace AgOpenGPS
                 return;
             }
 
-            int abVis = 0;
+            //int abVis = 0;
 
-            //if (ABLine.numABLines > 0)
+            if (trk.gArr.Count > 0)
             {
-                for (int i = 0; i < trk.gArr.Count; i++)
-                {
-                    if (trk.gArr[i].isVisible)
-                    {
-                        abVis++;
-                    }
-                }
+                trk.idx++;
+                if (trk.idx == trk.gArr.Count) trk.idx = 0;
+                //for (int i = 0; i < trk.gArr.Count; i++)
+                //{
+                //    if (trk.gArr[i].isVisible)
+                //    {
+                //        abVis++;
+                //    }
+                //}
             }
 
 

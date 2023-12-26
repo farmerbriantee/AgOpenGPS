@@ -1073,9 +1073,9 @@ namespace AgOpenGPS
 
             btnABDraw.Enabled = false;
             btnCycleLines.Image = Properties.Resources.ABLineCycle;
-            btnCycleLines.Enabled = false;
+            //btnCycleLines.Enabled = false;
             btnCycleLinesBk.Image = Properties.Resources.ABLineCycleBk;
-            btnCycleLinesBk.Enabled = false;
+            //btnCycleLinesBk.Enabled = false;
 
             //AutoSteer
             btnAutoSteer.Enabled = false;

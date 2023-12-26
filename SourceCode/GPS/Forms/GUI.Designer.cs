@@ -308,8 +308,8 @@ namespace AgOpenGPS
                             btnYouSkipEnable.Visible = false;
                             if (!ct.isContourBtnOn)
                             {
-                                btnCycleLines.Enabled = false;
-                                btnCycleLinesBk.Enabled = false;
+                                //btnCycleLines.Enabled = false;
+                                //btnCycleLinesBk.Enabled = false;
                             }
                         }
                     }

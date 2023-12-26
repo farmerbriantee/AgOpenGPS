@@ -602,7 +602,13 @@ namespace AgOpenGPS
             GL.LineWidth(mf.ABLine.lineWidth);
             GL.Color3(0.96, 0.2f, 0.2f);
             GL.Begin(PrimitiveType.Lines);
-            for (int h = 0; h < ptCount; h++) GL.Vertex3(mf.trk.gArr[mf.trk.idx].curvePts[h].easting, mf.trk.gArr[mf.trk.idx].curvePts[h].northing, 0);
+
+            for (int h = 0; h < ptCount; h++) GL.Vertex3(
+                mf.trk.gArr[mf.trk.idx].curvePts[h].easting, 
+                mf.trk.gArr[mf.trk.idx].curvePts[h].northing, 
+                0);
+
+            GL.End();
             
             //design
 
@@ -613,7 +619,6 @@ namespace AgOpenGPS
             //    GL.Vertex3(mf.trk.gArr[mf.trk.idx].curvePts[ptCount].easting, mf.trk.gArr[mf.trk.idx].curvePts[ptCount].northing, 0);
             //    GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0);
             //}
-            GL.End();
 
             if (mf.font.isFontOn)
             {
