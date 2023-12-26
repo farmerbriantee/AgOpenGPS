@@ -556,7 +556,7 @@ namespace AgOpenGPS
                                     int idx = mf.trk.gArr.Count - 1;
 
                                     mf.trk.gArr[idx].heading = mf.ABLine.desHeading;
-                                    mf.trk.gArr[idx].mode = 2;
+                                    mf.trk.gArr[idx].mode = (int)TrackMode.AB;
 
                                     //calculate the new points for the reference line and points
                                     mf.trk.gArr[idx].ptA.easting = (mf.ABLine.desPointA.easting + mf.ABLine.desPointB.easting) / 2;
@@ -666,7 +666,7 @@ namespace AgOpenGPS
 
                                             mf.trk.gArr[idx].heading = mf.curve.refCurve.heading;
 
-                                            mf.trk.gArr[idx].mode = 2;
+                                            mf.trk.gArr[idx].mode = (int)TrackMode.AB;
 
                                             //write out the Curve Points
                                             foreach (vec3 item in mf.curve.refCurve.curvePts)
@@ -735,7 +735,7 @@ namespace AgOpenGPS
                             int idx = mf.trk.gArr.Count - 1;
 
                             mf.trk.gArr[idx].heading = mf.ABLine.desHeading;
-                            mf.trk.gArr[idx].mode = 2;
+                            mf.trk.gArr[idx].mode = (int)TrackMode.AB;
 
                             //calculate the new points for the reference line and points
                             mf.trk.gArr[idx].ptA.easting = (mf.ABLine.desPointA.easting + mf.ABLine.desPointB.easting) / 2;
@@ -832,7 +832,7 @@ namespace AgOpenGPS
                                             + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
                                     mf.trk.gArr[idx].heading = mf.curve.refCurve.heading;
-                                    mf.trk.gArr[idx].mode = 4;
+                                    mf.trk.gArr[idx].mode = (int)TrackMode.Curve;
 
                                     //write out the Curve Points
                                     foreach (vec3 item in mf.curve.refCurve.curvePts)

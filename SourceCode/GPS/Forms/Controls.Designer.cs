@@ -1876,8 +1876,6 @@ namespace AgOpenGPS
             using (var form = new FormABDraw(this))
             {
                 form.ShowDialog(this);
-                ABLine.moveDistance = 0;
-                curve.refCurve.nudgeDistance = 0;
             }
         }
         private void btnYouSkipEnable_Click(object sender, EventArgs e)

@@ -859,7 +859,7 @@ namespace AgOpenGPS
 
                         for (int i = 0; i < cnt; i++)
                         {
-                            if (trk.gArr[i].mode != 4) continue;
+                            if (trk.gArr[i].mode != (int)TrackMode.Curve) continue;
 
                             //write out the Name
                             writer.WriteLine(trk.gArr[i].name);
@@ -941,12 +941,12 @@ namespace AgOpenGPS
                             trk.gArr.Add(new CTrk());
 
                             //read header $CurveLine
-                            trk.gArr[trk.gArr.Count-1].name = reader.ReadLine();
+                            trk.gArr[trk.gArr.Count-1].name = "Cu-" + reader.ReadLine();
                             // get the average heading
                             line = reader.ReadLine();
                             trk.gArr[trk.gArr.Count - 1].heading = double.Parse(line, CultureInfo.InvariantCulture);
 
-                            trk.gArr[trk.gArr.Count - 1].mode = 4;
+                            trk.gArr[trk.gArr.Count - 1].mode = (int)TrackMode.Curve;
 
                             line = reader.ReadLine();
                             int numPoints = int.Parse(line);
@@ -1062,7 +1062,7 @@ namespace AgOpenGPS
 
                             trk.gArr.Add(new CTrk());
 
-                            trk.gArr[i].name = words[0];
+                            trk.gArr[i].name = "AB-"+ words[0];
                             trk.gArr[i].mode = 2;
 
 
