@@ -125,15 +125,21 @@ namespace AgOpenGPS
             if (mf.yt.isYouTurnTriggered) isHeadingSameWay = !isHeadingSameWay;
 
             //Which ABLine is the vehicle on, negative is left and positive is right side
-            double RefDist = (distanceFromRefLine + (isHeadingSameWay ? mf.tool.offset : -mf.tool.offset)) / widthMinusOverlap + +mf.trk.gArr[idx].nudgeDistance; ;
+            double RefDist = (distanceFromRefLine + (isHeadingSameWay ? mf.tool.offset : -mf.tool.offset)) / widthMinusOverlap ;
             if (RefDist < 0) howManyPathsAway = (int)(RefDist - 0.5);
             else howManyPathsAway = (int)(RefDist + 0.5);
 
             shadowOffset = isHeadingSameWay ? mf.tool.offset : -mf.tool.offset;
 
+            //move the curline as well. 
+            vec2 nudgePtA = new vec2(mf.trk.gArr[idx].ptA);
+
+           nudgePtA.easting += (Math.Sin(abHeading + glm.PIBy2) * mf.trk.gArr[idx].nudgeDistance);
+           nudgePtA.northing += (Math.Cos(abHeading + glm.PIBy2) * mf.trk.gArr[idx].nudgeDistance);
+
             //depending which way you are going, the offset can be either side
-            vec2 point1 = new vec2((Math.Cos(-abHeading) * (widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset))) + mf.trk.gArr[idx].ptA.easting,
-            (Math.Sin(-abHeading) * ((widthMinusOverlap * howManyPathsAway) + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset))) + mf.trk.gArr[idx].ptA.northing);
+            vec2 point1 = new vec2((Math.Cos(-abHeading) * (widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset))) + nudgePtA.easting,
+            (Math.Sin(-abHeading) * ((widthMinusOverlap * howManyPathsAway) + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset))) + nudgePtA.northing);
 
             //create the new line extent points for current ABLine based on original heading of AB line
             currentLinePtA.easting = point1.easting - (Math.Sin(abHeading) * abLength);

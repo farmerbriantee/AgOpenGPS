@@ -71,6 +71,26 @@ namespace AgOpenGPS
             }
         }
 
+        public void SnapToPivot()
+        {
+            //if (isBtnGuidanceOn)
+
+            if (idx > -1)
+                {
+                if (gArr[idx].mode == (int)(TrackMode.AB))
+                {
+                    NudgeTrack(mf.ABLine.distanceFromCurrentLinePivot);
+
+                }
+                else
+                {
+                    NudgeTrack(mf.curve.distanceFromCurrentLinePivot);
+                }
+
+            }
+        }
+
+
     }
 
 

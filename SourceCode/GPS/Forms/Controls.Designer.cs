@@ -1533,7 +1533,7 @@ namespace AgOpenGPS
                 return;
             }
 
-            Form fcc = Application.OpenForms["FormEditCurve"];
+            Form fcc = Application.OpenForms["FormEditTrack"];
 
             if (fcc != null)
             {
@@ -1543,7 +1543,7 @@ namespace AgOpenGPS
 
             if (trk.idx > -1 && curve.isBtnCurveOn)
             {
-                Form form = new FormEditCurve(this);
+                Form form = new FormEditTrack(this);
                 form.Show(this);
             }
             else

@@ -526,6 +526,8 @@ namespace AgOpenGPS
             GL.Enable(EnableCap.CullFace);
             GL.CullFace(CullFaceMode.Back);
             GL.PixelStore(PixelStoreParameter.PackAlignment, 1);
+            oglBack.Width = 500;
+            oglBack.Height = 300;
         }
 
         private void oglBack_Resize(object sender, EventArgs e)

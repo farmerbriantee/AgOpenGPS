@@ -234,6 +234,12 @@
     <Compile Include="Forms\Form_Help.Designer.cs">
       <DependentUpon>Form_Help.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Guidance\FormEditTrack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Guidance\FormEditTrack.designer.cs">
+      <DependentUpon>FormEditTrack.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Guidance\FormEnterAB.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -281,18 +287,6 @@
     </Compile>
     <Compile Include="Forms\Pickers\FormRecordPicker.Designer.cs">
       <DependentUpon>FormRecordPicker.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Guidance\FormEditCurve.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Guidance\FormEditCurve.Designer.cs">
-      <DependentUpon>FormEditCurve.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Guidance\FormEditAB.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Guidance\FormEditAB.Designer.cs">
-      <DependentUpon>FormEditAB.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Pickers\FormFilePicker.cs">
       <SubType>Form</SubType>
@@ -649,6 +643,9 @@
     <EmbeddedResource Include="Forms\Form_Help.resx">
       <DependentUpon>Form_Help.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Guidance\FormEditTrack.resx">
+      <DependentUpon>FormEditTrack.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Guidance\FormEnterAB.resx">
       <DependentUpon>FormEnterAB.cs</DependentUpon>
     </EmbeddedResource>
@@ -672,12 +669,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Pickers\FormRecordPicker.resx">
       <DependentUpon>FormRecordPicker.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Guidance\FormEditCurve.resx">
-      <DependentUpon>FormEditCurve.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Guidance\FormEditAB.resx">
-      <DependentUpon>FormEditAB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Pickers\FormFilePicker.resx">
       <DependentUpon>FormFilePicker.cs</DependentUpon>

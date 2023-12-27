@@ -2759,5 +2759,29 @@ namespace AgOpenGPS.Properties {
                 this["setTool_trailingToolToPivotLength"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
+        public global::System.Drawing.Point setWindow_formEditTrackLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["setWindow_formEditTrackLocation"]));
+            }
+            set {
+                this["setWindow_formEditTrackLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("200, 400")]
+        public global::System.Drawing.Size setWindow_formEditTrackSize {
+            get {
+                return ((global::System.Drawing.Size)(this["setWindow_formEditTrackSize"]));
+            }
+            set {
+                this["setWindow_formEditTrackSize"] = value;
+            }
+        }
     }
 }
