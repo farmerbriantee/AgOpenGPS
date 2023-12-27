@@ -29,48 +29,51 @@ namespace AgOpenGPS
             idx = -1;
         }
 
-        public bool LoadABLine(int idx)
+        public void NudgeTrack(double dist)
         {
-            //if (mf.trk.gArr[idx].isVisible)
-            //{
-            //    refPtA = mf.trk.gArr[idx].ptA;
-            //    abHeading = mf.trk.gArr[idx].heading;
-            //    SetABLineByHeading();
-            //    isABLineSet = true;
-            //    mf.yt.ResetYouTurn();
-            //    mf.guidanceLineText = mf.trk.gArr[idx].name;
-            //    return true;
-            //}
-            //else
-            { return false; }
-        }
-        public void LoadCurve(int idx)
-        {
-            //refCurve.heading = mf.trk.gArr[idx].heading;
-            //refCurve.curvePts?.Clear();
-            //for (int i = 0; i < mf.trk.gArr[idx].curvePts.Count; i++)
-            //{
-            //    refCurve.curvePts.Add(mf.trk.gArr[idx].curvePts[i]);
-            //}
-            //isCurveSet = true;
-            //mf.yt.ResetYouTurn();
-            //mf.guidanceLineText = mf.trk.gArr[idx].name;
+            if (idx > -1)
+            {
+                if (gArr[idx].mode == (int)TrackMode.AB)
+                {
+                    mf.ABLine.isABValid = false;
+                    mf.ABLine.lastSecond = 0;
+                    gArr[idx].nudgeDistance += mf.ABLine.isHeadingSameWay ? dist : -dist;
+                }
+                else
+                {
+                    mf.curve.isCurveValid = false;
+                    mf.curve.lastSecond = 0;
+                    gArr[idx].nudgeDistance += mf.curve.isHeadingSameWay ? dist : -dist;
+
+                }
+
+                if (gArr[idx].nudgeDistance > 0.5 * mf.tool.width) gArr[idx].nudgeDistance -= mf.tool.width;
+                else if (gArr[idx].nudgeDistance < -0.5 * mf.tool.width) gArr[idx].nudgeDistance += mf.tool.width;
+            }
         }
 
-
-        public int FindNextVisibleLine()
+        public void NudgeDistanceReset()
         {
-            //while (true)
-            //{
-            //    numABLineSelected++;
+            if (idx > -1 && gArr.Count > 0)
+            {
+                if (gArr[idx].mode == (int)TrackMode.AB)
+                {
+                    mf.ABLine.isABValid = false;
+                    mf.ABLine.lastSecond = 0;
+                }
+                else
+                {
+                    mf.curve.isCurveValid = false;
+                    mf.curve.lastSecond = 0;
+                }
 
-            //    if (numABLineSelected > numABLines) numABLineSelected = 1;
-
-            //    if (mf.trk.gArr[numABLineSelected - 1].isVisible) return numABLineSelected;
-            //}
-            return 0;
+                gArr[idx].nudgeDistance = 0;
+            }
         }
+
     }
+
+
     public class CTrk
     {
         public List<vec3> curvePts = new List<vec3>();

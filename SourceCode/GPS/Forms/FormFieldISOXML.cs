@@ -652,7 +652,7 @@ namespace AgOpenGPS
                                             {
                                                 //create a name
                                                 mf.trk.gArr[idx].name = (Math.Round(glm.toDegrees(mf.trk.gArr[idx].heading), 1)).ToString(CultureInfo.InvariantCulture)
-                                                     + "\u00B0" + mf.FindDirection(mf.trk.gArr[idx].heading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
+                                                     + "\u00B0" + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
                                             }
                                             else
                                             {
@@ -820,7 +820,7 @@ namespace AgOpenGPS
                                         mf.trk.gArr[idx].name = mf.curve.desName;
                                     else mf.trk.gArr[idx].name =
                                             (Math.Round(glm.toDegrees(mf.trk.gArr[idx].heading), 1)).ToString(CultureInfo.InvariantCulture)
-                                            + "\u00B0" + mf.FindDirection(mf.trk.gArr[idx].heading)
+                                            + "\u00B0" 
                                             + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
                                     mf.trk.gArr[idx].mode = (int)TrackMode.Curve;

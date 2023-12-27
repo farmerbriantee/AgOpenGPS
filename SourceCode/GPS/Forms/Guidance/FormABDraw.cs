@@ -1,9 +1,11 @@
 ﻿using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AgOpenGPS
 {
@@ -16,7 +18,9 @@ namespace AgOpenGPS
 
         private bool isA = true;
         private int start = 99999, end = 99999;
-        private int bndSelect = 0;
+        private int bndSelect = 0, originalLine;
+        private bool isCancel = false;
+        public List<CTrk> gTemp = new List<CTrk>();
 
         public vec3 pint = new vec3(0.0, 1.0, 0.0);
 
@@ -44,6 +48,7 @@ namespace AgOpenGPS
 
         private void FormABDraw_Load(object sender, EventArgs e)
         {
+            originalLine = mf.trk.idx;
             nudDistance.Value = (decimal)Math.Round(((mf.tool.width * mf.m2InchOrCm) * 0.5), 0); //
             label6.Text = Math.Round((mf.tool.width * mf.m2InchOrCm), 0).ToString();
             FixLabelsCurve();
@@ -63,25 +68,60 @@ namespace AgOpenGPS
                 if (mf.trk.gArr.Count > 0) mf.trk.idx = 0;
             }
 
+            gTemp.Clear();
+
+            foreach (var item in mf.trk.gArr)
+            {
+                gTemp.Add(item);
+            }
+
             FixLabelsCurve();
         }
 
         private void FormABDraw_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (mf.trk.gArr.Count == 0)
-                mf.trk.idx = -1;
-
-            if (mf.trk.gArr.Count > 0 && mf.trk.idx == -1)
-                mf.trk.idx = mf.trk.gArr.Count - 1;
-
-            if (mf.trk.idx == -1)
+            if (!isCancel)
             {
-                if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();                
+                if (mf.trk.gArr.Count == 0)
+                    mf.trk.idx = -1;
+
+                if (mf.trk.gArr.Count > 0 && mf.trk.idx == -1)
+                    mf.trk.idx = mf.trk.gArr.Count - 1;
+
+                if (mf.trk.idx == -1)
+                {
+                    if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+                    if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
+                }
+
+                mf.FileSaveTracks();
+            }
+            else
+            {
+                mf.trk.gArr.Clear();
+
+                foreach (var item in gTemp)
+                {
+                    mf.trk.gArr.Add(item);
+                }
+
+                mf.trk.idx = originalLine;
             }
 
             mf.curve.isCurveValid = false;
             mf.ABLine.isABValid = false;
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            isCancel = false;
+            Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            isCancel = true; 
+            Close();
         }
 
         private void FixLabelsCurve()
@@ -98,7 +138,7 @@ namespace AgOpenGPS
             {
                 tboxNameCurve.Text = "***";
                 tboxNameCurve.Enabled = false;
-                lblCurveSelected.Text = "0";
+                lblCurveSelected.Text = "*";
             }
         }
 
@@ -169,12 +209,6 @@ namespace AgOpenGPS
             else btnDrawSections.Image = Properties.Resources.MappingOff;
         }
 
-        private void tboxNameCurve_Leave(object sender, EventArgs e)
-        {
-            //if (mf.curve.numCurveLineSelected > 0)
-            //    mf.trk.gArr[mf.trk.idx].name = tboxNameCurve.Text.Trim();
-        }
-
         private void btnFlipOffset_Click(object sender, EventArgs e)
         {
             nudDistance.Value *= -1;
@@ -182,21 +216,33 @@ namespace AgOpenGPS
             else btnFlipOffset.Text = "In";
         }
 
+        private void tboxNameCurve_Leave(object sender, EventArgs e)
+        {
+            if (mf.trk.idx > -1)
+                mf.trk.gArr[mf.trk.idx].name = tboxNameCurve.Text.Trim();
+            btnExit.Focus();
+        }
+
         private void tboxNameCurve_Enter(object sender, EventArgs e)
         {
-            //if (mf.trk.gArr[mf.trk.idx].name == "Boundary Curve")
-            //{
-            //    btnExit.Focus();
-            //    return;
-            //}
 
-            //if (mf.isKeyboardOn)
-            //{
-            //    mf.KeyboardToText((System.Windows.Forms.TextBox)sender, this);
-            //    if (mf.curve.numCurveLineSelected > 0)
-            //        mf.trk.gArr[mf.trk.idx].name = tboxNameCurve.Text.Trim();
-            //    btnExit.Focus();
-            //}
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((System.Windows.Forms.TextBox)sender, this);
+                
+                if (mf.trk.idx > -1)
+                    mf.trk.gArr[mf.trk.idx].name = tboxNameCurve.Text.Trim();
+                btnExit.Focus();
+            }
+        }
+
+        private void btnAddTime_Click(object sender, EventArgs e)
+        {
+            if (mf.trk.idx > -1)
+            {
+                mf.trk.gArr[mf.trk.idx].name += DateTime.Now.ToString(" hh:mm:ss", CultureInfo.InvariantCulture);
+                FixLabelsCurve();
+            }
         }
 
         private void btnMakeBoundaryCurve_Click(object sender, EventArgs e)
@@ -445,8 +491,9 @@ namespace AgOpenGPS
                 mf.trk.idx = mf.trk.gArr.Count - 1;
 
                 //create a name
-                mf.trk.gArr[mf.trk.idx].name = "Cu-"+(Math.Round(glm.toDegrees(mf.trk.gArr[mf.trk.idx].heading), 1)).ToString(CultureInfo.InvariantCulture)
-                     + "\u00B0" + mf.FindDirection(mf.trk.gArr[mf.trk.idx].heading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
+                mf.trk.gArr[mf.trk.idx].name = "Cu-" +
+                    (Math.Round(glm.toDegrees(mf.trk.gArr[mf.trk.idx].heading), 1)).ToString(CultureInfo.InvariantCulture)
+                    + "\u00B0" ;
 
                 mf.trk.gArr[mf.trk.idx].mode = (int)TrackMode.Curve;
 
@@ -515,8 +562,8 @@ namespace AgOpenGPS
             mf.trk.gArr[mf.trk.idx].ptB.northing = (Math.Cos(headingCalc) * (offset)) + mf.bnd.bndList[bndSelect].fenceLine[end].northing;
 
             //create a name
-            mf.trk.gArr[mf.trk.idx].name = "AB-" + (Math.Round(glm.toDegrees(mf.trk.gArr[mf.trk.idx].heading), 1)).ToString(CultureInfo.InvariantCulture)
-                 + "\u00B0" + mf.FindDirection(mf.trk.gArr[mf.trk.idx].heading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
+            mf.trk.gArr[mf.trk.idx].name = "AB-" + 
+                (Math.Round(glm.toDegrees(mf.trk.gArr[mf.trk.idx].heading), 1)).ToString(CultureInfo.InvariantCulture) + "\u00B0" ;
 
             //clean up gui
             btnMakeABLine.Enabled = false;
@@ -798,11 +845,6 @@ namespace AgOpenGPS
                 btnALength.Enabled = true;
                 btnBLength.Enabled = true;
             }
-        }
-
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            Close();
         }
 
         private void btnALength_Click(object sender, EventArgs e)

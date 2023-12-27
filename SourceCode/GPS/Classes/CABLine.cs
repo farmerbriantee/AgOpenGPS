@@ -27,7 +27,7 @@ namespace AgOpenGPS
         public CTrk refLine = new CTrk();
 
         public double howManyPathsAway, moveDistance;
-        public bool isABLineBeingSet;
+        public bool isMakingABLine;
         public bool isHeadingSameWay = true;
 
         //public bool isOnTramLine;
@@ -85,15 +85,24 @@ namespace AgOpenGPS
         public void BuildCurrentABLineList(vec3 pivot)
         {
             double dx, dy;
+            int idx = mf.trk.idx;
 
-            abHeading = mf.trk.gArr[mf.trk.idx].heading;
+            abHeading = mf.trk.gArr[idx].heading;
 
-            mf.trk.gArr[mf.trk.idx].endPtA.easting = mf.trk.gArr[mf.trk.idx].ptA.easting - (Math.Sin(abHeading) * abLength);
-            mf.trk.gArr[mf.trk.idx].endPtA.northing = mf.trk.gArr[mf.trk.idx].ptA.northing - (Math.Cos(abHeading) * abLength);
+            mf.trk.gArr[idx].endPtA.easting = mf.trk.gArr[idx].ptA.easting - (Math.Sin(abHeading) * abLength);
+            mf.trk.gArr[idx].endPtA.northing = mf.trk.gArr[idx].ptA.northing - (Math.Cos(abHeading) * abLength);
 
-            mf.trk.gArr[mf.trk.idx].endPtB.easting = mf.trk.gArr[mf.trk.idx].ptB.easting + (Math.Sin(abHeading) * abLength);
-            mf.trk.gArr[mf.trk.idx].endPtB.northing = mf.trk.gArr[mf.trk.idx].ptB.northing + (Math.Cos(abHeading) * abLength);
+            mf.trk.gArr[idx].endPtB.easting = mf.trk.gArr[idx].ptB.easting + (Math.Sin(abHeading) * abLength);
+            mf.trk.gArr[idx].endPtB.northing = mf.trk.gArr[idx].ptB.northing + (Math.Cos(abHeading) * abLength);
 
+            if (idx > -1 && mf.trk.gArr[idx].nudgeDistance != 0)
+            {
+                mf.trk.gArr[idx].endPtA.easting += (Math.Sin(abHeading + glm.PIBy2) * mf.trk.gArr[idx].nudgeDistance);
+                mf.trk.gArr[idx].endPtA.northing += (Math.Cos(abHeading + glm.PIBy2) * mf.trk.gArr[idx].nudgeDistance);
+
+                mf.trk.gArr[idx].endPtB.easting += ( Math.Sin(abHeading + glm.PIBy2) * mf.trk.gArr[idx].nudgeDistance);
+                mf.trk.gArr[idx].endPtB.northing += (Math.Cos(abHeading + glm.PIBy2) * mf.trk.gArr[idx].nudgeDistance);
+            }
 
             lastSecond = mf.secondsSinceStart;
 
@@ -101,12 +110,12 @@ namespace AgOpenGPS
             widthMinusOverlap = mf.tool.width - mf.tool.overlap;
 
             //x2-x1
-            dx = mf.trk.gArr[mf.trk.idx].endPtB.easting - mf.trk.gArr[mf.trk.idx].endPtA.easting;
+            dx = mf.trk.gArr[idx].endPtB.easting - mf.trk.gArr[idx].endPtA.easting;
             //z2-z1
-            dy = mf.trk.gArr[mf.trk.idx].endPtB.northing - mf.trk.gArr[mf.trk.idx].endPtA.northing;
+            dy = mf.trk.gArr[idx].endPtB.northing - mf.trk.gArr[idx].endPtA.northing;
 
-            distanceFromRefLine = ((dy * mf.guidanceLookPos.easting) - (dx * mf.guidanceLookPos.northing) + (mf.trk.gArr[mf.trk.idx].endPtB.easting
-                                    * mf.trk.gArr[mf.trk.idx].endPtA.northing) - (mf.trk.gArr[mf.trk.idx].endPtB.northing * mf.trk.gArr[mf.trk.idx].endPtA.easting))
+            distanceFromRefLine = ((dy * mf.guidanceLookPos.easting) - (dx * mf.guidanceLookPos.northing) + (mf.trk.gArr[idx].endPtB.easting
+                                    * mf.trk.gArr[idx].endPtA.northing) - (mf.trk.gArr[idx].endPtB.northing * mf.trk.gArr[idx].endPtA.easting))
                                         / Math.Sqrt((dy * dy) + (dx * dx));
 
             isLateralTriggered = false;
@@ -116,15 +125,15 @@ namespace AgOpenGPS
             if (mf.yt.isYouTurnTriggered) isHeadingSameWay = !isHeadingSameWay;
 
             //Which ABLine is the vehicle on, negative is left and positive is right side
-            double RefDist = (distanceFromRefLine + (isHeadingSameWay ? mf.tool.offset : -mf.tool.offset)) / widthMinusOverlap;
+            double RefDist = (distanceFromRefLine + (isHeadingSameWay ? mf.tool.offset : -mf.tool.offset)) / widthMinusOverlap + +mf.trk.gArr[idx].nudgeDistance; ;
             if (RefDist < 0) howManyPathsAway = (int)(RefDist - 0.5);
             else howManyPathsAway = (int)(RefDist + 0.5);
 
             shadowOffset = isHeadingSameWay ? mf.tool.offset : -mf.tool.offset;
 
             //depending which way you are going, the offset can be either side
-            vec2 point1 = new vec2((Math.Cos(-abHeading) * (widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset))) + mf.trk.gArr[mf.trk.idx].ptA.easting,
-            (Math.Sin(-abHeading) * ((widthMinusOverlap * howManyPathsAway) + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset))) + mf.trk.gArr[mf.trk.idx].ptA.northing);
+            vec2 point1 = new vec2((Math.Cos(-abHeading) * (widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset))) + mf.trk.gArr[idx].ptA.easting,
+            (Math.Sin(-abHeading) * ((widthMinusOverlap * howManyPathsAway) + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset))) + mf.trk.gArr[idx].ptA.northing);
 
             //create the new line extent points for current ABLine based on original heading of AB line
             currentLinePtA.easting = point1.easting - (Math.Sin(abHeading) * abLength);
@@ -362,7 +371,7 @@ namespace AgOpenGPS
             GL.Vertex3(mf.bnd.iE, mf.bnd.iN, 0.0);
             GL.End();
 
-            if (mf.font.isFontOn && !isABLineBeingSet)
+            if (mf.font.isFontOn && !isMakingABLine)
             {
                 mf.font.DrawText3D(mf.trk.gArr[mf.trk.idx].ptA.easting, mf.trk.gArr[mf.trk.idx].ptA.northing, "&A");
                 mf.font.DrawText3D(mf.trk.gArr[mf.trk.idx].ptB.easting, mf.trk.gArr[mf.trk.idx].ptB.northing, "&B");

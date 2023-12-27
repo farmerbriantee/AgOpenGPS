@@ -10,7 +10,7 @@ namespace AgOpenGPS
         private readonly FormGPS mf;
 
         //flag for starting stop adding points
-        public bool isBtnCurveOn, isOkToAddDesPoints;
+        public bool isBtnCurveOn, isMakingCurve;
 
         public double distanceFromCurrentLinePivot;
         public double distanceFromRefLine;

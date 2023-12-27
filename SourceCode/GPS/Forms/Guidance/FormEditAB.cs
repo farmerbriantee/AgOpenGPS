@@ -76,12 +76,12 @@ namespace AgOpenGPS
 
         private void btnAdjRight_Click(object sender, EventArgs e)
         {
-            mf.ABLine.MoveABLine(snapAdj);
+            mf.trk.NudgeTrack(snapAdj);
         }
 
         private void btnAdjLeft_Click(object sender, EventArgs e)
         {
-            mf.ABLine.MoveABLine(-snapAdj);
+            mf.trk.NudgeTrack(-snapAdj);
         }
 
         private void bntOk_Click(object sender, EventArgs e)

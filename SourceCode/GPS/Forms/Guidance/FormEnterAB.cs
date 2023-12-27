@@ -137,8 +137,7 @@ namespace AgOpenGPS
             }
 
             textBox1.Text = "Manual AB " +
-                (Math.Round(glm.toDegrees(mf.ABLine.desHeading), 1)).ToString(CultureInfo.InvariantCulture) +
-                "\u00B0 " + mf.FindDirection(mf.ABLine.desHeading);
+                (Math.Round(glm.toDegrees(mf.ABLine.desHeading), 1)).ToString(CultureInfo.InvariantCulture) + "\u00B0 " ;
             if (textBox1.Text != "Create A New Line") btnEnterManual.Enabled = true;
         }
 

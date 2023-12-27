@@ -321,9 +321,9 @@ namespace AgOpenGPS
                     }
 
                     //draw line creations
-                    if (curve.isOkToAddDesPoints) curve.DrawCurveNew();
+                    if (curve.isMakingCurve) curve.DrawCurveNew();
 
-                    if (ABLine.isABLineBeingSet) ABLine.DrawABLineNew();
+                    if (ABLine.isMakingABLine) ABLine.DrawABLineNew();
 
                     recPath.DrawRecordedLine();
                     recPath.DrawDubins();
@@ -1355,7 +1355,7 @@ namespace AgOpenGPS
                 //    GL.Translate(-fieldCenterX, -fieldCenterY, 0);
 
                 //    //draw the ABLine
-                //    if ((ABLine.isABLineSet | ABLine.isABLineBeingSet) && ABLine.isBtnABLineOn)
+                //    if ((ABLine.isABLineSet | ABLine.isMakingABLine) && ABLine.isBtnABLineOn)
                 //    {
                 //        //Draw reference AB line
                 //        GL.LineWidth(1);

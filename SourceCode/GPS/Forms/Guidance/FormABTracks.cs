@@ -7,7 +7,7 @@ using System.Xml;
 
 namespace AgOpenGPS
 {
-    public partial class FormABCurve : Form
+    public partial class FormABTracks : Form
     {
         //access to the main GPS form and all its variables
         private readonly FormGPS mf;
@@ -17,12 +17,9 @@ namespace AgOpenGPS
         private bool isClosing;
         private int selectedItem = -1;
 
-        private vec2 ptA;
-        private vec2 ptB;
-
         private bool isOn = true;
 
-        public FormABCurve(Form _mf)
+        public FormABTracks(Form _mf)
         {
             mf = _mf as FormGPS;
             InitializeComponent();
@@ -31,7 +28,7 @@ namespace AgOpenGPS
             this.Text = gStr.gsABCurve;
         }
 
-        private void FormABCurve_Load(object sender, EventArgs e)
+        private void FormABTracks_Load(object sender, EventArgs e)
         {
             panelMain.Top = 3; panelMain.Left = 3;
             panelCurve.Top = 3; panelCurve.Left = 3;
@@ -55,14 +52,14 @@ namespace AgOpenGPS
 
             originalLine = mf.trk.idx;
 
-            mf.curve.isOkToAddDesPoints = false;
+            mf.curve.isMakingCurve = false;
             selectedItem = -1;
             Location = Properties.Settings.Default.setWindow_abCurveCreate;
 
             UpdateTable();
         }
 
-        private void FormABCurve_FormClosing(object sender, FormClosingEventArgs e)
+        private void FormABTracks_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!isClosing)
             {
@@ -354,6 +351,7 @@ namespace AgOpenGPS
 
             btnAPlus.Enabled = true;
             mf.curve.desList?.Clear();
+            nudHeading.Enabled = false;
 
             this.Size = new System.Drawing.Size(270, 360);
         }
@@ -370,21 +368,8 @@ namespace AgOpenGPS
 
             this.Size = new System.Drawing.Size(270, 360);
         }
-        private void btnzNewLoadFromKMLCurve_Click(object sender, EventArgs e)
-        {
-            panelChoose.Visible = false;
-            panelKML.Visible = true;
-
-            btnALine.Enabled = true;
-            btnBLine.Enabled = false;
-            btnPausePlay.Enabled = false;
-            mf.curve.desList?.Clear();
-
-            this.Size = new System.Drawing.Size(270, 360);
-        }
 
         #endregion
-
 
         #region Curve
         private void btnACurve_Click(object sender, System.EventArgs e)
@@ -397,13 +382,13 @@ namespace AgOpenGPS
             btnPausePlay.Enabled = true;
             btnPausePlay.Visible = true;
 
-            mf.curve.isOkToAddDesPoints = true;
+            mf.curve.isMakingCurve = true;
         }
 
         private void btnBCurve_Click(object sender, System.EventArgs e)
         {
             aveLineHeading = 0;
-            mf.curve.isOkToAddDesPoints = false;
+            mf.curve.isMakingCurve = false;
             panelCurve.Visible = false;
             panelName.Visible = true;
 
@@ -466,8 +451,7 @@ namespace AgOpenGPS
                 }
 
                 mf.curve.desName = "Cu-" +
-                    (Math.Round(glm.toDegrees(aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture) +
-                    "\u00B0 " + mf.FindDirection(aveLineHeading);
+                    (Math.Round(glm.toDegrees(aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture) + "\u00B0 " ;
 
                 textBox1.Text = mf.curve.desName;
 
@@ -476,7 +460,7 @@ namespace AgOpenGPS
             }
             else
             {
-                mf.curve.isOkToAddDesPoints = false;
+                mf.curve.isMakingCurve = false;
                 mf.curve.desList?.Clear();
 
                 panelMain.Visible = false;
@@ -490,16 +474,16 @@ namespace AgOpenGPS
 
         private void btnPausePlayCurve_Click(object sender, EventArgs e)
         {
-            if (mf.curve.isOkToAddDesPoints)
+            if (mf.curve.isMakingCurve)
             {
-                mf.curve.isOkToAddDesPoints = false;
+                mf.curve.isMakingCurve = false;
                 btnPausePlay.Image = Properties.Resources.BoundaryRecord;
                 //btnPausePlay.Text = gStr.gsRecord;
                 btnBCurve.Enabled = false;
             }
             else
             {
-                mf.curve.isOkToAddDesPoints = true;
+                mf.curve.isMakingCurve = true;
                 btnPausePlay.Image = Properties.Resources.boundaryPause;
                 //btnPausePlay.Text = gStr.gsPause;
                 btnBCurve.Enabled = true;
@@ -512,7 +496,7 @@ namespace AgOpenGPS
 
         private void btnALine_Click(object sender, EventArgs e)
         {
-            mf.ABLine.isABLineBeingSet = true;
+            mf.ABLine.isMakingABLine = true;
             btnALine.Enabled = false;
 
             mf.ABLine.desPtA = new vec2(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing);
@@ -549,7 +533,7 @@ namespace AgOpenGPS
 
         private void btnEnter_AB_Click(object sender, EventArgs e)
         {
-            mf.ABLine.isABLineBeingSet = false;
+            mf.ABLine.isMakingABLine = false;
             mf.trk.gArr.Add(new CTrk());
 
             mf.trk.idx = mf.trk.gArr.Count - 1;
@@ -562,8 +546,7 @@ namespace AgOpenGPS
             mf.trk.gArr[mf.trk.idx].heading = mf.ABLine.desHeading;
 
             mf.ABLine.desName = "AB-" +
-                (Math.Round(glm.toDegrees(mf.ABLine.desHeading), 1)).ToString(CultureInfo.InvariantCulture) +
-                "\u00B0 " + mf.FindDirection(mf.ABLine.desHeading);
+                (Math.Round(glm.toDegrees(mf.ABLine.desHeading), 1)).ToString(CultureInfo.InvariantCulture) + "\u00B0 " ;
             textBox1.Text = mf.ABLine.desName;
 
             panelABLine.Visible = false;
@@ -576,84 +559,76 @@ namespace AgOpenGPS
         #region A Plus
         private void btnAPlus_Click(object sender, EventArgs e)
         {
+            mf.ABLine.isMakingABLine = true;
 
+            mf.ABLine.desPtA = new vec2(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing);
+
+            mf.ABLine.desPtB.easting = mf.ABLine.desPtA.easting + (Math.Sin(mf.pivotAxlePos.heading) * 200);
+            mf.ABLine.desPtB.northing = mf.ABLine.desPtA.northing + (Math.Cos(mf.pivotAxlePos.heading) * 200);
+
+            mf.ABLine.desLineEndA.easting = mf.ABLine.desPtA.easting - (Math.Sin(mf.pivotAxlePos.heading) * 1000);
+            mf.ABLine.desLineEndA.northing = mf.ABLine.desPtA.northing - (Math.Cos(mf.pivotAxlePos.heading) * 1000);
+
+            mf.ABLine.desLineEndB.easting = mf.ABLine.desPtA.easting + (Math.Sin(mf.pivotAxlePos.heading) * 1000);
+            mf.ABLine.desLineEndB.northing = mf.ABLine.desPtA.northing + (Math.Cos(mf.pivotAxlePos.heading) * 1000);
+
+            mf.ABLine.desHeading = mf.pivotAxlePos.heading;
+
+            btnEnter_AB.Enabled = true;
+            nudHeading.Enabled = true;
+
+            nudHeading.Value = (decimal)(glm.toDegrees(mf.ABLine.desHeading));
+        }
+
+        private void nudHeading_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                //original A pt. 
+                mf.ABLine.desHeading = glm.toRadians((double)nudHeading.Value);
+
+                //start end of line
+                mf.ABLine.desPtB.easting = mf.ABLine.desPtA.easting + (Math.Sin(mf.ABLine.desHeading) * 200);
+                mf.ABLine.desPtB.northing = mf.ABLine.desPtA.northing + (Math.Cos(mf.ABLine.desHeading) * 200);
+
+                mf.ABLine.desLineEndA.easting = mf.ABLine.desPtA.easting - (Math.Sin(mf.ABLine.desHeading) * 1000);
+                mf.ABLine.desLineEndA.northing = mf.ABLine.desPtA.northing - (Math.Cos(mf.ABLine.desHeading) * 1000);
+
+                mf.ABLine.desLineEndB.easting = mf.ABLine.desPtA.easting + (Math.Sin(mf.ABLine.desHeading) * 1000);
+                mf.ABLine.desLineEndB.northing = mf.ABLine.desPtA.northing + (Math.Cos(mf.ABLine.desHeading) * 1000);
+            }
+        }
+
+        private void btnEnter_APlus_Click(object sender, EventArgs e)
+        {
+            mf.ABLine.isMakingABLine = false;
+            mf.trk.gArr.Add(new CTrk());
+
+            mf.trk.idx = mf.trk.gArr.Count - 1;
+
+            mf.trk.gArr[mf.trk.idx].ptA = new vec2(mf.ABLine.desPtA);
+            mf.trk.gArr[mf.trk.idx].ptB = new vec2(mf.ABLine.desPtB);
+
+            mf.trk.gArr[mf.trk.idx].mode = (int)TrackMode.AB;
+
+            mf.trk.gArr[mf.trk.idx].heading = mf.ABLine.desHeading;
+
+            mf.ABLine.desName = "A+" +
+                (Math.Round(glm.toDegrees(mf.ABLine.desHeading), 1)).ToString(CultureInfo.InvariantCulture) + "\u00B0 " ;
+            textBox1.Text = mf.ABLine.desName;
+
+            panelAPlus.Visible = false;
+            panelName.Visible = true;
         }
 
 
 
         #endregion
 
-        #region KML
-
-        #endregion
-
-
-        private void btnAddTime_Click(object sender, EventArgs e)
-        {
-            textBox1.Text += DateTime.Now.ToString(" hh:mm:ss", CultureInfo.InvariantCulture);
-            mf.curve.desName = textBox1.Text;
-        }
-
-        private void btnCancelCurve_Click(object sender, EventArgs e)
-        {
-            mf.curve.isOkToAddDesPoints = false;
-            mf.curve.desList?.Clear();
-
-            panelMain.Visible = true;
-            panelCurve.Visible = false;
-            panelEditName.Visible = false;
-            panelName.Visible = false;
-            panelChoose.Visible = false;
-
-            this.Size = new System.Drawing.Size(620, 475);
-        }
-
-
-        private void btnCancelMain_Click(object sender, EventArgs e)
-        {
-            isClosing = true;
-            mf.curve.isCurveValid = false;
-            mf.curve.isOkToAddDesPoints = false;
-            mf.curve.desList?.Clear();
-            mf.DisableYouTurnButtons();
-            //mf.btnContourPriority.Enabled = false;
-            mf.curve.isBtnCurveOn = false;
-            mf.btnTrack.Image = Properties.Resources.TrackOff;
-            if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-            if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
-
-            mf.trk.idx = -1;
-            Close();
-        }
-
-        private void textBox_Click(object sender, EventArgs e)
-        {
-            if (mf.isKeyboardOn)
-                mf.KeyboardToText((TextBox)sender, this);
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            if (textBox1.Text.Length == 0) textBox2.Text = "No Name " + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
-
-            int idx = mf.trk.gArr.Count - 1;
-
-            mf.trk.gArr[idx].name = textBox1.Text.Trim();
-
-            panelMain.Visible = true;
-            panelName.Visible = false;
-
-            this.Size = new System.Drawing.Size(620, 475);
-
-            mf.curve.desList?.Clear();
-            UpdateTable();
-        }
-
+        #region KML Curve
         private void btnLoadCurveFromKML_Click(object sender, EventArgs e)
         {
-            panelMain.Visible = false;
-            panelCurve.Visible = false;
-            panelName.Visible = false;
+            panelChoose.Visible = false;
             panelKML.Visible = true;
 
             this.Size = new System.Drawing.Size(270, 360);
@@ -673,13 +648,11 @@ namespace AgOpenGPS
             //was a file selected
             if (ofd.ShowDialog(this) == DialogResult.Cancel)
             {
-                mf.curve.isOkToAddDesPoints = false;
+                mf.curve.isMakingCurve = false;
+                mf.ABLine.isMakingABLine = false;
                 mf.curve.desList?.Clear();
 
                 panelMain.Visible = true;
-                panelCurve.Visible = false;
-                panelEditName.Visible = false;
-                panelName.Visible = false;
                 panelKML.Visible = false;
 
                 this.Size = new System.Drawing.Size(620, 475);
@@ -765,12 +738,48 @@ namespace AgOpenGPS
                             }
                         }
 
-                        CalculateTurnHeadings();
+
+                        mf.trk.gArr.Add(new CTrk());
+                        //array number is 1 less since it starts at zero
+                        mf.trk.idx = mf.trk.gArr.Count - 1;
+
+                        mf.trk.gArr[mf.trk.idx].ptA =
+                            new vec2(mf.curve.desList[0].easting, mf.curve.desList[0].northing);
+                        mf.trk.gArr[mf.trk.idx].ptB =
+                            new vec2(mf.curve.desList[mf.curve.desList.Count - 1].easting,
+                            mf.curve.desList[mf.curve.desList.Count - 1].northing);
+
+                        mf.trk.gArr[mf.trk.idx].mode = (int)TrackMode.Curve;
+
+                        //calculate average heading of line
+                        double x = 0, y = 0;
+                        foreach (vec3 pt in mf.curve.desList)
+                        {
+                            x += Math.Cos(pt.heading);
+                            y += Math.Sin(pt.heading);
+                        }
+                        x /= mf.curve.desList.Count;
+                        y /= mf.curve.desList.Count;
+                        aveLineHeading = Math.Atan2(y, x);
+                        if (aveLineHeading < 0) aveLineHeading += glm.twoPI;
+
+                        mf.trk.gArr[mf.trk.idx].heading = aveLineHeading;
 
                         //build the tail extensions
                         mf.curve.AddFirstLastPoints(ref mf.curve.desList);
                         SmoothAB(4);
                         CalculateTurnHeadings();
+
+                        //write out the Curve Points
+                        foreach (vec3 item in mf.curve.desList)
+                        {
+                            mf.trk.gArr[mf.trk.idx].curvePts.Add(item);
+                        }
+
+                        mf.curve.desName = "Cu-" +
+                            (Math.Round(glm.toDegrees(aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture) + "\u00B0 " ;
+
+                        textBox1.Text = mf.curve.desName;
 
                         panelKML.Visible = false;
                         panelName.Visible = true;
@@ -786,6 +795,70 @@ namespace AgOpenGPS
                 }
             }
         }
+
+        #endregion
+
+
+        private void btnAddTime_Click(object sender, EventArgs e)
+        {
+            textBox1.Text += DateTime.Now.ToString(" hh:mm:ss", CultureInfo.InvariantCulture);
+            mf.curve.desName = textBox1.Text;
+        }
+
+        private void btnCancelCurve_Click(object sender, EventArgs e)
+        {
+            mf.curve.isMakingCurve = false;
+            mf.curve.desList?.Clear();
+
+            panelMain.Visible = true;
+            panelCurve.Visible = false;
+            panelEditName.Visible = false;
+            panelName.Visible = false;
+            panelChoose.Visible = false;
+
+            this.Size = new System.Drawing.Size(620, 475);
+        }
+
+        private void btnCancelMain_Click(object sender, EventArgs e)
+        {
+            isClosing = true;
+            mf.curve.isCurveValid = false;
+            mf.curve.isMakingCurve = false;
+            mf.curve.desList?.Clear();
+            mf.DisableYouTurnButtons();
+            //mf.btnContourPriority.Enabled = false;
+            mf.curve.isBtnCurveOn = false;
+            mf.btnTrack.Image = Properties.Resources.TrackOff;
+            if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+            if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
+
+            mf.trk.idx = -1;
+            Close();
+        }
+
+        private void textBox_Click(object sender, EventArgs e)
+        {
+            if (mf.isKeyboardOn)
+                mf.KeyboardToText((TextBox)sender, this);
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Length == 0) textBox2.Text = "No Name " + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
+
+            int idx = mf.trk.gArr.Count - 1;
+
+            mf.trk.gArr[idx].name = textBox1.Text.Trim();
+
+            panelMain.Visible = true;
+            panelName.Visible = false;
+
+            this.Size = new System.Drawing.Size(620, 475);
+
+            mf.curve.desList?.Clear();
+            UpdateTable();
+        }
+
 
         private void btnAddTimeEdit_Click(object sender, EventArgs e)
         {

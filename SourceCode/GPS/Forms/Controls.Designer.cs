@@ -98,7 +98,7 @@ namespace AgOpenGPS
             if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
 
             //turn off ABLine 
-            ABLine.isABLineBeingSet = false;
+            ABLine.isMakingABLine = false;
 
             //change image to reflect on off
             //btnABLine.Image = Properties.Resources.ABLineOff;
@@ -134,71 +134,10 @@ namespace AgOpenGPS
             EnableYouTurnButtons();
             //btnContourPriority.Enabled = true;
 
-            Form form = new FormABCurve(this);
+            Form form = new FormABTracks(this);
             form.Show(this);
         }
-        private void btnABLine_Click(object sender, EventArgs e)
-        {
-            if (isTT)
-            {
-                MessageBox.Show(gStr.h_btnABLine, gStr.gsHelp);
-                ResetHelpBtn();
-                return;
-            }
 
-            //invalidate line
-            ABLine.isABValid = false;
-
-            //check if window already exists
-            Form f = Application.OpenForms["FormABCurve"];
-
-            if (f != null)
-            {
-                f.Focus();
-                return;
-            }
-
-            f = null;
-            f = Application.OpenForms["FormEditCurve"];
-
-            if (f != null)
-            {
-                f.Focus();
-                return;
-            }
-
-            Form af = Application.OpenForms["FormABLine"];
-
-            if (af != null)
-            {
-                af.Focus();
-                return;
-            }
-
-
-            //if contour is on, turn it off
-            if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
-            //btnContourPriority.Enabled = true;
-                
-            curve.isBtnCurveOn = false;
-            btnTrack.Image = Properties.Resources.TrackOff;
-            
-            //check if window already exists, return if true
-            Form fc = Application.OpenForms["FormABLine"];
-
-            if (fc != null)
-            {
-                fc.Focus();
-                return;
-            }
-
-            //turn off youturn...
-            //DisableYouTurnButtons();
-            //yt.ResetYouTurn();
-
-            var form = new FormABLine(this);
-                form.Show(this);
-        }
         private void btnAutoSteer_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -312,7 +251,8 @@ namespace AgOpenGPS
                 trk.idx++;
                 if (trk.idx == trk.gArr.Count) trk.idx = 0;
 
-                lblLineKey.Text = trk.gArr[trk.idx].name.Substring(0,7);
+                lblLineKey.Text = trk.gArr[trk.idx].name;
+                if (lblLineKey.Text.Length > 9) lblLineKey.Text = lblLineKey.Text.Substring(0,9);
                 guidanceLineText = trk.gArr[trk.idx].name;
 
                 //for (int i = 0; i < trk.gArr.Count; i++)
