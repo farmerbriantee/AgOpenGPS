@@ -8780,7 +8780,7 @@
             this.cboxFeatureCurve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxFeatureCurve.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxFeatureCurve.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboxFeatureCurve.Image = global::AgOpenGPS.Properties.Resources.CurveOn;
+            this.cboxFeatureCurve.Image = global::AgOpenGPS.Properties.Resources.TrackOn;
             this.cboxFeatureCurve.Location = new System.Drawing.Point(355, 163);
             this.cboxFeatureCurve.Name = "cboxFeatureCurve";
             this.cboxFeatureCurve.RightToLeft = System.Windows.Forms.RightToLeft.Yes;

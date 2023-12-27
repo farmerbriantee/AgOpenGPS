@@ -73,6 +73,26 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ABLatLonHeading {
+            get {
+                object obj = ResourceManager.GetObject("ABLatLonHeading", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ABLatLonLatLon {
+            get {
+                object obj = ResourceManager.GetObject("ABLatLonLatLon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ABLineCycle {
             get {
                 object obj = ResourceManager.GetObject("ABLineCycle", resourceCulture);
@@ -93,16 +113,6 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ABLineOff {
-            get {
-                object obj = ResourceManager.GetObject("ABLineOff", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap ABLineOn {
             get {
                 object obj = ResourceManager.GetObject("ABLineOn", resourceCulture);
@@ -116,6 +126,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap ABLinesHideShow {
             get {
                 object obj = ResourceManager.GetObject("ABLinesHideShow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ABLoadFromKML {
+            get {
+                object obj = ResourceManager.GetObject("ABLoadFromKML", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -156,6 +176,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap ABSwapPoints {
             get {
                 object obj = ResourceManager.GetObject("ABSwapPoints", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ABTrackA_ {
+            get {
+                object obj = ResourceManager.GetObject("ABTrackA+", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1425,16 +1455,6 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap ConV_SteerPivotSnap {
             get {
                 object obj = ResourceManager.GetObject("ConV_SteerPivotSnap", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap CurveOff {
-            get {
-                object obj = ResourceManager.GetObject("CurveOff", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -2870,6 +2890,26 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap ToolHitchPivotOffsetPos {
             get {
                 object obj = ResourceManager.GetObject("ToolHitchPivotOffsetPos", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TrackOff {
+            get {
+                object obj = ResourceManager.GetObject("TrackOff", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TrackOn {
+            get {
+                object obj = ResourceManager.GetObject("TrackOn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

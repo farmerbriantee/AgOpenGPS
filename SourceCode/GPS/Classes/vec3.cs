@@ -139,6 +139,14 @@ namespace AgOpenGPS
             this.northing = northing;
         }
 
+        public vec2(vec2 v)
+        {
+            easting = v.easting;
+            northing = v.northing;
+        }
+
+
+
         public static vec2 operator -(vec2 lhs, vec2 rhs)
         {
             return new vec2(lhs.easting - rhs.easting, lhs.northing - rhs.northing);

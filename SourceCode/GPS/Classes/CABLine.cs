@@ -333,6 +333,21 @@ namespace AgOpenGPS
             //mf.setAngVel = glm.toDegrees(mf.setAngVel);
         }
 
+        public void DrawABLineNew()
+        {
+            //ABLine currently being designed
+                GL.LineWidth(lineWidth);
+                GL.Begin(PrimitiveType.Lines);
+                GL.Color3(0.95f, 0.70f, 0.50f);
+                GL.Vertex3(desLineEndA.easting, desLineEndA.northing, 0.0);
+                GL.Vertex3(desLineEndB.easting, desLineEndB.northing, 0.0);
+                GL.End();
+
+                GL.Color3(0.2f, 0.950f, 0.20f);
+                mf.font.DrawText3D(desPtA.easting, desPtA.northing, "&A");
+                mf.font.DrawText3D(desPtB.easting, desPtB.northing, "&B");
+        }
+
         public void DrawABLines()
         {
             //Draw AB Points
@@ -401,21 +416,6 @@ namespace AgOpenGPS
             GL.Vertex3(currentLinePtA.easting, currentLinePtA.northing, 0.0);
             GL.Vertex3(currentLinePtB.easting, currentLinePtB.northing, 0.0);
             GL.End();
-
-            //ABLine currently being designed
-            if (isABLineBeingSet)
-            {
-                GL.LineWidth(lineWidth);
-                GL.Begin(PrimitiveType.Lines);
-                GL.Color3(0.95f, 0.20f, 0.950f);
-                GL.Vertex3(desLineEndA.easting, desLineEndA.northing, 0.0);
-                GL.Vertex3(desLineEndB.easting, desLineEndB.northing, 0.0);
-                GL.End();
-
-                GL.Color3(0.2f, 0.950f, 0.20f);
-                mf.font.DrawText3D(desPtA.easting, desPtA.northing, "&A");
-                mf.font.DrawText3D(desPtB.easting, desPtB.northing, "&B");
-            }
 
             if (mf.isSideGuideLines && mf.camera.camSetDistance > mf.tool.width * -120)
             {

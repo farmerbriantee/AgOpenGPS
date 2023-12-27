@@ -11,7 +11,6 @@ using AgOpenGPS.Forms;
 using AgOpenGPS.Forms.Pickers;
 using AgOpenGPS.Properties;
 using Microsoft.Win32;
-using static OpenTK.Graphics.OpenGL.GL;
 
 namespace AgOpenGPS
 {
@@ -57,7 +56,7 @@ namespace AgOpenGPS
                 guidanceLookAheadTime = Properties.Settings.Default.setAS_guidanceLookAheadTime;
             }
         }
-        private void btnCurve_Click(object sender, EventArgs e)
+        private void btnTrack_Click(object sender, EventArgs e)
         {
             if (isTT)
             {
@@ -114,7 +113,7 @@ namespace AgOpenGPS
             {
                 //display the curve
                 EnableYouTurnButtons();
-                btnCurve.Image = Properties.Resources.CurveOn;
+                btnTrack.Image = Properties.Resources.TrackOn;
                 curve.isBtnCurveOn = true;
                 return;
             }
@@ -130,7 +129,7 @@ namespace AgOpenGPS
             }
 
             curve.isBtnCurveOn = true;
-            btnCurve.Image = Properties.Resources.CurveOn;
+            btnTrack.Image = Properties.Resources.TrackOn;
 
             EnableYouTurnButtons();
             //btnContourPriority.Enabled = true;
@@ -182,7 +181,7 @@ namespace AgOpenGPS
             //btnContourPriority.Enabled = true;
                 
             curve.isBtnCurveOn = false;
-            btnCurve.Image = Properties.Resources.CurveOff;
+            btnTrack.Image = Properties.Resources.TrackOff;
             
             //check if window already exists, return if true
             Form fc = Application.OpenForms["FormABLine"];
@@ -312,6 +311,10 @@ namespace AgOpenGPS
             {
                 trk.idx++;
                 if (trk.idx == trk.gArr.Count) trk.idx = 0;
+
+                lblLineKey.Text = trk.gArr[trk.idx].name.Substring(0,7);
+                guidanceLineText = trk.gArr[trk.idx].name;
+
                 //for (int i = 0; i < trk.gArr.Count; i++)
                 //{
                 //    if (trk.gArr[i].isVisible)
@@ -685,7 +688,7 @@ namespace AgOpenGPS
                     //make sure the other stuff is off
                     //btnContourPriority.Enabled = false;
                     curve.isBtnCurveOn = false;
-                    btnCurve.Image = Properties.Resources.CurveOff;
+                    btnTrack.Image = Properties.Resources.TrackOff;
                 }
             }
 
@@ -1590,16 +1593,6 @@ namespace AgOpenGPS
                 return;
             }
 
-            //if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
-
-            Form fc = Application.OpenForms["FormEditAB"];
-
-            if (fc != null)
-            {
-                fc.Focus();
-                return;
-            }
-
             Form fcc = Application.OpenForms["FormEditCurve"];
 
             if (fcc != null)
@@ -1608,12 +1601,7 @@ namespace AgOpenGPS
                 return;
             }
 
-            //if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
-            //{
-            //    Form form = new FormEditAB(this);
-            //    form.Show(this);
-            //}
-            else if (trk.idx > -1 && curve.isBtnCurveOn)
+            if (trk.idx > -1 && curve.isBtnCurveOn)
             {
                 Form form = new FormEditCurve(this);
                 form.Show(this);

@@ -875,7 +875,7 @@ namespace AgOpenGPS
             btnZone8.Enabled = true;
 
             btnContour.Enabled = true;
-            btnCurve.Enabled = true;
+            btnTrack.Enabled = true;
             btnABDraw.Enabled = true;
             btnCycleLines.Image = Properties.Resources.ABLineCycle;
             btnCycleLinesBk.Image = Properties.Resources.ABLineCycleBk;
@@ -1042,8 +1042,8 @@ namespace AgOpenGPS
             tram.tramList?.Clear();
 
             //curve line
-            btnCurve.Enabled = false;
-            btnCurve.Image = Properties.Resources.CurveOff;
+            btnTrack.Enabled = false;
+            btnTrack.Image = Properties.Resources.TrackOff;
             curve.isBtnCurveOn = false;
             curve.ResetCurveLine();
             

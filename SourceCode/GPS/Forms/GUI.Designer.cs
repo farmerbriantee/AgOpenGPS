@@ -494,7 +494,7 @@ namespace AgOpenGPS
             btnSectionMasterManual.Visible = Properties.Settings.Default.setFeatures.isManualSectionOn;
             btnSectionMasterAuto.Visible = Properties.Settings.Default.setFeatures.isAutoSectionOn;
             //btnABLine.Visible = Properties.Settings.Default.setFeatures.isABLineOn;
-            btnCurve.Visible = Properties.Settings.Default.setFeatures.isCurveOn;
+            btnTrack.Visible = Properties.Settings.Default.setFeatures.isCurveOn;
             //btnStanleyPure.Visible = Properties.Settings.Default.setFeatures.isSteerModeOn;
 
             isUTurnOn = Properties.Settings.Default.setFeatures.isUTurnOn;

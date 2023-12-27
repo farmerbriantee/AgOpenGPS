@@ -583,6 +583,17 @@ namespace AgOpenGPS
             }
         }
 
+
+        public void DrawCurveNew()
+        {
+            if (desList.Count > 0)
+            {
+                GL.Color3(0.95f, 0.42f, 0.750f);
+                GL.Begin(PrimitiveType.LineStrip);
+                for (int h = 0; h < desList.Count; h++) GL.Vertex3(desList[h].easting, desList[h].northing, 0);
+                GL.End();
+            }
+        }
         public void DrawCurve()
         {
             if (desList.Count > 0)

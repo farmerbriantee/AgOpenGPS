@@ -320,6 +320,11 @@ namespace AgOpenGPS
                         }
                     }
 
+                    //draw line creations
+                    if (curve.isOkToAddDesPoints) curve.DrawCurveNew();
+
+                    if (ABLine.isABLineBeingSet) ABLine.DrawABLineNew();
+
                     recPath.DrawRecordedLine();
                     recPath.DrawDubins();
 

@@ -992,6 +992,13 @@
     <None Include="btnImages\ToolHitchPivotOffset.png" />
     <None Include="btnImages\ToolHitchPivotOffsetNeg.png" />
     <None Include="btnImages\ToolHitchPivotOffsetPos.png" />
+    <None Include="btnImages\TrackOff.png" />
+    <None Include="btnImages\TrackOn.png" />
+    <None Include="btnImages\ABLineOff.png" />
+    <None Include="btnImages\ABLatLonHeading.png" />
+    <None Include="btnImages\ABLatLonLatLon.png" />
+    <None Include="btnImages\ABLoadFromKML.png" />
+    <None Include="btnImages\ABTrackA+.png" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />
