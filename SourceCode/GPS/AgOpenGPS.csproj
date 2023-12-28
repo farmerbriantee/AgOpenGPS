@@ -980,6 +980,8 @@
     <None Include="btnImages\ABLatLonLatLon.png" />
     <None Include="btnImages\ABLoadFromKML.png" />
     <None Include="btnImages\ABTrackA+.png" />
+    <None Include="btnImages\AutoTrack.png" />
+    <None Include="btnImages\ABTracks.png" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />

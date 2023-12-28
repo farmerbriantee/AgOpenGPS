@@ -257,7 +257,7 @@ namespace AgOpenGPS
 
         private void bntOk_Click(object sender, EventArgs e)
         {
-            if (mf.trk.gArr.Count > 0)
+            //if (mf.trk.gArr.Count > 0)
             {
                 //save entire list
                 mf.FileSaveTracks();
@@ -274,6 +274,18 @@ namespace AgOpenGPS
                 else
                     lblOffset.Text = ((int)(mf.trk.gArr[mf.trk.idx].nudgeDistance * mf.m2InchOrCm)).ToString() + " >";
             }
+        }
+
+        private void btnHalfToolRight_Click(object sender, EventArgs e)
+        {
+            mf.trk.NudgeTrack((mf.tool.width-mf.tool.overlap) * 0.5);
+            UpdateMoveLabel();
+        }
+
+        private void btnHalfToolLeft_Click(object sender, EventArgs e)
+        {
+            mf.trk.NudgeTrack((mf.tool.width - mf.tool.overlap) * -0.5);
+            UpdateMoveLabel();
         }
     }
 }
