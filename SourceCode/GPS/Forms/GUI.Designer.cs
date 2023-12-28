@@ -216,7 +216,7 @@ namespace AgOpenGPS
 
                         case 1:
 
-                            lblCurrentField.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss");
+                            lblCurrentField.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss ");
                             break;
 
                         case 2:

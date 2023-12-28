@@ -356,6 +356,9 @@ namespace AgOpenGPS
             start = 99999; end = 99999;
 
             FixLabelsCurve();
+
+            mf.curve.desList?.Clear();
+
             btnExit.Focus();
         }
 
@@ -512,9 +515,9 @@ namespace AgOpenGPS
             }
             else
             {
-                mf.curve.desList?.Clear();
             }
             btnExit.Focus();
+            mf.curve.desList?.Clear();
         }
 
         private void BtnMakeABLine_Click(object sender, EventArgs e)
