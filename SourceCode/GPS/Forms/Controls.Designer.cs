@@ -65,15 +65,6 @@ namespace AgOpenGPS
                 return;
             }
 
-            //check if window already exists
-            Form cf = Application.OpenForms["FormABTracks"];
-
-            if (cf != null)
-            {
-                cf.Focus();
-                return;
-            }
-
             //if contour is on, turn it off
             if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
 
@@ -106,84 +97,6 @@ namespace AgOpenGPS
 
             if (bnd.bndList.Count > 0) btnABDraw.Enabled = true;
             else btnABDraw.Enabled = false;
-            //if (isTT)
-            //{
-            //    MessageBox.Show(gStr.h_btnCurve, gStr.gsHelp);
-            //    ResetHelpBtn();
-            //    return;
-            //}
-
-            ////check if window already exists, return if true
-            //Form f = Application.OpenForms["FormABLine"];
-
-            //if (f != null)
-            //{
-            //    f.Focus();
-            //    return;
-            //}
-
-            //f = null;
-
-            //f = Application.OpenForms["FormEditAB"];
-
-            //if (f != null)
-            //{
-            //    f.Focus();
-            //    return;
-            //}
-            //f = null;
-
-            ////check if window already exists
-            //f = Application.OpenForms["FormABCurve"];
-
-            //if (f != null)
-            //{
-            //    f.Focus();
-            //    return;
-            //}
-
-            ////if contour is on, turn it off
-            //if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
-
-            ////turn off ABLine 
-            //ABLine.isMakingABLine = false;
-
-            ////change image to reflect on off
-            ////btnABLine.Image = Properties.Resources.ABLineOff;
-            ////ABLine.isBtnABLineOn = false;
-
-            ////new direction so reset where to put turn diagnostic
-            ////yt.ResetCreatedYouTurn();
-
-            //curve.isCurveValid = false;
-
-            //if (curve.isBtnTrackOn == false)
-            //{
-            //    //display the curve
-            //    EnableYouTurnButtons();
-            //    btnTrack.Image = Properties.Resources.TrackOn;
-            //    curve.isBtnTrackOn = true;
-            //    return;
-            //}
-
-
-            ////check if window already exists
-            //Form fc = Application.OpenForms["FormABCurve"];
-
-            //if (fc != null)
-            //{
-            //    fc.Focus();
-            //    return;
-            //}
-
-            //curve.isBtnTrackOn = true;
-            //btnTrack.Image = Properties.Resources.TrackOn;
-
-            //EnableYouTurnButtons();
-            ////btnContourPriority.Enabled = true;
-
-            //Form form = new FormABTracks(this);
-            //form.Show(this);
         }
 
         private void btnAutoSteer_Click(object sender, EventArgs e)
@@ -212,7 +125,7 @@ namespace AgOpenGPS
                     isAutoSteerBtnOn = true;
                     btnAutoSteer.Image = Properties.Resources.AutoSteerOn;
                     if (sounds.isSteerSoundOn) sounds.sndAutoSteerOn.Play();
-                    if (isAutoSnapToPivot) ; //TODO
+                    if (isAutoSnapToPivot) trk.SnapToPivot();
                 }
                 else
                 {
@@ -386,6 +299,118 @@ namespace AgOpenGPS
 
         #endregion
 
+        #region Track Flyout
+
+        private void btnNudge_Click(object sender, EventArgs e)
+        {
+            if (isTT)
+            {
+                MessageBox.Show(gStr.h_btnEditAB, gStr.gsHelp);
+                ResetHelpBtn();
+                return;
+            }
+
+            Form fcc = Application.OpenForms["FormNudge"];
+
+            if (fcc != null)
+            {
+                fcc.Focus();
+                return;
+            }
+
+            if (trk.idx > -1 && curve.isBtnTrackOn)
+            {
+                Form form = new FormNudge(this);
+                form.Show(this);
+            }
+            else
+            {
+                var form = new FormTimedMessage(1500, gStr.gsNoABLineActive, gStr.gsPleaseEnterABLine);
+                return;
+            }
+        }
+        private void btnBuildTracks_Click(object sender, EventArgs e)
+        {
+            if (isTT)
+            {
+                MessageBox.Show(gStr.h_btnCurve, gStr.gsHelp);
+                ResetHelpBtn();
+                return;
+            }
+
+
+            //if contour is on, turn it off
+            if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
+
+            //check if window already exists
+            Form fc = Application.OpenForms["FormBuildTracks"];
+
+            if (fc != null)
+            {
+                fc.Focus();
+                return;
+            }
+
+            Form form = new FormBuildTracks(this);
+            form.Show(this);
+
+            if (tlpTrackMethods.Visible)
+            {
+                tlpTrackMethods.Visible = false;
+            }
+        }
+        private void btnABDraw_Click(object sender, EventArgs e)
+        {
+            if (isTT)
+            {
+                MessageBox.Show(gStr.h_btnABDraw, gStr.gsHelp);
+                ResetHelpBtn();
+                return;
+            }
+
+            if (ct.isContourBtnOn)
+            {
+                var form = new FormTimedMessage(2000, (gStr.gsContourOn), ("Turn Off Contour"));
+                form.Show(this);
+                return;
+            }
+
+            if (bnd.bndList.Count == 0)
+            {
+                TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
+                return;
+            }
+
+            if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
+
+            using (var form = new FormABDraw(this))
+            {
+                form.ShowDialog(this);
+            }
+
+            if (tlpTrackMethods.Visible)
+            {
+                tlpTrackMethods.Visible = false;
+            }
+        }
+        private void cboxAutoSnapToPivot_Click(object sender, EventArgs e)
+        {
+            trk.isAutoSnapToPivot = cboxAutoSnapToPivot.Checked;
+        }
+        private void cboxAutoTrack_Click(object sender, EventArgs e)
+        {
+            trk.isAutoTrack = cboxAutoTrack.Checked;
+
+            if (tlpTrackMethods.Visible)
+            {
+                tlpTrackMethods.Visible = false;
+            }
+
+        }
+
+        #endregion
+
+        #region Field Menu
         private void toolStripBtnFieldTools_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -395,7 +420,6 @@ namespace AgOpenGPS
                 return;
             }
         }
-
         private void btnJobMenu_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -535,7 +559,6 @@ namespace AgOpenGPS
                 btnHydLift.Visible = false;
             }
         }
-
         public void FileSaveEverythingBeforeClosingField()
         {
             //turn off contour line if on
@@ -574,9 +597,6 @@ namespace AgOpenGPS
 
             Text = "AgOpenGPS";
         }
-
-        #region Field Menu
-
         private void tramLinesMenuField_Click(object sender, EventArgs e)
         {
             if (ct.isContourBtnOn) btnContour.PerformClick();
@@ -603,16 +623,6 @@ namespace AgOpenGPS
                 form97.Left = Width - 275;
                 form97.Top = 100;
             }
-        }
-        private void headlandToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (bnd.bndList.Count == 0)
-            {
-                TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
-                return;
-            }
-
-            GetHeadland();
         }
         public void GetHeadland()
         {
@@ -641,7 +651,16 @@ namespace AgOpenGPS
             FixPanelsAndMenus();
             SetZoom();
         }
+        private void headlandToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (bnd.bndList.Count == 0)
+            {
+                TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
+                return;
+            }
 
+            GetHeadland();
+        }
         private void headlandBuildToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (bnd.bndList.Count == 0)
@@ -675,7 +694,6 @@ namespace AgOpenGPS
             FixPanelsAndMenus();
             SetZoom();
         }
-
         private void boundariesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -700,7 +718,9 @@ namespace AgOpenGPS
             else { TimedMessageBox(3000, gStr.gsFieldNotOpen, gStr.gsStartNewField); }
         }
 
-        //Recorded Path
+        #endregion
+
+        #region Recorded Path
         private void btnPathGoStop_Click(object sender, EventArgs e)
         {
             #region Turn off Guidance
@@ -914,8 +934,7 @@ namespace AgOpenGPS
             }
             fd.distanceUser = 0;
             fd.workedAreaTotalUser = 0;
-        }  
-        
+        }          
         private void lblFieldStatus_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -925,8 +944,6 @@ namespace AgOpenGPS
                 return;
             }
         }
-
-
         private void navPanelToolStrip_Click(object sender, EventArgs e)
         {
             //buttonPanelCounter = 0;
@@ -958,71 +975,6 @@ namespace AgOpenGPS
                 else btnBrightnessDn.Text = "??";
             }
         }
-        private void toolStripMenuItemFlagRed_Click(object sender, EventArgs e)
-        {
-            flagColor = 0;
-            btnFlag.Image = Properties.Resources.FlagRed;
-        }
-        private void toolStripMenuGrn_Click(object sender, EventArgs e)
-        {
-            flagColor = 1;
-            btnFlag.Image = Properties.Resources.FlagGrn;
-        }
-        private void toolStripMenuYel_Click(object sender, EventArgs e)
-        {
-            flagColor = 2;
-            btnFlag.Image = Properties.Resources.FlagYel;
-        }
-        private void toolStripMenuFlagForm_Click(object sender, EventArgs e)
-        {
-            Form fc = Application.OpenForms["FormFlags"];
-
-            if (fc != null)
-            {
-                fc.Focus();
-                return;
-            }
-
-            if (flagPts.Count > 0)
-            {
-                flagNumberPicked = 1;
-                Form form = new FormFlags(this);
-                form.Show(this);
-            }            
-        }
-
-
-        private void btnFlag_Click(object sender, EventArgs e)
-        {
-            if (isTT)
-            {
-                MessageBox.Show(gStr.h_btnFlag, gStr.gsHelp);
-                ResetHelpBtn();
-                return;
-            }
-
-            int nextflag = flagPts.Count + 1;
-            CFlag flagPt = new CFlag(pn.latitude, pn.longitude, pn.fix.easting, pn.fix.northing, fixHeading, flagColor, nextflag, (nextflag).ToString());
-            flagPts.Add(flagPt);
-            FileSaveFlags();
-
-            Form fc = Application.OpenForms["FormFlags"];
-
-            if (fc != null)
-            {
-                fc.Focus();
-                return;
-            }
-
-            if (flagPts.Count > 0)
-            {
-                flagNumberPicked = nextflag;
-                Form form = new FormFlags(this);
-                form.Show(this);
-            }
-        }
-
-
         private void btnStartAgIO_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -1098,6 +1050,72 @@ namespace AgOpenGPS
                 form.ShowDialog(this);
             }
         }
+
+        #endregion
+
+        #region Flags
+        private void toolStripMenuItemFlagRed_Click(object sender, EventArgs e)
+        {
+            flagColor = 0;
+            btnFlag.Image = Properties.Resources.FlagRed;
+        }
+        private void toolStripMenuGrn_Click(object sender, EventArgs e)
+        {
+            flagColor = 1;
+            btnFlag.Image = Properties.Resources.FlagGrn;
+        }
+        private void toolStripMenuYel_Click(object sender, EventArgs e)
+        {
+            flagColor = 2;
+            btnFlag.Image = Properties.Resources.FlagYel;
+        }
+        private void toolStripMenuFlagForm_Click(object sender, EventArgs e)
+        {
+            Form fc = Application.OpenForms["FormFlags"];
+
+            if (fc != null)
+            {
+                fc.Focus();
+                return;
+            }
+
+            if (flagPts.Count > 0)
+            {
+                flagNumberPicked = 1;
+                Form form = new FormFlags(this);
+                form.Show(this);
+            }            
+        }
+        private void btnFlag_Click(object sender, EventArgs e)
+        {
+            if (isTT)
+            {
+                MessageBox.Show(gStr.h_btnFlag, gStr.gsHelp);
+                ResetHelpBtn();
+                return;
+            }
+
+            int nextflag = flagPts.Count + 1;
+            CFlag flagPt = new CFlag(pn.latitude, pn.longitude, pn.fix.easting, pn.fix.northing, fixHeading, flagColor, nextflag, (nextflag).ToString());
+            flagPts.Add(flagPt);
+            FileSaveFlags();
+
+            Form fc = Application.OpenForms["FormFlags"];
+
+            if (fc != null)
+            {
+                fc.Focus();
+                return;
+            }
+
+            if (flagPts.Count > 0)
+            {
+                flagNumberPicked = nextflag;
+                Form form = new FormFlags(this);
+                form.Show(this);
+            }
+        }
+
         #endregion
 
         #region Top Panel
@@ -1579,72 +1597,6 @@ namespace AgOpenGPS
         #endregion
 
         #region Bottom Menu
-
-         private void btnStanleyPure_Click(object sender, EventArgs e)
-        {
-            if (isTT)
-            {
-                MessageBox.Show(gStr.h_btnStanleyPure, "Steer Mode");
-                ResetHelpBtn();
-                return;
-            }
-
-
-            //isStanleyUsed = !isStanleyUsed;
-
-            //if (isStanleyUsed)
-            //{
-            //    btnStanleyPure.Image = Resources.ModeStanley;
-            //}
-            //else
-            //{
-            //    btnStanleyPure.Image = Resources.ModePurePursuit;
-            //}
-
-            //Properties.Settings.Default.setVehicle_isStanleyUsed = isStanleyUsed;
-            //Properties.Settings.Default.Save();
-        }
-
-        private void btnResetToolHeading_Click(object sender, EventArgs e)
-        {
-            tankPos.heading = fixHeading;
-            tankPos.easting = hitchPos.easting + (Math.Sin(tankPos.heading) * (tool.tankTrailingHitchLength));
-            tankPos.northing = hitchPos.northing + (Math.Cos(tankPos.heading) * (tool.tankTrailingHitchLength));
-            
-            toolPivotPos.heading = tankPos.heading;
-            toolPivotPos.easting = tankPos.easting + (Math.Sin(toolPivotPos.heading) * (tool.trailingHitchLength));
-            toolPivotPos.northing = tankPos.northing + (Math.Cos(toolPivotPos.heading) * (tool.trailingHitchLength));
-        }
-
-        private void btnEditAB_Click(object sender, EventArgs e)
-        {
-            if (isTT)
-            {
-                MessageBox.Show(gStr.h_btnEditAB, gStr.gsHelp);
-                ResetHelpBtn();
-                return;
-            }
-
-            Form fcc = Application.OpenForms["FormEditTrack"];
-
-            if (fcc != null)
-            {
-                fcc.Focus();
-                return;
-            }
-
-            if (trk.idx > -1 && curve.isBtnTrackOn)
-            {
-                Form form = new FormEditTrack(this);
-                form.Show(this);
-            }
-            else
-            {
-                var form = new FormTimedMessage(1500, gStr.gsNoABLineActive, gStr.gsPleaseEnterABLine);
-                return;
-            }
-        }
-
         public void CloseTopMosts()
         {
             Form fc = Application.OpenForms["FormSteer"];
@@ -1672,7 +1624,40 @@ namespace AgOpenGPS
             }
 
         }
+        private void btnStanleyPure_Click(object sender, EventArgs e)
+        {
+            if (isTT)
+            {
+                MessageBox.Show(gStr.h_btnStanleyPure, "Steer Mode");
+                ResetHelpBtn();
+                return;
+            }
 
+
+            //isStanleyUsed = !isStanleyUsed;
+
+            //if (isStanleyUsed)
+            //{
+            //    btnStanleyPure.Image = Resources.ModeStanley;
+            //}
+            //else
+            //{
+            //    btnStanleyPure.Image = Resources.ModePurePursuit;
+            //}
+
+            //Properties.Settings.Default.setVehicle_isStanleyUsed = isStanleyUsed;
+            //Properties.Settings.Default.Save();
+        }
+        private void btnResetToolHeading_Click(object sender, EventArgs e)
+        {
+            tankPos.heading = fixHeading;
+            tankPos.easting = hitchPos.easting + (Math.Sin(tankPos.heading) * (tool.tankTrailingHitchLength));
+            tankPos.northing = hitchPos.northing + (Math.Cos(tankPos.heading) * (tool.tankTrailingHitchLength));
+            
+            toolPivotPos.heading = tankPos.heading;
+            toolPivotPos.easting = tankPos.easting + (Math.Sin(toolPivotPos.heading) * (tool.trailingHitchLength));
+            toolPivotPos.northing = tankPos.northing + (Math.Cos(toolPivotPos.heading) * (tool.trailingHitchLength));
+        }
         private void btnTramDisplayMode_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -1704,7 +1689,6 @@ namespace AgOpenGPS
                     break;
             }
         }
-
         private void btnChangeMappingColor_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -1726,40 +1710,6 @@ namespace AgOpenGPS
             Settings.Default.Save();
 
             btnChangeMappingColor.BackColor = sectionColorDay;
-        }
-
-        private void btnABDraw_Click(object sender, EventArgs e)
-        {
-            if (isTT)
-            {
-                MessageBox.Show(gStr.h_btnABDraw, gStr.gsHelp);
-                ResetHelpBtn();
-                return;
-            }
-
-            if (ct.isContourBtnOn)
-            {
-                var form = new FormTimedMessage(2000, (gStr.gsContourOn), ("Turn Off Contour"));
-                form.Show(this);
-                return;
-            }
-
-            if (bnd.bndList.Count == 0)
-            {
-                TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
-                return;
-            }
-
-            GetAB();
-        }
-        public void GetAB()
-        {
-            if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
-
-            using (var form = new FormABDraw(this))
-            {
-                form.ShowDialog(this);
-            }
         }
         private void btnYouSkipEnable_Click(object sender, EventArgs e)
         {
@@ -1789,7 +1739,6 @@ namespace AgOpenGPS
                 btnYouSkipEnable.Image = Resources.YouSkipOff;
             }
         }
-
         private void cboxpRowWidth_SelectedIndexChanged(object sender, EventArgs e)
         {
             yt.rowSkipsWidth = cboxpRowWidth.SelectedIndex + 1;
@@ -1807,7 +1756,6 @@ namespace AgOpenGPS
                 return;
             }
         }
-
         private void btnHeadlandOnOff_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -1842,7 +1790,6 @@ namespace AgOpenGPS
             }
 
         }
-
         private void btnHydLift_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -1998,8 +1945,7 @@ namespace AgOpenGPS
             //
             Form formG = new FormSteerGraph(this);
             formG.Show(this);
-        }       
-        
+        }               
         private void xTEChartToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //check if window already exists
@@ -2015,7 +1961,6 @@ namespace AgOpenGPS
             Form formX = new FormXTEGraph(this);
             formX.Show(this);
         }
-
         private void webcamToolStrip_Click(object sender, EventArgs e)
         {
             Form form = new FormWebCam();
@@ -2217,7 +2162,6 @@ namespace AgOpenGPS
 
         #region Sim controls
 
-
         private void btnSimSpeedUp_MouseDown(object sender, MouseEventArgs e)
         {
             if (sim.stepDistance < 0)
@@ -2231,15 +2175,12 @@ namespace AgOpenGPS
 
             if (sim.stepDistance > 7.5) sim.stepDistance = 7.5;
         }
-
         private void btnSpeedDn_MouseDown(object sender, MouseEventArgs e)
         {
             if (sim.stepDistance < 0.2 && sim.stepDistance > -0.51) sim.stepDistance -= 0.02;
             else sim.stepDistance *= 0.8;
             if (sim.stepDistance < -0.5) sim.stepDistance = -0.5;
         }
-
-
         private void timerSim_Tick(object sender, EventArgs e)
         {
             if (recPath.isDrivingRecordedPath || isAutoSteerBtnOn && (guidanceLineDistanceOff != 32000))
@@ -2253,7 +2194,6 @@ namespace AgOpenGPS
             curve.isCurveValid = false;
             if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
         }
-
         private void hsbarSteerAngle_Scroll(object sender, ScrollEventArgs e)
         {
             sim.steerAngleScrollBar = (hsbarSteerAngle.Value - 400) * 0.1;
@@ -2274,13 +2214,11 @@ namespace AgOpenGPS
         {
             sim.stepDistance = 0;
         }
-
         private void btnSimReverse_Click(object sender, EventArgs e)
         {
             sim.stepDistance = 0;
             sim.isAccelBack = true;
         }
-
         private void btnSimForward_Click(object sender, EventArgs e)
         {
             sim.stepDistance = 0;
@@ -2288,16 +2226,6 @@ namespace AgOpenGPS
         }
 
         #endregion
-
-        private void lblInty_Click(object sender, EventArgs e)
-        {
-            if (isTT)
-            {
-                MessageBox.Show(gStr.h_lblIntegral, gStr.gsHelp);
-                ResetHelpBtn();
-                return;
-            }
-        }
 
         public void FixTramModeButton()
         {

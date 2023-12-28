@@ -7,7 +7,7 @@ using System.Xml;
 
 namespace AgOpenGPS
 {
-    public partial class FormABTracks : Form
+    public partial class FormBuildTracks : Form
     {
         //access to the main GPS form and all its variables
         private readonly FormGPS mf;
@@ -19,7 +19,7 @@ namespace AgOpenGPS
 
         private bool isOn = true;
 
-        public FormABTracks(Form _mf)
+        public FormBuildTracks(Form _mf)
         {
             mf = _mf as FormGPS;
             InitializeComponent();
@@ -28,7 +28,7 @@ namespace AgOpenGPS
             this.Text = gStr.gsABCurve;
         }
 
-        private void FormABTracks_Load(object sender, EventArgs e)
+        private void FormBuildTracks_Load(object sender, EventArgs e)
         {
             panelMain.Top = 3; panelMain.Left = 3;
             panelCurve.Top = 3; panelCurve.Left = 3;
@@ -59,7 +59,7 @@ namespace AgOpenGPS
             UpdateTable();
         }
 
-        private void FormABTracks_FormClosing(object sender, FormClosingEventArgs e)
+        private void FormBuildTracks_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!isClosing)
             {

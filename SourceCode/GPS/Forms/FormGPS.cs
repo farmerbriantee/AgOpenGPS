@@ -1136,7 +1136,7 @@ namespace AgOpenGPS
             lblFieldStatus.Visible = isOn;
             cboxpRowWidth.Visible = false;
             btnYouSkipEnable.Visible = false;
-            btnEditAB.Visible = false;
+            btnNudge.Visible = false;
         }
 
         //take the distance from object and convert to camera data

@@ -234,11 +234,11 @@
     <Compile Include="Forms\Form_Help.Designer.cs">
       <DependentUpon>Form_Help.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Guidance\FormEditTrack.cs">
+    <Compile Include="Forms\Guidance\FormNudge.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Guidance\FormEditTrack.designer.cs">
-      <DependentUpon>FormEditTrack.cs</DependentUpon>
+    <Compile Include="Forms\Guidance\FormNudge.designer.cs">
+      <DependentUpon>FormNudge.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Guidance\FormEnterAB.cs">
       <SubType>Form</SubType>
@@ -396,11 +396,11 @@
     <Compile Include="Forms\Guidance\FormSmoothAB.Designer.cs">
       <DependentUpon>FormSmoothAB.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Guidance\FormABTracks.cs">
+    <Compile Include="Forms\Guidance\FormBuildTracks.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Guidance\FormABTracks.Designer.cs">
-      <DependentUpon>FormABTracks.cs</DependentUpon>
+    <Compile Include="Forms\Guidance\FormBuildTracks.Designer.cs">
+      <DependentUpon>FormBuildTracks.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormBoundary.cs">
       <SubType>Form</SubType>
@@ -643,8 +643,8 @@
     <EmbeddedResource Include="Forms\Form_Help.resx">
       <DependentUpon>Form_Help.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Guidance\FormEditTrack.resx">
-      <DependentUpon>FormEditTrack.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Guidance\FormNudge.resx">
+      <DependentUpon>FormNudge.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Guidance\FormEnterAB.resx">
       <DependentUpon>FormEnterAB.cs</DependentUpon>
@@ -702,8 +702,8 @@
     <EmbeddedResource Include="Forms\FormShiftPos.resx">
       <DependentUpon>FormShiftPos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Guidance\FormABTracks.resx">
-      <DependentUpon>FormABTracks.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Guidance\FormBuildTracks.resx">
+      <DependentUpon>FormBuildTracks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormBoundary.resx">
       <DependentUpon>FormBoundary.cs</DependentUpon>
@@ -982,6 +982,7 @@
     <None Include="btnImages\ABTrackA+.png" />
     <None Include="btnImages\AutoTrack.png" />
     <None Include="btnImages\ABTracks.png" />
+    <None Include="btnImages\AutoSteerSnapToPivot.png" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />

@@ -1,6 +1,6 @@
 ﻿namespace AgOpenGPS
 {
-    partial class FormABTracks
+    partial class FormBuildTracks
     {
         /// <summary>
         /// Required designer variable.
@@ -776,7 +776,7 @@
             this.btnCancelChoose.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancelChoose.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancelChoose.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancelChoose.Location = new System.Drawing.Point(5, 323);
+            this.btnCancelChoose.Location = new System.Drawing.Point(5, 327);
             this.btnCancelChoose.Name = "btnCancelChoose";
             this.btnCancelChoose.Size = new System.Drawing.Size(90, 80);
             this.btnCancelChoose.TabIndex = 423;
@@ -1096,7 +1096,7 @@
             this.btnAPlus.UseVisualStyleBackColor = true;
             this.btnAPlus.Click += new System.EventHandler(this.btnAPlus_Click);
             // 
-            // FormABTracks
+            // FormBuildTracks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1114,13 +1114,13 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FormABTracks";
+            this.Name = "FormBuildTracks";
             this.Padding = new System.Windows.Forms.Padding(2);
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Tracks";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormABTracks_FormClosing);
-            this.Load += new System.EventHandler(this.FormABTracks_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormBuildTracks_FormClosing);
+            this.Load += new System.EventHandler(this.FormBuildTracks_Load);
             this.panelName.ResumeLayout(false);
             this.panelName.PerformLayout();
             this.panelMain.ResumeLayout(false);

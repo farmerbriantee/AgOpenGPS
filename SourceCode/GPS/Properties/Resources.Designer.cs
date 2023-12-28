@@ -372,6 +372,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AutoSteerSnapToPivot {
+            get {
+                object obj = ResourceManager.GetObject("AutoSteerSnapToPivot", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap AutoStop {
             get {
                 object obj = ResourceManager.GetObject("AutoStop", resourceCulture);

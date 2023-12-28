@@ -262,9 +262,9 @@ namespace AgOpenGPS
                 {
                     if (curve.isBtnTrackOn)
                     {
-                        if (!btnEditAB.Visible)
+                        if (!btnNudge.Visible)
                         {
-                            btnEditAB.Visible = true;
+                            btnNudge.Visible = true;
                             cboxpRowWidth.Visible = true;
                             btnYouSkipEnable.Visible = true;
                         }
@@ -306,9 +306,9 @@ namespace AgOpenGPS
                     }
                     else
                     {
-                        if (btnEditAB.Visible)
+                        if (btnNudge.Visible)
                         {
-                            btnEditAB.Visible = false;
+                            btnNudge.Visible = false;
                             cboxpRowWidth.Visible = false;
                             btnYouSkipEnable.Visible = false;
                             if (!ct.isContourBtnOn)

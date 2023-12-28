@@ -1,6 +1,6 @@
 ﻿namespace AgOpenGPS
 {
-    partial class FormEditTrack
+    partial class FormNudge
     {
         /// <summary>
         /// Required designer variable.
