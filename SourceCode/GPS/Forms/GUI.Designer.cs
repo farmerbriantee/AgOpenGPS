@@ -66,7 +66,7 @@ namespace AgOpenGPS
         public bool isFlashOnOff = false, isPanFormVisible = false;
 
         //makes nav panel disappear after 6 seconds
-        private int navPanelCounter = 0;
+        private int navPanelCounter = 0, trackMethodPanelCounter = 0;
 
         public uint sentenceCounter = 0;
 
@@ -246,6 +246,11 @@ namespace AgOpenGPS
                     if (navPanelCounter-- < 2) panelNavigation.Visible = false;
                 }
 
+                if (tlpTrackMethods.Visible)
+                {
+                    if (trackMethodPanelCounter-- < 1) tlpTrackMethods.Visible = false;
+                }
+
                 //small Hz details in panel
                 if (panelNavigation.Visible)
                     lblHz.Text = gpsHz.ToString("N1") + " ~ " + (frameTime.ToString("N1")) + " " + FixQuality;
@@ -255,7 +260,7 @@ namespace AgOpenGPS
 
                 if (isJobStarted)
                 {
-                    if (curve.isBtnCurveOn)
+                    if (curve.isBtnTrackOn)
                     {
                         if (!btnEditAB.Visible)
                         {
@@ -264,7 +269,7 @@ namespace AgOpenGPS
                             btnYouSkipEnable.Visible = true;
                         }
 
-                        if (trk.idx != -1 && curve.isBtnCurveOn)
+                        if (trk.idx != -1 && curve.isBtnTrackOn)
                         {
                             guidanceLineText = trk.gArr[trk.idx].name;
                         }
@@ -359,14 +364,14 @@ namespace AgOpenGPS
 
                 //if (isStanleyUsed)
                 //{
-                //    if (curve.isBtnCurveOn )
+                //    if (curve.isBtnTrackOn )
                 //    {
                 //        lblInty.Text = gyd.inty.ToString("N3");
                 //    }
                 //}
                 //else
                 //{
-                //    if (curve.isBtnCurveOn)
+                //    if (curve.isBtnTrackOn)
                 //    {
                 //        lblInty.Text = curve.inty.ToString("N3");
                 //    }
@@ -385,7 +390,7 @@ namespace AgOpenGPS
                 //{
                 //    btnEditAB.Text = ((int)(ABLine.moveDistance * 100)).ToString();
                 //}
-                //if (curve.isBtnCurveOn && !ct.isContourBtnOn)
+                //if (curve.isBtnTrackOn && !ct.isContourBtnOn)
                 //{
                 //    btnEditAB.Text = ((int)(curve.refCurve.nudgeDistance * 100)).ToString();
                 //}
@@ -428,7 +433,7 @@ namespace AgOpenGPS
                 }
 
                 //Make sure it is off when it should
-                if ((!ct.isContourBtnOn && !curve.isBtnCurveOn && isAutoSteerBtnOn)
+                if ((!ct.isContourBtnOn && !curve.isBtnTrackOn && isAutoSteerBtnOn)
                     ) btnAutoSteer.PerformClick();
 
                 //the main formgps window
@@ -995,7 +1000,7 @@ namespace AgOpenGPS
                 //0 at bottom for opengl, 0 at top for windows, so invert Y value
                 Point point = oglMain.PointToClient(Cursor.Position);
 
-                if (point.Y < 90 && point.Y > 30 && (curve.isBtnCurveOn))
+                if (point.Y < 90 && point.Y > 30 && (curve.isBtnTrackOn))
                 {
 
                     int middle = oglMain.Width / 2 + oglMain.Width / 5;
@@ -1073,7 +1078,7 @@ namespace AgOpenGPS
                     }
                 }
 
-                if (point.Y < 150 && point.Y > 90 && (curve.isBtnCurveOn))
+                if (point.Y < 150 && point.Y > 90 && (curve.isBtnTrackOn))
                 {
                     int middle = oglMain.Width / 2 - oglMain.Width / 4;
                     if (point.X > middle - 140 && point.X < middle && isLateralOn)

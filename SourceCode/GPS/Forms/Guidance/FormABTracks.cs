@@ -277,7 +277,7 @@ namespace AgOpenGPS
             {
                 mf.trk.idx = -1;
                 mf.DisableYouTurnButtons();
-                mf.curve.isBtnCurveOn = false;
+                mf.curve.isBtnTrackOn = false;
                 mf.btnTrack.Image = Properties.Resources.TrackOff;
                 if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
                 if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
@@ -827,7 +827,7 @@ namespace AgOpenGPS
             mf.curve.desList?.Clear();
             mf.DisableYouTurnButtons();
             //mf.btnContourPriority.Enabled = false;
-            mf.curve.isBtnCurveOn = false;
+            mf.curve.isBtnTrackOn = false;
             mf.btnTrack.Image = Properties.Resources.TrackOff;
             if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
             if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();

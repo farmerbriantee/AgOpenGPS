@@ -84,7 +84,7 @@ namespace AgOpenGPS
 
         private void FormTram_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (isSaving)
+            if (isSaving) //TODO
             {
                 //if (isCurve)
                 //{
@@ -144,16 +144,16 @@ namespace AgOpenGPS
         {
             mf.tram.displayMode = 1;
 
-            if (isCurve)
+            if (isCurve) //TODO
             {
                 if (Dist != 0)
-                    mf.curve.MoveABCurve(Dist);
+                    //mf.curve.MoveABCurve(Dist);
                 mf.curve.BuildTram();
             }
             else
             {
                 if (Dist != 0)
-                    mf.ABLine.MoveABLine(Dist);
+                    //mf.ABLine.MoveABLine(Dist);
                 mf.ABLine.BuildTram();
             }
         }

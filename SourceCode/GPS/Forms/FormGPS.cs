@@ -1044,7 +1044,7 @@ namespace AgOpenGPS
             //curve line
             btnTrack.Enabled = false;
             btnTrack.Image = Properties.Resources.TrackOff;
-            curve.isBtnCurveOn = false;
+            curve.isBtnTrackOn = false;
             curve.ResetCurveLine();
             
             //tracks

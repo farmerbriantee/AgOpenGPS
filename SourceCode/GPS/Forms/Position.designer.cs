@@ -746,7 +746,7 @@ namespace AgOpenGPS
             }
             else
             {
-                if (trk.idx > -1 && curve.isBtnCurveOn)
+                if (trk.idx > -1 && curve.isBtnTrackOn)
                 {
                     if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
                         ABLine.GetCurrentABLine(pivotAxlePos, steerAxlePos);
@@ -1377,7 +1377,7 @@ namespace AgOpenGPS
             //else
             //{
             //    if ((ABLine.isBtnABLineOn && !ct.isContourBtnOn && ABLine.isABLineSet && isAutoSteerBtnOn) ||
-            //                (!ct.isContourBtnOn && curve.isBtnCurveOn && curve.isCurveSet && isAutoSteerBtnOn))
+            //                (!ct.isContourBtnOn && curve.isBtnTrackOn && curve.isCurveSet && isAutoSteerBtnOn))
             //    {
             //        //no contour recorded
             //        if (ct.isContourOn) { ct.StopContourLine(); }

@@ -1001,8 +1001,6 @@ namespace AgOpenGPS
 
         public void FileSaveABLines()
         {
-            ABLine.moveDistance = 0;
-
             //make sure at least a global blank AB Line file exists
             string dirField = fieldsDirectory + currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
