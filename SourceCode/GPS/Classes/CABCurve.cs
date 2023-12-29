@@ -357,11 +357,6 @@ namespace AgOpenGPS
         {
             if (mf.trk.gArr[mf.trk.idx].curvePts == null || mf.trk.gArr[mf.trk.idx].curvePts.Count < 5) return;
 
-            //build new current ref line if required
-            if (!isCurveValid || ((mf.secondsSinceStart - lastSecond) > 0.66
-                && (!mf.isAutoSteerBtnOn || mf.mc.steerSwitchHigh)))
-                BuildCurveCurrentList(pivot);
-
             double dist, dx, dz;
             double minDistA = 1000000, minDistB = 1000000;
             int ptCount = curList.Count;

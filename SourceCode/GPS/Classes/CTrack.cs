@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AgOpenGPS
 {
@@ -28,6 +29,84 @@ namespace AgOpenGPS
             mf = _f;
             idx = -1;
         }
+
+        public int FindClosestRefTrack(vec3 pivot)
+        {
+            //no tracks check
+            if (gArr.Count == 0) return idx;
+
+            //only 1 track
+            if (gArr.Count == 1) return idx;
+
+            int trak = -1;
+            int cntr = 0;
+
+            //Count visible
+            for (int i = 0; i < gArr.Count; i++)
+            {
+                if (gArr[i].isVisible)
+                {
+                    cntr++;
+                    trak = i;
+                }
+            }
+
+            //only 1 track visible of the group
+            if (cntr == 1) return trak;
+
+            //no visible tracks
+            if (cntr == 0) return -1;
+
+            //determine if any aligned reasonably close
+            bool[] isAlignedArr = new bool[gArr.Count];
+            for (int i = 0; i < gArr.Count; i++)
+            {
+                double diff = Math.PI - Math.Abs(Math.Abs(pivot.heading - gArr[i].heading) - Math.PI);
+                if (diff < 1.2 || diff > 2.3)
+                    isAlignedArr[i] = true;
+                else
+                    isAlignedArr[i] = false;
+            }
+
+            double minDistA = double.MaxValue;
+            for (int i = 0; i < gArr.Count; i++)
+            {
+                if (!isAlignedArr[i]) continue;
+                if (!gArr[i].isVisible) continue;
+
+                double dist = glm.DistanceSquared(gArr[i].ptA, pivot);
+
+                if (dist < minDistA)
+                {
+                    minDistA = dist;
+                    trak = i;
+                }
+
+                dist = glm.DistanceSquared(gArr[i].ptB, pivot);
+
+                if (dist < minDistA)
+                {
+                    minDistA = dist;
+                    trak = i;
+                }
+
+
+                //for (int j = 0; j < gArr[i].curvePts.Count; j++)
+                //{
+
+                //    double dist = glm.DistanceSquared(gArr[i].curvePts[j], pivot);
+
+                //    if (dist < minDistA)
+                //    {
+                //        minDistA = dist;
+                //        trak = i;
+                //    }
+                //}
+            }
+
+            return trak;
+        }
+
 
         public void NudgeTrack(double dist)
         {

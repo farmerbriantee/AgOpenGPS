@@ -64,6 +64,8 @@
             this.panelKML = new System.Windows.Forms.Panel();
             this.btnCancel_KML = new System.Windows.Forms.Button();
             this.panelChoose = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -112,8 +114,6 @@
             this.nudLongitudeA = new System.Windows.Forms.NumericUpDown();
             this.button1 = new System.Windows.Forms.Button();
             this.btnEnter_LatLonLatLon = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.panelName.SuspendLayout();
             this.panelMain.SuspendLayout();
             this.panelCurve.SuspendLayout();
@@ -703,6 +703,34 @@
             this.panelChoose.Size = new System.Drawing.Size(630, 425);
             this.panelChoose.TabIndex = 441;
             // 
+            // label14
+            // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label14.AutoSize = true;
+            this.label14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label14.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.Black;
+            this.label14.Location = new System.Drawing.Point(120, 121);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(40, 16);
+            this.label14.TabIndex = 450;
+            this.label14.Text = "Curve";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label9.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Black;
+            this.label9.Location = new System.Drawing.Point(123, 265);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(22, 16);
+            this.label9.TabIndex = 449;
+            this.label9.Text = "AB";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -858,7 +886,6 @@
             this.btnzAPlus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnzAPlus.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnzAPlus.Image = global::AgOpenGPS.Properties.Resources.ABTrackA_;
-            this.btnzAPlus.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnzAPlus.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnzAPlus.Location = new System.Drawing.Point(468, 10);
             this.btnzAPlus.Name = "btnzAPlus";
@@ -875,7 +902,6 @@
             this.btnzABLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnzABLine.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnzABLine.Image = global::AgOpenGPS.Properties.Resources.ABTrackAB;
-            this.btnzABLine.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnzABLine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnzABLine.Location = new System.Drawing.Point(468, 153);
             this.btnzABLine.Name = "btnzABLine";
@@ -892,7 +918,6 @@
             this.btnzABCurve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnzABCurve.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnzABCurve.Image = global::AgOpenGPS.Properties.Resources.ABTrackCurve;
-            this.btnzABCurve.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnzABCurve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnzABCurve.Location = new System.Drawing.Point(468, 296);
             this.btnzABCurve.Name = "btnzABCurve";
@@ -1515,34 +1540,6 @@
             this.btnEnter_LatLonLatLon.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnEnter_LatLonLatLon.UseVisualStyleBackColor = false;
             this.btnEnter_LatLonLatLon.Click += new System.EventHandler(this.btnEnter_LatLonLatLon_Click);
-            // 
-            // label9
-            // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.AutoSize = true;
-            this.label9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label9.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(123, 265);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(22, 16);
-            this.label9.TabIndex = 449;
-            this.label9.Text = "AB";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label14
-            // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label14.AutoSize = true;
-            this.label14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label14.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(120, 121);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(40, 16);
-            this.label14.TabIndex = 450;
-            this.label14.Text = "Curve";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormBuildTracks
             // 

@@ -746,12 +746,41 @@ namespace AgOpenGPS
             }
             else
             {
-                if (trk.idx > -1 && curve.isBtnTrackOn)
+                //auto track routine
+                if (trk.isAutoTrack && !isAutoSteerBtnOn)
+                {
+                    int lastIndex = trk.idx;
+                    trk.idx = trk.FindClosestRefTrack(steerAxlePos);
+                    if ( lastIndex != trk.idx )
+                    {
+                        curve.isCurveValid = false;
+                        ABLine.isABValid = false;
+                    }
+                }
+
+                //if (trk.idx == -1) return;
+
+                //like normal
+                if (trk.gArr.Count > 0 && trk.idx > -1 && curve.isBtnTrackOn)
                 {
                     if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
+                    {
+                        if (!ABLine.isABValid || ((secondsSinceStart - ABLine.lastSecond) > 0.66
+                            && (!isAutoSteerBtnOn || mc.steerSwitchHigh)))
+                        {
+                            ABLine.BuildCurrentABLineList(steerAxlePos);
+                        }
                         ABLine.GetCurrentABLine(pivotAxlePos, steerAxlePos);
+                    }
                     else
+                    {
+                        //build new current ref line if required
+                        if (!curve.isCurveValid || ((secondsSinceStart - curve.lastSecond) > 0.66
+                            && (!isAutoSteerBtnOn || mc.steerSwitchHigh)))
+                            curve.BuildCurveCurrentList(steerAxlePos);
+
                         curve.GetCurrentCurveLine(pivotAxlePos, steerAxlePos);
+                    }
                 }
             }
 

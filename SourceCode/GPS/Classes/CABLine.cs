@@ -164,11 +164,6 @@ namespace AgOpenGPS
         {
             double dx, dy;
 
-            //build new current ref line if required
-            if (!isABValid || ((mf.secondsSinceStart - lastSecond) > 0.66
-                && (!mf.isAutoSteerBtnOn || mf.mc.steerSwitchHigh)))
-                BuildCurrentABLineList(pivot);
-
             //Check uturn first
             if (mf.yt.isYouTurnTriggered && mf.yt.DistanceFromYouTurnLine())//do the pure pursuit from youTurn
             {

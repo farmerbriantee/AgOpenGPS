@@ -97,7 +97,7 @@ namespace AgOpenGPS
         #region Main Controls
         private void UpdateTable()
         {
-            int bob = flp.VerticalScroll.Value;
+            int scrollPixels = flp.VerticalScroll.Value;
 
             Font backupfont = new Font(Font.FontFamily, 18F, FontStyle.Regular);
             flp.Controls.Clear();
@@ -179,7 +179,7 @@ namespace AgOpenGPS
             }
 
             flp.VerticalScroll.Value = 1;
-            flp.VerticalScroll.Value = bob;
+            flp.VerticalScroll.Value = scrollPixels;
             flp.PerformLayout();
         }
 
@@ -216,16 +216,16 @@ namespace AgOpenGPS
 
             mf.trk.gArr.Reverse(selectedItem - 1, 2);
             selectedItem--;
+            mf.trk.idx = selectedItem;
 
-            int bob = flp.VerticalScroll.Value;
+            int scrollPixels = flp.VerticalScroll.Value;
 
-            bob -= 45;
-            if (bob < 0) bob = 0;
+            scrollPixels -= 45;
+            if (scrollPixels < 0) scrollPixels = 0;
 
             flp.VerticalScroll.Value = 1;
-            flp.VerticalScroll.Value = bob;
+            flp.VerticalScroll.Value = scrollPixels;
             flp.PerformLayout();
-
 
             UpdateTable();
         }
@@ -238,13 +238,15 @@ namespace AgOpenGPS
             mf.trk.gArr.Reverse(selectedItem, 2);
             selectedItem++;
 
-            int bob = flp.VerticalScroll.Value;
+            mf.trk.idx = selectedItem;
 
-            bob += 45;
-            if (bob > flp.VerticalScroll.Maximum) bob = flp.VerticalScroll.Maximum;
+            int scrollPixels = flp.VerticalScroll.Value;
+
+            scrollPixels += 45;
+            if (scrollPixels > flp.VerticalScroll.Maximum) scrollPixels = flp.VerticalScroll.Maximum;
 
             flp.VerticalScroll.Value = 1;
-            flp.VerticalScroll.Value = bob;
+            flp.VerticalScroll.Value = scrollPixels;
             flp.PerformLayout();
 
             UpdateTable();
