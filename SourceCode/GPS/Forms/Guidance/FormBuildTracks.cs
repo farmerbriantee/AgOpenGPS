@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml;
+using static System.Windows.Forms.LinkLabel;
 
 namespace AgOpenGPS
 {
@@ -886,6 +887,128 @@ namespace AgOpenGPS
                 }
             }
         }
+
+        private void btnLoadABFromKML_Click(object sender, EventArgs e)
+        {
+            panelChoose.Visible = false;
+            panelKML.Visible = true;
+
+            this.Size = new System.Drawing.Size(270, 360);
+
+            string fileAndDirectory;
+            {
+                //create the dialog instance
+                OpenFileDialog ofd = new OpenFileDialog
+                {
+                    //set the filter to text KML only
+                    Filter = "KML files (*.KML)|*.KML",
+
+                    //the initial directory, fields, for the open dialog
+                    InitialDirectory = mf.fieldsDirectory + mf.currentFieldDirectory
+                };
+
+                //was a file selected
+                if (ofd.ShowDialog(this) == DialogResult.Cancel) return;
+                else fileAndDirectory = ofd.FileName;
+            }
+
+            string coordinates = null;
+            int startIndex;
+
+            using (StreamReader reader = new StreamReader(fileAndDirectory))
+            {
+                double easting, norting, latK, lonK;
+
+                try
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        //start to read the file
+                        string line = reader.ReadLine();
+
+                        startIndex = line.IndexOf("<coordinates>");
+
+                        if (startIndex != -1)
+                        {
+                            while (true)
+                            {
+                                int endIndex = line.IndexOf("</coordinates>");
+
+                                if (endIndex == -1)
+                                {
+                                    //just add the line
+                                    if (startIndex == -1) coordinates += line.Substring(0);
+                                    else coordinates += line.Substring(startIndex + 13);
+                                }
+                                else
+                                {
+                                    if (startIndex == -1) coordinates += line.Substring(0, endIndex);
+                                    else coordinates += line.Substring(startIndex + 13, endIndex - (startIndex + 13));
+                                    break;
+                                }
+                                line = reader.ReadLine();
+                                line = line.Trim();
+                                startIndex = -1;
+                            }
+
+                            line = coordinates;
+                            char[] delimiterChars = { ' ', '\t', '\r', '\n' };
+                            string[] numberSets = line.Split(delimiterChars);
+
+                            //2 points
+                            if (numberSets.Length == 2)
+                            {
+                                string[] fix = numberSets[0].Split(',');
+                                double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
+                                double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
+
+                                mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
+
+                                mf.ABLine.desPtA.easting = easting;
+                                mf.ABLine.desPtA.northing = norting;
+
+                                fix = numberSets[1].Split(',');
+                                double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
+                                double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
+
+                                mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
+
+                                mf.ABLine.desPtB.easting = easting;
+                                mf.ABLine.desPtB.northing = norting;
+
+                                // heading based on AB points
+                                mf.ABLine.desHeading = Math.Atan2(mf.ABLine.desPtB.easting - mf.ABLine.desPtA.easting,
+                                    mf.ABLine.desPtB.northing - mf.ABLine.desPtA.northing);
+                                if (mf.ABLine.desHeading < 0) mf.ABLine.desHeading += glm.twoPI;
+
+                                mf.ABLine.desName = "AB " +
+                                    (Math.Round(glm.toDegrees(mf.ABLine.desHeading), 1)).ToString(CultureInfo.InvariantCulture) +
+                                    "\u00B0 " + mf.FindDirection(mf.ABLine.desHeading);
+
+                                textBox1.Text = mf.ABLine.desName;
+
+                                coordinates = "";
+
+                                panelKML.Visible = false;
+                                panelName.Visible = true;
+                            }
+                            else
+                            {
+                                mf.TimedMessageBox(2000, gStr.gsErrorreadingKML, gStr.gsMissingABLinesFile);
+                            }
+                        }
+                    }
+                    //mf.FileSaveBoundary();
+                    //mf.bnd.BuildTurnLines();
+                    //mf.btnABDraw.Visible = true;
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
+        }
+
 
         #endregion
 
