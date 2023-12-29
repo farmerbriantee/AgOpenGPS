@@ -945,7 +945,7 @@ namespace AgOpenGPS
                             else
                             {
                                 if (nam.Length > 2 && nam.Substring(0, 2) != "Cu")
-                                    trk.gArr[trk.gArr.Count - 1].name = "Cu-" + nam;
+                                    trk.gArr[trk.gArr.Count - 1].name = "Cu " + nam;
                                 else
                                     trk.gArr[trk.gArr.Count - 1].name = nam;
 
@@ -1076,7 +1076,7 @@ namespace AgOpenGPS
                             trk.gArr.Add(new CTrk());
 
                             if (words[0].Length > 2 && words[0].Substring(0, 2) != "AB")
-                                trk.gArr[i].name = "AB-" + words[0];
+                                trk.gArr[i].name = "AB " + words[0];
                             else
                                 trk.gArr[i].name = words[0];
 

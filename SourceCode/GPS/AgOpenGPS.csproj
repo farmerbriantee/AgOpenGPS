@@ -983,6 +983,8 @@
     <None Include="btnImages\AutoTrack.png" />
     <None Include="btnImages\ABTracks.png" />
     <None Include="btnImages\AutoSteerSnapToPivot.png" />
+    <None Include="btnImages\TrackCurve.png" />
+    <None Include="btnImages\TrackLine.png" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />

@@ -2927,6 +2927,26 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap TrackCurve {
+            get {
+                object obj = ResourceManager.GetObject("TrackCurve", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TrackLine {
+            get {
+                object obj = ResourceManager.GetObject("TrackLine", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TrackOff {
             get {
                 object obj = ResourceManager.GetObject("TrackOff", resourceCulture);

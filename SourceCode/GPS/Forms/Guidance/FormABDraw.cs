@@ -494,7 +494,7 @@ namespace AgOpenGPS
                 mf.trk.idx = mf.trk.gArr.Count - 1;
 
                 //create a name
-                mf.trk.gArr[mf.trk.idx].name = "Cu-" +
+                mf.trk.gArr[mf.trk.idx].name = "Cu " +
                     (Math.Round(glm.toDegrees(mf.trk.gArr[mf.trk.idx].heading), 1)).ToString(CultureInfo.InvariantCulture)
                     + "\u00B0" ;
 
@@ -565,7 +565,7 @@ namespace AgOpenGPS
             mf.trk.gArr[mf.trk.idx].ptB.northing = (Math.Cos(headingCalc) * (offset)) + mf.bnd.bndList[bndSelect].fenceLine[end].northing;
 
             //create a name
-            mf.trk.gArr[mf.trk.idx].name = "AB-" + 
+            mf.trk.gArr[mf.trk.idx].name = "AB " + 
                 (Math.Round(glm.toDegrees(mf.trk.gArr[mf.trk.idx].heading), 1)).ToString(CultureInfo.InvariantCulture) + "\u00B0" ;
 
             //clean up gui
