@@ -371,6 +371,7 @@ namespace AgOpenGPS
 
         private void btnDuplicate_Click(object sender, EventArgs e)
         {
+            //TODO
             if (selectedItem > -1)
             {
                 int idx = selectedItem;
@@ -379,20 +380,13 @@ namespace AgOpenGPS
                 panelName.Visible = true;
                 this.Size = new System.Drawing.Size(270, 360);
 
-                panelCurve.Visible = false;
-                panelName.Visible = true;
+                mf.trk.gArr.Add(new CTrk (mf.trk.gArr[idx]));
 
-                textBox1.Text = mf.trk.gArr[idx].name + " Copy";
-                mf.curve.desName = textBox1.Text;
+                mf.trk.idx = mf.trk.gArr.Count - 1;
 
-                aveLineHeading = mf.trk.gArr[idx].heading;
-                mf.curve.desList?.Clear();
+                selectedItem = -1;
 
-                for (int i = 0; i < mf.trk.gArr[idx].curvePts.Count; i++)
-                {
-                    vec3 pt = new vec3(mf.trk.gArr[idx].curvePts[i]);
-                    mf.curve.desList.Add(pt);
-                }
+                textBox1.Text = mf.trk.gArr[mf.trk.idx].name + " Copy";
             }
         }
 
@@ -406,6 +400,10 @@ namespace AgOpenGPS
 
                 panelMain.Visible = false;
                 panelEditName.Visible = true;
+
+                mf.trk.idx = selectedItem;
+
+
                 this.Size = new System.Drawing.Size(270, 360);
             }
         }
@@ -1094,12 +1092,12 @@ namespace AgOpenGPS
         {
             if (textBox2.Text.Trim() == "") textBox2.Text = "No Name " + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
-            int idx = selectedItem;
-
             panelEditName.Visible = false;
             panelMain.Visible = true;
 
             mf.curve.desList?.Clear();
+
+            mf.trk.gArr[mf.trk.idx].name = textBox2.Text.Trim();
 
             this.Size = new System.Drawing.Size(700, 450);
 

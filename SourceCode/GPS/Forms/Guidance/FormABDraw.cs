@@ -102,7 +102,7 @@ namespace AgOpenGPS
 
                 foreach (var item in gTemp)
                 {
-                    mf.trk.gArr.Add(item);
+                    mf.trk.gArr.Add(new CTrk(item));
                 }
 
                 mf.trk.idx = originalLine;
