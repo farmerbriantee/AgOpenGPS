@@ -41,6 +41,7 @@ namespace AgOpenGPS
             lblTrack.Text = (mf.vehicle.trackWidth * mf.m2FtOrM).ToString("N2") + mf.unitsFtM;
 
             mf.tool.halfWidth = (mf.tool.width - mf.tool.overlap) / 2.0;
+
             lblToolWidthHalf.Text = (mf.tool.halfWidth * mf.m2FtOrM).ToString("N2") + mf.unitsFtM;
 
             //if off, turn it on because they obviously want a tram.
@@ -52,6 +53,7 @@ namespace AgOpenGPS
                 mf.tram.generateMode = 1;
             else if (mf.tram.tramList.Count == 0)
                 mf.tram.generateMode = 2;
+            else mf.tram.generateMode = 0;
 
             switch (mf.tram.generateMode)
             {
@@ -70,6 +72,7 @@ namespace AgOpenGPS
                 default:
                     break;
             }
+
             mf.CloseTopMosts();
 
             if (mf.tram.tramList.Count > 0 || mf.tram.tramBndOuterArr.Count > 0)
@@ -144,16 +147,16 @@ namespace AgOpenGPS
         {
             mf.tram.displayMode = 1;
 
-            if (isCurve) //TODO
+            if (isCurve)
             {
                 if (Dist != 0)
-                    //mf.curve.MoveABCurve(Dist);
+                    mf.trk.NudgeRefCurve(Dist);
                 mf.curve.BuildTram();
             }
             else
             {
                 if (Dist != 0)
-                    //mf.ABLine.MoveABLine(Dist);
+                    mf.trk.NudgeRefABLine(Dist);
                 mf.ABLine.BuildTram();
             }
         }
@@ -199,42 +202,33 @@ namespace AgOpenGPS
 
         private void btnSwapAB_Click(object sender, EventArgs e)
         {
-            if (isCurve)
+            int cnt = mf.trk.gArr[mf.trk.idx].curvePts.Count;
+            if (cnt > 0)
             {
-                int cnt = mf.trk.gArr[mf.trk.idx].curvePts.Count;
-                if (cnt > 0)
+                mf.trk.gArr[mf.trk.idx].curvePts.Reverse();
+
+                vec3[] arr = new vec3[cnt];
+                cnt--;
+                mf.trk.gArr[mf.trk.idx].curvePts.CopyTo(arr);
+                mf.trk.gArr[mf.trk.idx].curvePts.Clear();
+
+                mf.trk.gArr[mf.trk.idx].heading += Math.PI;
+                if (mf.trk.gArr[mf.trk.idx].heading < 0) mf.trk.gArr[mf.trk.idx].heading += glm.twoPI;
+                if (mf.trk.gArr[mf.trk.idx].heading > glm.twoPI) mf.trk.gArr[mf.trk.idx].heading -= glm.twoPI;
+
+                for (int i = 1; i < cnt; i++)
                 {
-                    mf.trk.gArr[mf.trk.idx].curvePts.Reverse();
-
-                    vec3[] arr = new vec3[cnt];
-                    cnt--;
-                    mf.trk.gArr[mf.trk.idx].curvePts.CopyTo(arr);
-                    mf.trk.gArr[mf.trk.idx].curvePts.Clear();
-
-                    mf.trk.gArr[mf.trk.idx].heading += Math.PI;
-                    if (mf.trk.gArr[mf.trk.idx].heading < 0) mf.trk.gArr[mf.trk.idx].heading += glm.twoPI;
-                    if (mf.trk.gArr[mf.trk.idx].heading > glm.twoPI) mf.trk.gArr[mf.trk.idx].heading -= glm.twoPI;
-
-                    for (int i = 1; i < cnt; i++)
-                    {
-                        vec3 pt3 = arr[i];
-                        pt3.heading += Math.PI;
-                        if (pt3.heading > glm.twoPI) pt3.heading -= glm.twoPI;
-                        if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                        mf.trk.gArr[mf.trk.idx].curvePts.Add(pt3);
-                    }
+                    vec3 pt3 = arr[i];
+                    pt3.heading += Math.PI;
+                    if (pt3.heading > glm.twoPI) pt3.heading -= glm.twoPI;
+                    if (pt3.heading < 0) pt3.heading += glm.twoPI;
+                    mf.trk.gArr[mf.trk.idx].curvePts.Add(pt3);
                 }
-            }
-            else
-            {
-                mf.ABLine.abHeading += Math.PI;
-                if (mf.ABLine.abHeading > glm.twoPI) mf.ABLine.abHeading -= glm.twoPI;
 
-                mf.trk.gArr[mf.trk.idx].endPtA.easting = mf.trk.gArr[mf.trk.idx].ptA.easting - (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
-                mf.trk.gArr[mf.trk.idx].endPtA.northing = mf.trk.gArr[mf.trk.idx].ptA.northing - (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
-                
-                mf.trk.gArr[mf.trk.idx].endPtB.easting = mf.trk.gArr[mf.trk.idx].ptA.easting + (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
-                mf.trk.gArr[mf.trk.idx].endPtB.northing = mf.trk.gArr[mf.trk.idx].ptA.northing + (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
+                vec2 temp = new vec2(mf.trk.gArr[mf.trk.idx].ptA);
+
+                (mf.trk.gArr[mf.trk.idx].ptA) = new vec2(mf.trk.gArr[mf.trk.idx].ptB);
+                (mf.trk.gArr[mf.trk.idx].ptB) = new vec2(temp);
             }
             MoveBuildTramLine(0);
         }
@@ -330,17 +324,3 @@ namespace AgOpenGPS
         #endregion Help
     }
 }
-
-/*
-
-            MessageBox.Show(gStr, gStr.gsHelp);
-
-            DialogResult result2 = MessageBox.Show(gStr, gStr.gsHelp,
-                MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-            if (result2 == DialogResult.Yes)
-            {
-                System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=rsJMRZrcuX4");
-            }
-
-*/

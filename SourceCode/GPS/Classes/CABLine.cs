@@ -550,6 +550,8 @@ namespace AgOpenGPS
 
             bool isBndExist = mf.bnd.bndList.Count != 0;
 
+            abHeading = mf.trk.gArr[mf.trk.idx].heading;
+
             double hsin = Math.Sin(abHeading);
             double hcos = Math.Cos(abHeading);
 
@@ -564,6 +566,7 @@ namespace AgOpenGPS
 
             //create list of list of points of triangle strip of AB Highlight
             double headingCalc = abHeading + glm.PIBy2;
+
             hsin = Math.Sin(headingCalc);
             hcos = Math.Cos(headingCalc);
 
