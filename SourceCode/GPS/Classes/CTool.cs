@@ -226,9 +226,9 @@ namespace AgOpenGPS
                 GL.TexCoord2(0, 1); GL.Vertex2(-1.5, trailingTool-1); // Bottom Left
                 GL.End();                       // Done Building Triangle Strip
                 GL.Disable(EnableCap.Texture2D);
-            }
 
-            trailingTool -= trailingToolToPivotLength;
+                trailingTool -= trailingToolToPivotLength;
+            }
 
             if (mf.isJobStarted)
             {
