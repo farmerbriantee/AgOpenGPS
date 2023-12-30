@@ -2783,5 +2783,17 @@ namespace AgOpenGPS.Properties {
                 this["setWindow_formEditTrackSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public double setAS_snapDistanceRef {
+            get {
+                return ((double)(this["setAS_snapDistanceRef"]));
+            }
+            set {
+                this["setAS_snapDistanceRef"] = value;
+            }
+        }
     }
 }

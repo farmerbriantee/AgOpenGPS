@@ -301,6 +301,37 @@ namespace AgOpenGPS
 
         #region Track Flyout
 
+        private void btnRefNudge_Click(object sender, EventArgs e)
+        {
+            {
+                if (isTT)
+                {
+                    MessageBox.Show(gStr.h_btnEditAB, gStr.gsHelp);
+                    ResetHelpBtn();
+                    return;
+                }
+
+                Form fcc = Application.OpenForms["FormRefNudge"];
+
+                if (fcc != null)
+                {
+                    fcc.Focus();
+                    return;
+                }
+
+                if (trk.idx > -1 && curve.isBtnTrackOn)
+                {
+                    Form form = new FormRefNudge(this);
+                    form.Show(this);
+                }
+                else
+                {
+                    var form = new FormTimedMessage(1500, gStr.gsNoABLineActive, gStr.gsPleaseEnterABLine);
+                    return;
+                }
+            }
+        }
+
         private void btnNudge_Click(object sender, EventArgs e)
         {
             if (isTT)

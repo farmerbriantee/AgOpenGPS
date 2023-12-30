@@ -1,6 +1,6 @@
 ﻿namespace AgOpenGPS
 {
-    partial class FormNudge
+    partial class FormRefNudge
     {
         /// <summary>
         /// Required designer variable.
@@ -29,41 +29,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnSnapToPivot = new System.Windows.Forms.Button();
             this.bthOK = new System.Windows.Forms.Button();
             this.btnAdjLeft = new System.Windows.Forms.Button();
             this.btnAdjRight = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnHalfToolLeft = new System.Windows.Forms.Button();
             this.nudSnapDistance = new AgOpenGPS.NudlessNumericUpDown();
-            this.btnZeroMove = new System.Windows.Forms.Button();
             this.btnHalfToolRight = new System.Windows.Forms.Button();
-            this.lblOffset = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistance)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnSnapToPivot
-            // 
-            this.btnSnapToPivot.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnSnapToPivot.BackColor = System.Drawing.Color.Transparent;
-            this.btnSnapToPivot.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnSnapToPivot.FlatAppearance.BorderSize = 0;
-            this.btnSnapToPivot.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
-            this.btnSnapToPivot.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnSnapToPivot.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnSnapToPivot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSnapToPivot.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnSnapToPivot.Image = global::AgOpenGPS.Properties.Resources.SnapToPivot;
-            this.btnSnapToPivot.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSnapToPivot.Location = new System.Drawing.Point(3, 238);
-            this.btnSnapToPivot.Name = "btnSnapToPivot";
-            this.btnSnapToPivot.Size = new System.Drawing.Size(69, 51);
-            this.btnSnapToPivot.TabIndex = 6;
-            this.btnSnapToPivot.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSnapToPivot.UseVisualStyleBackColor = false;
-            this.btnSnapToPivot.Click += new System.EventHandler(this.btnSnapToPivot_Click);
             // 
             // bthOK
             // 
@@ -97,7 +74,7 @@
             this.btnAdjLeft.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnAdjLeft.Image = global::AgOpenGPS.Properties.Resources.SnapLeft;
             this.btnAdjLeft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdjLeft.Location = new System.Drawing.Point(3, 103);
+            this.btnAdjLeft.Location = new System.Drawing.Point(3, 121);
             this.btnAdjLeft.Name = "btnAdjLeft";
             this.btnAdjLeft.Size = new System.Drawing.Size(69, 58);
             this.btnAdjLeft.TabIndex = 4;
@@ -117,7 +94,7 @@
             this.btnAdjRight.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnAdjRight.Image = global::AgOpenGPS.Properties.Resources.SnapRight;
             this.btnAdjRight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdjRight.Location = new System.Drawing.Point(78, 103);
+            this.btnAdjRight.Location = new System.Drawing.Point(78, 121);
             this.btnAdjRight.Name = "btnAdjRight";
             this.btnAdjRight.Size = new System.Drawing.Size(69, 58);
             this.btnAdjRight.TabIndex = 5;
@@ -137,19 +114,15 @@
             this.tableLayoutPanel1.Controls.Add(this.btnAdjLeft, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnAdjRight, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.nudSnapDistance, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnZeroMove, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnSnapToPivot, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.btnHalfToolRight, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(14, 36);
-            this.tableLayoutPanel1.MinimumSize = new System.Drawing.Size(150, 300);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(17, 52);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.99857F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.99857F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.00077F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.00104F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(151, 300);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(151, 260);
             this.tableLayoutPanel1.TabIndex = 416;
             // 
             // btnHalfToolLeft
@@ -165,7 +138,7 @@
             this.btnHalfToolLeft.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnHalfToolLeft.Image = global::AgOpenGPS.Properties.Resources.SnapLeftHalf;
             this.btnHalfToolLeft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnHalfToolLeft.Location = new System.Drawing.Point(3, 15);
+            this.btnHalfToolLeft.Location = new System.Drawing.Point(3, 21);
             this.btnHalfToolLeft.Name = "btnHalfToolLeft";
             this.btnHalfToolLeft.Size = new System.Drawing.Size(69, 58);
             this.btnHalfToolLeft.TabIndex = 418;
@@ -177,7 +150,7 @@
             this.nudSnapDistance.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel1.SetColumnSpan(this.nudSnapDistance, 2);
             this.nudSnapDistance.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSnapDistance.Location = new System.Drawing.Point(43, 183);
+            this.nudSnapDistance.Location = new System.Drawing.Point(43, 212);
             this.nudSnapDistance.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -195,26 +168,6 @@
             0});
             this.nudSnapDistance.Click += new System.EventHandler(this.nudSnapDistance_Click);
             // 
-            // btnZeroMove
-            // 
-            this.btnZeroMove.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnZeroMove.BackColor = System.Drawing.Color.Transparent;
-            this.btnZeroMove.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
-            this.btnZeroMove.FlatAppearance.BorderSize = 0;
-            this.btnZeroMove.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
-            this.btnZeroMove.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnZeroMove.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnZeroMove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnZeroMove.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnZeroMove.Image = global::AgOpenGPS.Properties.Resources.SteerZero;
-            this.btnZeroMove.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZeroMove.Location = new System.Drawing.Point(78, 239);
-            this.btnZeroMove.Name = "btnZeroMove";
-            this.btnZeroMove.Size = new System.Drawing.Size(69, 48);
-            this.btnZeroMove.TabIndex = 534;
-            this.btnZeroMove.UseVisualStyleBackColor = false;
-            this.btnZeroMove.Click += new System.EventHandler(this.btnZeroMove_Click);
-            // 
             // btnHalfToolRight
             // 
             this.btnHalfToolRight.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -229,51 +182,47 @@
             this.btnHalfToolRight.Image = global::AgOpenGPS.Properties.Resources.SnapRightHalf;
             this.btnHalfToolRight.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnHalfToolRight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnHalfToolRight.Location = new System.Drawing.Point(78, 15);
+            this.btnHalfToolRight.Location = new System.Drawing.Point(78, 21);
             this.btnHalfToolRight.Name = "btnHalfToolRight";
             this.btnHalfToolRight.Size = new System.Drawing.Size(69, 58);
             this.btnHalfToolRight.TabIndex = 418;
             this.btnHalfToolRight.UseVisualStyleBackColor = false;
             this.btnHalfToolRight.Click += new System.EventHandler(this.btnHalfToolRight_Click);
             // 
-            // lblOffset
+            // label1
             // 
-            this.lblOffset.AutoSize = true;
-            this.lblOffset.BackColor = System.Drawing.Color.Transparent;
-            this.lblOffset.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOffset.ForeColor = System.Drawing.Color.Black;
-            this.lblOffset.Location = new System.Drawing.Point(4, 10);
-            this.lblOffset.Name = "lblOffset";
-            this.lblOffset.Size = new System.Drawing.Size(74, 23);
-            this.lblOffset.TabIndex = 417;
-            this.lblOffset.Text = "0.35 >";
-            this.lblOffset.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(23, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 24);
+            this.label1.TabIndex = 417;
+            this.label1.Text = "Ref !";
             // 
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Interval = 3000;
+            this.timer1.Interval = 2000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // FormNudge
+            // FormRefNudge
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.BackColor = System.Drawing.Color.LightCoral;
             this.ClientSize = new System.Drawing.Size(180, 350);
-            this.Controls.Add(this.lblOffset);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.bthOK);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(180, 160);
-            this.Name = "FormNudge";
+            this.Name = "FormRefNudge";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormEditTrack_FormClosing);
             this.Load += new System.EventHandler(this.FormEditTrack_Load);
-            this.MouseEnter += new System.EventHandler(this.FormEditTrack_MouseEnter);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistance)).EndInit();
             this.ResumeLayout(false);
@@ -285,13 +234,11 @@
         private System.Windows.Forms.Button btnAdjRight;
         private System.Windows.Forms.Button btnAdjLeft;
         private System.Windows.Forms.Button bthOK;
-        public System.Windows.Forms.Button btnSnapToPivot;
         private NudlessNumericUpDown nudSnapDistance;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button btnZeroMove;
-        private System.Windows.Forms.Label lblOffset;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnHalfToolLeft;
         private System.Windows.Forms.Button btnHalfToolRight;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

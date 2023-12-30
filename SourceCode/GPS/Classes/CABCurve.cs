@@ -863,13 +863,13 @@ namespace AgOpenGPS
         public void CalculateTurnHeadings()
         {
             //to calc heading based on next and previous points to give an average heading.
-            int cnt = mf.trk.gArr[mf.trk.idx].curvePts.Count;
+            int cnt = mf.curve.desList.Count;
             if (cnt > 0)
             {
                 vec3[] arr = new vec3[cnt];
                 cnt--;
-                mf.trk.gArr[mf.trk.idx].curvePts.CopyTo(arr);
-                mf.trk.gArr[mf.trk.idx].curvePts.Clear();
+                mf.curve.desList.CopyTo(arr);
+                mf.curve.desList.Clear();
 
                 //middle points
                 for (int i = 1; i < cnt; i++)
@@ -877,8 +877,13 @@ namespace AgOpenGPS
                     vec3 pt3 = arr[i];
                     pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
                     if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                    mf.trk.gArr[mf.trk.idx].curvePts.Add(pt3);
+                    mf.curve.desList.Add(pt3);
                 }
+
+                arr[arr.Length - 1].heading = arr[cnt].heading;
+                mf.curve.desList.Add(arr[cnt]);
+                arr[0].heading = arr[1].heading;
+                mf.curve.desList.Insert(0, arr[0]);
             }
         }
 

@@ -183,11 +183,12 @@
             this.lblFieldStatus = new System.Windows.Forms.Label();
             this.lblCurrentField = new System.Windows.Forms.Label();
             this.tlpTrackMethods = new System.Windows.Forms.TableLayoutPanel();
-            this.cboxAutoSnapToPivot = new System.Windows.Forms.CheckBox();
+            this.btnRefNudge = new System.Windows.Forms.Button();
+            this.btnNudge = new System.Windows.Forms.Button();
             this.btnBuildTracks = new System.Windows.Forms.Button();
             this.btnABDraw = new System.Windows.Forms.Button();
-            this.btnNudge = new System.Windows.Forms.Button();
             this.cboxAutoTrack = new System.Windows.Forms.CheckBox();
+            this.cboxAutoSnapToPivot = new System.Windows.Forms.CheckBox();
             this.btnGPSData = new System.Windows.Forms.Button();
             this.btnFieldStats = new System.Windows.Forms.Button();
             this.btnMaximizeMainForm = new System.Windows.Forms.Button();
@@ -1029,10 +1030,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.oglMain.BackColor = System.Drawing.Color.Black;
             this.oglMain.ContextMenuStrip = this.contextMenuStripOpenGL;
-            this.oglMain.Location = new System.Drawing.Point(84, 44);
+            this.oglMain.Location = new System.Drawing.Point(81, 44);
             this.oglMain.Margin = new System.Windows.Forms.Padding(0);
             this.oglMain.Name = "oglMain";
-            this.oglMain.Size = new System.Drawing.Size(832, 588);
+            this.oglMain.Size = new System.Drawing.Size(832, 582);
             this.oglMain.TabIndex = 180;
             this.oglMain.VSync = false;
             this.oglMain.Load += new System.EventHandler(this.oglMain_Load);
@@ -1537,7 +1538,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 58F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
             this.panelSim.Controls.Add(this.btnSimReverseDirection, 8, 0);
             this.panelSim.Controls.Add(this.btnSpeedDn, 5, 0);
             this.panelSim.Controls.Add(this.btnSimSpeedUp, 7, 0);
@@ -1561,7 +1562,7 @@
             this.btnSimReverseDirection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimReverseDirection.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimReverseDirection.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimReverseDirection.Location = new System.Drawing.Point(575, 4);
+            this.btnSimReverseDirection.Location = new System.Drawing.Point(565, 4);
             this.btnSimReverseDirection.Name = "btnSimReverseDirection";
             this.btnSimReverseDirection.Size = new System.Drawing.Size(36, 25);
             this.btnSimReverseDirection.TabIndex = 537;
@@ -1578,7 +1579,7 @@
             this.btnSpeedDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSpeedDn.Location = new System.Drawing.Point(374, 4);
             this.btnSpeedDn.Name = "btnSpeedDn";
-            this.btnSpeedDn.Size = new System.Drawing.Size(64, 25);
+            this.btnSpeedDn.Size = new System.Drawing.Size(59, 25);
             this.btnSpeedDn.TabIndex = 533;
             this.btnSpeedDn.UseVisualStyleBackColor = false;
             this.btnSpeedDn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSpeedDn_MouseDown);
@@ -1591,9 +1592,9 @@
             this.btnSimSpeedUp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSimSpeedUp.FlatAppearance.BorderSize = 0;
             this.btnSimSpeedUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSimSpeedUp.Location = new System.Drawing.Point(504, 4);
+            this.btnSimSpeedUp.Location = new System.Drawing.Point(499, 4);
             this.btnSimSpeedUp.Name = "btnSimSpeedUp";
-            this.btnSimSpeedUp.Size = new System.Drawing.Size(64, 25);
+            this.btnSimSpeedUp.Size = new System.Drawing.Size(59, 25);
             this.btnSimSpeedUp.TabIndex = 532;
             this.btnSimSpeedUp.UseVisualStyleBackColor = false;
             this.btnSimSpeedUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSimSpeedUp_MouseDown);
@@ -1607,7 +1608,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(445, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(440, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(52, 25);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -2353,46 +2354,64 @@
             // 
             // tlpTrackMethods
             // 
-            this.tlpTrackMethods.ColumnCount = 5;
+            this.tlpTrackMethods.ColumnCount = 6;
             this.tlpTrackMethods.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tlpTrackMethods.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tlpTrackMethods.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tlpTrackMethods.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tlpTrackMethods.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tlpTrackMethods.Controls.Add(this.cboxAutoSnapToPivot, 0, 0);
-            this.tlpTrackMethods.Controls.Add(this.btnBuildTracks, 3, 0);
-            this.tlpTrackMethods.Controls.Add(this.btnABDraw, 2, 0);
-            this.tlpTrackMethods.Controls.Add(this.btnNudge, 4, 0);
-            this.tlpTrackMethods.Controls.Add(this.cboxAutoTrack, 1, 0);
-            this.tlpTrackMethods.Location = new System.Drawing.Point(275, 448);
+            this.tlpTrackMethods.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpTrackMethods.Controls.Add(this.btnRefNudge, 0, 0);
+            this.tlpTrackMethods.Controls.Add(this.btnNudge, 5, 0);
+            this.tlpTrackMethods.Controls.Add(this.btnBuildTracks, 4, 0);
+            this.tlpTrackMethods.Controls.Add(this.btnABDraw, 3, 0);
+            this.tlpTrackMethods.Controls.Add(this.cboxAutoTrack, 2, 0);
+            this.tlpTrackMethods.Controls.Add(this.cboxAutoSnapToPivot, 1, 0);
+            this.tlpTrackMethods.Location = new System.Drawing.Point(325, 459);
             this.tlpTrackMethods.Name = "tlpTrackMethods";
             this.tlpTrackMethods.RowCount = 1;
             this.tlpTrackMethods.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpTrackMethods.Size = new System.Drawing.Size(551, 99);
+            this.tlpTrackMethods.Size = new System.Drawing.Size(580, 88);
             this.tlpTrackMethods.TabIndex = 537;
             this.tlpTrackMethods.Visible = false;
             // 
-            // cboxAutoSnapToPivot
+            // btnRefNudge
             // 
-            this.cboxAutoSnapToPivot.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cboxAutoSnapToPivot.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxAutoSnapToPivot.BackColor = System.Drawing.Color.Transparent;
-            this.cboxAutoSnapToPivot.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.cboxAutoSnapToPivot.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
-            this.cboxAutoSnapToPivot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxAutoSnapToPivot.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold);
-            this.cboxAutoSnapToPivot.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.cboxAutoSnapToPivot.Image = global::AgOpenGPS.Properties.Resources.AutoSteerSnapToPivot;
-            this.cboxAutoSnapToPivot.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cboxAutoSnapToPivot.Location = new System.Drawing.Point(12, 11);
-            this.cboxAutoSnapToPivot.Name = "cboxAutoSnapToPivot";
-            this.cboxAutoSnapToPivot.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cboxAutoSnapToPivot.Size = new System.Drawing.Size(85, 77);
-            this.cboxAutoSnapToPivot.TabIndex = 468;
-            this.cboxAutoSnapToPivot.Text = "Auto";
-            this.cboxAutoSnapToPivot.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.cboxAutoSnapToPivot.UseVisualStyleBackColor = false;
-            this.cboxAutoSnapToPivot.Click += new System.EventHandler(this.cboxAutoSnapToPivot_Click);
+            this.btnRefNudge.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnRefNudge.BackColor = System.Drawing.Color.Transparent;
+            this.btnRefNudge.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRefNudge.FlatAppearance.BorderSize = 0;
+            this.btnRefNudge.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefNudge.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefNudge.Image = global::AgOpenGPS.Properties.Resources.ABSnapNudgeMenu;
+            this.btnRefNudge.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnRefNudge.Location = new System.Drawing.Point(5, 3);
+            this.btnRefNudge.Name = "btnRefNudge";
+            this.btnRefNudge.Size = new System.Drawing.Size(85, 81);
+            this.btnRefNudge.TabIndex = 538;
+            this.btnRefNudge.Text = "Ref";
+            this.btnRefNudge.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnRefNudge.UseVisualStyleBackColor = false;
+            this.btnRefNudge.Click += new System.EventHandler(this.btnRefNudge_Click);
+            // 
+            // btnNudge
+            // 
+            this.btnNudge.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnNudge.BackColor = System.Drawing.Color.Transparent;
+            this.btnNudge.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnNudge.FlatAppearance.BorderSize = 0;
+            this.btnNudge.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNudge.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNudge.Image = global::AgOpenGPS.Properties.Resources.ABSnapNudgeMenu;
+            this.btnNudge.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnNudge.Location = new System.Drawing.Point(487, 3);
+            this.btnNudge.Name = "btnNudge";
+            this.btnNudge.Size = new System.Drawing.Size(86, 81);
+            this.btnNudge.TabIndex = 489;
+            this.btnNudge.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnNudge.UseVisualStyleBackColor = false;
+            this.btnNudge.Visible = false;
+            this.btnNudge.Click += new System.EventHandler(this.btnNudge_Click);
             // 
             // btnBuildTracks
             // 
@@ -2405,9 +2424,9 @@
             this.btnBuildTracks.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnBuildTracks.Image = global::AgOpenGPS.Properties.Resources.ABTracks;
             this.btnBuildTracks.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBuildTracks.Location = new System.Drawing.Point(342, 9);
+            this.btnBuildTracks.Location = new System.Drawing.Point(389, 3);
             this.btnBuildTracks.Name = "btnBuildTracks";
-            this.btnBuildTracks.Size = new System.Drawing.Size(86, 81);
+            this.btnBuildTracks.Size = new System.Drawing.Size(85, 81);
             this.btnBuildTracks.TabIndex = 539;
             this.btnBuildTracks.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnBuildTracks.UseVisualStyleBackColor = false;
@@ -2425,33 +2444,14 @@
             this.btnABDraw.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnABDraw.Image = global::AgOpenGPS.Properties.Resources.ABDraw;
             this.btnABDraw.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnABDraw.Location = new System.Drawing.Point(232, 9);
+            this.btnABDraw.Location = new System.Drawing.Point(293, 3);
             this.btnABDraw.Name = "btnABDraw";
-            this.btnABDraw.Size = new System.Drawing.Size(86, 81);
+            this.btnABDraw.Size = new System.Drawing.Size(85, 81);
             this.btnABDraw.TabIndex = 250;
             this.btnABDraw.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnABDraw.UseVisualStyleBackColor = false;
             this.btnABDraw.Visible = false;
             this.btnABDraw.Click += new System.EventHandler(this.btnABDraw_Click);
-            // 
-            // btnNudge
-            // 
-            this.btnNudge.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnNudge.BackColor = System.Drawing.Color.Transparent;
-            this.btnNudge.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnNudge.FlatAppearance.BorderSize = 0;
-            this.btnNudge.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNudge.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNudge.Image = global::AgOpenGPS.Properties.Resources.ABSnapNudgeMenu;
-            this.btnNudge.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNudge.Location = new System.Drawing.Point(452, 9);
-            this.btnNudge.Name = "btnNudge";
-            this.btnNudge.Size = new System.Drawing.Size(86, 81);
-            this.btnNudge.TabIndex = 489;
-            this.btnNudge.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnNudge.UseVisualStyleBackColor = false;
-            this.btnNudge.Visible = false;
-            this.btnNudge.Click += new System.EventHandler(this.btnNudge_Click);
             // 
             // cboxAutoTrack
             // 
@@ -2465,7 +2465,7 @@
             this.cboxAutoTrack.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.cboxAutoTrack.Image = global::AgOpenGPS.Properties.Resources.AutoTrack;
             this.cboxAutoTrack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cboxAutoTrack.Location = new System.Drawing.Point(122, 11);
+            this.cboxAutoTrack.Location = new System.Drawing.Point(197, 5);
             this.cboxAutoTrack.Name = "cboxAutoTrack";
             this.cboxAutoTrack.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cboxAutoTrack.Size = new System.Drawing.Size(85, 77);
@@ -2473,6 +2473,27 @@
             this.cboxAutoTrack.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxAutoTrack.UseVisualStyleBackColor = false;
             this.cboxAutoTrack.Click += new System.EventHandler(this.cboxAutoTrack_Click);
+            // 
+            // cboxAutoSnapToPivot
+            // 
+            this.cboxAutoSnapToPivot.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cboxAutoSnapToPivot.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxAutoSnapToPivot.BackColor = System.Drawing.Color.Transparent;
+            this.cboxAutoSnapToPivot.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cboxAutoSnapToPivot.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
+            this.cboxAutoSnapToPivot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxAutoSnapToPivot.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold);
+            this.cboxAutoSnapToPivot.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.cboxAutoSnapToPivot.Image = global::AgOpenGPS.Properties.Resources.AutoSteerSnapToPivot;
+            this.cboxAutoSnapToPivot.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.cboxAutoSnapToPivot.Location = new System.Drawing.Point(101, 5);
+            this.cboxAutoSnapToPivot.Name = "cboxAutoSnapToPivot";
+            this.cboxAutoSnapToPivot.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cboxAutoSnapToPivot.Size = new System.Drawing.Size(85, 77);
+            this.cboxAutoSnapToPivot.TabIndex = 468;
+            this.cboxAutoSnapToPivot.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.cboxAutoSnapToPivot.UseVisualStyleBackColor = false;
+            this.cboxAutoSnapToPivot.Click += new System.EventHandler(this.cboxAutoSnapToPivot_Click);
             // 
             // btnGPSData
             // 
@@ -2854,6 +2875,7 @@
         private System.Windows.Forms.CheckBox cboxAutoTrack;
         private System.Windows.Forms.CheckBox cboxAutoSnapToPivot;
         public System.Windows.Forms.Button btnBuildTracks;
+        private System.Windows.Forms.Button btnRefNudge;
     }
 }
 

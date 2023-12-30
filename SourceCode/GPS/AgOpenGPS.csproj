@@ -234,17 +234,17 @@
     <Compile Include="Forms\Form_Help.Designer.cs">
       <DependentUpon>Form_Help.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Guidance\FormRefNudge.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Guidance\FormRefNudge.designer.cs">
+      <DependentUpon>FormRefNudge.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Guidance\FormNudge.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Guidance\FormNudge.designer.cs">
       <DependentUpon>FormNudge.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Guidance\FormEnterAB.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Guidance\FormEnterAB.Designer.cs">
-      <DependentUpon>FormEnterAB.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Guidance\FormHeadAche.cs">
       <SubType>Form</SubType>
@@ -643,11 +643,11 @@
     <EmbeddedResource Include="Forms\Form_Help.resx">
       <DependentUpon>Form_Help.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Guidance\FormRefNudge.resx">
+      <DependentUpon>FormRefNudge.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Guidance\FormNudge.resx">
       <DependentUpon>FormNudge.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Guidance\FormEnterAB.resx">
-      <DependentUpon>FormEnterAB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Guidance\FormHeadAche.resx">
       <DependentUpon>FormHeadAche.cs</DependentUpon>

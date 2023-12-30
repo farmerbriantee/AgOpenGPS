@@ -3,6 +3,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -107,7 +109,6 @@ namespace AgOpenGPS
             return trak;
         }
 
-
         public void NudgeTrack(double dist)
         {
             if (idx > -1)
@@ -155,7 +156,7 @@ namespace AgOpenGPS
             //if (isBtnGuidanceOn)
 
             if (idx > -1)
-                {
+            {
                 if (gArr[idx].mode == (int)(TrackMode.AB))
                 {
                     NudgeTrack(mf.ABLine.distanceFromCurrentLinePivot);
@@ -169,7 +170,54 @@ namespace AgOpenGPS
             }
         }
 
+        public void NudgeRefTrack(double dist)
+        {
 
+            if (idx > -1)
+            {
+                if (gArr[idx].mode == (int)TrackMode.AB)
+                {
+                    mf.ABLine.isABValid = false;
+                    mf.ABLine.lastSecond = 0;
+                    NudgeRefABLine( mf.ABLine.isHeadingSameWay ? dist : -dist);
+                }
+                else
+                {
+                    mf.curve.isCurveValid = false;
+                    mf.curve.lastSecond = 0;
+                    NudgeRefCurve( mf.curve.isHeadingSameWay ? dist : -dist);
+                }
+            }
+        }
+
+        public void NudgeRefABLine(double dist)
+        {
+            double head = mf.trk.gArr[mf.trk.idx].heading;
+
+            mf.trk.gArr[mf.trk.idx].ptA.easting += (Math.Sin(head+glm.PIBy2) * (dist));
+            mf.trk.gArr[mf.trk.idx].ptA.northing += (Math.Cos(head + glm.PIBy2) * (dist));
+
+            mf.trk.gArr[mf.trk.idx].ptB.easting += (Math.Sin(head + glm.PIBy2) * (dist));
+            mf.trk.gArr[mf.trk.idx].ptB.northing += (Math.Cos(head + glm.PIBy2) * (dist));
+        }
+
+        public void NudgeRefCurve(double dist)
+        {
+            mf.curve.isCurveValid = false;
+            mf.curve.lastSecond = 0;
+
+            int cnt = mf.trk.gArr[mf.trk.idx].curvePts.Count;
+            vec3[] arr = new vec3[cnt];
+            mf.trk.gArr[mf.trk.idx].curvePts.CopyTo(arr);
+            mf.trk.gArr[mf.trk.idx].curvePts.Clear();
+
+            for (int i = 0; i < cnt; i++)
+            {
+                arr[i].easting += Math.Cos(arr[i].heading) * (dist);
+                arr[i].northing -= Math.Sin(arr[i].heading) * (dist);
+                mf.trk.gArr[mf.trk.idx].curvePts.Add(arr[i]);
+            }
+        }
     }
 
 

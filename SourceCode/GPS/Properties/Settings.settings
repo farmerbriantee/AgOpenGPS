@@ -692,5 +692,8 @@
     <Setting Name="setWindow_formEditTrackSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">200, 400</Value>
     </Setting>
+    <Setting Name="setAS_snapDistanceRef" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

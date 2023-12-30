@@ -194,8 +194,6 @@ namespace AgOpenGPS
             }
         }
 
-        bool isScroll = false;
-
         private void LineSelected_Click(object sender, EventArgs e)
         {
             if (sender is TextBox t)
