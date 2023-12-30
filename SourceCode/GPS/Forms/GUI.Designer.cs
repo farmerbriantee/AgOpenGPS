@@ -258,78 +258,10 @@ namespace AgOpenGPS
                 //fix
                 if (timerSim.Enabled && pn.fixQuality++ > 5) pn.fixQuality = 2;
 
-                if (isJobStarted)
-                {
-                    if (curve.isBtnTrackOn)
-                    {
-                        if (!btnNudge.Visible)
-                        {
-                            btnNudge.Visible = true;
-                            cboxpRowWidth.Visible = true;
-                            btnYouSkipEnable.Visible = true;
-                        }
-
-                        if (trk.idx != -1 && curve.isBtnTrackOn)
-                        {
-                            guidanceLineText = trk.gArr[trk.idx].name;
-                        }
-                        else guidanceLineText = gStr.gsNoGuidanceLines;
-
-                        int abVis = 0, curveVis = 0;
-
-                        //if (ABLine.numABLines > 0)
-                        {
-                            for (int i = 0; i < trk.gArr.Count; i++)
-                            {
-                                if (trk.gArr[i].isVisible)
-                                {
-                                    abVis++;
-                                }
-                            }
-                        }
-
-                        //if (ABLine.numABLineSelected == 0) abVis = 0;
-
-                        //if (curve.numCurveLines > 0)
-                        {
-                            for (int i = 0; i < trk.gArr.Count; i++)
-                            {
-                                if (trk.gArr[i].isVisible)
-                                {
-                                    curveVis++;
-                                }
-                            }
-                        }
-
-
-                        UpdateGuidanceLineButtonNumbers();
-                    }
-                    else
-                    {
-                        if (btnNudge.Visible)
-                        {
-                            btnNudge.Visible = false;
-                            cboxpRowWidth.Visible = false;
-                            btnYouSkipEnable.Visible = false;
-                            if (!ct.isContourBtnOn)
-                            {
-                                //btnCycleLines.Enabled = false;
-                                //btnCycleLinesBk.Enabled = false;
-                            }
-                        }
-                    }
-                }
-                else //idle - no job
-                {
-                    guidanceLineText = "";
-                }
-
-                lblFieldStatus.Text = fieldData + " ----- " + guidanceLineText;
-
                 //save nmea log file
                 if (isLogNMEA) FileSaveNMEA();
 
-                //update button lines numbers
+                //update guidance buttons and numbers
                 UpdateGuidanceLineButtonNumbers();
 
             }//end every 3 seconds
@@ -361,39 +293,6 @@ namespace AgOpenGPS
                         btnGPSData.BackColor = Color.Red;
                         break;
                 }
-
-                //if (isStanleyUsed)
-                //{
-                //    if (curve.isBtnTrackOn )
-                //    {
-                //        lblInty.Text = gyd.inty.ToString("N3");
-                //    }
-                //}
-                //else
-                //{
-                //    if (curve.isBtnTrackOn)
-                //    {
-                //        lblInty.Text = curve.inty.ToString("N3");
-                //    }
-
-                //    else if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
-                //    {
-                //        lblInty.Text = ABLine.inty.ToString("N3");
-                //    }
-
-                //    else if (ct.isContourBtnOn) lblInty.Text = ct.inty.ToString("N3");
-                //}
-
-                //if (recPath.isDrivingRecordedPath) lblInty.Text = recPath.inty.ToString("N3");
-
-                //if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
-                //{
-                //    btnEditAB.Text = ((int)(ABLine.moveDistance * 100)).ToString();
-                //}
-                //if (curve.isBtnTrackOn && !ct.isContourBtnOn)
-                //{
-                //    btnEditAB.Text = ((int)(curve.refCurve.nudgeDistance * 100)).ToString();
-                //}
 
                 //statusbar flash red undefined headland
                 if (mc.isOutOfBounds && panelSim.BackColor == Color.Transparent
@@ -469,8 +368,73 @@ namespace AgOpenGPS
 
         private void UpdateGuidanceLineButtonNumbers()
         {
-            //btnABLine.Text = ABLine.numABLineSelected.ToString() + " / " + trk.gArr.Count.ToString();
-            //btnCurve.Text = curve.numCurveLineSelected.ToString() + " / " + trk.gArr.Count.ToString();
+            if (isJobStarted)
+            {
+                int tracksTotal = 0, tracksVisible = 0;
+
+                for (int i = 0; i < trk.gArr.Count; i++)
+                {
+                    tracksTotal++;
+                    if (trk.gArr[i].isVisible)
+                    {
+                        tracksVisible++;
+                    }
+                }
+
+                if (curve.isBtnTrackOn && trk.gArr.Count > 0)
+                {
+                    if (trk.idx > -1)
+                    {
+                        lblLineKey.Text = trk.gArr[trk.idx].name;
+                        if (lblLineKey.Text.Length > 9) lblLineKey.Text = lblLineKey.Text.Substring(0, 9);
+                        
+                        guidanceLineText = trk.gArr[trk.idx].name;
+
+                        if (tracksVisible > 1)
+                        {
+                            btnCycleLines.Enabled = true;
+                            btnCycleLinesBk.Enabled = true;
+                        }
+                        else
+                        {
+                            btnCycleLines.Enabled = false;
+                            btnCycleLinesBk.Enabled = false;
+                        }
+                        cboxpRowWidth.Visible = true;
+                        btnYouSkipEnable.Visible = true;
+                        lblTrackNumber.Text = (trk.idx + 1).ToString() + " / " + trk.gArr.Count.ToString();
+                    }
+                    else  // idx = -1
+                    {
+                        guidanceLineText = gStr.gsNoGuidanceLines;
+                        cboxpRowWidth.Visible = false;
+                        btnYouSkipEnable.Visible = false;
+                        btnCycleLines.Enabled = false;
+                        btnCycleLinesBk.Enabled = false;
+                        lblLineKey.Text = "";
+
+                        lblTrackNumber.Text = "* / " + trk.gArr.Count.ToString();
+                    }
+                }
+                else //job but Tracks off.
+                {
+                    guidanceLineText = gStr.gsNoGuidanceLines;
+                    cboxpRowWidth.Visible = false;
+                    btnYouSkipEnable.Visible = false;
+                    btnCycleLines.Enabled = false;
+                    btnCycleLinesBk.Enabled = false;
+                    lblLineKey.Text = "";
+                    lblTrackNumber.Text = "";
+                }
+            }
+            else //idle - no job
+            {
+                guidanceLineText = "Be Smart, Be safe";
+                fieldData = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss ");
+            }
+
+            lblFieldStatus.Text = fieldData + " ----- " + guidanceLineText;
+
         }
 
         public void LoadSettings()
@@ -900,7 +864,7 @@ namespace AgOpenGPS
                     panelLeft.Visible = true;
                     oglMain.Left = 80;
                     oglMain.Width = this.Width - statusStripLeft.Width - 100; //22
-                    oglMain.Height = this.Height - 125;
+                    oglMain.Height = this.Height - 130;
                 }
             }
 

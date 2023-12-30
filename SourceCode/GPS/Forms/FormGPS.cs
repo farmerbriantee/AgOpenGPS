@@ -1,5 +1,6 @@
 ﻿//Please, if you use this, share the improvements
 
+using AgOpenGPS;
 using AgOpenGPS.Properties;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
@@ -15,6 +16,7 @@ using System.Media;
 using System.Net.Sockets;
 using System.Reflection;
 using System.Resources;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -1136,7 +1138,6 @@ namespace AgOpenGPS
             lblFieldStatus.Visible = isOn;
             cboxpRowWidth.Visible = false;
             btnYouSkipEnable.Visible = false;
-            btnNudge.Visible = false;
         }
 
         //take the distance from object and convert to camera data
@@ -1221,3 +1222,78 @@ namespace AgOpenGPS
  * Now the program is "Done" and waits for the next watchdog trigger, determines if a new sentence is available etc
  * and starts all over from the top.
  */
+/*
+private void UpdateGuidanceLineButtonNumbers()
+{
+    if (isJobStarted)
+    {
+        if (curve.isBtnTrackOn)
+        {
+            int tracksVisible = 0, curveVis = 0;
+
+            for (int i = 0; i < trk.gArr.Count; i++)
+            {
+                if (trk.gArr[i].isVisible)
+                {
+                    tracksVisible++;
+                }
+            }
+
+            if (trk.idx > -1)
+            {
+                lblLineKey.Text = trk.gArr[trk.idx].name;
+                if (lblLineKey.Text.Length > 9) lblLineKey.Text = lblLineKey.Text.Substring(0, 9);
+
+                if (!btnNudge.Visible)
+                {
+                    btnNudge.Visible = true;
+                    cboxpRowWidth.Visible = true;
+                    btnYouSkipEnable.Visible = true;
+                }
+
+                if (trk.idx != -1 && curve.isBtnTrackOn)
+                {
+                    guidanceLineText = trk.gArr[trk.idx].name;
+                }
+                else guidanceLineText = gStr.gsNoGuidanceLines;
+
+                {
+                    for (int i = 0; i < trk.gArr.Count; i++)
+                    {
+                        if (trk.gArr[i].isVisible)
+                        {
+                            curveVis++;
+                        }
+                    }
+                }
+
+            }
+            else  // idx = -1
+            {
+
+
+            }
+        }
+        else //job but Tracks off.
+        {
+            if (btnNudge.Visible)
+            {
+                btnNudge.Visible = false;
+                cboxpRowWidth.Visible = false;
+                btnYouSkipEnable.Visible = false;
+                if (!ct.isContourBtnOn)
+                {
+                    btnCycleLines.Enabled = false;
+                    btnCycleLinesBk.Enabled = false;
+                }
+            }
+        }
+    }
+    else //idle - no job
+    {
+        guidanceLineText = "Be Smart, Be safe";
+        fieldData = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss ");
+    }
+
+    lblFieldStatus.Text = fieldData + " ----- " + guidanceLineText;
+*/

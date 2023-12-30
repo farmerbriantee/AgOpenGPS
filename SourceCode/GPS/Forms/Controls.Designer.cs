@@ -235,6 +235,8 @@ namespace AgOpenGPS
                     if (lblLineKey.Text.Length > 9) lblLineKey.Text = lblLineKey.Text.Substring(0, 9);
 
                     guidanceLineText = trk.gArr[trk.idx].name;
+
+                    lblFieldStatus.Text = fieldData + " --- " + guidanceLineText;
                 }
             }
         }
@@ -286,6 +288,7 @@ namespace AgOpenGPS
                     if (lblLineKey.Text.Length > 9) lblLineKey.Text = lblLineKey.Text.Substring(0, 9);
 
                     guidanceLineText = trk.gArr[trk.idx].name;
+                    lblFieldStatus.Text = fieldData + " --- " + guidanceLineText;
                 }
             }
 
