@@ -83,18 +83,50 @@ namespace AgOpenGPS
             if (!isCancel)
             {
                 if (mf.trk.gArr.Count == 0)
-                    mf.trk.idx = -1;
-
-                if (mf.trk.gArr.Count > 0 && mf.trk.idx == -1)
-                    mf.trk.idx = mf.trk.gArr.Count - 1;
-
-                if (mf.trk.idx == -1)
                 {
+                    mf.trk.idx = -1;
+                    mf.FileSaveTracks();
                     if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
                     if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
                 }
+                else
+                {
+                    mf.trk.idx = mf.trk.gArr.Count - 1;
 
-                mf.FileSaveTracks();
+                    //make sure selected is visible
+                    if (!mf.trk.gArr[mf.trk.idx].isVisible)
+                    {
+                        bool isOneVis = false;
+
+                        foreach (var item in mf.trk.gArr)
+                        {
+                            if (item.isVisible) isOneVis = true;
+                            break;
+                        }
+
+                        if (isOneVis)
+                        {
+                            if (mf.trk.gArr.Count > 1)
+                            {
+                                while (true)
+                                {
+                                    mf.trk.idx++;
+                                    if (mf.trk.idx == mf.trk.gArr.Count) mf.trk.idx = 0;
+
+                                    if (mf.trk.gArr[mf.trk.idx].isVisible)
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            mf.trk.idx = -1;
+                        }
+                    }
+
+                }
             }
             else
             {
@@ -110,6 +142,10 @@ namespace AgOpenGPS
 
             mf.curve.isCurveValid = false;
             mf.ABLine.isABValid = false;
+
+            mf.threeSecondCounter = 100;
+
+            mf.FileSaveTracks();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -128,17 +164,24 @@ namespace AgOpenGPS
         {
             lblNumCu.Text = mf.trk.gArr.Count.ToString();
 
-            if (mf.trk.idx > -1)
+            if (mf.trk.idx > -1 && mf.trk.gArr.Count > 0)
             {
                 tboxNameCurve.Text = mf.trk.gArr[mf.trk.idx].name;
                 tboxNameCurve.Enabled = true;
                 lblCurveSelected.Text = (mf.trk.idx + 1).ToString();
+                cboxIsVisible.Visible = true;
+                cboxIsVisible.Checked = mf.trk.gArr[mf.trk.idx].isVisible;
+                if (mf.trk.gArr[mf.trk.idx].isVisible)
+                    cboxIsVisible.Image = Properties.Resources.TrackVisible;
+                else cboxIsVisible.Image = Properties.Resources.TracksInvisible;
+
             }
             else
             {
                 tboxNameCurve.Text = "***";
                 tboxNameCurve.Enabled = false;
                 lblCurveSelected.Text = "*";
+                cboxIsVisible.Visible = false;
             }
         }
 
@@ -169,16 +212,12 @@ namespace AgOpenGPS
             //FixLabelsCurve();
         }
 
-        private void btnCancelTouch_Click(object sender, EventArgs e)
+        private void cboxIsVisible_Click(object sender, EventArgs e)
         {
-            btnMakeABLine.Enabled = false;
-            btnMakeCurve.Enabled = false;
-
-            isA = true;
-            start = 99999; end = 99999;
-
-            btnCancelTouch.Enabled = false;
-            btnExit.Focus();
+            mf.trk.gArr[mf.trk.idx].isVisible = cboxIsVisible.Checked;
+            if (mf.trk.gArr[mf.trk.idx].isVisible)
+                cboxIsVisible.Image = Properties.Resources.TrackVisible;
+            else cboxIsVisible.Image = Properties.Resources.TracksInvisible;
         }
 
         private void nudDistance_Click(object sender, EventArgs e)
@@ -306,8 +345,6 @@ namespace AgOpenGPS
                 pt3 = new vec3(mf.curve.desList[0]);
                 mf.curve.desList.Add(pt3);
 
-                btnCancelTouch.Enabled = false;
-
                 int cnt = mf.curve.desList.Count;
                 if (cnt > 3)
                 {
@@ -364,8 +401,6 @@ namespace AgOpenGPS
 
         private void BtnMakeCurve_Click(object sender, EventArgs e)
         {
-            btnCancelTouch.Enabled = false;
-
             bool isLoop = false;
             int limit = end;
 
@@ -522,8 +557,6 @@ namespace AgOpenGPS
 
         private void BtnMakeABLine_Click(object sender, EventArgs e)
         {
-            btnCancelTouch.Enabled = false;
-
             //if more then half way around, it crosses start finish
             if ((Math.Abs(start - end)) <= (mf.bnd.bndList[bndSelect].fenceLine.Count * 0.5))
             {
@@ -579,8 +612,6 @@ namespace AgOpenGPS
 
         private void oglSelf_MouseDown(object sender, MouseEventArgs e)
         {
-            btnCancelTouch.Enabled = true;
-
             btnMakeABLine.Enabled = false;
             btnMakeCurve.Enabled = false;
 

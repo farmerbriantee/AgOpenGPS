@@ -94,22 +94,8 @@ namespace AgOpenGPS
         //Time to do fix position update and draw routine
         public double gpsHz = 10;
 
-        //For field saving in background
-        private int minuteCounter = 1;
-
-        private int tenMinuteCounter = 1;
-
         //whether or not to use Stanley control
         public bool isStanleyUsed = true;
-
-        //used to update the screen status bar etc
-        private int displayUpdateHalfSecondCounter = 0, displayUpdateOneSecondCounter = 0, displayUpdateOneFifthCounter = 0, displayUpdateThreeSecondCounter = 0;
-
-        private int tenSecondCounter = 0, tenSeconds = 0;
-        private int threeSecondCounter = 0, threeSeconds = 0;
-        private int oneSecondCounter = 0, oneSecond = 0;
-        private int oneHalfSecondCounter = 0, oneHalfSecond = 0;
-        private int oneFifthSecondCounter = 0, oneFifthSecond = 0;
 
         public int pbarSteer, pbarMachine, pbarUDP;
 
@@ -907,6 +893,7 @@ namespace AgOpenGPS
             FixPanelsAndMenus();
             SetZoom();
             minuteCounter = 25;
+            lblGuidanceLine.Visible = false;
         }
 
         //close the current job
@@ -939,6 +926,8 @@ namespace AgOpenGPS
             vehicle.isHydLiftOn = false;
             btnHydLift.Image = Properties.Resources.HydraulicLiftOff;
             btnHydLift.Visible = false;
+
+            lblGuidanceLine.Visible = false;
 
             //zoom gone
             oglZoom.SendToBack();
@@ -1135,7 +1124,6 @@ namespace AgOpenGPS
             panelRight.Visible = isOn;
             panelAB.Visible = isOn;
 
-            lblFieldStatus.Visible = isOn;
             cboxpRowWidth.Visible = false;
             btnYouSkipEnable.Visible = false;
         }

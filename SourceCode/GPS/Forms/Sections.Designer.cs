@@ -324,11 +324,11 @@ namespace AgOpenGPS
             }
             else //buttons exposed
             {
-                top = Height - 130;
+                top = Height - 120;
                 if (panelSim.Visible == true)
                 {
-                    top = Height - 180;
-                    panelSim.Top = Height - 138;
+                    top = Height - 170;
+                    panelSim.Top = Height - 128;
                 }
             }
 

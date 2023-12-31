@@ -694,7 +694,16 @@ namespace AgOpenGPS
                 return true;
             }
 
+            if (keyData == (Keys.F6)) // Fast/Normal Sim
+            {
+                if (timerSim.Enabled)
+                {
+                    if (timerSim.Interval < 20) timerSim.Interval = 93;
+                    else timerSim.Interval = 15;
+                }
 
+                return true;    // indicate that you handled this keystroke
+            }
 
             // Call the base class
             return base.ProcessCmdKey(ref msg, keyData);

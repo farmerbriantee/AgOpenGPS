@@ -71,15 +71,17 @@ namespace AgOpenGPS
             if (!curve.isBtnTrackOn && trk.gArr.Count > 0)
             {
                 //display the trk
-                EnableYouTurnButtons();
                 curve.isBtnTrackOn = true;
                 btnTrack.Image = Properties.Resources.TrackOn;
 
                 if (trk.idx == -1)
                 {
-                    trk.idx = trk.gArr.Count - 1;
+                    trk.idx = 0;
                 }
                 EnableYouTurnButtons();
+
+                //run the routine
+                threeSecondCounter = 100;
                 return;
             }
 
@@ -89,7 +91,7 @@ namespace AgOpenGPS
             }
             else
             {
-                tlpTrackMethods.Top = this.Height/4;
+                tlpTrackMethods.Top = this.Height/5;
                 tlpTrackMethods.Left = this.Width - tlpTrackMethods.Width - 120;
                 tlpTrackMethods.Visible = true;
                 trackMethodPanelCounter = 1;
@@ -97,6 +99,17 @@ namespace AgOpenGPS
 
             if (bnd.bndList.Count > 0) btnABDraw.Enabled = true;
             else btnABDraw.Enabled = false;
+
+            if (trk.gArr.Count > 0)
+            {
+                btnNudge.Enabled = true;
+                btnRefNudge.Enabled = true;
+            }
+            else
+            {
+                btnNudge.Enabled = false;
+                btnRefNudge.Enabled = false;
+            }
         }
 
         private void btnAutoSteer_Click(object sender, EventArgs e)
@@ -205,40 +218,25 @@ namespace AgOpenGPS
                 return;
             }
 
-
-            int abVis = 0;
-
-            if (trk.gArr.Count > 0)
+            if (trk.gArr.Count > 1)
             {
-                for (int i = 0; i < trk.gArr.Count; i++)
+                while (true)
                 {
-                    if (trk.gArr[i].isVisible)
+                    trk.idx++;
+                    if (trk.idx == trk.gArr.Count) trk.idx = 0;
+
+                    if (trk.gArr[trk.idx].isVisible)
                     {
-                        abVis++;
+                        break;
                     }
-                }
-
-                if (trk.gArr.Count > 1)
-                {
-                    while (true)
-                    {
-                        trk.idx++;
-                        if (trk.idx == trk.gArr.Count) trk.idx = 0;
-
-                        if (trk.gArr[trk.idx].isVisible)
-                        {
-                            break;
-                        }
-                    }
-
-                    lblLineKey.Text = trk.gArr[trk.idx].name;
-                    if (lblLineKey.Text.Length > 9) lblLineKey.Text = lblLineKey.Text.Substring(0, 9);
-
-                    guidanceLineText = trk.gArr[trk.idx].name;
-
-                    lblFieldStatus.Text = fieldData + " --- " + guidanceLineText;
                 }
             }
+
+            threeSecondCounter = 100;
+
+            ABLine.isABValid = false;
+            curve.isCurveValid = false;
+
         }
         private void btnCycleLinesBk_Click(object sender, EventArgs e)
         {
@@ -259,45 +257,24 @@ namespace AgOpenGPS
                 return;
             }
 
-            int abVis = 0;
-
-            if (trk.gArr.Count > 0)
+            if (trk.gArr.Count > 1)
             {
-                for (int i = 0; i < trk.gArr.Count; i++)
+                while (true)
                 {
-                    if (trk.gArr[i].isVisible)
+                    trk.idx--;
+                    if (trk.idx == -1) trk.idx = trk.gArr.Count - 1;
+
+                    if (trk.gArr[trk.idx].isVisible)
                     {
-                        abVis++;
+                        break;
                     }
-                }
-
-                if (trk.gArr.Count > 1)
-                {
-                    while (true)
-                    {
-                        trk.idx--;
-                        if (trk.idx == -1) trk.idx = trk.gArr.Count-1;
-
-                        if (trk.gArr[trk.idx].isVisible)
-                        {
-                            break;
-                        }
-                    }
-
-                    lblLineKey.Text = trk.gArr[trk.idx].name;
-                    if (lblLineKey.Text.Length > 9) lblLineKey.Text = lblLineKey.Text.Substring(0, 9);
-
-                    guidanceLineText = trk.gArr[trk.idx].name;
-                    lblFieldStatus.Text = fieldData + " --- " + guidanceLineText;
                 }
             }
 
             ABLine.isABValid = false;
             curve.isCurveValid = false;
 
-            lblFieldStatus.Text = fieldData + " ----- " + guidanceLineText;
-
-            UpdateGuidanceLineButtonNumbers();
+            threeSecondCounter = 100;
         }
 
         #endregion
@@ -592,6 +569,13 @@ namespace AgOpenGPS
                 btnHeadlandOnOff.Visible = false;
                 btnHydLift.Visible = false;
             }
+
+            if (isJobStarted && trk.gArr.Count > 0)
+            {
+                trk.idx = 0;
+                if (!curve.isBtnTrackOn) btnTrack.PerformClick();
+            }
+
         }
         public void FileSaveEverythingBeforeClosingField()
         {

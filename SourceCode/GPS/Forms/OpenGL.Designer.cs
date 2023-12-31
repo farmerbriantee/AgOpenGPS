@@ -469,6 +469,8 @@ namespace AgOpenGPS
 
                     if (pn.age > pn.ageAlarm) DrawAge();
 
+                    if (curve.isBtnTrackOn) DrawGuidanceLineText();
+
                     //just in case
                     GL.Disable(EnableCap.LineStipple);
 
@@ -2262,6 +2264,27 @@ namespace AgOpenGPS
         {
             GL.Color3(0.9752f, 0.52f, 0.0f);
             font.DrawText(oglMain.Width / 4, 60, "Age:" + pn.age.ToString("N1"), 1.5);
+        }
+
+        private void DrawGuidanceLineText()
+        {
+            if (lastGuidelineIndex != trk.idx)
+            {
+                guideLineCounter = 20;
+                lastGuidelineIndex = trk.idx;
+                lblGuidanceLine.Visible = true;
+            }
+
+            if (guideLineCounter > 0)
+            {
+                if (trk.gArr.Count > 0 && lastGuidelineIndex > -1)
+                    lblGuidanceLine.Text = trk.gArr[lastGuidelineIndex].name;
+                else lblGuidanceLine.Text = gStr.gsNoGuidanceLines;
+                guideLineCounter--;
+
+                if (guideLineCounter == 0) lblGuidanceLine.Visible = false;
+            }
+
         }
 
         private void CalcFrustum()

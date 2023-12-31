@@ -67,10 +67,18 @@ namespace AgOpenGPS
 
         //makes nav panel disappear after 6 seconds
         private int navPanelCounter = 0, trackMethodPanelCounter = 0;
+        private int guideLineCounter = 0, lastGuidelineIndex;
 
         public uint sentenceCounter = 0;
 
         private int currentFieldTextCounter = 0;
+
+        //For field saving in background
+        private int minuteCounter = 1;
+        private int sixSecondCounter = 0;
+        public int threeSecondCounter = 0;
+        private int oneSecondCounter = 0;
+        private int oneHalfSecondCounter = 0;
 
         //Timer triggers at 125 msec
         private void tmrWatchdog_tick(object sender, EventArgs e)
@@ -82,38 +90,13 @@ namespace AgOpenGPS
                 return;
             }
 
-            if (tenSecondCounter++ >= 24)
-            {
-                tenSecondCounter = 0;
-                tenSeconds++;
-            }
-            if (threeSecondCounter++ >= 9)
-            {
-                threeSecondCounter = 0;
-                threeSeconds++;
-            }
-            if (oneSecondCounter++ >= 4)
-            {
-                oneSecondCounter = 0;
-                oneSecond++;
-            }
-            if (oneHalfSecondCounter++ >= 2)
-            {
-                oneHalfSecondCounter = 0;
-                oneHalfSecond++;
-            }
-            if (oneFifthSecondCounter++ >= 0)
-            {
-                oneFifthSecondCounter = 0;
-                oneFifthSecond++;
-            }
-
             ////////////////////////////////////////////// 10 second ///////////////////////////////////////////////////////
             //every 10 second update status
-            if (tenSeconds != 0)
+            if (sixSecondCounter >= 4)
             {
                 //reset the counter
-                tenSeconds = 0;
+                sixSecondCounter = 0;
+
                 if (isJobStarted)
                 {
                     if (isMetric)
@@ -184,20 +167,43 @@ namespace AgOpenGPS
                             break;
 
                         case 2:
-
-                            if (isMetric)
+                            if (bnd.bndList.Count > 0)
                             {
-                                lblCurrentField.Text = gStr.gsField + ": " + fd.AreaBoundaryLessInnersHectares
-                                    + "  Applied: " + fd.WorkedHectares
-                                    + "  Actual: " + fd.ActualAreaWorkedHectares
-                                    + "  To Go: " + fd.WorkedAreaRemainPercentage;
+                                if (isMetric)
+                                {
+                                    lblCurrentField.Text = gStr.gsField + ": " + fd.AreaBoundaryLessInnersHectares
+                                        + "  App: " + fd.WorkedHectares
+                                        + "  Actual: " + fd.ActualAreaWorkedHectares
+                                        + "  Rem: " + fd.WorkedAreaRemainPercentage;
+                                }
+                                else
+                                {
+                                    lblCurrentField.Text = gStr.gsField + ": " + fd.AreaBoundaryLessInnersAcres
+                                        + "  App: " + fd.WorkedAcres
+                                        + "  Actual: " + fd.ActualAreaWorkedAcres
+                                        + "  Rem: " + fd.WorkedAreaRemainPercentage;
+                                }
                             }
                             else
                             {
-                                lblCurrentField.Text = gStr.gsField + ": " + fd.AreaBoundaryLessInnersAcres
-                                    + "  Applied: " + fd.WorkedAcres
-                                    + "  Actual: " + fd.ActualAreaWorkedAcres
-                                    + "  To Go: " + fd.WorkedAreaRemainPercentage;
+                                if (isMetric)
+                                {
+                                    lblCurrentField.Text = gStr.gsField + ": " + "App: "
+                                + fd.WorkedHectares + " Actual: "
+                                + fd.ActualAreaWorkedHectares + "  "
+                                + fd.ActualOverlapPercent + "   "
+                                + fd.WorkRateHectares;
+                                }
+                                else
+                                {
+                                    lblCurrentField.Text = gStr.gsField + ": " +
+                                   fieldData + "App: "
+                                + fd.WorkedAcres + "  Actual: "
+                                + fd.ActualAreaWorkedAcres + " *"
+                                + fd.ActualOverlapPercent + "   "
+                                + fd.WorkRateAcres;
+                                }
+
                             }
                             break;
 
@@ -233,12 +239,12 @@ namespace AgOpenGPS
 
             }
 
-            /////////////////////////////////////////////////////////   333333333333333  ////////////////////////////////////////
+            /////////////////////////////////////////////////////////   3 second  ////////////////////////////////////////
             //every 3 second update status
-            if (displayUpdateThreeSecondCounter != threeSeconds)
+            if (threeSecondCounter >= 3)
             {
                 //reset the counter
-                displayUpdateThreeSecondCounter = threeSeconds;
+                threeSecondCounter = 0;
 
                 //hide the Nav panel in 6  secs
                 if (panelNavigation.Visible)
@@ -267,14 +273,15 @@ namespace AgOpenGPS
             }//end every 3 seconds
 
             //every second update all status ///////////////////////////   1 1 1 1 1 1 ////////////////////////////
-            if (displayUpdateOneSecondCounter != oneSecond)
+            if (oneSecondCounter >= 4)
             {
                 //reset the counter
-                displayUpdateOneSecondCounter = oneSecond;
+                oneSecondCounter = 0;
 
                 //counter used for saving field in background
                 minuteCounter++;
-                tenMinuteCounter++;
+                threeSecondCounter++;
+                sixSecondCounter++;
 
                 lblFix.Text = FixQuality + pn.age.ToString("N1");
 
@@ -295,25 +302,28 @@ namespace AgOpenGPS
                 }
 
                 //statusbar flash red undefined headland
-                if (mc.isOutOfBounds && panelSim.BackColor == Color.Transparent
-                    || !mc.isOutOfBounds && panelSim.BackColor == Color.Tomato)
+                if (timerSim.Enabled)
                 {
-                    if (!mc.isOutOfBounds)
+                    if (mc.isOutOfBounds && panelSim.BackColor == Color.Transparent
+                        || !mc.isOutOfBounds && panelSim.BackColor == Color.Tomato)
                     {
-                        panelSim.BackColor = Color.Transparent;
-                    }
-                    else
-                    {
-                        panelSim.BackColor = Color.Tomato;
+                        if (!mc.isOutOfBounds)
+                        {
+                            panelSim.BackColor = Color.Transparent;
+                        }
+                        else
+                        {
+                            panelSim.BackColor = Color.Tomato;
+                        }
                     }
                 }
             }
 
             //every half of a second update all status  ////////////////    0.5  0.5   0.5    0.5    /////////////////
-            if (displayUpdateHalfSecondCounter != oneHalfSecond)
+            if (oneHalfSecondCounter >= 2)
             {
                 //reset the counter
-                displayUpdateHalfSecondCounter = oneHalfSecond;
+                oneHalfSecondCounter = 0;
 
                 isFlashOnOff = !isFlashOnOff;
 
@@ -350,11 +360,11 @@ namespace AgOpenGPS
 
             } //end every 1/2 second
 
-            //every fifth second update  ///////////////////////////   FIFTH Fifth ////////////////////////////
-            if (displayUpdateOneFifthCounter != oneFifthSecond)
+            //every fourth second update  ///////////////////////////   Fourth  ////////////////////////////
             {
                 //reset the counter
-                displayUpdateOneFifthCounter = oneFifthSecond;
+                oneHalfSecondCounter++;
+                oneSecondCounter++;
 
                 btnAutoSteerConfig.Text = SetSteerAngle + "\r\n" + ActualSteerAngle;
 
@@ -430,11 +440,7 @@ namespace AgOpenGPS
             else //idle - no job
             {
                 guidanceLineText = "Be Smart, Be safe";
-                fieldData = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss ");
             }
-
-            lblFieldStatus.Text = fieldData + " ----- " + guidanceLineText;
-
         }
 
         public void LoadSettings()
@@ -751,6 +757,8 @@ namespace AgOpenGPS
             FixPanelsAndMenus();
             camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
             SetZoom();
+
+            lblGuidanceLine.BringToFront();
         }
 
         private void ZoomByMouseWheel(object sender, MouseEventArgs e)
@@ -836,7 +844,7 @@ namespace AgOpenGPS
         private void FixPanelsAndMenus()
         {
             panelAB.Size = new System.Drawing.Size(760 + ((Width - 900) / 2), 67);
-            panelAB.Location = new Point((Width - 900) / 3 + 67, this.Height - 90);
+            panelAB.Location = new Point((Width - 900) / 3 + 67, this.Height - 70);
 
             if (!isJobStarted)
             {
@@ -853,9 +861,9 @@ namespace AgOpenGPS
                 {
                     panelAB.Visible = false;
                     panelLeft.Visible = false;
-                    oglMain.Left = 30;
+                    oglMain.Left = 20;
                     oglMain.Width = this.Width - 115; //22
-                    oglMain.Height = this.Height - 68;
+                    oglMain.Height = this.Height - 65;
                 }
                 else
                 {
@@ -864,7 +872,7 @@ namespace AgOpenGPS
                     panelLeft.Visible = true;
                     oglMain.Left = 80;
                     oglMain.Width = this.Width - statusStripLeft.Width - 100; //22
-                    oglMain.Height = this.Height - 130;
+                    oglMain.Height = this.Height - 120;
                 }
             }
 

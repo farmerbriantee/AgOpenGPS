@@ -92,6 +92,8 @@ namespace AgOpenGPS
             }
 
             Properties.Settings.Default.setWindow_abCurveCreate = Location;
+
+            mf.threeSecondCounter = 100;
         }
 
         #region Main Controls
