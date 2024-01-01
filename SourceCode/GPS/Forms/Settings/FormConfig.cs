@@ -97,6 +97,8 @@ namespace AgOpenGPS
 
             nudOverlap.Controls[0].Enabled = false;
             nudOffset.Controls[0].Enabled = false;
+
+            nudTrailingToolToPivotLength.Controls[0].Enabled = false;
         }
 
         private void FormConfig_Load(object sender, EventArgs e)
@@ -218,6 +220,9 @@ namespace AgOpenGPS
             nudOffset.Minimum = Math.Round(nudOffset.Minimum / 2.54M);
             nudOverlap.Maximum = Math.Round(nudOverlap.Maximum / 2.54M);
             nudOverlap.Minimum = Math.Round(nudOverlap.Minimum / 2.54M);
+
+            nudTrailingToolToPivotLength.Maximum = Math.Round(nudTrailingToolToPivotLength.Maximum / 2.54M);
+            nudTrailingToolToPivotLength.Minimum = Math.Round(nudTrailingToolToPivotLength.Minimum / 2.54M);
         }
 
         private void btnOK_Click(object sender, EventArgs e)

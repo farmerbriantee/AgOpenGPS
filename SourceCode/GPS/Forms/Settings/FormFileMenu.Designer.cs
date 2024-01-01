@@ -1,6 +1,6 @@
 ﻿namespace AgOpenGPS
 {
-    partial class FormToolPivot
+    partial class FormFileMenu
     {
         /// <summary>
         /// Required designer variable.

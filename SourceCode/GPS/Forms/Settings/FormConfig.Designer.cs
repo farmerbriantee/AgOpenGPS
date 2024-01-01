@@ -47,6 +47,7 @@
             this.btnSubToolSettings = new System.Windows.Forms.Button();
             this.btnSubSections = new System.Windows.Forms.Button();
             this.btnSubToolOffset = new System.Windows.Forms.Button();
+            this.btnSubPivot = new System.Windows.Forms.Button();
             this.btnSubHitch = new System.Windows.Forms.Button();
             this.btnSubToolType = new System.Windows.Forms.Button();
             this.btnTool = new System.Windows.Forms.Button();
@@ -128,45 +129,45 @@
             this.btnOpacityUp = new System.Windows.Forms.Button();
             this.cboxIsImage = new System.Windows.Forms.CheckBox();
             this.tabVAntenna = new System.Windows.Forms.TabPage();
-            this.nudAntennaHeight = new NudlessNumericUpDown();
-            this.nudAntennaPivot = new NudlessNumericUpDown();
-            this.nudAntennaOffset = new NudlessNumericUpDown();
+            this.nudAntennaHeight = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudAntennaPivot = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudAntennaOffset = new AgOpenGPS.NudlessNumericUpDown();
             this.pboxAntenna = new System.Windows.Forms.PictureBox();
             this.tabVDimensions = new System.Windows.Forms.TabPage();
             this.label60 = new System.Windows.Forms.Label();
             this.label53 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
-            this.nudVehicleTrack = new NudlessNumericUpDown();
-            this.nudWheelbase = new NudlessNumericUpDown();
-            this.nudMinTurnRadius = new NudlessNumericUpDown();
+            this.nudVehicleTrack = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudWheelbase = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudMinTurnRadius = new AgOpenGPS.NudlessNumericUpDown();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabVGuidance = new System.Windows.Forms.TabPage();
-            this.nudMinSteerSpeed = new NudlessNumericUpDown();
+            this.nudMinSteerSpeed = new AgOpenGPS.NudlessNumericUpDown();
             this.label165 = new System.Windows.Forms.Label();
             this.label166 = new System.Windows.Forms.Label();
             this.label164 = new System.Windows.Forms.Label();
-            this.nudMaxSteerSpeed = new NudlessNumericUpDown();
+            this.nudMaxSteerSpeed = new AgOpenGPS.NudlessNumericUpDown();
             this.label55 = new System.Windows.Forms.Label();
             this.label163 = new System.Windows.Forms.Label();
-            this.nudMaxAngularVelocity = new NudlessNumericUpDown();
+            this.nudMaxAngularVelocity = new AgOpenGPS.NudlessNumericUpDown();
             this.label160 = new System.Windows.Forms.Label();
             this.label156 = new System.Windows.Forms.Label();
             this.label161 = new System.Windows.Forms.Label();
             this.label159 = new System.Windows.Forms.Label();
             this.label113 = new System.Windows.Forms.Label();
             this.label162 = new System.Windows.Forms.Label();
-            this.nudGuidanceSpeedLimit = new NudlessNumericUpDown();
+            this.nudGuidanceSpeedLimit = new AgOpenGPS.NudlessNumericUpDown();
             this.label111 = new System.Windows.Forms.Label();
             this.label110 = new System.Windows.Forms.Label();
             this.label109 = new System.Windows.Forms.Label();
             this.label107 = new System.Windows.Forms.Label();
-            this.nudGuidanceLookAhead = new NudlessNumericUpDown();
-            this.nudABLength = new NudlessNumericUpDown();
+            this.nudGuidanceLookAhead = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudABLength = new AgOpenGPS.NudlessNumericUpDown();
             this.label79 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.nudSnapDistance = new NudlessNumericUpDown();
-            this.nudLineWidth = new NudlessNumericUpDown();
+            this.nudSnapDistance = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudLineWidth = new AgOpenGPS.NudlessNumericUpDown();
             this.label108 = new System.Windows.Forms.Label();
             this.pictureBox17 = new System.Windows.Forms.PictureBox();
             this.pictureBox16 = new System.Windows.Forms.PictureBox();
@@ -186,9 +187,9 @@
             this.rbtnTrailing = new System.Windows.Forms.RadioButton();
             this.tabTHitch = new System.Windows.Forms.TabPage();
             this.btnRunPivotOffsetForm = new System.Windows.Forms.Button();
-            this.nudTrailingHitchLength = new NudlessNumericUpDown();
-            this.nudDrawbarLength = new NudlessNumericUpDown();
-            this.nudTankHitch = new NudlessNumericUpDown();
+            this.nudTrailingHitchLength = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudDrawbarLength = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudTankHitch = new AgOpenGPS.NudlessNumericUpDown();
             this.picboxToolHitch = new System.Windows.Forms.PictureBox();
             this.tabToolOffset = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -201,29 +202,33 @@
             this.rbtnLeftNegative = new System.Windows.Forms.RadioButton();
             this.rbtnToolRightPositive = new System.Windows.Forms.RadioButton();
             this.label65 = new System.Windows.Forms.Label();
-            this.nudOverlap = new NudlessNumericUpDown();
-            this.nudOffset = new NudlessNumericUpDown();
+            this.nudOverlap = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudOffset = new AgOpenGPS.NudlessNumericUpDown();
+            this.tabToolPivot = new System.Windows.Forms.TabPage();
+            this.rbtnPivotBehindPos = new System.Windows.Forms.RadioButton();
+            this.rbtnPivotAheadNeg = new System.Windows.Forms.RadioButton();
+            this.nudTrailingToolToPivotLength = new AgOpenGPS.NudlessNumericUpDown();
             this.tabTSections = new System.Windows.Forms.TabPage();
             this.label106 = new System.Windows.Forms.Label();
-            this.nudCutoffSpeed = new NudlessNumericUpDown();
+            this.nudCutoffSpeed = new AgOpenGPS.NudlessNumericUpDown();
             this.lblTurnOffBelowUnits = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lblInchCm2 = new System.Windows.Forms.Label();
             this.panelSymmetricSections = new System.Windows.Forms.Panel();
-            this.nudZone8To = new NudlessNumericUpDown();
+            this.nudZone8To = new AgOpenGPS.NudlessNumericUpDown();
             this.lblZoneStart8 = new System.Windows.Forms.Label();
             this.label157 = new System.Windows.Forms.Label();
             this.label158 = new System.Windows.Forms.Label();
-            this.nudZone7To = new NudlessNumericUpDown();
+            this.nudZone7To = new AgOpenGPS.NudlessNumericUpDown();
             this.lblZoneStart7 = new System.Windows.Forms.Label();
             this.label154 = new System.Windows.Forms.Label();
             this.label155 = new System.Windows.Forms.Label();
-            this.nudZone6To = new NudlessNumericUpDown();
-            this.nudZone4To = new NudlessNumericUpDown();
-            this.nudZone1To = new NudlessNumericUpDown();
-            this.nudZone5To = new NudlessNumericUpDown();
-            this.nudZone3To = new NudlessNumericUpDown();
-            this.nudZone2To = new NudlessNumericUpDown();
+            this.nudZone6To = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudZone4To = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudZone1To = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudZone5To = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudZone3To = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudZone2To = new AgOpenGPS.NudlessNumericUpDown();
             this.lblZoneStart6 = new System.Windows.Forms.Label();
             this.lblZoneStart5 = new System.Windows.Forms.Label();
             this.lblZoneStart4 = new System.Windows.Forms.Label();
@@ -242,23 +247,23 @@
             this.label104 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.nudDefaultSectionWidth = new NudlessNumericUpDown();
+            this.nudDefaultSectionWidth = new AgOpenGPS.NudlessNumericUpDown();
             this.label49 = new System.Windows.Forms.Label();
             this.cboxNumSections = new System.Windows.Forms.ComboBox();
             this.lblVehicleToolWidth = new System.Windows.Forms.Label();
             this.label50 = new System.Windows.Forms.Label();
-            this.nudMinCoverage = new NudlessNumericUpDown();
+            this.nudMinCoverage = new AgOpenGPS.NudlessNumericUpDown();
             this.lblZonesBox = new System.Windows.Forms.Label();
             this.label51 = new System.Windows.Forms.Label();
             this.cboxNumberOfZones = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.nudSection16 = new NudlessNumericUpDown();
+            this.nudSection16 = new AgOpenGPS.NudlessNumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
-            this.nudSection15 = new NudlessNumericUpDown();
-            this.nudSection14 = new NudlessNumericUpDown();
-            this.nudSection13 = new NudlessNumericUpDown();
+            this.nudSection15 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudSection14 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudSection13 = new AgOpenGPS.NudlessNumericUpDown();
             this.label32 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
@@ -268,22 +273,22 @@
             this.label37 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
-            this.nudNumberOfSections = new NudlessNumericUpDown();
+            this.nudNumberOfSections = new AgOpenGPS.NudlessNumericUpDown();
             this.label46 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
-            this.nudSection12 = new NudlessNumericUpDown();
-            this.nudSection11 = new NudlessNumericUpDown();
-            this.nudSection10 = new NudlessNumericUpDown();
-            this.nudSection9 = new NudlessNumericUpDown();
-            this.nudSection8 = new NudlessNumericUpDown();
-            this.nudSection7 = new NudlessNumericUpDown();
-            this.nudSection6 = new NudlessNumericUpDown();
-            this.nudSection5 = new NudlessNumericUpDown();
-            this.nudSection4 = new NudlessNumericUpDown();
-            this.nudSection3 = new NudlessNumericUpDown();
-            this.nudSection2 = new NudlessNumericUpDown();
-            this.nudSection1 = new NudlessNumericUpDown();
+            this.nudSection12 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudSection11 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudSection10 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudSection9 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudSection8 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudSection7 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudSection6 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudSection5 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudSection4 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudSection3 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudSection2 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudSection1 = new AgOpenGPS.NudlessNumericUpDown();
             this.cboxSectionBoundaryControl = new System.Windows.Forms.CheckBox();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.cboxIsUnique = new System.Windows.Forms.CheckBox();
@@ -301,15 +306,15 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.nudLookAheadOff = new NudlessNumericUpDown();
-            this.nudTurnOffDelay = new NudlessNumericUpDown();
-            this.nudLookAhead = new NudlessNumericUpDown();
+            this.nudLookAheadOff = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudTurnOffDelay = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudLookAhead = new AgOpenGPS.NudlessNumericUpDown();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tabDHeading = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.gboxDual = new System.Windows.Forms.GroupBox();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
-            this.nudDualHeadingOffset = new NudlessNumericUpDown();
+            this.nudDualHeadingOffset = new AgOpenGPS.NudlessNumericUpDown();
             this.label12 = new System.Windows.Forms.Label();
             this.cboxIsDualAsIMU = new System.Windows.Forms.CheckBox();
             this.label118 = new System.Windows.Forms.Label();
@@ -356,9 +361,9 @@
             this.label68 = new System.Windows.Forms.Label();
             this.label63 = new System.Windows.Forms.Label();
             this.lblFtMTurnRadius = new System.Windows.Forms.Label();
-            this.nudYouTurnRadius = new NudlessNumericUpDown();
+            this.nudYouTurnRadius = new AgOpenGPS.NudlessNumericUpDown();
             this.lblFtMUTurn = new System.Windows.Forms.Label();
-            this.nudTurnDistanceFromBoundary = new NudlessNumericUpDown();
+            this.nudTurnDistanceFromBoundary = new AgOpenGPS.NudlessNumericUpDown();
             this.lblSmoothing = new System.Windows.Forms.Label();
             this.lblDistance = new System.Windows.Forms.Label();
             this.label54 = new System.Windows.Forms.Label();
@@ -429,22 +434,22 @@
             this.label150 = new System.Windows.Forms.Label();
             this.label149 = new System.Windows.Forms.Label();
             this.label148 = new System.Windows.Forms.Label();
-            this.nudUser4 = new NudlessNumericUpDown();
-            this.nudUser3 = new NudlessNumericUpDown();
-            this.nudUser2 = new NudlessNumericUpDown();
-            this.nudUser1 = new NudlessNumericUpDown();
+            this.nudUser4 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudUser3 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudUser2 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudUser1 = new AgOpenGPS.NudlessNumericUpDown();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label147 = new System.Windows.Forms.Label();
-            this.nudHydLiftLookAhead = new NudlessNumericUpDown();
+            this.nudHydLiftLookAhead = new AgOpenGPS.NudlessNumericUpDown();
             this.label69 = new System.Windows.Forms.Label();
             this.label74 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label73 = new System.Windows.Forms.Label();
             this.cboxIsHydOn = new System.Windows.Forms.CheckBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.nudLowerTime = new NudlessNumericUpDown();
+            this.nudLowerTime = new AgOpenGPS.NudlessNumericUpDown();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.nudRaiseTime = new NudlessNumericUpDown();
+            this.nudRaiseTime = new AgOpenGPS.NudlessNumericUpDown();
             this.label72 = new System.Windows.Forms.Label();
             this.label67 = new System.Windows.Forms.Label();
             this.label56 = new System.Windows.Forms.Label();
@@ -456,7 +461,7 @@
             this.label85 = new System.Windows.Forms.Label();
             this.lblTramWidthUnits = new System.Windows.Forms.Label();
             this.label75 = new System.Windows.Forms.Label();
-            this.nudTramWidth = new NudlessNumericUpDown();
+            this.nudTramWidth = new AgOpenGPS.NudlessNumericUpDown();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.tabBtns = new System.Windows.Forms.TabPage();
             this.label62 = new System.Windows.Forms.Label();
@@ -604,6 +609,8 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudOverlap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudOffset)).BeginInit();
+            this.tabToolPivot.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTrailingToolToPivotLength)).BeginInit();
             this.tabTSections.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCutoffSpeed)).BeginInit();
             this.panelSymmetricSections.SuspendLayout();
@@ -680,7 +687,6 @@
             // 
             // panelLeftSideMenu
             // 
-            this.panelLeftSideMenu.AutoScroll = true;
             this.panelLeftSideMenu.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.panelLeftSideMenu.Controls.Add(this.btnDisplay);
             this.panelLeftSideMenu.Controls.Add(this.btnFeatureHides);
@@ -711,10 +717,10 @@
             this.btnDisplay.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnDisplay.Image = global::AgOpenGPS.Properties.Resources.Con_Display;
             this.btnDisplay.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDisplay.Location = new System.Drawing.Point(0, 1599);
+            this.btnDisplay.Location = new System.Drawing.Point(0, 1669);
             this.btnDisplay.Name = "btnDisplay";
             this.btnDisplay.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnDisplay.Size = new System.Drawing.Size(103, 80);
+            this.btnDisplay.Size = new System.Drawing.Size(120, 80);
             this.btnDisplay.TabIndex = 2;
             this.btnDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDisplay.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -732,10 +738,10 @@
             this.btnFeatureHides.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnFeatureHides.Image = global::AgOpenGPS.Properties.Resources.Con_FeatureMenu;
             this.btnFeatureHides.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFeatureHides.Location = new System.Drawing.Point(0, 1519);
+            this.btnFeatureHides.Location = new System.Drawing.Point(0, 1589);
             this.btnFeatureHides.Name = "btnFeatureHides";
             this.btnFeatureHides.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnFeatureHides.Size = new System.Drawing.Size(103, 80);
+            this.btnFeatureHides.Size = new System.Drawing.Size(120, 80);
             this.btnFeatureHides.TabIndex = 4;
             this.btnFeatureHides.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFeatureHides.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -753,10 +759,10 @@
             this.btnTram.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnTram.Image = global::AgOpenGPS.Properties.Resources.Con_TramMenu;
             this.btnTram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTram.Location = new System.Drawing.Point(0, 1439);
+            this.btnTram.Location = new System.Drawing.Point(0, 1509);
             this.btnTram.Name = "btnTram";
             this.btnTram.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnTram.Size = new System.Drawing.Size(103, 80);
+            this.btnTram.Size = new System.Drawing.Size(120, 80);
             this.btnTram.TabIndex = 3;
             this.btnTram.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTram.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -769,9 +775,9 @@
             this.panelArduinoSubMenu.Controls.Add(this.btnMachineRelay);
             this.panelArduinoSubMenu.Controls.Add(this.btnMachineModule);
             this.panelArduinoSubMenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelArduinoSubMenu.Location = new System.Drawing.Point(0, 1279);
+            this.panelArduinoSubMenu.Location = new System.Drawing.Point(0, 1349);
             this.panelArduinoSubMenu.Name = "panelArduinoSubMenu";
-            this.panelArduinoSubMenu.Size = new System.Drawing.Size(103, 160);
+            this.panelArduinoSubMenu.Size = new System.Drawing.Size(120, 160);
             this.panelArduinoSubMenu.TabIndex = 116;
             // 
             // btnMachineRelay
@@ -788,7 +794,7 @@
             this.btnMachineRelay.Location = new System.Drawing.Point(0, 80);
             this.btnMachineRelay.Name = "btnMachineRelay";
             this.btnMachineRelay.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnMachineRelay.Size = new System.Drawing.Size(103, 80);
+            this.btnMachineRelay.Size = new System.Drawing.Size(120, 80);
             this.btnMachineRelay.TabIndex = 3;
             this.btnMachineRelay.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMachineRelay.UseVisualStyleBackColor = false;
@@ -808,7 +814,7 @@
             this.btnMachineModule.Location = new System.Drawing.Point(0, 0);
             this.btnMachineModule.Name = "btnMachineModule";
             this.btnMachineModule.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnMachineModule.Size = new System.Drawing.Size(103, 80);
+            this.btnMachineModule.Size = new System.Drawing.Size(120, 80);
             this.btnMachineModule.TabIndex = 1;
             this.btnMachineModule.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMachineModule.UseVisualStyleBackColor = false;
@@ -825,10 +831,10 @@
             this.btnArduino.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnArduino.Image = global::AgOpenGPS.Properties.Resources.Con_ModulesMenu;
             this.btnArduino.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnArduino.Location = new System.Drawing.Point(0, 1199);
+            this.btnArduino.Location = new System.Drawing.Point(0, 1269);
             this.btnArduino.Name = "btnArduino";
             this.btnArduino.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnArduino.Size = new System.Drawing.Size(103, 80);
+            this.btnArduino.Size = new System.Drawing.Size(120, 80);
             this.btnArduino.TabIndex = 115;
             this.btnArduino.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnArduino.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -846,10 +852,10 @@
             this.btnUTurn.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnUTurn.Image = global::AgOpenGPS.Properties.Resources.Con_UTurnMenu;
             this.btnUTurn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUTurn.Location = new System.Drawing.Point(0, 1124);
+            this.btnUTurn.Location = new System.Drawing.Point(0, 1194);
             this.btnUTurn.Name = "btnUTurn";
             this.btnUTurn.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnUTurn.Size = new System.Drawing.Size(103, 75);
+            this.btnUTurn.Size = new System.Drawing.Size(120, 75);
             this.btnUTurn.TabIndex = 116;
             this.btnUTurn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUTurn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -862,9 +868,9 @@
             this.panelDataSourcesSubMenu.Controls.Add(this.btnSubRoll);
             this.panelDataSourcesSubMenu.Controls.Add(this.btnSubHeading);
             this.panelDataSourcesSubMenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelDataSourcesSubMenu.Location = new System.Drawing.Point(0, 964);
+            this.panelDataSourcesSubMenu.Location = new System.Drawing.Point(0, 1034);
             this.panelDataSourcesSubMenu.Name = "panelDataSourcesSubMenu";
-            this.panelDataSourcesSubMenu.Size = new System.Drawing.Size(103, 160);
+            this.panelDataSourcesSubMenu.Size = new System.Drawing.Size(120, 160);
             this.panelDataSourcesSubMenu.TabIndex = 7;
             // 
             // btnSubRoll
@@ -881,7 +887,7 @@
             this.btnSubRoll.Location = new System.Drawing.Point(0, 80);
             this.btnSubRoll.Name = "btnSubRoll";
             this.btnSubRoll.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubRoll.Size = new System.Drawing.Size(103, 80);
+            this.btnSubRoll.Size = new System.Drawing.Size(120, 80);
             this.btnSubRoll.TabIndex = 0;
             this.btnSubRoll.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubRoll.UseVisualStyleBackColor = false;
@@ -901,7 +907,7 @@
             this.btnSubHeading.Location = new System.Drawing.Point(0, 0);
             this.btnSubHeading.Name = "btnSubHeading";
             this.btnSubHeading.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnSubHeading.Size = new System.Drawing.Size(103, 80);
+            this.btnSubHeading.Size = new System.Drawing.Size(120, 80);
             this.btnSubHeading.TabIndex = 1;
             this.btnSubHeading.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubHeading.UseVisualStyleBackColor = false;
@@ -918,10 +924,10 @@
             this.btnDataSources.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnDataSources.Image = global::AgOpenGPS.Properties.Resources.Con_SourcesMenu;
             this.btnDataSources.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDataSources.Location = new System.Drawing.Point(0, 884);
+            this.btnDataSources.Location = new System.Drawing.Point(0, 954);
             this.btnDataSources.Name = "btnDataSources";
             this.btnDataSources.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnDataSources.Size = new System.Drawing.Size(103, 80);
+            this.btnDataSources.Size = new System.Drawing.Size(120, 80);
             this.btnDataSources.TabIndex = 114;
             this.btnDataSources.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDataSources.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -935,12 +941,13 @@
             this.panelToolSubMenu.Controls.Add(this.btnSubToolSettings);
             this.panelToolSubMenu.Controls.Add(this.btnSubSections);
             this.panelToolSubMenu.Controls.Add(this.btnSubToolOffset);
+            this.panelToolSubMenu.Controls.Add(this.btnSubPivot);
             this.panelToolSubMenu.Controls.Add(this.btnSubHitch);
             this.panelToolSubMenu.Controls.Add(this.btnSubToolType);
             this.panelToolSubMenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelToolSubMenu.Location = new System.Drawing.Point(0, 448);
             this.panelToolSubMenu.Name = "panelToolSubMenu";
-            this.panelToolSubMenu.Size = new System.Drawing.Size(103, 436);
+            this.panelToolSubMenu.Size = new System.Drawing.Size(120, 506);
             this.panelToolSubMenu.TabIndex = 4;
             // 
             // btnSubSwitches
@@ -954,10 +961,10 @@
             this.btnSubSwitches.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnSubSwitches.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementSwitch;
             this.btnSubSwitches.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSubSwitches.Location = new System.Drawing.Point(0, 360);
+            this.btnSubSwitches.Location = new System.Drawing.Point(0, 432);
             this.btnSubSwitches.Name = "btnSubSwitches";
             this.btnSubSwitches.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubSwitches.Size = new System.Drawing.Size(103, 72);
+            this.btnSubSwitches.Size = new System.Drawing.Size(120, 72);
             this.btnSubSwitches.TabIndex = 1;
             this.btnSubSwitches.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubSwitches.UseVisualStyleBackColor = false;
@@ -974,10 +981,10 @@
             this.btnSubToolSettings.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnSubToolSettings.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementSettings;
             this.btnSubToolSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSubToolSettings.Location = new System.Drawing.Point(0, 288);
+            this.btnSubToolSettings.Location = new System.Drawing.Point(0, 360);
             this.btnSubToolSettings.Name = "btnSubToolSettings";
             this.btnSubToolSettings.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnSubToolSettings.Size = new System.Drawing.Size(103, 72);
+            this.btnSubToolSettings.Size = new System.Drawing.Size(120, 72);
             this.btnSubToolSettings.TabIndex = 4;
             this.btnSubToolSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubToolSettings.UseVisualStyleBackColor = false;
@@ -994,10 +1001,10 @@
             this.btnSubSections.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnSubSections.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementSection;
             this.btnSubSections.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSubSections.Location = new System.Drawing.Point(0, 216);
+            this.btnSubSections.Location = new System.Drawing.Point(0, 288);
             this.btnSubSections.Name = "btnSubSections";
             this.btnSubSections.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubSections.Size = new System.Drawing.Size(103, 72);
+            this.btnSubSections.Size = new System.Drawing.Size(120, 72);
             this.btnSubSections.TabIndex = 0;
             this.btnSubSections.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubSections.UseVisualStyleBackColor = false;
@@ -1014,14 +1021,34 @@
             this.btnSubToolOffset.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnSubToolOffset.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementOffset;
             this.btnSubToolOffset.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSubToolOffset.Location = new System.Drawing.Point(0, 144);
+            this.btnSubToolOffset.Location = new System.Drawing.Point(0, 216);
             this.btnSubToolOffset.Name = "btnSubToolOffset";
             this.btnSubToolOffset.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubToolOffset.Size = new System.Drawing.Size(103, 72);
+            this.btnSubToolOffset.Size = new System.Drawing.Size(120, 72);
             this.btnSubToolOffset.TabIndex = 1;
             this.btnSubToolOffset.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubToolOffset.UseVisualStyleBackColor = false;
             this.btnSubToolOffset.Click += new System.EventHandler(this.btnSubToolOffset_Click);
+            // 
+            // btnSubPivot
+            // 
+            this.btnSubPivot.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnSubPivot.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnSubPivot.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnSubPivot.FlatAppearance.BorderSize = 0;
+            this.btnSubPivot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSubPivot.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubPivot.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnSubPivot.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementPivot;
+            this.btnSubPivot.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSubPivot.Location = new System.Drawing.Point(0, 144);
+            this.btnSubPivot.Name = "btnSubPivot";
+            this.btnSubPivot.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
+            this.btnSubPivot.Size = new System.Drawing.Size(120, 72);
+            this.btnSubPivot.TabIndex = 217;
+            this.btnSubPivot.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSubPivot.UseVisualStyleBackColor = false;
+            this.btnSubPivot.Click += new System.EventHandler(this.btnSubPivot_Click);
             // 
             // btnSubHitch
             // 
@@ -1037,7 +1064,7 @@
             this.btnSubHitch.Location = new System.Drawing.Point(0, 72);
             this.btnSubHitch.Name = "btnSubHitch";
             this.btnSubHitch.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnSubHitch.Size = new System.Drawing.Size(103, 72);
+            this.btnSubHitch.Size = new System.Drawing.Size(120, 72);
             this.btnSubHitch.TabIndex = 5;
             this.btnSubHitch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubHitch.UseVisualStyleBackColor = false;
@@ -1057,7 +1084,7 @@
             this.btnSubToolType.Location = new System.Drawing.Point(0, 0);
             this.btnSubToolType.Name = "btnSubToolType";
             this.btnSubToolType.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubToolType.Size = new System.Drawing.Size(103, 72);
+            this.btnSubToolType.Size = new System.Drawing.Size(120, 72);
             this.btnSubToolType.TabIndex = 6;
             this.btnSubToolType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubToolType.UseVisualStyleBackColor = false;
@@ -1077,7 +1104,7 @@
             this.btnTool.Location = new System.Drawing.Point(0, 368);
             this.btnTool.Name = "btnTool";
             this.btnTool.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.btnTool.Size = new System.Drawing.Size(103, 80);
+            this.btnTool.Size = new System.Drawing.Size(120, 80);
             this.btnTool.TabIndex = 3;
             this.btnTool.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTool.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -1095,7 +1122,7 @@
             this.panelVehicleSubMenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelVehicleSubMenu.Location = new System.Drawing.Point(0, 80);
             this.panelVehicleSubMenu.Name = "panelVehicleSubMenu";
-            this.panelVehicleSubMenu.Size = new System.Drawing.Size(103, 288);
+            this.panelVehicleSubMenu.Size = new System.Drawing.Size(120, 288);
             this.panelVehicleSubMenu.TabIndex = 2;
             // 
             // button1
@@ -1128,7 +1155,7 @@
             this.btnSubGuidance.Location = new System.Drawing.Point(0, 216);
             this.btnSubGuidance.Name = "btnSubGuidance";
             this.btnSubGuidance.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnSubGuidance.Size = new System.Drawing.Size(103, 72);
+            this.btnSubGuidance.Size = new System.Drawing.Size(120, 72);
             this.btnSubGuidance.TabIndex = 3;
             this.btnSubGuidance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubGuidance.UseVisualStyleBackColor = false;
@@ -1148,7 +1175,7 @@
             this.btnSubAntenna.Location = new System.Drawing.Point(0, 144);
             this.btnSubAntenna.Name = "btnSubAntenna";
             this.btnSubAntenna.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubAntenna.Size = new System.Drawing.Size(103, 72);
+            this.btnSubAntenna.Size = new System.Drawing.Size(120, 72);
             this.btnSubAntenna.TabIndex = 2;
             this.btnSubAntenna.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubAntenna.UseVisualStyleBackColor = false;
@@ -1168,7 +1195,7 @@
             this.btnSubDimensions.Location = new System.Drawing.Point(0, 72);
             this.btnSubDimensions.Name = "btnSubDimensions";
             this.btnSubDimensions.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnSubDimensions.Size = new System.Drawing.Size(103, 72);
+            this.btnSubDimensions.Size = new System.Drawing.Size(120, 72);
             this.btnSubDimensions.TabIndex = 1;
             this.btnSubDimensions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubDimensions.UseVisualStyleBackColor = false;
@@ -1188,7 +1215,7 @@
             this.btnSubVehicleType.Location = new System.Drawing.Point(0, 0);
             this.btnSubVehicleType.Name = "btnSubVehicleType";
             this.btnSubVehicleType.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubVehicleType.Size = new System.Drawing.Size(103, 72);
+            this.btnSubVehicleType.Size = new System.Drawing.Size(120, 72);
             this.btnSubVehicleType.TabIndex = 0;
             this.btnSubVehicleType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubVehicleType.UseVisualStyleBackColor = false;
@@ -1208,7 +1235,7 @@
             this.btnVehicle.Location = new System.Drawing.Point(0, 0);
             this.btnVehicle.Name = "btnVehicle";
             this.btnVehicle.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.btnVehicle.Size = new System.Drawing.Size(103, 80);
+            this.btnVehicle.Size = new System.Drawing.Size(120, 80);
             this.btnVehicle.TabIndex = 113;
             this.btnVehicle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnVehicle.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -1226,6 +1253,7 @@
             this.tab1.Controls.Add(this.tabTConfig);
             this.tab1.Controls.Add(this.tabTHitch);
             this.tab1.Controls.Add(this.tabToolOffset);
+            this.tab1.Controls.Add(this.tabToolPivot);
             this.tab1.Controls.Add(this.tabTSections);
             this.tab1.Controls.Add(this.tabTSwitches);
             this.tab1.Controls.Add(this.tabTSettings);
@@ -3463,7 +3491,7 @@
             this.groupBox3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(441, 149);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(404, 290);
+            this.groupBox3.Size = new System.Drawing.Size(396, 290);
             this.groupBox3.TabIndex = 481;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Overlap / Gap";
@@ -3517,7 +3545,7 @@
             this.rbtnToolGap.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnToolGap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnToolGap.Image = global::AgOpenGPS.Properties.Resources.ToolGap;
-            this.rbtnToolGap.Location = new System.Drawing.Point(238, 35);
+            this.rbtnToolGap.Location = new System.Drawing.Point(214, 35);
             this.rbtnToolGap.Name = "rbtnToolGap";
             this.rbtnToolGap.Size = new System.Drawing.Size(166, 218);
             this.rbtnToolGap.TabIndex = 478;
@@ -3531,9 +3559,9 @@
             this.groupBox2.Controls.Add(this.rbtnToolRightPositive);
             this.groupBox2.Controls.Add(this.label65);
             this.groupBox2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(14, 34);
+            this.groupBox2.Location = new System.Drawing.Point(18, 149);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(404, 290);
+            this.groupBox2.Size = new System.Drawing.Size(389, 290);
             this.groupBox2.TabIndex = 480;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tool Offset";
@@ -3544,7 +3572,7 @@
             this.label17.BackColor = System.Drawing.Color.Transparent;
             this.label17.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.Black;
-            this.label17.Location = new System.Drawing.Point(283, 256);
+            this.label17.Location = new System.Drawing.Point(257, 256);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(65, 16);
             this.label17.TabIndex = 480;
@@ -3575,7 +3603,7 @@
             this.rbtnToolRightPositive.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnToolRightPositive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnToolRightPositive.Image = global::AgOpenGPS.Properties.Resources.ToolOffsetPositiveRight;
-            this.rbtnToolRightPositive.Location = new System.Drawing.Point(233, 35);
+            this.rbtnToolRightPositive.Location = new System.Drawing.Point(205, 35);
             this.rbtnToolRightPositive.Name = "rbtnToolRightPositive";
             this.rbtnToolRightPositive.Size = new System.Drawing.Size(166, 218);
             this.rbtnToolRightPositive.TabIndex = 478;
@@ -3628,7 +3656,7 @@
             this.nudOffset.BackColor = System.Drawing.Color.AliceBlue;
             this.nudOffset.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudOffset.InterceptArrowKeys = false;
-            this.nudOffset.Location = new System.Drawing.Point(166, 349);
+            this.nudOffset.Location = new System.Drawing.Point(170, 464);
             this.nudOffset.Maximum = new decimal(new int[] {
             2500,
             0,
@@ -3651,6 +3679,82 @@
             0});
             this.nudOffset.Click += new System.EventHandler(this.nudOffset_Click);
             this.nudOffset.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudOffset_HelpRequested);
+            // 
+            // tabToolPivot
+            // 
+            this.tabToolPivot.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabToolPivot.Controls.Add(this.rbtnPivotBehindPos);
+            this.tabToolPivot.Controls.Add(this.rbtnPivotAheadNeg);
+            this.tabToolPivot.Controls.Add(this.nudTrailingToolToPivotLength);
+            this.tabToolPivot.Location = new System.Drawing.Point(4, 44);
+            this.tabToolPivot.Name = "tabToolPivot";
+            this.tabToolPivot.Padding = new System.Windows.Forms.Padding(3);
+            this.tabToolPivot.Size = new System.Drawing.Size(854, 584);
+            this.tabToolPivot.TabIndex = 27;
+            this.tabToolPivot.Text = "tPivot";
+            this.tabToolPivot.Enter += new System.EventHandler(this.tabToolPivot_Enter);
+            this.tabToolPivot.Leave += new System.EventHandler(this.tabToolPivot_Leave);
+            // 
+            // rbtnPivotBehindPos
+            // 
+            this.rbtnPivotBehindPos.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnPivotBehindPos.BackColor = System.Drawing.Color.Transparent;
+            this.rbtnPivotBehindPos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.rbtnPivotBehindPos.Checked = true;
+            this.rbtnPivotBehindPos.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnPivotBehindPos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnPivotBehindPos.Image = global::AgOpenGPS.Properties.Resources.ToolHitchPivotOffsetNeg;
+            this.rbtnPivotBehindPos.Location = new System.Drawing.Point(577, 162);
+            this.rbtnPivotBehindPos.Name = "rbtnPivotBehindPos";
+            this.rbtnPivotBehindPos.Size = new System.Drawing.Size(201, 300);
+            this.rbtnPivotBehindPos.TabIndex = 216;
+            this.rbtnPivotBehindPos.TabStop = true;
+            this.rbtnPivotBehindPos.UseVisualStyleBackColor = false;
+            this.rbtnPivotBehindPos.Click += new System.EventHandler(this.rbtnPivotBehindPos_Click);
+            // 
+            // rbtnPivotAheadNeg
+            // 
+            this.rbtnPivotAheadNeg.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnPivotAheadNeg.BackColor = System.Drawing.Color.Transparent;
+            this.rbtnPivotAheadNeg.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.rbtnPivotAheadNeg.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnPivotAheadNeg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnPivotAheadNeg.Image = global::AgOpenGPS.Properties.Resources.ToolHitchPivotOffsetPos;
+            this.rbtnPivotAheadNeg.Location = new System.Drawing.Point(72, 162);
+            this.rbtnPivotAheadNeg.Name = "rbtnPivotAheadNeg";
+            this.rbtnPivotAheadNeg.Size = new System.Drawing.Size(201, 300);
+            this.rbtnPivotAheadNeg.TabIndex = 215;
+            this.rbtnPivotAheadNeg.UseVisualStyleBackColor = false;
+            this.rbtnPivotAheadNeg.Click += new System.EventHandler(this.rbtnPivotBehindPos_Click);
+            // 
+            // nudTrailingToolToPivotLength
+            // 
+            this.nudTrailingToolToPivotLength.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudTrailingToolToPivotLength.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudTrailingToolToPivotLength.InterceptArrowKeys = false;
+            this.nudTrailingToolToPivotLength.Location = new System.Drawing.Point(320, 363);
+            this.nudTrailingToolToPivotLength.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.nudTrailingToolToPivotLength.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.nudTrailingToolToPivotLength.Name = "nudTrailingToolToPivotLength";
+            this.nudTrailingToolToPivotLength.ReadOnly = true;
+            this.nudTrailingToolToPivotLength.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.nudTrailingToolToPivotLength.Size = new System.Drawing.Size(205, 52);
+            this.nudTrailingToolToPivotLength.TabIndex = 214;
+            this.nudTrailingToolToPivotLength.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudTrailingToolToPivotLength.Value = new decimal(new int[] {
+            51,
+            0,
+            0,
+            0});
+            this.nudTrailingToolToPivotLength.Click += new System.EventHandler(this.nudTrailingToolToPivotLength_Click);
             // 
             // tabTSections
             // 
@@ -9888,6 +9992,8 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudOverlap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudOffset)).EndInit();
+            this.tabToolPivot.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudTrailingToolToPivotLength)).EndInit();
             this.tabTSections.ResumeLayout(false);
             this.tabTSections.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCutoffSpeed)).EndInit();
@@ -10498,5 +10604,10 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TabPage tabToolPivot;
+        private System.Windows.Forms.RadioButton rbtnPivotBehindPos;
+        private System.Windows.Forms.RadioButton rbtnPivotAheadNeg;
+        private NudlessNumericUpDown nudTrailingToolToPivotLength;
+        private System.Windows.Forms.Button btnSubPivot;
     }
 }

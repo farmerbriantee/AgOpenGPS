@@ -215,7 +215,7 @@ namespace AgOpenGPS
 
         private void btnRunPivotOffsetForm_Click(object sender, EventArgs e)
         {
-            Form form = new FormToolPivot(mf);
+            Form form = new FormFileMenu(mf);
             form.ShowDialog(mf);
         }
         #endregion
@@ -380,6 +380,46 @@ namespace AgOpenGPS
             Properties.Settings.Default.setVehicle_toolOverlap = mf.tool.overlap;
             Properties.Settings.Default.Save();
         }
+
+        #endregion
+
+        #region PivotDistance
+
+        private void tabToolPivot_Enter(object sender, EventArgs e)
+        {
+            nudTrailingToolToPivotLength.Value = (decimal)(Math.Abs(Properties.Settings.Default.setTool_trailingToolToPivotLength) * mf.m2InchOrCm);
+
+            rbtnPivotBehindPos.Checked = Properties.Settings.Default.setTool_trailingToolToPivotLength >= 0;
+            rbtnPivotAheadNeg.Checked = !(Properties.Settings.Default.setTool_trailingToolToPivotLength >= 0);
+        }
+
+        private void tabToolPivot_Leave(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Save();
+        }
+
+        private void rbtnPivotBehindPos_Click(object sender, EventArgs e)
+        {
+            if (rbtnPivotBehindPos.Checked)
+                mf.tool.trailingToolToPivotLength = (double)nudTrailingToolToPivotLength.Value * mf.inchOrCm2m;
+            else
+                mf.tool.trailingToolToPivotLength = (double)nudTrailingToolToPivotLength.Value * -mf.inchOrCm2m;
+            Properties.Settings.Default.setTool_trailingToolToPivotLength = mf.tool.trailingToolToPivotLength;
+        }
+
+        private void nudTrailingToolToPivotLength_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            {
+                if (rbtnPivotBehindPos.Checked)
+                    mf.tool.trailingToolToPivotLength = (double)nudTrailingToolToPivotLength.Value * mf.inchOrCm2m;
+                else
+                    mf.tool.trailingToolToPivotLength = (double)nudTrailingToolToPivotLength.Value * -mf.inchOrCm2m;
+
+                Properties.Settings.Default.setTool_trailingToolToPivotLength = mf.tool.trailingToolToPivotLength;
+            }
+        }
+
 
         #endregion
 

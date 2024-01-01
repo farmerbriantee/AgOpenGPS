@@ -3,12 +3,12 @@ using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
-    public partial class FormToolPivot : Form
+    public partial class FormFileMenu : Form
     {
         //class variables
         private readonly FormGPS mf = null;
 
-        public FormToolPivot(Form callingForm)
+        public FormFileMenu(Form callingForm)
         {
             //get copy of the calling main form
             mf = callingForm as FormGPS;

@@ -306,11 +306,11 @@
     <Compile Include="Forms\Settings\FormCorrection.Designer.cs">
       <DependentUpon>FormCorrection.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Settings\FormToolPivot.cs">
+    <Compile Include="Forms\Settings\FormFileMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Settings\FormToolPivot.Designer.cs">
-      <DependentUpon>FormToolPivot.cs</DependentUpon>
+    <Compile Include="Forms\Settings\FormFileMenu.Designer.cs">
+      <DependentUpon>FormFileMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Settings\FormSectionColor.cs">
       <SubType>Form</SubType>
@@ -679,8 +679,8 @@
     <EmbeddedResource Include="Forms\Settings\FormCorrection.resx">
       <DependentUpon>FormCorrection.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Settings\FormToolPivot.resx">
-      <DependentUpon>FormToolPivot.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Settings\FormFileMenu.resx">
+      <DependentUpon>FormFileMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\FormSectionColor.resx">
       <DependentUpon>FormSectionColor.cs</DependentUpon>
@@ -970,9 +970,6 @@
     <None Include="btnImages\TrashContourRef.png" />
     <None Include="btnImages\TrashApplied.png" />
     <None Include="btnImages\Images\z_Tool.png" />
-    <None Include="btnImages\ToolHitchPivotOffset.png" />
-    <None Include="btnImages\ToolHitchPivotOffsetNeg.png" />
-    <None Include="btnImages\ToolHitchPivotOffsetPos.png" />
     <None Include="btnImages\TrackOff.png" />
     <None Include="btnImages\TrackOn.png" />
     <None Include="btnImages\ABLineOff.png" />
@@ -992,6 +989,9 @@
     <None Include="btnImages\Config\ToolOffsetNegativeLeft.png" />
     <None Include="btnImages\Config\ToolOffsetPositiveRight.png" />
     <None Include="btnImages\Config\ToolOverlap.png" />
+    <None Include="btnImages\Config\ToolHitchPivotOffsetNeg.png" />
+    <None Include="btnImages\Config\ToolHitchPivotOffsetPos.png" />
+    <None Include="btnImages\Config\ConS_ImplementPivot.png" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />

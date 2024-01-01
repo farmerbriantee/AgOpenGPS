@@ -2750,7 +2750,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1.5")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public double setTool_trailingToolToPivotLength {
             get {
                 return ((double)(this["setTool_trailingToolToPivotLength"]));
