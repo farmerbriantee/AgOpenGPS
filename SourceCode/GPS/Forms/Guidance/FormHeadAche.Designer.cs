@@ -37,7 +37,7 @@
             this.headingGroupBox = new System.Windows.Forms.GroupBox();
             this.rbtnLine = new System.Windows.Forms.RadioButton();
             this.rbtnCurve = new System.Windows.Forms.RadioButton();
-            this.nudSetDistance = new System.Windows.Forms.NumericUpDown();
+            this.nudSetDistance = new NudlessNumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
             this.lblMovedDistance = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -664,7 +664,7 @@
         private System.Windows.Forms.GroupBox headingGroupBox;
         private System.Windows.Forms.RadioButton rbtnLine;
         private System.Windows.Forms.RadioButton rbtnCurve;
-        private System.Windows.Forms.NumericUpDown nudSetDistance;
+        private NudlessNumericUpDown nudSetDistance;
         private System.Windows.Forms.Button btnDeleteHeadland;
         private System.Windows.Forms.CheckBox cboxIsSectionControlled;
         private System.Windows.Forms.Label label11;

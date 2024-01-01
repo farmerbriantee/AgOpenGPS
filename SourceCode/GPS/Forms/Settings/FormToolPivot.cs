@@ -37,7 +37,7 @@ namespace AgOpenGPS
 
         private void nudTrailingToolToPivotLength_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
             {
                 if (rbtnPivotBehindPos.Checked)
                     mf.tool.trailingToolToPivotLength = (double)nudTrailingToolToPivotLength.Value * mf.inchOrCm2m;

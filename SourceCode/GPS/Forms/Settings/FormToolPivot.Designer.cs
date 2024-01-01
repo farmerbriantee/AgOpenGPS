@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.nudTrailingToolToPivotLength = new System.Windows.Forms.NumericUpDown();
+            this.nudTrailingToolToPivotLength = new NudlessNumericUpDown();
             this.rbtnPivotBehindPos = new System.Windows.Forms.RadioButton();
             this.rbtnPivotAheadNeg = new System.Windows.Forms.RadioButton();
             this.btnExit = new System.Windows.Forms.Button();
@@ -141,7 +141,7 @@
 
         #endregion
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.NumericUpDown nudTrailingToolToPivotLength;
+        private NudlessNumericUpDown nudTrailingToolToPivotLength;
         private System.Windows.Forms.RadioButton rbtnPivotBehindPos;
         private System.Windows.Forms.RadioButton rbtnPivotAheadNeg;
     }

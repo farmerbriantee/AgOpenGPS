@@ -34,7 +34,7 @@
             this.lblNumCu = new System.Windows.Forms.Label();
             this.lblCurveSelected = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.nudDistance = new System.Windows.Forms.NumericUpDown();
+            this.nudDistance = new NudlessNumericUpDown();
             this.tboxNameCurve = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -542,7 +542,7 @@
         private System.Windows.Forms.Label lblNumCu;
         private System.Windows.Forms.Label lblCurveSelected;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown nudDistance;
+        private NudlessNumericUpDown nudDistance;
         private System.Windows.Forms.Button btnDrawSections;
         private System.Windows.Forms.Button btnMakeBoundaryCurve;
         private System.Windows.Forms.TextBox tboxNameCurve;

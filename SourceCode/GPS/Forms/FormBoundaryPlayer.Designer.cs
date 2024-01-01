@@ -39,7 +39,7 @@
             this.btnAddPoint = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
             this.btnPausePlay = new System.Windows.Forms.Button();
-            this.nudOffset = new System.Windows.Forms.NumericUpDown();
+            this.nudOffset = new NudlessNumericUpDown();
             this.btnLeftRight = new System.Windows.Forms.Button();
             this.lblMetersInches = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudOffset)).BeginInit();
@@ -283,7 +283,7 @@
         private System.Windows.Forms.Label lblPoints;
         private System.Windows.Forms.Button btnRestart;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown nudOffset;
+        private NudlessNumericUpDown nudOffset;
         private System.Windows.Forms.Button btnLeftRight;
         private System.Windows.Forms.Label lblMetersInches;
     }

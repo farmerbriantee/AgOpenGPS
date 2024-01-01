@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblSmallSnapRight = new System.Windows.Forms.Label();
-            this.nudPasses = new System.Windows.Forms.NumericUpDown();
+            this.nudPasses = new NudlessNumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnMode = new System.Windows.Forms.Button();
@@ -440,7 +440,7 @@
         private System.Windows.Forms.Button btnAdjRight;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label lblSmallSnapRight;
-        private System.Windows.Forms.NumericUpDown nudPasses;
+        private NudlessNumericUpDown nudPasses;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnSwapAB;
         private ProXoft.WinForms.RepeatButton btnTriggerDistanceDn;

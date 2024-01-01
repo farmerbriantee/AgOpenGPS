@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.nudNorth = new System.Windows.Forms.NumericUpDown();
-            this.nudEast = new System.Windows.Forms.NumericUpDown();
+            this.nudNorth = new NudlessNumericUpDown();
+            this.nudEast = new NudlessNumericUpDown();
             this.label27 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -327,8 +327,8 @@
         }
 
         #endregion
-        private System.Windows.Forms.NumericUpDown nudNorth;
-        private System.Windows.Forms.NumericUpDown nudEast;
+        private NudlessNumericUpDown nudNorth;
+        private NudlessNumericUpDown nudEast;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btnExit = new System.Windows.Forms.Button();
-            this.nudDrawbarLength = new System.Windows.Forms.NumericUpDown();
+            this.nudDrawbarLength = new NudlessNumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.nudDrawbarLength)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,6 +102,6 @@
 
         #endregion
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.NumericUpDown nudDrawbarLength;
+        private NudlessNumericUpDown nudDrawbarLength;
     }
 }

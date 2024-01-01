@@ -124,7 +124,7 @@
             this.label63 = new System.Windows.Forms.Label();
             this.label64 = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
-            this.nudMaxCounts = new System.Windows.Forms.NumericUpDown();
+            this.nudMaxCounts = new NudlessNumericUpDown();
             this.label55 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -138,7 +138,7 @@
             this.hsbarSensor = new System.Windows.Forms.HScrollBar();
             this.lblhsbarSensor = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.nudPanicStopSpeed = new System.Windows.Forms.NumericUpDown();
+            this.nudPanicStopSpeed = new NudlessNumericUpDown();
             this.label31 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
@@ -2057,7 +2057,7 @@
         private System.Windows.Forms.Label label63;
         private System.Windows.Forms.Label label64;
         private System.Windows.Forms.Label label61;
-        private System.Windows.Forms.NumericUpDown nudMaxCounts;
+        private NudlessNumericUpDown nudMaxCounts;
         private System.Windows.Forms.Label label55;
         private System.Windows.Forms.CheckBox cboxCurrentSensor;
         private System.Windows.Forms.CheckBox cboxPressureSensor;
@@ -2074,7 +2074,7 @@
         private System.Windows.Forms.HScrollBar hsbarSensor;
         private System.Windows.Forms.Label lblhsbarSensor;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.NumericUpDown nudPanicStopSpeed;
+        private NudlessNumericUpDown nudPanicStopSpeed;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button2;

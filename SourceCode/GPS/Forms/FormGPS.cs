@@ -756,7 +756,7 @@ namespace AgOpenGPS
             timer2.Dispose();
         }
 
-        public bool KeypadToNUD(NumericUpDown sender, Form owner)
+        public bool KeypadToNUD(NudlessNumericUpDown sender, Form owner)
         {
             var colour = sender.BackColor;
             sender.BackColor = Color.Red;
