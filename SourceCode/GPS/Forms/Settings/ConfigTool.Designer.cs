@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -226,8 +227,6 @@ namespace AgOpenGPS
             nudLookAhead.Value =    (decimal)Properties.Settings.Default.setVehicle_toolLookAheadOn;
             nudLookAheadOff.Value = (decimal)Properties.Settings.Default.setVehicle_toolLookAheadOff;
             nudTurnOffDelay.Value = (decimal)Properties.Settings.Default.setVehicle_toolOffDelay;
-            nudOffset.Value =       (int)(Properties.Settings.Default.setVehicle_toolOffset*mf.m2InchOrCm);
-            nudOverlap.Value =      (int)(Properties.Settings.Default.setVehicle_toolOverlap*mf.m2InchOrCm);
         }
 
         private void tabTSettings_Leave(object sender, EventArgs e)
@@ -301,12 +300,50 @@ namespace AgOpenGPS
             }
         }
 
+        #endregion
+
+        #region offset
+        private void tabToolOffset_Enter(object sender, EventArgs e)
+        {
+            nudOffset.Value = (decimal)(Math.Abs(Properties.Settings.Default.setVehicle_toolOffset) * mf.m2InchOrCm);
+
+            nudOverlap.Value = (decimal)(Math.Abs(Properties.Settings.Default.setVehicle_toolOverlap) * mf.m2InchOrCm);
+
+            if (Properties.Settings.Default.setVehicle_toolOffset >= 0)
+            {
+                rbtnToolRightPositive.Checked = true;
+                rbtnLeftNegative.Checked = false;
+            }
+            else
+            {
+                rbtnLeftNegative.Checked = true;
+                rbtnToolRightPositive.Checked = false;
+            }
+
+            if (Properties.Settings.Default.setVehicle_toolOverlap >= 0)
+            {
+                rbtnToolOverlap.Checked = true;
+                rbtnToolGap.Checked = false;
+            }
+            else
+            {
+                rbtnToolGap.Checked = true;
+                rbtnToolOverlap.Checked = false;
+
+            }
+        }
+
         private void nudOverlap_Click(object sender, EventArgs e)
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
-                Properties.Settings.Default.setVehicle_toolOverlap = mf.tool.overlap 
-                    = (double)nudOverlap.Value * mf.inchOrCm2m;
+                if (rbtnToolOverlap.Checked)
+                    mf.tool.overlap = (double)nudOverlap.Value * mf.inchOrCm2m;
+                else
+                    mf.tool.overlap = (double)nudOverlap.Value * -mf.inchOrCm2m;
+
+                Properties.Settings.Default.setVehicle_toolOverlap = mf.tool.overlap;
+                Properties.Settings.Default.Save();
             }
         }
 
@@ -314,9 +351,34 @@ namespace AgOpenGPS
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
-                Properties.Settings.Default.setVehicle_toolOffset = mf.tool.offset 
-                    = (double)nudOffset.Value * mf.inchOrCm2m;
+                if (rbtnToolRightPositive.Checked)
+                    mf.tool.offset = (double)nudOffset.Value * mf.inchOrCm2m;
+                else
+                    mf.tool.offset = (double)nudOffset.Value * -mf.inchOrCm2m;
+
+                Properties.Settings.Default.setVehicle_toolOffset = mf.tool.offset;
+                Properties.Settings.Default.Save();
             }
+        }
+
+        private void rbtnToolRightPositive_Click(object sender, EventArgs e)
+        {
+            if (rbtnToolRightPositive.Checked)
+                mf.tool.offset = (double)nudOffset.Value * mf.inchOrCm2m;
+            else
+                mf.tool.offset = (double)nudOffset.Value * -mf.inchOrCm2m;
+            Properties.Settings.Default.setVehicle_toolOffset = mf.tool.offset;
+            Properties.Settings.Default.Save();
+        }
+
+        private void rbtnToolOverlap_Click(object sender, EventArgs e)
+        {
+            if (rbtnToolOverlap.Checked)
+                mf.tool.overlap = (double)nudOverlap.Value * mf.inchOrCm2m;
+            else
+                mf.tool.overlap = (double)nudOverlap.Value * -mf.inchOrCm2m;
+            Properties.Settings.Default.setVehicle_toolOverlap = mf.tool.overlap;
+            Properties.Settings.Default.Save();
         }
 
         #endregion

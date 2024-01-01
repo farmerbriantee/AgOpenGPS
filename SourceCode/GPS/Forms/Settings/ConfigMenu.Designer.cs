@@ -265,6 +265,7 @@ namespace AgOpenGPS
             btnSubSections.BackColor = SystemColors.GradientInactiveCaption;
             btnSubSwitches.BackColor = SystemColors.GradientInactiveCaption;
             btnSubToolSettings.BackColor = SystemColors.GradientInactiveCaption;
+            btnSubToolOffset.BackColor = SystemColors.GradientInactiveCaption;
         }
 
         private void btnSubToolType_Click(object sender, EventArgs e)
@@ -280,6 +281,15 @@ namespace AgOpenGPS
             tab1.SelectedTab = tabTHitch;
             btnSubHitch.BackColor= SystemColors.GradientActiveCaption;
         }
+
+        private void btnSubToolOffset_Click
+            (object sender, EventArgs e)
+        {
+            ClearToolSubBackgrounds();
+            tab1.SelectedTab = tabToolOffset;
+            btnSubToolOffset.BackColor = SystemColors.GradientActiveCaption;
+        }
+
 
         private void btnSubSections_Click(object sender, EventArgs e)
         {

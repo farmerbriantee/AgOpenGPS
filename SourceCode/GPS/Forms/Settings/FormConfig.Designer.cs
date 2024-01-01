@@ -46,6 +46,7 @@
             this.btnSubSwitches = new System.Windows.Forms.Button();
             this.btnSubToolSettings = new System.Windows.Forms.Button();
             this.btnSubSections = new System.Windows.Forms.Button();
+            this.btnSubToolOffset = new System.Windows.Forms.Button();
             this.btnSubHitch = new System.Windows.Forms.Button();
             this.btnSubToolType = new System.Windows.Forms.Button();
             this.btnTool = new System.Windows.Forms.Button();
@@ -189,6 +190,19 @@
             this.nudDrawbarLength = new System.Windows.Forms.NumericUpDown();
             this.nudTankHitch = new System.Windows.Forms.NumericUpDown();
             this.picboxToolHitch = new System.Windows.Forms.PictureBox();
+            this.tabToolOffset = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.rbtnToolOverlap = new System.Windows.Forms.RadioButton();
+            this.rbtnToolGap = new System.Windows.Forms.RadioButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.rbtnLeftNegative = new System.Windows.Forms.RadioButton();
+            this.rbtnToolRightPositive = new System.Windows.Forms.RadioButton();
+            this.label65 = new System.Windows.Forms.Label();
+            this.nudOverlap = new System.Windows.Forms.NumericUpDown();
+            this.nudOffset = new System.Windows.Forms.NumericUpDown();
             this.tabTSections = new System.Windows.Forms.TabPage();
             this.label106 = new System.Windows.Forms.Label();
             this.nudCutoffSpeed = new System.Windows.Forms.NumericUpDown();
@@ -284,16 +298,12 @@
             this.chkSetManualSections = new System.Windows.Forms.CheckBox();
             this.chkWorkSwActiveLow = new System.Windows.Forms.CheckBox();
             this.tabTSettings = new System.Windows.Forms.TabPage();
-            this.label66 = new System.Windows.Forms.Label();
-            this.label65 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.nudLookAheadOff = new System.Windows.Forms.NumericUpDown();
-            this.nudOffset = new System.Windows.Forms.NumericUpDown();
             this.nudTurnOffDelay = new System.Windows.Forms.NumericUpDown();
             this.nudLookAhead = new System.Windows.Forms.NumericUpDown();
-            this.nudOverlap = new System.Windows.Forms.NumericUpDown();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tabDHeading = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
@@ -589,6 +599,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudDrawbarLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTankHitch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picboxToolHitch)).BeginInit();
+            this.tabToolOffset.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudOverlap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudOffset)).BeginInit();
             this.tabTSections.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCutoffSpeed)).BeginInit();
             this.panelSymmetricSections.SuspendLayout();
@@ -625,10 +640,8 @@
             this.grpSwitch.SuspendLayout();
             this.tabTSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudLookAheadOff)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudOffset)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTurnOffDelay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLookAhead)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudOverlap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.tabDHeading.SuspendLayout();
             this.gboxDual.SuspendLayout();
@@ -667,6 +680,7 @@
             // 
             // panelLeftSideMenu
             // 
+            this.panelLeftSideMenu.AutoScroll = true;
             this.panelLeftSideMenu.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.panelLeftSideMenu.Controls.Add(this.btnDisplay);
             this.panelLeftSideMenu.Controls.Add(this.btnFeatureHides);
@@ -697,10 +711,10 @@
             this.btnDisplay.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnDisplay.Image = global::AgOpenGPS.Properties.Resources.Con_Display;
             this.btnDisplay.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDisplay.Location = new System.Drawing.Point(0, 1523);
+            this.btnDisplay.Location = new System.Drawing.Point(0, 1599);
             this.btnDisplay.Name = "btnDisplay";
             this.btnDisplay.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnDisplay.Size = new System.Drawing.Size(120, 80);
+            this.btnDisplay.Size = new System.Drawing.Size(103, 80);
             this.btnDisplay.TabIndex = 2;
             this.btnDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDisplay.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -718,10 +732,10 @@
             this.btnFeatureHides.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnFeatureHides.Image = global::AgOpenGPS.Properties.Resources.Con_FeatureMenu;
             this.btnFeatureHides.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFeatureHides.Location = new System.Drawing.Point(0, 1443);
+            this.btnFeatureHides.Location = new System.Drawing.Point(0, 1519);
             this.btnFeatureHides.Name = "btnFeatureHides";
             this.btnFeatureHides.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnFeatureHides.Size = new System.Drawing.Size(120, 80);
+            this.btnFeatureHides.Size = new System.Drawing.Size(103, 80);
             this.btnFeatureHides.TabIndex = 4;
             this.btnFeatureHides.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFeatureHides.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -739,10 +753,10 @@
             this.btnTram.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnTram.Image = global::AgOpenGPS.Properties.Resources.Con_TramMenu;
             this.btnTram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTram.Location = new System.Drawing.Point(0, 1363);
+            this.btnTram.Location = new System.Drawing.Point(0, 1439);
             this.btnTram.Name = "btnTram";
             this.btnTram.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnTram.Size = new System.Drawing.Size(120, 80);
+            this.btnTram.Size = new System.Drawing.Size(103, 80);
             this.btnTram.TabIndex = 3;
             this.btnTram.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTram.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -755,9 +769,9 @@
             this.panelArduinoSubMenu.Controls.Add(this.btnMachineRelay);
             this.panelArduinoSubMenu.Controls.Add(this.btnMachineModule);
             this.panelArduinoSubMenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelArduinoSubMenu.Location = new System.Drawing.Point(0, 1203);
+            this.panelArduinoSubMenu.Location = new System.Drawing.Point(0, 1279);
             this.panelArduinoSubMenu.Name = "panelArduinoSubMenu";
-            this.panelArduinoSubMenu.Size = new System.Drawing.Size(120, 160);
+            this.panelArduinoSubMenu.Size = new System.Drawing.Size(103, 160);
             this.panelArduinoSubMenu.TabIndex = 116;
             // 
             // btnMachineRelay
@@ -774,7 +788,7 @@
             this.btnMachineRelay.Location = new System.Drawing.Point(0, 80);
             this.btnMachineRelay.Name = "btnMachineRelay";
             this.btnMachineRelay.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnMachineRelay.Size = new System.Drawing.Size(120, 80);
+            this.btnMachineRelay.Size = new System.Drawing.Size(103, 80);
             this.btnMachineRelay.TabIndex = 3;
             this.btnMachineRelay.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMachineRelay.UseVisualStyleBackColor = false;
@@ -794,7 +808,7 @@
             this.btnMachineModule.Location = new System.Drawing.Point(0, 0);
             this.btnMachineModule.Name = "btnMachineModule";
             this.btnMachineModule.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnMachineModule.Size = new System.Drawing.Size(120, 80);
+            this.btnMachineModule.Size = new System.Drawing.Size(103, 80);
             this.btnMachineModule.TabIndex = 1;
             this.btnMachineModule.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMachineModule.UseVisualStyleBackColor = false;
@@ -811,10 +825,10 @@
             this.btnArduino.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnArduino.Image = global::AgOpenGPS.Properties.Resources.Con_ModulesMenu;
             this.btnArduino.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnArduino.Location = new System.Drawing.Point(0, 1123);
+            this.btnArduino.Location = new System.Drawing.Point(0, 1199);
             this.btnArduino.Name = "btnArduino";
             this.btnArduino.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnArduino.Size = new System.Drawing.Size(120, 80);
+            this.btnArduino.Size = new System.Drawing.Size(103, 80);
             this.btnArduino.TabIndex = 115;
             this.btnArduino.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnArduino.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -832,10 +846,10 @@
             this.btnUTurn.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnUTurn.Image = global::AgOpenGPS.Properties.Resources.Con_UTurnMenu;
             this.btnUTurn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUTurn.Location = new System.Drawing.Point(0, 1048);
+            this.btnUTurn.Location = new System.Drawing.Point(0, 1124);
             this.btnUTurn.Name = "btnUTurn";
             this.btnUTurn.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnUTurn.Size = new System.Drawing.Size(120, 75);
+            this.btnUTurn.Size = new System.Drawing.Size(103, 75);
             this.btnUTurn.TabIndex = 116;
             this.btnUTurn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUTurn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -848,9 +862,9 @@
             this.panelDataSourcesSubMenu.Controls.Add(this.btnSubRoll);
             this.panelDataSourcesSubMenu.Controls.Add(this.btnSubHeading);
             this.panelDataSourcesSubMenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelDataSourcesSubMenu.Location = new System.Drawing.Point(0, 888);
+            this.panelDataSourcesSubMenu.Location = new System.Drawing.Point(0, 964);
             this.panelDataSourcesSubMenu.Name = "panelDataSourcesSubMenu";
-            this.panelDataSourcesSubMenu.Size = new System.Drawing.Size(120, 160);
+            this.panelDataSourcesSubMenu.Size = new System.Drawing.Size(103, 160);
             this.panelDataSourcesSubMenu.TabIndex = 7;
             // 
             // btnSubRoll
@@ -867,7 +881,7 @@
             this.btnSubRoll.Location = new System.Drawing.Point(0, 80);
             this.btnSubRoll.Name = "btnSubRoll";
             this.btnSubRoll.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubRoll.Size = new System.Drawing.Size(120, 80);
+            this.btnSubRoll.Size = new System.Drawing.Size(103, 80);
             this.btnSubRoll.TabIndex = 0;
             this.btnSubRoll.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubRoll.UseVisualStyleBackColor = false;
@@ -887,7 +901,7 @@
             this.btnSubHeading.Location = new System.Drawing.Point(0, 0);
             this.btnSubHeading.Name = "btnSubHeading";
             this.btnSubHeading.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnSubHeading.Size = new System.Drawing.Size(120, 80);
+            this.btnSubHeading.Size = new System.Drawing.Size(103, 80);
             this.btnSubHeading.TabIndex = 1;
             this.btnSubHeading.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubHeading.UseVisualStyleBackColor = false;
@@ -904,10 +918,10 @@
             this.btnDataSources.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnDataSources.Image = global::AgOpenGPS.Properties.Resources.Con_SourcesMenu;
             this.btnDataSources.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDataSources.Location = new System.Drawing.Point(0, 808);
+            this.btnDataSources.Location = new System.Drawing.Point(0, 884);
             this.btnDataSources.Name = "btnDataSources";
             this.btnDataSources.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnDataSources.Size = new System.Drawing.Size(120, 80);
+            this.btnDataSources.Size = new System.Drawing.Size(103, 80);
             this.btnDataSources.TabIndex = 114;
             this.btnDataSources.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDataSources.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -920,12 +934,13 @@
             this.panelToolSubMenu.Controls.Add(this.btnSubSwitches);
             this.panelToolSubMenu.Controls.Add(this.btnSubToolSettings);
             this.panelToolSubMenu.Controls.Add(this.btnSubSections);
+            this.panelToolSubMenu.Controls.Add(this.btnSubToolOffset);
             this.panelToolSubMenu.Controls.Add(this.btnSubHitch);
             this.panelToolSubMenu.Controls.Add(this.btnSubToolType);
             this.panelToolSubMenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelToolSubMenu.Location = new System.Drawing.Point(0, 448);
             this.panelToolSubMenu.Name = "panelToolSubMenu";
-            this.panelToolSubMenu.Size = new System.Drawing.Size(120, 360);
+            this.panelToolSubMenu.Size = new System.Drawing.Size(103, 436);
             this.panelToolSubMenu.TabIndex = 4;
             // 
             // btnSubSwitches
@@ -939,10 +954,10 @@
             this.btnSubSwitches.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnSubSwitches.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementSwitch;
             this.btnSubSwitches.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSubSwitches.Location = new System.Drawing.Point(0, 288);
+            this.btnSubSwitches.Location = new System.Drawing.Point(0, 360);
             this.btnSubSwitches.Name = "btnSubSwitches";
             this.btnSubSwitches.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubSwitches.Size = new System.Drawing.Size(120, 72);
+            this.btnSubSwitches.Size = new System.Drawing.Size(103, 72);
             this.btnSubSwitches.TabIndex = 1;
             this.btnSubSwitches.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubSwitches.UseVisualStyleBackColor = false;
@@ -959,10 +974,10 @@
             this.btnSubToolSettings.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnSubToolSettings.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementSettings;
             this.btnSubToolSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSubToolSettings.Location = new System.Drawing.Point(0, 216);
+            this.btnSubToolSettings.Location = new System.Drawing.Point(0, 288);
             this.btnSubToolSettings.Name = "btnSubToolSettings";
             this.btnSubToolSettings.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnSubToolSettings.Size = new System.Drawing.Size(120, 72);
+            this.btnSubToolSettings.Size = new System.Drawing.Size(103, 72);
             this.btnSubToolSettings.TabIndex = 4;
             this.btnSubToolSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubToolSettings.UseVisualStyleBackColor = false;
@@ -979,14 +994,34 @@
             this.btnSubSections.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnSubSections.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementSection;
             this.btnSubSections.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSubSections.Location = new System.Drawing.Point(0, 144);
+            this.btnSubSections.Location = new System.Drawing.Point(0, 216);
             this.btnSubSections.Name = "btnSubSections";
             this.btnSubSections.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubSections.Size = new System.Drawing.Size(120, 72);
+            this.btnSubSections.Size = new System.Drawing.Size(103, 72);
             this.btnSubSections.TabIndex = 0;
             this.btnSubSections.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubSections.UseVisualStyleBackColor = false;
             this.btnSubSections.Click += new System.EventHandler(this.btnSubSections_Click);
+            // 
+            // btnSubToolOffset
+            // 
+            this.btnSubToolOffset.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnSubToolOffset.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnSubToolOffset.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnSubToolOffset.FlatAppearance.BorderSize = 0;
+            this.btnSubToolOffset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSubToolOffset.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubToolOffset.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnSubToolOffset.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementOffset;
+            this.btnSubToolOffset.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSubToolOffset.Location = new System.Drawing.Point(0, 144);
+            this.btnSubToolOffset.Name = "btnSubToolOffset";
+            this.btnSubToolOffset.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
+            this.btnSubToolOffset.Size = new System.Drawing.Size(103, 72);
+            this.btnSubToolOffset.TabIndex = 1;
+            this.btnSubToolOffset.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSubToolOffset.UseVisualStyleBackColor = false;
+            this.btnSubToolOffset.Click += new System.EventHandler(this.btnSubToolOffset_Click);
             // 
             // btnSubHitch
             // 
@@ -1002,7 +1037,7 @@
             this.btnSubHitch.Location = new System.Drawing.Point(0, 72);
             this.btnSubHitch.Name = "btnSubHitch";
             this.btnSubHitch.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnSubHitch.Size = new System.Drawing.Size(120, 72);
+            this.btnSubHitch.Size = new System.Drawing.Size(103, 72);
             this.btnSubHitch.TabIndex = 5;
             this.btnSubHitch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubHitch.UseVisualStyleBackColor = false;
@@ -1022,7 +1057,7 @@
             this.btnSubToolType.Location = new System.Drawing.Point(0, 0);
             this.btnSubToolType.Name = "btnSubToolType";
             this.btnSubToolType.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubToolType.Size = new System.Drawing.Size(120, 72);
+            this.btnSubToolType.Size = new System.Drawing.Size(103, 72);
             this.btnSubToolType.TabIndex = 6;
             this.btnSubToolType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubToolType.UseVisualStyleBackColor = false;
@@ -1042,7 +1077,7 @@
             this.btnTool.Location = new System.Drawing.Point(0, 368);
             this.btnTool.Name = "btnTool";
             this.btnTool.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.btnTool.Size = new System.Drawing.Size(120, 80);
+            this.btnTool.Size = new System.Drawing.Size(103, 80);
             this.btnTool.TabIndex = 3;
             this.btnTool.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTool.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -1060,7 +1095,7 @@
             this.panelVehicleSubMenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelVehicleSubMenu.Location = new System.Drawing.Point(0, 80);
             this.panelVehicleSubMenu.Name = "panelVehicleSubMenu";
-            this.panelVehicleSubMenu.Size = new System.Drawing.Size(120, 288);
+            this.panelVehicleSubMenu.Size = new System.Drawing.Size(103, 288);
             this.panelVehicleSubMenu.TabIndex = 2;
             // 
             // button1
@@ -1093,7 +1128,7 @@
             this.btnSubGuidance.Location = new System.Drawing.Point(0, 216);
             this.btnSubGuidance.Name = "btnSubGuidance";
             this.btnSubGuidance.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnSubGuidance.Size = new System.Drawing.Size(120, 72);
+            this.btnSubGuidance.Size = new System.Drawing.Size(103, 72);
             this.btnSubGuidance.TabIndex = 3;
             this.btnSubGuidance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubGuidance.UseVisualStyleBackColor = false;
@@ -1113,7 +1148,7 @@
             this.btnSubAntenna.Location = new System.Drawing.Point(0, 144);
             this.btnSubAntenna.Name = "btnSubAntenna";
             this.btnSubAntenna.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubAntenna.Size = new System.Drawing.Size(120, 72);
+            this.btnSubAntenna.Size = new System.Drawing.Size(103, 72);
             this.btnSubAntenna.TabIndex = 2;
             this.btnSubAntenna.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubAntenna.UseVisualStyleBackColor = false;
@@ -1133,7 +1168,7 @@
             this.btnSubDimensions.Location = new System.Drawing.Point(0, 72);
             this.btnSubDimensions.Name = "btnSubDimensions";
             this.btnSubDimensions.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnSubDimensions.Size = new System.Drawing.Size(120, 72);
+            this.btnSubDimensions.Size = new System.Drawing.Size(103, 72);
             this.btnSubDimensions.TabIndex = 1;
             this.btnSubDimensions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubDimensions.UseVisualStyleBackColor = false;
@@ -1153,7 +1188,7 @@
             this.btnSubVehicleType.Location = new System.Drawing.Point(0, 0);
             this.btnSubVehicleType.Name = "btnSubVehicleType";
             this.btnSubVehicleType.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubVehicleType.Size = new System.Drawing.Size(120, 72);
+            this.btnSubVehicleType.Size = new System.Drawing.Size(103, 72);
             this.btnSubVehicleType.TabIndex = 0;
             this.btnSubVehicleType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubVehicleType.UseVisualStyleBackColor = false;
@@ -1173,7 +1208,7 @@
             this.btnVehicle.Location = new System.Drawing.Point(0, 0);
             this.btnVehicle.Name = "btnVehicle";
             this.btnVehicle.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.btnVehicle.Size = new System.Drawing.Size(120, 80);
+            this.btnVehicle.Size = new System.Drawing.Size(103, 80);
             this.btnVehicle.TabIndex = 113;
             this.btnVehicle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnVehicle.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -1190,6 +1225,7 @@
             this.tab1.Controls.Add(this.tabVGuidance);
             this.tab1.Controls.Add(this.tabTConfig);
             this.tab1.Controls.Add(this.tabTHitch);
+            this.tab1.Controls.Add(this.tabToolOffset);
             this.tab1.Controls.Add(this.tabTSections);
             this.tab1.Controls.Add(this.tabTSwitches);
             this.tab1.Controls.Add(this.tabTSettings);
@@ -1207,7 +1243,7 @@
             this.tab1.Name = "tab1";
             this.tab1.Padding = new System.Drawing.Point(0, 0);
             this.tab1.SelectedIndex = 0;
-            this.tab1.Size = new System.Drawing.Size(861, 632);
+            this.tab1.Size = new System.Drawing.Size(862, 632);
             this.tab1.TabIndex = 0;
             // 
             // tabSummary
@@ -1244,7 +1280,7 @@
             this.tabSummary.Location = new System.Drawing.Point(4, 44);
             this.tabSummary.Name = "tabSummary";
             this.tabSummary.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSummary.Size = new System.Drawing.Size(853, 584);
+            this.tabSummary.Size = new System.Drawing.Size(854, 584);
             this.tabSummary.TabIndex = 0;
             this.tabSummary.Text = "tSum";
             this.tabSummary.Enter += new System.EventHandler(this.tabSummary_Enter);
@@ -1672,7 +1708,7 @@
             this.tabVConfig.Controls.Add(this.cboxIsImage);
             this.tabVConfig.Location = new System.Drawing.Point(4, 44);
             this.tabVConfig.Name = "tabVConfig";
-            this.tabVConfig.Size = new System.Drawing.Size(853, 584);
+            this.tabVConfig.Size = new System.Drawing.Size(854, 584);
             this.tabVConfig.TabIndex = 4;
             this.tabVConfig.Text = "vConfig";
             this.tabVConfig.Enter += new System.EventHandler(this.tabVConfig_Enter);
@@ -2313,7 +2349,7 @@
             this.tabVAntenna.Controls.Add(this.pboxAntenna);
             this.tabVAntenna.Location = new System.Drawing.Point(4, 44);
             this.tabVAntenna.Name = "tabVAntenna";
-            this.tabVAntenna.Size = new System.Drawing.Size(853, 584);
+            this.tabVAntenna.Size = new System.Drawing.Size(854, 584);
             this.tabVAntenna.TabIndex = 12;
             this.tabVAntenna.Text = "vAnt";
             this.tabVAntenna.Enter += new System.EventHandler(this.tabVAntenna_Enter);
@@ -2417,7 +2453,7 @@
             this.tabVDimensions.Controls.Add(this.pictureBox1);
             this.tabVDimensions.Location = new System.Drawing.Point(4, 44);
             this.tabVDimensions.Name = "tabVDimensions";
-            this.tabVDimensions.Size = new System.Drawing.Size(853, 584);
+            this.tabVDimensions.Size = new System.Drawing.Size(854, 584);
             this.tabVDimensions.TabIndex = 13;
             this.tabVDimensions.Text = "vDim";
             this.tabVDimensions.Enter += new System.EventHandler(this.tabVDimensions_Enter);
@@ -2592,7 +2628,7 @@
             this.tabVGuidance.Controls.Add(this.pictureBox2);
             this.tabVGuidance.Location = new System.Drawing.Point(4, 44);
             this.tabVGuidance.Name = "tabVGuidance";
-            this.tabVGuidance.Size = new System.Drawing.Size(853, 584);
+            this.tabVGuidance.Size = new System.Drawing.Size(854, 584);
             this.tabVGuidance.TabIndex = 14;
             this.tabVGuidance.Text = "vGuid";
             this.tabVGuidance.Enter += new System.EventHandler(this.tabVGuidance_Enter);
@@ -3193,7 +3229,7 @@
             this.tabTConfig.Controls.Add(this.gboxAttachment);
             this.tabTConfig.Location = new System.Drawing.Point(4, 44);
             this.tabTConfig.Name = "tabTConfig";
-            this.tabTConfig.Size = new System.Drawing.Size(853, 584);
+            this.tabTConfig.Size = new System.Drawing.Size(854, 584);
             this.tabTConfig.TabIndex = 11;
             this.tabTConfig.Text = "tConfig";
             this.tabTConfig.Enter += new System.EventHandler(this.tabTConfig_Enter);
@@ -3287,7 +3323,7 @@
             this.tabTHitch.Controls.Add(this.picboxToolHitch);
             this.tabTHitch.Location = new System.Drawing.Point(4, 44);
             this.tabTHitch.Name = "tabTHitch";
-            this.tabTHitch.Size = new System.Drawing.Size(853, 584);
+            this.tabTHitch.Size = new System.Drawing.Size(854, 584);
             this.tabTHitch.TabIndex = 5;
             this.tabTHitch.Text = "tHitch";
             this.tabTHitch.Enter += new System.EventHandler(this.tabTHitch_Enter);
@@ -3404,6 +3440,218 @@
             this.picboxToolHitch.TabIndex = 0;
             this.picboxToolHitch.TabStop = false;
             // 
+            // tabToolOffset
+            // 
+            this.tabToolOffset.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabToolOffset.Controls.Add(this.groupBox3);
+            this.tabToolOffset.Controls.Add(this.groupBox2);
+            this.tabToolOffset.Controls.Add(this.nudOverlap);
+            this.tabToolOffset.Controls.Add(this.nudOffset);
+            this.tabToolOffset.Location = new System.Drawing.Point(4, 44);
+            this.tabToolOffset.Name = "tabToolOffset";
+            this.tabToolOffset.Size = new System.Drawing.Size(854, 584);
+            this.tabToolOffset.TabIndex = 26;
+            this.tabToolOffset.Text = "tOffs";
+            this.tabToolOffset.Enter += new System.EventHandler(this.tabToolOffset_Enter);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label9);
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.rbtnToolOverlap);
+            this.groupBox3.Controls.Add(this.rbtnToolGap);
+            this.groupBox3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(441, 149);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(404, 290);
+            this.groupBox3.TabIndex = 481;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Overlap / Gap";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Black;
+            this.label9.Location = new System.Drawing.Point(95, 256);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(51, 16);
+            this.label9.TabIndex = 481;
+            this.label9.Text = "Overlap";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(323, 256);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 16);
+            this.label3.TabIndex = 480;
+            this.label3.Text = "Gap";
+            // 
+            // rbtnToolOverlap
+            // 
+            this.rbtnToolOverlap.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnToolOverlap.BackColor = System.Drawing.Color.Transparent;
+            this.rbtnToolOverlap.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.rbtnToolOverlap.Checked = true;
+            this.rbtnToolOverlap.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnToolOverlap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnToolOverlap.Image = global::AgOpenGPS.Properties.Resources.ToolOverlap;
+            this.rbtnToolOverlap.Location = new System.Drawing.Point(23, 35);
+            this.rbtnToolOverlap.Name = "rbtnToolOverlap";
+            this.rbtnToolOverlap.Size = new System.Drawing.Size(166, 218);
+            this.rbtnToolOverlap.TabIndex = 479;
+            this.rbtnToolOverlap.TabStop = true;
+            this.rbtnToolOverlap.UseVisualStyleBackColor = false;
+            this.rbtnToolOverlap.Click += new System.EventHandler(this.rbtnToolOverlap_Click);
+            // 
+            // rbtnToolGap
+            // 
+            this.rbtnToolGap.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnToolGap.BackColor = System.Drawing.Color.Transparent;
+            this.rbtnToolGap.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.rbtnToolGap.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnToolGap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnToolGap.Image = global::AgOpenGPS.Properties.Resources.ToolGap;
+            this.rbtnToolGap.Location = new System.Drawing.Point(238, 35);
+            this.rbtnToolGap.Name = "rbtnToolGap";
+            this.rbtnToolGap.Size = new System.Drawing.Size(166, 218);
+            this.rbtnToolGap.TabIndex = 478;
+            this.rbtnToolGap.UseVisualStyleBackColor = false;
+            this.rbtnToolGap.Click += new System.EventHandler(this.rbtnToolOverlap_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label17);
+            this.groupBox2.Controls.Add(this.rbtnLeftNegative);
+            this.groupBox2.Controls.Add(this.rbtnToolRightPositive);
+            this.groupBox2.Controls.Add(this.label65);
+            this.groupBox2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(14, 34);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(404, 290);
+            this.groupBox2.TabIndex = 480;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Tool Offset";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.Color.Transparent;
+            this.label17.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.Black;
+            this.label17.Location = new System.Drawing.Point(283, 256);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(65, 16);
+            this.label17.TabIndex = 480;
+            this.label17.Text = "Tool Right";
+            // 
+            // rbtnLeftNegative
+            // 
+            this.rbtnLeftNegative.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnLeftNegative.BackColor = System.Drawing.Color.Transparent;
+            this.rbtnLeftNegative.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.rbtnLeftNegative.Checked = true;
+            this.rbtnLeftNegative.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnLeftNegative.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnLeftNegative.Image = global::AgOpenGPS.Properties.Resources.ToolOffsetNegativeLeft;
+            this.rbtnLeftNegative.Location = new System.Drawing.Point(17, 35);
+            this.rbtnLeftNegative.Name = "rbtnLeftNegative";
+            this.rbtnLeftNegative.Size = new System.Drawing.Size(166, 218);
+            this.rbtnLeftNegative.TabIndex = 479;
+            this.rbtnLeftNegative.TabStop = true;
+            this.rbtnLeftNegative.UseVisualStyleBackColor = false;
+            this.rbtnLeftNegative.Click += new System.EventHandler(this.rbtnToolRightPositive_Click);
+            // 
+            // rbtnToolRightPositive
+            // 
+            this.rbtnToolRightPositive.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnToolRightPositive.BackColor = System.Drawing.Color.Transparent;
+            this.rbtnToolRightPositive.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.rbtnToolRightPositive.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnToolRightPositive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnToolRightPositive.Image = global::AgOpenGPS.Properties.Resources.ToolOffsetPositiveRight;
+            this.rbtnToolRightPositive.Location = new System.Drawing.Point(233, 35);
+            this.rbtnToolRightPositive.Name = "rbtnToolRightPositive";
+            this.rbtnToolRightPositive.Size = new System.Drawing.Size(166, 218);
+            this.rbtnToolRightPositive.TabIndex = 478;
+            this.rbtnToolRightPositive.UseVisualStyleBackColor = false;
+            this.rbtnToolRightPositive.Click += new System.EventHandler(this.rbtnToolRightPositive_Click);
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.BackColor = System.Drawing.Color.Transparent;
+            this.label65.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label65.ForeColor = System.Drawing.Color.Black;
+            this.label65.Location = new System.Drawing.Point(71, 256);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(57, 16);
+            this.label65.TabIndex = 476;
+            this.label65.Text = "Tool Left";
+            // 
+            // nudOverlap
+            // 
+            this.nudOverlap.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudOverlap.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudOverlap.InterceptArrowKeys = false;
+            this.nudOverlap.Location = new System.Drawing.Point(605, 464);
+            this.nudOverlap.Maximum = new decimal(new int[] {
+            3000,
+            0,
+            0,
+            0});
+            this.nudOverlap.Minimum = new decimal(new int[] {
+            3000,
+            0,
+            0,
+            -2147483648});
+            this.nudOverlap.Name = "nudOverlap";
+            this.nudOverlap.ReadOnly = true;
+            this.nudOverlap.Size = new System.Drawing.Size(114, 52);
+            this.nudOverlap.TabIndex = 116;
+            this.nudOverlap.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudOverlap.Value = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.nudOverlap.Click += new System.EventHandler(this.nudOverlap_Click);
+            this.nudOverlap.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudOverlap_HelpRequested);
+            // 
+            // nudOffset
+            // 
+            this.nudOffset.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudOffset.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudOffset.InterceptArrowKeys = false;
+            this.nudOffset.Location = new System.Drawing.Point(166, 349);
+            this.nudOffset.Maximum = new decimal(new int[] {
+            2500,
+            0,
+            0,
+            0});
+            this.nudOffset.Minimum = new decimal(new int[] {
+            2500,
+            0,
+            0,
+            -2147483648});
+            this.nudOffset.Name = "nudOffset";
+            this.nudOffset.ReadOnly = true;
+            this.nudOffset.Size = new System.Drawing.Size(114, 52);
+            this.nudOffset.TabIndex = 115;
+            this.nudOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudOffset.Value = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+            this.nudOffset.Click += new System.EventHandler(this.nudOffset_Click);
+            this.nudOffset.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudOffset_HelpRequested);
+            // 
             // tabTSections
             // 
             this.tabTSections.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -3461,7 +3709,7 @@
             this.tabTSections.ForeColor = System.Drawing.Color.Black;
             this.tabTSections.Location = new System.Drawing.Point(4, 44);
             this.tabTSections.Name = "tabTSections";
-            this.tabTSections.Size = new System.Drawing.Size(853, 584);
+            this.tabTSections.Size = new System.Drawing.Size(854, 584);
             this.tabTSections.TabIndex = 7;
             this.tabTSections.Text = "tSect";
             this.tabTSections.Enter += new System.EventHandler(this.tabTSections_Enter);
@@ -4981,7 +5229,7 @@
             this.tabTSwitches.Controls.Add(this.grpSwitch);
             this.tabTSwitches.Location = new System.Drawing.Point(4, 44);
             this.tabTSwitches.Name = "tabTSwitches";
-            this.tabTSwitches.Size = new System.Drawing.Size(853, 584);
+            this.tabTSwitches.Size = new System.Drawing.Size(854, 584);
             this.tabTSwitches.TabIndex = 9;
             this.tabTSwitches.Text = "tSwit";
             this.tabTSwitches.Enter += new System.EventHandler(this.tabTSwitches_Enter);
@@ -5154,47 +5402,21 @@
             // tabTSettings
             // 
             this.tabTSettings.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tabTSettings.Controls.Add(this.label66);
-            this.tabTSettings.Controls.Add(this.label65);
             this.tabTSettings.Controls.Add(this.label16);
             this.tabTSettings.Controls.Add(this.label14);
             this.tabTSettings.Controls.Add(this.label10);
             this.tabTSettings.Controls.Add(this.nudLookAheadOff);
-            this.tabTSettings.Controls.Add(this.nudOffset);
             this.tabTSettings.Controls.Add(this.nudTurnOffDelay);
             this.tabTSettings.Controls.Add(this.nudLookAhead);
-            this.tabTSettings.Controls.Add(this.nudOverlap);
             this.tabTSettings.Controls.Add(this.pictureBox3);
             this.tabTSettings.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.tabTSettings.Location = new System.Drawing.Point(4, 44);
             this.tabTSettings.Name = "tabTSettings";
-            this.tabTSettings.Size = new System.Drawing.Size(853, 584);
+            this.tabTSettings.Size = new System.Drawing.Size(854, 584);
             this.tabTSettings.TabIndex = 10;
             this.tabTSettings.Text = "TSettings";
             this.tabTSettings.Enter += new System.EventHandler(this.tabTSettings_Enter);
             this.tabTSettings.Leave += new System.EventHandler(this.tabTSettings_Leave);
-            // 
-            // label66
-            // 
-            this.label66.AutoSize = true;
-            this.label66.BackColor = System.Drawing.Color.Transparent;
-            this.label66.ForeColor = System.Drawing.Color.Black;
-            this.label66.Location = new System.Drawing.Point(628, 449);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(86, 16);
-            this.label66.TabIndex = 477;
-            this.label66.Text = "Overlap / Gap";
-            // 
-            // label65
-            // 
-            this.label65.AutoSize = true;
-            this.label65.BackColor = System.Drawing.Color.Transparent;
-            this.label65.ForeColor = System.Drawing.Color.Black;
-            this.label65.Location = new System.Drawing.Point(411, 525);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(41, 16);
-            this.label65.TabIndex = 476;
-            this.label65.Text = "Offset";
             // 
             // label16
             // 
@@ -5265,35 +5487,6 @@
             this.nudLookAheadOff.Click += new System.EventHandler(this.nudLookAheadOff_Click);
             this.nudLookAheadOff.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudLookAheadOff_HelpRequested);
             // 
-            // nudOffset
-            // 
-            this.nudOffset.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudOffset.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudOffset.InterceptArrowKeys = false;
-            this.nudOffset.Location = new System.Drawing.Point(414, 470);
-            this.nudOffset.Maximum = new decimal(new int[] {
-            2500,
-            0,
-            0,
-            0});
-            this.nudOffset.Minimum = new decimal(new int[] {
-            2500,
-            0,
-            0,
-            -2147483648});
-            this.nudOffset.Name = "nudOffset";
-            this.nudOffset.ReadOnly = true;
-            this.nudOffset.Size = new System.Drawing.Size(114, 52);
-            this.nudOffset.TabIndex = 115;
-            this.nudOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudOffset.Value = new decimal(new int[] {
-            8,
-            0,
-            0,
-            -2147483648});
-            this.nudOffset.Click += new System.EventHandler(this.nudOffset_Click);
-            this.nudOffset.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudOffset_HelpRequested);
-            // 
             // nudTurnOffDelay
             // 
             this.nudTurnOffDelay.BackColor = System.Drawing.Color.AliceBlue;
@@ -5354,35 +5547,6 @@
             this.nudLookAhead.Click += new System.EventHandler(this.nudLookAhead_Click);
             this.nudLookAhead.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudLookAhead_HelpRequested);
             // 
-            // nudOverlap
-            // 
-            this.nudOverlap.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudOverlap.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudOverlap.InterceptArrowKeys = false;
-            this.nudOverlap.Location = new System.Drawing.Point(631, 394);
-            this.nudOverlap.Maximum = new decimal(new int[] {
-            3000,
-            0,
-            0,
-            0});
-            this.nudOverlap.Minimum = new decimal(new int[] {
-            3000,
-            0,
-            0,
-            -2147483648});
-            this.nudOverlap.Name = "nudOverlap";
-            this.nudOverlap.ReadOnly = true;
-            this.nudOverlap.Size = new System.Drawing.Size(114, 52);
-            this.nudOverlap.TabIndex = 116;
-            this.nudOverlap.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudOverlap.Value = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
-            this.nudOverlap.Click += new System.EventHandler(this.nudOverlap_Click);
-            this.nudOverlap.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudOverlap_HelpRequested);
-            // 
             // pictureBox3
             // 
             this.pictureBox3.BackgroundImage = global::AgOpenGPS.Properties.Resources.ImplementSettings;
@@ -5405,7 +5569,7 @@
             this.tabDHeading.Controls.Add(this.cboxIsRTK);
             this.tabDHeading.Location = new System.Drawing.Point(4, 44);
             this.tabDHeading.Name = "tabDHeading";
-            this.tabDHeading.Size = new System.Drawing.Size(853, 584);
+            this.tabDHeading.Size = new System.Drawing.Size(854, 584);
             this.tabDHeading.TabIndex = 15;
             this.tabDHeading.Text = "dHead";
             this.tabDHeading.Enter += new System.EventHandler(this.tabDHeading_Enter);
@@ -5813,7 +5977,7 @@
             this.tabDRoll.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.tabDRoll.Location = new System.Drawing.Point(4, 44);
             this.tabDRoll.Name = "tabDRoll";
-            this.tabDRoll.Size = new System.Drawing.Size(853, 584);
+            this.tabDRoll.Size = new System.Drawing.Size(854, 584);
             this.tabDRoll.TabIndex = 16;
             this.tabDRoll.Text = "dRoll";
             this.tabDRoll.Enter += new System.EventHandler(this.tabDRoll_Enter);
@@ -6065,7 +6229,7 @@
             this.tabUTurn.Controls.Add(this.btnDistanceDn);
             this.tabUTurn.Location = new System.Drawing.Point(4, 44);
             this.tabUTurn.Name = "tabUTurn";
-            this.tabUTurn.Size = new System.Drawing.Size(853, 584);
+            this.tabUTurn.Size = new System.Drawing.Size(854, 584);
             this.tabUTurn.TabIndex = 18;
             this.tabUTurn.Text = "uTurn";
             this.tabUTurn.Enter += new System.EventHandler(this.tabUTurn_Enter);
@@ -6454,7 +6618,7 @@
             this.tabRelay.Location = new System.Drawing.Point(4, 44);
             this.tabRelay.Name = "tabRelay";
             this.tabRelay.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRelay.Size = new System.Drawing.Size(853, 584);
+            this.tabRelay.Size = new System.Drawing.Size(854, 584);
             this.tabRelay.TabIndex = 24;
             this.tabRelay.Text = "aRelay";
             this.tabRelay.Enter += new System.EventHandler(this.tabRelay_Enter);
@@ -7598,7 +7762,7 @@
             this.tabAMachine.Controls.Add(this.btnSendMachinePGN);
             this.tabAMachine.Location = new System.Drawing.Point(4, 44);
             this.tabAMachine.Name = "tabAMachine";
-            this.tabAMachine.Size = new System.Drawing.Size(853, 584);
+            this.tabAMachine.Size = new System.Drawing.Size(854, 584);
             this.tabAMachine.TabIndex = 20;
             this.tabAMachine.Text = "aMach";
             this.tabAMachine.Enter += new System.EventHandler(this.tabAMachine_Enter);
@@ -8046,7 +8210,7 @@
             this.tabTram.ForeColor = System.Drawing.Color.Black;
             this.tabTram.Location = new System.Drawing.Point(4, 44);
             this.tabTram.Name = "tabTram";
-            this.tabTram.Size = new System.Drawing.Size(853, 584);
+            this.tabTram.Size = new System.Drawing.Size(854, 584);
             this.tabTram.TabIndex = 21;
             this.tabTram.Text = "tTram";
             this.tabTram.Enter += new System.EventHandler(this.tabTram_Enter);
@@ -8205,7 +8369,7 @@
             this.tabBtns.Controls.Add(this.cboxFeatureTram);
             this.tabBtns.Location = new System.Drawing.Point(4, 44);
             this.tabBtns.Name = "tabBtns";
-            this.tabBtns.Size = new System.Drawing.Size(853, 584);
+            this.tabBtns.Size = new System.Drawing.Size(854, 584);
             this.tabBtns.TabIndex = 22;
             this.tabBtns.Text = "fBtns";
             this.tabBtns.Enter += new System.EventHandler(this.tabBtns_Enter);
@@ -9072,7 +9236,7 @@
             this.tabDisplay.Location = new System.Drawing.Point(4, 44);
             this.tabDisplay.Name = "tabDisplay";
             this.tabDisplay.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDisplay.Size = new System.Drawing.Size(853, 584);
+            this.tabDisplay.Size = new System.Drawing.Size(854, 584);
             this.tabDisplay.TabIndex = 25;
             this.tabDisplay.Text = "fDisp";
             this.tabDisplay.Enter += new System.EventHandler(this.tabDisplay_Enter);
@@ -9509,7 +9673,7 @@
             this.lblCurrentVehicle.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.lblCurrentVehicle.ForeColor = System.Drawing.Color.Black;
             this.lblCurrentVehicle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblCurrentVehicle.Location = new System.Drawing.Point(17, 4);
+            this.lblCurrentVehicle.Location = new System.Drawing.Point(18, 4);
             this.lblCurrentVehicle.Name = "lblCurrentVehicle";
             this.lblCurrentVehicle.Size = new System.Drawing.Size(138, 23);
             this.lblCurrentVehicle.TabIndex = 450;
@@ -9592,7 +9756,7 @@
             this.panelBottom.ForeColor = System.Drawing.Color.Lime;
             this.panelBottom.Location = new System.Drawing.Point(124, 645);
             this.panelBottom.Name = "panelBottom";
-            this.panelBottom.Size = new System.Drawing.Size(861, 66);
+            this.panelBottom.Size = new System.Drawing.Size(862, 66);
             this.panelBottom.TabIndex = 112;
             // 
             // lblFeetMeters
@@ -9616,7 +9780,7 @@
             this.btnOK.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOK.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnOK.Location = new System.Drawing.Point(776, 1);
+            this.btnOK.Location = new System.Drawing.Point(777, 1);
             this.btnOK.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(80, 62);
@@ -9649,7 +9813,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(989, 715);
+            this.ClientSize = new System.Drawing.Size(990, 715);
             this.Controls.Add(this.tab1);
             this.Controls.Add(this.panelBottom);
             this.Controls.Add(this.panelLeftSideMenu);
@@ -9717,6 +9881,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudDrawbarLength)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTankHitch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picboxToolHitch)).EndInit();
+            this.tabToolOffset.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudOverlap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudOffset)).EndInit();
             this.tabTSections.ResumeLayout(false);
             this.tabTSections.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCutoffSpeed)).EndInit();
@@ -9754,12 +9925,9 @@
             this.grpControls.ResumeLayout(false);
             this.grpSwitch.ResumeLayout(false);
             this.tabTSettings.ResumeLayout(false);
-            this.tabTSettings.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudLookAheadOff)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudOffset)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTurnOffDelay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLookAhead)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudOverlap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.tabDHeading.ResumeLayout(false);
             this.tabDHeading.PerformLayout();
@@ -9873,10 +10041,8 @@
         private System.Windows.Forms.CheckBox chkWorkSwActiveLow;
         private System.Windows.Forms.CheckBox chkSelectWorkSwitch;
         private System.Windows.Forms.NumericUpDown nudLookAheadOff;
-        private System.Windows.Forms.NumericUpDown nudOffset;
         private System.Windows.Forms.NumericUpDown nudTurnOffDelay;
         private System.Windows.Forms.NumericUpDown nudLookAhead;
-        private System.Windows.Forms.NumericUpDown nudOverlap;
         private System.Windows.Forms.Button btnVehicleSave;
         private System.Windows.Forms.Button btnVehicleLoad;
         private System.Windows.Forms.Button btnVehicleDelete;
@@ -9983,8 +10149,6 @@
         private System.Windows.Forms.Label label60;
         private System.Windows.Forms.Label label53;
         private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.Label label66;
-        private System.Windows.Forms.Label label65;
         private System.Windows.Forms.Label label74;
         private System.Windows.Forms.Label label73;
         private System.Windows.Forms.Label label72;
@@ -10320,5 +10484,19 @@
         private System.Windows.Forms.Label label174;
         private System.Windows.Forms.Label lblSumWheelbase;
         private System.Windows.Forms.Button btnRunPivotOffsetForm;
+        private System.Windows.Forms.Button btnSubToolOffset;
+        private System.Windows.Forms.TabPage tabToolOffset;
+        private System.Windows.Forms.Label label65;
+        private System.Windows.Forms.NumericUpDown nudOverlap;
+        private System.Windows.Forms.NumericUpDown nudOffset;
+        private System.Windows.Forms.RadioButton rbtnLeftNegative;
+        private System.Windows.Forms.RadioButton rbtnToolRightPositive;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.RadioButton rbtnToolOverlap;
+        private System.Windows.Forms.RadioButton rbtnToolGap;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label17;
     }
 }

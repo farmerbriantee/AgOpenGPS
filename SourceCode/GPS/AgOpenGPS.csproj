@@ -987,6 +987,11 @@
     <None Include="btnImages\TrackLine.png" />
     <None Include="btnImages\TracksInvisible.png" />
     <None Include="btnImages\TrackVisible.png" />
+    <None Include="btnImages\Config\ConS_ImplementOffset.png" />
+    <None Include="btnImages\Config\ToolGap.png" />
+    <None Include="btnImages\Config\ToolOffsetNegativeLeft.png" />
+    <None Include="btnImages\Config\ToolOffsetPositiveRight.png" />
+    <None Include="btnImages\Config\ToolOverlap.png" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />

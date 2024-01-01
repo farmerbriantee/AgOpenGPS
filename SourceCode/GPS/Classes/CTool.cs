@@ -232,10 +232,10 @@ namespace AgOpenGPS
                 GL.Color4(1, 1, 1, 0.75);
                 GL.BindTexture(TextureTarget.Texture2D, mf.texture[26]);        // Select Our Texture
                 GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
-                GL.TexCoord2(1, 0); GL.Vertex2(1.5, trailingTool+1); // Top Right
-                GL.TexCoord2(0, 0); GL.Vertex2(-1.5, trailingTool+1); // Top Left
-                GL.TexCoord2(1, 1); GL.Vertex2(1.5, trailingTool-1); // Bottom Right
-                GL.TexCoord2(0, 1); GL.Vertex2(-1.5, trailingTool-1); // Bottom Left
+                GL.TexCoord2(1, 0); GL.Vertex2(1.5+offset, trailingTool+1); // Top Right
+                GL.TexCoord2(0, 0); GL.Vertex2(-1.5+offset, trailingTool+1); // Top Left
+                GL.TexCoord2(1, 1); GL.Vertex2(1.5+offset, trailingTool-1); // Bottom Right
+                GL.TexCoord2(0, 1); GL.Vertex2(-1.5+offset, trailingTool-1); // Bottom Left
                 GL.End();                       // Done Building Triangle Strip
                 GL.Disable(EnableCap.Texture2D);
 

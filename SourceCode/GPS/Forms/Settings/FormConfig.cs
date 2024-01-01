@@ -94,6 +94,9 @@ namespace AgOpenGPS
             nudGuidanceSpeedLimit.Controls[0].Enabled = false;
             nudMaxSteerSpeed.Controls[0].Enabled = false;
             nudMinSteerSpeed.Controls[0].Enabled = false;
+
+            nudOverlap.Controls[0].Enabled = false;
+            nudOffset.Controls[0].Enabled = false;
         }
 
         private void FormConfig_Load(object sender, EventArgs e)
@@ -101,8 +104,7 @@ namespace AgOpenGPS
             //since we reset, save current state
             mf.SaveFormGPSWindowSettings();
 
-
-                //metric or imp on spinners min/maxes
+            //metric or imp on spinners min/maxes
             if (!mf.isMetric)  FixMinMaxSpinners();            
 
             //the pick a saved vehicle box
@@ -211,6 +213,11 @@ namespace AgOpenGPS
 
             nudABLength.Minimum = Math.Round(nudABLength.Minimum * 3.28M);
             nudABLength.Maximum = Math.Round(nudABLength.Maximum * 3.28M);
+
+            nudOffset.Maximum = Math.Round(nudOffset.Maximum / 2.54M);
+            nudOffset.Minimum = Math.Round(nudOffset.Minimum / 2.54M);
+            nudOverlap.Maximum = Math.Round(nudOverlap.Maximum / 2.54M);
+            nudOverlap.Minimum = Math.Round(nudOverlap.Minimum / 2.54M);
         }
 
         private void btnOK_Click(object sender, EventArgs e)
