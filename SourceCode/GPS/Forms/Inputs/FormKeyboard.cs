@@ -89,5 +89,37 @@ namespace AgOpenGPS
             keyboardString.SelectionLength = 0;
             keyboardString.Focus();
         }
+
+        private void btnCharLeft_Click(object sender, EventArgs e)
+        {
+            int spot = keyboardString.SelectionStart;
+            spot--;
+            if (spot > 0)
+            {
+                keyboardString.SelectionStart = spot;
+                keyboardString.SelectionLength = 0;
+                keyboardString.Focus();
+            }
+            else
+            {
+                spot = 0;
+            }
+        }
+
+        private void btnCharRight_Click(object sender, EventArgs e)
+        {
+            int spot = keyboardString.SelectionStart;
+            spot++;
+            if (spot < keyboardString.Text.Length)
+            {
+                keyboardString.SelectionStart = spot;
+                keyboardString.SelectionLength = 0;
+                keyboardString.Focus();
+            }
+            else
+            {
+                spot = keyboardString.Text.Length;
+            }
+        }
     }
 }
