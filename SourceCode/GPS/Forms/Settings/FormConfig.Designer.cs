@@ -681,6 +681,7 @@
             // 
             // panelLeftSideMenu
             // 
+            this.panelLeftSideMenu.AutoScroll = true;
             this.panelLeftSideMenu.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.panelLeftSideMenu.Controls.Add(this.btnDisplay);
             this.panelLeftSideMenu.Controls.Add(this.btnFeatureHides);
@@ -714,7 +715,7 @@
             this.btnDisplay.Location = new System.Drawing.Point(0, 1669);
             this.btnDisplay.Name = "btnDisplay";
             this.btnDisplay.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnDisplay.Size = new System.Drawing.Size(120, 80);
+            this.btnDisplay.Size = new System.Drawing.Size(103, 80);
             this.btnDisplay.TabIndex = 2;
             this.btnDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDisplay.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -735,7 +736,7 @@
             this.btnFeatureHides.Location = new System.Drawing.Point(0, 1589);
             this.btnFeatureHides.Name = "btnFeatureHides";
             this.btnFeatureHides.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnFeatureHides.Size = new System.Drawing.Size(120, 80);
+            this.btnFeatureHides.Size = new System.Drawing.Size(103, 80);
             this.btnFeatureHides.TabIndex = 4;
             this.btnFeatureHides.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFeatureHides.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -756,7 +757,7 @@
             this.btnTram.Location = new System.Drawing.Point(0, 1509);
             this.btnTram.Name = "btnTram";
             this.btnTram.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnTram.Size = new System.Drawing.Size(120, 80);
+            this.btnTram.Size = new System.Drawing.Size(103, 80);
             this.btnTram.TabIndex = 3;
             this.btnTram.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTram.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -771,7 +772,7 @@
             this.panelArduinoSubMenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelArduinoSubMenu.Location = new System.Drawing.Point(0, 1349);
             this.panelArduinoSubMenu.Name = "panelArduinoSubMenu";
-            this.panelArduinoSubMenu.Size = new System.Drawing.Size(120, 160);
+            this.panelArduinoSubMenu.Size = new System.Drawing.Size(103, 160);
             this.panelArduinoSubMenu.TabIndex = 116;
             // 
             // btnMachineRelay
@@ -788,7 +789,7 @@
             this.btnMachineRelay.Location = new System.Drawing.Point(0, 80);
             this.btnMachineRelay.Name = "btnMachineRelay";
             this.btnMachineRelay.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnMachineRelay.Size = new System.Drawing.Size(120, 80);
+            this.btnMachineRelay.Size = new System.Drawing.Size(103, 80);
             this.btnMachineRelay.TabIndex = 3;
             this.btnMachineRelay.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMachineRelay.UseVisualStyleBackColor = false;
@@ -808,7 +809,7 @@
             this.btnMachineModule.Location = new System.Drawing.Point(0, 0);
             this.btnMachineModule.Name = "btnMachineModule";
             this.btnMachineModule.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnMachineModule.Size = new System.Drawing.Size(120, 80);
+            this.btnMachineModule.Size = new System.Drawing.Size(103, 80);
             this.btnMachineModule.TabIndex = 1;
             this.btnMachineModule.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMachineModule.UseVisualStyleBackColor = false;
@@ -828,7 +829,7 @@
             this.btnArduino.Location = new System.Drawing.Point(0, 1269);
             this.btnArduino.Name = "btnArduino";
             this.btnArduino.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnArduino.Size = new System.Drawing.Size(120, 80);
+            this.btnArduino.Size = new System.Drawing.Size(103, 80);
             this.btnArduino.TabIndex = 115;
             this.btnArduino.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnArduino.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -849,7 +850,7 @@
             this.btnUTurn.Location = new System.Drawing.Point(0, 1194);
             this.btnUTurn.Name = "btnUTurn";
             this.btnUTurn.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnUTurn.Size = new System.Drawing.Size(120, 75);
+            this.btnUTurn.Size = new System.Drawing.Size(103, 75);
             this.btnUTurn.TabIndex = 116;
             this.btnUTurn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUTurn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -864,7 +865,7 @@
             this.panelDataSourcesSubMenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelDataSourcesSubMenu.Location = new System.Drawing.Point(0, 1034);
             this.panelDataSourcesSubMenu.Name = "panelDataSourcesSubMenu";
-            this.panelDataSourcesSubMenu.Size = new System.Drawing.Size(120, 160);
+            this.panelDataSourcesSubMenu.Size = new System.Drawing.Size(103, 160);
             this.panelDataSourcesSubMenu.TabIndex = 7;
             // 
             // btnSubRoll
@@ -881,7 +882,7 @@
             this.btnSubRoll.Location = new System.Drawing.Point(0, 80);
             this.btnSubRoll.Name = "btnSubRoll";
             this.btnSubRoll.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubRoll.Size = new System.Drawing.Size(120, 80);
+            this.btnSubRoll.Size = new System.Drawing.Size(103, 80);
             this.btnSubRoll.TabIndex = 0;
             this.btnSubRoll.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubRoll.UseVisualStyleBackColor = false;
@@ -901,7 +902,7 @@
             this.btnSubHeading.Location = new System.Drawing.Point(0, 0);
             this.btnSubHeading.Name = "btnSubHeading";
             this.btnSubHeading.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnSubHeading.Size = new System.Drawing.Size(120, 80);
+            this.btnSubHeading.Size = new System.Drawing.Size(103, 80);
             this.btnSubHeading.TabIndex = 1;
             this.btnSubHeading.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubHeading.UseVisualStyleBackColor = false;
@@ -921,7 +922,7 @@
             this.btnDataSources.Location = new System.Drawing.Point(0, 954);
             this.btnDataSources.Name = "btnDataSources";
             this.btnDataSources.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnDataSources.Size = new System.Drawing.Size(120, 80);
+            this.btnDataSources.Size = new System.Drawing.Size(103, 80);
             this.btnDataSources.TabIndex = 114;
             this.btnDataSources.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDataSources.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -941,7 +942,7 @@
             this.panelToolSubMenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelToolSubMenu.Location = new System.Drawing.Point(0, 448);
             this.panelToolSubMenu.Name = "panelToolSubMenu";
-            this.panelToolSubMenu.Size = new System.Drawing.Size(120, 506);
+            this.panelToolSubMenu.Size = new System.Drawing.Size(103, 506);
             this.panelToolSubMenu.TabIndex = 4;
             // 
             // btnSubSwitches
@@ -958,7 +959,7 @@
             this.btnSubSwitches.Location = new System.Drawing.Point(0, 432);
             this.btnSubSwitches.Name = "btnSubSwitches";
             this.btnSubSwitches.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubSwitches.Size = new System.Drawing.Size(120, 72);
+            this.btnSubSwitches.Size = new System.Drawing.Size(103, 72);
             this.btnSubSwitches.TabIndex = 1;
             this.btnSubSwitches.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubSwitches.UseVisualStyleBackColor = false;
@@ -978,7 +979,7 @@
             this.btnSubToolSettings.Location = new System.Drawing.Point(0, 360);
             this.btnSubToolSettings.Name = "btnSubToolSettings";
             this.btnSubToolSettings.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnSubToolSettings.Size = new System.Drawing.Size(120, 72);
+            this.btnSubToolSettings.Size = new System.Drawing.Size(103, 72);
             this.btnSubToolSettings.TabIndex = 4;
             this.btnSubToolSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubToolSettings.UseVisualStyleBackColor = false;
@@ -998,7 +999,7 @@
             this.btnSubSections.Location = new System.Drawing.Point(0, 288);
             this.btnSubSections.Name = "btnSubSections";
             this.btnSubSections.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubSections.Size = new System.Drawing.Size(120, 72);
+            this.btnSubSections.Size = new System.Drawing.Size(103, 72);
             this.btnSubSections.TabIndex = 0;
             this.btnSubSections.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubSections.UseVisualStyleBackColor = false;
@@ -1018,7 +1019,7 @@
             this.btnSubToolOffset.Location = new System.Drawing.Point(0, 216);
             this.btnSubToolOffset.Name = "btnSubToolOffset";
             this.btnSubToolOffset.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubToolOffset.Size = new System.Drawing.Size(120, 72);
+            this.btnSubToolOffset.Size = new System.Drawing.Size(103, 72);
             this.btnSubToolOffset.TabIndex = 1;
             this.btnSubToolOffset.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubToolOffset.UseVisualStyleBackColor = false;
@@ -1038,7 +1039,7 @@
             this.btnSubPivot.Location = new System.Drawing.Point(0, 144);
             this.btnSubPivot.Name = "btnSubPivot";
             this.btnSubPivot.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubPivot.Size = new System.Drawing.Size(120, 72);
+            this.btnSubPivot.Size = new System.Drawing.Size(103, 72);
             this.btnSubPivot.TabIndex = 217;
             this.btnSubPivot.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubPivot.UseVisualStyleBackColor = false;
@@ -1058,7 +1059,7 @@
             this.btnSubHitch.Location = new System.Drawing.Point(0, 72);
             this.btnSubHitch.Name = "btnSubHitch";
             this.btnSubHitch.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnSubHitch.Size = new System.Drawing.Size(120, 72);
+            this.btnSubHitch.Size = new System.Drawing.Size(103, 72);
             this.btnSubHitch.TabIndex = 5;
             this.btnSubHitch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubHitch.UseVisualStyleBackColor = false;
@@ -1078,7 +1079,7 @@
             this.btnSubToolType.Location = new System.Drawing.Point(0, 0);
             this.btnSubToolType.Name = "btnSubToolType";
             this.btnSubToolType.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubToolType.Size = new System.Drawing.Size(120, 72);
+            this.btnSubToolType.Size = new System.Drawing.Size(103, 72);
             this.btnSubToolType.TabIndex = 6;
             this.btnSubToolType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubToolType.UseVisualStyleBackColor = false;
@@ -1098,7 +1099,7 @@
             this.btnTool.Location = new System.Drawing.Point(0, 368);
             this.btnTool.Name = "btnTool";
             this.btnTool.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.btnTool.Size = new System.Drawing.Size(120, 80);
+            this.btnTool.Size = new System.Drawing.Size(103, 80);
             this.btnTool.TabIndex = 3;
             this.btnTool.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTool.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -1116,7 +1117,7 @@
             this.panelVehicleSubMenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelVehicleSubMenu.Location = new System.Drawing.Point(0, 80);
             this.panelVehicleSubMenu.Name = "panelVehicleSubMenu";
-            this.panelVehicleSubMenu.Size = new System.Drawing.Size(120, 288);
+            this.panelVehicleSubMenu.Size = new System.Drawing.Size(103, 288);
             this.panelVehicleSubMenu.TabIndex = 2;
             // 
             // button1
@@ -1149,7 +1150,7 @@
             this.btnSubGuidance.Location = new System.Drawing.Point(0, 216);
             this.btnSubGuidance.Name = "btnSubGuidance";
             this.btnSubGuidance.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnSubGuidance.Size = new System.Drawing.Size(120, 72);
+            this.btnSubGuidance.Size = new System.Drawing.Size(103, 72);
             this.btnSubGuidance.TabIndex = 3;
             this.btnSubGuidance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubGuidance.UseVisualStyleBackColor = false;
@@ -1169,7 +1170,7 @@
             this.btnSubAntenna.Location = new System.Drawing.Point(0, 144);
             this.btnSubAntenna.Name = "btnSubAntenna";
             this.btnSubAntenna.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubAntenna.Size = new System.Drawing.Size(120, 72);
+            this.btnSubAntenna.Size = new System.Drawing.Size(103, 72);
             this.btnSubAntenna.TabIndex = 2;
             this.btnSubAntenna.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubAntenna.UseVisualStyleBackColor = false;
@@ -1189,7 +1190,7 @@
             this.btnSubDimensions.Location = new System.Drawing.Point(0, 72);
             this.btnSubDimensions.Name = "btnSubDimensions";
             this.btnSubDimensions.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnSubDimensions.Size = new System.Drawing.Size(120, 72);
+            this.btnSubDimensions.Size = new System.Drawing.Size(103, 72);
             this.btnSubDimensions.TabIndex = 1;
             this.btnSubDimensions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubDimensions.UseVisualStyleBackColor = false;
@@ -1209,7 +1210,7 @@
             this.btnSubVehicleType.Location = new System.Drawing.Point(0, 0);
             this.btnSubVehicleType.Name = "btnSubVehicleType";
             this.btnSubVehicleType.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.btnSubVehicleType.Size = new System.Drawing.Size(120, 72);
+            this.btnSubVehicleType.Size = new System.Drawing.Size(103, 72);
             this.btnSubVehicleType.TabIndex = 0;
             this.btnSubVehicleType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubVehicleType.UseVisualStyleBackColor = false;
@@ -1229,7 +1230,7 @@
             this.btnVehicle.Location = new System.Drawing.Point(0, 0);
             this.btnVehicle.Name = "btnVehicle";
             this.btnVehicle.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.btnVehicle.Size = new System.Drawing.Size(120, 80);
+            this.btnVehicle.Size = new System.Drawing.Size(103, 80);
             this.btnVehicle.TabIndex = 113;
             this.btnVehicle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnVehicle.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -2486,19 +2487,18 @@
             // 
             this.label27.AutoSize = true;
             this.label27.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label27.Location = new System.Drawing.Point(169, 253);
+            this.label27.Location = new System.Drawing.Point(68, 327);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(77, 16);
             this.label27.TabIndex = 479;
             this.label27.Text = "Hitch Length";
-            this.label27.Click += new System.EventHandler(this.label27_Click);
             // 
             // nudTractorHitchLength
             // 
             this.nudTractorHitchLength.BackColor = System.Drawing.Color.AliceBlue;
             this.nudTractorHitchLength.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudTractorHitchLength.InterceptArrowKeys = false;
-            this.nudTractorHitchLength.Location = new System.Drawing.Point(138, 198);
+            this.nudTractorHitchLength.Location = new System.Drawing.Point(37, 272);
             this.nudTractorHitchLength.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -2526,7 +2526,7 @@
             // 
             this.label60.AutoSize = true;
             this.label60.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label60.Location = new System.Drawing.Point(677, 479);
+            this.label60.Location = new System.Drawing.Point(663, 479);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(76, 16);
             this.label60.TabIndex = 477;
@@ -2536,7 +2536,7 @@
             // 
             this.label53.AutoSize = true;
             this.label53.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label53.Location = new System.Drawing.Point(695, 201);
+            this.label53.Location = new System.Drawing.Point(755, 221);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(39, 16);
             this.label53.TabIndex = 476;
@@ -2546,7 +2546,7 @@
             // 
             this.label44.AutoSize = true;
             this.label44.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label44.Location = new System.Drawing.Point(163, 450);
+            this.label44.Location = new System.Drawing.Point(226, 453);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(70, 16);
             this.label44.TabIndex = 475;
@@ -2557,7 +2557,7 @@
             this.nudVehicleTrack.BackColor = System.Drawing.Color.AliceBlue;
             this.nudVehicleTrack.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudVehicleTrack.InterceptArrowKeys = false;
-            this.nudVehicleTrack.Location = new System.Drawing.Point(644, 146);
+            this.nudVehicleTrack.Location = new System.Drawing.Point(700, 165);
             this.nudVehicleTrack.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -2571,7 +2571,7 @@
             this.nudVehicleTrack.Name = "nudVehicleTrack";
             this.nudVehicleTrack.ReadOnly = true;
             this.nudVehicleTrack.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.nudVehicleTrack.Size = new System.Drawing.Size(152, 52);
+            this.nudVehicleTrack.Size = new System.Drawing.Size(133, 52);
             this.nudVehicleTrack.TabIndex = 53;
             this.nudVehicleTrack.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudVehicleTrack.Value = new decimal(new int[] {
@@ -2586,7 +2586,7 @@
             this.nudWheelbase.BackColor = System.Drawing.Color.AliceBlue;
             this.nudWheelbase.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudWheelbase.InterceptArrowKeys = false;
-            this.nudWheelbase.Location = new System.Drawing.Point(116, 394);
+            this.nudWheelbase.Location = new System.Drawing.Point(179, 397);
             this.nudWheelbase.Maximum = new decimal(new int[] {
             1999,
             0,
@@ -2615,7 +2615,7 @@
             this.nudMinTurnRadius.BackColor = System.Drawing.Color.AliceBlue;
             this.nudMinTurnRadius.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudMinTurnRadius.InterceptArrowKeys = false;
-            this.nudMinTurnRadius.Location = new System.Drawing.Point(644, 424);
+            this.nudMinTurnRadius.Location = new System.Drawing.Point(630, 424);
             this.nudMinTurnRadius.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -2643,7 +2643,7 @@
             // 
             this.pictureBox1.Image = global::AgOpenGPS.Properties.Resources.RadiusWheelBase;
             this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(18, 22);
+            this.pictureBox1.Location = new System.Drawing.Point(4, 22);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(814, 545);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
