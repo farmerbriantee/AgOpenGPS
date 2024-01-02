@@ -64,7 +64,7 @@
             this.btnCharLeft.Image = global::AgOpenGPS.Properties.Resources.ArrowLeft;
             this.btnCharLeft.Location = new System.Drawing.Point(773, 3);
             this.btnCharLeft.Name = "btnCharLeft";
-            this.btnCharLeft.Size = new System.Drawing.Size(73, 42);
+            this.btnCharLeft.Size = new System.Drawing.Size(73, 45);
             this.btnCharLeft.TabIndex = 457;
             this.btnCharLeft.UseVisualStyleBackColor = false;
             this.btnCharLeft.Click += new System.EventHandler(this.btnCharLeft_Click);
@@ -81,7 +81,7 @@
             this.btnCharRight.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
             this.btnCharRight.Location = new System.Drawing.Point(852, 3);
             this.btnCharRight.Name = "btnCharRight";
-            this.btnCharRight.Size = new System.Drawing.Size(73, 42);
+            this.btnCharRight.Size = new System.Drawing.Size(73, 45);
             this.btnCharRight.TabIndex = 458;
             this.btnCharRight.UseVisualStyleBackColor = false;
             this.btnCharRight.Click += new System.EventHandler(this.btnCharRight_Click);

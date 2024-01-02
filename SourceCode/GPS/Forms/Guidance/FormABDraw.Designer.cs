@@ -34,7 +34,7 @@
             this.lblNumCu = new System.Windows.Forms.Label();
             this.lblCurveSelected = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.nudDistance = new NudlessNumericUpDown();
+            this.nudDistance = new AgOpenGPS.NudlessNumericUpDown();
             this.tboxNameCurve = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -56,6 +56,7 @@
             this.btnMakeCurve = new System.Windows.Forms.Button();
             this.btnMakeABLine = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudDistance)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -198,7 +199,7 @@
             // 
             this.label8.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(711, 614);
+            this.label8.Location = new System.Drawing.Point(812, 612);
             this.label8.Margin = new System.Windows.Forms.Padding(0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(93, 20);
@@ -377,7 +378,7 @@
             this.btnDrawSections.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnDrawSections.Image = global::AgOpenGPS.Properties.Resources.MappingOff;
             this.btnDrawSections.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDrawSections.Location = new System.Drawing.Point(717, 637);
+            this.btnDrawSections.Location = new System.Drawing.Point(817, 635);
             this.btnDrawSections.Name = "btnDrawSections";
             this.btnDrawSections.Size = new System.Drawing.Size(89, 63);
             this.btnDrawSections.TabIndex = 11;
@@ -482,12 +483,30 @@
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             this.btnExit.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnExit_HelpRequested);
             // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.Color.Transparent;
+            this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
+            this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnCancel.Location = new System.Drawing.Point(713, 641);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(88, 66);
+            this.btnCancel.TabIndex = 469;
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // FormABDraw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1004, 709);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.cboxIsVisible);
             this.Controls.Add(this.btnAddTime);
             this.Controls.Add(this.panel1);
@@ -559,5 +578,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnAddTime;
         private System.Windows.Forms.CheckBox cboxIsVisible;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

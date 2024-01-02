@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AgOpenGPS
 {
@@ -52,7 +53,26 @@ namespace AgOpenGPS
             {
                 if (keyboardString.Text.Length > 0)
                 {
-                    keyboardString.Text = keyboardString.Text.Remove(keyboardString.Text.Length - 1);
+                    var selectionIndex = keyboardString.SelectionStart;
+
+                    if (selectionIndex > 0)
+                    {
+                        keyboardString.Text = keyboardString.Text.Remove(selectionIndex - 1, 1);
+
+                        keyboardString.SelectionStart = selectionIndex - 1;
+                        keyboardString.SelectionLength = 0;
+                        keyboardString.Focus();
+                    }
+                    else
+                    {
+                        keyboardString.SelectionStart = 1;
+                        keyboardString.SelectionLength = 0;
+                    }
+
+                    //keyboardString.Text = keyboardString.Text.Insert(selectionIndex, insertText);
+                    //keyboardString.SelectionStart = selectionIndex + insertText.Length;
+
+
                 }
             }
 
@@ -81,11 +101,18 @@ namespace AgOpenGPS
             //if its a character just add it
             else
             {
-                keyboardString.Text += e.KeyChar;
+                //keyboardString.Text += e.KeyChar;
+                //string v = ;
+                //    keyboardString.Text.(keyboardString.SelectionStart, "CC");
+
+                var insertText = e.KeyChar.ToString();
+                var selectionIndex = keyboardString.SelectionStart;
+                keyboardString.Text = keyboardString.Text.Insert(selectionIndex, insertText);
+                keyboardString.SelectionStart = selectionIndex + insertText.Length;
             }
 
             //Show the cursor
-            keyboardString.SelectionStart = keyboardString.Text.Length;
+            //keyboardString.SelectionStart = keyboardString.Text.Length;
             keyboardString.SelectionLength = 0;
             keyboardString.Focus();
         }
@@ -94,7 +121,7 @@ namespace AgOpenGPS
         {
             int spot = keyboardString.SelectionStart;
             spot--;
-            if (spot > 0)
+            if (spot >= 0)
             {
                 keyboardString.SelectionStart = spot;
                 keyboardString.SelectionLength = 0;
@@ -103,6 +130,9 @@ namespace AgOpenGPS
             else
             {
                 spot = 0;
+                keyboardString.SelectionStart = spot;
+                keyboardString.SelectionLength = 0;
+                keyboardString.Focus();
             }
         }
 
@@ -110,7 +140,7 @@ namespace AgOpenGPS
         {
             int spot = keyboardString.SelectionStart;
             spot++;
-            if (spot < keyboardString.Text.Length)
+            if (spot <= keyboardString.Text.Length)
             {
                 keyboardString.SelectionStart = spot;
                 keyboardString.SelectionLength = 0;
@@ -119,6 +149,9 @@ namespace AgOpenGPS
             else
             {
                 spot = keyboardString.Text.Length;
+                keyboardString.SelectionStart = spot;
+                keyboardString.SelectionLength = 0;
+                keyboardString.Focus();
             }
         }
     }
