@@ -219,7 +219,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.TransparencyKey = System.Drawing.Color.Black;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPan_FormClosing);
-            this.Load += new System.EventHandler(this.FormPan_Load);
             this.ResumeLayout(false);
 
         }

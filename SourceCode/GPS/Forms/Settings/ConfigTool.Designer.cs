@@ -114,32 +114,16 @@ namespace AgOpenGPS
 
         private void tabTHitch_Enter(object sender, EventArgs e)
         {
+            //fixed -hitch only on vehicle
             if (Properties.Settings.Default.setTool_isToolFront)
             {
                 nudTrailingHitchLength.Visible = false;
                 nudDrawbarLength.Visible = true;
                 nudTankHitch.Visible = false;
 
-                nudTrailingHitchLength.Left = 0;
-                nudDrawbarLength.Left = 342;
-                nudTankHitch.Left = 0;
-                btnRunPivotOffsetForm.Visible = false;
+                nudDrawbarLength.Left = 401;
 
                 picboxToolHitch.BackgroundImage = Properties.Resources.ToolHitchPageFront;
-            }
-            else if (Properties.Settings.Default.setTool_isToolTBT)
-            {
-                nudTrailingHitchLength.Visible = true;
-                nudDrawbarLength.Visible = true;
-                nudTankHitch.Visible = true;
-
-                nudTrailingHitchLength.Left = 120;
-                nudDrawbarLength.Left = 644;
-                nudTankHitch.Left = 433;
-
-                btnRunPivotOffsetForm.Visible = true;
-
-                picboxToolHitch.BackgroundImage = Properties.Resources.ToolHitchPageTBT;
             }
             else if (Properties.Settings.Default.setTool_isToolRearFixed)
             {
@@ -147,25 +131,30 @@ namespace AgOpenGPS
                 nudDrawbarLength.Visible = true;
                 nudTankHitch.Visible = false;
 
-                nudTrailingHitchLength.Left = 0;
-                nudDrawbarLength.Left = 220;
-                nudTankHitch.Left = 0;
-
-                btnRunPivotOffsetForm.Visible = false;
+                nudDrawbarLength.Left = 259;
 
                 picboxToolHitch.BackgroundImage = Properties.Resources.ToolHitchPageRear;
+            }
+
+            //trailing
+            else if (Properties.Settings.Default.setTool_isToolTBT)
+            {
+                nudTrailingHitchLength.Visible = true;
+                nudDrawbarLength.Visible = false;
+                nudTankHitch.Visible = true;
+
+                nudTrailingHitchLength.Left = 326;
+                nudTankHitch.Left = 643;
+
+                picboxToolHitch.BackgroundImage = Properties.Resources.ToolHitchPageTBT;
             }
             else if (Properties.Settings.Default.setTool_isToolTrailing)
             {
                 nudTrailingHitchLength.Visible = true;
-                nudDrawbarLength.Visible = true;
+                nudDrawbarLength.Visible = false;
                 nudTankHitch.Visible = false;
 
-                nudTrailingHitchLength.Left = 290;
-                nudDrawbarLength.Left = 575;
-                nudTankHitch.Left = 0;
-
-                btnRunPivotOffsetForm.Visible = true;
+                nudTrailingHitchLength.Left = 438;
 
                 picboxToolHitch.BackgroundImage = Properties.Resources.ToolHitchPageTrailing;
             }
@@ -213,11 +202,6 @@ namespace AgOpenGPS
             }
         }
 
-        private void btnRunPivotOffsetForm_Click(object sender, EventArgs e)
-        {
-            Form form = new FormFileMenu(mf);
-            form.ShowDialog(mf);
-        }
         #endregion
 
         #region Settings

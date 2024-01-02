@@ -29,6 +29,7 @@ namespace AgOpenGPS
             nudTrailingHitchLength.Controls[0].Enabled = false;
             nudDrawbarLength.Controls[0].Enabled = false;
             nudTankHitch.Controls[0].Enabled = false;
+            nudTractorHitchLength.Controls[0].Enabled = false;
 
             nudLookAhead.Controls[0].Enabled = false;
             nudLookAheadOff.Controls[0].Enabled = false;
@@ -149,6 +150,9 @@ namespace AgOpenGPS
             nudTrailingHitchLength.Maximum = Math.Round(nudTrailingHitchLength.Maximum / 2.54M);
             nudTrailingHitchLength.Minimum = Math.Round(nudTrailingHitchLength.Minimum / 2.54M);
 
+            nudTractorHitchLength.Maximum = Math.Round(nudTractorHitchLength.Maximum / 2.54M);
+            nudTractorHitchLength.Minimum = Math.Round(nudTractorHitchLength.Minimum / 2.54M);
+
             nudSnapDistance.Maximum = Math.Round(nudSnapDistance.Maximum / 2.54M);
             nudSnapDistance.Minimum = Math.Round(nudSnapDistance.Minimum / 2.54M);
 
@@ -260,7 +264,6 @@ namespace AgOpenGPS
 
         private void tabDisplay_Enter(object sender, EventArgs e)
         {
-            chkDisplaySky.Checked = mf.isSkyOn;
             chkDisplayBrightness.Checked = mf.isBrightnessOn;
             chkDisplayFloor.Checked = mf.isTextureOn;
             chkDisplayGrid.Checked = mf.isGridOn;
@@ -303,5 +306,9 @@ namespace AgOpenGPS
             //FormConfig_Load(this, e);
         }
 
+        private void label27_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

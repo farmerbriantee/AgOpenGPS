@@ -134,6 +134,8 @@
             this.nudAntennaOffset = new AgOpenGPS.NudlessNumericUpDown();
             this.pboxAntenna = new System.Windows.Forms.PictureBox();
             this.tabVDimensions = new System.Windows.Forms.TabPage();
+            this.label27 = new System.Windows.Forms.Label();
+            this.nudTractorHitchLength = new AgOpenGPS.NudlessNumericUpDown();
             this.label60 = new System.Windows.Forms.Label();
             this.label53 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
@@ -145,7 +147,6 @@
             this.nudMinSteerSpeed = new AgOpenGPS.NudlessNumericUpDown();
             this.label165 = new System.Windows.Forms.Label();
             this.label166 = new System.Windows.Forms.Label();
-            this.label164 = new System.Windows.Forms.Label();
             this.nudMaxSteerSpeed = new AgOpenGPS.NudlessNumericUpDown();
             this.label55 = new System.Windows.Forms.Label();
             this.label163 = new System.Windows.Forms.Label();
@@ -186,7 +187,6 @@
             this.rbtnFront = new System.Windows.Forms.RadioButton();
             this.rbtnTrailing = new System.Windows.Forms.RadioButton();
             this.tabTHitch = new System.Windows.Forms.TabPage();
-            this.btnRunPivotOffsetForm = new System.Windows.Forms.Button();
             this.nudTrailingHitchLength = new AgOpenGPS.NudlessNumericUpDown();
             this.nudDrawbarLength = new AgOpenGPS.NudlessNumericUpDown();
             this.nudTankHitch = new AgOpenGPS.NudlessNumericUpDown();
@@ -316,7 +316,6 @@
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.nudDualHeadingOffset = new AgOpenGPS.NudlessNumericUpDown();
             this.label12 = new System.Windows.Forms.Label();
-            this.cboxIsDualAsIMU = new System.Windows.Forms.CheckBox();
             this.label118 = new System.Windows.Forms.Label();
             this.gboxSingle = new System.Windows.Forms.GroupBox();
             this.lblHeadingDistance = new System.Windows.Forms.Label();
@@ -476,9 +475,7 @@
             this.label98 = new System.Windows.Forms.Label();
             this.label99 = new System.Windows.Forms.Label();
             this.label97 = new System.Windows.Forms.Label();
-            this.label96 = new System.Windows.Forms.Label();
             this.label95 = new System.Windows.Forms.Label();
-            this.label94 = new System.Windows.Forms.Label();
             this.label93 = new System.Windows.Forms.Label();
             this.label92 = new System.Windows.Forms.Label();
             this.label91 = new System.Windows.Forms.Label();
@@ -503,9 +500,7 @@
             this.cboxFeatureManualSection = new System.Windows.Forms.CheckBox();
             this.cboxFeatureAutoSection = new System.Windows.Forms.CheckBox();
             this.cboxFeatureCycleLines = new System.Windows.Forms.CheckBox();
-            this.cboxFeatureABLine = new System.Windows.Forms.CheckBox();
             this.cboxFeatureCurve = new System.Windows.Forms.CheckBox();
-            this.cboxFeatureSteerMode = new System.Windows.Forms.CheckBox();
             this.cboxFeatureYouTurn = new System.Windows.Forms.CheckBox();
             this.cboxFeatureContour = new System.Windows.Forms.CheckBox();
             this.cboxFeatureAgIO = new System.Windows.Forms.CheckBox();
@@ -533,7 +528,6 @@
             this.label31 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.chkSpeedo = new System.Windows.Forms.Label();
-            this.chkSky = new System.Windows.Forms.Label();
             this.chkExtraGuides = new System.Windows.Forms.Label();
             this.chkGrid = new System.Windows.Forms.Label();
             this.chkDisplayLightbar = new System.Windows.Forms.CheckBox();
@@ -542,7 +536,6 @@
             this.chkDisplayStartFullScreen = new System.Windows.Forms.CheckBox();
             this.chkDisplayLogNMEA = new System.Windows.Forms.CheckBox();
             this.chkDisplayGrid = new System.Windows.Forms.CheckBox();
-            this.chkDisplaySky = new System.Windows.Forms.CheckBox();
             this.chkDisplaySpeedo = new System.Windows.Forms.CheckBox();
             this.chkDisplayExtraGuides = new System.Windows.Forms.CheckBox();
             this.lblCurrentVehicle = new System.Windows.Forms.Label();
@@ -576,6 +569,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaOffset)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxAntenna)).BeginInit();
             this.tabVDimensions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTractorHitchLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudVehicleTrack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWheelbase)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinTurnRadius)).BeginInit();
@@ -2472,6 +2466,8 @@
             // tabVDimensions
             // 
             this.tabVDimensions.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabVDimensions.Controls.Add(this.label27);
+            this.tabVDimensions.Controls.Add(this.nudTractorHitchLength);
             this.tabVDimensions.Controls.Add(this.label60);
             this.tabVDimensions.Controls.Add(this.label53);
             this.tabVDimensions.Controls.Add(this.label44);
@@ -2486,11 +2482,51 @@
             this.tabVDimensions.Text = "vDim";
             this.tabVDimensions.Enter += new System.EventHandler(this.tabVDimensions_Enter);
             // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label27.Location = new System.Drawing.Point(169, 253);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(77, 16);
+            this.label27.TabIndex = 479;
+            this.label27.Text = "Hitch Length";
+            this.label27.Click += new System.EventHandler(this.label27_Click);
+            // 
+            // nudTractorHitchLength
+            // 
+            this.nudTractorHitchLength.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudTractorHitchLength.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudTractorHitchLength.InterceptArrowKeys = false;
+            this.nudTractorHitchLength.Location = new System.Drawing.Point(138, 198);
+            this.nudTractorHitchLength.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.nudTractorHitchLength.Minimum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.nudTractorHitchLength.Name = "nudTractorHitchLength";
+            this.nudTractorHitchLength.ReadOnly = true;
+            this.nudTractorHitchLength.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.nudTractorHitchLength.Size = new System.Drawing.Size(152, 52);
+            this.nudTractorHitchLength.TabIndex = 478;
+            this.nudTractorHitchLength.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudTractorHitchLength.Value = new decimal(new int[] {
+            301,
+            0,
+            0,
+            0});
+            this.nudTractorHitchLength.Click += new System.EventHandler(this.nudDrawbarLength_Click);
+            // 
             // label60
             // 
             this.label60.AutoSize = true;
             this.label60.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label60.Location = new System.Drawing.Point(575, 418);
+            this.label60.Location = new System.Drawing.Point(677, 479);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(76, 16);
             this.label60.TabIndex = 477;
@@ -2500,7 +2536,7 @@
             // 
             this.label53.AutoSize = true;
             this.label53.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label53.Location = new System.Drawing.Point(650, 115);
+            this.label53.Location = new System.Drawing.Point(695, 201);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(39, 16);
             this.label53.TabIndex = 476;
@@ -2510,7 +2546,7 @@
             // 
             this.label44.AutoSize = true;
             this.label44.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label44.Location = new System.Drawing.Point(87, 355);
+            this.label44.Location = new System.Drawing.Point(163, 450);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(70, 16);
             this.label44.TabIndex = 475;
@@ -2521,7 +2557,7 @@
             this.nudVehicleTrack.BackColor = System.Drawing.Color.AliceBlue;
             this.nudVehicleTrack.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudVehicleTrack.InterceptArrowKeys = false;
-            this.nudVehicleTrack.Location = new System.Drawing.Point(589, 134);
+            this.nudVehicleTrack.Location = new System.Drawing.Point(644, 146);
             this.nudVehicleTrack.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -2550,7 +2586,7 @@
             this.nudWheelbase.BackColor = System.Drawing.Color.AliceBlue;
             this.nudWheelbase.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudWheelbase.InterceptArrowKeys = false;
-            this.nudWheelbase.Location = new System.Drawing.Point(90, 374);
+            this.nudWheelbase.Location = new System.Drawing.Point(116, 394);
             this.nudWheelbase.Maximum = new decimal(new int[] {
             1999,
             0,
@@ -2579,7 +2615,7 @@
             this.nudMinTurnRadius.BackColor = System.Drawing.Color.AliceBlue;
             this.nudMinTurnRadius.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudMinTurnRadius.InterceptArrowKeys = false;
-            this.nudMinTurnRadius.Location = new System.Drawing.Point(578, 437);
+            this.nudMinTurnRadius.Location = new System.Drawing.Point(644, 424);
             this.nudMinTurnRadius.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -2607,9 +2643,9 @@
             // 
             this.pictureBox1.Image = global::AgOpenGPS.Properties.Resources.RadiusWheelBase;
             this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(185, 104);
+            this.pictureBox1.Location = new System.Drawing.Point(18, 22);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(469, 415);
+            this.pictureBox1.Size = new System.Drawing.Size(814, 545);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 32;
             this.pictureBox1.TabStop = false;
@@ -2620,7 +2656,6 @@
             this.tabVGuidance.Controls.Add(this.nudMinSteerSpeed);
             this.tabVGuidance.Controls.Add(this.label165);
             this.tabVGuidance.Controls.Add(this.label166);
-            this.tabVGuidance.Controls.Add(this.label164);
             this.tabVGuidance.Controls.Add(this.nudMaxSteerSpeed);
             this.tabVGuidance.Controls.Add(this.label55);
             this.tabVGuidance.Controls.Add(this.label163);
@@ -2669,7 +2704,7 @@
             this.nudMinSteerSpeed.DecimalPlaces = 1;
             this.nudMinSteerSpeed.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudMinSteerSpeed.InterceptArrowKeys = false;
-            this.nudMinSteerSpeed.Location = new System.Drawing.Point(197, 501);
+            this.nudMinSteerSpeed.Location = new System.Drawing.Point(285, 485);
             this.nudMinSteerSpeed.Maximum = new decimal(new int[] {
             10,
             0,
@@ -2694,7 +2729,7 @@
             this.label165.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label165.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label165.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label165.Location = new System.Drawing.Point(175, 398);
+            this.label165.Location = new System.Drawing.Point(263, 382);
             this.label165.Name = "label165";
             this.label165.Size = new System.Drawing.Size(144, 18);
             this.label165.TabIndex = 488;
@@ -2708,26 +2743,12 @@
             this.label166.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label166.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label166.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label166.Location = new System.Drawing.Point(224, 556);
+            this.label166.Location = new System.Drawing.Point(312, 540);
             this.label166.Name = "label166";
             this.label166.Size = new System.Drawing.Size(36, 18);
             this.label166.TabIndex = 491;
             this.label166.Text = "kmh";
             this.label166.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label164
-            // 
-            this.label164.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label164.AutoSize = true;
-            this.label164.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label164.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label164.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label164.Location = new System.Drawing.Point(35, 363);
-            this.label164.Name = "label164";
-            this.label164.Size = new System.Drawing.Size(438, 25);
-            this.label164.TabIndex = 487;
-            this.label164.Text = "*******  Safe Speed Settings  ********";
-            this.label164.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // nudMaxSteerSpeed
             // 
@@ -2735,7 +2756,7 @@
             this.nudMaxSteerSpeed.BackColor = System.Drawing.Color.AliceBlue;
             this.nudMaxSteerSpeed.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudMaxSteerSpeed.InterceptArrowKeys = false;
-            this.nudMaxSteerSpeed.Location = new System.Drawing.Point(354, 501);
+            this.nudMaxSteerSpeed.Location = new System.Drawing.Point(442, 485);
             this.nudMaxSteerSpeed.Maximum = new decimal(new int[] {
             50,
             0,
@@ -2760,7 +2781,7 @@
             this.label55.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label55.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label55.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label55.Location = new System.Drawing.Point(332, 398);
+            this.label55.Location = new System.Drawing.Point(420, 382);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(150, 18);
             this.label55.TabIndex = 483;
@@ -2774,7 +2795,7 @@
             this.label163.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label163.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label163.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label163.Location = new System.Drawing.Point(381, 556);
+            this.label163.Location = new System.Drawing.Point(469, 540);
             this.label163.Name = "label163";
             this.label163.Size = new System.Drawing.Size(36, 18);
             this.label163.TabIndex = 486;
@@ -2787,7 +2808,7 @@
             this.nudMaxAngularVelocity.BackColor = System.Drawing.Color.AliceBlue;
             this.nudMaxAngularVelocity.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudMaxAngularVelocity.InterceptArrowKeys = false;
-            this.nudMaxAngularVelocity.Location = new System.Drawing.Point(542, 501);
+            this.nudMaxAngularVelocity.Location = new System.Drawing.Point(630, 485);
             this.nudMaxAngularVelocity.Minimum = new decimal(new int[] {
             5,
             0,
@@ -2812,7 +2833,7 @@
             this.label160.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label160.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label160.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label160.Location = new System.Drawing.Point(55, 556);
+            this.label160.Location = new System.Drawing.Point(143, 540);
             this.label160.Name = "label160";
             this.label160.Size = new System.Drawing.Size(38, 18);
             this.label160.TabIndex = 477;
@@ -2825,7 +2846,7 @@
             this.label156.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label156.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label156.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label156.Location = new System.Drawing.Point(359, 179);
+            this.label156.Location = new System.Drawing.Point(715, 14);
             this.label156.Name = "label156";
             this.label156.Size = new System.Drawing.Size(119, 18);
             this.label156.TabIndex = 474;
@@ -2839,7 +2860,7 @@
             this.label161.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label161.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label161.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label161.Location = new System.Drawing.Point(20, 399);
+            this.label161.Location = new System.Drawing.Point(108, 383);
             this.label161.Name = "label161";
             this.label161.Size = new System.Drawing.Size(131, 18);
             this.label161.TabIndex = 482;
@@ -2853,7 +2874,7 @@
             this.label159.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label159.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label159.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label159.Location = new System.Drawing.Point(541, 399);
+            this.label159.Location = new System.Drawing.Point(629, 383);
             this.label159.Name = "label159";
             this.label159.Size = new System.Drawing.Size(107, 18);
             this.label159.TabIndex = 478;
@@ -2862,11 +2883,12 @@
             // 
             // label113
             // 
+            this.label113.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label113.AutoSize = true;
             this.label113.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label113.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label113.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label113.Location = new System.Drawing.Point(351, 15);
+            this.label113.Location = new System.Drawing.Point(709, 177);
             this.label113.Name = "label113";
             this.label113.Size = new System.Drawing.Size(137, 18);
             this.label113.TabIndex = 470;
@@ -2880,7 +2902,7 @@
             this.label162.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label162.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label162.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label162.Location = new System.Drawing.Point(547, 556);
+            this.label162.Location = new System.Drawing.Point(635, 540);
             this.label162.Name = "label162";
             this.label162.Size = new System.Drawing.Size(90, 18);
             this.label162.TabIndex = 481;
@@ -2893,7 +2915,7 @@
             this.nudGuidanceSpeedLimit.BackColor = System.Drawing.Color.AliceBlue;
             this.nudGuidanceSpeedLimit.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudGuidanceSpeedLimit.InterceptArrowKeys = false;
-            this.nudGuidanceSpeedLimit.Location = new System.Drawing.Point(29, 501);
+            this.nudGuidanceSpeedLimit.Location = new System.Drawing.Point(117, 485);
             this.nudGuidanceSpeedLimit.Maximum = new decimal(new int[] {
             20,
             0,
@@ -2913,11 +2935,12 @@
             // 
             // label111
             // 
+            this.label111.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label111.AutoSize = true;
             this.label111.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label111.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label111.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label111.Location = new System.Drawing.Point(49, 188);
+            this.label111.Location = new System.Drawing.Point(47, 28);
             this.label111.Name = "label111";
             this.label111.Size = new System.Drawing.Size(105, 18);
             this.label111.TabIndex = 468;
@@ -2926,11 +2949,12 @@
             // 
             // label110
             // 
+            this.label110.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label110.AutoSize = true;
             this.label110.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label110.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label110.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label110.Location = new System.Drawing.Point(600, 15);
+            this.label110.Location = new System.Drawing.Point(53, 164);
             this.label110.Name = "label110";
             this.label110.Size = new System.Drawing.Size(75, 18);
             this.label110.TabIndex = 467;
@@ -2939,11 +2963,12 @@
             // 
             // label109
             // 
+            this.label109.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label109.AutoSize = true;
             this.label109.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label109.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label109.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label109.Location = new System.Drawing.Point(588, 133);
+            this.label109.Location = new System.Drawing.Point(378, 27);
             this.label109.Name = "label109";
             this.label109.Size = new System.Drawing.Size(110, 18);
             this.label109.TabIndex = 466;
@@ -2952,11 +2977,12 @@
             // 
             // label107
             // 
+            this.label107.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label107.AutoSize = true;
             this.label107.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label107.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label107.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label107.Location = new System.Drawing.Point(737, 330);
+            this.label107.Location = new System.Drawing.Point(533, 248);
             this.label107.Name = "label107";
             this.label107.Size = new System.Drawing.Size(62, 18);
             this.label107.TabIndex = 463;
@@ -2965,11 +2991,12 @@
             // 
             // nudGuidanceLookAhead
             // 
+            this.nudGuidanceLookAhead.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.nudGuidanceLookAhead.BackColor = System.Drawing.Color.AliceBlue;
             this.nudGuidanceLookAhead.DecimalPlaces = 1;
             this.nudGuidanceLookAhead.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudGuidanceLookAhead.InterceptArrowKeys = false;
-            this.nudGuidanceLookAhead.Location = new System.Drawing.Point(709, 275);
+            this.nudGuidanceLookAhead.Location = new System.Drawing.Point(499, 193);
             this.nudGuidanceLookAhead.Maximum = new decimal(new int[] {
             10,
             0,
@@ -2995,10 +3022,11 @@
             // 
             // nudABLength
             // 
+            this.nudABLength.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.nudABLength.BackColor = System.Drawing.Color.AliceBlue;
             this.nudABLength.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudABLength.InterceptArrowKeys = false;
-            this.nudABLength.Location = new System.Drawing.Point(176, 219);
+            this.nudABLength.Location = new System.Drawing.Point(163, 70);
             this.nudABLength.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -3024,11 +3052,12 @@
             // 
             // label79
             // 
+            this.label79.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label79.AutoSize = true;
             this.label79.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label79.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label79.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label79.Location = new System.Drawing.Point(216, 275);
+            this.label79.Location = new System.Drawing.Point(220, 46);
             this.label79.Name = "label79";
             this.label79.Size = new System.Drawing.Size(33, 18);
             this.label79.TabIndex = 456;
@@ -3037,11 +3066,12 @@
             // 
             // label21
             // 
+            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label21.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label21.Location = new System.Drawing.Point(737, 94);
+            this.label21.Location = new System.Drawing.Point(190, 243);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(43, 18);
             this.label21.TabIndex = 455;
@@ -3050,11 +3080,12 @@
             // 
             // label20
             // 
+            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label20.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label20.Location = new System.Drawing.Point(737, 212);
+            this.label20.Location = new System.Drawing.Point(527, 106);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(28, 18);
             this.label20.TabIndex = 454;
@@ -3063,10 +3094,11 @@
             // 
             // nudSnapDistance
             // 
+            this.nudSnapDistance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.nudSnapDistance.BackColor = System.Drawing.Color.AliceBlue;
             this.nudSnapDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudSnapDistance.InterceptArrowKeys = false;
-            this.nudSnapDistance.Location = new System.Drawing.Point(709, 157);
+            this.nudSnapDistance.Location = new System.Drawing.Point(499, 51);
             this.nudSnapDistance.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -3087,10 +3119,11 @@
             // 
             // nudLineWidth
             // 
+            this.nudLineWidth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.nudLineWidth.BackColor = System.Drawing.Color.AliceBlue;
             this.nudLineWidth.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudLineWidth.InterceptArrowKeys = false;
-            this.nudLineWidth.Location = new System.Drawing.Point(709, 39);
+            this.nudLineWidth.Location = new System.Drawing.Point(162, 188);
             this.nudLineWidth.Maximum = new decimal(new int[] {
             8,
             0,
@@ -3116,10 +3149,11 @@
             // 
             // label108
             // 
+            this.label108.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label108.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label108.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label108.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label108.Location = new System.Drawing.Point(546, 247);
+            this.label108.Location = new System.Drawing.Point(336, 165);
             this.label108.Name = "label108";
             this.label108.Size = new System.Drawing.Size(186, 24);
             this.label108.TabIndex = 465;
@@ -3131,7 +3165,7 @@
             this.pictureBox17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox17.BackgroundImage = global::AgOpenGPS.Properties.Resources.ConV_MinAutoSteer;
             this.pictureBox17.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox17.Location = new System.Drawing.Point(192, 420);
+            this.pictureBox17.Location = new System.Drawing.Point(280, 404);
             this.pictureBox17.Name = "pictureBox17";
             this.pictureBox17.Size = new System.Drawing.Size(118, 75);
             this.pictureBox17.TabIndex = 490;
@@ -3142,7 +3176,7 @@
             this.pictureBox16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox16.BackgroundImage = global::AgOpenGPS.Properties.Resources.ConV_MaxAutoSteer;
             this.pictureBox16.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox16.Location = new System.Drawing.Point(349, 420);
+            this.pictureBox16.Location = new System.Drawing.Point(437, 404);
             this.pictureBox16.Name = "pictureBox16";
             this.pictureBox16.Size = new System.Drawing.Size(118, 75);
             this.pictureBox16.TabIndex = 485;
@@ -3150,6 +3184,7 @@
             // 
             // cboxSteerInReverse
             // 
+            this.cboxSteerInReverse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cboxSteerInReverse.Appearance = System.Windows.Forms.Appearance.Button;
             this.cboxSteerInReverse.BackColor = System.Drawing.Color.AliceBlue;
             this.cboxSteerInReverse.FlatAppearance.BorderColor = System.Drawing.Color.Black;
@@ -3158,7 +3193,7 @@
             this.cboxSteerInReverse.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxSteerInReverse.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxSteerInReverse.Image = global::AgOpenGPS.Properties.Resources.ConV_RevSteer;
-            this.cboxSteerInReverse.Location = new System.Drawing.Point(372, 201);
+            this.cboxSteerInReverse.Location = new System.Drawing.Point(728, 36);
             this.cboxSteerInReverse.Name = "cboxSteerInReverse";
             this.cboxSteerInReverse.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cboxSteerInReverse.Size = new System.Drawing.Size(90, 100);
@@ -3173,7 +3208,7 @@
             this.pictureBox15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox15.Image = global::AgOpenGPS.Properties.Resources.ConV_MaxAngVel;
-            this.pictureBox15.Location = new System.Drawing.Point(538, 420);
+            this.pictureBox15.Location = new System.Drawing.Point(626, 404);
             this.pictureBox15.Name = "pictureBox15";
             this.pictureBox15.Size = new System.Drawing.Size(118, 75);
             this.pictureBox15.TabIndex = 480;
@@ -3184,7 +3219,7 @@
             this.pictureBox10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox10.BackgroundImage = global::AgOpenGPS.Properties.Resources.con_VehicleFunctionSpeedLimit;
             this.pictureBox10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox10.Location = new System.Drawing.Point(25, 420);
+            this.pictureBox10.Location = new System.Drawing.Point(113, 404);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(118, 75);
             this.pictureBox10.TabIndex = 476;
@@ -3192,9 +3227,10 @@
             // 
             // pictureBox12
             // 
+            this.pictureBox12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox12.BackgroundImage = global::AgOpenGPS.Properties.Resources.ConV_GuidanceLookAhead;
             this.pictureBox12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox12.Location = new System.Drawing.Point(580, 273);
+            this.pictureBox12.Location = new System.Drawing.Point(370, 191);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(118, 75);
             this.pictureBox12.TabIndex = 471;
@@ -3202,9 +3238,10 @@
             // 
             // pictureBox14
             // 
+            this.pictureBox14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox14.BackgroundImage = global::AgOpenGPS.Properties.Resources.ConV_ABLineLength;
             this.pictureBox14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox14.Location = new System.Drawing.Point(39, 209);
+            this.pictureBox14.Location = new System.Drawing.Point(37, 49);
             this.pictureBox14.Name = "pictureBox14";
             this.pictureBox14.Size = new System.Drawing.Size(115, 73);
             this.pictureBox14.TabIndex = 458;
@@ -3212,6 +3249,7 @@
             // 
             // cboxAutoSteerAuto
             // 
+            this.cboxAutoSteerAuto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cboxAutoSteerAuto.Appearance = System.Windows.Forms.Appearance.Button;
             this.cboxAutoSteerAuto.BackColor = System.Drawing.Color.Firebrick;
             this.cboxAutoSteerAuto.FlatAppearance.BorderColor = System.Drawing.Color.Black;
@@ -3221,7 +3259,7 @@
             this.cboxAutoSteerAuto.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.cboxAutoSteerAuto.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOn;
             this.cboxAutoSteerAuto.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.cboxAutoSteerAuto.Location = new System.Drawing.Point(372, 37);
+            this.cboxAutoSteerAuto.Location = new System.Drawing.Point(730, 199);
             this.cboxAutoSteerAuto.Name = "cboxAutoSteerAuto";
             this.cboxAutoSteerAuto.Size = new System.Drawing.Size(88, 103);
             this.cboxAutoSteerAuto.TabIndex = 0;
@@ -3233,9 +3271,10 @@
             // 
             // pictureBox5
             // 
+            this.pictureBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox5.BackgroundImage = global::AgOpenGPS.Properties.Resources.ConV_LineWith;
             this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox5.Location = new System.Drawing.Point(580, 37);
+            this.pictureBox5.Location = new System.Drawing.Point(33, 186);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(118, 75);
             this.pictureBox5.TabIndex = 96;
@@ -3243,9 +3282,10 @@
             // 
             // pictureBox2
             // 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox2.BackgroundImage = global::AgOpenGPS.Properties.Resources.ConV_SnapDistance;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox2.Location = new System.Drawing.Point(580, 155);
+            this.pictureBox2.Location = new System.Drawing.Point(370, 49);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(118, 75);
             this.pictureBox2.TabIndex = 94;
@@ -3344,7 +3384,6 @@
             // tabTHitch
             // 
             this.tabTHitch.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tabTHitch.Controls.Add(this.btnRunPivotOffsetForm);
             this.tabTHitch.Controls.Add(this.nudTrailingHitchLength);
             this.tabTHitch.Controls.Add(this.nudDrawbarLength);
             this.tabTHitch.Controls.Add(this.nudTankHitch);
@@ -3357,28 +3396,12 @@
             this.tabTHitch.Enter += new System.EventHandler(this.tabTHitch_Enter);
             this.tabTHitch.Leave += new System.EventHandler(this.tabTHitch_Leave);
             // 
-            // btnRunPivotOffsetForm
-            // 
-            this.btnRunPivotOffsetForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRunPivotOffsetForm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnRunPivotOffsetForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRunPivotOffsetForm.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnRunPivotOffsetForm.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRunPivotOffsetForm.Location = new System.Drawing.Point(41, 23);
-            this.btnRunPivotOffsetForm.Name = "btnRunPivotOffsetForm";
-            this.btnRunPivotOffsetForm.Size = new System.Drawing.Size(120, 64);
-            this.btnRunPivotOffsetForm.TabIndex = 212;
-            this.btnRunPivotOffsetForm.Text = "Pivot Offset";
-            this.btnRunPivotOffsetForm.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnRunPivotOffsetForm.UseVisualStyleBackColor = true;
-            this.btnRunPivotOffsetForm.Click += new System.EventHandler(this.btnRunPivotOffsetForm_Click);
-            // 
             // nudTrailingHitchLength
             // 
             this.nudTrailingHitchLength.BackColor = System.Drawing.Color.AliceBlue;
             this.nudTrailingHitchLength.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudTrailingHitchLength.InterceptArrowKeys = false;
-            this.nudTrailingHitchLength.Location = new System.Drawing.Point(215, 108);
+            this.nudTrailingHitchLength.Location = new System.Drawing.Point(456, 407);
             this.nudTrailingHitchLength.Maximum = new decimal(new int[] {
             3000,
             0,
@@ -3406,7 +3429,7 @@
             this.nudDrawbarLength.BackColor = System.Drawing.Color.AliceBlue;
             this.nudDrawbarLength.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudDrawbarLength.InterceptArrowKeys = false;
-            this.nudDrawbarLength.Location = new System.Drawing.Point(565, 108);
+            this.nudDrawbarLength.Location = new System.Drawing.Point(401, 407);
             this.nudDrawbarLength.Maximum = new decimal(new int[] {
             3000,
             0,
@@ -3435,7 +3458,7 @@
             this.nudTankHitch.BackColor = System.Drawing.Color.AliceBlue;
             this.nudTankHitch.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudTankHitch.InterceptArrowKeys = false;
-            this.nudTankHitch.Location = new System.Drawing.Point(345, 108);
+            this.nudTankHitch.Location = new System.Drawing.Point(643, 407);
             this.nudTankHitch.Maximum = new decimal(new int[] {
             3000,
             0,
@@ -3460,11 +3483,11 @@
             // 
             // picboxToolHitch
             // 
-            this.picboxToolHitch.BackgroundImage = global::AgOpenGPS.Properties.Resources.ToolHitchPageTrailing;
+            this.picboxToolHitch.BackgroundImage = global::AgOpenGPS.Properties.Resources.ToolHitchPageFront;
             this.picboxToolHitch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picboxToolHitch.Location = new System.Drawing.Point(-15, 170);
+            this.picboxToolHitch.Location = new System.Drawing.Point(13, 12);
             this.picboxToolHitch.Name = "picboxToolHitch";
-            this.picboxToolHitch.Size = new System.Drawing.Size(857, 407);
+            this.picboxToolHitch.Size = new System.Drawing.Size(838, 407);
             this.picboxToolHitch.TabIndex = 0;
             this.picboxToolHitch.TabStop = false;
             // 
@@ -3502,7 +3525,7 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(95, 256);
+            this.label9.Location = new System.Drawing.Point(34, 256);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(51, 16);
             this.label9.TabIndex = 481;
@@ -3514,7 +3537,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(323, 256);
+            this.label3.Location = new System.Drawing.Point(239, 256);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 16);
             this.label3.TabIndex = 480;
@@ -5699,7 +5722,6 @@
             this.gboxDual.Controls.Add(this.pictureBox13);
             this.gboxDual.Controls.Add(this.nudDualHeadingOffset);
             this.gboxDual.Controls.Add(this.label12);
-            this.gboxDual.Controls.Add(this.cboxIsDualAsIMU);
             this.gboxDual.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gboxDual.Location = new System.Drawing.Point(3, 116);
             this.gboxDual.Name = "gboxDual";
@@ -5712,7 +5734,7 @@
             // 
             this.pictureBox13.BackgroundImage = global::AgOpenGPS.Properties.Resources.Con_SourcesHead;
             this.pictureBox13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox13.Location = new System.Drawing.Point(21, 41);
+            this.pictureBox13.Location = new System.Drawing.Point(19, 76);
             this.pictureBox13.Name = "pictureBox13";
             this.pictureBox13.Size = new System.Drawing.Size(130, 109);
             this.pictureBox13.TabIndex = 471;
@@ -5726,7 +5748,7 @@
             this.nudDualHeadingOffset.DecimalPlaces = 1;
             this.nudDualHeadingOffset.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudDualHeadingOffset.InterceptArrowKeys = false;
-            this.nudDualHeadingOffset.Location = new System.Drawing.Point(193, 83);
+            this.nudDualHeadingOffset.Location = new System.Drawing.Point(191, 118);
             this.nudDualHeadingOffset.Minimum = new decimal(new int[] {
             100,
             0,
@@ -5752,29 +5774,12 @@
             this.label12.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.label12.ForeColor = System.Drawing.Color.Black;
             this.label12.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label12.Location = new System.Drawing.Point(157, 53);
+            this.label12.Location = new System.Drawing.Point(155, 88);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(216, 23);
             this.label12.TabIndex = 469;
             this.label12.Text = "Heading Offset (Degree)";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // cboxIsDualAsIMU
-            // 
-            this.cboxIsDualAsIMU.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxIsDualAsIMU.BackColor = System.Drawing.Color.AliceBlue;
-            this.cboxIsDualAsIMU.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
-            this.cboxIsDualAsIMU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxIsDualAsIMU.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxIsDualAsIMU.ForeColor = System.Drawing.Color.Black;
-            this.cboxIsDualAsIMU.Location = new System.Drawing.Point(71, 214);
-            this.cboxIsDualAsIMU.Name = "cboxIsDualAsIMU";
-            this.cboxIsDualAsIMU.Size = new System.Drawing.Size(226, 47);
-            this.cboxIsDualAsIMU.TabIndex = 310;
-            this.cboxIsDualAsIMU.Text = "Dual As IMU";
-            this.cboxIsDualAsIMU.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cboxIsDualAsIMU.UseVisualStyleBackColor = false;
-            this.cboxIsDualAsIMU.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxIsDualAsIMU_HelpRequested);
             // 
             // label118
             // 
@@ -5829,10 +5834,10 @@
             // cboxMinGPSStep
             // 
             this.cboxMinGPSStep.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxMinGPSStep.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.cboxMinGPSStep.BackColor = System.Drawing.Color.AliceBlue;
             this.cboxMinGPSStep.Checked = true;
             this.cboxMinGPSStep.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cboxMinGPSStep.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxMinGPSStep.FlatAppearance.CheckedBackColor = System.Drawing.Color.AliceBlue;
             this.cboxMinGPSStep.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxMinGPSStep.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxMinGPSStep.ForeColor = System.Drawing.Color.Black;
@@ -8430,9 +8435,7 @@
             this.tabBtns.Controls.Add(this.label98);
             this.tabBtns.Controls.Add(this.label99);
             this.tabBtns.Controls.Add(this.label97);
-            this.tabBtns.Controls.Add(this.label96);
             this.tabBtns.Controls.Add(this.label95);
-            this.tabBtns.Controls.Add(this.label94);
             this.tabBtns.Controls.Add(this.label93);
             this.tabBtns.Controls.Add(this.label92);
             this.tabBtns.Controls.Add(this.label91);
@@ -8457,9 +8460,7 @@
             this.tabBtns.Controls.Add(this.cboxFeatureManualSection);
             this.tabBtns.Controls.Add(this.cboxFeatureAutoSection);
             this.tabBtns.Controls.Add(this.cboxFeatureCycleLines);
-            this.tabBtns.Controls.Add(this.cboxFeatureABLine);
             this.tabBtns.Controls.Add(this.cboxFeatureCurve);
-            this.tabBtns.Controls.Add(this.cboxFeatureSteerMode);
             this.tabBtns.Controls.Add(this.cboxFeatureYouTurn);
             this.tabBtns.Controls.Add(this.cboxFeatureContour);
             this.tabBtns.Controls.Add(this.cboxFeatureAgIO);
@@ -8607,22 +8608,11 @@
             this.label97.AutoSize = true;
             this.label97.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label97.ForeColor = System.Drawing.Color.Black;
-            this.label97.Location = new System.Drawing.Point(358, 352);
+            this.label97.Location = new System.Drawing.Point(358, 248);
             this.label97.Name = "label97";
             this.label97.Size = new System.Drawing.Size(70, 16);
             this.label97.TabIndex = 499;
             this.label97.Text = "Cycle Lines";
-            // 
-            // label96
-            // 
-            this.label96.AutoSize = true;
-            this.label96.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label96.ForeColor = System.Drawing.Color.Black;
-            this.label96.Location = new System.Drawing.Point(367, 248);
-            this.label96.Name = "label96";
-            this.label96.Size = new System.Drawing.Size(45, 16);
-            this.label96.TabIndex = 497;
-            this.label96.Text = "ABLine";
             // 
             // label95
             // 
@@ -8631,20 +8621,9 @@
             this.label95.ForeColor = System.Drawing.Color.Black;
             this.label95.Location = new System.Drawing.Point(367, 144);
             this.label95.Name = "label95";
-            this.label95.Size = new System.Drawing.Size(40, 16);
+            this.label95.Size = new System.Drawing.Size(39, 16);
             this.label95.TabIndex = 495;
-            this.label95.Text = "Curve";
-            // 
-            // label94
-            // 
-            this.label94.AutoSize = true;
-            this.label94.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label94.ForeColor = System.Drawing.Color.Black;
-            this.label94.Location = new System.Drawing.Point(465, 352);
-            this.label94.Name = "label94";
-            this.label94.Size = new System.Drawing.Size(73, 16);
-            this.label94.TabIndex = 493;
-            this.label94.Text = "Steer Mode";
+            this.label95.Text = "Track";
             // 
             // label93
             // 
@@ -9007,34 +8986,13 @@
             this.cboxFeatureCycleLines.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxFeatureCycleLines.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxFeatureCycleLines.Image = global::AgOpenGPS.Properties.Resources.ABLineCycle;
-            this.cboxFeatureCycleLines.Location = new System.Drawing.Point(355, 371);
+            this.cboxFeatureCycleLines.Location = new System.Drawing.Point(355, 267);
             this.cboxFeatureCycleLines.Name = "cboxFeatureCycleLines";
             this.cboxFeatureCycleLines.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cboxFeatureCycleLines.Size = new System.Drawing.Size(77, 77);
             this.cboxFeatureCycleLines.TabIndex = 498;
             this.cboxFeatureCycleLines.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxFeatureCycleLines.UseVisualStyleBackColor = false;
-            // 
-            // cboxFeatureABLine
-            // 
-            this.cboxFeatureABLine.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxFeatureABLine.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cboxFeatureABLine.Checked = true;
-            this.cboxFeatureABLine.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cboxFeatureABLine.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.cboxFeatureABLine.FlatAppearance.BorderSize = 2;
-            this.cboxFeatureABLine.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
-            this.cboxFeatureABLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureABLine.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxFeatureABLine.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboxFeatureABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOn;
-            this.cboxFeatureABLine.Location = new System.Drawing.Point(355, 267);
-            this.cboxFeatureABLine.Name = "cboxFeatureABLine";
-            this.cboxFeatureABLine.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cboxFeatureABLine.Size = new System.Drawing.Size(77, 77);
-            this.cboxFeatureABLine.TabIndex = 496;
-            this.cboxFeatureABLine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cboxFeatureABLine.UseVisualStyleBackColor = false;
             // 
             // cboxFeatureCurve
             // 
@@ -9056,27 +9014,6 @@
             this.cboxFeatureCurve.TabIndex = 494;
             this.cboxFeatureCurve.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxFeatureCurve.UseVisualStyleBackColor = false;
-            // 
-            // cboxFeatureSteerMode
-            // 
-            this.cboxFeatureSteerMode.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxFeatureSteerMode.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cboxFeatureSteerMode.Checked = true;
-            this.cboxFeatureSteerMode.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cboxFeatureSteerMode.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.cboxFeatureSteerMode.FlatAppearance.BorderSize = 2;
-            this.cboxFeatureSteerMode.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
-            this.cboxFeatureSteerMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureSteerMode.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxFeatureSteerMode.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboxFeatureSteerMode.Image = global::AgOpenGPS.Properties.Resources.ModePurePursuit;
-            this.cboxFeatureSteerMode.Location = new System.Drawing.Point(464, 371);
-            this.cboxFeatureSteerMode.Name = "cboxFeatureSteerMode";
-            this.cboxFeatureSteerMode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cboxFeatureSteerMode.Size = new System.Drawing.Size(77, 77);
-            this.cboxFeatureSteerMode.TabIndex = 492;
-            this.cboxFeatureSteerMode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cboxFeatureSteerMode.UseVisualStyleBackColor = false;
             // 
             // cboxFeatureYouTurn
             // 
@@ -9325,7 +9262,6 @@
             this.tabDisplay.Controls.Add(this.label31);
             this.tabDisplay.Controls.Add(this.label28);
             this.tabDisplay.Controls.Add(this.chkSpeedo);
-            this.tabDisplay.Controls.Add(this.chkSky);
             this.tabDisplay.Controls.Add(this.chkExtraGuides);
             this.tabDisplay.Controls.Add(this.chkGrid);
             this.tabDisplay.Controls.Add(this.chkDisplayLightbar);
@@ -9334,7 +9270,6 @@
             this.tabDisplay.Controls.Add(this.chkDisplayStartFullScreen);
             this.tabDisplay.Controls.Add(this.chkDisplayLogNMEA);
             this.tabDisplay.Controls.Add(this.chkDisplayGrid);
-            this.tabDisplay.Controls.Add(this.chkDisplaySky);
             this.tabDisplay.Controls.Add(this.chkDisplaySpeedo);
             this.tabDisplay.Controls.Add(this.chkDisplayExtraGuides);
             this.tabDisplay.Location = new System.Drawing.Point(4, 44);
@@ -9357,7 +9292,7 @@
             this.chkSvennArrow.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkSvennArrow.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkSvennArrow.Image = global::AgOpenGPS.Properties.Resources.SvennArrow;
-            this.chkSvennArrow.Location = new System.Drawing.Point(534, 161);
+            this.chkSvennArrow.Location = new System.Drawing.Point(351, 60);
             this.chkSvennArrow.Name = "chkSvennArrow";
             this.chkSvennArrow.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkSvennArrow.Size = new System.Drawing.Size(100, 69);
@@ -9465,7 +9400,7 @@
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(541, 233);
+            this.label15.Location = new System.Drawing.Point(358, 132);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(81, 16);
             this.label15.TabIndex = 529;
@@ -9558,17 +9493,6 @@
             this.chkSpeedo.Size = new System.Drawing.Size(50, 16);
             this.chkSpeedo.TabIndex = 516;
             this.chkSpeedo.Text = "Speedo";
-            // 
-            // chkSky
-            // 
-            this.chkSky.AutoSize = true;
-            this.chkSky.BackColor = System.Drawing.Color.Transparent;
-            this.chkSky.ForeColor = System.Drawing.Color.Black;
-            this.chkSky.Location = new System.Drawing.Point(357, 130);
-            this.chkSky.Name = "chkSky";
-            this.chkSky.Size = new System.Drawing.Size(27, 16);
-            this.chkSky.TabIndex = 514;
-            this.chkSky.Text = "Sky";
             // 
             // chkExtraGuides
             // 
@@ -9709,27 +9633,6 @@
             this.chkDisplayGrid.TabIndex = 506;
             this.chkDisplayGrid.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplayGrid.UseVisualStyleBackColor = false;
-            // 
-            // chkDisplaySky
-            // 
-            this.chkDisplaySky.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chkDisplaySky.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.chkDisplaySky.Checked = true;
-            this.chkDisplaySky.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDisplaySky.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.chkDisplaySky.FlatAppearance.BorderSize = 2;
-            this.chkDisplaySky.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
-            this.chkDisplaySky.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkDisplaySky.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkDisplaySky.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.chkDisplaySky.Image = global::AgOpenGPS.Properties.Resources.ConD_Sky;
-            this.chkDisplaySky.Location = new System.Drawing.Point(351, 60);
-            this.chkDisplaySky.Name = "chkDisplaySky";
-            this.chkDisplaySky.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkDisplaySky.Size = new System.Drawing.Size(100, 69);
-            this.chkDisplaySky.TabIndex = 505;
-            this.chkDisplaySky.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.chkDisplaySky.UseVisualStyleBackColor = false;
             // 
             // chkDisplaySpeedo
             // 
@@ -9956,6 +9859,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pboxAntenna)).EndInit();
             this.tabVDimensions.ResumeLayout(false);
             this.tabVDimensions.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTractorHitchLength)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudVehicleTrack)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWheelbase)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinTurnRadius)).EndInit();
@@ -10303,12 +10207,8 @@
         private System.Windows.Forms.Label label84;
         private System.Windows.Forms.Label label83;
         private System.Windows.Forms.Label label82;
-        private System.Windows.Forms.Label label94;
-        private System.Windows.Forms.CheckBox cboxFeatureSteerMode;
         private System.Windows.Forms.Label label97;
         private System.Windows.Forms.CheckBox cboxFeatureCycleLines;
-        private System.Windows.Forms.Label label96;
-        private System.Windows.Forms.CheckBox cboxFeatureABLine;
         private System.Windows.Forms.Label label95;
         private System.Windows.Forms.CheckBox cboxFeatureCurve;
         private System.Windows.Forms.Label label98;
@@ -10332,7 +10232,6 @@
         private System.Windows.Forms.Label label114;
         private System.Windows.Forms.CheckBox cboxFeatureLateral;
         private System.Windows.Forms.CheckBox cboxFeatureUTurn;
-        private System.Windows.Forms.CheckBox cboxIsDualAsIMU;
         private System.Windows.Forms.CheckBox cboxIsReverseOn;
         private System.Windows.Forms.Label lblFusionIMU;
         private System.Windows.Forms.Label lblIMU;
@@ -10522,7 +10421,6 @@
         private System.Windows.Forms.Label label55;
         private System.Windows.Forms.Label label163;
         private System.Windows.Forms.PictureBox pictureBox16;
-        private System.Windows.Forms.Label label164;
         private NudlessNumericUpDown nudMinSteerSpeed;
         private System.Windows.Forms.Label label165;
         private System.Windows.Forms.Label label166;
@@ -10555,7 +10453,6 @@
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label chkSpeedo;
-        private System.Windows.Forms.Label chkSky;
         private System.Windows.Forms.GroupBox unitsGroupBox;
         private System.Windows.Forms.RadioButton rbtnDisplayImperial;
         private System.Windows.Forms.RadioButton rbtnDisplayMetric;
@@ -10565,7 +10462,6 @@
         private System.Windows.Forms.CheckBox chkDisplayStartFullScreen;
         private System.Windows.Forms.CheckBox chkDisplayLogNMEA;
         private System.Windows.Forms.CheckBox chkDisplayGrid;
-        private System.Windows.Forms.CheckBox chkDisplaySky;
         private System.Windows.Forms.CheckBox chkDisplaySpeedo;
         private System.Windows.Forms.CheckBox chkDisplayExtraGuides;
         private System.Windows.Forms.Label chkExtraGuides;
@@ -10589,7 +10485,6 @@
         private System.Windows.Forms.Label label173;
         private System.Windows.Forms.Label label174;
         private System.Windows.Forms.Label lblSumWheelbase;
-        private System.Windows.Forms.Button btnRunPivotOffsetForm;
         private System.Windows.Forms.Button btnSubToolOffset;
         private System.Windows.Forms.TabPage tabToolOffset;
         private System.Windows.Forms.Label label65;
@@ -10609,5 +10504,7 @@
         private System.Windows.Forms.RadioButton rbtnPivotAheadNeg;
         private NudlessNumericUpDown nudTrailingToolToPivotLength;
         private System.Windows.Forms.Button btnSubPivot;
+        private NudlessNumericUpDown nudTractorHitchLength;
+        private System.Windows.Forms.Label label27;
     }
 }

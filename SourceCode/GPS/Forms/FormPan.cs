@@ -15,10 +15,6 @@ namespace AgOpenGPS
             mf = callingForm as FormGPS;
             InitializeComponent();
         }
-        private void FormPan_Load(object sender, EventArgs e)
-        {
-
-        }
         private void btnPanUp_Click(object sender, EventArgs e)
         {
             mf.camera.panY += (mf.camera.camSetDistance / 25);

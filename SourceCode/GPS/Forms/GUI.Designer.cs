@@ -158,7 +158,7 @@ namespace AgOpenGPS
                     {
                         case 0:
 
-                            lblCurrentField.Text = displayFieldName;
+                            lblCurrentField.Text = gStr.gsField + ": " + displayFieldName;
                             break;
 
                         case 1:
@@ -203,14 +203,14 @@ namespace AgOpenGPS
                                 + fd.ActualOverlapPercent + "   "
                                 + fd.WorkRateAcres;
                                 }
-
                             }
                             break;
-
 
                         default:
                             break;
                     }
+
+                    //if (lblCurrentField.Text.Length > Width-(600/15)
                 }
                 else
                 {
@@ -542,8 +542,6 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.Save();
 
-
-            isSkyOn = Settings.Default.setMenu_isSkyOn;
             isTextureOn = Settings.Default.setDisplay_isTextureOn;
 
             isGridOn = Settings.Default.setMenu_isGridOn;
@@ -774,8 +772,8 @@ namespace AgOpenGPS
             else
             {
                 if (camera.zoomValue <= 20)
-                { if ((camera.zoomValue -= camera.zoomValue * 0.06) < 6.0) camera.zoomValue = 6.0; }
-                else { if ((camera.zoomValue -= camera.zoomValue * 0.02) < 6.0) camera.zoomValue = 6.0; }
+                { if ((camera.zoomValue -= camera.zoomValue * 0.06) < 4.0) camera.zoomValue = 4.0; }
+                else { if ((camera.zoomValue -= camera.zoomValue * 0.02) < 4.0) camera.zoomValue = 4.0; }
 
                 camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
                 SetZoom();
@@ -1173,8 +1171,8 @@ namespace AgOpenGPS
                     if (point.Y < 120 && point.Y > 30)
                     {
                         if (camera.zoomValue <= 20)
-                        { if ((camera.zoomValue -= camera.zoomValue * 0.2) < 6.0) camera.zoomValue = 6.0; }
-                        else { if ((camera.zoomValue -= camera.zoomValue * 0.1) < 6.0) camera.zoomValue = 6.0; }
+                        { if ((camera.zoomValue -= camera.zoomValue * 0.2) < 4.0) camera.zoomValue = 4.0; }
+                        else { if ((camera.zoomValue -= camera.zoomValue * 0.1) < 4.0) camera.zoomValue = 4.0; }
 
                         camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
                         SetZoom();

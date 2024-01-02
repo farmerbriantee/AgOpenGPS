@@ -312,6 +312,13 @@ namespace AgOpenGPS
             }
         }
 
+        private void btnTracksOff_Click(object sender, EventArgs e)
+        {
+            btnTrack.Image = Resources.TrackOff;
+            curve.isBtnTrackOn = false;
+            trk.idx = -1;
+        }
+
         private void btnNudge_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -2033,7 +2040,7 @@ namespace AgOpenGPS
                 return;
             }
             camera.camFollowing = true;
-            camera.camPitch = -73;
+            camera.camPitch = -65;
             navPanelCounter = 2;
         }
 
@@ -2058,7 +2065,7 @@ namespace AgOpenGPS
                 ResetHelpBtn();
                 return;
             }
-            camera.camPitch = -73;
+            camera.camPitch = -65;
             camera.camFollowing = false;
             navPanelCounter = 2;
         }
@@ -2128,31 +2135,6 @@ namespace AgOpenGPS
             if (camera.zoomValue > 220) camera.zoomValue = 220;
             camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
             SetZoom();
-            navPanelCounter = 2;
-        }
-        private void btnpTiltUp_MouseDown(object sender, MouseEventArgs e)
-        {
-            //if (isTT)
-            //{
-            //    MessageBox.Show(gStr.btnTiltUp, gStr.gsHelp);
-            //    isTT = false;
-            //    return;
-            //}
-            camera.camPitch -= ((camera.camPitch * 0.012) - 1);
-            if (camera.camPitch > -58) camera.camPitch = 0;
-            navPanelCounter = 2;
-        }
-        private void btnpTiltDown_MouseDown(object sender, MouseEventArgs e)
-        {
-            //if (isTT)
-            //{
-            //    MessageBox.Show(gStr.btnTiltDown, gStr.gsHelp);
-            //    isTT = false;
-            //    return;
-            //}
-            if (camera.camPitch > -59) camera.camPitch = -60;
-            camera.camPitch += ((camera.camPitch * 0.012) - 1);
-            if (camera.camPitch < -76) camera.camPitch = -76;
             navPanelCounter = 2;
         }
 

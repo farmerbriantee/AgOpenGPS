@@ -657,7 +657,7 @@
       <Value Profile="(Default)">0.06</Value>
     </Setting>
     <Setting Name="setDisplay_isSvennArrowOn" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setTool_isTramOuterInverted" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

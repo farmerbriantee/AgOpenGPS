@@ -58,8 +58,6 @@ namespace AgOpenGPS
                 lblHeadingDistance.Text = "50 " + gStr.gsCentimeters;
             }
 
-            cboxIsDualAsIMU.Checked = Properties.Settings.Default.setIMU_isDualAsIMU;
-
             if (mf.ahrs.imuHeading != 99999)
             {
                 hsbarFusion.Enabled = true;
@@ -78,8 +76,6 @@ namespace AgOpenGPS
 
             private void tabDHeading_Leave(object sender, EventArgs e)
         {
-            Properties.Settings.Default.setIMU_isDualAsIMU = mf.ahrs.isDualAsIMU = cboxIsDualAsIMU.Checked;
-
             Properties.Settings.Default.setIMU_fusionWeight2 = (double)hsbarFusion.Value * 0.002;
             mf.ahrs.fusionWeight = (double)hsbarFusion.Value * 0.002;
 
@@ -286,13 +282,11 @@ namespace AgOpenGPS
             cboxFeatureOffsetFix.Checked = Properties.Settings.Default.setFeatures.isOffsetFixOn;
             cboxFeatureContour.Checked = Properties.Settings.Default.setFeatures.isContourOn;
             cboxFeatureYouTurn.Checked = Properties.Settings.Default.setFeatures.isYouTurnOn;
-            cboxFeatureSteerMode.Checked = Properties.Settings.Default.setFeatures.isSteerModeOn;
             cboxFeatureAgIO.Checked = Properties.Settings.Default.setFeatures.isAgIOOn;
 
             cboxFeatureAutoSection.Checked = Properties.Settings.Default.setFeatures.isAutoSectionOn;
             cboxFeatureManualSection.Checked = Properties.Settings.Default.setFeatures.isManualSectionOn;
             cboxFeatureCycleLines.Checked = Properties.Settings.Default.setFeatures.isCycleLinesOn;
-            cboxFeatureABLine.Checked = Properties.Settings.Default.setFeatures.isABLineOn;
             cboxFeatureCurve.Checked = Properties.Settings.Default.setFeatures.isCurveOn;
             cboxFeatureAutoSteer.Checked = Properties.Settings.Default.setFeatures.isAutoSteerOn;
 
@@ -320,14 +314,12 @@ namespace AgOpenGPS
             Properties.Settings.Default.setFeatures.isOffsetFixOn = cboxFeatureOffsetFix.Checked;
             Properties.Settings.Default.setFeatures.isContourOn = cboxFeatureContour.Checked;
             Properties.Settings.Default.setFeatures.isYouTurnOn = cboxFeatureYouTurn.Checked;
-            Properties.Settings.Default.setFeatures.isSteerModeOn = cboxFeatureSteerMode.Checked;
 
             Properties.Settings.Default.setFeatures.isAgIOOn = cboxFeatureAgIO.Checked;
 
             Properties.Settings.Default.setFeatures.isAutoSectionOn = cboxFeatureAutoSection.Checked;
             Properties.Settings.Default.setFeatures.isManualSectionOn = cboxFeatureManualSection.Checked;
             Properties.Settings.Default.setFeatures.isCycleLinesOn = cboxFeatureCycleLines.Checked;
-            Properties.Settings.Default.setFeatures.isABLineOn = cboxFeatureABLine.Checked;
             Properties.Settings.Default.setFeatures.isCurveOn = cboxFeatureCurve.Checked;
 
             Properties.Settings.Default.setFeatures.isAutoSteerOn = cboxFeatureAutoSteer.Checked;

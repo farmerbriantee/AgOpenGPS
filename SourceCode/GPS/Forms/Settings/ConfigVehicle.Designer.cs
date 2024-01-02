@@ -430,7 +430,6 @@ namespace AgOpenGPS
 
         private void SaveDisplaySettings()
         {
-            mf.isSkyOn = chkDisplaySky.Checked;
             mf.isTextureOn = chkDisplayFloor.Checked;
             mf.isGridOn = chkDisplayGrid.Checked;
             mf.isSpeedoOn = chkDisplaySpeedo.Checked;
@@ -444,7 +443,6 @@ namespace AgOpenGPS
 
             //mf.timeToShowMenus = (int)nudMenusOnTime.Value;
 
-            Properties.Settings.Default.setMenu_isSkyOn = mf.isSkyOn;
             Properties.Settings.Default.setDisplay_isBrightnessOn = mf.isBrightnessOn;
             Properties.Settings.Default.setDisplay_isTextureOn = mf.isTextureOn;
             Properties.Settings.Default.setMenu_isGridOn = mf.isGridOn;
@@ -530,10 +528,21 @@ namespace AgOpenGPS
 
             nudVehicleTrack.Value = (int)(Math.Abs(Properties.Settings.Default.setVehicle_trackWidth) * mf.m2InchOrCm);
 
-            if (mf.vehicle.vehicleType == 0) pictureBox1.Image = Properties.Resources.RadiusWheelBase;
-            else if (mf.vehicle.vehicleType == 1) pictureBox1.Image = Properties.Resources.RadiusWheelBaseHarvester;
-            else if (mf.vehicle.vehicleType == 2) pictureBox1.Image = Properties.Resources.RadiusWheelBase4WD;
-
+            if (mf.vehicle.vehicleType == 0)
+            {
+                pictureBox1.Image = Properties.Resources.RadiusWheelBase;
+                nudTractorHitchLength.Visible = true;
+            }
+            else if (mf.vehicle.vehicleType == 1)
+            {
+                pictureBox1.Image = Properties.Resources.RadiusWheelBaseHarvester;
+                nudTractorHitchLength.Visible = false;
+            }
+            else if (mf.vehicle.vehicleType == 2)
+            {
+                pictureBox1.Image = Properties.Resources.RadiusWheelBase4WD;
+                nudTractorHitchLength.Visible = true;
+            }
         }
 
         private void nudMinTurnRadius_Click(object sender, EventArgs e)

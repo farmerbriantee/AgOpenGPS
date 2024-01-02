@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Resource.Embedder.2.1.1\build\Resource.Embedder.props" Condition="Exists('..\packages\Resource.Embedder.2.1.1\build\Resource.Embedder.props')" />
+  <Import Project="..\packages\Resource.Embedder.2.2.0\build\Resource.Embedder.props" Condition="Exists('..\packages\Resource.Embedder.2.2.0\build\Resource.Embedder.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -305,12 +305,6 @@
     </Compile>
     <Compile Include="Forms\Settings\FormCorrection.Designer.cs">
       <DependentUpon>FormCorrection.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Settings\FormFileMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Settings\FormFileMenu.Designer.cs">
-      <DependentUpon>FormFileMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Settings\FormSectionColor.cs">
       <SubType>Form</SubType>
@@ -679,9 +673,6 @@
     <EmbeddedResource Include="Forms\Settings\FormCorrection.resx">
       <DependentUpon>FormCorrection.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Settings\FormFileMenu.resx">
-      <DependentUpon>FormFileMenu.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\FormSectionColor.resx">
       <DependentUpon>FormSectionColor.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -992,6 +983,7 @@
     <None Include="btnImages\Config\ToolHitchPivotOffsetNeg.png" />
     <None Include="btnImages\Config\ToolHitchPivotOffsetPos.png" />
     <None Include="btnImages\Config\ConS_ImplementPivot.png" />
+    <None Include="btnImages\Images\z_Tire.png" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />
@@ -1310,7 +1302,7 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Resource.Embedder.2.1.1\build\Resource.Embedder.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Resource.Embedder.2.1.1\build\Resource.Embedder.props'))" />
+    <Error Condition="!Exists('..\packages\Resource.Embedder.2.2.0\build\Resource.Embedder.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Resource.Embedder.2.2.0\build\Resource.Embedder.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

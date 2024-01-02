@@ -84,7 +84,6 @@ namespace AgOpenGPS
                                     pn.headingTrueDual = temp + pn.headingTrueDualOffset;
                                     if (pn.headingTrueDual >= 360) pn.headingTrueDual -= 360;
                                     else if (pn.headingTrueDual < 0) pn.headingTrueDual += 360;
-                                    if (ahrs.isDualAsIMU) ahrs.imuHeading = pn.headingTrueDual;
                                 }
 
                                 //from single antenna sentences (VTG,RMC)

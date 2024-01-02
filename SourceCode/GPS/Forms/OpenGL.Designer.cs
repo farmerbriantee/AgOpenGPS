@@ -430,8 +430,6 @@ namespace AgOpenGPS
                     GL.PushMatrix();
                     GL.LoadIdentity();
 
-                    if (isSkyOn) DrawSky();
-
                     //LightBar if AB Line is set and turned on or contour
                     if (isLightbarOn)
                     {
@@ -1898,55 +1896,6 @@ namespace AgOpenGPS
                 //        font.DrawText(-23, 67, vehicle.goalDistance.ToString("N1"), 0.8);
                 //    }
                 //}
-            }
-        }
-
-        private void DrawSky()
-        {
-            //GL.Translate(0, 0, 0.9);
-            ////draw the background when in 3D
-            if (camera.camPitch < -52)
-            {
-                //-10 to -32 (top) is camera pitch range. Set skybox to line up with horizon 
-                double hite = (camera.camPitch + 66) * -0.025;
-
-                //the background
-                double winLeftPos = -(double)oglMain.Width / 2;
-                double winRightPos = -winLeftPos;
-
-                if (isDay)
-                {
-                    GL.Color3(0.75, 0.75, 0.75);
-                    GL.BindTexture(TextureTarget.Texture2D, texture[0]);        // Select Our Texture
-                }
-                else
-                {
-                    GL.Color3(0.5, 0.5, 0.5);
-                    GL.BindTexture(TextureTarget.Texture2D, texture[10]);        // Select Our Texture
-                }
-
-                GL.Enable(EnableCap.Texture2D);
-
-                double u = (fixHeading)/glm.twoPI;
-                GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
-                GL.TexCoord2(u+0.25,      0); GL.Vertex2(winRightPos, 0.0); // Top Right
-                GL.TexCoord2(u, 0); GL.Vertex2(winLeftPos, 0.0); // Top Left
-                GL.TexCoord2(u+0.25,      1); GL.Vertex2(winRightPos, hite * oglMain.Height); // Bottom Right
-                GL.TexCoord2(u, 1); GL.Vertex2(winLeftPos, hite * oglMain.Height); // Bottom Left
-                GL.End();                       // Done Building Triangle Strip
-
-                //GL.BindTexture(TextureTarget.Texture2D, texture[3]);		// Select Our Texture
-                // GL.Translate(400, 200, 0);
-                //GL.Rotate(camHeading, 0, 0, 1);
-                //GL.Begin(PrimitiveType.TriangleStrip);				// Build Quad From A Triangle Strip
-                //GL.TexCoord2(1, 0); GL.Vertex2(0.1 * winRightPos, -0.1 * Height); // Top Right
-                //GL.TexCoord2(0, 0); GL.Vertex2(0.1 * winLeftPos, -0.1 * Height); // Top Left
-                //GL.TexCoord2(1, 1); GL.Vertex2(0.1 * winRightPos, 0.1 * Height); // Bottom Right
-                //GL.TexCoord2(0, 1); GL.Vertex2(0.1 * winLeftPos,  0.1 * Height); // Bottom Left
-                //GL.End();						// Done Building Triangle Strip
-
-                //disable, straight color
-                GL.Disable(EnableCap.Texture2D);
             }
         }
 
