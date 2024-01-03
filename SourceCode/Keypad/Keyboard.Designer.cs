@@ -416,9 +416,9 @@
             this.btn_space.BackColor = System.Drawing.SystemColors.Control;
             this.btn_space.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_space.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_space.Location = new System.Drawing.Point(575, 456);
+            this.btn_space.Location = new System.Drawing.Point(308, 456);
             this.btn_space.Name = "btn_space";
-            this.btn_space.Size = new System.Drawing.Size(144, 63);
+            this.btn_space.Size = new System.Drawing.Size(302, 63);
             this.btn_space.TabIndex = 23;
             this.btn_space.TabStop = false;
             this.btn_space.Text = "__";
@@ -429,7 +429,6 @@
             // 
             this.btn_clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_clear.BackColor = System.Drawing.Color.LightSalmon;
-            this.btn_clear.FlatAppearance.BorderSize = 0;
             this.btn_clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_clear.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_clear.Location = new System.Drawing.Point(109, 457);
@@ -667,9 +666,9 @@
             this.chk_shift.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.chk_shift.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chk_shift.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_shift.Location = new System.Drawing.Point(310, 456);
+            this.chk_shift.Location = new System.Drawing.Point(621, 456);
             this.chk_shift.Name = "chk_shift";
-            this.chk_shift.Size = new System.Drawing.Size(237, 63);
+            this.chk_shift.Size = new System.Drawing.Size(152, 63);
             this.chk_shift.TabIndex = 43;
             this.chk_shift.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chk_shift.UseVisualStyleBackColor = false;
@@ -677,13 +676,13 @@
             // 
             // btn_backspace
             // 
-            this.btn_backspace.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_backspace.BackColor = System.Drawing.Color.LightSalmon;
             this.btn_backspace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_backspace.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_backspace.Image = global::Keypad.Properties.Resources.backspace;
-            this.btn_backspace.Location = new System.Drawing.Point(811, 1);
+            this.btn_backspace.Location = new System.Drawing.Point(829, 1);
             this.btn_backspace.Name = "btn_backspace";
-            this.btn_backspace.Size = new System.Drawing.Size(111, 64);
+            this.btn_backspace.Size = new System.Drawing.Size(93, 64);
             this.btn_backspace.TabIndex = 42;
             this.btn_backspace.TabStop = false;
             this.btn_backspace.UseVisualStyleBackColor = false;
@@ -696,9 +695,9 @@
             this.btn_OK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_OK.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_OK.Image = global::Keypad.Properties.Resources.OK64;
-            this.btn_OK.Location = new System.Drawing.Point(747, 456);
+            this.btn_OK.Location = new System.Drawing.Point(784, 456);
             this.btn_OK.Name = "btn_OK";
-            this.btn_OK.Size = new System.Drawing.Size(176, 63);
+            this.btn_OK.Size = new System.Drawing.Size(138, 63);
             this.btn_OK.TabIndex = 41;
             this.btn_OK.TabStop = false;
             this.btn_OK.UseVisualStyleBackColor = false;

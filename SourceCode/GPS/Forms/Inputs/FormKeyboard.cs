@@ -36,12 +36,6 @@ namespace AgOpenGPS
 
         private void RegisterKeyboard1_ButtonPressed(object sender, KeyPressEventArgs e)
         {
-            //if (isFirstKey)
-            //{
-            //    keyboardString.Text = "";
-            //    isFirstKey = false;
-            //}
-
             //clear the error as user entered new values
             if (keyboardString.Text == gStr.gsError)
             {
@@ -68,11 +62,6 @@ namespace AgOpenGPS
                         keyboardString.SelectionStart = 1;
                         keyboardString.SelectionLength = 0;
                     }
-
-                    //keyboardString.Text = keyboardString.Text.Insert(selectionIndex, insertText);
-                    //keyboardString.SelectionStart = selectionIndex + insertText.Length;
-
-
                 }
             }
 
@@ -101,10 +90,6 @@ namespace AgOpenGPS
             //if its a character just add it
             else
             {
-                //keyboardString.Text += e.KeyChar;
-                //string v = ;
-                //    keyboardString.Text.(keyboardString.SelectionStart, "CC");
-
                 var insertText = e.KeyChar.ToString();
                 var selectionIndex = keyboardString.SelectionStart;
                 keyboardString.Text = keyboardString.Text.Insert(selectionIndex, insertText);
@@ -112,7 +97,6 @@ namespace AgOpenGPS
             }
 
             //Show the cursor
-            //keyboardString.SelectionStart = keyboardString.Text.Length;
             keyboardString.SelectionLength = 0;
             keyboardString.Focus();
         }

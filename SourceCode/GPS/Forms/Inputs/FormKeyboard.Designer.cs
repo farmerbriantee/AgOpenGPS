@@ -45,7 +45,7 @@
             // keyboard1
             // 
             this.keyboard1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.keyboard1.Location = new System.Drawing.Point(5, 52);
+            this.keyboard1.Location = new System.Drawing.Point(5, 55);
             this.keyboard1.Margin = new System.Windows.Forms.Padding(4);
             this.keyboard1.Name = "keyboard1";
             this.keyboard1.Size = new System.Drawing.Size(929, 396);
@@ -62,7 +62,7 @@
             this.btnCharLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCharLeft.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.btnCharLeft.Image = global::AgOpenGPS.Properties.Resources.ArrowLeft;
-            this.btnCharLeft.Location = new System.Drawing.Point(773, 3);
+            this.btnCharLeft.Location = new System.Drawing.Point(777, 4);
             this.btnCharLeft.Name = "btnCharLeft";
             this.btnCharLeft.Size = new System.Drawing.Size(73, 45);
             this.btnCharLeft.TabIndex = 457;
@@ -79,7 +79,7 @@
             this.btnCharRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCharRight.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.btnCharRight.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
-            this.btnCharRight.Location = new System.Drawing.Point(852, 3);
+            this.btnCharRight.Location = new System.Drawing.Point(860, 4);
             this.btnCharRight.Name = "btnCharRight";
             this.btnCharRight.Size = new System.Drawing.Size(73, 45);
             this.btnCharRight.TabIndex = 458;
@@ -91,7 +91,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(950, 530);
+            this.ClientSize = new System.Drawing.Size(942, 530);
             this.ControlBox = false;
             this.Controls.Add(this.btnCharRight);
             this.Controls.Add(this.btnCharLeft);
