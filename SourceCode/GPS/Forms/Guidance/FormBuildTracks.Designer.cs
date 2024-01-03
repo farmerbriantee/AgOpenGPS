@@ -168,9 +168,9 @@
             this.panelName.Controls.Add(this.btnAdd);
             this.panelName.Controls.Add(this.btnCancel_Name);
             this.panelName.Controls.Add(this.textBox1);
-            this.panelName.Location = new System.Drawing.Point(2, 441);
+            this.panelName.Location = new System.Drawing.Point(2, 434);
             this.panelName.Name = "panelName";
-            this.panelName.Size = new System.Drawing.Size(241, 313);
+            this.panelName.Size = new System.Drawing.Size(241, 310);
             this.panelName.TabIndex = 434;
             // 
             // label11
@@ -224,7 +224,7 @@
             this.btnAdd.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdd.Location = new System.Drawing.Point(141, 226);
+            this.btnAdd.Location = new System.Drawing.Point(141, 233);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(88, 70);
             this.btnAdd.TabIndex = 150;
@@ -243,7 +243,7 @@
             this.btnCancel_Name.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel_Name.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel_Name.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel_Name.Location = new System.Drawing.Point(5, 226);
+            this.btnCancel_Name.Location = new System.Drawing.Point(5, 233);
             this.btnCancel_Name.Name = "btnCancel_Name";
             this.btnCancel_Name.Size = new System.Drawing.Size(88, 70);
             this.btnCancel_Name.TabIndex = 423;
@@ -280,7 +280,7 @@
             this.panelMain.Controls.Add(this.btnNewTrack);
             this.panelMain.Controls.Add(this.btnListDelete);
             this.panelMain.Controls.Add(this.btnListUse);
-            this.panelMain.Location = new System.Drawing.Point(2, 6);
+            this.panelMain.Location = new System.Drawing.Point(2, 2);
             this.panelMain.Name = "panelMain";
             this.panelMain.Size = new System.Drawing.Size(630, 425);
             this.panelMain.TabIndex = 435;
@@ -448,9 +448,9 @@
             this.panelCurve.Controls.Add(this.btnPausePlay);
             this.panelCurve.Controls.Add(this.lblCurveExists);
             this.panelCurve.Controls.Add(this.label2);
-            this.panelCurve.Location = new System.Drawing.Point(225, 441);
+            this.panelCurve.Location = new System.Drawing.Point(248, 434);
             this.panelCurve.Name = "panelCurve";
-            this.panelCurve.Size = new System.Drawing.Size(241, 313);
+            this.panelCurve.Size = new System.Drawing.Size(241, 310);
             this.panelCurve.TabIndex = 436;
             // 
             // btnCancel_Curve
@@ -464,9 +464,9 @@
             this.btnCancel_Curve.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel_Curve.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel_Curve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel_Curve.Location = new System.Drawing.Point(151, 210);
+            this.btnCancel_Curve.Location = new System.Drawing.Point(151, 233);
             this.btnCancel_Curve.Name = "btnCancel_Curve";
-            this.btnCancel_Curve.Size = new System.Drawing.Size(82, 81);
+            this.btnCancel_Curve.Size = new System.Drawing.Size(88, 70);
             this.btnCancel_Curve.TabIndex = 423;
             this.btnCancel_Curve.UseVisualStyleBackColor = false;
             this.btnCancel_Curve.Click += new System.EventHandler(this.btnCancelCurve_Click);
@@ -517,9 +517,9 @@
             this.btnPausePlay.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPausePlay.Image = global::AgOpenGPS.Properties.Resources.boundaryPause;
             this.btnPausePlay.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPausePlay.Location = new System.Drawing.Point(25, 210);
+            this.btnPausePlay.Location = new System.Drawing.Point(25, 233);
             this.btnPausePlay.Name = "btnPausePlay";
-            this.btnPausePlay.Size = new System.Drawing.Size(82, 81);
+            this.btnPausePlay.Size = new System.Drawing.Size(88, 70);
             this.btnPausePlay.TabIndex = 140;
             this.btnPausePlay.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnPausePlay.UseVisualStyleBackColor = false;
@@ -535,9 +535,9 @@
             this.panelEditName.Controls.Add(this.btnSaveEditName);
             this.panelEditName.Controls.Add(this.btnCancel_EditName);
             this.panelEditName.Controls.Add(this.textBox2);
-            this.panelEditName.Location = new System.Drawing.Point(455, 441);
+            this.panelEditName.Location = new System.Drawing.Point(494, 434);
             this.panelEditName.Name = "panelEditName";
-            this.panelEditName.Size = new System.Drawing.Size(241, 313);
+            this.panelEditName.Size = new System.Drawing.Size(241, 310);
             this.panelEditName.TabIndex = 437;
             // 
             // label8
@@ -591,7 +591,7 @@
             this.btnSaveEditName.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveEditName.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnSaveEditName.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSaveEditName.Location = new System.Drawing.Point(141, 226);
+            this.btnSaveEditName.Location = new System.Drawing.Point(141, 233);
             this.btnSaveEditName.Name = "btnSaveEditName";
             this.btnSaveEditName.Size = new System.Drawing.Size(88, 70);
             this.btnSaveEditName.TabIndex = 150;
@@ -610,7 +610,7 @@
             this.btnCancel_EditName.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel_EditName.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel_EditName.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel_EditName.Location = new System.Drawing.Point(5, 226);
+            this.btnCancel_EditName.Location = new System.Drawing.Point(5, 233);
             this.btnCancel_EditName.Name = "btnCancel_EditName";
             this.btnCancel_EditName.Size = new System.Drawing.Size(88, 70);
             this.btnCancel_EditName.TabIndex = 423;
@@ -638,9 +638,9 @@
             // 
             this.panelKML.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelKML.Controls.Add(this.btnCancel_KML);
-            this.panelKML.Location = new System.Drawing.Point(682, 441);
+            this.panelKML.Location = new System.Drawing.Point(740, 434);
             this.panelKML.Name = "panelKML";
-            this.panelKML.Size = new System.Drawing.Size(241, 313);
+            this.panelKML.Size = new System.Drawing.Size(241, 310);
             this.panelKML.TabIndex = 438;
             // 
             // btnCancel_KML
@@ -653,7 +653,7 @@
             this.btnCancel_KML.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel_KML.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel_KML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel_KML.Location = new System.Drawing.Point(5, 226);
+            this.btnCancel_KML.Location = new System.Drawing.Point(5, 233);
             this.btnCancel_KML.Name = "btnCancel_KML";
             this.btnCancel_KML.Size = new System.Drawing.Size(88, 70);
             this.btnCancel_KML.TabIndex = 423;
@@ -678,7 +678,7 @@
             this.panelChoose.Controls.Add(this.btnzAPlus);
             this.panelChoose.Controls.Add(this.btnzABLine);
             this.panelChoose.Controls.Add(this.btnzABCurve);
-            this.panelChoose.Location = new System.Drawing.Point(630, 6);
+            this.panelChoose.Location = new System.Drawing.Point(632, 2);
             this.panelChoose.Name = "panelChoose";
             this.panelChoose.Size = new System.Drawing.Size(630, 425);
             this.panelChoose.TabIndex = 441;
@@ -917,9 +917,9 @@
             this.panelABLine.Controls.Add(this.btnEnter_AB);
             this.panelABLine.Controls.Add(this.btnALine);
             this.panelABLine.Controls.Add(this.btnBLine);
-            this.panelABLine.Location = new System.Drawing.Point(899, 441);
+            this.panelABLine.Location = new System.Drawing.Point(986, 434);
             this.panelABLine.Name = "panelABLine";
-            this.panelABLine.Size = new System.Drawing.Size(241, 313);
+            this.panelABLine.Size = new System.Drawing.Size(241, 310);
             this.panelABLine.TabIndex = 442;
             // 
             // label12
@@ -945,9 +945,9 @@
             this.btnCancel_ABLine.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel_ABLine.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel_ABLine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel_ABLine.Location = new System.Drawing.Point(8, 232);
+            this.btnCancel_ABLine.Location = new System.Drawing.Point(8, 233);
             this.btnCancel_ABLine.Name = "btnCancel_ABLine";
-            this.btnCancel_ABLine.Size = new System.Drawing.Size(63, 60);
+            this.btnCancel_ABLine.Size = new System.Drawing.Size(88, 70);
             this.btnCancel_ABLine.TabIndex = 428;
             this.btnCancel_ABLine.UseVisualStyleBackColor = false;
             this.btnCancel_ABLine.Click += new System.EventHandler(this.btnCancelCurve_Click);
@@ -963,9 +963,9 @@
             this.btnEnter_AB.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnEnter_AB.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEnter_AB.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEnter_AB.Location = new System.Drawing.Point(142, 232);
+            this.btnEnter_AB.Location = new System.Drawing.Point(142, 233);
             this.btnEnter_AB.Name = "btnEnter_AB";
-            this.btnEnter_AB.Size = new System.Drawing.Size(88, 60);
+            this.btnEnter_AB.Size = new System.Drawing.Size(88, 70);
             this.btnEnter_AB.TabIndex = 427;
             this.btnEnter_AB.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnEnter_AB.UseVisualStyleBackColor = false;
@@ -1032,9 +1032,9 @@
             this.panelAPlus.Controls.Add(this.btnEnter_APlus);
             this.panelAPlus.Controls.Add(this.nudHeading);
             this.panelAPlus.Controls.Add(this.btnAPlus);
-            this.panelAPlus.Location = new System.Drawing.Point(1134, 443);
+            this.panelAPlus.Location = new System.Drawing.Point(1232, 434);
             this.panelAPlus.Name = "panelAPlus";
-            this.panelAPlus.Size = new System.Drawing.Size(241, 313);
+            this.panelAPlus.Size = new System.Drawing.Size(241, 310);
             this.panelAPlus.TabIndex = 448;
             // 
             // cboxDegrees
@@ -1050,7 +1050,7 @@
             "90",
             "180",
             "270"});
-            this.cboxDegrees.Location = new System.Drawing.Point(142, 44);
+            this.cboxDegrees.Location = new System.Drawing.Point(142, 43);
             this.cboxDegrees.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxDegrees.Name = "cboxDegrees";
             this.cboxDegrees.Size = new System.Drawing.Size(78, 37);
@@ -1079,9 +1079,9 @@
             this.btnCancel_APlus.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel_APlus.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel_APlus.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel_APlus.Location = new System.Drawing.Point(8, 232);
+            this.btnCancel_APlus.Location = new System.Drawing.Point(8, 233);
             this.btnCancel_APlus.Name = "btnCancel_APlus";
-            this.btnCancel_APlus.Size = new System.Drawing.Size(63, 60);
+            this.btnCancel_APlus.Size = new System.Drawing.Size(88, 70);
             this.btnCancel_APlus.TabIndex = 428;
             this.btnCancel_APlus.UseVisualStyleBackColor = false;
             this.btnCancel_APlus.Click += new System.EventHandler(this.btnCancelCurve_Click);
@@ -1097,9 +1097,9 @@
             this.btnEnter_APlus.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnEnter_APlus.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEnter_APlus.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEnter_APlus.Location = new System.Drawing.Point(142, 232);
+            this.btnEnter_APlus.Location = new System.Drawing.Point(142, 233);
             this.btnEnter_APlus.Name = "btnEnter_APlus";
-            this.btnEnter_APlus.Size = new System.Drawing.Size(88, 60);
+            this.btnEnter_APlus.Size = new System.Drawing.Size(88, 70);
             this.btnEnter_APlus.TabIndex = 427;
             this.btnEnter_APlus.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnEnter_APlus.UseVisualStyleBackColor = false;
@@ -1132,7 +1132,7 @@
             this.panelLatLonPlus.Controls.Add(this.btnCancel_LatLonPlus);
             this.panelLatLonPlus.Controls.Add(this.btnEnter_LatLonPlus);
             this.panelLatLonPlus.Controls.Add(this.nudHeadingLatLonPlus);
-            this.panelLatLonPlus.Location = new System.Drawing.Point(1234, 14);
+            this.panelLatLonPlus.Location = new System.Drawing.Point(1262, 14);
             this.panelLatLonPlus.Name = "panelLatLonPlus";
             this.panelLatLonPlus.Size = new System.Drawing.Size(341, 413);
             this.panelLatLonPlus.TabIndex = 449;
@@ -1303,7 +1303,7 @@
             this.panel1.Controls.Add(this.nudLongitudeA);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btnEnter_LatLonLatLon);
-            this.panel1.Location = new System.Drawing.Point(1578, 14);
+            this.panel1.Location = new System.Drawing.Point(1603, 14);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(341, 413);
             this.panel1.TabIndex = 450;

@@ -91,7 +91,7 @@ namespace AgOpenGPS
                 }
                 else
                 {
-                    mf.trk.idx = mf.trk.gArr.Count - 1;
+                    //mf.trk.idx = mf.trk.gArr.Count - 1;
 
                     //make sure selected is visible
                     if (!mf.trk.gArr[mf.trk.idx].isVisible)

@@ -96,6 +96,70 @@ namespace AgOpenGPS
             mf.threeSecondCounter = 100;
         }
 
+        private void btnListUse_Click(object sender, EventArgs e)
+        {
+            isClosing = true;
+            //reset to generate new reference
+            mf.curve.isCurveValid = false;
+            mf.ABLine.isABValid = false;
+            mf.curve.desList?.Clear();
+
+            if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
+
+            mf.FileSaveTracks();
+
+            if (selectedItem > -1 && mf.trk.gArr.Count > 0 && mf.trk.gArr[mf.trk.idx].isVisible)
+            {
+                mf.trk.idx = selectedItem;
+                mf.yt.ResetYouTurn();
+
+                Close();
+            }
+            else if (mf.trk.gArr.Count > 0)
+            {
+                bool isOneVis = false;
+                int trac = -1;
+
+                foreach (var item in mf.trk.gArr)
+                {
+                    trac++;
+                    if (item.isVisible)
+                    {
+                        isOneVis = true;
+                        break;                        
+                    }
+                }
+
+                //just choose a visible something
+                if (isOneVis)
+                {
+                    mf.trk.idx = trac;
+                    mf.yt.ResetYouTurn();
+                    Close();
+                }
+                else
+                {
+                    mf.trk.idx = -1;
+                    mf.DisableYouTurnButtons();
+                    mf.curve.isBtnTrackOn = false;
+                    mf.btnTrack.Image = Properties.Resources.TrackOff;
+                    if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+                    Close();
+                }
+            }
+            else
+            {
+                mf.trk.idx = -1;
+                mf.DisableYouTurnButtons();
+                mf.curve.isBtnTrackOn = false;
+                mf.btnTrack.Image = Properties.Resources.TrackOff;
+                if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
+
+                //mf.curve.numCurveLineSelected = 0;
+                Close();
+            }
+        }
+
         #region Main Controls
         private void UpdateTable()
         {
@@ -331,70 +395,6 @@ namespace AgOpenGPS
 
             UpdateTable();
             flp.Focus();
-        }
-
-        private void btnListUse_Click(object sender, EventArgs e)
-        {
-            isClosing = true;
-            //reset to generate new reference
-            mf.curve.isCurveValid = false;
-            mf.ABLine.isABValid = false;
-            mf.curve.desList?.Clear();
-
-            if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
-
-            mf.FileSaveTracks();
-
-            if (selectedItem > -1 && mf.trk.gArr.Count > 0 && mf.trk.gArr[mf.trk.idx].isVisible)
-            {
-                mf.trk.idx = selectedItem;
-                mf.yt.ResetYouTurn();
-
-                Close();
-            }
-            else if (mf.trk.gArr.Count > 0)
-            {
-                bool isOneVis = false;
-                int trac = -1;
-
-                foreach (var item in mf.trk.gArr)
-                {
-                    trac++;
-                    if (item.isVisible)
-                    {
-                        isOneVis = true;
-                        break;                        
-                    }
-                }
-
-                //just choose a visible something
-                if (isOneVis)
-                {
-                    mf.trk.idx = trac;
-                    mf.yt.ResetYouTurn();
-                    Close();
-                }
-                else
-                {
-                    mf.trk.idx = -1;
-                    mf.DisableYouTurnButtons();
-                    mf.curve.isBtnTrackOn = false;
-                    mf.btnTrack.Image = Properties.Resources.TrackOff;
-                    if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                    Close();
-                }
-            }
-            else
-            {
-                mf.trk.idx = -1;
-                mf.DisableYouTurnButtons();
-                mf.curve.isBtnTrackOn = false;
-                mf.btnTrack.Image = Properties.Resources.TrackOff;
-                if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
-
-                //mf.curve.numCurveLineSelected = 0;
-                Close();
-            }
         }
 
         private void btnDuplicate_Click(object sender, EventArgs e)
