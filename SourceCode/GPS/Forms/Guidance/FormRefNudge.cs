@@ -34,8 +34,8 @@ namespace AgOpenGPS
 
             snapAdj = Properties.Settings.Default.setAS_snapDistanceRef * 0.01;
 
-            Location = Properties.Settings.Default.setWindow_formEditTrackLocation;
-            Size = Properties.Settings.Default.setWindow_formEditTrackSize;
+            Location = Properties.Settings.Default.setWindow_formNudgeLocation;
+            Size = Properties.Settings.Default.setWindow_formNudgeSize;
         }
 
         private void FormEditTrack_FormClosing(object sender, FormClosingEventArgs e)

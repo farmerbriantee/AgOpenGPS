@@ -59,7 +59,7 @@ namespace AgOpenGPS
 
             mf.curve.isMakingCurve = false;
             selectedItem = -1;
-            Location = Properties.Settings.Default.setWindow_abCurveCreate;
+            Location = Properties.Settings.Default.setWindow_buildTracksLocation;
 
             nudLatitudeA.Controls[0].Enabled = false;
             nudLongitudeA.Controls[0].Enabled = false;
@@ -91,7 +91,7 @@ namespace AgOpenGPS
                 return;
             }
 
-            Properties.Settings.Default.setWindow_abCurveCreate = Location;
+            Properties.Settings.Default.setWindow_buildTracksLocation = Location;
 
             mf.threeSecondCounter = 100;
         }
@@ -110,7 +110,7 @@ namespace AgOpenGPS
                 //outer inner
                 Button a = new Button
                 {
-                    Margin = new Padding(6, 10, 10, 10),
+                    Margin = new Padding(20, 10, 2, 10),
                     Size = new Size(40, 25),
                     Name = i.ToString(),
                     TextAlign = ContentAlignment.MiddleCenter,
@@ -176,8 +176,6 @@ namespace AgOpenGPS
                 flp.Controls.Add(b);
                 flp.Controls.Add(t);
                 flp.Controls.Add(a);
-
-
             }
 
             flp.VerticalScroll.Value = 1;
@@ -340,11 +338,14 @@ namespace AgOpenGPS
             isClosing = true;
             //reset to generate new reference
             mf.curve.isCurveValid = false;
+            mf.ABLine.isABValid = false;
             mf.curve.desList?.Clear();
+
+            if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
 
             mf.FileSaveTracks();
 
-            if (selectedItem > -1)
+            if (selectedItem > -1 && mf.trk.gArr.Count > 0 && mf.trk.gArr[mf.trk.idx].isVisible)
             {
                 mf.trk.idx = selectedItem;
                 mf.yt.ResetYouTurn();
@@ -353,10 +354,35 @@ namespace AgOpenGPS
             }
             else if (mf.trk.gArr.Count > 0)
             {
-                mf.trk.idx = mf.trk.gArr.Count - 1;
-                mf.yt.ResetYouTurn();
+                bool isOneVis = false;
+                int trac = -1;
 
-                Close();
+                foreach (var item in mf.trk.gArr)
+                {
+                    trac++;
+                    if (item.isVisible)
+                    {
+                        isOneVis = true;
+                        break;                        
+                    }
+                }
+
+                //just choose a visible something
+                if (isOneVis)
+                {
+                    mf.trk.idx = trac;
+                    mf.yt.ResetYouTurn();
+                    Close();
+                }
+                else
+                {
+                    mf.trk.idx = -1;
+                    mf.DisableYouTurnButtons();
+                    mf.curve.isBtnTrackOn = false;
+                    mf.btnTrack.Image = Properties.Resources.TrackOff;
+                    if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+                    Close();
+                }
             }
             else
             {
@@ -364,7 +390,6 @@ namespace AgOpenGPS
                 mf.DisableYouTurnButtons();
                 mf.curve.isBtnTrackOn = false;
                 mf.btnTrack.Image = Properties.Resources.TrackOff;
-                if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
                 if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
 
                 //mf.curve.numCurveLineSelected = 0;

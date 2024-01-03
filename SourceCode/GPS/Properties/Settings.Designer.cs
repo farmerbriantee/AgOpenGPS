@@ -2666,7 +2666,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
+        [global::System.Configuration.DefaultSettingValueAttribute("200, 200")]
         public global::System.Drawing.Point setJobMenu_location {
             get {
                 return ((global::System.Drawing.Point)(this["setJobMenu_location"]));
@@ -2678,37 +2678,13 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("900, 600")]
+        [global::System.Configuration.DefaultSettingValueAttribute("640, 560")]
         public global::System.Drawing.Size setJobMenu_size {
             get {
                 return ((global::System.Drawing.Size)(this["setJobMenu_size"]));
             }
             set {
                 this["setJobMenu_size"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("40, 40")]
-        public global::System.Drawing.Point setWindow_curveEditLocation {
-            get {
-                return ((global::System.Drawing.Point)(this["setWindow_curveEditLocation"]));
-            }
-            set {
-                this["setWindow_curveEditLocation"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("40, 40")]
-        public global::System.Drawing.Point setWindow_abLineEditLocation {
-            get {
-                return ((global::System.Drawing.Point)(this["setWindow_abLineEditLocation"]));
-            }
-            set {
-                this["setWindow_abLineEditLocation"] = value;
             }
         }
         
@@ -2727,24 +2703,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("40, 40")]
-        public global::System.Drawing.Point setWindow_abCurveCreate {
+        public global::System.Drawing.Point setWindow_buildTracksLocation {
             get {
-                return ((global::System.Drawing.Point)(this["setWindow_abCurveCreate"]));
+                return ((global::System.Drawing.Point)(this["setWindow_buildTracksLocation"]));
             }
             set {
-                this["setWindow_abCurveCreate"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("40, 40")]
-        public global::System.Drawing.Point setWindow_abLineCreate {
-            get {
-                return ((global::System.Drawing.Point)(this["setWindow_abLineCreate"]));
-            }
-            set {
-                this["setWindow_abLineCreate"] = value;
+                this["setWindow_buildTracksLocation"] = value;
             }
         }
         
@@ -2762,25 +2726,25 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
-        public global::System.Drawing.Point setWindow_formEditTrackLocation {
+        [global::System.Configuration.DefaultSettingValueAttribute("200, 200")]
+        public global::System.Drawing.Point setWindow_formNudgeLocation {
             get {
-                return ((global::System.Drawing.Point)(this["setWindow_formEditTrackLocation"]));
+                return ((global::System.Drawing.Point)(this["setWindow_formNudgeLocation"]));
             }
             set {
-                this["setWindow_formEditTrackLocation"] = value;
+                this["setWindow_formNudgeLocation"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("200, 400")]
-        public global::System.Drawing.Size setWindow_formEditTrackSize {
+        public global::System.Drawing.Size setWindow_formNudgeSize {
             get {
-                return ((global::System.Drawing.Size)(this["setWindow_formEditTrackSize"]));
+                return ((global::System.Drawing.Size)(this["setWindow_formNudgeSize"]));
             }
             set {
-                this["setWindow_formEditTrackSize"] = value;
+                this["setWindow_formNudgeSize"] = value;
             }
         }
         

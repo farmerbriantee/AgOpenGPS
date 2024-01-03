@@ -36,8 +36,8 @@ namespace AgOpenGPS
 
             snapAdj = Properties.Settings.Default.setAS_snapDistance * 0.01;
 
-            Location = Properties.Settings.Default.setWindow_formEditTrackLocation;
-            Size = Properties.Settings.Default.setWindow_formEditTrackSize;
+            Location = Properties.Settings.Default.setWindow_formNudgeLocation;
+            Size = Properties.Settings.Default.setWindow_formNudgeSize;
             UpdateMoveLabel();
         }
         private void FormEditTrack_MouseEnter(object sender, EventArgs e)
@@ -46,8 +46,8 @@ namespace AgOpenGPS
         }
         private void FormEditTrack_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Properties.Settings.Default.setWindow_formEditTrackLocation = Location;
-            Properties.Settings.Default.setWindow_formEditTrackSize = Size;
+            Properties.Settings.Default.setWindow_formNudgeLocation = Location;
+            Properties.Settings.Default.setWindow_formNudgeSize = Size;
 
             Properties.Settings.Default.Save();
 

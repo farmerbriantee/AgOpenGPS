@@ -238,7 +238,7 @@ namespace AgOpenGPS
         {
             curvePts = new List<vec3>();
             heading = 3;
-            name = "aa";
+            name = "New Track";
             isVisible = true;
             ptA = new vec2();
             ptB = new vec2();

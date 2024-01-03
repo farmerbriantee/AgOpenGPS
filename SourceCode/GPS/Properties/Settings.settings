@@ -663,33 +663,24 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setJobMenu_location" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">100, 100</Value>
+      <Value Profile="(Default)">200, 200</Value>
     </Setting>
     <Setting Name="setJobMenu_size" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">900, 600</Value>
-    </Setting>
-    <Setting Name="setWindow_curveEditLocation" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">40, 40</Value>
-    </Setting>
-    <Setting Name="setWindow_abLineEditLocation" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">40, 40</Value>
+      <Value Profile="(Default)">640, 560</Value>
     </Setting>
     <Setting Name="setWindow_steerSettingsLocation" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">40, 40</Value>
     </Setting>
-    <Setting Name="setWindow_abCurveCreate" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">40, 40</Value>
-    </Setting>
-    <Setting Name="setWindow_abLineCreate" Type="System.Drawing.Point" Scope="User">
+    <Setting Name="setWindow_buildTracksLocation" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">40, 40</Value>
     </Setting>
     <Setting Name="setTool_trailingToolToPivotLength" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="setWindow_formEditTrackLocation" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">100, 100</Value>
+    <Setting Name="setWindow_formNudgeLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">200, 200</Value>
     </Setting>
-    <Setting Name="setWindow_formEditTrackSize" Type="System.Drawing.Size" Scope="User">
+    <Setting Name="setWindow_formNudgeSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">200, 400</Value>
     </Setting>
     <Setting Name="setAS_snapDistanceRef" Type="System.Double" Scope="User">

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgOpenGPS.Properties;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
@@ -211,6 +212,8 @@ namespace AgOpenGPS
             nudLookAhead.Value =    (decimal)Properties.Settings.Default.setVehicle_toolLookAheadOn;
             nudLookAheadOff.Value = (decimal)Properties.Settings.Default.setVehicle_toolLookAheadOff;
             nudTurnOffDelay.Value = (decimal)Properties.Settings.Default.setVehicle_toolOffDelay;
+            //pictureBox3.Image = Resources.ToolLookaheadOn;
+            //pictureBox4.Image = Resources.ToolLookaheadOff;
         }
 
         private void tabTSettings_Leave(object sender, EventArgs e)

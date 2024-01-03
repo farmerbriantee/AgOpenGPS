@@ -984,6 +984,10 @@
     <None Include="btnImages\Config\ToolHitchPivotOffsetPos.png" />
     <None Include="btnImages\Config\ConS_ImplementPivot.png" />
     <None Include="btnImages\Images\z_Tire.png" />
+    <None Include="btnImages\Config\ToolLookaheadOff.png" />
+    <None Include="btnImages\Config\ToolLookaheadOn.png" />
+    <None Include="btnImages\Config\SectionLookAheadOff.gif" />
+    <None Include="btnImages\Config\SectionOnLookAhead.gif" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />

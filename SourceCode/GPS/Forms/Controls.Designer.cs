@@ -91,7 +91,7 @@ namespace AgOpenGPS
             }
             else
             {
-                tlpTrackMethods.Top = this.Height/5;
+                tlpTrackMethods.Top = this.Height / 5;
                 tlpTrackMethods.Left = this.Width - tlpTrackMethods.Width - 120;
                 tlpTrackMethods.Visible = true;
                 trackMethodPanelCounter = 1;
@@ -142,7 +142,7 @@ namespace AgOpenGPS
                 }
                 else
                 {
-                    var form = new FormTimedMessage(2000,(gStr.gsNoGuidanceLines),(gStr.gsTurnOnContourOrMakeABLine));
+                    var form = new FormTimedMessage(2000, (gStr.gsNoGuidanceLines), (gStr.gsTurnOnContourOrMakeABLine));
                     form.Show(this);
                 }
             }
@@ -155,7 +155,7 @@ namespace AgOpenGPS
                 ResetHelpBtn();
                 return;
             }
-            
+
             yt.isTurnCreationTooClose = false;
 
             if (bnd.bndList.Count == 0)
@@ -283,32 +283,34 @@ namespace AgOpenGPS
 
         private void btnRefNudge_Click(object sender, EventArgs e)
         {
+            if (isTT)
             {
-                if (isTT)
-                {
-                    MessageBox.Show(gStr.h_btnEditAB, gStr.gsHelp);
-                    ResetHelpBtn();
-                    return;
-                }
+                MessageBox.Show(gStr.h_btnEditAB, gStr.gsHelp);
+                ResetHelpBtn();
+                return;
+            }
 
-                Form fcc = Application.OpenForms["FormRefNudge"];
+            Form fcc = Application.OpenForms["FormRefNudge"];
 
-                if (fcc != null)
-                {
-                    fcc.Focus();
-                    return;
-                }
+            if (fcc != null)
+            {
+                fcc.Focus();
+                return;
+            }
 
-                if (trk.idx > -1 && curve.isBtnTrackOn)
-                {
-                    Form form = new FormRefNudge(this);
-                    form.Show(this);
-                }
-                else
-                {
-                    var form = new FormTimedMessage(1500, gStr.gsNoABLineActive, gStr.gsPleaseEnterABLine);
-                    return;
-                }
+            if (trk.idx > -1 && curve.isBtnTrackOn)
+            {
+                Form form = new FormRefNudge(this);
+                form.Show(this);
+            }
+            else
+            {
+                var form = new FormTimedMessage(1500, gStr.gsNoABLineActive, gStr.gsPleaseEnterABLine);
+                return;
+            }
+            if (tlpTrackMethods.Visible)
+            {
+                tlpTrackMethods.Visible = false;
             }
         }
 
@@ -317,6 +319,11 @@ namespace AgOpenGPS
             btnTrack.Image = Resources.TrackOff;
             curve.isBtnTrackOn = false;
             trk.idx = -1;
+
+            if (tlpTrackMethods.Visible)
+            {
+                tlpTrackMethods.Visible = false;
+            }
         }
 
         private void btnNudge_Click(object sender, EventArgs e)
@@ -346,6 +353,12 @@ namespace AgOpenGPS
                 var form = new FormTimedMessage(1500, gStr.gsNoABLineActive, gStr.gsPleaseEnterABLine);
                 return;
             }
+
+            if (tlpTrackMethods.Visible)
+            {
+                tlpTrackMethods.Visible = false;
+            }
+
         }
         private void btnBuildTracks_Click(object sender, EventArgs e)
         {
@@ -414,6 +427,11 @@ namespace AgOpenGPS
         private void cboxAutoSnapToPivot_Click(object sender, EventArgs e)
         {
             trk.isAutoSnapToPivot = cboxAutoSnapToPivot.Checked;
+
+            if (tlpTrackMethods.Visible)
+            {
+                tlpTrackMethods.Visible = false;
+            }
         }
         private void cboxAutoTrack_Click(object sender, EventArgs e)
         {

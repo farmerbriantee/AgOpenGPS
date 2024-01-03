@@ -113,16 +113,6 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ABLineOn {
-            get {
-                object obj = ResourceManager.GetObject("ABLineOn", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap ABLinesHideShow {
             get {
                 object obj = ResourceManager.GetObject("ABLinesHideShow", resourceCulture);
@@ -1512,16 +1502,6 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap CurveOn {
-            get {
-                object obj = ResourceManager.GetObject("CurveOn", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Deutz {
             get {
                 object obj = ResourceManager.GetObject("Deutz", resourceCulture);
@@ -2449,6 +2429,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap SectionLookAheadOff {
+            get {
+                object obj = ResourceManager.GetObject("SectionLookAheadOff", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap SectionMapping {
             get {
                 object obj = ResourceManager.GetObject("SectionMapping", resourceCulture);
@@ -2502,6 +2492,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap SectionOnBoundary {
             get {
                 object obj = ResourceManager.GetObject("SectionOnBoundary", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SectionOnLookAhead {
+            get {
+                object obj = ResourceManager.GetObject("SectionOnLookAhead", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

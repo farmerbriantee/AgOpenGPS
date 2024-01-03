@@ -37,8 +37,6 @@
             this.nudDistance = new AgOpenGPS.NudlessNumericUpDown();
             this.tboxNameCurve = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.btnFlipOffset = new System.Windows.Forms.Button();
             this.lblCmInch = new System.Windows.Forms.Label();
@@ -171,30 +169,6 @@
             this.label4.Text = "Boundary Curve";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(724, 432);
-            this.label3.Margin = new System.Windows.Forms.Padding(0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 20);
-            this.label3.TabIndex = 348;
-            this.label3.Text = "Curve";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label7
-            // 
-            this.label7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(724, 541);
-            this.label7.Margin = new System.Windows.Forms.Padding(0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(67, 20);
-            this.label7.TabIndex = 349;
-            this.label7.Text = "Line";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -292,7 +266,7 @@
             this.btnAddTime.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddTime.Image = global::AgOpenGPS.Properties.Resources.JobNameTime;
             this.btnAddTime.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAddTime.Location = new System.Drawing.Point(936, 497);
+            this.btnAddTime.Location = new System.Drawing.Point(932, 504);
             this.btnAddTime.Name = "btnAddTime";
             this.btnAddTime.Size = new System.Drawing.Size(68, 69);
             this.btnAddTime.TabIndex = 356;
@@ -416,7 +390,7 @@
             this.btnSelectCurve.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnSelectCurve.Image = global::AgOpenGPS.Properties.Resources.ABLineCycle;
             this.btnSelectCurve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSelectCurve.Location = new System.Drawing.Point(835, 493);
+            this.btnSelectCurve.Location = new System.Drawing.Point(832, 502);
             this.btnSelectCurve.Name = "btnSelectCurve";
             this.btnSelectCurve.Size = new System.Drawing.Size(70, 68);
             this.btnSelectCurve.TabIndex = 5;
@@ -434,11 +408,11 @@
             this.btnMakeCurve.FlatAppearance.BorderSize = 0;
             this.btnMakeCurve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMakeCurve.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnMakeCurve.Image = global::AgOpenGPS.Properties.Resources.CurveOn;
+            this.btnMakeCurve.Image = global::AgOpenGPS.Properties.Resources.ABTrackCurve;
             this.btnMakeCurve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnMakeCurve.Location = new System.Drawing.Point(716, 386);
+            this.btnMakeCurve.Location = new System.Drawing.Point(716, 374);
             this.btnMakeCurve.Name = "btnMakeCurve";
-            this.btnMakeCurve.Size = new System.Drawing.Size(81, 68);
+            this.btnMakeCurve.Size = new System.Drawing.Size(81, 80);
             this.btnMakeCurve.TabIndex = 2;
             this.btnMakeCurve.UseVisualStyleBackColor = false;
             this.btnMakeCurve.Click += new System.EventHandler(this.BtnMakeCurve_Click);
@@ -454,11 +428,11 @@
             this.btnMakeABLine.FlatAppearance.BorderSize = 0;
             this.btnMakeABLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMakeABLine.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnMakeABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOn;
+            this.btnMakeABLine.Image = global::AgOpenGPS.Properties.Resources.ABTrackAB;
             this.btnMakeABLine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnMakeABLine.Location = new System.Drawing.Point(717, 493);
+            this.btnMakeABLine.Location = new System.Drawing.Point(717, 496);
             this.btnMakeABLine.Name = "btnMakeABLine";
-            this.btnMakeABLine.Size = new System.Drawing.Size(81, 68);
+            this.btnMakeABLine.Size = new System.Drawing.Size(81, 80);
             this.btnMakeABLine.TabIndex = 3;
             this.btnMakeABLine.UseVisualStyleBackColor = false;
             this.btnMakeABLine.Click += new System.EventHandler(this.BtnMakeABLine_Click);
@@ -513,8 +487,6 @@
             this.Controls.Add(this.label9);
             this.Controls.Add(this.btnFlipOffset);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tboxNameCurve);
             this.Controls.Add(this.btnMakeBoundaryCurve);
@@ -566,8 +538,6 @@
         private System.Windows.Forms.Button btnMakeBoundaryCurve;
         private System.Windows.Forms.TextBox tboxNameCurve;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnFlipOffset;
         private System.Windows.Forms.Button btnBLength;
