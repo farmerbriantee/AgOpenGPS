@@ -123,6 +123,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ABLoadCurveFromKML___Copy {
+            get {
+                object obj = ResourceManager.GetObject("ABLoadCurveFromKML - Copy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ABLoadFromKML {
             get {
                 object obj = ResourceManager.GetObject("ABLoadFromKML", resourceCulture);

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 using System.Xml;
 using static System.Windows.Forms.LinkLabel;
@@ -15,10 +17,14 @@ namespace AgOpenGPS
 
         private double aveLineHeading;
         private int originalLine = 0;
-        private bool isClosing;
-        private int selectedItem = -1;        
+        private bool isClosing, isCancel;
+        private int selectedItem = -1;
+        public List<CTrk> gTemp = new List<CTrk>();
 
         private bool isOn = true;
+
+        //used throughout to acces the master Track list
+        private int idx;
 
         public FormBuildTracks(Form _mf)
         {
@@ -31,6 +37,15 @@ namespace AgOpenGPS
 
         private void FormBuildTracks_Load(object sender, EventArgs e)
         {
+            idx = mf.trk.gArr.Count - 1;
+
+            gTemp.Clear();
+
+            foreach (var item in mf.trk.gArr)
+            {
+                gTemp.Add(item);
+            }
+
             panelMain.Top = 3; panelMain.Left = 3;
             panelCurve.Top = 3; panelCurve.Left = 3;
             panelName.Top = 3; panelName.Left = 3;
@@ -56,6 +71,7 @@ namespace AgOpenGPS
             this.Size = new System.Drawing.Size(650, 475);
 
             originalLine = mf.trk.idx;
+            isCancel = false;
 
             mf.curve.isMakingCurve = false;
             selectedItem = -1;
@@ -79,7 +95,6 @@ namespace AgOpenGPS
             nudHeading.Value = 0;
             nudHeadingLatLonPlus.Value = 0;
 
-
             UpdateTable();
         }
 
@@ -95,6 +110,33 @@ namespace AgOpenGPS
 
             mf.threeSecondCounter = 100;
         }
+        
+        private void btnCancelMain_Click(object sender, EventArgs e)
+        {
+            //reload what was
+            isClosing = true;
+            isCancel = true;
+            mf.curve.desList?.Clear();
+
+            if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+            if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
+
+            mf.trk.gArr.Clear();
+
+            foreach (var item in gTemp)
+            {
+                mf.trk.gArr.Add(new CTrk(item));
+            }
+
+            mf.trk.idx = originalLine;
+
+            mf.curve.isCurveValid = false;
+            mf.ABLine.isABValid = false;
+
+            mf.threeSecondCounter = 100;
+
+            Close();
+        }
 
         private void btnListUse_Click(object sender, EventArgs e)
         {
@@ -105,18 +147,19 @@ namespace AgOpenGPS
             mf.curve.desList?.Clear();
 
             if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
-
+            
             mf.FileSaveTracks();
 
-            if (selectedItem > -1 && mf.trk.gArr.Count > 0 && mf.trk.gArr[mf.trk.idx].isVisible)
+            if (selectedItem > -1 && mf.trk.gArr.Count > 0 && mf.trk.gArr[selectedItem].isVisible)
             {
                 mf.trk.idx = selectedItem;
                 mf.yt.ResetYouTurn();
 
                 Close();
             }
+
             else if (mf.trk.gArr.Count > 0)
-            {
+            {               
                 bool isOneVis = false;
                 int trac = -1;
 
@@ -137,9 +180,9 @@ namespace AgOpenGPS
                     mf.yt.ResetYouTurn();
                     Close();
                 }
-                else
+                else //nothing visible
                 {
-                    mf.trk.idx = -1;
+                    idx = -1;
                     mf.DisableYouTurnButtons();
                     mf.curve.isBtnTrackOn = false;
                     mf.btnTrack.Image = Properties.Resources.TrackOff;
@@ -149,7 +192,7 @@ namespace AgOpenGPS
             }
             else
             {
-                mf.trk.idx = -1;
+                idx = -1;
                 mf.DisableYouTurnButtons();
                 mf.curve.isBtnTrackOn = false;
                 mf.btnTrack.Image = Properties.Resources.TrackOff;
@@ -230,11 +273,11 @@ namespace AgOpenGPS
 
                 if (i == selectedItem)
                 {
-                    t.BackColor = System.Drawing.Color.LightBlue;
+                    t.BackColor = Color.LightBlue;
                 }
                 else
                 {
-                    t.BackColor = System.Drawing.SystemColors.ButtonFace;
+                    t.BackColor = Color.AliceBlue;
                 }
 
                 flp.Controls.Add(b);
@@ -278,7 +321,7 @@ namespace AgOpenGPS
 
             mf.trk.gArr.Reverse(selectedItem - 1, 2);
             selectedItem--;
-            mf.trk.idx = selectedItem;
+            idx = selectedItem;
 
             int scrollPixels = flp.VerticalScroll.Value;
 
@@ -300,7 +343,7 @@ namespace AgOpenGPS
             mf.trk.gArr.Reverse(selectedItem, 2);
             selectedItem++;
 
-            mf.trk.idx = selectedItem;
+            idx = selectedItem;
 
             int scrollPixels = flp.VerticalScroll.Value;
 
@@ -318,21 +361,21 @@ namespace AgOpenGPS
         {
             if (selectedItem > -1)
             {
-                mf.trk.idx = selectedItem;
+                idx = selectedItem;
 
-                int cnt = mf.trk.gArr[mf.trk.idx].curvePts.Count;
+                int cnt = mf.trk.gArr[idx].curvePts.Count;
                 if (cnt > 0)
                 {
-                    mf.trk.gArr[mf.trk.idx].curvePts.Reverse();
+                    mf.trk.gArr[idx].curvePts.Reverse();
 
                     vec3[] arr = new vec3[cnt];
                     cnt--;
-                    mf.trk.gArr[mf.trk.idx].curvePts.CopyTo(arr);
-                    mf.trk.gArr[mf.trk.idx].curvePts.Clear();
+                    mf.trk.gArr[idx].curvePts.CopyTo(arr);
+                    mf.trk.gArr[idx].curvePts.Clear();
 
-                    mf.trk.gArr[mf.trk.idx].heading += Math.PI;
-                    if (mf.trk.gArr[mf.trk.idx].heading < 0) mf.trk.gArr[mf.trk.idx].heading += glm.twoPI;
-                    if (mf.trk.gArr[mf.trk.idx].heading > glm.twoPI) mf.trk.gArr[mf.trk.idx].heading -= glm.twoPI;
+                    mf.trk.gArr[idx].heading += Math.PI;
+                    if (mf.trk.gArr[idx].heading < 0) mf.trk.gArr[idx].heading += glm.twoPI;
+                    if (mf.trk.gArr[idx].heading > glm.twoPI) mf.trk.gArr[idx].heading -= glm.twoPI;
 
                     for (int i = 1; i < cnt; i++)
                     {
@@ -340,13 +383,13 @@ namespace AgOpenGPS
                         pt3.heading += Math.PI;
                         if (pt3.heading > glm.twoPI) pt3.heading -= glm.twoPI;
                         if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                        mf.trk.gArr[mf.trk.idx].curvePts.Add(pt3);
+                        mf.trk.gArr[idx].curvePts.Add(pt3);
                     }
 
-                    vec2 temp = new vec2(mf.trk.gArr[mf.trk.idx].ptA);
+                    vec2 temp = new vec2(mf.trk.gArr[idx].ptA);
 
-                    (mf.trk.gArr[mf.trk.idx].ptA) = new vec2(mf.trk.gArr[mf.trk.idx].ptB);
-                    (mf.trk.gArr[mf.trk.idx].ptB) = new vec2(temp);
+                    (mf.trk.gArr[idx].ptA) = new vec2(mf.trk.gArr[idx].ptB);
+                    (mf.trk.gArr[idx].ptB) = new vec2(temp);
 
                 }
 
@@ -389,12 +432,12 @@ namespace AgOpenGPS
             {
                 mf.trk.gArr.RemoveAt(selectedItem);
                 selectedItem = -1;
+
+                mf.trk.idx = mf.trk.gArr.Count - 1;
+
+                UpdateTable();
+                flp.Focus();
             }
-
-            selectedItem = mf.trk.idx = -1;
-
-            UpdateTable();
-            flp.Focus();
         }
 
         private void btnDuplicate_Click(object sender, EventArgs e)
@@ -410,11 +453,11 @@ namespace AgOpenGPS
 
                 mf.trk.gArr.Add(new CTrk (mf.trk.gArr[idx]));
 
-                mf.trk.idx = mf.trk.gArr.Count - 1;
+                idx = mf.trk.gArr.Count - 1;
 
                 selectedItem = -1;
 
-                textBox1.Text = mf.trk.gArr[mf.trk.idx].name + " Copy";
+                textBox1.Text = mf.trk.gArr[idx].name + " Copy";
             }
         }
 
@@ -422,15 +465,12 @@ namespace AgOpenGPS
         {
             if (selectedItem > -1)
             {
-                int idx = selectedItem;
+                idx = selectedItem;
 
                 textBox2.Text = mf.trk.gArr[idx].name;
 
                 panelMain.Visible = false;
                 panelEditName.Visible = true;
-
-                mf.trk.idx = selectedItem;
-
 
                 this.Size = new System.Drawing.Size(270, 360);
             }
@@ -536,15 +576,15 @@ namespace AgOpenGPS
 
                 mf.trk.gArr.Add(new CTrk());
                 //array number is 1 less since it starts at zero
-                mf.trk.idx = mf.trk.gArr.Count - 1;
+                idx = mf.trk.gArr.Count - 1;
 
-                mf.trk.gArr[mf.trk.idx].ptA =
+                mf.trk.gArr[idx].ptA =
                     new vec2(mf.curve.desList[0].easting, mf.curve.desList[0].northing);
-                mf.trk.gArr[mf.trk.idx].ptB =
+                mf.trk.gArr[idx].ptB =
                     new vec2(mf.curve.desList[mf.curve.desList.Count - 1].easting,
                     mf.curve.desList[mf.curve.desList.Count - 1].northing);
 
-                mf.trk.gArr[mf.trk.idx].mode = (int)TrackMode.Curve;
+                mf.trk.gArr[idx].mode = (int)TrackMode.Curve;
 
                 //calculate average heading of line
                 double x = 0, y = 0;
@@ -558,7 +598,7 @@ namespace AgOpenGPS
                 aveLineHeading = Math.Atan2(y, x);
                 if (aveLineHeading < 0) aveLineHeading += glm.twoPI;
 
-                mf.trk.gArr[mf.trk.idx].heading = aveLineHeading;
+                mf.trk.gArr[idx].heading = aveLineHeading;
 
                 //build the tail extensions
                 mf.curve.AddFirstLastPoints(ref mf.curve.desList);
@@ -568,7 +608,7 @@ namespace AgOpenGPS
                 //write out the Curve Points
                 foreach (vec3 item in mf.curve.desList)
                 {
-                    mf.trk.gArr[mf.trk.idx].curvePts.Add(item);
+                    mf.trk.gArr[idx].curvePts.Add(item);
                 }
 
                 mf.curve.desName = "Cu " +
@@ -657,14 +697,14 @@ namespace AgOpenGPS
             mf.ABLine.isMakingABLine = false;
             mf.trk.gArr.Add(new CTrk());
 
-            mf.trk.idx = mf.trk.gArr.Count - 1;
+            idx = mf.trk.gArr.Count - 1;
 
-            mf.trk.gArr[mf.trk.idx].ptA = new vec2(mf.ABLine.desPtA);
-            mf.trk.gArr[mf.trk.idx].ptB = new vec2(mf.ABLine.desPtB);
+            mf.trk.gArr[idx].ptA = new vec2(mf.ABLine.desPtA);
+            mf.trk.gArr[idx].ptB = new vec2(mf.ABLine.desPtB);
 
-            mf.trk.gArr[mf.trk.idx].mode = (int)TrackMode.AB;
+            mf.trk.gArr[idx].mode = (int)TrackMode.AB;
 
-            mf.trk.gArr[mf.trk.idx].heading = mf.ABLine.desHeading;
+            mf.trk.gArr[idx].heading = mf.ABLine.desHeading;
 
             mf.ABLine.desName = "AB " +
                 (Math.Round(glm.toDegrees(mf.ABLine.desHeading), 1)).ToString(CultureInfo.InvariantCulture) + "\u00B0 " ;
@@ -725,14 +765,14 @@ namespace AgOpenGPS
             mf.ABLine.isMakingABLine = false;
             mf.trk.gArr.Add(new CTrk());
 
-            mf.trk.idx = mf.trk.gArr.Count - 1;
+            idx = mf.trk.gArr.Count - 1;
 
-            mf.trk.gArr[mf.trk.idx].ptA = new vec2(mf.ABLine.desPtA);
-            mf.trk.gArr[mf.trk.idx].ptB = new vec2(mf.ABLine.desPtB);
+            mf.trk.gArr[idx].ptA = new vec2(mf.ABLine.desPtA);
+            mf.trk.gArr[idx].ptB = new vec2(mf.ABLine.desPtB);
 
-            mf.trk.gArr[mf.trk.idx].mode = (int)TrackMode.AB;
+            mf.trk.gArr[idx].mode = (int)TrackMode.AB;
 
-            mf.trk.gArr[mf.trk.idx].heading = mf.ABLine.desHeading;
+            mf.trk.gArr[idx].heading = mf.ABLine.desHeading;
 
             mf.ABLine.desName = "A+" +
                 (Math.Round(glm.toDegrees(mf.ABLine.desHeading), 1)).ToString(CultureInfo.InvariantCulture) + "\u00B0 " ;
@@ -744,181 +784,14 @@ namespace AgOpenGPS
 
         #endregion
 
-        #region KML Curve
-        private void btnLoadCurveFromKML_Click(object sender, EventArgs e)
-        {
-            panelChoose.Visible = false;
-            panelKML.Visible = true;
-
-            this.Size = new System.Drawing.Size(270, 360);
-
-            string fileAndDirectory;
-
-            //create the dialog instance
-            OpenFileDialog ofd = new OpenFileDialog
-            {
-                //set the filter to text KML only
-                Filter = "KML files (*.KML)|*.KML",
-
-                //the initial directory, fields, for the open dialog
-                InitialDirectory = mf.fieldsDirectory + mf.currentFieldDirectory
-            };
-
-            //was a file selected
-            if (ofd.ShowDialog(this) == DialogResult.Cancel)
-            {
-                mf.curve.isMakingCurve = false;
-                mf.ABLine.isMakingABLine = false;
-                mf.curve.desList?.Clear();
-
-                panelMain.Visible = true;
-                panelKML.Visible = false;
-
-                this.Size = new System.Drawing.Size(650, 475);
-
-                return;
-            }
-            else fileAndDirectory = ofd.FileName;
-            {
-                double lonK = 0;
-                double latK = 0;
-                double easting = 0;
-                double norting = 0;
-                string shortName = "";
-
-                mf.curve.desList?.Clear();
-
-                XmlDocument doc = new XmlDocument();
-                doc.PreserveWhitespace = true;
-
-                try
-                {
-                    doc.Load(fileAndDirectory);
-                    shortName = Path.GetFileName(fileAndDirectory);
-                    shortName = shortName.Substring(0, shortName.Length - 4);
-
-                    XmlElement root = doc.DocumentElement;
-                    XmlNodeList elemList = root.GetElementsByTagName("coordinates");
-                    XmlNodeList namelist = root.GetElementsByTagName("name");
-
-                    if (namelist.Count > 0)
-                    {
-                        shortName = namelist[0].InnerText;
-                    }
-
-                    for (int i = 0; i < elemList.Count; i++)
-                    {
-                        int g = namelist.Count - elemList.Count;
-
-                        string line = elemList[i].InnerText;
-                        line.Trim();
-                        //line = coordinates;
-                        char[] delimiterChars = { ' ', '\t', '\r', '\n' };
-                        string[] numberSets = line.Split(delimiterChars);
-
-                        //at least 3 points
-                        if (numberSets.Length > 1)
-                        {
-                            foreach (string item in numberSets)
-                            {
-                                string[] fix = item.Split(',');
-                                if (fix.Length != 3) continue;
-                                double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
-                                double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
-
-                                mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
-
-                                vec3 bndPt = new vec3(easting, norting, 0);
-                                mf.curve.desList.Add(bndPt);
-                            }
-                        }
-                    }
-
-                    int cnt = mf.curve.desList.Count;
-                    if (cnt > 1)
-                    {
-                        //make sure distance isn't too big between points on Turn
-                        for (int i = 0; i < cnt - 1; i++)
-                        {
-                            int j = i + 1;
-                            //if (j == cnt) j = 0;
-                            double distance = glm.Distance(mf.curve.desList[i], mf.curve.desList[j]);
-                            if (distance > 1.6)
-                            {
-                                vec3 pointB = new vec3(
-                                    (mf.curve.desList[i].easting + mf.curve.desList[j].easting) / 2.0,
-                                    (mf.curve.desList[i].northing + mf.curve.desList[j].northing) / 2.0,
-                                    mf.curve.desList[i].heading
-                                    );
-
-                                mf.curve.desList.Insert(j, pointB);
-                                cnt = mf.curve.desList.Count;
-                                i = -1;
-                            }
-                        }
-
-
-                        mf.trk.gArr.Add(new CTrk());
-                        //array number is 1 less since it starts at zero
-                        mf.trk.idx = mf.trk.gArr.Count - 1;
-
-                        mf.trk.gArr[mf.trk.idx].ptA =
-                            new vec2(mf.curve.desList[0].easting, mf.curve.desList[0].northing);
-                        mf.trk.gArr[mf.trk.idx].ptB =
-                            new vec2(mf.curve.desList[mf.curve.desList.Count - 1].easting,
-                            mf.curve.desList[mf.curve.desList.Count - 1].northing);
-
-                        mf.trk.gArr[mf.trk.idx].mode = (int)TrackMode.Curve;
-
-                        //calculate average heading of line
-                        double x = 0, y = 0;
-                        foreach (vec3 pt in mf.curve.desList)
-                        {
-                            x += Math.Cos(pt.heading);
-                            y += Math.Sin(pt.heading);
-                        }
-                        x /= mf.curve.desList.Count;
-                        y /= mf.curve.desList.Count;
-                        aveLineHeading = Math.Atan2(y, x);
-                        if (aveLineHeading < 0) aveLineHeading += glm.twoPI;
-
-                        mf.trk.gArr[mf.trk.idx].heading = aveLineHeading;
-
-                        //build the tail extensions
-                        mf.curve.AddFirstLastPoints(ref mf.curve.desList);
-                        SmoothAB(4);
-                        CalculateTurnHeadings();
-
-                        //write out the Curve Points
-                        foreach (vec3 item in mf.curve.desList)
-                        {
-                            mf.trk.gArr[mf.trk.idx].curvePts.Add(item);
-                        }
-
-                        mf.curve.desName = "Cu " +
-                            (Math.Round(glm.toDegrees(aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture) + "\u00B0 " ;
-
-                        textBox1.Text = mf.curve.desName;
-
-                        panelKML.Visible = false;
-                        panelName.Visible = true;
-
-                        textBox1.Text = shortName;
-                        UpdateTable();
-                        flp.Focus();
-                    }
-                }
-                catch (System.IO.FileNotFoundException)
-                {
-                    Console.WriteLine("Bad or Missing Curve-KML file");
-                }
-            }
-        }
+        #region KML Curve and line
 
         private void btnLoadABFromKML_Click(object sender, EventArgs e)
         {
             panelChoose.Visible = false;
             panelKML.Visible = true;
+
+            mf.curve.desList?.Clear();
 
             this.Size = new System.Drawing.Size(270, 360);
 
@@ -939,103 +812,184 @@ namespace AgOpenGPS
                 else fileAndDirectory = ofd.FileName;
             }
 
-            string coordinates = null;
-            int startIndex;
+            string trackName = "";
+            double easting, norting, latK, lonK;
 
-            using (StreamReader reader = new StreamReader(fileAndDirectory))
+            XmlDocument doc = new XmlDocument();
+            doc.PreserveWhitespace = false;
+
+            try
             {
-                double easting, norting, latK, lonK;
+                doc.Load(fileAndDirectory);
+                trackName = Path.GetFileName(fileAndDirectory);
+                trackName = trackName.Substring(0, trackName.Length - 4);
 
-                try
+                XmlElement root = doc.DocumentElement;
+                XmlNodeList trackList = root.GetElementsByTagName("coordinates");
+                XmlNodeList namelist = root.GetElementsByTagName("name");
+
+                if (namelist.Count > 1)
                 {
-                    while (!reader.EndOfStream)
+                    trackName = namelist[1].InnerText;
+                }
+
+                //each element in the list is a track
+                for (int i = 0; i < trackList.Count; i++)
+                {
+                    string line = trackList[i].InnerText;
+                    line.Trim();
+                    //line = coordinates;
+                    char[] delimiterChars = { ' ', '\t', '\r', '\n' };
+                    string[] numberSets = line.Split(delimiterChars);
+
+                    //at least 3 points
+                    if (numberSets.Length > 1)
                     {
-                        //start to read the file
-                        string line = reader.ReadLine();
-
-                        startIndex = line.IndexOf("<coordinates>");
-
-                        if (startIndex != -1)
+                        foreach (string item in numberSets)
                         {
-                            while (true)
-                            {
-                                int endIndex = line.IndexOf("</coordinates>");
+                            string[] fix = item.Split(',');
+                            if (fix.Length != 3) continue;
+                            double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
+                            double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
 
-                                if (endIndex == -1)
-                                {
-                                    //just add the line
-                                    if (startIndex == -1) coordinates += line.Substring(0);
-                                    else coordinates += line.Substring(startIndex + 13);
-                                }
-                                else
-                                {
-                                    if (startIndex == -1) coordinates += line.Substring(0, endIndex);
-                                    else coordinates += line.Substring(startIndex + 13, endIndex - (startIndex + 13));
-                                    break;
-                                }
-                                line = reader.ReadLine();
-                                line = line.Trim();
-                                startIndex = -1;
-                            }
+                            mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
 
-                            line = coordinates;
-                            char[] delimiterChars = { ' ', '\t', '\r', '\n' };
-                            string[] numberSets = line.Split(delimiterChars);
-
-                            //2 points
-                            if (numberSets.Length == 2)
-                            {
-                                string[] fix = numberSets[0].Split(',');
-                                double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
-                                double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
-
-                                mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
-
-                                mf.ABLine.desPtA.easting = easting;
-                                mf.ABLine.desPtA.northing = norting;
-
-                                fix = numberSets[1].Split(',');
-                                double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
-                                double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
-
-                                mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
-
-                                mf.ABLine.desPtB.easting = easting;
-                                mf.ABLine.desPtB.northing = norting;
-
-                                // heading based on AB points
-                                mf.ABLine.desHeading = Math.Atan2(mf.ABLine.desPtB.easting - mf.ABLine.desPtA.easting,
-                                    mf.ABLine.desPtB.northing - mf.ABLine.desPtA.northing);
-                                if (mf.ABLine.desHeading < 0) mf.ABLine.desHeading += glm.twoPI;
-
-                                mf.ABLine.desName = "AB " +
-                                    (Math.Round(glm.toDegrees(mf.ABLine.desHeading), 1)).ToString(CultureInfo.InvariantCulture) +
-                                    "\u00B0 " + mf.FindDirection(mf.ABLine.desHeading);
-
-                                textBox1.Text = mf.ABLine.desName;
-
-                                coordinates = "";
-
-                                panelKML.Visible = false;
-                                panelName.Visible = true;
-                            }
-                            else
-                            {
-                                mf.TimedMessageBox(2000, gStr.gsErrorreadingKML, gStr.gsMissingABLinesFile);
-                            }
+                            vec3 bndPt = new vec3(easting, norting, 0);
+                            mf.curve.desList.Add(bndPt);
                         }
                     }
-                    //mf.FileSaveBoundary();
-                    //mf.bnd.BuildTurnLines();
-                    //mf.btnABDraw.Visible = true;
-                }
-                catch (Exception)
-                {
-                    return;
+
+                    //2 points
+                    if (mf.curve.desList.Count == 2)
+                    {
+                        mf.ABLine.desPtA.easting = mf.curve.desList[0].easting;
+                        mf.ABLine.desPtA.northing = mf.curve.desList[0].northing;
+
+                        mf.ABLine.desPtB.easting = mf.curve.desList[1].easting;
+                        mf.ABLine.desPtB.northing = mf.curve.desList[1].northing;
+
+                        // heading based on AB points
+                        mf.ABLine.desHeading = Math.Atan2(mf.ABLine.desPtB.easting - mf.ABLine.desPtA.easting,
+                            mf.ABLine.desPtB.northing - mf.ABLine.desPtA.northing);
+                        if (mf.ABLine.desHeading < 0) mf.ABLine.desHeading += glm.twoPI;
+
+                        if (namelist.Count > i)
+                        {
+                            trackName = namelist[i + 1].InnerText;
+                            mf.ABLine.desName = trackName;
+                        }
+                        else mf.ABLine.desName = "AB " +
+                            (Math.Round(glm.toDegrees(mf.ABLine.desHeading), 1)).ToString(CultureInfo.InvariantCulture) + "\u00B0 ";
+
+                        mf.trk.gArr.Add(new CTrk());
+
+                        idx = mf.trk.gArr.Count - 1;
+
+                        mf.trk.gArr[idx].heading = mf.ABLine.desHeading;
+                        mf.trk.gArr[idx].mode = (int)TrackMode.AB;
+
+                        mf.trk.gArr[idx].ptA = new vec2(mf.ABLine.desPtA);
+                        mf.trk.gArr[idx].ptB = new vec2(mf.ABLine.desPtB);
+
+                        //create a name
+                        mf.trk.gArr[idx].name = mf.ABLine.desName;
+
+                        mf.curve.desList?.Clear();
+                    }
+                    else if (mf.curve.desList.Count > 2)
+                    {
+                        int cnt = mf.curve.desList.Count;
+                        //make sure distance isn't too big between points on Turn
+                        for (int k = 0; k < cnt - 1; k++)
+                        {
+                            int j = k + 1;
+                            //if (j == cnt) j = 0;
+                            double distance = glm.Distance(mf.curve.desList[k], mf.curve.desList[j]);
+                            if (distance > 1.6)
+                            {
+                                vec3 pointB = new vec3(
+                                    (mf.curve.desList[k].easting + mf.curve.desList[j].easting) / 2.0,
+                                    (mf.curve.desList[k].northing + mf.curve.desList[j].northing) / 2.0,
+                                    mf.curve.desList[k].heading
+                                    );
+
+                                mf.curve.desList.Insert(j, pointB);
+                                cnt = mf.curve.desList.Count;
+                                k = -1;
+                            }
+                        }
+
+                        mf.trk.gArr.Add(new CTrk());
+
+                        //array number is 1 less since it starts at zero
+                        idx = mf.trk.gArr.Count - 1;
+
+                        mf.trk.gArr[idx].ptA =
+                            new vec2(mf.curve.desList[0].easting, mf.curve.desList[0].northing);
+                        mf.trk.gArr[idx].ptB =
+                            new vec2(mf.curve.desList[mf.curve.desList.Count - 1].easting,
+                            mf.curve.desList[mf.curve.desList.Count - 1].northing);
+
+                        mf.trk.gArr[idx].mode = (int)TrackMode.Curve;
+
+                        //calculate average heading of line
+                        double x = 0, y = 0;
+                        foreach (vec3 pt in mf.curve.desList)
+                        {
+                            x += Math.Cos(pt.heading);
+                            y += Math.Sin(pt.heading);
+                        }
+                        x /= mf.curve.desList.Count;
+                        y /= mf.curve.desList.Count;
+                        aveLineHeading = Math.Atan2(y, x);
+                        if (aveLineHeading < 0) aveLineHeading += glm.twoPI;
+
+                        mf.trk.gArr[idx].heading = aveLineHeading;
+
+                        //build the tail extensions
+                        mf.curve.AddFirstLastPoints(ref mf.curve.desList);
+                        SmoothAB(4);
+                        CalculateTurnHeadings();
+
+                        //write out the Curve Points
+                        foreach (vec3 item in mf.curve.desList)
+                        {
+                            mf.trk.gArr[idx].curvePts.Add(new vec3(item));
+                        }
+                        if (namelist.Count > i)
+                        {
+                            trackName = namelist[i + 1].InnerText;
+                            mf.curve.desName = trackName;
+                        }
+                        else mf.curve.desName = "Cu " +
+                                 (Math.Round(glm.toDegrees(aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture) + "\u00B0 ";
+
+                        mf.trk.gArr[idx].name = mf.curve.desName;
+
+                        mf.curve.desList?.Clear();
+                    }
+                    else
+                    {
+                        mf.TimedMessageBox(2000, gStr.gsErrorreadingKML, gStr.gsMissingABLinesFile);
+                    }
                 }
             }
-        }
+            catch (Exception)
+            {
+                return;
+            }
 
+            panelKML.Visible = false;
+            panelName.Visible = false;
+            panelMain.Visible = true;
+
+            this.Size = new System.Drawing.Size(650, 475);
+
+            mf.curve.desList?.Clear();
+
+            UpdateTable();
+            flp.Focus();
+        }
 
         #endregion
 
@@ -1063,18 +1017,18 @@ namespace AgOpenGPS
             mf.ABLine.isMakingABLine = false;
             mf.trk.gArr.Add(new CTrk());
 
-            mf.trk.idx = mf.trk.gArr.Count - 1;
+            idx = mf.trk.gArr.Count - 1;
 
             //start end of line
             mf.ABLine.desPtB.easting = mf.ABLine.desPtA.easting + (Math.Sin(mf.ABLine.desHeading) * 200);
             mf.ABLine.desPtB.northing = mf.ABLine.desPtA.northing + (Math.Cos(mf.ABLine.desHeading) * 200);
 
-            mf.trk.gArr[mf.trk.idx].ptA = new vec2(mf.ABLine.desPtA);
-            mf.trk.gArr[mf.trk.idx].ptB = new vec2(mf.ABLine.desPtB);
+            mf.trk.gArr[idx].ptA = new vec2(mf.ABLine.desPtA);
+            mf.trk.gArr[idx].ptB = new vec2(mf.ABLine.desPtB);
 
-            mf.trk.gArr[mf.trk.idx].mode = (int)TrackMode.AB;
+            mf.trk.gArr[idx].mode = (int)TrackMode.AB;
 
-            mf.trk.gArr[mf.trk.idx].heading = mf.ABLine.desHeading;
+            mf.trk.gArr[idx].heading = mf.ABLine.desHeading;
 
             mf.ABLine.desName = "A+ " +
                 (Math.Round(glm.toDegrees(mf.ABLine.desHeading), 1)).ToString(CultureInfo.InvariantCulture) + "\u00B0 ";
@@ -1128,14 +1082,14 @@ namespace AgOpenGPS
             mf.ABLine.isMakingABLine = false;
             mf.trk.gArr.Add(new CTrk());
 
-            mf.trk.idx = mf.trk.gArr.Count - 1;
+            idx = mf.trk.gArr.Count - 1;
 
-            mf.trk.gArr[mf.trk.idx].ptA = new vec2(mf.ABLine.desPtA);
-            mf.trk.gArr[mf.trk.idx].ptB = new vec2(mf.ABLine.desPtB);
+            mf.trk.gArr[idx].ptA = new vec2(mf.ABLine.desPtA);
+            mf.trk.gArr[idx].ptB = new vec2(mf.ABLine.desPtB);
 
-            mf.trk.gArr[mf.trk.idx].mode = (int)TrackMode.AB;
+            mf.trk.gArr[idx].mode = (int)TrackMode.AB;
 
-            mf.trk.gArr[mf.trk.idx].heading = mf.ABLine.desHeading;
+            mf.trk.gArr[idx].heading = mf.ABLine.desHeading;
 
             mf.ABLine.desName = "AB " +
                 (Math.Round(glm.toDegrees(mf.ABLine.desHeading), 1)).ToString(CultureInfo.InvariantCulture) + "\u00B0 ";
@@ -1166,7 +1120,6 @@ namespace AgOpenGPS
             if (mf.ABLine.desHeading < 0) mf.ABLine.desHeading += glm.twoPI;
         }
 
-
         #endregion
 
 
@@ -1193,21 +1146,6 @@ namespace AgOpenGPS
             panelKML.Visible = false;
 
             this.Size = new System.Drawing.Size(650, 475);
-        }
-
-        private void btnCancelMain_Click(object sender, EventArgs e)
-        {
-            isClosing = true;
-            mf.curve.isCurveValid = false;
-            mf.curve.isMakingCurve = false;
-            mf.curve.desList?.Clear();
-            mf.DisableYouTurnButtons();
-            mf.curve.isBtnTrackOn = false;
-            if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-            if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
-
-            mf.trk.idx = -1;
-            Close();
         }
 
         private void textBox_Click(object sender, EventArgs e)
@@ -1247,7 +1185,7 @@ namespace AgOpenGPS
 
             mf.curve.desList?.Clear();
 
-            mf.trk.gArr[mf.trk.idx].name = textBox2.Text.Trim();
+            mf.trk.gArr[idx].name = textBox2.Text.Trim();
 
             this.Size = new System.Drawing.Size(700, 450);
 
