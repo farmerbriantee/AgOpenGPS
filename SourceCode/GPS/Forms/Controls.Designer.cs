@@ -1069,7 +1069,16 @@ namespace AgOpenGPS
             if (fc != null)
             {
                 fc.Focus();
-                fc.Close();
+
+                if (fc.Width > 400)
+                    fc.Close();
+                else
+                {
+                    fc.Width = 960;
+                    fc.Height = 720;
+                }
+            
+
                 return;
             }
 
