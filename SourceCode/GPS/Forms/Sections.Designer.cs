@@ -297,6 +297,37 @@ namespace AgOpenGPS
         {
             //var matches = this.Controls.Find("btnZone1", true);
 
+            if (!isJobStarted)
+            {
+                btnSection1Man.Visible = false;
+                btnSection2Man.Visible = false;
+                btnSection3Man.Visible = false;
+                btnSection4Man.Visible = false;
+                btnSection5Man.Visible = false;
+                btnSection6Man.Visible = false;
+                btnSection7Man.Visible = false;
+                btnSection8Man.Visible = false;
+                btnSection9Man.Visible = false;
+                btnSection10Man.Visible = false;
+                btnSection11Man.Visible = false;
+                btnSection12Man.Visible = false;
+                btnSection13Man.Visible = false;
+                btnSection14Man.Visible = false;
+                btnSection15Man.Visible = false;
+                btnSection16Man.Visible = false;
+
+                btnZone1.Visible = false;
+                btnZone2.Visible = false;
+                btnZone3.Visible = false;
+                btnZone4.Visible = false;
+                btnZone5.Visible = false;
+                btnZone6.Visible = false;
+                btnZone7.Visible = false;
+                btnZone8.Visible = false;
+                return;
+            }
+
+
             btnZone1.Visible = false;
             btnZone2.Visible = false;
             btnZone3.Visible = false;
@@ -459,6 +490,35 @@ namespace AgOpenGPS
 
         public void LineUpAllZoneButtons()
         {
+            if (!isJobStarted)
+            {
+                btnSection1Man.Visible = false;
+                btnSection2Man.Visible = false;
+                btnSection3Man.Visible = false;
+                btnSection4Man.Visible = false;
+                btnSection5Man.Visible = false;
+                btnSection6Man.Visible = false;
+                btnSection7Man.Visible = false;
+                btnSection8Man.Visible = false;
+                btnSection9Man.Visible = false;
+                btnSection10Man.Visible = false;
+                btnSection11Man.Visible = false;
+                btnSection12Man.Visible = false;
+                btnSection13Man.Visible = false;
+                btnSection14Man.Visible = false;
+                btnSection15Man.Visible = false;
+                btnSection16Man.Visible = false;
+
+                btnZone1.Visible = false;
+                btnZone2.Visible = false;
+                btnZone3.Visible = false;
+                btnZone4.Visible = false;
+                btnZone5.Visible = false;
+                btnZone6.Visible = false;
+                btnZone7.Visible = false;
+                btnZone8.Visible = false;
+                return;
+            }
 
             int oglCenter = isPanelABHidden?oglCenter = oglMain.Width / 2 + 30:statusStripLeft.Width + oglMain.Width / 2;
 

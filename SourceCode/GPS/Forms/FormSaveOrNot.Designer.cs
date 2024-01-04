@@ -66,7 +66,7 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.btnOk);
             this.panel1.Controls.Add(this.btnReturn);
-            this.panel1.Location = new System.Drawing.Point(8, 10);
+            this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(580, 129);
             this.panel1.TabIndex = 260;
@@ -74,20 +74,22 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(72, 22);
+            this.label5.Location = new System.Drawing.Point(59, 22);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(39, 13);
+            this.label5.Size = new System.Drawing.Size(63, 19);
             this.label5.TabIndex = 262;
             this.label5.Text = "Cancel";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(484, 22);
+            this.label3.Location = new System.Drawing.Point(477, 22);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(25, 13);
+            this.label3.Size = new System.Drawing.Size(41, 19);
             this.label3.TabIndex = 260;
             this.label3.Text = "Exit";
             // 
@@ -124,7 +126,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.DarkGray;
-            this.ClientSize = new System.Drawing.Size(598, 154);
+            this.ClientSize = new System.Drawing.Size(605, 154);
             this.ControlBox = false;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblQuestion);

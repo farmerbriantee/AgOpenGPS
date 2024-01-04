@@ -128,7 +128,7 @@ namespace AgOpenGPS
 
                 int edge = -oglMain.Width / 2 + 10;
 
-                font.DrawText(edge, oglMain.Height - 240, "<-- AgIO ?");
+                font.DrawText(edge, oglMain.Height - 100, "<-- AgIO ?");
 
                 GL.Flush();//finish openGL commands
                 GL.PopMatrix();//  Pop the modelview.
@@ -2007,7 +2007,7 @@ namespace AgOpenGPS
             //font.DrawText(center, 150, "BETA 5.0.0.5", 1);
 
             GL.Color3(0.9752f, 0.62f, 0.325f);
-            if (timerSim.Enabled) font.DrawText(-110, oglMain.Height - 130, "Simulator On", 1);
+            if (timerSim.Enabled) font.DrawText(-110, oglMain.Height - 140, "Simulator On", 1);
 
             if (ct.isContourBtnOn)
             {

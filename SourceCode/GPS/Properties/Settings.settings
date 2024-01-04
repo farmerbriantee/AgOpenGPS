@@ -666,7 +666,7 @@
       <Value Profile="(Default)">200, 200</Value>
     </Setting>
     <Setting Name="setJobMenu_size" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">640, 560</Value>
+      <Value Profile="(Default)">640, 530</Value>
     </Setting>
     <Setting Name="setWindow_steerSettingsLocation" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">40, 40</Value>
