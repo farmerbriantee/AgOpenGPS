@@ -214,7 +214,6 @@ namespace AgOpenGPS
             Properties.Settings.Default.Save();
         }
 
-
         private void nudDrawbarLength_Click(object sender, EventArgs e)
         {
             if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))

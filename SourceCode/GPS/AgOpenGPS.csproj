@@ -990,6 +990,7 @@
     <None Include="btnImages\Config\SectionOnLookAhead.gif" />
     <None Include="btnImages\ABLoadCurveFromKML - Copy.png" />
     <None Include="btnImages\ToolHitchPageFrontHarvester.png" />
+    <None Include="btnImages\Config\SectionLookAheadDelay.gif" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />
