@@ -1040,6 +1040,13 @@ namespace AgOpenGPS
             Properties.Settings.Default.Save();
         }
 
+        private void btnSteerWizard_Click(object sender, EventArgs e)
+        {
+            Close();
+            Form form = new FormSteerWiz(mf);
+            form.Show(mf);
+        }
+
         private void cboxConv_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             MessageBox.Show(gStr.hc_cboxConv, gStr.gsHelp);

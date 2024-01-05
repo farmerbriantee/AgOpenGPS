@@ -893,8 +893,34 @@ namespace AgOpenGPS
             }
         }
 
-        //turning the visual line into the real reference line to use
-        public void SaveSmoothList()
+        public void MakePointMinimumSpacing(ref List<vec3> xList, double minDistance)
+        {
+            int cnt = xList.Count;
+            if (cnt > 3)
+            {
+                //make sure point distance isn't too big
+                for (int i = 0; i < cnt - 1; i++)
+                {
+                    int j = i + 1;
+                    //if (j == cnt) j = 0;
+                    double distance = glm.Distance(xList[i], xList[j]);
+                    if (distance > minDistance)
+                    {
+                        vec3 pointB = new vec3((xList[i].easting + xList[j].easting) / 2.0,
+                            (xList[i].northing + xList[j].northing) / 2.0,
+                            xList[i].heading);
+
+                        xList.Insert(j, pointB);
+                        cnt = xList.Count;
+                        i = -1;
+                    }
+                }
+            }
+        }
+
+
+//turning the visual line into the real reference line to use
+public void SaveSmoothList()
         {
             //oops no smooth list generated
             if (smooList == null) return;

@@ -569,27 +569,13 @@ namespace AgOpenGPS
             mf.curve.isMakingCurve = false;
             panelCurve.Visible = false;
             panelName.Visible = true;
-
+            
             int cnt = mf.curve.desList.Count;
             if (cnt > 3)
             {
-                //make sure distance isn't too big between points on Turn
-                for (int i = 0; i < cnt - 1; i++)
-                {
-                    int j = i + 1;
-                    //if (j == cnt) j = 0;
-                    double distance = glm.Distance(mf.curve.desList[i], mf.curve.desList[j]);
-                    if (distance > 1.2)
-                    {
-                        vec3 pointB = new vec3((mf.curve.desList[i].easting + mf.curve.desList[j].easting) / 2.0,
-                            (mf.curve.desList[i].northing + mf.curve.desList[j].northing) / 2.0,
-                            mf.curve.desList[i].heading);
-
-                        mf.curve.desList.Insert(j, pointB);
-                        cnt = mf.curve.desList.Count;
-                        i = -1;
-                    }
-                }
+                //make sure point distance isn't too big 
+                mf.curve.MakePointMinimumSpacing(ref mf.curve.desList, 1.6);
+                mf.curve.CalculateHeadings(ref mf.curve.desList);
 
                 mf.trk.gArr.Add(new CTrk());
                 //array number is 1 less since it starts at zero
@@ -629,7 +615,7 @@ namespace AgOpenGPS
                 }
 
                 mf.curve.desName = "Cu " +
-                    (Math.Round(glm.toDegrees(aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture) + "\u00B0 " ;
+                    (Math.Round(glm.toDegrees(aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture) + "\u00B0 ";
 
                 textBox1.Text = mf.curve.desName;
 
@@ -644,7 +630,7 @@ namespace AgOpenGPS
                 panelMain.Visible = false;
                 panelCurve.Visible = false;
                 panelName.Visible = true;
-                panelChoose.Visible= false;
+                panelChoose.Visible = false;
 
                 this.Size = new System.Drawing.Size(650, 475);
             }
@@ -915,27 +901,9 @@ namespace AgOpenGPS
                     }
                     else if (mf.curve.desList.Count > 2)
                     {
+                        //make sure point distance isn't too big 
+                        mf.curve.MakePointMinimumSpacing(ref mf.curve.desList, 1.6);
                         mf.curve.CalculateHeadings(ref mf.curve.desList);
-                        int cnt = mf.curve.desList.Count;
-                        //make sure distance isn't too big between points on Turn
-                        for (int k = 0; k < cnt - 1; k++)
-                        {
-                            int j = k + 1;
-                            //if (j == cnt) j = 0;
-                            double distance = glm.Distance(mf.curve.desList[k], mf.curve.desList[j]);
-                            if (distance > 1.6)
-                            {
-                                vec3 pointB = new vec3(
-                                    (mf.curve.desList[k].easting + mf.curve.desList[j].easting) / 2.0,
-                                    (mf.curve.desList[k].northing + mf.curve.desList[j].northing) / 2.0,
-                                    mf.curve.desList[k].heading
-                                    );
-
-                                mf.curve.desList.Insert(j, pointB);
-                                cnt = mf.curve.desList.Count;
-                                k = -1;
-                            }
-                        }
 
                         mf.trk.gArr.Add(new CTrk());
 
