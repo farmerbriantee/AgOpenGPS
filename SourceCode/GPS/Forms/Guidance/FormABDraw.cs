@@ -522,7 +522,7 @@ namespace AgOpenGPS
 
                 //build the tail extensions
                 mf.curve.AddFirstLastPoints(ref mf.curve.desList);
-                mf.curve.SmoothAB(4);
+                mf.curve.SmoothAB(2);
                 mf.curve.CalculateTurnHeadings();
 
                 //array number is 1 less since it starts at zero

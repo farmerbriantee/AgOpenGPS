@@ -462,32 +462,26 @@ namespace AgOpenGPS
             }
 
             if ((char)keyData == hotkeys[6]) // Snap/Prioritu click
-            {                   
-                return true;    // TODO indicate that you handled this keystroke
+            {
+                trk.SnapToPivot();
+                return true;    // indicate that you handled this keystroke
             }
 
             if ((char)keyData == hotkeys[7])
             {
-                if (trk.idx > -1) //TODO
+                if (trk.idx > -1) //
                 {
-                    //if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
-                        //ABLine.MoveABLine((double)Properties.Settings.Default.setAS_snapDistance * -0.01);
-                    //else
-                        //curve.MoveABCurve(((double)Properties.Settings.Default.setAS_snapDistance * -0.01));
+                    trk.NudgeTrack((double)Properties.Settings.Default.setAS_snapDistance * -0.01);
                 }
                 return true;
             }
 
             if ((char)keyData == hotkeys[8])
             {
-                //TODO
-                //if (trk.idx > -1)
-                //{
-                //    if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
-                //        ABLine.MoveABLine(((double)Properties.Settings.Default.setAS_snapDistance * 0.01));
-                //    else
-                //        curve.MoveABCurve(((double)Properties.Settings.Default.setAS_snapDistance * 0.01));
-                //}
+                if (trk.idx > -1)
+                {
+                    trk.NudgeTrack((double)Properties.Settings.Default.setAS_snapDistance * 0.01);
+                }
                 return true;
             }
 

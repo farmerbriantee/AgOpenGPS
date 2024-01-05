@@ -735,6 +735,9 @@ namespace AgOpenGPS
             }
             #endregion
 
+            if (fixHeading >= glm.twoPI) 
+                fixHeading-= glm.twoPI;
+
             #region AutoSteer
 
             //preset the values

@@ -17,7 +17,7 @@ namespace AgOpenGPS
 
         private double aveLineHeading;
         private int originalLine = 0;
-        private bool isClosing, isCancel;
+        private bool isClosing;
         private int selectedItem = -1;
         public List<CTrk> gTemp = new List<CTrk>();
 
@@ -71,7 +71,6 @@ namespace AgOpenGPS
             this.Size = new System.Drawing.Size(650, 475);
 
             originalLine = mf.trk.idx;
-            isCancel = false;
 
             mf.curve.isMakingCurve = false;
             selectedItem = -1;
@@ -115,7 +114,6 @@ namespace AgOpenGPS
         {
             //reload what was
             isClosing = true;
-            isCancel = true;
             mf.curve.desList?.Clear();
 
             if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
@@ -265,6 +263,7 @@ namespace AgOpenGPS
                 };
                 t.Font = backupfont;
                 t.Click += LineSelected_Click;
+                t.Cursor = System.Windows.Forms.Cursors.Default;
 
                 if (mf.trk.gArr[i].isVisible)
                     t.ForeColor = System.Drawing.Color.Black;
@@ -363,34 +362,46 @@ namespace AgOpenGPS
             {
                 idx = selectedItem;
 
-                int cnt = mf.trk.gArr[idx].curvePts.Count;
-                if (cnt > 0)
+                if (mf.trk.gArr[idx].mode == (int)TrackMode.AB)
                 {
-                    mf.trk.gArr[idx].curvePts.Reverse();
-
-                    vec3[] arr = new vec3[cnt];
-                    cnt--;
-                    mf.trk.gArr[idx].curvePts.CopyTo(arr);
-                    mf.trk.gArr[idx].curvePts.Clear();
+                    vec2 bob = mf.trk.gArr[idx].ptA;
+                    mf.trk.gArr[idx].ptA = mf.trk.gArr[idx].ptB;
+                    mf.trk.gArr[idx].ptB = new vec2(bob);
 
                     mf.trk.gArr[idx].heading += Math.PI;
                     if (mf.trk.gArr[idx].heading < 0) mf.trk.gArr[idx].heading += glm.twoPI;
                     if (mf.trk.gArr[idx].heading > glm.twoPI) mf.trk.gArr[idx].heading -= glm.twoPI;
-
-                    for (int i = 1; i < cnt; i++)
+                }
+                else
+                {
+                    int cnt = mf.trk.gArr[idx].curvePts.Count;
+                    if (cnt > 0)
                     {
-                        vec3 pt3 = arr[i];
-                        pt3.heading += Math.PI;
-                        if (pt3.heading > glm.twoPI) pt3.heading -= glm.twoPI;
-                        if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                        mf.trk.gArr[idx].curvePts.Add(pt3);
+                        mf.trk.gArr[idx].curvePts.Reverse();
+
+                        vec3[] arr = new vec3[cnt];
+                        cnt--;
+                        mf.trk.gArr[idx].curvePts.CopyTo(arr);
+                        mf.trk.gArr[idx].curvePts.Clear();
+
+                        mf.trk.gArr[idx].heading += Math.PI;
+                        if (mf.trk.gArr[idx].heading < 0) mf.trk.gArr[idx].heading += glm.twoPI;
+                        if (mf.trk.gArr[idx].heading > glm.twoPI) mf.trk.gArr[idx].heading -= glm.twoPI;
+
+                        for (int i = 1; i < cnt; i++)
+                        {
+                            vec3 pt3 = arr[i];
+                            pt3.heading += Math.PI;
+                            if (pt3.heading > glm.twoPI) pt3.heading -= glm.twoPI;
+                            if (pt3.heading < 0) pt3.heading += glm.twoPI;
+                            mf.trk.gArr[idx].curvePts.Add(new vec3(pt3));
+                        }
+
+                        vec2 temp = new vec2(mf.trk.gArr[idx].ptA);
+
+                        (mf.trk.gArr[idx].ptA) = new vec2(mf.trk.gArr[idx].ptB);
+                        (mf.trk.gArr[idx].ptB) = new vec2(temp);
                     }
-
-                    vec2 temp = new vec2(mf.trk.gArr[idx].ptA);
-
-                    (mf.trk.gArr[idx].ptA) = new vec2(mf.trk.gArr[idx].ptB);
-                    (mf.trk.gArr[idx].ptB) = new vec2(temp);
-
                 }
 
                 UpdateTable();
@@ -442,7 +453,6 @@ namespace AgOpenGPS
 
         private void btnDuplicate_Click(object sender, EventArgs e)
         {
-            //TODO
             if (selectedItem > -1)
             {
                 int idx = selectedItem;
@@ -603,7 +613,7 @@ namespace AgOpenGPS
                 //build the tail extensions
                 mf.curve.AddFirstLastPoints(ref mf.curve.desList);
                 SmoothAB(4);
-                CalculateTurnHeadings();
+                mf.curve.CalculateTurnHeadings();
 
                 //write out the Curve Points
                 foreach (vec3 item in mf.curve.desList)
@@ -737,7 +747,7 @@ namespace AgOpenGPS
 
             btnEnter_AB.Enabled = true;
             nudHeading.Enabled = true;
-
+           
             nudHeading.Value = (decimal)(glm.toDegrees(mf.ABLine.desHeading));
         }
 
@@ -855,7 +865,7 @@ namespace AgOpenGPS
                             mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
 
                             vec3 bndPt = new vec3(easting, norting, 0);
-                            mf.curve.desList.Add(bndPt);
+                            mf.curve.desList.Add(new vec3(bndPt));
                         }
                     }
 
@@ -898,6 +908,7 @@ namespace AgOpenGPS
                     }
                     else if (mf.curve.desList.Count > 2)
                     {
+                        mf.curve.CalculateTurnHeadings();
                         int cnt = mf.curve.desList.Count;
                         //make sure distance isn't too big between points on Turn
                         for (int k = 0; k < cnt - 1; k++)
@@ -948,8 +959,8 @@ namespace AgOpenGPS
 
                         //build the tail extensions
                         mf.curve.AddFirstLastPoints(ref mf.curve.desList);
-                        SmoothAB(4);
-                        CalculateTurnHeadings();
+                        //SmoothAB(4);
+                        mf.curve.CalculateTurnHeadings();
 
                         //write out the Curve Points
                         foreach (vec3 item in mf.curve.desList)
@@ -1236,29 +1247,6 @@ namespace AgOpenGPS
                 mf.curve.desList.Add(arr[i]);
             }
         }
-
-        public void CalculateTurnHeadings()
-        {
-            //to calc heading based on next and previous points to give an average heading.
-            int cnt = mf.curve.desList.Count;
-            if (cnt > 0)
-            {
-                vec3[] arr = new vec3[cnt];
-                cnt--;
-                mf.curve.desList.CopyTo(arr);
-                mf.curve.desList.Clear();
-
-                //middle points
-                for (int i = 1; i < cnt; i++)
-                {
-                    vec3 pt3 = arr[i];
-                    pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
-                    if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                    mf.curve.desList.Add(pt3);
-                }
-            }
-        }
-
 
         #region Help
 

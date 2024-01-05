@@ -55,6 +55,8 @@ namespace AgOpenGPS
                 mf.tram.generateMode = 2;
             else mf.tram.generateMode = 0;
 
+            if (mf.bnd.bndList.Count == 0) mf.tram.generateMode = 1;
+
             switch (mf.tram.generateMode)
             {
                 case 0:
@@ -73,7 +75,9 @@ namespace AgOpenGPS
                     break;
             }
 
-            mf.CloseTopMosts();
+            if (mf.bnd.bndList.Count == 0) btnMode.Enabled = false;
+
+                mf.CloseTopMosts();
 
             if (mf.tram.tramList.Count > 0 || mf.tram.tramBndOuterArr.Count > 0)
             {
@@ -87,47 +91,8 @@ namespace AgOpenGPS
 
         private void FormTram_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (isSaving) //TODO
+            if (isSaving)
             {
-                //if (isCurve)
-                //{
-                //    if (mf.trk.gArr[mf.trk.idx].curvePts.Count > 0)
-                //    {
-                //        //array number is 1 less since it starts at zero
-                //        int idx = mf.curve.numCurveLineSelected - 1;
-
-                //        //mf.trk.gArr[idxFieldSelected].name = textBox1.Text.Trim();
-                //        if (idx >= 0)
-                //        {
-                //            mf.trk.gArr[idx].heading = mf.trk.gArr[mf.trk.idx].heading;
-                //            mf.trk.gArr[idx].curvePts.Clear();
-                //            //write out the Curve Points
-                //            foreach (vec3 item in mf.trk.gArr[mf.trk.idx].curvePts)
-                //            {
-                //                mf.trk.gArr[idx].curvePts.Add(item);
-                //            }
-                //        }
-
-                //        //save entire list
-                //        mf.FileSaveCurveLines();
-                //        mf.trk.gArr[mf.trk.idx].nudgeDistance = 0;
-                //    }
-                //}
-                //else
-                //{
-                //    int idx = mf.ABLine.numABLineSelected - 1;
-
-                //    if (idx >= 0)
-                //    {
-                //        mf.trk.gArr[idx].heading = mf.ABLine.abHeading;
-                //        //calculate the new points for the reference line and points
-                //        mf.trk.gArr[idx].ptA.easting = mf.trk.gArr[mf.trk.idx].ptA.easting;
-                //        mf.trk.gArr[idx].ptA.northing = mf.trk.gArr[mf.trk.idx].ptA.northing;
-                //    }
-
-                //    mf.FileSaveABLines();
-                //    mf.ABLine.moveDistance = 0;
-                //}
             }
             else
             {
@@ -202,34 +167,63 @@ namespace AgOpenGPS
 
         private void btnSwapAB_Click(object sender, EventArgs e)
         {
-            int cnt = mf.trk.gArr[mf.trk.idx].curvePts.Count;
-            if (cnt > 0)
+            if (mf.trk.gArr[mf.trk.idx].mode == (int)TrackMode.AB)
             {
-                mf.trk.gArr[mf.trk.idx].curvePts.Reverse();
-
-                vec3[] arr = new vec3[cnt];
-                cnt--;
-                mf.trk.gArr[mf.trk.idx].curvePts.CopyTo(arr);
-                mf.trk.gArr[mf.trk.idx].curvePts.Clear();
+                vec2 bob = mf.trk.gArr[mf.trk.idx].ptA;
+                mf.trk.gArr[mf.trk.idx].ptA = mf.trk.gArr[mf.trk.idx].ptB;
+                mf.trk.gArr[mf.trk.idx].ptB = new vec2(bob);
 
                 mf.trk.gArr[mf.trk.idx].heading += Math.PI;
                 if (mf.trk.gArr[mf.trk.idx].heading < 0) mf.trk.gArr[mf.trk.idx].heading += glm.twoPI;
                 if (mf.trk.gArr[mf.trk.idx].heading > glm.twoPI) mf.trk.gArr[mf.trk.idx].heading -= glm.twoPI;
 
-                for (int i = 1; i < cnt; i++)
-                {
-                    vec3 pt3 = arr[i];
-                    pt3.heading += Math.PI;
-                    if (pt3.heading > glm.twoPI) pt3.heading -= glm.twoPI;
-                    if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                    mf.trk.gArr[mf.trk.idx].curvePts.Add(pt3);
-                }
+                double abHeading = mf.trk.gArr[mf.trk.idx].heading;
+                mf.trk.gArr[mf.trk.idx].endPtA.easting = mf.trk.gArr[mf.trk.idx].ptA.easting - (Math.Sin(abHeading) * mf.ABLine.abLength);
+                mf.trk.gArr[mf.trk.idx].endPtA.northing = mf.trk.gArr[mf.trk.idx].ptA.northing - (Math.Cos(abHeading) * mf.ABLine.abLength);
 
-                vec2 temp = new vec2(mf.trk.gArr[mf.trk.idx].ptA);
+                mf.trk.gArr[mf.trk.idx].endPtB.easting = mf.trk.gArr[mf.trk.idx].ptB.easting + (Math.Sin(abHeading) * mf.ABLine.abLength);
+                mf.trk.gArr[mf.trk.idx].endPtB.northing = mf.trk.gArr[mf.trk.idx].ptB.northing + (Math.Cos(abHeading) * mf.ABLine.abLength);
 
-                (mf.trk.gArr[mf.trk.idx].ptA) = new vec2(mf.trk.gArr[mf.trk.idx].ptB);
-                (mf.trk.gArr[mf.trk.idx].ptB) = new vec2(temp);
             }
+            else
+            {
+                int cnt = mf.trk.gArr[mf.trk.idx].curvePts.Count;
+                if (cnt > 0)
+                {
+                    mf.trk.gArr[mf.trk.idx].curvePts.Reverse();
+
+                    vec3[] arr = new vec3[cnt];
+                    cnt--;
+                    mf.trk.gArr[mf.trk.idx].curvePts.CopyTo(arr);
+                    mf.trk.gArr[mf.trk.idx].curvePts.Clear();
+
+                    mf.trk.gArr[mf.trk.idx].heading += Math.PI;
+                    if (mf.trk.gArr[mf.trk.idx].heading < 0) mf.trk.gArr[mf.trk.idx].heading += glm.twoPI;
+                    if (mf.trk.gArr[mf.trk.idx].heading > glm.twoPI) mf.trk.gArr[mf.trk.idx].heading -= glm.twoPI;
+
+                    for (int i = 1; i < cnt; i++)
+                    {
+                        vec3 pt3 = arr[i];
+                        pt3.heading += Math.PI;
+                        if (pt3.heading > glm.twoPI) pt3.heading -= glm.twoPI;
+                        if (pt3.heading < 0) pt3.heading += glm.twoPI;
+                        mf.trk.gArr[mf.trk.idx].curvePts.Add(pt3);
+                    }
+
+                    vec2 temp = new vec2(mf.trk.gArr[mf.trk.idx].ptA);
+
+                    (mf.trk.gArr[mf.trk.idx].ptA) = new vec2(mf.trk.gArr[mf.trk.idx].ptB);
+                    (mf.trk.gArr[mf.trk.idx].ptB) = new vec2(temp);
+                }
+            }
+
+            mf.FileSaveTracks();
+
+            mf.tram.tramArr?.Clear();
+            mf.tram.tramList?.Clear();
+            mf.tram.tramBndOuterArr?.Clear();
+            mf.tram.tramBndInnerArr?.Clear();
+
             MoveBuildTramLine(0);
         }
 

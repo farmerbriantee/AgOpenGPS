@@ -639,6 +639,7 @@
             // 
             this.textBox2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.textBox2.CausesValidation = false;
+            this.textBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBox2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(17, 37);
             this.textBox2.Margin = new System.Windows.Forms.Padding(0);
@@ -1076,10 +1077,10 @@
             this.nudHeading.InterceptArrowKeys = false;
             this.nudHeading.Location = new System.Drawing.Point(25, 142);
             this.nudHeading.Maximum = new decimal(new int[] {
-            817405951,
-            838,
+            360,
             0,
-            655360});
+            0,
+            0});
             this.nudHeading.Name = "nudHeading";
             this.nudHeading.ReadOnly = true;
             this.nudHeading.RightToLeft = System.Windows.Forms.RightToLeft.No;

@@ -28,11 +28,18 @@ namespace AgOpenGPS
                 turnLine.Add(pt3);
             }
 
-            //last and first point
-            pt3 = arr[cnt];
-            pt3.heading = Math.Atan2(arr[0].easting - arr[cnt - 1].easting, arr[0].northing - arr[cnt - 1].northing);
-            if (pt3.heading < 0) pt3.heading += glm.twoPI;
-            turnLine.Add(pt3);
+                //first point
+                vec3 pt2 = arr[0];
+                pt2.heading = Math.Atan2(arr[1].easting - arr[0].easting, arr[1].northing - arr[0].northing);
+                if (pt2.heading < 0) pt2.heading += glm.twoPI;
+                turnLine.Insert(0, new vec3(pt2));
+
+                //last point
+                pt2 = arr[arr.Length - 1];
+                pt2.heading = Math.Atan2(arr[arr.Length - 1].easting - arr[arr.Length - 2].easting, 
+                    arr[arr.Length - 1].northing - arr[arr.Length - 2].northing);
+                if (pt2.heading < 0) pt2.heading += glm.twoPI;
+                turnLine.Add(new vec3(pt2));
         }
 
         public void FixTurnLine(double totalHeadWidth, double spacing)
