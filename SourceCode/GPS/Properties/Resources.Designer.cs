@@ -2897,6 +2897,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ToolHitchPageFrontHarvester {
+            get {
+                object obj = ResourceManager.GetObject("ToolHitchPageFrontHarvester", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ToolHitchPageRear {
             get {
                 object obj = ResourceManager.GetObject("ToolHitchPageRear", resourceCulture);

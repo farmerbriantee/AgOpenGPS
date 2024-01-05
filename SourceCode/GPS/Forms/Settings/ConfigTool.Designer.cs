@@ -34,64 +34,95 @@ namespace AgOpenGPS
         {
             lblInchCm2.Text=mf.unitsInCm.ToString();
 
-            if (Properties.Settings.Default.setTool_isToolFront)
+            if (mf.vehicle.vehicleType != 1)
             {
-                rbtnTBT.Checked = false;
-                rbtnTrailing.Checked = false;
-                rbtnFixedRear.Checked = false;
-                rbtnFront.Checked = true;
+                pboxConfigHarvester.Visible = false;
+
+                rbtnTBT.Visible = true;
+                rbtnTrailing.Visible = true;
+                rbtnFixedRear.Visible = true;
+                rbtnFront.Visible = true;
+
+                if (Properties.Settings.Default.setTool_isToolFront)
+                {
+                    rbtnTBT.Checked = false;
+                    rbtnTrailing.Checked = false;
+                    rbtnFixedRear.Checked = false;
+                    rbtnFront.Checked = true;
+                }
+                else if (Properties.Settings.Default.setTool_isToolTBT)
+                {
+                    rbtnTBT.Checked = true;
+                    rbtnTrailing.Checked = false;
+                    rbtnFixedRear.Checked = false;
+                    rbtnFront.Checked = false;
+                }
+                else if (Properties.Settings.Default.setTool_isToolTrailing)
+                {
+                    rbtnTBT.Checked = false;
+                    rbtnTrailing.Checked = true;
+                    rbtnFixedRear.Checked = false;
+                    rbtnFront.Checked = false;
+                }
+                else if (Properties.Settings.Default.setTool_isToolRearFixed)
+                {
+                    rbtnTBT.Checked = false;
+                    rbtnTrailing.Checked = false;
+                    rbtnFixedRear.Checked = true;
+                    rbtnFront.Checked = false;
+                }
             }
-            else if (Properties.Settings.Default.setTool_isToolTBT)
+            else
             {
-                rbtnTBT.Checked = true;
-                rbtnTrailing.Checked = false;
-                rbtnFixedRear.Checked = false;
-                rbtnFront.Checked = false;
-            }
-            else if (Properties.Settings.Default.setTool_isToolTrailing)
-            {
-                rbtnTBT.Checked = false;
-                rbtnTrailing.Checked = true;
-                rbtnFixedRear.Checked = false;
-                rbtnFront.Checked = false;
-            }
-            else if (Properties.Settings.Default.setTool_isToolRearFixed)
-            {
-                rbtnTBT.Checked = false;
-                rbtnTrailing.Checked = false;
-                rbtnFixedRear.Checked = true;
-                rbtnFront.Checked = false;
+                pboxConfigHarvester.Visible = true;
+
+                rbtnTBT.Visible = false;
+                rbtnTrailing.Visible = false;
+                rbtnFixedRear.Visible = false;
+                rbtnFront.Visible = false;
+
             }
         }
         private void tabTConfig_Leave(object sender, EventArgs e)
         {
-            if (rbtnFront.Checked)
+            if (mf.vehicle.vehicleType != 1)
+            {
+
+                if (rbtnFront.Checked)
+                {
+                    Properties.Settings.Default.setTool_isToolFront = true;
+                    Properties.Settings.Default.setTool_isToolTBT = false;
+                    Properties.Settings.Default.setTool_isToolTrailing = false;
+                    Properties.Settings.Default.setTool_isToolRearFixed = false;
+                }
+                else if (rbtnTBT.Checked)
+                {
+                    Properties.Settings.Default.setTool_isToolFront = false;
+                    Properties.Settings.Default.setTool_isToolTBT = true;
+                    Properties.Settings.Default.setTool_isToolTrailing = true;
+                    Properties.Settings.Default.setTool_isToolRearFixed = false;
+                }
+                else if (rbtnTrailing.Checked)
+                {
+                    Properties.Settings.Default.setTool_isToolFront = false;
+                    Properties.Settings.Default.setTool_isToolTBT = false;
+                    Properties.Settings.Default.setTool_isToolTrailing = true;
+                    Properties.Settings.Default.setTool_isToolRearFixed = false;
+                }
+                else if (rbtnFixedRear.Checked)
+                {
+                    Properties.Settings.Default.setTool_isToolFront = false;
+                    Properties.Settings.Default.setTool_isToolTBT = false;
+                    Properties.Settings.Default.setTool_isToolTrailing = false;
+                    Properties.Settings.Default.setTool_isToolRearFixed = true;
+                }
+            }
+            else
             {
                 Properties.Settings.Default.setTool_isToolFront = true;
                 Properties.Settings.Default.setTool_isToolTBT = false;
                 Properties.Settings.Default.setTool_isToolTrailing = false;
                 Properties.Settings.Default.setTool_isToolRearFixed = false;
-            }
-            else if (rbtnTBT.Checked)
-            {
-                Properties.Settings.Default.setTool_isToolFront = false;
-                Properties.Settings.Default.setTool_isToolTBT = true;
-                Properties.Settings.Default.setTool_isToolTrailing = true;
-                Properties.Settings.Default.setTool_isToolRearFixed = false;
-            }
-            else if (rbtnTrailing.Checked)
-            {
-                Properties.Settings.Default.setTool_isToolFront = false;
-                Properties.Settings.Default.setTool_isToolTBT = false;
-                Properties.Settings.Default.setTool_isToolTrailing = true;
-                Properties.Settings.Default.setTool_isToolRearFixed = false;
-            }
-            else if (rbtnFixedRear.Checked)
-            {
-                Properties.Settings.Default.setTool_isToolFront = false;
-                Properties.Settings.Default.setTool_isToolTBT = false;
-                Properties.Settings.Default.setTool_isToolTrailing = false;
-                Properties.Settings.Default.setTool_isToolRearFixed = true;
             }
 
             mf.tool.isToolRearFixed = Properties.Settings.Default.setTool_isToolRearFixed;
@@ -115,52 +146,65 @@ namespace AgOpenGPS
 
         private void tabTHitch_Enter(object sender, EventArgs e)
         {
-            //fixed -hitch only on vehicle
-            if (Properties.Settings.Default.setTool_isToolFront)
+            if (mf.vehicle.vehicleType != 1)
+            {
+                //fixed -hitch only on vehicle
+                if (Properties.Settings.Default.setTool_isToolFront)
+                {
+                    nudTrailingHitchLength.Visible = false;
+                    nudDrawbarLength.Visible = true;
+                    nudTankHitch.Visible = false;
+
+                    nudDrawbarLength.Left = 401;
+
+                    picboxToolHitch.BackgroundImage = Properties.Resources.ToolHitchPageFront;
+                }
+                else if (Properties.Settings.Default.setTool_isToolRearFixed)
+                {
+                    nudTrailingHitchLength.Visible = false;
+                    nudDrawbarLength.Visible = true;
+                    nudTankHitch.Visible = false;
+
+                    nudDrawbarLength.Left = 259;
+
+                    picboxToolHitch.BackgroundImage = Properties.Resources.ToolHitchPageRear;
+                }
+
+                //trailing
+                else if (Properties.Settings.Default.setTool_isToolTBT)
+                {
+                    nudTrailingHitchLength.Visible = true;
+                    nudDrawbarLength.Visible = false;
+                    nudTankHitch.Visible = true;
+
+                    nudTrailingHitchLength.Left = 326;
+                    nudTankHitch.Left = 643;
+
+                    picboxToolHitch.BackgroundImage = Properties.Resources.ToolHitchPageTBT;
+                }
+                else if (Properties.Settings.Default.setTool_isToolTrailing)
+                {
+                    nudTrailingHitchLength.Visible = true;
+                    nudDrawbarLength.Visible = false;
+                    nudTankHitch.Visible = false;
+
+                    nudTrailingHitchLength.Left = 438;
+
+                    picboxToolHitch.BackgroundImage = Properties.Resources.ToolHitchPageTrailing;
+                }
+            }
+            else
             {
                 nudTrailingHitchLength.Visible = false;
                 nudDrawbarLength.Visible = true;
                 nudTankHitch.Visible = false;
 
-                nudDrawbarLength.Left = 401;
+                nudDrawbarLength.Left = 580;
 
-                picboxToolHitch.BackgroundImage = Properties.Resources.ToolHitchPageFront;
-            }
-            else if (Properties.Settings.Default.setTool_isToolRearFixed)
-            {
-                nudTrailingHitchLength.Visible = false;
-                nudDrawbarLength.Visible = true;
-                nudTankHitch.Visible = false;
-
-                nudDrawbarLength.Left = 259;
-
-                picboxToolHitch.BackgroundImage = Properties.Resources.ToolHitchPageRear;
+                picboxToolHitch.BackgroundImage = Properties.Resources.ToolHitchPageFrontHarvester;
             }
 
-            //trailing
-            else if (Properties.Settings.Default.setTool_isToolTBT)
-            {
-                nudTrailingHitchLength.Visible = true;
-                nudDrawbarLength.Visible = false;
-                nudTankHitch.Visible = true;
-
-                nudTrailingHitchLength.Left = 326;
-                nudTankHitch.Left = 643;
-
-                picboxToolHitch.BackgroundImage = Properties.Resources.ToolHitchPageTBT;
-            }
-            else if (Properties.Settings.Default.setTool_isToolTrailing)
-            {
-                nudTrailingHitchLength.Visible = true;
-                nudDrawbarLength.Visible = false;
-                nudTankHitch.Visible = false;
-
-                nudTrailingHitchLength.Left = 438;
-
-                picboxToolHitch.BackgroundImage = Properties.Resources.ToolHitchPageTrailing;
-            }
-
-            nudDrawbarLength.Value = (decimal)(Math.Abs(Properties.Settings.Default.setVehicle_hitchLength)*mf.m2InchOrCm);
+            nudDrawbarLength.Value = (decimal)(Math.Abs(Properties.Settings.Default.setVehicle_hitchLength) * mf.m2InchOrCm);
             nudTrailingHitchLength.Value = (decimal)(Math.Abs(Properties.Settings.Default.setTool_toolTrailingHitchLength) * mf.m2InchOrCm);
             nudTankHitch.Value = (decimal)(Math.Abs(Properties.Settings.Default.setVehicle_tankTrailingHitchLength) * mf.m2InchOrCm);
         }

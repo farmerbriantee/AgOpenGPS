@@ -762,6 +762,13 @@ namespace AgOpenGPS
             {
                 mf.vehicle.vehicleType = 1;
                 Properties.Settings.Default.setVehicle_vehicleType = 1;
+
+                if ( mf.tool.hitchLength < 0) mf.tool.hitchLength *= -1;
+
+                Properties.Settings.Default.setTool_isToolFront = true;
+                Properties.Settings.Default.setTool_isToolTBT = false;
+                Properties.Settings.Default.setTool_isToolTrailing = false;
+                Properties.Settings.Default.setTool_isToolRearFixed = false;
             }
             if (rbtn4WD.Checked)
             {

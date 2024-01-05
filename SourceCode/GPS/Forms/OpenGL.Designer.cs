@@ -2007,7 +2007,7 @@ namespace AgOpenGPS
             //font.DrawText(center, 150, "BETA 5.0.0.5", 1);
 
             GL.Color3(0.9752f, 0.62f, 0.325f);
-            if (timerSim.Enabled) font.DrawText(-110, oglMain.Height - 140, "Simulator On", 1);
+            if (timerSim.Enabled) font.DrawText(-110, oglMain.Height - 160, "Simulator On", 1);
 
             if (ct.isContourBtnOn)
             {

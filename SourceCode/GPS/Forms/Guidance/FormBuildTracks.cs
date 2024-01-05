@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 using System.Xml;
@@ -176,6 +177,12 @@ namespace AgOpenGPS
                 {
                     mf.trk.idx = trac;
                     mf.yt.ResetYouTurn();
+
+                    if (!mf.curve.isBtnTrackOn)
+                    {
+                        mf.curve.isBtnTrackOn = true;
+                        mf.btnTrack.Image = Properties.Resources.TrackOn;
+                    }
                     Close();
                 }
                 else //nothing visible

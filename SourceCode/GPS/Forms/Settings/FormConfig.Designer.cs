@@ -182,6 +182,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabTConfig = new System.Windows.Forms.TabPage();
             this.gboxAttachment = new System.Windows.Forms.GroupBox();
+            this.pboxConfigHarvester = new System.Windows.Forms.PictureBox();
             this.rbtnTBT = new System.Windows.Forms.RadioButton();
             this.rbtnFixedRear = new System.Windows.Forms.RadioButton();
             this.rbtnFront = new System.Windows.Forms.RadioButton();
@@ -303,6 +304,7 @@
             this.chkSetManualSections = new System.Windows.Forms.CheckBox();
             this.chkWorkSwActiveLow = new System.Windows.Forms.CheckBox();
             this.tabTSettings = new System.Windows.Forms.TabPage();
+            this.pictureBox18 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -550,7 +552,6 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox18 = new System.Windows.Forms.PictureBox();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -595,6 +596,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabTConfig.SuspendLayout();
             this.gboxAttachment.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxConfigHarvester)).BeginInit();
             this.tabTHitch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudTrailingHitchLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDrawbarLength)).BeginInit();
@@ -642,6 +644,7 @@
             this.grpControls.SuspendLayout();
             this.grpSwitch.SuspendLayout();
             this.tabTSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLookAheadOff)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTurnOffDelay)).BeginInit();
@@ -680,7 +683,6 @@
             this.tabDisplay.SuspendLayout();
             this.unitsGroupBox.SuspendLayout();
             this.panelBottom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
             this.SuspendLayout();
             // 
             // panelLeftSideMenu
@@ -3309,6 +3311,7 @@
             // gboxAttachment
             // 
             this.gboxAttachment.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.gboxAttachment.Controls.Add(this.pboxConfigHarvester);
             this.gboxAttachment.Controls.Add(this.rbtnTBT);
             this.gboxAttachment.Controls.Add(this.rbtnFixedRear);
             this.gboxAttachment.Controls.Add(this.rbtnFront);
@@ -3321,6 +3324,16 @@
             this.gboxAttachment.TabIndex = 111;
             this.gboxAttachment.TabStop = false;
             this.gboxAttachment.Text = "Attachment Style";
+            // 
+            // pboxConfigHarvester
+            // 
+            this.pboxConfigHarvester.BackgroundImage = global::AgOpenGPS.Properties.Resources.vehiclePageHarvester;
+            this.pboxConfigHarvester.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pboxConfigHarvester.Location = new System.Drawing.Point(206, 123);
+            this.pboxConfigHarvester.Name = "pboxConfigHarvester";
+            this.pboxConfigHarvester.Size = new System.Drawing.Size(305, 206);
+            this.pboxConfigHarvester.TabIndex = 113;
+            this.pboxConfigHarvester.TabStop = false;
             // 
             // rbtnTBT
             // 
@@ -5549,6 +5562,16 @@
             this.tabTSettings.Text = "TSettings";
             this.tabTSettings.Enter += new System.EventHandler(this.tabTSettings_Enter);
             this.tabTSettings.Leave += new System.EventHandler(this.tabTSettings_Leave);
+            // 
+            // pictureBox18
+            // 
+            this.pictureBox18.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox18.Image = global::AgOpenGPS.Properties.Resources.SectionLookAheadOff;
+            this.pictureBox18.Location = new System.Drawing.Point(579, 30);
+            this.pictureBox18.Name = "pictureBox18";
+            this.pictureBox18.Size = new System.Drawing.Size(276, 394);
+            this.pictureBox18.TabIndex = 133;
+            this.pictureBox18.TabStop = false;
             // 
             // pictureBox4
             // 
@@ -9830,16 +9853,6 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // pictureBox18
-            // 
-            this.pictureBox18.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox18.Image = global::AgOpenGPS.Properties.Resources.SectionLookAheadOff;
-            this.pictureBox18.Location = new System.Drawing.Point(579, 30);
-            this.pictureBox18.Name = "pictureBox18";
-            this.pictureBox18.Size = new System.Drawing.Size(276, 394);
-            this.pictureBox18.TabIndex = 133;
-            this.pictureBox18.TabStop = false;
-            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -9909,6 +9922,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabTConfig.ResumeLayout(false);
             this.gboxAttachment.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pboxConfigHarvester)).EndInit();
             this.tabTHitch.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudTrailingHitchLength)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDrawbarLength)).EndInit();
@@ -9960,6 +9974,7 @@
             this.grpControls.ResumeLayout(false);
             this.grpSwitch.ResumeLayout(false);
             this.tabTSettings.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLookAheadOff)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTurnOffDelay)).EndInit();
@@ -10010,7 +10025,6 @@
             this.unitsGroupBox.ResumeLayout(false);
             this.panelBottom.ResumeLayout(false);
             this.panelBottom.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -10535,5 +10549,6 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox18;
+        private System.Windows.Forms.PictureBox pboxConfigHarvester;
     }
 }
