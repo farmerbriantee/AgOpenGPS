@@ -274,7 +274,7 @@ namespace AgOpenGPS
                     }
 
                     //who knows which way it actually goes
-                    mf.hdl.CalculateHeadings(ref mf.hdl.tracksArr[mf.hdl.idx].trackPts);
+                    mf.curve.CalculateHeadings(ref mf.hdl.tracksArr[mf.hdl.idx].trackPts);
 
                     int ptCnt = mf.hdl.tracksArr[mf.hdl.idx].trackPts.Count - 1;
 

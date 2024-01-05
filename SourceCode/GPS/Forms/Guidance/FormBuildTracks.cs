@@ -613,7 +613,7 @@ namespace AgOpenGPS
                 //build the tail extensions
                 mf.curve.AddFirstLastPoints(ref mf.curve.desList);
                 SmoothAB(4);
-                mf.curve.CalculateTurnHeadings();
+                mf.curve.CalculateHeadings(ref mf.curve.desList);
 
                 //write out the Curve Points
                 foreach (vec3 item in mf.curve.desList)
@@ -908,7 +908,7 @@ namespace AgOpenGPS
                     }
                     else if (mf.curve.desList.Count > 2)
                     {
-                        mf.curve.CalculateTurnHeadings();
+                        mf.curve.CalculateHeadings(ref mf.curve.desList);
                         int cnt = mf.curve.desList.Count;
                         //make sure distance isn't too big between points on Turn
                         for (int k = 0; k < cnt - 1; k++)
@@ -960,7 +960,7 @@ namespace AgOpenGPS
                         //build the tail extensions
                         mf.curve.AddFirstLastPoints(ref mf.curve.desList);
                         //SmoothAB(4);
-                        mf.curve.CalculateTurnHeadings();
+                        mf.curve.CalculateHeadings(ref mf.curve.desList);
 
                         //write out the Curve Points
                         foreach (vec3 item in mf.curve.desList)

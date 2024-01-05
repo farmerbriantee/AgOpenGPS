@@ -369,7 +369,7 @@ namespace AgOpenGPS
                         }
                     }
                     //who knows which way it actually goes
-                    mf.curve.CalculateTurnHeadings();
+                    mf.curve.CalculateHeadings(ref mf.curve.desList);
 
                     //create a name
                     mf.trk.gArr[mf.trk.idx].name = "Boundary Curve";
@@ -505,7 +505,7 @@ namespace AgOpenGPS
                 }
 
                 //who knows which way it actually goes
-                mf.curve.CalculateTurnHeadings();
+                mf.curve.CalculateHeadings(ref mf.curve.desList);
 
                 //calculate average heading of line
                 double x = 0, y = 0;
@@ -523,7 +523,7 @@ namespace AgOpenGPS
                 //build the tail extensions
                 mf.curve.AddFirstLastPoints(ref mf.curve.desList);
                 mf.curve.SmoothAB(2);
-                mf.curve.CalculateTurnHeadings();
+                mf.curve.CalculateHeadings(ref mf.curve.desList);
 
                 //array number is 1 less since it starts at zero
                 mf.trk.idx = mf.trk.gArr.Count - 1;

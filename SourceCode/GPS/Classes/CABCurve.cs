@@ -860,38 +860,36 @@ namespace AgOpenGPS
             }
         }
 
-        public void CalculateTurnHeadings()
+        public void CalculateHeadings(ref List<vec3> xList)
         {
             //to calc heading based on next and previous points to give an average heading.
-            int cnt = mf.curve.desList.Count;
+            int cnt = xList.Count;
             if (cnt > 3)
             {
                 vec3[] arr = new vec3[cnt];
                 cnt--;
-                mf.curve.desList.CopyTo(arr);
-                mf.curve.desList.Clear();
+                xList.CopyTo(arr);
+                xList.Clear();
+
+                vec3 pt3 = arr[0];
+                pt3.heading = Math.Atan2(arr[1].easting - arr[0].easting, arr[1].northing - arr[0].northing);
+                if (pt3.heading < 0) pt3.heading += glm.twoPI;
+                xList.Add(pt3);
 
                 //middle points
                 for (int i = 1; i < cnt; i++)
                 {
-                    vec3 pt3 = arr[i];
+                    pt3 = arr[i];
                     pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
                     if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                    mf.curve.desList.Add(pt3);
+                    xList.Add(pt3);
                 }
 
-                //first point
-                vec3 pt2 = arr[0];
-                pt2.heading = Math.Atan2(arr[1].easting - arr[0].easting, arr[1].northing - arr[0].northing);
-                if (pt2.heading < 0) pt2.heading += glm.twoPI;
-                mf.curve.desList.Insert(0, new vec3(pt2));
-
-                //last point
-                pt2 = arr[arr.Length - 1];
-                pt2.heading = Math.Atan2(arr[arr.Length - 1].easting - arr[arr.Length - 2].easting, 
+                pt3 = arr[arr.Length - 1];
+                pt3.heading = Math.Atan2(arr[arr.Length - 1].easting - arr[arr.Length - 2].easting,
                     arr[arr.Length - 1].northing - arr[arr.Length - 2].northing);
-                if (pt2.heading < 0) pt2.heading += glm.twoPI;
-                mf.curve.desList.Add(new vec3(pt2));
+                if (pt3.heading < 0) pt3.heading += glm.twoPI;
+                xList.Add(pt3);
             }
         }
 

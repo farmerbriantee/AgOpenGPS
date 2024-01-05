@@ -479,7 +479,7 @@ namespace AgOpenGPS
                                     }
 
                                     //build the boundary, make sure is clockwise for outer counter clockwise for inner
-                                    mf.hdl.CalculateHeadings(ref desList);
+                                    mf.curve.CalculateHeadings(ref desList);
 
                                     //write out the Curve Points
                                     foreach (vec3 item in desList)
@@ -629,7 +629,7 @@ namespace AgOpenGPS
                                             }
 
                                             //who knows which way it actually goes
-                                            mf.curve.CalculateTurnHeadings();
+                                            mf.curve.CalculateHeadings(ref mf.curve.desList);
 
                                             //calculate average heading of line
                                             double x = 0, y = 0;
@@ -646,7 +646,7 @@ namespace AgOpenGPS
 
                                             //build the tail extensions
                                             mf.curve.AddFirstLastPoints(ref mf.curve.desList);
-                                            mf.curve.CalculateTurnHeadings();
+                                            mf.curve.CalculateHeadings(ref mf.curve.desList);
 
                                             if (string.IsNullOrEmpty(mf.curve.desName))
                                             {
@@ -794,7 +794,7 @@ namespace AgOpenGPS
                                     }
 
                                     //who knows which way it actually goes
-                                    mf.curve.CalculateTurnHeadings();
+                                    mf.curve.CalculateHeadings(ref mf.curve.desList);
 
                                     //calculate average heading of line
                                     double x = 0, y = 0;
@@ -811,7 +811,7 @@ namespace AgOpenGPS
 
                                     //build the tail extensions
                                     mf.curve.AddFirstLastPoints(ref mf.curve.desList);
-                                    mf.curve.CalculateTurnHeadings();
+                                    mf.curve.CalculateHeadings(ref mf.curve.desList);
 
                                     //array number is 1 less since it starts at zero
 

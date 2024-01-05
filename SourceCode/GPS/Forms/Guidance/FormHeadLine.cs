@@ -220,7 +220,7 @@ namespace AgOpenGPS
                     if (ptCnt > 0)
                     {
                         //who knows which way it actually goes
-                        mf.hdl.CalculateHeadings(ref sliceArr);
+                        mf.curve.CalculateHeadings(ref sliceArr);
 
                         for (int i = 1; i < 30; i++)
                         {
@@ -699,7 +699,7 @@ namespace AgOpenGPS
                         }
                     }
                     //who knows which way it actually goes
-                    mf.hdl.CalculateHeadings(ref mf.hdl.desList);
+                    mf.curve.CalculateHeadings(ref mf.hdl.desList);
 
                     mf.bnd.bndList[0].hdLine.Clear();
 
