@@ -1106,9 +1106,8 @@ namespace AgOpenGPS
                     //Torriem rules!!!!! Oh yes, this is all his. Thank-you
                     if (distanceCurrentStepFix != 0)
                     {
-                        double t = (tool.tankTrailingHitchLength) / distanceCurrentStepFix;
-                        tankPos.easting = hitchPos.easting + t * (hitchPos.easting - tankPos.easting);
-                        tankPos.northing = hitchPos.northing + t * (hitchPos.northing - tankPos.northing);
+                        //all we need is this heading calculation, and then the tankPos
+                        //can be calculated after the jackknife check.
                         tankPos.heading = Math.Atan2(hitchPos.easting - tankPos.easting, hitchPos.northing - tankPos.northing);
                         if (tankPos.heading < 0) tankPos.heading += glm.twoPI;
 
@@ -1141,9 +1140,8 @@ namespace AgOpenGPS
                 //Torriem rules!!!!! Oh yes, this is all his. Thank-you
                 if (distanceCurrentStepFix != 0)
                 {
-                    double t = (tool.trailingHitchLength) / distanceCurrentStepFix;
-                    toolPivotPos.easting = tankPos.easting + t * (tankPos.easting - toolPivotPos.easting);
-                    toolPivotPos.northing = tankPos.northing + t * (tankPos.northing - toolPivotPos.northing);
+                    //all we need is this heading calculation, and then the toolPivotPos
+                    //can be calculated after the jackknife check.
                     toolPivotPos.heading = Math.Atan2(tankPos.easting - toolPivotPos.easting, tankPos.northing - toolPivotPos.northing);
                     if (toolPivotPos.heading < 0) toolPivotPos.heading += glm.twoPI;
                 }
