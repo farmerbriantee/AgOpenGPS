@@ -269,6 +269,7 @@
             // panelMain
             // 
             this.panelMain.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelMain.Controls.Add(this.btnListDelete);
             this.panelMain.Controls.Add(this.btnCancelMain);
             this.panelMain.Controls.Add(this.btnHideShow);
             this.panelMain.Controls.Add(this.btnMoveUp);
@@ -278,7 +279,6 @@
             this.panelMain.Controls.Add(this.btnEditName);
             this.panelMain.Controls.Add(this.btnDuplicate);
             this.panelMain.Controls.Add(this.btnNewTrack);
-            this.panelMain.Controls.Add(this.btnListDelete);
             this.panelMain.Controls.Add(this.btnListUse);
             this.panelMain.Location = new System.Drawing.Point(2, 2);
             this.panelMain.Name = "panelMain";
@@ -295,7 +295,7 @@
             this.btnCancelMain.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancelMain.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancelMain.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancelMain.Location = new System.Drawing.Point(7, 355);
+            this.btnCancelMain.Location = new System.Drawing.Point(4, 354);
             this.btnCancelMain.Name = "btnCancelMain";
             this.btnCancelMain.Size = new System.Drawing.Size(78, 57);
             this.btnCancelMain.TabIndex = 432;
@@ -359,7 +359,7 @@
             this.btnSwapAB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSwapAB.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSwapAB.Image = global::AgOpenGPS.Properties.Resources.ABSwapPoints;
-            this.btnSwapAB.Location = new System.Drawing.Point(7, 3);
+            this.btnSwapAB.Location = new System.Drawing.Point(4, 270);
             this.btnSwapAB.Name = "btnSwapAB";
             this.btnSwapAB.Size = new System.Drawing.Size(71, 63);
             this.btnSwapAB.TabIndex = 426;
@@ -376,7 +376,7 @@
             this.btnEditName.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditName.Image = global::AgOpenGPS.Properties.Resources.FileEditName;
             this.btnEditName.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEditName.Location = new System.Drawing.Point(7, 82);
+            this.btnEditName.Location = new System.Drawing.Point(4, 102);
             this.btnEditName.Name = "btnEditName";
             this.btnEditName.Size = new System.Drawing.Size(71, 63);
             this.btnEditName.TabIndex = 425;
@@ -393,7 +393,7 @@
             this.btnDuplicate.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDuplicate.Image = global::AgOpenGPS.Properties.Resources.FileCopy;
             this.btnDuplicate.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDuplicate.Location = new System.Drawing.Point(7, 163);
+            this.btnDuplicate.Location = new System.Drawing.Point(4, 186);
             this.btnDuplicate.Name = "btnDuplicate";
             this.btnDuplicate.Size = new System.Drawing.Size(71, 63);
             this.btnDuplicate.TabIndex = 424;
@@ -427,7 +427,7 @@
             this.btnListDelete.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnListDelete.Image = global::AgOpenGPS.Properties.Resources.Trash;
             this.btnListDelete.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnListDelete.Location = new System.Drawing.Point(18, 264);
+            this.btnListDelete.Location = new System.Drawing.Point(16, 6);
             this.btnListDelete.Margin = new System.Windows.Forms.Padding(0);
             this.btnListDelete.Name = "btnListDelete";
             this.btnListDelete.Size = new System.Drawing.Size(54, 54);
@@ -1116,9 +1116,9 @@
             this.panelLatLonPlus.Controls.Add(this.btnCancel_LatLonPlus);
             this.panelLatLonPlus.Controls.Add(this.btnEnter_LatLonPlus);
             this.panelLatLonPlus.Controls.Add(this.nudHeadingLatLonPlus);
-            this.panelLatLonPlus.Location = new System.Drawing.Point(1262, 14);
+            this.panelLatLonPlus.Location = new System.Drawing.Point(1262, 2);
             this.panelLatLonPlus.Name = "panelLatLonPlus";
-            this.panelLatLonPlus.Size = new System.Drawing.Size(341, 413);
+            this.panelLatLonPlus.Size = new System.Drawing.Size(341, 425);
             this.panelLatLonPlus.TabIndex = 449;
             // 
             // label17
@@ -1287,9 +1287,9 @@
             this.panel1.Controls.Add(this.nudLongitudeA);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btnEnter_LatLonLatLon);
-            this.panel1.Location = new System.Drawing.Point(1603, 14);
+            this.panel1.Location = new System.Drawing.Point(1603, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(341, 413);
+            this.panel1.Size = new System.Drawing.Size(341, 425);
             this.panel1.TabIndex = 450;
             // 
             // label24
