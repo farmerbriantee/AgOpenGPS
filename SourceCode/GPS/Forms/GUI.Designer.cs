@@ -848,8 +848,8 @@ namespace AgOpenGPS
         public bool isPanelABHidden = false;
         private void FixPanelsAndMenus()
         {
-            panelAB.Size = new System.Drawing.Size(760 + ((Width - 900) / 2), 67);
-            panelAB.Location = new Point((Width - 900) / 3 + 67, this.Height - 70);
+            //panelAB.Size = new System.Drawing.Size(760 + ((Width - 900) / 2), 67);
+            //panelAB.Location = new Point((Width - 900) / 3 + 67, this.Height - 70);
 
             if (!isJobStarted)
             {
