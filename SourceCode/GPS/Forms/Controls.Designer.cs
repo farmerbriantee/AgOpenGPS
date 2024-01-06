@@ -97,7 +97,6 @@ namespace AgOpenGPS
                 int tracksTotal = 0, tracksVisible = 0;
                 bool isBnd = bnd.bndList.Count > 0;
 
-
                 for (int i = 0; i < trk.gArr.Count; i++)
                 {
                     tracksTotal++;
@@ -311,18 +310,10 @@ namespace AgOpenGPS
                 return;
             }
 
-            Form fcc = Application.OpenForms["FormRefNudge"];
-
-            if (fcc != null)
-            {
-                fcc.Focus();
-                return;
-            }
-
             if (trk.idx > -1 && curve.isBtnTrackOn)
             {
                 Form form = new FormRefNudge(this);
-                form.Show(this);
+                form.ShowDialog(this);
             }
             else
             {

@@ -1211,7 +1211,7 @@ namespace AgOpenGPS
  * and starts all over from the top.
  */
 /*
-private void UpdateGuidanceLineButtonNumbers()
+private void UpdateRightPanel()
 {
     if (isJobStarted)
     {

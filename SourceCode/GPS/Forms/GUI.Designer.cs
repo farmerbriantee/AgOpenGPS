@@ -263,7 +263,7 @@ namespace AgOpenGPS
                 if (isLogNMEA) FileSaveNMEA();
 
                 //update guidance buttons and numbers
-                UpdateGuidanceLineButtonNumbers();
+                UpdateRightPanel();
 
             }//end every 2 seconds
 
@@ -383,7 +383,7 @@ namespace AgOpenGPS
             }
         }//wait till timer fires again.         
 
-        private void UpdateGuidanceLineButtonNumbers()
+        private void UpdateRightPanel()
         {
             if (isJobStarted)
             {
@@ -401,36 +401,29 @@ namespace AgOpenGPS
                 if (curve.isBtnTrackOn && trk.gArr.Count > 0)
                 {
                     if (trk.idx > -1)
-                    {
-                        lblLineKey.Text = trk.gArr[trk.idx].name;
-                        if (lblLineKey.Text.Length > 9) lblLineKey.Text = lblLineKey.Text.Substring(0, 9);
-                        
+                    {                        
                         guidanceLineText = trk.gArr[trk.idx].name;
 
                         if (tracksVisible > 1)
                         {
-                            btnCycleLines.Enabled = true;
-                            btnCycleLinesBk.Enabled = true;
+                            btnCycleLines.Visible = true;
+                            btnCycleLinesBk.Visible = true;
                         }
                         else
                         {
-                            btnCycleLines.Enabled = false;
-                            btnCycleLinesBk.Enabled = false;
+                            btnCycleLines.Visible = false;
+                            btnCycleLinesBk.Visible = false;
                         }
                         cboxpRowWidth.Visible = true;
                         btnYouSkipEnable.Visible = true;
-                        lblTrackNumber.Text = (trk.idx + 1).ToString() + " / " + trk.gArr.Count.ToString();
                     }
                     else  // idx = -1
                     {
                         guidanceLineText = gStr.gsNoGuidanceLines;
                         cboxpRowWidth.Visible = false;
                         btnYouSkipEnable.Visible = false;
-                        btnCycleLines.Enabled = false;
-                        btnCycleLinesBk.Enabled = false;
-                        lblLineKey.Text = "";
-
-                        lblTrackNumber.Text = "* / " + trk.gArr.Count.ToString();
+                        btnCycleLines.Visible = false;
+                        btnCycleLinesBk.Visible = false;
                     }
                 }
                 else //job but Tracks off.
@@ -438,16 +431,32 @@ namespace AgOpenGPS
                     guidanceLineText = gStr.gsNoGuidanceLines;
                     cboxpRowWidth.Visible = false;
                     btnYouSkipEnable.Visible = false;
-                    btnCycleLines.Enabled = false;
-                    btnCycleLinesBk.Enabled = false;
-                    lblLineKey.Text = "";
-                    lblTrackNumber.Text = "";
+                    btnCycleLines.Visible = false;
+                    btnCycleLinesBk.Visible = false;
                 }
             }
             else //idle - no job
             {
-                guidanceLineText = "Be Smart, Be safe";
+                panelRight.Visible = false;
             }
+
+            //int viz = 0;
+            //for (int i = 0; i < panelRight.Controls.Count; i++)
+            //{
+            //    if (panelRight.Controls[i].Visible) viz++;
+            //}
+
+            //int sizer = (Height - 130) / (viz - 2);
+            //if (sizer > 125) { sizer = 125; }
+
+            //for (int i = 0; i < panelRight.Controls.Count; i++)
+            //{
+            //    if (panelRight.Controls[i].Visible)
+            //    {
+            //        if (panelRight.Controls[i].Name.Substring(0, 3) == "lbl") continue;
+            //        panelRight.Controls[i].Height = sizer;
+            //    }
+            //}
         }
 
         public void LoadSettings()
@@ -879,6 +888,25 @@ namespace AgOpenGPS
                     oglMain.Width = this.Width - statusStripLeft.Width - 100; //22
                     oglMain.Height = this.Height - 120;
                 }
+
+                int viz = 0;
+                for (int i=0; i < panelRight.Controls.Count; i++)
+                {
+                    if (panelRight.Controls[i].Visible) viz++;
+                }
+
+                int sizer = (Height - 130) / (viz-2);
+                if (sizer > 125) { sizer = 125; }
+
+                for (int i = 0; i < panelRight.Controls.Count; i++)
+                {
+                    if (panelRight.Controls[i].Visible)
+                    {
+                        if (panelRight.Controls[i].Name.Substring(0,3) == "lbl" ) continue;
+                        panelRight.Controls[i].Height = sizer;
+                    }
+                }
+
             }
 
             if (tool.isSectionsNotZones)
