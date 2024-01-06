@@ -108,7 +108,7 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.setWindow_buildTracksLocation = Location;
 
-            mf.threeSecondCounter = 100;
+            mf.twoSecondCounter = 100;
         }
         
         private void btnCancelMain_Click(object sender, EventArgs e)
@@ -132,7 +132,7 @@ namespace AgOpenGPS
             mf.curve.isCurveValid = false;
             mf.ABLine.isABValid = false;
 
-            mf.threeSecondCounter = 100;
+            mf.twoSecondCounter = 100;
 
             Close();
         }

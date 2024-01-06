@@ -750,8 +750,9 @@ namespace AgOpenGPS
             else
             {
                 //auto track routine
-                if (trk.isAutoTrack && !isAutoSteerBtnOn)
+                if (trk.isAutoTrack && !isAutoSteerBtnOn && trk.autoTrack3SecTimer >= 3)
                 {
+                    trk.autoTrack3SecTimer = 0;
                     int lastIndex = trk.idx;
                     trk.idx = trk.FindClosestRefTrack(steerAxlePos);
                     if ( lastIndex != trk.idx )
@@ -760,8 +761,6 @@ namespace AgOpenGPS
                         ABLine.isABValid = false;
                     }
                 }
-
-                //if (trk.idx == -1) return;
 
                 //like normal
                 if (trk.gArr.Count > 0 && trk.idx > -1 && curve.isBtnTrackOn)

@@ -1168,10 +1168,10 @@ namespace AgOpenGPS
             BuildMachineByte();
 
             //if a minute has elapsed save the field in case of crash and to be able to resume            
-            if (minuteCounter > 30 && sentenceCounter < 20)
+            if (fileSaveCounter > 30 && sentenceCounter < 20)
             {
                 tmrWatchdog.Enabled = false;
-                minuteCounter = 0;
+                fileSaveCounter = 0;
 
                 //don't save if no gps
                 if (isJobStarted)

@@ -143,7 +143,7 @@ namespace AgOpenGPS
             mf.curve.isCurveValid = false;
             mf.ABLine.isABValid = false;
 
-            mf.threeSecondCounter = 100;
+            mf.twoSecondCounter = 100;
 
             mf.FileSaveTracks();
         }

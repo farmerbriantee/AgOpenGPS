@@ -892,7 +892,7 @@ namespace AgOpenGPS
             FieldMenuButtonEnableDisable(true);
             FixPanelsAndMenus();
             SetZoom();
-            minuteCounter = 25;
+            fileSaveCounter = 25;
             lblGuidanceLine.Visible = false;
         }
 
@@ -1194,7 +1194,7 @@ namespace AgOpenGPS
  * The watchdog timer times out and runs this function tmrWatchdog_tick().
  * 50 times per second so statusUpdateCounter counts to 25 and updates strip menu etc at 2 hz
  * it also makes sure there is new sentences showing up otherwise it shows **** No GGA....
- * saveCounter ticks 2 x per second, used at end of draw routine every minute to save a backup of field
+ * fileSaveCounter ticks 2 x per second, used at end of draw routine every minute to save a backup of field
  * then ScanForNMEA function checks for a complete sentence if contained in pn.rawbuffer
  * if not it comes right back and waits for next watchdog trigger and starts all over
  * if a new sentence is there, UpdateFix() is called

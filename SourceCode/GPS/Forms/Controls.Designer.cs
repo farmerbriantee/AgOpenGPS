@@ -81,34 +81,55 @@ namespace AgOpenGPS
                 EnableYouTurnButtons();
 
                 //run the routine
-                threeSecondCounter = 100;
+                twoSecondCounter = 100;
                 return;
             }
 
-            if (tlpTrackMethods.Visible)
+            if (flp1.Visible)
             {
-                tlpTrackMethods.Visible = false;
+                flp1.Visible = false;
             }
             else
             {
-                tlpTrackMethods.Top = this.Height / 5;
-                tlpTrackMethods.Left = this.Width - tlpTrackMethods.Width - 120;
-                tlpTrackMethods.Visible = true;
-                trackMethodPanelCounter = 1;
-            }
+                flp1.Visible = true;
 
-            if (bnd.bndList.Count > 0) btnABDraw.Enabled = true;
-            else btnABDraw.Enabled = false;
+                //build the flyout based on properties of program
+                int tracksTotal = 0, tracksVisible = 0;
+                bool isBnd = bnd.bndList.Count > 0;
 
-            if (trk.gArr.Count > 0)
-            {
-                btnNudge.Enabled = true;
-                btnRefNudge.Enabled = true;
-            }
-            else
-            {
-                btnNudge.Enabled = false;
-                btnRefNudge.Enabled = false;
+
+                for (int i = 0; i < trk.gArr.Count; i++)
+                {
+                    tracksTotal++;
+                    if (trk.gArr[i].isVisible)
+                    {
+                        tracksVisible++;
+                    }
+                }
+                
+                //nudge closest
+                flp1.Controls[0].Visible = tracksVisible > 0;
+
+                //always these 2 - Build and if a bnd then ABDraw
+                flp1.Controls[1].Visible = true;
+                flp1.Controls[2].Visible = isBnd;
+
+                //auto track select
+                flp1.Controls[3].Visible = tracksVisible > 1;
+
+                //auto snap to pivot
+                flp1.Controls[4].Visible = tracksVisible > 0;
+
+                //off button
+                flp1.Controls[5].Visible = tracksVisible > 0;
+
+                //ref nudge
+                flp1.Controls[6].Visible = tracksVisible > 0;
+
+                //position of panel
+                flp1.Top = this.Height / 5;
+                flp1.Left = this.Width - 120 - flp1.Width;
+                trackMethodPanelCounter = 3;
             }
         }
 
@@ -232,7 +253,7 @@ namespace AgOpenGPS
                 }
             }
 
-            threeSecondCounter = 100;
+            twoSecondCounter = 100;
 
             ABLine.isABValid = false;
             curve.isCurveValid = false;
@@ -274,7 +295,7 @@ namespace AgOpenGPS
             ABLine.isABValid = false;
             curve.isCurveValid = false;
 
-            threeSecondCounter = 100;
+            twoSecondCounter = 100;
         }
 
         #endregion
@@ -308,24 +329,22 @@ namespace AgOpenGPS
                 var form = new FormTimedMessage(1500, gStr.gsNoABLineActive, gStr.gsPleaseEnterABLine);
                 return;
             }
-            if (tlpTrackMethods.Visible)
+            if (flp1.Visible)
             {
-                tlpTrackMethods.Visible = false;
+                flp1.Visible = false;
             }
         }
-
         private void btnTracksOff_Click(object sender, EventArgs e)
         {
             btnTrack.Image = Resources.TrackOff;
             curve.isBtnTrackOn = false;
             trk.idx = -1;
 
-            if (tlpTrackMethods.Visible)
+            if (flp1.Visible)
             {
-                tlpTrackMethods.Visible = false;
+                flp1.Visible = false;
             }
         }
-
         private void btnNudge_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -354,9 +373,9 @@ namespace AgOpenGPS
                 return;
             }
 
-            if (tlpTrackMethods.Visible)
+            if (flp1.Visible)
             {
-                tlpTrackMethods.Visible = false;
+                flp1.Visible = false;
             }
 
         }
@@ -385,9 +404,9 @@ namespace AgOpenGPS
             Form form = new FormBuildTracks(this);
             form.Show(this);
 
-            if (tlpTrackMethods.Visible)
+            if (flp1.Visible)
             {
-                tlpTrackMethods.Visible = false;
+                flp1.Visible = false;
             }
         }
         private void btnABDraw_Click(object sender, EventArgs e)
@@ -419,29 +438,20 @@ namespace AgOpenGPS
                 form.ShowDialog(this);
             }
 
-            if (tlpTrackMethods.Visible)
+            if (flp1.Visible)
             {
-                tlpTrackMethods.Visible = false;
+                flp1.Visible = false;
             }
         }
         private void cboxAutoSnapToPivot_Click(object sender, EventArgs e)
         {
             trk.isAutoSnapToPivot = cboxAutoSnapToPivot.Checked;
-
-            if (tlpTrackMethods.Visible)
-            {
-                tlpTrackMethods.Visible = false;
-            }
+            trackMethodPanelCounter = 1;
         }
         private void cboxAutoTrack_Click(object sender, EventArgs e)
         {
             trk.isAutoTrack = cboxAutoTrack.Checked;
-
-            if (tlpTrackMethods.Visible)
-            {
-                tlpTrackMethods.Visible = false;
-            }
-
+            trackMethodPanelCounter = 1;
         }
 
         #endregion

@@ -74,9 +74,9 @@ namespace AgOpenGPS
         private int currentFieldTextCounter = 0;
 
         //For field saving in background
-        private int minuteCounter = 1;
-        private int sixSecondCounter = 0;
-        public int threeSecondCounter = 0;
+        private int fileSaveCounter = 1;
+        private int fourSecondCounter = 0;
+        public int twoSecondCounter = 0;
         private int oneSecondCounter = 0;
         private int oneHalfSecondCounter = 0;
 
@@ -91,11 +91,11 @@ namespace AgOpenGPS
             }
 
             ////////////////////////////////////////////// 10 second ///////////////////////////////////////////////////////
-            //every 10 second update status
-            if (sixSecondCounter >= 4)
+            //every 4 second update status
+            if (fourSecondCounter >= 4)
             {
                 //reset the counter
-                sixSecondCounter = 0;
+                fourSecondCounter = 0;
 
                 if (isJobStarted)
                 {
@@ -174,14 +174,14 @@ namespace AgOpenGPS
                                     lblCurrentField.Text = gStr.gsField + ": " + fd.AreaBoundaryLessInnersHectares
                                         + "  App: " + fd.WorkedHectares
                                         + "  Actual: " + fd.ActualAreaWorkedHectares
-                                        + "  Rem: " + fd.WorkedAreaRemainPercentage;
+                                        + "  " + fd.WorkedAreaRemainPercentage;
                                 }
                                 else
                                 {
                                     lblCurrentField.Text = gStr.gsField + ": " + fd.AreaBoundaryLessInnersAcres
                                         + "  App: " + fd.WorkedAcres
                                         + "  Actual: " + fd.ActualAreaWorkedAcres
-                                        + "  Rem: " + fd.WorkedAreaRemainPercentage;
+                                        + "  " + fd.WorkedAreaRemainPercentage;
                                 }
                             }
                             else
@@ -239,22 +239,17 @@ namespace AgOpenGPS
 
             }
 
-            /////////////////////////////////////////////////////////   3 second  ////////////////////////////////////////
-            //every 3 second update status
-            if (threeSecondCounter >= 3)
+            /////////////////////////////////////////////////////////   2 second  ////////////////////////////////////////
+            //every 2 second update status
+            if (twoSecondCounter >= 2)
             {
                 //reset the counter
-                threeSecondCounter = 0;
+                twoSecondCounter = 0;
 
                 //hide the Nav panel in 6  secs
                 if (panelNavigation.Visible)
                 {
                     if (navPanelCounter-- < 2) panelNavigation.Visible = false;
-                }
-
-                if (tlpTrackMethods.Visible)
-                {
-                    if (trackMethodPanelCounter-- < 1) tlpTrackMethods.Visible = false;
                 }
 
                 //small Hz details in panel
@@ -270,7 +265,7 @@ namespace AgOpenGPS
                 //update guidance buttons and numbers
                 UpdateGuidanceLineButtonNumbers();
 
-            }//end every 3 seconds
+            }//end every 2 seconds
 
             //every second update all status ///////////////////////////   1 1 1 1 1 1 ////////////////////////////
             if (oneSecondCounter >= 4)
@@ -278,10 +273,15 @@ namespace AgOpenGPS
                 //reset the counter
                 oneSecondCounter = 0;
 
-                //counter used for saving field in background
-                minuteCounter++;
-                threeSecondCounter++;
-                sixSecondCounter++;
+                //counter used for saving field in background - is actually 30 second
+                fileSaveCounter++;
+
+                //general counters
+                twoSecondCounter++;
+                fourSecondCounter++;
+
+                //keeps autoTrack from changing too fast
+                trk.autoTrack3SecTimer++;
 
                 lblFix.Text = FixQuality + pn.age.ToString("N1");
 
@@ -317,6 +317,13 @@ namespace AgOpenGPS
                         }
                     }
                 }
+
+                if (flp1.Visible)
+                {
+                    if (trackMethodPanelCounter-- < 1) flp1.Visible = false;
+                }
+
+
             }
 
             //every half of a second update all status  ////////////////    0.5  0.5   0.5    0.5    /////////////////

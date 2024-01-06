@@ -18,11 +18,9 @@ namespace AgOpenGPS
 
         public List<CTrk> gArr = new List<CTrk>();
 
-        public int idx;
+        public int idx, autoTrack3SecTimer;
 
-        public bool isLine;
-
-        public bool isAutoTrack = false, isAutoSnapToPivot = false;
+        public bool isLine, isAutoTrack = false, isAutoSnapToPivot = false;
 
         public CTrack(FormGPS _f)
         {
