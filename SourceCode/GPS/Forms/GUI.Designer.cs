@@ -29,7 +29,7 @@ namespace AgOpenGPS
         public int lightbarCmPerPixel =2;
 
         //polygon mode for section drawing
-        public bool isDrawPolygons = false;
+        public bool isDrawPolygons = false, isPauseFieldTextCounter = false;
 
         public CFeatureSettings featureSettings = new CFeatureSettings();
 
@@ -95,63 +95,70 @@ namespace AgOpenGPS
             //every 4 second update status
             if (fourSecondCounter >= 4)
             {
+                if (!isPauseFieldTextCounter)
+                {
+                    if (++currentFieldTextCounter > 2) currentFieldTextCounter = 0;
+                }
+
                 //reset the counter
                 fourSecondCounter = 0;
 
-                if (isJobStarted)
-                {
-                    if (isMetric)
-                    {
-                        if (bnd.bndList.Count > 0)
-                        {
-                            fieldData =
-                                 fd.WorkedAreaRemainPercentage + "  "
-                                + fd.AreaBoundaryLessInnersHectares + " - "
-                                + fd.WorkedHectares + " = "
-                                + fd.WorkedAreaRemainHectares + " | "
+                /*
+                //if (isJobStarted)
+                //{
+                //    if (isMetric)
+                //    {
+                //        if (bnd.bndList.Count > 0)
+                //        {
+                //            fieldData =
+                //                 fd.WorkedAreaRemainPercentage + "  "
+                //                + fd.AreaBoundaryLessInnersHectares + " - "
+                //                + fd.WorkedHectares + " = "
+                //                + fd.WorkedAreaRemainHectares + " | "
 
-                                + fd.ActualAreaWorkedHectares + " = "
-                                + fd.ActualRemainHectares + "  "
-                                + fd.ActualOverlapPercent + " | "
+                //                + fd.ActualAreaWorkedHectares + " = "
+                //                + fd.ActualRemainHectares + "  "
+                //                + fd.ActualOverlapPercent + " | "
 
-                                + fd.TimeTillFinished + "  "
-                                + fd.WorkRateHectares;
-                        }
-                        else
-                            fieldData = "Applied: "
-                                + fd.WorkedHectares + "  Actual: "
-                                + fd.ActualAreaWorkedHectares + "  "
-                                + fd.ActualOverlapPercent + "   "
-                                + fd.WorkRateHectares;
+                //                + fd.TimeTillFinished + "  "
+                //                + fd.WorkRateHectares;
+                //        }
+                //        else
+                //            fieldData = "Applied: "
+                //                + fd.WorkedHectares + "  Actual: "
+                //                + fd.ActualAreaWorkedHectares + "  "
+                //                + fd.ActualOverlapPercent + "   "
+                //                + fd.WorkRateHectares;
 
-                    }
-                    else //imperial
-                    {
-                        if (bnd.bndList.Count > 0)
-                            fieldData =
-                                 fd.WorkedAreaRemainPercentage + "  "
-                                + fd.AreaBoundaryLessInnersAcres + " - "
-                                + fd.WorkedAcres + " = "
-                                + fd.WorkedAreaRemainAcres +  " | "
+                //    }
+                //    else //imperial
+                //    {
+                //        if (bnd.bndList.Count > 0)
+                //            fieldData =
+                //                 fd.WorkedAreaRemainPercentage + "  "
+                //                + fd.AreaBoundaryLessInnersAcres + " - "
+                //                + fd.WorkedAcres + " = "
+                //                + fd.WorkedAreaRemainAcres +  " | "
 
-                                + fd.ActualAreaWorkedAcres + " = "
-                                + fd.ActualRemainAcres + "  "
-                                + fd.ActualOverlapPercent + " | "
+                //                + fd.ActualAreaWorkedAcres + " = "
+                //                + fd.ActualRemainAcres + "  "
+                //                + fd.ActualOverlapPercent + " | "
 
-                                + fd.TimeTillFinished + "  "
-                                + fd.WorkRateAcres;
-                        else
-                            fieldData = "Applied: "
-                                + fd.WorkedAcres + "  Actual: "
-                                + fd.ActualAreaWorkedAcres + " *"
-                                + fd.ActualOverlapPercent + "   "
-                                + fd.WorkRateAcres;
-                    }
-                }
-                else
-                {
-                    fieldData = string.Empty;
-                }
+                //                + fd.TimeTillFinished + "  "
+                //                + fd.WorkRateAcres;
+                //        else
+                //            fieldData = "Applied: "
+                //                + fd.WorkedAcres + "  Actual: "
+                //                + fd.ActualAreaWorkedAcres + " *"
+                //                + fd.ActualOverlapPercent + "   "
+                //                + fd.WorkRateAcres;
+                //    }
+                //}
+                //else
+                //{
+                //    fieldData = string.Empty;
+                //}
+                */
 
                 if (isJobStarted)
                 {
@@ -172,14 +179,14 @@ namespace AgOpenGPS
                             {
                                 if (isMetric)
                                 {
-                                    lblCurrentField.Text = gStr.gsField + ": " + fd.AreaBoundaryLessInnersHectares
+                                    lblCurrentField.Text = fd.AreaBoundaryLessInnersHectares
                                         + "  App: " + fd.WorkedHectares
                                         + "  Actual: " + fd.ActualAreaWorkedHectares
                                         + "  " + fd.WorkedAreaRemainPercentage;
                                 }
                                 else
                                 {
-                                    lblCurrentField.Text = gStr.gsField + ": " + fd.AreaBoundaryLessInnersAcres
+                                    lblCurrentField.Text = fd.AreaBoundaryLessInnersAcres
                                         + "  App: " + fd.WorkedAcres
                                         + "  Actual: " + fd.ActualAreaWorkedAcres
                                         + "  " + fd.WorkedAreaRemainPercentage;
@@ -189,7 +196,7 @@ namespace AgOpenGPS
                             {
                                 if (isMetric)
                                 {
-                                    lblCurrentField.Text = gStr.gsField + ": " + "App: "
+                                    lblCurrentField.Text = "App: "
                                 + fd.WorkedHectares + " Actual: "
                                 + fd.ActualAreaWorkedHectares + "  "
                                 + fd.ActualOverlapPercent + "   "
@@ -197,8 +204,7 @@ namespace AgOpenGPS
                                 }
                                 else
                                 {
-                                    lblCurrentField.Text = gStr.gsField + ": " +
-                                   fieldData + "App: "
+                                    lblCurrentField.Text = fieldData + "App: "
                                 + fd.WorkedAcres + "  Actual: "
                                 + fd.ActualAreaWorkedAcres + " *"
                                 + fd.ActualOverlapPercent + "   "
@@ -236,7 +242,14 @@ namespace AgOpenGPS
                     }
                 }
 
-                if (++currentFieldTextCounter > 2) currentFieldTextCounter = 0;
+                if (isPauseFieldTextCounter)
+                {
+                    lblCurrentField.Text = "\u25B6" + " " + lblCurrentField.Text;
+                }
+                else
+                {
+                    lblCurrentField.Text = "\u23F8" + " " + lblCurrentField.Text;
+                }
 
             }
 
@@ -320,8 +333,6 @@ namespace AgOpenGPS
                 {
                     if (trackMethodPanelCounter-- < 1) flp1.Visible = false;
                 }
-
-
             }
 
             //every half of a second update all status  ////////////////    0.5  0.5   0.5    0.5    /////////////////
@@ -347,7 +358,7 @@ namespace AgOpenGPS
                 }
 
                 //Make sure it is off when it should
-                if ((!ct.isContourBtnOn && trk.idx == -1 && isAutoSteerBtnOn)
+                if ((!ct.isContourBtnOn && trk.idx == -1 && isBtnAutoSteerOn)
                     ) btnAutoSteer.PerformClick();
 
                 //the main formgps window
@@ -720,6 +731,8 @@ namespace AgOpenGPS
                         tracksVisible++;
                     }
                 }
+
+                btnContourLock.Visible = ct.isContourBtnOn;
 
                 btnAutoSteer.Visible = (trk.idx > -1 || ct.isContourBtnOn);
                 btnAutoYouTurn.Visible = trk.idx > -1 && !ct.isContourBtnOn && isBnd;

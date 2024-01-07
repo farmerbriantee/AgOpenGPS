@@ -438,7 +438,7 @@ namespace AgOpenGPS
 
                     if (bnd.bndList.Count > 0 && yt.isYouTurnBtnOn) DrawUTurnBtn();
 
-                    if ((isAutoSteerBtnOn || yt.isYouTurnBtnOn) && !ct.isContourBtnOn) DrawManUTurnBtn();
+                    if ((isBtnAutoSteerOn || yt.isYouTurnBtnOn) && !ct.isContourBtnOn) DrawManUTurnBtn();
 
                     //if (isCompassOn) DrawCompass();
                     DrawCompassText();
@@ -459,7 +459,7 @@ namespace AgOpenGPS
                             if (!sounds.isRTKAlarming) sounds.sndRTKAlarm.Play();
                             sounds.isRTKAlarming = true;
                             DrawLostRTK();
-                            if (isRTK_KillAutosteer && isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+                            if (isRTK_KillAutosteer && isBtnAutoSteerOn) btnAutoSteer.PerformClick();
                         }
                         else
                             sounds.isRTKAlarming = false;
@@ -1595,7 +1595,7 @@ namespace AgOpenGPS
 
             if (mc.steerSwitchHigh)
                 GL.Color4(0.9752f, 0.0f, 0.03f, 0.98);
-            else if (isAutoSteerBtnOn)
+            else if (isBtnAutoSteerOn)
                 GL.Color4(0.052f, 0.970f, 0.03f, 0.97);
             else
                 GL.Color4(0.952f, 0.750f, 0.03f, 0.97);
@@ -2009,14 +2009,14 @@ namespace AgOpenGPS
             GL.Color3(0.9752f, 0.62f, 0.325f);
             if (timerSim.Enabled) font.DrawText(-110, oglMain.Height - 160, "Simulator On", 1);
 
-            if (ct.isContourBtnOn)
-            {
-                if (isFlashOnOff && ct.isLocked)
-                {
-                    GL.Color3(0.9652f, 0.752f, 0.75f);
-                    font.DrawText(-center - 100, oglMain.Height / 2.3, "Locked", 1);
-                }
-            }
+            //if (ct.isContourBtnOn)
+            //{
+            //    if (isFlashOnOff && ct.isLocked)
+            //    {
+            //        GL.Color3(0.9652f, 0.752f, 0.75f);
+            //        font.DrawText(-center - 100, oglMain.Height / 2.3, "Locked", 1);
+            //    }
+            //}
 
             //GL.Color3(0.9752f, 0.52f, 0.23f);
             //font.DrawText(center, 180, "SlowPoke", 1.0);

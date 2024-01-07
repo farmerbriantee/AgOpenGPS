@@ -76,7 +76,7 @@ namespace AgOpenGPS
             //hdl
             if (mf.hdl.idx == -1)
             {
-                if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+                if (mf.isBtnAutoSteerOn) mf.btnAutoSteer.PerformClick();
                 if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
             }
 

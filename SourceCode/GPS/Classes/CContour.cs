@@ -60,9 +60,11 @@ namespace AgOpenGPS
         //determine closest point on left side
 
         //hitting the cycle lines buttons lock to current line
-        public void SetLockToLine()
+        public bool SetLockToLine()
         {
             if (ctList.Count > 5) isLocked = !isLocked;
+            mf.SetContourLockImage(isLocked);
+            return isLocked;
         }
 
         #region
@@ -364,6 +366,7 @@ namespace AgOpenGPS
                     //no points in the box, exit
                     ctList.Clear();
                     isLocked = false;
+                    mf.SetContourLockImage(isLocked);
                     return;
                 }
             }
@@ -378,6 +381,7 @@ namespace AgOpenGPS
                 {
                     ctList.Clear();
                     isLocked = false;
+                    mf.SetContourLockImage(isLocked);
                     return;
                 }
 
@@ -408,6 +412,7 @@ namespace AgOpenGPS
                 {
                     ctList.Clear();
                     isLocked = false;
+                    mf.SetContourLockImage(isLocked);
                     return;
                 }
             }
@@ -530,6 +535,7 @@ namespace AgOpenGPS
                 {
                     ctList.Clear();
                     isLocked = false;
+                    mf.SetContourLockImage(isLocked);
                     return;
                 }
             }
@@ -537,6 +543,7 @@ namespace AgOpenGPS
             {
                 ctList.Clear();
                 isLocked = false;
+                mf.SetContourLockImage(isLocked);
                 return;
             }
         }
@@ -661,6 +668,7 @@ namespace AgOpenGPS
                     {
                         //ctList.Clear();
                         isLocked = false;
+                        mf.SetContourLockImage(isLocked);
                         lastLockPt = int.MaxValue;
                         return;
                     }
@@ -698,7 +706,7 @@ namespace AgOpenGPS
 
                         //pivotErrorTotal = pivotDistanceError + pivotDerivative;
 
-                        if (mf.isAutoSteerBtnOn
+                        if (mf.isBtnAutoSteerOn
                             && Math.Abs(pivotDerivative) < (0.1)
                             && mf.avgSpeed > 2.5
                             && !mf.yt.isYouTurnTriggered)

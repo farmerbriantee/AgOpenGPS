@@ -119,7 +119,7 @@ namespace AgOpenGPS
             isClosing = true;
             mf.curve.desList?.Clear();
 
-            if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+            if (mf.isBtnAutoSteerOn) mf.btnAutoSteer.PerformClick();
             if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
 
             mf.trk.gArr.Clear();
@@ -193,7 +193,7 @@ namespace AgOpenGPS
                     mf.DisableYouTurnButtons();
                     //mf.curve.isBtnTrackOn = false;
                     //mf.btnTrack.Image = Properties.Resources.TrackOff;
-                    if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+                    if (mf.isBtnAutoSteerOn) mf.btnAutoSteer.PerformClick();
                     Close();
                 }
             }

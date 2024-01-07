@@ -35,12 +35,10 @@ namespace AgOpenGPS
 
             if (ct.isContourBtnOn)
             {
-                //btnCycleLines.Image = Properties.Resources.ColorLocked;
-                //btnCycleLinesBk.Visible = false;
-                //btnCycleLines.Enabled = true;
-                //turn off youturn...
                 DisableYouTurnButtons();
                 guidanceLookAheadTime = 0.5;
+                btnContourLock.Image = Resources.ColorUnlocked;
+                ct.isLocked = false;
             }
 
             else
@@ -48,13 +46,26 @@ namespace AgOpenGPS
                 EnableYouTurnButtons();
                 ABLine.isABValid = false;
                 curve.isCurveValid = false;
-
-                btnCycleLines.Image = Properties.Resources.ABLineCycle;
-                //btnCycleLinesBk.Visible = true;
+                ct.isLocked = false;
                 guidanceLookAheadTime = Properties.Settings.Default.setAS_guidanceLookAheadTime;
+                btnContourLock.Image = Resources.ColorUnlocked;
+                if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
             }
 
             UpdateRightAndBottomPanel();
+        }        
+        
+        private void btnContourLock_Click(object sender, EventArgs e)
+        {
+            if (ct.isContourBtnOn)
+            {
+                ct.SetLockToLine();
+            }
+        }
+
+        public void SetContourLockImage(bool isOn)
+        {
+            btnContourLock.Image = isOn ? Resources.ColorLocked : Resources.ColorUnlocked;
         }
         private void btnTrack_Click(object sender, EventArgs e)
         {
@@ -140,9 +151,9 @@ namespace AgOpenGPS
             //new direction so reset where to put turn diagnostic
             //yt.ResetCreatedYouTurn();
 
-            if (isAutoSteerBtnOn)
+            if (isBtnAutoSteerOn)
             {
-                isAutoSteerBtnOn = false;
+                isBtnAutoSteerOn = false;
                 btnAutoSteer.Image = Properties.Resources.AutoSteerOff;
                 //if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
                 if (sounds.isSteerSoundOn) sounds.sndAutoSteerOff.Play();
@@ -151,7 +162,7 @@ namespace AgOpenGPS
             {
                 if (ct.isContourBtnOn | trk.idx > -1)
                 {
-                    isAutoSteerBtnOn = true;
+                    isBtnAutoSteerOn = true;
                     btnAutoSteer.Image = Properties.Resources.AutoSteerOn;
                     if (sounds.isSteerSoundOn) sounds.sndAutoSteerOn.Play();
                     if (isAutoSnapToPivot) trk.SnapToPivot();
@@ -221,12 +232,6 @@ namespace AgOpenGPS
                     MessageBox.Show(gStr.h_btnLockToContour, gStr.gsHelp);
 
                 ResetHelpBtn();
-                return;
-            }
-
-            if (ct.isContourBtnOn)
-            {
-                ct.SetLockToLine();
                 return;
             }
 
@@ -716,7 +721,7 @@ namespace AgOpenGPS
             //btnContourPriority.Enabled = true;
 
             if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
-            if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+            if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
 
             DisableYouTurnButtons();
 
@@ -1193,6 +1198,17 @@ namespace AgOpenGPS
                 this.WindowState = FormWindowState.Normal;
             else this.WindowState = FormWindowState.Maximized;
         }
+        private void lblCurrentField_Click(object sender, EventArgs e)
+        {
+            isPauseFieldTextCounter = !isPauseFieldTextCounter;
+            if (isPauseFieldTextCounter)
+                lblCurrentField.Text = "\u23F8";
+            else
+            {
+                fourSecondCounter = 4;
+            }
+
+        }
 
         #endregion
 
@@ -1657,8 +1673,27 @@ namespace AgOpenGPS
                 return;
             }
 
-            tram.displayMode++;
-            if (tram.displayMode > 3) tram.displayMode = 0;
+            //if only lines cycle on off
+            if (tram.tramList.Count > 0 && tram.tramBndOuterArr.Count == 0)
+            {
+                if (tram.displayMode != 0) tram.displayMode = 0;
+                else tram.displayMode = 2;
+            }
+            else
+            {
+                tram.displayMode++;
+                if (tram.displayMode > 3) tram.displayMode = 0;
+
+                if (tram.tramList.Count > 0 && tram.tramBndOuterArr.Count > 0)
+                {
+                    tram.displayMode = 1;
+                }
+                else if (tram.tramList.Count == 0 && tram.tramBndOuterArr.Count > 0)
+                {
+                    tram.displayMode = 3;
+                }
+            }
+
 
             switch (tram.displayMode)
             {
@@ -2143,7 +2178,7 @@ namespace AgOpenGPS
         }
         private void timerSim_Tick(object sender, EventArgs e)
         {
-            if (recPath.isDrivingRecordedPath || isAutoSteerBtnOn && (guidanceLineDistanceOff != 32000))
+            if (recPath.isDrivingRecordedPath || isBtnAutoSteerOn && (guidanceLineDistanceOff != 32000))
                 sim.DoSimTick(guidanceLineSteerAngle * 0.01);
             else sim.DoSimTick(sim.steerAngleScrollBar);
         }
@@ -2152,7 +2187,7 @@ namespace AgOpenGPS
             sim.headingTrue += Math.PI;
             ABLine.isABValid = false;
             curve.isCurveValid = false;
-            if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+            if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
         }
         private void hsbarSteerAngle_Scroll(object sender, ScrollEventArgs e)
         {

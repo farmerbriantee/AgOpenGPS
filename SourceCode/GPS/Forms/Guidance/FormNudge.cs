@@ -86,7 +86,7 @@ namespace AgOpenGPS
             mf.ABLine.isABValid = false;
             mf.curve.isCurveValid = false;
 
-            if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+            if (mf.isBtnAutoSteerOn) mf.btnAutoSteer.PerformClick();
 
             if (mf.trk.gArr.Count > 0)
             {
@@ -132,7 +132,7 @@ namespace AgOpenGPS
             mf.ABLine.isABValid = false;
             mf.curve.isCurveValid = false;
 
-            if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+            if (mf.isBtnAutoSteerOn) mf.btnAutoSteer.PerformClick();
 
             if (mf.trk.gArr.Count > 0)
             {

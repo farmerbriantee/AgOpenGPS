@@ -86,7 +86,7 @@ namespace AgOpenGPS
                 {
                     mf.trk.idx = -1;
                     mf.FileSaveTracks();
-                    if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+                    if (mf.isBtnAutoSteerOn) mf.btnAutoSteer.PerformClick();
                     if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
                 }
                 else

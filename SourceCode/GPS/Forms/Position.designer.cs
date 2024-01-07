@@ -750,7 +750,7 @@ namespace AgOpenGPS
             else
             {
                 //auto track routine
-                if (trk.isAutoTrack && !isAutoSteerBtnOn && trk.autoTrack3SecTimer >= 3)
+                if (trk.isAutoTrack && !isBtnAutoSteerOn && trk.autoTrack3SecTimer >= 3)
                 {
                     trk.autoTrack3SecTimer = 0;
                     int lastIndex = trk.idx;
@@ -768,7 +768,7 @@ namespace AgOpenGPS
                     if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
                     {
                         if (!ABLine.isABValid || ((secondsSinceStart - ABLine.lastSecond) > 0.66
-                            && (!isAutoSteerBtnOn || mc.steerSwitchHigh)))
+                            && (!isBtnAutoSteerOn || mc.steerSwitchHigh)))
                         {
                             ABLine.BuildCurrentABLineList(steerAxlePos);
                         }
@@ -778,7 +778,7 @@ namespace AgOpenGPS
                     {
                         //build new current ref line if required
                         if (!curve.isCurveValid || ((secondsSinceStart - curve.lastSecond) > 0.66
-                            && (!isAutoSteerBtnOn || mc.steerSwitchHigh)))
+                            && (!isBtnAutoSteerOn || mc.steerSwitchHigh)))
                             curve.BuildCurveCurrentList(steerAxlePos);
 
                         curve.GetCurrentCurveLine(pivotAxlePos, steerAxlePos);
@@ -802,7 +802,7 @@ namespace AgOpenGPS
                 //save distance for display
                 lightbarDistance = guidanceLineDistanceOff;
 
-                if (!isAutoSteerBtnOn) //32020 means auto steer is off
+                if (!isBtnAutoSteerOn) //32020 means auto steer is off
                 {
                     guidanceLineDistanceOff = 32020;
                     p_254.pgn[p_254.status] = 0;
@@ -833,7 +833,7 @@ namespace AgOpenGPS
 
                 if (!timerSim.Enabled)
                 {
-                    if (isAutoSteerBtnOn && avgSpeed > vehicle.maxSteerSpeed)
+                    if (isBtnAutoSteerOn && avgSpeed > vehicle.maxSteerSpeed)
                     {
                         btnAutoSteer.PerformClick();
                         if (isMetric)
@@ -842,7 +842,7 @@ namespace AgOpenGPS
                             TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + (vehicle.maxSteerSpeed * 0.621371).ToString("N1") + " MPH");
                     }
 
-                    if (isAutoSteerBtnOn && avgSpeed < vehicle.minSteerSpeed)
+                    if (isBtnAutoSteerOn && avgSpeed < vehicle.minSteerSpeed)
                     {
                         minSteerSpeedTimer++;
                         if (minSteerSpeedTimer > 80)
@@ -991,7 +991,7 @@ namespace AgOpenGPS
                                 sounds.isBoundAlarming = false;
                             }
 
-                            if (isAutoSteerBtnOn && guidanceLineDistanceOff > 300 && !yt.isYouTurnTriggered)
+                            if (isBtnAutoSteerOn && guidanceLineDistanceOff > 300 && !yt.isYouTurnTriggered)
                             {
                                 yt.ResetCreatedYouTurn();
                             }
@@ -1012,7 +1012,7 @@ namespace AgOpenGPS
                     //else
                     //{
                     //    //mc.isOutOfBounds = true;
-                    //    if (isAutoSteerBtnOn)
+                    //    if (isBtnAutoSteerOn)
                     //    {
                     //        if (yt.isYouTurnBtnOn)
                     //        {
@@ -1091,7 +1091,7 @@ namespace AgOpenGPS
 
             if ((avgSpeed - previousSpeed  ) < -vehicle.panicStopSpeed && vehicle.panicStopSpeed != 0)
             {
-                if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+                if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
             }
 
             previousSpeed = avgSpeed;   
@@ -1407,8 +1407,8 @@ namespace AgOpenGPS
             }
             //else
             //{
-            //    if ((ABLine.isBtnABLineOn && !ct.isContourBtnOn && ABLine.isABLineSet && isAutoSteerBtnOn) ||
-            //                (!ct.isContourBtnOn && curve.isBtnTrackOn && curve.isCurveSet && isAutoSteerBtnOn))
+            //    if ((ABLine.isBtnABLineOn && !ct.isContourBtnOn && ABLine.isABLineSet && isBtnAutoSteerOn) ||
+            //                (!ct.isContourBtnOn && curve.isBtnTrackOn && curve.isCurveSet && isBtnAutoSteerOn))
             //    {
             //        //no contour recorded
             //        if (ct.isContourOn) { ct.StopContourLine(); }

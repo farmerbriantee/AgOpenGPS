@@ -491,7 +491,7 @@ namespace AgOpenGPS
             // Emulate the OGL Steer circle
             if (mf.mc.steerSwitchHigh)
                 btnSteerStatus.BackColor = Color.Red;
-            else if (mf.isAutoSteerBtnOn)
+            else if (mf.isBtnAutoSteerOn)
                 btnSteerStatus.BackColor = Color.Green;
             else
                 btnSteerStatus.BackColor = Color.Yellow;

@@ -54,7 +54,7 @@
             {
                 oldSteerSwitchRemote = steerSwitchHigh;
                 //steerSwith is active low
-                if (steerSwitchHigh == mf.isAutoSteerBtnOn)
+                if (steerSwitchHigh == mf.isBtnAutoSteerOn)
                     mf.btnAutoSteer.PerformClick();
             }
 
@@ -91,7 +91,7 @@
                 {
                     oldSteerSwitchHigh = steerSwitchHigh;
 
-                    if ((mf.isAutoSteerBtnOn && mf.ahrs.isAutoSteerAuto)
+                    if ((mf.isBtnAutoSteerOn && mf.ahrs.isAutoSteerAuto)
                         || !mf.ahrs.isAutoSteerAuto && !steerSwitchHigh)
                     {
                         if (isSteerWorkSwitchManualSections)

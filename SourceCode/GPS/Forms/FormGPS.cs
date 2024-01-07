@@ -61,7 +61,7 @@ namespace AgOpenGPS
         public int flagNumberPicked = 0;
 
         //bool for whether or not a job is active
-        public bool isJobStarted = false, isAutoSteerBtnOn, isLidarBtnOn = true;
+        public bool isJobStarted = false, isBtnAutoSteerOn, isLidarBtnOn = true;
 
         //if we are saving a file
         public bool isSavingFile = false, isLogNMEA = false, isLogElevation = false;
@@ -243,11 +243,6 @@ namespace AgOpenGPS
         /// The font class
         /// </summary>
         public CFont font;
-
-        private void toolStripDropDownButton4_Click(object sender, EventArgs e)
-        {
-
-        }
 
         /// <summary>
         /// The new steer algorithms
@@ -1065,7 +1060,7 @@ namespace AgOpenGPS
 
             //AutoSteer
             btnAutoSteer.Enabled = false;
-            isAutoSteerBtnOn = false;
+            isBtnAutoSteerOn = false;
             btnAutoSteer.Image = Properties.Resources.AutoSteerOff;
 
             //auto YouTurn shutdown

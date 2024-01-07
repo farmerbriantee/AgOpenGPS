@@ -459,7 +459,7 @@ namespace AgOpenGPS
 
                         //pivotErrorTotal = pivotDistanceError + pivotDerivative;
 
-                        if (mf.isAutoSteerBtnOn && mf.avgSpeed > 2.5 && Math.Abs(pivotDerivative) < 0.1)
+                        if (mf.isBtnAutoSteerOn && mf.avgSpeed > 2.5 && Math.Abs(pivotDerivative) < 0.1)
                         {
                             //if over the line heading wrong way, rapidly decrease integral
                             if ((inty < 0 && distanceFromCurrentLinePivot < 0) || (inty > 0 && distanceFromCurrentLinePivot > 0))
@@ -516,7 +516,7 @@ namespace AgOpenGPS
                         start = curList[i];
                     }
 
-                    if (mf.isAutoSteerBtnOn && !mf.isReverse)
+                    if (mf.isBtnAutoSteerOn && !mf.isReverse)
                     {
                         if (isHeadingSameWay)
                         {

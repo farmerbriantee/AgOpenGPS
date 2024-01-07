@@ -73,7 +73,7 @@ namespace AgOpenGPS
             //pivotErrorTotal = pivotDistanceError + pivotDerivative;
 
             if (mf.avgSpeed > 1
-                && mf.isAutoSteerBtnOn
+                && mf.isBtnAutoSteerOn
                 && Math.Abs(derivativeDistError) < 1
                 && Math.Abs(pivotDistanceError) < 0.25)
             {

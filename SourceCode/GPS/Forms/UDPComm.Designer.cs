@@ -606,7 +606,7 @@ namespace AgOpenGPS
                 sim.headingTrue += Math.PI;
                 ABLine.isABValid = false;
                 curve.isCurveValid = false;
-                if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+                if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
             }
 
             //speed up
