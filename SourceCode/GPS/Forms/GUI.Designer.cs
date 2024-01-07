@@ -64,6 +64,7 @@ namespace AgOpenGPS
         public DateTime sunset = DateTime.Now;
 
         public bool isFlashOnOff = false, isPanFormVisible = false;
+        public bool isPanelABHidden = false;
 
         //makes nav panel disappear after 6 seconds
         private int navPanelCounter = 0, trackMethodPanelCounter = 0;
@@ -262,9 +263,6 @@ namespace AgOpenGPS
                 //save nmea log file
                 if (isLogNMEA) FileSaveNMEA();
 
-                //update guidance buttons and numbers
-                UpdateRightPanel();
-
             }//end every 2 seconds
 
             //every second update all status ///////////////////////////   1 1 1 1 1 1 ////////////////////////////
@@ -349,7 +347,7 @@ namespace AgOpenGPS
                 }
 
                 //Make sure it is off when it should
-                if ((!ct.isContourBtnOn && !curve.isBtnTrackOn && isAutoSteerBtnOn)
+                if ((!ct.isContourBtnOn && trk.idx == -1 && isAutoSteerBtnOn)
                     ) btnAutoSteer.PerformClick();
 
                 //the main formgps window
@@ -382,82 +380,6 @@ namespace AgOpenGPS
                 //lblAV.Text = ABLine.angVel.ToString("N3");
             }
         }//wait till timer fires again.         
-
-        private void UpdateRightPanel()
-        {
-            if (isJobStarted)
-            {
-                int tracksTotal = 0, tracksVisible = 0;
-
-                for (int i = 0; i < trk.gArr.Count; i++)
-                {
-                    tracksTotal++;
-                    if (trk.gArr[i].isVisible)
-                    {
-                        tracksVisible++;
-                    }
-                }
-
-                if (curve.isBtnTrackOn && trk.gArr.Count > 0)
-                {
-                    if (trk.idx > -1)
-                    {                        
-                        guidanceLineText = trk.gArr[trk.idx].name;
-
-                        if (tracksVisible > 1)
-                        {
-                            btnCycleLines.Visible = true;
-                            btnCycleLinesBk.Visible = true;
-                        }
-                        else
-                        {
-                            btnCycleLines.Visible = false;
-                            btnCycleLinesBk.Visible = false;
-                        }
-                        cboxpRowWidth.Visible = true;
-                        btnYouSkipEnable.Visible = true;
-                    }
-                    else  // idx = -1
-                    {
-                        guidanceLineText = gStr.gsNoGuidanceLines;
-                        cboxpRowWidth.Visible = false;
-                        btnYouSkipEnable.Visible = false;
-                        btnCycleLines.Visible = false;
-                        btnCycleLinesBk.Visible = false;
-                    }
-                }
-                else //job but Tracks off.
-                {
-                    guidanceLineText = gStr.gsNoGuidanceLines;
-                    cboxpRowWidth.Visible = false;
-                    btnYouSkipEnable.Visible = false;
-                    btnCycleLines.Visible = false;
-                    btnCycleLinesBk.Visible = false;
-                }
-            }
-            else //idle - no job
-            {
-                panelRight.Visible = false;
-            }
-
-            //int viz = 0;
-            //for (int i = 0; i < panelRight.Controls.Count; i++)
-            //{
-            //    if (panelRight.Controls[i].Visible) viz++;
-            //}
-
-            //int sizer = (Height - 130) / (viz - 2);
-            //if (sizer > 125) { sizer = 125; }
-
-            //for (int i = 0; i < panelRight.Controls.Count; i++)
-            //{
-            //    if (panelRight.Controls[i].Visible)
-            //    {
-            //        if (panelRight.Controls[i].Name.Substring(0, 3) == "lbl") continue;
-            //        panelRight.Controls[i].Height = sizer;
-            //    }
-            //}
-        }
 
         public void LoadSettings()
         {            //metric settings
@@ -769,10 +691,175 @@ namespace AgOpenGPS
             yt = new CYouTurn(this);
 
             FixPanelsAndMenus();
+            UpdateRightAndBottomPanel();
+
             camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
             SetZoom();
 
             lblGuidanceLine.BringToFront();
+        }
+
+        public void UpdateRightAndBottomPanel()
+        {
+            if (isJobStarted)
+            {
+                int tracksTotal = 0, tracksVisible = 0;
+                bool isHdl = false;
+
+                bool isBnd = bnd.bndList.Count > 0;
+                if (!isBnd) isHdl = isBnd;
+                else isHdl = bnd.bndList[0].hdLine.Count > 0;
+
+                bool istram = (tram.tramList.Count + tram.tramBndOuterArr.Count) > 0;
+
+                for (int i = 0; i < trk.gArr.Count; i++)
+                {
+                    tracksTotal++;
+                    if (trk.gArr[i].isVisible)
+                    {
+                        tracksVisible++;
+                    }
+                }
+
+                btnAutoSteer.Visible = (trk.idx > -1 || ct.isContourBtnOn);
+                btnAutoYouTurn.Visible = trk.idx > -1 && !ct.isContourBtnOn && isBnd;
+                btnCycleLines.Visible = tracksVisible > 1 && trk.idx > -1 && !ct.isContourBtnOn;
+                btnCycleLinesBk.Visible = tracksVisible > 1 && trk.idx > -1 && !ct.isContourBtnOn;
+
+                cboxpRowWidth.Visible = trk.idx > -1;
+                btnYouSkipEnable.Visible = trk.idx > -1;
+
+                btnTramDisplayMode.Visible = istram;
+                btnHeadlandOnOff.Visible = isHdl;
+                btnHydLift.Visible = isHdl;
+
+                int viz = 0;
+                for (int i = 0; i < panelRight.Controls.Count; i++)
+                {
+                    if (panelRight.Controls[i].Visible) viz++;
+                }
+
+                if (viz == 0) return;
+
+                int sizer = (Height - 130) / (viz);
+                if (sizer > 125) { sizer = 125; }
+
+                for (int i = 0; i < panelRight.Controls.Count; i++)
+                {
+                    if (panelRight.Controls[i].Visible)
+                    {
+                        panelRight.Controls[i].Height = sizer;
+                    }
+                    //}
+                }
+
+                if (panelAB.Visible)
+                {
+                    viz = 0;
+                    for (int i = 0; i < panelAB.Controls.Count; i++)
+                    {
+                        if (panelAB.Controls[i].Visible) viz++;
+                    }
+
+                    if (viz == 0) return;
+
+                    sizer = (Width - 230) / (viz);
+                    if (sizer > 160) { sizer = 160; }
+
+                    for (int i = 0; i < panelAB.Controls.Count; i++)
+                    {
+                        if ((panelAB.Controls[i].Name.Substring(0, 4) == "cbox")) continue;
+                        if (panelAB.Controls[i].Visible) panelAB.Controls[i].Width = sizer;
+                    }
+                }
+            }
+            else //idle - no job
+            {
+            }
+        }
+
+        private void FixPanelsAndMenus()
+        {
+            //panelAB.Size = new System.Drawing.Size(760 + ((Width - 900) / 2), 67);
+            //panelAB.Location = new Point((Width - 900) / 3 + 67, this.Height - 70);
+
+            if (!isJobStarted)
+            {
+                panelAB.Visible = false;
+                panelRight.Visible = false;
+
+                oglMain.Left = 80;
+                oglMain.Width = this.Width - statusStripLeft.Width - 22; //22
+                oglMain.Height = this.Height - 72;
+            }
+            else
+            {
+                if (isPanelABHidden)
+                {
+                    panelAB.Visible = false;
+                    panelLeft.Visible = false;
+                    oglMain.Left = 20;
+                    oglMain.Width = this.Width - 115; //22
+                    oglMain.Height = this.Height - 65;
+                }
+                else
+                {
+                    panelAB.Visible = true;
+                    panelRight.Visible = true;
+                    panelLeft.Visible = true;
+                    oglMain.Left = 80;
+                    oglMain.Width = this.Width - statusStripLeft.Width - 100; //22
+                    oglMain.Height = this.Height - 120;
+                }
+
+                int viz = 0;
+                for (int i = 0; i < panelRight.Controls.Count; i++)
+                {
+                    if (panelRight.Controls[i].Visible) viz++;
+                }
+
+                if (viz == 0) return;
+
+                int sizer = (Height - 130) / (viz);
+                if (sizer > 125) { sizer = 125; }
+
+                for (int i = 0; i < panelRight.Controls.Count; i++)
+                {
+                    if (panelRight.Controls[i].Visible)
+                    {
+                        panelRight.Controls[i].Height = sizer;
+                    }
+                }
+
+                if (panelAB.Visible)
+                {
+                    viz = 0;
+                    for (int i = 0; i < panelAB.Controls.Count; i++)
+                    {
+                        if (panelAB.Controls[i].Visible) viz++;
+                    }
+
+                    if (viz == 0) return;
+
+                    sizer = (Width - 230) / (viz);
+                    if (sizer > 160) { sizer = 160; }
+
+                    for (int i = 0; i < panelAB.Controls.Count; i++)
+                    {
+                        if ((panelAB.Controls[i].Name.Substring(0, 4) == "cbox")) continue;
+                        if (panelAB.Controls[i].Visible) panelAB.Controls[i].Width = sizer;
+                    }
+                }
+            }
+
+            if (tool.isSectionsNotZones)
+            {
+                LineUpIndividualSectionBtns();
+            }
+            else
+            {
+                LineUpAllZoneButtons();
+            }
         }
 
         private void ZoomByMouseWheel(object sender, MouseEventArgs e)
@@ -852,71 +939,6 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.setDisplay_isDayMode = isDay;
             Properties.Settings.Default.Save();
-        }
-
-        public bool isPanelABHidden = false;
-        private void FixPanelsAndMenus()
-        {
-            //panelAB.Size = new System.Drawing.Size(760 + ((Width - 900) / 2), 67);
-            //panelAB.Location = new Point((Width - 900) / 3 + 67, this.Height - 70);
-
-            if (!isJobStarted)
-            {
-                panelAB.Visible = false;
-                panelRight.Visible = false;
-
-                oglMain.Left = 80;
-                oglMain.Width = this.Width - statusStripLeft.Width - 22; //22
-                oglMain.Height = this.Height - 72;
-            }
-            else
-            {
-                if (isPanelABHidden)
-                {
-                    panelAB.Visible = false;
-                    panelLeft.Visible = false;
-                    oglMain.Left = 20;
-                    oglMain.Width = this.Width - 115; //22
-                    oglMain.Height = this.Height - 65;
-                }
-                else
-                {
-                    panelAB.Visible = true;
-                    panelRight.Visible = true;
-                    panelLeft.Visible = true;
-                    oglMain.Left = 80;
-                    oglMain.Width = this.Width - statusStripLeft.Width - 100; //22
-                    oglMain.Height = this.Height - 120;
-                }
-
-                int viz = 0;
-                for (int i=0; i < panelRight.Controls.Count; i++)
-                {
-                    if (panelRight.Controls[i].Visible) viz++;
-                }
-
-                int sizer = (Height - 130) / (viz-2);
-                if (sizer > 125) { sizer = 125; }
-
-                for (int i = 0; i < panelRight.Controls.Count; i++)
-                {
-                    if (panelRight.Controls[i].Visible)
-                    {
-                        if (panelRight.Controls[i].Name.Substring(0,3) == "lbl" ) continue;
-                        panelRight.Controls[i].Height = sizer;
-                    }
-                }
-
-            }
-
-            if (tool.isSectionsNotZones)
-            {
-                LineUpIndividualSectionBtns();
-            }
-            else
-            {
-                LineUpAllZoneButtons();
-            }
         }
 
         public void SaveFormGPSWindowSettings()
@@ -1005,7 +1027,7 @@ namespace AgOpenGPS
                 //0 at bottom for opengl, 0 at top for windows, so invert Y value
                 Point point = oglMain.PointToClient(Cursor.Position);
 
-                if (point.Y < 90 && point.Y > 30 && (curve.isBtnTrackOn))
+                if (point.Y < 90 && point.Y > 30 && (trk.idx > -1))
                 {
 
                     int middle = oglMain.Width / 2 + oglMain.Width / 5;
@@ -1083,7 +1105,7 @@ namespace AgOpenGPS
                     }
                 }
 
-                if (point.Y < 150 && point.Y > 90 && (curve.isBtnTrackOn))
+                if (point.Y < 150 && point.Y > 90 && (trk.idx > -1))
                 {
                     int middle = oglMain.Width / 2 - oglMain.Width / 4;
                     if (point.X > middle - 140 && point.X < middle && isLateralOn)

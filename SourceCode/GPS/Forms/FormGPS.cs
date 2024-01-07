@@ -244,6 +244,11 @@ namespace AgOpenGPS
         /// </summary>
         public CFont font;
 
+        private void toolStripDropDownButton4_Click(object sender, EventArgs e)
+        {
+
+        }
+
         /// <summary>
         /// The new steer algorithms
         /// </summary>
@@ -912,8 +917,6 @@ namespace AgOpenGPS
 
             //turn off headland
             bnd.isHeadlandOn = false;
-            btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
-            btnHeadlandOnOff.Visible = false;
 
             btnFieldStats.Visible = false;
 
@@ -1033,9 +1036,6 @@ namespace AgOpenGPS
             tram.tramList?.Clear();
 
             //curve line
-            btnTrack.Enabled = false;
-            btnTrack.Image = Properties.Resources.TrackOff;
-            curve.isBtnTrackOn = false;
             curve.ResetCurveLine();
             
             //tracks
@@ -1085,7 +1085,6 @@ namespace AgOpenGPS
             fd.UpdateFieldBoundaryGUIAreas();
 
             displayFieldName = gStr.gsNone;
-            FixTramModeButton();
 
             recPath.recList?.Clear();
             recPath.shortestDubinsList?.Clear();
@@ -1096,6 +1095,8 @@ namespace AgOpenGPS
             FixPanelsAndMenus();
             SetZoom();
             worldGrid.isGeoMap = false;
+
+            UpdateRightAndBottomPanel();
 
             using (Bitmap bitmap = Properties.Resources.z_bingMap)
             {
@@ -1112,20 +1113,16 @@ namespace AgOpenGPS
         public void FieldMenuButtonEnableDisable(bool isOn)
         {
             SmoothABtoolStripMenu.Enabled = isOn;
+            deleteContourPathsToolStripMenuItem.Enabled = isOn;
+            deleteAppliedAreaToolStripMenuItem.Enabled = isOn;
+            offsetFixToolStrip.Enabled = isOn;
+
             boundariesToolStripMenuItem.Enabled = isOn;
             headlandToolStripMenuItem.Enabled = isOn;
-            deleteContourPathsToolStripMenuItem.Enabled = isOn;
+            headlandBuildToolStripMenuItem.Enabled = isOn;
+            flagByLatLonToolStripMenuItem.Enabled = isOn;
             tramLinesMenuField.Enabled = isOn;
             recordedPathStripMenu.Enabled = isOn;
-
-            btnABDraw.Enabled = isOn;
-            btnFlag.Visible = isOn;
-
-            panelRight.Visible = isOn;
-            panelAB.Visible = isOn;
-
-            cboxpRowWidth.Visible = false;
-            btnYouSkipEnable.Visible = false;
         }
 
         //take the distance from object and convert to camera data
@@ -1211,7 +1208,7 @@ namespace AgOpenGPS
  * and starts all over from the top.
  */
 /*
-private void UpdateRightPanel()
+private void UpdateRightAndBottomPanel()
 {
     if (isJobStarted)
     {

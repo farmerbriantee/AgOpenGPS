@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -34,9 +35,9 @@ namespace AgOpenGPS
 
             if (ct.isContourBtnOn)
             {
-                btnCycleLines.Image = Properties.Resources.ColorLocked;
-                btnCycleLinesBk.Visible = false;
-                btnCycleLines.Enabled = true;
+                //btnCycleLines.Image = Properties.Resources.ColorLocked;
+                //btnCycleLinesBk.Visible = false;
+                //btnCycleLines.Enabled = true;
                 //turn off youturn...
                 DisableYouTurnButtons();
                 guidanceLookAheadTime = 0.5;
@@ -44,17 +45,16 @@ namespace AgOpenGPS
 
             else
             {
-                if (curve.isBtnTrackOn)
-                {
-                    EnableYouTurnButtons();
-                    ABLine.isABValid = false;
-                    curve.isCurveValid = false;
-                }
+                EnableYouTurnButtons();
+                ABLine.isABValid = false;
+                curve.isCurveValid = false;
 
                 btnCycleLines.Image = Properties.Resources.ABLineCycle;
-                btnCycleLinesBk.Visible = true;
+                //btnCycleLinesBk.Visible = true;
                 guidanceLookAheadTime = Properties.Settings.Default.setAS_guidanceLookAheadTime;
             }
+
+            UpdateRightAndBottomPanel();
         }
         private void btnTrack_Click(object sender, EventArgs e)
         {
@@ -68,12 +68,8 @@ namespace AgOpenGPS
             //if contour is on, turn it off
             if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
 
-            if (!curve.isBtnTrackOn && trk.gArr.Count > 0)
+            if (trk.gArr.Count > 0)
             {
-                //display the trk
-                curve.isBtnTrackOn = true;
-                btnTrack.Image = Properties.Resources.TrackOn;
-
                 if (trk.idx == -1)
                 {
                     trk.idx = 0;
@@ -82,7 +78,7 @@ namespace AgOpenGPS
 
                 //run the routine
                 twoSecondCounter = 100;
-                return;
+                //return;
             }
 
             if (flp1.Visible)
@@ -153,7 +149,7 @@ namespace AgOpenGPS
             }
             else
             {
-                if (ct.isContourBtnOn | curve.isBtnTrackOn)
+                if (ct.isContourBtnOn | trk.idx > -1)
                 {
                     isAutoSteerBtnOn = true;
                     btnAutoSteer.Image = Properties.Resources.AutoSteerOn;
@@ -189,11 +185,7 @@ namespace AgOpenGPS
                 //new direction so reset where to put turn diagnostic
                 yt.ResetCreatedYouTurn();
 
-                if (curve.isBtnTrackOn)
-                {
-                    //if (!isAutoSteerBtnOn) btnAutoSteer.PerformClick();
-                }
-                else return;
+                if (trk.idx == -1) return;
 
                 yt.isYouTurnBtnOn = true;
                 yt.isTurnCreationTooClose = false;
@@ -310,7 +302,7 @@ namespace AgOpenGPS
                 return;
             }
 
-            if (trk.idx > -1 && curve.isBtnTrackOn)
+            if (trk.idx > -1)
             {
                 Form form = new FormRefNudge(this);
                 form.ShowDialog(this);
@@ -327,8 +319,6 @@ namespace AgOpenGPS
         }
         private void btnTracksOff_Click(object sender, EventArgs e)
         {
-            btnTrack.Image = Resources.TrackOff;
-            curve.isBtnTrackOn = false;
             trk.idx = -1;
 
             if (flp1.Visible)
@@ -353,7 +343,7 @@ namespace AgOpenGPS
                 return;
             }
 
-            if (trk.idx > -1 && curve.isBtnTrackOn)
+            if (trk.idx > -1)
             {
                 Form form = new FormNudge(this);
                 form.Show(this);
@@ -456,7 +446,13 @@ namespace AgOpenGPS
                 ResetHelpBtn();
                 return;
             }
+
+            headlandToolStripMenuItem.Enabled = (bnd.bndList.Count > 0);
+            headlandBuildToolStripMenuItem.Enabled = (bnd.bndList.Count > 0);
+
+            tramLinesMenuField.Enabled = (trk.gArr.Count > 0 && trk.idx > -1);
         }
+
         private void btnJobMenu_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -564,43 +560,16 @@ namespace AgOpenGPS
                 }
             }
 
-            if (isJobStarted)
-            {
-                panelRight.Enabled = true;
-                toolStripBtnFieldTools.Enabled = true;
-                FieldMenuButtonEnableDisable(true);
-            }
-            else
-            {
-                panelRight.Enabled = false;
-                toolStripBtnFieldTools.Enabled = false;
-                FieldMenuButtonEnableDisable(false);
-            }
 
-            if (isJobStarted) toolStripBtnFieldTools.Enabled = true;
+            FieldMenuButtonEnableDisable(isJobStarted);
 
-            if (bnd.bndList.Count > 0 && bnd.bndList[0].hdLine.Count > 0)
-            {
-                bnd.isHeadlandOn = true;
-                btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
-                btnHeadlandOnOff.Visible = true;
-                btnHydLift.Visible = true;
-                btnHydLift.Image = Properties.Resources.HydraulicLiftOff;
+            toolStripBtnFieldTools.Enabled = isJobStarted;
 
-            }
-            else
-            {
-                bnd.isHeadlandOn = false;
-                btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
-                btnHeadlandOnOff.Visible = false;
-                btnHydLift.Visible = false;
-            }
+            bnd.isHeadlandOn = (bnd.bndList.Count > 0 && bnd.bndList[0].hdLine.Count > 0);            
 
-            if (isJobStarted && trk.gArr.Count > 0)
-            {
-                trk.idx = 0;
-                if (!curve.isBtnTrackOn) btnTrack.PerformClick();
-            }
+            if (isJobStarted && trk.gArr.Count > 0)  trk.idx = 0;
+
+            UpdateRightAndBottomPanel();
 
         }
         public void FileSaveEverythingBeforeClosingField()
@@ -675,24 +644,10 @@ namespace AgOpenGPS
                 form.ShowDialog(this);
             }
 
-            if (bnd.bndList.Count > 0 && bnd.bndList[0].hdLine.Count > 0)
-            {
-                bnd.isHeadlandOn = true;
-                btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
-                btnHeadlandOnOff.Visible = true;
-                btnHydLift.Visible = true;
-                btnHydLift.Image = Properties.Resources.HydraulicLiftOff;
-            }
-            else
-            {
-                bnd.isHeadlandOn = false;
-                btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
-                btnHeadlandOnOff.Visible = false;
-                btnHydLift.Visible = false;
-                btnHydLift.Image = Properties.Resources.HydraulicLiftOff;
-                btnHydLift.Visible = false;
-            }
+            bnd.isHeadlandOn = (bnd.bndList.Count > 0 && bnd.bndList[0].hdLine.Count > 0);
+            
             FixPanelsAndMenus();
+            UpdateRightAndBottomPanel();
             SetZoom();
         }
         private void headlandToolStripMenuItem_Click(object sender, EventArgs e)
@@ -718,26 +673,13 @@ namespace AgOpenGPS
                 form.ShowDialog(this);
             }
 
-            if (bnd.bndList.Count > 0 && bnd.bndList[0].hdLine.Count > 0)
-            {
-                bnd.isHeadlandOn = true;
-                btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
-                btnHeadlandOnOff.Visible = true;
-                btnHydLift.Visible = true;
-                btnHydLift.Image = Properties.Resources.HydraulicLiftOff;
-            }
-            else
-            {
-                bnd.isHeadlandOn = false;
-                btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
-                btnHeadlandOnOff.Visible = false;
-                btnHydLift.Visible = false;
-                btnHydLift.Image = Properties.Resources.HydraulicLiftOff;
-                btnHydLift.Visible = false;
-            }
+            bnd.isHeadlandOn = (bnd.bndList.Count > 0 && bnd.bndList[0].hdLine.Count > 0);
+
             FixPanelsAndMenus();
+            UpdateRightAndBottomPanel();
             SetZoom();
         }
+
         private void boundariesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -759,7 +701,8 @@ namespace AgOpenGPS
                     form3.Show(this);
                 }
             }
-            else { TimedMessageBox(3000, gStr.gsFieldNotOpen, gStr.gsStartNewField); }
+
+            UpdateRightAndBottomPanel();
         }
 
         #endregion
@@ -777,15 +720,9 @@ namespace AgOpenGPS
 
             DisableYouTurnButtons();
 
-            if (trk.idx > -1 && trk.gArr.Count > 0)
+            if (trk.idx > -1)
             {
-                if (trk.gArr[trk.idx].mode == (int)TrackMode.Curve)
-                {
-                    //make sure the other stuff is off
-                    //btnContourPriority.Enabled = false;
-                    curve.isBtnTrackOn = false;
-                    btnTrack.Image = Properties.Resources.TrackOff;
-                }
+                trk.idx = -1;
             }
 
             #endregion
@@ -1818,29 +1755,25 @@ namespace AgOpenGPS
                 return;
             }
 
-            if (bnd.bndList.Count > 0 && bnd.bndList[0].hdLine.Count > 0)
+            bnd.isHeadlandOn = !bnd.isHeadlandOn;
+            if (bnd.isHeadlandOn)
             {
-                bnd.isHeadlandOn = !bnd.isHeadlandOn;
-                if (bnd.isHeadlandOn)
-                {
-                    btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
-                    btnHydLift.Visible = true;
-                }
-                else
-                {
-                    btnHydLift.Visible = false;
-                    btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
-                }
+                btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
             }
-            else bnd.isHeadlandOn = false;
+            else
+            {
+                btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
+            }
+
+            if (vehicle.isHydLiftOn && !bnd.isHeadlandOn) vehicle.isHydLiftOn = false;
 
             if (!bnd.isHeadlandOn)
             {
                 p_239.pgn[p_239.hydLift] = 0;
-                vehicle.isHydLiftOn = false;
                 btnHydLift.Image = Properties.Resources.HydraulicLiftOff;
-                btnHydLift.Visible = false;
             }
+
+            UpdateRightAndBottomPanel();
 
         }
         private void btnHydLift_Click(object sender, EventArgs e)
@@ -1870,7 +1803,6 @@ namespace AgOpenGPS
                 p_239.pgn[p_239.hydLift] = 0;
                 vehicle.isHydLiftOn = false;
                 btnHydLift.Image = Properties.Resources.HydraulicLiftOff;
-                btnHydLift.Visible = false;
             }
         }
 
@@ -1880,7 +1812,7 @@ namespace AgOpenGPS
 
         private void SmoothABtoolStripMenu_Click(object sender, EventArgs e)
         {
-            if (isJobStarted && curve.isBtnTrackOn)
+            if (isJobStarted && trk.idx > -1)
             {
                 using (var form = new FormSmoothAB(this))
                 {
@@ -2257,18 +2189,21 @@ namespace AgOpenGPS
 
         public void FixTramModeButton()
         {
-            if (tram.tramList.Count > 0 || tram.tramBndOuterArr.Count > 0)
+            if (tram.tramList.Count > 0 && tram.tramBndOuterArr.Count > 0)
             {
-                btnTramDisplayMode.Visible = true;
                 tram.displayMode = 1;
             }
-            else btnTramDisplayMode.Visible = false;
+            else if (tram.tramList.Count == 0 && tram.tramBndOuterArr.Count > 0)
+            {
+                tram.displayMode = 3;
+            }
+            else if (tram.tramList.Count > 0 && tram.tramBndOuterArr.Count == 0)
+            {
+                tram.displayMode = 2;
+            }
 
             switch (tram.displayMode)
             {
-                case 0:
-                    btnTramDisplayMode.Image = Properties.Resources.TramOff;
-                    break;
                 case 1:
                     btnTramDisplayMode.Image = Properties.Resources.TramAll;
                     break;

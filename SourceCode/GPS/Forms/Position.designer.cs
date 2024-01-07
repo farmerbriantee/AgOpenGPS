@@ -763,7 +763,7 @@ namespace AgOpenGPS
                 }
 
                 //like normal
-                if (trk.gArr.Count > 0 && trk.idx > -1 && curve.isBtnTrackOn)
+                if (trk.gArr.Count > 0 && trk.idx > -1)
                 {
                     if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
                     {

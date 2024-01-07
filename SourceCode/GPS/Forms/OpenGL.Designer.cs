@@ -311,7 +311,7 @@ namespace AgOpenGPS
                     }
                     else// draw the current and reference AB Lines or CurveAB Ref and line
                     {
-                        if (trk.idx > -1 && curve.isBtnTrackOn)
+                        if (trk.idx > -1)
                         {
                             if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
                                 ABLine.DrawABLines();
@@ -467,7 +467,7 @@ namespace AgOpenGPS
 
                     if (pn.age > pn.ageAlarm) DrawAge();
 
-                    if (curve.isBtnTrackOn) DrawGuidanceLineText();
+                    if (trk.idx >-1) DrawGuidanceLineText();
 
                     //just in case
                     GL.Disable(EnableCap.LineStipple);
@@ -616,7 +616,7 @@ namespace AgOpenGPS
 
             //draw 245 green for the tram tracks
 
-            if (tram.displayMode != 0 && (curve.isBtnTrackOn))
+            if (tram.displayMode != 0 && (trk.idx > -1))
             {
                 GL.Color3((byte)0, (byte)245, (byte)0);
                 GL.LineWidth(8);
@@ -1855,7 +1855,7 @@ namespace AgOpenGPS
 
             GL.Disable(EnableCap.DepthTest);
 
-            if (ct.isContourBtnOn || curve.isBtnTrackOn || recPath.isDrivingRecordedPath)
+            if (ct.isContourBtnOn || trk.idx > -1 || recPath.isDrivingRecordedPath)
             {
 
                 //if (guidanceLineDistanceOff != 32000 && guidanceLineDistanceOff != 32020)

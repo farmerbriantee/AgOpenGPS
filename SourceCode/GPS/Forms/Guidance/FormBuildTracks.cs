@@ -109,6 +109,8 @@ namespace AgOpenGPS
             Properties.Settings.Default.setWindow_buildTracksLocation = Location;
 
             mf.twoSecondCounter = 100;
+
+            mf.UpdateRightAndBottomPanel();
         }
         
         private void btnCancelMain_Click(object sender, EventArgs e)
@@ -178,19 +180,19 @@ namespace AgOpenGPS
                     mf.trk.idx = trac;
                     mf.yt.ResetYouTurn();
 
-                    if (!mf.curve.isBtnTrackOn)
-                    {
-                        mf.curve.isBtnTrackOn = true;
-                        mf.btnTrack.Image = Properties.Resources.TrackOn;
-                    }
+                    //if (!mf.curve.isBtnTrackOn)
+                    //{
+                    //    mf.curve.isBtnTrackOn = true;
+                    //    mf.btnTrack.Image = Properties.Resources.TrackOn;
+                    //}
                     Close();
                 }
                 else //nothing visible
                 {
                     idx = -1;
                     mf.DisableYouTurnButtons();
-                    mf.curve.isBtnTrackOn = false;
-                    mf.btnTrack.Image = Properties.Resources.TrackOff;
+                    //mf.curve.isBtnTrackOn = false;
+                    //mf.btnTrack.Image = Properties.Resources.TrackOff;
                     if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
                     Close();
                 }
@@ -199,8 +201,8 @@ namespace AgOpenGPS
             {
                 idx = -1;
                 mf.DisableYouTurnButtons();
-                mf.curve.isBtnTrackOn = false;
-                mf.btnTrack.Image = Properties.Resources.TrackOff;
+                //mf.curve.isBtnTrackOn = false;
+                //mf.btnTrack.Image = Properties.Resources.TrackOff;
                 if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
 
                 //mf.curve.numCurveLineSelected = 0;

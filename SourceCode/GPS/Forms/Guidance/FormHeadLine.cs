@@ -921,6 +921,8 @@ namespace AgOpenGPS
         {
             mf.bnd.bndList[0].hdLine?.Clear();
             mf.FileSaveHeadland();
+            mf.bnd.isHeadlandOn = false;
+            mf.vehicle.isHydLiftOn = false;
             Close();
         }
 
