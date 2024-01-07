@@ -190,7 +190,7 @@
             this.btnFlipOffset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFlipOffset.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFlipOffset.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnFlipOffset.Location = new System.Drawing.Point(868, 30);
+            this.btnFlipOffset.Location = new System.Drawing.Point(876, 30);
             this.btnFlipOffset.Name = "btnFlipOffset";
             this.btnFlipOffset.Size = new System.Drawing.Size(92, 43);
             this.btnFlipOffset.TabIndex = 14;
@@ -227,7 +227,7 @@
             // 
             this.label9.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(853, 73);
+            this.label9.Location = new System.Drawing.Point(861, 73);
             this.label9.Margin = new System.Windows.Forms.Padding(0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(123, 20);
