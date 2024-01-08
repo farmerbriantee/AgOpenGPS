@@ -361,8 +361,8 @@ namespace AgOpenGPS
             oglMain.Left = 75;
             oglMain.Width = this.Width - statusStripLeft.Width - 84;
 
-            panelSim.Left = Width/2 -275;
-            panelSim.Width = 600;
+            panelSim.Left = Width/2 -330;
+            panelSim.Width = 700;
 
             timer2.Enabled = true;
 

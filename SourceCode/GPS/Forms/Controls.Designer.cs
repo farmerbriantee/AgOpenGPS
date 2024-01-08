@@ -1687,14 +1687,14 @@ namespace AgOpenGPS
                 tram.displayMode++;
                 if (tram.displayMode > 3) tram.displayMode = 0;
 
-                if (tram.tramList.Count > 0 && tram.tramBndOuterArr.Count > 0)
-                {
-                    tram.displayMode = 1;
-                }
-                else if (tram.tramList.Count == 0 && tram.tramBndOuterArr.Count > 0)
-                {
-                    tram.displayMode = 3;
-                }
+                //if (tram.tramList.Count > 0 && tram.tramBndOuterArr.Count > 0)
+                //{
+                //    tram.displayMode = 1;
+                //}
+                //else if (tram.tramList.Count == 0 && tram.tramBndOuterArr.Count > 0)
+                //{
+                //    tram.displayMode = 3;
+                //}
             }
 
 
