@@ -1066,7 +1066,6 @@ namespace AgOpenGPS
             //auto YouTurn shutdown
             yt.isYouTurnBtnOn = false;
             btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
-            btnAutoYouTurn.Enabled = false;
 
             btnABDraw.Visible = false;
 

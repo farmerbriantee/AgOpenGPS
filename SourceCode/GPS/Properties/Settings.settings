@@ -686,5 +686,8 @@
     <Setting Name="setAS_snapDistanceRef" Type="System.Double" Scope="User">
       <Value Profile="(Default)">5</Value>
     </Setting>
+    <Setting Name="setDisplay_buttonOrder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0,1,2,3,4,5,6,7</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

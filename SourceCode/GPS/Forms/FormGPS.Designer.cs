@@ -68,6 +68,7 @@
             this.hotKeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonOrderFileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.tmrWatchdog = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStripFlag = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemFlagRed = new System.Windows.Forms.ToolStripMenuItem();
@@ -258,6 +259,7 @@
             this.toolStripSeparator11,
             this.setWorkingDirectoryToolStripMenuItem,
             this.toolStripSeparator10,
+            this.buttonOrderFileMenu,
             this.colorsToolStripMenuItem1,
             this.sectionColorToolStripMenuItem,
             this.toolStripSeparator3,
@@ -521,6 +523,13 @@
             this.helpMenuItem.Size = new System.Drawing.Size(382, 50);
             this.helpMenuItem.Text = "Help";
             this.helpMenuItem.Click += new System.EventHandler(this.helpMenuItem_Click);
+            // 
+            // buttonOrderFileMenu
+            // 
+            this.buttonOrderFileMenu.Name = "buttonOrderFileMenu";
+            this.buttonOrderFileMenu.Size = new System.Drawing.Size(382, 50);
+            this.buttonOrderFileMenu.Text = "Button Order";
+            this.buttonOrderFileMenu.Click += new System.EventHandler(this.buttonOrderFileMenu_Click);
             // 
             // tmrWatchdog
             // 
@@ -1337,7 +1346,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 58F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
             this.panelSim.Controls.Add(this.btnSpeedDn, 5, 0);
             this.panelSim.Controls.Add(this.btnSimSpeedUp, 7, 0);
             this.panelSim.Controls.Add(this.btnResetSim, 0, 0);
@@ -1362,7 +1371,7 @@
             this.btnSpeedDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSpeedDn.Location = new System.Drawing.Point(404, 4);
             this.btnSpeedDn.Name = "btnSpeedDn";
-            this.btnSpeedDn.Size = new System.Drawing.Size(119, 34);
+            this.btnSpeedDn.Size = new System.Drawing.Size(115, 34);
             this.btnSpeedDn.TabIndex = 533;
             this.btnSpeedDn.UseVisualStyleBackColor = false;
             this.btnSpeedDn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSpeedDn_MouseDown);
@@ -1375,9 +1384,9 @@
             this.btnSimSpeedUp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSimSpeedUp.FlatAppearance.BorderSize = 0;
             this.btnSimSpeedUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSimSpeedUp.Location = new System.Drawing.Point(589, 4);
+            this.btnSimSpeedUp.Location = new System.Drawing.Point(585, 4);
             this.btnSimSpeedUp.Name = "btnSimSpeedUp";
-            this.btnSimSpeedUp.Size = new System.Drawing.Size(119, 34);
+            this.btnSimSpeedUp.Size = new System.Drawing.Size(115, 34);
             this.btnSimSpeedUp.TabIndex = 532;
             this.btnSimSpeedUp.UseVisualStyleBackColor = false;
             this.btnSimSpeedUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSimSpeedUp_MouseDown);
@@ -1391,7 +1400,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(530, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(526, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(52, 34);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -1408,7 +1417,7 @@
             this.btnSimReverseDirection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimReverseDirection.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimReverseDirection.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimReverseDirection.Location = new System.Drawing.Point(717, 4);
+            this.btnSimReverseDirection.Location = new System.Drawing.Point(713, 4);
             this.btnSimReverseDirection.Name = "btnSimReverseDirection";
             this.btnSimReverseDirection.Size = new System.Drawing.Size(35, 34);
             this.btnSimReverseDirection.TabIndex = 537;
@@ -2274,6 +2283,7 @@
             // 
             // panelRight
             // 
+            this.panelRight.AllowDrop = true;
             this.panelRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panelRight.AutoSize = true;
             this.panelRight.Controls.Add(this.btnAutoSteer);
@@ -2294,7 +2304,6 @@
             // btnAutoSteer
             // 
             this.btnAutoSteer.BackColor = System.Drawing.Color.Transparent;
-            this.btnAutoSteer.Enabled = false;
             this.btnAutoSteer.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnAutoSteer.FlatAppearance.BorderSize = 0;
             this.btnAutoSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -2313,7 +2322,6 @@
             // btnAutoYouTurn
             // 
             this.btnAutoYouTurn.BackColor = System.Drawing.Color.Transparent;
-            this.btnAutoYouTurn.Enabled = false;
             this.btnAutoYouTurn.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnAutoYouTurn.FlatAppearance.BorderSize = 0;
             this.btnAutoYouTurn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -2332,7 +2340,6 @@
             // 
             this.btnSectionMasterAuto.BackColor = System.Drawing.Color.Transparent;
             this.btnSectionMasterAuto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnSectionMasterAuto.Enabled = false;
             this.btnSectionMasterAuto.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnSectionMasterAuto.FlatAppearance.BorderSize = 0;
             this.btnSectionMasterAuto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -2353,7 +2360,6 @@
             // 
             this.btnSectionMasterManual.BackColor = System.Drawing.Color.Transparent;
             this.btnSectionMasterManual.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnSectionMasterManual.Enabled = false;
             this.btnSectionMasterManual.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnSectionMasterManual.FlatAppearance.BorderSize = 0;
             this.btnSectionMasterManual.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -2373,7 +2379,6 @@
             // 
             this.btnTrack.BackColor = System.Drawing.Color.Transparent;
             this.btnTrack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnTrack.Enabled = false;
             this.btnTrack.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
             this.btnTrack.FlatAppearance.BorderSize = 0;
             this.btnTrack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -2428,17 +2433,15 @@
             // 
             // btnContour
             // 
-            this.btnContour.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnContour.BackColor = System.Drawing.Color.Transparent;
             this.btnContour.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnContour.Enabled = false;
             this.btnContour.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnContour.FlatAppearance.BorderSize = 0;
             this.btnContour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnContour.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnContour.Image = global::AgOpenGPS.Properties.Resources.ContourOff;
             this.btnContour.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnContour.Location = new System.Drawing.Point(4, 64);
+            this.btnContour.Location = new System.Drawing.Point(3, 64);
             this.btnContour.Name = "btnContour";
             this.btnContour.Size = new System.Drawing.Size(72, 67);
             this.btnContour.TabIndex = 105;
@@ -2822,6 +2825,7 @@
         private System.Windows.Forms.FlowLayoutPanel panelAB;
         private System.Windows.Forms.FlowLayoutPanel panelRight;
         public System.Windows.Forms.Button btnContourLock;
+        private System.Windows.Forms.ToolStripMenuItem buttonOrderFileMenu;
     }
 }
 

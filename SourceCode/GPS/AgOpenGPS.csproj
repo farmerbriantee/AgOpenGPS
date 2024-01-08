@@ -216,6 +216,12 @@
     <Compile Include="Forms\FormFieldExisting.Designer.cs">
       <DependentUpon>FormFieldExisting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Settings\FormRightButtons.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings\FormRightButtons.Designer.cs">
+      <DependentUpon>FormRightButtons.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormTemp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -628,6 +634,9 @@
     <EmbeddedResource Include="Forms\FormFieldExisting.resx">
       <DependentUpon>FormFieldExisting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings\FormRightButtons.resx">
+      <DependentUpon>FormRightButtons.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormTemp.resx">
       <DependentUpon>FormTemp.cs</DependentUpon>
     </EmbeddedResource>
@@ -836,24 +845,6 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Manual.de.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Manual.es.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Manual.fr.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Manual.it.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Manual.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Manual.sr.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -992,6 +983,7 @@
     <None Include="btnImages\ToolHitchPageFrontHarvester.png" />
     <None Include="btnImages\Config\SectionLookAheadDelay.gif" />
     <None Include="btnImages\ABSnapNudgeMenuRef.png" />
+    <None Include="btnImages\Config\Con_RightMenuEdit.png" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />

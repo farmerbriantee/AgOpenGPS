@@ -730,6 +730,8 @@ namespace AgOpenGPS
                 trk.idx = -1;
             }
 
+            UpdateRightAndBottomPanel();
+
             #endregion
 
             //already running?
@@ -1408,6 +1410,16 @@ namespace AgOpenGPS
             {
                 TimedMessageBox(2000, "Cannot use with zones", "Only for Sections");
             }
+        }
+        private void buttonOrderFileMenu_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormRightButtons(this))
+            {
+                form.ShowDialog(this);
+            }
+
+            SetRightButtonPanel();
+            FixPanelsAndMenus();
         }
 
         //Languages

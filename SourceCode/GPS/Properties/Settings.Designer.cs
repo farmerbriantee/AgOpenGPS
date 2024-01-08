@@ -2759,5 +2759,17 @@ namespace AgOpenGPS.Properties {
                 this["setAS_snapDistanceRef"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0,1,2,3,4,5,6,7")]
+        public string setDisplay_buttonOrder {
+            get {
+                return ((string)(this["setDisplay_buttonOrder"]));
+            }
+            set {
+                this["setDisplay_buttonOrder"] = value;
+            }
+        }
     }
 }

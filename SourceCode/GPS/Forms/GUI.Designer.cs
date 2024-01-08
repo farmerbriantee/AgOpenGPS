@@ -9,6 +9,7 @@ using System.Globalization;
 using System.IO;
 using System.Media;
 using System.Reflection;
+using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
@@ -80,6 +81,8 @@ namespace AgOpenGPS
         public int twoSecondCounter = 0;
         private int oneSecondCounter = 0;
         private int oneHalfSecondCounter = 0;
+
+        public List<int> buttonOrder = new List<int>();
 
         //Timer triggers at 125 msec
         private void tmrWatchdog_tick(object sender, EventArgs e)
@@ -412,25 +415,6 @@ namespace AgOpenGPS
             //left side
             btnStartAgIO.Visible = Properties.Settings.Default.setFeatures.isAgIOOn;
 
-            //right side build
-            panelRight.Controls.Clear();
-            if (Properties.Settings.Default.setFeatures.isAutoSteerOn) panelRight.Controls.Add(btnAutoSteer);
-            if (Properties.Settings.Default.setFeatures.isYouTurnOn) panelRight.Controls.Add(btnAutoYouTurn);
-
-            if (Properties.Settings.Default.setFeatures.isManualSectionOn) panelRight.Controls.Add(btnSectionMasterManual);
-            if (Properties.Settings.Default.setFeatures.isAutoSectionOn) panelRight.Controls.Add(btnSectionMasterAuto);
-
-            if (Properties.Settings.Default.setFeatures.isCycleLinesOn) panelRight.Controls.Add(btnCycleLines);
-            if (Properties.Settings.Default.setFeatures.isCycleLinesOn) panelRight.Controls.Add(btnCycleLinesBk);
-            
-            panelRight.Controls.Add(btnTrack);
-
-            if (Properties.Settings.Default.setFeatures.isContourOn)
-            {
-                panelRight.Controls.Add(btnContour);
-                panelRight.Controls.Add(btnContourLock);
-            }
-
             //OGL control
             isUTurnOn = Properties.Settings.Default.setFeatures.isUTurnOn;
             isLateralOn = Properties.Settings.Default.setFeatures.isLateralOn;
@@ -700,6 +684,8 @@ namespace AgOpenGPS
             //load uturn properties
             yt = new CYouTurn(this);
 
+            SetRightButtonPanel();
+
             FixPanelsAndMenus();
             UpdateRightAndBottomPanel();
 
@@ -707,6 +693,63 @@ namespace AgOpenGPS
             SetZoom();
 
             lblGuidanceLine.BringToFront();
+        }
+
+        public void SetRightButtonPanel()
+        {
+            string[] words = Properties.Settings.Default.setDisplay_buttonOrder.Split(',');
+            buttonOrder?.Clear();
+
+            for (int i = 0; i < words.Length; i++)
+            {
+                buttonOrder.Add(int.Parse(words[i], CultureInfo.InvariantCulture));
+            }
+
+            //right side build
+            panelRight.Controls.Clear();
+
+            for (int i = 0; i < buttonOrder.Count; i++)
+            {
+                switch (buttonOrder[i])
+                {
+                    case 0:
+                        panelRight.Controls.Add(btnAutoSteer);
+                        break;
+
+                    case 1:
+                        panelRight.Controls.Add(btnAutoYouTurn);
+                        break;
+
+                    case 2:
+                        panelRight.Controls.Add(btnSectionMasterAuto);
+                        break;
+
+                    case 3:
+                        panelRight.Controls.Add(btnSectionMasterManual);
+                        break;
+
+                    case 4:
+                        panelRight.Controls.Add(btnCycleLinesBk);
+                        break;
+
+                    case 5:
+                        panelRight.Controls.Add(btnCycleLines);
+                        break;
+
+                    case 6:
+                        panelRight.Controls.Add(btnTrack);
+                        break;
+
+                    case 7:
+                        panelRight.Controls.Add(btnContour);
+                        panelRight.Controls.Add(btnContourLock);
+                        break;
+
+                    default:
+                        break;
+                }
+
+            }
         }
 
         public void UpdateRightAndBottomPanel()
@@ -1313,17 +1356,11 @@ namespace AgOpenGPS
         public void EnableYouTurnButtons()
         {
             yt.ResetYouTurn();
-
             yt.isYouTurnBtnOn = false;
-            btnAutoYouTurn.Enabled = true;
-
             btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
         }
         public void DisableYouTurnButtons()
         {
-
-            //btnAutoYouTurn.Enabled = false;
-
             yt.isYouTurnBtnOn = false;
             btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
             yt.ResetYouTurn();
