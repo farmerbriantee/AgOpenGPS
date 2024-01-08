@@ -263,7 +263,7 @@ namespace AgOpenGPS
                 //hide the Nav panel in 6  secs
                 if (panelNavigation.Visible)
                 {
-                    if (navPanelCounter-- < 2) panelNavigation.Visible = false;
+                    if (navPanelCounter-- <= 2) panelNavigation.Visible = false;
                 }
 
                 //small Hz details in panel
@@ -294,7 +294,7 @@ namespace AgOpenGPS
                 //keeps autoTrack from changing too fast
                 trk.autoTrack3SecTimer++;
 
-                lblFix.Text = FixQuality + pn.age.ToString("N1");
+                lblFix.Text = FixQuality + "Age: " + pn.age.ToString("N1");
 
                 switch (pn.fixQuality)
                 {
@@ -385,42 +385,53 @@ namespace AgOpenGPS
                 btnAutoSteerConfig.Text = SetSteerAngle + "\r\n" + ActualSteerAngle;
 
                 secondsSinceStart = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
-
-                //integralStatusLeftSide.Text = "I: " + gyd.inty.ToString("N3");
-
-                //lblAV.Text = ABLine.angVel.ToString("N3");
             }
+
         }//wait till timer fires again.         
 
         public void LoadSettings()
-        {            //metric settings
-
+        {            
             CheckSettingsNotNull();
 
+            //metric settings
             isMetric = Settings.Default.setMenu_isMetric;
-
-            tramLinesMenuField.Visible = Properties.Settings.Default.setFeatures.isTramOn;
-            headlandToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isHeadlandOn;
-
+            
+            //field menu
             boundariesToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isBoundaryOn;
+            headlandToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isHeadlandOn;
+            headlandBuildToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isHeadlandOn;
+            tramLinesMenuField.Visible = Properties.Settings.Default.setFeatures.isTramOn;
             recordedPathStripMenu.Visible = Properties.Settings.Default.setFeatures.isRecPathOn;
+
+            //tools menu
             SmoothABtoolStripMenu.Visible = Properties.Settings.Default.setFeatures.isABSmoothOn;
             deleteContourPathsToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isHideContourOn;
             webcamToolStrip.Visible = Properties.Settings.Default.setFeatures.isWebCamOn;
             offsetFixToolStrip.Visible = Properties.Settings.Default.setFeatures.isOffsetFixOn;
-            btnContour.Visible = Properties.Settings.Default.setFeatures.isContourOn;
-            btnAutoYouTurn.Visible = Properties.Settings.Default.setFeatures.isYouTurnOn;
+
+            //left side
             btnStartAgIO.Visible = Properties.Settings.Default.setFeatures.isAgIOOn;
 
-            btnAutoSteer.Visible = Properties.Settings.Default.setFeatures.isAutoSteerOn;
-            btnCycleLines.Visible = Properties.Settings.Default.setFeatures.isCycleLinesOn;
-            btnCycleLinesBk.Visible = Properties.Settings.Default.setFeatures.isCycleLinesOn;
-            btnSectionMasterManual.Visible = Properties.Settings.Default.setFeatures.isManualSectionOn;
-            btnSectionMasterAuto.Visible = Properties.Settings.Default.setFeatures.isAutoSectionOn;
-            //btnABLine.Visible = Properties.Settings.Default.setFeatures.isABLineOn;
-            btnTrack.Visible = Properties.Settings.Default.setFeatures.isCurveOn;
-            //btnStanleyPure.Visible = Properties.Settings.Default.setFeatures.isSteerModeOn;
+            //right side build
+            panelRight.Controls.Clear();
+            if (Properties.Settings.Default.setFeatures.isAutoSteerOn) panelRight.Controls.Add(btnAutoSteer);
+            if (Properties.Settings.Default.setFeatures.isYouTurnOn) panelRight.Controls.Add(btnAutoYouTurn);
 
+            if (Properties.Settings.Default.setFeatures.isManualSectionOn) panelRight.Controls.Add(btnSectionMasterManual);
+            if (Properties.Settings.Default.setFeatures.isAutoSectionOn) panelRight.Controls.Add(btnSectionMasterAuto);
+
+            if (Properties.Settings.Default.setFeatures.isCycleLinesOn) panelRight.Controls.Add(btnCycleLines);
+            if (Properties.Settings.Default.setFeatures.isCycleLinesOn) panelRight.Controls.Add(btnCycleLinesBk);
+            
+            panelRight.Controls.Add(btnTrack);
+
+            if (Properties.Settings.Default.setFeatures.isContourOn)
+            {
+                panelRight.Controls.Add(btnContour);
+                panelRight.Controls.Add(btnContourLock);
+            }
+
+            //OGL control
             isUTurnOn = Properties.Settings.Default.setFeatures.isUTurnOn;
             isLateralOn = Properties.Settings.Default.setFeatures.isLateralOn;
 
@@ -491,6 +502,7 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.Save();
 
+
             isTextureOn = Settings.Default.setDisplay_isTextureOn;
 
             isGridOn = Settings.Default.setMenu_isGridOn;
@@ -531,15 +543,6 @@ namespace AgOpenGPS
             }
 
             if (timerSim.Enabled) gpsHz = 10;
-
-            //if ( Properties.Settings.Default.setVehicle_isStanleyUsed)
-            //{
-            //    btnStanleyPure.Image = Resources.ModeStanley;
-            //}
-            //else
-            //{
-            //    btnStanleyPure.Image = Resources.ModePurePursuit;
-            //}
 
             //set the flag mark button to red dot
             btnFlag.Image = Properties.Resources.FlagRed;
@@ -628,10 +631,6 @@ namespace AgOpenGPS
                 SectionCalcMulti();
                 LineUpAllZoneButtons();
             }
-
-            //yt.rowSkipsWidth = Properties.Settings.Default.set_youSkipWidth;
-            //cboxpRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
-            //yt.Set_Alternate_skips();
 
             DisableYouTurnButtons();
 
@@ -726,15 +725,19 @@ namespace AgOpenGPS
                 for (int i = 0; i < trk.gArr.Count; i++)
                 {
                     tracksTotal++;
-                    if (trk.gArr[i].isVisible)
-                    {
-                        tracksVisible++;
-                    }
+                    if (trk.gArr[i].isVisible) tracksVisible++;
                 }
 
                 btnContourLock.Visible = ct.isContourBtnOn;
 
-                btnAutoSteer.Visible = (trk.idx > -1 || ct.isContourBtnOn);
+                if (trk.idx > -1 || ct.isContourBtnOn)
+                    btnAutoSteer.Enabled = true;
+                else
+                {
+                    if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
+                    btnAutoSteer.Enabled = false;
+                }
+
                 btnAutoYouTurn.Visible = trk.idx > -1 && !ct.isContourBtnOn && isBnd;
                 btnCycleLines.Visible = tracksVisible > 1 && trk.idx > -1 && !ct.isContourBtnOn;
                 btnCycleLinesBk.Visible = tracksVisible > 1 && trk.idx > -1 && !ct.isContourBtnOn;
@@ -755,7 +758,7 @@ namespace AgOpenGPS
                 if (viz == 0) return;
 
                 int sizer = (Height - 130) / (viz);
-                if (sizer > 125) { sizer = 125; }
+                if (sizer > 180) { sizer = 180; }
 
                 for (int i = 0; i < panelRight.Controls.Count; i++)
                 {
@@ -785,9 +788,6 @@ namespace AgOpenGPS
                         if (panelAB.Controls[i].Visible) panelAB.Controls[i].Width = sizer;
                     }
                 }
-            }
-            else //idle - no job
-            {
             }
         }
 
@@ -834,7 +834,7 @@ namespace AgOpenGPS
                 if (viz == 0) return;
 
                 int sizer = (Height - 130) / (viz);
-                if (sizer > 125) { sizer = 125; }
+                if (sizer > 180) { sizer = 180; }
 
                 for (int i = 0; i < panelRight.Controls.Count; i++)
                 {

@@ -1202,7 +1202,10 @@ namespace AgOpenGPS
         {
             isPauseFieldTextCounter = !isPauseFieldTextCounter;
             if (isPauseFieldTextCounter)
-                lblCurrentField.Text = "\u23F8";
+            {
+                //lblCurrentField.Text = "\u23F8";
+                fourSecondCounter = 4;
+            }
             else
             {
                 fourSecondCounter = 4;

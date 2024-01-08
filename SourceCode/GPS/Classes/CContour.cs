@@ -811,8 +811,8 @@ namespace AgOpenGPS
             else
             {
                 //invalid distance so tell AS module
-                distanceFromCurrentLinePivot = 32000;
-                mf.guidanceLineDistanceOff = 32000;
+                distanceFromCurrentLinePivot = 0;
+                mf.guidanceLineDistanceOff = 0;
             }
         }
 
