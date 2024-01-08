@@ -1411,16 +1411,6 @@ namespace AgOpenGPS
                 TimedMessageBox(2000, "Cannot use with zones", "Only for Sections");
             }
         }
-        private void buttonOrderFileMenu_Click(object sender, EventArgs e)
-        {
-            using (var form = new FormRightButtons(this))
-            {
-                form.ShowDialog(this);
-            }
-
-            SetRightButtonPanel();
-            FixPanelsAndMenus();
-        }
 
         //Languages
         private void menuLanguageEnglish_Click(object sender, EventArgs e)
