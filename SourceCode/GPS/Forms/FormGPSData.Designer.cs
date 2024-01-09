@@ -30,13 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblSatsTracked = new System.Windows.Forms.Label();
             this.lblLatitude = new System.Windows.Forms.Label();
             this.lblLongitude = new System.Windows.Forms.Label();
             this.lblAltitude = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.lblHDOP = new System.Windows.Forms.Label();
@@ -68,18 +66,6 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(5, -2);
-            this.label6.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(28, 18);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Lat";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -109,7 +95,7 @@
             this.lblLatitude.AutoSize = true;
             this.lblLatitude.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLatitude.ForeColor = System.Drawing.Color.White;
-            this.lblLatitude.Location = new System.Drawing.Point(34, -2);
+            this.lblLatitude.Location = new System.Drawing.Point(5, -2);
             this.lblLatitude.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblLatitude.Name = "lblLatitude";
             this.lblLatitude.Size = new System.Drawing.Size(70, 18);
@@ -121,7 +107,7 @@
             this.lblLongitude.AutoSize = true;
             this.lblLongitude.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLongitude.ForeColor = System.Drawing.Color.White;
-            this.lblLongitude.Location = new System.Drawing.Point(34, 19);
+            this.lblLongitude.Location = new System.Drawing.Point(5, 19);
             this.lblLongitude.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblLongitude.Name = "lblLongitude";
             this.lblLongitude.Size = new System.Drawing.Size(119, 18);
@@ -140,18 +126,6 @@
             this.lblAltitude.TabIndex = 14;
             this.lblAltitude.Text = "Altitude";
             this.lblAltitude.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(2, 19);
-            this.label7.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(31, 18);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Lon";
             // 
             // label8
             // 
@@ -434,7 +408,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(165, 330);
+            this.ClientSize = new System.Drawing.Size(128, 330);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.lblAngularVelocity);
             this.Controls.Add(this.label15);
@@ -452,8 +426,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblHz);
             this.Controls.Add(this.lblLatitude);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.lblLongitude);
             this.Controls.Add(this.lblEastingField);
             this.Controls.Add(this.lblNorthingField);
@@ -473,7 +445,6 @@
             this.Name = "FormGPSData";
             this.ShowInTaskbar = false;
             this.Text = "System Data";
-            this.TransparencyKey = System.Drawing.Color.Black;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormGPSData_FormClosing);
             this.Load += new System.EventHandler(this.FormGPSData_Load);
             this.ResumeLayout(false);
@@ -484,13 +455,11 @@
         #endregion
 
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblSatsTracked;
         private System.Windows.Forms.Label lblLatitude;
         private System.Windows.Forms.Label lblLongitude;
         private System.Windows.Forms.Label lblAltitude;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblHDOP;

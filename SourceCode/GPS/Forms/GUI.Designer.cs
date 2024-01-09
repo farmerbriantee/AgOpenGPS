@@ -265,11 +265,11 @@ namespace AgOpenGPS
 
                 if (isPauseFieldTextCounter)
                 {
-                    lblCurrentField.Text = "\u25B6" + " " + lblCurrentField.Text;
+                    lblCurrentField.Text = "\u23F8" + " " + lblCurrentField.Text;
                 }
                 else
                 {
-                    lblCurrentField.Text = "\u23F8" + " " + lblCurrentField.Text;
+                    lblCurrentField.Text = "\u25B6" + " " + lblCurrentField.Text;
                 }
             }
 
@@ -283,12 +283,9 @@ namespace AgOpenGPS
                 //hide the Nav panel in 6  secs
                 if (panelNavigation.Visible)
                 {
-                    if (navPanelCounter-- <= 2) panelNavigation.Visible = false;
-                }
-
-                //small Hz details in panel
-                if (panelNavigation.Visible)
+                    if (navPanelCounter-- <= 0) panelNavigation.Visible = false;
                     lblHz.Text = gpsHz.ToString("N1") + " ~ " + (frameTime.ToString("N1")) + " " + FixQuality;
+                }
 
                 //fix
                 if (timerSim.Enabled && pn.fixQuality++ > 5) pn.fixQuality = 2;

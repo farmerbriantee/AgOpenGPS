@@ -2017,7 +2017,7 @@ namespace AgOpenGPS
 
             camera.camFollowing = true;
             camera.camPitch = 0;
-            navPanelCounter = 2;
+            navPanelCounter = 0;
         }
         private void btn3D_Click(object sender, EventArgs e)
         {
@@ -2029,7 +2029,7 @@ namespace AgOpenGPS
             }
             camera.camFollowing = true;
             camera.camPitch = -65;
-            navPanelCounter = 2;
+            navPanelCounter = 0;
         }
         private void btnN2D_Click(object sender, EventArgs e)
         {
@@ -2041,7 +2041,7 @@ namespace AgOpenGPS
             }
             camera.camFollowing = false;
             camera.camPitch = 0;
-            navPanelCounter = 2;
+            navPanelCounter = 0;
         }
         private void btnN3D_Click(object sender, EventArgs e)
         {
@@ -2053,7 +2053,7 @@ namespace AgOpenGPS
             }
             camera.camPitch = -65;
             camera.camFollowing = false;
-            navPanelCounter = 2;
+            navPanelCounter = 0;
         }
         private void btnBrightnessUp_Click(object sender, EventArgs e)
         {
@@ -2064,7 +2064,7 @@ namespace AgOpenGPS
                 Settings.Default.setDisplay_brightness = displayBrightness.GetBrightness();
                 Settings.Default.Save();
             }
-            navPanelCounter = 2;
+            navPanelCounter = 0;
         }
         private void btnBrightnessDn_Click(object sender, EventArgs e)
         {
@@ -2075,7 +2075,7 @@ namespace AgOpenGPS
                 Settings.Default.setDisplay_brightness = displayBrightness.GetBrightness();
                 Settings.Default.Save();
             }
-            navPanelCounter = 2;
+            navPanelCounter = 0;
         }
         private void btnDayNightMode_Click(object sender, EventArgs e)
         {
@@ -2086,7 +2086,7 @@ namespace AgOpenGPS
                 return;
             }
             SwapDayNightMode();
-            navPanelCounter = 2;
+            navPanelCounter = 0;
         }
 
         //The zoom tilt buttons
