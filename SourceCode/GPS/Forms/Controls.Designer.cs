@@ -53,8 +53,7 @@ namespace AgOpenGPS
             }
 
             UpdateRightAndBottomPanel();
-        }        
-        
+        }                
         private void btnContourLock_Click(object sender, EventArgs e)
         {
             if (ct.isContourBtnOn)
@@ -62,7 +61,6 @@ namespace AgOpenGPS
                 ct.SetLockToLine();
             }
         }
-
         public void SetContourLockImage(bool isOn)
         {
             btnContourLock.Image = isOn ? Resources.ColorLocked : Resources.ColorUnlocked;
@@ -140,7 +138,6 @@ namespace AgOpenGPS
 
             UpdateRightAndBottomPanel();
         }
-
         private void btnAutoSteer_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -223,7 +220,6 @@ namespace AgOpenGPS
                 p_239.pgn[p_239.uturn] = 0;
             }
         }
-
         private void btnCycleLines_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -460,7 +456,6 @@ namespace AgOpenGPS
 
             tramLinesMenuField.Enabled = (trk.gArr.Count > 0 && trk.idx > -1);
         }
-
         private void btnJobMenu_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -687,7 +682,6 @@ namespace AgOpenGPS
             UpdateRightAndBottomPanel();
             SetZoom();
         }
-
         private void boundariesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -768,7 +762,6 @@ namespace AgOpenGPS
                 btnResumePath.Enabled = false;
             }
         }
-
         private void btnPathRecordStop_Click(object sender, EventArgs e)
         {
             if (recPath.isRecordOn)
@@ -804,7 +797,6 @@ namespace AgOpenGPS
                 btnResumePath.Enabled = false;
             }
         }
-
         private void btnResumePath_Click(object sender, EventArgs e)
         {
             if (recPath.resumeState == 0)
@@ -845,7 +837,6 @@ namespace AgOpenGPS
                 recPath.recList.Add(_recList[i]);
             }
         }
-
         private void btnPickPath_Click(object sender, EventArgs e)
         {
             recPath.resumeState = 0;
@@ -860,7 +851,6 @@ namespace AgOpenGPS
                 }
             }
         }
-
         private void recordedPathStripMenu_Click(object sender, EventArgs e)
         {
             recPath.resumeState = 0;
@@ -1152,7 +1142,6 @@ namespace AgOpenGPS
 
 
         }
-
         private void btnGPSData_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -1231,7 +1220,6 @@ namespace AgOpenGPS
                 form.ShowDialog(this);
             }
         }
-
         private void setWorkingDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -2031,7 +2019,6 @@ namespace AgOpenGPS
             camera.camPitch = 0;
             navPanelCounter = 2;
         }
-
         private void btn3D_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -2044,7 +2031,6 @@ namespace AgOpenGPS
             camera.camPitch = -65;
             navPanelCounter = 2;
         }
-
         private void btnN2D_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -2057,7 +2043,6 @@ namespace AgOpenGPS
             camera.camPitch = 0;
             navPanelCounter = 2;
         }
-
         private void btnN3D_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -2070,7 +2055,6 @@ namespace AgOpenGPS
             camera.camFollowing = false;
             navPanelCounter = 2;
         }
-
         private void btnBrightnessUp_Click(object sender, EventArgs e)
         {
             if (displayBrightness.isWmiMonitor)
@@ -2082,7 +2066,6 @@ namespace AgOpenGPS
             }
             navPanelCounter = 2;
         }
-
         private void btnBrightnessDn_Click(object sender, EventArgs e)
         {
             if (displayBrightness.isWmiMonitor)
@@ -2094,7 +2077,6 @@ namespace AgOpenGPS
             }
             navPanelCounter = 2;
         }
-
         private void btnDayNightMode_Click(object sender, EventArgs e)
         {
             if (isTT)
