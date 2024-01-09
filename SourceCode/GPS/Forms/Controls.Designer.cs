@@ -403,13 +403,6 @@ namespace AgOpenGPS
                 return;
             }
 
-            if (ct.isContourBtnOn)
-            {
-                var form = new FormTimedMessage(2000, (gStr.gsContourOn), ("Turn Off Contour"));
-                form.Show(this);
-                return;
-            }
-
             if (bnd.bndList.Count == 0)
             {
                 TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
@@ -418,15 +411,17 @@ namespace AgOpenGPS
 
             if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
 
+            if (flp1.Visible)
+            {
+                flp1.Visible = false;
+            }
+
             using (var form = new FormABDraw(this))
             {
                 form.ShowDialog(this);
             }
 
-            if (flp1.Visible)
-            {
-                flp1.Visible = false;
-            }
+            UpdateRightAndBottomPanel();
         }
         private void cboxAutoSnapToPivot_Click(object sender, EventArgs e)
         {
