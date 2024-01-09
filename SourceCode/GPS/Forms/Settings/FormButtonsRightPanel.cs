@@ -4,13 +4,13 @@ using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
-    public partial class FormRightButtons : Form
+    public partial class FormButtonsRightPanel : Form
     {
         //class variables
         private readonly FormGPS mf = null;
         int btnCounter = 0;
         string original;
-        public FormRightButtons(Form callingForm)
+        public FormButtonsRightPanel(Form callingForm)
         {
             //get copy of the calling main form
             mf = callingForm as FormGPS;
@@ -89,12 +89,19 @@ namespace AgOpenGPS
             btnTrack.Enabled = false;
             btnContour.Enabled = false;
         }
+        private void btnTrack_Click(object sender, EventArgs e)
+        {
+            flpRight.Controls.Add(track);
+            btnTrack.Enabled = false;
+            mf.buttonOrder.Add(4);
+            btnCounter++;
+        }
 
         private void btnCycleLinesBk_Click(object sender, EventArgs e)
         {
             flpRight.Controls.Add(skipPrev);
             btnCycleLinesBk.Enabled = false;
-            mf.buttonOrder.Add(4);
+            mf.buttonOrder.Add(5);
             btnCounter++;
         }
 
@@ -102,17 +109,10 @@ namespace AgOpenGPS
         {
             flpRight.Controls.Add(skipNext);
             btnCycleLines.Enabled = false;
-            mf.buttonOrder.Add(5);
-            btnCounter++;
-        }
-
-        private void btnTrack_Click(object sender, EventArgs e)
-        {
-            flpRight.Controls.Add(track);
-            btnTrack.Enabled = false;
             mf.buttonOrder.Add(6);
             btnCounter++;
         }
+
 
         private void btnContour_Click(object sender, EventArgs e)
         {

@@ -133,10 +133,12 @@ namespace AgOpenGPS
                 flp1.Controls[6].Visible = tracksVisible > 0;
 
                 //position of panel
-                flp1.Top = this.Height / 5;
+                flp1.Top = this.Height / 2;
                 flp1.Left = this.Width - 120 - flp1.Width;
                 trackMethodPanelCounter = 3;
             }
+
+            UpdateRightAndBottomPanel();
         }
 
         private void btnAutoSteer_Click(object sender, EventArgs e)
@@ -330,6 +332,7 @@ namespace AgOpenGPS
             {
                 flp1.Visible = false;
             }
+            UpdateRightAndBottomPanel();
         }
         private void btnNudge_Click(object sender, EventArgs e)
         {
@@ -1400,7 +1403,7 @@ namespace AgOpenGPS
         {
             if (tool.isSectionsNotZones)
             {
-                using (var form = new FormSectionColor(this))
+                using (var form = new FormColorSection(this))
                 {
                     form.ShowDialog(this);
                 }
@@ -1738,8 +1741,6 @@ namespace AgOpenGPS
 
             Settings.Default.setDisplay_colorSectionsDay = sectionColorDay;
             Settings.Default.Save();
-
-            btnChangeMappingColor.BackColor = sectionColorDay;
         }
         private void btnYouSkipEnable_Click(object sender, EventArgs e)
         {
@@ -1953,7 +1954,7 @@ namespace AgOpenGPS
             }
 
             //
-            Form formH = new FormHeadingGraph(this);
+            Form formH = new FormGraphHeading(this);
             formH.Show(this);
         }
         private void toolStripAutoSteerChart_Click(object sender, EventArgs e)
@@ -1968,7 +1969,7 @@ namespace AgOpenGPS
             }
 
             //
-            Form formG = new FormSteerGraph(this);
+            Form formG = new FormGraphSteer(this);
             formG.Show(this);
         }               
         private void xTEChartToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1983,7 +1984,7 @@ namespace AgOpenGPS
             }
 
             //
-            Form formX = new FormXTEGraph(this);
+            Form formX = new FormGraphXTE(this);
             formX.Show(this);
         }
         private void webcamToolStrip_Click(object sender, EventArgs e)

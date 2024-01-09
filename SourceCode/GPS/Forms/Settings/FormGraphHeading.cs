@@ -5,7 +5,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace AgOpenGPS
 {
-    public partial class FormHeadingGraph : Form
+    public partial class FormGraphHeading : Form
     {
         private readonly FormGPS mf = null;
 
@@ -19,7 +19,7 @@ namespace AgOpenGPS
 
         private bool isScroll = true;
 
-        public FormHeadingGraph(Form callingForm)
+        public FormGraphHeading(Form callingForm)
         {
             mf = callingForm as FormGPS;
             InitializeComponent();

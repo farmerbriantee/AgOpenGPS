@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
-    public partial class FormSectionColor : Form
+    public partial class FormColorSection : Form
     {
         //class variables
         private readonly FormGPS mf = null;
@@ -18,7 +18,7 @@ namespace AgOpenGPS
         private bool isUse = true, isChange = false, isClosing = false;
 
         //constructor
-        public FormSectionColor(Form callingForm)
+        public FormColorSection(Form callingForm)
         {
             //get copy of the calling main form
             mf = callingForm as FormGPS;

@@ -324,7 +324,7 @@ namespace AgOpenGPS
 
         private void btnRightMenuOrder_Click(object sender, EventArgs e)
         {
-            using (var form = new FormRightButtons(mf))
+            using (var form = new FormButtonsRightPanel(mf))
             {
                 form.ShowDialog(mf);
             }

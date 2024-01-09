@@ -5,7 +5,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace AgOpenGPS
 {
-    public partial class FormSteerGraph : Form
+    public partial class FormGraphSteer : Form
     {
         private readonly FormGPS mf = null;
 
@@ -16,7 +16,7 @@ namespace AgOpenGPS
 
         private bool isAuto = false;
 
-        public FormSteerGraph(Form callingForm)
+        public FormGraphSteer(Form callingForm)
         {
             mf = callingForm as FormGPS;
             InitializeComponent();

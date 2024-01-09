@@ -1,6 +1,6 @@
 ﻿namespace AgOpenGPS
 {
-    partial class FormSectionColor
+    partial class FormColorSection
     {
         /// <summary>
         /// Required designer variable.

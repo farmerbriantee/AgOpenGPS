@@ -1337,7 +1337,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 58F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 57F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 63F));
             this.panelSim.Controls.Add(this.btnSpeedDn, 5, 0);
             this.panelSim.Controls.Add(this.btnSimSpeedUp, 7, 0);
             this.panelSim.Controls.Add(this.btnResetSim, 0, 0);
@@ -1362,7 +1362,7 @@
             this.btnSpeedDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSpeedDn.Location = new System.Drawing.Point(404, 4);
             this.btnSpeedDn.Name = "btnSpeedDn";
-            this.btnSpeedDn.Size = new System.Drawing.Size(113, 34);
+            this.btnSpeedDn.Size = new System.Drawing.Size(110, 34);
             this.btnSpeedDn.TabIndex = 533;
             this.btnSpeedDn.UseVisualStyleBackColor = false;
             this.btnSpeedDn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSpeedDn_MouseDown);
@@ -1375,9 +1375,9 @@
             this.btnSimSpeedUp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSimSpeedUp.FlatAppearance.BorderSize = 0;
             this.btnSimSpeedUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSimSpeedUp.Location = new System.Drawing.Point(583, 4);
+            this.btnSimSpeedUp.Location = new System.Drawing.Point(580, 4);
             this.btnSimSpeedUp.Name = "btnSimSpeedUp";
-            this.btnSimSpeedUp.Size = new System.Drawing.Size(113, 34);
+            this.btnSimSpeedUp.Size = new System.Drawing.Size(110, 34);
             this.btnSimSpeedUp.TabIndex = 532;
             this.btnSimSpeedUp.UseVisualStyleBackColor = false;
             this.btnSimSpeedUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSimSpeedUp_MouseDown);
@@ -1391,7 +1391,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(524, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(521, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(52, 34);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -1408,7 +1408,7 @@
             this.btnSimReverseDirection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimReverseDirection.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimReverseDirection.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimReverseDirection.Location = new System.Drawing.Point(711, 4);
+            this.btnSimReverseDirection.Location = new System.Drawing.Point(708, 4);
             this.btnSimReverseDirection.Name = "btnSimReverseDirection";
             this.btnSimReverseDirection.Size = new System.Drawing.Size(35, 34);
             this.btnSimReverseDirection.TabIndex = 537;
@@ -1921,12 +1921,13 @@
             // 
             // lblCurrentField
             // 
-            this.lblCurrentField.AutoSize = true;
+            this.lblCurrentField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCurrentField.BackColor = System.Drawing.Color.Transparent;
             this.lblCurrentField.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurrentField.Location = new System.Drawing.Point(82, 25);
             this.lblCurrentField.Name = "lblCurrentField";
-            this.lblCurrentField.Size = new System.Drawing.Size(140, 24);
+            this.lblCurrentField.Size = new System.Drawing.Size(465, 24);
             this.lblCurrentField.TabIndex = 534;
             this.lblCurrentField.Text = "Current Field";
             this.lblCurrentField.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -2235,14 +2236,14 @@
             // btnChangeMappingColor
             // 
             this.btnChangeMappingColor.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnChangeMappingColor.BackColor = System.Drawing.Color.SkyBlue;
-            this.btnChangeMappingColor.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionMapping;
-            this.btnChangeMappingColor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnChangeMappingColor.BackColor = System.Drawing.Color.Transparent;
+            this.btnChangeMappingColor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnChangeMappingColor.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnChangeMappingColor.FlatAppearance.BorderSize = 0;
             this.btnChangeMappingColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChangeMappingColor.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChangeMappingColor.ForeColor = System.Drawing.Color.Black;
+            this.btnChangeMappingColor.Image = global::AgOpenGPS.Properties.Resources.SectionMapping;
             this.btnChangeMappingColor.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnChangeMappingColor.Location = new System.Drawing.Point(158, 3);
             this.btnChangeMappingColor.Margin = new System.Windows.Forms.Padding(0);
@@ -2251,7 +2252,7 @@
             this.btnChangeMappingColor.Size = new System.Drawing.Size(80, 56);
             this.btnChangeMappingColor.TabIndex = 476;
             this.btnChangeMappingColor.Text = "5.8.4";
-            this.btnChangeMappingColor.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnChangeMappingColor.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnChangeMappingColor.UseVisualStyleBackColor = false;
             this.btnChangeMappingColor.Click += new System.EventHandler(this.btnChangeMappingColor_Click);
             // 

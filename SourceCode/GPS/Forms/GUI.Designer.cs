@@ -100,7 +100,7 @@ namespace AgOpenGPS
             {
                 if (!isPauseFieldTextCounter)
                 {
-                    if (++currentFieldTextCounter > 2) currentFieldTextCounter = 0;
+                    if (++currentFieldTextCounter > 4) currentFieldTextCounter = 0;
                 }
 
                 //reset the counter
@@ -168,7 +168,6 @@ namespace AgOpenGPS
                     switch (currentFieldTextCounter)
                     {
                         case 0:
-
                             lblCurrentField.Text = gStr.gsField + ": " + displayFieldName;
                             break;
 
@@ -185,14 +184,17 @@ namespace AgOpenGPS
                                     lblCurrentField.Text = fd.AreaBoundaryLessInnersHectares
                                         + "  App: " + fd.WorkedHectares
                                         + "  Actual: " + fd.ActualAreaWorkedHectares
-                                        + "  " + fd.WorkedAreaRemainPercentage;
+                                        + "  " + fd.WorkedAreaRemainPercentage
+                                        + "  " + fd.WorkRateHectares;
+
                                 }
                                 else
                                 {
                                     lblCurrentField.Text = fd.AreaBoundaryLessInnersAcres
                                         + "  App: " + fd.WorkedAcres
                                         + "  Actual: " + fd.ActualAreaWorkedAcres
-                                        + "  " + fd.WorkedAreaRemainPercentage;
+                                        + "  " + fd.WorkedAreaRemainPercentage
+                                        + "  " + fd.WorkRateHectares;
                                 }
                             }
                             else
@@ -216,11 +218,21 @@ namespace AgOpenGPS
                             }
                             break;
 
+                        case 3:
+                            if (trk.idx > -1)
+                                lblCurrentField.Text = "Line: " + trk.gArr[trk.idx].name;
+                            else
+                                lblCurrentField.Text = "Line: " + gStr.gsNoGuidanceLines;
+                            break;
+
+                        case 4:
+                            lblCurrentField.Text = "";
+                            break;
+
+
                         default:
                             break;
                     }
-
-                    //if (lblCurrentField.Text.Length > Width-(600/15)
                 }
                 else
                 {
@@ -231,13 +243,19 @@ namespace AgOpenGPS
                             break;
 
                         case 1:
-
                             lblCurrentField.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss ");
                             break;
 
                         case 2:
-
                             lblCurrentField.Text = "Lat: " + pn.latitude.ToString("N7") + "   Lon: " + pn.longitude.ToString("N7");
+                            break;
+
+                        case 3:
+                            lblCurrentField.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss ");                            
+                            break;
+
+                        case 4:
+                            lblCurrentField.Text = "";
                             break;
 
                         default:
@@ -253,7 +271,6 @@ namespace AgOpenGPS
                 {
                     lblCurrentField.Text = "\u23F8" + " " + lblCurrentField.Text;
                 }
-
             }
 
             /////////////////////////////////////////////////////////   2 second  ////////////////////////////////////////
@@ -545,7 +562,7 @@ namespace AgOpenGPS
             if (bnd.isHeadlandOn) btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
             else btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
 
-            btnChangeMappingColor.BackColor = sectionColorDay;
+            //btnChangeMappingColor.BackColor = sectionColorDay;
             btnChangeMappingColor.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
 
             if (Properties.Settings.Default.setDisplay_isStartFullScreen)
@@ -729,15 +746,15 @@ namespace AgOpenGPS
                         break;
 
                     case 4:
-                        panelRight.Controls.Add(btnCycleLinesBk);
+                        panelRight.Controls.Add(btnTrack);
                         break;
 
                     case 5:
-                        panelRight.Controls.Add(btnCycleLines);
+                        panelRight.Controls.Add(btnCycleLinesBk);
                         break;
 
                     case 6:
-                        panelRight.Controls.Add(btnTrack);
+                        panelRight.Controls.Add(btnCycleLines);
                         break;
 
                     case 7:

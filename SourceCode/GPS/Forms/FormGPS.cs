@@ -535,7 +535,6 @@ namespace AgOpenGPS
                 f.Close();
             }
 
-            f = null;
             f = Application.OpenForms["FormFieldData"];
 
             if (f != null)
@@ -544,7 +543,6 @@ namespace AgOpenGPS
                 f.Close();
             }
 
-            f = null;
             f = Application.OpenForms["FormPan"];
 
             if (f != null)
@@ -650,22 +648,19 @@ namespace AgOpenGPS
                 f.Left = this.Left + GPSDataWindowLeft;
             }
 
-            f = null;
-             f = Application.OpenForms["FormFieldData"];
+            f = Application.OpenForms["FormFieldData"];
             if (f != null)
             {
                 f.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
                 f.Left = this.Left + GPSDataWindowLeft;
             }
 
-            f = null;
             f = Application.OpenForms["FormPan"];
             if (f != null)
             {
                 f.Top = this.Top + 75;
                 f.Left = this.Left + this.Width - 380;
             }
-
         }
 
         private void FormGPS_Move(object sender, EventArgs e)
@@ -676,14 +671,14 @@ namespace AgOpenGPS
                 f.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
                 f.Left = this.Left + GPSDataWindowLeft;
             }
-            f = null;
+
             f = Application.OpenForms["FormFieldData"];
             if (f != null)
             {
                 f.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
                 f.Left = this.Left + GPSDataWindowLeft;
             }
-            f = null;
+
             f = Application.OpenForms["FormPan"];
             if (f != null)
             {
@@ -710,6 +705,7 @@ namespace AgOpenGPS
             Harvester, Lateral, bingGrid, 
             NoGPS, ZoomIn48, ZoomOut48, 
             Pan, MenuHideShow, ToolWheels, Tire
+
         }
 
         public void LoadGLTextures()

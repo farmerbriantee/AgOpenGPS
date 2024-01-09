@@ -1,6 +1,6 @@
 ﻿namespace AgOpenGPS
 {
-    partial class FormRightButtons
+    partial class FormButtonsRightPanel
     {
         /// <summary>
         /// Required designer variable.
@@ -66,9 +66,9 @@
             this.flpRight.Controls.Add(this.youTurn);
             this.flpRight.Controls.Add(this.autoSection);
             this.flpRight.Controls.Add(this.manualSection);
+            this.flpRight.Controls.Add(this.track);
             this.flpRight.Controls.Add(this.skipPrev);
             this.flpRight.Controls.Add(this.skipNext);
-            this.flpRight.Controls.Add(this.track);
             this.flpRight.Controls.Add(this.contour);
             this.flpRight.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
             this.flpRight.Location = new System.Drawing.Point(28, 28);
@@ -156,7 +156,7 @@
             this.skipPrev.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.skipPrev.Image = global::AgOpenGPS.Properties.Resources.ABLineCycleBk;
             this.skipPrev.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.skipPrev.Location = new System.Drawing.Point(3, 231);
+            this.skipPrev.Location = new System.Drawing.Point(3, 159);
             this.skipPrev.Name = "skipPrev";
             this.skipPrev.Size = new System.Drawing.Size(84, 72);
             this.skipPrev.TabIndex = 556;
@@ -173,7 +173,7 @@
             this.skipNext.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.skipNext.Image = global::AgOpenGPS.Properties.Resources.ABLineCycle;
             this.skipNext.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.skipNext.Location = new System.Drawing.Point(3, 153);
+            this.skipNext.Location = new System.Drawing.Point(3, 81);
             this.skipNext.Name = "skipNext";
             this.skipNext.Size = new System.Drawing.Size(84, 72);
             this.skipNext.TabIndex = 555;
@@ -190,7 +190,7 @@
             this.track.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.track.Image = global::AgOpenGPS.Properties.Resources.TrackOn;
             this.track.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.track.Location = new System.Drawing.Point(3, 78);
+            this.track.Location = new System.Drawing.Point(3, 234);
             this.track.Margin = new System.Windows.Forms.Padding(0);
             this.track.Name = "track";
             this.track.Size = new System.Drawing.Size(84, 72);
@@ -295,7 +295,7 @@
             this.btnTrack.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTrack.Image = global::AgOpenGPS.Properties.Resources.TrackOn;
             this.btnTrack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTrack.Location = new System.Drawing.Point(23, 107);
+            this.btnTrack.Location = new System.Drawing.Point(23, 261);
             this.btnTrack.Margin = new System.Windows.Forms.Padding(0);
             this.btnTrack.Name = "btnTrack";
             this.btnTrack.Size = new System.Drawing.Size(72, 64);
@@ -314,7 +314,7 @@
             this.btnCycleLinesBk.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCycleLinesBk.Image = global::AgOpenGPS.Properties.Resources.ABLineCycleBk;
             this.btnCycleLinesBk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCycleLinesBk.Location = new System.Drawing.Point(23, 261);
+            this.btnCycleLinesBk.Location = new System.Drawing.Point(23, 184);
             this.btnCycleLinesBk.Name = "btnCycleLinesBk";
             this.btnCycleLinesBk.Size = new System.Drawing.Size(72, 64);
             this.btnCycleLinesBk.TabIndex = 546;
@@ -331,7 +331,7 @@
             this.btnCycleLines.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCycleLines.Image = global::AgOpenGPS.Properties.Resources.ABLineCycle;
             this.btnCycleLines.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCycleLines.Location = new System.Drawing.Point(23, 184);
+            this.btnCycleLines.Location = new System.Drawing.Point(23, 107);
             this.btnCycleLines.Name = "btnCycleLines";
             this.btnCycleLines.Size = new System.Drawing.Size(72, 64);
             this.btnCycleLines.TabIndex = 545;
@@ -459,7 +459,7 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "AOG Menu";
             // 
-            // FormRightButtons
+            // FormButtonsRightPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -472,7 +472,7 @@
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.btnReset);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.Name = "FormRightButtons";
+            this.Name = "FormButtonsRightPanel";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Button Arrange";

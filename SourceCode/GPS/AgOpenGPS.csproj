@@ -168,10 +168,10 @@
       <DependentUpon>CBoundaryList.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\CTool.cs" />
-    <Compile Include="Forms\FormEnterFlag.cs">
+    <Compile Include="Forms\Field\FormEnterFlag.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormEnterFlag.Designer.cs">
+    <Compile Include="Forms\Field\FormEnterFlag.Designer.cs">
       <DependentUpon>FormEnterFlag.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormPan.cs">
@@ -180,22 +180,22 @@
     <Compile Include="Forms\FormPan.Designer.cs">
       <DependentUpon>FormPan.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormFieldISOXML.cs">
+    <Compile Include="Forms\Field\FormFieldISOXML.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormFieldISOXML.Designer.cs">
+    <Compile Include="Forms\Field\FormFieldISOXML.Designer.cs">
       <DependentUpon>FormFieldISOXML.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormFieldKML.cs">
+    <Compile Include="Forms\Field\FormFieldKML.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormFieldKML.Designer.cs">
+    <Compile Include="Forms\Field\FormFieldKML.Designer.cs">
       <DependentUpon>FormFieldKML.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormFieldData.cs">
+    <Compile Include="Forms\Field\FormFieldData.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormFieldData.Designer.cs">
+    <Compile Include="Forms\Field\FormFieldData.Designer.cs">
       <DependentUpon>FormFieldData.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormMap.cs">
@@ -204,23 +204,23 @@
     <Compile Include="Forms\FormMap.Designer.cs">
       <DependentUpon>FormMap.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormRecordName.cs">
+    <Compile Include="Forms\Guidance\FormRecordName.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormRecordName.Designer.cs">
+    <Compile Include="Forms\Guidance\FormRecordName.Designer.cs">
       <DependentUpon>FormRecordName.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormFieldExisting.cs">
+    <Compile Include="Forms\Field\FormFieldExisting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormFieldExisting.Designer.cs">
+    <Compile Include="Forms\Field\FormFieldExisting.Designer.cs">
       <DependentUpon>FormFieldExisting.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Settings\FormRightButtons.cs">
+    <Compile Include="Forms\Settings\FormButtonsRightPanel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Settings\FormRightButtons.Designer.cs">
-      <DependentUpon>FormRightButtons.cs</DependentUpon>
+    <Compile Include="Forms\Settings\FormButtonsRightPanel.Designer.cs">
+      <DependentUpon>FormButtonsRightPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormTemp.cs">
       <SubType>Form</SubType>
@@ -312,11 +312,11 @@
     <Compile Include="Forms\Settings\FormCorrection.Designer.cs">
       <DependentUpon>FormCorrection.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Settings\FormSectionColor.cs">
+    <Compile Include="Forms\Settings\FormColorSection.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Settings\FormSectionColor.Designer.cs">
-      <DependentUpon>FormSectionColor.cs</DependentUpon>
+    <Compile Include="Forms\Settings\FormColorSection.Designer.cs">
+      <DependentUpon>FormColorSection.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Settings\FormColor.cs">
       <SubType>Form</SubType>
@@ -360,29 +360,29 @@
     <Compile Include="Forms\Guidance\FormABDraw.Designer.cs">
       <DependentUpon>FormABDraw.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormFlags.cs">
+    <Compile Include="Forms\Field\FormFlags.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormFlags.Designer.cs">
+    <Compile Include="Forms\Field\FormFlags.Designer.cs">
       <DependentUpon>FormFlags.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Settings\FormHeadingGraph.cs">
+    <Compile Include="Forms\Settings\FormGraphHeading.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Settings\FormHeadingGraph.Designer.cs">
-      <DependentUpon>FormHeadingGraph.cs</DependentUpon>
+    <Compile Include="Forms\Settings\FormGraphHeading.Designer.cs">
+      <DependentUpon>FormGraphHeading.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Settings\FormXTEGraph.cs">
+    <Compile Include="Forms\Settings\FormGraphXTE.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Settings\FormXTEGraph.Designer.cs">
-      <DependentUpon>FormXTEGraph.cs</DependentUpon>
+    <Compile Include="Forms\Settings\FormGraphXTE.Designer.cs">
+      <DependentUpon>FormGraphXTE.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Settings\FormSteerGraph.cs">
+    <Compile Include="Forms\Settings\FormGraphSteer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Settings\FormSteerGraph.Designer.cs">
-      <DependentUpon>FormSteerGraph.cs</DependentUpon>
+    <Compile Include="Forms\Settings\FormGraphSteer.Designer.cs">
+      <DependentUpon>FormGraphSteer.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormShiftPos.cs">
       <SubType>Form</SubType>
@@ -402,34 +402,34 @@
     <Compile Include="Forms\Guidance\FormBuildTracks.Designer.cs">
       <DependentUpon>FormBuildTracks.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormBoundary.cs">
+    <Compile Include="Forms\Field\FormBoundary.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormBoundary.Designer.cs">
+    <Compile Include="Forms\Field\FormBoundary.Designer.cs">
       <DependentUpon>FormBoundary.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormBoundaryPlayer.cs">
+    <Compile Include="Forms\Field\FormBoundaryPlayer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormBoundaryPlayer.Designer.cs">
+    <Compile Include="Forms\Field\FormBoundaryPlayer.Designer.cs">
       <DependentUpon>FormBoundaryPlayer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormFieldDir.cs">
+    <Compile Include="Forms\Field\FormFieldDir.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormFieldDir.Designer.cs">
+    <Compile Include="Forms\Field\FormFieldDir.Designer.cs">
       <DependentUpon>FormFieldDir.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormJob.cs">
+    <Compile Include="Forms\Field\FormJob.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormJob.Designer.cs">
+    <Compile Include="Forms\Field\FormJob.Designer.cs">
       <DependentUpon>FormJob.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormSaveOrNot.cs">
+    <Compile Include="Forms\Field\FormSaveOrNot.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormSaveOrNot.Designer.cs">
+    <Compile Include="Forms\Field\FormSaveOrNot.Designer.cs">
       <DependentUpon>FormSaveOrNot.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Settings\FormSimCoords.cs">
@@ -608,34 +608,34 @@
     </Compile>
     <Compile Include="Classes\vec3.cs" />
     <Compile Include="Settings.cs" />
-    <EmbeddedResource Include="Forms\FormEnterFlag.resx">
+    <EmbeddedResource Include="Forms\Field\FormEnterFlag.resx">
       <DependentUpon>FormEnterFlag.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormPan.resx">
       <DependentUpon>FormPan.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormFieldISOXML.resx">
+    <EmbeddedResource Include="Forms\Field\FormFieldISOXML.resx">
       <DependentUpon>FormFieldISOXML.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormFieldKML.resx">
+    <EmbeddedResource Include="Forms\Field\FormFieldKML.resx">
       <DependentUpon>FormFieldKML.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormFieldData.resx">
+    <EmbeddedResource Include="Forms\Field\FormFieldData.resx">
       <DependentUpon>FormFieldData.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormMap.resx">
       <DependentUpon>FormMap.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormRecordName.resx">
+    <EmbeddedResource Include="Forms\Guidance\FormRecordName.resx">
       <DependentUpon>FormRecordName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormFieldExisting.resx">
+    <EmbeddedResource Include="Forms\Field\FormFieldExisting.resx">
       <DependentUpon>FormFieldExisting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Settings\FormRightButtons.resx">
-      <DependentUpon>FormRightButtons.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Settings\FormButtonsRightPanel.resx">
+      <DependentUpon>FormButtonsRightPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormTemp.resx">
       <DependentUpon>FormTemp.cs</DependentUpon>
@@ -682,8 +682,8 @@
     <EmbeddedResource Include="Forms\Settings\FormCorrection.resx">
       <DependentUpon>FormCorrection.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Settings\FormSectionColor.resx">
-      <DependentUpon>FormSectionColor.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Settings\FormColorSection.resx">
+      <DependentUpon>FormColorSection.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\FormColor.resx">
@@ -696,7 +696,7 @@
     <EmbeddedResource Include="Forms\Guidance\FormABDraw.resx">
       <DependentUpon>FormABDraw.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormFlags.resx">
+    <EmbeddedResource Include="Forms\Field\FormFlags.resx">
       <DependentUpon>FormFlags.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormShiftPos.resx">
@@ -705,13 +705,13 @@
     <EmbeddedResource Include="Forms\Guidance\FormBuildTracks.resx">
       <DependentUpon>FormBuildTracks.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormBoundary.resx">
+    <EmbeddedResource Include="Forms\Field\FormBoundary.resx">
       <DependentUpon>FormBoundary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormBoundaryPlayer.resx">
+    <EmbeddedResource Include="Forms\Field\FormBoundaryPlayer.resx">
       <DependentUpon>FormBoundaryPlayer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormFieldDir.resx">
+    <EmbeddedResource Include="Forms\Field\FormFieldDir.resx">
       <DependentUpon>FormFieldDir.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormGPSData.resx">
@@ -722,10 +722,10 @@
       <DependentUpon>FormGPS.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormJob.resx">
+    <EmbeddedResource Include="Forms\Field\FormJob.resx">
       <DependentUpon>FormJob.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormSaveOrNot.resx">
+    <EmbeddedResource Include="Forms\Field\FormSaveOrNot.resx">
       <DependentUpon>FormSaveOrNot.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\FormSimCoords.resx">
@@ -738,14 +738,14 @@
       <DependentUpon>FormSteer.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Settings\FormHeadingGraph.resx">
-      <DependentUpon>FormHeadingGraph.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Settings\FormGraphHeading.resx">
+      <DependentUpon>FormGraphHeading.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Settings\FormXTEGraph.resx">
-      <DependentUpon>FormXTEGraph.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Settings\FormGraphXTE.resx">
+      <DependentUpon>FormGraphXTE.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Settings\FormSteerGraph.resx">
-      <DependentUpon>FormSteerGraph.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Settings\FormGraphSteer.resx">
+      <DependentUpon>FormGraphSteer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormtimedMessage.resx">
       <DependentUpon>FormTimedMessage.cs</DependentUpon>

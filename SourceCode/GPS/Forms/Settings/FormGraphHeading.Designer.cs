@@ -1,6 +1,6 @@
 ﻿namespace AgOpenGPS
 {
-    partial class FormHeadingGraph
+    partial class FormGraphHeading
     {
         /// <summary>
         /// Required designer variable.
