@@ -259,8 +259,8 @@ namespace AgOpenGPS
                     Size = new Size(330, 35),
                     Text = mf.trk.gArr[i].name,
                     Name = i.ToString(),
+                    Font = backupfont
                 };
-                t.Font = backupfont;
                 t.Click += LineSelected_Click;
                 t.Cursor = System.Windows.Forms.Cursors.Default;
 
@@ -807,16 +807,15 @@ namespace AgOpenGPS
                 else fileAndDirectory = ofd.FileName;
             }
 
-            string trackName = "";
-            double easting, norting, latK, lonK;
-
-            XmlDocument doc = new XmlDocument();
-            doc.PreserveWhitespace = false;
+            XmlDocument doc = new XmlDocument
+            {
+                PreserveWhitespace = false
+            };
 
             try
             {
                 doc.Load(fileAndDirectory);
-                trackName = Path.GetFileName(fileAndDirectory);
+                string trackName = Path.GetFileName(fileAndDirectory);
                 trackName = trackName.Substring(0, trackName.Length - 4);
 
                 XmlElement root = doc.DocumentElement;
@@ -844,10 +843,10 @@ namespace AgOpenGPS
                         {
                             string[] fix = item.Split(',');
                             if (fix.Length != 3) continue;
-                            double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
-                            double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
+                            double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out double lonK);
+                            double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out double latK);
 
-                            mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
+                            mf.pn.ConvertWGS84ToLocal(latK, lonK, out double norting, out double easting);
 
                             vec3 bndPt = new vec3(easting, norting, 0);
                             mf.curve.desList.Add(new vec3(bndPt));
@@ -1020,11 +1019,9 @@ namespace AgOpenGPS
 
         public void CalcHeadingAPlus()
         {
-            double east, nort;
+            mf.pn.ConvertWGS84ToLocal((double)nudLatitudePlus.Value, (double)nudLongitudePlus.Value, out double nort, out double east);
 
-                mf.pn.ConvertWGS84ToLocal((double)nudLatitudePlus.Value, (double)nudLongitudePlus.Value, out nort, out east);
-
-                mf.ABLine.desHeading = glm.toRadians((double)nudHeadingLatLonPlus.Value);
+            mf.ABLine.desHeading = glm.toRadians((double)nudHeadingLatLonPlus.Value);
                 mf.ABLine.desPtA.easting = east;
                 mf.ABLine.desPtA.northing = nort;            
         }
@@ -1081,9 +1078,7 @@ namespace AgOpenGPS
 
         public void CalcHeadingAB()
         {
-            double east, nort;
-
-            mf.pn.ConvertWGS84ToLocal((double)nudLatitudeA.Value, (double)nudLongitudeA.Value, out nort, out east);
+            mf.pn.ConvertWGS84ToLocal((double)nudLatitudeA.Value, (double)nudLongitudeA.Value, out double nort, out double east);
 
             mf.ABLine.desPtA.easting = east;
             mf.ABLine.desPtA.northing = nort;

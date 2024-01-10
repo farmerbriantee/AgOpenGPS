@@ -583,8 +583,7 @@ namespace AgOpenGPS
                     cntr = 1;
             }
 
-            double widd = 0;
-
+            double widd;
             for (int i = cntr; i < mf.tram.passes; i++)
             {
                 mf.tram.tramArr = new List<vec2>
