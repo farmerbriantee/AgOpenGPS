@@ -51,11 +51,8 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.Save();
 
-            if (mf.trk.idx != -1 && mf.trk.gArr.Count > 0)
-            {
-                //save entire list
-                mf.FileSaveTracks();
-            }
+            //save entire list
+            mf.FileSaveTracks();
         }
 
         private void UpdateMoveLabel()
@@ -199,11 +196,6 @@ namespace AgOpenGPS
 
         private void bntOk_Click(object sender, EventArgs e)
         {
-            //if (mf.trk.gArr.Count > 0)
-            {
-                //save entire list
-                mf.FileSaveTracks();
-            }
             Close();
         }
 

@@ -44,7 +44,7 @@ namespace AgOpenGPS
 
             foreach (var item in mf.trk.gArr)
             {
-                gTemp.Add(item);
+                gTemp.Add(new CTrk(item));
             }
 
             panelMain.Top = 3; panelMain.Left = 3;

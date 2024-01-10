@@ -305,10 +305,20 @@ namespace AgOpenGPS
                 return;
             }
 
+            Form fcc = Application.OpenForms["FormNudge"];
+
+            if (fcc != null)
+            {
+                fcc.Focus();
+                TimedMessageBox(2000, "Nudge Window Open", "Close Nudge Window");
+                return;
+            }
+
+
             if (trk.idx > -1)
             {
                 Form form = new FormRefNudge(this);
-                form.ShowDialog(this);
+                form.Show(this);
             }
             else
             {
@@ -319,6 +329,8 @@ namespace AgOpenGPS
             {
                 flp1.Visible = false;
             }
+
+            panelRight.Visible = false; 
         }
         private void btnTracksOff_Click(object sender, EventArgs e)
         {

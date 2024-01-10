@@ -35,6 +35,8 @@
             this.nudSnapDistance = new AgOpenGPS.NudlessNumericUpDown();
             this.btnHalfToolRight = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.btnCancelMain = new System.Windows.Forms.Button();
+            this.lblOffset = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistance)).BeginInit();
             this.SuspendLayout();
@@ -52,7 +54,7 @@
             this.btnAdjLeft.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnAdjLeft.Image = global::AgOpenGPS.Properties.Resources.SnapLeft;
             this.btnAdjLeft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdjLeft.Location = new System.Drawing.Point(8, 139);
+            this.btnAdjLeft.Location = new System.Drawing.Point(10, 122);
             this.btnAdjLeft.Name = "btnAdjLeft";
             this.btnAdjLeft.Size = new System.Drawing.Size(69, 58);
             this.btnAdjLeft.TabIndex = 4;
@@ -72,7 +74,7 @@
             this.btnAdjRight.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnAdjRight.Image = global::AgOpenGPS.Properties.Resources.SnapRight;
             this.btnAdjRight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdjRight.Location = new System.Drawing.Point(95, 139);
+            this.btnAdjRight.Location = new System.Drawing.Point(101, 122);
             this.btnAdjRight.Name = "btnAdjRight";
             this.btnAdjRight.Size = new System.Drawing.Size(69, 58);
             this.btnAdjRight.TabIndex = 5;
@@ -81,8 +83,7 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tableLayoutPanel1.ColumnCount = 2;
@@ -100,7 +101,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.99857F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.00077F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(174, 290);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(182, 263);
             this.tableLayoutPanel1.TabIndex = 416;
             // 
             // btnHalfToolLeft
@@ -116,7 +117,7 @@
             this.btnHalfToolLeft.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnHalfToolLeft.Image = global::AgOpenGPS.Properties.Resources.SnapLeftHalf;
             this.btnHalfToolLeft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnHalfToolLeft.Location = new System.Drawing.Point(8, 27);
+            this.btnHalfToolLeft.Location = new System.Drawing.Point(10, 21);
             this.btnHalfToolLeft.Name = "btnHalfToolLeft";
             this.btnHalfToolLeft.Size = new System.Drawing.Size(69, 58);
             this.btnHalfToolLeft.TabIndex = 418;
@@ -128,7 +129,7 @@
             this.nudSnapDistance.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel1.SetColumnSpan(this.nudSnapDistance, 2);
             this.nudSnapDistance.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSnapDistance.Location = new System.Drawing.Point(55, 239);
+            this.nudSnapDistance.Location = new System.Drawing.Point(59, 214);
             this.nudSnapDistance.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -160,7 +161,7 @@
             this.btnHalfToolRight.Image = global::AgOpenGPS.Properties.Resources.SnapRightHalf;
             this.btnHalfToolRight.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnHalfToolRight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnHalfToolRight.Location = new System.Drawing.Point(95, 27);
+            this.btnHalfToolRight.Location = new System.Drawing.Point(101, 21);
             this.btnHalfToolRight.Name = "btnHalfToolRight";
             this.btnHalfToolRight.Size = new System.Drawing.Size(69, 58);
             this.btnHalfToolRight.TabIndex = 418;
@@ -169,7 +170,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnExit.BackColor = System.Drawing.Color.Transparent;
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnExit.FlatAppearance.BorderSize = 0;
@@ -178,23 +179,56 @@
             this.btnExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnExit.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExit.Location = new System.Drawing.Point(126, 317);
+            this.btnExit.Location = new System.Drawing.Point(111, 334);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(83, 70);
+            this.btnExit.Size = new System.Drawing.Size(106, 57);
             this.btnExit.TabIndex = 417;
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnCancelMain
+            // 
+            this.btnCancelMain.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCancelMain.BackColor = System.Drawing.Color.Transparent;
+            this.btnCancelMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCancelMain.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelMain.FlatAppearance.BorderSize = 0;
+            this.btnCancelMain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelMain.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnCancelMain.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
+            this.btnCancelMain.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnCancelMain.Location = new System.Drawing.Point(3, 334);
+            this.btnCancelMain.Name = "btnCancelMain";
+            this.btnCancelMain.Size = new System.Drawing.Size(78, 57);
+            this.btnCancelMain.TabIndex = 433;
+            this.btnCancelMain.UseVisualStyleBackColor = false;
+            this.btnCancelMain.Click += new System.EventHandler(this.btnCancelMain_Click);
+            // 
+            // lblOffset
+            // 
+            this.lblOffset.BackColor = System.Drawing.Color.Transparent;
+            this.lblOffset.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOffset.ForeColor = System.Drawing.Color.Black;
+            this.lblOffset.Location = new System.Drawing.Point(16, 289);
+            this.lblOffset.Name = "lblOffset";
+            this.lblOffset.Size = new System.Drawing.Size(187, 31);
+            this.lblOffset.TabIndex = 434;
+            this.lblOffset.Text = "0.0 cm";
+            this.lblOffset.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormRefNudge
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightCoral;
-            this.ClientSize = new System.Drawing.Size(215, 392);
+            this.ClientSize = new System.Drawing.Size(223, 396);
             this.ControlBox = false;
+            this.Controls.Add(this.lblOffset);
+            this.Controls.Add(this.btnCancelMain);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(180, 160);
@@ -218,5 +252,7 @@
         private System.Windows.Forms.Button btnHalfToolLeft;
         private System.Windows.Forms.Button btnHalfToolRight;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnCancelMain;
+        private System.Windows.Forms.Label lblOffset;
     }
 }

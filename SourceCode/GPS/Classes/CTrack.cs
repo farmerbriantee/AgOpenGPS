@@ -196,6 +196,8 @@ namespace AgOpenGPS
 
             mf.trk.gArr[mf.trk.idx].ptB.easting += (Math.Sin(head + glm.PIBy2) * (dist));
             mf.trk.gArr[mf.trk.idx].ptB.northing += (Math.Cos(head + glm.PIBy2) * (dist));
+
+
         }
 
         public void NudgeRefCurve(double dist)
