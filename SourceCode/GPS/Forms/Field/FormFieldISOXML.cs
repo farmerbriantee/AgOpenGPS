@@ -177,6 +177,7 @@ namespace AgOpenGPS
                 tboxFieldName.Text = pfd[idxFieldSelected].Attributes["C"].Value;
             }
 
+
             if (idxFieldSelected == -1)
             {
                 btnBuildFields.Enabled = false;
@@ -558,9 +559,9 @@ namespace AgOpenGPS
                                     mf.trk.gArr[idx].heading = mf.ABLine.desHeading;
                                     mf.trk.gArr[idx].mode = (int)TrackMode.AB;
 
-                                    //calculate the new points for the reference line and points
-                                    mf.trk.gArr[idx].ptA.easting = (mf.ABLine.desPtA.easting + mf.ABLine.desPtB.easting) / 2;
-                                    mf.trk.gArr[idx].ptA.northing = (mf.ABLine.desPtA.northing + mf.ABLine.desPtB.northing) / 2;
+                                    ////calculate the new points for the reference line and points
+                                    mf.trk.gArr[idx].ptA = new vec2(mf.ABLine.desPtA);
+                                    mf.trk.gArr[idx].ptB = new vec2(mf.ABLine.desPtB);
 
                                     mf.trk.gArr[idx].name = mf.ABLine.desName.Trim();
 
@@ -642,7 +643,7 @@ namespace AgOpenGPS
                                                 mf.trk.gArr[idx].name = mf.curve.desName;
                                             }
 
-                                            mf.trk.gArr[idx].mode = (int)TrackMode.AB;
+                                            mf.trk.gArr[idx].mode = (int)TrackMode.Curve;
 
                                             //write out the Curve Points
                                             foreach (vec3 item in mf.curve.desList)
@@ -713,9 +714,9 @@ namespace AgOpenGPS
                             mf.trk.gArr[idx].heading = mf.ABLine.desHeading;
                             mf.trk.gArr[idx].mode = (int)TrackMode.AB;
 
-                            //calculate the new points for the reference line and points
-                            mf.trk.gArr[idx].ptA.easting = (mf.ABLine.desPtA.easting + mf.ABLine.desPtB.easting) / 2;
-                            mf.trk.gArr[idx].ptA.northing = (mf.ABLine.desPtA.northing + mf.ABLine.desPtB.northing) / 2;
+                            ////calculate the new points for the reference line and points
+                            mf.trk.gArr[idx].ptA = new vec2(mf.ABLine.desPtA);
+                            mf.trk.gArr[idx].ptB = new vec2(mf.ABLine.desPtB);
 
                             mf.trk.gArr[idx].name = mf.ABLine.desName.Trim();
                         }

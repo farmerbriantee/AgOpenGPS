@@ -1712,7 +1712,7 @@ namespace AgOpenGPS
             }
 
 
-            FixPanelsAndMenus();
+            PanelsAndOGLSize();
             SetZoom();
 
             //Recorded Path

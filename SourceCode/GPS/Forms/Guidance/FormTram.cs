@@ -105,7 +105,7 @@ namespace AgOpenGPS
             }
 
             mf.FileSaveTram();
-            mf.UpdateRightAndBottomPanel();
+            mf.PanelUpdateRightAndBottom();
             mf.FixTramModeButton();
         }
 

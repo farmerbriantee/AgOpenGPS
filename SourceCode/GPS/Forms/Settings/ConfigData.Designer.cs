@@ -79,7 +79,7 @@ namespace AgOpenGPS
             Properties.Settings.Default.setIMU_fusionWeight2 = (double)hsbarFusion.Value * 0.002;
             mf.ahrs.fusionWeight = (double)hsbarFusion.Value * 0.002;
 
-            Properties.Settings.Default.setGPS_isRTK = mf.isRTK = cboxIsRTK.Checked;
+            Properties.Settings.Default.setGPS_isRTK = mf.isRTK_AlarmOn = cboxIsRTK.Checked;
             Properties.Settings.Default.setGPS_isRTK_KillAutoSteer = mf.isRTK_KillAutosteer = cboxIsRTK_KillAutoSteer.Checked;
 
             Properties.Settings.Default.setIMU_isReverseOn = mf.ahrs.isReverseOn = cboxIsReverseOn.Checked;

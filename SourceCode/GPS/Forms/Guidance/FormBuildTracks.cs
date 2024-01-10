@@ -110,7 +110,7 @@ namespace AgOpenGPS
 
             mf.twoSecondCounter = 100;
 
-            mf.UpdateRightAndBottomPanel();
+            mf.PanelUpdateRightAndBottom();
         }
         
         private void btnCancelMain_Click(object sender, EventArgs e)

@@ -52,7 +52,7 @@ namespace AgOpenGPS
                 if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
             }
 
-            UpdateRightAndBottomPanel();
+            PanelUpdateRightAndBottom();
         }                
         private void btnContourLock_Click(object sender, EventArgs e)
         {
@@ -82,12 +82,14 @@ namespace AgOpenGPS
                 if (trk.idx == -1)
                 {
                     trk.idx = 0;
+                    EnableYouTurnButtons();
+                    PanelUpdateRightAndBottom();
+                    twoSecondCounter = 100;
+                    return;
                 }
-                EnableYouTurnButtons();
 
-                //run the routine
+                EnableYouTurnButtons();
                 twoSecondCounter = 100;
-                //return;
             }
 
             if (flp1.Visible)
@@ -136,7 +138,7 @@ namespace AgOpenGPS
                 trackMethodPanelCounter = 3;
             }
 
-            UpdateRightAndBottomPanel();
+            PanelUpdateRightAndBottom();
         }
         private void btnAutoSteer_Click(object sender, EventArgs e)
         {
@@ -245,14 +247,15 @@ namespace AgOpenGPS
                         break;
                     }
                 }
+
             }
 
             twoSecondCounter = 100;
 
             ABLine.isABValid = false;
             curve.isCurveValid = false;
-
         }
+
         private void btnCycleLinesBk_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -340,7 +343,7 @@ namespace AgOpenGPS
             {
                 flp1.Visible = false;
             }
-            UpdateRightAndBottomPanel();
+            PanelUpdateRightAndBottom();
         }
         private void btnNudge_Click(object sender, EventArgs e)
         {
@@ -433,7 +436,7 @@ namespace AgOpenGPS
                 form.ShowDialog(this);
             }
 
-            UpdateRightAndBottomPanel();
+            PanelUpdateRightAndBottom();
         }
         private void cboxAutoSnapToPivot_Click(object sender, EventArgs e)
         {
@@ -579,7 +582,7 @@ namespace AgOpenGPS
 
             if (isJobStarted && trk.gArr.Count > 0)  trk.idx = 0;
 
-            UpdateRightAndBottomPanel();
+            PanelUpdateRightAndBottom();
 
         }
         public void FileSaveEverythingBeforeClosingField()
@@ -656,8 +659,8 @@ namespace AgOpenGPS
 
             bnd.isHeadlandOn = (bnd.bndList.Count > 0 && bnd.bndList[0].hdLine.Count > 0);
             
-            FixPanelsAndMenus();
-            UpdateRightAndBottomPanel();
+            PanelsAndOGLSize();
+            PanelUpdateRightAndBottom();
             SetZoom();
         }
         private void headlandToolStripMenuItem_Click(object sender, EventArgs e)
@@ -685,8 +688,8 @@ namespace AgOpenGPS
 
             bnd.isHeadlandOn = (bnd.bndList.Count > 0 && bnd.bndList[0].hdLine.Count > 0);
 
-            FixPanelsAndMenus();
-            UpdateRightAndBottomPanel();
+            PanelsAndOGLSize();
+            PanelUpdateRightAndBottom();
             SetZoom();
         }
         private void boundariesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -711,7 +714,7 @@ namespace AgOpenGPS
                 }
             }
 
-            UpdateRightAndBottomPanel();
+            PanelUpdateRightAndBottom();
         }
 
         #endregion
@@ -734,7 +737,7 @@ namespace AgOpenGPS
                 trk.idx = -1;
             }
 
-            UpdateRightAndBottomPanel();
+            PanelUpdateRightAndBottom();
 
             #endregion
 
@@ -1809,7 +1812,7 @@ namespace AgOpenGPS
                 btnHydLift.Image = Properties.Resources.HydraulicLiftOff;
             }
 
-            UpdateRightAndBottomPanel();
+            PanelUpdateRightAndBottom();
 
         }
         private void btnHydLift_Click(object sender, EventArgs e)

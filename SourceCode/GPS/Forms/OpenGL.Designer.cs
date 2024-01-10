@@ -452,7 +452,7 @@ namespace AgOpenGPS
                     if (isReverse || isChangingDirection)
                         DrawReverse();
 
-                    if (isRTK)
+                    if (isRTK_AlarmOn)
                     {
                         if (pn.fixQuality != 4)
                         {
@@ -2222,6 +2222,17 @@ namespace AgOpenGPS
                 guideLineCounter = 20;
                 lastGuidelineIndex = trk.idx;
                 lblGuidanceLine.Visible = true;
+                if (trk.idx > -1 && trk.gArr.Count > 0)
+                {
+                    lblNumCu.Visible = true;
+                    lblNumCu.Text = (trk.idx + 1).ToString() + "/" + trk.gArr.Count.ToString();
+                }
+                else
+                {
+                    lblNumCu.Visible = false;
+                    lblNumCu.Text = "";
+                }
+
             }
 
             if (guideLineCounter > 0)

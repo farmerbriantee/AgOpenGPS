@@ -638,7 +638,7 @@ namespace AgOpenGPS
 
         private void FormGPS_Resize(object sender, EventArgs e)
         {
-            FixPanelsAndMenus();
+            PanelsAndOGLSize();
             if (isGPSPositionInitialized) SetZoom();
 
             Form f = Application.OpenForms["FormGPSData"];
@@ -886,7 +886,7 @@ namespace AgOpenGPS
             isPanelABHidden = false;
 
             FieldMenuButtonEnableDisable(true);
-            FixPanelsAndMenus();
+            PanelsAndOGLSize();
             SetZoom();
             fileSaveCounter = 25;
             lblGuidanceLine.Visible = false;
@@ -1082,11 +1082,11 @@ namespace AgOpenGPS
             
             isPanelABHidden = false;
 
-            FixPanelsAndMenus();
+            PanelsAndOGLSize();
             SetZoom();
             worldGrid.isGeoMap = false;
 
-            UpdateRightAndBottomPanel();
+            PanelUpdateRightAndBottom();
 
             using (Bitmap bitmap = Properties.Resources.z_bingMap)
             {
@@ -1198,7 +1198,7 @@ namespace AgOpenGPS
  * and starts all over from the top.
  */
 /*
-private void UpdateRightAndBottomPanel()
+private void PanelUpdateRightAndBottom()
 {
     if (isJobStarted)
     {
