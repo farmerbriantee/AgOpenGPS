@@ -718,7 +718,7 @@ namespace AgOpenGPS
 
                 mf.tram.tramList.Add(mf.tram.tramArr);
 
-                widd = (mf.tram.tramWidth * 0.5) - mf.tool.halfWidth - mf.tram.halfWheelTrack;
+                widd = (mf.tram.tramWidth * 0.5) - mf.tram.halfWheelTrack;
                 widd += (mf.tram.tramWidth * i);
 
                 double distSqAway = widd * widd * 0.999999;
@@ -770,7 +770,7 @@ namespace AgOpenGPS
 
                 mf.tram.tramList.Add(mf.tram.tramArr);
 
-                widd = (mf.tram.tramWidth * 0.5) - mf.tool.halfWidth + mf.tram.halfWheelTrack;
+                widd = (mf.tram.tramWidth * 0.5) + mf.tram.halfWheelTrack;
                 widd += (mf.tram.tramWidth * i);
                 double distSqAway = widd * widd * 0.999999;
 
