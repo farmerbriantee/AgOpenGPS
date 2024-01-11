@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -305,41 +306,54 @@ namespace AgOpenGPS
                 double moveDist = (double)nudDistance.Value * mf.inchOrCm2m;
                 double distSq = (moveDist) * (moveDist) * 0.999;
 
-                //make the boundary tram outer array
-                for (int i = 0; i < ptCount; i++)
+                if (nudDistance.Value == 0)
                 {
-                    //calculate the point inside the boundary
-                    pt3.easting = mf.bnd.bndList[q].fenceLine[i].easting -
-                        (Math.Sin(glm.PIBy2 + mf.bnd.bndList[q].fenceLine[i].heading) * (moveDist));
-
-                    pt3.northing = mf.bnd.bndList[q].fenceLine[i].northing -
-                        (Math.Cos(glm.PIBy2 + mf.bnd.bndList[q].fenceLine[i].heading) * (moveDist));
-
-                    pt3.heading = mf.bnd.bndList[q].fenceLine[i].heading;
-
-                    bool Add = true;
-
-                    for (int j = 0; j < ptCount; j++)
+                    for (int i = start; i < end; i++)
                     {
-                        double check = glm.DistanceSquared(pt3.northing, pt3.easting,
-                                            mf.bnd.bndList[q].fenceLine[j].northing, mf.bnd.bndList[q].fenceLine[j].easting);
-                        if (check < distSq)
-                        {
-                            Add = false;
-                            break;
-                        }
+                        //calculate the point inside the boundary
+                        pt3 = mf.bnd.bndList[bndSelect].fenceLine[i];
+
+                        mf.curve.desList.Add(new vec3(pt3));
                     }
-
-                    if (Add)
+                }
+                else
+                {
+                    //make the boundary tram outer array
+                    for (int i = 0; i < ptCount; i++)
                     {
-                        if (mf.curve.desList.Count > 0)
+                        //calculate the point inside the boundary
+                        pt3.easting = mf.bnd.bndList[q].fenceLine[i].easting -
+                            (Math.Sin(glm.PIBy2 + mf.bnd.bndList[q].fenceLine[i].heading) * (moveDist));
+
+                        pt3.northing = mf.bnd.bndList[q].fenceLine[i].northing -
+                            (Math.Cos(glm.PIBy2 + mf.bnd.bndList[q].fenceLine[i].heading) * (moveDist));
+
+                        pt3.heading = mf.bnd.bndList[q].fenceLine[i].heading;
+
+                        bool Add = true;
+
+                        for (int j = 0; j < ptCount; j++)
                         {
-                            double dist = ((pt3.easting - mf.curve.desList[mf.curve.desList.Count - 1].easting) * (pt3.easting - mf.curve.desList[mf.curve.desList.Count - 1].easting))
-                                + ((pt3.northing - mf.curve.desList[mf.curve.desList.Count - 1].northing) * (pt3.northing - mf.curve.desList[mf.curve.desList.Count - 1].northing));
-                            if (dist > 1)
-                                mf.curve.desList.Add(pt3);
+                            double check = glm.DistanceSquared(pt3.northing, pt3.easting,
+                                                mf.bnd.bndList[q].fenceLine[j].northing, mf.bnd.bndList[q].fenceLine[j].easting);
+                            if (check < distSq)
+                            {
+                                Add = false;
+                                break;
+                            }
                         }
-                        else mf.curve.desList.Add(pt3);
+
+                        if (Add)
+                        {
+                            if (mf.curve.desList.Count > 0)
+                            {
+                                double dist = ((pt3.easting - mf.curve.desList[mf.curve.desList.Count - 1].easting) * (pt3.easting - mf.curve.desList[mf.curve.desList.Count - 1].easting))
+                                    + ((pt3.northing - mf.curve.desList[mf.curve.desList.Count - 1].northing) * (pt3.northing - mf.curve.desList[mf.curve.desList.Count - 1].northing));
+                                if (dist > 1)
+                                    mf.curve.desList.Add(pt3);
+                            }
+                            else mf.curve.desList.Add(pt3);
+                        }
                     }
                 }
 
