@@ -114,6 +114,9 @@ namespace AgOpenGPS
                 mf.trk.gArr.Add(new CTrk(item));
             }
 
+            mf.ABLine.isABValid = false;
+            mf.curve.isCurveValid = false;
+
             //mf.FileSaveTracks();
             Close();
         }
