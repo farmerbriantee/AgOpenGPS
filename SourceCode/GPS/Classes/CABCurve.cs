@@ -153,7 +153,10 @@ namespace AgOpenGPS
                                 * refPoint1.northing) - (refPoint2.northing * refPoint1.easting))
                                 / Math.Sqrt((dz * dz) + (dx * dx));
 
+            distanceFromRefLine -= (0.5 * widthMinusOverlap);
+
             double RefDist = (distanceFromRefLine + (isHeadingSameWay ? mf.tool.offset : -mf.tool.offset)) / widthMinusOverlap;
+            
             if (RefDist < 0) howManyPathsAway = (int)(RefDist - 0.5);
             else howManyPathsAway = (int)(RefDist + 0.5);
 
@@ -164,6 +167,8 @@ namespace AgOpenGPS
             curList?.Clear();
 
             double distAway = widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset ) + mf.trk.gArr[idx].nudgeDistance;
+
+            distAway += (0.5 * widthMinusOverlap);
 
             if (howManyPathsAway > -1) howManyPathsAway += 1;
 
