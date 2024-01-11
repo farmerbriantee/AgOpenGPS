@@ -984,6 +984,7 @@
     <None Include="btnImages\Config\SectionLookAheadDelay.gif" />
     <None Include="btnImages\ABSnapNudgeMenuRef.png" />
     <None Include="btnImages\Config\Con_RightMenuEdit.png" />
+    <None Include="btnImages\BoundaryCenter.png" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -21,6 +22,8 @@ namespace AgOpenGPS
         private bool isClosing;
         private int selectedItem = -1;
         public List<CTrk> gTemp = new List<CTrk>();
+
+        private bool isRefRightSide = true; //left side 0 middle 1 right 2
 
         private bool isOn = true;
 
@@ -542,6 +545,13 @@ namespace AgOpenGPS
         #endregion
 
         #region Curve
+        private void btnRefSideCurve_Click(object sender, EventArgs e)
+        {
+            isRefRightSide = !isRefRightSide;
+            btnRefSideCurve.Image = isRefRightSide ?
+            Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
+        }
+
         private void btnACurve_Click(object sender, System.EventArgs e)
         {
             lblCurveExists.Text = gStr.gsDriving;
@@ -613,6 +623,21 @@ namespace AgOpenGPS
 
                 panelCurve.Visible = false;
                 panelName.Visible = true;
+
+                double dist;
+
+                if (isRefRightSide)
+                {
+                    dist = (mf.tool.width - mf.tool.overlap) * 0.5;
+                    mf.trk.idx = idx;
+                    mf.trk.NudgeRefCurve(dist);
+                }
+                else
+                {
+                    dist = (mf.tool.width - mf.tool.overlap) * -0.5;
+                    mf.trk.idx = idx;
+                    mf.trk.NudgeRefCurve(dist);
+                }
             }
             else
             {
@@ -649,6 +674,12 @@ namespace AgOpenGPS
         #endregion
 
         #region AB Line
+        private void btnRefSideAB_Click(object sender, EventArgs e)
+        {
+            isRefRightSide = !isRefRightSide;
+            btnRefSideAB.Image = isRefRightSide ?
+            Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
+        }
 
         private void btnALine_Click(object sender, EventArgs e)
         {
@@ -705,6 +736,22 @@ namespace AgOpenGPS
                 (Math.Round(glm.toDegrees(mf.ABLine.desHeading), 1)).ToString(CultureInfo.InvariantCulture) + "\u00B0 " ;
             textBox1.Text = mf.ABLine.desName;
 
+            double dist;
+            if (isRefRightSide)
+            {
+                dist = (mf.tool.width - mf.tool.overlap) * 0.5;
+                mf.trk.idx = idx;
+                mf.trk.NudgeRefABLine(dist);
+
+            }
+            else
+            {
+                dist = (mf.tool.width - mf.tool.overlap) * -0.5;
+                mf.trk.idx = idx;
+                mf.trk.NudgeRefABLine(dist);
+            }
+
+
             panelABLine.Visible = false;
             panelName.Visible = true;
 
@@ -713,6 +760,14 @@ namespace AgOpenGPS
         #endregion
 
         #region A Plus
+
+        private void btnRefSideAPlus_Click(object sender, EventArgs e)
+        {
+            isRefRightSide = !isRefRightSide;
+            btnRefSideAPlus.Image = isRefRightSide ?
+            Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
+        }
+
         private void btnAPlus_Click(object sender, EventArgs e)
         {
             mf.ABLine.isMakingABLine = true;
@@ -772,6 +827,21 @@ namespace AgOpenGPS
             mf.ABLine.desName = "A+" +
                 (Math.Round(glm.toDegrees(mf.ABLine.desHeading), 1)).ToString(CultureInfo.InvariantCulture) + "\u00B0 " ;
             textBox1.Text = mf.ABLine.desName;
+
+            double dist;
+            if (isRefRightSide)
+            {
+                dist = (mf.tool.width - mf.tool.overlap) * 0.5;
+                mf.trk.idx = idx;
+                mf.trk.NudgeRefABLine(dist);
+
+            }
+            else
+            {
+                dist = (mf.tool.width - mf.tool.overlap) * -0.5;
+                mf.trk.idx = idx;
+                mf.trk.NudgeRefABLine(dist);
+            }
 
             panelAPlus.Visible = false;
             panelName.Visible = true;
@@ -1309,6 +1379,7 @@ namespace AgOpenGPS
 
 
         #endregion Help
+
 
     }
 }
