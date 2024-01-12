@@ -319,8 +319,9 @@ namespace AgOpenGPS
                 if (pt33.heading < 0) pt33.heading += glm.twoPI;
                 curList.Add(pt33);
 
-                if (mf.trk.gArr == null || mf.trk.gArr.Count == 0) return;
-                if (mf.bnd.bndList.Count > 0 && !(mf.trk.gArr[mf.trk.gArr.Count - 1].name == "Boundary Curve"))
+                if (mf.trk.gArr == null || mf.trk.gArr.Count == 0 || idx == -1) return;
+
+                if (mf.bnd.bndList.Count > 0 && !(mf.trk.gArr[idx].mode == (int)TrackMode.bndCurve))
                 {
                     int ptCnt = curList.Count - 1;
 

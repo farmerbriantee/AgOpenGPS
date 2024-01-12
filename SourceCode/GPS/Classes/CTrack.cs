@@ -200,21 +200,109 @@ namespace AgOpenGPS
 
         }
 
-        public void NudgeRefCurve(double dist)
+        public void NudgeRefCurve(double distAway)
         {
             mf.curve.isCurveValid = false;
             mf.curve.lastSecond = 0;
 
-            int cnt = mf.trk.gArr[mf.trk.idx].curvePts.Count;
-            vec3[] arr = new vec3[cnt];
-            mf.trk.gArr[mf.trk.idx].curvePts.CopyTo(arr);
-            mf.trk.gArr[mf.trk.idx].curvePts.Clear();
+            List<vec3> curList = new List<vec3>();
 
-            for (int i = 0; i < cnt; i++)
+            double distSqAway = (distAway * distAway) - 0.01;
+            vec3 point;
+
+            for (int i = 0; i < mf.trk.gArr[idx].curvePts.Count; i++)
             {
-                arr[i].easting += Math.Cos(arr[i].heading) * (dist);
-                arr[i].northing -= Math.Sin(arr[i].heading) * (dist);
-                mf.trk.gArr[mf.trk.idx].curvePts.Add(arr[i]);
+                point = new vec3(
+                mf.trk.gArr[idx].curvePts[i].easting + (Math.Sin(glm.PIBy2 + mf.trk.gArr[idx].curvePts[i].heading) * distAway),
+                mf.trk.gArr[idx].curvePts[i].northing + (Math.Cos(glm.PIBy2 + mf.trk.gArr[idx].curvePts[i].heading) * distAway),
+                mf.trk.gArr[idx].curvePts[i].heading);
+                bool Add = true;
+
+                for (int t = 0; t < mf.trk.gArr[idx].curvePts.Count; t++)
+                {
+                    double dist = ((point.easting - mf.trk.gArr[idx].curvePts[t].easting) * (point.easting - mf.trk.gArr[idx].curvePts[t].easting))
+                        + ((point.northing - mf.trk.gArr[idx].curvePts[t].northing) * (point.northing - mf.trk.gArr[idx].curvePts[t].northing));
+                    if (dist < distSqAway)
+                    {
+                        Add = false;
+                        break;
+                    }
+                }
+
+                if (Add)
+                {
+                    if (curList.Count > 0)
+                    {
+                        double dist = ((point.easting - curList[curList.Count - 1].easting) * (point.easting - curList[curList.Count - 1].easting))
+                            + ((point.northing - curList[curList.Count - 1].northing) * (point.northing - curList[curList.Count - 1].northing));
+                        if (dist > 1.0)
+                            curList.Add(point);
+                    }
+                    else curList.Add(point);
+                }
+            }
+
+            int cnt = curList.Count;
+            if (cnt > 6)
+            {
+                vec3[] arr = new vec3[cnt];
+                curList.CopyTo(arr);
+
+                curList.Clear();
+
+                for (int i = 0; i < (arr.Length - 1); i++)
+                {
+                    arr[i].heading = Math.Atan2(arr[i + 1].easting - arr[i].easting, arr[i + 1].northing - arr[i].northing);
+                    if (arr[i].heading < 0) arr[i].heading += glm.twoPI;
+                    if (arr[i].heading >= glm.twoPI) arr[i].heading -= glm.twoPI;
+                }
+
+                arr[arr.Length - 1].heading = arr[arr.Length - 2].heading;
+
+                //replace the array
+                cnt = arr.Length;
+                double distance;
+                double spacing = 1.2;
+
+                //add the first point of loop - it will be p1
+                curList.Add(arr[0]);
+
+                for (int i = 0; i < cnt - 3; i++)
+                {
+                    // add p2
+                    curList.Add(arr[i + 1]);
+
+                    distance = glm.Distance(arr[i + 1], arr[i + 2]);
+
+                    if (distance > spacing)
+                    {
+                        int loopTimes = (int)(distance / spacing + 1);
+                        for (int j = 1; j < loopTimes; j++)
+                        {
+                            vec3 pos = new vec3(glm.Catmull(j / (double)(loopTimes), arr[i], arr[i + 1], arr[i + 2], arr[i + 3]));
+                            curList.Add(pos);
+                        }
+                    }
+                }
+
+                curList.Add(arr[cnt - 2]);
+                curList.Add(arr[cnt - 1]);
+
+                mf.curve.CalculateHeadings(ref curList);
+
+                mf.trk.gArr[mf.trk.idx].curvePts.Clear();
+
+                foreach (var item in curList)
+                {
+                    mf.trk.gArr[mf.trk.idx].curvePts.Add(new vec3(item));
+                }
+
+                //for (int i = 0; i < cnt; i++)
+                //{
+                //    arr[i].easting += Math.Cos(arr[i].heading) * (dist);
+                //    arr[i].northing -= Math.Sin(arr[i].heading) * (dist);
+                //    mf.trk.gArr[mf.trk.idx].curvePts.Add(arr[i]);
+                //}
             }
         }
     }

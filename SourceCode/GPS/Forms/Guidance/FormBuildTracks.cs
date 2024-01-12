@@ -628,13 +628,13 @@ namespace AgOpenGPS
 
                 if (isRefRightSide)
                 {
-                    dist = (mf.tool.width - mf.tool.overlap) * 0.5;
+                    dist = (mf.tool.width - mf.tool.overlap) * 0.5 + mf.tool.offset;
                     mf.trk.idx = idx;
                     mf.trk.NudgeRefCurve(dist);
                 }
                 else
                 {
-                    dist = (mf.tool.width - mf.tool.overlap) * -0.5;
+                    dist = (mf.tool.width - mf.tool.overlap) * -0.5 + mf.tool.offset;
                     mf.trk.idx = idx;
                     mf.trk.NudgeRefCurve(dist);
                 }
@@ -644,9 +644,9 @@ namespace AgOpenGPS
                 mf.curve.isMakingCurve = false;
                 mf.curve.desList?.Clear();
 
-                panelMain.Visible = false;
+                panelMain.Visible = true;
                 panelCurve.Visible = false;
-                panelName.Visible = true;
+                panelName.Visible = false;
                 panelChoose.Visible = false;
 
                 this.Size = new System.Drawing.Size(650, 475);
@@ -739,14 +739,14 @@ namespace AgOpenGPS
             double dist;
             if (isRefRightSide)
             {
-                dist = (mf.tool.width - mf.tool.overlap) * 0.5;
+                dist = (mf.tool.width - mf.tool.overlap) * 0.5 + mf.tool.offset;
                 mf.trk.idx = idx;
                 mf.trk.NudgeRefABLine(dist);
 
             }
             else
             {
-                dist = (mf.tool.width - mf.tool.overlap) * -0.5;
+                dist = (mf.tool.width - mf.tool.overlap) * -0.5 + mf.tool.offset;
                 mf.trk.idx = idx;
                 mf.trk.NudgeRefABLine(dist);
             }
@@ -831,14 +831,14 @@ namespace AgOpenGPS
             double dist;
             if (isRefRightSide)
             {
-                dist = (mf.tool.width - mf.tool.overlap) * 0.5;
+                dist = (mf.tool.width - mf.tool.overlap) * 0.5 + mf.tool.offset;
                 mf.trk.idx = idx;
                 mf.trk.NudgeRefABLine(dist);
 
             }
             else
             {
-                dist = (mf.tool.width - mf.tool.overlap) * -0.5;
+                dist = (mf.tool.width - mf.tool.overlap) * -0.5 + mf.tool.offset;
                 mf.trk.idx = idx;
                 mf.trk.NudgeRefABLine(dist);
             }

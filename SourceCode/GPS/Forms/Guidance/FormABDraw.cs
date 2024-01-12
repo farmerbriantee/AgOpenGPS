@@ -21,6 +21,7 @@ namespace AgOpenGPS
         private int start = 99999, end = 99999;
         private int bndSelect = 0, originalLine;
         private bool isCancel = false;
+
         public List<CTrk> gTemp = new List<CTrk>();
 
         public vec3 pint = new vec3(0.0, 1.0, 0.0);
@@ -308,7 +309,7 @@ namespace AgOpenGPS
 
                 if (nudDistance.Value == 0)
                 {
-                    for (int i = start; i < end; i++)
+                    for (int i = 0; i < mf.bnd.bndList[bndSelect].fenceLine.Count; i++)
                     {
                         //calculate the point inside the boundary
                         pt3 = mf.bnd.bndList[bndSelect].fenceLine[i];
@@ -950,7 +951,7 @@ namespace AgOpenGPS
             oglSelf.MakeCurrent();
             GL.Enable(EnableCap.CullFace);
             GL.CullFace(CullFaceMode.Back);
-            GL.ClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+            GL.ClearColor(1,1,1,1);
         }
 
         private void DrawSections()
