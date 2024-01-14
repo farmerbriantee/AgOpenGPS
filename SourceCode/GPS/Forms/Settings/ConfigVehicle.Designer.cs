@@ -483,6 +483,11 @@ namespace AgOpenGPS
 
             else if (Properties.Settings.Default.setVehicle_vehicleType == 2)
                 pboxAntenna.BackgroundImage = Properties.Resources.Antenna4WD;
+
+            label98.Text = mf.unitsInCm;
+            label99.Text = mf.unitsInCm;
+            label100.Text = mf.unitsInCm;
+
         }
 
         private void tabVAntenna_Leave(object sender, EventArgs e)
@@ -543,6 +548,11 @@ namespace AgOpenGPS
                 pictureBox1.Image = Properties.Resources.RadiusWheelBase4WD;
                 nudTractorHitchLength.Visible = true;
             }
+
+            label94.Text = mf.unitsInCm;
+            label95.Text = mf.unitsInCm;
+            label96.Text = mf.unitsInCm;
+            label97.Text = mf.unitsInCm;
         }
 
         private void nudMinTurnRadius_Click(object sender, EventArgs e)

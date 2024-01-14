@@ -192,6 +192,8 @@ namespace AgOpenGPS
 
                     picboxToolHitch.BackgroundImage = Properties.Resources.ToolHitchPageTrailing;
                 }
+
+                label112.Text = mf.unitsInCm;
             }
             else
             {
@@ -361,6 +363,9 @@ namespace AgOpenGPS
                 rbtnToolOverlap.Checked = false;
 
             }
+
+            label175.Text = mf.unitsInCm;
+            label176.Text = mf.unitsInCm;   
         }
 
         private void nudOverlap_Click(object sender, EventArgs e)
@@ -421,6 +426,8 @@ namespace AgOpenGPS
 
             rbtnPivotBehindPos.Checked = Properties.Settings.Default.setTool_trailingToolToPivotLength >= 0;
             rbtnPivotAheadNeg.Checked = !(Properties.Settings.Default.setTool_trailingToolToPivotLength >= 0);
+
+            label177.Text = mf.unitsInCm;
         }
 
         private void tabToolPivot_Leave(object sender, EventArgs e)
@@ -570,6 +577,8 @@ namespace AgOpenGPS
                 mf.LineUpAllZoneButtons();
                 SetNudZoneVisibility();
             }
+
+            label178.Text = mf.unitsInCm;
         }
 
         private void tabTSections_Leave(object sender, EventArgs e)

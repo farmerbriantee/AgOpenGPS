@@ -189,15 +189,13 @@ namespace AgOpenGPS
 
         public void NudgeRefABLine(double dist)
         {
-            double head = mf.trk.gArr[mf.trk.idx].heading;
+            double head = gArr[idx].heading;
 
-            mf.trk.gArr[mf.trk.idx].ptA.easting += (Math.Sin(head+glm.PIBy2) * (dist));
-            mf.trk.gArr[mf.trk.idx].ptA.northing += (Math.Cos(head + glm.PIBy2) * (dist));
+            gArr[idx].ptA.easting += (Math.Sin(head+glm.PIBy2) * (dist));
+            gArr[idx].ptA.northing += (Math.Cos(head + glm.PIBy2) * (dist));
 
-            mf.trk.gArr[mf.trk.idx].ptB.easting += (Math.Sin(head + glm.PIBy2) * (dist));
-            mf.trk.gArr[mf.trk.idx].ptB.northing += (Math.Cos(head + glm.PIBy2) * (dist));
-
-
+            gArr[idx].ptB.easting += (Math.Sin(head + glm.PIBy2) * (dist));
+            gArr[idx].ptB.northing += (Math.Cos(head + glm.PIBy2) * (dist));
         }
 
         public void NudgeRefCurve(double distAway)
@@ -210,18 +208,18 @@ namespace AgOpenGPS
             double distSqAway = (distAway * distAway) - 0.01;
             vec3 point;
 
-            for (int i = 0; i < mf.trk.gArr[idx].curvePts.Count; i++)
+            for (int i = 0; i < gArr[idx].curvePts.Count; i++)
             {
                 point = new vec3(
-                mf.trk.gArr[idx].curvePts[i].easting + (Math.Sin(glm.PIBy2 + mf.trk.gArr[idx].curvePts[i].heading) * distAway),
-                mf.trk.gArr[idx].curvePts[i].northing + (Math.Cos(glm.PIBy2 + mf.trk.gArr[idx].curvePts[i].heading) * distAway),
-                mf.trk.gArr[idx].curvePts[i].heading);
+                gArr[idx].curvePts[i].easting + (Math.Sin(glm.PIBy2 + gArr[idx].curvePts[i].heading) * distAway),
+                gArr[idx].curvePts[i].northing + (Math.Cos(glm.PIBy2 + gArr[idx].curvePts[i].heading) * distAway),
+                gArr[idx].curvePts[i].heading);
                 bool Add = true;
 
-                for (int t = 0; t < mf.trk.gArr[idx].curvePts.Count; t++)
+                for (int t = 0; t < gArr[idx].curvePts.Count; t++)
                 {
-                    double dist = ((point.easting - mf.trk.gArr[idx].curvePts[t].easting) * (point.easting - mf.trk.gArr[idx].curvePts[t].easting))
-                        + ((point.northing - mf.trk.gArr[idx].curvePts[t].northing) * (point.northing - mf.trk.gArr[idx].curvePts[t].northing));
+                    double dist = ((point.easting - gArr[idx].curvePts[t].easting) * (point.easting - gArr[idx].curvePts[t].easting))
+                        + ((point.northing - gArr[idx].curvePts[t].northing) * (point.northing - gArr[idx].curvePts[t].northing));
                     if (dist < distSqAway)
                     {
                         Add = false;
@@ -290,18 +288,18 @@ namespace AgOpenGPS
 
                 mf.curve.CalculateHeadings(ref curList);
 
-                mf.trk.gArr[mf.trk.idx].curvePts.Clear();
+                gArr[idx].curvePts.Clear();
 
                 foreach (var item in curList)
                 {
-                    mf.trk.gArr[mf.trk.idx].curvePts.Add(new vec3(item));
+                    gArr[idx].curvePts.Add(new vec3(item));
                 }
 
                 //for (int i = 0; i < cnt; i++)
                 //{
                 //    arr[i].easting += Math.Cos(arr[i].heading) * (dist);
                 //    arr[i].northing -= Math.Sin(arr[i].heading) * (dist);
-                //    mf.trk.gArr[mf.trk.idx].curvePts.Add(arr[i]);
+                //    gArr[idx].curvePts.Add(arr[i]);
                 //}
             }
         }

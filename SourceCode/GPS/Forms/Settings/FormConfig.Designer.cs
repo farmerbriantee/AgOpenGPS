@@ -129,11 +129,18 @@
             this.btnOpacityUp = new System.Windows.Forms.Button();
             this.cboxIsImage = new System.Windows.Forms.CheckBox();
             this.tabVAntenna = new System.Windows.Forms.TabPage();
+            this.label100 = new System.Windows.Forms.Label();
+            this.label99 = new System.Windows.Forms.Label();
+            this.label98 = new System.Windows.Forms.Label();
             this.nudAntennaHeight = new AgOpenGPS.NudlessNumericUpDown();
             this.nudAntennaPivot = new AgOpenGPS.NudlessNumericUpDown();
             this.nudAntennaOffset = new AgOpenGPS.NudlessNumericUpDown();
             this.pboxAntenna = new System.Windows.Forms.PictureBox();
             this.tabVDimensions = new System.Windows.Forms.TabPage();
+            this.label97 = new System.Windows.Forms.Label();
+            this.label96 = new System.Windows.Forms.Label();
+            this.label95 = new System.Windows.Forms.Label();
+            this.label94 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label60 = new System.Windows.Forms.Label();
             this.label53 = new System.Windows.Forms.Label();
@@ -188,11 +195,15 @@
             this.rbtnFront = new System.Windows.Forms.RadioButton();
             this.rbtnTrailing = new System.Windows.Forms.RadioButton();
             this.tabTHitch = new System.Windows.Forms.TabPage();
+            this.label112 = new System.Windows.Forms.Label();
             this.nudTrailingHitchLength = new AgOpenGPS.NudlessNumericUpDown();
             this.nudDrawbarLength = new AgOpenGPS.NudlessNumericUpDown();
             this.nudTankHitch = new AgOpenGPS.NudlessNumericUpDown();
             this.picboxToolHitch = new System.Windows.Forms.PictureBox();
+            this.label164 = new System.Windows.Forms.Label();
             this.tabToolOffset = new System.Windows.Forms.TabPage();
+            this.label176 = new System.Windows.Forms.Label();
+            this.label175 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -206,6 +217,7 @@
             this.nudOverlap = new AgOpenGPS.NudlessNumericUpDown();
             this.nudOffset = new AgOpenGPS.NudlessNumericUpDown();
             this.tabToolPivot = new System.Windows.Forms.TabPage();
+            this.label177 = new System.Windows.Forms.Label();
             this.rbtnPivotBehindPos = new System.Windows.Forms.RadioButton();
             this.rbtnPivotAheadNeg = new System.Windows.Forms.RadioButton();
             this.nudTrailingToolToPivotLength = new AgOpenGPS.NudlessNumericUpDown();
@@ -504,6 +516,7 @@
             this.cboxFeatureBoundary = new System.Windows.Forms.CheckBox();
             this.cboxFeatureHeadland = new System.Windows.Forms.CheckBox();
             this.cboxFeatureTram = new System.Windows.Forms.CheckBox();
+            this.label93 = new System.Windows.Forms.Label();
             this.tabDisplay = new System.Windows.Forms.TabPage();
             this.chkSvennArrow = new System.Windows.Forms.CheckBox();
             this.chkDisplayBrightness = new System.Windows.Forms.CheckBox();
@@ -541,7 +554,7 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label93 = new System.Windows.Forms.Label();
+            this.label178 = new System.Windows.Forms.Label();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -2359,6 +2372,9 @@
             // tabVAntenna
             // 
             this.tabVAntenna.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabVAntenna.Controls.Add(this.label100);
+            this.tabVAntenna.Controls.Add(this.label99);
+            this.tabVAntenna.Controls.Add(this.label98);
             this.tabVAntenna.Controls.Add(this.nudAntennaHeight);
             this.tabVAntenna.Controls.Add(this.nudAntennaPivot);
             this.tabVAntenna.Controls.Add(this.nudAntennaOffset);
@@ -2370,6 +2386,48 @@
             this.tabVAntenna.Text = "vAnt";
             this.tabVAntenna.Enter += new System.EventHandler(this.tabVAntenna_Enter);
             this.tabVAntenna.Leave += new System.EventHandler(this.tabVAntenna_Leave);
+            // 
+            // label100
+            // 
+            this.label100.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label100.AutoSize = true;
+            this.label100.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label100.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label100.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label100.Location = new System.Drawing.Point(638, 392);
+            this.label100.Name = "label100";
+            this.label100.Size = new System.Drawing.Size(32, 19);
+            this.label100.TabIndex = 483;
+            this.label100.Text = "cm";
+            this.label100.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label99
+            // 
+            this.label99.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label99.AutoSize = true;
+            this.label99.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label99.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label99.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label99.Location = new System.Drawing.Point(566, 186);
+            this.label99.Name = "label99";
+            this.label99.Size = new System.Drawing.Size(32, 19);
+            this.label99.TabIndex = 482;
+            this.label99.Text = "cm";
+            this.label99.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label98
+            // 
+            this.label98.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label98.AutoSize = true;
+            this.label98.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label98.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label98.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label98.Location = new System.Drawing.Point(302, 17);
+            this.label98.Name = "label98";
+            this.label98.Size = new System.Drawing.Size(32, 19);
+            this.label98.TabIndex = 481;
+            this.label98.Text = "cm";
+            this.label98.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // nudAntennaHeight
             // 
@@ -2460,6 +2518,10 @@
             // tabVDimensions
             // 
             this.tabVDimensions.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabVDimensions.Controls.Add(this.label97);
+            this.tabVDimensions.Controls.Add(this.label96);
+            this.tabVDimensions.Controls.Add(this.label95);
+            this.tabVDimensions.Controls.Add(this.label94);
             this.tabVDimensions.Controls.Add(this.label27);
             this.tabVDimensions.Controls.Add(this.label60);
             this.tabVDimensions.Controls.Add(this.label53);
@@ -2475,6 +2537,62 @@
             this.tabVDimensions.TabIndex = 13;
             this.tabVDimensions.Text = "vDim";
             this.tabVDimensions.Enter += new System.EventHandler(this.tabVDimensions_Enter);
+            // 
+            // label97
+            // 
+            this.label97.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label97.AutoSize = true;
+            this.label97.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label97.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label97.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label97.Location = new System.Drawing.Point(750, 143);
+            this.label97.Name = "label97";
+            this.label97.Size = new System.Drawing.Size(32, 19);
+            this.label97.TabIndex = 483;
+            this.label97.Text = "cm";
+            this.label97.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label96
+            // 
+            this.label96.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label96.AutoSize = true;
+            this.label96.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label96.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label96.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label96.Location = new System.Drawing.Point(786, 440);
+            this.label96.Name = "label96";
+            this.label96.Size = new System.Drawing.Size(32, 19);
+            this.label96.TabIndex = 482;
+            this.label96.Text = "cm";
+            this.label96.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label95
+            // 
+            this.label95.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label95.AutoSize = true;
+            this.label95.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label95.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label95.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label95.Location = new System.Drawing.Point(236, 375);
+            this.label95.Name = "label95";
+            this.label95.Size = new System.Drawing.Size(32, 19);
+            this.label95.TabIndex = 481;
+            this.label95.Text = "cm";
+            this.label95.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label94
+            // 
+            this.label94.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label94.AutoSize = true;
+            this.label94.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label94.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label94.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label94.Location = new System.Drawing.Point(197, 289);
+            this.label94.Name = "label94";
+            this.label94.Size = new System.Drawing.Size(32, 19);
+            this.label94.TabIndex = 480;
+            this.label94.Text = "cm";
+            this.label94.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label27
             // 
@@ -3388,10 +3506,12 @@
             // tabTHitch
             // 
             this.tabTHitch.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabTHitch.Controls.Add(this.label112);
             this.tabTHitch.Controls.Add(this.nudTrailingHitchLength);
             this.tabTHitch.Controls.Add(this.nudDrawbarLength);
             this.tabTHitch.Controls.Add(this.nudTankHitch);
             this.tabTHitch.Controls.Add(this.picboxToolHitch);
+            this.tabTHitch.Controls.Add(this.label164);
             this.tabTHitch.Location = new System.Drawing.Point(4, 44);
             this.tabTHitch.Name = "tabTHitch";
             this.tabTHitch.Size = new System.Drawing.Size(854, 584);
@@ -3399,6 +3519,20 @@
             this.tabTHitch.Text = "tHitch";
             this.tabTHitch.Enter += new System.EventHandler(this.tabTHitch_Enter);
             this.tabTHitch.Leave += new System.EventHandler(this.tabTHitch_Leave);
+            // 
+            // label112
+            // 
+            this.label112.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label112.AutoSize = true;
+            this.label112.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label112.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label112.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label112.Location = new System.Drawing.Point(421, 476);
+            this.label112.Name = "label112";
+            this.label112.Size = new System.Drawing.Size(32, 19);
+            this.label112.TabIndex = 484;
+            this.label112.Text = "cm";
+            this.label112.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // nudTrailingHitchLength
             // 
@@ -3495,9 +3629,25 @@
             this.picboxToolHitch.TabIndex = 0;
             this.picboxToolHitch.TabStop = false;
             // 
+            // label164
+            // 
+            this.label164.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label164.AutoSize = true;
+            this.label164.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label164.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label164.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label164.Location = new System.Drawing.Point(368, 476);
+            this.label164.Name = "label164";
+            this.label164.Size = new System.Drawing.Size(57, 19);
+            this.label164.TabIndex = 485;
+            this.label164.Text = "Units:";
+            this.label164.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // tabToolOffset
             // 
             this.tabToolOffset.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabToolOffset.Controls.Add(this.label176);
+            this.tabToolOffset.Controls.Add(this.label175);
             this.tabToolOffset.Controls.Add(this.groupBox3);
             this.tabToolOffset.Controls.Add(this.groupBox2);
             this.tabToolOffset.Controls.Add(this.nudOverlap);
@@ -3508,6 +3658,34 @@
             this.tabToolOffset.TabIndex = 26;
             this.tabToolOffset.Text = "tOffs";
             this.tabToolOffset.Enter += new System.EventHandler(this.tabToolOffset_Enter);
+            // 
+            // label176
+            // 
+            this.label176.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label176.AutoSize = true;
+            this.label176.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label176.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label176.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label176.Location = new System.Drawing.Point(723, 480);
+            this.label176.Name = "label176";
+            this.label176.Size = new System.Drawing.Size(32, 19);
+            this.label176.TabIndex = 486;
+            this.label176.Text = "cm";
+            this.label176.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label175
+            // 
+            this.label175.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label175.AutoSize = true;
+            this.label175.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label175.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label175.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label175.Location = new System.Drawing.Point(287, 479);
+            this.label175.Name = "label175";
+            this.label175.Size = new System.Drawing.Size(32, 19);
+            this.label175.TabIndex = 485;
+            this.label175.Text = "cm";
+            this.label175.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // groupBox3
             // 
@@ -3710,6 +3888,7 @@
             // tabToolPivot
             // 
             this.tabToolPivot.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabToolPivot.Controls.Add(this.label177);
             this.tabToolPivot.Controls.Add(this.rbtnPivotBehindPos);
             this.tabToolPivot.Controls.Add(this.rbtnPivotAheadNeg);
             this.tabToolPivot.Controls.Add(this.nudTrailingToolToPivotLength);
@@ -3721,6 +3900,20 @@
             this.tabToolPivot.Text = "tPivot";
             this.tabToolPivot.Enter += new System.EventHandler(this.tabToolPivot_Enter);
             this.tabToolPivot.Leave += new System.EventHandler(this.tabToolPivot_Leave);
+            // 
+            // label177
+            // 
+            this.label177.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label177.AutoSize = true;
+            this.label177.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label177.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label177.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label177.Location = new System.Drawing.Point(400, 341);
+            this.label177.Name = "label177";
+            this.label177.Size = new System.Drawing.Size(32, 19);
+            this.label177.TabIndex = 485;
+            this.label177.Text = "cm";
+            this.label177.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // rbtnPivotBehindPos
             // 
@@ -3786,6 +3979,7 @@
             // tabTSections
             // 
             this.tabTSections.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabTSections.Controls.Add(this.label178);
             this.tabTSections.Controls.Add(this.label106);
             this.tabTSections.Controls.Add(this.lblTurnOffBelowUnits);
             this.tabTSections.Controls.Add(this.label5);
@@ -9080,6 +9274,21 @@
             this.cboxFeatureTram.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxFeatureTram.UseVisualStyleBackColor = false;
             // 
+            // label93
+            // 
+            this.label93.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label93.AutoSize = true;
+            this.label93.BackColor = System.Drawing.Color.Transparent;
+            this.label93.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label93.ForeColor = System.Drawing.Color.Black;
+            this.label93.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label93.Location = new System.Drawing.Point(531, 231);
+            this.label93.Name = "label93";
+            this.label93.Size = new System.Drawing.Size(43, 29);
+            this.label93.TabIndex = 455;
+            this.label93.Text = "->";
+            this.label93.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // tabDisplay
             // 
             this.tabDisplay.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -9649,20 +9858,19 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // label93
+            // label178
             // 
-            this.label93.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label93.AutoSize = true;
-            this.label93.BackColor = System.Drawing.Color.Transparent;
-            this.label93.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label93.ForeColor = System.Drawing.Color.Black;
-            this.label93.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label93.Location = new System.Drawing.Point(531, 231);
-            this.label93.Name = "label93";
-            this.label93.Size = new System.Drawing.Size(43, 29);
-            this.label93.TabIndex = 455;
-            this.label93.Text = "->";
-            this.label93.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label178.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label178.AutoSize = true;
+            this.label178.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label178.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label178.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label178.Location = new System.Drawing.Point(277, 410);
+            this.label178.Name = "label178";
+            this.label178.Size = new System.Drawing.Size(32, 19);
+            this.label178.TabIndex = 503;
+            this.label178.Text = "cm";
+            this.label178.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // FormConfig
             // 
@@ -9702,6 +9910,7 @@
             this.panelOpacity.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pboxAlpha)).EndInit();
             this.tabVAntenna.ResumeLayout(false);
+            this.tabVAntenna.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaHeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaPivot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaOffset)).EndInit();
@@ -9735,11 +9944,13 @@
             this.gboxAttachment.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pboxConfigHarvester)).EndInit();
             this.tabTHitch.ResumeLayout(false);
+            this.tabTHitch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudTrailingHitchLength)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDrawbarLength)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTankHitch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picboxToolHitch)).EndInit();
             this.tabToolOffset.ResumeLayout(false);
+            this.tabToolOffset.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -9747,6 +9958,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudOverlap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudOffset)).EndInit();
             this.tabToolPivot.ResumeLayout(false);
+            this.tabToolPivot.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudTrailingToolToPivotLength)).EndInit();
             this.tabTSections.ResumeLayout(false);
             this.tabTSections.PerformLayout();
@@ -10351,5 +10563,18 @@
         private System.Windows.Forms.Label label92;
         private System.Windows.Forms.Button btnRightMenuOrder;
         private System.Windows.Forms.Label label93;
+        private System.Windows.Forms.Label label97;
+        private System.Windows.Forms.Label label96;
+        private System.Windows.Forms.Label label95;
+        private System.Windows.Forms.Label label94;
+        private System.Windows.Forms.Label label100;
+        private System.Windows.Forms.Label label99;
+        private System.Windows.Forms.Label label98;
+        private System.Windows.Forms.Label label112;
+        private System.Windows.Forms.Label label164;
+        private System.Windows.Forms.Label label176;
+        private System.Windows.Forms.Label label175;
+        private System.Windows.Forms.Label label177;
+        private System.Windows.Forms.Label label178;
     }
 }
