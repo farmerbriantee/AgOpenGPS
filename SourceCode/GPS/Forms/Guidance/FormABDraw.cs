@@ -163,6 +163,20 @@ namespace AgOpenGPS
             Close();
         }
 
+        private void btnCancelTouch_Click(object sender, EventArgs e)
+        {
+            //update the arrays
+            btnMakeABLine.Enabled = false;
+            btnMakeCurve.Enabled = false;
+            start = 99999; end = 99999;
+
+            FixLabelsCurve();
+
+            mf.curve.desList?.Clear();
+
+            btnExit.Focus();
+        }
+
         private void FixLabelsCurve()
         {
             lblNumCu.Text = mf.trk.gArr.Count.ToString();
@@ -213,6 +227,21 @@ namespace AgOpenGPS
             //}
 
             //FixLabelsCurve();
+        }
+
+        private void btnSelectCurveBk_Click(object sender, EventArgs e)
+        {
+            if (mf.trk.gArr.Count > 0)
+            {
+                mf.trk.idx--;
+                if (mf.trk.idx <= 0) mf.trk.idx = mf.trk.gArr.Count - 1;
+            }
+            else
+            {
+                mf.trk.idx = -1;
+            }
+
+            FixLabelsCurve();
         }
 
         private void cboxIsVisible_Click(object sender, EventArgs e)

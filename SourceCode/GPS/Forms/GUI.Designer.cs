@@ -852,7 +852,7 @@ namespace AgOpenGPS
 
                 if (viz == 0) return;
 
-                sizer = (Width - 230) / (viz);
+                sizer = (Width - 280) / (viz);
                 if (sizer > 160) { sizer = 160; }
 
                 for (int i = 0; i < panelAB.Controls.Count; i++)

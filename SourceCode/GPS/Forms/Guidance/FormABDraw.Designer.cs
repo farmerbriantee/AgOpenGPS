@@ -41,7 +41,6 @@
             this.btnFlipOffset = new System.Windows.Forms.Button();
             this.lblCmInch = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.cboxIsVisible = new System.Windows.Forms.CheckBox();
             this.btnAddTime = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -55,6 +54,9 @@
             this.btnMakeABLine = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.btnCancelTouch = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnSelectCurveBk = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudDistance)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -63,7 +65,7 @@
             // 
             this.oglSelf.BackColor = System.Drawing.Color.Black;
             this.oglSelf.Cursor = System.Windows.Forms.Cursors.Cross;
-            this.oglSelf.Location = new System.Drawing.Point(5, 5);
+            this.oglSelf.Location = new System.Drawing.Point(5, 9);
             this.oglSelf.Margin = new System.Windows.Forms.Padding(0);
             this.oglSelf.Name = "oglSelf";
             this.oglSelf.Size = new System.Drawing.Size(700, 700);
@@ -85,7 +87,7 @@
             // 
             this.lblNumCu.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNumCu.ForeColor = System.Drawing.Color.Black;
-            this.lblNumCu.Location = new System.Drawing.Point(894, 427);
+            this.lblNumCu.Location = new System.Drawing.Point(894, 451);
             this.lblNumCu.Margin = new System.Windows.Forms.Padding(0);
             this.lblNumCu.Name = "lblNumCu";
             this.lblNumCu.Size = new System.Drawing.Size(35, 26);
@@ -97,7 +99,7 @@
             // 
             this.lblCurveSelected.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurveSelected.ForeColor = System.Drawing.Color.Black;
-            this.lblCurveSelected.Location = new System.Drawing.Point(815, 427);
+            this.lblCurveSelected.Location = new System.Drawing.Point(815, 451);
             this.lblCurveSelected.Margin = new System.Windows.Forms.Padding(0);
             this.lblCurveSelected.Name = "lblCurveSelected";
             this.lblCurveSelected.Size = new System.Drawing.Size(35, 26);
@@ -110,7 +112,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(857, 428);
+            this.label1.Location = new System.Drawing.Point(857, 452);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 23);
@@ -122,7 +124,7 @@
             // 
             this.nudDistance.BackColor = System.Drawing.Color.AliceBlue;
             this.nudDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudDistance.Location = new System.Drawing.Point(857, 114);
+            this.nudDistance.Location = new System.Drawing.Point(1078, 84);
             this.nudDistance.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -146,11 +148,11 @@
             this.tboxNameCurve.BackColor = System.Drawing.SystemColors.ControlLight;
             this.tboxNameCurve.CausesValidation = false;
             this.tboxNameCurve.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxNameCurve.Location = new System.Drawing.Point(712, 463);
+            this.tboxNameCurve.Location = new System.Drawing.Point(710, 487);
             this.tboxNameCurve.Margin = new System.Windows.Forms.Padding(0);
             this.tboxNameCurve.MaxLength = 100;
             this.tboxNameCurve.Name = "tboxNameCurve";
-            this.tboxNameCurve.Size = new System.Drawing.Size(283, 27);
+            this.tboxNameCurve.Size = new System.Drawing.Size(292, 27);
             this.tboxNameCurve.TabIndex = 10;
             this.tboxNameCurve.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tboxNameCurve.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.tboxNameCurve_HelpRequested);
@@ -161,7 +163,7 @@
             // 
             this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(875, 315);
+            this.label4.Location = new System.Drawing.Point(875, 286);
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(109, 17);
@@ -173,7 +175,7 @@
             // 
             this.label8.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(812, 612);
+            this.label8.Location = new System.Drawing.Point(876, 80);
             this.label8.Margin = new System.Windows.Forms.Padding(0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(93, 20);
@@ -183,14 +185,13 @@
             // 
             // btnFlipOffset
             // 
-            this.btnFlipOffset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFlipOffset.BackColor = System.Drawing.Color.Azure;
             this.btnFlipOffset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnFlipOffset.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnFlipOffset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFlipOffset.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFlipOffset.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnFlipOffset.Location = new System.Drawing.Point(876, 30);
+            this.btnFlipOffset.Location = new System.Drawing.Point(1097, 35);
             this.btnFlipOffset.Name = "btnFlipOffset";
             this.btnFlipOffset.Size = new System.Drawing.Size(92, 43);
             this.btnFlipOffset.TabIndex = 14;
@@ -203,7 +204,7 @@
             // 
             this.lblCmInch.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCmInch.ForeColor = System.Drawing.Color.Black;
-            this.lblCmInch.Location = new System.Drawing.Point(932, 169);
+            this.lblCmInch.Location = new System.Drawing.Point(1153, 139);
             this.lblCmInch.Margin = new System.Windows.Forms.Padding(0);
             this.lblCmInch.Name = "lblCmInch";
             this.lblCmInch.Size = new System.Drawing.Size(44, 24);
@@ -215,7 +216,7 @@
             // 
             this.label6.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(871, 169);
+            this.label6.Location = new System.Drawing.Point(1092, 139);
             this.label6.Margin = new System.Windows.Forms.Padding(0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(58, 24);
@@ -223,21 +224,8 @@
             this.label6.Text = "2";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label9
-            // 
-            this.label9.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(861, 73);
-            this.label9.Margin = new System.Windows.Forms.Padding(0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(123, 20);
-            this.label9.TabIndex = 354;
-            this.label9.Text = "Inside/Outside";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // cboxIsVisible
             // 
-            this.cboxIsVisible.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cboxIsVisible.Appearance = System.Windows.Forms.Appearance.Button;
             this.cboxIsVisible.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.cboxIsVisible.Checked = true;
@@ -248,7 +236,7 @@
             this.cboxIsVisible.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxIsVisible.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.cboxIsVisible.Image = global::AgOpenGPS.Properties.Resources.TrackVisible;
-            this.cboxIsVisible.Location = new System.Drawing.Point(716, 242);
+            this.cboxIsVisible.Location = new System.Drawing.Point(716, 226);
             this.cboxIsVisible.Name = "cboxIsVisible";
             this.cboxIsVisible.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cboxIsVisible.Size = new System.Drawing.Size(81, 80);
@@ -266,7 +254,7 @@
             this.btnAddTime.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddTime.Image = global::AgOpenGPS.Properties.Resources.JobNameTime;
             this.btnAddTime.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAddTime.Location = new System.Drawing.Point(932, 504);
+            this.btnAddTime.Location = new System.Drawing.Point(927, 398);
             this.btnAddTime.Name = "btnAddTime";
             this.btnAddTime.Size = new System.Drawing.Size(68, 69);
             this.btnAddTime.TabIndex = 356;
@@ -279,7 +267,7 @@
             this.panel1.BackgroundImage = global::AgOpenGPS.Properties.Resources.ABShrinkGrow;
             this.panel1.Controls.Add(this.btnBLength);
             this.panel1.Controls.Add(this.btnALength);
-            this.panel1.Location = new System.Drawing.Point(719, 14);
+            this.panel1.Location = new System.Drawing.Point(719, 4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(115, 179);
             this.panel1.TabIndex = 355;
@@ -324,7 +312,6 @@
             // 
             // btnMakeBoundaryCurve
             // 
-            this.btnMakeBoundaryCurve.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMakeBoundaryCurve.BackColor = System.Drawing.Color.Transparent;
             this.btnMakeBoundaryCurve.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnMakeBoundaryCurve.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
@@ -333,7 +320,7 @@
             this.btnMakeBoundaryCurve.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnMakeBoundaryCurve.Image = global::AgOpenGPS.Properties.Resources.BoundaryCurveLine;
             this.btnMakeBoundaryCurve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnMakeBoundaryCurve.Location = new System.Drawing.Point(889, 242);
+            this.btnMakeBoundaryCurve.Location = new System.Drawing.Point(889, 226);
             this.btnMakeBoundaryCurve.Name = "btnMakeBoundaryCurve";
             this.btnMakeBoundaryCurve.Size = new System.Drawing.Size(80, 71);
             this.btnMakeBoundaryCurve.TabIndex = 4;
@@ -343,7 +330,6 @@
             // 
             // btnDrawSections
             // 
-            this.btnDrawSections.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDrawSections.BackColor = System.Drawing.Color.Transparent;
             this.btnDrawSections.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnDrawSections.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
@@ -352,7 +338,7 @@
             this.btnDrawSections.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnDrawSections.Image = global::AgOpenGPS.Properties.Resources.MappingOff;
             this.btnDrawSections.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDrawSections.Location = new System.Drawing.Point(817, 635);
+            this.btnDrawSections.Location = new System.Drawing.Point(880, 13);
             this.btnDrawSections.Name = "btnDrawSections";
             this.btnDrawSections.Size = new System.Drawing.Size(89, 63);
             this.btnDrawSections.TabIndex = 11;
@@ -362,7 +348,6 @@
             // 
             // btnDeleteCurve
             // 
-            this.btnDeleteCurve.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDeleteCurve.BackColor = System.Drawing.Color.Transparent;
             this.btnDeleteCurve.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnDeleteCurve.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
@@ -371,9 +356,9 @@
             this.btnDeleteCurve.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnDeleteCurve.Image = global::AgOpenGPS.Properties.Resources.Trash;
             this.btnDeleteCurve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDeleteCurve.Location = new System.Drawing.Point(936, 384);
+            this.btnDeleteCurve.Location = new System.Drawing.Point(842, 348);
             this.btnDeleteCurve.Name = "btnDeleteCurve";
-            this.btnDeleteCurve.Size = new System.Drawing.Size(70, 68);
+            this.btnDeleteCurve.Size = new System.Drawing.Size(44, 45);
             this.btnDeleteCurve.TabIndex = 6;
             this.btnDeleteCurve.UseVisualStyleBackColor = false;
             this.btnDeleteCurve.Click += new System.EventHandler(this.btnDeleteCurve_Click);
@@ -381,7 +366,6 @@
             // 
             // btnSelectCurve
             // 
-            this.btnSelectCurve.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSelectCurve.BackColor = System.Drawing.Color.Transparent;
             this.btnSelectCurve.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSelectCurve.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
@@ -390,7 +374,7 @@
             this.btnSelectCurve.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnSelectCurve.Image = global::AgOpenGPS.Properties.Resources.ABLineCycle;
             this.btnSelectCurve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSelectCurve.Location = new System.Drawing.Point(832, 502);
+            this.btnSelectCurve.Location = new System.Drawing.Point(924, 517);
             this.btnSelectCurve.Name = "btnSelectCurve";
             this.btnSelectCurve.Size = new System.Drawing.Size(70, 68);
             this.btnSelectCurve.TabIndex = 5;
@@ -400,7 +384,6 @@
             // 
             // btnMakeCurve
             // 
-            this.btnMakeCurve.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMakeCurve.BackColor = System.Drawing.Color.Transparent;
             this.btnMakeCurve.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnMakeCurve.Enabled = false;
@@ -410,7 +393,7 @@
             this.btnMakeCurve.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnMakeCurve.Image = global::AgOpenGPS.Properties.Resources.ABTrackCurve;
             this.btnMakeCurve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnMakeCurve.Location = new System.Drawing.Point(716, 374);
+            this.btnMakeCurve.Location = new System.Drawing.Point(716, 398);
             this.btnMakeCurve.Name = "btnMakeCurve";
             this.btnMakeCurve.Size = new System.Drawing.Size(81, 80);
             this.btnMakeCurve.TabIndex = 2;
@@ -420,7 +403,6 @@
             // 
             // btnMakeABLine
             // 
-            this.btnMakeABLine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMakeABLine.BackColor = System.Drawing.Color.Transparent;
             this.btnMakeABLine.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnMakeABLine.Enabled = false;
@@ -430,7 +412,7 @@
             this.btnMakeABLine.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnMakeABLine.Image = global::AgOpenGPS.Properties.Resources.ABTrackAB;
             this.btnMakeABLine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnMakeABLine.Location = new System.Drawing.Point(717, 496);
+            this.btnMakeABLine.Location = new System.Drawing.Point(717, 520);
             this.btnMakeABLine.Name = "btnMakeABLine";
             this.btnMakeABLine.Size = new System.Drawing.Size(81, 80);
             this.btnMakeABLine.TabIndex = 3;
@@ -440,7 +422,6 @@
             // 
             // btnExit
             // 
-            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExit.BackColor = System.Drawing.Color.Transparent;
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnExit.FlatAppearance.BorderSize = 0;
@@ -474,17 +455,67 @@
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // btnCancelTouch
+            // 
+            this.btnCancelTouch.BackColor = System.Drawing.Color.Transparent;
+            this.btnCancelTouch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCancelTouch.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnCancelTouch.FlatAppearance.BorderSize = 0;
+            this.btnCancelTouch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelTouch.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnCancelTouch.Image = global::AgOpenGPS.Properties.Resources.HeadlandDeletePoints;
+            this.btnCancelTouch.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnCancelTouch.Location = new System.Drawing.Point(889, 113);
+            this.btnCancelTouch.Name = "btnCancelTouch";
+            this.btnCancelTouch.Size = new System.Drawing.Size(70, 68);
+            this.btnCancelTouch.TabIndex = 470;
+            this.btnCancelTouch.UseVisualStyleBackColor = false;
+            this.btnCancelTouch.Click += new System.EventHandler(this.btnCancelTouch_Click);
+            this.btnCancelTouch.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnCancelTouch_HelpRequested);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(949, 372);
+            this.label2.Margin = new System.Windows.Forms.Padding(0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(26, 23);
+            this.label2.TabIndex = 471;
+            this.label2.Text = "+";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnSelectCurveBk
+            // 
+            this.btnSelectCurveBk.BackColor = System.Drawing.Color.Transparent;
+            this.btnSelectCurveBk.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSelectCurveBk.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSelectCurveBk.FlatAppearance.BorderSize = 0;
+            this.btnSelectCurveBk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSelectCurveBk.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnSelectCurveBk.Image = global::AgOpenGPS.Properties.Resources.ABLineCycleBk;
+            this.btnSelectCurveBk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSelectCurveBk.Location = new System.Drawing.Point(831, 517);
+            this.btnSelectCurveBk.Name = "btnSelectCurveBk";
+            this.btnSelectCurveBk.Size = new System.Drawing.Size(70, 68);
+            this.btnSelectCurveBk.TabIndex = 472;
+            this.btnSelectCurveBk.UseVisualStyleBackColor = false;
+            this.btnSelectCurveBk.Click += new System.EventHandler(this.btnSelectCurveBk_Click);
+            // 
             // FormABDraw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1004, 709);
+            this.ClientSize = new System.Drawing.Size(1006, 720);
+            this.Controls.Add(this.btnSelectCurveBk);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnCancelTouch);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.cboxIsVisible);
             this.Controls.Add(this.btnAddTime);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.btnFlipOffset);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label4);
@@ -544,10 +575,12 @@
         private System.Windows.Forms.Button btnALength;
         private System.Windows.Forms.Label lblCmInch;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnAddTime;
         private System.Windows.Forms.CheckBox cboxIsVisible;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnCancelTouch;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnSelectCurveBk;
     }
 }
