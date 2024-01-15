@@ -924,7 +924,7 @@ namespace AgOpenGPS
                 return;
             }
         }
-        private void navPanelToolStrip_Click(object sender, EventArgs e)
+        private void btnNavigationSettings_Click(object sender, EventArgs e)
         {
             //buttonPanelCounter = 0;
             Form f = Application.OpenForms["FormGPSData"];
