@@ -325,6 +325,11 @@ namespace AgOpenGPS
 
         public void DrawABLines()
         {
+
+            mf.ABConcentrica.DrawLineaConcentrica(mf.ABConcentrica.espiral,mf.ABConcentrica.antihorario); //agregado
+
+            return; //agregado
+
             //Draw AB Points
             GL.PointSize(8.0f);
             GL.Begin(PrimitiveType.Points);
