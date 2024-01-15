@@ -19,7 +19,6 @@ namespace AgOpenGPS
 
             this.Text = gStr.gsTramLines;
             label3.Text = gStr.gsPasses;
-            label2.Text = ((int)(0.1 * mf.m2InchOrCm)).ToString() + mf.unitsInCm;
             lblTramWidth.Text = (mf.tram.tramWidth * mf.m2FtOrM).ToString("N2") + mf.unitsFtM;
             lblSeedWidth.Text = (mf.tool.width * mf.m2FtOrM).ToString("N2") + mf.unitsFtM;
 
@@ -41,8 +40,6 @@ namespace AgOpenGPS
             lblTrack.Text = (mf.vehicle.trackWidth * mf.m2FtOrM).ToString("N2") + mf.unitsFtM;
 
             mf.tool.halfWidth = (mf.tool.width - mf.tool.overlap) / 2.0;
-
-            lblToolWidthHalf.Text = (mf.tool.halfWidth * mf.m2FtOrM).ToString("N2") + mf.unitsFtM;
 
             //if off, turn it on because they obviously want a tram.
             mf.tram.generateMode = 0;
@@ -115,14 +112,14 @@ namespace AgOpenGPS
 
             if (isCurve)
             {
-                if (Dist != 0)
-                    mf.trk.NudgeRefCurve(Dist);
+                //if (Dist != 0)
+                    //mf.trk.NudgeRefCurve(Dist);
                 mf.curve.BuildTram();
             }
             else
             {
-                if (Dist != 0)
-                    mf.trk.NudgeRefABLine(Dist);
+                //if (Dist != 0)
+                    //mf.trk.NudgeRefABLine(Dist);
                 mf.ABLine.BuildTram();
             }
         }
@@ -131,26 +128,6 @@ namespace AgOpenGPS
         {
             isSaving = true;
             Close();
-        }
-
-        private void btnLeft_Click(object sender, EventArgs e)
-        {
-            MoveBuildTramLine(-0.1);
-        }
-
-        private void btnRight_Click(object sender, EventArgs e)
-        {
-            MoveBuildTramLine(0.1);
-        }
-
-        private void btnAdjLeft_Click(object sender, EventArgs e)
-        {
-            MoveBuildTramLine(-mf.tool.halfWidth);
-        }
-
-        private void btnAdjRight_Click(object sender, EventArgs e)
-        {
-            MoveBuildTramLine(mf.tool.halfWidth);
         }
 
         private void nudPasses_ValueChanged(object sender, EventArgs e)
@@ -164,6 +141,15 @@ namespace AgOpenGPS
         private void nudPasses_Click(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NudlessNumericUpDown)sender, this);
+        }
+        private void btnUpTrams_Click(object sender, EventArgs e)
+        {
+            nudPasses.UpButton();
+        }
+
+        private void btnDnTrams_Click(object sender, EventArgs e)
+        {
+            nudPasses.DownButton();
         }
 
         private void btnSwapAB_Click(object sender, EventArgs e)
@@ -226,16 +212,6 @@ namespace AgOpenGPS
             mf.tram.tramBndInnerArr?.Clear();
 
             MoveBuildTramLine(0);
-        }
-
-        private void btnTriggerDistanceUp_MouseDown(object sender, MouseEventArgs e)
-        {
-            nudPasses.UpButton();
-        }
-
-        private void btnTriggerDistanceDn_MouseDown(object sender, MouseEventArgs e)
-        {
-            nudPasses.DownButton();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -317,5 +293,7 @@ namespace AgOpenGPS
         }
 
         #endregion Help
+
+
     }
 }

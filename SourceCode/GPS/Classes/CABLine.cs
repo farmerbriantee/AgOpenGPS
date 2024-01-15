@@ -84,7 +84,6 @@ namespace AgOpenGPS
         private double shadowOffset = 0;
         private double widthMinusOverlap = 0;
 
-
         public void BuildCurrentABLineList(vec3 pivot)
         {
             double dx, dy;
