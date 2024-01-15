@@ -224,9 +224,9 @@ namespace AgOpenGPS
                 //draw the rigid hitch
                 GL.Color3(0.7f, 0.4f, 0.2f);
                 GL.Begin(PrimitiveType.LineLoop);
-                GL.Vertex3(-0.5 + mf.tool.offset, trailingTool, 0);
+                GL.Vertex3(-0.75 + mf.tool.offset, trailingTool, 0);
                 GL.Vertex3(0, 0, 0);
-                GL.Vertex3(0.5 + mf.tool.offset, trailingTool, 0);
+                GL.Vertex3(0.75 + mf.tool.offset, trailingTool, 0);
 
                 GL.End();
 
@@ -237,16 +237,16 @@ namespace AgOpenGPS
                     GL.Color4(1, 1, 1, 0.75);
                     GL.BindTexture(TextureTarget.Texture2D, mf.texture[27]);        // Select Our Texture
                     GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
-                    GL.TexCoord2(1, 0 + textRotate); GL.Vertex2(0.75 + offset, trailingTool + 0.35); // Top Right
-                    GL.TexCoord2(0, 0 + textRotate); GL.Vertex2(0.5 + offset, trailingTool + 0.35); // Top Left
-                    GL.TexCoord2(1, 1 + textRotate); GL.Vertex2(0.75 + offset, trailingTool - 0.35); // Bottom Right
-                    GL.TexCoord2(0, 1 + textRotate); GL.Vertex2(0.5 + offset, trailingTool - 0.35); // Bottom Left
+                    GL.TexCoord2(1, 0 + textRotate); GL.Vertex2(1.4 + offset, trailingTool + 0.51); // Top Right
+                    GL.TexCoord2(0, 0 + textRotate); GL.Vertex2(0.75 + offset, trailingTool + 0.51); // Top Left
+                    GL.TexCoord2(1, 1 + textRotate); GL.Vertex2(1.4 + offset, trailingTool - 0.51); // Bottom Right
+                    GL.TexCoord2(0, 1 + textRotate); GL.Vertex2(0.75 + offset, trailingTool - 0.51); // Bottom Left
                     GL.End();                       // Done Building Triangle Strip
                     GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
-                    GL.TexCoord2(1, 0 + textRotate); GL.Vertex2(-0.75 + offset, trailingTool + 0.35); // Top Right
-                    GL.TexCoord2(0, 0 + textRotate); GL.Vertex2(-0.5 + offset, trailingTool + 0.35); // Top Left
-                    GL.TexCoord2(1, 1 + textRotate); GL.Vertex2(-0.75 + offset, trailingTool - 0.35); // Bottom Right
-                    GL.TexCoord2(0, 1 + textRotate); GL.Vertex2(-0.5 + offset, trailingTool - 0.35); // Bottom Left
+                    GL.TexCoord2(1, 0 + textRotate); GL.Vertex2(-1.4 + offset, trailingTool + 0.51); // Top Right
+                    GL.TexCoord2(0, 0 + textRotate); GL.Vertex2(-0.75 + offset, trailingTool + 0.51); // Top Left
+                    GL.TexCoord2(1, 1 + textRotate); GL.Vertex2(-1.4 + offset, trailingTool - 0.51); // Bottom Right
+                    GL.TexCoord2(0, 1 + textRotate); GL.Vertex2(-0.75 + offset, trailingTool - 0.51); // Bottom Left
                     GL.End();                       // Done Building Triangle Strip
                     GL.Disable(EnableCap.Texture2D);
                 }

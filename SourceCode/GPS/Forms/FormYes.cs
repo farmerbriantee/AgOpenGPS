@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace AgIO
+namespace AgOpenGPS
 {
     public partial class FormYes : Form
     {
@@ -9,9 +9,6 @@ namespace AgIO
             InitializeComponent();
 
             lblMessage2.Text = messageStr;
-
-            //int messWidth = messageStr.Length;
-            //Width = messWidth * 15 + 180;
         }
     }
 }

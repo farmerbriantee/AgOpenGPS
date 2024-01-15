@@ -1,4 +1,4 @@
-﻿namespace AgIO
+﻿namespace AgOpenGPS
 {
     partial class FormYes
     {
@@ -35,9 +35,9 @@
             // lblMessage2
             // 
             this.lblMessage2.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
-            this.lblMessage2.Location = new System.Drawing.Point(46, 23);
+            this.lblMessage2.Location = new System.Drawing.Point(46, 20);
             this.lblMessage2.Name = "lblMessage2";
-            this.lblMessage2.Size = new System.Drawing.Size(707, 386);
+            this.lblMessage2.Size = new System.Drawing.Size(634, 381);
             this.lblMessage2.TabIndex = 1;
             this.lblMessage2.Text = "Message 2";
             this.lblMessage2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -51,8 +51,8 @@
             this.btnSerialOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSerialOK.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialOK.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnSerialOK.Image = global::AgIO.Properties.Resources.OK64;
-            this.btnSerialOK.Location = new System.Drawing.Point(660, 424);
+            this.btnSerialOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
+            this.btnSerialOK.Location = new System.Drawing.Point(661, 374);
             this.btnSerialOK.Name = "btnSerialOK";
             this.btnSerialOK.Size = new System.Drawing.Size(105, 64);
             this.btnSerialOK.TabIndex = 96;
@@ -64,7 +64,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.ClientSize = new System.Drawing.Size(765, 488);
+            this.ClientSize = new System.Drawing.Size(762, 434);
             this.ControlBox = false;
             this.Controls.Add(this.btnSerialOK);
             this.Controls.Add(this.lblMessage2);
@@ -75,7 +75,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AgIO Message";
+            this.Text = "AgOpenGPS Message";
             this.TopMost = true;
             this.ResumeLayout(false);
 

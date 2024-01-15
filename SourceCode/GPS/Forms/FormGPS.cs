@@ -1165,6 +1165,13 @@ namespace AgOpenGPS
             FormTimedMessage form = new FormTimedMessage(timeout, s1, s2);
             form.Show(this);
         }
+
+        public void YesMessageBox(string s1)
+        {
+            var form = new FormYes(s1);
+            form.ShowDialog(this);
+        }
+
     }//class FormGPS
 }//namespace AgOpenGPS
 

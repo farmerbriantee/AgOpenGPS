@@ -1173,6 +1173,8 @@ namespace AgOpenGPS
                 tmrWatchdog.Enabled = false;
                 fileSaveCounter = 0;
 
+                DistanceToFieldOriginCheck();
+
                 //don't save if no gps
                 if (isJobStarted)
                 {
@@ -1196,6 +1198,17 @@ namespace AgOpenGPS
 
             }
             //this is the end of the "frame". Now we wait for next NMEA sentence with a valid fix. 
+        }
+
+        private void DistanceToFieldOriginCheck()
+        {
+            if (Math.Abs(pivotAxlePos.easting) > 20000 || Math.Abs(pivotAxlePos.northing) > 20000)
+            {
+                YesMessageBox("Serious Field Origin Error" +  "\r\n\r\n" +
+                    "Field Origin is More Then 20 km from your current GPS Position" +
+                    " Delete this field and create a new one as Accuracy will be poor" + 
+                    "Or you may have a field open and drove far away");
+            }
         }
 
         //mapping change occured

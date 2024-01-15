@@ -72,7 +72,7 @@ namespace AgOpenGPS
             panelLatLonPlus.Visible = false;
             panel1.Visible = false;
 
-            this.Size = new System.Drawing.Size(650, 475);
+            this.Size = new System.Drawing.Size(650, 480);
 
             originalLine = mf.trk.idx;
 
@@ -247,8 +247,6 @@ namespace AgOpenGPS
 
                b.FlatAppearance.BorderSize = 0;
 
-
-
                 //a.Font = backupfont;
                 //a.FlatStyle = FlatStyle.Flat;
                 //a.FlatAppearance.BorderColor = Color.Cyan;
@@ -262,7 +260,8 @@ namespace AgOpenGPS
                     Size = new Size(330, 35),
                     Text = mf.trk.gArr[i].name,
                     Name = i.ToString(),
-                    Font = backupfont
+                    Font = backupfont,
+                    ReadOnly = true                    
                 };
                 t.Click += LineSelected_Click;
                 t.Cursor = System.Windows.Forms.Cursors.Default;
@@ -298,12 +297,15 @@ namespace AgOpenGPS
                 int line = Convert.ToInt32(b.Name);
                 mf.trk.gArr[line].isVisible = !mf.trk.gArr[line].isVisible;
 
+                for (int i = 0; i < mf.trk.gArr.Count; i++)
+                {
+                    flp.Controls[(i) * 3 + 1].BackColor = Color.AliceBlue;
+                }
+                selectedItem = -1;
+
                 b.BackColor = mf.trk.gArr[line].isVisible ? System.Drawing.Color.Green : System.Drawing.Color.Red;
 
                 flp.Controls[(line) * 3 + 1].ForeColor = mf.trk.gArr[line].isVisible ? System.Drawing.Color.Black : System.Drawing.Color.Gray;
-                //selectedItem = -1;
-
-                //UpdateTable();
             }
         }
 
@@ -311,12 +313,38 @@ namespace AgOpenGPS
         {
             if (sender is TextBox t)
             {
-                if (selectedItem == Convert.ToInt32(t.Name))
-                    selectedItem = -1;
-                else
-                    selectedItem = Convert.ToInt32(t.Name);
+                int line = Convert.ToInt32(t.Name);
+                int numLines = mf.trk.gArr.Count;
 
-                UpdateTable();
+                //un highlight selected item
+                for (int i = 0; i < numLines; i++)
+                {
+                    flp.Controls[(i) * 3 + 1].BackColor = Color.AliceBlue;
+                }
+
+                if (mf.trk.gArr[line].isVisible)
+                {
+                    //just highlight it
+                    if (selectedItem == -1)
+                    {
+                        selectedItem = line;
+                        selectedItem = Convert.ToInt32(t.Name);
+                        flp.Controls[(line) * 3 + 1].BackColor = Color.LightBlue;
+                    }
+
+                    //a different line was selcted and one already was
+                    else if (selectedItem != line)
+                    {
+                        selectedItem = line;
+                        flp.Controls[(line) * 3 + 1].BackColor = Color.LightBlue;
+                    }
+                }
+                else
+                {
+                    selectedItem = -1;
+                }
+
+                //UpdateTable();
             }
         }
 
@@ -654,7 +682,7 @@ namespace AgOpenGPS
                 panelName.Visible = false;
                 panelChoose.Visible = false;
 
-                this.Size = new System.Drawing.Size(650, 475);
+                this.Size = new System.Drawing.Size(650, 480);
             }
         }
 
@@ -1035,7 +1063,7 @@ namespace AgOpenGPS
             panelName.Visible = false;
             panelMain.Visible = true;
 
-            this.Size = new System.Drawing.Size(650, 475);
+            this.Size = new System.Drawing.Size(650, 480);
 
             mf.curve.desList?.Clear();
 
@@ -1193,7 +1221,7 @@ namespace AgOpenGPS
             panelLatLonPlus.Visible = false;
             panelKML.Visible = false;
 
-            this.Size = new System.Drawing.Size(650, 475);
+            this.Size = new System.Drawing.Size(650, 480);
         }
 
         private void textBox_Click(object sender, EventArgs e)
@@ -1213,7 +1241,7 @@ namespace AgOpenGPS
             panelMain.Visible = true;
             panelName.Visible = false;
 
-            this.Size = new System.Drawing.Size(650, 475);
+            this.Size = new System.Drawing.Size(650, 480);
 
             mf.curve.desList?.Clear();
             UpdateTable();
