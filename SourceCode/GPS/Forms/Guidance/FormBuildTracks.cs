@@ -295,10 +295,15 @@ namespace AgOpenGPS
         {
             if (sender is Button b)
             {
-                mf.trk.gArr[Convert.ToInt32(b.Name)].isVisible = !mf.trk.gArr[Convert.ToInt32(b.Name)].isVisible;
-                selectedItem = -1;
+                int line = Convert.ToInt32(b.Name);
+                mf.trk.gArr[line].isVisible = !mf.trk.gArr[line].isVisible;
 
-                UpdateTable();
+                b.BackColor = mf.trk.gArr[line].isVisible ? System.Drawing.Color.Green : System.Drawing.Color.Red;
+
+                flp.Controls[(line) * 3 + 1].ForeColor = mf.trk.gArr[line].isVisible ? System.Drawing.Color.Black : System.Drawing.Color.Gray;
+                //selectedItem = -1;
+
+                //UpdateTable();
             }
         }
 
