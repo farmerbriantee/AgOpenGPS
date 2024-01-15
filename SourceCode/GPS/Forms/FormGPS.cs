@@ -213,6 +213,91 @@ namespace AgOpenGPS
         /// </summary>
         public CAHRS ahrs;
 
+        private void butt_center_Click(object sender, EventArgs e)
+        {
+            /*
+            
+            Hola! aprovecho para saludarlos y agradecer por crear y compartir este soft tan util!
+
+            No he creado un formulario donde se encuentren las opciones para este tipo de guiado ni he agregado a la barra lateral los botones necesarios, 
+            solo agrego los botones que estan a la vista para que se pueda probar el codigo.
+
+            el codigo en btnABLine fue editado para activar este tipo de guiado... disculpas por la precariedad...
+
+            Este guiado necesita un punto central que sirve de centro para generar los anillos concentricos y el espiral.
+            
+            Hay 2 formas de establecer el punto central: 
+                - mediante el boton "set center" que establece el punto central en las coordenadas de pivot... 
+                  el usuario debe ir con el vehiculo hasta el lugar donde se encuantra el centro y establecerlo mediante click en el boton mencionado 
+                - La otra forma es mediante 3 puntos que generan 2 rectas cuyas perpendiculares se cruzan en un punto... esto lo hace el sub --> centro_circulo_tres_puntos() 
+                  el usuario debe conducir en circulo (ej: siguiendo la huella de un pivot de riego) y hacer click 3 veces en el boton set p0
+                  (cada punto separado uno del otro lo necesario como para que la ubicacion del punto central sea precisa, lo ideal separados 120 grados cada uno de ellos)
+                - tambien seria optimo dar al usuario la posibilidad de ingresar manualmente o mediante kml o google earth las coordenadas del punto central
+            El boton "circulo" permite optar entre guiado mediante circulos concentricos y espiral
+            El boton "horario" permite, cuando esta activado el guiado en espiral, establecer si el espiral gira en sentido horario o antihorario
+             */
+
+            ABConcentrica.punto_central.easting = pivotAxlePos.easting;
+            ABConcentrica.punto_central.northing = pivotAxlePos.northing;
+            TimedMessageBox(2000, "AB Concentrica", "Centro establecido en pivotAxlePos");
+        }
+
+        private void butt_points_Click(object sender, EventArgs e)
+        {
+            
+            if (ABConcentrica.c_puntos_circulo > 0)
+            {
+                double dmin = glm.Distance(ABConcentrica.puntos_circulo[ABConcentrica.c_puntos_circulo].easting, ABConcentrica.puntos_circulo[ABConcentrica.c_puntos_circulo].northing, pivotAxlePos.easting, pivotAxlePos.northing);
+                if (dmin < 20)
+                {
+                    TimedMessageBox(2000, "AB Concentrica", "El punto se encuentra demasiado cerca del anterior, avance");
+                    return;
+                }
+            }
+                
+
+            ABConcentrica.puntos_circulo[ABConcentrica.c_puntos_circulo].easting = pivotAxlePos.easting;
+            ABConcentrica.puntos_circulo[ABConcentrica.c_puntos_circulo].northing = pivotAxlePos.northing;
+            ABConcentrica.c_puntos_circulo++;
+            if (ABConcentrica.c_puntos_circulo > 2)
+            {
+                ABConcentrica.punto_central = ABConcentrica.centro_circulo_tres_puntos(ABConcentrica.puntos_circulo[0], ABConcentrica.puntos_circulo[1], ABConcentrica.puntos_circulo[2]);
+                ABConcentrica.c_puntos_circulo = 0;
+                if (ABConcentrica.punto_central_error == false)
+                {
+                    TimedMessageBox(2000, "AB Concentrica", "Centro establecido mediante tres puntos");
+                }
+            }
+
+            butt_points.Text = "set p" + ABConcentrica.c_puntos_circulo;
+        }
+
+        private void butt_espiral_Click(object sender, EventArgs e)
+        {
+            ABConcentrica.espiral = !ABConcentrica.espiral;
+            if (ABConcentrica.espiral==true)
+            {
+                butt_espiral.Text = "espiral";
+            }
+            else
+            {
+                butt_espiral.Text = "circulo";
+            }
+        }
+
+        private void butt_antihorario_Click(object sender, EventArgs e)
+        {
+            ABConcentrica.antihorario= !ABConcentrica.antihorario;
+            if (ABConcentrica.antihorario == true)
+            {
+                butt_antihorario.Text = "antihorario";
+            }
+            else
+            {
+                butt_antihorario.Text = "horario";
+            }
+        }
+
         /// <summary>
         /// Recorded Path
         /// </summary>
@@ -252,6 +337,8 @@ namespace AgOpenGPS
         /// The new brightness code
         /// </summary>
         public CWindowsSettingsBrightnessController displayBrightness;
+
+        public CABConcentrica ABConcentrica; //agregado
 
 
         #endregion // Class Props and instances
@@ -339,6 +426,9 @@ namespace AgOpenGPS
 
             //brightness object class
             displayBrightness = new CWindowsSettingsBrightnessController(Properties.Settings.Default.setDisplay_isBrightnessOn);
+
+            ABConcentrica = new CABConcentrica(this); //agregado
+
         }
 
         //Initialize items before the form Loads or is visible

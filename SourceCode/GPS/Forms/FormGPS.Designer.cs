@@ -195,6 +195,11 @@
             this.btnHelp = new System.Windows.Forms.Button();
             this.btnMinimizeMainForm = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.butt_center = new System.Windows.Forms.Button();
+            this.butt_points = new System.Windows.Forms.Button();
+            this.butt_espiral = new System.Windows.Forms.Button();
+            this.butt_antihorario = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -599,7 +604,7 @@
             this.toolStripMenuFlagForm.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.toolStripMenuFlagForm.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuFlagForm.Name = "toolStripMenuFlagForm";
-            this.toolStripMenuFlagForm.Size = new System.Drawing.Size(259, 70);
+            this.toolStripMenuFlagForm.Size = new System.Drawing.Size(228, 70);
             this.toolStripMenuFlagForm.Text = "toolStripMenuItem3";
             this.toolStripMenuFlagForm.Click += new System.EventHandler(this.toolStripMenuFlagForm_Click);
             // 
@@ -774,7 +779,7 @@
             this.btnResetSteerAngle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSteerAngle.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSteerAngle.Location = new System.Drawing.Point(221, 4);
+            this.btnResetSteerAngle.Location = new System.Drawing.Point(215, 4);
             this.btnResetSteerAngle.Name = "btnResetSteerAngle";
             this.btnResetSteerAngle.Size = new System.Drawing.Size(43, 31);
             this.btnResetSteerAngle.TabIndex = 162;
@@ -799,10 +804,10 @@
             this.hsbarSteerAngle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hsbarSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.hsbarSteerAngle.LargeChange = 20;
-            this.hsbarSteerAngle.Location = new System.Drawing.Point(268, 1);
+            this.hsbarSteerAngle.Location = new System.Drawing.Point(262, 1);
             this.hsbarSteerAngle.Maximum = 800;
             this.hsbarSteerAngle.Name = "hsbarSteerAngle";
-            this.hsbarSteerAngle.Size = new System.Drawing.Size(158, 37);
+            this.hsbarSteerAngle.Size = new System.Drawing.Size(152, 37);
             this.hsbarSteerAngle.TabIndex = 179;
             this.hsbarSteerAngle.Value = 400;
             this.hsbarSteerAngle.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarSteerAngle_Scroll);
@@ -815,7 +820,7 @@
             this.hsbarStepDistance.Location = new System.Drawing.Point(59, 1);
             this.hsbarStepDistance.Minimum = -25;
             this.hsbarStepDistance.Name = "hsbarStepDistance";
-            this.hsbarStepDistance.Size = new System.Drawing.Size(158, 37);
+            this.hsbarStepDistance.Size = new System.Drawing.Size(152, 37);
             this.hsbarStepDistance.TabIndex = 178;
             this.hsbarStepDistance.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarStepDistance_Scroll);
             // 
@@ -1567,7 +1572,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 61F));
             this.panelSim.Controls.Add(this.btnSimForward, 6, 0);
             this.panelSim.Controls.Add(this.btnSimSetSpeedToZero, 5, 0);
             this.panelSim.Controls.Add(this.btnSimReverse, 4, 0);
@@ -1591,7 +1596,7 @@
             this.btnSimForward.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimForward.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimForward.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimForward.Location = new System.Drawing.Point(550, 4);
+            this.btnSimForward.Location = new System.Drawing.Point(538, 4);
             this.btnSimForward.Name = "btnSimForward";
             this.btnSimForward.Size = new System.Drawing.Size(38, 31);
             this.btnSimForward.TabIndex = 454;
@@ -1610,7 +1615,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(484, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(472, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(59, 31);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -1626,7 +1631,7 @@
             this.btnSimReverse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimReverse.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimReverse.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimReverse.Location = new System.Drawing.Point(430, 4);
+            this.btnSimReverse.Location = new System.Drawing.Point(418, 4);
             this.btnSimReverse.Name = "btnSimReverse";
             this.btnSimReverse.Size = new System.Drawing.Size(47, 31);
             this.btnSimReverse.TabIndex = 455;
@@ -2584,12 +2589,70 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(64, 308);
             this.tableLayoutPanel1.TabIndex = 529;
             // 
+            // butt_center
+            // 
+            this.butt_center.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butt_center.Location = new System.Drawing.Point(771, 85);
+            this.butt_center.Name = "butt_center";
+            this.butt_center.Size = new System.Drawing.Size(88, 37);
+            this.butt_center.TabIndex = 530;
+            this.butt_center.Text = "set center";
+            this.butt_center.UseVisualStyleBackColor = true;
+            this.butt_center.Click += new System.EventHandler(this.butt_center_Click);
+            // 
+            // butt_points
+            // 
+            this.butt_points.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butt_points.Location = new System.Drawing.Point(771, 136);
+            this.butt_points.Name = "butt_points";
+            this.butt_points.Size = new System.Drawing.Size(88, 37);
+            this.butt_points.TabIndex = 531;
+            this.butt_points.Text = "set p0";
+            this.butt_points.UseVisualStyleBackColor = true;
+            this.butt_points.Click += new System.EventHandler(this.butt_points_Click);
+            // 
+            // butt_espiral
+            // 
+            this.butt_espiral.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butt_espiral.Location = new System.Drawing.Point(771, 193);
+            this.butt_espiral.Name = "butt_espiral";
+            this.butt_espiral.Size = new System.Drawing.Size(88, 37);
+            this.butt_espiral.TabIndex = 532;
+            this.butt_espiral.Text = "circulo";
+            this.butt_espiral.UseVisualStyleBackColor = true;
+            this.butt_espiral.Click += new System.EventHandler(this.butt_espiral_Click);
+            // 
+            // butt_antihorario
+            // 
+            this.butt_antihorario.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butt_antihorario.Location = new System.Drawing.Point(771, 244);
+            this.butt_antihorario.Name = "butt_antihorario";
+            this.butt_antihorario.Size = new System.Drawing.Size(88, 37);
+            this.butt_antihorario.TabIndex = 533;
+            this.butt_antihorario.Text = "horario";
+            this.butt_antihorario.UseVisualStyleBackColor = true;
+            this.butt_antihorario.Click += new System.EventHandler(this.butt_antihorario_Click);
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(293, 80);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(446, 49);
+            this.label1.TabIndex = 534;
+            this.label1.Text = "Please read text on \"set center\" butt code";
+            // 
             // FormGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(949, 725);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.butt_antihorario);
+            this.Controls.Add(this.butt_espiral);
+            this.Controls.Add(this.butt_points);
+            this.Controls.Add(this.butt_center);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.btnZone8);
             this.Controls.Add(this.btnZone7);
@@ -2831,6 +2894,11 @@
         public System.Windows.Forms.Button btnCycleLinesBk;
         public System.Windows.Forms.Button btnResumeField;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button butt_center;
+        private System.Windows.Forms.Button butt_points;
+        private System.Windows.Forms.Button butt_espiral;
+        private System.Windows.Forms.Button butt_antihorario;
+        private System.Windows.Forms.Label label1;
     }
 }
 

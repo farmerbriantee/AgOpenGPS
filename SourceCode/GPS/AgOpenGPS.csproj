@@ -121,6 +121,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CABConcentrica.cs" />
     <Compile Include="Classes\CBrightness.cs" />
     <Compile Include="Classes\CExtensionMethods.cs">
       <SubType>Component</SubType>
