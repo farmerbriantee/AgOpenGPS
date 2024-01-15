@@ -753,8 +753,12 @@ namespace AgOpenGPS
 
                 if (ABLine.isABLineSet && ABLine.isBtnABLineOn)
                 {
-                    ABLine.GetCurrentABLine(pivotAxlePos, steerAxlePos);
+                    ABConcentrica.GetLineaConcentrica(ABConcentrica.espiral, ABConcentrica.antihorario); //agregado
+                    //ABLine.GetCurrentABLine(pivotAxlePos, steerAxlePos); // modificado
                 }
+
+                
+
             }
 
             // autosteer at full speed of updates
