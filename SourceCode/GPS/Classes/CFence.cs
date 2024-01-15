@@ -63,7 +63,7 @@ namespace AgOpenGPS
             if (!mf.mc.isOutOfBounds)
             {
                 GL.Color3(0.95f, 0.75f, 0.50f);
-                GL.LineWidth(mf.ABLine.lineWidth);
+                GL.LineWidth(1);
             }
             else
             {

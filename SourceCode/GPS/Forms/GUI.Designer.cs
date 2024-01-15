@@ -446,6 +446,7 @@ namespace AgOpenGPS
 
                 unitsFtM = " m";
                 unitsInCm = " cm";
+                unitsInCmNS = "cm";
             }
             else
             {
@@ -459,6 +460,7 @@ namespace AgOpenGPS
                 cm2CmOrIn = 0.394;
 
                 unitsInCm = " in";
+                unitsInCmNS = "in";
                 unitsFtM = " ft";
             }
 
@@ -733,7 +735,7 @@ namespace AgOpenGPS
                         break;
 
                     case 4:
-                        panelRight.Controls.Add(btnTrack);
+                        panelRight.Controls.Add(btnAutoTrack);
                         break;
 
                     case 5:
@@ -804,11 +806,12 @@ namespace AgOpenGPS
                 btnTramDisplayMode.Visible = istram;
                 btnHeadlandOnOff.Visible = isHdl;
                 btnHydLift.Visible = isHdl;
+                btnAutoTrack.Visible = trk.idx > -1 && !ct.isContourBtnOn;
 
                 if (trk.idx > -1 && trk.gArr.Count > 0 && !ct.isContourBtnOn)
                 {
                     lblNumCu.Visible = true;
-                    lblNumCu.Text = trk.idx.ToString() + "/" + trk.gArr.Count.ToString();
+                    lblNumCu.Text = (trk.idx+1).ToString() + "/" + trk.gArr.Count.ToString();
                 }
                 else
                 {
@@ -861,6 +864,9 @@ namespace AgOpenGPS
                         panelAB.Controls[i].Width = sizer;
                 }
             }
+
+            flp1.Top = this.Height - 200;
+            flp1.Left = this.Width - 120 - flp1.Width;
         }
 
         private void PanelsAndOGLSize()
@@ -947,6 +953,14 @@ namespace AgOpenGPS
                     }
                 }
 
+                foreach (Control c in panelRight.Controls)
+                {
+                    //if (c is Label || c is Button)
+                    {
+                        c.ForeColor = textColorDay;
+                    }
+                }
+
                 foreach (Control c in panelNavigation.Controls)
                 {
                     //if (c is Label || c is Button)
@@ -966,6 +980,15 @@ namespace AgOpenGPS
                         c.ForeColor = textColorNight;
                     }
                 }
+
+                foreach (Control c in panelRight.Controls)
+                {
+                    //if (c is Label || c is Button)
+                    {
+                        c.ForeColor = textColorNight;
+                    }
+                }
+
                 foreach (Control c in panelNavigation.Controls)
                 {
                     //if (c is Label || c is Button)

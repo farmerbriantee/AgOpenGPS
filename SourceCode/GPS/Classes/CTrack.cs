@@ -31,8 +31,7 @@ namespace AgOpenGPS
 
         public int FindClosestRefTrack(vec3 pivot)
         {
-            //no tracks check
-            if (gArr.Count == 0) return -1;
+            if (idx < 0 || gArr.Count == 0) return -1;
 
             //only 1 track
             if (gArr.Count == 1) return idx;
@@ -70,6 +69,8 @@ namespace AgOpenGPS
             double minDistA = double.MaxValue;
             double dist;
 
+            vec2 endPtA, endPtB;
+
             for (int i = 0; i < gArr.Count; i++)
             {
                 if (!isAlignedArr[i]) continue;
@@ -77,25 +78,24 @@ namespace AgOpenGPS
 
                 if (gArr[i].mode == (int)TrackMode.AB)
                 {
-                    double abHeading = mf.trk.gArr[idx].heading;
+                    double abHeading = mf.trk.gArr[i].heading;
 
-                    mf.trk.gArr[idx].endPtA.easting = mf.trk.gArr[idx].ptA.easting - (Math.Sin(abHeading) * 2000);
-                    mf.trk.gArr[idx].endPtA.northing = mf.trk.gArr[idx].ptA.northing - (Math.Cos(abHeading) * 2000);
+                    endPtA.easting = mf.trk.gArr[i].ptA.easting - (Math.Sin(abHeading) * 2000);
+                    endPtA.northing = mf.trk.gArr[i].ptA.northing - (Math.Cos(abHeading) * 2000);
 
-                    mf.trk.gArr[idx].endPtB.easting = mf.trk.gArr[idx].ptB.easting + (Math.Sin(abHeading) * 2000);
-                    mf.trk.gArr[idx].endPtB.northing = mf.trk.gArr[idx].ptB.northing + (Math.Cos(abHeading) * 2000);
-
-                    vec2 refNudgePtA = mf.trk.gArr[idx].endPtA;
-                    vec2 refNudgePtB = mf.trk.gArr[idx].endPtB;
+                    endPtB.easting = mf.trk.gArr[i].ptB.easting + (Math.Sin(abHeading) * 2000);
+                    endPtB.northing = mf.trk.gArr[i].ptB.northing + (Math.Cos(abHeading) * 2000);
 
                     //x2-x1
-                    double dx = refNudgePtB.easting - refNudgePtA.easting;
+                    double dx = endPtB.easting - endPtA.easting;
                     //z2-z1
-                    double dy = refNudgePtB.northing - refNudgePtA.northing;
+                    double dy = endPtB.northing - endPtA.northing;
 
-                    dist = ((dy * mf.guidanceLookPos.easting) - (dx * mf.guidanceLookPos.northing) + (refNudgePtB.easting
-                                            * refNudgePtA.northing) - (refNudgePtB.northing * refNudgePtA.easting))
+                    dist = ((dy * mf.steerAxlePos.easting) - (dx * mf.steerAxlePos.northing) + (endPtB.easting
+                                            * endPtA.northing) - (endPtB.northing * endPtA.easting))
                                                 / Math.Sqrt((dy * dy) + (dx * dx));
+
+                    dist *= dist;
 
                     if (dist < minDistA)
                     {
@@ -105,7 +105,7 @@ namespace AgOpenGPS
                 }
                 else
                 {
-                    for (int j = 0; j < gArr[i].curvePts.Count; j += 4)
+                    for (int j = 0; j < gArr[i].curvePts.Count; j ++)
                     {
 
                         dist = glm.DistanceSquared(gArr[i].curvePts[j], pivot);
@@ -140,8 +140,8 @@ namespace AgOpenGPS
 
                 }
 
-                if (gArr[idx].nudgeDistance > 0.5 * mf.tool.width) gArr[idx].nudgeDistance -= mf.tool.width;
-                else if (gArr[idx].nudgeDistance < -0.5 * mf.tool.width) gArr[idx].nudgeDistance += mf.tool.width;
+                //if (gArr[idx].nudgeDistance > 0.5 * mf.tool.width) gArr[idx].nudgeDistance -= mf.tool.width;
+                //else if (gArr[idx].nudgeDistance < -0.5 * mf.tool.width) gArr[idx].nudgeDistance += mf.tool.width;
             }
         }
 

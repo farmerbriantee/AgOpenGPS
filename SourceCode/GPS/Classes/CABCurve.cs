@@ -623,7 +623,7 @@ namespace AgOpenGPS
 
             if (mf.trk.gArr[mf.trk.idx].curvePts == null || mf.trk.gArr[mf.trk.idx].curvePts.Count == 0) return;
 
-            GL.LineWidth(mf.ABLine.lineWidth);
+            GL.LineWidth(4);
             GL.Color3(0.96, 0.2f, 0.2f);
             GL.Begin(PrimitiveType.Lines);
 

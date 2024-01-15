@@ -102,7 +102,7 @@ namespace AgOpenGPS
         public double nudNumber = 0;
 
         public double m2InchOrCm, inchOrCm2m, m2FtOrM, ftOrMtoM, cm2CmOrIn, inOrCm2Cm;
-        public string unitsFtM, unitsInCm;
+        public string unitsFtM, unitsInCm, unitsInCmNS;
 
         public char[] hotkeys;
 
@@ -890,6 +890,8 @@ namespace AgOpenGPS
             SetZoom();
             fileSaveCounter = 25;
             lblGuidanceLine.Visible = false;
+            btnAutoTrack.Image = Resources.AutoTrackOff;
+            trk.isAutoTrack = false;
         }
 
         //close the current job

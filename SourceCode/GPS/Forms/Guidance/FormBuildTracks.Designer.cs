@@ -87,7 +87,6 @@
             this.btnBLine = new System.Windows.Forms.Button();
             this.panelAPlus = new System.Windows.Forms.Panel();
             this.btnRefSideAPlus = new System.Windows.Forms.Button();
-            this.cboxDegrees = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.btnCancel_APlus = new System.Windows.Forms.Button();
             this.btnEnter_APlus = new System.Windows.Forms.Button();
@@ -1028,7 +1027,6 @@
             // 
             this.panelAPlus.BackColor = System.Drawing.Color.Transparent;
             this.panelAPlus.Controls.Add(this.btnRefSideAPlus);
-            this.panelAPlus.Controls.Add(this.cboxDegrees);
             this.panelAPlus.Controls.Add(this.label13);
             this.panelAPlus.Controls.Add(this.btnCancel_APlus);
             this.panelAPlus.Controls.Add(this.btnEnter_APlus);
@@ -1048,31 +1046,12 @@
             this.btnRefSideAPlus.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnRefSideAPlus.Image = global::AgOpenGPS.Properties.Resources.BoundaryRight;
             this.btnRefSideAPlus.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRefSideAPlus.Location = new System.Drawing.Point(97, 4);
+            this.btnRefSideAPlus.Location = new System.Drawing.Point(26, 62);
             this.btnRefSideAPlus.Name = "btnRefSideAPlus";
             this.btnRefSideAPlus.Size = new System.Drawing.Size(70, 60);
             this.btnRefSideAPlus.TabIndex = 448;
             this.btnRefSideAPlus.UseVisualStyleBackColor = false;
             this.btnRefSideAPlus.Click += new System.EventHandler(this.btnRefSideAPlus_Click);
-            // 
-            // cboxDegrees
-            // 
-            this.cboxDegrees.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cboxDegrees.BackColor = System.Drawing.Color.Lavender;
-            this.cboxDegrees.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboxDegrees.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cboxDegrees.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxDegrees.FormattingEnabled = true;
-            this.cboxDegrees.Items.AddRange(new object[] {
-            "0",
-            "90",
-            "180",
-            "270"});
-            this.cboxDegrees.Location = new System.Drawing.Point(142, 92);
-            this.cboxDegrees.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.cboxDegrees.Name = "cboxDegrees";
-            this.cboxDegrees.Size = new System.Drawing.Size(78, 37);
-            this.cboxDegrees.TabIndex = 455;
             // 
             // label13
             // 
@@ -1151,7 +1130,7 @@
             this.btnAPlus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAPlus.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnAPlus.Image = global::AgOpenGPS.Properties.Resources.LetterABlue;
-            this.btnAPlus.Location = new System.Drawing.Point(25, 73);
+            this.btnAPlus.Location = new System.Drawing.Point(140, 53);
             this.btnAPlus.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnAPlus.Name = "btnAPlus";
             this.btnAPlus.Size = new System.Drawing.Size(80, 78);
@@ -1678,7 +1657,6 @@
         private System.Windows.Forms.Button btnCancel_APlus;
         private System.Windows.Forms.Button btnEnter_APlus;
         private System.Windows.Forms.Button btnAPlus;
-        private System.Windows.Forms.ComboBox cboxDegrees;
         private System.Windows.Forms.Panel panelLatLonPlus;
         private System.Windows.Forms.Button btnCancel_LatLonPlus;
         private System.Windows.Forms.Button btnEnter_LatLonPlus;

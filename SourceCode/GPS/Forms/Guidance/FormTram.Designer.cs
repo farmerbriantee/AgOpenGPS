@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblSmallSnapRight = new System.Windows.Forms.Label();
-            this.nudPasses = new NudlessNumericUpDown();
+            this.nudPasses = new AgOpenGPS.NudlessNumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnMode = new System.Windows.Forms.Button();
@@ -423,7 +423,7 @@
             this.MinimizeBox = false;
             this.Name = "FormTram";
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AB Line Tramline";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormTram_FormClosing);
             this.Load += new System.EventHandler(this.FormTram_Load);

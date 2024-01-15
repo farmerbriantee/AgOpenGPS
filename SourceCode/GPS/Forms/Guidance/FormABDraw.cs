@@ -787,7 +787,7 @@ namespace AgOpenGPS
 
                     if (i == mf.trk.idx)
                     {
-                        GL.LineWidth(4);
+                        GL.LineWidth(8);
                         GL.Disable(EnableCap.LineStipple);
                     }
                     GL.Color3(1.0f, 0.0f, 0.0f);
@@ -829,11 +829,11 @@ namespace AgOpenGPS
 
                     if (i == mf.trk.idx)
                     {
-                        GL.LineWidth(4);
+                        GL.LineWidth(8);
                         GL.Disable(EnableCap.LineStipple);
                     }
 
-                    GL.Color3(0.0f, 1.0f, 0.0f);
+                    GL.Color3(0.0f, 0.7f, 0.0f);
                     if (mf.trk.gArr[i].mode == (int)TrackMode.bndCurve) GL.Color3(0.70f, 0.5f, 0.2f);
                     GL.Begin(PrimitiveType.LineStrip);
                     foreach (vec3 pts in mf.trk.gArr[i].curvePts)

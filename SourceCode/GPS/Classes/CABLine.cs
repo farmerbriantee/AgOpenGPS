@@ -375,12 +375,12 @@ namespace AgOpenGPS
             GL.PointSize(8.0f);
             GL.Begin(PrimitiveType.Points);
 
-            GL.Color3(0.95f, 0.0f, 0.0f);
-            GL.Vertex3(mf.trk.gArr[mf.trk.idx].ptA.easting, mf.trk.gArr[mf.trk.idx].ptA.northing, 0.0);
             GL.Color3(0.0f, 0.90f, 0.95f);
             GL.Vertex3(mf.trk.gArr[mf.trk.idx].ptB.easting, mf.trk.gArr[mf.trk.idx].ptB.northing, 0.0);
-            GL.Color3(0.00990f, 0.990f, 0.095f);
-            GL.Vertex3(mf.bnd.iE, mf.bnd.iN, 0.0);
+            GL.Color3(0.95f, 0.0f, 0.0f);
+            GL.Vertex3(mf.trk.gArr[mf.trk.idx].ptA.easting, mf.trk.gArr[mf.trk.idx].ptA.northing, 0.0);
+            //GL.Color3(0.00990f, 0.990f, 0.095f);
+            //GL.Vertex3(mf.bnd.iE, mf.bnd.iN, 0.0);
             GL.End();
 
             if (mf.font.isFontOn && !isMakingABLine)
@@ -392,7 +392,7 @@ namespace AgOpenGPS
             GL.PointSize(1.0f);
 
             //Draw reference AB line
-            GL.LineWidth(lineWidth);
+            GL.LineWidth(4);
             GL.Enable(EnableCap.LineStipple);
             GL.LineStipple(1, 0x0F00);
             GL.Begin(PrimitiveType.Lines);

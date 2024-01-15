@@ -30,6 +30,9 @@ namespace AgOpenGPS
                 return;
             }
 
+            trk.isAutoTrack = false;
+            btnAutoTrack.Image = Resources.AutoTrackOff;
+
             ct.isContourBtnOn = !ct.isContourBtnOn;
             btnContour.Image = ct.isContourBtnOn ? Properties.Resources.ContourOn : Properties.Resources.ContourOff;
 
@@ -120,20 +123,17 @@ namespace AgOpenGPS
                 flp1.Controls[1].Visible = true;
                 flp1.Controls[2].Visible = isBnd;
 
-                //auto track select
+                //auto snap to pivot
                 flp1.Controls[3].Visible = tracksVisible > 1;
 
-                //auto snap to pivot
+                //off button
                 flp1.Controls[4].Visible = tracksVisible > 0;
 
-                //off button
+                //ref nudge
                 flp1.Controls[5].Visible = tracksVisible > 0;
 
-                //ref nudge
-                flp1.Controls[6].Visible = tracksVisible > 0;
-
                 //position of panel
-                flp1.Top = this.Height / 2;
+                flp1.Top = this.Height -200;
                 flp1.Left = this.Width - 120 - flp1.Width;
                 trackMethodPanelCounter = 3;
             }
@@ -235,6 +235,9 @@ namespace AgOpenGPS
                 return;
             }
 
+            trk.isAutoTrack = false;
+            btnAutoTrack.Image = Resources.AutoTrackOff;
+
             if (trk.gArr.Count > 1)
             {
                 while (true)
@@ -268,6 +271,9 @@ namespace AgOpenGPS
                 ResetHelpBtn();
                 return;
             }
+
+            trk.isAutoTrack = false;
+            btnAutoTrack.Image = Resources.AutoTrackOff;
 
             if (ct.isContourBtnOn)
             {
@@ -443,12 +449,6 @@ namespace AgOpenGPS
             trk.isAutoSnapToPivot = cboxAutoSnapToPivot.Checked;
             trackMethodPanelCounter = 1;
         }
-        private void cboxAutoTrack_Click(object sender, EventArgs e)
-        {
-            trk.isAutoTrack = cboxAutoTrack.Checked;
-            trackMethodPanelCounter = 1;
-        }
-
         #endregion
 
         #region Field Menu
@@ -635,20 +635,9 @@ namespace AgOpenGPS
                 return;
             }
 
-            if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
-            {
-                Form form99 = new FormTram(this, false);
-                form99.Show(this);
-                form99.Left = Width - 275;
-                form99.Top = 100;
-            }
-            else
-            {
-                Form form97 = new FormTram(this, true);
-                form97.Show(this);
-                form97.Left = Width - 275;
-                form97.Top = 100;
-            }
+            Form form99 = new FormTram(this, trk.gArr[trk.idx].mode == (int)TrackMode.AB);
+            form99.Show(this);
+
         }
         public void GetHeadland()
         {
@@ -1660,6 +1649,12 @@ namespace AgOpenGPS
             //Properties.Settings.Default.setVehicle_isStanleyUsed = isStanleyUsed;
             //Properties.Settings.Default.Save();
         }
+        private void btnAutoTrack_Click(object sender, EventArgs e)
+        {
+            trk.isAutoTrack = !trk.isAutoTrack;
+            btnAutoTrack.Image = trk.isAutoTrack ? Resources.AutoTrack : Resources.AutoTrackOff;            
+        }
+
         private void btnResetToolHeading_Click(object sender, EventArgs e)
         {
             tankPos.heading = fixHeading;
