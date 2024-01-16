@@ -965,6 +965,13 @@ namespace AgOpenGPS
                         c.ForeColor = textColorDay;
                     }
                 }
+                foreach (Control c in panelControlBox.Controls)
+                {
+                    //if (c is Label || c is Button)
+                    {
+                        c.ForeColor = textColorDay;
+                    }
+                }
             }
             else //nightmode
             {
@@ -990,10 +997,17 @@ namespace AgOpenGPS
                 {
                     //if (c is Label || c is Button)
                     {
-                        c.ForeColor = textColorDay;
+                        c.ForeColor = textColorNight;
                     }
                 }
 
+                foreach (Control c in panelControlBox.Controls)
+                {
+                    //if (c is Label || c is Button)
+                    {
+                        c.ForeColor = textColorNight;
+                    }
+                }
             }
 
             if (tool.isSectionsNotZones)
