@@ -896,6 +896,8 @@
   <ItemGroup>
     <Content Include="AOG.ico" />
     <Content Include="aChangeLog.txt" />
+    <None Include="Resources\SectionOn.wav" />
+    <None Include="Resources\SectionOff.wav" />
     <None Include="btnImages\bing.png" />
     <None Include="btnImages\Config\ConT_Asymmetric.png" />
     <None Include="btnImages\Config\ConT_Symmetric.png" />

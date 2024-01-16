@@ -33,9 +33,9 @@
             this.youTurn = new System.Windows.Forms.Button();
             this.autoSection = new System.Windows.Forms.Button();
             this.manualSection = new System.Windows.Forms.Button();
+            this.track = new System.Windows.Forms.Button();
             this.skipPrev = new System.Windows.Forms.Button();
             this.skipNext = new System.Windows.Forms.Button();
-            this.track = new System.Windows.Forms.Button();
             this.contour = new System.Windows.Forms.Button();
             this.btnAutoSteer = new System.Windows.Forms.Button();
             this.btnAutoYouTurn = new System.Windows.Forms.Button();
@@ -79,7 +79,7 @@
             // autoSteer
             // 
             this.autoSteer.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.autoSteer.BackColor = System.Drawing.Color.Transparent;
+            this.autoSteer.BackColor = System.Drawing.Color.WhiteSmoke;
             this.autoSteer.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.autoSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.autoSteer.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
@@ -96,7 +96,7 @@
             // youTurn
             // 
             this.youTurn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.youTurn.BackColor = System.Drawing.Color.Transparent;
+            this.youTurn.BackColor = System.Drawing.Color.WhiteSmoke;
             this.youTurn.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.youTurn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.youTurn.Font = new System.Drawing.Font("Tahoma", 14.25F);
@@ -112,7 +112,7 @@
             // autoSection
             // 
             this.autoSection.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.autoSection.BackColor = System.Drawing.Color.Transparent;
+            this.autoSection.BackColor = System.Drawing.Color.WhiteSmoke;
             this.autoSection.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.autoSection.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.autoSection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -131,7 +131,7 @@
             // manualSection
             // 
             this.manualSection.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.manualSection.BackColor = System.Drawing.Color.Transparent;
+            this.manualSection.BackColor = System.Drawing.Color.WhiteSmoke;
             this.manualSection.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.manualSection.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.manualSection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -146,10 +146,29 @@
             this.manualSection.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.manualSection.UseVisualStyleBackColor = false;
             // 
+            // track
+            // 
+            this.track.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.track.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.track.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.track.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.track.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.track.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.track.Image = global::AgOpenGPS.Properties.Resources.AutoTrack;
+            this.track.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.track.Location = new System.Drawing.Point(3, 234);
+            this.track.Margin = new System.Windows.Forms.Padding(0);
+            this.track.Name = "track";
+            this.track.Size = new System.Drawing.Size(84, 72);
+            this.track.TabIndex = 554;
+            this.track.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.track.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.track.UseVisualStyleBackColor = false;
+            // 
             // skipPrev
             // 
             this.skipPrev.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.skipPrev.BackColor = System.Drawing.Color.Transparent;
+            this.skipPrev.BackColor = System.Drawing.Color.WhiteSmoke;
             this.skipPrev.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.skipPrev.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
             this.skipPrev.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -166,7 +185,7 @@
             // skipNext
             // 
             this.skipNext.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.skipNext.BackColor = System.Drawing.Color.Transparent;
+            this.skipNext.BackColor = System.Drawing.Color.WhiteSmoke;
             this.skipNext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.skipNext.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
             this.skipNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -180,29 +199,10 @@
             this.skipNext.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.skipNext.UseVisualStyleBackColor = false;
             // 
-            // track
-            // 
-            this.track.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.track.BackColor = System.Drawing.Color.Transparent;
-            this.track.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.track.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.track.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.track.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.track.Image = global::AgOpenGPS.Properties.Resources.TrackOn;
-            this.track.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.track.Location = new System.Drawing.Point(3, 234);
-            this.track.Margin = new System.Windows.Forms.Padding(0);
-            this.track.Name = "track";
-            this.track.Size = new System.Drawing.Size(84, 72);
-            this.track.TabIndex = 554;
-            this.track.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.track.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.track.UseVisualStyleBackColor = false;
-            // 
             // contour
             // 
             this.contour.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.contour.BackColor = System.Drawing.Color.Transparent;
+            this.contour.BackColor = System.Drawing.Color.WhiteSmoke;
             this.contour.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.contour.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.contour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -218,7 +218,7 @@
             // 
             // btnAutoSteer
             // 
-            this.btnAutoSteer.BackColor = System.Drawing.Color.Transparent;
+            this.btnAutoSteer.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnAutoSteer.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnAutoSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAutoSteer.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
@@ -235,7 +235,7 @@
             // 
             // btnAutoYouTurn
             // 
-            this.btnAutoYouTurn.BackColor = System.Drawing.Color.Transparent;
+            this.btnAutoYouTurn.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnAutoYouTurn.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnAutoYouTurn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAutoYouTurn.Font = new System.Drawing.Font("Tahoma", 14.25F);
@@ -251,7 +251,7 @@
             // 
             // btnSectionMasterAuto
             // 
-            this.btnSectionMasterAuto.BackColor = System.Drawing.Color.Transparent;
+            this.btnSectionMasterAuto.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnSectionMasterAuto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnSectionMasterAuto.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnSectionMasterAuto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -270,7 +270,7 @@
             // 
             // btnSectionMasterManual
             // 
-            this.btnSectionMasterManual.BackColor = System.Drawing.Color.Transparent;
+            this.btnSectionMasterManual.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnSectionMasterManual.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnSectionMasterManual.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnSectionMasterManual.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -288,12 +288,12 @@
             // 
             // btnTrack
             // 
-            this.btnTrack.BackColor = System.Drawing.Color.Transparent;
+            this.btnTrack.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnTrack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnTrack.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
             this.btnTrack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTrack.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTrack.Image = global::AgOpenGPS.Properties.Resources.TrackOn;
+            this.btnTrack.Image = global::AgOpenGPS.Properties.Resources.AutoTrack;
             this.btnTrack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnTrack.Location = new System.Drawing.Point(23, 261);
             this.btnTrack.Margin = new System.Windows.Forms.Padding(0);
@@ -307,7 +307,7 @@
             // 
             // btnCycleLinesBk
             // 
-            this.btnCycleLinesBk.BackColor = System.Drawing.Color.Transparent;
+            this.btnCycleLinesBk.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnCycleLinesBk.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnCycleLinesBk.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
             this.btnCycleLinesBk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -324,7 +324,7 @@
             // 
             // btnCycleLines
             // 
-            this.btnCycleLines.BackColor = System.Drawing.Color.Transparent;
+            this.btnCycleLines.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnCycleLines.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnCycleLines.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
             this.btnCycleLines.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -341,7 +341,7 @@
             // 
             // btnContour
             // 
-            this.btnContour.BackColor = System.Drawing.Color.Transparent;
+            this.btnContour.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnContour.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnContour.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnContour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -358,17 +358,19 @@
             // 
             // btnReset
             // 
-            this.btnReset.BackColor = System.Drawing.Color.Transparent;
+            this.btnReset.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnReset.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReset.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReset.Image = global::AgOpenGPS.Properties.Resources.back_button;
+            this.btnReset.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnReset.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnReset.Location = new System.Drawing.Point(156, 213);
+            this.btnReset.Location = new System.Drawing.Point(186, 213);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(83, 77);
+            this.btnReset.Size = new System.Drawing.Size(83, 115);
             this.btnReset.TabIndex = 548;
+            this.btnReset.Text = "Reset";
             this.btnReset.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnReset.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnReset.UseVisualStyleBackColor = false;
@@ -376,7 +378,6 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.BackColor = System.Drawing.Color.Transparent;
             this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnCancel.FlatAppearance.BorderColor = System.Drawing.Color.Black;
@@ -385,7 +386,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(170, 667);
+            this.btnCancel.Location = new System.Drawing.Point(511, 451);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(69, 70);
             this.btnCancel.TabIndex = 550;
@@ -394,7 +395,6 @@
             // 
             // btnOk
             // 
-            this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOk.BackColor = System.Drawing.Color.Transparent;
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnOk.FlatAppearance.BorderSize = 0;
@@ -403,7 +403,7 @@
             this.btnOk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnOk.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnOk.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOk.Location = new System.Drawing.Point(354, 667);
+            this.btnOk.Location = new System.Drawing.Point(474, 576);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(106, 70);
             this.btnOk.TabIndex = 549;
@@ -412,17 +412,17 @@
             // 
             // btnAll
             // 
-            this.btnAll.BackColor = System.Drawing.Color.Transparent;
+            this.btnAll.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnAll.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnAll.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnAll.FlatAppearance.BorderSize = 0;
             this.btnAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAll.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAll.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
+            this.btnAll.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnAll.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAll.Location = new System.Drawing.Point(161, 427);
+            this.btnAll.Location = new System.Drawing.Point(186, 427);
             this.btnAll.Name = "btnAll";
-            this.btnAll.Size = new System.Drawing.Size(83, 106);
+            this.btnAll.Size = new System.Drawing.Size(83, 115);
             this.btnAll.TabIndex = 551;
             this.btnAll.Text = "All";
             this.btnAll.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -452,7 +452,7 @@
             // 
             this.groupBox2.Controls.Add(this.flpRight);
             this.groupBox2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(260, 12);
+            this.groupBox2.Location = new System.Drawing.Point(318, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(136, 646);
             this.groupBox2.TabIndex = 553;
@@ -463,8 +463,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(461, 739);
+            this.BackColor = System.Drawing.Color.LightGray;
+            this.ClientSize = new System.Drawing.Size(626, 664);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnAll);

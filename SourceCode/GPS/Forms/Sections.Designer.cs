@@ -26,8 +26,9 @@ namespace AgOpenGPS
                 ResetHelpBtn();
                 return;
             }
-            
-            System.Media.SystemSounds.Asterisk.Play();
+
+            //System.Media.SystemSounds.Asterisk.Play();
+            sounds.sndSectionOff.Play();
 
             //if Auto is on, turn it off
             autoBtnState = btnStates.Off;
@@ -38,11 +39,14 @@ namespace AgOpenGPS
                 case btnStates.Off:
                     manualBtnState = btnStates.On;
                     btnSectionMasterManual.Image = Properties.Resources.ManualOn;
+                    sounds.sndSectionOff.Play();
+
                     break;
 
                 case btnStates.On:
                     manualBtnState = btnStates.Off;
                     btnSectionMasterManual.Image = Properties.Resources.ManualOff;
+                    sounds.sndSectionOff.Play();
                     break;
             }
 
@@ -61,7 +65,7 @@ namespace AgOpenGPS
                 return;
             }
 
-            System.Media.SystemSounds.Exclamation.Play();
+            //System.Media.SystemSounds.Exclamation.Play();
 
             //turn off manual if on
             manualBtnState = btnStates.Off;
@@ -74,12 +78,14 @@ namespace AgOpenGPS
 
                     autoBtnState = btnStates.Auto;
                     btnSectionMasterAuto.Image = Properties.Resources.SectionMasterOn;
+                    sounds.sndSectionOn.Play();
                     break;
 
                 case btnStates.Auto:
 
                     autoBtnState = btnStates.Off;
                     btnSectionMasterAuto.Image = Properties.Resources.SectionMasterOff;
+                    sounds.sndSectionOn.Play();
                     break;
             }
 

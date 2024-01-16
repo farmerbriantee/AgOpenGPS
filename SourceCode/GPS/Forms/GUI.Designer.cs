@@ -871,9 +871,6 @@ namespace AgOpenGPS
 
         private void PanelsAndOGLSize()
         {
-            //panelAB.Size = new System.Drawing.Size(760 + ((Width - 900) / 2), 67);
-            //panelAB.Location = new Point((Width - 900) / 3 + 67, this.Height - 70);
-
             if (!isJobStarted)
             {
                 panelAB.Visible = false;

@@ -59,6 +59,8 @@ namespace AgOpenGPS
 
         private void FormGPSData_Load(object sender, EventArgs e)
         {
+            this.Width = 120;
+            this.Height = 330;
         }
 
         private void FormGPSData_FormClosing(object sender, FormClosingEventArgs e)

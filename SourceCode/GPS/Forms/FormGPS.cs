@@ -230,16 +230,6 @@ namespace AgOpenGPS
         public CSound sounds;
 
         /// <summary>
-        /// Sound for approaching boundary
-        /// </summary>
-        public SoundPlayer sndHydraulicLift;
-
-        /// <summary>
-        /// Sound for approaching boundary
-        /// </summary>
-        public SoundPlayer sndHydraulicLower;
-
-        /// <summary>
         /// The font class
         /// </summary>
         public CFont font;

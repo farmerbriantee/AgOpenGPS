@@ -82,6 +82,7 @@ namespace AgOpenGPS
 
         private void Form_Keys_FormClosing(object sender, FormClosingEventArgs e)
         {
+
             Properties.Settings.Default.setKey_hotkeys =
                 btnAutosteer.Text + btnCycleLines.Text + btnFieldMenu.Text +
                 btnNewFlag.Text + btnManualSection.Text + btnAutoSection.Text +
@@ -123,6 +124,36 @@ namespace AgOpenGPS
             btnSection6.Text = mf.hotkeys[16].ToString();
             btnSection7.Text = mf.hotkeys[17].ToString();
             btnSection8.Text = mf.hotkeys[18].ToString();
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            if ((btnAutosteer.Text == "...") ||
+            (btnCycleLines.Text == "...") ||
+            (btnFieldMenu.Text == "...") ||
+            (btnNewFlag.Text == "...") ||
+            (btnManualSection.Text == "...") ||
+            (btnAutoSection.Text == "...") ||
+            (btnSnapToPivot.Text == "...") ||
+            (btnMoveLineLeft.Text == "...") ||
+            (btnMoveLineRight.Text == "...") ||
+            (btnVehicleSettings.Text == "...") ||
+            (btnSteerWizard.Text == "...") ||
+            (btnSection1.Text == "...") ||
+            (btnSection2.Text == "...") ||
+            (btnSection3.Text == "...") ||
+            (btnSection4.Text == "...") ||
+            (btnSection5.Text == "...") ||
+            (btnSection6.Text == "...") ||
+            (btnSection7.Text == "...") ||
+            (btnSection8.Text == "..."))
+            {
+                mf.TimedMessageBox(2000, "HoyKey Incomplete", "Finish Setting All, or Reset to Default");
+            }
+
+            else Close();
+
+
         }
     }
 }

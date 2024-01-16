@@ -280,7 +280,6 @@ namespace AgOpenGPS
             cboxFeatureHideContour.Checked = Properties.Settings.Default.setFeatures.isHideContourOn;
             cboxFeatureWebcam.Checked = Properties.Settings.Default.setFeatures.isWebCamOn;
             cboxFeatureOffsetFix.Checked = Properties.Settings.Default.setFeatures.isOffsetFixOn;
-            cboxFeatureAgIO.Checked = Properties.Settings.Default.setFeatures.isAgIOOn;
 
             cboxFeatureUTurn.Checked = Properties.Settings.Default.setFeatures.isUTurnOn;
             cboxFeatureLateral.Checked = Properties.Settings.Default.setFeatures.isLateralOn;
@@ -303,8 +302,6 @@ namespace AgOpenGPS
             Properties.Settings.Default.setFeatures.isHideContourOn = cboxFeatureHideContour.Checked;
             Properties.Settings.Default.setFeatures.isWebCamOn = cboxFeatureWebcam.Checked;
             Properties.Settings.Default.setFeatures.isOffsetFixOn = cboxFeatureOffsetFix.Checked;
-
-            Properties.Settings.Default.setFeatures.isAgIOOn = cboxFeatureAgIO.Checked;
 
             Properties.Settings.Default.setFeatures.isLateralOn = cboxFeatureLateral.Checked;
             Properties.Settings.Default.setFeatures.isUTurnOn = cboxFeatureUTurn.Checked;

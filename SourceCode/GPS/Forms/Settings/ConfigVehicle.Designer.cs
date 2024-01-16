@@ -611,8 +611,6 @@ namespace AgOpenGPS
                 label160.Text = label163.Text = label166.Text = "mph";
             }
 
-            nudABLength.Value = (decimal)Math.Round(((double)Properties.Settings.Default.setAB_lineLength * mf.m2FtOrM));
-
             nudGuidanceLookAhead.Value = (decimal)Properties.Settings.Default.setAS_guidanceLookAheadTime;
 
             nudMaxAngularVelocity.Value = (decimal)glm.toDegrees(Properties.Settings.Default.setVehicle_maxAngularVelocity);
@@ -635,7 +633,6 @@ namespace AgOpenGPS
             cboxSteerInReverse.Checked = Properties.Settings.Default.setAS_isSteerInReverse;
 
             label20.Text = mf.unitsInCm;
-            label79.Text = mf.unitsFtM;
         }
 
         private void tabVGuidance_Leave(object sender, EventArgs e)
@@ -735,15 +732,6 @@ namespace AgOpenGPS
             {
                 Properties.Settings.Default.setAS_guidanceLookAheadTime = ((double)nudGuidanceLookAhead.Value);
                 mf.guidanceLookAheadTime = Properties.Settings.Default.setAS_guidanceLookAheadTime;
-            }
-        }
-
-        private void nudABLength_Click(object sender, EventArgs e)
-        {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
-            {
-                Properties.Settings.Default.setAB_lineLength = ((double)nudABLength.Value * mf.ftOrMtoM);
-                mf.ABLine.abLength = Properties.Settings.Default.setAB_lineLength;
             }
         }
 

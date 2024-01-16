@@ -78,7 +78,7 @@ namespace AgOpenGPS
             mf = _f;
             //isOnTramLine = true;
             lineWidth = Properties.Settings.Default.setDisplay_lineWidth;
-            abLength = Properties.Settings.Default.setAB_lineLength;
+            abLength = 2000;
         }
 
         private double shadowOffset = 0;

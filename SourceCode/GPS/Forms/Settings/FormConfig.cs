@@ -44,7 +44,6 @@ namespace AgOpenGPS
             nudAntennaPivot.Controls[0].Enabled = false;
             nudVehicleTrack.Controls[0].Enabled = false;
             nudSnapDistance.Controls[0].Enabled = false;
-            nudABLength.Controls[0].Enabled = false;
             nudWheelbase.Controls[0].Enabled = false;
             nudLineWidth.Controls[0].Enabled = false;
 
@@ -216,9 +215,6 @@ namespace AgOpenGPS
             //Meters to feet
             nudTurnDistanceFromBoundary.Minimum = Math.Round(nudTurnDistanceFromBoundary.Minimum * 3.28M);
             nudTurnDistanceFromBoundary.Maximum = Math.Round(nudTurnDistanceFromBoundary.Maximum * 3.28M);
-
-            nudABLength.Minimum = Math.Round(nudABLength.Minimum * 3.28M);
-            nudABLength.Maximum = Math.Round(nudABLength.Maximum * 3.28M);
 
             nudOffset.Maximum = Math.Round(nudOffset.Maximum / 2.54M);
             nudOffset.Minimum = Math.Round(nudOffset.Minimum / 2.54M);
