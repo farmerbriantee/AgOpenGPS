@@ -541,7 +541,6 @@ namespace AgOpenGPS
                     top = Height - 100;
                     panelSim.Top = Height - 60;
                 }
-
             }
             else //buttons exposed
             {

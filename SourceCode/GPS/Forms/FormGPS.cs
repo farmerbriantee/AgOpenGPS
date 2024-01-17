@@ -358,6 +358,7 @@ namespace AgOpenGPS
 
             panelSim.Left = Width/2 -330;
             panelSim.Width = 700;
+            panelSim.Top = Height - 60;
 
             timer2.Enabled = true;
 
@@ -1082,6 +1083,8 @@ namespace AgOpenGPS
             PanelsAndOGLSize();
             SetZoom();
             worldGrid.isGeoMap = false;
+
+            panelSim.Top = Height - 60;
 
             PanelUpdateRightAndBottom();
 
