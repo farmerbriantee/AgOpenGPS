@@ -234,6 +234,11 @@ namespace AgOpenGPS
         /// </summary>
         public CFont font;
 
+        private void panelRight_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         /// <summary>
         /// The new steer algorithms
         /// </summary>
@@ -1162,112 +1167,15 @@ namespace AgOpenGPS
             form.ShowDialog(this);
         }
 
+        // Generates a random number within a range.
+        public double RandomNumber(double min, double max)
+        {
+            return min + _random.NextDouble() * (max - min);
+        }
+
+        private readonly Random _random = new Random();
+
     }//class FormGPS
 }//namespace AgOpenGPS
 
-// Generates a random number within a range.
-//public double RandomNumber(double min, double max)
-//{
-//    return min + _random.NextDouble() * (max - min);
-//}
 
-//private readonly Random _random = new Random();
-
-//form is closing so tidy up and save settings
-
-/*The order is:
- *
- * The watchdog timer times out and runs this function tmrWatchdog_tick().
- * 50 times per second so statusUpdateCounter counts to 25 and updates strip menu etc at 2 hz
- * it also makes sure there is new sentences showing up otherwise it shows **** No GGA....
- * fileSaveCounter ticks 2 x per second, used at end of draw routine every minute to save a backup of field
- * then ScanForNMEA function checks for a complete sentence if contained in pn.rawbuffer
- * if not it comes right back and waits for next watchdog trigger and starts all over
- * if a new sentence is there, UpdateFix() is called
- * Right away CalculateLookAhead(), no skips, is called to determine lookaheads and trigger distances to save triangles plotted
- * Then UpdateFix() continues.
- * Hitch, pivot, antenna locations etc and directions are figured out if trigDistance is triggered
- * When that is done, DoRender() is called on the visible OpenGL screen and its draw routine _draw is run
- * before triangles are drawn, frustum cull figures out how many of the triangles should be drawn
- * When its all the way thru, it triggers the sectioncontrol Draw, its frustum cull, and determines if sections should be on
- * ProcessSectionOnOffRequests() runs and that does the section on off magic
- * SectionControlToArduino() runs and spits out the port machine control based on sections on or off
- * If field needs saving (1.5 minute since last time) field is saved
- * Now the program is "Done" and waits for the next watchdog trigger, determines if a new sentence is available etc
- * and starts all over from the top.
- */
-/*
-private void PanelUpdateRightAndBottom()
-{
-    if (isJobStarted)
-    {
-        if (curve.isBtnTrackOn)
-        {
-            int tracksVisible = 0, curveVis = 0;
-
-            for (int i = 0; i < trk.gArr.Count; i++)
-            {
-                if (trk.gArr[i].isVisible)
-                {
-                    tracksVisible++;
-                }
-            }
-
-            if (trk.idx > -1)
-            {
-                lblLineKey.Text = trk.gArr[trk.idx].name;
-                if (lblLineKey.Text.Length > 9) lblLineKey.Text = lblLineKey.Text.Substring(0, 9);
-
-                if (!btnNudge.Visible)
-                {
-                    btnNudge.Visible = true;
-                    cboxpRowWidth.Visible = true;
-                    btnYouSkipEnable.Visible = true;
-                }
-
-                if (trk.idx != -1 && curve.isBtnTrackOn)
-                {
-                    guidanceLineText = trk.gArr[trk.idx].name;
-                }
-                else guidanceLineText = gStr.gsNoGuidanceLines;
-
-                {
-                    for (int i = 0; i < trk.gArr.Count; i++)
-                    {
-                        if (trk.gArr[i].isVisible)
-                        {
-                            curveVis++;
-                        }
-                    }
-                }
-
-            }
-            else  // idx = -1
-            {
-
-
-            }
-        }
-        else //job but Tracks off.
-        {
-            if (btnNudge.Visible)
-            {
-                btnNudge.Visible = false;
-                cboxpRowWidth.Visible = false;
-                btnYouSkipEnable.Visible = false;
-                if (!ct.isContourBtnOn)
-                {
-                    btnCycleLines.Enabled = false;
-                    btnCycleLinesBk.Enabled = false;
-                }
-            }
-        }
-    }
-    else //idle - no job
-    {
-        guidanceLineText = "Be Smart, Be safe";
-        fieldData = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss ");
-    }
-
-    lblFieldStatus.Text = fieldData + " ----- " + guidanceLineText;
-*/

@@ -206,9 +206,10 @@ namespace AgOpenGPS
                 picboxToolHitch.BackgroundImage = Properties.Resources.ToolHitchPageFrontHarvester;
             }
 
-            nudDrawbarLength.Value = (decimal)(Math.Abs(Properties.Settings.Default.setVehicle_hitchLength) * mf.m2InchOrCm);
-            nudTrailingHitchLength.Value = (decimal)(Math.Abs(Properties.Settings.Default.setTool_toolTrailingHitchLength) * mf.m2InchOrCm);
-            nudTankHitch.Value = (decimal)(Math.Abs(Properties.Settings.Default.setVehicle_tankTrailingHitchLength) * mf.m2InchOrCm);
+            nudDrawbarLength.Value = (int)(Math.Abs(Properties.Settings.Default.setVehicle_hitchLength) * mf.m2InchOrCm);
+
+            nudTrailingHitchLength.Value = (int)(Math.Abs(Properties.Settings.Default.setTool_toolTrailingHitchLength) * mf.m2InchOrCm);
+            nudTankHitch.Value = (int)(Math.Abs(Properties.Settings.Default.setVehicle_tankTrailingHitchLength) * mf.m2InchOrCm);
         }
 
         private void tabTHitch_Leave(object sender, EventArgs e)

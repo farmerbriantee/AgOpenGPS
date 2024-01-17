@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -150,6 +152,7 @@ namespace AgOpenGPS
             if (mf.buttonOrder.Count < 2)
             {
                 mf.TimedMessageBox(2000, "Button Error", "Not Enough Buttons Added");
+                return;
             }
             else
             {
@@ -166,8 +169,54 @@ namespace AgOpenGPS
                         Properties.Settings.Default.setDisplay_buttonOrder += mf.buttonOrder[i].ToString();
                     }
                 }
+
+                Properties.Settings.Default.Save();
+
+                mf.PanelBuildRightMenu();
+                mf.PanelUpdateRightAndBottom();
+                Close();
             }
-        Properties.Settings.Default.Save();
+        }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.setDisplay_buttonOrder = "";
+            for (int i = 0; i < mf.buttonOrder.Count; i++)
+            {
+                if (i < mf.buttonOrder.Count - 1)
+                {
+                    Properties.Settings.Default.setDisplay_buttonOrder
+                        += mf.buttonOrder[i].ToString() + ",";
+                }
+                else
+                {
+                    Properties.Settings.Default.setDisplay_buttonOrder += mf.buttonOrder[i].ToString();
+                }
+            }
+
+            Properties.Settings.Default.Save();
+
+            mf.PanelBuildRightMenu();
+            mf.PanelUpdateRightAndBottom();
+        }
+
+        private void btnVideoHelp_Click(object sender, EventArgs e)
+
+        {
+            Process[] processName = Process.GetProcessesByName("BobsYourUncle");
+            //Start application here
+            DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
+            string strPath = di.ToString();
+            strPath += "\\Buttons.mp4";
+
+            try
+            {
+                Process.Start(strPath);
+            }
+            catch
+            {
+                mf.TimedMessageBox(2000, "Playback Error", "Can't Find Media Player");
+            }
         }
     }
 }

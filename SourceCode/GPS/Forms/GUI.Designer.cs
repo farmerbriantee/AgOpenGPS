@@ -712,52 +712,8 @@ namespace AgOpenGPS
             }
 
             //right side build
-            panelRight.Controls.Clear();
+            PanelBuildRightMenu();
 
-            for (int i = 0; i < buttonOrder.Count; i++)
-            {
-                switch (buttonOrder[i])
-                {
-                    case 0:
-                        panelRight.Controls.Add(btnAutoSteer);
-                        break;
-
-                    case 1:
-                        panelRight.Controls.Add(btnAutoYouTurn);
-                        break;
-
-                    case 2:
-                        panelRight.Controls.Add(btnSectionMasterAuto);
-                        break;
-
-                    case 3:
-                        panelRight.Controls.Add(btnSectionMasterManual);
-                        break;
-
-                    case 4:
-                        panelRight.Controls.Add(btnAutoTrack);
-                        break;
-
-                    case 5:
-                        panelRight.Controls.Add(btnCycleLinesBk);
-                        break;
-
-                    case 6:
-                        panelRight.Controls.Add(btnCycleLines);
-                        break;
-
-                    case 7:
-                        panelRight.Controls.Add(btnContour);
-                        panelRight.Controls.Add(btnContourLock);
-                        break;
-
-                    default:
-                        break;
-                }
-
-            }
-
-            panelRight.Controls.Add(lblNumCu);
             PanelsAndOGLSize();
             PanelUpdateRightAndBottom();
 
@@ -806,7 +762,7 @@ namespace AgOpenGPS
                 btnTramDisplayMode.Visible = istram;
                 btnHeadlandOnOff.Visible = isHdl;
                 btnHydLift.Visible = isHdl;
-                btnAutoTrack.Visible = trk.idx > -1 && !ct.isContourBtnOn;
+                btnAutoTrack.Visible = tracksVisible > 1 && trk.idx > -1 && !ct.isContourBtnOn;
 
                 if (trk.idx > -1 && trk.gArr.Count > 0 && !ct.isContourBtnOn)
                 {
@@ -823,6 +779,55 @@ namespace AgOpenGPS
             }
         }
 
+        public void PanelBuildRightMenu()
+        {
+            panelRight.Controls.Clear();
+
+            for (int i = 0; i < buttonOrder.Count; i++)
+            {
+                switch (buttonOrder[i])
+                {
+                    case 0:
+                        panelRight.Controls.Add(btnAutoSteer);
+                        break;
+
+                    case 1:
+                        panelRight.Controls.Add(btnAutoYouTurn);
+                        break;
+
+                    case 2:
+                        panelRight.Controls.Add(btnSectionMasterAuto);
+                        break;
+
+                    case 3:
+                        panelRight.Controls.Add(btnSectionMasterManual);
+                        break;
+
+                    case 4:
+                        panelRight.Controls.Add(btnAutoTrack);
+                        break;
+
+                    case 5:
+                        panelRight.Controls.Add(btnCycleLinesBk);
+                        break;
+
+                    case 6:
+                        panelRight.Controls.Add(btnCycleLines);
+                        break;
+
+                    case 7:
+                        panelRight.Controls.Add(btnContour);
+                        panelRight.Controls.Add(btnContourLock);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+            panelRight.Controls.Add(lblNumCu);
+        }
+
         public void PanelSizeRightAndAB()
         {
             int viz = 0;
@@ -833,8 +838,8 @@ namespace AgOpenGPS
 
             if (viz == 0) return;
 
-            int sizer = (Height - 120) / (viz);
-            if (sizer > 180) { sizer = 180; }
+            int sizer = (Height - 140) / (viz);
+            if (sizer > 120) { sizer = 120; }
 
             for (int i = 0; i < panelRight.Controls.Count; i++)
             {
@@ -856,7 +861,7 @@ namespace AgOpenGPS
                 if (viz == 0) return;
 
                 sizer = (Width - 280) / (viz);
-                if (sizer > 160) { sizer = 160; }
+                if (sizer > 120) { sizer = 120; }
 
                 for (int i = 0; i < panelAB.Controls.Count; i++)
                 {
@@ -878,7 +883,7 @@ namespace AgOpenGPS
 
                 oglMain.Left = 80;
                 oglMain.Width = this.Width - statusStripLeft.Width - 22; //22
-                oglMain.Height = this.Height - 72;
+                oglMain.Height = this.Height - 60;
             }
             else
             {
@@ -887,8 +892,8 @@ namespace AgOpenGPS
                     panelAB.Visible = false;
                     panelLeft.Visible = false;
                     oglMain.Left = 20;
-                    oglMain.Width = this.Width - 115; //22
-                    oglMain.Height = this.Height - 65;
+                    oglMain.Width = this.Width - 90; //22
+                    oglMain.Height = this.Height - 62;
                 }
                 else
                 {
@@ -896,8 +901,8 @@ namespace AgOpenGPS
                     panelRight.Visible = true;
                     panelLeft.Visible = true;
                     oglMain.Left = 80;
-                    oglMain.Width = this.Width - statusStripLeft.Width - 100; //22
-                    oglMain.Height = this.Height - 120;
+                    oglMain.Width = this.Width - statusStripLeft.Width - 90; //22
+                    oglMain.Height = this.Height - 118;
                 }
             }
 

@@ -1971,18 +1971,20 @@ namespace AgOpenGPS
                 GL.End();
             }
 
-            GL.Disable(EnableCap.Texture2D);
             center = oglMain.Width / -2 + 10;
-            //center += 10;
+            double deg = glm.toDegrees(fixHeading);
+            if (deg > 359.9) deg = 359.9;
+            strHeading = (deg).ToString("N1");
+            lenth = 18 * strHeading.Length;
+
+            GL.Disable(EnableCap.Texture2D);
             GL.Color3(0.9852f, 0.982f, 0.983f);
-            strHeading = (fixHeading * 57.2957795).ToString("N1");
-            lenth = 15 * strHeading.Length;
-            font.DrawText(oglMain.Width / 2 - lenth, 10, strHeading, 0.8);
+            font.DrawText(oglMain.Width / 2 - lenth, 10, strHeading, 1);
 
             //GPS Step
             if (distanceCurrentStepFixDisplay < 0.03*100)
                 GL.Color3(0.98f, 0.82f, 0.653f);
-            font.DrawText(center, 10, distanceCurrentStepFixDisplay.ToString("N1") + "cm", 0.8);
+            font.DrawText(center, 10, distanceCurrentStepFixDisplay.ToString("N1") + "cm", 1);
 
             if (isMaxAngularVelocity)
             {

@@ -70,12 +70,6 @@ namespace AgOpenGPS
                 };
                 a.Click += B_Click;
                 a.BackColor = System.Drawing.SystemColors.ButtonFace;
-                //a.Font = backupfont;
-                //a.FlatStyle = FlatStyle.Flat;
-                //a.FlatAppearance.BorderColor = Color.Cyan;
-                //a.BackColor = Color.Transparent;
-                //a.FlatAppearance.MouseOverBackColor = BackColor;
-                //a.FlatAppearance.MouseDownBackColor = BackColor;
 
                 //area
                 Button b = new Button
@@ -88,11 +82,6 @@ namespace AgOpenGPS
                 };
                 b.Click += B_Click;
                 b.BackColor = System.Drawing.SystemColors.ButtonFace;
-                //b.FlatStyle = FlatStyle.Flat;
-                //b.Font = backupfont;
-                //b.FlatAppearance.BorderColor = BackColor;
-                //b.FlatAppearance.MouseOverBackColor = BackColor;
-                //b.FlatAppearance.MouseDownBackColor = BackColor;
 
                 //drive thru
                 Button d = new Button
@@ -123,7 +112,6 @@ namespace AgOpenGPS
                     d.Anchor = System.Windows.Forms.AnchorStyles.None;
                     a.Anchor = System.Windows.Forms.AnchorStyles.None;
                     b.Anchor = System.Windows.Forms.AnchorStyles.None;
-                    //d.BackColor = Color.Transparent;
                 }
                 else
                 {
@@ -135,7 +123,6 @@ namespace AgOpenGPS
                     d.Anchor = System.Windows.Forms.AnchorStyles.None;
                     a.Anchor = System.Windows.Forms.AnchorStyles.None;
                     b.Anchor = System.Windows.Forms.AnchorStyles.None;
-                    //d.BackColor = Color.Transparent;
                 }
 
                 if (mf.isMetric)
@@ -506,17 +493,3 @@ namespace AgOpenGPS
         #endregion Help
     }
 }
-
-/*
-
-            MessageBox.Show(gStr, gStr.gsHelp);
-
-            DialogResult result2 = MessageBox.Show(gStr, gStr.gsHelp,
-                MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-            if (result2 == DialogResult.Yes)
-            {
-                System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=rsJMRZrcuX4");
-            }
-
-*/

@@ -133,7 +133,7 @@ namespace AgOpenGPS
                 flp1.Controls[5].Visible = tracksVisible > 0;
 
                 //position of panel
-                flp1.Top = this.Height -200;
+                flp1.Top = this.Height -260;
                 flp1.Left = this.Width - 120 - flp1.Width;
                 trackMethodPanelCounter = 3;
             }

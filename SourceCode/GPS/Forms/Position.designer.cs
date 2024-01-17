@@ -188,7 +188,7 @@ namespace AgOpenGPS
                                     pn.fix.northing - stepFixPts[2].northing);
 
                                 if (gpsHeading < 0) gpsHeading += glm.twoPI;
-                                else if (gpsHeading > glm.twoPI) gpsHeading -= glm.twoPI;
+                                else if (gpsHeading >= glm.twoPI) gpsHeading -= glm.twoPI;
 
                                 fixHeading = gpsHeading;
 
@@ -223,7 +223,7 @@ namespace AgOpenGPS
 
                                     //determine the Corrected heading based on gyro and GPS
                                     imuCorrected = imuHeading + imuGPS_Offset;
-                                    if (imuCorrected > glm.twoPI) imuCorrected -= glm.twoPI;
+                                    if (imuCorrected >= glm.twoPI) imuCorrected -= glm.twoPI;
                                     else if (imuCorrected < 0) imuCorrected += glm.twoPI;
 
                                     fixHeading = imuCorrected;
@@ -397,7 +397,7 @@ namespace AgOpenGPS
 
                             //determine the Corrected heading based on gyro and GPS
                             imuCorrected = imuHeading + imuGPS_Offset;
-                            if (imuCorrected > glm.twoPI) imuCorrected -= glm.twoPI;
+                            if (imuCorrected >= glm.twoPI) imuCorrected -= glm.twoPI;
                             else if (imuCorrected < 0) imuCorrected += glm.twoPI;
 
                             //use imu as heading when going slow
@@ -518,7 +518,7 @@ namespace AgOpenGPS
                         if (ahrs.imuHeading != 99999)
                         {
                             imuCorrected = (glm.toRadians(ahrs.imuHeading)) + imuGPS_Offset;
-                            if (imuCorrected > glm.twoPI) imuCorrected -= glm.twoPI;
+                            if (imuCorrected >= glm.twoPI) imuCorrected -= glm.twoPI;
                             else if (imuCorrected < 0) imuCorrected += glm.twoPI;
 
                             //use imu as heading when going slow

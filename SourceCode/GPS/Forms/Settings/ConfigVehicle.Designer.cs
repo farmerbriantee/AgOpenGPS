@@ -525,6 +525,7 @@ namespace AgOpenGPS
         #endregion
 
         #region Vehicle Dimensions
+
         private void tabVDimensions_Enter(object sender, EventArgs e)
         {
             nudMinTurnRadius.Value = (int)(Properties.Settings.Default.setVehicle_minTurningRadius * mf.m2InchOrCm);
@@ -532,6 +533,8 @@ namespace AgOpenGPS
             nudWheelbase.Value = (int)(Math.Abs(Properties.Settings.Default.setVehicle_wheelbase) * mf.m2InchOrCm);
 
             nudVehicleTrack.Value = (int)(Math.Abs(Properties.Settings.Default.setVehicle_trackWidth) * mf.m2InchOrCm);
+
+            nudTractorHitchLength.Value = (int)(Math.Abs(Properties.Settings.Default.setVehicle_hitchLength) * mf.m2InchOrCm);
 
             if (mf.vehicle.vehicleType == 0)
             {
@@ -549,11 +552,38 @@ namespace AgOpenGPS
                 nudTractorHitchLength.Visible = true;
             }
 
+            if (Properties.Settings.Default.setTool_isToolTrailing || Properties.Settings.Default.setTool_isToolTBT)
+            {
+                nudTractorHitchLength.Visible = true;
+                label94.Visible = true;
+                label27.Visible = true;
+            }
+            else
+            {
+                nudTractorHitchLength.Visible = false;
+                label94.Visible = false;
+                label27.Visible = false;
+            }
+
             label94.Text = mf.unitsInCm;
             label95.Text = mf.unitsInCm;
             label96.Text = mf.unitsInCm;
             label97.Text = mf.unitsInCm;
         }
+
+        private void nudTractorHitchLength_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            {
+                mf.tool.hitchLength = (double)nudTractorHitchLength.Value * mf.inchOrCm2m;
+                if (!Properties.Settings.Default.setTool_isToolFront)
+                {
+                    mf.tool.hitchLength *= -1;
+                }
+                Properties.Settings.Default.setVehicle_hitchLength = mf.tool.hitchLength;
+            }
+        }
+
 
         private void nudMinTurnRadius_Click(object sender, EventArgs e)
         {

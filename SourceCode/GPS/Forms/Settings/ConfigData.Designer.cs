@@ -18,13 +18,11 @@ namespace AgOpenGPS
             {
                 gboxSingle.Enabled = false;
                 gboxDual.Enabled = true;
-                //nudDualHeadingOffset.Enabled = true;
             }
             else
             {
                 gboxSingle.Enabled = true;
                 gboxDual.Enabled = false;
-                //nudDualHeadingOffset.Enabled=false; 
             }
 
             nudDualHeadingOffset.Value = (decimal)Properties.Settings.Default.setGPS_dualHeadingOffset;
@@ -47,15 +45,15 @@ namespace AgOpenGPS
             {
                 Properties.Settings.Default.setF_minHeadingStepDistance = 1.0;
                 Properties.Settings.Default.setGPS_minimumStepLimit = 0.1;
-                cboxMinGPSStep.Text = "10 " + gStr.gsCentimeters;
-                lblHeadingDistance.Text = "100 " + gStr.gsCentimeters;
+                cboxMinGPSStep.Text = "10 cm";
+                lblHeadingDistance.Text = "100 cm";
             }
             else
             {
                 Properties.Settings.Default.setF_minHeadingStepDistance = 0.5;
                 Properties.Settings.Default.setGPS_minimumStepLimit = 0.05;
-                cboxMinGPSStep.Text = "5 " + gStr.gsCentimeters;
-                lblHeadingDistance.Text = "50 " + gStr.gsCentimeters;
+                cboxMinGPSStep.Text = "5 cm";
+                lblHeadingDistance.Text = "50 cm";
             }
 
             if (mf.ahrs.imuHeading != 99999)
@@ -140,16 +138,16 @@ namespace AgOpenGPS
             {
                 Properties.Settings.Default.setF_minHeadingStepDistance = 1;
                 Properties.Settings.Default.setGPS_minimumStepLimit = 0.1;
-                cboxMinGPSStep.Text = "10 " + gStr.gsCentimeters;
-                lblHeadingDistance.Text = "100 " + gStr.gsCentimeters;
+                cboxMinGPSStep.Text = "10 cm";
+                lblHeadingDistance.Text = "100 cm";
                 mf.isFirstHeadingSet = false;
             }
             else
             {
                 Properties.Settings.Default.setF_minHeadingStepDistance = 0.5;
                 Properties.Settings.Default.setGPS_minimumStepLimit = 0.05;
-                cboxMinGPSStep.Text = "5 " + gStr.gsCentimeters;
-                lblHeadingDistance.Text = "50 " + gStr.gsCentimeters;
+                cboxMinGPSStep.Text = "5 cm";
+                lblHeadingDistance.Text = "50 cm";
                 mf.isFirstHeadingSet = false;
             }
 

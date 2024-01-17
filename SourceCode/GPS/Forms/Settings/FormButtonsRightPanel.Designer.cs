@@ -51,6 +51,9 @@
             this.btnAll = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.btnTest = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.flpRight.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -224,7 +227,7 @@
             this.btnAutoSteer.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btnAutoSteer.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOff;
             this.btnAutoSteer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAutoSteer.Location = new System.Drawing.Point(23, 569);
+            this.btnAutoSteer.Location = new System.Drawing.Point(37, 569);
             this.btnAutoSteer.Margin = new System.Windows.Forms.Padding(0);
             this.btnAutoSteer.Name = "btnAutoSteer";
             this.btnAutoSteer.Size = new System.Drawing.Size(72, 64);
@@ -241,7 +244,7 @@
             this.btnAutoYouTurn.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnAutoYouTurn.Image = global::AgOpenGPS.Properties.Resources.YouTurnNo;
             this.btnAutoYouTurn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAutoYouTurn.Location = new System.Drawing.Point(23, 492);
+            this.btnAutoYouTurn.Location = new System.Drawing.Point(37, 492);
             this.btnAutoYouTurn.Name = "btnAutoYouTurn";
             this.btnAutoYouTurn.Size = new System.Drawing.Size(72, 64);
             this.btnAutoYouTurn.TabIndex = 542;
@@ -258,7 +261,7 @@
             this.btnSectionMasterAuto.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSectionMasterAuto.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
             this.btnSectionMasterAuto.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSectionMasterAuto.Location = new System.Drawing.Point(23, 415);
+            this.btnSectionMasterAuto.Location = new System.Drawing.Point(37, 415);
             this.btnSectionMasterAuto.Margin = new System.Windows.Forms.Padding(0);
             this.btnSectionMasterAuto.Name = "btnSectionMasterAuto";
             this.btnSectionMasterAuto.Size = new System.Drawing.Size(72, 64);
@@ -277,7 +280,7 @@
             this.btnSectionMasterManual.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSectionMasterManual.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
             this.btnSectionMasterManual.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSectionMasterManual.Location = new System.Drawing.Point(23, 338);
+            this.btnSectionMasterManual.Location = new System.Drawing.Point(37, 338);
             this.btnSectionMasterManual.Name = "btnSectionMasterManual";
             this.btnSectionMasterManual.Size = new System.Drawing.Size(72, 64);
             this.btnSectionMasterManual.TabIndex = 539;
@@ -295,7 +298,7 @@
             this.btnTrack.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTrack.Image = global::AgOpenGPS.Properties.Resources.AutoTrack;
             this.btnTrack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTrack.Location = new System.Drawing.Point(23, 261);
+            this.btnTrack.Location = new System.Drawing.Point(37, 261);
             this.btnTrack.Margin = new System.Windows.Forms.Padding(0);
             this.btnTrack.Name = "btnTrack";
             this.btnTrack.Size = new System.Drawing.Size(72, 64);
@@ -314,7 +317,7 @@
             this.btnCycleLinesBk.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCycleLinesBk.Image = global::AgOpenGPS.Properties.Resources.ABLineCycleBk;
             this.btnCycleLinesBk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCycleLinesBk.Location = new System.Drawing.Point(23, 184);
+            this.btnCycleLinesBk.Location = new System.Drawing.Point(37, 184);
             this.btnCycleLinesBk.Name = "btnCycleLinesBk";
             this.btnCycleLinesBk.Size = new System.Drawing.Size(72, 64);
             this.btnCycleLinesBk.TabIndex = 546;
@@ -331,7 +334,7 @@
             this.btnCycleLines.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCycleLines.Image = global::AgOpenGPS.Properties.Resources.ABLineCycle;
             this.btnCycleLines.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCycleLines.Location = new System.Drawing.Point(23, 107);
+            this.btnCycleLines.Location = new System.Drawing.Point(37, 107);
             this.btnCycleLines.Name = "btnCycleLines";
             this.btnCycleLines.Size = new System.Drawing.Size(72, 64);
             this.btnCycleLines.TabIndex = 545;
@@ -348,7 +351,7 @@
             this.btnContour.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnContour.Image = global::AgOpenGPS.Properties.Resources.ContourOn;
             this.btnContour.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnContour.Location = new System.Drawing.Point(23, 30);
+            this.btnContour.Location = new System.Drawing.Point(37, 30);
             this.btnContour.Name = "btnContour";
             this.btnContour.Size = new System.Drawing.Size(72, 64);
             this.btnContour.TabIndex = 540;
@@ -366,9 +369,9 @@
             this.btnReset.Image = global::AgOpenGPS.Properties.Resources.back_button;
             this.btnReset.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnReset.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnReset.Location = new System.Drawing.Point(186, 213);
+            this.btnReset.Location = new System.Drawing.Point(246, 500);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(83, 115);
+            this.btnReset.Size = new System.Drawing.Size(91, 115);
             this.btnReset.TabIndex = 548;
             this.btnReset.Text = "Reset";
             this.btnReset.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -386,7 +389,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(511, 451);
+            this.btnCancel.Location = new System.Drawing.Point(657, 451);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(69, 70);
             this.btnCancel.TabIndex = 550;
@@ -396,14 +399,13 @@
             // btnOk
             // 
             this.btnOk.BackColor = System.Drawing.Color.Transparent;
-            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnOk.FlatAppearance.BorderSize = 0;
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOk.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnOk.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnOk.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOk.Location = new System.Drawing.Point(474, 576);
+            this.btnOk.Location = new System.Drawing.Point(620, 576);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(106, 70);
             this.btnOk.TabIndex = 549;
@@ -416,15 +418,15 @@
             this.btnAll.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnAll.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAll.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAll.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAll.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
             this.btnAll.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnAll.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAll.Location = new System.Drawing.Point(186, 427);
+            this.btnAll.Location = new System.Drawing.Point(246, 301);
             this.btnAll.Name = "btnAll";
-            this.btnAll.Size = new System.Drawing.Size(83, 115);
+            this.btnAll.Size = new System.Drawing.Size(91, 115);
             this.btnAll.TabIndex = 551;
-            this.btnAll.Text = "All";
+            this.btnAll.Text = "Default";
             this.btnAll.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAll.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAll.UseVisualStyleBackColor = false;
@@ -440,31 +442,80 @@
             this.groupBox1.Controls.Add(this.btnSectionMasterManual);
             this.groupBox1.Controls.Add(this.btnSectionMasterAuto);
             this.groupBox1.Controls.Add(this.btnAutoYouTurn);
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.Control;
             this.groupBox1.Location = new System.Drawing.Point(19, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(114, 646);
+            this.groupBox1.Size = new System.Drawing.Size(144, 646);
             this.groupBox1.TabIndex = 552;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Select";
+            this.groupBox1.Text = "Select Buttons";
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.flpRight);
             this.groupBox2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(318, 12);
+            this.groupBox2.ForeColor = System.Drawing.SystemColors.Control;
+            this.groupBox2.Location = new System.Drawing.Point(432, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(136, 646);
             this.groupBox2.TabIndex = 553;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "AOG Menu";
             // 
+            // label15
+            // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.White;
+            this.label15.Location = new System.Drawing.Point(186, 53);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(230, 173);
+            this.label15.TabIndex = 554;
+            this.label15.Text = "Touch the buttons on the left side you want to appear in the Menu (The right side" +
+    "). \r\n\r\nThe order you push them will be the order they appear on the menu from bo" +
+    "ttom up.";
+            // 
+            // btnTest
+            // 
+            this.btnTest.BackColor = System.Drawing.Color.Transparent;
+            this.btnTest.FlatAppearance.BorderSize = 0;
+            this.btnTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTest.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTest.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnTest.Image = global::AgOpenGPS.Properties.Resources.TrackVisible;
+            this.btnTest.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTest.Location = new System.Drawing.Point(623, 234);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(106, 70);
+            this.btnTest.TabIndex = 555;
+            this.btnTest.UseVisualStyleBackColor = false;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(651, 209);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 26);
+            this.label1.TabIndex = 556;
+            this.label1.Text = "Preview";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormButtonsRightPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(626, 664);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
+            this.ClientSize = new System.Drawing.Size(741, 664);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnTest);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnAll);
@@ -510,5 +561,8 @@
         public System.Windows.Forms.Button btnAll;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button btnTest;
+        private System.Windows.Forms.Label label1;
     }
 }
