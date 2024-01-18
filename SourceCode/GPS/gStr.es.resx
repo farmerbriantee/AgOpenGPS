@@ -498,9 +498,6 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Empezar nueva Parcela</value>
   </data>
-  <data name="gsSteerChart" xml:space="preserve">
-    <value>Gráfico de dirección</value>
-  </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>Asistente de configuración de guiado</value>
   </data>

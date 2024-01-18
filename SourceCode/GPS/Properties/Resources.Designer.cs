@@ -3945,6 +3945,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap z_TramOnOff {
+            get {
+                object obj = ResourceManager.GetObject("z_TramOnOff", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap z_Turn {
             get {
                 object obj = ResourceManager.GetObject("z_Turn", resourceCulture);

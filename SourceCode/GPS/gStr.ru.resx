@@ -495,9 +495,6 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Начать Новое Поле</value>
   </data>
-  <data name="gsSteerChart" xml:space="preserve">
-    <value>Управляющая диаграмма</value>
-  </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value> Мастер управления</value>
   </data>

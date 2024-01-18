@@ -504,9 +504,6 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Aloita uusi pelto</value>
   </data>
-  <data name="gsSteerChart" xml:space="preserve">
-    <value>Ohjaus kaavio</value>
-  </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>Ohjauksen asetukset (avustettu)</value>
   </data>

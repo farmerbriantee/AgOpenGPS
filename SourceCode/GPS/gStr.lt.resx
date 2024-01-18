@@ -495,9 +495,6 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Pradėti naują lauką</value>
   </data>
-  <data name="gsSteerChart" xml:space="preserve">
-    <value>Vairavimo diagrama</value>
-  </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>Vairavimo vedlys</value>
   </data>

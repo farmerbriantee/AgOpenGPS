@@ -17,6 +17,8 @@ namespace AgOpenGPS
                 sectionWidth7, sectionWidth8, sectionWidth9, sectionWidth10, sectionWidth11, sectionWidth12,
                 sectionWidth13, sectionWidth14, sectionWidth15, sectionWidth16;
 
+        private  decimal [] sectionWidthArr = new decimal[17];
+
         private decimal sectionPosition1, sectionPosition2, sectionPosition3, sectionPosition4,
                         sectionPosition5, sectionPosition6, sectionPosition7, sectionPosition8, sectionPosition9,
                         sectionPosition10, sectionPosition11, sectionPosition12, sectionPosition13, sectionPosition14,
@@ -1553,6 +1555,11 @@ namespace AgOpenGPS
             sectionWidth14 = nudSection14.Value * (decimal)mf.inchOrCm2m;
             sectionWidth15 = nudSection15.Value * (decimal)mf.inchOrCm2m;
             sectionWidth16 = nudSection16.Value * (decimal)mf.inchOrCm2m;
+
+            for (int j = 0; j < i; j++)
+            {
+                
+            }
 
             switch (i)
             {

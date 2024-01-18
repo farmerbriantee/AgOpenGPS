@@ -495,9 +495,6 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Start nieuw perceel</value>
   </data>
-  <data name="gsSteerChart" xml:space="preserve">
-    <value>Stuurgrafiek</value>
-  </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>Stuur-wizard</value>
   </data>

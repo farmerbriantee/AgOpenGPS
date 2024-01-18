@@ -498,9 +498,6 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Commencer un Champ</value>
   </data>
-  <data name="gsSteerChart" xml:space="preserve">
-    <value>Tableau de pilotage</value>
-  </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>Assistant Conduite</value>
   </data>

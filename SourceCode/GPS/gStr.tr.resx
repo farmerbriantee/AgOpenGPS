@@ -462,9 +462,6 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Yeni Alan Başlat</value>
   </data>
-  <data name="gsSteerChart" xml:space="preserve">
-    <value>Yön Tablosu</value>
-  </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Durdur Kaydı Duraklat Sınır</value>
   </data>

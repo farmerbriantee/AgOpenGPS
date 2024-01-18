@@ -447,6 +447,8 @@ namespace AgOpenGPS
 
                     DrawSteerCircle();
 
+                    if (tram.displayMode != 0) { DrawTramMarkers(); }                       
+
                     if (vehicle.isHydLiftOn) DrawLiftIndicator();
 
                     if (isReverse || isChangingDirection)
@@ -1660,6 +1662,88 @@ namespace AgOpenGPS
             GL.PopMatrix();
         }
 
+        private void DrawTramMarkers()
+        {
+            //int sizer = 60;
+            int center = -50 ;
+            int bottomSide = 100;
+
+            GL.Enable(EnableCap.Texture2D);
+
+            GL.BindTexture(TextureTarget.Texture2D, texture[(int)textures.TramDot]);        // Select Our Texture
+
+            if (((tram.controlByte) & 2) == 2) GL.Color4(0.29f, 0.90f, 0.290f, 0.983f);
+            else GL.Color4(0.9f, 0.0f, 0.0f, 0.53f);
+
+            GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
+            {
+                GL.TexCoord2(0, 0); GL.Vertex2(center - 32, bottomSide - 32); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(center + 32, bottomSide - 32); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(center + 32, bottomSide + 32); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(center - 32, bottomSide + 32); //
+            }
+            GL.End();
+
+            if (((tram.controlByte) & 1) == 1) GL.Color4(0.29f, 0.90f, 0.290f, 0.983f);
+            else GL.Color4(0.9f, 0.0f, 0.0f, 0.53f);
+
+            center += 100;
+
+            GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
+            {
+                GL.TexCoord2(0, 0); GL.Vertex2(center - 32, bottomSide - 32); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(center + 32, bottomSide - 32); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(center + 32, bottomSide + 32); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(center - 32, bottomSide + 32); //
+            }
+            GL.End();
+
+
+            GL.Disable(EnableCap.Texture2D);
+
+            //if (mf.tram.displayMode != 0)
+            //{
+            //    if (mf.camera.camSetDistance > -300)
+            //    {
+            //        if (mf.camera.camSetDistance > -100)
+            //            GL.PointSize(16);
+            //        else GL.PointSize(12);
+
+            //        if (mf.tram.isOuter)
+            //        {
+            //            //section markers
+            //            GL.Begin(PrimitiveType.Points);
+
+            //            //right side
+            //            if (((mf.tram.controlByte) & 1) == 1) GL.Color3(0.0f, 0.900f, 0.39630f);
+            //            else GL.Color3(0, 0, 0);
+            //            GL.Vertex3(farRightPosition - mf.tram.halfWheelTrack, trailingTool, 0);
+
+            //            //left side
+            //            if ((mf.tram.controlByte & 2) == 2) GL.Color3(0.0f, 0.900f, 0.3930f);
+            //            else GL.Color3(0, 0, 0);
+            //            GL.Vertex3(farLeftPosition + mf.tram.halfWheelTrack, trailingTool, 0);
+            //            GL.End();
+            //        }
+            //        else
+            //        {
+            //            GL.Begin(PrimitiveType.Points);
+
+            //            //right side
+            //            if (((mf.tram.controlByte) & 1) == 1) GL.Color3(0.0f, 0.900f, 0.39630f);
+            //            else GL.Color3(0, 0, 0);
+            //            GL.Vertex3(mf.tram.halfWheelTrack, trailingTool, 0);
+
+            //            //left side
+            //            if ((mf.tram.controlByte & 2) == 2) GL.Color3(0.0f, 0.900f, 0.3930f);
+            //            else GL.Color3(0, 0, 0);
+            //            GL.Vertex3(-mf.tram.halfWheelTrack, trailingTool, 0);
+            //            GL.End();
+            //        }
+            //    }
+            //}
+        }
+
         private void MakeFlagMark()
         {
             leftMouseDownOnOpenGL = false;
@@ -2022,7 +2106,7 @@ namespace AgOpenGPS
             //font.DrawText(center, 150, "BETA 5.0.0.5", 1);
 
             GL.Color3(0.9752f, 0.62f, 0.325f);
-            if (timerSim.Enabled) font.DrawText(-110, 45, "Simulator On", 1);
+            if (timerSim.Enabled) font.DrawText(-100, 35, "Simulator On", 1);
 
             //if (ct.isContourBtnOn)
             //{

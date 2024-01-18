@@ -462,9 +462,6 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Start Ny Mark</value>
   </data>
-  <data name="gsSteerChart" xml:space="preserve">
-    <value>Styrekort</value>
-  </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Stop Record Pause Af Kant</value>
   </data>

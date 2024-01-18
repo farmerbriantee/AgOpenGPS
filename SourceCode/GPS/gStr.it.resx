@@ -462,9 +462,6 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Iniziare un Nuovo Campo</value>
   </data>
-  <data name="gsSteerChart" xml:space="preserve">
-    <value>Irányítódiagram</value>
-  </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Stop Registrazione Pausa Confine</value>
   </data>

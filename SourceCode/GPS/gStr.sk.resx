@@ -495,9 +495,6 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Začať nové pole</value>
   </data>
-  <data name="gsSteerChart" xml:space="preserve">
-    <value>Grafy</value>
-  </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>Pomocník nastavenia</value>
   </data>

@@ -495,9 +495,6 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Neues Feld starten</value>
   </data>
-  <data name="gsSteerChart" xml:space="preserve">
-    <value>Lenkwinkel (steer chart)</value>
-  </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>Assistent Lenkeinstellungen</value>
   </data>

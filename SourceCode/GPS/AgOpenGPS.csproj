@@ -997,6 +997,7 @@
     <None Include="btnImages\Config\Con_RightMenuEdit.png" />
     <None Include="btnImages\BoundaryCenter.png" />
     <None Include="btnImages\AutoTrackOff.png" />
+    <None Include="btnImages\Images\z_TramOnOff.png" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />

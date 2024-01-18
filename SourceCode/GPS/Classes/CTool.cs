@@ -375,8 +375,8 @@ namespace AgOpenGPS
                     if (mf.camera.camSetDistance > -300)
                     {
                         if (mf.camera.camSetDistance > -100)
-                            GL.PointSize(16);
-                        else GL.PointSize(12);
+                            GL.PointSize(12);
+                        else GL.PointSize(8);
 
                         if (mf.tram.isOuter)
                         {

@@ -504,9 +504,6 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>zStart New Field</value>
   </data>
-  <data name="gsSteerChart" xml:space="preserve">
-    <value>zCharts</value>
-  </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>zSteer Wizard</value>
   </data>

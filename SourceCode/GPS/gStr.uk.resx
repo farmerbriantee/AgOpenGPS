@@ -498,9 +498,6 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Почати нов. поле</value>
   </data>
-  <data name="gsSteerChart" xml:space="preserve">
-    <value>Кермо</value>
-  </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>Майстер рульового управління</value>
   </data>
