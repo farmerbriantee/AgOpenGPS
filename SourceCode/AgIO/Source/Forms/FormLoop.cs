@@ -248,10 +248,7 @@ namespace AgIO
                 {
                     TimedMessageBox(1500, "URL Not Located, Network Down?", "Cannot Find: " + Properties.Settings.Default.setNTRIP_casterURL);
                     //if we had a timer already, kill it
-                    if (tmr != null)
-                    {
-                        tmr.Dispose();
-                    }
+                    tmr?.Dispose();
 
                     //use last known
                     broadCasterIP = Properties.Settings.Default.setNTRIP_casterIP; //Select correct Address

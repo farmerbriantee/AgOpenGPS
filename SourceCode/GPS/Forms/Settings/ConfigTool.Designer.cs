@@ -13,16 +13,8 @@ namespace AgOpenGPS
 {
     public partial class FormConfig
     {
-        private decimal sectionWidth1, sectionWidth2, sectionWidth3, sectionWidth4, sectionWidth5, sectionWidth6,
-                sectionWidth7, sectionWidth8, sectionWidth9, sectionWidth10, sectionWidth11, sectionWidth12,
-                sectionWidth13, sectionWidth14, sectionWidth15, sectionWidth16;
-
-        private  decimal [] sectionWidthArr = new decimal[17];
-
-        private decimal sectionPosition1, sectionPosition2, sectionPosition3, sectionPosition4,
-                        sectionPosition5, sectionPosition6, sectionPosition7, sectionPosition8, sectionPosition9,
-                        sectionPosition10, sectionPosition11, sectionPosition12, sectionPosition13, sectionPosition14,
-                        sectionPosition15, sectionPosition16, sectionPosition17;
+        private decimal[] sectionWidthArr = new decimal[16];
+        private decimal[] sectionPositionArr = new decimal[17];
 
         private double defaultSectionWidth;
 
@@ -595,24 +587,24 @@ namespace AgOpenGPS
                 mf.tool.isSectionOffWhenOut = cboxSectionBoundaryControl.Checked;
 
                 //save the values in each spinner for section position widths in settings
-                Properties.Settings.Default.setSection_position1 = sectionPosition1;
-                Properties.Settings.Default.setSection_position2 = sectionPosition2;
-                Properties.Settings.Default.setSection_position3 = sectionPosition3;
-                Properties.Settings.Default.setSection_position4 = sectionPosition4;
-                Properties.Settings.Default.setSection_position5 = sectionPosition5;
-                Properties.Settings.Default.setSection_position6 = sectionPosition6;
-                Properties.Settings.Default.setSection_position7 = sectionPosition7;
-                Properties.Settings.Default.setSection_position8 = sectionPosition8;
-                Properties.Settings.Default.setSection_position9 = sectionPosition9;
-                Properties.Settings.Default.setSection_position10 = sectionPosition10;
-                Properties.Settings.Default.setSection_position11 = sectionPosition11;
-                Properties.Settings.Default.setSection_position12 = sectionPosition12;
-                Properties.Settings.Default.setSection_position13 = sectionPosition13;
-                Properties.Settings.Default.setSection_position14 = sectionPosition14;
-                Properties.Settings.Default.setSection_position15 = sectionPosition15;
-                Properties.Settings.Default.setSection_position16 = sectionPosition16;
-                Properties.Settings.Default.setSection_position17 = sectionPosition17;
-
+                Properties.Settings.Default.setSection_position1 = sectionPositionArr[0];
+                Properties.Settings.Default.setSection_position2 = sectionPositionArr[1];
+                Properties.Settings.Default.setSection_position3 = sectionPositionArr[2];
+                Properties.Settings.Default.setSection_position4 = sectionPositionArr[3];
+                Properties.Settings.Default.setSection_position5 = sectionPositionArr[4];
+                Properties.Settings.Default.setSection_position6 = sectionPositionArr[5];
+                Properties.Settings.Default.setSection_position7 = sectionPositionArr[6];
+                Properties.Settings.Default.setSection_position8 = sectionPositionArr[7];
+                Properties.Settings.Default.setSection_position9 = sectionPositionArr[8];
+                Properties.Settings.Default.setSection_position10 = sectionPositionArr[9];
+                Properties.Settings.Default.setSection_position11 = sectionPositionArr[10];
+                Properties.Settings.Default.setSection_position12 = sectionPositionArr[11];
+                Properties.Settings.Default.setSection_position13 = sectionPositionArr[12];
+                Properties.Settings.Default.setSection_position14 = sectionPositionArr[13];
+                Properties.Settings.Default.setSection_position15 = sectionPositionArr[14];
+                Properties.Settings.Default.setSection_position16 = sectionPositionArr[15];
+                Properties.Settings.Default.setSection_position17 = sectionPositionArr[16];
+                                                                    
                 mf.tool.numOfSections = numberOfSections;
 
                 Properties.Settings.Default.setVehicle_numSections = mf.tool.numOfSections;
@@ -964,6 +956,7 @@ namespace AgOpenGPS
             }
 
         }
+
         private void cboxSectionBoundaryControl_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.setTool_isSectionOffWhenOut = !Properties.Settings.Default.setTool_isSectionOffWhenOut;
@@ -1539,382 +1532,39 @@ namespace AgOpenGPS
             int i = numberOfSections;
 
             //convert to meters spinner value
-            sectionWidth1  = nudSection1.Value * (decimal)mf.inchOrCm2m;
-            sectionWidth2  = nudSection2.Value * (decimal)mf.inchOrCm2m;
-            sectionWidth3  = nudSection3.Value * (decimal)mf.inchOrCm2m;
-            sectionWidth4  = nudSection4.Value * (decimal)mf.inchOrCm2m;
-            sectionWidth5  = nudSection5.Value * (decimal)mf.inchOrCm2m;
-            sectionWidth6  = nudSection6.Value * (decimal)mf.inchOrCm2m;
-            sectionWidth7  = nudSection7.Value * (decimal)mf.inchOrCm2m;
-            sectionWidth8  = nudSection8.Value * (decimal)mf.inchOrCm2m;
-            sectionWidth9  = nudSection9.Value * (decimal)mf.inchOrCm2m;
-            sectionWidth10 = nudSection10.Value * (decimal)mf.inchOrCm2m;
-            sectionWidth11 = nudSection11.Value * (decimal)mf.inchOrCm2m;
-            sectionWidth12 = nudSection12.Value * (decimal)mf.inchOrCm2m;
-            sectionWidth13 = nudSection13.Value * (decimal)mf.inchOrCm2m;
-            sectionWidth14 = nudSection14.Value * (decimal)mf.inchOrCm2m;
-            sectionWidth15 = nudSection15.Value * (decimal)mf.inchOrCm2m;
-            sectionWidth16 = nudSection16.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[0] = nudSection1.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[1] = nudSection2.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[2] = nudSection3.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[3] = nudSection4.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[4] = nudSection5.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[5] = nudSection6.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[6] = nudSection7.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[7] = nudSection8.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[8] = nudSection9.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[9] = nudSection10.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[10] = nudSection11.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[11] = nudSection12.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[12] = nudSection13.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[13] = nudSection14.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[14] = nudSection15.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[15] = nudSection16.Value * (decimal)mf.inchOrCm2m;
 
+            //add up the set widths
+            decimal setWidth = 0;
             for (int j = 0; j < i; j++)
             {
-                
+                setWidth += sectionWidthArr[j];
             }
 
-            switch (i)
+            //leftmost position.
+            setWidth *= -0.5M;
+
+            sectionPositionArr[0] = setWidth;
+
+            for (int j = 1; j < 17; j++)
             {
-                case 1:
-                    {
-                        sectionPosition2 = sectionWidth1 / 2.0M;
-                        sectionPosition1 = sectionPosition2 * -1;
-                        sectionPosition3 = 0;
-                        sectionPosition4 = 0;
-                        sectionPosition5 = 0;
-                        sectionPosition6 = 0;
-                        sectionPosition7 = 0;
-                        sectionPosition8 = 0;
-                        sectionPosition9 = 0;
-                        sectionPosition10 = 0;
-                        sectionPosition11 = 0;
-                        sectionPosition12 = 0;
-                        sectionPosition13 = 0;
-                        sectionPosition14 = 0;
-                        sectionPosition15 = 0;
-                        sectionPosition16 = 0;
-                        sectionPosition17 = 0;
-
-                        break;
-                    }
-                case 2:
-                    {
-                        sectionPosition1 = sectionWidth1 * -1;
-                        sectionPosition2 = 0;
-                        sectionPosition3 = sectionWidth2;
-                        sectionPosition4 = 0;
-                        sectionPosition5 = 0;
-                        sectionPosition6 = 0;
-                        sectionPosition7 = 0;
-                        sectionPosition8 = 0;
-                        sectionPosition9 = 0;
-                        sectionPosition10 = 0;
-                        sectionPosition11 = 0;
-                        sectionPosition12 = 0;
-                        sectionPosition13 = 0;
-                        sectionPosition14 = 0;
-                        sectionPosition15 = 0;
-                        sectionPosition16 = 0;
-                        sectionPosition17 = 0;
-
-                        break;
-                    }
-                case 3:
-                    {
-                        sectionPosition3 = sectionWidth2 / 2.0M;
-                        sectionPosition2 = sectionPosition3 * -1;
-                        sectionPosition1 = sectionPosition2 - sectionWidth1;
-                        sectionPosition4 = sectionPosition3 + sectionWidth3;
-                        sectionPosition5 = 0;
-                        sectionPosition6 = 0;
-                        sectionPosition7 = 0;
-                        sectionPosition8 = 0;
-                        sectionPosition9 = 0;
-                        sectionPosition10 = 0;
-                        sectionPosition11 = 0;
-                        sectionPosition12 = 0;
-                        sectionPosition13 = 0;
-                        sectionPosition14 = 0;
-                        sectionPosition15 = 0;
-                        sectionPosition16 = 0;
-                        sectionPosition17 = 0;
-
-                        break;
-                    }
-                case 4:
-                    {
-                        sectionPosition2 = sectionWidth2 * -1;
-                        sectionPosition3 = 0;
-                        sectionPosition4 = sectionWidth3;
-                        sectionPosition5 = sectionWidth3 + sectionWidth4;
-                        sectionPosition1 = sectionPosition2 - sectionWidth1;
-                        sectionPosition6 = 0;
-                        sectionPosition7 = 0;
-                        sectionPosition8 = 0;
-                        sectionPosition9 = 0;
-                        sectionPosition10 = 0;
-                        sectionPosition11 = 0;
-                        sectionPosition12 = 0;
-                        sectionPosition13 = 0;
-                        sectionPosition14 = 0;
-                        sectionPosition15 = 0;
-                        sectionPosition16 = 0;
-                        sectionPosition17 = 0;
-
-                        break;
-                    }
-                case 5:
-                    {
-                        sectionPosition4 = sectionWidth3 / 2.0M;
-                        sectionPosition3 = sectionPosition4 * -1;
-                        sectionPosition2 = sectionPosition3 - sectionWidth2;
-                        sectionPosition1 = sectionPosition2 - sectionWidth1;
-                        sectionPosition5 = sectionPosition4 + sectionWidth4;
-                        sectionPosition6 = sectionPosition5 + sectionWidth5;
-                        sectionPosition7 = 0;
-                        sectionPosition8 = 0;
-                        sectionPosition9 = 0;
-                        sectionPosition10 = 0;
-                        sectionPosition11 = 0;
-                        sectionPosition12 = 0;
-                        sectionPosition13 = 0;
-                        sectionPosition14 = 0;
-                        sectionPosition15 = 0;
-                        sectionPosition16 = 0;
-                        sectionPosition17 = 0;
-
-                        break;
-                    }
-                case 6:
-                    {
-                        sectionPosition4 = 0;
-                        sectionPosition3 = sectionWidth3 * -1;
-                        sectionPosition2 = sectionPosition3 - sectionWidth2;
-                        sectionPosition1 = sectionPosition2 - sectionWidth1;
-                        sectionPosition5 = sectionWidth4;
-                        sectionPosition6 = sectionPosition5 + sectionWidth5;
-                        sectionPosition7 = sectionPosition6 + sectionWidth6;
-                        sectionPosition8 = 0;
-                        sectionPosition9 = 0;
-                        sectionPosition10 = 0;
-                        sectionPosition11 = 0;
-                        sectionPosition12 = 0;
-                        sectionPosition13 = 0;
-                        sectionPosition14 = 0;
-                        sectionPosition15 = 0;
-                        sectionPosition16 = 0;
-                        sectionPosition17 = 0;
-
-                        break;
-                    }
-                case 7:
-                    {
-                        sectionPosition5 = sectionWidth4 / 2.0M;
-                        sectionPosition4 = sectionPosition5 * -1;
-                        sectionPosition3 = sectionPosition4 - sectionWidth3;
-                        sectionPosition2 = sectionPosition3 - sectionWidth2;
-                        sectionPosition1 = sectionPosition2 - sectionWidth1;
-                        sectionPosition6 = sectionPosition5 + sectionWidth5;
-                        sectionPosition7 = sectionPosition6 + sectionWidth6;
-                        sectionPosition8 = sectionPosition7 + sectionWidth7;
-                        sectionPosition9 = 0;
-                        sectionPosition10 = 0;
-                        sectionPosition11 = 0;
-                        sectionPosition12 = 0;
-                        sectionPosition13 = 0;
-                        sectionPosition14 = 0;
-                        sectionPosition15 = 0;
-                        sectionPosition16 = 0;
-                        sectionPosition17 = 0;
-
-                        break;
-                    }
-                case 8:
-                    {
-                        sectionPosition5 = 0;
-                        sectionPosition4 = sectionWidth4 * -1;
-                        sectionPosition3 = sectionPosition4 - sectionWidth3;
-                        sectionPosition2 = sectionPosition3 - sectionWidth2;
-                        sectionPosition1 = sectionPosition2 - sectionWidth1;
-                        sectionPosition6 = sectionWidth5;
-                        sectionPosition7 = sectionPosition6 + sectionWidth6;
-                        sectionPosition8 = sectionPosition7 + sectionWidth7;
-                        sectionPosition9 = sectionPosition8 + sectionWidth8;
-                        sectionPosition10 = 0;
-                        sectionPosition11 = 0;
-                        sectionPosition12 = 0;
-                        sectionPosition13 = 0;
-                        sectionPosition14 = 0;
-                        sectionPosition15 = 0;
-                        sectionPosition16 = 0;
-                        sectionPosition17 = 0;
-
-                        break;
-                    }
-                case 9:
-                    {
-                        sectionPosition6 = sectionWidth5 / 2.0M;
-                        sectionPosition5 = sectionPosition6 * -1;
-                        sectionPosition4 = sectionPosition5 - sectionWidth4;
-                        sectionPosition3 = sectionPosition4 - sectionWidth3;
-                        sectionPosition2 = sectionPosition3 - sectionWidth2;
-                        sectionPosition1 = sectionPosition2 - sectionWidth1;
-                        sectionPosition7 = sectionPosition6 + sectionWidth6;
-                        sectionPosition8 = sectionPosition7 + sectionWidth7;
-                        sectionPosition9 = sectionPosition8 + sectionWidth8;
-                        sectionPosition10 = sectionPosition9 + sectionWidth9;
-                        sectionPosition11 = 0;
-                        sectionPosition12 = 0;
-                        sectionPosition13 = 0;
-                        sectionPosition14 = 0;
-                        sectionPosition15 = 0;
-                        sectionPosition16 = 0;
-                        sectionPosition17 = 0;
-
-                        break;
-                    }
-                case 10:
-                    {
-                        sectionPosition6 = 0;
-                        sectionPosition5 = sectionWidth5 * -1;
-                        sectionPosition4 = sectionPosition5 - sectionWidth4;
-                        sectionPosition3 = sectionPosition4 - sectionWidth3;
-                        sectionPosition2 = sectionPosition3 - sectionWidth2;
-                        sectionPosition1 = sectionPosition2 - sectionWidth1;
-                        sectionPosition7 = sectionWidth6;
-                        sectionPosition8 = sectionPosition7 + sectionWidth7;
-                        sectionPosition9 = sectionPosition8 + sectionWidth8;
-                        sectionPosition10 = sectionPosition9 + sectionWidth9;
-                        sectionPosition11 = sectionPosition10 + sectionWidth10;
-                        sectionPosition12 = 0;
-                        sectionPosition13 = 0;
-                        sectionPosition14 = 0;
-                        sectionPosition15 = 0;
-                        sectionPosition16 = 0;
-                        sectionPosition17 = 0;
-
-                        break;
-                    }
-                case 11:
-                    {
-                        sectionPosition7 = sectionWidth6 / 2.0M;
-                        sectionPosition6 = sectionPosition7 * -1;
-                        sectionPosition5 = sectionPosition6 - sectionWidth5;
-                        sectionPosition4 = sectionPosition5 - sectionWidth4;
-                        sectionPosition3 = sectionPosition4 - sectionWidth3;
-                        sectionPosition2 = sectionPosition3 - sectionWidth2;
-                        sectionPosition1 = sectionPosition2 - sectionWidth1;
-                        sectionPosition8 = sectionPosition7 + sectionWidth7;
-                        sectionPosition9 = sectionPosition8 + sectionWidth8;
-                        sectionPosition10 = sectionPosition9 + sectionWidth9;
-                        sectionPosition11 = sectionPosition10 + sectionWidth10;
-                        sectionPosition12 = sectionPosition11 + sectionWidth11;
-                        sectionPosition13 = 0;
-                        sectionPosition14 = 0;
-                        sectionPosition15 = 0;
-                        sectionPosition16 = 0;
-                        sectionPosition17 = 0;
-
-                        break;
-                    }
-                case 12:
-                    {
-                        sectionPosition7 = 0;
-                        sectionPosition6 = sectionWidth6 * -1;
-                        sectionPosition5 = sectionPosition6 - sectionWidth5;
-                        sectionPosition4 = sectionPosition5 - sectionWidth4;
-                        sectionPosition3 = sectionPosition4 - sectionWidth3;
-                        sectionPosition2 = sectionPosition3 - sectionWidth2;
-                        sectionPosition1 = sectionPosition2 - sectionWidth1;
-                        sectionPosition8 = sectionWidth7;
-                        sectionPosition9 = sectionPosition8 + sectionWidth8;
-                        sectionPosition10 = sectionPosition9 + sectionWidth9;
-                        sectionPosition11 = sectionPosition10 + sectionWidth10;
-                        sectionPosition12 = sectionPosition11 + sectionWidth11;
-                        sectionPosition13 = sectionPosition12 + sectionWidth12;
-                        sectionPosition14 = 0;
-                        sectionPosition15 = 0;
-                        sectionPosition16 = 0;
-                        sectionPosition17 = 0;
-                        break;
-                    }
-                case 13:
-                    {
-                        sectionPosition8 = sectionWidth7 / 2.0M; ;
-                        sectionPosition7 = sectionPosition8 * -1;
-                        sectionPosition6 = sectionPosition7 - sectionWidth6;
-                        sectionPosition5 = sectionPosition6 - sectionWidth5;
-                        sectionPosition4 = sectionPosition5 - sectionWidth4;
-                        sectionPosition3 = sectionPosition4 - sectionWidth3;
-                        sectionPosition2 = sectionPosition3 - sectionWidth2;
-                        sectionPosition1 = sectionPosition2 - sectionWidth1;
-                        sectionPosition9 = sectionPosition8 + sectionWidth8;
-                        sectionPosition10 = sectionPosition9 + sectionWidth9;
-                        sectionPosition11 = sectionPosition10 + sectionWidth10;
-                        sectionPosition12 = sectionPosition11 + sectionWidth11;
-                        sectionPosition13 = sectionPosition12 + sectionWidth12;
-                        sectionPosition14 = sectionPosition13 + sectionWidth13;
-                        sectionPosition15 = 0;
-                        sectionPosition16 = 0;
-                        sectionPosition17 = 0;
-
-                        break;
-                    }
-
-                case 14:
-                    {
-                        sectionPosition8 = 0;
-                        sectionPosition7 = sectionWidth7 * -1;
-                        sectionPosition6 = sectionPosition7 - sectionWidth6;
-                        sectionPosition5 = sectionPosition6 - sectionWidth5;
-                        sectionPosition4 = sectionPosition5 - sectionWidth4;
-                        sectionPosition3 = sectionPosition4 - sectionWidth3;
-                        sectionPosition2 = sectionPosition3 - sectionWidth2;
-                        sectionPosition1 = sectionPosition2 - sectionWidth1;
-                        sectionPosition9 = sectionWidth8;
-                        sectionPosition10 = sectionPosition9 + sectionWidth9;
-                        sectionPosition11 = sectionPosition10 + sectionWidth10;
-                        sectionPosition12 = sectionPosition11 + sectionWidth11;
-                        sectionPosition13 = sectionPosition12 + sectionWidth12;
-                        sectionPosition14 = sectionPosition13 + sectionWidth13;
-                        sectionPosition15 = sectionPosition14 + sectionWidth14;
-                        sectionPosition16 = 0;
-                        sectionPosition17 = 0;
-                        break;
-                    }
-                case 15:
-                    {
-                        sectionPosition9 = sectionWidth8 / 2.0M;
-                        sectionPosition8 = sectionPosition9 * -1; ;
-                        sectionPosition7 = sectionPosition8 - sectionWidth7;
-                        sectionPosition6 = sectionPosition7 - sectionWidth6;
-                        sectionPosition5 = sectionPosition6 - sectionWidth5;
-                        sectionPosition4 = sectionPosition5 - sectionWidth4;
-                        sectionPosition3 = sectionPosition4 - sectionWidth3;
-                        sectionPosition2 = sectionPosition3 - sectionWidth2;
-                        sectionPosition1 = sectionPosition2 - sectionWidth1;
-                        sectionPosition10 = sectionPosition9 + sectionWidth9;
-                        sectionPosition11 = sectionPosition10 + sectionWidth10;
-                        sectionPosition12 = sectionPosition11 + sectionWidth11;
-                        sectionPosition13 = sectionPosition12 + sectionWidth12;
-                        sectionPosition14 = sectionPosition13 + sectionWidth13;
-                        sectionPosition15 = sectionPosition14 + sectionWidth14;
-                        sectionPosition16 = sectionPosition15 + sectionWidth15;
-                        sectionPosition17 = 0;
-
-                        break;
-                    }
-
-
-                case 16:
-                    {
-                        sectionPosition9 = 0;
-                        sectionPosition8 = sectionWidth8 * -1;
-                        sectionPosition7 = sectionPosition8 - sectionWidth7;
-                        sectionPosition6 = sectionPosition7 - sectionWidth6;
-                        sectionPosition5 = sectionPosition6 - sectionWidth5;
-                        sectionPosition4 = sectionPosition5 - sectionWidth4;
-                        sectionPosition3 = sectionPosition4 - sectionWidth3;
-                        sectionPosition2 = sectionPosition3 - sectionWidth2;
-                        sectionPosition1 = sectionPosition2 - sectionWidth1;
-                        sectionPosition10 = sectionWidth9;
-                        sectionPosition11 = sectionPosition10 + sectionWidth10;
-                        sectionPosition12 = sectionPosition11 + sectionWidth11;
-                        sectionPosition13 = sectionPosition12 + sectionWidth12;
-                        sectionPosition14 = sectionPosition13 + sectionWidth13;
-                        sectionPosition15 = sectionPosition14 + sectionWidth14;
-                        sectionPosition16 = sectionPosition15 + sectionWidth15;
-                        sectionPosition17 = sectionPosition16 + sectionWidth16;
-                        break;
-                    }
+                if (j <= i) sectionPositionArr[j] = sectionPositionArr[j - 1] + sectionWidthArr[j];
+                else sectionPositionArr[j] = 0;                
             }
         }
 

@@ -36,7 +36,7 @@ namespace AgOpenGPS
             InitializeComponent();
 
             //btnPausePlay.Text = gStr.gsPause;
-            this.Text = gStr.gsABCurve;
+            this.Text = "Tracks";
         }
 
         private void FormBuildTracks_Load(object sender, EventArgs e)
