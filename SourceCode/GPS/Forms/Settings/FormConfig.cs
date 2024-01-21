@@ -50,15 +50,15 @@ namespace AgOpenGPS
             nudMinCoverage.Controls[0].Enabled = false;
             nudDefaultSectionWidth.Controls[0].Enabled = false;
 
-            nudSection1.Controls[0].Enabled = false;
-            nudSection2.Controls[0].Enabled = false;
-            nudSection3.Controls[0].Enabled = false;
-            nudSection4.Controls[0].Enabled = false;
-            nudSection5.Controls[0].Enabled = false;
-            nudSection6.Controls[0].Enabled = false;
-            nudSection7.Controls[0].Enabled = false;
-            nudSection8.Controls[0].Enabled = false;
-            nudSection9.Controls[0].Enabled = false;
+            nudSection01.Controls[0].Enabled = false;
+            nudSection02.Controls[0].Enabled = false;
+            nudSection03.Controls[0].Enabled = false;
+            nudSection04.Controls[0].Enabled = false;
+            nudSection05.Controls[0].Enabled = false;
+            nudSection06.Controls[0].Enabled = false;
+            nudSection07.Controls[0].Enabled = false;
+            nudSection08.Controls[0].Enabled = false;
+            nudSection09.Controls[0].Enabled = false;
             nudSection10.Controls[0].Enabled = false;
             nudSection11.Controls[0].Enabled = false;
             nudSection12.Controls[0].Enabled = false;
@@ -173,24 +173,24 @@ namespace AgOpenGPS
             nudDefaultSectionWidth.Maximum = Math.Round(nudDefaultSectionWidth.Maximum / 2.54M);
             nudDefaultSectionWidth.Minimum = Math.Round(nudDefaultSectionWidth.Minimum / 3.0M);
 
-            nudSection1.Maximum = Math.Round(nudSection1.Maximum / 2.54M);
-            nudSection1.Minimum = Math.Round(nudSection1.Minimum / 2.54M);
-            nudSection2.Maximum = Math.Round(nudSection2.Maximum / 2.54M);
-            nudSection2.Minimum = Math.Round(nudSection2.Minimum / 2.54M);
-            nudSection3.Maximum = Math.Round(nudSection3.Maximum / 2.54M);
-            nudSection3.Minimum = Math.Round(nudSection3.Minimum / 2.54M);
-            nudSection4.Maximum = Math.Round(nudSection4.Maximum / 2.54M);
-            nudSection4.Minimum = Math.Round(nudSection4.Minimum / 2.54M);
-            nudSection5.Maximum = Math.Round(nudSection5.Maximum / 2.54M);
-            nudSection5.Minimum = Math.Round(nudSection5.Minimum / 2.54M);
-            nudSection6.Maximum = Math.Round(nudSection6.Maximum / 2.54M);
-            nudSection6.Minimum = Math.Round(nudSection6.Minimum / 2.54M);
-            nudSection7.Maximum = Math.Round(nudSection7.Maximum / 2.54M);
-            nudSection7.Minimum = Math.Round(nudSection7.Minimum / 2.54M);
-            nudSection8.Maximum = Math.Round(nudSection8.Maximum / 2.54M);
-            nudSection8.Minimum = Math.Round(nudSection8.Minimum / 2.54M);
-            nudSection9.Maximum = Math.Round(nudSection9.Maximum / 2.54M);
-            nudSection9.Minimum = Math.Round(nudSection9.Minimum / 2.54M);
+            nudSection01.Maximum = Math.Round(nudSection01.Maximum / 2.54M);
+            nudSection01.Minimum = Math.Round(nudSection01.Minimum / 2.54M);
+            nudSection02.Maximum = Math.Round(nudSection02.Maximum / 2.54M);
+            nudSection02.Minimum = Math.Round(nudSection02.Minimum / 2.54M);
+            nudSection03.Maximum = Math.Round(nudSection03.Maximum / 2.54M);
+            nudSection03.Minimum = Math.Round(nudSection03.Minimum / 2.54M);
+            nudSection04.Maximum = Math.Round(nudSection04.Maximum / 2.54M);
+            nudSection04.Minimum = Math.Round(nudSection04.Minimum / 2.54M);
+            nudSection05.Maximum = Math.Round(nudSection05.Maximum / 2.54M);
+            nudSection05.Minimum = Math.Round(nudSection05.Minimum / 2.54M);
+            nudSection06.Maximum = Math.Round(nudSection06.Maximum / 2.54M);
+            nudSection06.Minimum = Math.Round(nudSection06.Minimum / 2.54M);
+            nudSection07.Maximum = Math.Round(nudSection07.Maximum / 2.54M);
+            nudSection07.Minimum = Math.Round(nudSection07.Minimum / 2.54M);
+            nudSection08.Maximum = Math.Round(nudSection08.Maximum / 2.54M);
+            nudSection08.Minimum = Math.Round(nudSection08.Minimum / 2.54M);
+            nudSection09.Maximum = Math.Round(nudSection09.Maximum / 2.54M);
+            nudSection09.Minimum = Math.Round(nudSection09.Minimum / 2.54M);
             nudSection10.Maximum = Math.Round(nudSection10.Maximum / 2.54M);
             nudSection10.Minimum = Math.Round(nudSection10.Minimum / 2.54M);
             nudSection11.Maximum = Math.Round(nudSection11.Maximum / 2.54M);
@@ -301,6 +301,5 @@ namespace AgOpenGPS
             Close();
             //FormConfig_Load(this, e);
         }
-
     }
 }

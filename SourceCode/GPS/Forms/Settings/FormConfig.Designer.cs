@@ -198,6 +198,8 @@
             this.picboxToolHitch = new System.Windows.Forms.PictureBox();
             this.label164 = new System.Windows.Forms.Label();
             this.tabToolOffset = new System.Windows.Forms.TabPage();
+            this.btnZeroOverlap = new System.Windows.Forms.Button();
+            this.btnZeroToolOffset = new System.Windows.Forms.Button();
             this.label176 = new System.Windows.Forms.Label();
             this.label175 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -213,16 +215,12 @@
             this.nudOverlap = new AgOpenGPS.NudlessNumericUpDown();
             this.nudOffset = new AgOpenGPS.NudlessNumericUpDown();
             this.tabToolPivot = new System.Windows.Forms.TabPage();
+            this.btnPivotOffsetZero = new System.Windows.Forms.Button();
             this.label177 = new System.Windows.Forms.Label();
             this.rbtnPivotBehindPos = new System.Windows.Forms.RadioButton();
             this.rbtnPivotAheadNeg = new System.Windows.Forms.RadioButton();
             this.nudTrailingToolToPivotLength = new AgOpenGPS.NudlessNumericUpDown();
             this.tabTSections = new System.Windows.Forms.TabPage();
-            this.label178 = new System.Windows.Forms.Label();
-            this.label106 = new System.Windows.Forms.Label();
-            this.lblTurnOffBelowUnits = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lblInchCm2 = new System.Windows.Forms.Label();
             this.panelSymmetricSections = new System.Windows.Forms.Panel();
             this.nudZone8To = new AgOpenGPS.NudlessNumericUpDown();
             this.lblZoneStart8 = new System.Windows.Forms.Label();
@@ -256,6 +254,11 @@
             this.label104 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label178 = new System.Windows.Forms.Label();
+            this.label106 = new System.Windows.Forms.Label();
+            this.lblTurnOffBelowUnits = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblInchCm2 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
             this.cboxNumSections = new System.Windows.Forms.ComboBox();
             this.lblVehicleToolWidth = new System.Windows.Forms.Label();
@@ -290,15 +293,15 @@
             this.nudSection12 = new AgOpenGPS.NudlessNumericUpDown();
             this.nudSection11 = new AgOpenGPS.NudlessNumericUpDown();
             this.nudSection10 = new AgOpenGPS.NudlessNumericUpDown();
-            this.nudSection9 = new AgOpenGPS.NudlessNumericUpDown();
-            this.nudSection8 = new AgOpenGPS.NudlessNumericUpDown();
-            this.nudSection7 = new AgOpenGPS.NudlessNumericUpDown();
-            this.nudSection6 = new AgOpenGPS.NudlessNumericUpDown();
-            this.nudSection5 = new AgOpenGPS.NudlessNumericUpDown();
-            this.nudSection4 = new AgOpenGPS.NudlessNumericUpDown();
-            this.nudSection3 = new AgOpenGPS.NudlessNumericUpDown();
-            this.nudSection2 = new AgOpenGPS.NudlessNumericUpDown();
-            this.nudSection1 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudSection09 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudSection08 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudSection07 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudSection06 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudSection05 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudSection04 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudSection03 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudSection02 = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudSection01 = new AgOpenGPS.NudlessNumericUpDown();
             this.cboxSectionBoundaryControl = new System.Windows.Forms.CheckBox();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.cboxIsUnique = new System.Windows.Forms.CheckBox();
@@ -625,15 +628,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSection12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSection9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSection8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSection7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSection6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSection5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSection4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSection3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSection2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSection1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection09)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection08)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection07)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection06)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection05)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection04)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection03)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection02)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection01)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             this.tabTSwitches.SuspendLayout();
             this.grpControls.SuspendLayout();
@@ -1770,7 +1773,7 @@
             this.rbtnHarvester.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.rbtnHarvester.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnHarvester.FlatAppearance.BorderSize = 0;
-            this.rbtnHarvester.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnHarvester.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnHarvester.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnHarvester.Location = new System.Drawing.Point(16, 27);
             this.rbtnHarvester.Name = "rbtnHarvester";
@@ -1786,7 +1789,7 @@
             this.rbtn4WD.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.rbtn4WD.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtn4WD.FlatAppearance.BorderSize = 0;
-            this.rbtn4WD.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtn4WD.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtn4WD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtn4WD.Location = new System.Drawing.Point(366, 27);
             this.rbtn4WD.Name = "rbtn4WD";
@@ -1803,7 +1806,7 @@
             this.rbtnTractor.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnTractor.Checked = true;
             this.rbtnTractor.FlatAppearance.BorderSize = 0;
-            this.rbtnTractor.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnTractor.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnTractor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnTractor.Location = new System.Drawing.Point(192, 27);
             this.rbtnTractor.Name = "rbtnTractor";
@@ -1834,7 +1837,7 @@
             this.rbtnBrand4WDHolder.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrand4WDHolder.Checked = true;
             this.rbtnBrand4WDHolder.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.rbtnBrand4WDHolder.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrand4WDHolder.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnBrand4WDHolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrand4WDHolder.Image = global::AgOpenGPS.Properties.Resources.Holder;
             this.rbtnBrand4WDHolder.Location = new System.Drawing.Point(8, 395);
@@ -1851,7 +1854,7 @@
             this.rbtnBrand4WDAgOpenGPS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrand4WDAgOpenGPS.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrand4WDAgOpenGPS.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.rbtnBrand4WDAgOpenGPS.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrand4WDAgOpenGPS.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnBrand4WDAgOpenGPS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrand4WDAgOpenGPS.Image = global::AgOpenGPS.Properties.Resources.AoG;
             this.rbtnBrand4WDAgOpenGPS.Location = new System.Drawing.Point(8, 6);
@@ -1868,7 +1871,7 @@
             this.rbtnBrand4WDChallenger.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrand4WDChallenger.Checked = true;
             this.rbtnBrand4WDChallenger.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.rbtnBrand4WDChallenger.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrand4WDChallenger.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnBrand4WDChallenger.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrand4WDChallenger.Image = global::AgOpenGPS.Properties.Resources.Challenger;
             this.rbtnBrand4WDChallenger.Location = new System.Drawing.Point(8, 84);
@@ -1886,7 +1889,7 @@
             this.rbtnBrand4WDCase.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrand4WDCase.Checked = true;
             this.rbtnBrand4WDCase.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.rbtnBrand4WDCase.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrand4WDCase.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnBrand4WDCase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrand4WDCase.Image = global::AgOpenGPS.Properties.Resources.Case;
             this.rbtnBrand4WDCase.Location = new System.Drawing.Point(8, 162);
@@ -1904,7 +1907,7 @@
             this.rbtnBrand4WDNH.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrand4WDNH.Checked = true;
             this.rbtnBrand4WDNH.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.rbtnBrand4WDNH.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrand4WDNH.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnBrand4WDNH.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrand4WDNH.Image = global::AgOpenGPS.Properties.Resources.NewHolland;
             this.rbtnBrand4WDNH.Location = new System.Drawing.Point(8, 318);
@@ -1922,7 +1925,7 @@
             this.rbtnBrand4WDJDeere.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrand4WDJDeere.Checked = true;
             this.rbtnBrand4WDJDeere.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.rbtnBrand4WDJDeere.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrand4WDJDeere.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnBrand4WDJDeere.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrand4WDJDeere.Image = global::AgOpenGPS.Properties.Resources.JohnDeere;
             this.rbtnBrand4WDJDeere.Location = new System.Drawing.Point(8, 240);
@@ -1964,7 +1967,7 @@
             this.rbtnBrandHAgOpenGPS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandHAgOpenGPS.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrandHAgOpenGPS.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.rbtnBrandHAgOpenGPS.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrandHAgOpenGPS.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnBrandHAgOpenGPS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandHAgOpenGPS.Image = global::AgOpenGPS.Properties.Resources.AoG;
             this.rbtnBrandHAgOpenGPS.Location = new System.Drawing.Point(8, 6);
@@ -1981,7 +1984,7 @@
             this.rbtnBrandHCase.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrandHCase.Checked = true;
             this.rbtnBrandHCase.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.rbtnBrandHCase.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrandHCase.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnBrandHCase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandHCase.Image = global::AgOpenGPS.Properties.Resources.Case;
             this.rbtnBrandHCase.Location = new System.Drawing.Point(8, 102);
@@ -1999,7 +2002,7 @@
             this.rbtnBrandHClaas.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrandHClaas.Checked = true;
             this.rbtnBrandHClaas.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.rbtnBrandHClaas.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrandHClaas.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnBrandHClaas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandHClaas.Image = global::AgOpenGPS.Properties.Resources.Claas;
             this.rbtnBrandHClaas.Location = new System.Drawing.Point(8, 198);
@@ -2017,7 +2020,7 @@
             this.rbtnBrandHJDeere.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrandHJDeere.Checked = true;
             this.rbtnBrandHJDeere.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.rbtnBrandHJDeere.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrandHJDeere.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnBrandHJDeere.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandHJDeere.Image = global::AgOpenGPS.Properties.Resources.JohnDeere;
             this.rbtnBrandHJDeere.Location = new System.Drawing.Point(8, 294);
@@ -2035,7 +2038,7 @@
             this.rbtnBrandHNH.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrandHNH.Checked = true;
             this.rbtnBrandHNH.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.rbtnBrandHNH.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrandHNH.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnBrandHNH.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandHNH.Image = global::AgOpenGPS.Properties.Resources.NewHolland;
             this.rbtnBrandHNH.Location = new System.Drawing.Point(8, 390);
@@ -2074,7 +2077,7 @@
             this.rbtnBrandTAgOpenGPS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandTAgOpenGPS.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrandTAgOpenGPS.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.rbtnBrandTAgOpenGPS.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrandTAgOpenGPS.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnBrandTAgOpenGPS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandTAgOpenGPS.Image = global::AgOpenGPS.Properties.Resources.AoG;
             this.rbtnBrandTAgOpenGPS.Location = new System.Drawing.Point(112, 6);
@@ -2091,7 +2094,7 @@
             this.rbtnBrandTCase.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandTCase.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrandTCase.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.rbtnBrandTCase.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrandTCase.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnBrandTCase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandTCase.Location = new System.Drawing.Point(13, 102);
             this.rbtnBrandTCase.Name = "rbtnBrandTCase";
@@ -2106,7 +2109,7 @@
             this.rbtnBrandTClaas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandTClaas.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrandTClaas.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.rbtnBrandTClaas.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrandTClaas.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnBrandTClaas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandTClaas.Image = global::AgOpenGPS.Properties.Resources.Claas;
             this.rbtnBrandTClaas.Location = new System.Drawing.Point(112, 102);
@@ -2122,7 +2125,7 @@
             this.rbtnBrandTDeutz.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandTDeutz.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrandTDeutz.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.rbtnBrandTDeutz.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrandTDeutz.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnBrandTDeutz.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandTDeutz.Image = global::AgOpenGPS.Properties.Resources.Deutz;
             this.rbtnBrandTDeutz.Location = new System.Drawing.Point(211, 102);
@@ -2138,7 +2141,7 @@
             this.rbtnBrandTFendt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandTFendt.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrandTFendt.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.rbtnBrandTFendt.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrandTFendt.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnBrandTFendt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandTFendt.Image = global::AgOpenGPS.Properties.Resources.Fendt;
             this.rbtnBrandTFendt.Location = new System.Drawing.Point(13, 390);
@@ -2154,7 +2157,7 @@
             this.rbtnBrandTJDeere.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandTJDeere.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrandTJDeere.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.rbtnBrandTJDeere.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrandTJDeere.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnBrandTJDeere.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandTJDeere.Image = global::AgOpenGPS.Properties.Resources.JohnDeere;
             this.rbtnBrandTJDeere.Location = new System.Drawing.Point(211, 294);
@@ -2170,7 +2173,7 @@
             this.rbtnBrandTKubota.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandTKubota.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrandTKubota.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.rbtnBrandTKubota.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrandTKubota.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnBrandTKubota.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandTKubota.Image = global::AgOpenGPS.Properties.Resources.Kubota;
             this.rbtnBrandTKubota.Location = new System.Drawing.Point(211, 390);
@@ -2186,7 +2189,7 @@
             this.rbtnBrandTMassey.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandTMassey.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrandTMassey.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.rbtnBrandTMassey.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrandTMassey.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnBrandTMassey.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandTMassey.Image = global::AgOpenGPS.Properties.Resources.Massey;
             this.rbtnBrandTMassey.Location = new System.Drawing.Point(13, 198);
@@ -2202,7 +2205,7 @@
             this.rbtnBrandTNH.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandTNH.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrandTNH.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.rbtnBrandTNH.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrandTNH.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnBrandTNH.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandTNH.Image = global::AgOpenGPS.Properties.Resources.NewHolland;
             this.rbtnBrandTNH.Location = new System.Drawing.Point(112, 198);
@@ -2218,7 +2221,7 @@
             this.rbtnBrandTSame.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandTSame.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrandTSame.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.rbtnBrandTSame.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrandTSame.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnBrandTSame.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandTSame.Image = global::AgOpenGPS.Properties.Resources.Same;
             this.rbtnBrandTSame.Location = new System.Drawing.Point(211, 198);
@@ -2234,7 +2237,7 @@
             this.rbtnBrandTSteyr.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandTSteyr.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrandTSteyr.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.rbtnBrandTSteyr.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrandTSteyr.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnBrandTSteyr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandTSteyr.Image = global::AgOpenGPS.Properties.Resources.Steyr;
             this.rbtnBrandTSteyr.Location = new System.Drawing.Point(112, 390);
@@ -2250,7 +2253,7 @@
             this.rbtnBrandTValtra.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandTValtra.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrandTValtra.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.rbtnBrandTValtra.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrandTValtra.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnBrandTValtra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandTValtra.Image = global::AgOpenGPS.Properties.Resources.Valtra;
             this.rbtnBrandTValtra.Location = new System.Drawing.Point(112, 294);
@@ -2266,7 +2269,7 @@
             this.rbtnBrandTUrsus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandTUrsus.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrandTUrsus.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.rbtnBrandTUrsus.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrandTUrsus.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnBrandTUrsus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandTUrsus.Image = global::AgOpenGPS.Properties.Resources.Ursus;
             this.rbtnBrandTUrsus.Location = new System.Drawing.Point(13, 294);
@@ -2347,7 +2350,7 @@
             this.cboxIsImage.Appearance = System.Windows.Forms.Appearance.Button;
             this.cboxIsImage.BackColor = System.Drawing.Color.Transparent;
             this.cboxIsImage.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.cboxIsImage.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxIsImage.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.cboxIsImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxIsImage.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxIsImage.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -3192,7 +3195,7 @@
             this.cboxSteerInReverse.Appearance = System.Windows.Forms.Appearance.Button;
             this.cboxSteerInReverse.BackColor = System.Drawing.Color.AliceBlue;
             this.cboxSteerInReverse.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.cboxSteerInReverse.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxSteerInReverse.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.cboxSteerInReverse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxSteerInReverse.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxSteerInReverse.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -3323,7 +3326,7 @@
             this.rbtnTBT.BackColor = System.Drawing.Color.Transparent;
             this.rbtnTBT.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnTBT.FlatAppearance.BorderSize = 0;
-            this.rbtnTBT.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnTBT.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnTBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnTBT.Image = global::AgOpenGPS.Properties.Resources.ToolChkTBT;
             this.rbtnTBT.Location = new System.Drawing.Point(394, 48);
@@ -3338,7 +3341,7 @@
             this.rbtnFixedRear.BackColor = System.Drawing.Color.Transparent;
             this.rbtnFixedRear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnFixedRear.FlatAppearance.BorderSize = 0;
-            this.rbtnFixedRear.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnFixedRear.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnFixedRear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnFixedRear.Image = global::AgOpenGPS.Properties.Resources.ToolChkRear;
             this.rbtnFixedRear.Location = new System.Drawing.Point(16, 48);
@@ -3353,7 +3356,7 @@
             this.rbtnFront.BackColor = System.Drawing.Color.Transparent;
             this.rbtnFront.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnFront.FlatAppearance.BorderSize = 0;
-            this.rbtnFront.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnFront.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnFront.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnFront.Image = global::AgOpenGPS.Properties.Resources.ToolChkFront;
             this.rbtnFront.Location = new System.Drawing.Point(16, 290);
@@ -3369,7 +3372,7 @@
             this.rbtnTrailing.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnTrailing.Checked = true;
             this.rbtnTrailing.FlatAppearance.BorderSize = 0;
-            this.rbtnTrailing.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnTrailing.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnTrailing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnTrailing.Image = global::AgOpenGPS.Properties.Resources.ToolChkTrailing;
             this.rbtnTrailing.Location = new System.Drawing.Point(394, 290);
@@ -3520,6 +3523,8 @@
             // tabToolOffset
             // 
             this.tabToolOffset.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabToolOffset.Controls.Add(this.btnZeroOverlap);
+            this.tabToolOffset.Controls.Add(this.btnZeroToolOffset);
             this.tabToolOffset.Controls.Add(this.label176);
             this.tabToolOffset.Controls.Add(this.label175);
             this.tabToolOffset.Controls.Add(this.groupBox3);
@@ -3533,13 +3538,49 @@
             this.tabToolOffset.Text = "tOffs";
             this.tabToolOffset.Enter += new System.EventHandler(this.tabToolOffset_Enter);
             // 
+            // btnZeroOverlap
+            // 
+            this.btnZeroOverlap.BackColor = System.Drawing.Color.Transparent;
+            this.btnZeroOverlap.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnZeroOverlap.FlatAppearance.BorderSize = 0;
+            this.btnZeroOverlap.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
+            this.btnZeroOverlap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnZeroOverlap.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnZeroOverlap.ForeColor = System.Drawing.Color.Black;
+            this.btnZeroOverlap.Image = global::AgOpenGPS.Properties.Resources.SteerZeroSmall;
+            this.btnZeroOverlap.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnZeroOverlap.Location = new System.Drawing.Point(513, 109);
+            this.btnZeroOverlap.Name = "btnZeroOverlap";
+            this.btnZeroOverlap.Size = new System.Drawing.Size(114, 52);
+            this.btnZeroOverlap.TabIndex = 489;
+            this.btnZeroOverlap.UseVisualStyleBackColor = false;
+            this.btnZeroOverlap.Click += new System.EventHandler(this.btnZeroOverlap_Click);
+            // 
+            // btnZeroToolOffset
+            // 
+            this.btnZeroToolOffset.BackColor = System.Drawing.Color.Transparent;
+            this.btnZeroToolOffset.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnZeroToolOffset.FlatAppearance.BorderSize = 0;
+            this.btnZeroToolOffset.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
+            this.btnZeroToolOffset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnZeroToolOffset.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnZeroToolOffset.ForeColor = System.Drawing.Color.Black;
+            this.btnZeroToolOffset.Image = global::AgOpenGPS.Properties.Resources.SteerZeroSmall;
+            this.btnZeroToolOffset.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnZeroToolOffset.Location = new System.Drawing.Point(93, 109);
+            this.btnZeroToolOffset.Name = "btnZeroToolOffset";
+            this.btnZeroToolOffset.Size = new System.Drawing.Size(114, 52);
+            this.btnZeroToolOffset.TabIndex = 488;
+            this.btnZeroToolOffset.UseVisualStyleBackColor = false;
+            this.btnZeroToolOffset.Click += new System.EventHandler(this.btnZeroToolOffset_Click);
+            // 
             // label176
             // 
             this.label176.AutoSize = true;
             this.label176.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label176.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label176.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label176.Location = new System.Drawing.Point(723, 480);
+            this.label176.Location = new System.Drawing.Point(774, 125);
             this.label176.Name = "label176";
             this.label176.Size = new System.Drawing.Size(32, 19);
             this.label176.TabIndex = 486;
@@ -3552,7 +3593,7 @@
             this.label175.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label175.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label175.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label175.Location = new System.Drawing.Point(287, 479);
+            this.label175.Location = new System.Drawing.Point(350, 124);
             this.label175.Name = "label175";
             this.label175.Size = new System.Drawing.Size(32, 19);
             this.label175.TabIndex = 485;
@@ -3566,7 +3607,7 @@
             this.groupBox3.Controls.Add(this.rbtnToolOverlap);
             this.groupBox3.Controls.Add(this.rbtnToolGap);
             this.groupBox3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(441, 149);
+            this.groupBox3.Location = new System.Drawing.Point(442, 201);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(396, 290);
             this.groupBox3.TabIndex = 481;
@@ -3603,7 +3644,7 @@
             this.rbtnToolOverlap.BackColor = System.Drawing.Color.Transparent;
             this.rbtnToolOverlap.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnToolOverlap.Checked = true;
-            this.rbtnToolOverlap.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnToolOverlap.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnToolOverlap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnToolOverlap.Image = global::AgOpenGPS.Properties.Resources.ToolOverlap;
             this.rbtnToolOverlap.Location = new System.Drawing.Point(23, 35);
@@ -3619,7 +3660,7 @@
             this.rbtnToolGap.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbtnToolGap.BackColor = System.Drawing.Color.Transparent;
             this.rbtnToolGap.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.rbtnToolGap.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnToolGap.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnToolGap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnToolGap.Image = global::AgOpenGPS.Properties.Resources.ToolGap;
             this.rbtnToolGap.Location = new System.Drawing.Point(214, 35);
@@ -3636,12 +3677,12 @@
             this.groupBox2.Controls.Add(this.rbtnToolRightPositive);
             this.groupBox2.Controls.Add(this.label65);
             this.groupBox2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(18, 149);
+            this.groupBox2.Location = new System.Drawing.Point(28, 201);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(389, 290);
             this.groupBox2.TabIndex = 480;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Tool Offset";
+            this.groupBox2.Text = "Tool Offset Direction";
             // 
             // label17
             // 
@@ -3660,15 +3701,13 @@
             this.rbtnLeftNegative.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbtnLeftNegative.BackColor = System.Drawing.Color.Transparent;
             this.rbtnLeftNegative.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.rbtnLeftNegative.Checked = true;
-            this.rbtnLeftNegative.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnLeftNegative.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnLeftNegative.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnLeftNegative.Image = global::AgOpenGPS.Properties.Resources.ToolOffsetNegativeLeft;
             this.rbtnLeftNegative.Location = new System.Drawing.Point(17, 35);
             this.rbtnLeftNegative.Name = "rbtnLeftNegative";
             this.rbtnLeftNegative.Size = new System.Drawing.Size(166, 218);
             this.rbtnLeftNegative.TabIndex = 479;
-            this.rbtnLeftNegative.TabStop = true;
             this.rbtnLeftNegative.UseVisualStyleBackColor = false;
             this.rbtnLeftNegative.Click += new System.EventHandler(this.rbtnToolRightPositive_Click);
             // 
@@ -3677,7 +3716,7 @@
             this.rbtnToolRightPositive.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbtnToolRightPositive.BackColor = System.Drawing.Color.Transparent;
             this.rbtnToolRightPositive.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.rbtnToolRightPositive.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnToolRightPositive.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnToolRightPositive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnToolRightPositive.Image = global::AgOpenGPS.Properties.Resources.ToolOffsetPositiveRight;
             this.rbtnToolRightPositive.Location = new System.Drawing.Point(205, 35);
@@ -3704,7 +3743,7 @@
             this.nudOverlap.BackColor = System.Drawing.Color.AliceBlue;
             this.nudOverlap.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudOverlap.InterceptArrowKeys = false;
-            this.nudOverlap.Location = new System.Drawing.Point(605, 464);
+            this.nudOverlap.Location = new System.Drawing.Point(656, 109);
             this.nudOverlap.Maximum = new decimal(new int[] {
             3000,
             0,
@@ -3733,17 +3772,12 @@
             this.nudOffset.BackColor = System.Drawing.Color.AliceBlue;
             this.nudOffset.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudOffset.InterceptArrowKeys = false;
-            this.nudOffset.Location = new System.Drawing.Point(170, 464);
+            this.nudOffset.Location = new System.Drawing.Point(233, 109);
             this.nudOffset.Maximum = new decimal(new int[] {
             2500,
             0,
             0,
             0});
-            this.nudOffset.Minimum = new decimal(new int[] {
-            2500,
-            0,
-            0,
-            -2147483648});
             this.nudOffset.Name = "nudOffset";
             this.nudOffset.ReadOnly = true;
             this.nudOffset.Size = new System.Drawing.Size(114, 52);
@@ -3760,6 +3794,7 @@
             // tabToolPivot
             // 
             this.tabToolPivot.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabToolPivot.Controls.Add(this.btnPivotOffsetZero);
             this.tabToolPivot.Controls.Add(this.label177);
             this.tabToolPivot.Controls.Add(this.rbtnPivotBehindPos);
             this.tabToolPivot.Controls.Add(this.rbtnPivotAheadNeg);
@@ -3773,13 +3808,31 @@
             this.tabToolPivot.Enter += new System.EventHandler(this.tabToolPivot_Enter);
             this.tabToolPivot.Leave += new System.EventHandler(this.tabToolPivot_Leave);
             // 
+            // btnPivotOffsetZero
+            // 
+            this.btnPivotOffsetZero.BackColor = System.Drawing.Color.Transparent;
+            this.btnPivotOffsetZero.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnPivotOffsetZero.FlatAppearance.BorderSize = 0;
+            this.btnPivotOffsetZero.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
+            this.btnPivotOffsetZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPivotOffsetZero.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPivotOffsetZero.ForeColor = System.Drawing.Color.Black;
+            this.btnPivotOffsetZero.Image = global::AgOpenGPS.Properties.Resources.SteerZeroSmall;
+            this.btnPivotOffsetZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnPivotOffsetZero.Location = new System.Drawing.Point(368, 410);
+            this.btnPivotOffsetZero.Name = "btnPivotOffsetZero";
+            this.btnPivotOffsetZero.Size = new System.Drawing.Size(114, 52);
+            this.btnPivotOffsetZero.TabIndex = 489;
+            this.btnPivotOffsetZero.UseVisualStyleBackColor = false;
+            this.btnPivotOffsetZero.Click += new System.EventHandler(this.btnPivotOffsetZero_Click);
+            // 
             // label177
             // 
             this.label177.AutoSize = true;
             this.label177.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label177.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label177.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label177.Location = new System.Drawing.Point(405, 341);
+            this.label177.Location = new System.Drawing.Point(405, 315);
             this.label177.Name = "label177";
             this.label177.Size = new System.Drawing.Size(32, 19);
             this.label177.TabIndex = 485;
@@ -3791,15 +3844,13 @@
             this.rbtnPivotBehindPos.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbtnPivotBehindPos.BackColor = System.Drawing.Color.Transparent;
             this.rbtnPivotBehindPos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.rbtnPivotBehindPos.Checked = true;
-            this.rbtnPivotBehindPos.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnPivotBehindPos.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnPivotBehindPos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnPivotBehindPos.Image = global::AgOpenGPS.Properties.Resources.ToolHitchPivotOffsetNeg;
             this.rbtnPivotBehindPos.Location = new System.Drawing.Point(577, 162);
             this.rbtnPivotBehindPos.Name = "rbtnPivotBehindPos";
             this.rbtnPivotBehindPos.Size = new System.Drawing.Size(201, 300);
             this.rbtnPivotBehindPos.TabIndex = 216;
-            this.rbtnPivotBehindPos.TabStop = true;
             this.rbtnPivotBehindPos.UseVisualStyleBackColor = false;
             this.rbtnPivotBehindPos.Click += new System.EventHandler(this.rbtnPivotBehindPos_Click);
             // 
@@ -3808,7 +3859,7 @@
             this.rbtnPivotAheadNeg.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbtnPivotAheadNeg.BackColor = System.Drawing.Color.Transparent;
             this.rbtnPivotAheadNeg.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.rbtnPivotAheadNeg.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnPivotAheadNeg.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnPivotAheadNeg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnPivotAheadNeg.Image = global::AgOpenGPS.Properties.Resources.ToolHitchPivotOffsetPos;
             this.rbtnPivotAheadNeg.Location = new System.Drawing.Point(72, 162);
@@ -3823,7 +3874,7 @@
             this.nudTrailingToolToPivotLength.BackColor = System.Drawing.Color.AliceBlue;
             this.nudTrailingToolToPivotLength.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudTrailingToolToPivotLength.InterceptArrowKeys = false;
-            this.nudTrailingToolToPivotLength.Location = new System.Drawing.Point(320, 363);
+            this.nudTrailingToolToPivotLength.Location = new System.Drawing.Point(320, 337);
             this.nudTrailingToolToPivotLength.Maximum = new decimal(new int[] {
             2000,
             0,
@@ -3890,15 +3941,15 @@
             this.tabTSections.Controls.Add(this.nudSection12);
             this.tabTSections.Controls.Add(this.nudSection11);
             this.tabTSections.Controls.Add(this.nudSection10);
-            this.tabTSections.Controls.Add(this.nudSection9);
-            this.tabTSections.Controls.Add(this.nudSection8);
-            this.tabTSections.Controls.Add(this.nudSection7);
-            this.tabTSections.Controls.Add(this.nudSection6);
-            this.tabTSections.Controls.Add(this.nudSection5);
-            this.tabTSections.Controls.Add(this.nudSection4);
-            this.tabTSections.Controls.Add(this.nudSection3);
-            this.tabTSections.Controls.Add(this.nudSection2);
-            this.tabTSections.Controls.Add(this.nudSection1);
+            this.tabTSections.Controls.Add(this.nudSection09);
+            this.tabTSections.Controls.Add(this.nudSection08);
+            this.tabTSections.Controls.Add(this.nudSection07);
+            this.tabTSections.Controls.Add(this.nudSection06);
+            this.tabTSections.Controls.Add(this.nudSection05);
+            this.tabTSections.Controls.Add(this.nudSection04);
+            this.tabTSections.Controls.Add(this.nudSection03);
+            this.tabTSections.Controls.Add(this.nudSection02);
+            this.tabTSections.Controls.Add(this.nudSection01);
             this.tabTSections.Controls.Add(this.cboxSectionBoundaryControl);
             this.tabTSections.Controls.Add(this.pictureBox11);
             this.tabTSections.Controls.Add(this.cboxIsUnique);
@@ -3910,75 +3961,6 @@
             this.tabTSections.Text = "tSect";
             this.tabTSections.Enter += new System.EventHandler(this.tabTSections_Enter);
             this.tabTSections.Leave += new System.EventHandler(this.tabTSections_Leave);
-            // 
-            // label178
-            // 
-            this.label178.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label178.AutoSize = true;
-            this.label178.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label178.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label178.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label178.Location = new System.Drawing.Point(270, 410);
-            this.label178.Name = "label178";
-            this.label178.Size = new System.Drawing.Size(32, 19);
-            this.label178.TabIndex = 503;
-            this.label178.Text = "cm";
-            this.label178.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label106
-            // 
-            this.label106.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label106.BackColor = System.Drawing.Color.Transparent;
-            this.label106.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.label106.ForeColor = System.Drawing.Color.Black;
-            this.label106.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label106.Location = new System.Drawing.Point(441, 473);
-            this.label106.Name = "label106";
-            this.label106.Size = new System.Drawing.Size(168, 32);
-            this.label106.TabIndex = 502;
-            this.label106.Text = "Boundary";
-            this.label106.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // lblTurnOffBelowUnits
-            // 
-            this.lblTurnOffBelowUnits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblTurnOffBelowUnits.AutoSize = true;
-            this.lblTurnOffBelowUnits.BackColor = System.Drawing.Color.Transparent;
-            this.lblTurnOffBelowUnits.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTurnOffBelowUnits.ForeColor = System.Drawing.Color.Black;
-            this.lblTurnOffBelowUnits.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblTurnOffBelowUnits.Location = new System.Drawing.Point(784, 523);
-            this.lblTurnOffBelowUnits.Name = "lblTurnOffBelowUnits";
-            this.lblTurnOffBelowUnits.Size = new System.Drawing.Size(57, 23);
-            this.lblTurnOffBelowUnits.TabIndex = 498;
-            this.lblTurnOffBelowUnits.Text = "Km/H";
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label5.Location = new System.Drawing.Point(22, 436);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(177, 25);
-            this.label5.TabIndex = 497;
-            this.label5.Text = "Choose";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // lblInchCm2
-            // 
-            this.lblInchCm2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblInchCm2.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInchCm2.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lblInchCm2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblInchCm2.Location = new System.Drawing.Point(655, 385);
-            this.lblInchCm2.Name = "lblInchCm2";
-            this.lblInchCm2.Size = new System.Drawing.Size(135, 25);
-            this.lblInchCm2.TabIndex = 496;
-            this.lblInchCm2.Text = "Inch";
-            this.lblInchCm2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelSymmetricSections
             // 
@@ -4539,6 +4521,75 @@
             this.label6.Size = new System.Drawing.Size(31, 23);
             this.label6.TabIndex = 497;
             this.label6.Text = "->";
+            // 
+            // label178
+            // 
+            this.label178.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label178.AutoSize = true;
+            this.label178.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label178.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label178.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label178.Location = new System.Drawing.Point(270, 410);
+            this.label178.Name = "label178";
+            this.label178.Size = new System.Drawing.Size(32, 19);
+            this.label178.TabIndex = 503;
+            this.label178.Text = "cm";
+            this.label178.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label106
+            // 
+            this.label106.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label106.BackColor = System.Drawing.Color.Transparent;
+            this.label106.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.label106.ForeColor = System.Drawing.Color.Black;
+            this.label106.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label106.Location = new System.Drawing.Point(441, 473);
+            this.label106.Name = "label106";
+            this.label106.Size = new System.Drawing.Size(168, 32);
+            this.label106.TabIndex = 502;
+            this.label106.Text = "Boundary";
+            this.label106.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // lblTurnOffBelowUnits
+            // 
+            this.lblTurnOffBelowUnits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblTurnOffBelowUnits.AutoSize = true;
+            this.lblTurnOffBelowUnits.BackColor = System.Drawing.Color.Transparent;
+            this.lblTurnOffBelowUnits.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTurnOffBelowUnits.ForeColor = System.Drawing.Color.Black;
+            this.lblTurnOffBelowUnits.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblTurnOffBelowUnits.Location = new System.Drawing.Point(784, 523);
+            this.lblTurnOffBelowUnits.Name = "lblTurnOffBelowUnits";
+            this.lblTurnOffBelowUnits.Size = new System.Drawing.Size(57, 23);
+            this.lblTurnOffBelowUnits.TabIndex = 498;
+            this.lblTurnOffBelowUnits.Text = "Km/H";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label5.Location = new System.Drawing.Point(22, 436);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(177, 25);
+            this.label5.TabIndex = 497;
+            this.label5.Text = "Choose";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // lblInchCm2
+            // 
+            this.lblInchCm2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblInchCm2.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInchCm2.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblInchCm2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblInchCm2.Location = new System.Drawing.Point(655, 385);
+            this.lblInchCm2.Name = "lblInchCm2";
+            this.lblInchCm2.Size = new System.Drawing.Size(135, 25);
+            this.lblInchCm2.TabIndex = 496;
+            this.lblInchCm2.Text = "Inch";
+            this.lblInchCm2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label49
             // 
@@ -5153,230 +5204,230 @@
             this.nudSection10.Click += new System.EventHandler(this.NudSection1_Click);
             this.nudSection10.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
-            // nudSection9
+            // nudSection09
             // 
-            this.nudSection9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.nudSection9.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection9.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSection9.InterceptArrowKeys = false;
-            this.nudSection9.Location = new System.Drawing.Point(8, 104);
-            this.nudSection9.Maximum = new decimal(new int[] {
+            this.nudSection09.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.nudSection09.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudSection09.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection09.InterceptArrowKeys = false;
+            this.nudSection09.Location = new System.Drawing.Point(8, 104);
+            this.nudSection09.Maximum = new decimal(new int[] {
             5000,
             0,
             0,
             0});
-            this.nudSection9.Name = "nudSection9";
-            this.nudSection9.ReadOnly = true;
-            this.nudSection9.Size = new System.Drawing.Size(87, 36);
-            this.nudSection9.TabIndex = 267;
-            this.nudSection9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudSection9.Value = new decimal(new int[] {
+            this.nudSection09.Name = "nudSection09";
+            this.nudSection09.ReadOnly = true;
+            this.nudSection09.Size = new System.Drawing.Size(87, 36);
+            this.nudSection09.TabIndex = 267;
+            this.nudSection09.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudSection09.Value = new decimal(new int[] {
             92,
             0,
             0,
             0});
-            this.nudSection9.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection9.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
+            this.nudSection09.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection09.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
-            // nudSection8
+            // nudSection08
             // 
-            this.nudSection8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.nudSection8.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection8.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSection8.InterceptArrowKeys = false;
-            this.nudSection8.Location = new System.Drawing.Point(743, 233);
-            this.nudSection8.Maximum = new decimal(new int[] {
+            this.nudSection08.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.nudSection08.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudSection08.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection08.InterceptArrowKeys = false;
+            this.nudSection08.Location = new System.Drawing.Point(743, 233);
+            this.nudSection08.Maximum = new decimal(new int[] {
             5000,
             0,
             0,
             0});
-            this.nudSection8.Name = "nudSection8";
-            this.nudSection8.ReadOnly = true;
-            this.nudSection8.Size = new System.Drawing.Size(87, 36);
-            this.nudSection8.TabIndex = 266;
-            this.nudSection8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudSection8.Value = new decimal(new int[] {
+            this.nudSection08.Name = "nudSection08";
+            this.nudSection08.ReadOnly = true;
+            this.nudSection08.Size = new System.Drawing.Size(87, 36);
+            this.nudSection08.TabIndex = 266;
+            this.nudSection08.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudSection08.Value = new decimal(new int[] {
             92,
             0,
             0,
             0});
-            this.nudSection8.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection8.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
+            this.nudSection08.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection08.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
-            // nudSection7
+            // nudSection07
             // 
-            this.nudSection7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.nudSection7.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection7.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSection7.InterceptArrowKeys = false;
-            this.nudSection7.Location = new System.Drawing.Point(638, 233);
-            this.nudSection7.Maximum = new decimal(new int[] {
+            this.nudSection07.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.nudSection07.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudSection07.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection07.InterceptArrowKeys = false;
+            this.nudSection07.Location = new System.Drawing.Point(638, 233);
+            this.nudSection07.Maximum = new decimal(new int[] {
             5000,
             0,
             0,
             0});
-            this.nudSection7.Name = "nudSection7";
-            this.nudSection7.ReadOnly = true;
-            this.nudSection7.Size = new System.Drawing.Size(87, 36);
-            this.nudSection7.TabIndex = 265;
-            this.nudSection7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudSection7.Value = new decimal(new int[] {
+            this.nudSection07.Name = "nudSection07";
+            this.nudSection07.ReadOnly = true;
+            this.nudSection07.Size = new System.Drawing.Size(87, 36);
+            this.nudSection07.TabIndex = 265;
+            this.nudSection07.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudSection07.Value = new decimal(new int[] {
             93,
             0,
             0,
             0});
-            this.nudSection7.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection7.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
+            this.nudSection07.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection07.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
-            // nudSection6
+            // nudSection06
             // 
-            this.nudSection6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.nudSection6.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection6.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSection6.InterceptArrowKeys = false;
-            this.nudSection6.Location = new System.Drawing.Point(533, 233);
-            this.nudSection6.Maximum = new decimal(new int[] {
+            this.nudSection06.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.nudSection06.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudSection06.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection06.InterceptArrowKeys = false;
+            this.nudSection06.Location = new System.Drawing.Point(533, 233);
+            this.nudSection06.Maximum = new decimal(new int[] {
             5000,
             0,
             0,
             0});
-            this.nudSection6.Name = "nudSection6";
-            this.nudSection6.ReadOnly = true;
-            this.nudSection6.Size = new System.Drawing.Size(87, 36);
-            this.nudSection6.TabIndex = 264;
-            this.nudSection6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudSection6.Value = new decimal(new int[] {
+            this.nudSection06.Name = "nudSection06";
+            this.nudSection06.ReadOnly = true;
+            this.nudSection06.Size = new System.Drawing.Size(87, 36);
+            this.nudSection06.TabIndex = 264;
+            this.nudSection06.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudSection06.Value = new decimal(new int[] {
             3888,
             0,
             0,
             0});
-            this.nudSection6.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection6.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
+            this.nudSection06.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection06.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
-            // nudSection5
+            // nudSection05
             // 
-            this.nudSection5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.nudSection5.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection5.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSection5.InterceptArrowKeys = false;
-            this.nudSection5.Location = new System.Drawing.Point(428, 233);
-            this.nudSection5.Maximum = new decimal(new int[] {
+            this.nudSection05.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.nudSection05.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudSection05.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection05.InterceptArrowKeys = false;
+            this.nudSection05.Location = new System.Drawing.Point(428, 233);
+            this.nudSection05.Maximum = new decimal(new int[] {
             5000,
             0,
             0,
             0});
-            this.nudSection5.Name = "nudSection5";
-            this.nudSection5.ReadOnly = true;
-            this.nudSection5.Size = new System.Drawing.Size(87, 36);
-            this.nudSection5.TabIndex = 263;
-            this.nudSection5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudSection5.Value = new decimal(new int[] {
+            this.nudSection05.Name = "nudSection05";
+            this.nudSection05.ReadOnly = true;
+            this.nudSection05.Size = new System.Drawing.Size(87, 36);
+            this.nudSection05.TabIndex = 263;
+            this.nudSection05.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudSection05.Value = new decimal(new int[] {
             95,
             0,
             0,
             0});
-            this.nudSection5.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection5.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
+            this.nudSection05.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection05.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
-            // nudSection4
+            // nudSection04
             // 
-            this.nudSection4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.nudSection4.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection4.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSection4.InterceptArrowKeys = false;
-            this.nudSection4.Location = new System.Drawing.Point(323, 233);
-            this.nudSection4.Maximum = new decimal(new int[] {
+            this.nudSection04.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.nudSection04.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudSection04.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection04.InterceptArrowKeys = false;
+            this.nudSection04.Location = new System.Drawing.Point(323, 233);
+            this.nudSection04.Maximum = new decimal(new int[] {
             5000,
             0,
             0,
             0});
-            this.nudSection4.Name = "nudSection4";
-            this.nudSection4.ReadOnly = true;
-            this.nudSection4.Size = new System.Drawing.Size(87, 36);
-            this.nudSection4.TabIndex = 262;
-            this.nudSection4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudSection4.Value = new decimal(new int[] {
+            this.nudSection04.Name = "nudSection04";
+            this.nudSection04.ReadOnly = true;
+            this.nudSection04.Size = new System.Drawing.Size(87, 36);
+            this.nudSection04.TabIndex = 262;
+            this.nudSection04.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudSection04.Value = new decimal(new int[] {
             96,
             0,
             0,
             0});
-            this.nudSection4.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection4.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
+            this.nudSection04.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection04.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
-            // nudSection3
+            // nudSection03
             // 
-            this.nudSection3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.nudSection3.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection3.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSection3.InterceptArrowKeys = false;
-            this.nudSection3.Location = new System.Drawing.Point(218, 233);
-            this.nudSection3.Maximum = new decimal(new int[] {
+            this.nudSection03.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.nudSection03.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudSection03.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection03.InterceptArrowKeys = false;
+            this.nudSection03.Location = new System.Drawing.Point(218, 233);
+            this.nudSection03.Maximum = new decimal(new int[] {
             5000,
             0,
             0,
             0});
-            this.nudSection3.Name = "nudSection3";
-            this.nudSection3.ReadOnly = true;
-            this.nudSection3.Size = new System.Drawing.Size(87, 36);
-            this.nudSection3.TabIndex = 261;
-            this.nudSection3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudSection3.Value = new decimal(new int[] {
+            this.nudSection03.Name = "nudSection03";
+            this.nudSection03.ReadOnly = true;
+            this.nudSection03.Size = new System.Drawing.Size(87, 36);
+            this.nudSection03.TabIndex = 261;
+            this.nudSection03.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudSection03.Value = new decimal(new int[] {
             97,
             0,
             0,
             0});
-            this.nudSection3.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection3.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
+            this.nudSection03.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection03.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
-            // nudSection2
+            // nudSection02
             // 
-            this.nudSection2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.nudSection2.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection2.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSection2.InterceptArrowKeys = false;
-            this.nudSection2.Location = new System.Drawing.Point(113, 233);
-            this.nudSection2.Maximum = new decimal(new int[] {
+            this.nudSection02.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.nudSection02.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudSection02.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection02.InterceptArrowKeys = false;
+            this.nudSection02.Location = new System.Drawing.Point(113, 233);
+            this.nudSection02.Maximum = new decimal(new int[] {
             5000,
             0,
             0,
             0});
-            this.nudSection2.Name = "nudSection2";
-            this.nudSection2.ReadOnly = true;
-            this.nudSection2.Size = new System.Drawing.Size(87, 36);
-            this.nudSection2.TabIndex = 260;
-            this.nudSection2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudSection2.Value = new decimal(new int[] {
+            this.nudSection02.Name = "nudSection02";
+            this.nudSection02.ReadOnly = true;
+            this.nudSection02.Size = new System.Drawing.Size(87, 36);
+            this.nudSection02.TabIndex = 260;
+            this.nudSection02.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudSection02.Value = new decimal(new int[] {
             98,
             0,
             0,
             0});
-            this.nudSection2.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection2.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
+            this.nudSection02.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection02.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
-            // nudSection1
+            // nudSection01
             // 
-            this.nudSection1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.nudSection1.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection1.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSection1.InterceptArrowKeys = false;
-            this.nudSection1.Location = new System.Drawing.Point(8, 233);
-            this.nudSection1.Maximum = new decimal(new int[] {
+            this.nudSection01.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.nudSection01.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudSection01.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection01.InterceptArrowKeys = false;
+            this.nudSection01.Location = new System.Drawing.Point(8, 233);
+            this.nudSection01.Maximum = new decimal(new int[] {
             5000,
             0,
             0,
             0});
-            this.nudSection1.Name = "nudSection1";
-            this.nudSection1.ReadOnly = true;
-            this.nudSection1.Size = new System.Drawing.Size(87, 36);
-            this.nudSection1.TabIndex = 259;
-            this.nudSection1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudSection1.Value = new decimal(new int[] {
+            this.nudSection01.Name = "nudSection01";
+            this.nudSection01.ReadOnly = true;
+            this.nudSection01.Size = new System.Drawing.Size(87, 36);
+            this.nudSection01.TabIndex = 259;
+            this.nudSection01.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudSection01.Value = new decimal(new int[] {
             99,
             0,
             0,
             0});
-            this.nudSection1.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection1.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
+            this.nudSection01.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection01.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // cboxSectionBoundaryControl
             // 
@@ -5462,7 +5513,7 @@
             // 
             this.chkSetAutoSectionsSteer.Appearance = System.Windows.Forms.Appearance.Button;
             this.chkSetAutoSectionsSteer.BackColor = System.Drawing.Color.AliceBlue;
-            this.chkSetAutoSectionsSteer.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.chkSetAutoSectionsSteer.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.chkSetAutoSectionsSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkSetAutoSectionsSteer.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkSetAutoSectionsSteer.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -5481,7 +5532,7 @@
             // 
             this.chkSelectSteerSwitch.Appearance = System.Windows.Forms.Appearance.Button;
             this.chkSelectSteerSwitch.BackColor = System.Drawing.Color.AliceBlue;
-            this.chkSelectSteerSwitch.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.chkSelectSteerSwitch.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.chkSelectSteerSwitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkSelectSteerSwitch.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkSelectSteerSwitch.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -5500,7 +5551,7 @@
             // 
             this.chkSetManualSectionsSteer.Appearance = System.Windows.Forms.Appearance.Button;
             this.chkSetManualSectionsSteer.BackColor = System.Drawing.Color.AliceBlue;
-            this.chkSetManualSectionsSteer.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.chkSetManualSectionsSteer.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.chkSetManualSectionsSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkSetManualSectionsSteer.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkSetManualSectionsSteer.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -5535,7 +5586,7 @@
             // 
             this.chkSelectWorkSwitch.Appearance = System.Windows.Forms.Appearance.Button;
             this.chkSelectWorkSwitch.BackColor = System.Drawing.Color.AliceBlue;
-            this.chkSelectWorkSwitch.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.chkSelectWorkSwitch.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.chkSelectWorkSwitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkSelectWorkSwitch.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkSelectWorkSwitch.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -5555,7 +5606,7 @@
             // 
             this.chkSetAutoSections.Appearance = System.Windows.Forms.Appearance.Button;
             this.chkSetAutoSections.BackColor = System.Drawing.Color.AliceBlue;
-            this.chkSetAutoSections.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.chkSetAutoSections.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.chkSetAutoSections.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkSetAutoSections.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkSetAutoSections.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -5574,7 +5625,7 @@
             // 
             this.chkSetManualSections.Appearance = System.Windows.Forms.Appearance.Button;
             this.chkSetManualSections.BackColor = System.Drawing.Color.AliceBlue;
-            this.chkSetManualSections.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.chkSetManualSections.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.chkSetManualSections.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkSetManualSections.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkSetManualSections.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -6066,7 +6117,7 @@
             this.cboxIsReverseOn.BackColor = System.Drawing.Color.AliceBlue;
             this.cboxIsReverseOn.Checked = true;
             this.cboxIsReverseOn.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cboxIsReverseOn.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxIsReverseOn.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.cboxIsReverseOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxIsReverseOn.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxIsReverseOn.ForeColor = System.Drawing.Color.Black;
@@ -6123,7 +6174,7 @@
             // 
             this.rbtnHeadingHDT.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbtnHeadingHDT.BackColor = System.Drawing.Color.AliceBlue;
-            this.rbtnHeadingHDT.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnHeadingHDT.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnHeadingHDT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnHeadingHDT.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnHeadingHDT.ForeColor = System.Drawing.Color.Black;
@@ -6142,7 +6193,7 @@
             // 
             this.rbtnHeadingFix.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbtnHeadingFix.BackColor = System.Drawing.Color.AliceBlue;
-            this.rbtnHeadingFix.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnHeadingFix.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnHeadingFix.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnHeadingFix.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnHeadingFix.ForeColor = System.Drawing.Color.Black;
@@ -6162,7 +6213,7 @@
             this.cboxIsRTK_KillAutoSteer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cboxIsRTK_KillAutoSteer.Appearance = System.Windows.Forms.Appearance.Button;
             this.cboxIsRTK_KillAutoSteer.BackColor = System.Drawing.Color.AliceBlue;
-            this.cboxIsRTK_KillAutoSteer.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxIsRTK_KillAutoSteer.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.cboxIsRTK_KillAutoSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxIsRTK_KillAutoSteer.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxIsRTK_KillAutoSteer.ForeColor = System.Drawing.Color.Black;
@@ -6180,7 +6231,7 @@
             this.cboxIsRTK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cboxIsRTK.Appearance = System.Windows.Forms.Appearance.Button;
             this.cboxIsRTK.BackColor = System.Drawing.Color.AliceBlue;
-            this.cboxIsRTK.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxIsRTK.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.cboxIsRTK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxIsRTK.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxIsRTK.ForeColor = System.Drawing.Color.Black;
@@ -6430,7 +6481,7 @@
             this.cboxDataInvertRoll.Appearance = System.Windows.Forms.Appearance.Button;
             this.cboxDataInvertRoll.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cboxDataInvertRoll.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.cboxDataInvertRoll.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxDataInvertRoll.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.cboxDataInvertRoll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxDataInvertRoll.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxDataInvertRoll.ForeColor = System.Drawing.Color.Black;
@@ -6508,7 +6559,7 @@
             this.rbtnNormal.BackColor = System.Drawing.Color.Transparent;
             this.rbtnNormal.BackgroundImage = global::AgOpenGPS.Properties.Resources.YouTurnU;
             this.rbtnNormal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.rbtnNormal.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnNormal.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnNormal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnNormal.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnNormal.ForeColor = System.Drawing.Color.Black;
@@ -6526,7 +6577,7 @@
             this.rbtn3PtH.BackColor = System.Drawing.Color.Transparent;
             this.rbtn3PtH.BackgroundImage = global::AgOpenGPS.Properties.Resources.YouTurnH;
             this.rbtn3PtH.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.rbtn3PtH.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtn3PtH.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtn3PtH.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtn3PtH.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtn3PtH.ForeColor = System.Drawing.Color.Black;
@@ -8168,7 +8219,7 @@
             this.cboxIsHydOn.Appearance = System.Windows.Forms.Appearance.Button;
             this.cboxIsHydOn.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cboxIsHydOn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.cboxIsHydOn.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxIsHydOn.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.cboxIsHydOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxIsHydOn.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxIsHydOn.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -8417,7 +8468,7 @@
             this.cboxMachInvertRelays.Checked = true;
             this.cboxMachInvertRelays.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxMachInvertRelays.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.cboxMachInvertRelays.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxMachInvertRelays.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.cboxMachInvertRelays.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxMachInvertRelays.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxMachInvertRelays.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -8472,7 +8523,7 @@
             this.chkBoxOverrideTramControlPos.Appearance = System.Windows.Forms.Appearance.Button;
             this.chkBoxOverrideTramControlPos.BackColor = System.Drawing.Color.Transparent;
             this.chkBoxOverrideTramControlPos.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.chkBoxOverrideTramControlPos.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.chkBoxOverrideTramControlPos.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.chkBoxOverrideTramControlPos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkBoxOverrideTramControlPos.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkBoxOverrideTramControlPos.ForeColor = System.Drawing.SystemColors.ButtonFace;
@@ -8886,7 +8937,7 @@
             this.cboxAutoStartAgIO.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxAutoStartAgIO.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxAutoStartAgIO.FlatAppearance.BorderSize = 2;
-            this.cboxAutoStartAgIO.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxAutoStartAgIO.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.cboxAutoStartAgIO.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxAutoStartAgIO.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxAutoStartAgIO.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -8908,7 +8959,7 @@
             this.cboxHydLiftSound.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxHydLiftSound.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxHydLiftSound.FlatAppearance.BorderSize = 2;
-            this.cboxHydLiftSound.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxHydLiftSound.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.cboxHydLiftSound.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxHydLiftSound.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxHydLiftSound.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -8930,7 +8981,7 @@
             this.cboxTurnSound.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxTurnSound.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxTurnSound.FlatAppearance.BorderSize = 2;
-            this.cboxTurnSound.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxTurnSound.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.cboxTurnSound.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxTurnSound.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxTurnSound.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -8952,7 +9003,7 @@
             this.cboxSteerSound.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxSteerSound.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxSteerSound.FlatAppearance.BorderSize = 2;
-            this.cboxSteerSound.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxSteerSound.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.cboxSteerSound.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxSteerSound.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxSteerSound.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -8976,7 +9027,7 @@
             this.cboxFeatureLateral.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxFeatureLateral.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxFeatureLateral.FlatAppearance.BorderSize = 2;
-            this.cboxFeatureLateral.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxFeatureLateral.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.cboxFeatureLateral.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxFeatureLateral.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxFeatureLateral.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -8999,7 +9050,7 @@
             this.cboxFeatureUTurn.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxFeatureUTurn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxFeatureUTurn.FlatAppearance.BorderSize = 2;
-            this.cboxFeatureUTurn.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxFeatureUTurn.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.cboxFeatureUTurn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxFeatureUTurn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxFeatureUTurn.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -9020,7 +9071,7 @@
             this.cboxFeatureOffsetFix.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxFeatureOffsetFix.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxFeatureOffsetFix.FlatAppearance.BorderSize = 2;
-            this.cboxFeatureOffsetFix.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxFeatureOffsetFix.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.cboxFeatureOffsetFix.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxFeatureOffsetFix.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxFeatureOffsetFix.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -9042,7 +9093,7 @@
             this.cboxFeatureWebcam.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxFeatureWebcam.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxFeatureWebcam.FlatAppearance.BorderSize = 2;
-            this.cboxFeatureWebcam.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxFeatureWebcam.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.cboxFeatureWebcam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxFeatureWebcam.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxFeatureWebcam.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -9064,7 +9115,7 @@
             this.cboxFeatureHideContour.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxFeatureHideContour.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxFeatureHideContour.FlatAppearance.BorderSize = 2;
-            this.cboxFeatureHideContour.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxFeatureHideContour.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.cboxFeatureHideContour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxFeatureHideContour.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxFeatureHideContour.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -9086,7 +9137,7 @@
             this.cboxFeatureABSmooth.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxFeatureABSmooth.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxFeatureABSmooth.FlatAppearance.BorderSize = 2;
-            this.cboxFeatureABSmooth.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxFeatureABSmooth.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.cboxFeatureABSmooth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxFeatureABSmooth.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxFeatureABSmooth.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -9108,7 +9159,7 @@
             this.cboxFeatureRecPath.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxFeatureRecPath.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxFeatureRecPath.FlatAppearance.BorderSize = 2;
-            this.cboxFeatureRecPath.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxFeatureRecPath.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.cboxFeatureRecPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxFeatureRecPath.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxFeatureRecPath.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -9130,7 +9181,7 @@
             this.cboxFeatureBoundary.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxFeatureBoundary.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxFeatureBoundary.FlatAppearance.BorderSize = 2;
-            this.cboxFeatureBoundary.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxFeatureBoundary.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.cboxFeatureBoundary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxFeatureBoundary.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxFeatureBoundary.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -9152,7 +9203,7 @@
             this.cboxFeatureHeadland.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxFeatureHeadland.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxFeatureHeadland.FlatAppearance.BorderSize = 2;
-            this.cboxFeatureHeadland.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxFeatureHeadland.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.cboxFeatureHeadland.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxFeatureHeadland.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxFeatureHeadland.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -9174,7 +9225,7 @@
             this.cboxFeatureTram.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxFeatureTram.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxFeatureTram.FlatAppearance.BorderSize = 2;
-            this.cboxFeatureTram.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxFeatureTram.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.cboxFeatureTram.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxFeatureTram.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxFeatureTram.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -9244,7 +9295,7 @@
             this.chkSvennArrow.BackColor = System.Drawing.Color.WhiteSmoke;
             this.chkSvennArrow.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.chkSvennArrow.FlatAppearance.BorderSize = 2;
-            this.chkSvennArrow.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.chkSvennArrow.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.chkSvennArrow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkSvennArrow.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkSvennArrow.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -9264,7 +9315,7 @@
             this.chkDisplayBrightness.BackColor = System.Drawing.Color.WhiteSmoke;
             this.chkDisplayBrightness.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.chkDisplayBrightness.FlatAppearance.BorderSize = 2;
-            this.chkDisplayBrightness.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.chkDisplayBrightness.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.chkDisplayBrightness.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkDisplayBrightness.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDisplayBrightness.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -9287,7 +9338,7 @@
             this.chkDisplayFloor.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkDisplayFloor.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.chkDisplayFloor.FlatAppearance.BorderSize = 2;
-            this.chkDisplayFloor.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.chkDisplayFloor.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.chkDisplayFloor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkDisplayFloor.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDisplayFloor.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -9322,7 +9373,7 @@
             this.rbtnDisplayImperial.Checked = true;
             this.rbtnDisplayImperial.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.rbtnDisplayImperial.FlatAppearance.BorderSize = 2;
-            this.rbtnDisplayImperial.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnDisplayImperial.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnDisplayImperial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnDisplayImperial.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnDisplayImperial.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -9342,7 +9393,7 @@
             this.rbtnDisplayMetric.BackColor = System.Drawing.Color.WhiteSmoke;
             this.rbtnDisplayMetric.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.rbtnDisplayMetric.FlatAppearance.BorderSize = 2;
-            this.rbtnDisplayMetric.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnDisplayMetric.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnDisplayMetric.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnDisplayMetric.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnDisplayMetric.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -9494,7 +9545,7 @@
             this.chkDisplayLightbar.BackColor = System.Drawing.Color.WhiteSmoke;
             this.chkDisplayLightbar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.chkDisplayLightbar.FlatAppearance.BorderSize = 2;
-            this.chkDisplayLightbar.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.chkDisplayLightbar.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.chkDisplayLightbar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkDisplayLightbar.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDisplayLightbar.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -9514,7 +9565,7 @@
             this.chkDisplayKeyboard.BackColor = System.Drawing.Color.WhiteSmoke;
             this.chkDisplayKeyboard.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.chkDisplayKeyboard.FlatAppearance.BorderSize = 2;
-            this.chkDisplayKeyboard.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.chkDisplayKeyboard.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.chkDisplayKeyboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkDisplayKeyboard.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDisplayKeyboard.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -9534,7 +9585,7 @@
             this.chkDisplayPolygons.BackColor = System.Drawing.Color.WhiteSmoke;
             this.chkDisplayPolygons.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.chkDisplayPolygons.FlatAppearance.BorderSize = 2;
-            this.chkDisplayPolygons.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.chkDisplayPolygons.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.chkDisplayPolygons.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkDisplayPolygons.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDisplayPolygons.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -9556,7 +9607,7 @@
             this.chkDisplayStartFullScreen.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkDisplayStartFullScreen.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.chkDisplayStartFullScreen.FlatAppearance.BorderSize = 2;
-            this.chkDisplayStartFullScreen.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.chkDisplayStartFullScreen.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.chkDisplayStartFullScreen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkDisplayStartFullScreen.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDisplayStartFullScreen.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -9576,7 +9627,7 @@
             this.chkDisplayLogNMEA.BackColor = System.Drawing.Color.WhiteSmoke;
             this.chkDisplayLogNMEA.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.chkDisplayLogNMEA.FlatAppearance.BorderSize = 2;
-            this.chkDisplayLogNMEA.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.chkDisplayLogNMEA.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.chkDisplayLogNMEA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkDisplayLogNMEA.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDisplayLogNMEA.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -9598,7 +9649,7 @@
             this.chkDisplayGrid.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkDisplayGrid.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.chkDisplayGrid.FlatAppearance.BorderSize = 2;
-            this.chkDisplayGrid.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.chkDisplayGrid.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.chkDisplayGrid.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkDisplayGrid.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDisplayGrid.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -9618,7 +9669,7 @@
             this.chkDisplaySpeedo.BackColor = System.Drawing.Color.WhiteSmoke;
             this.chkDisplaySpeedo.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.chkDisplaySpeedo.FlatAppearance.BorderSize = 2;
-            this.chkDisplaySpeedo.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.chkDisplaySpeedo.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.chkDisplaySpeedo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkDisplaySpeedo.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDisplaySpeedo.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -9638,7 +9689,7 @@
             this.chkDisplayExtraGuides.BackColor = System.Drawing.Color.WhiteSmoke;
             this.chkDisplayExtraGuides.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.chkDisplayExtraGuides.FlatAppearance.BorderSize = 2;
-            this.chkDisplayExtraGuides.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.chkDisplayExtraGuides.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.chkDisplayExtraGuides.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkDisplayExtraGuides.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDisplayExtraGuides.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -9903,15 +9954,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSection12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSection9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSection8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSection7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSection6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSection5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSection4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSection3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSection2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSection1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection09)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection08)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection07)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection06)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection05)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection04)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection03)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection02)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection01)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             this.tabTSwitches.ResumeLayout(false);
             this.grpControls.ResumeLayout(false);
@@ -10071,15 +10122,15 @@
         private NudlessNumericUpDown nudSection12;
         private NudlessNumericUpDown nudSection11;
         private NudlessNumericUpDown nudSection10;
-        private NudlessNumericUpDown nudSection9;
-        private NudlessNumericUpDown nudSection8;
-        private NudlessNumericUpDown nudSection7;
-        private NudlessNumericUpDown nudSection6;
-        private NudlessNumericUpDown nudSection5;
-        private NudlessNumericUpDown nudSection4;
-        private NudlessNumericUpDown nudSection3;
-        private NudlessNumericUpDown nudSection2;
-        private NudlessNumericUpDown nudSection1;
+        private NudlessNumericUpDown nudSection09;
+        private NudlessNumericUpDown nudSection08;
+        private NudlessNumericUpDown nudSection07;
+        private NudlessNumericUpDown nudSection06;
+        private NudlessNumericUpDown nudSection05;
+        private NudlessNumericUpDown nudSection04;
+        private NudlessNumericUpDown nudSection03;
+        private NudlessNumericUpDown nudSection02;
+        private NudlessNumericUpDown nudSection01;
         private System.Windows.Forms.Label label49;
         private NudlessNumericUpDown nudDefaultSectionWidth;
         private System.Windows.Forms.ComboBox cboxNumSections;
@@ -10490,5 +10541,8 @@
         private System.Windows.Forms.Label label175;
         private System.Windows.Forms.Label label177;
         private System.Windows.Forms.Label label178;
+        private System.Windows.Forms.Button btnZeroToolOffset;
+        private System.Windows.Forms.Button btnZeroOverlap;
+        private System.Windows.Forms.Button btnPivotOffsetZero;
     }
 }

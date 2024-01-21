@@ -20,13 +20,10 @@ namespace AgOpenGPS
 
         private int numberOfSections;
 
-        //private double maxWidth = 5000;
-
-
         #region Config
         private void tabTConfig_Enter(object sender, EventArgs e)
         {
-            lblInchCm2.Text=mf.unitsInCm.ToString();
+            lblInchCm2.Text = mf.unitsInCm.ToString();
 
             if (mf.vehicle.vehicleType != 1)
             {
@@ -249,7 +246,7 @@ namespace AgOpenGPS
 
         private void tabTSettings_Enter(object sender, EventArgs e)
         {
-            nudLookAhead.Value =    (decimal)Properties.Settings.Default.setVehicle_toolLookAheadOn;
+            nudLookAhead.Value = (decimal)Properties.Settings.Default.setVehicle_toolLookAheadOn;
             nudLookAheadOff.Value = (decimal)Properties.Settings.Default.setVehicle_toolLookAheadOff;
             nudTurnOffDelay.Value = (decimal)Properties.Settings.Default.setVehicle_toolOffDelay;
             //pictureBox3.Image = Resources.ToolLookaheadOn;
@@ -336,51 +333,28 @@ namespace AgOpenGPS
 
             nudOverlap.Value = (decimal)(Math.Abs(Properties.Settings.Default.setVehicle_toolOverlap) * mf.m2InchOrCm);
 
-            if (Properties.Settings.Default.setVehicle_toolOffset >= 0)
-            {
-                rbtnToolRightPositive.Checked = true;
-                rbtnLeftNegative.Checked = false;
-            }
-            else
-            {
-                rbtnLeftNegative.Checked = true;
-                rbtnToolRightPositive.Checked = false;
-            }
+            rbtnToolRightPositive.Checked = false;
+            rbtnLeftNegative.Checked = false;
+            rbtnToolRightPositive.Checked = Properties.Settings.Default.setVehicle_toolOffset > 0;
+            rbtnLeftNegative.Checked = Properties.Settings.Default.setVehicle_toolOffset < 0;
 
-            if (Properties.Settings.Default.setVehicle_toolOverlap >= 0)
-            {
-                rbtnToolOverlap.Checked = true;
-                rbtnToolGap.Checked = false;
-            }
-            else
-            {
-                rbtnToolGap.Checked = true;
-                rbtnToolOverlap.Checked = false;
 
-            }
+            rbtnToolOverlap.Checked = false;
+            rbtnToolGap.Checked = false;
+            rbtnToolOverlap.Checked = Properties.Settings.Default.setVehicle_toolOverlap > 0;
+            rbtnToolGap.Checked = Properties.Settings.Default.setVehicle_toolOverlap < 0;
 
             label175.Text = mf.unitsInCm;
-            label176.Text = mf.unitsInCm;   
-        }
-
-        private void nudOverlap_Click(object sender, EventArgs e)
-        {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
-            {
-                if (rbtnToolOverlap.Checked)
-                    mf.tool.overlap = (double)nudOverlap.Value * mf.inchOrCm2m;
-                else
-                    mf.tool.overlap = (double)nudOverlap.Value * -mf.inchOrCm2m;
-
-                Properties.Settings.Default.setVehicle_toolOverlap = mf.tool.overlap;
-                Properties.Settings.Default.Save();
-            }
+            label176.Text = mf.unitsInCm;
         }
 
         private void nudOffset_Click(object sender, EventArgs e)
         {
             if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
             {
+                if (!rbtnToolRightPositive.Checked && !rbtnLeftNegative.Checked)
+                    rbtnToolRightPositive.Checked = true;
+
                 if (rbtnToolRightPositive.Checked)
                     mf.tool.offset = (double)nudOffset.Value * mf.inchOrCm2m;
                 else
@@ -389,6 +363,18 @@ namespace AgOpenGPS
                 Properties.Settings.Default.setVehicle_toolOffset = mf.tool.offset;
                 Properties.Settings.Default.Save();
             }
+
+            rbtnToolRightPositive.Checked = false;
+            rbtnLeftNegative.Checked = false;
+            rbtnToolRightPositive.Checked = Properties.Settings.Default.setVehicle_toolOffset > 0;
+            rbtnLeftNegative.Checked = Properties.Settings.Default.setVehicle_toolOffset < 0;
+        }
+
+        private void btnZeroToolOffset_Click(object sender, EventArgs e)
+        {
+            nudOffset.Value = 0;
+            rbtnToolRightPositive.Checked = false;
+            rbtnLeftNegative.Checked = false;
         }
 
         private void rbtnToolRightPositive_Click(object sender, EventArgs e)
@@ -399,6 +385,40 @@ namespace AgOpenGPS
                 mf.tool.offset = (double)nudOffset.Value * -mf.inchOrCm2m;
             Properties.Settings.Default.setVehicle_toolOffset = mf.tool.offset;
             Properties.Settings.Default.Save();
+
+            rbtnToolRightPositive.Checked = false;
+            rbtnLeftNegative.Checked = false;
+            rbtnToolRightPositive.Checked = Properties.Settings.Default.setVehicle_toolOffset > 0;
+            rbtnLeftNegative.Checked = Properties.Settings.Default.setVehicle_toolOffset < 0;
+        }
+
+        private void nudOverlap_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            {
+                if (!rbtnToolOverlap.Checked && !rbtnToolGap.Checked)
+                    rbtnToolOverlap.Checked = true;
+
+                if (rbtnToolOverlap.Checked)
+                    mf.tool.overlap = (double)nudOverlap.Value * mf.inchOrCm2m;
+                else
+                    mf.tool.overlap = (double)nudOverlap.Value * -mf.inchOrCm2m;
+
+                Properties.Settings.Default.setVehicle_toolOverlap = mf.tool.overlap;
+                Properties.Settings.Default.Save();
+            }
+
+            rbtnToolOverlap.Checked = false;
+            rbtnToolGap.Checked = false;
+            rbtnToolOverlap.Checked = Properties.Settings.Default.setVehicle_toolOverlap > 0;
+            rbtnToolGap.Checked = Properties.Settings.Default.setVehicle_toolOverlap < 0;
+        }
+
+        private void btnZeroOverlap_Click(object sender, EventArgs e)
+        {
+            nudOverlap.Value = 0;
+            rbtnToolOverlap.Checked = false;
+            rbtnToolGap.Checked = false;
         }
 
         private void rbtnToolOverlap_Click(object sender, EventArgs e)
@@ -409,6 +429,11 @@ namespace AgOpenGPS
                 mf.tool.overlap = (double)nudOverlap.Value * -mf.inchOrCm2m;
             Properties.Settings.Default.setVehicle_toolOverlap = mf.tool.overlap;
             Properties.Settings.Default.Save();
+
+            rbtnToolOverlap.Checked = false;
+            rbtnToolGap.Checked = false;
+            rbtnToolOverlap.Checked = Properties.Settings.Default.setVehicle_toolOverlap > 0;
+            rbtnToolGap.Checked = Properties.Settings.Default.setVehicle_toolOverlap < 0;
         }
 
         #endregion
@@ -419,16 +444,26 @@ namespace AgOpenGPS
         {
             nudTrailingToolToPivotLength.Value = (decimal)(Math.Abs(Properties.Settings.Default.setTool_trailingToolToPivotLength) * mf.m2InchOrCm);
 
-            rbtnPivotBehindPos.Checked = Properties.Settings.Default.setTool_trailingToolToPivotLength >= 0;
-            rbtnPivotAheadNeg.Checked = !(Properties.Settings.Default.setTool_trailingToolToPivotLength >= 0);
+            rbtnPivotBehindPos.Checked = false;
+            rbtnPivotAheadNeg.Checked = false;
+            rbtnPivotBehindPos.Checked = Properties.Settings.Default.setTool_trailingToolToPivotLength > 0;
+            rbtnPivotAheadNeg.Checked = Properties.Settings.Default.setTool_trailingToolToPivotLength < 0;
 
             label177.Text = mf.unitsInCm;
         }
 
         private void tabToolPivot_Leave(object sender, EventArgs e)
         {
-            Properties.Settings.Default.Save();
         }
+
+
+        private void btnPivotOffsetZero_Click(object sender, EventArgs e)
+        {
+            nudTrailingToolToPivotLength.Value = 0;
+            rbtnPivotBehindPos.Checked = false;
+            rbtnPivotAheadNeg.Checked = false;
+        }
+
 
         private void rbtnPivotBehindPos_Click(object sender, EventArgs e)
         {
@@ -437,6 +472,11 @@ namespace AgOpenGPS
             else
                 mf.tool.trailingToolToPivotLength = (double)nudTrailingToolToPivotLength.Value * -mf.inchOrCm2m;
             Properties.Settings.Default.setTool_trailingToolToPivotLength = mf.tool.trailingToolToPivotLength;
+
+            rbtnPivotBehindPos.Checked = false;
+            rbtnPivotAheadNeg.Checked = false;
+            rbtnPivotBehindPos.Checked = Properties.Settings.Default.setTool_trailingToolToPivotLength > 0;
+            rbtnPivotAheadNeg.Checked = Properties.Settings.Default.setTool_trailingToolToPivotLength < 0;
         }
 
         private void nudTrailingToolToPivotLength_Click(object sender, EventArgs e)
@@ -450,6 +490,11 @@ namespace AgOpenGPS
 
                 Properties.Settings.Default.setTool_trailingToolToPivotLength = mf.tool.trailingToolToPivotLength;
             }
+
+            rbtnPivotBehindPos.Checked = false;
+            rbtnPivotAheadNeg.Checked = false;
+            rbtnPivotBehindPos.Checked = Properties.Settings.Default.setTool_trailingToolToPivotLength > 0;
+            rbtnPivotAheadNeg.Checked = Properties.Settings.Default.setTool_trailingToolToPivotLength < 0;
         }
 
 
@@ -515,15 +560,15 @@ namespace AgOpenGPS
                 nudNumberOfSections.Visible = false;
                 cboxNumSections.Visible = true;
 
-                nudSection1.Value = Math.Abs((Properties.Settings.Default.setSection_position2 - Properties.Settings.Default.setSection_position1) * (decimal)mf.m2InchOrCm);
-                nudSection2.Value = Math.Abs((Properties.Settings.Default.setSection_position3 - Properties.Settings.Default.setSection_position2) * (decimal)mf.m2InchOrCm);
-                nudSection3.Value = Math.Abs((Properties.Settings.Default.setSection_position4 - Properties.Settings.Default.setSection_position3) * (decimal)mf.m2InchOrCm);
-                nudSection4.Value = Math.Abs((Properties.Settings.Default.setSection_position5 - Properties.Settings.Default.setSection_position4) * (decimal)mf.m2InchOrCm);
-                nudSection5.Value = Math.Abs((Properties.Settings.Default.setSection_position6 - Properties.Settings.Default.setSection_position5) * (decimal)mf.m2InchOrCm);
-                nudSection6.Value = Math.Abs((Properties.Settings.Default.setSection_position7 - Properties.Settings.Default.setSection_position6) * (decimal)mf.m2InchOrCm);
-                nudSection7.Value = Math.Abs((Properties.Settings.Default.setSection_position8 - Properties.Settings.Default.setSection_position7) * (decimal)mf.m2InchOrCm);
-                nudSection8.Value = Math.Abs((Properties.Settings.Default.setSection_position9 - Properties.Settings.Default.setSection_position8) * (decimal)mf.m2InchOrCm);
-                nudSection9.Value = Math.Abs((Properties.Settings.Default.setSection_position10 - Properties.Settings.Default.setSection_position9) * (decimal)mf.m2InchOrCm);
+                nudSection01.Value = Math.Abs((Properties.Settings.Default.setSection_position2 - Properties.Settings.Default.setSection_position1) * (decimal)mf.m2InchOrCm);
+                nudSection02.Value = Math.Abs((Properties.Settings.Default.setSection_position3 - Properties.Settings.Default.setSection_position2) * (decimal)mf.m2InchOrCm);
+                nudSection03.Value = Math.Abs((Properties.Settings.Default.setSection_position4 - Properties.Settings.Default.setSection_position3) * (decimal)mf.m2InchOrCm);
+                nudSection04.Value = Math.Abs((Properties.Settings.Default.setSection_position5 - Properties.Settings.Default.setSection_position4) * (decimal)mf.m2InchOrCm);
+                nudSection05.Value = Math.Abs((Properties.Settings.Default.setSection_position6 - Properties.Settings.Default.setSection_position5) * (decimal)mf.m2InchOrCm);
+                nudSection06.Value = Math.Abs((Properties.Settings.Default.setSection_position7 - Properties.Settings.Default.setSection_position6) * (decimal)mf.m2InchOrCm);
+                nudSection07.Value = Math.Abs((Properties.Settings.Default.setSection_position8 - Properties.Settings.Default.setSection_position7) * (decimal)mf.m2InchOrCm);
+                nudSection08.Value = Math.Abs((Properties.Settings.Default.setSection_position9 - Properties.Settings.Default.setSection_position8) * (decimal)mf.m2InchOrCm);
+                nudSection09.Value = Math.Abs((Properties.Settings.Default.setSection_position10 - Properties.Settings.Default.setSection_position9) * (decimal)mf.m2InchOrCm);
                 nudSection10.Value = Math.Abs((Properties.Settings.Default.setSection_position11 - Properties.Settings.Default.setSection_position10) * (decimal)mf.m2InchOrCm);
                 nudSection11.Value = Math.Abs((Properties.Settings.Default.setSection_position12 - Properties.Settings.Default.setSection_position11) * (decimal)mf.m2InchOrCm);
                 nudSection12.Value = Math.Abs((Properties.Settings.Default.setSection_position13 - Properties.Settings.Default.setSection_position12) * (decimal)mf.m2InchOrCm);
@@ -1040,15 +1085,15 @@ namespace AgOpenGPS
                     }
                 }
 
-                nudSection1.Value = wide;
-                nudSection2.Value = wide;
-                nudSection3.Value = wide;
-                nudSection4.Value = wide;
-                nudSection5.Value = wide;
-                nudSection6.Value = wide;
-                nudSection7.Value = wide;
-                nudSection8.Value = wide;
-                nudSection9.Value = wide;
+                nudSection01.Value = wide;
+                nudSection02.Value = wide;
+                nudSection03.Value = wide;
+                nudSection04.Value = wide;
+                nudSection05.Value = wide;
+                nudSection06.Value = wide;
+                nudSection07.Value = wide;
+                nudSection08.Value = wide;
+                nudSection09.Value = wide;
                 nudSection10.Value = wide;
                 nudSection11.Value = wide;
                 nudSection12.Value = wide;
@@ -1099,394 +1144,36 @@ namespace AgOpenGPS
         public void UpdateSpinners()
         {
             int i = (int)numberOfSections;
-            switch (i)
+
+            decimal toolWidth = 0;
+
+            foreach (var item in tab1.TabPages[9].Controls)
             {
-                case 1:
+                if (item is NudlessNumericUpDown)
+                {
+                    var item2 = (NudlessNumericUpDown)item;
+                    if (item2.Name.Substring(0, 6) == "nudSec")
                     {
-                        nudSection1.Enabled = true; nudSection1.Visible = true;
-                        nudSection2.Enabled = false; nudSection2.Visible = false;
-                        nudSection3.Enabled = false; nudSection3.Visible = false;
-                        nudSection4.Enabled = false; nudSection4.Visible = false;
-                        nudSection5.Enabled = false; nudSection5.Visible = false;
-                        nudSection6.Enabled = false; nudSection6.Visible = false;
-                        nudSection7.Enabled = false; nudSection7.Visible = false;
-                        nudSection8.Enabled = false; nudSection8.Visible = false;
-                        nudSection9.Enabled = false; nudSection9.Visible = false;
-                        nudSection10.Enabled = false; nudSection10.Visible = false;
-                        nudSection11.Enabled = false; nudSection11.Visible = false;
-                        nudSection12.Enabled = false; nudSection12.Visible = false;
-                        nudSection13.Enabled = false; nudSection13.Visible = false;
-                        nudSection14.Enabled = false; nudSection14.Visible = false;
-                        nudSection15.Enabled = false; nudSection15.Visible = false;
-                        nudSection16.Enabled = false; nudSection16.Visible = false;
-
-                        lblVehicleToolWidth.Text = Convert.ToString((int)nudSection1.Value);
-                        break;
+                        //grab the number from nudSection01
+                        string bob = item2.Name.Substring(10, 2);
+                        int nudNum = Convert.ToInt32(bob);
+                        if (nudNum <= i)
+                        {
+                            item2.Enabled = true;
+                            item2.Visible = true;
+                            toolWidth += item2.Value;
+                        }
+                        else
+                        {
+                            item2.Enabled = false;
+                            item2.Visible = false;
+                        }
                     }
-                case 2:
-                    {
-                        nudSection1.Enabled = true; nudSection1.Visible = true;
-                        nudSection2.Enabled = true; nudSection2.Visible = true;
-                        nudSection3.Enabled = false; nudSection3.Visible = false;
-                        nudSection4.Enabled = false; nudSection4.Visible = false;
-                        nudSection6.Enabled = false; nudSection6.Visible = false;
-                        nudSection7.Enabled = false; nudSection7.Visible = false;
-                        nudSection8.Enabled = false; nudSection8.Visible = false;
-                        nudSection5.Enabled = false; nudSection5.Visible = false;
-                        nudSection9.Enabled = false; nudSection9.Visible = false;
-                        nudSection10.Enabled = false; nudSection10.Visible = false;
-                        nudSection11.Enabled = false; nudSection11.Visible = false;
-                        nudSection12.Enabled = false; nudSection12.Visible = false;
-                        nudSection13.Enabled = false; nudSection13.Visible = false;
-                        nudSection14.Enabled = false; nudSection14.Visible = false;
-                        nudSection15.Enabled = false; nudSection15.Visible = false;
-                        nudSection16.Enabled = false; nudSection16.Visible = false;
-
-                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value));
-                        break;
-                    }
-                case 3:
-                    {
-                        nudSection1.Enabled = true; nudSection1.Visible = true;
-                        nudSection2.Enabled = true; nudSection2.Visible = true;
-                        nudSection3.Enabled = true; nudSection3.Visible = true;
-                        nudSection4.Enabled = false; nudSection4.Visible = false;
-                        nudSection5.Enabled = false; nudSection5.Visible = false;
-                        nudSection6.Enabled = false; nudSection6.Visible = false;
-                        nudSection7.Enabled = false; nudSection7.Visible = false;
-                        nudSection8.Enabled = false; nudSection8.Visible = false;
-                        nudSection9.Enabled = false; nudSection9.Visible = false;
-                        nudSection10.Enabled = false; nudSection10.Visible = false;
-                        nudSection11.Enabled = false; nudSection11.Visible = false;
-                        nudSection12.Enabled = false; nudSection12.Visible = false;
-                        nudSection13.Enabled = false; nudSection13.Visible = false;
-                        nudSection14.Enabled = false; nudSection14.Visible = false;
-                        nudSection15.Enabled = false; nudSection15.Visible = false;
-                        nudSection16.Enabled = false; nudSection16.Visible = false;
-
-                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value));
-                        break;
-                    }
-                case 4:
-                    {
-                        nudSection1.Enabled = true; nudSection1.Visible = true;
-                        nudSection2.Enabled = true; nudSection2.Visible = true;
-                        nudSection3.Enabled = true; nudSection3.Visible = true;
-                        nudSection4.Enabled = true; nudSection4.Visible = true;
-                        nudSection5.Enabled = false; nudSection5.Visible = false;
-                        nudSection6.Enabled = false; nudSection6.Visible = false;
-                        nudSection7.Enabled = false; nudSection7.Visible = false;
-                        nudSection8.Enabled = false; nudSection8.Visible = false;
-                        nudSection9.Enabled = false; nudSection9.Visible = false;
-                        nudSection10.Enabled = false; nudSection10.Visible = false;
-                        nudSection11.Enabled = false; nudSection11.Visible = false;
-                        nudSection12.Enabled = false; nudSection12.Visible = false;
-                        nudSection13.Enabled = false; nudSection13.Visible = false;
-                        nudSection14.Enabled = false; nudSection14.Visible = false;
-                        nudSection15.Enabled = false; nudSection15.Visible = false;
-                        nudSection16.Enabled = false; nudSection16.Visible = false;
-
-                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value + nudSection4.Value));
-                        break;
-                    }
-                case 5:
-                    {
-                        nudSection1.Enabled = true; nudSection1.Visible = true;
-                        nudSection2.Enabled = true; nudSection2.Visible = true;
-                        nudSection3.Enabled = true; nudSection3.Visible = true;
-                        nudSection4.Enabled = true; nudSection4.Visible = true;
-                        nudSection5.Enabled = true; nudSection5.Visible = true;
-                        nudSection6.Enabled = false; nudSection6.Visible = false;
-                        nudSection7.Enabled = false; nudSection7.Visible = false;
-                        nudSection8.Enabled = false; nudSection8.Visible = false;
-                        nudSection9.Enabled = false; nudSection9.Visible = false;
-                        nudSection10.Enabled = false; nudSection10.Visible = false;
-                        nudSection11.Enabled = false; nudSection11.Visible = false;
-                        nudSection12.Enabled = false; nudSection12.Visible = false;
-                        nudSection13.Enabled = false; nudSection13.Visible = false;
-                        nudSection14.Enabled = false; nudSection14.Visible = false;
-                        nudSection15.Enabled = false; nudSection15.Visible = false;
-                        nudSection16.Enabled = false; nudSection16.Visible = false;
-
-                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value + nudSection4.Value + nudSection5.Value));
-                        break;
-                    }
-                case 6:
-                    {
-                        nudSection1.Enabled = true; nudSection1.Visible = true;
-                        nudSection2.Enabled = true; nudSection2.Visible = true;
-                        nudSection3.Enabled = true; nudSection3.Visible = true;
-                        nudSection4.Enabled = true; nudSection4.Visible = true;
-                        nudSection5.Enabled = true; nudSection5.Visible = true;
-                        nudSection6.Enabled = true; nudSection6.Visible = true;
-                        nudSection7.Enabled = false; nudSection7.Visible = false;
-                        nudSection8.Enabled = false; nudSection8.Visible = false;
-                        nudSection9.Enabled = false; nudSection9.Visible = false;
-                        nudSection10.Enabled = false; nudSection10.Visible = false;
-                        nudSection11.Enabled = false; nudSection11.Visible = false;
-                        nudSection12.Enabled = false; nudSection12.Visible = false;
-                        nudSection13.Enabled = false; nudSection13.Visible = false;
-                        nudSection14.Enabled = false; nudSection14.Visible = false;
-                        nudSection15.Enabled = false; nudSection15.Visible = false;
-                        nudSection16.Enabled = false; nudSection16.Visible = false;
-
-                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value + nudSection4.Value
-                                + nudSection5.Value + nudSection6.Value));
-                        break;
-                    }
-                case 7:
-                    {
-                        nudSection1.Enabled = true; nudSection1.Visible = true;
-                        nudSection2.Enabled = true; nudSection2.Visible = true;
-                        nudSection3.Enabled = true; nudSection3.Visible = true;
-                        nudSection4.Enabled = true; nudSection4.Visible = true;
-                        nudSection5.Enabled = true; nudSection5.Visible = true;
-                        nudSection6.Enabled = true; nudSection6.Visible = true;
-                        nudSection7.Enabled = true; nudSection7.Visible = true;
-                        nudSection8.Enabled = false; nudSection8.Visible = false;
-                        nudSection9.Enabled = false; nudSection9.Visible = false;
-                        nudSection10.Enabled = false; nudSection10.Visible = false;
-                        nudSection11.Enabled = false; nudSection11.Visible = false;
-                        nudSection12.Enabled = false; nudSection12.Visible = false;
-                        nudSection13.Enabled = false; nudSection13.Visible = false;
-                        nudSection14.Enabled = false; nudSection14.Visible = false;
-                        nudSection15.Enabled = false; nudSection15.Visible = false;
-                        nudSection16.Enabled = false; nudSection16.Visible = false;
-
-                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value
-                            + nudSection4.Value + nudSection5.Value + nudSection6.Value + nudSection7.Value));
-                        break;
-                    }
-                case 8:
-                    {
-                        nudSection1.Enabled = true; nudSection1.Visible = true;
-                        nudSection2.Enabled = true; nudSection2.Visible = true;
-                        nudSection3.Enabled = true; nudSection3.Visible = true;
-                        nudSection4.Enabled = true; nudSection4.Visible = true;
-                        nudSection5.Enabled = true; nudSection5.Visible = true;
-                        nudSection6.Enabled = true; nudSection6.Visible = true;
-                        nudSection7.Enabled = true; nudSection7.Visible = true;
-                        nudSection8.Enabled = true; nudSection8.Visible = true;
-                        nudSection9.Enabled = false; nudSection9.Visible = false;
-                        nudSection10.Enabled = false; nudSection10.Visible = false;
-                        nudSection11.Enabled = false; nudSection11.Visible = false;
-                        nudSection12.Enabled = false; nudSection12.Visible = false;
-                        nudSection13.Enabled = false; nudSection13.Visible = false;
-                        nudSection14.Enabled = false; nudSection14.Visible = false;
-                        nudSection15.Enabled = false; nudSection15.Visible = false;
-                        nudSection16.Enabled = false; nudSection16.Visible = false;
-
-                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value
-                            + nudSection4.Value + nudSection5.Value + nudSection6.Value + nudSection7.Value + nudSection8.Value));
-                        break;
-                    }
-
-                case 9:
-                    {
-                        nudSection1.Enabled = true; nudSection1.Visible = true;
-                        nudSection2.Enabled = true; nudSection2.Visible = true;
-                        nudSection3.Enabled = true; nudSection3.Visible = true;
-                        nudSection4.Enabled = true; nudSection4.Visible = true;
-                        nudSection5.Enabled = true; nudSection5.Visible = true;
-                        nudSection6.Enabled = true; nudSection6.Visible = true;
-                        nudSection7.Enabled = true; nudSection7.Visible = true;
-                        nudSection8.Enabled = true; nudSection8.Visible = true;
-                        nudSection9.Enabled = true; nudSection9.Visible = true;
-                        nudSection10.Enabled = false; nudSection10.Visible = false;
-                        nudSection11.Enabled = false; nudSection11.Visible = false;
-                        nudSection12.Enabled = false; nudSection12.Visible = false;
-                        nudSection13.Enabled = false; nudSection13.Visible = false;
-                        nudSection14.Enabled = false; nudSection14.Visible = false;
-                        nudSection15.Enabled = false; nudSection15.Visible = false;
-                        nudSection16.Enabled = false; nudSection16.Visible = false;
-
-                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value
-                            + nudSection4.Value + nudSection5.Value + nudSection6.Value + nudSection7.Value + nudSection8.Value
-                            + nudSection9.Value));
-                        break;
-                    }
-
-                case 10:
-                    {
-                        nudSection1.Enabled = true; nudSection1.Visible = true;
-                        nudSection2.Enabled = true; nudSection2.Visible = true;
-                        nudSection3.Enabled = true; nudSection3.Visible = true;
-                        nudSection4.Enabled = true; nudSection4.Visible = true;
-                        nudSection5.Enabled = true; nudSection5.Visible = true;
-                        nudSection6.Enabled = true; nudSection6.Visible = true;
-                        nudSection7.Enabled = true; nudSection7.Visible = true;
-                        nudSection8.Enabled = true; nudSection8.Visible = true;
-                        nudSection9.Enabled = true; nudSection9.Visible = true;
-                        nudSection10.Enabled = true; nudSection10.Visible = true;
-                        nudSection11.Enabled = false; nudSection11.Visible = false;
-                        nudSection12.Enabled = false; nudSection12.Visible = false;
-                        nudSection13.Enabled = false; nudSection13.Visible = false;
-                        nudSection14.Enabled = false; nudSection14.Visible = false;
-                        nudSection15.Enabled = false; nudSection15.Visible = false;
-                        nudSection16.Enabled = false; nudSection16.Visible = false;
-
-                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value
-                            + nudSection4.Value + nudSection5.Value + nudSection6.Value + nudSection7.Value + nudSection8.Value
-                            + nudSection9.Value + nudSection10.Value));
-                        break;
-                    }
-
-                case 11:
-                    {
-                        nudSection1.Enabled = true; nudSection1.Visible = true;
-                        nudSection2.Enabled = true; nudSection2.Visible = true;
-                        nudSection3.Enabled = true; nudSection3.Visible = true;
-                        nudSection4.Enabled = true; nudSection4.Visible = true;
-                        nudSection5.Enabled = true; nudSection5.Visible = true;
-                        nudSection6.Enabled = true; nudSection6.Visible = true;
-                        nudSection7.Enabled = true; nudSection7.Visible = true;
-                        nudSection8.Enabled = true; nudSection8.Visible = true;
-                        nudSection9.Enabled = true; nudSection9.Visible = true;
-                        nudSection10.Enabled = true; nudSection10.Visible = true;
-                        nudSection11.Enabled = true; nudSection11.Visible = true;
-                        nudSection12.Enabled = false; nudSection12.Visible = false;
-                        nudSection13.Enabled = false; nudSection13.Visible = false;
-                        nudSection14.Enabled = false; nudSection14.Visible = false;
-                        nudSection15.Enabled = false; nudSection15.Visible = false;
-                        nudSection16.Enabled = false; nudSection16.Visible = false;
-
-                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value
-                            + nudSection4.Value + nudSection5.Value + nudSection6.Value + nudSection7.Value + nudSection8.Value
-                             + nudSection9.Value + nudSection10.Value + nudSection11.Value));
-                        break;
-                    }
-
-                case 12:
-                    {
-                        nudSection1.Enabled = true; nudSection1.Visible = true;
-                        nudSection2.Enabled = true; nudSection2.Visible = true;
-                        nudSection3.Enabled = true; nudSection3.Visible = true;
-                        nudSection4.Enabled = true; nudSection4.Visible = true;
-                        nudSection5.Enabled = true; nudSection5.Visible = true;
-                        nudSection6.Enabled = true; nudSection6.Visible = true;
-                        nudSection7.Enabled = true; nudSection7.Visible = true;
-                        nudSection8.Enabled = true; nudSection8.Visible = true;
-                        nudSection9.Enabled = true; nudSection9.Visible = true;
-                        nudSection10.Enabled = true; nudSection10.Visible = true;
-                        nudSection11.Enabled = true; nudSection11.Visible = true;
-                        nudSection12.Enabled = true; nudSection12.Visible = true;
-                        nudSection13.Enabled = false; nudSection13.Visible = false;
-                        nudSection14.Enabled = false; nudSection14.Visible = false;
-                        nudSection15.Enabled = false; nudSection15.Visible = false;
-                        nudSection16.Enabled = false; nudSection16.Visible = false;
-
-                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value
-                            + nudSection4.Value + nudSection5.Value + nudSection6.Value + nudSection7.Value + nudSection8.Value
-                            + nudSection9.Value + nudSection10.Value + nudSection11.Value + nudSection12.Value));
-                        break;
-                    }
-
-                case 13:
-                    {
-                        nudSection1.Enabled = true; nudSection1.Visible = true;
-                        nudSection2.Enabled = true; nudSection2.Visible = true;
-                        nudSection3.Enabled = true; nudSection3.Visible = true;
-                        nudSection4.Enabled = true; nudSection4.Visible = true;
-                        nudSection5.Enabled = true; nudSection5.Visible = true;
-                        nudSection6.Enabled = true; nudSection6.Visible = true;
-                        nudSection7.Enabled = true; nudSection7.Visible = true;
-                        nudSection8.Enabled = true; nudSection8.Visible = true;
-                        nudSection9.Enabled = true; nudSection9.Visible = true;
-                        nudSection10.Enabled = true; nudSection10.Visible = true;
-                        nudSection11.Enabled = true; nudSection11.Visible = true;
-                        nudSection12.Enabled = true; nudSection12.Visible = true;
-                        nudSection13.Enabled = true; nudSection13.Visible = true;
-                        nudSection14.Enabled = false; nudSection14.Visible = false;
-                        nudSection15.Enabled = false; nudSection15.Visible = false;
-                        nudSection16.Enabled = false; nudSection16.Visible = false;
-
-                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value
-                            + nudSection4.Value + nudSection5.Value + nudSection6.Value + nudSection7.Value + nudSection8.Value
-                            + nudSection9.Value + nudSection10.Value + nudSection11.Value + nudSection12.Value
-                            + nudSection13.Value));
-                        break;
-                    }
-
-                case 14:
-                    {
-                        nudSection1.Enabled = true; nudSection1.Visible = true;
-                        nudSection2.Enabled = true; nudSection2.Visible = true;
-                        nudSection3.Enabled = true; nudSection3.Visible = true;
-                        nudSection4.Enabled = true; nudSection4.Visible = true;
-                        nudSection5.Enabled = true; nudSection5.Visible = true;
-                        nudSection6.Enabled = true; nudSection6.Visible = true;
-                        nudSection7.Enabled = true; nudSection7.Visible = true;
-                        nudSection8.Enabled = true; nudSection8.Visible = true;
-                        nudSection9.Enabled = true; nudSection9.Visible = true;
-                        nudSection10.Enabled = true; nudSection10.Visible = true;
-                        nudSection11.Enabled = true; nudSection11.Visible = true;
-                        nudSection12.Enabled = true; nudSection12.Visible = true;
-                        nudSection13.Enabled = true; nudSection13.Visible = true;
-                        nudSection14.Enabled = true; nudSection14.Visible = true;
-                        nudSection15.Enabled = false; nudSection15.Visible = false;
-                        nudSection16.Enabled = false; nudSection16.Visible = false;
-
-                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value
-                            + nudSection4.Value + nudSection5.Value + nudSection6.Value + nudSection7.Value + nudSection8.Value
-                            + nudSection9.Value + nudSection10.Value + nudSection11.Value + nudSection12.Value
-                            + nudSection13.Value + nudSection14.Value));
-                        break;
-                    }
-
-                case 15:
-                    {
-                        nudSection1.Enabled = true; nudSection1.Visible = true;
-                        nudSection2.Enabled = true; nudSection2.Visible = true;
-                        nudSection3.Enabled = true; nudSection3.Visible = true;
-                        nudSection4.Enabled = true; nudSection4.Visible = true;
-                        nudSection5.Enabled = true; nudSection5.Visible = true;
-                        nudSection6.Enabled = true; nudSection6.Visible = true;
-                        nudSection7.Enabled = true; nudSection7.Visible = true;
-                        nudSection8.Enabled = true; nudSection8.Visible = true;
-                        nudSection9.Enabled = true; nudSection9.Visible = true;
-                        nudSection10.Enabled = true; nudSection10.Visible = true;
-                        nudSection11.Enabled = true; nudSection11.Visible = true;
-                        nudSection12.Enabled = true; nudSection12.Visible = true;
-                        nudSection13.Enabled = true; nudSection13.Visible = true;
-                        nudSection14.Enabled = true; nudSection14.Visible = true;
-                        nudSection15.Enabled = true; nudSection15.Visible = true;
-                        nudSection16.Enabled = false; nudSection16.Visible = false;
-
-                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value
-                            + nudSection4.Value + nudSection5.Value + nudSection6.Value + nudSection7.Value + nudSection8.Value
-                            + nudSection9.Value + nudSection10.Value + nudSection11.Value + nudSection12.Value
-                            + nudSection13.Value + nudSection14.Value + nudSection15.Value));
-                        break;
-                    }
-
-                case 16:
-                    {
-                        nudSection1.Enabled = true; nudSection1.Visible = true;
-                        nudSection2.Enabled = true; nudSection2.Visible = true;
-                        nudSection3.Enabled = true; nudSection3.Visible = true;
-                        nudSection4.Enabled = true; nudSection4.Visible = true;
-                        nudSection5.Enabled = true; nudSection5.Visible = true;
-                        nudSection6.Enabled = true; nudSection6.Visible = true;
-                        nudSection7.Enabled = true; nudSection7.Visible = true;
-                        nudSection8.Enabled = true; nudSection8.Visible = true;
-                        nudSection9.Enabled = true; nudSection9.Visible = true;
-                        nudSection10.Enabled = true; nudSection10.Visible = true;
-                        nudSection11.Enabled = true; nudSection11.Visible = true;
-                        nudSection12.Enabled = true; nudSection12.Visible = true;
-                        nudSection13.Enabled = true; nudSection13.Visible = true;
-                        nudSection14.Enabled = true; nudSection14.Visible = true;
-                        nudSection15.Enabled = true; nudSection15.Visible = true;
-                        nudSection16.Enabled = true; nudSection16.Visible = true;
-
-                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value
-                            + nudSection4.Value + nudSection5.Value + nudSection6.Value + nudSection7.Value + nudSection8.Value
-                            + nudSection9.Value + nudSection10.Value + nudSection11.Value + nudSection12.Value
-                            + nudSection13.Value + nudSection14.Value + nudSection15.Value + nudSection16.Value));
-                        break;
-                    }
-
+                }                
             }
-            //update in settings dialog ONLY total tool width
+
+            lblVehicleToolWidth.Text = Convert.ToString((int)toolWidth);
+
             SectionFeetInchesTotalWidthLabelUpdate();
         }
 
@@ -1532,15 +1219,15 @@ namespace AgOpenGPS
             int i = numberOfSections;
 
             //convert to meters spinner value
-            sectionWidthArr[0] = nudSection1.Value * (decimal)mf.inchOrCm2m;
-            sectionWidthArr[1] = nudSection2.Value * (decimal)mf.inchOrCm2m;
-            sectionWidthArr[2] = nudSection3.Value * (decimal)mf.inchOrCm2m;
-            sectionWidthArr[3] = nudSection4.Value * (decimal)mf.inchOrCm2m;
-            sectionWidthArr[4] = nudSection5.Value * (decimal)mf.inchOrCm2m;
-            sectionWidthArr[5] = nudSection6.Value * (decimal)mf.inchOrCm2m;
-            sectionWidthArr[6] = nudSection7.Value * (decimal)mf.inchOrCm2m;
-            sectionWidthArr[7] = nudSection8.Value * (decimal)mf.inchOrCm2m;
-            sectionWidthArr[8] = nudSection9.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[0] = nudSection01.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[1] = nudSection02.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[2] = nudSection03.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[3] = nudSection04.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[4] = nudSection05.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[5] = nudSection06.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[6] = nudSection07.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[7] = nudSection08.Value * (decimal)mf.inchOrCm2m;
+            sectionWidthArr[8] = nudSection09.Value * (decimal)mf.inchOrCm2m;
             sectionWidthArr[9] = nudSection10.Value * (decimal)mf.inchOrCm2m;
             sectionWidthArr[10] = nudSection11.Value * (decimal)mf.inchOrCm2m;
             sectionWidthArr[11] = nudSection12.Value * (decimal)mf.inchOrCm2m;
