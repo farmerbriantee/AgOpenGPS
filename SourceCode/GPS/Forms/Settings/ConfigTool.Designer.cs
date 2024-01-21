@@ -1563,7 +1563,7 @@ namespace AgOpenGPS
 
             for (int j = 1; j < 17; j++)
             {
-                if (j <= i) sectionPositionArr[j] = sectionPositionArr[j - 1] + sectionWidthArr[j];
+                if (j <= i) sectionPositionArr[j] = sectionPositionArr[j - 1] + sectionWidthArr[j-1];
                 else sectionPositionArr[j] = 0;                
             }
         }
