@@ -34,7 +34,7 @@
             // 
             // lblMessage2
             // 
-            this.lblMessage2.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
+            this.lblMessage2.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessage2.Location = new System.Drawing.Point(46, 20);
             this.lblMessage2.Name = "lblMessage2";
             this.lblMessage2.Size = new System.Drawing.Size(634, 381);
@@ -52,7 +52,7 @@
             this.btnSerialOK.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialOK.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnSerialOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnSerialOK.Location = new System.Drawing.Point(661, 374);
+            this.btnSerialOK.Location = new System.Drawing.Point(646, 358);
             this.btnSerialOK.Name = "btnSerialOK";
             this.btnSerialOK.Size = new System.Drawing.Size(105, 64);
             this.btnSerialOK.TabIndex = 96;
@@ -63,13 +63,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.ClientSize = new System.Drawing.Size(762, 434);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(100)))), ((int)(((byte)(50)))));
+            this.ClientSize = new System.Drawing.Size(758, 430);
             this.ControlBox = false;
             this.Controls.Add(this.btnSerialOK);
             this.Controls.Add(this.lblMessage2);
             this.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "FormYes";
             this.ShowIcon = false;

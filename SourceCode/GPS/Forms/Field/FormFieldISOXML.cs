@@ -244,6 +244,12 @@ namespace AgOpenGPS
                     }
                 }
 
+                if (counter  == 0) 
+                {
+                    mf.YesMessageBox("Field Requires Outer Boundary.");
+                    return;
+                }
+
                 lonK = lon / counter;
                 latK = lat / counter;
             }
@@ -259,6 +265,7 @@ namespace AgOpenGPS
             mf.menustripLanguage.Enabled = false;
 
             //create new field files.
+
             try
             {
                 //start a new job
@@ -609,7 +616,7 @@ namespace AgOpenGPS
                                         if (cnt > 3)
                                         {
                                             mf.trk.gArr.Add(new CTrk());
-                                            int idx = mf.trk.gArr.Count;
+                                            int idx = mf.trk.gArr.Count-1;
 
                                             //make sure point distance isn't too big 
                                             mf.curve.MakePointMinimumSpacing(ref mf.curve.desList, 1.6);
