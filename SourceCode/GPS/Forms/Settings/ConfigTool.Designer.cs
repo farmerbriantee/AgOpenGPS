@@ -348,6 +348,11 @@ namespace AgOpenGPS
             label176.Text = mf.unitsInCm;
         }
 
+        private void tabToolOffset_Leave(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Save();
+        }
+
         private void nudOffset_Click(object sender, EventArgs e)
         {
             if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
@@ -361,7 +366,6 @@ namespace AgOpenGPS
                     mf.tool.offset = (double)nudOffset.Value * -mf.inchOrCm2m;
 
                 Properties.Settings.Default.setVehicle_toolOffset = mf.tool.offset;
-                Properties.Settings.Default.Save();
             }
 
             rbtnToolRightPositive.Checked = false;
@@ -375,6 +379,9 @@ namespace AgOpenGPS
             nudOffset.Value = 0;
             rbtnToolRightPositive.Checked = false;
             rbtnLeftNegative.Checked = false;
+
+            mf.tool.offset = 0;
+            Properties.Settings.Default.setVehicle_toolOffset = mf.tool.offset;
         }
 
         private void rbtnToolRightPositive_Click(object sender, EventArgs e)
@@ -384,7 +391,6 @@ namespace AgOpenGPS
             else
                 mf.tool.offset = (double)nudOffset.Value * -mf.inchOrCm2m;
             Properties.Settings.Default.setVehicle_toolOffset = mf.tool.offset;
-            Properties.Settings.Default.Save();
 
             rbtnToolRightPositive.Checked = false;
             rbtnLeftNegative.Checked = false;
@@ -405,7 +411,6 @@ namespace AgOpenGPS
                     mf.tool.overlap = (double)nudOverlap.Value * -mf.inchOrCm2m;
 
                 Properties.Settings.Default.setVehicle_toolOverlap = mf.tool.overlap;
-                Properties.Settings.Default.Save();
             }
 
             rbtnToolOverlap.Checked = false;
@@ -419,6 +424,9 @@ namespace AgOpenGPS
             nudOverlap.Value = 0;
             rbtnToolOverlap.Checked = false;
             rbtnToolGap.Checked = false;
+
+            mf.tool.overlap = 0;
+            Properties.Settings.Default.setVehicle_toolOverlap = mf.tool.overlap;
         }
 
         private void rbtnToolOverlap_Click(object sender, EventArgs e)
@@ -454,6 +462,7 @@ namespace AgOpenGPS
 
         private void tabToolPivot_Leave(object sender, EventArgs e)
         {
+            Properties.Settings.Default.Save();
         }
 
 
@@ -462,6 +471,9 @@ namespace AgOpenGPS
             nudTrailingToolToPivotLength.Value = 0;
             rbtnPivotBehindPos.Checked = false;
             rbtnPivotAheadNeg.Checked = false;
+
+            mf.tool.trailingToolToPivotLength = 0;
+            Properties.Settings.Default.setTool_trailingToolToPivotLength = mf.tool.trailingToolToPivotLength;
         }
 
 
