@@ -519,6 +519,20 @@ namespace AgOpenGPS
             hotkeys = new char[19];
 
             hotkeys = Properties.Settings.Default.setKey_hotkeys.ToCharArray();
+
+            if (!isTermsAccepted)
+            {
+                if (!Properties.Settings.Default.setDisplay_isTermsAccepted)
+                {
+                    using (var form = new Form_First(this))
+                    {
+                        if (form.ShowDialog(this) != DialogResult.OK)
+                        {
+                            Close();
+                        }
+                    }
+                }
+            }
         }
 
         private void FormGPS_FormClosing(object sender, FormClosingEventArgs e)

@@ -342,7 +342,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setDisplay_isAutoStartAgIO" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setAS_ModeXTE" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.1</Value>
@@ -597,13 +597,13 @@
       <Value Profile="(Default)">0.6</Value>
     </Setting>
     <Setting Name="setDisplay_brightness" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">80</Value>
+      <Value Profile="(Default)">40</Value>
     </Setting>
     <Setting Name="set_youTurnRadius" Type="System.Double" Scope="User">
       <Value Profile="(Default)">8.1</Value>
     </Setting>
     <Setting Name="setDisplay_brightnessSystem" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">80</Value>
+      <Value Profile="(Default)">40</Value>
     </Setting>
     <Setting Name="setTool_isSectionsNotZones" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>

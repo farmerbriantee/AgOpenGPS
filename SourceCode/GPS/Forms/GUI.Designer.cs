@@ -53,7 +53,7 @@ namespace AgOpenGPS
         public bool isUTurnAlwaysOn, isCompassOn, isSpeedoOn, isSideGuideLines = true;
         public bool isPureDisplayOn = true, isSkyOn = true, isRollMeterOn = false, isTextureOn = true;
         public bool isDay = true, isDayTime = true, isBrightnessOn = true;
-        public bool isKeyboardOn = true, isAutoStartAgIO = true, isSvennArrowOn = true;
+        public bool isKeyboardOn = true, isAutoStartAgIO = true, isSvennArrowOn = true, isTermsAccepted = false;
 
         public bool isUTurnOn = true, isLateralOn = true;
 
@@ -83,6 +83,8 @@ namespace AgOpenGPS
         private int oneHalfSecondCounter = 0;
 
         public List<int> buttonOrder = new List<int>();
+
+
 
         //Timer triggers at 125 msec
         private void tmrWatchdog_tick(object sender, EventArgs e)
@@ -685,17 +687,6 @@ namespace AgOpenGPS
             isDay = Properties.Settings.Default.setDisplay_isDayMode;
             isDay = !isDay;
             SwapDayNightMode();
-
-            if (!Properties.Settings.Default.setDisplay_isTermsAccepted)
-            {
-                using (var form = new Form_First())
-                {
-                    if (form.ShowDialog(this) != DialogResult.OK)
-                    {
-                        Close();
-                    }
-                }
-            }
 
             //load uturn properties
             yt = new CYouTurn(this);

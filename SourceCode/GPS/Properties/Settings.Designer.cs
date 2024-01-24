@@ -1382,7 +1382,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool setDisplay_isAutoStartAgIO {
             get {
                 return ((bool)(this["setDisplay_isAutoStartAgIO"]));
@@ -2402,7 +2402,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("80")]
+        [global::System.Configuration.DefaultSettingValueAttribute("40")]
         public int setDisplay_brightness {
             get {
                 return ((int)(this["setDisplay_brightness"]));
@@ -2426,7 +2426,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("80")]
+        [global::System.Configuration.DefaultSettingValueAttribute("40")]
         public int setDisplay_brightnessSystem {
             get {
                 return ((int)(this["setDisplay_brightnessSystem"]));

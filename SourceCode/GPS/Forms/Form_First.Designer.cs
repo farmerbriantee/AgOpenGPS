@@ -41,8 +41,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -103,7 +103,7 @@
             // 
             this.lblVersion.AutoSize = true;
             this.lblVersion.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVersion.Location = new System.Drawing.Point(658, 26);
+            this.lblVersion.Location = new System.Drawing.Point(658, 7);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(129, 25);
             this.lblVersion.TabIndex = 34;
@@ -119,9 +119,9 @@
             this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button2.Location = new System.Drawing.Point(516, 588);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(155, 107);
+            this.button2.Size = new System.Drawing.Size(155, 86);
             this.button2.TabIndex = 39;
-            this.button2.Text = "I Want My Mommy";
+            this.button2.Text = "Disagree";
             this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -134,7 +134,7 @@
             this.button1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button1.Location = new System.Drawing.Point(708, 588);
+            this.button1.Location = new System.Drawing.Point(806, 588);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(254, 107);
             this.button1.TabIndex = 10;
@@ -159,7 +159,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(610, 78);
+            this.label2.Location = new System.Drawing.Point(610, 42);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(239, 25);
             this.label2.TabIndex = 128;
@@ -168,7 +168,7 @@
             // label9
             // 
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(609, 266);
+            this.label9.Location = new System.Drawing.Point(609, 75);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(443, 77);
             this.label9.TabIndex = 130;
@@ -179,31 +179,39 @@
             // label10
             // 
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(609, 343);
+            this.label10.Location = new System.Drawing.Point(609, 148);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(443, 76);
+            this.label10.Size = new System.Drawing.Size(443, 58);
             this.label10.TabIndex = 129;
             this.label10.Text = "You must make sure that they, too, receive or can get the source code.  And you m" +
     "ust show them these terms so they know their rights. Don\'t steal others work and" +
     " call it your own.";
             // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(612, 113);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(440, 139);
-            this.label1.TabIndex = 131;
-            this.label1.Text = resources.GetString("label1.Text");
-            // 
             // label4
             // 
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 419);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(612, 217);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(1040, 150);
+            this.label4.Size = new System.Drawing.Size(440, 352);
             this.label4.TabIndex = 132;
             this.label4.Text = resources.GetString("label4.Text");
+            // 
+            // button3
+            // 
+            this.button3.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button3.Location = new System.Drawing.Point(20, 403);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(65, 39);
+            this.button3.TabIndex = 133;
+            this.button3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form_First
             // 
@@ -212,8 +220,8 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1064, 703);
             this.ControlBox = false;
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label2);
@@ -252,7 +260,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button3;
     }
 }

@@ -6,8 +6,12 @@ namespace AgOpenGPS
 {
     public partial class Form_First : Form
     {
-        public Form_First()
+        private readonly FormGPS mf = null;
+
+        public Form_First(Form callingForm)
         {
+            mf = callingForm as FormGPS;
+
             InitializeComponent();
         }
 
@@ -39,8 +43,7 @@ namespace AgOpenGPS
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.setDisplay_isTermsAccepted = true;
-            Properties.Settings.Default.Save();
+            mf.isTermsAccepted = true;
             Close();
         }
 
@@ -50,6 +53,14 @@ namespace AgOpenGPS
             Properties.Settings.Default.Save();
             //Close();
             Environment.Exit(0);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.setDisplay_isTermsAccepted = true;
+            Properties.Settings.Default.Save();
+            mf.isTermsAccepted = true;
+            Close();
         }
     }
 }
