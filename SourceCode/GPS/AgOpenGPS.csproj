@@ -1308,7 +1308,6 @@
     <None Include="btnImages\FileUse.png" />
     <None Include="btnImages\radar-icon.png" />
     <None Include="btnImages\MakeBoundaryContour.jpg" />
-    <Content Include="ALicense.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
