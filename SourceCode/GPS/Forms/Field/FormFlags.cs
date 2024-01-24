@@ -70,7 +70,8 @@ namespace AgOpenGPS
 
         private void tboxFlagNotes_Leave(object sender, EventArgs e)
         {
-            mf.flagPts[mf.flagNumberPicked - 1].notes = tboxFlagNotes.Text;
+            if (mf.flagNumberPicked > 0)
+                mf.flagPts[mf.flagNumberPicked - 1].notes = tboxFlagNotes.Text;
         }
 
         private void tboxFlagNotes_KeyPress(object sender, KeyPressEventArgs e)
@@ -81,12 +82,21 @@ namespace AgOpenGPS
         private void timer1_Tick(object sender, EventArgs e)
         {
             //MakeDubinsLineFromPivotToFlag();
-            vec3 steerAxlePosRP = mf.pivotAxlePos;
-            if (mf.isMetric)
-                lblDistanceToFlag.Text = glm.Distance(steerAxlePosRP,
-                    mf.flagPts[mf.flagNumberPicked - 1].easting, mf.flagPts[mf.flagNumberPicked - 1].northing).ToString("N2") + " m";
-            else lblDistanceToFlag.Text = (glm.Distance(steerAxlePosRP,
-                mf.flagPts[mf.flagNumberPicked - 1].easting, mf.flagPts[mf.flagNumberPicked - 1].northing) * glm.m2ft).ToString("N2") + " m";
+            if (mf.flagPts.Count > 0)
+            {
+                if (mf.flagNumberPicked == 0) mf.flagNumberPicked = mf.flagPts.Count;
+
+                if (mf.flagNumberPicked > mf.flagPts.Count) mf.flagNumberPicked = mf.flagPts.Count;
+
+                vec3 steerAxlePosRP = mf.pivotAxlePos;
+                if (mf.isMetric)
+                    lblDistanceToFlag.Text = glm.Distance(steerAxlePosRP,
+                        mf.flagPts[mf.flagNumberPicked - 1].easting, mf.flagPts[mf.flagNumberPicked - 1].northing).ToString("N2") + " m";
+                else lblDistanceToFlag.Text = (glm.Distance(steerAxlePosRP,
+                    mf.flagPts[mf.flagNumberPicked - 1].easting, mf.flagPts[mf.flagNumberPicked - 1].northing) * glm.m2ft).ToString("N2") + " m";
+
+                UpdateLabels();
+            }
         }
 
         private void tboxFlagNotes_Click(object sender, EventArgs e)
