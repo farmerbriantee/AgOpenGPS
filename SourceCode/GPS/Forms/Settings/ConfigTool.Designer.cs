@@ -844,10 +844,20 @@ namespace AgOpenGPS
                 SetNudZoneVisibility();
             }
         }
+
         private void cboxNumberOfZones_SelectedIndexChanged(object sender, EventArgs e)
         {
-            mf.tool.zones = cboxNumberOfZones.SelectedIndex + 1;
-            if (mf.tool.zones == 1) mf.tool.zones = 0;
+            if ((cboxNumberOfZones.SelectedIndex+2) > (int)nudNumberOfSections.Value)
+            {
+                mf.YesMessageBox("You can't have more zones then sections");
+                cboxNumberOfZones.SelectedIndex = mf.tool.zones - 2;
+
+                return;
+            }
+
+            mf.tool.zones = cboxNumberOfZones.SelectedIndex + 2;
+            //if (mf.tool.zones == 1) mf.tool.zones = 0;
+
 
             SetNudZoneMinMax();
             FillZoneNudsWithDefaultValues();
@@ -950,6 +960,15 @@ namespace AgOpenGPS
             nudZone7To.Visible = false;
             nudZone8To.Visible = false;
 
+            nudZone1To.Enabled = true;
+            nudZone2To.Enabled = true;
+            nudZone3To.Enabled = true;
+            nudZone4To.Enabled = true;
+            nudZone5To.Enabled = true;
+            nudZone6To.Enabled = true;
+            nudZone7To.Enabled = true;
+            nudZone8To.Enabled = true;
+
             lblZoneStart1.Visible = false;
             lblZoneStart2.Visible = false;
             lblZoneStart3.Visible = false;
@@ -959,8 +978,6 @@ namespace AgOpenGPS
             lblZoneStart7.Visible = false;
             lblZoneStart8.Visible = false;
 
-            if (mf.tool.zones == 0) return;
-
             if (mf.tool.zones > 1)
             {
                 nudZone2To.Visible = true;
@@ -968,6 +985,7 @@ namespace AgOpenGPS
                 lblZoneStart1.Visible = true;
                 lblZoneStart2.Visible = true;
                 lblZoneStart2.Text = (nudZone1To.Value + 1).ToString();
+                if (mf.tool.zones == 2) nudZone2To.Enabled = false;
             }
 
             if (mf.tool.zones > 2)
@@ -975,6 +993,7 @@ namespace AgOpenGPS
                 nudZone3To.Visible = true;
                 lblZoneStart3.Visible = true;
                 lblZoneStart3.Text = (nudZone2To.Value + 1).ToString();
+                if (mf.tool.zones == 3) nudZone3To.Enabled = false;
             }
 
             if (mf.tool.zones > 3)
@@ -982,6 +1001,7 @@ namespace AgOpenGPS
                 nudZone4To.Visible = true;
                 lblZoneStart4.Visible = true;
                 lblZoneStart4.Text = (nudZone3To.Value + 1).ToString();
+                if (mf.tool.zones == 4) nudZone4To.Enabled = false;
             }
 
             if (mf.tool.zones > 4)
@@ -989,6 +1009,7 @@ namespace AgOpenGPS
                 nudZone5To.Visible = true;
                 lblZoneStart5.Visible = true;
                 lblZoneStart5.Text = (nudZone4To.Value + 1).ToString();
+                if (mf.tool.zones == 5) nudZone5To.Enabled = false;
             }
 
             if (mf.tool.zones > 5)
@@ -996,6 +1017,7 @@ namespace AgOpenGPS
                 nudZone6To.Visible = true;
                 lblZoneStart6.Visible = true;
                 lblZoneStart6.Text = (nudZone5To.Value + 1).ToString();
+                if (mf.tool.zones == 6) nudZone6To.Enabled = false;
             }
 
             if (mf.tool.zones > 6)
@@ -1003,6 +1025,7 @@ namespace AgOpenGPS
                 nudZone7To.Visible = true;
                 lblZoneStart7.Visible = true;
                 lblZoneStart7.Text = (nudZone6To.Value + 1).ToString();
+                if (mf.tool.zones == 7) nudZone7To.Enabled = false;
             }
 
             if (mf.tool.zones > 7)
@@ -1010,6 +1033,7 @@ namespace AgOpenGPS
                 nudZone8To.Visible = true;
                 lblZoneStart8.Visible = true;
                 lblZoneStart8.Text = (nudZone7To.Value + 1).ToString();
+                if (mf.tool.zones == 8) nudZone8To.Enabled = false;
             }
 
         }
@@ -1041,6 +1065,12 @@ namespace AgOpenGPS
         {
             if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
             {
+                if ((int)nudNumberOfSections.Value < mf.tool.zones)
+                {
+                    mf.YesMessageBox("You can't have more zones then sections");
+                    nudNumberOfSections.Value = numberOfSections;
+                    return;
+                }    
                 numberOfSections = (int)nudNumberOfSections.Value;
                 SetNudZoneMinMax();
 

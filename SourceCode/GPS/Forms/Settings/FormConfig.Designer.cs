@@ -4702,7 +4702,6 @@
             this.cboxNumberOfZones.Font = new System.Drawing.Font("Tahoma", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxNumberOfZones.FormattingEnabled = true;
             this.cboxNumberOfZones.Items.AddRange(new object[] {
-            "0",
             "2",
             "3",
             "4",
