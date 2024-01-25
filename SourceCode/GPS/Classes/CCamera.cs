@@ -49,8 +49,6 @@ namespace AgOpenGPS
             GL.Rotate(camPitch, 1.0, 0.0, 0.0);
 
             //pan if set
-
-
             //GL.Translate(0, camSetDistance * -0.04, 0);
             GL.Translate(panX, panY, 0); 
 
