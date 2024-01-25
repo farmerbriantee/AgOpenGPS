@@ -205,9 +205,9 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button3.Location = new System.Drawing.Point(20, 403);
+            this.button3.Location = new System.Drawing.Point(20, 395);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(65, 39);
+            this.button3.Size = new System.Drawing.Size(35, 24);
             this.button3.TabIndex = 133;
             this.button3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button3.UseVisualStyleBackColor = true;

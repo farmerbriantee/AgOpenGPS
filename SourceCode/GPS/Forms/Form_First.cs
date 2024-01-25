@@ -60,7 +60,6 @@ namespace AgOpenGPS
             Properties.Settings.Default.setDisplay_isTermsAccepted = true;
             Properties.Settings.Default.Save();
             mf.isTermsAccepted = true;
-            Close();
         }
     }
 }
