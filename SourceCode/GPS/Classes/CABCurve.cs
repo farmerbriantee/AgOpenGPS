@@ -1,6 +1,7 @@
 ﻿using OpenTK.Graphics.OpenGL;
 using System;
 using System.Collections.Generic;
+using System.Reflection.Emit;
 
 namespace AgOpenGPS
 {
@@ -31,7 +32,7 @@ namespace AgOpenGPS
         public vec2 radiusPointCu = new vec2(0, 0);
         public double steerAngleCu, rEastCu, rNorthCu, ppRadiusCu, manualUturnHeading;
 
-        public bool isSmoothWindowOpen;
+        public bool isSmoothWindowOpen, isLooping;
         public List<vec3> smooList = new List<vec3>();
 
         //the list of points of curve to drive on
@@ -387,8 +388,11 @@ namespace AgOpenGPS
                 }
                 else// Pure Pursuit ------------------------------------------
                 {
+
                     minDistA = double.MaxValue;
                     //close call hit
+
+                    isLooping = (glm.Distance(curList[0], curList[curList.Count - 1]) < 20);
 
                     for (int j = 0; j < curList.Count; j ++)
                     {
@@ -403,12 +407,41 @@ namespace AgOpenGPS
                         //just need to make sure the points continue ascending or heading switches all over the place
                         //if (A > B) { C = A; A = B; B = C; }
 
-                        currentLocationIndex = A;
+                    currentLocationIndex = A;
 
+                    if (A > curList.Count - 1)
+                        return;
+
+                    //initial forward Test if pivot InRange AB
+                    if (A == curList.Count - 1)  B = 0;
+                    else B = A + 1;
+
+                    if (glm.InRangeBetweenAB(curList[A].easting, curList[A].northing,
+                         curList[B].easting, curList[B].northing, pivot.easting, pivot.northing))
+                        goto SegmentFound;
+
+                    A = currentLocationIndex;
+                    //step back one
+                    if (A == 0)
+                    {
+                        A = curList.Count - 1;
+                        B = 0;
+                    }
+                    else
+                    {
+                        A = A - 1;
+                        B = A + 1;
+                    }
+
+                    if (glm.InRangeBetweenAB(curList[A].easting, curList[A].northing,
+                        curList[B].easting, curList[B].northing, pivot.easting, pivot.northing))
+                        goto SegmentFound;
+
+                    return;
+
+                    SegmentFound:
                     //get the distance from currently active AB line
 
-                    if (A > curList.Count - 1 || B > curList.Count - 1)
-                        return;
                     dx = curList[B].easting - curList[A].easting;
                     dz = curList[B].northing - curList[A].northing;
 
