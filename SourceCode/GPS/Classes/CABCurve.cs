@@ -387,47 +387,23 @@ namespace AgOpenGPS
                 }
                 else// Pure Pursuit ------------------------------------------
                 {
-                    minDistA = minDistB = double.MaxValue;
-                    //close call hit
-                    int cc = 0, dd;
-
-                    for (int j = 0; j < curList.Count; j += 10)
-                    {
-                        dist = glm.DistanceSquared(pivot, curList[j]);
-                        if (dist < minDistA)
-                        {
-                            minDistA = dist;
-                            cc = j;
-                        }
-                    }
-
                     minDistA = double.MaxValue;
+                    //close call hit
 
-                    dd = cc + 8; if (dd > curList.Count - 1) dd = curList.Count;
-                    cc -= 8; if (cc < 0) cc = 0;
-
-                    //find the closest 2 points to current close call
-                    for (int j = cc; j < dd; j++)
+                    for (int j = 0; j < curList.Count; j ++)
                     {
                         dist = glm.DistanceSquared(pivot, curList[j]);
                         if (dist < minDistA)
                         {
-                            minDistB = minDistA;
-                            B = A;
                             minDistA = dist;
                             A = j;
                         }
-                        else if (dist < minDistB)
-                        {
-                            minDistB = dist;
-                            B = j;
-                        }
                     }
 
-                    //just need to make sure the points continue ascending or heading switches all over the place
-                    if (A > B) { C = A; A = B; B = C; }
+                        //just need to make sure the points continue ascending or heading switches all over the place
+                        //if (A > B) { C = A; A = B; B = C; }
 
-                    currentLocationIndex = A;
+                        currentLocationIndex = A;
 
                     //get the distance from currently active AB line
 
