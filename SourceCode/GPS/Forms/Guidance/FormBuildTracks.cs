@@ -639,7 +639,7 @@ namespace AgOpenGPS
                 mf.trk.gArr[idx].heading = aveLineHeading;
 
                 //build the tail extensions
-                mf.curve.AddFirstLastPoints(ref mf.curve.desList);
+                //mf.curve.AddFirstLastPoints(ref mf.curve.desList);
                 SmoothAB(4);
                 mf.curve.CalculateHeadings(ref mf.curve.desList);
 
