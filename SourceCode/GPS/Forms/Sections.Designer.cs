@@ -39,14 +39,11 @@ namespace AgOpenGPS
                 case btnStates.Off:
                     manualBtnState = btnStates.On;
                     btnSectionMasterManual.Image = Properties.Resources.ManualOn;
-                    sounds.sndSectionOff.Play();
-
                     break;
 
                 case btnStates.On:
                     manualBtnState = btnStates.Off;
                     btnSectionMasterManual.Image = Properties.Resources.ManualOff;
-                    sounds.sndSectionOff.Play();
                     break;
             }
 

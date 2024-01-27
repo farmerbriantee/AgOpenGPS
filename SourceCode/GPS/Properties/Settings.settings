@@ -2,9 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AgOpenGPS.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="setwin" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">-62</Value>
-    </Setting>
     <Setting Name="setWindow_Location" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">30, 30</Value>
     </Setting>
@@ -342,7 +339,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setDisplay_isAutoStartAgIO" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setAS_ModeXTE" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.1</Value>
@@ -688,6 +685,9 @@
     </Setting>
     <Setting Name="setDisplay_buttonOrder" Type="System.String" Scope="User">
       <Value Profile="(Default)">0,1,2,3,4,5,6,7</Value>
+    </Setting>
+    <Setting Name="setDisplay_camPitch" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">-62</Value>
     </Setting>
   </Settings>
 </SettingsFile>

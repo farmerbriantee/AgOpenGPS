@@ -25,18 +25,6 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-62")]
-        public double setwin {
-            get {
-                return ((double)(this["setwin"]));
-            }
-            set {
-                this["setwin"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("30, 30")]
         public global::System.Drawing.Point setWindow_Location {
             get {
@@ -1382,7 +1370,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool setDisplay_isAutoStartAgIO {
             get {
                 return ((bool)(this["setDisplay_isAutoStartAgIO"]));
@@ -2769,6 +2757,18 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setDisplay_buttonOrder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-62")]
+        public double setDisplay_camPitch {
+            get {
+                return ((double)(this["setDisplay_camPitch"]));
+            }
+            set {
+                this["setDisplay_camPitch"] = value;
             }
         }
     }
