@@ -6,8 +6,48 @@ using System.Drawing.Imaging;
 
 namespace AgOpenGPS
 {
+
     public static class glm
     {
+        public static void GetClosestSegmentLooping(this vec2 Point, List<vec3> curList, out int AA, out int BB, out double minDistA, int Start = 0, int End = int.MaxValue)
+        {
+            bool isLoop = true;
+            AA = -1; BB = -1;
+            minDistA = double.MaxValue;
+            int A = Start > 0 ? Start - 1 : curList.Count - 1;
+            bool looping = isLoop & Start > End;
+            for (int B = (Start > 0 ? Start : 0); B < End || looping; A = B++)
+            {
+                if (B == curList.Count)
+                {
+                    if (looping)
+                    {
+                        B = -1; looping = false;
+                        continue;
+                    }
+                    else break;
+                }
+                if (B == 0 && !isLoop) continue;
+                else if (B == 0) A = curList.Count - 1;
+
+                double dist2 = DistanceSquared(curList[A], curList[B]);
+                if (dist2 < minDistA)
+                {
+                    minDistA = dist2; AA = A;
+                    BB = B;
+                }
+            }
+        }
+
+        public static bool InRangeBetweenAB(double start_x, double start_y, double end_x, double end_y,
+          double point_x, double point_y)
+        {
+            double dx = end_x - start_x;
+            double dy = end_y - start_y;
+            double innerProduct = (point_x - start_x) * dx + (point_y - start_y) * dy;
+            return 0 <= innerProduct && innerProduct <= dx * dx + dy * dy;
+        }
+
         public static bool IsPointInPolygon(this List<vec3> polygon, vec3 testPoint)
         {
             bool result = false;
@@ -177,10 +217,7 @@ namespace AgOpenGPS
             //double tt = 0.25;
 
             //vec2 pos = 0.5 * (a + (tt*b) + (tt * tt * c) + (tt * tt * tt * d));
-
-
         }
-
 
         // Catmull Rom gradient calculation
         public static double CatmullGradient(double t, vec3 p0, vec3 p1, vec3 p2, vec3 p3)
@@ -208,7 +245,7 @@ namespace AgOpenGPS
         }
 
         //Regex file expression
-        public const string fileRegex = "(^(PRN|AUX|NUL|CON|COM[1-9]|LPT[1-9]|(\\.+)$)(\\..*)?$)|(([\\x00-\\x1f\\\\?*:\";‌​|/<>])+)|([\\.]+)";
+        public const string fileRegex = " /^(?!.{256,})(?!(aux|clock\\$|con|nul|prn|com[1-9]|lpt[1-9])(?:$|\\.))[^ ][ \\.\\w-$()+=[\\];#@~,&amp;']+[^\\. ]$/i";
 
         //inches to meters
         public const double in2m = 0.0254;
@@ -326,8 +363,6 @@ namespace AgOpenGPS
                 + Math.Pow(first.northing - second.northing, 2));
         }
 
-
-
         //not normalized distance, no square root
         public static double DistanceSquared(double northing1, double easting1, double northing2, double easting2)
         {
@@ -354,6 +389,7 @@ namespace AgOpenGPS
             Math.Pow(first.easting - second.easting, 2)
             + Math.Pow(first.northing - second.northing, 2));
         }
+
         public static double DistanceSquared(vec2 first, vec2 second)
         {
             return (
@@ -396,6 +432,5 @@ namespace AgOpenGPS
             g.Dispose();
             return newBitmap;
         }
-
     }
 }

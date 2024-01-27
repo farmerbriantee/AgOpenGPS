@@ -177,6 +177,12 @@
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>zChoose or Build a Different one</value>
   </data>
+  <data name="gsClose" xml:space="preserve">
+    <value>ZClose</value>
+  </data>
+  <data name="gsCloseAllWindowsFirst" xml:space="preserve">
+    <value>zClose All Windows First</value>
+  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>zClose Field First</value>
   </data>
@@ -202,9 +208,6 @@
     <value>zCreate New Field</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>zCurrent</value>
-  </data>
-  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
     <value>zCurrent</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
@@ -501,9 +504,6 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>zStart New Field</value>
   </data>
-  <data name="gsSteerChart" xml:space="preserve">
-    <value>zCharts</value>
-  </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>zSteer Wizard</value>
   </data>
@@ -537,10 +537,16 @@
   <data name="gsWest" xml:space="preserve">
     <value>zWest</value>
   </data>
+  <data name="gsWindowsStillOpen" xml:space="preserve">
+    <value>zWindows Still Open</value>
+  </data>
   <data name="gsWizards" xml:space="preserve">
     <value>zWizards</value>
   </data>
   <data name="gsXTEChart" xml:space="preserve">
     <value>zXTE Chart</value>
+  </data>
+  <data name="h_FieldData" xml:space="preserve">
+    <value>zField Data</value>
   </data>
 </root>

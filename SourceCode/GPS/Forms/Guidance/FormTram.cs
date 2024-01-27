@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.Eventing.Reader;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -20,7 +19,6 @@ namespace AgOpenGPS
 
             this.Text = gStr.gsTramLines;
             label3.Text = gStr.gsPasses;
-            label2.Text = ((int)(0.1 * mf.m2InchOrCm)).ToString() + mf.unitsInCm;
             lblTramWidth.Text = (mf.tram.tramWidth * mf.m2FtOrM).ToString("N2") + mf.unitsFtM;
             lblSeedWidth.Text = (mf.tool.width * mf.m2FtOrM).ToString("N2") + mf.unitsFtM;
 
@@ -42,7 +40,6 @@ namespace AgOpenGPS
             lblTrack.Text = (mf.vehicle.trackWidth * mf.m2FtOrM).ToString("N2") + mf.unitsFtM;
 
             mf.tool.halfWidth = (mf.tool.width - mf.tool.overlap) / 2.0;
-            lblToolWidthHalf.Text = (mf.tool.halfWidth * mf.m2FtOrM).ToString("N2") + mf.unitsFtM;
 
             //if off, turn it on because they obviously want a tram.
             mf.tram.generateMode = 0;
@@ -53,15 +50,20 @@ namespace AgOpenGPS
                 mf.tram.generateMode = 1;
             else if (mf.tram.tramList.Count == 0)
                 mf.tram.generateMode = 2;
+            else mf.tram.generateMode = 0;
+
+            if (mf.bnd.bndList.Count == 0) mf.tram.generateMode = 1;
 
             switch (mf.tram.generateMode)
             {
                 case 0:
                     btnMode.BackgroundImage = Properties.Resources.TramAll;
                     break;
+
                 case 1:
                     btnMode.BackgroundImage = Properties.Resources.TramLines;
                     break;
+
                 case 2:
                     btnMode.BackgroundImage = Properties.Resources.TramOuter;
                     break;
@@ -69,7 +71,10 @@ namespace AgOpenGPS
                 default:
                     break;
             }
-            mf.CloseTopMosts();
+
+            if (mf.bnd.bndList.Count == 0) btnMode.Enabled = false;
+
+                mf.CloseTopMosts();
 
             if (mf.tram.tramList.Count > 0 || mf.tram.tramBndOuterArr.Count > 0)
             {
@@ -85,45 +90,6 @@ namespace AgOpenGPS
         {
             if (isSaving)
             {
-                if (isCurve)
-                {
-                    if (mf.curve.refList.Count > 0)
-                    {
-                        //array number is 1 less since it starts at zero
-                        int idx = mf.curve.numCurveLineSelected - 1;
-
-                        //mf.curve.curveArr[idx].Name = textBox1.Text.Trim();
-                        if (idx >= 0)
-                        {
-                            mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;
-                            mf.curve.curveArr[idx].curvePts.Clear();
-                            //write out the Curve Points
-                            foreach (vec3 item in mf.curve.refList)
-                            {
-                                mf.curve.curveArr[idx].curvePts.Add(item);
-                            }
-                        }
-
-                        //save entire list
-                        mf.FileSaveCurveLines();
-                        mf.curve.moveDistance = 0;
-                    }
-                }
-                else
-                {
-                    int idx = mf.ABLine.numABLineSelected - 1;
-
-                    if (idx >= 0)
-                    {
-                        mf.ABLine.lineArr[idx].heading = mf.ABLine.abHeading;
-                        //calculate the new points for the reference line and points
-                        mf.ABLine.lineArr[idx].origin.easting = mf.ABLine.refPoint1.easting;
-                        mf.ABLine.lineArr[idx].origin.northing = mf.ABLine.refPoint1.northing;
-                    }
-
-                    mf.FileSaveABLines();
-                    mf.ABLine.moveDistance = 0;
-                }
             }
             else
             {
@@ -136,6 +102,7 @@ namespace AgOpenGPS
             }
 
             mf.FileSaveTram();
+            mf.PanelUpdateRightAndBottom();
             mf.FixTramModeButton();
         }
 
@@ -145,14 +112,14 @@ namespace AgOpenGPS
 
             if (isCurve)
             {
-                if (Dist != 0)
-                    mf.curve.MoveABCurve(Dist);
+                //if (Dist != 0)
+                    //mf.trk.NudgeRefCurve(Dist);
                 mf.curve.BuildTram();
             }
             else
             {
-                if (Dist != 0)
-                    mf.ABLine.MoveABLine(Dist);
+                //if (Dist != 0)
+                    //mf.trk.NudgeRefABLine(Dist);
                 mf.ABLine.BuildTram();
             }
         }
@@ -161,26 +128,6 @@ namespace AgOpenGPS
         {
             isSaving = true;
             Close();
-        }
-
-        private void btnLeft_Click(object sender, EventArgs e)
-        {
-            MoveBuildTramLine(-0.1);
-        }
-
-        private void btnRight_Click(object sender, EventArgs e)
-        {
-            MoveBuildTramLine(0.1);
-        }
-
-        private void btnAdjLeft_Click(object sender, EventArgs e)
-        {
-            MoveBuildTramLine(-mf.tool.halfWidth);
-        }
-
-        private void btnAdjRight_Click(object sender, EventArgs e)
-        {
-            MoveBuildTramLine(mf.tool.halfWidth);
         }
 
         private void nudPasses_ValueChanged(object sender, EventArgs e)
@@ -193,26 +140,53 @@ namespace AgOpenGPS
 
         private void nudPasses_Click(object sender, EventArgs e)
         {
-            mf.KeypadToNUD((NumericUpDown)sender, this);
+            mf.KeypadToNUD((NudlessNumericUpDown)sender, this);
+        }
+        private void btnUpTrams_Click(object sender, EventArgs e)
+        {
+            nudPasses.UpButton();
+        }
+
+        private void btnDnTrams_Click(object sender, EventArgs e)
+        {
+            nudPasses.DownButton();
         }
 
         private void btnSwapAB_Click(object sender, EventArgs e)
         {
-            if (isCurve)
+            if (mf.trk.gArr[mf.trk.idx].mode == (int)TrackMode.AB)
             {
-                int cnt = mf.curve.refList.Count;
+                vec2 bob = mf.trk.gArr[mf.trk.idx].ptA;
+                mf.trk.gArr[mf.trk.idx].ptA = mf.trk.gArr[mf.trk.idx].ptB;
+                mf.trk.gArr[mf.trk.idx].ptB = new vec2(bob);
+
+                mf.trk.gArr[mf.trk.idx].heading += Math.PI;
+                if (mf.trk.gArr[mf.trk.idx].heading < 0) mf.trk.gArr[mf.trk.idx].heading += glm.twoPI;
+                if (mf.trk.gArr[mf.trk.idx].heading > glm.twoPI) mf.trk.gArr[mf.trk.idx].heading -= glm.twoPI;
+
+                double abHeading = mf.trk.gArr[mf.trk.idx].heading;
+                mf.trk.gArr[mf.trk.idx].endPtA.easting = mf.trk.gArr[mf.trk.idx].ptA.easting - (Math.Sin(abHeading) * mf.ABLine.abLength);
+                mf.trk.gArr[mf.trk.idx].endPtA.northing = mf.trk.gArr[mf.trk.idx].ptA.northing - (Math.Cos(abHeading) * mf.ABLine.abLength);
+
+                mf.trk.gArr[mf.trk.idx].endPtB.easting = mf.trk.gArr[mf.trk.idx].ptB.easting + (Math.Sin(abHeading) * mf.ABLine.abLength);
+                mf.trk.gArr[mf.trk.idx].endPtB.northing = mf.trk.gArr[mf.trk.idx].ptB.northing + (Math.Cos(abHeading) * mf.ABLine.abLength);
+
+            }
+            else
+            {
+                int cnt = mf.trk.gArr[mf.trk.idx].curvePts.Count;
                 if (cnt > 0)
                 {
-                    mf.curve.refList.Reverse();
+                    mf.trk.gArr[mf.trk.idx].curvePts.Reverse();
 
                     vec3[] arr = new vec3[cnt];
                     cnt--;
-                    mf.curve.refList.CopyTo(arr);
-                    mf.curve.refList.Clear();
+                    mf.trk.gArr[mf.trk.idx].curvePts.CopyTo(arr);
+                    mf.trk.gArr[mf.trk.idx].curvePts.Clear();
 
-                    mf.curve.aveLineHeading += Math.PI;
-                    if (mf.curve.aveLineHeading < 0) mf.curve.aveLineHeading += glm.twoPI;
-                    if (mf.curve.aveLineHeading > glm.twoPI) mf.curve.aveLineHeading -= glm.twoPI;
+                    mf.trk.gArr[mf.trk.idx].heading += Math.PI;
+                    if (mf.trk.gArr[mf.trk.idx].heading < 0) mf.trk.gArr[mf.trk.idx].heading += glm.twoPI;
+                    if (mf.trk.gArr[mf.trk.idx].heading > glm.twoPI) mf.trk.gArr[mf.trk.idx].heading -= glm.twoPI;
 
                     for (int i = 1; i < cnt; i++)
                     {
@@ -220,35 +194,24 @@ namespace AgOpenGPS
                         pt3.heading += Math.PI;
                         if (pt3.heading > glm.twoPI) pt3.heading -= glm.twoPI;
                         if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                        mf.curve.refList.Add(pt3);
+                        mf.trk.gArr[mf.trk.idx].curvePts.Add(pt3);
                     }
+
+                    vec2 temp = new vec2(mf.trk.gArr[mf.trk.idx].ptA);
+
+                    (mf.trk.gArr[mf.trk.idx].ptA) = new vec2(mf.trk.gArr[mf.trk.idx].ptB);
+                    (mf.trk.gArr[mf.trk.idx].ptB) = new vec2(temp);
                 }
             }
-            else
-            {
-                mf.ABLine.abHeading += Math.PI;
-                if (mf.ABLine.abHeading > glm.twoPI) mf.ABLine.abHeading -= glm.twoPI;
 
-                mf.ABLine.refABLineP1.easting = mf.ABLine.refPoint1.easting - (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
-                mf.ABLine.refABLineP1.northing = mf.ABLine.refPoint1.northing - (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
+            mf.FileSaveTracks();
 
-                mf.ABLine.refABLineP2.easting = mf.ABLine.refPoint1.easting + (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
-                mf.ABLine.refABLineP2.northing = mf.ABLine.refPoint1.northing + (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
+            mf.tram.tramArr?.Clear();
+            mf.tram.tramList?.Clear();
+            mf.tram.tramBndOuterArr?.Clear();
+            mf.tram.tramBndInnerArr?.Clear();
 
-                mf.ABLine.refPoint2.easting = mf.ABLine.refABLineP2.easting;
-                mf.ABLine.refPoint2.northing = mf.ABLine.refABLineP2.northing;
-            }
             MoveBuildTramLine(0);
-        }
-
-        private void btnTriggerDistanceUp_MouseDown(object sender, MouseEventArgs e)
-        {
-            nudPasses.UpButton();
-        }
-
-        private void btnTriggerDistanceDn_MouseDown(object sender, MouseEventArgs e)
-        {
-            nudPasses.DownButton();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -266,9 +229,11 @@ namespace AgOpenGPS
                 case 0:
                     btnMode.BackgroundImage = Properties.Resources.TramAll;
                     break;
+
                 case 1:
                     btnMode.BackgroundImage = Properties.Resources.TramLines;
                     break;
+
                 case 2:
                     btnMode.BackgroundImage = Properties.Resources.TramOuter;
                     break;
@@ -281,6 +246,7 @@ namespace AgOpenGPS
         }
 
         #region Help
+
         private void btnAdjLeft_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             MessageBox.Show(gStr.ht_btnAdjHalfToolWidth, gStr.gsHelp);
@@ -326,21 +292,8 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.ht_btnSave, gStr.gsHelp);
         }
 
-        #endregion
+        #endregion Help
+
+
     }
 }
-
-
-/*
-            
-            MessageBox.Show(gStr, gStr.gsHelp);
-
-            DialogResult result2 = MessageBox.Show(gStr, gStr.gsHelp,
-                MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-            if (result2 == DialogResult.Yes)
-            {
-                System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=rsJMRZrcuX4");
-            }
-
-*/

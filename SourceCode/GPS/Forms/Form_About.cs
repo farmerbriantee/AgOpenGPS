@@ -39,7 +39,7 @@ namespace AgOpenGPS
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.setDisplay_isTermsAccepted = true;
+            Properties.Settings.Default.setDisplay_isTermsAccepted = false;
             Properties.Settings.Default.Save();
         }
 

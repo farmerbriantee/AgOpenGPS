@@ -241,6 +241,24 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string gsClose {
+            get {
+                return ResourceManager.GetString("gsClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close All Windows First.
+        /// </summary>
+        public static string gsCloseAllWindowsFirst {
+            get {
+                return ResourceManager.GetString("gsCloseAllWindowsFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close Field First.
         /// </summary>
         public static string gsCloseFieldFirst {
@@ -313,20 +331,11 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current (A).
+        ///   Looks up a localized string similar to Current.
         /// </summary>
         public static string gsCurrent {
             get {
                 return ResourceManager.GetString("gsCurrent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Current (A).
-        /// </summary>
-        public static string gsCurrentSensorValueLabel {
-            get {
-                return ResourceManager.GetString("gsCurrentSensorValueLabel", resourceCulture);
             }
         }
         
@@ -1213,7 +1222,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Charts.
+        ///   Looks up a localized string similar to Steer Charts.
         /// </summary>
         public static string gsSteerChart {
             get {
@@ -1317,6 +1326,15 @@ namespace AgOpenGPS {
         public static string gsWest {
             get {
                 return ResourceManager.GetString("gsWest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Still Open.
+        /// </summary>
+        public static string gsWindowsStillOpen {
+            get {
+                return ResourceManager.GetString("gsWindowsStillOpen", resourceCulture);
             }
         }
         
@@ -1758,6 +1776,19 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to First 3 numbers are Total Field Area minus Actual covered area
+        ///Then the percent of actual area overlapped
+        ///Then the Total Area minus machine travelled area. 
+        ///Time till finished based on work area
+        ///Percent completed and work rate..
+        /// </summary>
+        public static string h_FieldData {
+            get {
+                return ResourceManager.GetString("h_FieldData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ackerman Compensation Slider
         ///
         ///Ackermann steering geometry is a geometric arrangement of
@@ -2102,9 +2133,9 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel and Turn Off
+        ///   Looks up a localized string similar to Cancel
         ///
-        ///Exit the form and turn off the guidance mode. Existing lines are not deleted, it just turns them off in main display..
+        ///Exit the form and revert all changes..
         /// </summary>
         public static string ha_btnCancel {
             get {

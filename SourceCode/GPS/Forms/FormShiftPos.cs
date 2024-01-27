@@ -20,7 +20,7 @@ namespace AgOpenGPS
             label4.Text = gStr.gsSouth;
             this.Text = gStr.gsShiftGPSPosition;
             nudEast.Controls[0].Enabled = false;
-            nudNorth.Controls[0].Enabled = false;   
+            nudNorth.Controls[0].Enabled = false;
         }
 
         private void FormShiftPos_Load(object sender, EventArgs e)
@@ -76,13 +76,13 @@ namespace AgOpenGPS
 
         private void nudNorth_Click(object sender, EventArgs e)
         {
-            mf.KeypadToNUD((NumericUpDown)sender, this);
+            mf.KeypadToNUD((NudlessNumericUpDown)sender, this);
             mf.pn.fixOffset.northing = (double)nudNorth.Value / 100;
         }
 
         private void nudEast_Click(object sender, EventArgs e)
         {
-            mf.KeypadToNUD((NumericUpDown)sender, this);
+            mf.KeypadToNUD((NudlessNumericUpDown)sender, this);
             mf.pn.fixOffset.easting = (double)nudEast.Value / 100;
         }
     }

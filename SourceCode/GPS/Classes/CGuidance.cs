@@ -9,6 +9,7 @@ namespace AgOpenGPS
 
         //steer, pivot, and ref indexes
         private int sA, sB, C, pA, pB;
+
         //private int rA, rB;
 
         public double distanceFromCurrentLineSteer, distanceFromCurrentLinePivot;
@@ -34,10 +35,10 @@ namespace AgOpenGPS
             //constructor
             mf = _f;
             sideHillCompFactor = Properties.Settings.Default.setAS_sideHillComp;
-
         }
 
         #region Stanley
+
         private void DoSteerAngleCalc()
         {
             if (mf.isReverse) steerHeadingError *= -1;
@@ -72,7 +73,7 @@ namespace AgOpenGPS
             //pivotErrorTotal = pivotDistanceError + pivotDerivative;
 
             if (mf.avgSpeed > 1
-                && mf.isAutoSteerBtnOn
+                && mf.isBtnAutoSteerOn
                 && Math.Abs(derivativeDistError) < 1
                 && Math.Abs(pivotDistanceError) < 0.25)
             {
@@ -99,7 +100,7 @@ namespace AgOpenGPS
             if (steerAngleGu < -mf.vehicle.maxSteerAngle) steerAngleGu = -mf.vehicle.maxSteerAngle;
             else if (steerAngleGu > mf.vehicle.maxSteerAngle) steerAngleGu = mf.vehicle.maxSteerAngle;
 
-            //used for smooth mode 
+            //used for smooth mode
             mf.vehicle.modeActualXTE = (distanceFromCurrentLinePivot);
 
             //Convert to millimeters from meters
@@ -149,7 +150,6 @@ namespace AgOpenGPS
             vec3 steerA = new vec3(curPtA);
             vec3 steerB = new vec3(curPtB);
 
-
             //create the AB segment to offset
             steerA.easting += (Math.Sin(steerA.heading + glm.PIBy2) * (inty));
             steerA.northing += (Math.Cos(steerA.heading + glm.PIBy2) * (inty));
@@ -196,7 +196,6 @@ namespace AgOpenGPS
             DoSteerAngleCalc();
         }
 
-
         /// <summary>
         /// Find the steer angle for a curve list, curvature and integral
         /// </summary>
@@ -205,8 +204,6 @@ namespace AgOpenGPS
         /// <param name="curList">the current list of guidance points</param>
         public void StanleyGuidanceCurve(vec3 pivot, vec3 steer, ref List<vec3> curList)
         {            //calculate required steer angle
-
-
             //find the closest point roughly
             int cc = 0, dd;
             int ptCount = curList.Count;
@@ -362,7 +359,7 @@ namespace AgOpenGPS
                 //if (curvature > Math.PI) curvature -= Math.PI; else if (curvature < Math.PI) curvature += Math.PI;
                 //if (curvature > glm.PIBy2) curvature -= Math.PI; else if (curvature < -glm.PIBy2) curvature += Math.PI;
 
-                ////because of draft 
+                ////because of draft
                 //curvature = Math.Sin(curvature) * mf.vehicle.wheelbase * 0.8;
                 //pivotCurvatureOffset = (pivotCurvatureOffset * 0.7) + (curvature * 0.3);
                 //pivotCurvatureOffset = 0;
@@ -397,7 +394,6 @@ namespace AgOpenGPS
                 //steerHeadingError = Math.PI - Math.Abs(Math.Abs(pivot.heading - segHeading) - Math.PI);
                 steerHeadingError = steer.heading - steerB.heading;
 
-
                 //Fix the circular error
                 if (steerHeadingError > Math.PI) steerHeadingError -= Math.PI;
                 else if (steerHeadingError < Math.PI) steerHeadingError += Math.PI;
@@ -415,7 +411,6 @@ namespace AgOpenGPS
             }
         }
 
-        #endregion
-
+        #endregion Stanley
     }
 }

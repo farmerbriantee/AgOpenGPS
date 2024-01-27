@@ -134,7 +134,7 @@
             // 
             this.btnDeleteField.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btnDeleteField.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnDeleteField.Image = global::AgOpenGPS.Properties.Resources.skull;
+            this.btnDeleteField.Image = global::AgOpenGPS.Properties.Resources.Trash;
             this.btnDeleteField.Location = new System.Drawing.Point(46, 507);
             this.btnDeleteField.Name = "btnDeleteField";
             this.btnDeleteField.Size = new System.Drawing.Size(71, 63);
@@ -166,6 +166,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(991, 578);
             this.ControlBox = false;
             this.Controls.Add(this.label2);

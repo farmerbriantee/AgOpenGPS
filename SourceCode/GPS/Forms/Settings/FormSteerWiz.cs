@@ -33,7 +33,6 @@ namespace AgOpenGPS
             this.Text = gStr.gsAutoSteerConfiguration;
             //this.Width = 378;
             //this.Height = 462;
-
         }
 
         private void FormSteer_Load(object sender, EventArgs e)
@@ -253,7 +252,6 @@ namespace AgOpenGPS
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-
             if (isSARight)
             {
                 dist = glm.Distance(startFix, mf.pivotAxlePos);
@@ -267,7 +265,7 @@ namespace AgOpenGPS
 
                 if (cntr > 9)
                 {
-                    steerAngleRight = Math.Atan(mf.vehicle.wheelbase / ((diameter-mf.vehicle.trackWidth*0.5) / 2));
+                    steerAngleRight = Math.Atan(mf.vehicle.wheelbase / ((diameter - mf.vehicle.trackWidth * 0.5) / 2));
                     steerAngleRight = glm.toDegrees(steerAngleRight);
 
                     lblCalcSteerAngleInner.Text = steerAngleRight.ToString("N1") + "\u00B0";
@@ -490,11 +488,10 @@ namespace AgOpenGPS
                 lblPercentFS.Text = ((int)((double)mf.mc.sensorData * 0.3921568627)).ToString() + "%";
             }
 
-
             // Emulate the OGL Steer circle
             if (mf.mc.steerSwitchHigh)
                 btnSteerStatus.BackColor = Color.Red;
-            else if (mf.isAutoSteerBtnOn)
+            else if (mf.isBtnAutoSteerOn)
                 btnSteerStatus.BackColor = Color.Green;
             else
                 btnSteerStatus.BackColor = Color.Yellow;
@@ -504,7 +501,6 @@ namespace AgOpenGPS
             {
                 btnSteerStatus.BackColor = Color.Magenta;
             }
-
         }
 
         private void sideBarTimer_Tick(object sender, EventArgs e)
@@ -606,8 +602,6 @@ namespace AgOpenGPS
             SettingsIO.ExportAll(mf.vehiclesDirectory + mf.vehicleFileName + ".XML");
 
             FormSteer_Load(this, e);
-
-
         }
 
         private void btnStartWizard_Click(object sender, EventArgs e)
@@ -630,12 +624,13 @@ namespace AgOpenGPS
             Close();
         }
 
-        #endregion
+        #endregion ButtonControl
 
         #region Wizard
+
         private void nudMaxCounts_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
             {
                 if (isWizardStarted)
                 {
@@ -648,7 +643,7 @@ namespace AgOpenGPS
         private void nudPanicStopSpeed_Click(object sender, EventArgs e)
         {
             //saved on close
-            mf.KeypadToNUD((NumericUpDown)sender, this);
+            mf.KeypadToNUD((NudlessNumericUpDown)sender, this);
             mf.vehicle.panicStopSpeed = (double)nudPanicStopSpeed.Value;
         }
 
@@ -686,7 +681,6 @@ namespace AgOpenGPS
                 toSend251 = true;
                 counter251 = 0;
             }
-
         }
 
         private void cboxSteerEnable_SelectedIndexChanged(object sender, EventArgs e)
@@ -696,7 +690,6 @@ namespace AgOpenGPS
                 toSend251 = true;
                 counter251 = 0;
             }
-
         }
 
         private void cboxDanfoss_CheckedChanged(object sender, EventArgs e)
@@ -754,9 +747,7 @@ namespace AgOpenGPS
                         label61.Text = "Off at %";
                         hsbarSensor.Visible = true;
                         lblhsbarSensor.Visible = true;
-
                     }
-
                     else if (checkbox == cboxCurrentSensor)
                     {
                         cboxPressureSensor.Checked = false;
@@ -891,9 +882,10 @@ namespace AgOpenGPS
             }
         }
 
-        #endregion
+        #endregion Wizard
 
         #region Gain
+
         private void hsbarMinPWM_ValueChanged(object sender, EventArgs e)
         {
             lblMinPWM.Text = unchecked((byte)hsbarMinPWM.Value).ToString();
@@ -936,7 +928,8 @@ namespace AgOpenGPS
                 counter252 = 0;
             }
         }
-        #endregion
+
+        #endregion Gain
 
         #region WAS
 
@@ -1016,7 +1009,6 @@ namespace AgOpenGPS
             }
 
             lblCPDError.Text = "...";
-
         }
 
         private void btnStartSA_Left_Click(object sender, EventArgs e)
@@ -1042,10 +1034,9 @@ namespace AgOpenGPS
             }
 
             lblAckermannError.Text = "...";
-
         }
 
-        #endregion
+        #endregion WAS
 
         #region Stanley
 
@@ -1067,9 +1058,10 @@ namespace AgOpenGPS
             lblIntegralPercent.Text = hsbarIntegral.Value.ToString();
         }
 
-        #endregion
+        #endregion Stanley
 
         #region Pure
+
         private void hsbarIntegralPurePursuit_ValueChanged(object sender, EventArgs e)
         {
             mf.vehicle.purePursuitIntegralGain = hsbarIntegralPurePursuit.Value * 0.01;
@@ -1109,9 +1101,10 @@ namespace AgOpenGPS
             lblLookAheadMult.Text = mf.vehicle.goalPointLookAheadMult.ToString();
         }
 
-        #endregion
+        #endregion Pure
 
         #region MinMovement
+
         private void btnMinGainLeft_Click(object sender, EventArgs e)
         {
             if (CheckSteerSwitch())
@@ -1147,7 +1140,6 @@ namespace AgOpenGPS
         {
             FreeDrive(false);
             hsbarProportionalGain.Value = 40;
-
         }
 
         private void tabPGain_Enter(object sender, EventArgs e)
@@ -1181,18 +1173,17 @@ namespace AgOpenGPS
 
         private void nudWheelbase_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setVehicle_wheelbase = (double)nudWheelbase.Value * mf.inchOrCm2m;
                 mf.vehicle.wheelbase = Properties.Settings.Default.setVehicle_wheelbase;
                 Properties.Settings.Default.Save();
             }
-
         }
 
         private void nudVehicleTrack_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setVehicle_trackWidth = (double)nudVehicleTrack.Value * mf.inchOrCm2m;
                 mf.vehicle.trackWidth = Properties.Settings.Default.setVehicle_trackWidth;
@@ -1203,7 +1194,7 @@ namespace AgOpenGPS
 
         private void nudAntennaPivot_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setVehicle_antennaPivot = (double)nudAntennaPivot.Value * mf.inchOrCm2m;
                 mf.vehicle.antennaPivot = Properties.Settings.Default.setVehicle_antennaPivot;
@@ -1247,7 +1238,7 @@ namespace AgOpenGPS
 
         private void nudAntennaHeight_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setVehicle_antennaHeight = (double)nudAntennaHeight.Value * mf.inchOrCm2m;
                 mf.vehicle.antennaHeight = Properties.Settings.Default.setVehicle_antennaHeight;
@@ -1257,7 +1248,7 @@ namespace AgOpenGPS
 
         private void nudAntennaOffset_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setVehicle_antennaOffset = (double)nudAntennaOffset.Value * mf.inchOrCm2m;
                 mf.vehicle.antennaOffset = Properties.Settings.Default.setVehicle_antennaOffset;
@@ -1270,9 +1261,10 @@ namespace AgOpenGPS
             return (btnSteerStatus.BackColor == Color.Yellow);
         }
 
-        #endregion
+        #endregion MinMovement
 
         #region Free Drive
+
         private void btnFreeDrive_Click(object sender, EventArgs e)
         {
             if (mf.vehicle.isInFreeDriveMode)
@@ -1304,7 +1296,6 @@ namespace AgOpenGPS
         {
             mf.vehicle.driveFreeSteerAngle--;
             if (mf.vehicle.driveFreeSteerAngle < -40) mf.vehicle.driveFreeSteerAngle = -40;
-
         }
 
         private void btnSteerRight_Click(object sender, EventArgs e)
@@ -1332,8 +1323,7 @@ namespace AgOpenGPS
             mf.vehicle.driveFreeSteerAngle--;
             if (mf.vehicle.driveFreeSteerAngle < -40) mf.vehicle.driveFreeSteerAngle = -40;
         }
-        #endregion
+
+        #endregion Free Drive
     }
 }
-
-

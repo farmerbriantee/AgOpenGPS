@@ -26,8 +26,9 @@ namespace AgOpenGPS
                 ResetHelpBtn();
                 return;
             }
-            
-            System.Media.SystemSounds.Asterisk.Play();
+
+            //System.Media.SystemSounds.Asterisk.Play();
+            sounds.sndSectionOff.Play();
 
             //if Auto is on, turn it off
             autoBtnState = btnStates.Off;
@@ -61,7 +62,7 @@ namespace AgOpenGPS
                 return;
             }
 
-            System.Media.SystemSounds.Exclamation.Play();
+            //System.Media.SystemSounds.Exclamation.Play();
 
             //turn off manual if on
             manualBtnState = btnStates.Off;
@@ -74,12 +75,14 @@ namespace AgOpenGPS
 
                     autoBtnState = btnStates.Auto;
                     btnSectionMasterAuto.Image = Properties.Resources.SectionMasterOn;
+                    sounds.sndSectionOn.Play();
                     break;
 
                 case btnStates.Auto:
 
                     autoBtnState = btnStates.Off;
                     btnSectionMasterAuto.Image = Properties.Resources.SectionMasterOff;
+                    sounds.sndSectionOn.Play();
                     break;
             }
 
@@ -103,8 +106,8 @@ namespace AgOpenGPS
         //zone buttons
         private void btnZone1_Click(object sender, EventArgs e)
         {
-            btnStates state = GetNextState(section[tool.zoneRanges[1]-1].sectionBtnState);
-            IndividualZoneAndButtonToState(state, 0, tool.zoneRanges[1], btnZone1);
+            btnStates state = GetNextState(section[tool.zoneRanges[0]-1].sectionBtnState);
+            IndividualZoneAndButtonToState(state, 0, tool.zoneRanges[0], btnZone1);
         }
         private void btnZone2_Click(object sender, EventArgs e)
         {
@@ -297,6 +300,37 @@ namespace AgOpenGPS
         {
             //var matches = this.Controls.Find("btnZone1", true);
 
+            if (!isJobStarted)
+            {
+                btnSection1Man.Visible = false;
+                btnSection2Man.Visible = false;
+                btnSection3Man.Visible = false;
+                btnSection4Man.Visible = false;
+                btnSection5Man.Visible = false;
+                btnSection6Man.Visible = false;
+                btnSection7Man.Visible = false;
+                btnSection8Man.Visible = false;
+                btnSection9Man.Visible = false;
+                btnSection10Man.Visible = false;
+                btnSection11Man.Visible = false;
+                btnSection12Man.Visible = false;
+                btnSection13Man.Visible = false;
+                btnSection14Man.Visible = false;
+                btnSection15Man.Visible = false;
+                btnSection16Man.Visible = false;
+
+                btnZone1.Visible = false;
+                btnZone2.Visible = false;
+                btnZone3.Visible = false;
+                btnZone4.Visible = false;
+                btnZone5.Visible = false;
+                btnZone6.Visible = false;
+                btnZone7.Visible = false;
+                btnZone8.Visible = false;
+                return;
+            }
+
+
             btnZone1.Visible = false;
             btnZone2.Visible = false;
             btnZone3.Visible = false;
@@ -306,32 +340,29 @@ namespace AgOpenGPS
             btnZone7.Visible = false;
             btnZone8.Visible = false;
 
-            int oglCenter = 0;
 
-            oglCenter = statusStripLeft.Width + oglMain.Width / 2;
+            int oglCenter = isPanelABHidden ? oglCenter = oglMain.Width / 2 + 30 : statusStripLeft.Width + oglMain.Width / 2;
 
             int top = 130;
 
             int buttonMaxWidth = 400, buttonHeight = 25;
-
 
             if ((Height - oglMain.Height) < 80) //max size - buttons hid
             {
                 top = Height - 70;
                 if (panelSim.Visible == true)
                 {
-                    top = Height - 100;
-                    panelSim.Top = Height - 60;
+                    top = Height - 120;
+                    panelSim.Top = Height - 78;
                 }
-
             }
             else //buttons exposed
             {
-                top = Height - 130;
+                top = Height - 120;
                 if (panelSim.Visible == true)
                 {
-                    top = Height - 160;
-                    panelSim.Top = Height - 120;
+                    top = Height - 170;
+                    panelSim.Top = Height - 128;
                 }
             }
 
@@ -462,10 +493,37 @@ namespace AgOpenGPS
 
         public void LineUpAllZoneButtons()
         {
+            if (!isJobStarted)
+            {
+                btnSection1Man.Visible = false;
+                btnSection2Man.Visible = false;
+                btnSection3Man.Visible = false;
+                btnSection4Man.Visible = false;
+                btnSection5Man.Visible = false;
+                btnSection6Man.Visible = false;
+                btnSection7Man.Visible = false;
+                btnSection8Man.Visible = false;
+                btnSection9Man.Visible = false;
+                btnSection10Man.Visible = false;
+                btnSection11Man.Visible = false;
+                btnSection12Man.Visible = false;
+                btnSection13Man.Visible = false;
+                btnSection14Man.Visible = false;
+                btnSection15Man.Visible = false;
+                btnSection16Man.Visible = false;
 
-            int oglCenter = 0;
+                btnZone1.Visible = false;
+                btnZone2.Visible = false;
+                btnZone3.Visible = false;
+                btnZone4.Visible = false;
+                btnZone5.Visible = false;
+                btnZone6.Visible = false;
+                btnZone7.Visible = false;
+                btnZone8.Visible = false;
+                return;
+            }
 
-            oglCenter = statusStripLeft.Width + oglMain.Width / 2;
+            int oglCenter = isPanelABHidden?oglCenter = oglMain.Width / 2 + 30:statusStripLeft.Width + oglMain.Width / 2;
 
             int top = 130;
 
@@ -480,7 +538,6 @@ namespace AgOpenGPS
                     top = Height - 100;
                     panelSim.Top = Height - 60;
                 }
-
             }
             else //buttons exposed
             {
@@ -492,8 +549,8 @@ namespace AgOpenGPS
                 }
             }
 
-            if (tool.zones == 0) return;
-            btnZone1.Visible = tool.zones > 1;
+            //if (tool.zones == 0) return;
+            btnZone1.Visible = tool.zones > 0;
             btnZone2.Visible = tool.zones > 1;
             btnZone3.Visible = tool.zones > 2;
             btnZone4.Visible = tool.zones > 3;

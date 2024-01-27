@@ -84,7 +84,6 @@ namespace AgOpenGPS
                                     pn.headingTrueDual = temp + pn.headingTrueDualOffset;
                                     if (pn.headingTrueDual >= 360) pn.headingTrueDual -= 360;
                                     else if (pn.headingTrueDual < 0) pn.headingTrueDual += 360;
-                                    if (ahrs.isDualAsIMU) ahrs.imuHeading = pn.headingTrueDual;
                                 }
 
                                 //from single antenna sentences (VTG,RMC)
@@ -345,10 +344,10 @@ namespace AgOpenGPS
                     loopBackSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None,
                         epAgIO, new AsyncCallback(SendAsyncLoopData), null);
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     //WriteErrorLog("Sending UDP Message" + e.ToString());
-                    //MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -359,16 +358,16 @@ namespace AgOpenGPS
             {
                 loopBackSocket.EndSend(asyncResult);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("SendData Error: " + ex.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("SendData Error: " + ex.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         //for moving and sizing borderless window
         protected override void WndProc(ref Message m)
         {
-            const int RESIZE_HANDLE_SIZE = 10;
+            const int RESIZE_HANDLE_SIZE = 7;
 
             switch (m.Msg)
             {
@@ -440,7 +439,7 @@ namespace AgOpenGPS
 
             if ((char)keyData == hotkeys[2])
             {
-                CloseCurrentJob();
+                FileSaveEverythingBeforeClosingField();
                 return true;    // indicate that you handled this keystroke
             }
 
@@ -464,31 +463,31 @@ namespace AgOpenGPS
 
             if ((char)keyData == hotkeys[6]) // Snap/Prioritu click
             {
-                btnSnapToPivot.PerformClick();
+                trk.SnapToPivot();
                 return true;    // indicate that you handled this keystroke
             }
 
             if ((char)keyData == hotkeys[7])
             {
-                if (ABLine.isBtnABLineOn)
-                    ABLine.MoveABLine((double)Properties.Settings.Default.setAS_snapDistance * -0.01);
-                else
-                    curve.MoveABCurve(((double)Properties.Settings.Default.setAS_snapDistance * -0.01));
+                if (trk.idx > -1) //
+                {
+                    trk.NudgeTrack((double)Properties.Settings.Default.setAS_snapDistance * -0.01);
+                }
                 return true;
             }
 
             if ((char)keyData == hotkeys[8])
             {
-                if (ABLine.isBtnABLineOn)
-                    ABLine.MoveABLine(((double)Properties.Settings.Default.setAS_snapDistance * 0.01));
-                else
-                    curve.MoveABCurve(((double)Properties.Settings.Default.setAS_snapDistance * 0.01));
+                if (trk.idx > -1)
+                {
+                    trk.NudgeTrack((double)Properties.Settings.Default.setAS_snapDistance * 0.01);
+                }
                 return true;
             }
 
             if ((char)keyData == (hotkeys[9])) //open the vehicle Settings
             {
-                stripBtnConfig.PerformClick();
+                btnConfig.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 
@@ -601,23 +600,31 @@ namespace AgOpenGPS
                 return true;
             }
 
+            //UTurn
+            if (keyData == Keys.U)
+            {
+                sim.headingTrue += Math.PI;
+                ABLine.isABValid = false;
+                curve.isCurveValid = false;
+                if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
+            }
+
             //speed up
             if (keyData == Keys.Up)
             {
-                if (sim.stepDistance < 0.04 && sim.stepDistance > -0.04) sim.stepDistance += 0.001;
-                else sim.stepDistance += 0.02;
-                if (sim.stepDistance > 1.9) sim.stepDistance = 1.9;
-                hsbarStepDistance.Value = (int)(sim.stepDistance * 5 * gpsHz);
+                if (sim.stepDistance < 0.4 && sim.stepDistance > -0.36) sim.stepDistance += 0.01;
+                else 
+                    sim.stepDistance += 0.04;
+                if (sim.stepDistance > 4) sim.stepDistance = 4;
                 return true;
             }
 
             //slow down
             if (keyData == Keys.Down)
             {
-                if (sim.stepDistance < 0.04 && sim.stepDistance > -0.04) sim.stepDistance -= 0.001;
-                else sim.stepDistance -= 0.02;
+                if (sim.stepDistance < 0.2 && sim.stepDistance > -0.04) sim.stepDistance -= 0.01;
+                else sim.stepDistance -= 0.04;
                 if (sim.stepDistance < -0.35) sim.stepDistance = -0.35;
-                hsbarStepDistance.Value = (int)(sim.stepDistance * 5 * gpsHz);
                 return true;
             }
 
@@ -625,7 +632,6 @@ namespace AgOpenGPS
             if (keyData == Keys.OemPeriod)
             {
                 sim.stepDistance = 0;
-                hsbarStepDistance.Value = 0;
                 return true;
             }
 
@@ -678,11 +684,19 @@ namespace AgOpenGPS
             if (keyData == Keys.OemQuotes)
             {
                 sim.stepDistance = 0;
-                hsbarStepDistance.Value = 0;
                 return true;
             }
 
+            if (keyData == (Keys.F6)) // Fast/Normal Sim
+            {
+                if (timerSim.Enabled)
+                {
+                    if (timerSim.Interval < 20) timerSim.Interval = 93;
+                    else timerSim.Interval = 15;
+                }
 
+                return true;    // indicate that you handled this keystroke
+            }
 
             // Call the base class
             return base.ProcessCmdKey(ref msg, keyData);

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="gsCloseAllWindowsFirst" xml:space="preserve">
+    <value>Por favor, cierre primero todas las ventanas</value>
+  </data>
   <data name="gsABCurve" xml:space="preserve">
     <value>Curva AB</value>
   </data>
@@ -177,6 +180,9 @@
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>Seleccione o cree otro</value>
   </data>
+  <data name="gsClose" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Antes cierre el fichero</value>
   </data>
@@ -202,10 +208,7 @@
     <value>Crear nueva Parcela</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Actual (A)</value>
-  </data>
-  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
-    <value>Actual (A)</value>
+    <value>Actual</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>Fichero de línea curva corrupto</value>
@@ -495,9 +498,6 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Empezar nueva Parcela</value>
   </data>
-  <data name="gsSteerChart" xml:space="preserve">
-    <value>Gráfico de dirección</value>
-  </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>Asistente de configuración de guiado</value>
   </data>
@@ -530,6 +530,9 @@
   </data>
   <data name="gsWest" xml:space="preserve">
     <value>Oeste</value>
+  </data>
+  <data name="gsWindowsStillOpen" xml:space="preserve">
+    <value>Hay ventanas abiertas</value>
   </data>
   <data name="gsWizards" xml:space="preserve">
     <value>Asistentes de configuración</value>
@@ -884,9 +887,7 @@ Agrega una marca de tiempo al nombre de la paralela actual. Ayuda a que el nombr
 Hace una línea entre el punto A y el punto B. Se calcula el rumbo de la línea. Puede modificar la línea introduciendo un rumbo o tocando B tantas veces como desee.</value>
   </data>
   <data name="ha_btnCancel" xml:space="preserve">
-    <value>Cancelar y Apagar
-
-Sale del formulario y apaga el autoguiado. Las líneas existentes no se eliminan, simplemente las desactiva en la pantalla principal.</value>
+    <value>Salga del formulario y revierta todos los cambios.</value>
   </data>
   <data name="ha_btnCancelCreate" xml:space="preserve">
     <value>Cancelar y Volver

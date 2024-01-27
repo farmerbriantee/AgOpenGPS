@@ -455,7 +455,7 @@ namespace AgOpenGPS
 
         #endregion
 
-        private NumericUpDown nudCutoffSpeed;
+        private NudlessNumericUpDown nudCutoffSpeed;
         private Label lblTurnOffBelowUnits;
         private PictureBox pictureBox11;
     }

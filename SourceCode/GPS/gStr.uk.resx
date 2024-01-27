@@ -177,6 +177,12 @@
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>Вибер.або побуд.інше</value>
   </data>
+  <data name="gsClose" xml:space="preserve">
+    <value>завершувати</value>
+  </data>
+  <data name="gsCloseAllWindowsFirst" xml:space="preserve">
+    <value>Спочатку закрийте всі вікна</value>
+  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Спершу закрити поле</value>
   </data>
@@ -202,10 +208,7 @@
     <value>Створ.нове поле</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Поточна (А)</value>
-  </data>
-  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
-    <value>Поточна (А)</value>
+    <value>Поточна</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>Файл Кривої Лінії Пошкоджено</value>
@@ -495,9 +498,6 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Почати нов. поле</value>
   </data>
-  <data name="gsSteerChart" xml:space="preserve">
-    <value>Кермо</value>
-  </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>Майстер рульового управління</value>
   </data>
@@ -530,6 +530,9 @@
   </data>
   <data name="gsWest" xml:space="preserve">
     <value>Захід</value>
+  </data>
+  <data name="gsWindowsStillOpen" xml:space="preserve">
+    <value>Windows все ще відкриті</value>
   </data>
   <data name="gsWizards" xml:space="preserve">
     <value>Майстер Налаштування</value>
@@ -899,9 +902,7 @@ CPD збільшується, колеса повертаються далі н�
 Будує лінію між заданими точками A і B. Напрямок лінії обчислюється. Ви можете змінити лінію, ввівши заголовок або натискаючи B так часто, як вам потрібно.</value>
   </data>
   <data name="ha_btnCancel" xml:space="preserve">
-    <value>Скасування та вимкнення
-
-Вийдіть з форми і вимкніть режим наведення. Існуючі лінії не видаляються, вони просто вимикаються на головному екрані.</value>
+    <value>Вийдіть із форми та скасуйте всі зміни.</value>
   </data>
   <data name="ha_btnCancelCreate" xml:space="preserve">
     <value>Скасувати і повернутися

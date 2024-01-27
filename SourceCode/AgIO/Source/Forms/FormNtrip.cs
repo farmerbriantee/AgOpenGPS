@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO.Ports;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -14,7 +13,8 @@ namespace AgIO
     {
         //class variables
         private readonly FormLoop mf;
-        private bool ntripStatusChanged= false;
+
+        private bool ntripStatusChanged = false;
 
         public FormNtrip(Form callingForm)
         {
@@ -56,7 +56,7 @@ namespace AgIO
         {
             cboxIsNTRIPOn.Checked = Properties.Settings.Default.setNTRIP_isOn;
 
-            if (!cboxIsNTRIPOn.Checked) tabControl1.Enabled = false;    
+            if (!cboxIsNTRIPOn.Checked) tabControl1.Enabled = false;
             string hostName = Dns.GetHostName(); // Retrieve the Name of HOST
             tboxHostName.Text = hostName;
 
@@ -71,7 +71,6 @@ namespace AgIO
 
             tboxCasterIP.Text = Properties.Settings.Default.setNTRIP_casterIP;
             nudCasterPort.Value = Properties.Settings.Default.setNTRIP_casterPort;
-
 
             tboxUserName.Text = Properties.Settings.Default.setNTRIP_userName;
             tboxUserPassword.Text = Properties.Settings.Default.setNTRIP_userPassword;
@@ -145,11 +144,9 @@ namespace AgIO
                             Properties.Settings.Default.setNTRIP_casterIP = mf.broadCasterIP;
                             Properties.Settings.Default.Save();
                             break;
-
                         }
                     }
                     mf.TimedMessageBox(2500, "IP Located", "Verified: " + actualIP);
-
                 }
                 else
                 {
@@ -240,7 +237,6 @@ namespace AgIO
             mf.packetSizeNTRIP = Convert.ToInt32(comboboxPacketSize.Text);
             Properties.Settings.Default.setNTRIP_packetSize = Convert.ToInt32(comboboxPacketSize.Text);
 
-
             if (Properties.Settings.Default.setNTRIP_isOn && Properties.Settings.Default.setRadio_isOn)
             {
                 mf.TimedMessageBox(2000, "Radio also enabled", "Disable the Radio NTRIP");
@@ -326,13 +322,11 @@ namespace AgIO
                     }
                 }
             }
-
             catch (SocketException)
             {
                 mf.TimedMessageBox(2000, "Socket Exception", "Invalid IP:Port");
                 return;
             }
-
             catch (Exception)
             {
                 mf.TimedMessageBox(2000, "Exception", "Get Source Table Error");

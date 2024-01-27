@@ -27,7 +27,6 @@ namespace AgIO
                 FormTimedMessage form = new FormTimedMessage(2000, "Non Saved", "Save one First");
                 form.Show();
             }
-
             else
             {
                 foreach (FileInfo file in Files)

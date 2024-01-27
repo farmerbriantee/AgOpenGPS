@@ -12,17 +12,22 @@ namespace AgOpenGPS
 
         //Y
         public double northingMax;
+
         public double northingMin;
 
         //X
         public double eastingMax;
+
         public double eastingMin;
-        
+
         //Y
         public double northingMaxGeo;
+
         public double northingMinGeo;
+
         //X
         public double eastingMaxGeo;
+
         public double eastingMinGeo;
 
         public double GridSize = 4000;
@@ -83,10 +88,10 @@ namespace AgOpenGPS
                     GL.Vertex3(eastingMinGeo, northingMinGeo, 0.0);
                     GL.TexCoord2(1, 1);
                     GL.Vertex3(eastingMaxGeo, northingMinGeo, 0.0);
-                    
+
                     GL.End();
-                }              
-                    GL.Disable(EnableCap.Texture2D);
+                }
+                GL.Disable(EnableCap.Texture2D);
             }
             else
             {
@@ -126,7 +131,7 @@ namespace AgOpenGPS
 
             if (mf.isDay)
             {
-                GL.Color3(0.5, 0.5, 0.5);
+                GL.Color3(0.35, 0.35, 0.35);
             }
             else
             {

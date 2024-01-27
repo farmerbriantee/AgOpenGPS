@@ -25,7 +25,7 @@ namespace AgOpenGPS
     /// </summary>
     ///
 
-        public struct vec3
+    public struct vec3
     {
         public double easting;
         public double northing;
@@ -91,7 +91,6 @@ namespace AgOpenGPS
         //}
     }
 
-
     public struct vecFix2Fix
     {
         public double easting; //easting
@@ -107,7 +106,6 @@ namespace AgOpenGPS
             this.isSet = _isSet;
         }
     }
-
 
     //
 
@@ -140,6 +138,14 @@ namespace AgOpenGPS
             this.easting = easting;
             this.northing = northing;
         }
+
+        public vec2(vec2 v)
+        {
+            easting = v.easting;
+            northing = v.northing;
+        }
+
+
 
         public static vec2 operator -(vec2 lhs, vec2 rhs)
         {

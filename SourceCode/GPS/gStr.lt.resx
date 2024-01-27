@@ -177,6 +177,9 @@
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>Pasirinkite arba sukurkite kitą</value>
   </data>
+  <data name="gsClose" xml:space="preserve">
+    <value>Baigti</value>
+  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Pirmiausia uždaryti lauką</value>
   </data>
@@ -202,10 +205,7 @@
     <value>Kurti naują lauką</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Srovė (A)</value>
-  </data>
-  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
-    <value>Srovė (A)</value>
+    <value>Srovė</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>Kreivės linijos failas sugadintas</value>
@@ -494,9 +494,6 @@
   </data>
   <data name="gsStartNewField" xml:space="preserve">
     <value>Pradėti naują lauką</value>
-  </data>
-  <data name="gsSteerChart" xml:space="preserve">
-    <value>Vairavimo diagrama</value>
   </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>Vairavimo vedlys</value>

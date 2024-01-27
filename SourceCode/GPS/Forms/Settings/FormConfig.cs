@@ -1,10 +1,7 @@
 ﻿//Please, if you use this, share the improvements
 
-using AgOpenGPS.Properties;
-using OpenTK.Graphics.OpenGL;
 using System;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -14,7 +11,7 @@ namespace AgOpenGPS
         //class variables
         private readonly FormGPS mf = null;
 
-        bool isClosing = false;
+        private bool isClosing = false;
 
         //constructor
         public FormConfig(Form callingForm)
@@ -32,6 +29,7 @@ namespace AgOpenGPS
             nudTrailingHitchLength.Controls[0].Enabled = false;
             nudDrawbarLength.Controls[0].Enabled = false;
             nudTankHitch.Controls[0].Enabled = false;
+            nudTractorHitchLength.Controls[0].Enabled = false;
 
             nudLookAhead.Controls[0].Enabled = false;
             nudLookAheadOff.Controls[0].Enabled = false;
@@ -46,22 +44,21 @@ namespace AgOpenGPS
             nudAntennaPivot.Controls[0].Enabled = false;
             nudVehicleTrack.Controls[0].Enabled = false;
             nudSnapDistance.Controls[0].Enabled = false;
-            nudABLength.Controls[0].Enabled = false;
             nudWheelbase.Controls[0].Enabled = false;
             nudLineWidth.Controls[0].Enabled = false;
 
             nudMinCoverage.Controls[0].Enabled = false;
             nudDefaultSectionWidth.Controls[0].Enabled = false;
 
-            nudSection1.Controls[0].Enabled = false;
-            nudSection2.Controls[0].Enabled = false;
-            nudSection3.Controls[0].Enabled = false;
-            nudSection4.Controls[0].Enabled = false;
-            nudSection5.Controls[0].Enabled = false;
-            nudSection6.Controls[0].Enabled = false;
-            nudSection7.Controls[0].Enabled = false;
-            nudSection8.Controls[0].Enabled = false;
-            nudSection9.Controls[0].Enabled = false;
+            nudSection01.Controls[0].Enabled = false;
+            nudSection02.Controls[0].Enabled = false;
+            nudSection03.Controls[0].Enabled = false;
+            nudSection04.Controls[0].Enabled = false;
+            nudSection05.Controls[0].Enabled = false;
+            nudSection06.Controls[0].Enabled = false;
+            nudSection07.Controls[0].Enabled = false;
+            nudSection08.Controls[0].Enabled = false;
+            nudSection09.Controls[0].Enabled = false;
             nudSection10.Controls[0].Enabled = false;
             nudSection11.Controls[0].Enabled = false;
             nudSection12.Controls[0].Enabled = false;
@@ -70,8 +67,6 @@ namespace AgOpenGPS
             nudSection15.Controls[0].Enabled = false;
             nudSection16.Controls[0].Enabled = false;
             nudNumberOfSections.Controls[0].Enabled = false;
-
-            nudStartSpeed.Controls[0].Enabled = false;
 
             nudZone1To.Controls[0].Enabled = false;
             nudZone2To.Controls[0].Enabled = false;
@@ -95,79 +90,36 @@ namespace AgOpenGPS
             nudDualHeadingOffset.Controls[0].Enabled = false;
 
             nudMaxAngularVelocity.Controls[0].Enabled = false;
-            
+
             nudGuidanceSpeedLimit.Controls[0].Enabled = false;
             nudMaxSteerSpeed.Controls[0].Enabled = false;
             nudMinSteerSpeed.Controls[0].Enabled = false;
+
+            nudOverlap.Controls[0].Enabled = false;
+            nudOffset.Controls[0].Enabled = false;
+
+            nudTrailingToolToPivotLength.Controls[0].Enabled = false;
         }
 
         private void FormConfig_Load(object sender, EventArgs e)
         {
-            //seince we rest, save current state
+            //since we reset, save current state
             mf.SaveFormGPSWindowSettings();
 
-            if (mf.isMetric)
-            {
-                lblInchesCm.Text = gStr.gsCentimeters;
-                lblInchCm2.Text = gStr.gsCentimeters;
-                lblFeetMeters.Text = gStr.gsMeters;
-                lblSecTotalWidthFeet.Visible = false;
-                lblSecTotalWidthInches.Visible = false;
-                lblSecTotalWidthMeters.Visible = true;
-            }
-            else
-            {
-                lblInchesCm.Text = gStr.gsInches;
-                lblInchCm2.Text = gStr.gsInches;
-                lblFeetMeters.Text = "Feet";
-                lblSecTotalWidthFeet.Visible = true;
-                lblSecTotalWidthInches.Visible = true;
-                lblSecTotalWidthMeters.Visible = false;
-
-                //metric or imp on spinners min/maxes
-                FixMinMaxSpinners();
-            }
-
-            //update the first child form summary data items
-            UpdateSummary();
+            //metric or imp on spinners min/maxes
+            if (!mf.isMetric)  FixMinMaxSpinners();            
 
             //the pick a saved vehicle box
             UpdateVehicleListView();
 
-            //the tool size in bottom panel
-            if (mf.isMetric)
-            {
-                lblSecTotalWidthMeters.Text = (mf.tool.width * 100) + " cm";
-            }
-            else
-            {
-                double toFeet = mf.tool.width * 100 * 0.0328084;
-                lblSecTotalWidthFeet.Text = Convert.ToString((int)toFeet) + "'";
-                double temp = Math.Round((toFeet - Math.Truncate(toFeet)) * 12, 0);
-                lblSecTotalWidthInches.Text = Convert.ToString(temp) + '"';
-            }
-
-            chkDisplaySky.Checked = mf.isSkyOn;
-            chkDisplayBrightness.Checked = mf.isBrightnessOn;
-            chkDisplayFloor.Checked = mf.isTextureOn;
-            chkDisplayGrid.Checked = mf.isGridOn;
-            chkDisplaySpeedo.Checked = mf.isSpeedoOn;
-            chkDisplayDayNight.Checked = mf.isAutoDayNight;
-            chkDisplayStartFullScreen.Checked = Properties.Settings.Default.setDisplay_isStartFullScreen;
-            chkDisplayExtraGuides.Checked = mf.isSideGuideLines;
-            chkSvennArrow.Checked = mf.isSvennArrowOn;
-            chkDisplayLogNMEA.Checked = mf.isLogNMEA;
-            chkDisplayPolygons.Checked = mf.isDrawPolygons;
-            chkDisplayLightbar.Checked = mf.isLightbarOn;
-            chkDisplayKeyboard.Checked = mf.isKeyboardOn;
-
-            if (mf.isMetric) rbtnDisplayMetric.Checked = true;
-            else rbtnDisplayImperial.Checked = true;
+            tabTSections_Enter(this, e);
+            SectionFeetInchesTotalWidthLabelUpdate();
 
             tab1.SelectedTab = tabSummary;
             tboxVehicleNameSave.Focus();
 
             label29.Text = gStr.gsSaveAs;
+            UpdateSummary();
             //label3.Text = gStr.gsCurrent;
         }
 
@@ -178,7 +130,6 @@ namespace AgOpenGPS
                 e.Cancel = true;
                 return;
             }
-            SaveDisplaySettings();
 
             //reload all the settings from default and user.config
             mf.LoadSettings();
@@ -197,6 +148,9 @@ namespace AgOpenGPS
 
             nudTrailingHitchLength.Maximum = Math.Round(nudTrailingHitchLength.Maximum / 2.54M);
             nudTrailingHitchLength.Minimum = Math.Round(nudTrailingHitchLength.Minimum / 2.54M);
+
+            nudTractorHitchLength.Maximum = Math.Round(nudTractorHitchLength.Maximum / 2.54M);
+            nudTractorHitchLength.Minimum = Math.Round(nudTractorHitchLength.Minimum / 2.54M);
 
             nudSnapDistance.Maximum = Math.Round(nudSnapDistance.Maximum / 2.54M);
             nudSnapDistance.Minimum = Math.Round(nudSnapDistance.Minimum / 2.54M);
@@ -219,24 +173,24 @@ namespace AgOpenGPS
             nudDefaultSectionWidth.Maximum = Math.Round(nudDefaultSectionWidth.Maximum / 2.54M);
             nudDefaultSectionWidth.Minimum = Math.Round(nudDefaultSectionWidth.Minimum / 3.0M);
 
-            nudSection1.Maximum = Math.Round(nudSection1.Maximum / 2.54M);
-            nudSection1.Minimum = Math.Round(nudSection1.Minimum / 2.54M);
-            nudSection2.Maximum = Math.Round(nudSection2.Maximum / 2.54M);
-            nudSection2.Minimum = Math.Round(nudSection2.Minimum / 2.54M);
-            nudSection3.Maximum = Math.Round(nudSection3.Maximum / 2.54M);
-            nudSection3.Minimum = Math.Round(nudSection3.Minimum / 2.54M);
-            nudSection4.Maximum = Math.Round(nudSection4.Maximum / 2.54M);
-            nudSection4.Minimum = Math.Round(nudSection4.Minimum / 2.54M);
-            nudSection5.Maximum = Math.Round(nudSection5.Maximum / 2.54M);
-            nudSection5.Minimum = Math.Round(nudSection5.Minimum / 2.54M);
-            nudSection6.Maximum = Math.Round(nudSection6.Maximum / 2.54M);
-            nudSection6.Minimum = Math.Round(nudSection6.Minimum / 2.54M);
-            nudSection7.Maximum = Math.Round(nudSection7.Maximum / 2.54M);
-            nudSection7.Minimum = Math.Round(nudSection7.Minimum / 2.54M);
-            nudSection8.Maximum = Math.Round(nudSection8.Maximum / 2.54M);
-            nudSection8.Minimum = Math.Round(nudSection8.Minimum / 2.54M);
-            nudSection9.Maximum = Math.Round(nudSection9.Maximum / 2.54M);
-            nudSection9.Minimum = Math.Round(nudSection9.Minimum / 2.54M);
+            nudSection01.Maximum = Math.Round(nudSection01.Maximum / 2.54M);
+            nudSection01.Minimum = Math.Round(nudSection01.Minimum / 2.54M);
+            nudSection02.Maximum = Math.Round(nudSection02.Maximum / 2.54M);
+            nudSection02.Minimum = Math.Round(nudSection02.Minimum / 2.54M);
+            nudSection03.Maximum = Math.Round(nudSection03.Maximum / 2.54M);
+            nudSection03.Minimum = Math.Round(nudSection03.Minimum / 2.54M);
+            nudSection04.Maximum = Math.Round(nudSection04.Maximum / 2.54M);
+            nudSection04.Minimum = Math.Round(nudSection04.Minimum / 2.54M);
+            nudSection05.Maximum = Math.Round(nudSection05.Maximum / 2.54M);
+            nudSection05.Minimum = Math.Round(nudSection05.Minimum / 2.54M);
+            nudSection06.Maximum = Math.Round(nudSection06.Maximum / 2.54M);
+            nudSection06.Minimum = Math.Round(nudSection06.Minimum / 2.54M);
+            nudSection07.Maximum = Math.Round(nudSection07.Maximum / 2.54M);
+            nudSection07.Minimum = Math.Round(nudSection07.Minimum / 2.54M);
+            nudSection08.Maximum = Math.Round(nudSection08.Maximum / 2.54M);
+            nudSection08.Minimum = Math.Round(nudSection08.Minimum / 2.54M);
+            nudSection09.Maximum = Math.Round(nudSection09.Maximum / 2.54M);
+            nudSection09.Minimum = Math.Round(nudSection09.Minimum / 2.54M);
             nudSection10.Maximum = Math.Round(nudSection10.Maximum / 2.54M);
             nudSection10.Minimum = Math.Round(nudSection10.Minimum / 2.54M);
             nudSection11.Maximum = Math.Round(nudSection11.Maximum / 2.54M);
@@ -262,8 +216,13 @@ namespace AgOpenGPS
             nudTurnDistanceFromBoundary.Minimum = Math.Round(nudTurnDistanceFromBoundary.Minimum * 3.28M);
             nudTurnDistanceFromBoundary.Maximum = Math.Round(nudTurnDistanceFromBoundary.Maximum * 3.28M);
 
-            nudABLength.Minimum = Math.Round(nudABLength.Minimum * 3.28M);
-            nudABLength.Maximum = Math.Round(nudABLength.Maximum * 3.28M);
+            nudOffset.Maximum = Math.Round(nudOffset.Maximum / 2.54M);
+            nudOffset.Minimum = Math.Round(nudOffset.Minimum / 2.54M);
+            nudOverlap.Maximum = Math.Round(nudOverlap.Maximum / 2.54M);
+            nudOverlap.Minimum = Math.Round(nudOverlap.Minimum / 2.54M);
+
+            nudTrailingToolToPivotLength.Maximum = Math.Round(nudTrailingToolToPivotLength.Maximum / 2.54M);
+            nudTrailingToolToPivotLength.Minimum = Math.Round(nudTrailingToolToPivotLength.Minimum / 2.54M);
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -274,29 +233,13 @@ namespace AgOpenGPS
 
         private void tabSummary_Enter(object sender, EventArgs e)
         {
-            chkDisplaySky.Checked = mf.isSkyOn;
-            chkDisplayBrightness.Checked = mf.isBrightnessOn;
-            chkDisplayFloor.Checked = mf.isTextureOn;
-            chkDisplayGrid.Checked = mf.isGridOn;
-            chkDisplaySpeedo.Checked = mf.isSpeedoOn;
-            chkDisplayDayNight.Checked = mf.isAutoDayNight;
-            chkDisplayStartFullScreen.Checked = Properties.Settings.Default.setDisplay_isStartFullScreen; 
-            chkSvennArrow.Checked = mf.isSvennArrowOn;
-            chkDisplayExtraGuides.Checked = mf.isSideGuideLines;
-            chkDisplayLogNMEA.Checked = mf.isLogNMEA;
-            chkDisplayPolygons.Checked = mf.isDrawPolygons;
-            chkDisplayLightbar.Checked = mf.isLightbarOn;
-            chkDisplayKeyboard.Checked = mf.isKeyboardOn;
-
-            if (mf.isMetric) rbtnDisplayMetric.Checked = true;
-            else rbtnDisplayImperial.Checked = true;
-
+            SectionFeetInchesTotalWidthLabelUpdate();
             lblSummaryVehicleName.Text = Properties.Settings.Default.setVehicle_vehicleName;
+            UpdateSummary();
         }
 
         private void tabSummary_Leave(object sender, EventArgs e)
         {
-            SaveDisplaySettings();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -313,6 +256,50 @@ namespace AgOpenGPS
                 btnVehicleLoad.Enabled = false;
                 btnVehicleDelete.Enabled = false;
             }
+        }
+
+        private void tabDisplay_Enter(object sender, EventArgs e)
+        {
+            chkDisplayBrightness.Checked = mf.isBrightnessOn;
+            chkDisplayFloor.Checked = mf.isTextureOn;
+            chkDisplayGrid.Checked = mf.isGridOn;
+            chkDisplaySpeedo.Checked = mf.isSpeedoOn;
+            chkDisplayStartFullScreen.Checked = Properties.Settings.Default.setDisplay_isStartFullScreen;
+            chkSvennArrow.Checked = mf.isSvennArrowOn;
+            chkDisplayExtraGuides.Checked = mf.isSideGuideLines;
+            chkDisplayLogNMEA.Checked = mf.isLogNMEA;
+            chkDisplayPolygons.Checked = mf.isDrawPolygons;
+            chkDisplayLightbar.Checked = mf.isLightbarOn;
+            chkDisplayKeyboard.Checked = mf.isKeyboardOn;
+
+            if (mf.isMetric) rbtnDisplayMetric.Checked = true;
+            else rbtnDisplayImperial.Checked = true;
+        }
+
+        private void tabDisplay_Leave(object sender, EventArgs e)
+        {
+            SaveDisplaySettings();
+        }
+
+        private void rbtnDisplayImperial_Click(object sender, EventArgs e)
+        {
+            mf.TimedMessageBox(2000, "Units Set", "Imperial");
+            mf.isMetric = false;
+            Properties.Settings.Default.setMenu_isMetric = mf.isMetric;
+            Properties.Settings.Default.Save();
+            isClosing = true;
+            Close();
+        }
+
+        private void rbtnDisplayMetric_Click(object sender, EventArgs e)
+        {
+            mf.TimedMessageBox(2000, "Units Set", "Metric");
+            mf.isMetric = true;
+            Properties.Settings.Default.setMenu_isMetric = mf.isMetric;
+            Properties.Settings.Default.Save();
+            isClosing = true;
+            Close();
+            //FormConfig_Load(this, e);
         }
 
     }

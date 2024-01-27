@@ -120,7 +120,7 @@ namespace AgOpenGPS
                     continue;
                 }
                 delta += (fenceLine[i - 1].heading - fenceLine[i].heading);
-                if (Math.Abs(delta) > 0.01)
+                if (Math.Abs(delta) > 0.005)
                 {
                     fenceLineEar.Add(new vec2(fenceLine[i].easting, fenceLine[i].northing));
                     delta = 0;

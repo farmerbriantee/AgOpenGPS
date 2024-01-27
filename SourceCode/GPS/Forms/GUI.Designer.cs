@@ -9,6 +9,7 @@ using System.Globalization;
 using System.IO;
 using System.Media;
 using System.Reflection;
+using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
@@ -20,6 +21,7 @@ namespace AgOpenGPS
     {
         //ABLines directory
         public string ablinesDirectory;
+        public string fieldData, guidanceLineText;
 
         //colors for sections and field background
         public byte flagColor = 0;
@@ -28,7 +30,7 @@ namespace AgOpenGPS
         public int lightbarCmPerPixel =2;
 
         //polygon mode for section drawing
-        public bool isDrawPolygons = false;
+        public bool isDrawPolygons = false, isPauseFieldTextCounter = false;
 
         public CFeatureSettings featureSettings = new CFeatureSettings();
 
@@ -48,10 +50,10 @@ namespace AgOpenGPS
 
         //Is it in 2D or 3D, metric or imperial, display lightbar, display grid etc
         public bool isMetric = true, isLightbarOn = true, isGridOn, isFullScreen;
-        public bool isUTurnAlwaysOn, isCompassOn, isSpeedoOn, isAutoDayNight, isSideGuideLines = true;
+        public bool isUTurnAlwaysOn, isCompassOn, isSpeedoOn, isSideGuideLines = true;
         public bool isPureDisplayOn = true, isSkyOn = true, isRollMeterOn = false, isTextureOn = true;
         public bool isDay = true, isDayTime = true, isBrightnessOn = true;
-        public bool isKeyboardOn = true, isAutoStartAgIO = true, isSvennArrowOn = true;
+        public bool isKeyboardOn = true, isAutoStartAgIO = true, isSvennArrowOn = true, isTermsAccepted = false;
 
         public bool isUTurnOn = true, isLateralOn = true;
 
@@ -62,12 +64,26 @@ namespace AgOpenGPS
         public DateTime sunrise = DateTime.Now;
         public DateTime sunset = DateTime.Now;
 
-        public bool isFlashOnOff = false;
+        public bool isFlashOnOff = false, isPanFormVisible = false;
+        public bool isPanelABHidden = false;
 
         //makes nav panel disappear after 6 seconds
-        private int navPanelCounter = 0;
+        private int navPanelCounter = 0, trackMethodPanelCounter = 0;
+        private int guideLineCounter = 0, lastGuidelineIndex;
 
         public uint sentenceCounter = 0;
+
+        private int currentFieldTextCounter = 0;
+
+        //For field saving in background
+        private int fileSaveCounter = 1;
+        private int fourSecondCounter = 0;
+        public int twoSecondCounter = 0;
+        private int oneSecondCounter = 0;
+        private int oneHalfSecondCounter = 0;
+
+        public List<int> buttonOrder = new List<int>();
+
 
 
         //Timer triggers at 125 msec
@@ -80,186 +96,269 @@ namespace AgOpenGPS
                 return;
             }
 
-            if (threeSecondCounter++ >= 12)
+            ////////////////////////////////////////////// 10 second ///////////////////////////////////////////////////////
+            //every 4 second update status
+            if (fourSecondCounter >= 4)
             {
-                threeSecondCounter = 0;
-                threeSeconds++;
-            }
-            if (oneSecondCounter++ >= 4)
-            {
-                oneSecondCounter = 0;
-                oneSecond++;
-            }
-            if (oneHalfSecondCounter++ >= 2)
-            {
-                oneHalfSecondCounter = 0;
-                oneHalfSecond++;
-            }
-            if (oneFifthSecondCounter++ >= 0)
-            {
-                oneFifthSecondCounter = 0;
-                oneFifthSecond++;
-            }
-
-            /////////////////////////////////////////////////////////   333333333333333  ////////////////////////////////////////
-            //every 3 second update status
-            if (displayUpdateThreeSecondCounter != threeSeconds)
-            {
-                //reset the counter
-                displayUpdateThreeSecondCounter = threeSeconds;
-
-                //check to make sure the grid is big enough
-                //worldGrid.checkZoomWorldGrid(pn.fix.northing, pn.fix.easting);
-
-                //hide the NAv panel in 6  secs
-                if (panelNavigation.Visible)
+                if (!isPauseFieldTextCounter)
                 {
-                    if (navPanelCounter-- < 2) panelNavigation.Visible = false;
+                    if (++currentFieldTextCounter > 4) currentFieldTextCounter = 0;
                 }
 
-                if (panelNavigation.Visible)
-                    lblHz.Text = gpsHz.ToString("N1") + " ~ " + (frameTime.ToString("N1")) + " " + FixQuality;
- 
-                lblFix.Text = FixQuality + pn.age.ToString("N1");
+                //reset the counter
+                fourSecondCounter = 0;
+
+                /*
+                //if (isJobStarted)
+                //{
+                //    if (isMetric)
+                //    {
+                //        if (bnd.bndList.Count > 0)
+                //        {
+                //            fieldData =
+                //                 fd.WorkedAreaRemainPercentage + "  "
+                //                + fd.AreaBoundaryLessInnersHectares + " - "
+                //                + fd.WorkedHectares + " = "
+                //                + fd.WorkedAreaRemainHectares + " | "
+
+                //                + fd.ActualAreaWorkedHectares + " = "
+                //                + fd.ActualRemainHectares + "  "
+                //                + fd.ActualOverlapPercent + " | "
+
+                //                + fd.TimeTillFinished + "  "
+                //                + fd.WorkRateHectares;
+                //        }
+                //        else
+                //            fieldData = "Applied: "
+                //                + fd.WorkedHectares + "  Actual: "
+                //                + fd.ActualAreaWorkedHectares + "  "
+                //                + fd.ActualOverlapPercent + "   "
+                //                + fd.WorkRateHectares;
+
+                //    }
+                //    else //imperial
+                //    {
+                //        if (bnd.bndList.Count > 0)
+                //            fieldData =
+                //                 fd.WorkedAreaRemainPercentage + "  "
+                //                + fd.AreaBoundaryLessInnersAcres + " - "
+                //                + fd.WorkedAcres + " = "
+                //                + fd.WorkedAreaRemainAcres +  " | "
+
+                //                + fd.ActualAreaWorkedAcres + " = "
+                //                + fd.ActualRemainAcres + "  "
+                //                + fd.ActualOverlapPercent + " | "
+
+                //                + fd.TimeTillFinished + "  "
+                //                + fd.WorkRateAcres;
+                //        else
+                //            fieldData = "Applied: "
+                //                + fd.WorkedAcres + "  Actual: "
+                //                + fd.ActualAreaWorkedAcres + " *"
+                //                + fd.ActualOverlapPercent + "   "
+                //                + fd.WorkRateAcres;
+                //    }
+                //}
+                //else
+                //{
+                //    fieldData = string.Empty;
+                //}
+                */
 
                 if (isJobStarted)
                 {
-                    if (isMetric)
+                    switch (currentFieldTextCounter)
                     {
-                        if (bnd.bndList.Count > 0)
-                            lblFieldStatus.Text = fd.AreaBoundaryLessInnersHectares + "   "
-                                + fd.WorkedHectares + "    "
-                                + fd.TimeTillFinished + "   "
+                        case 0:
+                            lblCurrentField.Text = gStr.gsField + ": " + displayFieldName;
+                            break;
+
+                        case 1:
+
+                            lblCurrentField.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss");
+                            break;
+
+                        case 2:
+                            if (bnd.bndList.Count > 0)
+                            {
+                                if (isMetric)
+                                {
+                                    lblCurrentField.Text = fd.AreaBoundaryLessInnersHectares
+                                        + "  App: " + fd.WorkedHectares
+                                        + "  Actual: " + fd.ActualAreaWorkedHectares
+                                        + "  " + fd.WorkedAreaRemainPercentage
+                                        + "  " + fd.WorkRateHectares;
+
+                                }
+                                else
+                                {
+                                    lblCurrentField.Text = fd.AreaBoundaryLessInnersAcres
+                                        + "  App: " + fd.WorkedAcres
+                                        + "  Actual: " + fd.ActualAreaWorkedAcres
+                                        + "  " + fd.WorkedAreaRemainPercentage
+                                        + "  " + fd.WorkRateHectares;
+                                }
+                            }
+                            else
+                            {
+                                if (isMetric)
+                                {
+                                    lblCurrentField.Text = "App: "
+                                + fd.WorkedHectares + " Actual: "
+                                + fd.ActualAreaWorkedHectares + "  "
+                                + fd.ActualOverlapPercent + "   "
                                 + fd.WorkRateHectares;
-                        else
-                            lblFieldStatus.Text = fd.WorkedHectares + "   " + fd.WorkRateHectares;
-
-                    }
-                    else //imperial
-                    {
-                        if (bnd.bndList.Count > 0)
-                            lblFieldStatus.Text = fd.AreaBoundaryLessInnersAcres + "   "
-                                + fd.WorkedAcres + "    "
-                                + fd.TimeTillFinished + "   "
+                                }
+                                else
+                                {
+                                    lblCurrentField.Text = fieldData + "App: "
+                                + fd.WorkedAcres + "  Actual: "
+                                + fd.ActualAreaWorkedAcres + " *"
+                                + fd.ActualOverlapPercent + "   "
                                 + fd.WorkRateAcres;
-                        else
-                            lblFieldStatus.Text = fd.WorkedAcres + "   " + fd.WorkRateAcres;
-                    }
+                                }
+                            }
+                            break;
 
-                    lblCurrentField.Text = "Field: " + displayFieldName;
+                        case 3:
+                            if (trk.idx > -1)
+                                lblCurrentField.Text = "Line: " + trk.gArr[trk.idx].name;
+                            else
+                                lblCurrentField.Text = "Line: " + gStr.gsNoGuidanceLines;
+                            break;
 
-                    if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
-                    {
-                        lblCurveLineName.Text = "Cur-" + curve.curveArr[curve.numCurveLineSelected - 1].Name;
-                    }
+                        case 4:
+                            lblCurrentField.Text = "";
+                            break;
 
-                    else if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
-                    {
-                        lblCurveLineName.Text = "AB-" + ABLine.lineArr[ABLine.numABLineSelected - 1].Name;
+
+                        default:
+                            break;
                     }
-                    else lblCurveLineName.Text = string.Empty;
                 }
                 else
                 {
-                    lblCurveLineName.Text = lblFieldStatus.Text = string.Empty;
-                    lblCurrentField.Text = (tool.width * m2FtOrM).ToString("N2") + unitsFtM + " - " + vehicleFileName;
+                    switch (currentFieldTextCounter)
+                    {
+                        case 0:
+                            lblCurrentField.Text = (tool.width * m2FtOrM).ToString("N2") + unitsFtM + " - " + vehicleFileName;
+                            break;
+
+                        case 1:
+                            lblCurrentField.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss ");
+                            break;
+
+                        case 2:
+                            lblCurrentField.Text = "Lat: " + pn.latitude.ToString("N7") + "   Lon: " + pn.longitude.ToString("N7");
+                            break;
+
+                        case 3:
+                            lblCurrentField.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss ");                            
+                            break;
+
+                        case 4:
+                            lblCurrentField.Text = "";
+                            break;
+
+                        default:
+                            break;
+                    }
                 }
 
-
-                if (isJobStarted)
+                if (isPauseFieldTextCounter)
                 {
-                    if (ABLine.isBtnABLineOn || curve.isBtnCurveOn)
-                    {
-                        if (!btnEditAB.Visible)
-                        {
-                            //btnMakeLinesFromBoundary.Visible = true;
-                            btnEditAB.Visible = true;
-                            btnSnapToPivot.Visible = true;
-                            cboxpRowWidth.Visible = true;
-                            btnYouSkipEnable.Visible = true;
-                        }
-                    }
-                    else
-                    {
-                        if (btnEditAB.Visible)
-                        {
-                            //btnMakeLinesFromBoundary.Visible = false;
-                            btnEditAB.Visible = false;
-                            btnSnapToPivot.Visible = false;
-                            cboxpRowWidth.Visible = false;
-                            btnYouSkipEnable.Visible = false;
-                        }
-                    }
+                    lblCurrentField.Text = "\u23F8" + " " + lblCurrentField.Text;
                 }
+                else
+                {
+                    lblCurrentField.Text = "\u25B6" + " " + lblCurrentField.Text;
+                }
+            }
+
+            /////////////////////////////////////////////////////////   2 second  ////////////////////////////////////////
+            //every 2 second update status
+            if (twoSecondCounter >= 2)
+            {
+                //reset the counter
+                twoSecondCounter = 0;
+
+                //hide the Nav panel in 6  secs
+                if (panelNavigation.Visible)
+                {
+                    if (navPanelCounter-- <= 0) panelNavigation.Visible = false;
+                    lblHz.Text = gpsHz.ToString("N1") + " ~ " + (frameTime.ToString("N1")) + " " + FixQuality;
+                }
+
+                //fix
+                if (timerSim.Enabled && pn.fixQuality++ > 5) pn.fixQuality = 2;
 
                 //save nmea log file
                 if (isLogNMEA) FileSaveNMEA();
 
-            }//end every 3 seconds
+            }//end every 2 seconds
 
             //every second update all status ///////////////////////////   1 1 1 1 1 1 ////////////////////////////
-            if (displayUpdateOneSecondCounter != oneSecond)
+            if (oneSecondCounter >= 4)
             {
                 //reset the counter
-                displayUpdateOneSecondCounter = oneSecond;
+                oneSecondCounter = 0;
 
-                //counter used for saving field in background
-                minuteCounter++;
-                tenMinuteCounter++;
+                //counter used for saving field in background - is actually 30 second
+                fileSaveCounter++;
 
-                if (isStanleyUsed)
+                //general counters
+                twoSecondCounter++;
+                fourSecondCounter++;
+
+                //keeps autoTrack from changing too fast
+                trk.autoTrack3SecTimer++;
+
+                lblFix.Text = FixQuality + "Age: " + pn.age.ToString("N1");
+
+                switch (pn.fixQuality)
                 {
-                    if (curve.isBtnCurveOn || ABLine.isBtnABLineOn)
-                    {
-                        lblInty.Text = gyd.inty.ToString("N3");
-                    }
-                }
-                else
-                {
-                    if (curve.isBtnCurveOn)
-                    {
-                        lblInty.Text = curve.inty.ToString("N3");
-                    }
-
-                    else if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
-                    {
-                        lblInty.Text = ABLine.inty.ToString("N3");
-                    }
-
-                    else if (ct.isContourBtnOn) lblInty.Text = ct.inty.ToString("N3");
-                }
-
-                if (recPath.isDrivingRecordedPath) lblInty.Text = recPath.inty.ToString("N3");
-
-                if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
-                {
-                    btnEditAB.Text = ((int)(ABLine.moveDistance * 100)).ToString();
-                }
-                if (curve.isBtnCurveOn && !ct.isContourBtnOn)
-                {
-                    btnEditAB.Text = ((int)(curve.moveDistance * 100)).ToString();
+                    case 4:
+                        btnGPSData.BackColor = Color.PaleGreen;
+                        break;
+                    case 5:
+                        btnGPSData.BackColor = Color.Orange;
+                        break;
+                    case 2:
+                        btnGPSData.BackColor = Color.Yellow;
+                        break;                               
+                    default:
+                        btnGPSData.BackColor = Color.Red;
+                        break;
                 }
 
                 //statusbar flash red undefined headland
-                if (mc.isOutOfBounds && panelSim.BackColor == Color.Transparent
-                    || !mc.isOutOfBounds && panelSim.BackColor == Color.Tomato)
+                if (timerSim.Enabled)
                 {
-                    if (!mc.isOutOfBounds)
+                    if (mc.isOutOfBounds && panelSim.BackColor == Color.Transparent
+                        || !mc.isOutOfBounds && panelSim.BackColor == Color.Tomato)
                     {
-                        panelSim.BackColor = Color.Transparent;
+                        if (!mc.isOutOfBounds)
+                        {
+                            panelSim.BackColor = Color.Transparent;
+                        }
+                        else
+                        {
+                            panelSim.BackColor = Color.Tomato;
+                        }
                     }
-                    else
-                    {
-                        panelSim.BackColor = Color.Tomato;
-                    }
+                }
+
+                if (flp1.Visible)
+                {
+                    if (trackMethodPanelCounter-- < 1) flp1.Visible = false;
                 }
             }
 
             //every half of a second update all status  ////////////////    0.5  0.5   0.5    0.5    /////////////////
-            if (displayUpdateHalfSecondCounter != oneHalfSecond)
+            if (oneHalfSecondCounter >= 2)
             {
                 //reset the counter
-                displayUpdateHalfSecondCounter = oneHalfSecond;
+                oneHalfSecondCounter = 0;
 
                 isFlashOnOff = !isFlashOnOff;
 
@@ -278,7 +377,7 @@ namespace AgOpenGPS
                 }
 
                 //Make sure it is off when it should
-                if ((!ABLine.isBtnABLineOn && !ct.isContourBtnOn && !curve.isBtnCurveOn && isAutoSteerBtnOn)
+                if ((!ct.isContourBtnOn && trk.idx == -1 && isBtnAutoSteerOn)
                     ) btnAutoSteer.PerformClick();
 
                 //the main formgps window
@@ -296,57 +395,43 @@ namespace AgOpenGPS
 
             } //end every 1/2 second
 
-            //every fifth second update  ///////////////////////////   FIFTH Fifth ////////////////////////////
-            if (displayUpdateOneFifthCounter != oneFifthSecond)
+            //every fourth second update  ///////////////////////////   Fourth  ////////////////////////////
             {
                 //reset the counter
-                displayUpdateOneFifthCounter = oneFifthSecond;
+                oneHalfSecondCounter++;
+                oneSecondCounter++;
 
                 btnAutoSteerConfig.Text = SetSteerAngle + "\r\n" + ActualSteerAngle;
 
                 secondsSinceStart = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
-
-                //integralStatusLeftSide.Text = "I: " + gyd.inty.ToString("N3");
-
-                //lblAV.Text = ABLine.angVel.ToString("N3");
             }
-        }//wait till timer fires again.  
 
-        private void IsBetweenSunriseSunset(double lat, double lon)
-        {
-            CSunTimes.Instance.CalculateSunRiseSetTimes(pn.latitude, pn.longitude, dateToday, ref sunrise, ref sunset);
-            //isDay = (DateTime.Now.Ticks < sunset.Ticks && DateTime.Now.Ticks > sunrise.Ticks);
-        }
+        }//wait till timer fires again.         
 
         public void LoadSettings()
-        {            //metric settings
-
+        {            
             CheckSettingsNotNull();
 
+            //metric settings
             isMetric = Settings.Default.setMenu_isMetric;
-
-            tramLinesMenuField.Visible = Properties.Settings.Default.setFeatures.isTramOn;
-            headlandToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isHeadlandOn;
-
+            
+            //field menu
             boundariesToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isBoundaryOn;
+            headlandToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isHeadlandOn;
+            headlandBuildToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isHeadlandOn;
+            tramLinesMenuField.Visible = Properties.Settings.Default.setFeatures.isTramOn;
             recordedPathStripMenu.Visible = Properties.Settings.Default.setFeatures.isRecPathOn;
+
+            //tools menu
             SmoothABtoolStripMenu.Visible = Properties.Settings.Default.setFeatures.isABSmoothOn;
             deleteContourPathsToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isHideContourOn;
             webcamToolStrip.Visible = Properties.Settings.Default.setFeatures.isWebCamOn;
             offsetFixToolStrip.Visible = Properties.Settings.Default.setFeatures.isOffsetFixOn;
-            btnContour.Visible = Properties.Settings.Default.setFeatures.isContourOn;
-            btnAutoYouTurn.Visible = Properties.Settings.Default.setFeatures.isYouTurnOn;
+
+            //left side
             btnStartAgIO.Visible = Properties.Settings.Default.setFeatures.isAgIOOn;
 
-            btnAutoSteer.Visible = Properties.Settings.Default.setFeatures.isAutoSteerOn;
-            btnCycleLines.Visible = Properties.Settings.Default.setFeatures.isCycleLinesOn;
-            btnCycleLinesBk.Visible = Properties.Settings.Default.setFeatures.isCycleLinesOn;
-            btnSectionMasterManual.Visible = Properties.Settings.Default.setFeatures.isManualSectionOn;
-            btnSectionMasterAuto.Visible = Properties.Settings.Default.setFeatures.isAutoSectionOn;
-            btnABLine.Visible = Properties.Settings.Default.setFeatures.isABLineOn;
-            btnCurve.Visible = Properties.Settings.Default.setFeatures.isCurveOn;
-            btnStanleyPure.Visible = Properties.Settings.Default.setFeatures.isSteerModeOn;
-
+            //OGL control
             isUTurnOn = Properties.Settings.Default.setFeatures.isUTurnOn;
             isLateralOn = Properties.Settings.Default.setFeatures.isLateralOn;
 
@@ -363,6 +448,7 @@ namespace AgOpenGPS
 
                 unitsFtM = " m";
                 unitsInCm = " cm";
+                unitsInCmNS = "cm";
             }
             else
             {
@@ -376,13 +462,12 @@ namespace AgOpenGPS
                 cm2CmOrIn = 0.394;
 
                 unitsInCm = " in";
+                unitsInCmNS = "in";
                 unitsFtM = " ft";
             }
 
             udpWatchLimit = Properties.Settings.Default.SetGPS_udpWatchMsec;
             pn.headingTrueDualOffset = Properties.Settings.Default.setGPS_dualHeadingOffset;
-
-            startSpeed = Settings.Default.setVehicle_startSpeed;
 
             frameDayColor = Properties.Settings.Default.setDisplay_colorDayFrame.CheckColorFor255();
             frameNightColor = Properties.Settings.Default.setDisplay_colorNightFrame.CheckColorFor255();
@@ -397,7 +482,29 @@ namespace AgOpenGPS
             Properties.Settings.Default.setDisplay_colorFieldNight = fieldColorNight;
             Properties.Settings.Default.Save();
 
-            isSkyOn = Settings.Default.setMenu_isSkyOn;
+            //load up colors
+            textColorDay = Settings.Default.setDisplay_colorTextDay.CheckColorFor255();
+            textColorNight = Settings.Default.setDisplay_colorTextNight.CheckColorFor255();
+
+            //load the string of custom colors
+            string[] words = Properties.Settings.Default.setDisplay_customColors.Split(',');
+            for (int i = 0; i < 16; i++)
+            {
+                Color test;
+                customColorsList[i] = int.Parse(words[i], CultureInfo.InvariantCulture);
+                test = Color.FromArgb(customColorsList[i]).CheckColorFor255();
+                int iCol = (test.A << 24) | (test.R << 16) | (test.G << 8) | test.B;
+                customColorsList[i] = iCol;
+            }
+
+            Properties.Settings.Default.setDisplay_customColors = "";
+            for (int i = 0; i < 15; i++)
+                Properties.Settings.Default.setDisplay_customColors += customColorsList[i].ToString() + ",";
+            Properties.Settings.Default.setDisplay_customColors += customColorsList[15].ToString();
+
+            Properties.Settings.Default.Save();
+
+
             isTextureOn = Settings.Default.setDisplay_isTextureOn;
 
             isGridOn = Settings.Default.setMenu_isGridOn;
@@ -405,7 +512,6 @@ namespace AgOpenGPS
 
             isCompassOn = Settings.Default.setMenu_isCompassOn;
             isSpeedoOn = Settings.Default.setMenu_isSpeedoOn;
-            isAutoDayNight = Settings.Default.setDisplay_isAutoDayNight;
             isSideGuideLines = Settings.Default.setMenu_isSideGuideLines;
             isSvennArrowOn = Settings.Default.setDisplay_isSvennArrowOn;
 
@@ -440,44 +546,8 @@ namespace AgOpenGPS
 
             if (timerSim.Enabled) gpsHz = 10;
 
-            if ( Properties.Settings.Default.setVehicle_isStanleyUsed)
-            {
-                btnStanleyPure.Image = Resources.ModeStanley;
-            }
-            else
-            {
-                btnStanleyPure.Image = Resources.ModePurePursuit;
-            }
-
             //set the flag mark button to red dot
             btnFlag.Image = Properties.Resources.FlagRed;
-
-            //load the string of custom colors
-            string[] words = Properties.Settings.Default.setDisplay_customColors.Split(',');
-            for (int i = 0; i < 16; i++)
-            {
-                Color test;
-                customColorsList[i] = int.Parse(words[i], CultureInfo.InvariantCulture);
-                test = Color.FromArgb(customColorsList[i]).CheckColorFor255();
-                int iCol = (test.A << 24) | (test.R << 16) | (test.G << 8) | test.B;
-                customColorsList[i] = iCol;
-            }
-
-            Properties.Settings.Default.setDisplay_customColors = "";
-            for (int i = 0; i < 15; i++)
-                Properties.Settings.Default.setDisplay_customColors += customColorsList[i].ToString() + ",";
-            Properties.Settings.Default.setDisplay_customColors += customColorsList[15].ToString();
-
-            Properties.Settings.Default.Save();
-
-
-            //load up colors
-            fieldColorDay = (Settings.Default.setDisplay_colorFieldDay.CheckColorFor255());
-            sectionColorDay = (Settings.Default.setDisplay_colorSectionsDay.CheckColorFor255());
-            fieldColorNight = (Settings.Default.setDisplay_colorFieldNight.CheckColorFor255());
-
-            textColorDay = Settings.Default.setDisplay_colorTextDay.CheckColorFor255();
-            textColorNight = Settings.Default.setDisplay_colorTextNight.CheckColorFor255();
 
             vehicleColor = Settings.Default.setDisplay_colorVehicle.CheckColorFor255();
 
@@ -493,7 +563,7 @@ namespace AgOpenGPS
             if (bnd.isHeadlandOn) btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
             else btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
 
-            btnChangeMappingColor.BackColor = sectionColorDay;
+            //btnChangeMappingColor.BackColor = sectionColorDay;
             btnChangeMappingColor.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
 
             if (Properties.Settings.Default.setDisplay_isStartFullScreen)
@@ -507,7 +577,7 @@ namespace AgOpenGPS
             }
 
             //is rtk on?
-            isRTK = Properties.Settings.Default.setGPS_isRTK;
+            isRTK_AlarmOn = Properties.Settings.Default.setGPS_isRTK;
             isRTK_KillAutosteer = Properties.Settings.Default.setGPS_isRTK_KillAutoSteer;
 
             pn.ageAlarm = Properties.Settings.Default.setGPS_ageAlarm;
@@ -564,10 +634,6 @@ namespace AgOpenGPS
                 LineUpAllZoneButtons();
             }
 
-            //yt.rowSkipsWidth = Properties.Settings.Default.set_youSkipWidth;
-            //cboxpRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
-            //yt.Set_Alternate_skips();
-
             DisableYouTurnButtons();
 
             //which heading source is being used
@@ -622,23 +688,225 @@ namespace AgOpenGPS
             isDay = !isDay;
             SwapDayNightMode();
 
-            if (!Properties.Settings.Default.setDisplay_isTermsAccepted)
-            {
-                using (var form = new Form_First())
-                {
-                    if (form.ShowDialog(this) != DialogResult.OK)
-                    {
-                        Close();
-                    }
-                }
-            }
-
             //load uturn properties
             yt = new CYouTurn(this);
 
-            FixPanelsAndMenus();
+            lblNumCu.Visible = false;
+            lblNumCu.Text = "";
+
+            words = Properties.Settings.Default.setDisplay_buttonOrder.Split(',');
+            buttonOrder?.Clear();
+
+            for (int i = 0; i < words.Length; i++)
+            {
+                buttonOrder.Add(int.Parse(words[i], CultureInfo.InvariantCulture));
+            }
+
+            //right side build
+            PanelBuildRightMenu();
+
+            PanelsAndOGLSize();
+            PanelUpdateRightAndBottom();
+
             camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
             SetZoom();
+
+            lblGuidanceLine.BringToFront();
+        }
+
+        public void PanelUpdateRightAndBottom()
+        {
+            if (isJobStarted)
+            {
+                int tracksTotal = 0, tracksVisible = 0;
+                bool isHdl = false;
+
+                bool isBnd = bnd.bndList.Count > 0;
+                if (!isBnd) isHdl = isBnd;
+                else isHdl = bnd.bndList[0].hdLine.Count > 0;
+
+                bool istram = (tram.tramList.Count + tram.tramBndOuterArr.Count) > 0;
+
+                for (int i = 0; i < trk.gArr.Count; i++)
+                {
+                    tracksTotal++;
+                    if (trk.gArr[i].isVisible) tracksVisible++;
+                }
+
+                btnContourLock.Visible = ct.isContourBtnOn;
+
+                if (trk.idx > -1 || ct.isContourBtnOn)
+                    btnAutoSteer.Enabled = true;
+                else
+                {
+                    if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
+                    btnAutoSteer.Enabled = false;
+                }
+
+                btnAutoYouTurn.Visible = trk.idx > -1 && !ct.isContourBtnOn && isBnd;
+                btnCycleLines.Visible = tracksVisible > 1 && trk.idx > -1 && !ct.isContourBtnOn;
+                btnCycleLinesBk.Visible = tracksVisible > 1 && trk.idx > -1 && !ct.isContourBtnOn;
+
+                cboxpRowWidth.Visible = trk.idx > -1;
+                btnYouSkipEnable.Visible = trk.idx > -1;
+
+                btnTramDisplayMode.Visible = istram;
+                btnHeadlandOnOff.Visible = isHdl;
+                btnHydLift.Visible = isHdl;
+                btnAutoTrack.Visible = tracksVisible > 1 && trk.idx > -1 && !ct.isContourBtnOn;
+
+                if (trk.idx > -1 && trk.gArr.Count > 0 && !ct.isContourBtnOn)
+                {
+                    lblNumCu.Visible = true;
+                    lblNumCu.Text = (trk.idx+1).ToString() + "/" + trk.gArr.Count.ToString();
+                }
+                else
+                {
+                    lblNumCu.Visible = false;
+                    lblNumCu.Text = "";
+                }
+
+                PanelSizeRightAndAB();
+            }
+        }
+
+        public void PanelBuildRightMenu()
+        {
+            panelRight.Controls.Clear();
+
+            for (int i = 0; i < buttonOrder.Count; i++)
+            {
+                switch (buttonOrder[i])
+                {
+                    case 0:
+                        panelRight.Controls.Add(btnAutoSteer);
+                        break;
+
+                    case 1:
+                        panelRight.Controls.Add(btnAutoYouTurn);
+                        break;
+
+                    case 2:
+                        panelRight.Controls.Add(btnSectionMasterAuto);
+                        break;
+
+                    case 3:
+                        panelRight.Controls.Add(btnSectionMasterManual);
+                        break;
+
+                    case 4:
+                        panelRight.Controls.Add(btnAutoTrack);
+                        break;
+
+                    case 5:
+                        panelRight.Controls.Add(btnCycleLinesBk);
+                        break;
+
+                    case 6:
+                        panelRight.Controls.Add(btnCycleLines);
+                        break;
+
+                    case 7:
+                        panelRight.Controls.Add(btnContour);
+                        panelRight.Controls.Add(btnContourLock);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+            panelRight.Controls.Add(lblNumCu);
+        }
+
+        public void PanelSizeRightAndAB()
+        {
+            int viz = 0;
+            for (int i = 0; i < panelRight.Controls.Count; i++)
+            {
+                if (panelRight.Controls[i].Visible && panelRight.Controls[i] is Button) viz++;
+            }
+
+            if (viz == 0) return;
+
+            int sizer = (Height - 140) / (viz);
+            if (sizer > 120) { sizer = 120; }
+
+            for (int i = 0; i < panelRight.Controls.Count; i++)
+            {
+                if (panelRight.Controls[i].Visible && panelRight.Controls[i] is Button)
+                {
+                    panelRight.Controls[i].Height = sizer;
+                }
+            }
+
+            if (panelAB.Visible)
+            {
+                viz = 0;
+                for (int i = 0; i < panelAB.Controls.Count; i++)
+                {
+                    if (panelAB.Controls[i].Visible && panelAB.Controls[i] is Button)
+                        viz++;
+                }
+
+                if (viz == 0) return;
+
+                sizer = (Width - 280) / (viz);
+                if (sizer > 120) { sizer = 120; }
+
+                for (int i = 0; i < panelAB.Controls.Count; i++)
+                {
+                    if (panelAB.Controls[i].Visible && panelAB.Controls[i] is Button)
+                        panelAB.Controls[i].Width = sizer;
+                }
+            }
+
+            flp1.Top = this.Height - 200;
+            flp1.Left = this.Width - 120 - flp1.Width;
+        }
+
+        private void PanelsAndOGLSize()
+        {
+            if (!isJobStarted)
+            {
+                panelAB.Visible = false;
+                panelRight.Visible = false;
+
+                oglMain.Left = 80;
+                oglMain.Width = this.Width - statusStripLeft.Width - 22; //22
+                oglMain.Height = this.Height - 60;
+            }
+            else
+            {
+                if (isPanelABHidden)
+                {
+                    panelAB.Visible = false;
+                    panelLeft.Visible = false;
+                    oglMain.Left = 20;
+                    oglMain.Width = this.Width - 90; //22
+                    oglMain.Height = this.Height - 62;
+                }
+                else
+                {
+                    panelAB.Visible = true;
+                    panelRight.Visible = true;
+                    panelLeft.Visible = true;
+                    oglMain.Left = 80;
+                    oglMain.Width = this.Width - statusStripLeft.Width - 90; //22
+                    oglMain.Height = this.Height - 118;
+                }
+            }
+
+            PanelSizeRightAndAB();
+
+            if (tool.isSectionsNotZones)
+            {
+                LineUpIndividualSectionBtns();
+            }
+            else
+            {
+                LineUpAllZoneButtons();
+            }
         }
 
         private void ZoomByMouseWheel(object sender, MouseEventArgs e)
@@ -654,8 +922,8 @@ namespace AgOpenGPS
             else
             {
                 if (camera.zoomValue <= 20)
-                { if ((camera.zoomValue -= camera.zoomValue * 0.06) < 6.0) camera.zoomValue = 6.0; }
-                else { if ((camera.zoomValue -= camera.zoomValue * 0.02) < 6.0) camera.zoomValue = 6.0; }
+                { if ((camera.zoomValue -= camera.zoomValue * 0.06) < 4.0) camera.zoomValue = 4.0; }
+                else { if ((camera.zoomValue -= camera.zoomValue * 0.02) < 4.0) camera.zoomValue = 4.0; }
 
                 camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
                 SetZoom();
@@ -678,7 +946,22 @@ namespace AgOpenGPS
                     }
                 }
 
+                foreach (Control c in panelRight.Controls)
+                {
+                    //if (c is Label || c is Button)
+                    {
+                        c.ForeColor = textColorDay;
+                    }
+                }
+
                 foreach (Control c in panelNavigation.Controls)
+                {
+                    //if (c is Label || c is Button)
+                    {
+                        c.ForeColor = textColorDay;
+                    }
+                }
+                foreach (Control c in panelControlBox.Controls)
                 {
                     //if (c is Label || c is Button)
                     {
@@ -697,14 +980,30 @@ namespace AgOpenGPS
                         c.ForeColor = textColorNight;
                     }
                 }
+
+                foreach (Control c in panelRight.Controls)
+                {
+                    //if (c is Label || c is Button)
+                    {
+                        c.ForeColor = textColorNight;
+                    }
+                }
+
                 foreach (Control c in panelNavigation.Controls)
                 {
                     //if (c is Label || c is Button)
                     {
-                        c.ForeColor = textColorDay;
+                        c.ForeColor = textColorNight;
                     }
                 }
 
+                foreach (Control c in panelControlBox.Controls)
+                {
+                    //if (c is Label || c is Button)
+                    {
+                        c.ForeColor = textColorNight;
+                    }
+                }
             }
 
             if (tool.isSectionsNotZones)
@@ -718,39 +1017,6 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.setDisplay_isDayMode = isDay;
             Properties.Settings.Default.Save();
-        }
-
-        private void FixPanelsAndMenus()
-        {
-            panelAB.Size = new System.Drawing.Size(780 + ((Width - 900) / 2), 64);
-            panelAB.Location = new Point((Width - 900) / 3 + 64, this.Height - 66);
-
-            if (!isJobStarted)
-            {
-                panelAB.Visible = false;
-                panelRight.Visible = false;
-
-                oglMain.Left = 75;
-                oglMain.Width = this.Width - statusStripLeft.Width - 22; //22
-                oglMain.Height = this.Height - 62;
-            }
-            else
-            {
-                panelAB.Visible = true;
-                panelRight.Visible = true;
-                oglMain.Left = 75;
-                oglMain.Width = this.Width - statusStripLeft.Width - 84; //22
-                oglMain.Height = this.Height - 120;
-            }
-
-            if (tool.isSectionsNotZones)
-            {
-                LineUpIndividualSectionBtns();
-            }
-            else
-            {
-                LineUpAllZoneButtons();
-            }
         }
 
         public void SaveFormGPSWindowSettings()
@@ -839,7 +1105,7 @@ namespace AgOpenGPS
                 //0 at bottom for opengl, 0 at top for windows, so invert Y value
                 Point point = oglMain.PointToClient(Cursor.Position);
 
-                if (point.Y < 90 && point.Y > 30 && (ABLine.isBtnABLineOn || curve.isBtnCurveOn))
+                if (point.Y < 90 && point.Y > 30 && (trk.idx > -1))
                 {
 
                     int middle = oglMain.Width / 2 + oglMain.Width / 5;
@@ -917,7 +1183,7 @@ namespace AgOpenGPS
                     }
                 }
 
-                if (point.Y < 150 && point.Y > 90 && (ABLine.isBtnABLineOn || curve.isBtnCurveOn))
+                if (point.Y < 150 && point.Y > 90 && (trk.idx > -1))
                 {
                     int middle = oglMain.Width / 2 - oglMain.Width / 4;
                     if (point.X > middle - 140 && point.X < middle && isLateralOn)
@@ -967,7 +1233,8 @@ namespace AgOpenGPS
                 int centerLeft = oglMain.Width / 2;
                 int centerUp = oglMain.Height / 2;
 
-                if (point.X > centerLeft - 40 && point.X < centerLeft + 40 && point.Y > centerUp - 60 && point.Y < centerUp + 60)
+                if (point.X > centerLeft - 40 && point.X < centerLeft + 40 
+                    && point.Y > centerUp - 60 && point.Y < centerUp + 60)
                 {
                     if (isTT)
                     {
@@ -976,7 +1243,6 @@ namespace AgOpenGPS
                         return;
                     }
 
-
                     Array.Clear(stepFixPts, 0, stepFixPts.Length);
                     isFirstHeadingSet = false;
                     isReverse = false;
@@ -984,8 +1250,39 @@ namespace AgOpenGPS
                     return;
                 }
 
+                if (point.X > 30 && point.X < 60)
+                {
+                    if (point.Y > 50 && point.Y < 80)
+                    {
+                        isPanFormVisible = true;
+                        Form f = Application.OpenForms["FormPan"];
+
+                        if (f != null)
+                        {
+                            f.Focus();
+                            return;
+                        }
+
+                        Form form = new FormPan(this);
+                        form.Show(this);
+
+                        form.Top = this.Top + 90;
+                        form.Left = this.Left + 120;
+                    }
+
+                    if (isJobStarted)
+                    {
+                        if (point.Y > oglMain.Height - 60 && point.Y < oglMain.Height - 30) 
+                        {
+                            isPanelABHidden = !isPanelABHidden;
+                            PanelsAndOGLSize();
+                            return;
+                        }
+                    }
+                }
+
                 //prevent flag selection if flag form is up
-                Form fc = Application.OpenForms["FormFlags"];
+                Form fc = Application.OpenForms["Forags"];
                 if (fc != null)
                 {
                     fc.Focus();
@@ -1009,8 +1306,8 @@ namespace AgOpenGPS
                     if (point.Y < 120 && point.Y > 30)
                     {
                         if (camera.zoomValue <= 20)
-                        { if ((camera.zoomValue -= camera.zoomValue * 0.2) < 6.0) camera.zoomValue = 6.0; }
-                        else { if ((camera.zoomValue -= camera.zoomValue * 0.1) < 6.0) camera.zoomValue = 6.0; }
+                        { if ((camera.zoomValue -= camera.zoomValue * 0.2) < 4.0) camera.zoomValue = 4.0; }
+                        else { if ((camera.zoomValue -= camera.zoomValue * 0.1) < 4.0) camera.zoomValue = 4.0; }
 
                         camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
                         SetZoom();
@@ -1030,6 +1327,8 @@ namespace AgOpenGPS
                     }
                 }
 
+
+
                 mouseX = point.X;
                 mouseY = oglMain.Height - point.Y;
                 leftMouseDownOnOpenGL = true;
@@ -1037,44 +1336,20 @@ namespace AgOpenGPS
 
             ResetHelpBtn();
         }
-
         private void SpeedLimitExceeded()
         {
             if (isMetric)
             {
                 TimedMessageBox(2000, gStr.gsTooFast, gStr.gsSlowDownBelow + " " 
-                    + vehicle.functionSpeedLimit.ToString() + " "+ gStr.gsKMH);
+                    + vehicle.functionSpeedLimit.ToString("N0") + " "+ gStr.gsKMH);
             }
             else
             {
                 TimedMessageBox(2000, gStr.gsTooFast, gStr.gsSlowDownBelow + " "
-                    + (vehicle.functionSpeedLimit* 0.621371).ToString() + " " + gStr.gsMPH);
+                    + (vehicle.functionSpeedLimit* 0.621371).ToString("N1") + " " + gStr.gsMPH);
            }
         }
 
-        private void oglZoom_MouseClick(object sender, MouseEventArgs e)
-        {
-            if ((sender as Control).IsDragging()) return;
-
-            if (oglZoom.Width == 180)
-            {
-                oglZoom.Width = 300;
-                oglZoom.Height = 300;
-            }
-
-            else if (oglZoom.Width == 300)
-            {
-                oglZoom.Top = 55;
-                oglZoom.Left = 3;
-                oglZoom.Width = this.Width-6;
-                oglZoom.Height = this.Height-61;
-            }
-            else if (oglZoom.Width > 300)
-            {
-                oglZoom.Width = 180;
-                oglZoom.Height = 180;
-            }
-        }
         public void SwapDirection()
         {
             if (!yt.isYouTurnTriggered)
@@ -1103,17 +1378,11 @@ namespace AgOpenGPS
         public void EnableYouTurnButtons()
         {
             yt.ResetYouTurn();
-
             yt.isYouTurnBtnOn = false;
-            btnAutoYouTurn.Enabled = true;
-
             btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
         }
         public void DisableYouTurnButtons()
         {
-
-            //btnAutoYouTurn.Enabled = false;
-
             yt.isYouTurnBtnOn = false;
             btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
             yt.ResetYouTurn();
@@ -1139,21 +1408,18 @@ namespace AgOpenGPS
         {
             get
             {
-                if (timerSim.Enabled)
-                    return "Sim: ";
-                else if (pn.fixQuality == 0) return "Invalid: ";
+                if (pn.fixQuality == 0) return "Invalid: ";
                 else if (pn.fixQuality == 1) return "GPS single: ";
-                else if (pn.fixQuality == 2) return "DGPS : ";
-                else if (pn.fixQuality == 3) return "PPS : ";
+                else if (pn.fixQuality == 2) return "DGPS: ";
+                else if (pn.fixQuality == 3) return "PPS: ";
                 else if (pn.fixQuality == 4) return "RTK fix: ";
-                else if (pn.fixQuality == 5) return "Float: ";
+                else if (pn.fixQuality == 5) return "RTK Float: ";
                 else if (pn.fixQuality == 6) return "Estimate: ";
                 else if (pn.fixQuality == 7) return "Man IP: ";
                 else if (pn.fixQuality == 8) return "Sim: ";
                 else return "Unknown: ";
             }
         }
-
         public string GyroInDegrees
         {
             get
@@ -1221,17 +1487,6 @@ namespace AgOpenGPS
         }
 
         #endregion properties 
-
-        public enum textures : uint
-        {
-            SkyDay, Floor, Font,
-            Turn, TurnCancel, TurnManual,
-            Compass, Speedo, SpeedoNeedle,
-            Lift, SkyNight, SteerPointer,
-            SteerDot, Tractor, QuestionMark,
-            FrontWheels, FourWDFront, FourWDRear,
-            Harvester, Lateral, bingGrid, NoGPS
-        }
 
         //Load Bitmaps brand
         public Bitmap GetTractorBrand(TBrand brand)

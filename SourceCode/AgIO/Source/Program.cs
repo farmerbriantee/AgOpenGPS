@@ -39,7 +39,6 @@ namespace AgIO
 
             if (Mutex.WaitOne(TimeSpan.Zero, true))
             {
-
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new FormLoop());

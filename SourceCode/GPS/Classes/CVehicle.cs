@@ -47,7 +47,6 @@ namespace AgOpenGPS
 
         public double functionSpeedLimit;
 
-
         public CVehicle(FormGPS _f)
         {
             //constructor
@@ -101,7 +100,8 @@ namespace AgOpenGPS
         }
 
         public int modeTimeCounter = 0;
-        public double  goalDistance = 0;
+        public double goalDistance = 0;
+
         public double UpdateGoalPointDistance()
         {
             double xTE = Math.Abs(modeActualXTE);
@@ -135,7 +135,6 @@ namespace AgOpenGPS
 
         public void DrawVehicle()
         {
-
             //draw vehicle
             GL.Rotate(glm.toDegrees(-mf.fixHeading), 0.0, 0.0, 1.0);
             //mf.font.DrawText3D(0, 0, "&TGF");
@@ -187,7 +186,7 @@ namespace AgOpenGPS
             if (!mf.isFirstHeadingSet)
             {
                 GL.Enable(EnableCap.Texture2D);
-                GL.Color4(1.25f, 1.25f, 1.275f, 0.75);
+                GL.Color4(1,1,1, 0.75);
                 GL.BindTexture(TextureTarget.Texture2D, mf.texture[14]);        // Select Our Texture
                 GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
                 GL.TexCoord2(1, 0); GL.Vertex2(5, 5); // Top Right
@@ -280,7 +279,6 @@ namespace AgOpenGPS
                     //disable, straight color
                     GL.Disable(EnableCap.Texture2D);
                     //GL.Disable(EnableCap.Blend);
-
                 }
                 else if (vehicleType == 1) //Harvestor
                 {
@@ -389,7 +387,6 @@ namespace AgOpenGPS
 
                     GL.PopMatrix();
 
-
                     GL.BindTexture(TextureTarget.Texture2D, mf.texture[16]);        // Select Our Texture
 
                     GL.PushMatrix();
@@ -405,7 +402,6 @@ namespace AgOpenGPS
 
                     GL.PopMatrix();
                     GL.Disable(EnableCap.Texture2D);
-
                 }
             }
             else
@@ -430,7 +426,6 @@ namespace AgOpenGPS
                     GL.Vertex3(0, wheelbase, 0);
                 }
                 GL.End();
-
             }
 
             if (mf.camera.camSetDistance > -75 && mf.isFirstHeadingSet)
@@ -498,53 +493,33 @@ namespace AgOpenGPS
                 GL.End();
             }
 
-            //Svenn Arrow
-            //if (mf.isSvennArrowOn && mf.camera.camSetDistance > -1000)
-            //{
-            //    double modelSteerAngle;
-
-            //    //if (mf.timerSim.Enabled)
-            //    //    modelSteerAngle = 0.5 * mf.sim.steerAngle;
-            //    //else
-            //    modelSteerAngle = 0;//.25 * mf.mc.actualSteerAngleDegrees;
-
-            //    GL.PushMatrix();
-            //    GL.Translate(0, wheelbase * 0.5, 0);
-            //    GL.Rotate(-modelSteerAngle, 0, 0, 1);
-            //    double offs = mf.curve.distanceFromCurrentLinePivot;
-            //    //offs = 0;
-            //    double svennDist = mf.camera.camSetDistance * -0.07;
-            //    double svennWidth = svennDist * 0.22;
-            //    GL.LineWidth(2);
-            //    GL.Color3(1.2, 1.25, 0.10);
-            //    GL.Begin(PrimitiveType.LineStrip);
-            //    {
-            //        GL.Vertex3(offs + svennWidth, wheelbase + svennDist, 0.0);
-            //        GL.Vertex3(offs + 0, wheelbase + svennWidth + 0.5 + svennDist, 0.0);
-            //        GL.Vertex3(offs + -svennWidth, wheelbase + svennDist, 0.0);
-            //    }
-            //    GL.End();
-            //    GL.PopMatrix();
-            //}
-
-            if (mf.curve.isBtnCurveOn && !mf.ct.isContourBtnOn)
+            if (mf.trk.idx > -1 && !mf.ct.isContourBtnOn)
             {
-                GL.Color4(1.269, 1.25, 1.2510, 0.87);
-                if (mf.curve.howManyPathsAway == 0)
-                    mf.font.DrawTextVehicle(2, wheelbase + 1, "0", 1);
-                else if (mf.curve.howManyPathsAway > 0) mf.font.DrawTextVehicle(2, wheelbase + 1, mf.curve.howManyPathsAway.ToString() + "R", 1);
-                else mf.font.DrawTextVehicle(2, wheelbase + 1, mf.curve.howManyPathsAway.ToString() + "L", 1);
-            }
-            else if (mf.ABLine.isBtnABLineOn && !mf.ct.isContourBtnOn)
-            {
-                GL.Color4(1.26, 1.25, 1.2510, 0.87);
+                string offs = "";
+                if (mf.trk.gArr[mf.trk.idx].nudgeDistance !=0)
+                    offs = ((int)(mf.trk.gArr[mf.trk.idx].nudgeDistance*mf.m2InchOrCm)).ToString() + mf.unitsInCmNS;
+                string dire;
 
-                if (mf.ABLine.howManyPathsAway == 0)
-                    mf.font.DrawTextVehicle(2, wheelbase + 1, "0", 1);
-                else if (mf.ABLine.howManyPathsAway > 0)
-                    mf.font.DrawTextVehicle(2, wheelbase + 1, mf.ABLine.howManyPathsAway.ToString() + "R", 1);
+                if (mf.trk.gArr[mf.trk.idx].mode == (int)TrackMode.AB )
+                {
+                    if (mf.ABLine.isHeadingSameWay) dire = "{";
+                    else dire = "}";
+                    GL.Color4(1.26, 1.25, 1.2510, 0.87);
+
+                    if (mf.ABLine.howManyPathsAway > 0)
+                        mf.font.DrawTextVehicle(2, wheelbase + 1,dire + mf.ABLine.howManyPathsAway.ToString() + "R " + offs, 1);
+                    else
+                        mf.font.DrawTextVehicle(2, wheelbase + 1, dire + (-mf.ABLine.howManyPathsAway).ToString() + "L " + offs, 1);
+                }
                 else
-                    mf.font.DrawTextVehicle(2, wheelbase + 1, mf.ABLine.howManyPathsAway.ToString() + "L", 1);
+                {
+                    if (mf.curve.isHeadingSameWay) dire = "{";
+                    else dire = "}";
+
+                    GL.Color4(1.269, 1.25, 1.2510, 0.87);
+                    if (mf.curve.howManyPathsAway > 0) mf.font.DrawTextVehicle(2, wheelbase + 1, dire + mf.curve.howManyPathsAway.ToString() + "R " + offs, 1);
+                    else mf.font.DrawTextVehicle(2, wheelbase + 1, dire + (-mf.curve.howManyPathsAway).ToString() + "L " + offs, 1);
+                }
             }
             GL.LineWidth(1);
 

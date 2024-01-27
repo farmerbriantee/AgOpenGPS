@@ -63,7 +63,7 @@ namespace AgOpenGPS
             if (!mf.mc.isOutOfBounds)
             {
                 GL.Color3(0.95f, 0.75f, 0.50f);
-                GL.LineWidth(mf.ABLine.lineWidth);
+                GL.LineWidth(1);
             }
             else
             {
@@ -82,7 +82,6 @@ namespace AgOpenGPS
             GL.Begin(PrimitiveType.Points);
             GL.Vertex3(mf.bnd.closestTurnPt.easting, mf.bnd.closestTurnPt.northing, 0);
             GL.End();
-
 
             if (bndBeingMadePts.Count > 0)
             {
@@ -128,6 +127,5 @@ namespace AgOpenGPS
                 GL.End();
             }
         }
-        
     }
 }

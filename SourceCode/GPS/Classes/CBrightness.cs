@@ -15,7 +15,7 @@ public class CWindowsSettingsBrightnessController
             else isWmiMonitor = true;
         }
         else
-            isWmiMonitor= false;
+            isWmiMonitor = false;
     }
 
     private int Get()
@@ -32,8 +32,8 @@ public class CWindowsSettingsBrightnessController
                 return (byte)instance.GetPropertyValue("CurrentBrightness");
             }
             return 0;
-
-        } catch
+        }
+        catch
         {
             return -1; // check this and disable the buttons if not available
         }
@@ -53,8 +53,8 @@ public class CWindowsSettingsBrightnessController
             {
                 instance.InvokeMethod("WmiSetBrightness", args);
             }
-
-        } catch
+        }
+        catch
         {
             // meh, don't care
         }

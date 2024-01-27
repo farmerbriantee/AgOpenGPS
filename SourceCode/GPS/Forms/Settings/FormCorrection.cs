@@ -12,9 +12,9 @@ namespace AgOpenGPS
 
         //chart data
         private string roll = "0.1";
+
         private string east = "0";
         private string ost = "0";
-
 
         private bool isScroll = true;
 
@@ -32,15 +32,15 @@ namespace AgOpenGPS
         private void DrawChart()
         {
             {
-                roll = (mf.correctionDistanceGraph*20).ToString("N2", CultureInfo.InvariantCulture);
-                east = (mf.pn.fix.easting*20).ToString("N2", CultureInfo.InvariantCulture);
-                ost = (mf.uncorrectedEastingGraph*20).ToString("N2", CultureInfo.InvariantCulture);
+                roll = (mf.correctionDistanceGraph * 20).ToString("N2", CultureInfo.InvariantCulture);
+                east = (mf.pn.fix.easting * 20).ToString("N2", CultureInfo.InvariantCulture);
+                ost = (mf.uncorrectedEastingGraph * 20).ToString("N2", CultureInfo.InvariantCulture);
 
                 if (!isPole) roll = ((mf.correctionDistanceGraph + mf.uncorrectedEastingGraph) * 20).ToString("N2", CultureInfo.InvariantCulture);
 
                 lblCorrectionDistance.Text = (mf.correctionDistanceGraph).ToString("N2", CultureInfo.InvariantCulture); ;
                 lblEast.Text = (mf.pn.fix.easting).ToString("N2", CultureInfo.InvariantCulture); ;
-                lblOst.Text = (mf.uncorrectedEastingGraph).ToString("N2", CultureInfo.InvariantCulture); 
+                lblOst.Text = (mf.uncorrectedEastingGraph).ToString("N2", CultureInfo.InvariantCulture);
                 lblRollDegrees.Text = (mf.RollInDegrees);
                 lblEastOnGraph.Text = ((int)(mf.pn.fix.easting * 100)).ToString(CultureInfo.InvariantCulture);
             }
@@ -77,8 +77,7 @@ namespace AgOpenGPS
                     u.Points.RemoveAt(0);
                 }
                 //rollChart.ChartAreas[0].RecalculateAxesScale();
-                rollChart.ResetAutoValues();            
-            
+                rollChart.ResetAutoValues();
             }
         }
 
@@ -148,7 +147,6 @@ namespace AgOpenGPS
 
         private void label1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void btnScroll_Click_1(object sender, EventArgs e)
@@ -160,7 +158,7 @@ namespace AgOpenGPS
         {
             isPole = !isPole;
             if (isPole) btnPoleOrMoving.Text = "Pole";
-            else btnPoleOrMoving.Text = "Moving";      
+            else btnPoleOrMoving.Text = "Moving";
         }
     }
 }

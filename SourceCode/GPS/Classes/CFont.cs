@@ -15,6 +15,7 @@ namespace AgOpenGPS
 
         //int FontTextureID;
         public const int textureWidth = 256;
+
         public const int textureHeight = 256;
 
         public bool isFontOn;
@@ -73,7 +74,6 @@ namespace AgOpenGPS
             double u_step = GlyphWidth / (double)textureWidth;
             double v_step = GlyphHeight / (double)textureHeight;
 
-
             for (int n = 0; n < text.Length; n++)
             {
                 char idx = text[n];
@@ -121,7 +121,6 @@ namespace AgOpenGPS
                 size = Math.Pow(size, 0.8);
                 size /= 800;
             }
-
             else
             {
                 if (mf.camera.camFollowing) GL.Rotate(-mf.camHeading, 0, 0, 1);
@@ -136,7 +135,6 @@ namespace AgOpenGPS
 
             double u_step = GlyphWidth / (double)textureWidth;
             double v_step = GlyphHeight / (double)textureHeight;
-
 
             for (int n = 0; n < text.Length; n++)
             {
@@ -158,7 +156,6 @@ namespace AgOpenGPS
 
                 x += CharXSpacing * size;
             }
-
 
             GL.End();
             GL.Disable(EnableCap.Texture2D);
@@ -187,7 +184,6 @@ namespace AgOpenGPS
             double u_step = GlyphWidth / (double)textureWidth;
             double v_step = GlyphHeight / (double)textureHeight;
 
-
             for (int n = 0; n < text.Length; n++)
             {
                 char idx = text[n];
@@ -208,7 +204,6 @@ namespace AgOpenGPS
 
                 x += CharXSpacing * size;
             }
-
 
             GL.End();
             GL.Disable(EnableCap.Texture2D);

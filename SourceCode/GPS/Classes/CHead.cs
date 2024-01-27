@@ -5,7 +5,8 @@ namespace AgOpenGPS
     public partial class CBoundary
     {
         public bool isHeadlandOn;
-        public bool isToolInHeadland, 
+
+        public bool isToolInHeadland,
             isToolOuterPointsInHeadland, isSectionControlledByHeadland;
 
         public void SetHydPosition()
@@ -66,7 +67,7 @@ namespace AgOpenGPS
             {
                 bool isLookRightIn = false;
 
-                vec3 toolFix = mf.toolPos;
+                vec3 toolFix = mf.toolPivotPos;
                 double sinAB = Math.Sin(toolFix.heading);
                 double cosAB = Math.Cos(toolFix.heading);
 
@@ -76,7 +77,6 @@ namespace AgOpenGPS
 
                 for (int j = 0; j < mf.tool.numOfSections; j++)
                 {
-
                     bool isLookLeftIn = j == 0 ? IsPointInsideHeadArea(new vec2(
                         mf.section[j].leftPoint.easting + (sinAB * mf.tool.lookAheadDistanceOnPixelsLeft * 0.1),
                         mf.section[j].leftPoint.northing + (cosAB * mf.tool.lookAheadDistanceOnPixelsLeft * 0.1))) : isLookRightIn;
