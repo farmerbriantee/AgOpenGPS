@@ -366,9 +366,9 @@ namespace AgOpenGPS
 
             double dist, dx, dz;
             double minDistA = 1000000, minDistB = 1000000;
-            int ptCount = curList.Count;
+            //int ptCount = curList.Count;
 
-            if (ptCount > 0)
+            if (curList.Count > 0)
             {
                 if (mf.yt.isYouTurnTriggered && mf.yt.DistanceFromYouTurnLine())//do the pure pursuit from youTurn
                 {
@@ -392,54 +392,101 @@ namespace AgOpenGPS
                     minDistA = double.MaxValue;
                     //close call hit
 
-                    isLooping = (glm.Distance(curList[0], curList[curList.Count - 1]) < 20);
-
-                    for (int j = 0; j < curList.Count; j ++)
+                    //If is a curve
+                    if (mf.trk.gArr[mf.trk.idx].mode <= (int)TrackMode.Curve)
                     {
-                        dist = glm.DistanceSquared(pivot, curList[j]);
-                        if (dist < minDistA)
+                        minDistA = minDistB = double.MaxValue;
+                        //close call hit
+                        int cc = 0, dd;
+
+                        for (int j = 0; j < curList.Count; j += 10)
                         {
-                            minDistA = dist;
-                            A = j;
+                            dist = glm.DistanceSquared(pivot, curList[j]);
+                            if (dist < minDistA)
+                            {
+                                minDistA = dist;
+                                cc = j;
+                            }
                         }
-                    }
+
+                        minDistA = double.MaxValue;
+
+                        dd = cc + 8; if (dd > curList.Count - 1) dd = curList.Count;
+                        cc -= 8; if (cc < 0) cc = 0;
+
+                        //find the closest 2 points to current close call
+                        for (int j = cc; j < dd; j++)
+                        {
+                            dist = glm.DistanceSquared(pivot, curList[j]);
+                            if (dist < minDistA)
+                            {
+                                minDistB = minDistA;
+                                B = A;
+                                minDistA = dist;
+                                A = j;
+                            }
+                            else if (dist < minDistB)
+                            {
+                                minDistB = dist;
+                                B = j;
+                            }
+                        }
 
                         //just need to make sure the points continue ascending or heading switches all over the place
-                        //if (A > B) { C = A; A = B; B = C; }
+                        if (A > B) { C = A; A = B; B = C; }
 
-                    currentLocationIndex = A;
+                        currentLocationIndex = A;
 
-                    if (A > curList.Count - 1)
-                        return;
-
-                    //initial forward Test if pivot InRange AB
-                    if (A == curList.Count - 1)  B = 0;
-                    else B = A + 1;
-
-                    if (glm.InRangeBetweenAB(curList[A].easting, curList[A].northing,
-                         curList[B].easting, curList[B].northing, pivot.easting, pivot.northing))
-                        goto SegmentFound;
-
-                    A = currentLocationIndex;
-                    //step back one
-                    if (A == 0)
-                    {
-                        A = curList.Count - 1;
-                        B = 0;
+                        if (A > curList.Count - 1 || B > curList.Count - 1)
+                            return;
                     }
                     else
                     {
-                        A = A - 1;
-                        B = A + 1;
+                        for (int j = 0; j < curList.Count; j++)
+                        {
+                            dist = glm.DistanceSquared(pivot, curList[j]);
+                            if (dist < minDistA)
+                            {
+                                minDistA = dist;
+                                A = j;
+                            }
+                        }
+
+                        currentLocationIndex = A;
+
+                        if (A > curList.Count - 1)
+                            return;
+
+                        //initial forward Test if pivot InRange AB
+                        if (A == curList.Count - 1) B = 0;
+                        else B = A + 1;
+
+                        if (glm.InRangeBetweenAB(curList[A].easting, curList[A].northing,
+                             curList[B].easting, curList[B].northing, pivot.easting, pivot.northing))
+                            goto SegmentFound;
+
+                        A = currentLocationIndex;
+                        //step back one
+                        if (A == 0)
+                        {
+                            A = curList.Count - 1;
+                            B = 0;
+                        }
+                        else
+                        {
+                            A = A - 1;
+                            B = A + 1;
+                        }
+
+                        if (glm.InRangeBetweenAB(curList[A].easting, curList[A].northing,
+                            curList[B].easting, curList[B].northing, pivot.easting, pivot.northing))
+                            goto SegmentFound;
+
+                        return;
                     }
 
-                    if (glm.InRangeBetweenAB(curList[A].easting, curList[A].northing,
-                        curList[B].easting, curList[B].northing, pivot.easting, pivot.northing))
-                        goto SegmentFound;
-
-                    return;
-
                     SegmentFound:
+
                     //get the distance from currently active AB line
 
                     dx = curList[B].easting - curList[A].easting;
@@ -513,7 +560,7 @@ namespace AgOpenGPS
                     vec3 start = new vec3(rEastCu, rNorthCu, 0);
                     double distSoFar = 0;
 
-                    for (int i = ReverseHeading ? B : A; i < ptCount && i >= 0; i += count)
+                    for (int i = ReverseHeading ? B : A; i < curList.Count && i >= 0;)
                     {
                         // used for calculating the length squared of next segment.
                         double tempDist = glm.Distance(start, curList[i]);
@@ -529,24 +576,30 @@ namespace AgOpenGPS
                         }
                         else distSoFar += tempDist;
                         start = curList[i];
+                        i += count;
+                        if (i < 0) i = curList.Count - 1;
+                        if (i > curList.Count - 1) i = 0;
                     }
 
-                    if (mf.isBtnAutoSteerOn && !mf.isReverse)
+                    if (mf.trk.gArr[mf.trk.idx].mode <= (int)TrackMode.Curve)
                     {
-                        if (isHeadingSameWay)
+                        if (mf.isBtnAutoSteerOn && !mf.isReverse)
                         {
-                            if (glm.Distance(goalPointCu, curList[(curList.Count - 1)]) < 0.5)
+                            if (isHeadingSameWay)
                             {
-                                mf.TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsPastEndOfCurve);
-                                mf.btnAutoSteer.PerformClick();
+                                if (glm.Distance(goalPointCu, curList[(curList.Count - 1)]) < 0.5)
+                                {
+                                    mf.TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsPastEndOfCurve);
+                                    mf.btnAutoSteer.PerformClick();
+                                }
                             }
-                        }
-                        else
-                        {
-                            if (glm.Distance(goalPointCu, curList[0]) < 0.5)
+                            else
                             {
-                                mf.btnAutoSteer.PerformClick();
-                                mf.TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsPastEndOfCurve);
+                                if (glm.Distance(goalPointCu, curList[0]) < 0.5)
+                                {
+                                    mf.btnAutoSteer.PerformClick();
+                                    mf.TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsPastEndOfCurve);
+                                }
                             }
                         }
                     }
@@ -663,11 +716,20 @@ namespace AgOpenGPS
             }
             else //normal. Smoothing window is not open.
             {
-                if (curList.Count > 0 )
+                if (curList.Count > 0)
                 {
                     GL.LineWidth(mf.ABLine.lineWidth);
                     GL.Color3(0.95f, 0.2f, 0.95f);
-                    GL.Begin(PrimitiveType.LineStrip);
+
+                    //ablines and curves are a line - the rest a loop
+                    if (mf.trk.gArr[mf.trk.idx].mode <= (int)TrackMode.Curve)
+                    {
+                        GL.Begin(PrimitiveType.LineStrip);
+                    }
+                    else
+                    {
+                        GL.Begin(PrimitiveType.LineLoop);
+                    }
                     for (int h = 0; h < curList.Count; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
                     GL.End();
 
@@ -685,7 +747,6 @@ namespace AgOpenGPS
             }
             GL.PointSize(1.0f);
         }
-
         public void BuildTram()
         {
             //if all or bnd only then make outer loop pass

@@ -43,7 +43,9 @@ namespace AgOpenGPS
 
         private void button1_Click(object sender, EventArgs e)
         {
+            DateTime dt2 = new DateTime(2024, 02, 10);
             mf.isTermsAccepted = true;
+            if (DateTime.Now > dt2) Environment.Exit(0);
             Close();
         }
 
