@@ -118,7 +118,7 @@
             this.button2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button2.Location = new System.Drawing.Point(516, 588);
+            this.button2.Location = new System.Drawing.Point(612, 588);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(155, 86);
             this.button2.TabIndex = 39;
@@ -216,13 +216,14 @@
             // 
             // label1
             // 
+            this.label1.BackColor = System.Drawing.Color.DarkOrange;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Sienna;
+            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label1.Location = new System.Drawing.Point(116, 410);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(382, 97);
+            this.label1.Size = new System.Drawing.Size(382, 138);
             this.label1.TabIndex = 134;
-            this.label1.Text = "This version expires:     Feb 10. 2024";
+            this.label1.Text = "This version expires:     Feb 5. 2024";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form_First

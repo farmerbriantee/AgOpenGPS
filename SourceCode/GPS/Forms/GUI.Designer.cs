@@ -1266,8 +1266,8 @@ namespace AgOpenGPS
                         Form form = new FormPan(this);
                         form.Show(this);
 
-                        form.Top = this.Top + 75;
-                        form.Left = this.Left + this.Width-380;
+                        form.Top = this.Top + 90;
+                        form.Left = this.Left + 120;
                     }
 
                     if (isJobStarted)
