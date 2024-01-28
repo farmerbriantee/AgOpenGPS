@@ -311,6 +311,21 @@ namespace AgOpenGPS
                     }
                     else// draw the current and reference AB Lines or CurveAB Ref and line
                     {
+                        //when switching lines, draw the ghost
+                        if (guideLineCounter !=0 && proposedGuideLineIndex > -1)
+                        {
+
+                            if (trk.gArr[proposedGuideLineIndex].isVisible
+                                && trk.gArr[proposedGuideLineIndex].mode == (int)TrackMode.AB)
+
+                                ABLine.DrawProposed(proposedGuideLineIndex);
+
+                            if (trk.gArr[proposedGuideLineIndex].isVisible
+                                && trk.gArr[proposedGuideLineIndex].mode > (int)TrackMode.AB)
+
+                                curve.DrawProposed(proposedGuideLineIndex);
+                        }
+
                         if (trk.idx > -1)
                         {
                             if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
@@ -2321,27 +2336,66 @@ namespace AgOpenGPS
                 guideLineCounter = 20;
                 lastGuidelineIndex = trk.idx;
                 lblGuidanceLine.Visible = true;
-                if (trk.idx > -1 && trk.gArr.Count > 0)
+
+                if (proposedGuideLineIndex > -1)
                 {
-                    lblNumCu.Visible = true;
-                    lblNumCu.Text = (trk.idx + 1).ToString() + "/" + trk.gArr.Count.ToString();
+                    if (proposedGuideLineIndex > -1 && trk.gArr.Count > 0)
+                    {
+                        lblNumCu.Visible = true;
+                        lblNumCu.Text = (proposedGuideLineIndex + 1).ToString() + "/" + trk.gArr.Count.ToString();
+                    }
+                    else
+                    {
+                        lblNumCu.Visible = false;
+                        lblNumCu.Text = "";
+                    }
                 }
                 else
                 {
-                    lblNumCu.Visible = false;
-                    lblNumCu.Text = "";
+                    if (trk.idx > -1 && trk.gArr.Count > 0)
+                    {
+                        lblNumCu.Visible = true;
+                        lblNumCu.Text = (trk.idx + 1).ToString() + "/" + trk.gArr.Count.ToString();
+                    }
+                    else
+                    {
+                        lblNumCu.Visible = false;
+                        lblNumCu.Text = "";
+                    }
                 }
-
             }
 
             if (guideLineCounter > 0)
             {
-                if (trk.gArr.Count > 0 && lastGuidelineIndex > -1)
-                    lblGuidanceLine.Text = trk.gArr[lastGuidelineIndex].name;
-                else lblGuidanceLine.Text = gStr.gsNoGuidanceLines;
-                guideLineCounter--;
+                if (proposedGuideLineIndex > -1)
+                {
 
-                if (guideLineCounter == 0) lblGuidanceLine.Visible = false;
+                    if (trk.gArr.Count > 0 && proposedGuideLineIndex > -1)
+                        lblGuidanceLine.Text = trk.gArr[proposedGuideLineIndex].name;
+                    else lblGuidanceLine.Text = gStr.gsNoGuidanceLines;
+                    guideLineCounter--;
+
+                    if (guideLineCounter == 0)
+                    {
+                        lblGuidanceLine.Visible = false;
+                        trk.idx = proposedGuideLineIndex;
+                        lastGuidelineIndex = trk.idx;
+                        proposedGuideLineIndex = -1;
+                    }
+                }
+                else
+                {
+                    if (trk.gArr.Count > 0 && trk.idx > -1)
+                        lblGuidanceLine.Text = trk.gArr[trk.idx].name;
+                    else lblGuidanceLine.Text = gStr.gsNoGuidanceLines;
+                    guideLineCounter--;
+
+                    if (guideLineCounter == 0)
+                    {
+                        lblGuidanceLine.Visible = false;
+                        proposedGuideLineIndex = -1;
+                    }
+                }
             }
 
         }

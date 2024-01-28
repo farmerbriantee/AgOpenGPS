@@ -238,15 +238,18 @@ namespace AgOpenGPS
             trk.isAutoTrack = false;
             btnAutoTrack.Image = Resources.AutoTrackOff;
 
+            if (guideLineCounter == 0) proposedGuideLineIndex = trk.idx;           
+
             if (trk.gArr.Count > 1)
             {
                 while (true)
                 {
-                    trk.idx++;
-                    if (trk.idx == trk.gArr.Count) trk.idx = 0;
+                    proposedGuideLineIndex++;
+                    if (proposedGuideLineIndex == trk.gArr.Count) proposedGuideLineIndex = 0;
 
-                    if (trk.gArr[trk.idx].isVisible)
+                    if (trk.gArr[proposedGuideLineIndex].isVisible)
                     {
+                        lastGuidelineIndex = proposedGuideLineIndex;
                         break;
                     }
                 }
@@ -273,24 +276,27 @@ namespace AgOpenGPS
                 return;
             }
 
-            trk.isAutoTrack = false;
-            btnAutoTrack.Image = Resources.AutoTrackOff;
-
             if (ct.isContourBtnOn)
             {
                 ct.SetLockToLine();
                 return;
             }
 
+            trk.isAutoTrack = false;
+            btnAutoTrack.Image = Resources.AutoTrackOff;
+
+            if (guideLineCounter == 0) proposedGuideLineIndex = trk.idx;
+
             if (trk.gArr.Count > 1)
             {
                 while (true)
                 {
-                    trk.idx--;
-                    if (trk.idx == -1) trk.idx = trk.gArr.Count - 1;
+                    proposedGuideLineIndex--;
+                    if (proposedGuideLineIndex == -1) proposedGuideLineIndex = trk.gArr.Count - 1;
 
-                    if (trk.gArr[trk.idx].isVisible)
+                    if (trk.gArr[proposedGuideLineIndex].isVisible)
                     {
+                        lastGuidelineIndex = proposedGuideLineIndex;
                         break;
                     }
                 }
