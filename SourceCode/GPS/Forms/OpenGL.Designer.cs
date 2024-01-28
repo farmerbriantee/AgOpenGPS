@@ -128,7 +128,7 @@ namespace AgOpenGPS
 
                 int edge = -oglMain.Width / 2 + 10;
 
-                font.DrawText(edge, oglMain.Height - 100, "<-- AgIO ?");
+                font.DrawText(edge, oglMain.Height - 80, "<-- AgIO ?");
 
                 GL.Flush();//finish openGL commands
                 GL.PopMatrix();//  Pop the modelview.
@@ -518,6 +518,7 @@ namespace AgOpenGPS
                         p_239.pgn[p_239.geoStop] = mc.isOutOfBounds ? (byte)1 : (byte)0;
 
                         SendPgnToLoop(p_239.pgn);
+
                         if (!tool.isSectionsNotZones)
                             SendPgnToLoop(p_229.pgn);
                     }

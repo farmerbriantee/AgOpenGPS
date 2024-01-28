@@ -575,14 +575,25 @@ namespace AgOpenGPS
                 }
             }
 
-
             FieldMenuButtonEnableDisable(isJobStarted);
 
             toolStripBtnFieldTools.Enabled = isJobStarted;
 
-            bnd.isHeadlandOn = (bnd.bndList.Count > 0 && bnd.bndList[0].hdLine.Count > 0);            
+            bnd.isHeadlandOn = (bnd.bndList.Count > 0 && bnd.bndList[0].hdLine.Count > 0);
 
-            if (isJobStarted && trk.gArr.Count > 0)  trk.idx = 0;
+            trk.idx = -1;
+
+            if (isJobStarted && trk.gArr.Count > 0)
+            {
+                for (int i = 0; i < trk.gArr.Count; i++)
+                {
+                    if (trk.gArr[i].isVisible)
+                    {
+                        trk.idx = i;
+                        break;
+                    }
+                }
+            }
 
             PanelUpdateRightAndBottom();
 
