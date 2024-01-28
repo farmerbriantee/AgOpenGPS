@@ -3938,7 +3938,6 @@
             this.tabTSections.Controls.Add(this.nudSection15);
             this.tabTSections.Controls.Add(this.nudSection14);
             this.tabTSections.Controls.Add(this.nudSection13);
-            this.tabTSections.Controls.Add(this.nudNumberOfSections);
             this.tabTSections.Controls.Add(this.nudSection12);
             this.tabTSections.Controls.Add(this.nudSection11);
             this.tabTSections.Controls.Add(this.nudSection10);
@@ -3954,6 +3953,7 @@
             this.tabTSections.Controls.Add(this.cboxSectionBoundaryControl);
             this.tabTSections.Controls.Add(this.pictureBox11);
             this.tabTSections.Controls.Add(this.cboxIsUnique);
+            this.tabTSections.Controls.Add(this.nudNumberOfSections);
             this.tabTSections.ForeColor = System.Drawing.Color.Black;
             this.tabTSections.Location = new System.Drawing.Point(4, 44);
             this.tabTSections.Name = "tabTSections";
@@ -5110,7 +5110,7 @@
             this.nudNumberOfSections.BackColor = System.Drawing.Color.AliceBlue;
             this.nudNumberOfSections.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudNumberOfSections.InterceptArrowKeys = false;
-            this.nudNumberOfSections.Location = new System.Drawing.Point(473, 355);
+            this.nudNumberOfSections.Location = new System.Drawing.Point(486, 351);
             this.nudNumberOfSections.Minimum = new decimal(new int[] {
             1,
             0,
@@ -5118,10 +5118,9 @@
             0});
             this.nudNumberOfSections.Name = "nudNumberOfSections";
             this.nudNumberOfSections.ReadOnly = true;
-            this.nudNumberOfSections.Size = new System.Drawing.Size(125, 52);
+            this.nudNumberOfSections.Size = new System.Drawing.Size(108, 52);
             this.nudNumberOfSections.TabIndex = 458;
             this.nudNumberOfSections.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudNumberOfSections.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
             this.nudNumberOfSections.Value = new decimal(new int[] {
             48,
             0,

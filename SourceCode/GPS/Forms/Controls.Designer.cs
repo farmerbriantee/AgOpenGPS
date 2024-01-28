@@ -238,19 +238,23 @@ namespace AgOpenGPS
             trk.isAutoTrack = false;
             btnAutoTrack.Image = Resources.AutoTrackOff;
 
+            if (guideLineCounter == 0) proposedGuideLineIndex = trk.idx;           
+
             if (trk.gArr.Count > 1)
             {
                 while (true)
                 {
-                    trk.idx++;
-                    if (trk.idx == trk.gArr.Count) trk.idx = 0;
+                    proposedGuideLineIndex++;
+                    if (proposedGuideLineIndex == trk.gArr.Count) proposedGuideLineIndex = 0;
 
-                    if (trk.gArr[trk.idx].isVisible)
+                    if (trk.gArr[proposedGuideLineIndex].isVisible)
                     {
+                        lastGuidelineIndex = proposedGuideLineIndex;
                         break;
                     }
                 }
 
+                if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
             }
 
             twoSecondCounter = 100;
@@ -272,27 +276,31 @@ namespace AgOpenGPS
                 return;
             }
 
-            trk.isAutoTrack = false;
-            btnAutoTrack.Image = Resources.AutoTrackOff;
-
             if (ct.isContourBtnOn)
             {
                 ct.SetLockToLine();
                 return;
             }
 
+            trk.isAutoTrack = false;
+            btnAutoTrack.Image = Resources.AutoTrackOff;
+
+            if (guideLineCounter == 0) proposedGuideLineIndex = trk.idx;
+
             if (trk.gArr.Count > 1)
             {
                 while (true)
                 {
-                    trk.idx--;
-                    if (trk.idx == -1) trk.idx = trk.gArr.Count - 1;
+                    proposedGuideLineIndex--;
+                    if (proposedGuideLineIndex == -1) proposedGuideLineIndex = trk.gArr.Count - 1;
 
-                    if (trk.gArr[trk.idx].isVisible)
+                    if (trk.gArr[proposedGuideLineIndex].isVisible)
                     {
+                        lastGuidelineIndex = proposedGuideLineIndex;
                         break;
                     }
                 }
+                if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
             }
 
             ABLine.isABValid = false;
@@ -517,16 +525,10 @@ namespace AgOpenGPS
             if (isJobStarted)
             {
                 if (autoBtnState == btnStates.Auto)
-                {
-                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Auto Section Control");
-                    return;
-                }
+                    btnSectionMasterAuto.PerformClick();
 
                 if (manualBtnState == btnStates.On)
-                {
-                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Manual Section Control");
-                    return;
-                }
+                    btnSectionMasterManual.PerformClick();
             }
 
             using (var form = new FormJob(this))
@@ -589,6 +591,12 @@ namespace AgOpenGPS
         {
             //turn off contour line if on
             if (ct.isContourOn) ct.StopContourLine();
+
+            if (autoBtnState == btnStates.Auto)
+                btnSectionMasterAuto.PerformClick();
+
+            if (manualBtnState == btnStates.On)
+                btnSectionMasterManual.PerformClick();
 
             //turn off all the sections
             for (int j = 0; j < tool.numOfSections; j++)

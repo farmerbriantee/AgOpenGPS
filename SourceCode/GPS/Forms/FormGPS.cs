@@ -580,18 +580,10 @@ namespace AgOpenGPS
             if (isJobStarted)
             {
                 if (autoBtnState == btnStates.Auto)
-                {
-                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Auto Section Control");
-                    e.Cancel = true;
-                    return;
-                }
+                    btnSectionMasterAuto.PerformClick();
 
                 if (manualBtnState == btnStates.On)
-                {
-                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Manual Section Control");
-                    e.Cancel = true;
-                    return;
-                }
+                    btnSectionMasterManual.PerformClick();
 
                 bool closing = true;
                 int choice = SaveOrNot(closing);
@@ -675,8 +667,8 @@ namespace AgOpenGPS
             f = Application.OpenForms["FormPan"];
             if (f != null)
             {
-                f.Top = this.Top + 75;
-                f.Left = this.Left + this.Width - 380;
+                f.Top = this.Top + 90;
+                f.Left = this.Left + 120;
             }
         }
 
