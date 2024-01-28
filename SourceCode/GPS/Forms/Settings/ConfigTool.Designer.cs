@@ -516,6 +516,39 @@ namespace AgOpenGPS
 
         private void tabTSections_Enter(object sender, EventArgs e)
         {
+            if (mf.isJobStarted)
+            {
+                if (mf.autoBtnState == btnStates.Auto)
+                    mf.btnSectionMasterAuto.PerformClick();
+
+                if (mf.manualBtnState == btnStates.On)
+                    mf.btnSectionMasterManual.PerformClick();
+            }
+
+            if (mf.tool.isSectionsNotZones)
+            {
+                //fix ManualOffOnAuto buttons
+                mf.manualBtnState = btnStates.Off;
+                mf.btnSectionMasterManual.Image = Properties.Resources.ManualOff;
+
+                //fix auto button
+                mf.autoBtnState = btnStates.Off;
+                mf.btnSectionMasterAuto.Image = Properties.Resources.SectionMasterOff;
+
+                //Update the button colors and text
+                mf.AllSectionsAndButtonsToState(mf.autoBtnState);
+
+                //enable disable manual buttons
+                mf.LineUpIndividualSectionBtns();
+            }
+            else
+            {
+                //turn section buttons all OFF
+                mf.AllZonesAndButtonsToState(btnStates.Off);
+
+                mf.LineUpAllZoneButtons();
+            }
+
             cboxIsUnique.Checked = !mf.tool.isSectionsNotZones;
 
             cboxSectionBoundaryControl.Checked = Properties.Settings.Default.setTool_isSectionOffWhenOut;

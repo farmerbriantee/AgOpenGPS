@@ -251,6 +251,7 @@ namespace AgOpenGPS
                     }
                 }
 
+                if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
             }
 
             twoSecondCounter = 100;
@@ -293,6 +294,7 @@ namespace AgOpenGPS
                         break;
                     }
                 }
+                if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
             }
 
             ABLine.isABValid = false;
@@ -517,16 +519,10 @@ namespace AgOpenGPS
             if (isJobStarted)
             {
                 if (autoBtnState == btnStates.Auto)
-                {
-                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Auto Section Control");
-                    return;
-                }
+                    btnSectionMasterAuto.PerformClick();
 
                 if (manualBtnState == btnStates.On)
-                {
-                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Manual Section Control");
-                    return;
-                }
+                    btnSectionMasterManual.PerformClick();
             }
 
             using (var form = new FormJob(this))
@@ -589,6 +585,12 @@ namespace AgOpenGPS
         {
             //turn off contour line if on
             if (ct.isContourOn) ct.StopContourLine();
+
+            if (autoBtnState == btnStates.Auto)
+                btnSectionMasterAuto.PerformClick();
+
+            if (manualBtnState == btnStates.On)
+                btnSectionMasterManual.PerformClick();
 
             //turn off all the sections
             for (int j = 0; j < tool.numOfSections; j++)

@@ -220,39 +220,6 @@ namespace AgOpenGPS
         #region Tool Sub Menu
         private void btnTool_Click(object sender, EventArgs e)
         {
-            if (mf.isJobStarted)
-            {
-                if (mf.autoBtnState == btnStates.Auto)
-                    mf.btnSectionMasterAuto.PerformClick();
-
-                if (mf.manualBtnState == btnStates.On)
-                    mf.btnSectionMasterManual.PerformClick();
-            }
-
-            if (mf.tool.isSectionsNotZones)
-            {
-                //fix ManualOffOnAuto buttons
-                mf.manualBtnState = btnStates.Off;
-                mf.btnSectionMasterManual.Image = Properties.Resources.ManualOff;
-
-                //fix auto button
-                mf.autoBtnState = btnStates.Off;
-                mf.btnSectionMasterAuto.Image = Properties.Resources.SectionMasterOff;
-
-                //Update the button colors and text
-                mf.AllSectionsAndButtonsToState(mf.autoBtnState);
-
-                //enable disable manual buttons
-                mf.LineUpIndividualSectionBtns();
-            }
-            else
-            {
-                //turn section buttons all OFF
-                mf.AllZonesAndButtonsToState(btnStates.Off);
-
-                mf.LineUpAllZoneButtons();
-            }
-
             ShowSubMenu(panelToolSubMenu, btnTool);
             btnSubToolType.BackColor=SystemColors.GradientActiveCaption;
             UpdateVehicleListView();
