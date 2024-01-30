@@ -295,10 +295,12 @@ namespace AgOpenGPS
 
                     for (int i = 0; i <= (int)(glm.Distance(ptA, ptB)); i++)
                     {
-                        vec3 ptC = new vec3(ptA);
-                        ptC.easting = (Math.Sin(abHead) * i) + ptA.easting;
-                        ptC.northing = (Math.Cos(abHead) * i) + ptA.northing;
-                        ptC.heading = abHead;
+                        vec3 ptC = new vec3(ptA)
+                        {
+                            easting = (Math.Sin(abHead) * i) + ptA.easting,
+                            northing = (Math.Cos(abHead) * i) + ptA.northing,
+                            heading = abHead
+                        };
                         sliceArr.Add(ptC);
                     }
 
@@ -539,7 +541,6 @@ namespace AgOpenGPS
                 vec3 ptEnd = new vec3(hdArr[hdArr.Length - 1].easting, hdArr[hdArr.Length - 1].northing, hdArr[hdArr.Length - 1].heading);
 
                 mf.bnd.bndList[0].hdLine.Add(ptEnd);
-                delta = 0;
             }
 
             mf.FileSaveHeadland();

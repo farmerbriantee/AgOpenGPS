@@ -445,9 +445,19 @@ namespace AgOpenGPS
                 flp1.Visible = false;
             }
 
-            using (var form = new FormABDraw(this))
+            if (this.Height > 1000 && this.Width > 1000)
             {
-                form.ShowDialog(this);
+                using (var form = new FormABDraw2(this))
+                {
+                    form.ShowDialog(this);
+                }
+            }
+            else
+            {
+                using (var form = new FormABDraw(this))
+                {
+                    form.ShowDialog(this);
+                }
             }
 
             PanelUpdateRightAndBottom();

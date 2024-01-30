@@ -10,7 +10,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AgOpenGPS
 {
-    public partial class FormABDraw : Form
+    public partial class FormABDraw2 : Form
     {
         //access to the main GPS form and all its variables
         private readonly FormGPS mf = null;
@@ -28,22 +28,12 @@ namespace AgOpenGPS
 
         private bool isDrawSections = false;
 
-        public FormABDraw(Form callingForm)
+        public FormABDraw2(Form callingForm)
         {
             //get copy of the calling main form
             mf = callingForm as FormGPS;
 
             InitializeComponent();
-
-            lblCmInch.Text = mf.unitsInCm;
-
-            nudDistance.Controls[0].Enabled = false;
-
-            if (!mf.isMetric)
-            {
-                nudDistance.Maximum = (int)(nudDistance.Maximum / 2.54M);
-                nudDistance.Minimum = (int)(nudDistance.Minimum / 2.54M);
-            }
 
             mf.CalculateMinMax();
         }
@@ -52,13 +42,10 @@ namespace AgOpenGPS
         {
             originalLine = mf.trk.idx;
             //nudDistance.Value = (decimal)Math.Round(((mf.tool.width * mf.m2InchOrCm) * 0.5), 0); //
-            nudDistance.Value = 0;
-            label6.Text = Math.Round((mf.tool.width * mf.m2InchOrCm), 0).ToString();
             FixLabelsCurve();
 
             if (isDrawSections) btnDrawSections.Image = Properties.Resources.MappingOn;
             else btnDrawSections.Image = Properties.Resources.MappingOff;
-            btnFlipOffset.Text = "In";
 
             for (int i = 0; i < mf.trk.gArr.Count; i++)
             {
@@ -287,13 +274,6 @@ namespace AgOpenGPS
             else btnDrawSections.Image = Properties.Resources.MappingOff;
         }
 
-        private void btnFlipOffset_Click(object sender, EventArgs e)
-        {
-            nudDistance.Value *= -1;
-            if (nudDistance.Value < 0) btnFlipOffset.Text = "Out";
-            else btnFlipOffset.Text = "In";
-        }
-
         private void tboxNameCurve_Leave(object sender, EventArgs e)
         {
             if (mf.trk.idx > -1)
@@ -333,64 +313,19 @@ namespace AgOpenGPS
                 //outside point
                 vec3 pt3 = new vec3();
 
-                double moveDist = (double)nudDistance.Value * mf.inchOrCm2m;
-                double distSq = (moveDist) * (moveDist) * 0.999;
 
-                if (nudDistance.Value == 0)
+                for (int i = 0; i < mf.bnd.bndList[bndSelect].fenceLine.Count; i++)
                 {
-                    for (int i = 0; i < mf.bnd.bndList[bndSelect].fenceLine.Count; i++)
-                    {
-                        //calculate the point inside the boundary
-                        pt3 = mf.bnd.bndList[bndSelect].fenceLine[i];
+                    //calculate the point inside the boundary
+                    pt3 = mf.bnd.bndList[bndSelect].fenceLine[i];
 
-                        mf.curve.desList.Add(new vec3(pt3));
-                    }
-                }
-                else
-                {
-                    //make the boundary tram outer array
-                    for (int i = 0; i < ptCount; i++)
-                    {
-                        //calculate the point inside the boundary
-                        pt3.easting = mf.bnd.bndList[q].fenceLine[i].easting -
-                            (Math.Sin(glm.PIBy2 + mf.bnd.bndList[q].fenceLine[i].heading) * (moveDist));
-
-                        pt3.northing = mf.bnd.bndList[q].fenceLine[i].northing -
-                            (Math.Cos(glm.PIBy2 + mf.bnd.bndList[q].fenceLine[i].heading) * (moveDist));
-
-                        pt3.heading = mf.bnd.bndList[q].fenceLine[i].heading;
-
-                        bool Add = true;
-
-                        for (int j = 0; j < ptCount; j++)
-                        {
-                            double check = glm.DistanceSquared(pt3.northing, pt3.easting,
-                                                mf.bnd.bndList[q].fenceLine[j].northing, mf.bnd.bndList[q].fenceLine[j].easting);
-                            if (check < distSq)
-                            {
-                                Add = false;
-                                break;
-                            }
-                        }
-
-                        if (Add)
-                        {
-                            if (mf.curve.desList.Count > 0)
-                            {
-                                double dist = ((pt3.easting - mf.curve.desList[mf.curve.desList.Count - 1].easting) * (pt3.easting - mf.curve.desList[mf.curve.desList.Count - 1].easting))
-                                    + ((pt3.northing - mf.curve.desList[mf.curve.desList.Count - 1].northing) * (pt3.northing - mf.curve.desList[mf.curve.desList.Count - 1].northing));
-                                if (dist > 1)
-                                    mf.curve.desList.Add(pt3);
-                            }
-                            else mf.curve.desList.Add(pt3);
-                        }
-                    }
+                    mf.curve.desList.Add(new vec3(pt3));
                 }
 
                 mf.trk.gArr.Add(new CTrk());
                 //array number is 1 less since it starts at zero
                 mf.trk.idx = mf.trk.gArr.Count - 1;
-                
+
                 mf.trk.gArr[mf.trk.idx].ptA = new vec2(mf.curve.desList[0].easting, mf.curve.desList[0].northing);
                 mf.trk.gArr[mf.trk.idx].ptB = new vec2(mf.curve.desList[mf.curve.desList.Count - 1].easting, mf.curve.desList[mf.curve.desList.Count - 1].northing);
 
@@ -406,7 +341,7 @@ namespace AgOpenGPS
                     //make sure point distance isn't too big 
                     mf.curve.MakePointMinimumSpacing(ref mf.curve.desList, 1.6);
                     mf.curve.CalculateHeadings(ref mf.curve.desList);
-                    
+
                     //create a name
                     mf.trk.gArr[mf.trk.idx].name = "Boundary Curve";
 
@@ -459,14 +394,9 @@ namespace AgOpenGPS
                 }
             }
 
-            double moveDist = (double)nudDistance.Value * mf.inchOrCm2m;
-            double distSq = (moveDist) * (moveDist) * 0.999;
-
             mf.curve.desList?.Clear();
             vec3 pt3 = new vec3();
 
-            if (nudDistance.Value == 0)
-            {
                 for (int i = start; i < end; i++)
                 {
                     //calculate the point inside the boundary
@@ -481,53 +411,6 @@ namespace AgOpenGPS
                         end = limit;
                     }
                 }
-            }
-            else
-            {
-                for (int i = start; i < end; i++)
-                {
-                    //calculate the point inside the boundary
-                    pt3.easting = mf.bnd.bndList[bndSelect].fenceLine[i].easting -
-                        (Math.Sin(glm.PIBy2 + mf.bnd.bndList[bndSelect].fenceLine[i].heading) * (moveDist));
-
-                    pt3.northing = mf.bnd.bndList[bndSelect].fenceLine[i].northing -
-                        (Math.Cos(glm.PIBy2 + mf.bnd.bndList[bndSelect].fenceLine[i].heading) * (moveDist));
-
-                    pt3.heading = mf.bnd.bndList[bndSelect].fenceLine[i].heading;
-
-                    bool Add = true;
-
-                    for (int j = start; j < end; j++)
-                    {
-                        double check = glm.DistanceSquared(pt3.northing, pt3.easting,
-                                            mf.bnd.bndList[bndSelect].fenceLine[j].northing, mf.bnd.bndList[bndSelect].fenceLine[j].easting);
-                        if (check < distSq)
-                        {
-                            Add = false;
-                            break;
-                        }
-                    }
-
-                    if (Add)
-                    {
-                        if (mf.curve.desList.Count > 0)
-                        {
-                            double dist = ((pt3.easting - mf.curve.desList[mf.curve.desList.Count - 1].easting) * (pt3.easting - mf.curve.desList[mf.curve.desList.Count - 1].easting))
-                                + ((pt3.northing - mf.curve.desList[mf.curve.desList.Count - 1].northing) * (pt3.northing - mf.curve.desList[mf.curve.desList.Count - 1].northing));
-                            if (dist > 1)
-                                mf.curve.desList.Add(new vec3(pt3));
-                        }
-                        else mf.curve.desList.Add(new vec3(pt3));
-                    }
-
-                    if (isLoop && i == mf.bnd.bndList[bndSelect].fenceLine.Count - 1)
-                    {
-                        i = -1;
-                        isLoop = false;
-                        end = limit;
-                    }
-                }
-            }
 
             mf.trk.gArr.Add(new CTrk());
             //array number is 1 less since it starts at zero
@@ -618,7 +501,7 @@ namespace AgOpenGPS
                 mf.bnd.bndList[bndSelect].fenceLine[end].northing - mf.bnd.bndList[bndSelect].fenceLine[start].northing);
             if (abHead < 0) abHead += glm.twoPI;
 
-            double offset = ((double)nudDistance.Value * mf.inchOrCm2m);
+            double offset = 0;
 
             double headingCalc = abHead + glm.PIBy2;
 
@@ -657,13 +540,13 @@ namespace AgOpenGPS
             Point pt = oglSelf.PointToClient(Cursor.Position);
 
             //Convert to Origin in the center of window, 800 pixels
-            fixPt.X = pt.X - 350;
-            fixPt.Y = (700 - pt.Y - 350);
+            fixPt.X = pt.X - 500;
+            fixPt.Y = (1000 - pt.Y - 500);
             vec3 plotPt = new vec3
             {
                 //convert screen coordinates to field coordinates
-                easting = fixPt.X * mf.maxFieldDistance / 632.0,
-                northing = fixPt.Y * mf.maxFieldDistance / 632.0,
+                easting = fixPt.X * mf.maxFieldDistance / 903,
+                northing = fixPt.Y * mf.maxFieldDistance / 903,
                 heading = 0
             };
 
