@@ -1659,5 +1659,119 @@ namespace AgOpenGPS
             //}
             GL.End();
         }
+
+        private List<vec3> MoveTurnInsideTurnLine(List<vec3> uTurnList, double head)
+        {
+            //step 1 make array out of the list so that we can modify the position
+            double cosHead = Math.Cos(head);
+            double sinHead = Math.Sin(head);
+            int cnt = uTurnList.Count;
+            vec3[] arr2 = new vec3[cnt];
+            uTurnList.CopyTo(arr2);
+            uTurnList.Clear();
+
+            //step 2 move the turn inside with steps of 1 meter
+            bool pointOutOfBnd = true;
+            int j = 0;
+            int stopIfWayOut = 0;
+            while (pointOutOfBnd)
+            {
+                stopIfWayOut++;
+                pointOutOfBnd = false;
+                mf.distancePivotToTurnLine = glm.Distance(arr2[0], mf.pivotAxlePos);
+
+                for (int i = 0; i < cnt; i++)
+                {
+                    arr2[i].easting -= (sinHead);
+                    arr2[i].northing -= (cosHead);
+                }
+
+                for (; j < cnt; j += 2)
+                {
+                    if (mf.bnd.IsPointInsideTurnArea(arr2[j]) != 0)
+                    {
+                        pointOutOfBnd = true;
+                        if (j > 0) j--;
+                        break;
+                    }
+                }
+
+                if (stopIfWayOut == 1000 || (mf.distancePivotToTurnLine < 3))
+                {
+                    //for some reason it doesn't go inside boundary, return empty list
+                    return uTurnList;
+
+                }
+            }
+
+            //step 3, the turn is now inside by 0-1 meters so we move it out again 1 meter
+            for (int i = 0; i < cnt; i++)
+            {
+                arr2[i].easting += (sinHead);
+                arr2[i].northing += (cosHead);
+            }
+
+            //step 4, the turn is now outside again we move it inside in steps of 0.1 meters
+
+            pointOutOfBnd = true;
+            j = 0;
+            while (pointOutOfBnd)
+            {
+                pointOutOfBnd = false;
+                mf.distancePivotToTurnLine = glm.Distance(arr2[0], mf.pivotAxlePos);
+
+                for (int i = 0; i < cnt; i++)
+                {
+                    arr2[i].easting -= (sinHead * 0.1);
+                    arr2[i].northing -= (cosHead * 0.1);
+                }
+
+                for (; j < cnt; j += 2)
+                {
+                    if (mf.bnd.IsPointInsideTurnArea(arr2[j]) != 0)
+                    {
+                        pointOutOfBnd = true;
+                        if (j > 0) j--;
+                        break;
+                    }
+                }
+                //no error handeling since we just were 1 meter back and it was okay then
+            }
+
+
+            //step 5, we ar now inside turnfence by 0-0.1 meters, move the turn forward until it hits the turnfence in steps of 0.05 meters
+            while (!pointOutOfBnd)
+            {
+
+                for (int i = 0; i < cnt; i++)
+                {
+                    arr2[i].easting += (sinHead * 0.05);
+                    arr2[i].northing += (cosHead * 0.05);
+                }
+
+                for (int a = 0; a < cnt; a++)
+                {
+                    if (mf.bnd.IsPointInsideTurnArea(arr2[a]) != 0)
+                    {
+                        pointOutOfBnd = true;
+                        break;
+                    }
+                }
+
+                if (pointOutOfBnd)
+                {
+                    pointOutOfBnd = false;
+                    break;
+                }
+            }
+
+            //step 6, we have now placed the turn, so send it back in a list
+            for (int i = 0; i < cnt; i++)
+            {
+                uTurnList.Add(arr2[i]);
+            }
+
+            return uTurnList;
+        }
     }
 }
