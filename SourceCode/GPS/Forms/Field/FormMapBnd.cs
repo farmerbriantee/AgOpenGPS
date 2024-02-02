@@ -23,6 +23,8 @@ namespace AgOpenGPS
 
         private double zoom = 1, sX = 0, sY = 0;
 
+        private int operations;
+
         //public List<CTrk> gTemp = new List<CTrk>();
 
         public vec3 pint = new vec3(0.0, 1.0, 0.0);
@@ -97,7 +99,10 @@ namespace AgOpenGPS
             cboxPointDistance.SelectedIndexChanged -= cboxPointDistance_SelectedIndexChanged;
             cboxPointDistance.Text = "1";
             cboxPointDistance.SelectedIndexChanged += cboxPointDistance_SelectedIndexChanged;
+
+            cboxSmooth.SelectedIndexChanged -= cboxSmooth_SelectedIndexChanged;
             cboxSmooth.Text = "4";
+            cboxSmooth.SelectedIndexChanged += cboxSmooth_SelectedIndexChanged;
             cboxIsZoom.Checked = false;
         }
 
@@ -112,6 +117,8 @@ namespace AgOpenGPS
 
             for (int j = 0; j < secList.Count; j++)
             {
+                operations++;
+
                 if (j == currentPoint) continue;
 
                 if (arr[j].heading == 1)
@@ -253,35 +260,42 @@ namespace AgOpenGPS
             mdG = double.MaxValue;
 
 
-            double bob = glm.DistanceSquared(secList[firstPoint], secList[currentPoint]);
-            lblDist.Text = bob.ToString("N1");
+            lblDist.Text = operations.ToString();
 
-            if (bndList.Count > 7 && bob < 70)
+            if (bndList.Count > 7)
             {
-                isStep = false;
-                timer1.Interval = 500;
-                timer1.Enabled = true;
+                //unhide first point
+                arr[firstPoint].heading = 0;
 
-                int bndCount = bndList.Count;
-
-                for (int i = 0; i < bndCount; i++)
+                //are we back to start?
+                if (rA == firstPoint || rB == firstPoint || rC == firstPoint ||
+                        rD == firstPoint || rE == firstPoint || rF == firstPoint || rG == firstPoint)
                 {
-                    int j = i + 1;
+                    isStep = false;
+                    timer1.Interval = 500;
+                    timer1.Enabled = true;
+                    cboxSmooth.Enabled = true;
 
-                    if (j == bndCount) j = 0;
-                    double distance = glm.Distance(bndList[i], bndList[j]);
-                    if (distance > 1.1)
+                    int bndCount = bndList.Count;
+
+                    for (int i = 0; i < bndCount; i++)
                     {
-                        vec3 pointB = new vec3((bndList[i].easting + bndList[j].easting) / 2.0,
-                            (bndList[i].northing + bndList[j].northing) / 2.0, bndList[i].heading);
+                        int j = i + 1;
 
-                        bndList.Insert(j, pointB);
-                        bndCount = bndList.Count;
-                        i--;
+                        if (j == bndCount) j = 0;
+                        double distance = glm.Distance(bndList[i], bndList[j]);
+                        if (distance > 1.1)
+                        {
+                            vec3 pointB = new vec3((bndList[i].easting + bndList[j].easting) / 2.0,
+                                (bndList[i].northing + bndList[j].northing) / 2.0, bndList[i].heading);
+
+                            bndList.Insert(j, pointB);
+                            bndCount = bndList.Count;
+                            i--;
+                        }
                     }
+                    return;
                 }
-
-                return;
             }
 
             bndList.Add(new vec3(secList[currentPoint]));
@@ -299,15 +313,29 @@ namespace AgOpenGPS
         private void btnResetReduce_Click(object sender, EventArgs e)
         {
             //start all over
+            operations = 0;
+            lblDist.Text = "";
             zoom = 1;
             sX = 0;
             sY = 0;
 
-            btnSmooth.Enabled = false;
             btnStartStop.Enabled = false;
             cboxPointDistance.Enabled = false;
             cboxSmooth.Enabled = false;
             btnMakeBoundary.Enabled = false;
+
+            if (mf.bnd.bndList.Count > 0)
+            {
+                DialogResult result3 = MessageBox.Show(gStr.gsDeleteBoundaryMapping,
+                    gStr.gsDeleteForSure,
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2);
+                if (result3 != DialogResult.Yes)
+                {
+                    return;
+                }
+            }
 
             DeleteBoundary();
             lblStartPoints.Text = secList.Count.ToString();
@@ -349,6 +377,53 @@ namespace AgOpenGPS
             btnStartStop.BackColor = Color.OrangeRed;
 
             cboxPointDistance.Enabled = true;
+        }
+        private void btnMakeBoundary_Click(object sender, EventArgs e)
+        {
+            if (smooList.Count == 0) return;
+
+            if (smooList.Count > 5)
+            {
+                secList?.Clear();
+
+                //just in case
+                DeleteBoundary();
+
+                CBoundaryList New = new CBoundaryList();
+
+                for (int i = 0; i < smooList.Count; i++)
+                {
+                    New.fenceLine.Add(new vec3(smooList[i]));
+                }
+
+                New.CalculateFenceArea(0);
+                New.FixFenceLine(0);
+                mf.bnd.bndList.Add(New);
+                smooList.Clear();
+                bndList?.Clear();
+
+                //turn lines made from boundaries
+                mf.CalculateMinMax();
+                mf.bnd.BuildTurnLines();
+
+                mf.fd.UpdateFieldBoundaryGUIAreas();
+                mf.FileSaveBoundary();
+            }
+
+            btnStartStop.Enabled = false;
+            cboxPointDistance.Enabled = false;
+            cboxSmooth.Enabled = false;
+            btnMakeBoundary.Enabled = false;
+        }
+
+        private void cboxSmooth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            smPtsChoose = cboxSmooth.SelectedIndex + 1;
+            smPts = 2;
+            for (int i = 1; i <= smPtsChoose; i++)
+                smPts *= 2;
+            cboxSmooth.Text = smPts.ToString();
+            SmoothList();
         }
 
         private void cboxPointDistance_SelectedIndexChanged(object sender, EventArgs e)
@@ -439,6 +514,8 @@ namespace AgOpenGPS
 
         private void btnStartStop_Click(object sender, EventArgs e)
         {
+            if (secList.Count == 0) return;
+
             arr = new vec3[secList.Count];
             prevHeading = Math.PI + glm.PIBy2;
 
@@ -467,11 +544,11 @@ namespace AgOpenGPS
             if (isStep) timer1.Interval = 50;
             else timer1.Interval = 500;
             btnStartStop.BackColor = Color.WhiteSmoke;
-            btnSmooth.Enabled = true;
-            cboxSmooth.Enabled = true;
+            btnStartStop.Enabled = false;
+            cboxSmooth.Enabled = false;
         }
 
-        private void btnSmooth_Click(object sender, EventArgs e)
+        private void SmoothList()
         {
             secList?.Clear();
 
@@ -650,54 +727,6 @@ namespace AgOpenGPS
             zoom = 1;
             sX = 0;
             sY = 0;
-        }
-
-        private void btnMakeBoundary_Click(object sender, EventArgs e)
-        {
-            if (smooList.Count == 0) return;
-
-            if (smooList.Count > 5)
-            {
-                secList?.Clear();
-
-                //just in case
-                DeleteBoundary();
-
-                CBoundaryList New = new CBoundaryList();
-
-                for (int i = 0; i < smooList.Count; i++)
-                {
-                    New.fenceLine.Add(new vec3(smooList[i]));
-                }
-
-                New.CalculateFenceArea(0);
-                New.FixFenceLine(0);
-                mf.bnd.bndList.Add(New);
-                smooList.Clear();
-                bndList?.Clear();
-
-                //turn lines made from boundaries
-                mf.CalculateMinMax();
-                mf.bnd.BuildTurnLines();
-
-                mf.fd.UpdateFieldBoundaryGUIAreas();
-                mf.FileSaveBoundary();
-            }
-
-            btnSmooth.Enabled = false;
-            btnStartStop.Enabled = false;
-            cboxPointDistance.Enabled = false;
-            cboxSmooth.Enabled = false;
-            btnMakeBoundary.Enabled = false;
-        }
-
-        private void cboxSmooth_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            smPtsChoose = cboxSmooth.SelectedIndex + 1;
-            smPts = 2;
-            for (int i = 1; i <= smPtsChoose; i++)
-                smPts *= 2;
-            cboxSmooth.Text = smPts.ToString();
         }
 
         private void btnExit_Click(object sender, EventArgs e)

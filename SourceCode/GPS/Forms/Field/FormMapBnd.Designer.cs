@@ -40,7 +40,6 @@
             this.cboxIsZoom = new System.Windows.Forms.CheckBox();
             this.btnCenterOGL = new System.Windows.Forms.Button();
             this.btnSlice = new System.Windows.Forms.Button();
-            this.btnSmooth = new System.Windows.Forms.Button();
             this.btnMakeBoundary = new System.Windows.Forms.Button();
             this.btnStartStop = new System.Windows.Forms.Button();
             this.btnResetReduce = new System.Windows.Forms.Button();
@@ -51,8 +50,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // oglSelf
@@ -79,14 +78,13 @@
             // lblStartPoints
             // 
             this.lblStartPoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblStartPoints.AutoSize = true;
             this.lblStartPoints.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStartPoints.ForeColor = System.Drawing.Color.Black;
-            this.lblStartPoints.Location = new System.Drawing.Point(851, 18);
+            this.lblStartPoints.Location = new System.Drawing.Point(872, 16);
             this.lblStartPoints.Name = "lblStartPoints";
-            this.lblStartPoints.Size = new System.Drawing.Size(46, 25);
+            this.lblStartPoints.Size = new System.Drawing.Size(115, 25);
             this.lblStartPoints.TabIndex = 524;
-            this.lblStartPoints.Text = "Pts";
+            this.lblStartPoints.Text = "Points";
             this.lblStartPoints.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cboxPointDistance
@@ -121,7 +119,7 @@
             this.lblReducedPoints.Enabled = false;
             this.lblReducedPoints.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReducedPoints.ForeColor = System.Drawing.Color.Black;
-            this.lblReducedPoints.Location = new System.Drawing.Point(718, 148);
+            this.lblReducedPoints.Location = new System.Drawing.Point(872, 58);
             this.lblReducedPoints.Name = "lblReducedPoints";
             this.lblReducedPoints.Size = new System.Drawing.Size(115, 25);
             this.lblReducedPoints.TabIndex = 542;
@@ -131,14 +129,12 @@
             // lblDist
             // 
             this.lblDist.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDist.AutoSize = true;
             this.lblDist.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDist.ForeColor = System.Drawing.Color.Black;
-            this.lblDist.Location = new System.Drawing.Point(799, 351);
+            this.lblDist.Location = new System.Drawing.Point(726, 353);
             this.lblDist.Name = "lblDist";
-            this.lblDist.Size = new System.Drawing.Size(51, 25);
+            this.lblDist.Size = new System.Drawing.Size(237, 25);
             this.lblDist.TabIndex = 543;
-            this.lblDist.Text = "***";
             this.lblDist.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cboxSmooth
@@ -233,24 +229,6 @@
             this.btnSlice.UseVisualStyleBackColor = false;
             this.btnSlice.Click += new System.EventHandler(this.btnSlice_Click);
             // 
-            // btnSmooth
-            // 
-            this.btnSmooth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSmooth.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnSmooth.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSmooth.Enabled = false;
-            this.btnSmooth.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnSmooth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSmooth.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnSmooth.Image = global::AgOpenGPS.Properties.Resources.BoundarySmooth;
-            this.btnSmooth.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSmooth.Location = new System.Drawing.Point(873, 182);
-            this.btnSmooth.Name = "btnSmooth";
-            this.btnSmooth.Size = new System.Drawing.Size(115, 61);
-            this.btnSmooth.TabIndex = 546;
-            this.btnSmooth.UseVisualStyleBackColor = false;
-            this.btnSmooth.Click += new System.EventHandler(this.btnSmooth_Click);
-            // 
             // btnMakeBoundary
             // 
             this.btnMakeBoundary.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -262,7 +240,7 @@
             this.btnMakeBoundary.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnMakeBoundary.Image = global::AgOpenGPS.Properties.Resources.Boundary;
             this.btnMakeBoundary.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnMakeBoundary.Location = new System.Drawing.Point(726, 271);
+            this.btnMakeBoundary.Location = new System.Drawing.Point(874, 177);
             this.btnMakeBoundary.Name = "btnMakeBoundary";
             this.btnMakeBoundary.Size = new System.Drawing.Size(115, 68);
             this.btnMakeBoundary.TabIndex = 545;
@@ -295,7 +273,7 @@
             this.btnResetReduce.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnResetReduce.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetReduce.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnResetReduce.Image = global::AgOpenGPS.Properties.Resources.SwitchOn;
+            this.btnResetReduce.Image = global::AgOpenGPS.Properties.Resources.BoundarySmooth;
             this.btnResetReduce.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnResetReduce.Location = new System.Drawing.Point(726, 5);
             this.btnResetReduce.Name = "btnResetReduce";
@@ -409,31 +387,31 @@
             this.label5.Text = "4";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(856, 209);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(14, 13);
-            this.label6.TabIndex = 567;
-            this.label6.Text = "5";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // label7
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(706, 298);
+            this.label7.Location = new System.Drawing.Point(856, 206);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(14, 13);
             this.label7.TabIndex = 568;
-            this.label7.Text = "6";
+            this.label7.Text = "5";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(763, 169);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(51, 13);
+            this.label6.TabIndex = 569;
+            this.label6.Text = "Smooth";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormMapBnd
             // 
@@ -441,8 +419,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1000, 711);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -452,7 +430,6 @@
             this.Controls.Add(this.btnCenterOGL);
             this.Controls.Add(this.btnSlice);
             this.Controls.Add(this.cboxSmooth);
-            this.Controls.Add(this.btnSmooth);
             this.Controls.Add(this.btnMakeBoundary);
             this.Controls.Add(this.btnStartStop);
             this.Controls.Add(this.lblReducedPoints);
@@ -494,7 +471,6 @@
         private System.Windows.Forms.Label lblDist;
         private System.Windows.Forms.Button btnStartStop;
         private System.Windows.Forms.Button btnMakeBoundary;
-        private System.Windows.Forms.Button btnSmooth;
         private System.Windows.Forms.ComboBox cboxSmooth;
         private System.Windows.Forms.Button btnSlice;
         private System.Windows.Forms.Button btnCenterOGL;
@@ -504,7 +480,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
     }
 }
