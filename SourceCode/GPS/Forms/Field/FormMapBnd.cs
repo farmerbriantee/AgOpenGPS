@@ -107,6 +107,7 @@ namespace AgOpenGPS
 
         private void KNN()
         {
+            timer1.Enabled = false;
             rA = rB = rC = rD = rE = rF = rG = 0;
 
             for (int j = 0; j < secList.Count; j++)
@@ -259,6 +260,7 @@ namespace AgOpenGPS
             {
                 isStep = false;
                 timer1.Interval = 500;
+                timer1.Enabled = true;
 
                 int bndCount = bndList.Count;
 
@@ -283,6 +285,7 @@ namespace AgOpenGPS
             }
 
             bndList.Add(new vec3(secList[currentPoint]));
+            timer1.Enabled = true;
         }
 
         private void DeleteBoundary()
@@ -296,6 +299,16 @@ namespace AgOpenGPS
         private void btnResetReduce_Click(object sender, EventArgs e)
         {
             //start all over
+            zoom = 1;
+            sX = 0;
+            sY = 0;
+
+            btnSmooth.Enabled = false;
+            btnStartStop.Enabled = false;
+            cboxPointDistance.Enabled = false;
+            cboxSmooth.Enabled = false;
+            btnMakeBoundary.Enabled = false;
+
             DeleteBoundary();
             lblStartPoints.Text = secList.Count.ToString();
 
@@ -328,11 +341,14 @@ namespace AgOpenGPS
             }
 
             lblReducedPoints.Text = secList.Count.ToString();
+            lblStartPoints.Text = secList.Count.ToString();
 
             rA = rB = rC = rD = rE = rF = rG = firstPoint = currentPoint = 0;
             bndList?.Clear();
 
-            btnStartStop.BackColor = Color.Red;
+            btnStartStop.BackColor = Color.OrangeRed;
+
+            cboxPointDistance.Enabled = true;
         }
 
         private void cboxPointDistance_SelectedIndexChanged(object sender, EventArgs e)
@@ -417,7 +433,8 @@ namespace AgOpenGPS
                 }
             }
 
-            btnStartStop.BackColor = Color.WhiteSmoke;
+            btnStartStop.BackColor = Color.LightGreen;
+            btnStartStop.Enabled = true;
         }
 
         private void btnStartStop_Click(object sender, EventArgs e)
@@ -447,8 +464,11 @@ namespace AgOpenGPS
 
             isStep = !isStep;
 
-            if (isStep) timer1.Interval = 100;
+            if (isStep) timer1.Interval = 50;
             else timer1.Interval = 500;
+            btnStartStop.BackColor = Color.WhiteSmoke;
+            btnSmooth.Enabled = true;
+            cboxSmooth.Enabled = true;
         }
 
         private void btnSmooth_Click(object sender, EventArgs e)
@@ -548,6 +568,8 @@ namespace AgOpenGPS
             }
 
             mf.curve.CalculateHeadings(ref smooList);
+
+            btnMakeBoundary.Enabled = true;
         }
 
         private void btnSlice_Click(object sender, EventArgs e)
@@ -661,12 +683,20 @@ namespace AgOpenGPS
                 mf.fd.UpdateFieldBoundaryGUIAreas();
                 mf.FileSaveBoundary();
             }
+
+            btnSmooth.Enabled = false;
+            btnStartStop.Enabled = false;
+            cboxPointDistance.Enabled = false;
+            cboxSmooth.Enabled = false;
+            btnMakeBoundary.Enabled = false;
         }
 
         private void cboxSmooth_SelectedIndexChanged(object sender, EventArgs e)
         {
             smPtsChoose = cboxSmooth.SelectedIndex + 1;
-            smPts = smPtsChoose * 4;
+            smPts = 2;
+            for (int i = 1; i <= smPtsChoose; i++)
+                smPts *= 2;
             cboxSmooth.Text = smPts.ToString();
         }
 
@@ -799,24 +829,23 @@ namespace AgOpenGPS
 
             GL.Color3(0.725f, 0.95f, 0.950f);
 
-            GL.Begin(PrimitiveType.LineLoop);
-            for (int i = 0; i < mf.bnd.bndList[0].fenceLine.Count; i++)
+            if (mf.bnd.bndList.Count > 0)
             {
-                GL.Vertex3(mf.bnd.bndList[0].fenceLine[i].easting, mf.bnd.bndList[0].fenceLine[i].northing, 0);
+                GL.Begin(PrimitiveType.LineLoop);
+                for (int i = 0; i < mf.bnd.bndList[0].fenceLine.Count; i++)
+                {
+                    GL.Vertex3(mf.bnd.bndList[0].fenceLine[i].easting, mf.bnd.bndList[0].fenceLine[i].northing, 0);
+                }
+                GL.End();
+
+                GL.PointSize(4);
+                GL.Begin(PrimitiveType.Points);
+                for (int i = 0; i < mf.bnd.bndList[0].fenceLine.Count; i++)
+                {
+                    GL.Vertex3(mf.bnd.bndList[0].fenceLine[i].easting, mf.bnd.bndList[0].fenceLine[i].northing, 0);
+                }
+                GL.End();
             }
-            GL.End();
-
-            GL.PointSize(4);
-            GL.Begin(PrimitiveType.Points);
-            for (int i = 0; i < mf.bnd.bndList[0].fenceLine.Count; i++)
-            {
-                GL.Vertex3(mf.bnd.bndList[0].fenceLine[i].easting, mf.bnd.bndList[0].fenceLine[i].northing, 0);
-            }
-            GL.End();
-
-
-
-
 
             //new boundary being made
             if (bndList.Count > 0)

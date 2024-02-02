@@ -1018,6 +1018,8 @@
     <None Include="btnImages\AutoTrackOff.png" />
     <None Include="btnImages\Images\z_TramOnOff.png" />
     <None Include="btnImages\ZoomOGL.png" />
+    <None Include="btnImages\BoundaryReduce.png" />
+    <None Include="btnImages\BoundarySmooth.png" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />
