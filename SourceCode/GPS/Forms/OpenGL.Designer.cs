@@ -20,13 +20,14 @@ namespace AgOpenGPS
 
         //data buffer for pixels read from off screen buffer
         byte[] grnPixels = new byte[150001];
+        private bool isHeadlandClose = false;
 
         // When oglMain is created
         private void oglMain_Load(object sender, EventArgs e)
         {
             oglMain.MakeCurrent();
             LoadGLTextures();
-            GL.ClearColor(0.27f, 0.4f, 0.7f, 1.0f);
+            GL.ClearColor(0.14f, 0.14f, 0.37f, 1.0f);
             GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
             GL.CullFace(CullFaceMode.Back);
             SetZoom();
@@ -53,104 +54,7 @@ namespace AgOpenGPS
         StringBuilder sb = new StringBuilder();
         private void oglMain_Paint(object sender, PaintEventArgs e)
         {
-            if (sentenceCounter > 299)
-            {
-                //sentenceCounter = 0;
-                oglMain.MakeCurrent();
-                GL.Enable(EnableCap.Blend);
-                GL.ClearColor(0.122f, 0.1258f, 0.1275f, 1.0f);
-
-                GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
-                GL.LoadIdentity();
-
-                //match grid to cam distance and redo perspective
-                //GL.MatrixMode(MatrixMode.Projection);
-                //GL.LoadIdentity();
-                //Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(0.7f, oglMain.AspectRatio, 1f, 100);
-                //GL.LoadMatrix(ref mat);
-                //GL.MatrixMode(MatrixMode.Modelview);
-                GL.Translate(0.0, 0.3, -10);
-                //rotate the camera down to look at fix
-                //GL.Rotate(20, 1.0, 0.0, 0.0);
-                GL.Rotate(deadCam, 0.0, 1.0, 0.0);
-
-                deadCam += 5;
-
-                GL.Enable(EnableCap.Texture2D);
-                GL.Color4(1.25f, 1.25f, 1.275f, 0.75);
-                GL.BindTexture(TextureTarget.Texture2D, texture[21]);        // Select Our Texture
-                GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
-                GL.TexCoord2(1, 0); GL.Vertex2(2.5, 2.5); // Top Right
-                GL.TexCoord2(0, 0); GL.Vertex2(-2.5, 2.5); // Top Left
-                GL.TexCoord2(1, 1); GL.Vertex2(2.5, -2.5); // Bottom Right
-                GL.TexCoord2(0, 1); GL.Vertex2(-2.5, -2.5); // Bottom Left
-                GL.End();                       // Done Building Triangle Strip
-
-                GL.Disable(EnableCap.Texture2D);
-
-
-                //camHeading = 0;
-
-                //GL.Rotate(deadCam, 0.0, 0.0, 1.0);
-                //////draw the guide
-                //GL.Begin(PrimitiveType.Triangles);
-                //GL.Color3(0.2f, 0.10f, 0.98f);
-                //GL.Vertex3(0.0f, -1.0f, 0.0f);
-                //GL.Color3(0.0f, 0.98f, 0.0f);
-                //GL.Vertex3(-1.0f, 1.0f, 0.0f);
-                //GL.Color3(0.98f, 0.02f, 0.40f);
-                //GL.Vertex3(1.0f, -0.0f, 0.0f);
-                //GL.End();                       // Done Drawing Reticle
-
-
-                //font.DrawText3DNoGPS(0, 0, " I'm Lost  ", 1);
-                //GL.Color3(0.98f, 0.98f, 0.270f);
-
-                //GL.Rotate(deadCam + 180, 0.0, 0.0, 1.0);
-                //font.DrawText3DNoGPS(0, 0, "  No GPS!", 1);
-
-                // 2D Ortho ---------------------------------------////////-------------------------------------------------
-
-                GL.MatrixMode(MatrixMode.Projection);
-                GL.PushMatrix();
-                GL.LoadIdentity();
-
-                //negative and positive on width, 0 at top to bottom ortho view
-                GL.Ortho(-(double)oglMain.Width / 2, (double)oglMain.Width / 2, (double)oglMain.Height, 0, -1, 1);
-
-
-                //  Create the appropriate modelview matrix.
-                GL.MatrixMode(MatrixMode.Modelview);
-                GL.PushMatrix();
-                GL.LoadIdentity();
-
-                GL.Color3(0.98f, 0.98f, 0.70f);
-
-                int edge = -oglMain.Width / 2 + 10;
-
-                font.DrawText(edge, oglMain.Height - 80, "<-- AgIO ?");
-
-                GL.Flush();//finish openGL commands
-                GL.PopMatrix();//  Pop the modelview.
-
-                ////-------------------------------------------------ORTHO END---------------------------------------
-
-                //  back to the projection and pop it, then back to the model view.
-                GL.MatrixMode(MatrixMode.Projection);
-                GL.PopMatrix();
-                GL.MatrixMode(MatrixMode.Modelview);
-
-                //reset point size
-                GL.PointSize(1.0f);
-
-                GL.Flush();
-                oglMain.SwapBuffers();
-
-                lblSpeed.Text = "???";
-                lblHz.Text = " ???? \r\n Not Connected";
-
-            }
-            else
+            if (sentenceCounter < 299)
             {
                 if (isGPSPositionInitialized)
                 {
@@ -534,6 +438,103 @@ namespace AgOpenGPS
                     //}
                 }
             }
+            else
+            {
+                //sentenceCounter = 0;
+                oglMain.MakeCurrent();
+                GL.Enable(EnableCap.Blend);
+                GL.ClearColor(0.122f, 0.1258f, 0.1275f, 1.0f);
+
+                GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
+                GL.LoadIdentity();
+
+                //match grid to cam distance and redo perspective
+                //GL.MatrixMode(MatrixMode.Projection);
+                //GL.LoadIdentity();
+                //Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(0.7f, oglMain.AspectRatio, 1f, 100);
+                //GL.LoadMatrix(ref mat);
+                //GL.MatrixMode(MatrixMode.Modelview);
+                GL.Translate(0.0, 0.3, -10);
+                //rotate the camera down to look at fix
+                //GL.Rotate(20, 1.0, 0.0, 0.0);
+                GL.Rotate(deadCam, 0.0, 1.0, 0.0);
+
+                deadCam += 5;
+
+                GL.Enable(EnableCap.Texture2D);
+                GL.Color4(1.25f, 1.25f, 1.275f, 0.75);
+                GL.BindTexture(TextureTarget.Texture2D, texture[21]);        // Select Our Texture
+                GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
+                GL.TexCoord2(1, 0); GL.Vertex2(2.5, 2.5); // Top Right
+                GL.TexCoord2(0, 0); GL.Vertex2(-2.5, 2.5); // Top Left
+                GL.TexCoord2(1, 1); GL.Vertex2(2.5, -2.5); // Bottom Right
+                GL.TexCoord2(0, 1); GL.Vertex2(-2.5, -2.5); // Bottom Left
+                GL.End();                       // Done Building Triangle Strip
+
+                GL.Disable(EnableCap.Texture2D);
+
+
+                //camHeading = 0;
+
+                //GL.Rotate(deadCam, 0.0, 0.0, 1.0);
+                //////draw the guide
+                //GL.Begin(PrimitiveType.Triangles);
+                //GL.Color3(0.2f, 0.10f, 0.98f);
+                //GL.Vertex3(0.0f, -1.0f, 0.0f);
+                //GL.Color3(0.0f, 0.98f, 0.0f);
+                //GL.Vertex3(-1.0f, 1.0f, 0.0f);
+                //GL.Color3(0.98f, 0.02f, 0.40f);
+                //GL.Vertex3(1.0f, -0.0f, 0.0f);
+                //GL.End();                       // Done Drawing Reticle
+
+
+                //font.DrawText3DNoGPS(0, 0, " I'm Lost  ", 1);
+                //GL.Color3(0.98f, 0.98f, 0.270f);
+
+                //GL.Rotate(deadCam + 180, 0.0, 0.0, 1.0);
+                //font.DrawText3DNoGPS(0, 0, "  No GPS!", 1);
+
+                // 2D Ortho ---------------------------------------////////-------------------------------------------------
+
+                GL.MatrixMode(MatrixMode.Projection);
+                GL.PushMatrix();
+                GL.LoadIdentity();
+
+                //negative and positive on width, 0 at top to bottom ortho view
+                GL.Ortho(-(double)oglMain.Width / 2, (double)oglMain.Width / 2, (double)oglMain.Height, 0, -1, 1);
+
+
+                //  Create the appropriate modelview matrix.
+                GL.MatrixMode(MatrixMode.Modelview);
+                GL.PushMatrix();
+                GL.LoadIdentity();
+
+                GL.Color3(0.98f, 0.98f, 0.70f);
+
+                int edge = -oglMain.Width / 2 + 10;
+
+                font.DrawText(edge, oglMain.Height - 80, "<-- AgIO ?");
+
+                GL.Flush();//finish openGL commands
+                GL.PopMatrix();//  Pop the modelview.
+
+                ////-------------------------------------------------ORTHO END---------------------------------------
+
+                //  back to the projection and pop it, then back to the model view.
+                GL.MatrixMode(MatrixMode.Projection);
+                GL.PopMatrix();
+                GL.MatrixMode(MatrixMode.Modelview);
+
+                //reset point size
+                GL.PointSize(1.0f);
+
+                GL.Flush();
+                oglMain.SwapBuffers();
+
+                lblSpeed.Text = "???";
+                lblHz.Text = " ???? \r\n Not Connected";
+
+            }
         }
 
         private int bbCounter = 0;
@@ -559,7 +560,6 @@ namespace AgOpenGPS
             GL.MatrixMode(MatrixMode.Modelview);
         }
 
-        private bool isHeadlandClose = false;
 
         private void oglBack_Paint(object sender, PaintEventArgs e)
         {

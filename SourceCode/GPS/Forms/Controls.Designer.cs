@@ -1876,6 +1876,17 @@ namespace AgOpenGPS
 
         #region Tools Menu
 
+        private void boundaryToolToolStripMenu_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                using (var form = new FormMapBnd(this))
+                {
+                    form.ShowDialog(this);
+                }
+            }
+        }
+
         private void SmoothABtoolStripMenu_Click(object sender, EventArgs e)
         {
             if (isJobStarted && trk.idx > -1)
@@ -2043,6 +2054,22 @@ namespace AgOpenGPS
         #endregion
 
         #region Nav Panel
+
+        private void btnTiltUp_Click(object sender, EventArgs e)
+        {
+            camera.camPitch -= ((camera.camPitch * 0.012) - 1);
+            if (camera.camPitch > -58) camera.camPitch = 0;
+            navPanelCounter = 2;
+        }
+
+        private void btnTiltDn_Click(object sender, EventArgs e)
+        {
+            if (camera.camPitch > -59) camera.camPitch = -60;
+            camera.camPitch += ((camera.camPitch * 0.012) - 1);
+            if (camera.camPitch < -70) camera.camPitch = -70;
+            navPanelCounter = 2;
+        }
+
         private void btn2D_Click(object sender, EventArgs e)
         {
             if (isTT)
