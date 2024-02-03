@@ -684,10 +684,11 @@ namespace AgOpenGPS
                 Size = Settings.Default.setWindow_Size;
             }*/
 
+            //keep day/night mode when loading new vehichle
             //night mode
-            isDay = Properties.Settings.Default.setDisplay_isDayMode;
+            /*isDay = Properties.Settings.Default.setDisplay_isDayMode;
             isDay = !isDay;
-            SwapDayNightMode();
+            SwapDayNightMode();*/
 
             //load uturn properties
             yt = new CYouTurn(this);
