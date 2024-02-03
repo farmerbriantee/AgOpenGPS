@@ -11,24 +11,38 @@ namespace AgOpenGPS
 
         public void SetHydPosition()
         {
-            if (mf.vehicle.isHydLiftOn && mf.avgSpeed > 0.2 && mf.autoBtnState == btnStates.Auto)
+            if (mf.vehicle.isHydLiftOn && mf.avgSpeed > 0.2)
             {
-                if (isToolInHeadland)
+                if (mf.autoBtnState == btnStates.Auto)
                 {
-                    mf.p_239.pgn[mf.p_239.hydLift] = 2;
-                    if (mf.sounds.isHydLiftChange != isToolInHeadland)
+                    if (isToolInHeadland)
                     {
-                        if (mf.sounds.isHydLiftSoundOn) mf.sounds.sndHydLiftUp.Play();
-                        mf.sounds.isHydLiftChange = isToolInHeadland;
+                        mf.p_239.pgn[mf.p_239.hydLift] = 2;
+                        if (mf.sounds.isHydLiftChange != isToolInHeadland)
+                        {
+                            if (mf.sounds.isHydLiftSoundOn) mf.sounds.sndHydLiftUp.Play();
+                            mf.sounds.isHydLiftChange = isToolInHeadland;
+                        }
                     }
-                }
+                    else
+                    {
+                        mf.p_239.pgn[mf.p_239.hydLift] = 1;
+                        if (mf.sounds.isHydLiftChange != isToolInHeadland)
+                        {
+                            if (mf.sounds.isHydLiftSoundOn) mf.sounds.sndHydLiftDn.Play();
+                            mf.sounds.isHydLiftChange = isToolInHeadland;
+                        }
+                    }
+                } 
                 else
                 {
-                    mf.p_239.pgn[mf.p_239.hydLift] = 1;
-                    if (mf.sounds.isHydLiftChange != isToolInHeadland)
+                    if (mf.manualBtnState == btnStates.On)
                     {
-                        if (mf.sounds.isHydLiftSoundOn) mf.sounds.sndHydLiftDn.Play();
-                        mf.sounds.isHydLiftChange = isToolInHeadland;
+                        mf.p_239.pgn[mf.p_239.hydLift] = 1;
+                    }
+                    else
+                    {
+                        mf.p_239.pgn[mf.p_239.hydLift] = 2;
                     }
                 }
             }
