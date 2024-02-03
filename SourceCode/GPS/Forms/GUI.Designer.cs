@@ -664,8 +664,9 @@ namespace AgOpenGPS
 
             isStanleyUsed = Properties.Settings.Default.setVehicle_isStanleyUsed;
 
+            //keep size of window even after vehichle change
             //main window first
-            if (Settings.Default.setWindow_Maximized)
+            /*if (Settings.Default.setWindow_Maximized)
             {
                 WindowState = FormWindowState.Normal;
                 Location = Settings.Default.setWindow_Location;
@@ -681,7 +682,7 @@ namespace AgOpenGPS
             {
                 Location = Settings.Default.setWindow_Location;
                 Size = Settings.Default.setWindow_Size;
-            }
+            }*/
 
             //night mode
             isDay = Properties.Settings.Default.setDisplay_isDayMode;
