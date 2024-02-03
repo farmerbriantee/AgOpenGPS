@@ -106,8 +106,8 @@ namespace AgOpenGPS
             Point ptt = oglSelf.PointToClient(Cursor.Position);
             if (cboxIsZoom.Checked && !zoomToggle)
             {
-                sX = (350 - (double)ptt.X) / 700;
-                sY = (350 - (double)ptt.Y) / -700;
+                sX = ((350 - (double)ptt.X) / 700) * 1.1;
+                sY = ((350 - (double)ptt.Y) / -700) * 1.1;
                 zoom = 0.1;
                 zoomToggle = true;
                 return;

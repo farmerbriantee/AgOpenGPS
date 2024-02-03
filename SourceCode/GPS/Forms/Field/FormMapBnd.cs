@@ -563,7 +563,7 @@ namespace AgOpenGPS
             if (isStep) timer1.Interval = 50;
             else timer1.Interval = 500;
             btnStartStop.BackColor = Color.WhiteSmoke;
-            btnStartStop.Enabled = false;
+            //btnStartStop.Enabled = false;
             cboxSmooth.Enabled = false;
         }
 
@@ -738,6 +738,10 @@ namespace AgOpenGPS
 
             start = 99999; end = 99999;
             isA = true;
+
+            zoom = 1;
+            sX = 0;
+            sY = 0;
         }
 
         private void cboxIsZoom_Click(object sender, EventArgs e)
@@ -774,9 +778,9 @@ namespace AgOpenGPS
 
             if (cboxIsZoom.Checked)
             {
-                sX = (350 - (double)pt.X) / 700;
-                sY = (350 - (double)pt.Y) / -700;
-                zoom = 0.15;
+                sX = ((350 - (double)pt.X) / 700) * 1.1;
+                sY = ((350 - (double)pt.Y) / -700) * 1.1;
+                zoom = 0.2;
                 cboxIsZoom.Checked = false;
                 return;
             }

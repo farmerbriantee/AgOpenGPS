@@ -679,17 +679,17 @@ namespace AgOpenGPS
 
             if (cboxIsZoom.Checked && !zoomToggle)
             {
-                sX = (350 - (double)pt.X) / 700;
-                sY = (350 - (double)pt.Y) / -700;
+                sX = ((350 - (double)pt.X) / 700)*1.1;
+                sY = ((350 - (double)pt.Y) / -700)*1.1;
                 zoom = 0.1;
                 zoomToggle = true;
                 return;
             }
 
+            zoomToggle = false;
             btnMakeABLine.Enabled = false;
             btnMakeCurve.Enabled = false;
 
-            zoomToggle = false;
 
             //Convert to Origin in the center of window, 800 pixels
             fixPt.X = pt.X - 350;
@@ -862,7 +862,7 @@ namespace AgOpenGPS
                 else if (mf.trk.gArr[i].mode == (int)TrackMode.Curve || mf.trk.gArr[i].mode == (int)TrackMode.bndCurve)
                 {
                     GL.Enable(EnableCap.LineStipple);
-                    GL.LineWidth(4);
+                    GL.LineWidth(5);
 
                     if (mf.trk.gArr[i].mode == (int)TrackMode.bndCurve) GL.LineStipple(1, 0x0007);
                     else GL.LineStipple(1, 0x0707);
