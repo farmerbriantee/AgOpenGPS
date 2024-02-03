@@ -379,6 +379,7 @@ namespace AgOpenGPS
 
             cboxPointDistance.Enabled = true;
         }
+
         private void btnMakeBoundary_Click(object sender, EventArgs e)
         {
             if (smooList.Count == 0) return;
@@ -523,6 +524,11 @@ namespace AgOpenGPS
         {
             zoom -= 0.1;
             if (zoom < 0.1) zoom = 0.1;
+        }
+
+        private void cboxIsZoom_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void btnStartStop_Click(object sender, EventArgs e)

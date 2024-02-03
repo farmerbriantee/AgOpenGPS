@@ -273,6 +273,7 @@
             this.cboxIsZoom.TabIndex = 561;
             this.cboxIsZoom.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxIsZoom.UseVisualStyleBackColor = false;
+            this.cboxIsZoom.CheckedChanged += new System.EventHandler(this.cboxIsZoom_CheckedChanged);
             this.cboxIsZoom.Click += new System.EventHandler(this.cboxIsZoom_Click);
             // 
             // btnCenterOGL

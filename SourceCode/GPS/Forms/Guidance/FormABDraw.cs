@@ -22,6 +22,10 @@ namespace AgOpenGPS
         private int bndSelect = 0, originalLine;
         private bool isCancel = false;
 
+        private bool zoomToggle;
+
+        private double zoom = 1, sX = 0, sY = 0;
+
         public List<CTrk> gTemp = new List<CTrk>();
 
         public vec3 pint = new vec3(0.0, 1.0, 0.0);
@@ -79,6 +83,9 @@ namespace AgOpenGPS
             }
 
             FixLabelsCurve();
+
+            cboxIsZoom.Checked = false;
+            zoomToggle = false;
         }
 
         private void FormABDraw_FormClosing(object sender, FormClosingEventArgs e)
@@ -151,6 +158,18 @@ namespace AgOpenGPS
             mf.FileSaveTracks();
         }
 
+        private void btnCenterOGL_Click(object sender, EventArgs e)
+        {
+            zoom = 1;
+            sX = 0;
+            sY = 0;
+            zoomToggle = false;
+        }
+        private void cboxIsZoom_CheckedChanged(object sender, EventArgs e)
+        {
+            zoomToggle = false;
+        }
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             isCancel = false;
@@ -173,6 +192,11 @@ namespace AgOpenGPS
             FixLabelsCurve();
 
             mf.curve.desList?.Clear();
+
+            zoom = 1;
+            sX = 0;
+            sY = 0;
+            zoomToggle = false;
 
             btnExit.Focus();
         }
@@ -651,10 +675,21 @@ namespace AgOpenGPS
 
         private void oglSelf_MouseDown(object sender, MouseEventArgs e)
         {
+            Point pt = oglSelf.PointToClient(Cursor.Position);
+
+            if (cboxIsZoom.Checked && !zoomToggle)
+            {
+                sX = (350 - (double)pt.X) / 700;
+                sY = (350 - (double)pt.Y) / -700;
+                zoom = 0.1;
+                zoomToggle = true;
+                return;
+            }
+
             btnMakeABLine.Enabled = false;
             btnMakeCurve.Enabled = false;
 
-            Point pt = oglSelf.PointToClient(Cursor.Position);
+            zoomToggle = false;
 
             //Convert to Origin in the center of window, 800 pixels
             fixPt.X = pt.X - 350;
@@ -662,16 +697,20 @@ namespace AgOpenGPS
             vec3 plotPt = new vec3
             {
                 //convert screen coordinates to field coordinates
-                easting = fixPt.X * mf.maxFieldDistance / 632.0,
-                northing = fixPt.Y * mf.maxFieldDistance / 632.0,
+                easting = fixPt.X * mf.maxFieldDistance / 632 * zoom,
+                northing = fixPt.Y * mf.maxFieldDistance / 632 * zoom,
                 heading = 0
             };
 
-            plotPt.easting += mf.fieldCenterX;
-            plotPt.northing += mf.fieldCenterY;
+            plotPt.easting += mf.fieldCenterX + mf.maxFieldDistance * -sX;
+            plotPt.northing += mf.fieldCenterY + mf.maxFieldDistance * -sY;
 
             pint.easting = plotPt.easting;
             pint.northing = plotPt.northing;
+
+            zoom = 1;
+            sX = 0;
+            sY = 0;
 
             if (isA)
             {
@@ -726,21 +765,17 @@ namespace AgOpenGPS
             GL.LoadIdentity();                  // Reset The View
 
             //back the camera up
-            GL.Translate(0, 0, -mf.maxFieldDistance);
+            GL.Translate(0, 0, -mf.maxFieldDistance * zoom);
 
             //translate to that spot in the world
-            GL.Translate(-mf.fieldCenterX, -mf.fieldCenterY, 0);
+            GL.Translate(-mf.fieldCenterX + sX * mf.maxFieldDistance, -mf.fieldCenterY + sY * mf.maxFieldDistance, 0);
 
-            GL.Color3(1, 1, 1);
-
-            //draw all the boundaries
-
-            GL.LineWidth(1);
+            GL.LineWidth(3);
 
             for (int j = 0; j < mf.bnd.bndList.Count; j++)
             {
                 if (j == bndSelect)
-                    GL.Color3(0.25f, 0.5f, 0.50f);
+                    GL.Color3(0.0f, 0.0f, 0.0f);
                 else
                     GL.Color3(0.2f, 0.35f, 0.35f);
 
