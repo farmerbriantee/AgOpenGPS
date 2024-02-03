@@ -32,6 +32,7 @@ namespace AgOpenGPS
         public List<vec3> secList = new List<vec3>();
         public List<vec3> bndList = new List<vec3>();
         public List<vec3> smooList = new List<vec3>();
+        public List<vec3> tempList = new List<vec3>();
 
         private double minDistSq = 1, minDistDisp = 1;
 
@@ -67,7 +68,7 @@ namespace AgOpenGPS
         private void FormMapBnd_Load(object sender, EventArgs e)
         {
             //already have a boundary
-            if (mf.bnd.bndList.Count < 1)
+            if (mf.bnd.bndList.Count == 0)
             {
                 //draw patches j= # of sections
                 for (int j = 0; j < mf.triStrip.Count; j++)
@@ -512,6 +513,18 @@ namespace AgOpenGPS
             btnStartStop.Enabled = true;
         }
 
+        private void btnZoomOut_Click(object sender, EventArgs e)
+        {
+            zoom += 0.1;
+            if (zoom > 1) zoom = 1;
+        }
+
+        private void btnZoomIn_Click(object sender, EventArgs e)
+        {
+            zoom -= 0.1;
+            if (zoom < 0.1) zoom = 0.1;
+        }
+
         private void btnStartStop_Click(object sender, EventArgs e)
         {
             if (secList.Count == 0) return;
@@ -675,7 +688,10 @@ namespace AgOpenGPS
 
             vec3[] arr = new vec3[mf.bnd.bndList[0].fenceLine.Count];
             mf.bnd.bndList[0].fenceLine.CopyTo(arr);
-            
+
+            if (start++ == arr.Length) start--;
+            //if (end-- == -1) end = 0;
+            if (start == end) return;
 
             for (int i = start; i < end; i++)
             {
@@ -731,14 +747,6 @@ namespace AgOpenGPS
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Close();
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            mf.bnd.bndList?.Clear();
-            mf.FileSaveHeadland();
-            mf.FileSaveBoundary();
             Close();
         }
 
@@ -935,8 +943,16 @@ namespace AgOpenGPS
             if (start != 99999 || end != 99999) DrawABTouchPoints();
 
             //draw the actual built lines
-            if (start == 99999 && end == 99999)
+            if (start != 99999 && end != 99999)
             {
+                GL.LineWidth(4);
+                GL.Color3(0.90f, 0.5f, 0.25f);
+                GL.Begin(PrimitiveType.Lines);
+                {
+                    GL.Vertex3(mf.bnd.bndList[0].fenceLine[start].easting, mf.bnd.bndList[0].fenceLine[start].northing, 0);
+                    GL.Vertex3(mf.bnd.bndList[0].fenceLine[end].easting, mf.bnd.bndList[0].fenceLine[end].northing, 0);
+                }
+                GL.End();
             }
 
             GL.Flush();
@@ -962,6 +978,8 @@ namespace AgOpenGPS
             GL.Color3(0.5f, 0.5f, 0.935f);
             if (end != 99999) GL.Vertex3(mf.bnd.bndList[bndSelect].fenceLine[end].easting, mf.bnd.bndList[bndSelect].fenceLine[end].northing, 0);
             GL.End();
+
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)

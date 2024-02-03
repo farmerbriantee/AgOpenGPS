@@ -1020,6 +1020,7 @@
     <None Include="btnImages\ZoomOGL.png" />
     <None Include="btnImages\BoundaryReduce.png" />
     <None Include="btnImages\BoundarySmooth.png" />
+    <None Include="btnImages\BoundaryMakeLine.png" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />

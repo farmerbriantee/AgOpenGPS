@@ -37,6 +37,12 @@
             this.lblDist = new System.Windows.Forms.Label();
             this.cboxSmooth = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.cboxIsZoom = new System.Windows.Forms.CheckBox();
             this.btnCenterOGL = new System.Windows.Forms.Button();
             this.btnSlice = new System.Windows.Forms.Button();
@@ -44,14 +50,9 @@
             this.btnStartStop = new System.Windows.Forms.Button();
             this.btnResetReduce = new System.Windows.Forms.Button();
             this.btnCancelTouch = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.btnZoomOut = new System.Windows.Forms.Button();
+            this.btnZoomIn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // oglSelf
@@ -80,12 +81,12 @@
             this.lblStartPoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblStartPoints.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStartPoints.ForeColor = System.Drawing.Color.Black;
-            this.lblStartPoints.Location = new System.Drawing.Point(872, 16);
+            this.lblStartPoints.Location = new System.Drawing.Point(848, 23);
             this.lblStartPoints.Name = "lblStartPoints";
-            this.lblStartPoints.Size = new System.Drawing.Size(115, 25);
+            this.lblStartPoints.Size = new System.Drawing.Size(139, 25);
             this.lblStartPoints.TabIndex = 524;
             this.lblStartPoints.Text = "Points";
-            this.lblStartPoints.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblStartPoints.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // cboxPointDistance
             // 
@@ -93,6 +94,7 @@
             this.cboxPointDistance.BackColor = System.Drawing.Color.Lavender;
             this.cboxPointDistance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxPointDistance.Enabled = false;
+            this.cboxPointDistance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxPointDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxPointDistance.FormattingEnabled = true;
             this.cboxPointDistance.Items.AddRange(new object[] {
@@ -106,7 +108,7 @@
             "8",
             "9",
             "10"});
-            this.cboxPointDistance.Location = new System.Drawing.Point(726, 92);
+            this.cboxPointDistance.Location = new System.Drawing.Point(726, 115);
             this.cboxPointDistance.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxPointDistance.Name = "cboxPointDistance";
             this.cboxPointDistance.Size = new System.Drawing.Size(88, 53);
@@ -119,7 +121,7 @@
             this.lblReducedPoints.Enabled = false;
             this.lblReducedPoints.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReducedPoints.ForeColor = System.Drawing.Color.Black;
-            this.lblReducedPoints.Location = new System.Drawing.Point(872, 58);
+            this.lblReducedPoints.Location = new System.Drawing.Point(871, 81);
             this.lblReducedPoints.Name = "lblReducedPoints";
             this.lblReducedPoints.Size = new System.Drawing.Size(115, 25);
             this.lblReducedPoints.TabIndex = 542;
@@ -131,7 +133,7 @@
             this.lblDist.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDist.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDist.ForeColor = System.Drawing.Color.Black;
-            this.lblDist.Location = new System.Drawing.Point(726, 353);
+            this.lblDist.Location = new System.Drawing.Point(726, 295);
             this.lblDist.Name = "lblDist";
             this.lblDist.Size = new System.Drawing.Size(237, 25);
             this.lblDist.TabIndex = 543;
@@ -143,6 +145,7 @@
             this.cboxSmooth.BackColor = System.Drawing.Color.Lavender;
             this.cboxSmooth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxSmooth.Enabled = false;
+            this.cboxSmooth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxSmooth.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxSmooth.FormattingEnabled = true;
             this.cboxSmooth.Items.AddRange(new object[] {
@@ -151,10 +154,10 @@
             "16",
             "32",
             "64"});
-            this.cboxSmooth.Location = new System.Drawing.Point(726, 185);
+            this.cboxSmooth.Location = new System.Drawing.Point(726, 231);
             this.cboxSmooth.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxSmooth.Name = "cboxSmooth";
-            this.cboxSmooth.Size = new System.Drawing.Size(117, 53);
+            this.cboxSmooth.Size = new System.Drawing.Size(88, 53);
             this.cboxSmooth.TabIndex = 547;
             this.cboxSmooth.SelectedIndexChanged += new System.EventHandler(this.cboxSmooth_SelectedIndexChanged);
             // 
@@ -165,12 +168,90 @@
             this.label1.Enabled = false;
             this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(818, 104);
+            this.label1.Location = new System.Drawing.Point(817, 127);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 25);
             this.label1.TabIndex = 562;
             this.label1.Text = "m";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(712, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(14, 13);
+            this.label2.TabIndex = 563;
+            this.label2.Text = "1";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(706, 137);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(14, 13);
+            this.label3.TabIndex = 564;
+            this.label3.Text = "2";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(855, 137);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(14, 13);
+            this.label4.TabIndex = 565;
+            this.label4.Text = "3";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(708, 251);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(14, 13);
+            this.label5.TabIndex = 566;
+            this.label5.Text = "4";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(856, 252);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(14, 13);
+            this.label7.TabIndex = 568;
+            this.label7.Text = "5";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(741, 215);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(51, 13);
+            this.label6.TabIndex = 569;
+            this.label6.Text = "Smooth";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cboxIsZoom
             // 
@@ -185,7 +266,7 @@
             this.cboxIsZoom.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxIsZoom.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.cboxIsZoom.Image = global::AgOpenGPS.Properties.Resources.ZoomOGL;
-            this.cboxIsZoom.Location = new System.Drawing.Point(726, 389);
+            this.cboxIsZoom.Location = new System.Drawing.Point(731, 344);
             this.cboxIsZoom.Name = "cboxIsZoom";
             this.cboxIsZoom.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cboxIsZoom.Size = new System.Drawing.Size(81, 83);
@@ -204,7 +285,7 @@
             this.btnCenterOGL.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCenterOGL.Image = global::AgOpenGPS.Properties.Resources.ConS_SourceFix;
             this.btnCenterOGL.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCenterOGL.Location = new System.Drawing.Point(856, 390);
+            this.btnCenterOGL.Location = new System.Drawing.Point(731, 466);
             this.btnCenterOGL.Name = "btnCenterOGL";
             this.btnCenterOGL.Size = new System.Drawing.Size(81, 83);
             this.btnCenterOGL.TabIndex = 560;
@@ -216,13 +297,12 @@
             this.btnSlice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSlice.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnSlice.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSlice.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnSlice.FlatAppearance.BorderSize = 0;
+            this.btnSlice.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnSlice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSlice.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnSlice.Image = global::AgOpenGPS.Properties.Resources.HeadlandSlice;
+            this.btnSlice.Image = global::AgOpenGPS.Properties.Resources.BoundaryMakeLine;
             this.btnSlice.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSlice.Location = new System.Drawing.Point(856, 519);
+            this.btnSlice.Location = new System.Drawing.Point(877, 345);
             this.btnSlice.Name = "btnSlice";
             this.btnSlice.Size = new System.Drawing.Size(81, 83);
             this.btnSlice.TabIndex = 548;
@@ -238,11 +318,11 @@
             this.btnMakeBoundary.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnMakeBoundary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMakeBoundary.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnMakeBoundary.Image = global::AgOpenGPS.Properties.Resources.Boundary;
+            this.btnMakeBoundary.Image = global::AgOpenGPS.Properties.Resources.BoundaryOuter;
             this.btnMakeBoundary.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnMakeBoundary.Location = new System.Drawing.Point(874, 177);
+            this.btnMakeBoundary.Location = new System.Drawing.Point(877, 221);
             this.btnMakeBoundary.Name = "btnMakeBoundary";
-            this.btnMakeBoundary.Size = new System.Drawing.Size(115, 68);
+            this.btnMakeBoundary.Size = new System.Drawing.Size(110, 68);
             this.btnMakeBoundary.TabIndex = 545;
             this.btnMakeBoundary.UseVisualStyleBackColor = false;
             this.btnMakeBoundary.Click += new System.EventHandler(this.btnMakeBoundary_Click);
@@ -258,7 +338,7 @@
             this.btnStartStop.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnStartStop.Image = global::AgOpenGPS.Properties.Resources.BoundaryReduce;
             this.btnStartStop.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnStartStop.Location = new System.Drawing.Point(873, 87);
+            this.btnStartStop.Location = new System.Drawing.Point(877, 110);
             this.btnStartStop.Name = "btnStartStop";
             this.btnStartStop.Size = new System.Drawing.Size(115, 61);
             this.btnStartStop.TabIndex = 544;
@@ -292,30 +372,12 @@
             this.btnCancelTouch.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancelTouch.Image = global::AgOpenGPS.Properties.Resources.HeadlandDeletePoints;
             this.btnCancelTouch.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancelTouch.Location = new System.Drawing.Point(726, 519);
+            this.btnCancelTouch.Location = new System.Drawing.Point(877, 466);
             this.btnCancelTouch.Name = "btnCancelTouch";
             this.btnCancelTouch.Size = new System.Drawing.Size(81, 83);
             this.btnCancelTouch.TabIndex = 470;
             this.btnCancelTouch.UseVisualStyleBackColor = false;
             this.btnCancelTouch.Click += new System.EventHandler(this.btnCancelTouch_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.BackColor = System.Drawing.Color.Transparent;
-            this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.FlatAppearance.BorderSize = 0;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(715, 633);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(74, 66);
-            this.btnCancel.TabIndex = 469;
-            this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnExit
             // 
@@ -335,83 +397,39 @@
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // label2
+            // btnZoomOut
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(712, 32);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(14, 13);
-            this.label2.TabIndex = 563;
-            this.label2.Text = "1";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnZoomOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnZoomOut.BackColor = System.Drawing.Color.White;
+            this.btnZoomOut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnZoomOut.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnZoomOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnZoomOut.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnZoomOut.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnZoomOut.Location = new System.Drawing.Point(729, 582);
+            this.btnZoomOut.Name = "btnZoomOut";
+            this.btnZoomOut.Size = new System.Drawing.Size(66, 69);
+            this.btnZoomOut.TabIndex = 570;
+            this.btnZoomOut.Text = "-";
+            this.btnZoomOut.UseVisualStyleBackColor = false;
+            this.btnZoomOut.Click += new System.EventHandler(this.btnZoomOut_Click);
             // 
-            // label3
+            // btnZoomIn
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(707, 114);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(14, 13);
-            this.label3.TabIndex = 564;
-            this.label3.Text = "2";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(856, 114);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(14, 13);
-            this.label4.TabIndex = 565;
-            this.label4.Text = "3";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(708, 205);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(14, 13);
-            this.label5.TabIndex = 566;
-            this.label5.Text = "4";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(856, 206);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(14, 13);
-            this.label7.TabIndex = 568;
-            this.label7.Text = "5";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(763, 169);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(51, 13);
-            this.label6.TabIndex = 569;
-            this.label6.Text = "Smooth";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnZoomIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnZoomIn.BackColor = System.Drawing.Color.White;
+            this.btnZoomIn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnZoomIn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnZoomIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnZoomIn.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnZoomIn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnZoomIn.Location = new System.Drawing.Point(822, 582);
+            this.btnZoomIn.Name = "btnZoomIn";
+            this.btnZoomIn.Size = new System.Drawing.Size(66, 69);
+            this.btnZoomIn.TabIndex = 571;
+            this.btnZoomIn.Text = "+";
+            this.btnZoomIn.UseVisualStyleBackColor = false;
+            this.btnZoomIn.Click += new System.EventHandler(this.btnZoomIn_Click);
             // 
             // FormMapBnd
             // 
@@ -419,6 +437,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1000, 711);
+            this.Controls.Add(this.btnZoomIn);
+            this.Controls.Add(this.btnZoomOut);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
@@ -437,7 +457,6 @@
             this.Controls.Add(this.btnResetReduce);
             this.Controls.Add(this.lblStartPoints);
             this.Controls.Add(this.btnCancelTouch);
-            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.oglSelf);
             this.Controls.Add(this.lblDist);
@@ -462,7 +481,6 @@
         private OpenTK.GLControl oglSelf;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnCancelTouch;
         private System.Windows.Forms.Label lblStartPoints;
         private System.Windows.Forms.ComboBox cboxPointDistance;
@@ -482,5 +500,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnZoomOut;
+        private System.Windows.Forms.Button btnZoomIn;
     }
 }
