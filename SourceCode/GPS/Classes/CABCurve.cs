@@ -673,9 +673,10 @@ namespace AgOpenGPS
         {
             GL.LineWidth(8);
             GL.Color3(0.3, 0.92f, 0.42f);
-            GL.Begin(PrimitiveType.LineStrip);
+            GL.Begin(PrimitiveType.LineStrip);        
 
-            for (int h = 0; h < mf.trk.gArr[i].curvePts.Count; h++)
+            for (int h = 0; h < mf.trk.gArr[i].curvePts.Count; h++) 
+
                 GL.Vertex3(
                 mf.trk.gArr[i].curvePts[h].easting,
                 mf.trk.gArr[i].curvePts[h].northing,
