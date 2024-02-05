@@ -73,7 +73,14 @@ namespace AgOpenGPS
 
             cboxIsZoom.Checked = false;
             zoomToggle = false;
-            this.WindowState = FormWindowState.Maximized;
+            Size = Properties.Settings.Default.setWindow_abDrawSize;
+
+            Screen myScreen = Screen.FromControl(this);
+            Rectangle area = myScreen.WorkingArea;
+
+            this.Top = (area.Height - this.Height) / 2;
+            this.Left = (area.Width - this.Width) / 2;
+            FormABDraw_ResizeEnd(this, e);
         }
 
         private void FormABDraw_FormClosing(object sender, FormClosingEventArgs e)
@@ -144,6 +151,9 @@ namespace AgOpenGPS
             mf.twoSecondCounter = 100;
 
             mf.FileSaveTracks();
+
+            Properties.Settings.Default.setWindow_abDrawSize = Size;
+            Properties.Settings.Default.Save();
         }
 
         private void btnCenterOGL_Click(object sender, EventArgs e)
@@ -191,13 +201,11 @@ namespace AgOpenGPS
 
         private void FixLabelsCurve()
         {
-            lblNumCu.Text = mf.trk.gArr.Count.ToString();
-
             if (mf.trk.idx > -1 && mf.trk.gArr.Count > 0)
             {
                 tboxNameCurve.Text = mf.trk.gArr[mf.trk.idx].name;
                 tboxNameCurve.Enabled = true;
-                lblCurveSelected.Text = (mf.trk.idx + 1).ToString();
+                lblCurveSelected.Text = (mf.trk.idx + 1).ToString() + " / " + mf.trk.gArr.Count.ToString();
                 cboxIsVisible.Visible = true;
                 cboxIsVisible.Checked = mf.trk.gArr[mf.trk.idx].isVisible;
                 if (mf.trk.gArr[mf.trk.idx].isVisible)
@@ -332,7 +340,6 @@ namespace AgOpenGPS
         {            //count the points from the boundary
             for (int q = 0; q < mf.bnd.bndList.Count; q++)
             {
-                int ptCount = mf.bnd.bndList[q].fenceLine.Count;
                 mf.curve.desList?.Clear();
 
                 //outside point
@@ -889,8 +896,9 @@ namespace AgOpenGPS
             }
         }
 
-        private void FormABDraw_Resize(object sender, EventArgs e)
+        private void FormABDraw_ResizeEnd(object sender, EventArgs e)
         {
+            Width = (Height * 4 / 3);
 
             if (Height > Width)
             {
@@ -914,6 +922,19 @@ namespace AgOpenGPS
             GL.LoadMatrix(ref mat);
 
             GL.MatrixMode(MatrixMode.Modelview);
+
+            tlp1.Width = Width - oglSelf.Width - 4;
+            tlp1.Left = oglSelf.Width + 4;
+
+            Screen myScreen = Screen.FromControl(this);
+            Rectangle area = myScreen.WorkingArea;
+
+            this.Top = (area.Height - this.Height) / 2;
+            this.Left = (area.Width - this.Width) / 2;
+        }
+
+        private void FormABDraw_Resize(object sender, EventArgs e)
+        {
         }
 
         private void oglSelf_Resize(object sender, EventArgs e)
@@ -1039,8 +1060,7 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.hd_btnDrawSections, gStr.gsHelp);
         }
 
-
-            private void btnExit_HelpRequested(object sender, HelpEventArgs hlpevent)
+        private void btnExit_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             MessageBox.Show(gStr.hh_btnExit, gStr.gsHelp);
         }
