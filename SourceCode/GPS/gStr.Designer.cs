@@ -376,6 +376,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This action will delete all the boundaries. Do you want to continue?.
+        /// </summary>
+        public static string gsDeleteBoundaryMapping {
+            get {
+                return ResourceManager.GetString("gsDeleteBoundaryMapping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete Contour Paths.
         /// </summary>
         public static string gsDeleteContourPaths {

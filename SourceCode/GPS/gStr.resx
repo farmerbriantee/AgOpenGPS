@@ -222,6 +222,9 @@
   <data name="gsDeleteAppliedArea" xml:space="preserve">
     <value>Delete Applied Area</value>
   </data>
+  <data name="gsDeleteBoundaryMapping" xml:space="preserve">
+    <value>This action will delete all the boundaries. Do you want to continue?</value>
+  </data>
   <data name="gsDeleteContourPaths" xml:space="preserve">
     <value>Delete Contour Paths</value>
   </data>

@@ -251,6 +251,7 @@ namespace AgOpenGPS
 
         #endregion // Class Props and instances
 
+
         public FormGPS()
         {
             //winform initialization
@@ -534,7 +535,7 @@ namespace AgOpenGPS
                 }
             }
 
-            DateTime dt2 = new DateTime(2024, 02, 05);
+            DateTime dt2 = new DateTime(2024, 02, 13);
             if (DateTime.Now > dt2)
             {
                 YesMessageBox("This version is expired");
