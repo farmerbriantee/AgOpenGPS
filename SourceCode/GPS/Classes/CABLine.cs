@@ -372,8 +372,8 @@ namespace AgOpenGPS
         {
             GL.LineWidth(4);
             //GL.Enable(EnableCap.LineStipple);
-            GL.Begin(PrimitiveType.Lines);
             GL.Color3(0.30f, 0.972f, 0.32f);
+            GL.Begin(PrimitiveType.Lines);
             {
                 GL.Vertex3(mf.trk.gArr[i].endPtA.easting, mf.trk.gArr[i].endPtA.northing, 0);
                 GL.Vertex3(mf.trk.gArr[i].endPtB.easting, mf.trk.gArr[i].endPtB.northing, 0);

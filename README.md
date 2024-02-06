@@ -8,12 +8,11 @@ Most [Stable AgOpenGPS Release](https://github.com/farmerbriantee/AgOpenGPS/rele
 Discussed in detail on the [AgOpengGPS Forum](https://discourse.agopengps.com/)
 
 
-The [PCB and Firmware Repository](https://github.com/farmerbriantee/AgOpenGPS_Boards)
+The [PCB and Firmware Repository](https://github.com/AgHardware/Boards/wiki)
 
-The [SK21 AgRate Repository is here](https://github.com/SK21/AOG_RC)
+The [SK21 AgRate Repository is here](https://github.com/AgHardware/Rate_Control)
 
-The [AgOpenGPS Hardware Wiki](https://github.com/farmerbriantee/AgOpenGPS_Boards/wiki)
-
+The [AgOpenGPS Hardware Wiki](https://github.com/AgHardware/Boards/wiki)
 
 Ag Precision Mapping and Section Control Software
 

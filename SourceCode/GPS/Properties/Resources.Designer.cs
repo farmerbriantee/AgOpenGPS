@@ -292,6 +292,26 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap APlusPlusA {
+            get {
+                object obj = ResourceManager.GetObject("APlusPlusA", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap APlusPlusB {
+            get {
+                object obj = ResourceManager.GetObject("APlusPlusB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ArrowLeft {
             get {
                 object obj = ResourceManager.GetObject("ArrowLeft", resourceCulture);
@@ -482,6 +502,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BoundaryMakeLine {
+            get {
+                object obj = ResourceManager.GetObject("BoundaryMakeLine", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap BoundaryOuter {
             get {
                 object obj = ResourceManager.GetObject("BoundaryOuter", resourceCulture);
@@ -522,9 +552,29 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BoundaryReduce {
+            get {
+                object obj = ResourceManager.GetObject("BoundaryReduce", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap BoundaryRight {
             get {
                 object obj = ResourceManager.GetObject("BoundaryRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BoundarySmooth {
+            get {
+                object obj = ResourceManager.GetObject("BoundarySmooth", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -3988,6 +4038,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap ZoomIn48 {
             get {
                 object obj = ResourceManager.GetObject("ZoomIn48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ZoomOGL {
+            get {
+                object obj = ResourceManager.GetObject("ZoomOGL", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
