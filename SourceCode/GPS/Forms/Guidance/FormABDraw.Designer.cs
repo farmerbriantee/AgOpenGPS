@@ -155,7 +155,7 @@
             this.btnBLength.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnBLength.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBLength.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnBLength.Image = global::AgOpenGPS.Properties.Resources.APlusPlusA;
+            this.btnBLength.Image = global::AgOpenGPS.Properties.Resources.APlusPlusB;
             this.btnBLength.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnBLength.Location = new System.Drawing.Point(19, 13);
             this.btnBLength.Name = "btnBLength";
@@ -212,7 +212,7 @@
             this.btnALength.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnALength.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnALength.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnALength.Image = global::AgOpenGPS.Properties.Resources.APlusPlusB;
+            this.btnALength.Image = global::AgOpenGPS.Properties.Resources.APlusPlusA;
             this.btnALength.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnALength.Location = new System.Drawing.Point(19, 83);
             this.btnALength.Name = "btnALength";
@@ -455,7 +455,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormABDraw_FormClosing);
             this.Load += new System.EventHandler(this.FormABDraw_Load);
             this.ResizeEnd += new System.EventHandler(this.FormABDraw_ResizeEnd);
-            this.Resize += new System.EventHandler(this.FormABDraw_Resize);
             this.tlp1.ResumeLayout(false);
             this.tlp1.PerformLayout();
             this.ResumeLayout(false);

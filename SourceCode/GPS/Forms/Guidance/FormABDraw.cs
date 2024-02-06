@@ -73,6 +73,7 @@ namespace AgOpenGPS
 
             cboxIsZoom.Checked = false;
             zoomToggle = false;
+
             Size = Properties.Settings.Default.setWindow_abDrawSize;
 
             Screen myScreen = Screen.FromControl(this);
@@ -931,10 +932,6 @@ namespace AgOpenGPS
 
             this.Top = (area.Height - this.Height) / 2;
             this.Left = (area.Width - this.Width) / 2;
-        }
-
-        private void FormABDraw_Resize(object sender, EventArgs e)
-        {
         }
 
         private void oglSelf_Resize(object sender, EventArgs e)
