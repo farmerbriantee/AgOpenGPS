@@ -448,19 +448,9 @@ namespace AgOpenGPS
             if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
             if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
 
-            if (this.Height > 1000 && this.Width > 1000)
+            using (var form = new FormABDraw(this))
             {
-                using (var form = new FormABDraw2(this))
-                {
-                    form.ShowDialog(this);
-                }
-            }
-            else
-            {
-                using (var form = new FormABDraw(this))
-                {
-                    form.ShowDialog(this);
-                }
+                form.ShowDialog(this);
             }
 
             PanelUpdateRightAndBottom();

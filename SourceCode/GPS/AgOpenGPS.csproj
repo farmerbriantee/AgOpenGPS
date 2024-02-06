@@ -216,12 +216,6 @@
     <Compile Include="Forms\FormYes.designer.cs">
       <DependentUpon>FormYes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Guidance\FormABDraw2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Guidance\FormABDraw2.Designer.cs">
-      <DependentUpon>FormABDraw2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Guidance\FormRecordName.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -652,9 +646,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormYes.resx">
       <DependentUpon>FormYes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Guidance\FormABDraw2.resx">
-      <DependentUpon>FormABDraw2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Guidance\FormRecordName.resx">
       <DependentUpon>FormRecordName.cs</DependentUpon>

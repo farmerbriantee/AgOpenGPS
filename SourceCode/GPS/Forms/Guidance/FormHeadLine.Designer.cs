@@ -92,23 +92,17 @@
             this.nudSetDistance.BackColor = System.Drawing.Color.White;
             this.nudSetDistance.DecimalPlaces = 1;
             this.nudSetDistance.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSetDistance.Location = new System.Drawing.Point(8, 257);
+            this.nudSetDistance.Location = new System.Drawing.Point(11, 257);
             this.nudSetDistance.Maximum = new decimal(new int[] {
             200,
             0,
             0,
             0});
-            this.nudSetDistance.Minimum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            -2147483648});
             this.nudSetDistance.Name = "nudSetDistance";
             this.nudSetDistance.ReadOnly = true;
-            this.nudSetDistance.Size = new System.Drawing.Size(136, 46);
+            this.nudSetDistance.Size = new System.Drawing.Size(130, 46);
             this.nudSetDistance.TabIndex = 464;
             this.nudSetDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudSetDistance.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
             this.nudSetDistance.Click += new System.EventHandler(this.nudSetDistance_Click);
             // 
             // lblToolWidth
@@ -158,6 +152,7 @@
             this.tlp1.ColumnCount = 2;
             this.tlp1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlp1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlp1.Controls.Add(this.nudSetDistance, 0, 3);
             this.tlp1.Controls.Add(this.btnAShrink, 1, 1);
             this.tlp1.Controls.Add(this.btnBShrink, 1, 0);
             this.tlp1.Controls.Add(this.btnBLength, 0, 0);
@@ -173,7 +168,6 @@
             this.tlp1.Controls.Add(this.cboxToolWidths, 1, 3);
             this.tlp1.Controls.Add(this.rbtnLine, 1, 2);
             this.tlp1.Controls.Add(this.rbtnCurve, 0, 2);
-            this.tlp1.Controls.Add(this.nudSetDistance, 0, 3);
             this.tlp1.Controls.Add(this.lblToolWidth, 0, 4);
             this.tlp1.Location = new System.Drawing.Point(703, 1);
             this.tlp1.Name = "tlp1";
@@ -463,7 +457,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1006, 703);
+            this.ClientSize = new System.Drawing.Size(1006, 726);
             this.ControlBox = false;
             this.Controls.Add(this.tlp1);
             this.Controls.Add(this.headingGroupBox);

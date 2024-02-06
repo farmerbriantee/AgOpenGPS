@@ -48,7 +48,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.pboxHelp = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnAShrink = new System.Windows.Forms.Button();
             this.btnBShrink = new System.Windows.Forms.Button();
             this.btnHeadlandOff = new System.Windows.Forms.Button();
@@ -180,26 +179,20 @@
             // nudSetDistance
             // 
             this.nudSetDistance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.nudSetDistance.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudSetDistance.BackColor = System.Drawing.Color.White;
             this.nudSetDistance.DecimalPlaces = 1;
             this.nudSetDistance.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSetDistance.Location = new System.Drawing.Point(725, 422);
+            this.nudSetDistance.Location = new System.Drawing.Point(723, 422);
             this.nudSetDistance.Maximum = new decimal(new int[] {
             200,
             0,
             0,
             0});
-            this.nudSetDistance.Minimum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            -2147483648});
             this.nudSetDistance.Name = "nudSetDistance";
             this.nudSetDistance.ReadOnly = true;
-            this.nudSetDistance.Size = new System.Drawing.Size(150, 46);
+            this.nudSetDistance.Size = new System.Drawing.Size(152, 46);
             this.nudSetDistance.TabIndex = 464;
             this.nudSetDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudSetDistance.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
             this.nudSetDistance.Click += new System.EventHandler(this.nudSetDistance_Click);
             // 
             // label11
@@ -342,24 +335,6 @@
             this.pboxHelp.TabStop = false;
             this.pboxHelp.Visible = false;
             this.pboxHelp.Click += new System.EventHandler(this.pboxHelp_Click);
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.button1.Image = global::AgOpenGPS.Properties.Resources.Help;
-            this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1.Location = new System.Drawing.Point(721, 586);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(53, 46);
-            this.button1.TabIndex = 528;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.bntHelp_Click);
             // 
             // btnAShrink
             // 
@@ -629,7 +604,6 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pboxHelp);
             this.Controls.Add(this.oglSelf);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label5);
@@ -704,7 +678,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox pboxHelp;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckBox cboxIsZoom;
     }
