@@ -42,8 +42,7 @@ namespace AgOpenGPS
             mf.FileLoadHeadLines();
             FixLabelsCurve();
 
-            label3.Text = mf.unitsFtM;
-            lblToolWidth.Text = ((mf.tool.width - mf.tool.overlap) * mf.m2FtOrM).ToString("N1") + " " + mf.unitsFtM;
+            lblToolWidth.Text = "( " + mf.unitsFtM + " )      Tool: " + ((mf.tool.width - mf.tool.overlap) * mf.m2FtOrM).ToString("N1") + mf.unitsFtM;
 
             mf.bnd.bndList[0].hdLine?.Clear();
 
@@ -72,8 +71,6 @@ namespace AgOpenGPS
 
         private void FixLabelsCurve()
         {
-            lblNumCu.Text = mf.hdl.tracksArr.Count.ToString();
-            lblCurveSelected.Text = (mf.hdl.idx + 1).ToString();
         }
 
         private void btnCycleForward_Click(object sender, EventArgs e)
@@ -579,8 +576,6 @@ namespace AgOpenGPS
                     GL.Color3(0.6f, 0.75f, 0.99f);
                     GL.Vertex3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[cnt].easting, mf.hdl.tracksArr[mf.hdl.idx].trackPts[cnt].northing, 0);
                     GL.End();
-
-                    lblMovedDistance.Text = (mf.hdl.tracksArr[mf.hdl.idx].moveDistance * mf.m2FtOrM).ToString("N1");
                 }
             }
 
@@ -831,17 +826,6 @@ namespace AgOpenGPS
             Close();
         }
 
-        private void pboxHelp_Click(object sender, EventArgs e)
-        {
-            pboxHelp.Visible = false;
-        }
-
-        private void bntHelp_Click(object sender, EventArgs e)
-        {
-            pboxHelp.Visible = true;
-            pboxHelp.Dock = DockStyle.Fill;
-        }
-
         private void btnBLength_Click(object sender, EventArgs e)
         {
             if (mf.hdl.idx > -1)
@@ -891,6 +875,20 @@ namespace AgOpenGPS
                 if (mf.hdl.tracksArr[mf.hdl.idx].trackPts.Count > 8)
                     mf.hdl.tracksArr[mf.hdl.idx].trackPts.RemoveRange(0, 5);
             }
+        }
+
+        private void btnCancelTouch_Click(object sender, EventArgs e)
+        {
+            //update the arrays
+            start = 99999; end = 99999;
+            isA = true;
+            FixLabelsCurve();
+            mf.curve.desList?.Clear();
+            zoom = 1;
+            sX = 0;
+            sY = 0;
+            zoomToggle = false;
+            btnExit.Focus();
         }
 
         private void cboxIsSectionControlled_Click(object sender, EventArgs e)

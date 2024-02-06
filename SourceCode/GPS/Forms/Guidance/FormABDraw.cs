@@ -187,6 +187,7 @@ namespace AgOpenGPS
             btnMakeABLine.Enabled = false;
             btnMakeCurve.Enabled = false;
             start = 99999; end = 99999;
+            isA = true;
 
             FixLabelsCurve();
 
