@@ -20,7 +20,7 @@ namespace AgOpenGPS
 
         public double howManyPathsAway;
         public vec2 refPoint1 = new vec2(1, 1), refPoint2 = new vec2(2, 2);
-    
+
         private int A, B, C;
         private int rA, rB;
 
@@ -157,7 +157,7 @@ namespace AgOpenGPS
             distanceFromRefLine -= (0.5 * widthMinusOverlap);
 
             double RefDist = (distanceFromRefLine + (isHeadingSameWay ? mf.tool.offset : -mf.tool.offset)) / widthMinusOverlap;
-            
+
             if (RefDist < 0) howManyPathsAway = (int)(RefDist - 0.5);
             else howManyPathsAway = (int)(RefDist + 0.5);
 
@@ -167,7 +167,7 @@ namespace AgOpenGPS
             //build the current line
             curList?.Clear();
 
-            double distAway = widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset ) + mf.trk.gArr[idx].nudgeDistance;
+            double distAway = widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset) + mf.trk.gArr[idx].nudgeDistance;
 
             distAway += (0.5 * widthMinusOverlap);
 
@@ -485,7 +485,7 @@ namespace AgOpenGPS
                         return;
                     }
 
-                    SegmentFound:
+                SegmentFound:
 
                     //get the distance from currently active AB line
 
@@ -671,11 +671,12 @@ namespace AgOpenGPS
 
         public void DrawProposed(int i)
         {
-            GL.LineWidth(4);
+            GL.LineWidth(8);
             GL.Color3(0.3, 0.92f, 0.42f);
-            GL.Begin(PrimitiveType.LineStrip);
+            GL.Begin(PrimitiveType.LineStrip);        
 
             for (int h = 0; h < mf.trk.gArr[i].curvePts.Count; h++) 
+
                 GL.Vertex3(
                 mf.trk.gArr[i].curvePts[h].easting,
                 mf.trk.gArr[i].curvePts[h].northing,
@@ -706,12 +707,12 @@ namespace AgOpenGPS
             GL.Begin(PrimitiveType.Lines);
 
             for (int h = 0; h < ptCount; h++) GL.Vertex3(
-                mf.trk.gArr[mf.trk.idx].curvePts[h].easting, 
-                mf.trk.gArr[mf.trk.idx].curvePts[h].northing, 
+                mf.trk.gArr[mf.trk.idx].curvePts[h].easting,
+                mf.trk.gArr[mf.trk.idx].curvePts[h].northing,
                 0);
 
             GL.End();
-            
+
             if (mf.font.isFontOn)
             {
                 GL.Color3(0.40f, 0.90f, 0.95f);
@@ -1011,8 +1012,8 @@ namespace AgOpenGPS
         }
 
 
-//turning the visual line into the real reference line to use
-public void SaveSmoothList()
+        //turning the visual line into the real reference line to use
+        public void SaveSmoothList()
         {
             //oops no smooth list generated
             if (smooList == null) return;
@@ -1070,7 +1071,7 @@ public void SaveSmoothList()
                 //end
                 while (mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(xList[xList.Count - 1]))
                 {
-                    for (int i = 1; i < 10; i++)
+                    for (int i = 1; i < 100; i++)
                     {
                         vec3 pt = new vec3(xList[ptCnt]);
                         pt.easting += (Math.Sin(pt.heading) * i);
@@ -1085,7 +1086,7 @@ public void SaveSmoothList()
 
                 while (mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(xList[0]))
                 {
-                    for (int i = 1; i < 10; i++)
+                    for (int i = 1; i < 100; i++)
                     {
                         vec3 pt = new vec3(start);
                         pt.easting -= (Math.Sin(pt.heading) * i);
@@ -1094,6 +1095,26 @@ public void SaveSmoothList()
                     }
                     start = new vec3(xList[0]);
                 }
+
+                for (int i = 1; i < 100; i++)
+                {
+                    vec3 pt = new vec3(xList[ptCnt]);
+                    pt.easting += (Math.Sin(pt.heading) * i);
+                    pt.northing += (Math.Cos(pt.heading) * i);
+                    xList.Add(pt);
+                }
+
+                //and the beginning
+                start = new vec3(xList[0]);
+
+                for (int i = 1; i < 100; i++)
+                {
+                    vec3 pt = new vec3(start);
+                    pt.easting -= (Math.Sin(pt.heading) * i);
+                    pt.northing -= (Math.Cos(pt.heading) * i);
+                    xList.Insert(0, pt);
+                }
+
             }
             else
             {

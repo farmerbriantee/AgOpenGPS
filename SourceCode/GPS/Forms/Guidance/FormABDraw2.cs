@@ -10,7 +10,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AgOpenGPS
 {
-    public partial class FormABDraw : Form
+    public partial class FormABDraw2 : Form
     {
         //access to the main GPS form and all its variables
         private readonly FormGPS mf = null;
@@ -22,17 +22,13 @@ namespace AgOpenGPS
         private int bndSelect = 0, originalLine;
         private bool isCancel = false;
 
-        private bool zoomToggle;
-
-        private double zoom = 1, sX = 0, sY = 0;
-
         public List<CTrk> gTemp = new List<CTrk>();
 
         public vec3 pint = new vec3(0.0, 1.0, 0.0);
 
         private bool isDrawSections = false;
 
-        public FormABDraw(Form callingForm)
+        public FormABDraw2(Form callingForm)
         {
             //get copy of the calling main form
             mf = callingForm as FormGPS;
@@ -70,17 +66,6 @@ namespace AgOpenGPS
             }
 
             FixLabelsCurve();
-
-            cboxIsZoom.Checked = false;
-            zoomToggle = false;
-            Size = Properties.Settings.Default.setWindow_abDrawSize;
-
-            Screen myScreen = Screen.FromControl(this);
-            Rectangle area = myScreen.WorkingArea;
-
-            this.Top = (area.Height - this.Height) / 2;
-            this.Left = (area.Width - this.Width) / 2;
-            FormABDraw_ResizeEnd(this, e);
         }
 
         private void FormABDraw_FormClosing(object sender, FormClosingEventArgs e)
@@ -151,21 +136,6 @@ namespace AgOpenGPS
             mf.twoSecondCounter = 100;
 
             mf.FileSaveTracks();
-
-            Properties.Settings.Default.setWindow_abDrawSize = Size;
-            Properties.Settings.Default.Save();
-        }
-
-        private void btnCenterOGL_Click(object sender, EventArgs e)
-        {
-            zoom = 1;
-            sX = 0;
-            sY = 0;
-            zoomToggle = false;
-        }
-        private void cboxIsZoom_CheckedChanged(object sender, EventArgs e)
-        {
-            zoomToggle = false;
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -191,21 +161,18 @@ namespace AgOpenGPS
 
             mf.curve.desList?.Clear();
 
-            zoom = 1;
-            sX = 0;
-            sY = 0;
-            zoomToggle = false;
-
             btnExit.Focus();
         }
 
         private void FixLabelsCurve()
         {
+            lblNumCu.Text = mf.trk.gArr.Count.ToString();
+
             if (mf.trk.idx > -1 && mf.trk.gArr.Count > 0)
             {
                 tboxNameCurve.Text = mf.trk.gArr[mf.trk.idx].name;
                 tboxNameCurve.Enabled = true;
-                lblCurveSelected.Text = (mf.trk.idx + 1).ToString() + " / " + mf.trk.gArr.Count.ToString();
+                lblCurveSelected.Text = (mf.trk.idx + 1).ToString();
                 cboxIsVisible.Visible = true;
                 cboxIsVisible.Checked = mf.trk.gArr[mf.trk.idx].isVisible;
                 if (mf.trk.gArr[mf.trk.idx].isVisible)
@@ -340,24 +307,25 @@ namespace AgOpenGPS
         {            //count the points from the boundary
             for (int q = 0; q < mf.bnd.bndList.Count; q++)
             {
+                int ptCount = mf.bnd.bndList[q].fenceLine.Count;
                 mf.curve.desList?.Clear();
 
                 //outside point
                 vec3 pt3 = new vec3();
 
-                    for (int i = 0; i < mf.bnd.bndList[bndSelect].fenceLine.Count; i++)
-                    {
-                        //calculate the point inside the boundary
-                        pt3 = mf.bnd.bndList[bndSelect].fenceLine[i];
 
-                        mf.curve.desList.Add(new vec3(pt3));
-                    }
+                for (int i = 0; i < mf.bnd.bndList[bndSelect].fenceLine.Count; i++)
+                {
+                    //calculate the point inside the boundary
+                    pt3 = mf.bnd.bndList[bndSelect].fenceLine[i];
 
+                    mf.curve.desList.Add(new vec3(pt3));
+                }
 
                 mf.trk.gArr.Add(new CTrk());
                 //array number is 1 less since it starts at zero
                 mf.trk.idx = mf.trk.gArr.Count - 1;
-                
+
                 mf.trk.gArr[mf.trk.idx].ptA = new vec2(mf.curve.desList[0].easting, mf.curve.desList[0].northing);
                 mf.trk.gArr[mf.trk.idx].ptB = new vec2(mf.curve.desList[mf.curve.desList.Count - 1].easting, mf.curve.desList[mf.curve.desList.Count - 1].northing);
 
@@ -373,7 +341,7 @@ namespace AgOpenGPS
                     //make sure point distance isn't too big 
                     mf.curve.MakePointMinimumSpacing(ref mf.curve.desList, 1.6);
                     mf.curve.CalculateHeadings(ref mf.curve.desList);
-                    
+
                     //create a name
                     mf.trk.gArr[mf.trk.idx].name = "Boundary Curve";
 
@@ -443,7 +411,6 @@ namespace AgOpenGPS
                         end = limit;
                     }
                 }
-            
 
             mf.trk.gArr.Add(new CTrk());
             //array number is 1 less since it starts at zero
@@ -534,6 +501,10 @@ namespace AgOpenGPS
                 mf.bnd.bndList[bndSelect].fenceLine[end].northing - mf.bnd.bndList[bndSelect].fenceLine[start].northing);
             if (abHead < 0) abHead += glm.twoPI;
 
+            double offset = 0;
+
+            double headingCalc = abHead + glm.PIBy2;
+
             mf.trk.gArr.Add(new CTrk());
 
             mf.trk.idx = mf.trk.gArr.Count - 1;
@@ -542,11 +513,11 @@ namespace AgOpenGPS
             mf.trk.gArr[mf.trk.idx].mode = (int)TrackMode.AB;
 
             //calculate the new points for the reference line and points
-            mf.trk.gArr[mf.trk.idx].ptA.easting = mf.bnd.bndList[bndSelect].fenceLine[start].easting;
-            mf.trk.gArr[mf.trk.idx].ptA.northing = mf.bnd.bndList[bndSelect].fenceLine[start].northing;
+            mf.trk.gArr[mf.trk.idx].ptA.easting = (Math.Sin(headingCalc) * (offset)) + mf.bnd.bndList[bndSelect].fenceLine[start].easting;
+            mf.trk.gArr[mf.trk.idx].ptA.northing = (Math.Cos(headingCalc) * (offset)) + mf.bnd.bndList[bndSelect].fenceLine[start].northing;
 
-            mf.trk.gArr[mf.trk.idx].ptB.easting = mf.bnd.bndList[bndSelect].fenceLine[end].easting;
-            mf.trk.gArr[mf.trk.idx].ptB.northing = mf.bnd.bndList[bndSelect].fenceLine[end].northing;
+            mf.trk.gArr[mf.trk.idx].ptB.easting = (Math.Sin(headingCalc) * (offset)) + mf.bnd.bndList[bndSelect].fenceLine[end].easting;
+            mf.trk.gArr[mf.trk.idx].ptB.northing = (Math.Cos(headingCalc) * (offset)) + mf.bnd.bndList[bndSelect].fenceLine[end].northing;
 
             //create a name
             mf.trk.gArr[mf.trk.idx].name = "AB " + 
@@ -563,46 +534,27 @@ namespace AgOpenGPS
 
         private void oglSelf_MouseDown(object sender, MouseEventArgs e)
         {
-            Point pt = oglSelf.PointToClient(Cursor.Position);
-
-            int wid = oglSelf.Width;
-            int halfWid = oglSelf.Width / 2;
-            double scale = (double)wid * 0.903;
-
-            if (cboxIsZoom.Checked && !zoomToggle)
-            {
-                sX = (( halfWid - (double)pt.X) / wid)*1.1;
-                sY = ((halfWid - (double)pt.Y) / -wid)*1.1;
-                zoom = 0.1;
-                zoomToggle = true;
-                return;
-            }
-
-            zoomToggle = false;
             btnMakeABLine.Enabled = false;
             btnMakeCurve.Enabled = false;
 
+            Point pt = oglSelf.PointToClient(Cursor.Position);
 
             //Convert to Origin in the center of window, 800 pixels
-            fixPt.X = pt.X - halfWid;
-            fixPt.Y = (wid - pt.Y - halfWid);
+            fixPt.X = pt.X - 500;
+            fixPt.Y = (1000 - pt.Y - 500);
             vec3 plotPt = new vec3
             {
                 //convert screen coordinates to field coordinates
-                easting = fixPt.X * mf.maxFieldDistance / scale * zoom,
-                northing = fixPt.Y * mf.maxFieldDistance / scale * zoom,
+                easting = fixPt.X * mf.maxFieldDistance / 903,
+                northing = fixPt.Y * mf.maxFieldDistance / 903,
                 heading = 0
             };
 
-            plotPt.easting += mf.fieldCenterX + mf.maxFieldDistance * -sX;
-            plotPt.northing += mf.fieldCenterY + mf.maxFieldDistance * -sY;
+            plotPt.easting += mf.fieldCenterX;
+            plotPt.northing += mf.fieldCenterY;
 
             pint.easting = plotPt.easting;
             pint.northing = plotPt.northing;
-
-            zoom = 1;
-            sX = 0;
-            sY = 0;
 
             if (isA)
             {
@@ -657,19 +609,21 @@ namespace AgOpenGPS
             GL.LoadIdentity();                  // Reset The View
 
             //back the camera up
-            GL.Translate(0, 0, -mf.maxFieldDistance * zoom);
+            GL.Translate(0, 0, -mf.maxFieldDistance);
 
             //translate to that spot in the world
-            GL.Translate(-mf.fieldCenterX + sX * mf.maxFieldDistance, -mf.fieldCenterY + sY * mf.maxFieldDistance, 0);
+            GL.Translate(-mf.fieldCenterX, -mf.fieldCenterY, 0);
 
-            if (isDrawSections) DrawSections();
+            GL.Color3(1, 1, 1);
 
-            GL.LineWidth(3);
+            //draw all the boundaries
+
+            GL.LineWidth(1);
 
             for (int j = 0; j < mf.bnd.bndList.Count; j++)
             {
                 if (j == bndSelect)
-                    GL.Color3(0.0f, 0.0f, 0.0f);
+                    GL.Color3(0.25f, 0.5f, 0.50f);
                 else
                     GL.Color3(0.2f, 0.35f, 0.35f);
 
@@ -694,6 +648,7 @@ namespace AgOpenGPS
             GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0.0);
             GL.End();
 
+            if (isDrawSections) DrawSections();
 
             //draw the line building graphics
             if (start != 99999 || end != 99999) DrawABTouchPoints();
@@ -755,7 +710,7 @@ namespace AgOpenGPS
                 else if (mf.trk.gArr[i].mode == (int)TrackMode.Curve || mf.trk.gArr[i].mode == (int)TrackMode.bndCurve)
                 {
                     GL.Enable(EnableCap.LineStipple);
-                    GL.LineWidth(5);
+                    GL.LineWidth(4);
 
                     if (mf.trk.gArr[i].mode == (int)TrackMode.bndCurve) GL.LineStipple(1, 0x0007);
                     else GL.LineStipple(1, 0x0707);
@@ -896,47 +851,6 @@ namespace AgOpenGPS
             }
         }
 
-        private void FormABDraw_ResizeEnd(object sender, EventArgs e)
-        {
-            Width = (Height * 4 / 3);
-
-            if (Height > Width)
-            {
-                oglSelf.Height = oglSelf.Width = Width - 60;
-            }
-            else
-            {
-                oglSelf.Height = oglSelf.Width = Height - 60;
-            }
-
-            oglSelf.Left = 2;
-            oglSelf.Top = 2;
-
-            oglSelf.MakeCurrent();
-            GL.MatrixMode(MatrixMode.Projection);
-            GL.LoadIdentity();
-
-            //58 degrees view
-            GL.Viewport(0, 0, oglSelf.Width, oglSelf.Height);
-            Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(1.01f, 1.0f, 1.0f, 20000);
-            GL.LoadMatrix(ref mat);
-
-            GL.MatrixMode(MatrixMode.Modelview);
-
-            tlp1.Width = Width - oglSelf.Width - 4;
-            tlp1.Left = oglSelf.Width + 4;
-
-            Screen myScreen = Screen.FromControl(this);
-            Rectangle area = myScreen.WorkingArea;
-
-            this.Top = (area.Height - this.Height) / 2;
-            this.Left = (area.Width - this.Width) / 2;
-        }
-
-        private void FormABDraw_Resize(object sender, EventArgs e)
-        {
-        }
-
         private void oglSelf_Resize(object sender, EventArgs e)
         {
             oglSelf.MakeCurrent();
@@ -944,8 +858,6 @@ namespace AgOpenGPS
             GL.LoadIdentity();
 
             //58 degrees view
-            GL.Viewport(0, 0, oglSelf.Width, oglSelf.Height);
-
             Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(1.01f, 1.0f, 1.0f, 20000);
             GL.LoadMatrix(ref mat);
 
@@ -965,7 +877,7 @@ namespace AgOpenGPS
             int cnt, step, patchCount;
             int mipmap = 8;
 
-            GL.Color3(0.9f, 0.9f, 0.8f);
+            GL.Color3(0.0, 0.0, 0.352);
 
             //draw patches j= # of sections
             for (int j = 0; j < mf.triStrip.Count; j++)
