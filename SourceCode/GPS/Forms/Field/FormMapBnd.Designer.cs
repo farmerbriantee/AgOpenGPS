@@ -281,12 +281,12 @@
             // 
             this.btnResetReduce.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnResetReduce.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnResetReduce.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnResetReduce.BackgroundImage = global::AgOpenGPS.Properties.Resources.Play;
+            this.btnResetReduce.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.tlp1.SetColumnSpan(this.btnResetReduce, 3);
             this.btnResetReduce.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnResetReduce.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetReduce.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnResetReduce.Image = global::AgOpenGPS.Properties.Resources.SwitchOn;
             this.btnResetReduce.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnResetReduce.Location = new System.Drawing.Point(20, 20);
             this.btnResetReduce.Name = "btnResetReduce";
