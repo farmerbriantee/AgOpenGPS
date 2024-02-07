@@ -669,22 +669,6 @@ namespace AgOpenGPS
             }
         }
 
-        public void DrawProposed(int i)
-        {
-            GL.LineWidth(4);
-            GL.Color3(0.3, 0.92f, 0.42f);
-            GL.Begin(PrimitiveType.LineStrip);
-
-            for (int h = 0; h < mf.trk.gArr[i].curvePts.Count; h++) 
-                GL.Vertex3(
-                mf.trk.gArr[i].curvePts[h].easting,
-                mf.trk.gArr[i].curvePts[h].northing,
-                0);
-
-            GL.End();
-
-
-        }
         public void DrawCurve()
         {
             if (desList.Count > 0)

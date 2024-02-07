@@ -112,7 +112,7 @@ namespace AgOpenGPS
             //the pick a saved vehicle box
             UpdateVehicleListView();
 
-            //tabTSections_Enter(this, e);
+            tabTSections_Enter(this, e);
             SectionFeetInchesTotalWidthLabelUpdate();
 
             tab1.SelectedTab = tabSummary;
