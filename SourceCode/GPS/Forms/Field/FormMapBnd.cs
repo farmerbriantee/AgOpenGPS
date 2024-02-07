@@ -105,10 +105,51 @@ namespace AgOpenGPS
             cboxSmooth.Text = "4";
             cboxSmooth.SelectedIndexChanged += cboxSmooth_SelectedIndexChanged;
             cboxIsZoom.Checked = false;
+
+            Size = Properties.Settings.Default.setWindow_MapBndSize;
+
+            Screen myScreen = Screen.FromControl(this);
+            Rectangle area = myScreen.WorkingArea;
+
+            this.Top = (area.Height - this.Height) / 2;
+            this.Left = (area.Width - this.Width) / 2;
+            FormMapBnd_ResizeEnd(this, e);
         }
 
         private void FormMapBnd_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Properties.Settings.Default.setWindow_MapBndSize = Size;
+            Properties.Settings.Default.Save();
+        }
+
+        private void FormMapBnd_ResizeEnd(object sender, EventArgs e)
+        {
+            Width = (Height * 4 / 3);
+
+            oglSelf.Height = oglSelf.Width = Height - 50;
+
+            oglSelf.Left = 2;
+            oglSelf.Top = 2;
+
+            oglSelf.MakeCurrent();
+            GL.MatrixMode(MatrixMode.Projection);
+            GL.LoadIdentity();
+
+            //58 degrees view
+            GL.Viewport(0, 0, oglSelf.Width, oglSelf.Height);
+            Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(1.01f, 1.0f, 1.0f, 20000);
+            GL.LoadMatrix(ref mat);
+
+            GL.MatrixMode(MatrixMode.Modelview);
+
+            //tlp1.Width = Width - oglSelf.Width - 4;
+            //tlp1.Left = oglSelf.Width;
+
+            Screen myScreen = Screen.FromControl(this);
+            Rectangle area = myScreen.WorkingArea;
+
+            this.Top = (area.Height - this.Height) / 2;
+            this.Left = (area.Width - this.Width) / 2;
         }
 
         private void KNN()
@@ -774,37 +815,39 @@ namespace AgOpenGPS
 
         private void oglSelf_MouseDown(object sender, MouseEventArgs e)
         {
+            Point ptt = oglSelf.PointToClient(Cursor.Position);
 
-            Point pt = oglSelf.PointToClient(Cursor.Position);
+            int wid = oglSelf.Width;
+            int halfWid = oglSelf.Width / 2;
+            double scale = (double)wid * 0.903;
+
+            //if (cboxIsZoom.Checked && !zoomToggle)
+            //{
+            //    sX = ((halfWid - (double)ptt.X) / wid) * 1.1;
+            //    sY = ((halfWid - (double)ptt.Y) / -wid) * 1.1;
+            //    zoom = 0.1;
+            //    zoomToggle = true;
+            //    return;
+            //}
 
             //Convert to Origin in the center of window, 800 pixels
-            fixPt.X = pt.X - 350;
-            fixPt.Y = (700 - pt.Y - 350);
-
-            if (cboxIsZoom.Checked)
-            {
-                sX = ((350 - (double)pt.X) / 700) * 1.1;
-                sY = ((350 - (double)pt.Y) / -700) * 1.1;
-                zoom = 0.2;
-                cboxIsZoom.Checked = false;
-                return;
-            }
-
-            if (mf.bnd.bndList.Count < 1) { return; }
-
+            fixPt.X = ptt.X - halfWid;
+            fixPt.Y = (wid - ptt.Y - halfWid);
             vec3 plotPt = new vec3
             {
                 //convert screen coordinates to field coordinates
-                easting = fixPt.X * mf.maxFieldDistance / 632 * zoom,
-                northing = fixPt.Y * mf.maxFieldDistance / 632 * zoom,
+                easting = fixPt.X * mf.maxFieldDistance / scale * zoom,
+                northing = fixPt.Y * mf.maxFieldDistance / scale * zoom,
                 heading = 0
             };
 
-            plotPt.easting += mf.fieldCenterX+mf.maxFieldDistance*-sX;
-            plotPt.northing += mf.fieldCenterY+mf.maxFieldDistance*-sY;
+            plotPt.easting += mf.fieldCenterX + mf.maxFieldDistance * -sX;
+            plotPt.northing += mf.fieldCenterY + mf.maxFieldDistance * -sY;
 
             pint.easting = plotPt.easting;
             pint.northing = plotPt.northing;
+
+            if (mf.bnd.bndList.Count < 1) { return; }
 
             if (isA)
             {
