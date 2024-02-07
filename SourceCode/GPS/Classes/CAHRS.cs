@@ -1,11 +1,12 @@
-﻿namespace AgOpenGPS
+﻿
+namespace AgOpenGPS
 {
     public class CAHRS
     {
         //private readonly FormGPS mf;
 
         //Roll and heading from the IMU
-        public double imuHeading = 99999, prevIMUHeading = 0, imuRoll = 0, imuPitch = 0, imuYawRate = 0;
+        public double imuHeading = 99999, prevIMUHeading = 0, imuRoll = 0, imuPitch=0, imuYawRate = 0;
 
         public System.Int16 angVel;
 
@@ -16,7 +17,7 @@
         public double rollFilter;
 
         //is the auto steer in auto turn on mode or not
-        public bool isAutoSteerAuto, isRollInvert, isReverseOn;
+        public bool isAutoSteerAuto, isRollInvert, isDualAsIMU, isReverseOn;
 
         //the factor for fusion of GPS and IMU
         public double forwardComp, reverseComp, fusionWeight;
@@ -38,7 +39,10 @@
 
             isRollInvert = Properties.Settings.Default.setIMU_invertRoll;
 
+            isDualAsIMU = Properties.Settings.Default.setIMU_isDualAsIMU;
+
             isReverseOn = Properties.Settings.Default.setIMU_isReverseOn;
         }
     }
 }
+

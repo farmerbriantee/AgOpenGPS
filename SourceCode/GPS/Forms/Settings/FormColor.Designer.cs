@@ -46,8 +46,6 @@
             this.hsbarSmooth = new System.Windows.Forms.HScrollBar();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timer1
@@ -147,7 +145,7 @@
             this.btnSwap.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnSwap.Image = global::AgOpenGPS.Properties.Resources.ConD_AutoDayNight;
             this.btnSwap.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSwap.Location = new System.Drawing.Point(396, 181);
+            this.btnSwap.Location = new System.Drawing.Point(435, 224);
             this.btnSwap.Name = "btnSwap";
             this.btnSwap.Size = new System.Drawing.Size(121, 65);
             this.btnSwap.TabIndex = 10;
@@ -264,31 +262,6 @@
             this.label3.TabIndex = 467;
             this.label3.Text = "Camera Behaviour";
             // 
-            // btnReset
-            // 
-            this.btnReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnReset.FlatAppearance.BorderSize = 0;
-            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnReset.Image = global::AgOpenGPS.Properties.Resources.ResetColors;
-            this.btnReset.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnReset.Location = new System.Drawing.Point(396, 272);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(121, 65);
-            this.btnReset.TabIndex = 468;
-            this.btnReset.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(411, 340);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(98, 16);
-            this.label6.TabIndex = 469;
-            this.label6.Text = "Reset to Default";
-            // 
             // FormColor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -299,8 +272,6 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(665, 396);
             this.ControlBox = false;
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.btnReset);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblSmoothCam);
@@ -348,7 +319,5 @@
         private System.Windows.Forms.HScrollBar hsbarSmooth;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnReset;
-        private System.Windows.Forms.Label label6;
     }
 }

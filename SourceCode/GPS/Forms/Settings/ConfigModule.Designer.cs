@@ -70,7 +70,7 @@ namespace AgOpenGPS
 
         private void nudHydLiftSecs_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 pboxSendMachine.Visible = true;
             }
@@ -78,7 +78,7 @@ namespace AgOpenGPS
 
         private void nudRaiseTime_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 pboxSendMachine.Visible = true;
             }
@@ -86,7 +86,7 @@ namespace AgOpenGPS
 
         private void nudLowerTime_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 pboxSendMachine.Visible = true;
             }
@@ -94,7 +94,7 @@ namespace AgOpenGPS
 
         private void nudUser1_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 pboxSendMachine.Visible = true;
             }
@@ -102,7 +102,7 @@ namespace AgOpenGPS
 
         private void nudUser2_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 pboxSendMachine.Visible = true;
             }
@@ -110,7 +110,7 @@ namespace AgOpenGPS
 
         private void nudUser3_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 pboxSendMachine.Visible = true;
             }
@@ -118,7 +118,7 @@ namespace AgOpenGPS
 
         private void nudUser4_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 pboxSendMachine.Visible = true;
             }
@@ -523,7 +523,7 @@ namespace AgOpenGPS
 
         private void nudYouTurnRadius_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 mf.yt.youTurnRadius = (double)nudYouTurnRadius.Value * mf.ftOrMtoM;
             }
@@ -531,10 +531,23 @@ namespace AgOpenGPS
 
         private void nudTurnDistanceFromBoundary_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 mf.yt.uturnDistanceFromBoundary = (double)nudTurnDistanceFromBoundary.Value * mf.ftOrMtoM;
             }
+        }
+
+        private void btnTriggerDistanceDn_Click(object sender, EventArgs e)
+        {
+            mf.yt.uturnDistanceFromBoundary--;
+            if (mf.yt.uturnDistanceFromBoundary < 0.1) mf.yt.uturnDistanceFromBoundary = 0.1;
+            UpdateUturnText();
+        }
+
+        private void btnTriggerDistanceUp_Click(object sender, EventArgs e)
+        {
+            if (mf.yt.uturnDistanceFromBoundary++ > 50) mf.yt.uturnDistanceFromBoundary = 50;
+            UpdateUturnText();
         }
 
         private void btnDistanceDn_Click(object sender, EventArgs e)
@@ -584,7 +597,7 @@ namespace AgOpenGPS
         }
         private void nudTramWidth_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 mf.tram.tramWidth = (double)nudTramWidth.Value * mf.inchOrCm2m;
                 Properties.Settings.Default.setTram_tramWidth = mf.tram.tramWidth;

@@ -1,4 +1,5 @@
-﻿using MechanikaDesign.WinForms.UI.ColorPicker;
+﻿
+using MechanikaDesign.WinForms.UI.ColorPicker;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -9,7 +10,6 @@ namespace AgOpenGPS
     {
         //class variables
         private readonly FormGPS mf = null;
-
         private readonly Color inColor;
         public Color useThisColor { get; set; }
 
@@ -17,6 +17,7 @@ namespace AgOpenGPS
 
         private HslColor colorHsl = HslColor.FromAhsl(0xff);
         private Color colorRgb = Color.Empty;
+
 
         public FormColorPicker(Form callingForm, Color _inColor)
         {
@@ -32,6 +33,7 @@ namespace AgOpenGPS
             useThisColor = inColor;
 
             UpdateColor(inColor);
+
 
             //this.bntOK.Text = gStr.gsForNow;
             //this.btnSave.Text = gStr.gsToFile;
@@ -98,7 +100,7 @@ namespace AgOpenGPS
             btn13.BackColor = (Color.FromArgb(mf.customColorsList[13])).CheckColorFor255();
             btn14.BackColor = (Color.FromArgb(mf.customColorsList[14])).CheckColorFor255();
             btn15.BackColor = (Color.FromArgb(mf.customColorsList[15])).CheckColorFor255();
-
+            
             //make sure no colors stored have 255
             for (int i = 0; i < 16; i++)
             {
@@ -131,6 +133,7 @@ namespace AgOpenGPS
             }
             else
             {
+
                 int.TryParse(butt.Name.Substring(3, 2), out int buttNumber);
 
                 useThisColor = useThisColor.CheckColorFor255();

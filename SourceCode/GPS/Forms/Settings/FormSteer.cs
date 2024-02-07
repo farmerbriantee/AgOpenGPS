@@ -1,12 +1,13 @@
 ﻿using AgOpenGPS.Properties;
 using System;
 using System.Drawing;
-using System.Windows.Forms;
+using System.Windows.Forms; 
 
 namespace AgOpenGPS
 {
     public partial class FormSteer : Form
     {
+
         private readonly FormGPS mf = null;
 
         private bool toSend = false, isSA = false;
@@ -28,11 +29,11 @@ namespace AgOpenGPS
             this.Text = gStr.gsAutoSteerConfiguration;
             this.Width = 388;
             this.Height = 480;
+
         }
 
         private void FormSteer_Load(object sender, EventArgs e)
         {
-            Location = Properties.Settings.Default.setWindow_steerSettingsLocation;
             //WAS Zero, CPD
             hsbarWasOffset.ValueChanged -= hsbarSteerAngleSensorZero_ValueChanged;
             hsbarCountsPerDegree.ValueChanged -= hsbarCountsPerDegree_ValueChanged;
@@ -229,6 +230,7 @@ namespace AgOpenGPS
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
+
             if (isSA)
             {
                 //bool isSame = Math.PI - Math.Abs(Math.Abs(cH - mf.gpsHeading) - Math.PI) < (glm.PIBy2+0.1);
@@ -293,7 +295,7 @@ namespace AgOpenGPS
                 mf.p_252.pgn[mf.p_252.wasOffsetLo] = unchecked((byte)(hsbarWasOffset.Value));
 
                 Properties.Settings.Default.setAS_highSteerPWM = mf.p_252.pgn[mf.p_252.highPWM] = unchecked((byte)hsbarHighSteerPWM.Value);
-                Properties.Settings.Default.setAS_lowSteerPWM = mf.p_252.pgn[mf.p_252.lowPWM] = unchecked((byte)(hsbarHighSteerPWM.Value / 3));
+                Properties.Settings.Default.setAS_lowSteerPWM = mf.p_252.pgn[mf.p_252.lowPWM] = unchecked((byte)(hsbarHighSteerPWM.Value/3));
                 Properties.Settings.Default.setAS_Kp = mf.p_252.pgn[mf.p_252.gainProportional] = unchecked((byte)hsbarProportionalGain.Value);
                 Properties.Settings.Default.setAS_minSteerPWM = mf.p_252.pgn[mf.p_252.minPWM] = unchecked((byte)hsbarMinPWM.Value);
 
@@ -307,6 +309,7 @@ namespace AgOpenGPS
             //if (hsbarMinPWM.Value > hsbarLowSteerPWM.Value) lblMinPWM.ForeColor = Color.OrangeRed;
             //else lblMinPWM.ForeColor = SystemColors.ControlText;
 
+            
             if (mf.mc.sensorData != -1)
             {
                 if (mf.mc.sensorData < 0 || mf.mc.sensorData > 255) mf.mc.sensorData = 0;
@@ -337,7 +340,7 @@ namespace AgOpenGPS
             mf.p_252.pgn[mf.p_252.wasOffsetLo] = unchecked((byte)(hsbarWasOffset.Value));
 
             Properties.Settings.Default.setAS_highSteerPWM = mf.p_252.pgn[mf.p_252.highPWM] = unchecked((byte)hsbarHighSteerPWM.Value);
-            Properties.Settings.Default.setAS_lowSteerPWM = mf.p_252.pgn[mf.p_252.lowPWM] = unchecked((byte)(hsbarHighSteerPWM.Value / 3));
+            Properties.Settings.Default.setAS_lowSteerPWM = mf.p_252.pgn[mf.p_252.lowPWM] = unchecked((byte)(hsbarHighSteerPWM.Value/3));
             Properties.Settings.Default.setAS_Kp = mf.p_252.pgn[mf.p_252.gainProportional] = unchecked((byte)hsbarProportionalGain.Value);
             Properties.Settings.Default.setAS_minSteerPWM = mf.p_252.pgn[mf.p_252.minPWM] = unchecked((byte)hsbarMinPWM.Value);
 
@@ -345,8 +348,6 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.setAS_ModeXTE = mf.vehicle.modeXTE;
             Properties.Settings.Default.setAS_ModeTime = mf.vehicle.modeTime;
-
-            Properties.Settings.Default.setWindow_steerSettingsLocation = Location;
 
             Properties.Settings.Default.Save();
 
@@ -363,6 +364,8 @@ namespace AgOpenGPS
                 MessageBoxDefaultButton.Button2);
             if (result3 == DialogResult.Yes)
             {
+
+
                 mf.TimedMessageBox(2000, "Reset To Default", "Values Set to Inital Default");
                 Properties.Settings.Default.setVehicle_maxSteerAngle = mf.vehicle.maxSteerAngle
                     = 45;
@@ -427,7 +430,6 @@ namespace AgOpenGPS
         }
 
         #region Gain
-
         private void hsbarMinPWM_ValueChanged(object sender, EventArgs e)
         {
             lblMinPWM.Text = unchecked((byte)hsbarMinPWM.Value).ToString();
@@ -457,8 +459,7 @@ namespace AgOpenGPS
             toSend = true;
             counter = 0;
         }
-
-        #endregion Gain
+        #endregion
 
         #region Steer
 
@@ -526,9 +527,10 @@ namespace AgOpenGPS
                 //lblCalcSteerAngleOuter.Text = "0.0" + "\u00B0";
                 btnStartSA.Image = Properties.Resources.BoundaryRecord;
             }
+
         }
 
-        #endregion Steer
+        #endregion
 
         # region Stanley
 
@@ -553,7 +555,6 @@ namespace AgOpenGPS
         #endregion
 
         #region Pure
-
         private void hsbarIntegralPurePursuit_ValueChanged(object sender, EventArgs e)
         {
             mf.vehicle.purePursuitIntegralGain = hsbarIntegralPurePursuit.Value * 0.01;
@@ -569,13 +570,13 @@ namespace AgOpenGPS
             mf.gyd.sideHillCompFactor = deg;
         }
 
+
         private void hsbarLookAhead_ValueChanged(object sender, EventArgs e)
         {
             mf.vehicle.goalPointLookAhead = hsbarLookAhead.Value * 0.1;
             lblLookAhead.Text = mf.vehicle.goalPointLookAhead.ToString();
             //mf.AutoSteerSettingsOutToPort();
         }
-
         private void hsbarHoldLookAhead_ValueChanged(object sender, EventArgs e)
         {
             mf.vehicle.goalPointLookAheadHold = hsbarHoldLookAhead.Value * 0.1;
@@ -590,22 +591,24 @@ namespace AgOpenGPS
 
         private void expandWindow_Click(object sender, EventArgs e)
         {
+            this.Top = 0;
+            this.Left = 0;
+
             if (windowSizeState++ > 0) windowSizeState = 0;
             if (windowSizeState == 1)
             {
                 this.Size = new System.Drawing.Size(960, 720);
-                btnExpand.Image = Properties.Resources.ArrowLeft;
             }
             else if (windowSizeState == 0)
             {
                 this.Size = new System.Drawing.Size(388, 480);
-                btnExpand.Image = Properties.Resources.ArrowRight;
             }
+
         }
 
         private void nudMaxCounts_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 pboxSendSteer.Visible = true;
             }
@@ -613,7 +616,7 @@ namespace AgOpenGPS
 
         private void nudPanicStopSpeed_Click(object sender, EventArgs e)
         {
-            mf.KeypadToNUD((NudlessNumericUpDown)sender, this);
+            mf.KeypadToNUD((NumericUpDown)sender, this);
             mf.vehicle.panicStopSpeed = (double)nudPanicStopSpeed.Value;
         }
 
@@ -651,7 +654,9 @@ namespace AgOpenGPS
                         label61.Text = "Off at %";
                         hsbarSensor.Visible = true;
                         lblhsbarSensor.Visible = true;
+
                     }
+
                     else if (checkbox == cboxCurrentSensor)
                     {
                         cboxPressureSensor.Checked = false;
@@ -687,10 +692,12 @@ namespace AgOpenGPS
             pboxSendSteer.Visible = false;
 
             mf.TimedMessageBox(1000, gStr.gsAutoSteerPort, "Settings Sent To Steer Module");
+
         }
 
         private void SaveSettings()
         {
+
             int set = 1;
             int reset = 2046;
             int sett = 0;
@@ -811,7 +818,6 @@ namespace AgOpenGPS
         #endregion
 
         #region Free Drive
-
         private void btnFreeDrive_Click(object sender, EventArgs e)
         {
             if (mf.vehicle.isInFreeDriveMode)
@@ -847,6 +853,7 @@ namespace AgOpenGPS
             //hSBarFreeDrive.Value = mf.driveFreeSteerAngle;
         }
 
+
         private void btnSteerAngleUp_MouseDown(object sender, MouseEventArgs e)
         {
             mf.vehicle.driveFreeSteerAngle++;
@@ -858,11 +865,9 @@ namespace AgOpenGPS
             mf.vehicle.driveFreeSteerAngle--;
             if (mf.vehicle.driveFreeSteerAngle < -40) mf.vehicle.driveFreeSteerAngle = -40;
         }
-
         #endregion
 
         #region Help
-
         private void btnZeroWAS_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             MessageBox.Show(gStr.h_btnZeroWAS, gStr.gsHelp);
@@ -876,6 +881,7 @@ namespace AgOpenGPS
         private void hsbarCountsPerDegree_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             MessageBox.Show(gStr.h_hsbarCountsPerDegree, gStr.gsHelp);
+
         }
 
         private void hsbarAckerman_HelpRequested(object sender, HelpEventArgs hlpevent)
@@ -1040,13 +1046,6 @@ namespace AgOpenGPS
             Properties.Settings.Default.Save();
         }
 
-        private void btnSteerWizard_Click(object sender, EventArgs e)
-        {
-            Close();
-            Form form = new FormSteerWiz(mf);
-            form.Show(mf);
-        }
-
         private void cboxConv_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             MessageBox.Show(gStr.hc_cboxConv, gStr.gsHelp);
@@ -1094,5 +1093,7 @@ namespace AgOpenGPS
         //    mf.vehicle.modeTime = hsbarModeTime.Value;
         //    lblModeTime.Text = hsbarModeTime.Value.ToString();
         //}
+
+
     }
 }

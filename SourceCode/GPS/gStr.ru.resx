@@ -177,9 +177,6 @@
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>Выберите или создайне другой</value>
   </data>
-  <data name="gsClose" xml:space="preserve">
-    <value>закрываться</value>
-  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Сначала Закройте Поле</value>
   </data>
@@ -205,7 +202,10 @@
     <value>Создать Новое Поле</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Текущая</value>
+    <value>Текущая (А)</value>
+  </data>
+  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
+    <value>Текущая (А)</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>Файл Кривой Линии Поврежден</value>
@@ -495,6 +495,9 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Начать Новое Поле</value>
   </data>
+  <data name="gsSteerChart" xml:space="preserve">
+    <value>Управляющая диаграмма</value>
+  </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value> Мастер управления</value>
   </data>
@@ -733,7 +736,7 @@
     <value>Точка B Создает линию между набором точек A и точкой B. Заголовок строки рассчитывается. Вы можете изменить строку, введя заголовок или касаясь B столько раз, сколько хотите.</value>
   </data>
   <data name="ha_btnCancel" xml:space="preserve">
-    <value>Выйдите из формы и отмените все изменения.</value>
+    <value> Отмена и выключение Закройте форму и выключите режим сопровождения. Существующие строки не удаляются, они просто отключаются на основном дисплее.</value>
   </data>
   <data name="ha_btnCancelCreate" xml:space="preserve">
     <value> Отменить и вернуться Отменяет текущее действие и возвращает вас к началу.</value>

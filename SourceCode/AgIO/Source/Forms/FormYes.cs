@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace AgIO
 {
@@ -10,8 +11,8 @@ namespace AgIO
 
             lblMessage2.Text = messageStr;
 
-            //int messWidth = messageStr.Length;
-            //Width = messWidth * 15 + 180;
+            int messWidth = messageStr.Length;
+            Width = messWidth * 15 + 180;
         }
     }
 }

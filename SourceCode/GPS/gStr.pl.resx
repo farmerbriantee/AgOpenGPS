@@ -171,9 +171,6 @@
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>Wybierz lub utwórz inny</value>
   </data>
-  <data name="gsClose" xml:space="preserve">
-    <value>Zewrzeć</value>
-  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Najpierw zamknij pole</value>
   </data>
@@ -199,7 +196,10 @@
     <value>Utwórz nowe pole</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Prąd</value>
+    <value>Prąd (A)</value>
+  </data>
+  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
+    <value>Prąd czujnika (A)</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>Plik linii krzywej jest uszkodzony</value>
@@ -455,6 +455,9 @@
   </data>
   <data name="gsStartNewField" xml:space="preserve">
     <value>Rozpocznij nowe pole</value>
+  </data>
+  <data name="gsSteerChart" xml:space="preserve">
+    <value>Wykres sterowania</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Zatrzymaj Zapis Pauza Granica</value>

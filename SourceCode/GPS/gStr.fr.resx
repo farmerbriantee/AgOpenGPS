@@ -177,12 +177,6 @@
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>Choisissez ou créez  un autre</value>
   </data>
-  <data name="gsClose" xml:space="preserve">
-    <value>Conclure</value>
-  </data>
-  <data name="gsCloseAllWindowsFirst" xml:space="preserve">
-    <value>Fermez d'abord toutes les fenêtres</value>
-  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Fermez d'abord le champ !</value>
   </data>
@@ -208,7 +202,10 @@
     <value>Créer un nouveau champ</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Courant</value>
+    <value>Courant (A)</value>
+  </data>
+  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
+    <value>Courant (A)</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>Fichier Courbe corrompu</value>
@@ -498,6 +495,9 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Commencer un Champ</value>
   </data>
+  <data name="gsSteerChart" xml:space="preserve">
+    <value>Tableau de pilotage</value>
+  </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>Assistant Conduite</value>
   </data>
@@ -530,9 +530,6 @@
   </data>
   <data name="gsWest" xml:space="preserve">
     <value>Ouest</value>
-  </data>
-  <data name="gsWindowsStillOpen" xml:space="preserve">
-    <value>Windows toujours ouvert</value>
   </data>
   <data name="gsWizards" xml:space="preserve">
     <value>Assistant Conduite</value>
@@ -849,7 +846,9 @@ Le cap de la ligne est calculé une fois le point B réalisé
 La ligne peut être modifiée en rentrant manuellement un cap ou en cliquant autant de fois voulu le point B</value>
   </data>
   <data name="ha_btnCancel" xml:space="preserve">
-    <value>Quittez le formulaire et annulez toutes les modifications.</value>
+    <value>Supprimer puis Fermer
+Ferme la fenêtre et coupe le mode guidage
+Les lignes existantes ne sont pas supprimées, elles sont juste effacées de l'écran principal</value>
   </data>
   <data name="ha_btnCancelCreate" xml:space="preserve">
     <value>Supprimer puis Retour

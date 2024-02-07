@@ -8,17 +8,14 @@ namespace AgOpenGPS
     {
         //WGS84 Lat Long
         public double latitude, longitude;
-
         public double prevLatitude, prevLongitude;
 
         //local plane geometry
         public double latStart, lonStart;
-
         public double mPerDegreeLat, mPerDegreeLon;
 
         //our current fix
         public vec2 fix = new vec2(0, 0);
-
         public vec2 prevSpeedFix = new vec2(0, 0);
 
         //used to offset the antenna position to compensate for drift
@@ -35,7 +32,6 @@ namespace AgOpenGPS
         public StringBuilder logNMEASentence = new StringBuilder();
 
         private readonly FormGPS mf;
-
         public CNMEA(FormGPS f)
         {
             //constructor, grab the main form reference
@@ -48,7 +44,7 @@ namespace AgOpenGPS
         public void AverageTheSpeed()
         {
             //average the speed
-            //if (speed > 70) speed = 70;
+            if (speed > 70) speed = 70;
             mf.avgSpeed = (mf.avgSpeed * 0.75) + (speed * 0.25);
         }
 

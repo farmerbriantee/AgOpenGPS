@@ -98,7 +98,7 @@ namespace AgOpenGPS.Forms.Pickers
             this.btnDeleteAB.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btnDeleteAB.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnDeleteAB.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnDeleteAB.Location = new System.Drawing.Point(565, 503);
+            this.btnDeleteAB.Location = new System.Drawing.Point(579, 503);
             this.btnDeleteAB.Name = "btnDeleteAB";
             this.btnDeleteAB.Size = new System.Drawing.Size(71, 63);
             this.btnDeleteAB.TabIndex = 97;
@@ -108,7 +108,7 @@ namespace AgOpenGPS.Forms.Pickers
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(576, 489);
+            this.label2.Location = new System.Drawing.Point(590, 489);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 16);
             this.label2.TabIndex = 98;
@@ -118,19 +118,16 @@ namespace AgOpenGPS.Forms.Pickers
             // 
             this.btnOpenExistingLv.BackColor = System.Drawing.Color.Transparent;
             this.btnOpenExistingLv.DialogResult = System.Windows.Forms.DialogResult.Yes;
-            this.btnOpenExistingLv.FlatAppearance.BorderSize = 0;
-            this.btnOpenExistingLv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenExistingLv.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenExistingLv.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
             this.btnOpenExistingLv.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOpenExistingLv.Location = new System.Drawing.Point(702, 502);
+            this.btnOpenExistingLv.Location = new System.Drawing.Point(697, 502);
             this.btnOpenExistingLv.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnOpenExistingLv.Name = "btnOpenExistingLv";
             this.btnOpenExistingLv.Size = new System.Drawing.Size(261, 63);
             this.btnOpenExistingLv.TabIndex = 99;
-            this.btnOpenExistingLv.Text = " Use Selected";
+            this.btnOpenExistingLv.Text = "Use Selected";
             this.btnOpenExistingLv.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOpenExistingLv.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnOpenExistingLv.UseVisualStyleBackColor = false;
             this.btnOpenExistingLv.Click += new System.EventHandler(this.btnOpenExistingLv_Click);
             // 

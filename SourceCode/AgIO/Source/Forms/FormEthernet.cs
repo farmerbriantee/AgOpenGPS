@@ -1,4 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
+using System.Linq;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using System.Windows.Forms;
 
 namespace AgIO
@@ -21,6 +28,7 @@ namespace AgIO
 
         private void FormUDp_Load(object sender, EventArgs e)
         {
+
             cboxIsUDPOn.Checked = Properties.Settings.Default.setUDP_isOn;
             cboxPlugin.Checked = Properties.Settings.Default.setUDP_isUsePluginApp;
             cboxIsSendNMEAToUDP.Checked = Properties.Settings.Default.setUDP_isSendNMEAToUDP;
@@ -32,7 +40,7 @@ namespace AgIO
             nudFirstIP.Value = Properties.Settings.Default.eth_loopOne;
             nudSecndIP.Value = Properties.Settings.Default.eth_loopTwo;
             nudThirdIP.Value = Properties.Settings.Default.eth_loopThree;
-            nudFourthIP.Value = Properties.Settings.Default.eth_loopFour;
+            nudFourthIP.Value= Properties.Settings.Default.eth_loopFour;
 
             if (!cboxIsUDPOn.Checked) cboxIsUDPOn.BackColor = System.Drawing.Color.Salmon;
         }
@@ -64,6 +72,7 @@ namespace AgIO
             Application.Restart();
             Environment.Exit(0);
             Close();
+
         }
 
         ////get the ipv4 address only

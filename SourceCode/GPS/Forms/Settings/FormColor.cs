@@ -2,7 +2,6 @@
 
 using AgOpenGPS.Properties;
 using System;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -24,14 +23,13 @@ namespace AgOpenGPS
             //Language keys
             this.Text = gStr.gsColors;
         }
-
         private void FormDisplaySettings_Load(object sender, EventArgs e)
         {
             daySet = mf.isDay;
             hsbarSmooth.Value = Properties.Settings.Default.setDisplay_camSmooth;
             lblSmoothCam.Text = hsbarSmooth.Value.ToString() + "%";
-        }
 
+        }
         private void bntOK_Click(object sender, EventArgs e)
         {
             if (daySet != mf.isDay) mf.SwapDayNightMode();
@@ -107,6 +105,7 @@ namespace AgOpenGPS
                 }
             }
 
+
             Settings.Default.setDisplay_colorFieldDay = mf.fieldColorDay;
             Settings.Default.Save();
 
@@ -179,34 +178,6 @@ namespace AgOpenGPS
         private void hsbarSmooth_ValueChanged(object sender, EventArgs e)
         {
             lblSmoothCam.Text = hsbarSmooth.Value.ToString() + "%";
-        }
-
-        private void btnReset_Click(object sender, EventArgs e)
-        {
-            if (!mf.isDay) mf.SwapDayNightMode();
-            mf.frameDayColor = Color.FromArgb(210, 210, 230);
-            mf.BackColor = mf.frameDayColor;
-            mf.frameNightColor = Color.FromArgb(50, 50, 65);
-            mf.sectionColorDay = Color.FromArgb(27, 151, 160);
-            mf.fieldColorDay = Color.FromArgb(100, 100, 125);
-            mf.fieldColorNight = Color.FromArgb(60, 60, 60);
-
-            Properties.Settings.Default.setDisplay_colorDayFrame =   mf.frameDayColor;
-            Properties.Settings.Default.setDisplay_colorNightFrame = mf.frameNightColor;
-            Properties.Settings.Default.setDisplay_colorSectionsDay =mf.sectionColorDay;
-            Properties.Settings.Default.setDisplay_colorFieldDay =   mf.fieldColorDay;
-            Properties.Settings.Default.setDisplay_colorFieldNight = mf.fieldColorNight;
-
-            mf.textColorNight = Color.FromArgb(230, 230, 230);
-            mf.textColorDay = Color.FromArgb(10, 10, 20);
- 
-            Settings.Default.setDisplay_colorTextDay = mf.textColorDay;
-            Settings.Default.setDisplay_colorTextNight = mf.textColorNight;
-
-            Properties.Settings.Default.Save();
-
-            mf.SwapDayNightMode();
-            mf.SwapDayNightMode();
         }
     }
 }

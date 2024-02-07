@@ -1,6 +1,13 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.IO.Ports;
+using System.Linq;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using System.Windows.Forms;
 
 namespace AgIO
@@ -25,6 +32,7 @@ namespace AgIO
             timer1.Enabled = true;
             logOn = true;
         }
+
 
         private void btnSerialCancel_Click(object sender, EventArgs e)
         {
@@ -77,6 +85,7 @@ namespace AgIO
 
         private void btnLogNMEA_Click(object sender, EventArgs e)
         {
+
             mf.isGPSLogOn = !mf.isGPSLogOn;
 
             if (mf.isGPSLogOn) btnLogNMEA.BackColor = Color.LightGreen;
@@ -85,6 +94,7 @@ namespace AgIO
 
         private void btnLogNTRIP_Click(object sender, EventArgs e)
         {
+
             mf.isNTRIPLogOn = !mf.isNTRIPLogOn;
 
             if (mf.isNTRIPLogOn) btnLogNTRIP.BackColor = Color.LightGreen;
@@ -94,7 +104,8 @@ namespace AgIO
         private void lblPGNGuide_Click(object sender, EventArgs e)
         {
             var form = new FormPGN();
-            form.Show(this);
+                form.Show(this);
+
         }
     }
 }

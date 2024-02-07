@@ -97,6 +97,7 @@ namespace AgOpenGPS
         //Finds the point where an AB Curve crosses the turn line
         public bool FindCurveTurnPoints()
         {
+
             crossingCurvePoint.easting = -20000;
             //find closet AB Curve point that will cross and go out of bounds
             int Count = mf.curve.isHeadingSameWay ? 1 : -1;
@@ -154,6 +155,9 @@ namespace AgOpenGPS
                     break;
                 }
             }
+
+
+
 
             //int curTurnLineCount = mf.bnd.bndList[turnNum].turnLine.Count;
 
@@ -270,7 +274,7 @@ namespace AgOpenGPS
         {
             double headAB = mf.ABLine.abHeading;
 
-            if (!mf.isBtnAutoSteerOn) mf.ABLine.isHeadingSameWay
+            if (!mf.isAutoSteerBtnOn) mf.ABLine.isHeadingSameWay
                     = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - mf.ABLine.abHeading) - Math.PI) < glm.PIBy2;
 
             if (!mf.ABLine.isHeadingSameWay) headAB += Math.PI;
@@ -436,6 +440,7 @@ namespace AgOpenGPS
                         goal.easting += (Math.Sin(head) * 1);
                         goal.northing += (Math.Cos(head) * 1);
                         goal.heading = head;
+
                     }
 
                     goal.heading = head;
@@ -608,30 +613,22 @@ namespace AgOpenGPS
 
                 vec3 oneStart = new vec3
                 {
-                    easting = rEastYT,
-                    northing = rNorthYT,
-                    heading = 0
+                    easting = rEastYT, northing = rNorthYT, heading = 0
                 };
 
                 vec3 oneEnd = new vec3
                 {
-                    easting = rEastYT,
-                    northing = rNorthYT,
-                    heading = 0
+                    easting = rEastYT, northing = rNorthYT, heading = 0
                 };
 
                 vec3 twoStart = new vec3
                 {
-                    easting = rEastYT,
-                    northing = rNorthYT,
-                    heading = 0
+                    easting = rEastYT, northing = rNorthYT, heading = 0
                 };
 
                 vec3 twoEnd = new vec3
                 {
-                    easting = rEastYT,
-                    northing = rNorthYT,
-                    heading = 0
+                    easting = rEastYT, northing = rNorthYT, heading = 0
                 };
 
                 if (boundaryAngleOffPerpendicular < 0)
@@ -688,7 +685,7 @@ namespace AgOpenGPS
                 pt3TurnNewAB.easting = oneEnd.easting + (Math.Sin(head) * mf.tool.width);
                 pt3TurnNewAB.northing = oneEnd.northing + (Math.Cos(head) * mf.tool.width);
 
-                oneEnd.easting = oneStart.easting + Math.Sin(head) * youTurnRadius;
+                oneEnd.easting =  oneStart.easting  + Math.Sin(head) * youTurnRadius;
                 oneEnd.northing = oneStart.northing + Math.Cos(head) * youTurnRadius;
 
                 twoEnd.heading = 0; // - angle;
@@ -718,8 +715,9 @@ namespace AgOpenGPS
                 if (startAngle < -Math.PI) startAngle += glm.twoPI;
                 if (startAngle > Math.PI) startAngle -= glm.twoPI;
 
+
                 double x = r * Math.Sin(startAngle);
-                double y = r * Math.Cos(startAngle);
+                double  y = r * Math.Cos(startAngle);
 
                 vec3 pt;
                 for (int ii = 0; ii < numSegments; ii++)
@@ -791,7 +789,7 @@ namespace AgOpenGPS
                 }
 
                 //LINE TWO - use end of line one for end of line two, both same direction bit longer
-                twoEnd.easting = ytList[ytList.Count - 1].easting;
+                twoEnd.easting = ytList[ytList.Count-1].easting;
                 twoEnd.northing = ytList[ytList.Count - 1].northing;
                 twoEnd.heading = ytList[ytList.Count - 1].heading;
 
@@ -801,9 +799,9 @@ namespace AgOpenGPS
                 //straight line
                 twoStart = twoEnd;
 
-                ////backing up to this point
-                twoStart.easting -= (Math.Sin(head) * 40);
-                twoStart.northing -= (Math.Cos(head) * 40);
+                ////backing up to this point          
+                twoStart.easting -= (Math.Sin(head) * 40); 
+                twoStart.northing -= (Math.Cos(head) * 40); 
 
                 pt3ListSecondLine?.Clear();
                 pt = twoStart;
@@ -829,6 +827,7 @@ namespace AgOpenGPS
                     return false;
                 }
             }
+
             else //uturn style == 2
             {
                 return false;
@@ -1138,18 +1137,15 @@ namespace AgOpenGPS
                 pt3Phase = 0;
             }
 
-            if (mf.trk.idx > -1 && mf.trk.gArr.Count > 0)
+            if (mf.ABLine.isABLineSet)
             {
-                if (mf.trk.gArr[mf.trk.idx].mode == (int)TrackMode.AB)
-                {
-                    mf.ABLine.isLateralTriggered = true;
-                    mf.ABLine.isABValid = false;
-                }
-                else
-                {
-                    mf.curve.isLateralTriggered = true;
-                    mf.curve.isCurveValid = false;
-                }
+                mf.ABLine.isLateralTriggered = true;
+                mf.ABLine.isABValid = false;
+            }
+            else
+            {
+                mf.curve.isLateralTriggered = true;
+                mf.curve.isCurveValid = false;
             }
         }
 
@@ -1192,25 +1188,23 @@ namespace AgOpenGPS
         {
             double head;
             //point on AB line closest to pivot axle point from ABLine PurePursuit
-            if (mf.trk.idx > -1 && mf.trk.gArr.Count > 0)
+            if (mf.ABLine.isABLineSet)
             {
-                if (mf.trk.gArr[mf.trk.idx].mode == (int)TrackMode.AB)
-                {
-                    rEastYT = mf.ABLine.rEastAB;
-                    rNorthYT = mf.ABLine.rNorthAB;
-                    isHeadingSameWay = mf.ABLine.isHeadingSameWay;
-                    head = mf.ABLine.abHeading;
-                    mf.ABLine.isLateralTriggered = true;
-                }
-                else
-                {
-                    rEastYT = mf.curve.rEastCu;
-                    rNorthYT = mf.curve.rNorthCu;
-                    isHeadingSameWay = mf.curve.isHeadingSameWay;
-                    head = mf.curve.manualUturnHeading;
-                    mf.curve.isLateralTriggered = true;
-                }
+                rEastYT = mf.ABLine.rEastAB;
+                rNorthYT = mf.ABLine.rNorthAB;
+                isHeadingSameWay = mf.ABLine.isHeadingSameWay;
+                head = mf.ABLine.abHeading;
+                mf.ABLine.isLateralTriggered = true;
             }
+            else if (mf.curve.isCurveSet)
+            {
+                rEastYT = mf.curve.rEastCu;
+                rNorthYT = mf.curve.rNorthCu;
+                isHeadingSameWay = mf.curve.isHeadingSameWay;
+                head = mf.curve.manualUturnHeading;
+                mf.curve.isLateralTriggered = true;
+            }
+
             else return;
 
             //grab the vehicle widths and offsets
@@ -1245,26 +1239,23 @@ namespace AgOpenGPS
 
             double head;
             //point on AB line closest to pivot axle point from ABLine PurePursuit
-            if (mf.trk.idx > -1 && mf.trk.gArr.Count > 0)
+            if (mf.ABLine.isABLineSet)
             {
-                if (mf.trk.gArr[mf.trk.idx].mode == (int)TrackMode.AB)
-                {
-                    rEastYT = mf.ABLine.rEastAB;
-                    rNorthYT = mf.ABLine.rNorthAB;
-                    isHeadingSameWay = mf.ABLine.isHeadingSameWay;
-                    head = mf.ABLine.abHeading;
-                    mf.ABLine.isLateralTriggered = true;
-                }
-
-                else
-                {
-                    rEastYT = mf.curve.rEastCu;
-                    rNorthYT = mf.curve.rNorthCu;
-                    isHeadingSameWay = mf.curve.isHeadingSameWay;
-                    head = mf.curve.manualUturnHeading;
-                    mf.curve.isLateralTriggered = true;
-                }
+                rEastYT = mf.ABLine.rEastAB;
+                rNorthYT = mf.ABLine.rNorthAB;
+                isHeadingSameWay = mf.ABLine.isHeadingSameWay;
+                head = mf.ABLine.abHeading;
+                mf.ABLine.isLateralTriggered = true;
             }
+            else if (mf.curve.isCurveSet)
+            {
+                rEastYT = mf.curve.rEastCu;
+                rNorthYT = mf.curve.rNorthCu;
+                isHeadingSameWay = mf.curve.isHeadingSameWay;
+                head = mf.curve.manualUturnHeading;
+                mf.curve.isLateralTriggered = true;
+            }
+
             else return;
 
             //grab the vehicle widths and offsets
@@ -1330,6 +1321,7 @@ namespace AgOpenGPS
             //    ytList.Add(pt);
             //}
 
+
             mf.ABLine.isABValid = false;
             mf.curve.isCurveValid = false;
         }
@@ -1375,8 +1367,7 @@ namespace AgOpenGPS
                     }
 
                     //just need to make sure the points continue ascending or heading switches all over the place
-                    if (A > B)
-                    {
+                    if (A > B) {
                         (B, A) = (A, B);
                     }
 
@@ -1390,6 +1381,7 @@ namespace AgOpenGPS
                     //        minDistA = distancePiv;
                     //    }
                     //}
+
 
                     //feed backward to turn slower to keep pivot on
                     A -= 7;
@@ -1478,8 +1470,7 @@ namespace AgOpenGPS
                     }
 
                     //just need to make sure the points continue ascending or heading switches all over the place
-                    if (A > B)
-                    {
+                    if (A > B) {
                         (B, A) = (A, B);
                     }
 
@@ -1567,6 +1558,7 @@ namespace AgOpenGPS
                         }
 
                         isLastFrameForward = mf.isReverse;
+
                     }
 
                     //calc "D" the distance from pivot axle to lookahead point
@@ -1593,7 +1585,7 @@ namespace AgOpenGPS
                         distanceFromCurrentLine *= -1.0;
                 }
 
-                //used for smooth mode
+                //used for smooth mode 
                 mf.vehicle.modeActualXTE = (distanceFromCurrentLine);
 
                 //Convert to centimeters

@@ -165,9 +165,6 @@
   <data name="gsCentimeters" xml:space="preserve">
     <value>Centiméter</value>
   </data>
-  <data name="gsCharts" xml:space="preserve">
-    <value>Diagramok</value>
-  </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>Válassz egy másik területet</value>
   </data>
@@ -176,12 +173,6 @@
   </data>
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>Válassz vagy készíts egy másikat</value>
-  </data>
-  <data name="gsClose" xml:space="preserve">
-    <value>Becsuk</value>
-  </data>
-  <data name="gsCloseAllWindowsFirst" xml:space="preserve">
-    <value>Először zárja be az összes ablakot</value>
   </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Zárd be a területet először</value>
@@ -208,7 +199,10 @@
     <value>Új terület készítése</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Áramerősség</value>
+    <value>Áramerősség (A)</value>
+  </data>
+  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
+    <value>Amper (A)</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>Görbe fájl hibás</value>
@@ -502,6 +496,9 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Új terület kezdése</value>
   </data>
+  <data name="gsCharts" xml:space="preserve">
+    <value>Diagramok</value>
+  </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>Kormányzás varázsló</value>
   </data>
@@ -534,9 +531,6 @@
   </data>
   <data name="gsWest" xml:space="preserve">
     <value>Nyugat</value>
-  </data>
-  <data name="gsWindowsStillOpen" xml:space="preserve">
-    <value>A Windows továbbra is nyitva van</value>
   </data>
   <data name="gsWizards" xml:space="preserve">
     <value>Varázslók</value>
@@ -891,7 +885,9 @@ Az időpont hozzadása az aktuális egyenes nevéhez. Segít a név egyedivé t�
 Egyenest húz az A és B pont között. Az egyenesből irányszöget számítunk. A kívánt egyenes irányszöge módosítható közvetlenül vagy a B áthelyezésével.</value>
   </data>
   <data name="ha_btnCancel" xml:space="preserve">
-    <value>Lépjen ki az űrlapból, és állítsa vissza az összes módosítást.</value>
+    <value>Mégsem és kikapcsol
+
+Kilép az ablakból és kikapcsolja a navigációt. A meglévő vonalak nem kerülnek törlésre, csak kikapcsolásra a főképernyőn.</value>
   </data>
   <data name="ha_btnCancelCreate" xml:space="preserve">
     <value>Mégsem és vissza

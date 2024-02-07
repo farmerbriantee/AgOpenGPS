@@ -67,7 +67,7 @@ namespace AgOpenGPS
 
         private void nud_Click(object sender, EventArgs e)
         {
-            mf.KeypadToNUD((NudlessNumericUpDown)sender, this);
+            mf.KeypadToNUD((NumericUpDown)sender, this);
         }
     }
 }

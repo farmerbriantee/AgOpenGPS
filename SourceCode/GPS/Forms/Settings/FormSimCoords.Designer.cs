@@ -30,8 +30,8 @@
         {
             this.btnCancel = new System.Windows.Forms.Button();
             this.bntOK = new System.Windows.Forms.Button();
-            this.nudLongitude = new NudlessNumericUpDown();
-            this.nudLatitude = new NudlessNumericUpDown();
+            this.nudLongitude = new System.Windows.Forms.NumericUpDown();
+            this.nudLatitude = new System.Windows.Forms.NumericUpDown();
             this.label18 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -234,8 +234,8 @@
 
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button bntOK;
-        private NudlessNumericUpDown nudLongitude;
-        private NudlessNumericUpDown nudLatitude;
+        private System.Windows.Forms.NumericUpDown nudLongitude;
+        private System.Windows.Forms.NumericUpDown nudLatitude;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label8;

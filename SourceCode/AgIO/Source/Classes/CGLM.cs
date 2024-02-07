@@ -118,6 +118,9 @@ namespace AgIO
 
         public const double PIBy2 = 1.57079632679489661923;
 
+
+
+
         //Degrees Radians Conversions
         public static double toDegrees(double radians)
         {

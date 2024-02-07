@@ -4,6 +4,7 @@
     {
         //private readonly FormGPS mf;
 
+
         //constructor
         public CAutoSteer()
         {

@@ -177,9 +177,6 @@
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>Vyberte, alebo vytvorte iné</value>
   </data>
-  <data name="gsClose" xml:space="preserve">
-    <value>Zavrieť</value>
-  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Najskôr zavrite pole</value>
   </data>
@@ -205,7 +202,10 @@
     <value>Vytvoriť nové pole</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Prúd</value>
+    <value>Prúd (A)</value>
+  </data>
+  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
+    <value>Prúd (A)</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>Súbor s krivkou je neplatný</value>
@@ -494,6 +494,9 @@
   </data>
   <data name="gsStartNewField" xml:space="preserve">
     <value>Začať nové pole</value>
+  </data>
+  <data name="gsSteerChart" xml:space="preserve">
+    <value>Grafy</value>
   </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>Pomocník nastavenia</value>
@@ -851,7 +854,9 @@ Prída sa čas k názvu línie, kedy bola línia vytvorená. Využitie aj pre un
 Vytvorí líniu medzi bodom A a bodom B.  Azimut je hneď vypočítaný. Bod B môžete zadať koľkokrát chcete, vždý sa z neho vypočíta nový azimut alebo môžete zmeniť číselnú hodnotu azimutu.  </value>
   </data>
   <data name="ha_btnCancel" xml:space="preserve">
-    <value>Opustite formulár a vráťte všetky zmeny späť.</value>
+    <value>Zrušiť a vypnúť 
+
+Opustí okno a vypne navádzacie línie. Tie nie sú vymazané, len deaktivované a nezobrazujú sa na hlavnej obrazovke. </value>
   </data>
   <data name="ha_btnCancelCreate" xml:space="preserve">
     <value>Zruš a vráť

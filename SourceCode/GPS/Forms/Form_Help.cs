@@ -122,6 +122,7 @@ namespace AgOpenGPS
                 {
                     //mf.TimedMessageBox(2000, "No File Found", "Can't Find Manual.pdf");
                 }
+
             }
 
             Close();

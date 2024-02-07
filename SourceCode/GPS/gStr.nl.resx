@@ -177,12 +177,6 @@
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>Kies of maak een ander</value>
   </data>
-  <data name="gsClose" xml:space="preserve">
-    <value>Sluiten</value>
-  </data>
-  <data name="gsCloseAllWindowsFirst" xml:space="preserve">
-    <value>Sluit eerst alle vensters</value>
-  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Sluit eerst perceel</value>
   </data>
@@ -208,7 +202,10 @@
     <value>Maak nieuw perceel</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Huidig</value>
+    <value>Huidig (A)</value>
+  </data>
+  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
+    <value>Huidig (A)</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>AB Curve lijn corrupt</value>
@@ -399,9 +396,6 @@
   <data name="gsOffsetFix" xml:space="preserve">
     <value>FIX verschuiving</value>
   </data>
-  <data name="gsOpen" xml:space="preserve">
-    <value>Openen</value>
-  </data>
   <data name="gsOuter" xml:space="preserve">
     <value>Buitenste</value>
   </data>
@@ -495,6 +489,9 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Start nieuw perceel</value>
   </data>
+  <data name="gsSteerChart" xml:space="preserve">
+    <value>Stuurgrafiek</value>
+  </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>Stuur-wizard</value>
   </data>
@@ -521,9 +518,6 @@
   </data>
   <data name="gsUseSelected" xml:space="preserve">
     <value>gebruik geselecteerde</value>
-  </data>
-  <data name="gsWindowsStillOpen" xml:space="preserve">
-    <value>Ramen nog open</value>
   </data>
   <data name="gsXTEChart" xml:space="preserve">
     <value>XTE Grafiek</value>

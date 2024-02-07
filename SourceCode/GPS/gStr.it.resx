@@ -174,12 +174,6 @@
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>Scegli O Creane Un Altro</value>
   </data>
-  <data name="gsClose" xml:space="preserve">
-    <value>Chiudere</value>
-  </data>
-  <data name="gsCloseAllWindowsFirst" xml:space="preserve">
-    <value>Chiudi prima tutte le finestre</value>
-  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Prima Chiudere Il Campo!</value>
   </data>
@@ -205,7 +199,10 @@
     <value>Creare Un Nuovo Campo</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Corrente</value>
+    <value>Corrente (A)</value>
+  </data>
+  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
+    <value>Corrente (A)</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>File Curva Corrotto</value>
@@ -462,6 +459,9 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Iniziare un Nuovo Campo</value>
   </data>
+  <data name="gsSteerChart" xml:space="preserve">
+    <value>Irányítódiagram</value>
+  </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Stop Registrazione Pausa Confine</value>
   </data>
@@ -488,8 +488,5 @@
   </data>
   <data name="gsWest" xml:space="preserve">
     <value>Ovest</value>
-  </data>
-  <data name="gsWindowsStillOpen" xml:space="preserve">
-    <value>Windows ancora aperto</value>
   </data>
 </root>

@@ -177,12 +177,6 @@
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>Choose or Build a Different one</value>
   </data>
-  <data name="gsClose" xml:space="preserve">
-    <value>Close</value>
-  </data>
-  <data name="gsCloseAllWindowsFirst" xml:space="preserve">
-    <value>Close All Windows First</value>
-  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Close Field First</value>
   </data>
@@ -208,7 +202,10 @@
     <value>Create New Field</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Current</value>
+    <value>Current (A)</value>
+  </data>
+  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
+    <value>Current (A)</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>Curve Line File Corrupt</value>
@@ -260,6 +257,9 @@
   </data>
   <data name="gsEncoderCounts" xml:space="preserve">
     <value>Counts</value>
+  </data>
+  <data name="gsPastEndOfCurve" xml:space="preserve">
+    <value>Past End Of Curve</value>
   </data>
   <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
     <value>Enter Coordinates For Simulator</value>
@@ -420,9 +420,6 @@
   <data name="gsPasses" xml:space="preserve">
     <value>Passes</value>
   </data>
-  <data name="gsPastEndOfCurve" xml:space="preserve">
-    <value>Past End Of Curve</value>
-  </data>
   <data name="gsPause" xml:space="preserve">
     <value>Pause</value>
   </data>
@@ -505,7 +502,7 @@
     <value>Start New Field</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Steer Charts</value>
+    <value>Charts</value>
   </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>Steer Wizard</value>
@@ -540,21 +537,11 @@
   <data name="gsWest" xml:space="preserve">
     <value>West</value>
   </data>
-  <data name="gsWindowsStillOpen" xml:space="preserve">
-    <value>Windows Still Open</value>
-  </data>
   <data name="gsWizards" xml:space="preserve">
     <value>Wizards</value>
   </data>
   <data name="gsXTEChart" xml:space="preserve">
     <value>XTE Chart</value>
-  </data>
-  <data name="h_FieldData" xml:space="preserve">
-    <value>First 3 numbers are Total Field Area minus Actual covered area
-Then the percent of actual area overlapped
-Then the Total Area minus machine travelled area. 
-Time till finished based on work area
-Percent completed and work rate.</value>
   </data>
   <data name="h_btn2D" xml:space="preserve">
     <value>2D View Button.</value>
@@ -926,9 +913,9 @@ Adds a time stamp to the current line name. Helps make the name unique as well.<
 Makes a line between the A point set and the B point. Heading of line is calculated. You can modify the line by entering a heading or by touching B as often as you want.</value>
   </data>
   <data name="ha_btnCancel" xml:space="preserve">
-    <value>Cancel
+    <value>Cancel and Turn Off
 
-Exit the form and revert all changes.</value>
+Exit the form and turn off the guidance mode. Existing lines are not deleted, it just turns them off in main display.</value>
   </data>
   <data name="ha_btnCancelCreate" xml:space="preserve">
     <value>Cancel and Return

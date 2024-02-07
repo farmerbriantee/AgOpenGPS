@@ -1,5 +1,8 @@
 ﻿//Please, if you use this, share the improvements
 
+using System;
+using System.Collections.Generic;
+
 namespace AgOpenGPS
 {
     //each section is composed of a patchlist and triangle list
@@ -32,6 +35,7 @@ namespace AgOpenGPS
 
         public double speedPixels = 0;
 
+
         //the left side is always negative, right side is positive
         //so a section on the left side only would be -8, -4
         //in the center -4,4  on the right side only 4,8
@@ -46,24 +50,21 @@ namespace AgOpenGPS
 
         public double foreDistance = 0;
 
+
         //used by readpixel to determine color in pixel array
         public int rpSectionWidth = 0;
-
         public int rpSectionPosition = 0;
 
         //points in world space that start and end of section are in
         public vec2 leftPoint;
-
         public vec2 rightPoint;
 
         //used to determine left and right speed of section
         public vec2 lastLeftPoint;
-
         public vec2 lastRightPoint;
 
         //whether or not this section is in boundary, headland
         public bool isInBoundary = true, isHydLiftInWorkArea = true;
-
         public bool isInHeadlandArea = true;
         public bool isLookOnInHeadland = true;
         public int numTriangles = 0;

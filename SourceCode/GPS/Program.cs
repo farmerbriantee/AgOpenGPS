@@ -65,6 +65,7 @@ namespace AgOpenGPS
             {
                 MessageBox.Show("AgOpenGPS is Already Running");
             }
+
         }
 
         //[System.Runtime.InteropServices.DllImport("user32.dll")]

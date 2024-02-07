@@ -59,7 +59,7 @@ namespace AgIO
             cboxBaud.Text = Properties.Settings.Default.setPort_baudRateRadio;
             cboxIsRadioOn.Checked = Properties.Settings.Default.setRadio_isOn;
 
-            for (var i = 0; i < lvChannels.Items.Count; i++)
+            for(var i = 0; i < lvChannels.Items.Count; i++)
             {
                 ListViewItem lvItem = lvChannels.Items[i];
 
@@ -80,7 +80,7 @@ namespace AgIO
 
         private void btnRadioOK_Click(object sender, EventArgs e)
         {
-            if (cboxIsRadioOn.Checked && lvChannels.SelectedItems.Count == 0)
+            if(cboxIsRadioOn.Checked && lvChannels.SelectedItems.Count == 0)
             {
                 mf.TimedMessageBox(2000, "No channel", "Radio is set to on. But no channel is selected");
                 // Cancel close
@@ -151,7 +151,7 @@ namespace AgIO
                 cboxRadioPort.Enabled = false;
                 cboxBaud.Enabled = false;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 mf.TimedMessageBox(3000, "Error opening port", ex.Message);
             }
@@ -161,7 +161,7 @@ namespace AgIO
 
         private void btnCloseSerial_Click(object sender, EventArgs e)
         {
-            if (mf.spRadio != null && mf.spRadio.IsOpen)
+            if(mf.spRadio != null && mf.spRadio.IsOpen)
             {
                 mf.spRadio.Close();
                 mf.spRadio.Dispose();
@@ -180,7 +180,7 @@ namespace AgIO
 
         private void btnSetChannel_Click(object sender, EventArgs e)
         {
-            if (mf.spRadio != null && mf.spRadio.IsOpen && lvChannels.SelectedItems.Count == 1)
+            if(mf.spRadio != null && mf.spRadio.IsOpen && lvChannels.SelectedItems.Count == 1)
             {
                 var selectedChannel = (CRadioChannel)lvChannels.SelectedItems[0].Tag;
 
@@ -197,13 +197,13 @@ namespace AgIO
                 System.Threading.Thread.Sleep(0);
 
                 int bytesToRead = mf.spRadio.BytesToRead;
-
+                
                 if (bytesToRead == 0)
                     return;
-
+                
                 // TODO: What if the radio is receiving data? It will be in the read
                 byte[] buffer = new byte[bytesToRead];
-                mf.spRadio.Read(buffer, 0, bytesToRead);
+                mf.spRadio.Read(buffer, 0, bytesToRead);                
                 tbResponse.Text = System.Text.Encoding.UTF8.GetString(buffer, 0, buffer.Length);
             }
         }
@@ -277,7 +277,7 @@ namespace AgIO
                 lvChannels.Items.Remove(selectedItem);
                 _channels.Clear();
 
-                foreach (ListViewItem lvItem in lvChannels.Items)
+                foreach(ListViewItem lvItem in lvChannels.Items)
                 {
                     _channels.Add((CRadioChannel)lvItem.Tag);
                 }
@@ -293,7 +293,7 @@ namespace AgIO
             var distance = "-";
 
             // calculate distance
-            if (!string.IsNullOrEmpty(channel.Location) && _currentLat > 0 && _currentLon > 0)
+            if(!string.IsNullOrEmpty(channel.Location) && _currentLat > 0 && _currentLon > 0)
             {
                 var locationArray = channel.Location.Split(' ');
 

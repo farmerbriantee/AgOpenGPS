@@ -71,8 +71,6 @@
             this.btnOpenExistingLv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOpenExistingLv.BackColor = System.Drawing.Color.Transparent;
             this.btnOpenExistingLv.DialogResult = System.Windows.Forms.DialogResult.Yes;
-            this.btnOpenExistingLv.FlatAppearance.BorderSize = 0;
-            this.btnOpenExistingLv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenExistingLv.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenExistingLv.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
             this.btnOpenExistingLv.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -81,9 +79,8 @@
             this.btnOpenExistingLv.Name = "btnOpenExistingLv";
             this.btnOpenExistingLv.Size = new System.Drawing.Size(288, 63);
             this.btnOpenExistingLv.TabIndex = 92;
-            this.btnOpenExistingLv.Text = " Use Selected";
-            this.btnOpenExistingLv.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOpenExistingLv.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnOpenExistingLv.Text = "Use Selected";
+            this.btnOpenExistingLv.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnOpenExistingLv.UseVisualStyleBackColor = false;
             this.btnOpenExistingLv.Click += new System.EventHandler(this.btnOpenExistingLv_Click);
             // 
@@ -91,8 +88,6 @@
             // 
             this.btnDeleteAB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDeleteAB.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnDeleteAB.FlatAppearance.BorderSize = 0;
-            this.btnDeleteAB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteAB.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btnDeleteAB.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnDeleteAB.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
@@ -107,7 +102,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(971, 407);
             this.ControlBox = false;
             this.Controls.Add(this.btnOpenExistingLv);

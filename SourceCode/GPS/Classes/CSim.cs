@@ -7,7 +7,6 @@ namespace AgOpenGPS
         private readonly FormGPS mf;
 
         #region properties sim
-
         public double altitude = 300;
 
         public double latitude, longitude;
@@ -16,6 +15,7 @@ namespace AgOpenGPS
         public double steerAngleScrollBar = 0;
 
         public bool isAccelForward, isAccelBack;
+
 
         #endregion properties sim
 
@@ -32,7 +32,7 @@ namespace AgOpenGPS
 
             double diff = Math.Abs(steerAngle - steerangleAve);
 
-            if (diff > 11)
+            if ( diff > 11)
             {
                 if (steerangleAve >= steerAngle)
                 {
@@ -55,7 +55,7 @@ namespace AgOpenGPS
                     steerangleAve -= 0.5;
                 }
                 else steerangleAve += 0.5;
-            }
+            } 
             else
             {
                 steerangleAve = steerAngle;
@@ -78,7 +78,7 @@ namespace AgOpenGPS
 
             mf.pn.headingTrue = mf.pn.headingTrueDual = glm.toDegrees(headingTrue);
             mf.ahrs.imuHeading = mf.pn.headingTrue;
-            if (mf.ahrs.imuHeading >= 360) mf.ahrs.imuHeading -= 360;
+            if (mf.ahrs.imuHeading > 360) mf.ahrs.imuHeading -= 360;
 
             mf.pn.latitude = latitude;
             mf.pn.longitude = longitude;

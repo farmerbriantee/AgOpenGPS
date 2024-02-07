@@ -1,15 +1,18 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
+using System.Drawing;
+using System.Globalization;
+using System.Threading;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AgOpenGPS
 {
     public partial class FormKeyboard : Form
     {
         public string ReturnString { get; set; }
-
         public FormKeyboard(string currentString)
         {
+
             InitializeComponent();
 
             this.Text = "Enter a Value";
@@ -36,6 +39,13 @@ namespace AgOpenGPS
 
         private void RegisterKeyboard1_ButtonPressed(object sender, KeyPressEventArgs e)
         {
+
+            //if (isFirstKey)
+            //{
+            //    keyboardString.Text = "";
+            //    isFirstKey = false;
+            //}
+
             //clear the error as user entered new values
             if (keyboardString.Text == gStr.gsError)
             {
@@ -47,21 +57,7 @@ namespace AgOpenGPS
             {
                 if (keyboardString.Text.Length > 0)
                 {
-                    var selectionIndex = keyboardString.SelectionStart;
-
-                    if (selectionIndex > 0)
-                    {
-                        keyboardString.Text = keyboardString.Text.Remove(selectionIndex - 1, 1);
-
-                        keyboardString.SelectionStart = selectionIndex - 1;
-                        keyboardString.SelectionLength = 0;
-                        keyboardString.Focus();
-                    }
-                    else
-                    {
-                        keyboardString.SelectionStart = 1;
-                        keyboardString.SelectionLength = 0;
-                    }
+                    keyboardString.Text = keyboardString.Text.Remove(keyboardString.Text.Length - 1);
                 }
             }
 
@@ -88,55 +84,16 @@ namespace AgOpenGPS
             }
 
             //if its a character just add it
-            else
+            else 
             {
-                var insertText = e.KeyChar.ToString();
-                var selectionIndex = keyboardString.SelectionStart;
-                keyboardString.Text = keyboardString.Text.Insert(selectionIndex, insertText);
-                keyboardString.SelectionStart = selectionIndex + insertText.Length;
+                keyboardString.Text += e.KeyChar;
             }
 
             //Show the cursor
+            keyboardString.SelectionStart = keyboardString.Text.Length;
             keyboardString.SelectionLength = 0;
             keyboardString.Focus();
         }
-
-        private void btnCharLeft_Click(object sender, EventArgs e)
-        {
-            int spot = keyboardString.SelectionStart;
-            spot--;
-            if (spot >= 0)
-            {
-                keyboardString.SelectionStart = spot;
-                keyboardString.SelectionLength = 0;
-                keyboardString.Focus();
-            }
-            else
-            {
-                spot = 0;
-                keyboardString.SelectionStart = spot;
-                keyboardString.SelectionLength = 0;
-                keyboardString.Focus();
-            }
-        }
-
-        private void btnCharRight_Click(object sender, EventArgs e)
-        {
-            int spot = keyboardString.SelectionStart;
-            spot++;
-            if (spot <= keyboardString.Text.Length)
-            {
-                keyboardString.SelectionStart = spot;
-                keyboardString.SelectionLength = 0;
-                keyboardString.Focus();
-            }
-            else
-            {
-                spot = keyboardString.Text.Length;
-                keyboardString.SelectionStart = spot;
-                keyboardString.SelectionLength = 0;
-                keyboardString.Focus();
-            }
-        }
     }
 }
+

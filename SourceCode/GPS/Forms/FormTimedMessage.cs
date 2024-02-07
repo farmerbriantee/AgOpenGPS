@@ -8,19 +8,19 @@ namespace AgOpenGPS
         //class variables
         //private FormGPS mf = null;
 
-        public FormTimedMessage(int timeInMsec, string titleString, string messageString)
+        public FormTimedMessage(int timeInMsec, string str, string str2)
         {
             InitializeComponent();
 
             //get copy of the calling main form
             //mf = callingForm as FormGPS;
 
-            lblMessage.Text = titleString;
-            lblMessage2.Text = messageString;
+            lblMessage.Text = str;
+            lblMessage2.Text = str2;
 
             timer1.Interval = timeInMsec;
 
-            int messWidth = messageString.Length;
+            int messWidth = str2.Length;
             Width = messWidth * 15 + 120;
         }
 

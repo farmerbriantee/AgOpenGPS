@@ -6,6 +6,7 @@ namespace AgIO
 {
     public class ListViewColumnSorterExt : IComparer
     {
+
         /// <summary>
         /// Case insensitive comparer object
         /// </summary>

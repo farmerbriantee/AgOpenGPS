@@ -117,14 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label4.Text" xml:space="preserve">
-    <value>AgOpenGPS is strictly educational software to learn about guidance systems, GPS sentences, and theoretical application of machine control.
-
-It is in no way to be used on real equipment in any circumstance. A simulator is provided to allow the student to safely experience machine guidance.
-
-There are no safety systems in the software and none are implied. 
-
-Use at own Risk.
-</value>
-  </data>
 </root>

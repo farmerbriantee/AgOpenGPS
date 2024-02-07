@@ -7,9 +7,9 @@ namespace AgIO
     public partial class FormKeyboard : Form
     {
         public string ReturnString { get; set; }
-
         public FormKeyboard(string currentString)
         {
+
             InitializeComponent();
 
             this.Text = "Enter Something";
@@ -44,6 +44,7 @@ namespace AgIO
                 regKey.Close();
             }
 
+
             string language = Properties.Settings.Default.setF_culture;
             if (language == "fr")
             {
@@ -57,6 +58,7 @@ namespace AgIO
 
         private void RegisterKeyboard1_ButtonPressed(object sender, KeyPressEventArgs e)
         {
+
             //if (isFirstKey)
             //{
             //    keyboardString.Text = "";
@@ -113,3 +115,4 @@ namespace AgIO
         }
     }
 }
+

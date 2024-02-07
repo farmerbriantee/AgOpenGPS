@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
+
     public class CTram
     {
         private readonly FormGPS mf;
@@ -13,25 +14,22 @@ namespace AgOpenGPS
 
         //the triangle strip of the outer tram highlight
         public List<vec2> tramBndOuterArr = new List<vec2>();
-
         public List<vec2> tramBndInnerArr = new List<vec2>();
 
         //tram settings
         //public double wheelTrack;
         public double tramWidth;
-
         public double halfWheelTrack;
         public int passes;
         public bool isOuter;
 
         //tramlines
         public List<vec2> tramArr = new List<vec2>();
-
         public List<List<vec2>> tramList = new List<List<vec2>>();
+
 
         // 0 off, 1 All, 2, Lines, 3 Outer
         public int displayMode, generateMode = 0;
-
         internal int controlByte;
 
         public CTram(FormGPS _f)

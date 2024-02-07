@@ -66,18 +66,15 @@ namespace AgOpenGPS
         public bool isDrivingRecordedPath, isFollowingDubinsToPath, isFollowingRecPath, isFollowingDubinsHome;
 
         public double pivotDistanceError, pivotDistanceErrorLast, pivotDerivative, pivotDerivativeSmoothed;
-
         //derivative counters
         private int counter2;
-
         public double inty;
         public double steerAngleSmoothed, pivotErrorTotal;
         public double distSteerError, lastDistSteerError, derivativeDistError;
 
         public int resumeState;
 
-        private int starPathIndx = 0;
-
+        int starPathIndx = 0;
         public bool StartDrivingRecordedPath()
         {
             //create the dubins path based on start and goal to start of recorded path
@@ -97,11 +94,12 @@ namespace AgOpenGPS
             {
                 currentPositonIndex = 0;
                 idx = 0;
-                starPathIndx = 0;
+                starPathIndx = 0;   
             }
+
             else if (resumeState == 1) //resume from where stopped mid path
             {
-                if (currentPositonIndex + 5 > recList.Count)
+                if (currentPositonIndex+5 > recList.Count )
                 {
                     currentPositonIndex = 0;
                     idx = 0;
@@ -112,6 +110,7 @@ namespace AgOpenGPS
                     idx = starPathIndx = currentPositonIndex;
                 }
             }
+
             else //find closest point
             {
                 foreach (CRecPathPt pt in recList)
@@ -128,15 +127,15 @@ namespace AgOpenGPS
                 }
 
                 //scootch down the line a bit
-                if (idx + 5 < recList.Count) idx += 5;
-                else idx = recList.Count - 1;
+                if (idx + 5 < recList.Count)  idx += 5;
+                else idx = recList.Count-1;
 
                 starPathIndx = currentPositonIndex = idx;
             }
 
             //the goal is the first point of path, the start is the current position
-            vec3 goal = new vec3(recList[idx].easting, recList[idx].northing, recList[idx].heading);
-
+            vec3 goal = new vec3(recList[idx].easting, recList[idx].northing, recList[idx].heading);            
+             
             //get the dubins for approach to recorded path
             GetDubinsPath(goal);
             shuttleListCount = shuttleDubinsList.Count;
@@ -144,8 +143,8 @@ namespace AgOpenGPS
             //has a valid dubins path been created?
             if (shuttleListCount == 0) return false;
 
-            //starPathIndx = idxFieldSelected;
-
+            //starPathIndx = idx;
+            
             //technically all good if we get here so set all the flags
             isFollowingDubinsHome = false;
             isFollowingRecPath = false;
@@ -312,6 +311,7 @@ namespace AgOpenGPS
             double minDistA = 9999999999;
             double dist, dx, dz;
 
+
             //set the search range close to current position
             int top = currentPositonIndex + 5;
             if (top > ptCount) top = ptCount;
@@ -451,7 +451,7 @@ namespace AgOpenGPS
             if (steerAngleRP < -mf.vehicle.maxSteerAngle) steerAngleRP = -mf.vehicle.maxSteerAngle;
             if (steerAngleRP > mf.vehicle.maxSteerAngle) steerAngleRP = mf.vehicle.maxSteerAngle;
 
-            //used for smooth mode
+            //used for smooth mode 
             mf.vehicle.modeActualXTE = (distanceFromCurrentLinePivot);
 
             //Convert to centimeters
@@ -521,7 +521,7 @@ namespace AgOpenGPS
 
                 //pivotErrorTotal = pivotDistanceError + pivotDerivative;
 
-                if (mf.isBtnAutoSteerOn
+                if (mf.isAutoSteerBtnOn
                     && Math.Abs(pivotDerivative) < (0.1)
                     && mf.avgSpeed > 2.5
                     && !mf.yt.isYouTurnTriggered)
@@ -607,7 +607,7 @@ namespace AgOpenGPS
             radiusPointRP.northing = pivotAxlePosRP.northing + (ppRadiusRP * Math.Sin(localHeading));
 
             //angular velocity in rads/sec  = 2PI * m/sec * radians/meters
-            // double angVel = glm.twoPI * 0.277777 * mf.pn.speed * (Math.Tan(glm.toRadians(steerAngleRP))) / mf.vehicle.wheelbase;
+           // double angVel = glm.twoPI * 0.277777 * mf.pn.speed * (Math.Tan(glm.toRadians(steerAngleRP))) / mf.vehicle.wheelbase;
 
             //clamp the steering angle to not exceed safe angular velocity
             //if (Math.Abs(angVel) > mf.vehicle.maxAngularVelocity)
@@ -621,6 +621,7 @@ namespace AgOpenGPS
             mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);
             mf.guidanceLineSteerAngle = (short)(steerAngleRP * 100);
         }
+
 
         public void DrawRecordedLine()
         {
@@ -663,7 +664,6 @@ namespace AgOpenGPS
         }
     }
 }
-
 //private void StanleyDubinsPath(int ptCount)
 //{
 //    //distanceFromCurrentLine = 9999;

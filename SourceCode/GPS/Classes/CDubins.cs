@@ -9,8 +9,7 @@ using System.Collections.Generic;
 namespace AgOpenGPS
 {
     //To keep track of the different paths when debugging
-    public enum PathType
-    { RSR, LSL, RSL, LSR, RLR, LRL }
+    public enum PathType { RSR, LSL, RSL, LSR, RLR, LRL }
 
     //Display the final Dubins Paths
     public class CDubins
@@ -180,6 +179,7 @@ namespace AgOpenGPS
             //Save the data
             OneDubinsPath pathData = new OneDubinsPath(length1, length2, length3, startTangent, goalTangent, PathType.RSR)
             {
+
                 //We also need this data to simplify when generating the final path
                 segment2Turning = false
             };
@@ -205,6 +205,7 @@ namespace AgOpenGPS
             //Save the data
             OneDubinsPath pathData = new OneDubinsPath(length1, length2, length3, startTangent, goalTangent, PathType.LSL)
             {
+
                 //We also need this data to simplify when generating the final path
                 segment2Turning = false
             };
@@ -230,6 +231,7 @@ namespace AgOpenGPS
             //Save the data
             OneDubinsPath pathData = new OneDubinsPath(length1, length2, length3, startTangent, goalTangent, PathType.RSL)
             {
+
                 //We also need this data to simplify when generating the final path
                 segment2Turning = false
             };
@@ -255,6 +257,7 @@ namespace AgOpenGPS
             //Save the data
             OneDubinsPath pathData = new OneDubinsPath(length1, length2, length3, startTangent, goalTangent, PathType.LSR)
             {
+
                 //We also need this data to simplify when generating the final path
                 segment2Turning = false
             };
@@ -285,6 +288,7 @@ namespace AgOpenGPS
             //Save the data
             OneDubinsPath pathData = new OneDubinsPath(length1, length2, length3, startTangent, goalTangent, PathType.RLR)
             {
+
                 //We also need this data to simplify when generating the final path
                 segment2Turning = true
             };
@@ -315,6 +319,7 @@ namespace AgOpenGPS
             //Save the data
             OneDubinsPath pathData = new OneDubinsPath(length1, length2, length3, startTangent, goalTangent, PathType.LRL)
             {
+
                 //We also need this data to simplify when generating the final path
                 segment2Turning = true
             };
@@ -405,6 +410,7 @@ namespace AgOpenGPS
         {
             vec2 rightCirclePos = new vec2(0, 0)
             {
+
                 //The circle is 90 degrees (pi/2 radians) to the right of the car's heading
                 easting = circlePos.easting + (CDubins.turningRadius * Math.Sin(heading + glm.PIBy2)),
                 northing = circlePos.northing + (CDubins.turningRadius * Math.Cos(heading + glm.PIBy2))

@@ -20,7 +20,10 @@ namespace AgOpenGPS
         {
             if (tboxVehicleNameSave.Text.Trim().Length > 0)
             {
+                SaveDisplaySettings();
+
                 SettingsIO.ExportAll(mf.vehiclesDirectory + tboxVehicleNameSave.Text.Trim() + ".XML");
+                lblCurrentVehicle.Text = tboxVehicleNameSave.Text.Trim();
                 Properties.Settings.Default.setVehicle_vehicleName = tboxVehicleNameSave.Text.Trim();
                 Properties.Settings.Default.Save();
                 tboxVehicleNameSave.Text = "";
@@ -29,7 +32,6 @@ namespace AgOpenGPS
             }
 
             UpdateVehicleListView();
-            UpdateSummary();
         }
 
         private void tboxVehicleNameSave_TextChanged(object sender, EventArgs e)
@@ -313,7 +315,55 @@ namespace AgOpenGPS
                         //reset AOG
                         mf.LoadSettings();
 
-                        SectionFeetInchesTotalWidthLabelUpdate();
+                        chkDisplayBrightness.Checked = mf.isBrightnessOn;
+                        chkDisplaySky.Checked = mf.isSkyOn;
+                        chkDisplayFloor.Checked = mf.isTextureOn;
+                        chkDisplayGrid.Checked = mf.isGridOn;
+                        chkDisplaySpeedo.Checked = mf.isSpeedoOn;
+                        chkDisplayDayNight.Checked = mf.isAutoDayNight;
+                        chkSvennArrow.Checked = mf.isSvennArrowOn;
+                        chkDisplayExtraGuides.Checked = mf.isSideGuideLines;
+                        chkDisplayLogNMEA.Checked = mf.isLogNMEA;
+                        chkDisplayPolygons.Checked = mf.isDrawPolygons;
+                        chkDisplayLightbar.Checked = mf.isLightbarOn;
+                        chkDisplayKeyboard.Checked = mf.isKeyboardOn;
+                        chkDisplayStartFullScreen.Checked = Properties.Settings.Default.setDisplay_isStartFullScreen;
+
+                        if (mf.isMetric) rbtnDisplayMetric.Checked = true;
+                        else rbtnDisplayImperial.Checked = true;
+
+                        SaveDisplaySettings();
+
+                        lblCurrentVehicle.Text = Properties.Settings.Default.setVehicle_vehicleName;
+
+                        if (mf.isMetric)
+                        {
+                            lblInchesCm.Text = gStr.gsCentimeters;
+                            lblFeetMeters.Text = gStr.gsMeters;
+                            lblSecTotalWidthFeet.Visible = false;
+                            lblSecTotalWidthInches.Visible = false;
+                            lblSecTotalWidthMeters.Visible = true;
+                        }
+                        else
+                        {
+                            lblInchesCm.Text = gStr.gsInches;
+                            lblFeetMeters.Text = "Feet";
+                            lblSecTotalWidthFeet.Visible = true;
+                            lblSecTotalWidthInches.Visible = true;
+                            lblSecTotalWidthMeters.Visible = false;
+                        }
+
+                        if (mf.isMetric)
+                        {
+                            lblSecTotalWidthMeters.Text = (mf.tool.width * 100).ToString() + " cm";
+                        }
+                        else
+                        {
+                            double toFeet = mf.tool.width * 3.2808;
+                            lblSecTotalWidthFeet.Text = Convert.ToString((int)toFeet) + "'";
+                            double temp = Math.Round((toFeet - Math.Truncate(toFeet)) * 12, 0);
+                            lblSecTotalWidthInches.Text = Convert.ToString(temp) + '"';
+                        }
 
                         //Form Steer Settings
                         mf.p_252.pgn[mf.p_252.countsPerDegree] = unchecked((byte)Properties.Settings.Default.setAS_countsPerDegree);
@@ -376,8 +426,6 @@ namespace AgOpenGPS
                 form.Show(this);
                 UpdateVehicleListView();
             }
-
-            UpdateSummary();
         }
 
         private void btnVehicleDelete_Click(object sender, EventArgs e)
@@ -428,11 +476,41 @@ namespace AgOpenGPS
             lvVehicles.SelectedItems.Clear();
         }
 
+        private void rbtnDisplayImperial_Click(object sender, EventArgs e)
+        {
+            mf.TimedMessageBox(2000, "Units Set", "Imperial");
+            mf.isMetric = false;
+            Properties.Settings.Default.setMenu_isMetric = mf.isMetric;
+            Properties.Settings.Default.Save();
+            isClosing = true;
+            Close();
+        }
+
+        private void rbtnDisplayMetric_Click(object sender, EventArgs e)
+        {
+            mf.TimedMessageBox(2000, "Units Set", "Metric");
+            mf.isMetric = true;
+            Properties.Settings.Default.setMenu_isMetric = mf.isMetric;
+            Properties.Settings.Default.Save();
+            isClosing = true;
+            Close();
+            //FormConfig_Load(this, e);
+        }
+
+        private void nudMenusOnTime_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+            }
+        }
+
         private void SaveDisplaySettings()
         {
+            mf.isSkyOn = chkDisplaySky.Checked;
             mf.isTextureOn = chkDisplayFloor.Checked;
             mf.isGridOn = chkDisplayGrid.Checked;
             mf.isSpeedoOn = chkDisplaySpeedo.Checked;
+            mf.isAutoDayNight = chkDisplayDayNight.Checked;
             mf.isSideGuideLines = chkDisplayExtraGuides.Checked;
             mf.isLogNMEA = chkDisplayLogNMEA.Checked;
             mf.isDrawPolygons = chkDisplayPolygons.Checked;
@@ -443,12 +521,14 @@ namespace AgOpenGPS
 
             //mf.timeToShowMenus = (int)nudMenusOnTime.Value;
 
+            Properties.Settings.Default.setMenu_isSkyOn = mf.isSkyOn;
             Properties.Settings.Default.setDisplay_isBrightnessOn = mf.isBrightnessOn;
             Properties.Settings.Default.setDisplay_isTextureOn = mf.isTextureOn;
             Properties.Settings.Default.setMenu_isGridOn = mf.isGridOn;
             Properties.Settings.Default.setMenu_isCompassOn = mf.isCompassOn;
             Properties.Settings.Default.setDisplay_isSvennArrowOn = mf.isSvennArrowOn;
             Properties.Settings.Default.setMenu_isSpeedoOn = mf.isSpeedoOn;
+            Properties.Settings.Default.setDisplay_isAutoDayNight = mf.isAutoDayNight;
             Properties.Settings.Default.setDisplay_isStartFullScreen = chkDisplayStartFullScreen.Checked;
             Properties.Settings.Default.setMenu_isSideGuideLines = mf.isSideGuideLines;
             //Properties.Settings.Default.setMenu_isLogNMEA = mf.isLogNMEA;
@@ -483,11 +563,6 @@ namespace AgOpenGPS
 
             else if (Properties.Settings.Default.setVehicle_vehicleType == 2)
                 pboxAntenna.BackgroundImage = Properties.Resources.Antenna4WD;
-
-            label98.Text = mf.unitsInCm;
-            label99.Text = mf.unitsInCm;
-            label100.Text = mf.unitsInCm;
-
         }
 
         private void tabVAntenna_Leave(object sender, EventArgs e)
@@ -497,7 +572,7 @@ namespace AgOpenGPS
 
         private void nudAntennaPivot_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setVehicle_antennaPivot = (double)nudAntennaPivot.Value * mf.inchOrCm2m;
                 mf.vehicle.antennaPivot = Properties.Settings.Default.setVehicle_antennaPivot;
@@ -506,7 +581,7 @@ namespace AgOpenGPS
 
         private void nudAntennaOffset_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setVehicle_antennaOffset = (double)nudAntennaOffset.Value * mf.inchOrCm2m;
                 mf.vehicle.antennaOffset = Properties.Settings.Default.setVehicle_antennaOffset;
@@ -515,7 +590,7 @@ namespace AgOpenGPS
 
         private void nudAntennaHeight_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setVehicle_antennaHeight = (double)nudAntennaHeight.Value * mf.inchOrCm2m;
                 mf.vehicle.antennaHeight = Properties.Settings.Default.setVehicle_antennaHeight;
@@ -525,7 +600,6 @@ namespace AgOpenGPS
         #endregion
 
         #region Vehicle Dimensions
-
         private void tabVDimensions_Enter(object sender, EventArgs e)
         {
             nudMinTurnRadius.Value = (int)(Properties.Settings.Default.setVehicle_minTurningRadius * mf.m2InchOrCm);
@@ -534,60 +608,19 @@ namespace AgOpenGPS
 
             nudVehicleTrack.Value = (int)(Math.Abs(Properties.Settings.Default.setVehicle_trackWidth) * mf.m2InchOrCm);
 
-            nudTractorHitchLength.Value = (int)(Math.Abs(Properties.Settings.Default.setVehicle_hitchLength) * mf.m2InchOrCm);
+            if (mf.vehicle.vehicleType == 0) pictureBox1.Image = Properties.Resources.RadiusWheelBase;
+            else if (mf.vehicle.vehicleType == 1) pictureBox1.Image = Properties.Resources.RadiusWheelBaseHarvester;
+            else if (mf.vehicle.vehicleType == 2) pictureBox1.Image = Properties.Resources.RadiusWheelBase4WD;
 
-            if (mf.vehicle.vehicleType == 0)
-            {
-                pictureBox1.Image = Properties.Resources.RadiusWheelBase;
-                nudTractorHitchLength.Visible = true;
-            }
-            else if (mf.vehicle.vehicleType == 1)
-            {
-                pictureBox1.Image = Properties.Resources.RadiusWheelBaseHarvester;
-                nudTractorHitchLength.Visible = false;
-            }
-            else if (mf.vehicle.vehicleType == 2)
-            {
-                pictureBox1.Image = Properties.Resources.RadiusWheelBase4WD;
-                nudTractorHitchLength.Visible = true;
-            }
-
-            if (Properties.Settings.Default.setTool_isToolTrailing || Properties.Settings.Default.setTool_isToolTBT)
-            {
-                nudTractorHitchLength.Visible = true;
-                label94.Visible = true;
-                label27.Visible = true;
-            }
-            else
-            {
-                nudTractorHitchLength.Visible = false;
-                label94.Visible = false;
-                label27.Visible = false;
-            }
-
-            label94.Text = mf.unitsInCm;
-            label95.Text = mf.unitsInCm;
-            label96.Text = mf.unitsInCm;
-            label97.Text = mf.unitsInCm;
         }
 
-        private void nudTractorHitchLength_Click(object sender, EventArgs e)
+        private void tabVDimensions_Leave(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
-            {
-                mf.tool.hitchLength = (double)nudTractorHitchLength.Value * mf.inchOrCm2m;
-                if (!Properties.Settings.Default.setTool_isToolFront)
-                {
-                    mf.tool.hitchLength *= -1;
-                }
-                Properties.Settings.Default.setVehicle_hitchLength = mf.tool.hitchLength;
-            }
         }
-
 
         private void nudMinTurnRadius_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setVehicle_minTurningRadius = (double)nudMinTurnRadius.Value * mf.inchOrCm2m;
                 mf.vehicle.minTurningRadius = Properties.Settings.Default.setVehicle_minTurningRadius;
@@ -597,7 +630,7 @@ namespace AgOpenGPS
 
         private void nudWheelbase_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setVehicle_wheelbase = (double)nudWheelbase.Value * mf.inchOrCm2m;
                 mf.vehicle.wheelbase = Properties.Settings.Default.setVehicle_wheelbase;
@@ -607,7 +640,7 @@ namespace AgOpenGPS
 
         private void nudVehicleTrack_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setVehicle_trackWidth = (double)nudVehicleTrack.Value * mf.inchOrCm2m;
                 mf.vehicle.trackWidth = Properties.Settings.Default.setVehicle_trackWidth;
@@ -641,6 +674,8 @@ namespace AgOpenGPS
                 label160.Text = label163.Text = label166.Text = "mph";
             }
 
+            nudABLength.Value = (decimal)Math.Round(((double)Properties.Settings.Default.setAB_lineLength * mf.m2FtOrM));
+
             nudGuidanceLookAhead.Value = (decimal)Properties.Settings.Default.setAS_guidanceLookAheadTime;
 
             nudMaxAngularVelocity.Value = (decimal)glm.toDegrees(Properties.Settings.Default.setVehicle_maxAngularVelocity);
@@ -663,6 +698,7 @@ namespace AgOpenGPS
             cboxSteerInReverse.Checked = Properties.Settings.Default.setAS_isSteerInReverse;
 
             label20.Text = mf.unitsInCm;
+            label79.Text = mf.unitsFtM;
         }
 
         private void tabVGuidance_Leave(object sender, EventArgs e)
@@ -703,7 +739,7 @@ namespace AgOpenGPS
 
         private void nudLineWidth_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setDisplay_lineWidth = (int)nudLineWidth.Value;
                 mf.ABLine.lineWidth = Properties.Settings.Default.setDisplay_lineWidth;
@@ -712,7 +748,7 @@ namespace AgOpenGPS
 
         private void nudSnapDistance_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setAS_snapDistance = ((double)nudSnapDistance.Value * mf.inOrCm2Cm);
                 mf.ABLine.snapDistance = Properties.Settings.Default.setAS_snapDistance;
@@ -720,7 +756,7 @@ namespace AgOpenGPS
         }
         private void nudGuidanceSpeedLimit_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setAS_functionSpeedLimit = ((double)nudGuidanceSpeedLimit.Value);
                 if (!mf.isMetric) Properties.Settings.Default.setAS_functionSpeedLimit *= 1.609344;
@@ -730,7 +766,7 @@ namespace AgOpenGPS
 
         private void nudMinSteerSpeed_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setAS_minSteerSpeed = ((double)nudMinSteerSpeed.Value);
                 if (!mf.isMetric) Properties.Settings.Default.setAS_minSteerSpeed *= 1.609344;
@@ -739,7 +775,7 @@ namespace AgOpenGPS
         }
         private void nudMaxSteerSpeed_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setAS_maxSteerSpeed = ((double)nudMaxSteerSpeed.Value);
                 if (!mf.isMetric) Properties.Settings.Default.setAS_maxSteerSpeed *= 1.609344;
@@ -749,7 +785,7 @@ namespace AgOpenGPS
 
         private void nudMaxAngularVelocity_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setVehicle_maxAngularVelocity = glm.toRadians(((double)nudMaxAngularVelocity.Value));
                 mf.vehicle.maxAngularVelocity = Properties.Settings.Default.setVehicle_maxAngularVelocity;
@@ -758,10 +794,19 @@ namespace AgOpenGPS
 
         private void nudGuidanceLookAhead_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setAS_guidanceLookAheadTime = ((double)nudGuidanceLookAhead.Value);
                 mf.guidanceLookAheadTime = Properties.Settings.Default.setAS_guidanceLookAheadTime;
+            }
+        }
+
+        private void nudABLength_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                Properties.Settings.Default.setAB_lineLength = ((double)nudABLength.Value * mf.ftOrMtoM);
+                mf.ABLine.abLength = Properties.Settings.Default.setAB_lineLength;
             }
         }
 
@@ -790,13 +835,6 @@ namespace AgOpenGPS
             {
                 mf.vehicle.vehicleType = 1;
                 Properties.Settings.Default.setVehicle_vehicleType = 1;
-
-                if ( mf.tool.hitchLength < 0) mf.tool.hitchLength *= -1;
-
-                Properties.Settings.Default.setTool_isToolFront = true;
-                Properties.Settings.Default.setTool_isToolTBT = false;
-                Properties.Settings.Default.setTool_isToolTrailing = false;
-                Properties.Settings.Default.setTool_isToolRearFixed = false;
             }
             if (rbtn4WD.Checked)
             {

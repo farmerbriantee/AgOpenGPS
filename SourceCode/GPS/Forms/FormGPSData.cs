@@ -2,7 +2,7 @@
 //Copyright BrianTee, copy right out of it.
 
 using System;
-using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -32,6 +32,7 @@ namespace AgOpenGPS
             lblLongitude.Text = mf.Longitude;
 
             //other sat and GPS info
+            lblStatus.Text = mf.FixQuality;
             lblSatsTracked.Text = mf.SatsTracked;
             lblHDOP.Text = mf.HDOP;
             //lblSpeed.Text = mf.avgSpeed.ToString("N2");
@@ -47,6 +48,7 @@ namespace AgOpenGPS
 
             lbludpWatchCounts.Text = mf.udpWatchCounts.ToString();
 
+
             if (mf.isMetric)
             {
                 lblAltitude.Text = mf.Altitude;
@@ -59,8 +61,9 @@ namespace AgOpenGPS
 
         private void FormGPSData_Load(object sender, EventArgs e)
         {
-            this.Width = 120;
-            this.Height = 330;
+            //lblSunrise.Text = mf.sunrise.ToString("HH:mm");
+            //lblVersion.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
+            //lblSunset.Text = mf.sunset.ToString("HH:mm");
         }
 
         private void FormGPSData_FormClosing(object sender, FormClosingEventArgs e)
@@ -69,6 +72,7 @@ namespace AgOpenGPS
         }
     }
 }
+
 
 //lblAreaAppliedMinusOverlap.Text = ((fd.actualAreaCovered * glm.m2ac).ToString("N2"));
 //lblAreaMinusActualApplied.Text = (((mf.fd.areaBoundaryOuterLessInner - mf.fd.actualAreaCovered) * glm.m2ac).ToString("N2"));
@@ -79,6 +83,7 @@ namespace AgOpenGPS
 //lblAreaMinusActualApplied.Text = (((mf.fd.areaBoundaryOuterLessInner - mf.fd.actualAreaCovered) * glm.m2ha).ToString("N2"));
 //lblOverlapPercent.Text = (fd.overlapPercent.ToString("N2")) + "%";
 //lblAreaOverlapped.Text = (((fd.workedAreaTotal - fd.actualAreaCovered) * glm.m2ha).ToString("N3"));
+
 
 //lblLookOnLeft.Text = mf.tool.lookAheadDistanceOnPixelsLeft.ToString("N0");
 //lblLookOnRight.Text = mf.tool.lookAheadDistanceOnPixelsRight.ToString("N0");

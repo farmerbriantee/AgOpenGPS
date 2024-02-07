@@ -167,7 +167,7 @@
             this.btnDeleteAll.Enabled = false;
             this.btnDeleteAll.FlatAppearance.BorderSize = 0;
             this.btnDeleteAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteAll.Image = global::AgOpenGPS.Properties.Resources.Trash;
+            this.btnDeleteAll.Image = global::AgOpenGPS.Properties.Resources.BoundaryDelete;
             this.btnDeleteAll.Location = new System.Drawing.Point(13, 286);
             this.btnDeleteAll.Name = "btnDeleteAll";
             this.btnDeleteAll.Size = new System.Drawing.Size(61, 61);
@@ -338,7 +338,7 @@
             this.btnReCenter.BackColor = System.Drawing.Color.Transparent;
             this.btnReCenter.FlatAppearance.BorderSize = 0;
             this.btnReCenter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReCenter.Image = global::AgOpenGPS.Properties.Resources.WindowMaximize;
+            this.btnReCenter.Image = global::AgOpenGPS.Properties.Resources.WindowRestore;
             this.btnReCenter.Location = new System.Drawing.Point(630, 297);
             this.btnReCenter.Name = "btnReCenter";
             this.btnReCenter.Size = new System.Drawing.Size(61, 61);
@@ -369,8 +369,8 @@
             this.Name = "FormMap";
             this.ShowInTaskbar = false;
             this.Text = "Bing Maps for Background";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMap_FormClosing);
-            this.Load += new System.EventHandler(this.FormMap_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormHeadland_FormClosing);
+            this.Load += new System.EventHandler(this.FormHeadland_Load);
             this.gboxField.ResumeLayout(false);
             this.gboxField.PerformLayout();
             this.gboxBoundary.ResumeLayout(false);

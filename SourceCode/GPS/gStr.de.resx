@@ -177,12 +177,6 @@
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>Wähle oder erstellen sie ein Anderes</value>
   </data>
-  <data name="gsClose" xml:space="preserve">
-    <value>Schließen</value>
-  </data>
-  <data name="gsCloseAllWindowsFirst" xml:space="preserve">
-    <value>Schließen Sie zunächst alle Fenster</value>
-  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Feld vorher schließen</value>
   </data>
@@ -208,7 +202,10 @@
     <value>Neues Feld erstellen</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Strom</value>
+    <value>Strom (A)</value>
+  </data>
+  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
+    <value>Strom (A)</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>A-B Kurven Datei fehlerhaft</value>
@@ -495,6 +492,9 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Neues Feld starten</value>
   </data>
+  <data name="gsSteerChart" xml:space="preserve">
+    <value>Lenkwinkel (steer chart)</value>
+  </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>Assistent Lenkeinstellungen</value>
   </data>
@@ -527,9 +527,6 @@
   </data>
   <data name="gsWest" xml:space="preserve">
     <value>Westen</value>
-  </data>
-  <data name="gsWindowsStillOpen" xml:space="preserve">
-    <value>Windows ist immer noch geöffnet</value>
   </data>
   <data name="gsXTEChart" xml:space="preserve">
     <value>Abweichung von der Linie (XTE)</value>
@@ -905,7 +902,9 @@ Fügt dem aktuellen Namen einen Zeitstempel hinzu. Hilft auch dabei, den Namen e
 Erstellt eine Linie zwischen dem Punkt A und dem Punkt B. Die Richtung der Linie wird berechnet. Sie können die Richtung nachkorrigieren, indem Sie die Richtung als Zahl eingeben (0=Nord, 180=Süd) oder B beliebig oft berühren.</value>
   </data>
   <data name="ha_btnCancel" xml:space="preserve">
-    <value>Verlassen Sie das Formular und machen Sie alle Änderungen rückgängig.</value>
+    <value>Abbrechen und Ausschalten
+
+Verlassen Sie das Fenster und deaktivieren Sie die automatische Lenkung. Vorhandene Linien werden nicht gelöscht, sondern nur in der Hauptanzeige ausgeblendet.</value>
   </data>
   <data name="ha_btnCancelCreate" xml:space="preserve">
     <value>Abbrechen und zurück
