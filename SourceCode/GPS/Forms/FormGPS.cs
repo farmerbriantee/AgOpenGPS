@@ -251,7 +251,6 @@ namespace AgOpenGPS
 
         #endregion // Class Props and instances
 
-
         public FormGPS()
         {
             //winform initialization
@@ -646,7 +645,7 @@ namespace AgOpenGPS
             }
         }
 
-        private void FormGPS_Resize(object sender, EventArgs e)
+        private void FormGPS_ResizeEnd(object sender, EventArgs e)
         {
             PanelsAndOGLSize();
             if (isGPSPositionInitialized) SetZoom();
@@ -704,6 +703,7 @@ namespace AgOpenGPS
                 Settings.Default.setFeatures = new CFeatureSettings();
             }
         }
+
         public enum textures : uint
         {
             SkyDay, Floor, Font,

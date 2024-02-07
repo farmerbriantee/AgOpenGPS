@@ -143,8 +143,8 @@ namespace AgOpenGPS
 
             GL.MatrixMode(MatrixMode.Modelview);
 
-            //tlp1.Width = Width - oglSelf.Width - 4;
-            //tlp1.Left = oglSelf.Width;
+            tlp1.Width = Width - oglSelf.Width - 4;
+            tlp1.Left = oglSelf.Width;
 
             Screen myScreen = Screen.FromControl(this);
             Rectangle area = myScreen.WorkingArea;
@@ -302,9 +302,6 @@ namespace AgOpenGPS
             mdF = double.MaxValue;
             mdG = double.MaxValue;
 
-
-            lblDist.Text = operations.ToString();
-
             if (bndList.Count > 7)
             {
                 //unhide first point
@@ -358,7 +355,6 @@ namespace AgOpenGPS
             //start all over
             start = end = 99999;
             operations = 0;
-            lblDist.Text = "";
             zoom = 1;
             sX = 0;
             sY = 0;
@@ -819,8 +815,6 @@ namespace AgOpenGPS
 
         private void oglSelf_MouseDown(object sender, MouseEventArgs e)
         {
-            if (mf.bnd.bndList.Count < 1) { return; }
-
             Point ptt = oglSelf.PointToClient(Cursor.Position);
 
             int wid = oglSelf.Width;
@@ -835,6 +829,8 @@ namespace AgOpenGPS
                 cboxIsZoom.Checked = false;
                 return;
             }
+
+            if (mf.bnd.bndList.Count < 1) { return; }
 
             //Convert to Origin in the center of window, 800 pixels
             fixPt.X = ptt.X - halfWid;
