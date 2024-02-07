@@ -90,14 +90,7 @@ namespace AgOpenGPS
         {
             Width = (Height * 4 / 3);
 
-            if (Height > Width)
-            {
-                oglSelf.Height = oglSelf.Width = Width - 60;
-            }
-            else
-            {
-                oglSelf.Height = oglSelf.Width = Height - 60;
-            }
+            oglSelf.Height = oglSelf.Width = Height - 50;
 
             oglSelf.Left = 2;
             oglSelf.Top = 2;
@@ -114,13 +107,14 @@ namespace AgOpenGPS
             GL.MatrixMode(MatrixMode.Modelview);
 
             tlp1.Width = Width - oglSelf.Width - 4;
-            tlp1.Left = oglSelf.Width + 4;
+            tlp1.Left = oglSelf.Width;
 
             Screen myScreen = Screen.FromControl(this);
             Rectangle area = myScreen.WorkingArea;
 
             this.Top = (area.Height - this.Height) / 2;
             this.Left = (area.Width - this.Width) / 2;
+
         }
 
         private void FormHeadLine_FormClosing(object sender, FormClosingEventArgs e)

@@ -314,6 +314,7 @@ namespace AgOpenGPS
         private void btnResetReduce_Click(object sender, EventArgs e)
         {
             //start all over
+            start = end = 99999;
             operations = 0;
             lblDist.Text = "";
             zoom = 1;
@@ -672,69 +673,73 @@ namespace AgOpenGPS
         {
             bool isLoop = false;
             int limit = end;
+            if (end == 99999 || start == 99999) return;
 
-            if ((Math.Abs(start - end)) > (mf.bnd.bndList[bndSelect].fenceLine.Count * 0.5))
+            if (mf.bnd.bndList[bndSelect].fenceLine.Count > 0)
             {
-                isLoop = true;
-                if (start < end)
+                if ((Math.Abs(start - end)) > (mf.bnd.bndList[bndSelect].fenceLine.Count * 0.5))
                 {
-                    (end, start) = (start, end);
+                    isLoop = true;
+                    if (start < end)
+                    {
+                        (end, start) = (start, end);
+                    }
+
+                    limit = end;
+                    end = mf.bnd.bndList[bndSelect].fenceLine.Count;
+                }
+                else //normal
+                {
+                    if (start > end)
+                    {
+                        (end, start) = (start, end);
+                    }
                 }
 
-                limit = end;
-                end = mf.bnd.bndList[bndSelect].fenceLine.Count;
-            }
-            else //normal
-            {
-                if (start > end)
+                vec3[] arr = new vec3[mf.bnd.bndList[0].fenceLine.Count];
+                mf.bnd.bndList[0].fenceLine.CopyTo(arr);
+
+                if (start++ == arr.Length) start--;
+                //if (end-- == -1) end = 0;
+                if (start == end) return;
+
+                for (int i = start; i < end; i++)
                 {
-                    (end, start) = (start, end);
+                    //calculate the point inside the boundary
+                    arr[i].heading = 999;
+
+                    if (isLoop && i == mf.bnd.bndList[bndSelect].fenceLine.Count - 1)
+                    {
+                        i = -1;
+                        isLoop = false;
+                        end = limit;
+                    }
                 }
-            }
 
-            vec3[] arr = new vec3[mf.bnd.bndList[0].fenceLine.Count];
-            mf.bnd.bndList[0].fenceLine.CopyTo(arr);
+                mf.bnd.bndList[bndSelect].fenceLine.Clear();
 
-            if (start++ == arr.Length) start--;
-            //if (end-- == -1) end = 0;
-            if (start == end) return;
-
-            for (int i = start; i < end; i++)
-            {
-                //calculate the point inside the boundary
-                arr[i].heading = 999;
-
-                if (isLoop && i == mf.bnd.bndList[bndSelect].fenceLine.Count - 1)
+                for (int i = 0; i < arr.Length; i++)
                 {
-                    i = -1;
-                    isLoop = false;
-                    end = limit;
+                    //calculate the point inside the boundary
+                    if (arr[i].heading != 999)
+                        mf.bnd.bndList[bndSelect].fenceLine.Add(new vec3(arr[i]));
+
+                    if (isLoop && i == arr.Length - 1)
+                    {
+                        i = -1;
+                        isLoop = false;
+                        end = limit;
+                    }
                 }
+
+                mf.bnd.bndList[0].FixFenceLine(0);
+
+                mf.CalculateMinMax();
+                mf.bnd.BuildTurnLines();
+
+                mf.fd.UpdateFieldBoundaryGUIAreas();
+                mf.FileSaveBoundary();
             }
-
-            mf.bnd.bndList[bndSelect].fenceLine.Clear();
-
-            for (int i = 0; i < arr.Length; i++)
-            {
-                //calculate the point inside the boundary
-                if (arr[i].heading != 999)
-                    mf.bnd.bndList[bndSelect].fenceLine.Add(new vec3(arr[i]));
-
-                if (isLoop && i == arr.Length - 1)
-                {
-                    i = -1;
-                    isLoop = false;
-                    end = limit;
-                }
-            }
-
-            mf.bnd.bndList[0].FixFenceLine(0);
-
-            mf.CalculateMinMax();
-            mf.bnd.BuildTurnLines();
-
-            mf.fd.UpdateFieldBoundaryGUIAreas();
-            mf.FileSaveBoundary();
 
             start = 99999; end = 99999;
             isA = true;

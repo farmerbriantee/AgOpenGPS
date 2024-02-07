@@ -42,13 +42,23 @@ namespace AgOpenGPS
             mf.FileLoadHeadLines();
             FixLabelsCurve();
 
-            lblToolWidth.Text = "( " + mf.unitsFtM + " )      Tool: " + ((mf.tool.width - mf.tool.overlap) * mf.m2FtOrM).ToString("N1") + mf.unitsFtM;
+            lblToolWidth.Text = "( " + mf.unitsFtM + " )      Tool: " 
+                + ((mf.tool.width - mf.tool.overlap) * mf.m2FtOrM).ToString("N1") + mf.unitsFtM + " ";
 
             mf.bnd.bndList[0].hdLine?.Clear();
 
             cboxIsSectionControlled.Checked = Properties.Settings.Default.setHeadland_isSectionControlled;
             if (cboxIsSectionControlled.Checked) cboxIsSectionControlled.Image = Properties.Resources.HeadlandSectionOn;
             else cboxIsSectionControlled.Image = Properties.Resources.HeadlandSectionOff;
+
+            Size = Properties.Settings.Default.setWindow_HeadAcheSize;
+
+            Screen myScreen = Screen.FromControl(this);
+            Rectangle area = myScreen.WorkingArea;
+
+            this.Top = (area.Height - this.Height) / 2;
+            this.Left = (area.Width - this.Width) / 2;
+            FormHeadAche_ResizeEnd(this, e);
         }
 
         private void FormHeadLine_FormClosing(object sender, FormClosingEventArgs e)
@@ -67,6 +77,39 @@ namespace AgOpenGPS
                 mf.hdl.idx = 0;
             }
             else mf.hdl.idx = -1;
+
+            Properties.Settings.Default.setWindow_HeadAcheSize = Size;
+            Properties.Settings.Default.Save();
+        }
+
+        private void FormHeadAche_ResizeEnd(object sender, EventArgs e)
+        {
+            Width = (Height * 4/3);
+
+            oglSelf.Height = oglSelf.Width = Height - 50;
+
+            oglSelf.Left = 2;
+            oglSelf.Top = 2;
+
+            oglSelf.MakeCurrent();
+            GL.MatrixMode(MatrixMode.Projection);
+            GL.LoadIdentity();
+
+            //58 degrees view
+            GL.Viewport(0, 0, oglSelf.Width, oglSelf.Height);
+            Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(1.01f, 1.0f, 1.0f, 20000);
+            GL.LoadMatrix(ref mat);
+
+            GL.MatrixMode(MatrixMode.Modelview);
+
+            tlp1.Width = Width - oglSelf.Width - 4;
+            tlp1.Left = oglSelf.Width;
+
+            Screen myScreen = Screen.FromControl(this);
+            Rectangle area = myScreen.WorkingArea;
+
+            this.Top = (area.Height - this.Height) / 2;
+            this.Left = (area.Width - this.Width) / 2;
         }
 
         private void FixLabelsCurve()
@@ -133,10 +176,14 @@ namespace AgOpenGPS
         {
             Point pt = oglSelf.PointToClient(Cursor.Position);
 
+            int wid = oglSelf.Width;
+            int halfWid = oglSelf.Width / 2;
+            double scale = (double)wid * 0.903;
+
             if (cboxIsZoom.Checked && !zoomToggle)
             {
-                sX = ((350 - (double)pt.X) / 700) * 1.1;
-                sY = ((350 - (double)pt.Y) / -700) * 1.1;
+                sX = ((halfWid - (double)pt.X) / wid) * 1.1;
+                sY = ((halfWid - (double)pt.Y) / -wid) * 1.1;
                 zoom = 0.1;
                 zoomToggle = true;
                 return;
@@ -144,17 +191,15 @@ namespace AgOpenGPS
 
             zoomToggle = false;
 
-            mf.bnd.bndList[0].hdLine?.Clear();
-            mf.hdl.idx = -1;
-
             //Convert to Origin in the center of window, 800 pixels
-            fixPt.X = pt.X - 350;
-            fixPt.Y = (700 - pt.Y - 350);
+            fixPt.X = pt.X - halfWid;
+            fixPt.Y = (wid - pt.Y - halfWid);
+            
             vec3 plotPt = new vec3
             {
                 //convert screen coordinates to field coordinates
-                easting = fixPt.X * mf.maxFieldDistance / 632 * zoom,
-                northing = fixPt.Y * mf.maxFieldDistance / 632 * zoom,
+                easting = fixPt.X * mf.maxFieldDistance / scale * zoom,
+                northing = fixPt.Y * mf.maxFieldDistance / scale * zoom,
                 heading = 0
             };
 
@@ -167,6 +212,9 @@ namespace AgOpenGPS
             zoom = 1;
             sX = 0;
             sY = 0;
+
+            mf.bnd.bndList[0].hdLine?.Clear();
+            mf.hdl.idx = -1;
 
             if (isA)
             {
@@ -253,15 +301,13 @@ namespace AgOpenGPS
 
                     mf.hdl.tracksArr[mf.hdl.idx].a_point = start;
                     mf.hdl.tracksArr[mf.hdl.idx].trackPts?.Clear();
-                    vec3 pt3 = new vec3();
 
                     if (start < end)
                     {
                         for (int i = start; i <= end; i++)
                         {
                             //calculate the point inside the boundary
-                            pt3 = mf.bnd.bndList[bndSelect].fenceLine[i];
-                            mf.hdl.tracksArr[mf.hdl.idx].trackPts.Add(pt3);
+                            mf.hdl.tracksArr[mf.hdl.idx].trackPts.Add(new vec3(mf.bnd.bndList[bndSelect].fenceLine[i]));
 
                             if (isLoop && i == mf.bnd.bndList[bndSelect].fenceLine.Count - 1)
                             {
@@ -275,9 +321,8 @@ namespace AgOpenGPS
                     {
                         for (int i = start; i >= end; i--)
                         {
-                            //calculate the point inside the boundary
-                            pt3 = mf.bnd.bndList[bndSelect].fenceLine[i];
-                            mf.hdl.tracksArr[mf.hdl.idx].trackPts.Add(pt3);
+                            //calculate the point inside the boundary                            
+                            mf.hdl.tracksArr[mf.hdl.idx].trackPts.Add(new vec3(mf.bnd.bndList[bndSelect].fenceLine[i]));
 
                             if (isLoop && i == 0)
                             {
@@ -371,10 +416,12 @@ namespace AgOpenGPS
 
                     for (int i = 0; i <= (int)(glm.Distance(ptA, ptB)); i++)
                     {
-                        vec3 ptC = new vec3(ptA);
-                        ptC.easting = (Math.Sin(abHead) * i) + ptA.easting;
-                        ptC.northing = (Math.Cos(abHead) * i) + ptA.northing;
-                        ptC.heading = abHead;
+                        vec3 ptC = new vec3(ptA)
+                        {
+                            easting = (Math.Sin(abHead) * i) + ptA.easting,
+                            northing = (Math.Cos(abHead) * i) + ptA.northing,
+                            heading = abHead
+                        };
                         mf.hdl.tracksArr[mf.hdl.idx].trackPts.Add(ptC);
                     }
 
@@ -519,6 +566,21 @@ namespace AgOpenGPS
             oglSelf.SwapBuffers();
         }
 
+        private void oglSelf_Resize(object sender, EventArgs e)
+        {
+            oglSelf.MakeCurrent();
+            GL.MatrixMode(MatrixMode.Projection);
+            GL.LoadIdentity();
+
+            //58 degrees view
+            GL.Viewport(0, 0, oglSelf.Width, oglSelf.Height);
+
+            Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(1.01f, 1.0f, 1.0f, 20000);
+            GL.LoadMatrix(ref mat);
+
+            GL.MatrixMode(MatrixMode.Modelview);
+        }
+
         private void DrawBuiltLines()
         {
             if (isLinesVisible && mf.hdl.tracksArr.Count > 0)
@@ -626,19 +688,6 @@ namespace AgOpenGPS
             Properties.Settings.Default.Save();
 
             Close();
-        }
-
-        private void oglSelf_Resize(object sender, EventArgs e)
-        {
-            oglSelf.MakeCurrent();
-            GL.MatrixMode(MatrixMode.Projection);
-            GL.LoadIdentity();
-
-            //58 degrees view
-            Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(1.01f, 1.0f, 1.0f, 20000);
-            GL.LoadMatrix(ref mat);
-
-            GL.MatrixMode(MatrixMode.Modelview);
         }
 
         private void nudSetDistance_Click(object sender, EventArgs e)

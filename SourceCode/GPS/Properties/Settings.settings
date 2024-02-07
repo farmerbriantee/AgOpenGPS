@@ -695,5 +695,8 @@
     <Setting Name="setWindow_HeadlineSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">1022, 742</Value>
     </Setting>
+    <Setting Name="setWindow_HeadAcheSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">1022, 742</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
