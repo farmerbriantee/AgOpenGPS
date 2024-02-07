@@ -689,8 +689,5 @@
     <Setting Name="setDisplay_camPitch" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-62</Value>
     </Setting>
-    <Setting Name="setWindow_abDrawSize" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">1022, 742</Value>
-    </Setting>
   </Settings>
 </SettingsFile>

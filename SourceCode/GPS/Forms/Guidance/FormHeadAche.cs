@@ -19,9 +19,6 @@ namespace AgOpenGPS
         private int start = 99999, end = 99999;
         private int bndSelect = 0;
 
-        private bool zoomToggle;
-        private double zoom = 1, sX = 0, sY = 0;
-
         public vec3 pint = new vec3(0.0, 1.0, 0.0);
 
         private bool isLinesVisible = true;
@@ -134,42 +131,27 @@ namespace AgOpenGPS
 
         private void oglSelf_MouseDown(object sender, MouseEventArgs e)
         {
-            Point pt = oglSelf.PointToClient(Cursor.Position);
-
-            if (cboxIsZoom.Checked && !zoomToggle)
-            {
-                sX = ((350 - (double)pt.X) / 700) * 1.1;
-                sY = ((350 - (double)pt.Y) / -700) * 1.1;
-                zoom = 0.1;
-                zoomToggle = true;
-                return;
-            }
-
-            zoomToggle = false;
-
             mf.bnd.bndList[0].hdLine?.Clear();
             mf.hdl.idx = -1;
 
+            Point ptt = oglSelf.PointToClient(Cursor.Position);
+
             //Convert to Origin in the center of window, 800 pixels
-            fixPt.X = pt.X - 350;
-            fixPt.Y = (700 - pt.Y - 350);
+            fixPt.X = ptt.X - 350;
+            fixPt.Y = (700 - ptt.Y - 350);
             vec3 plotPt = new vec3
             {
                 //convert screen coordinates to field coordinates
-                easting = fixPt.X * mf.maxFieldDistance / 632 * zoom,
-                northing = fixPt.Y * mf.maxFieldDistance / 632 * zoom,
+                easting = fixPt.X * mf.maxFieldDistance / 632.0,
+                northing = fixPt.Y * mf.maxFieldDistance / 632.0,
                 heading = 0
             };
 
-            plotPt.easting += mf.fieldCenterX + mf.maxFieldDistance * -sX;
-            plotPt.northing += mf.fieldCenterY + mf.maxFieldDistance * -sY;
+            plotPt.easting += mf.fieldCenterX;
+            plotPt.northing += mf.fieldCenterY;
 
             pint.easting = plotPt.easting;
             pint.northing = plotPt.northing;
-
-            zoom = 1;
-            sX = 0;
-            sY = 0;
 
             if (isA)
             {
@@ -298,20 +280,20 @@ namespace AgOpenGPS
 
                     for (int i = 1; i < 30; i++)
                     {
-                        vec3 pnt = new vec3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[ptCnt]);
-                        pnt.easting += (Math.Sin(pnt.heading) * i);
-                        pnt.northing += (Math.Cos(pnt.heading) * i);
-                        mf.hdl.tracksArr[mf.hdl.idx].trackPts.Add(pnt);
+                        vec3 pt = new vec3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[ptCnt]);
+                        pt.easting += (Math.Sin(pt.heading) * i);
+                        pt.northing += (Math.Cos(pt.heading) * i);
+                        mf.hdl.tracksArr[mf.hdl.idx].trackPts.Add(pt);
                     }
 
                     vec3 stat = new vec3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[0]);
 
                     for (int i = 1; i < 30; i++)
                     {
-                        vec3 pnt = new vec3(stat);
-                        pnt.easting -= (Math.Sin(pnt.heading) * i);
-                        pnt.northing -= (Math.Cos(pnt.heading) * i);
-                        mf.hdl.tracksArr[mf.hdl.idx].trackPts.Insert(0, pnt);
+                        vec3 pt = new vec3(stat);
+                        pt.easting -= (Math.Sin(pt.heading) * i);
+                        pt.northing -= (Math.Cos(pt.heading) * i);
+                        mf.hdl.tracksArr[mf.hdl.idx].trackPts.Insert(0, pt);
                     }
 
                     //create a name
@@ -385,20 +367,20 @@ namespace AgOpenGPS
 
                     for (int i = 1; i < 30; i++)
                     {
-                        vec3 pnt = new vec3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[ptCnt]);
-                        pnt.easting += (Math.Sin(pnt.heading) * i);
-                        pnt.northing += (Math.Cos(pnt.heading) * i);
-                        mf.hdl.tracksArr[mf.hdl.idx].trackPts.Add(pnt);
+                        vec3 pt = new vec3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[ptCnt]);
+                        pt.easting += (Math.Sin(pt.heading) * i);
+                        pt.northing += (Math.Cos(pt.heading) * i);
+                        mf.hdl.tracksArr[mf.hdl.idx].trackPts.Add(pt);
                     }
 
                     vec3 stat = new vec3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[0]);
 
                     for (int i = 1; i < 30; i++)
                     {
-                        vec3 pnt = new vec3(stat);
-                        pnt.easting -= (Math.Sin(pnt.heading) * i);
-                        pnt.northing -= (Math.Cos(pnt.heading) * i);
-                        mf.hdl.tracksArr[mf.hdl.idx].trackPts.Insert(0, pnt);
+                        vec3 pt = new vec3(stat);
+                        pt.easting -= (Math.Sin(pt.heading) * i);
+                        pt.northing -= (Math.Cos(pt.heading) * i);
+                        mf.hdl.tracksArr[mf.hdl.idx].trackPts.Insert(0, pt);
                     }
 
                     //create a name
@@ -477,10 +459,16 @@ namespace AgOpenGPS
             GL.LoadIdentity();                  // Reset The View
 
             //back the camera up
-            GL.Translate(0, 0, -mf.maxFieldDistance * zoom);
+            GL.Translate(0, 0, -mf.maxFieldDistance);
 
             //translate to that spot in the world
-            GL.Translate(-mf.fieldCenterX + sX * mf.maxFieldDistance, -mf.fieldCenterY + sY * mf.maxFieldDistance, 0);
+            GL.Translate(-mf.fieldCenterX, -mf.fieldCenterY, 0);
+
+            GL.Color3(1, 1, 1);
+
+            //GL.Enable(EnableCap.Blend);
+
+            //draw all the boundaries
 
             GL.LineWidth(2);
 
@@ -897,11 +885,6 @@ namespace AgOpenGPS
         {
             if (cboxIsSectionControlled.Checked) cboxIsSectionControlled.Image = Properties.Resources.HeadlandSectionOn;
             else cboxIsSectionControlled.Image = Properties.Resources.HeadlandSectionOff;
-        }
-
-        private void cboxIsZoom_CheckedChanged(object sender, EventArgs e)
-        {
-            zoomToggle = false;
         }
 
         public int GetLineIntersection(double p0x, double p0y, double p1x, double p1y,

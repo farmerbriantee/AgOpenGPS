@@ -223,7 +223,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(382, 138);
             this.label1.TabIndex = 134;
-            this.label1.Text = "This version expires:     Feb 12 2024";
+            this.label1.Text = "This version expires:     Feb 5. 2024";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form_First

@@ -37,7 +37,7 @@
             this.headingGroupBox = new System.Windows.Forms.GroupBox();
             this.rbtnLine = new System.Windows.Forms.RadioButton();
             this.rbtnCurve = new System.Windows.Forms.RadioButton();
-            this.nudSetDistance = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudSetDistance = new NudlessNumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
             this.lblMovedDistance = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -62,7 +62,6 @@
             this.btnDeleteCurve = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.cboxIsZoom = new System.Windows.Forms.CheckBox();
             this.headingGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSetDistance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxHelp)).BeginInit();
@@ -246,7 +245,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(842, 340);
+            this.label4.Location = new System.Drawing.Point(740, 340);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(34, 16);
             this.label4.TabIndex = 508;
@@ -298,7 +297,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(945, 337);
+            this.label5.Location = new System.Drawing.Point(861, 337);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(39, 16);
             this.label5.TabIndex = 523;
@@ -354,7 +353,7 @@
             this.button1.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.button1.Image = global::AgOpenGPS.Properties.Resources.Help;
             this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1.Location = new System.Drawing.Point(721, 586);
+            this.button1.Location = new System.Drawing.Point(953, 281);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(53, 46);
             this.button1.TabIndex = 528;
@@ -446,7 +445,7 @@
             this.btnBndLoop.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnBndLoop.Image = global::AgOpenGPS.Properties.Resources.HeadlandBuild;
             this.btnBndLoop.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBndLoop.Location = new System.Drawing.Point(818, 269);
+            this.btnBndLoop.Location = new System.Drawing.Point(716, 269);
             this.btnBndLoop.Name = "btnBndLoop";
             this.btnBndLoop.Size = new System.Drawing.Size(76, 70);
             this.btnBndLoop.TabIndex = 504;
@@ -464,7 +463,7 @@
             this.btnDeleteHeadland.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnDeleteHeadland.Image = global::AgOpenGPS.Properties.Resources.HeadlandReset;
             this.btnDeleteHeadland.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDeleteHeadland.Location = new System.Drawing.Point(923, 269);
+            this.btnDeleteHeadland.Location = new System.Drawing.Point(840, 269);
             this.btnDeleteHeadland.Name = "btnDeleteHeadland";
             this.btnDeleteHeadland.Size = new System.Drawing.Size(76, 70);
             this.btnDeleteHeadland.TabIndex = 465;
@@ -599,33 +598,12 @@
             this.panel1.Size = new System.Drawing.Size(180, 180);
             this.panel1.TabIndex = 533;
             // 
-            // cboxIsZoom
-            // 
-            this.cboxIsZoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboxIsZoom.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxIsZoom.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cboxIsZoom.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.cboxIsZoom.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(255)))), ((int)(((byte)(160)))));
-            this.cboxIsZoom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxIsZoom.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxIsZoom.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.cboxIsZoom.Image = global::AgOpenGPS.Properties.Resources.ZoomOGL;
-            this.cboxIsZoom.Location = new System.Drawing.Point(717, 269);
-            this.cboxIsZoom.Name = "cboxIsZoom";
-            this.cboxIsZoom.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cboxIsZoom.Size = new System.Drawing.Size(72, 72);
-            this.cboxIsZoom.TabIndex = 564;
-            this.cboxIsZoom.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cboxIsZoom.UseVisualStyleBackColor = false;
-            this.cboxIsZoom.CheckedChanged += new System.EventHandler(this.cboxIsZoom_CheckedChanged);
-            // 
             // FormHeadAche
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1010, 720);
-            this.Controls.Add(this.cboxIsZoom);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pboxHelp);
             this.Controls.Add(this.oglSelf);
@@ -706,6 +684,5 @@
         private System.Windows.Forms.PictureBox pboxHelp;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.CheckBox cboxIsZoom;
     }
 }

@@ -237,14 +237,8 @@ namespace AgIO
                             SendSteerModulePort(data, data.Length);
                             break;
                         }
-                    case 0xE5: //232 Symmetric Sections - Zones
-                        {
-                            SendMachineModulePort(data, data.Length);
-                            //SendSteerModulePort(data, data.Length);
-                            break;
-                        }
                 }
-            }                            
+            }
         }
 
         private void ReceiveDataLoopAsync(IAsyncResult asyncResult)

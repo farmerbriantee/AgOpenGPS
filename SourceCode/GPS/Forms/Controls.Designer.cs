@@ -445,22 +445,9 @@ namespace AgOpenGPS
                 flp1.Visible = false;
             }
 
-            if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
-            if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
-
-            if (this.Height > 1000 && this.Width > 1000)
+            using (var form = new FormABDraw(this))
             {
-                using (var form = new FormABDraw2(this))
-                {
-                    form.ShowDialog(this);
-                }
-            }
-            else
-            {
-                using (var form = new FormABDraw(this))
-                {
-                    form.ShowDialog(this);
-                }
+                form.ShowDialog(this);
             }
 
             PanelUpdateRightAndBottom();
@@ -588,25 +575,14 @@ namespace AgOpenGPS
                 }
             }
 
+
             FieldMenuButtonEnableDisable(isJobStarted);
 
             toolStripBtnFieldTools.Enabled = isJobStarted;
 
-            bnd.isHeadlandOn = (bnd.bndList.Count > 0 && bnd.bndList[0].hdLine.Count > 0);
+            bnd.isHeadlandOn = (bnd.bndList.Count > 0 && bnd.bndList[0].hdLine.Count > 0);            
 
-            trk.idx = -1;
-
-            if (isJobStarted && trk.gArr.Count > 0)
-            {
-                for (int i = 0; i < trk.gArr.Count; i++)
-                {
-                    if (trk.gArr[i].isVisible)
-                    {
-                        trk.idx = i;
-                        break;
-                    }
-                }
-            }
+            if (isJobStarted && trk.gArr.Count > 0)  trk.idx = 0;
 
             PanelUpdateRightAndBottom();
 
@@ -1876,17 +1852,6 @@ namespace AgOpenGPS
 
         #region Tools Menu
 
-        private void boundaryToolToolStripMenu_Click(object sender, EventArgs e)
-        {
-            if (isJobStarted)
-            {
-                using (var form = new FormMapBnd(this))
-                {
-                    form.ShowDialog(this);
-                }
-            }
-        }
-
         private void SmoothABtoolStripMenu_Click(object sender, EventArgs e)
         {
             if (isJobStarted && trk.idx > -1)
@@ -2054,22 +2019,6 @@ namespace AgOpenGPS
         #endregion
 
         #region Nav Panel
-
-        private void btnTiltUp_Click(object sender, EventArgs e)
-        {
-            camera.camPitch -= ((camera.camPitch * 0.012) - 1);
-            if (camera.camPitch > -58) camera.camPitch = 0;
-            navPanelCounter = 2;
-        }
-
-        private void btnTiltDn_Click(object sender, EventArgs e)
-        {
-            if (camera.camPitch > -59) camera.camPitch = -60;
-            camera.camPitch += ((camera.camPitch * 0.012) - 1);
-            if (camera.camPitch < -70) camera.camPitch = -70;
-            navPanelCounter = 2;
-        }
-
         private void btn2D_Click(object sender, EventArgs e)
         {
             if (isTT)

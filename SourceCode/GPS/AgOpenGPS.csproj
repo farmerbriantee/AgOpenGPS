@@ -174,12 +174,6 @@
     <Compile Include="Forms\Field\FormEnterFlag.Designer.cs">
       <DependentUpon>FormEnterFlag.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Field\FormMapBnd.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Field\FormMapBnd.Designer.cs">
-      <DependentUpon>FormMapBnd.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FormPan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,12 +209,6 @@
     </Compile>
     <Compile Include="Forms\FormYes.designer.cs">
       <DependentUpon>FormYes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Guidance\FormABDraw2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Guidance\FormABDraw2.Designer.cs">
-      <DependentUpon>FormABDraw2.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Guidance\FormRecordName.cs">
       <SubType>Form</SubType>
@@ -500,7 +488,6 @@
     <Compile Include="Forms\Settings\FormSteerWiz.Designer.cs">
       <DependentUpon>FormSteerWiz.cs</DependentUpon>
     </Compile>
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="gStr.da.Designer.cs">
       <DependentUpon>gStr.da.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -630,9 +617,6 @@
     <EmbeddedResource Include="Forms\Field\FormEnterFlag.resx">
       <DependentUpon>FormEnterFlag.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Field\FormMapBnd.resx">
-      <DependentUpon>FormMapBnd.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormPan.resx">
       <DependentUpon>FormPan.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -652,9 +636,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormYes.resx">
       <DependentUpon>FormYes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Guidance\FormABDraw2.resx">
-      <DependentUpon>FormABDraw2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Guidance\FormRecordName.resx">
       <DependentUpon>FormRecordName.cs</DependentUpon>
@@ -1017,12 +998,6 @@
     <None Include="btnImages\BoundaryCenter.png" />
     <None Include="btnImages\AutoTrackOff.png" />
     <None Include="btnImages\Images\z_TramOnOff.png" />
-    <None Include="btnImages\ZoomOGL.png" />
-    <None Include="btnImages\BoundaryReduce.png" />
-    <None Include="btnImages\BoundarySmooth.png" />
-    <None Include="btnImages\BoundaryMakeLine.png" />
-    <None Include="btnImages\APlusPlusA.png" />
-    <None Include="btnImages\APlusPlusB.png" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />

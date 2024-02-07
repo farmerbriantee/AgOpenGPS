@@ -20,10 +20,6 @@ namespace AgOpenGPS
         public List<vec3> sliceArr = new List<vec3>();
         public List<vec3> backupList = new List<vec3>();
 
-        private bool zoomToggle;
-
-        private double zoom = 1, sX = 0, sY = 0;
-
         public vec3 pint = new vec3(0.0, 1.0, 0.0);
 
         public FormHeadLine(Form callingForm)
@@ -73,8 +69,6 @@ namespace AgOpenGPS
             cboxIsSectionControlled.Checked = Properties.Settings.Default.setHeadland_isSectionControlled;
             if (cboxIsSectionControlled.Checked) cboxIsSectionControlled.Image = Properties.Resources.HeadlandSectionOn;
             else cboxIsSectionControlled.Image = Properties.Resources.HeadlandSectionOff;
-
-            cboxIsZoom.Checked = false;
         }
 
         private void FormHeadLine_FormClosing(object sender, FormClosingEventArgs e)
@@ -95,7 +89,6 @@ namespace AgOpenGPS
 
         private void oglSelf_MouseDown(object sender, MouseEventArgs e)
         {
-
             if (nudSetDistance.Value == 0 && rbtnCurve.Checked)
             {
                 mf.TimedMessageBox(3000, "Distance Error", "Distance Set to 0, Nothing to Move");
@@ -104,14 +97,6 @@ namespace AgOpenGPS
             sliceArr?.Clear();
 
             Point ptt = oglSelf.PointToClient(Cursor.Position);
-            if (cboxIsZoom.Checked && !zoomToggle)
-            {
-                sX = ((350 - (double)ptt.X) / 700) * 1.1;
-                sY = ((350 - (double)ptt.Y) / -700) * 1.1;
-                zoom = 0.1;
-                zoomToggle = true;
-                return;
-            }
 
             //Convert to Origin in the center of window, 800 pixels
             fixPt.X = ptt.X - 350;
@@ -119,21 +104,16 @@ namespace AgOpenGPS
             vec3 plotPt = new vec3
             {
                 //convert screen coordinates to field coordinates
-                easting = fixPt.X * mf.maxFieldDistance / 632 * zoom,
-                northing = fixPt.Y * mf.maxFieldDistance / 632 * zoom,
+                easting = fixPt.X * mf.maxFieldDistance / 632.0,
+                northing = fixPt.Y * mf.maxFieldDistance / 632.0,
                 heading = 0
             };
 
-            plotPt.easting += mf.fieldCenterX + mf.maxFieldDistance * -sX;
-            plotPt.northing += mf.fieldCenterY + mf.maxFieldDistance * -sY;
+            plotPt.easting += mf.fieldCenterX;
+            plotPt.northing += mf.fieldCenterY;
 
             pint.easting = plotPt.easting;
             pint.northing = plotPt.northing;
-
-            zoomToggle = false;
-            zoom = 1;
-            sX = 0;
-            sY = 0;
 
             if (isA)
             {
@@ -315,12 +295,10 @@ namespace AgOpenGPS
 
                     for (int i = 0; i <= (int)(glm.Distance(ptA, ptB)); i++)
                     {
-                        vec3 ptC = new vec3(ptA)
-                        {
-                            easting = (Math.Sin(abHead) * i) + ptA.easting,
-                            northing = (Math.Cos(abHead) * i) + ptA.northing,
-                            heading = abHead
-                        };
+                        vec3 ptC = new vec3(ptA);
+                        ptC.easting = (Math.Sin(abHead) * i) + ptA.easting;
+                        ptC.northing = (Math.Cos(abHead) * i) + ptA.northing;
+                        ptC.heading = abHead;
                         sliceArr.Add(ptC);
                     }
 
@@ -365,10 +343,12 @@ namespace AgOpenGPS
             GL.LoadIdentity();                  // Reset The View
 
             //back the camera up
-            GL.Translate(0, 0, -mf.maxFieldDistance * zoom);
+            GL.Translate(0, 0, -mf.maxFieldDistance);
 
             //translate to that spot in the world
-            GL.Translate(-mf.fieldCenterX + sX * mf.maxFieldDistance, -mf.fieldCenterY + sY * mf.maxFieldDistance, 0);
+            GL.Translate(-mf.fieldCenterX, -mf.fieldCenterY, 0);
+
+            GL.Color3(1, 1, 1);
 
             //draw all the boundaries
             GL.LineWidth(4);
@@ -376,11 +356,11 @@ namespace AgOpenGPS
             for (int j = 0; j < mf.bnd.bndList.Count; j++)
             {
                 if (j == bndSelect)
-                    GL.Color3(0.025f, 0.05f, 0.020f);
+                    GL.Color3(0.25f, 0.5f, 0.20f);
                 else
                     GL.Color3(0.70f, 0.25f, 0.10f);
 
-                GL.Begin(PrimitiveType.LineStrip);
+                GL.Begin(PrimitiveType.Lines);
                 for (int i = 0; i < mf.bnd.bndList[j].fenceLine.Count; i++)
                 {
                     GL.Vertex3(mf.bnd.bndList[j].fenceLine[i].easting, mf.bnd.bndList[j].fenceLine[i].northing, 0);
@@ -388,18 +368,12 @@ namespace AgOpenGPS
                 GL.End();
             }
 
-            //the vehicle
-            GL.PointSize(16.0f);
-            GL.Begin(PrimitiveType.Points);
-            GL.Color3(0.0f, 0.00f, 0.0f);
-            GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0.0);
-            GL.End();
-
-            GL.PointSize(8.0f);
-            GL.Begin(PrimitiveType.Points);
-            GL.Color3(0.95f, 0.190f, 0.20f);
-            GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0.0);
-            GL.End();
+            ////the vehicle
+            //GL.PointSize(8.0f);
+            //GL.Begin(PrimitiveType.Points);
+            //GL.Color3(0.95f, 0.90f, 0.0f);
+            //GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0.0);
+            //GL.End();
 
             //draw the line building graphics
             if (start != 99999 || end != 99999) DrawABTouchLine();
@@ -428,8 +402,8 @@ namespace AgOpenGPS
             }
             GL.End();
 
-            GL.LineWidth(2);
-            GL.Color3(0.943f, 0.083f, 0.9150f);
+            GL.LineWidth(4);
+            GL.Color3(0.843f, 0.83f, 0.150f);
             GL.Begin(PrimitiveType.LineLoop);
 
             for (int i = 0; i < mf.bnd.bndList[0].hdLine.Count; i++)
@@ -559,6 +533,7 @@ namespace AgOpenGPS
                 vec3 ptEnd = new vec3(hdArr[hdArr.Length - 1].easting, hdArr[hdArr.Length - 1].northing, hdArr[hdArr.Length - 1].heading);
 
                 mf.bnd.bndList[0].hdLine.Add(ptEnd);
+                delta = 0;
             }
 
             mf.FileSaveHeadland();
@@ -940,11 +915,6 @@ namespace AgOpenGPS
         {
             if (cboxIsSectionControlled.Checked) cboxIsSectionControlled.Image = Properties.Resources.HeadlandSectionOn;
             else cboxIsSectionControlled.Image = Properties.Resources.HeadlandSectionOff;
-        }
-
-        private void cboxIsZoom_CheckedChanged(object sender, EventArgs e)
-        {
-            zoomToggle = false;
         }
 
         private void btnHeadlandOff_Click(object sender, EventArgs e)

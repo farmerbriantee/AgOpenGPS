@@ -2771,17 +2771,5 @@ namespace AgOpenGPS.Properties {
                 this["setDisplay_camPitch"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1022, 742")]
-        public global::System.Drawing.Size setWindow_abDrawSize {
-            get {
-                return ((global::System.Drawing.Size)(this["setWindow_abDrawSize"]));
-            }
-            set {
-                this["setWindow_abDrawSize"] = value;
-            }
-        }
     }
 }
