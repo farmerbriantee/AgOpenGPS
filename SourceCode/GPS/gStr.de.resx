@@ -1,0 +1,1571 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="gsABCurve" xml:space="preserve">
+    <value>A-B Kurve</value>
+  </data>
+  <data name="gsABline" xml:space="preserve">
+    <value>A-B Linie</value>
+  </data>
+  <data name="gsAbout" xml:space="preserve">
+    <value>Über...</value>
+  </data>
+  <data name="gsActionHasBeenCancelled" xml:space="preserve">
+    <value>Aktion abgebrochen</value>
+  </data>
+  <data name="gsActual" xml:space="preserve">
+    <value>Aktuell</value>
+  </data>
+  <data name="gsAgressiveness" xml:space="preserve">
+    <value>Aggressivität</value>
+  </data>
+  <data name="gsAreYouSure" xml:space="preserve">
+    <value>Sind Sie sicher?</value>
+  </data>
+  <data name="gsArea" xml:space="preserve">
+    <value>Fläche</value>
+  </data>
+  <data name="gsAutoSteerConfiguration" xml:space="preserve">
+    <value>Lenkungseinstellungen</value>
+  </data>
+  <data name="gsAutoSteerPort" xml:space="preserve">
+    <value>AutoSteer Port</value>
+  </data>
+  <data name="gsBasedOnField" xml:space="preserve">
+    <value>Basierend auf Feld:</value>
+  </data>
+  <data name="gsBoundary" xml:space="preserve">
+    <value>Schlaggrenze erstellen</value>
+  </data>
+  <data name="gsBoundaryLineFilesAreCorrupt" xml:space="preserve">
+    <value>Außengrenze Datei fehlerhaft</value>
+  </data>
+  <data name="gsBoundaryMenu" xml:space="preserve">
+    <value>Kontur an der Außengrenze</value>
+  </data>
+  <data name="gsButFieldIsLoaded" xml:space="preserve">
+    <value>aber Feld wurde geladen</value>
+  </data>
+  <data name="gsCentimeters" xml:space="preserve">
+    <value>Zentimeter</value>
+  </data>
+  <data name="gsCharts" xml:space="preserve">
+    <value>Diagramme</value>
+  </data>
+  <data name="gsChooseADifferentField" xml:space="preserve">
+    <value>Wählen Sie ein anderes Feld</value>
+  </data>
+  <data name="gsChooseADifferentName" xml:space="preserve">
+    <value>Wählen Sie einen anderen Namen</value>
+  </data>
+  <data name="gsChooseBuildDifferentone" xml:space="preserve">
+    <value>Wähle oder erstellen sie ein Anderes</value>
+  </data>
+  <data name="gsClose" xml:space="preserve">
+    <value>Schließen</value>
+  </data>
+  <data name="gsCloseAllWindowsFirst" xml:space="preserve">
+    <value>Schließen Sie zunächst alle Fenster</value>
+  </data>
+  <data name="gsCloseFieldFirst" xml:space="preserve">
+    <value>Feld vorher schließen</value>
+  </data>
+  <data name="gsColors" xml:space="preserve">
+    <value>Farben</value>
+  </data>
+  <data name="gsCompletelyDeleteBoundary" xml:space="preserve">
+    <value>Ganze Schlaggrenze löschen</value>
+  </data>
+  <data name="gsContourFileIsCorrupt" xml:space="preserve">
+    <value>Kontur Datei fehlerhaft</value>
+  </data>
+  <data name="gsContourOn" xml:space="preserve">
+    <value>Kontur aktiviert</value>
+  </data>
+  <data name="gsCouldntGenerateValidPath" xml:space="preserve">
+    <value>Kein gültiger Pfad</value>
+  </data>
+  <data name="gsCreateABoundaryFirst" xml:space="preserve">
+    <value>Zuerst eine Außengrenze erstellen</value>
+  </data>
+  <data name="gsCreateNewField" xml:space="preserve">
+    <value>Neues Feld erstellen</value>
+  </data>
+  <data name="gsCurrent" xml:space="preserve">
+    <value>Strom</value>
+  </data>
+  <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
+    <value>A-B Kurven Datei fehlerhaft</value>
+  </data>
+  <data name="gsCurveNotOn" xml:space="preserve">
+    <value>A-B Kurve nicht aktiv</value>
+  </data>
+  <data name="gsDeleteAllContoursAndSections" xml:space="preserve">
+    <value>Alle Konturen und bearbeitete Fläche löschen</value>
+  </data>
+  <data name="gsDeleteAppliedArea" xml:space="preserve">
+    <value>Bearbeitete Fläche löschen</value>
+  </data>
+  <data name="gsDeleteContourPaths" xml:space="preserve">
+    <value>Konturpfade löschen</value>
+  </data>
+  <data name="gsDeleteForSure" xml:space="preserve">
+    <value>Wirklich löschen?</value>
+  </data>
+  <data name="gsDirectories" xml:space="preserve">
+    <value>Verzeichnisse</value>
+  </data>
+  <data name="gsDirectoryExists" xml:space="preserve">
+    <value>Verzeichnis existiert</value>
+  </data>
+  <data name="gsDistance" xml:space="preserve">
+    <value>Entfernung</value>
+  </data>
+  <data name="gsDriveIn" xml:space="preserve">
+    <value>Feld an aktueller Position</value>
+  </data>
+  <data name="gsDriveThru" xml:space="preserve">
+    <value>Durchfahren</value>
+  </data>
+  <data name="gsDriving" xml:space="preserve">
+    <value>fahren</value>
+  </data>
+  <data name="gsEast" xml:space="preserve">
+    <value>Ost</value>
+  </data>
+  <data name="gsEditABCurve" xml:space="preserve">
+    <value>A-B Kurve bearbeiten</value>
+  </data>
+  <data name="gsEditABLine" xml:space="preserve">
+    <value>A-B Linie bearbeiten</value>
+  </data>
+  <data name="gsEditFieldName" xml:space="preserve">
+    <value>Feldname ändern</value>
+  </data>
+  <data name="gsEncoderCounts" xml:space="preserve">
+    <value>Anzahl</value>
+  </data>
+  <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
+    <value>Koordinaten für Simulator eingeben</value>
+  </data>
+  <data name="gsEnterFieldName" xml:space="preserve">
+    <value>Benennen Sie das Feld</value>
+  </data>
+  <data name="gsEnterSimCoords" xml:space="preserve">
+    <value>Sim Koordinaten eingeben</value>
+  </data>
+  <data name="gsError" xml:space="preserve">
+    <value>FEHLER</value>
+  </data>
+  <data name="gsErrorreadingKML" xml:space="preserve">
+    <value>Fehler beim KML einlesen</value>
+  </data>
+  <data name="gsField" xml:space="preserve">
+    <value>Feld</value>
+  </data>
+  <data name="gsFieldFileIsCorrupt" xml:space="preserve">
+    <value>Feld Datei ist fehlerhaft</value>
+  </data>
+  <data name="gsFieldIsOpen" xml:space="preserve">
+    <value>Feld ist geöffnet</value>
+  </data>
+  <data name="gsFieldNotOpen" xml:space="preserve">
+    <value>Feld nicht geöffnet</value>
+  </data>
+  <data name="gsFileError" xml:space="preserve">
+    <value>Dateien fehlerhaft</value>
+  </data>
+  <data name="gsFlagFileIsCorrupt" xml:space="preserve">
+    <value>Flaggen Datei fehlerhaft</value>
+  </data>
+  <data name="gsForNow" xml:space="preserve">
+    <value>Für jetzt</value>
+  </data>
+  <data name="gsFromExisting" xml:space="preserve">
+    <value>aus Bestehendem</value>
+  </data>
+  <data name="gsFromKml" xml:space="preserve">
+    <value>aus KML</value>
+  </data>
+  <data name="gsHeadingChart" xml:space="preserve">
+    <value>Fahrtrichtung (heading)</value>
+  </data>
+  <data name="gsHeadland" xml:space="preserve">
+    <value>Vorgewende</value>
+  </data>
+  <data name="gsHeadlandForm" xml:space="preserve">
+    <value>Vorgewende erstellen und bearbeiten</value>
+  </data>
+  <data name="gsHelp" xml:space="preserve">
+    <value>Hilfe</value>
+  </data>
+  <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
+    <value>Falsche Richtung? Fahrzeug antippen</value>
+  </data>
+  <data name="gsInches" xml:space="preserve">
+    <value>Zoll</value>
+  </data>
+  <data name="gsInner" xml:space="preserve">
+    <value>Innere</value>
+  </data>
+  <data name="gsKMH" xml:space="preserve">
+    <value>km/h</value>
+  </data>
+  <data name="gsLanguage" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="gsMPH" xml:space="preserve">
+    <value>mp/h</value>
+  </data>
+  <data name="gsMachinePort" xml:space="preserve">
+    <value>Maschinen Port</value>
+  </data>
+  <data name="gsMakeBoundaryContours" xml:space="preserve">
+    <value>Grenzkonturen erstellen</value>
+  </data>
+  <data name="gsManual" xml:space="preserve">
+    <value>Manuell</value>
+  </data>
+  <data name="gsMeters" xml:space="preserve">
+    <value>Meter</value>
+  </data>
+  <data name="gsMissingABLinesFile" xml:space="preserve">
+    <value>A-B Datei fehlt</value>
+  </data>
+  <data name="gsMissingBoundaryFile" xml:space="preserve">
+    <value>Außengrenze Datei fehlt</value>
+  </data>
+  <data name="gsMissingContourFile" xml:space="preserve">
+    <value>Kontur Datei fehlt</value>
+  </data>
+  <data name="gsMissingFlagsFile" xml:space="preserve">
+    <value>Flaggen Datei fehlt</value>
+  </data>
+  <data name="gsMissingSectionFile" xml:space="preserve">
+    <value>Datei der bearbeiteten Fläche fehlt</value>
+  </data>
+  <data name="gsN_East" xml:space="preserve">
+    <value>Nordost</value>
+  </data>
+  <data name="gsN_West" xml:space="preserve">
+    <value>Nordwest</value>
+  </data>
+  <data name="gsNew" xml:space="preserve">
+    <value>Neu</value>
+  </data>
+  <data name="gsNoABLineActive" xml:space="preserve">
+    <value>Keine A-B Linie aktiv</value>
+  </data>
+  <data name="gsNoBoundary" xml:space="preserve">
+    <value>Keine Außengrenze</value>
+  </data>
+  <data name="gsNoFieldsFound" xml:space="preserve">
+    <value>Kein Feld gefunden</value>
+  </data>
+  <data name="gsNoGuidanceLines" xml:space="preserve">
+    <value>Keine Führungslinien</value>
+  </data>
+  <data name="gsNoSettingsWithIMU" xml:space="preserve">
+    <value>keine Einstellung mit IMU nötig</value>
+  </data>
+  <data name="gsNone" xml:space="preserve">
+    <value>keine</value>
+  </data>
+  <data name="gsNoneUsed" xml:space="preserve">
+    <value>Keine verwendet</value>
+  </data>
+  <data name="gsNorth" xml:space="preserve">
+    <value>Norden</value>
+  </data>
+  <data name="gsNothingDeleted" xml:space="preserve">
+    <value>Es wurde nichts gelöscht</value>
+  </data>
+  <data name="gsOffset" xml:space="preserve">
+    <value>Offset</value>
+  </data>
+  <data name="gsOffsetFix" xml:space="preserve">
+    <value>Offset Fix</value>
+  </data>
+  <data name="gsOpen" xml:space="preserve">
+    <value>Öffnen</value>
+  </data>
+  <data name="gsOuter" xml:space="preserve">
+    <value>Äußere</value>
+  </data>
+  <data name="gsOvershootReduction" xml:space="preserve">
+    <value>Überschwingungsreduzierung</value>
+  </data>
+  <data name="gsPass" xml:space="preserve">
+    <value>Durchgang #</value>
+  </data>
+  <data name="gsPasses" xml:space="preserve">
+    <value>Spuranzahl</value>
+  </data>
+  <data name="gsPause" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="gsPleaseEnterABLine" xml:space="preserve">
+    <value>Bitte A-B Linie eingeben</value>
+  </data>
+  <data name="gsPressureSensorValueLabel" xml:space="preserve">
+    <value>Druck (bar)</value>
+  </data>
+  <data name="gsProblemMakingPath" xml:space="preserve">
+    <value>Problem beim Erstellen des Pfades</value>
+  </data>
+  <data name="gsProgramWillExitPleaseRestart" xml:space="preserve">
+    <value>Programm wird beendet – bitte neu starten</value>
+  </data>
+  <data name="gsReallyResetEverything" xml:space="preserve">
+    <value>Wirklich alles zurücksetzten</value>
+  </data>
+  <data name="gsRecord" xml:space="preserve">
+    <value>Aufzeichnung</value>
+  </data>
+  <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
+    <value>Pfad Datei fehlerhaft</value>
+  </data>
+  <data name="gsResetAll" xml:space="preserve">
+    <value>Alles zurücksetzen</value>
+  </data>
+  <data name="gsResetAllForSure" xml:space="preserve">
+    <value>Wirklich alles zurücksetzten?</value>
+  </data>
+  <data name="gsResume" xml:space="preserve">
+    <value>Fortsetzen</value>
+  </data>
+  <data name="gsS_East" xml:space="preserve">
+    <value>Südosten</value>
+  </data>
+  <data name="gsS_West" xml:space="preserve">
+    <value>Südwesten</value>
+  </data>
+  <data name="gsSaveAndReturn" xml:space="preserve">
+    <value>Speichern und zurück</value>
+  </data>
+  <data name="gsSaveAs" xml:space="preserve">
+    <value>Speichern unter</value>
+  </data>
+  <data name="gsSentToMachineModule" xml:space="preserve">
+    <value>Zum Maschinen Modul senden</value>
+  </data>
+  <data name="gsSetPoint" xml:space="preserve">
+    <value>Sollwert</value>
+  </data>
+  <data name="gsShiftGPSPosition" xml:space="preserve">
+    <value>GPS Position verschieben (cm)</value>
+  </data>
+  <data name="gsSimulatorOn" xml:space="preserve">
+    <value>Simulator Ein</value>
+  </data>
+  <data name="gsSlowDownBelow" xml:space="preserve">
+    <value>Langsamer fahren als</value>
+  </data>
+  <data name="gsSmoothABCurve" xml:space="preserve">
+    <value>A-B-Kurve glätten</value>
+  </data>
+  <data name="gsSort" xml:space="preserve">
+    <value>Sortieren</value>
+  </data>
+  <data name="gsSouth" xml:space="preserve">
+    <value>Süden</value>
+  </data>
+  <data name="gsSpacing" xml:space="preserve">
+    <value>Abstand (cm)</value>
+  </data>
+  <data name="gsStartDeleteABoundary" xml:space="preserve">
+    <value>Schlaggrenze erstellen oder löschen</value>
+  </data>
+  <data name="gsStartNewField" xml:space="preserve">
+    <value>Neues Feld starten</value>
+  </data>
+  <data name="gsSteerWizard" xml:space="preserve">
+    <value>Assistent Lenkeinstellungen</value>
+  </data>
+  <data name="gsStopRecordPauseBoundary" xml:space="preserve">
+    <value>Grenze aufzeichnen, pausieren, stoppen</value>
+  </data>
+  <data name="gsToFile" xml:space="preserve">
+    <value>in Datei</value>
+  </data>
+  <data name="gsTooFast" xml:space="preserve">
+    <value>Zu schnell</value>
+  </data>
+  <data name="gsTopFieldView" xml:space="preserve">
+    <value>Feld Übersicht</value>
+  </data>
+  <data name="gsTramLines" xml:space="preserve">
+    <value>Fahrgassen</value>
+  </data>
+  <data name="gsTurnABCurveOn" xml:space="preserve">
+    <value>A-B Kurve einschalten</value>
+  </data>
+  <data name="gsTurnOnContourOrMakeABLine" xml:space="preserve">
+    <value>Kontur aktivieren oder A-B Linie erstellen</value>
+  </data>
+  <data name="gsUseSelected" xml:space="preserve">
+    <value>Ausgewähltes verwenden</value>
+  </data>
+  <data name="gsWebCam" xml:space="preserve">
+    <value>Webkamera</value>
+  </data>
+  <data name="gsWest" xml:space="preserve">
+    <value>Westen</value>
+  </data>
+  <data name="gsWindowsStillOpen" xml:space="preserve">
+    <value>Windows ist immer noch geöffnet</value>
+  </data>
+  <data name="gsXTEChart" xml:space="preserve">
+    <value>Abweichung von der Linie (XTE)</value>
+  </data>
+  <data name="h_btn2D" xml:space="preserve">
+    <value>2D Ansicht</value>
+  </data>
+  <data name="h_btn3D" xml:space="preserve">
+    <value>3D Ansicht</value>
+  </data>
+  <data name="h_btnABDraw" xml:space="preserve">
+    <value>Knopf um A-B Linien zu Zeichnen
+
+Ist nur verfügbar, wenn eine Außengrenze erstellt wurde. Es öffnet sich ein neues Fenster, in dem Sie auf die Grenze klicken können, um Linien, Kurven oder eine ganze Grenzkonturlinie zu erstellen. Die erstellten Führungslinien können benannt, gelöscht und verschoben werden. Praktisch, um Führungslinien an den Grenzen zu erstellen.</value>
+  </data>
+  <data name="h_btnABLine" xml:space="preserve">
+    <value>Knopf A-B Linien
+
+A-B Linien sind gerade parallele Linien über das Feld. Durch Drücken der Schaltfläche „A-B-Linie“ wird, wenn vorhanden, die oberste A-B Linie der Liste aktiviert. Wenn keine Linien vorhanden sind, oder der Knopf erneut gedrückt wird, kommt das Fenster zum Erstellen/Bearbeiten von A-B Linien.
+A-B Linien können entweder
+- durch 2 Punkte (A und B) gehen
+- durch einen Punkt und einen Winkel (Norden = 0°) festgelegt werden.
+
+Die Linien sind nummeriert: von der ursprünglichen Linie nach recht mit positiven Zahlen, nach links negativ.
+
+Hinweis: beim Namen der Linien ist es hilfreich sie in der Reihenfolge wie sie typischerweise verwendet werden, sowie nach der Grenze, an der sie liegt zu nennen
+Bsp: 01 AB west Asphaltweg</value>
+  </data>
+  <data name="h_btnAutoSteer" xml:space="preserve">
+    <value>Knopf Automatische Lenkung
+
+Schaltet die automatische Lenkung ein und aus. Sie müssen eine Führungslinie aktivieren. Durch Drücken des U-Turn Knopfes (automatisches Wenden) kann auch die automatische Lenkung aktiviert werden. In den Einstellungen (Knopf links, Zahnräder) können Sie Funktionen und Tastenfunktionen für das Automatische Wenden festlegen.
+Die Einstellungen der Lenkung können links mit dem Knopf Lenkungseinstellungen vornehmen.</value>
+  </data>
+  <data name="h_btnAutoSteerConfig" xml:space="preserve">
+    <value>Knopf Lenkungseinstellungen
+
+Zeigt den Soll-Lenkwinkel und den Ist-Lenkwinkel an. Die Einstellungen der automatischen Lenkung werden hier vorgenommen.</value>
+  </data>
+  <data name="h_btnAutoYouTurn" xml:space="preserve">
+    <value>Knopf U-Turn / automatisches Wenden
+
+Wenn eine Führungslinie verfügbar ist, können Sie am Vorgewende automatisch wenden. Sie können den Abstand vom Feldrand zum Wendebeginn, den Durchmesser der gefahrenen Kurve und die Art des Wendemanövers einstellen (Knopf links, Zahnräder). Durch Drücken dieses Knopfes wird die automatische Lenkung mit aktiviert, wenn beides ausgeschaltet war.</value>
+  </data>
+  <data name="h_btnChangeMappingColor" xml:space="preserve">
+    <value>Knopf Farbe der bearbeiteten Fläche
+
+Hier können Sie eine Farbe auswählen, mit der die bearbeitete Fläche gezeichnet wird. Sie können so oft wechseln, wie Sie möchten. Sie müssen eine Strecke zurücklegen, bevor sich die Farbe ändert.  Die Farbänderung erfolgt sofort, wenn Sie aus- und wieder einschalten.
+Die Zahl im Knopf ist die Versionsnummer des Programms.</value>
+  </data>
+  <data name="h_btnConfig" xml:space="preserve">
+    <value>Knopf Einstellungen
+
+Die meisten Einstellungen finden Sie hier. Wenn Sie Änderungen vornehmen, werden diese automatisch sofort gespeichert. Seien Sie mit Änderungen vorsichtig, es gibt keine Möglichkeit die Änderung zu stornieren.
+Wenn Sie ein anderes Gerät erstellen wollen speichern Sie ZUERST mit einem neuen Namen ab, bevor Sie etwas ändern.</value>
+  </data>
+  <data name="h_btnContour" xml:space="preserve">
+    <value>Knopf Konturlenkung
+
+Lenken Sie auf der neuen Spur neben Ihrer letzten bearbeiteten Spur. Wenn A-B Linie und A-B Kurve aktiviert sind, können Sie Kontur ein- und ausschalten, während eine dieser Funktionen noch aktiv ist, und zwischen ihnen wechseln.</value>
+  </data>
+  <data name="h_btnCurve" xml:space="preserve">
+    <value>Knopf A-B Kurve
+
+Eine A-B-Kurve ist eine beliebig geformte Linie, die sich über das Feld weiderholt. Die Linien ähneln Konturlinien, bei denen die letzte gefahrene Linie der Krümmung der Vorherigen folgt, jedoch vorgenommene Änderungen nicht auf die nächste Linie übertragen werden. Durch Drücken des Knopfes wird das Fenster „A-B- Kurve erstellen/bearbeiten“ angezeigt. Wenn eine A-B-Kurve vorhanden ist, wird diese aufgerufen. Durch erneutes Drücken können Sie weitere Kurven kopieren/bearbeiten/erstellen.
+
+Hinweise:
+- Beim Namen der Linien ist es hilfreich sie in der Reihenfolge wie sie typischerweise verwendet werden, sowie nach der Grenze, an der sie liegt zu nennen
+Bsp: 01 AB west Asphaltweg
+
+- Gerade Stücke in der Kurvenlinie erzeugen Sie, in dem Sie während der Aufnahme Pause drücken. Dann wird der letzte Punkt vor und nach der Pause gerade verbunden.</value>
+  </data>
+  <data name="h_btnCycleLines" xml:space="preserve">
+    <value>Knopf nächste Linie
+
+Wählt die nächste Linie in der Liste der gleichen Linienart (A-B Linie oder A-B Kurve. Deaktiviert, wenn es keine oder nur eine Linie gibt.</value>
+  </data>
+  <data name="h_btnDayNightMode" xml:space="preserve">
+    <value>Knopf Tag-/Nachtmodus</value>
+  </data>
+  <data name="h_btnDistanceArea" xml:space="preserve">
+    <value>Knopf Fahrstrecke und Fläche
+
+Zeigt die vom Fahrzeug zurückgelegte Strecke und die bearbeitete Gesamtfläche an. Berühren Sie die Ziffern, um sie auf Null zurückzusetzen. Gesamtfläche wird gespeichert, wenn das Programm beendet und erneut gestartet wird.</value>
+  </data>
+  <data name="h_btnEditAB" xml:space="preserve">
+    <value>Knopf Linie bearbeiten.
+
+Wenn eine aktive Linie zum Bearbeiten verfügbar ist, wird das Formular zum Bearbeiten der Linie angezeigt. Funktioniert mit A-B Linie und A-B Kurve. Die Linie kann damit verschoben werden, in der Richtung umgekehrt oder auf Fahrzeugmitte zentriert werden. Die Änderungen können entweder nur für den Moment verwendet werden, oder als veränderte Linie abgespeichert werden.
+Um Linien zu kopieren oder Neue zu erstellen, drücken Sie die Knöpfe A-B Linie oder A-B Kurve.</value>
+  </data>
+  <data name="h_btnFlag" xml:space="preserve">
+    <value>Knopf Markierung setzen
+
+Machen Sie eine Markierung auf dem Feld. Sie können Sie entweder rot, grüne oder gelbe Markierungen (Flaggen) setzen. Mit der rechten Maustaste klicken oder lange drücken, um die Farbe zu ändern. Beim Erstellen einer Markierung wird ein Bearbeitungsfeld angezeigt, in dem Sie Notizen hinzufügen können. Außerdem wird die fortlaufende Nummer der Markierung und weitere Informationen angezeigt.</value>
+  </data>
+  <data name="h_btnFreeDrive" xml:space="preserve">
+    <value>Testknopf Lenkung
+
+Ermöglicht Ihnen, die Autosteer-Hardware manuell zu testen. Kontrollieren Sie die automatische Lenkung, auch wenn wir keine Linie haben, fahren Sie geradeaus.
+Sie können den Lenkwinkel mit den Pfeilen ändern.</value>
+  </data>
+  <data name="h_btnFreeDriveZero" xml:space="preserve">
+    <value>Lenkwinkel Null setzen
+
+Stellen Sie den Lenkwinkel auf Null ein. Verändern Sie den Lenkwinkel in 5° Schritten. Gut zum Testen der Lenkreaktion.
+</value>
+  </data>
+  <data name="h_btnHeadlandOnOff" xml:space="preserve">
+    <value>Knopf Vorgewende-Automatik Ein/Aus
+
+Sobald ein Vorgewende erstellt wurde, können Sie die Vorgewendeautomatik mit dieser Schaltfläche ein- und ausschalten. Im ausgeschalteten Zustand stoppt die Teilbreitenkontrolle nicht mehr am Vorgewende. Sie können das Ausschalten der Teilbreitenkontrolle am Vorgewende im Fenster zum Erstellen/Bearbeiten des Vorgewendes über das Menü (Knopf) Feld deaktivieren.</value>
+  </data>
+  <data name="h_btnHydLift" xml:space="preserve">
+    <value>Knopf Kraftheber-Automatik Ein/Aus
+
+Sobald ein Vorgewende aktiv ist und die Vorgewendeautomatik aktiviert ist, können Sie auch die Kraftheberautomatik einschalten, um das Anbaugerät beim Einfahren in das Vorgewende anzuheben und es wieder abzusenken, wenn Sie in den Arbeitsbereich einfahren. Diese Schaltfläche ist nur sichtbar, wenn ein Vorgewende erstellt und aktiviert ist.</value>
+  </data>
+  <data name="h_btnLockToContour" xml:space="preserve">
+    <value>An Führungslinie binden
+
+Hält an der aktuellen Konturlinie fest, bis Sie deren Ende erreichen. Ignoriert alle anderen Linien.</value>
+  </data>
+  <data name="h_btnManualOffOn" xml:space="preserve">
+    <value>Manuelles Ein- und Ausschalten des Arbeitsgeräts. Die automatische Teilbreitenschaltung ist nicht aktiv.  Das Gerät arbeitet immer unabhängig von der bereits bearbeiteten Fläche, sowohl innerhalb oder außerhalb der Außengrenzen.</value>
+  </data>
+  <data name="h_btnN2D" xml:space="preserve">
+    <value>2D Nordansicht (Draufsicht, Norden immer oben am Bildschirm)</value>
+  </data>
+  <data name="h_btnN3D" xml:space="preserve">
+    <value>3D Nordansicht (Norden immer oben am Bildschirm)</value>
+  </data>
+  <data name="h_btnRowWidthSkips" xml:space="preserve">
+    <value>Zu überspringende Spuren beim automatischen Wenden
+
+Wie viele Spuren sollen übersprungen werden, beim U-Turn/automatischen Wenden.</value>
+  </data>
+  <data name="h_btnSectionOffAutoOn" xml:space="preserve">
+    <value>Knopf Automatische Teilbreitensteuerung Ein/Aus
+
+Die automatische Teilbreitensteuerung schaltet Teilbreiten ein, wenn die Fläche unbearbeitet ist und aus, wenn die Fläche bereits bearbeitet wurde. Es wird außerhalb der Außengrenzen ausgeschaltet. Sie können in den Einstellung (Zahnradsymbol) die Überdeckung festlegen, sowie ob die Teilbreiten direkt an der Außengrenze abschalten, oder erst wenn sie vollständig draußen sind.</value>
+  </data>
+  <data name="h_btnSnapToPivot" xml:space="preserve">
+    <value>Knopf Linie auf Fahrzeugmitte ausrichten
+
+Durch Drücken der Taste wird die Linie zum Drehpunkt des Fahrzeugs verschoben. Die Positionsänderung der Linie wird nicht gespeichert. Wenn Sie die Linie speichern möchten, verwenden Sie die Schaltfläche A-B Linie/Kurve bearbeiten, wo Sie die neue Position dauerhaft speichern können. Der Knopf funktioniert in A-B Kurven und A-B Linien, jedoch nicht in Konturen.</value>
+  </data>
+  <data name="h_btnStanleyPure" xml:space="preserve">
+    <value>Stanley- oder Pure Pursuit Lenkmodus
+
+Wählen Sie den Modus aus, den Sie verwenden möchten. Stanley führt die Vorderachse des Fahrzeugs zur Ziellinie. Der Drehpunkt (meist Hinterachse) folgt einfach dem Nachlauf, nicht der Linie. Gut für eine Erntemaschine, aber nicht so gut für Anbaugeräte.
+Pure Pursuit nutzt den Drehpunkt des Fahrzeugs, um Lenkkorrekturen zu bestimmen. Es wird versucht, Kurs- und Spurabweichungen zu korrigieren, um auf die Linie zu kommen. Das look ahead bestimmt den Punkt, auf den zugesteuert wird. Es wird in Sekunden angegeben = Position, bei der das Fahrzeug in z.B. 2 Sekunden sein soll. Das Integral variiert auch den Kurs, um den Drehpunkt zur Linie zu zwingen, so dass er bei Steigungen oder Seitenhang der Linie besser folgt, indem er über die Linie hinaus übersteuert. Jeder Modus hat seine eigene Einstellung, auf die Sie über den Knopf „Lenkungseinstellungen“ zugreifen können. Der Knopf Lenkungseinstellungen ist die grüne Schaltfläche, die die Lenkwinkel (soll/ist) im linken unteren Teil des Bildschirms anzeigt.</value>
+  </data>
+  <data name="h_btnStartAgIO" xml:space="preserve">
+    <value>Knopf  AgIO starten
+
+AgIO ist für alle Daten in AgOpenGPS hinein und heraus zuständig. Daten werden über serielle Schnittstellen (COM)  und/oder UDP = Ethernet/WiFi übertragen. Wenn AgIO bereits ausgeführt wird, führt die Schaltfläche keine Aktion aus. Wenn AgIO jedoch nicht ausgeführt wird, wird es gestartet. </value>
+  </data>
+  <data name="h_btnStartSA" xml:space="preserve">
+    <value>Berechnung des Lenkwinkels
+
+Funktion zur Berechnung des tatsächlichen Lenkwinkels. Sehr langsam im Kreis fahren, auf „Start“ klicken und fertig.
+Zeigt den Winkel an, wenn Sie fertig sind. Der Unterschied zwischen links und rechts zeigt den Ackermann-Fehler. Passen Sie den Ackermann-Faktor so an, dass die Linkskurve mit der Rechtskurve übereinstimmt. Der linke Lenkwinkel wird dabei mit dem Ackermann Faktor multipliziert.</value>
+  </data>
+  <data name="h_btnSteerAngleDown" xml:space="preserve">
+    <value>Knopf links = Lenkwinkel verringern
+
+Findet Verwendung um die Autosteer Hardware zu Testen.</value>
+  </data>
+  <data name="h_btnSteerAngleUp" xml:space="preserve">
+    <value>Knopf rechts = Lenkwinkel vergrößern
+
+Findet Verwendung um die Autosteer Hardware zu Testen.</value>
+  </data>
+  <data name="h_btnTiltDown" xml:space="preserve">
+    <value>Knopf um die 3D Ansicht nach unten zu kippen.</value>
+  </data>
+  <data name="h_btnTiltUp" xml:space="preserve">
+    <value>Knopf um die 3D Ansicht nach oben zu kippen.</value>
+  </data>
+  <data name="h_btnTramDisplayMode" xml:space="preserve">
+    <value>Knopf  Anzeigemodus der Fahrgassen
+
+Wenn Fahrgassen aktiv sind, können Sie alle Fahrgassen oder nur die im Feld oder nur die am Vorgewende oder keine sichtbaren Fahrgassen auswählen. Fahrgassen werden erstellt, indem man im Menü Feld (Knopf links) Fahrgassen auswählt. Der Fahrgassenabstand (Tram) und die Spurweite der Fahrgassen (Track) werden im Fenster der allgemeinen Einstellung (Zahnradsymbol) festgelegt.</value>
+  </data>
+  <data name="h_btnYouSkipEnable" xml:space="preserve">
+    <value>Knopf automatisches Überspringen von Spuren
+
+Es werden automatisch Schleifen mit Wendevorgängen nach rechts und links gefahren. Der Abstand der in Spuren richtet sich dabei nach der in der „zu überspringenden Anzahl von Spuren“  festgelegten Anzahl. Es wird eine Gruppe von Durchgängen bearbeitet um dann automatisch zur nächsten Gruppe überzugehen.</value>
+  </data>
+  <data name="h_btnZeroWAS" xml:space="preserve">
+    <value>Null-Taste des Lenkwinkelsensors
+
+Setzt den Lenkwinkel auf 0 Grad beim Fahren.</value>
+  </data>
+  <data name="h_btnZoomIn" xml:space="preserve">
+    <value>Hinein zoomen, um weniger vom ganzen Feld zu sehen.</value>
+  </data>
+  <data name="h_btnZoomOut" xml:space="preserve">
+    <value>Heraus zoomen, um mehr vom ganzen Feld zu sehen.</value>
+  </data>
+  <data name="h_hsbarAckerman" xml:space="preserve">
+    <value>Schieber zur Korrektur der Ackermann-Lenkgeometrie
+
+Bei der Ackermann-Lenkgeometrie fährt das Rad auf der Außenseite einer Kurve einen größeren Radius als das kurveninnere Rad. Um dies bei der Berechnung des Lenkwinkels auszugleichen, wird der Ackermann Faktor mit dem Lenkwinkel nach links multipliziert.
+Der Faktor hat beim Lenken nach rechts keinen Einfluss auf den Lenkwinkel, nur beim Linksabbiegen.
+
+Beispiel: Ackermann ist auf 80 % festgelegt. Bei einer Linkskurve und einem Lenkwinkel von 10 Grad beträgt der korrigierte Winkel 8 Grad.
+
+Beginnen Sie mit dem Lenkwinkel nach rechts und stellen Sie die counts per degree (= gemessene Impulse vom Lenkwinkelsensor pro Winkelgrad) so ein, dass bei vollem Einschlag der angezeigte Werte mit dem gemessenen/tatsächlichen übereinstimmt.
+Dann stellen Sie den Ackermann Faktor so ein, dass der gemessene Lenkwinkel nach links, mit dem Angezeigten übereinstimmt.</value>
+  </data>
+  <data name="h_hsbarCountsPerDegree" xml:space="preserve">
+    <value>Schieber Counts per Degree = Impulse vom Lenkwinkelsensor pro Winkelgrad.
+
+Auch als CPD bekannt.
+Der A/D Wandler des Lenkwinkelsensors gibt maximal Werte von -4000 bis +4000 aus, je nach Eingangsspannung aus dem Lenkwinkelsensor (0-3,3V oder 0-5V).
+Um das in umzuwandeln Grad Lenkwinkel teilen wir den Wert des A/D Wandlers nun durch die Anzahl der Impulse pro Grad.
+Stellen Sie diesen Wert bei vollem Einschlag nach rechts ein. Justieren Sie dabei den angezeigten Lenkwinkel gleich dem tatsächlich gemessenen Lenkwinkel ein.
+Wenn der angezeigte Lenkwinkel zu klein ist, senken Sie den CPD und umgekehrt.
+Bevor Sie beginnen stellen Sie den Nullpunkt der Lenkung = geradeaus ein.</value>
+  </data>
+  <data name="h_hsbarHeadingErrorGain" xml:space="preserve">
+    <value>Stanley-Überschwingungsreduzierung
+
+Die Schieberegler ist der Gegenspieler zur Einstellung Aggressivität.
+Er beeinflusst, wie stark der Einfluss der aktuellen Abweichung zur Linie (= cross track error / XTE) auf den Lenkwinkel ist.
+Der Wert bestimmt, wie lange es dauert, bis die Leitung erreicht ist. Ideal ist es, eine Balance zu finden, zwischen Aggressivität, damit Sie schnell zur Ziellinie gelangen, ohne zu weit über die Linie zu fahren oder hin und her pendelnd (zu aggressiv).</value>
+  </data>
+  <data name="h_hsbarHighSteerPWM" xml:space="preserve">
+    <value>Schieber Maximum Limit
+
+Der hier eingestellte maximale PWM-Wert begrenzt die Gesamtleistung, die an den Steuermotor oder das Ventil abgegeben wird. Damit wird ein zu heftiges Lenken zu verhindern.
+Zunächst niedriger einstellen, um Schwingungen zu verhindern. Stellen Sie diesen Wert langsam höher, um Unfälle zu vermeiden.</value>
+  </data>
+  <data name="h_hsbarHoldLookAhead" xml:space="preserve">
+    <value>Schieber Hold-Look-Ahead 
+
+Abstand des anvisierten Punktes auf der Soll Linie, wenn die Linie bereits erreicht ist. Wenn der Abstand zur Linie &lt;10 cm beträgt, befindet sich das System im „Hold“-Modus. Der eingestellt Werte ist die Zeit in Sekunden, die das System nach vorne blickt. Wenn es die Linie langsam verliert, verringern Sie diesen Wert. Wenn es bei weniger als 10 cm Abstand zur Linie ständig zu einer Überkorrektur kommt, erhöhen Sie diesen Wert.</value>
+  </data>
+  <data name="h_hsbarIntegral" xml:space="preserve">
+    <value>SchieberStanley Integral
+
+Der Abstandsfehler zur Linie kann sich im Laufe der Zeit weiter summieren. Um den Lenkwinkel zu erhöhen, wenn eine normale Entfernungs- und Kursberechnung den Traktor nicht auf die Linie bringt kann ein Integralwert zur Berechnung hinzugefügt werden. Auch bei Seitenhang oder bei Seitenzug durch das Gerät braucht es einen gewissen Integral Anteil.
+Zu viel Integral führt dazu, dass die Linie zu hart angefahren und überschritten wird.
+Bei einer zu niedrigen Einstellung dauert es zu lange, bis die Linie erreicht ist.
+Besser etwas niedriger einstellen, sonst oszilliert das Fahrzeug stark über die Linie.
+</value>
+  </data>
+  <data name="h_hsbarIntegralPurePursuit" xml:space="preserve">
+    <value>Schieber Pure Pursuit Integral
+
+Der Abstandsfehler zur Linie kann sich im Laufe der Zeit weiter summieren. Um den Lenkwinkel zu erhöhen, wenn eine normale Entfernungs- und Kursberechnung den Traktor nicht auf die Linie bringt kann ein Integralwert zur Berechnung hinzugefügt werden. Auch bei Seitenhang oder bei Seitenzug durch das Gerät braucht es einen gewissen Integral Anteil.
+Zu viel Integral führt dazu, dass die Linie zu hart angefahren und überschritten wird.
+Bei einer zu niedrigen Einstellung dauert es zu lange, bis die Linie erreicht ist.
+Besser etwas niedriger einstellen, sonst oszilliert das Fahrzeug stark über die Linie.</value>
+  </data>
+  <data name="h_hsbarLookAhead" xml:space="preserve">
+    <value>Schieber Look Ahead = Vorausschauen.
+
+Abstand des anvisierten Punktes auf der Soll Linie. Wenn der anvisierte Punkt sehr nahe vor dem Fahrzeug liegt, lenkt das Fahrzeug sehr schnell. Weiter weg ist die Lenkung entspannter aber es dauert länger, bis die Linie erreicht ist. Der wert ist die Zeit, wie viele Sekunden der Punkt vor dem Fahrzeug liegt.
+Der Schieber „Speed Gain“ = Geschwindigkeitsfaktor verändert die Distanz des anvisierten Punktes basierend auf der Geschwindigkeit. Sie müssen weniger lenken, wenn Sie schneller fahren, der anvisierte Punkt ist dann weiter weg.
+Optimieren Sie die Einstellungen auf die Geschwindigkeit, mit der Sie am häufigsten fahren.</value>
+  </data>
+  <data name="h_hsbarLookAheadMult" xml:space="preserve">
+    <value>Schieber Speed Gain = Geschwindigkeitsfaktor
+
+Je schneller Sie fahren, desto schneller erreichen Sie die Soll-Linie.
+Dieser Schieberegler legt fest, wie viel sich der Referenzpunkt von Ihnen wegbewegt, wenn Ihre Geschwindigkeit zunimmt. Damit verringert sich der Lenkwinkel und es wird ein Hin- und Herfahren über die Linie verhindert.</value>
+  </data>
+  <data name="h_hsbarLowSteerPWM" xml:space="preserve">
+    <value>PWM bei niedriger Differenz des Lenkwinkels
+
+Wenn sich das Fahrzeug der Linie nähert, verringert sich die Drehzahl des Lenkmotor/Öffnung des Ventils linear vom Maximalwert zum Tiefstwert.
+Hier einen Wert einstellen, der Lenkung  noch sicher bewegt.</value>
+  </data>
+  <data name="h_hsbarMaxSteerAngle" xml:space="preserve">
+    <value>Schieber maximaler Lenkwinkel
+
+Der maximale Lenkwinkel nach links und rechts der durch die automatische Lenkung erreicht werden soll. Testweise kann hier zunächst eine niedrige Einstellung helfen, um nicht mit wilden Lenkbewegungen durch die Gegend zu fahren.
+Wenden und scharfe Kurven fahren erfordern einen hohen Wert.</value>
+  </data>
+  <data name="h_hsbarMinPWM" xml:space="preserve">
+    <value>Schieber Minimum to Move 
+
+Der hier eingestellte minimale PWM-Wert wird verwendet, um eine Mindestkraft des Lenkmotor/Mindestbestromung des Ventils einzustellen, die nötig ist, um die Reibung des Ventils/Motors zu überwinden.
+Wenn der Wert zu niedrig ist, kommt es zu einer Verzögerung der Lenkbewegung.
+Hier einen Wert einstellen, der die Lenkung gerade so bewegt.</value>
+  </data>
+  <data name="h_hsbarProportionalGain" xml:space="preserve">
+    <value>Schieber proportionale Verstärkung (Proportional Gain)
+
+Die proportionale Verstärkung wird mit der Distanz zur Soll-Linie multipliziert. Dann wird der minimale PWM-Wert addiert, um den endgültigen Ausgangsstrom zum Motor/Hydraulikventil zu errechnen.
+Je höher dieser Wert, desto schneller korrigiert der Motor die Lenkung.
+Ist er jedoch zu hoch, schießt die Lenkung über die Linie hinaus um dann wieder in die andere Richtung übersteuern = Oszilieren. Ist der Wert zu niedrig dauert es entweder zu lange oder man erreicht nie die Führungslinie. Man muss etwas experimentieren, um die Wirkung zu sehen. Alle dieser Verstärkungseinstellungen beeinflussen sich gegenseitig. Variieren Sie eine Einstellung und beobachten Sie den Effekt.
+Im SteerChart = Diagramm Lenkwinkel sollten sich die Kurven folgen: der Ist-Lenkwinkel sollte dem Soll-Lenkwinkel zügig folgen.</value>
+  </data>
+  <data name="h_hsbarSideHillComp" xml:space="preserve">
+    <value>
+Schieber Ausgleich am Seitenhang.
+
+Zählt dem errechneten Lenkwinkel etwas Winkel hinzu. Der zugefügte Winkel errechnet sich aus der Seitenneigung des Traktors (Roll). Damit wird der Seitenzug von Hügeln ausgeglichen. Mit dieser Einstellung können Sie das Fahrzeug über die Linie fahren lassen, sodass das Anbaugerät besser der Linie folgen kann.</value>
+  </data>
+  <data name="h_hsbarStanleyGain" xml:space="preserve">
+    <value>Schieber Stanley Aggressivität
+
+Der Lenkwinkel wird unter anderem aus dem Abstand zur Linie errechnet. Der Schieberegler beeinflusst wie stark die Wirkung des Abstands auf den Lenkwinkel ist. Je aggressiver, desto schneller steuert das Fahrzeug auf die Linie zu. Es besteht die Gefahr die Linie zu  Überfahren. Der Schieber Überschwingungsreduzierung versucht, diesen Effekt zu dämpfen.</value>
+  </data>
+  <data name="h_hsbarWasOffset" xml:space="preserve">
+    <value>Schieber Nullpunkt Lenkwinkelsensor
+
+Durch Bewegen dieses Schiebereglers wird die Nullposition für den Lenkwinkel geändert. Fahren Sie im Testmodus der Lenkung und stellen Sie diesen so ein, dass Sie geradeaus fahren.
+Diese Einstellung ist die Grundlage für weitere Einstellungen.</value>
+  </data>
+  <data name="h_lblIntegral" xml:space="preserve">
+    <value>Anzeige Integralwert der automatischen Lenkung
+
+Dieser Wert zeigt den zusätzlichen Lenkwinkels an, um das Fahrzeug näher an die Führungslinie zu bringen.</value>
+  </data>
+  <data name="h_lblLateralTurnTouch" xml:space="preserve">
+    <value>Knopf zur nächsten Linie springen
+
+Durch Berühren dieser Knöpfe wechselt das Fahrzeug nach links oder rechts zur nächsten Führungslinie. Sie können mehr als einmal tippen um mehrere Linien zu springen. Durch Berühren des anderen Pfeils können Sie die Anzahl der Sprünge reduzieren.</value>
+  </data>
+  <data name="h_lblManualTurnCancelTouch" xml:space="preserve">
+    <value>Manuelles Wenden einleiten und abbrechen durch Berühren
+
+Sie können eine Wende manuell einleiten oder Diese abbrechen, wenn Sie sich bereits in einem Wendemanöver befinden.</value>
+  </data>
+  <data name="h_lblSpeed" xml:space="preserve">
+    <value>Geschwindigkeitsanzeige
+
+Die Anzeige hat einen doppeltem Verwendungszweck: sie zeigt die Geschwindigkeit des Fahrzeugs an und durch Tippen auf den Wert werden viele zusätzliche Daten, wie GPS-Informationen angezeigt.</value>
+  </data>
+  <data name="h_lblSteerCircleTouch" xml:space="preserve">
+    <value>Neigungs- und Lenkinformationsanzeige
+
+Die Grafik zeigt die Neigung des Fahrzeugs und die Farbe zeigt den Status der automatischen Lenkung:
+
+Lila - Lenkmodul nicht angeschlossen.
+Rot - Lenkmodul angeschlossen, nicht aktiviert.
+Orange - Lenkmodul angeschlossen und aktiviert, Lenkschalter ist ausgeschaltet
+Grün - Verbunden, aktiviert und automatische Lenkung. Voll funktionsfähig.</value>
+  </data>
+  <data name="h_lblSwapDirectionCancel" xml:space="preserve">
+    <value>Dieser Bereich zeigt die Entfernung bis zum Beginn der nächsten automatischen Wende. Hier gibt es 2 Funktionen. Wenn Sie sich nicht in einer Kehrtwende befinden, können Sie durch Berühren dieses Bereichs jetzt in die entgegengesetzte Richtung wenden. Wenn Sie gerade wenden, wird die Wende durch Berühren dieses Bereichs abgebrochen. Seien Sie also vorsichtig und greifen Sie nach dem Lenkrad.</value>
+  </data>
+  <data name="h_lblVehicleDirectionResetTouch" xml:space="preserve">
+    <value>Richtung ändern
+
+Tippen Sie hier, wenn das Fahrzeug beim Vorwärtsfahren nach hinten zeigt. Manchmal, zum Beispiel beim scharfen Abbiegen bei langsamer Fahrt oder beim Wenden kann die Richtung durcheinander geraten. Fahren Sie vorwärts und berühren Sie diesen Bereich, um AOG mitzuteilen, in welche Richtung es vorwärts geht. Jederzeit möglich.</value>
+  </data>
+  <data name="h_lbludpWatchCounts" xml:space="preserve">
+    <value>Zahl der NMEA-Nachrichten (GPS-Daten) die von AgIO verpasst wurden oder zu spät kamen.</value>
+  </data>
+  <data name="ha_btnAPoint" xml:space="preserve">
+    <value>A Punkt
+
+Dies ist der erste Punkt der Linie. Sie können jetzt entweder eine Richtung (heading) (0=Nord, 180=Süd) eingeben oder einen weiteren Punkt B festlegen, dann ist die Linie definiert.
+Dann können Sie die Linie benennen.
+Hinweis:
+- Beim Namen der Linien ist es hilfreich sie in der Reihenfolge wie sie typischerweise verwendet werden, sowie nach der Grenze, an der sie liegt zu nennen
+Bsp: 01 AB west Asphaltweg</value>
+  </data>
+  <data name="ha_btnAddTime" xml:space="preserve">
+    <value>Zeit hinzufügen
+
+Fügt dem aktuellen Namen einen Zeitstempel hinzu. Hilft auch dabei, den Namen eindeutig zu machen.</value>
+  </data>
+  <data name="ha_btnBPoint" xml:space="preserve">
+    <value>B Punkt
+
+Erstellt eine Linie zwischen dem Punkt A und dem Punkt B. Die Richtung der Linie wird berechnet. Sie können die Richtung nachkorrigieren, indem Sie die Richtung als Zahl eingeben (0=Nord, 180=Süd) oder B beliebig oft berühren.</value>
+  </data>
+  <data name="ha_btnCancel" xml:space="preserve">
+    <value>Verlassen Sie das Formular und machen Sie alle Änderungen rückgängig.</value>
+  </data>
+  <data name="ha_btnCancelCreate" xml:space="preserve">
+    <value>Abbrechen und zurück
+
+Bricht die aktuelle Aktion ab und bringt Sie zurück zur vorherigen Anzeige.</value>
+  </data>
+  <data name="ha_btnDuplicate" xml:space="preserve">
+    <value>Linie kopieren
+
+Erstellt eine Kopie der in der Listenansicht ausgewählten Linie. Der neue Name muss eindeutig bleiben.</value>
+  </data>
+  <data name="ha_btnEnterContinue" xml:space="preserve">
+    <value>Speichern und weiter</value>
+  </data>
+  <data name="ha_btnListDelete" xml:space="preserve">
+    <value>Löschen einer Linie
+
+Wählen Sie eine Linie und tippen Sie hier um Diese zu löschen.</value>
+  </data>
+  <data name="ha_btnListUse" xml:space="preserve">
+    <value>Linie auswählen und zurück
+
+Die ausgewählte Linie wird für das automatische Lenken benutzt. Der Knopf schließt das Fenster.</value>
+  </data>
+  <data name="ha_btnManual" xml:space="preserve">
+    <value>Manuelle Eingabe
+
+Manuelle Eingabe von A und B Punkt mittels Längen- und Breitengrad. Es öffnet sich ein neues Fenster</value>
+  </data>
+  <data name="ha_btnNewABLine" xml:space="preserve">
+    <value>Neue Linie
+
+Öffnet ein neues Fenster um eine neue Linie zu erstellen. Die neue Linie kann mittels A und B Punkt oder A Punkt und Richtung oder ganz manuell mittels Längen- und Breitengrad erstellt werden.</value>
+  </data>
+  <data name="ha_nudHeading" xml:space="preserve">
+    <value>Eingabe der Richtung
+
+Sobald Sie einen A Punkt gesetzt haben, können Sie eine Richtung eingeben. Jede Zahl zwischen 0 = Nord und 360 Grad ist möglich.</value>
+  </data>
+  <data name="ha_textBox1" xml:space="preserve">
+    <value>Name der Linie
+
+Ändern oder erstellen Sie den Namen der Linie. Komplett gleiche Namen sind nicht möglich. Durch Drücken der Knöpfe Datum oder Zeit wird dies dem Namen hinzugefügt.
+Hinweis:
+- Beim Namen der Linien ist es hilfreich sie in der Reihenfolge wie sie typischerweise verwendet werden, sowie nach der Grenze, an der sie liegt zu nennen
+Bsp: 01 AB west Asphaltweg</value>
+  </data>
+  <data name="hb_btnAdd" xml:space="preserve">
+    <value>Neue Schlaggrenze hinzufügen
+
+Ruft das Formular auf, in dem Sie auswählen können, ob Sie eine KML-Datei als Grenze laden oder eine Grenze durch fahren erstellen möchten.
+
+Wenn noch keine Grenzen festgelegt wurden, legen Sie zunächst die äußere Grenze fest.
+
+Wenn bereits eine äußere Grenze erstellt wurde, handelt es sich beim Rest um innere Grenzen.
+
+Berühren Sie die Schaltfläche „Durchfahren“ mit „Ja“ oder „Nein“, um das Verhalten an dieser Grenze zu ändern.</value>
+  </data>
+  <data name="hb_btnAddPoint" xml:space="preserve">
+    <value>Neuen Punkt hinzufügen
+
+Fügt einen Punkt an der aktuellen Position hinzu. (Außermittige Antenne wird berücksichtigt).
+
+Hinweis:
+- Gerade Stücke in der Kurvenlinie erzeugen Sie, in dem Sie während der Aufnahme Pause drücken. Dann wird der letzte Punkt vor und nach der Pause gerade verbunden.
+- es kann sinnvoll sein, nur an den Ecken eines Schlages Punkte zu setzen. Diese werden dann mit geraden Linien verbunden.</value>
+  </data>
+  <data name="hb_btnCancel" xml:space="preserve">
+    <value>Abbrechen
+
+Zu jeder Zeit können Sie abbrechen.</value>
+  </data>
+  <data name="hb_btnDelete" xml:space="preserve">
+    <value>einzelne / ausgewählte Grenze löschen
+
+Wählen Sie eine Grenze aus der Liste und löschen Sie Diese.</value>
+  </data>
+  <data name="hb_btnDeleteAll" xml:space="preserve">
+    <value>Alle Schlaggrenzen löschen
+
+Dieser Kopf löscht alle Schlaggrenzen. Vorsicht: wenn die Grenzen weg sind, sind sie weg.</value>
+  </data>
+  <data name="hb_btnDeleteLast" xml:space="preserve">
+    <value>letzten Punkt löschen
+
+Löscht den letzten Punkt. Mehrmals drücken löscht mehrere Punkte.</value>
+  </data>
+  <data name="hb_btnDriveOrExt" xml:space="preserve">
+    <value>Erzeugen Sie die Grenze durch Fahren
+
+Ermöglicht Ihnen, die Grenze während der Fahrt aufzuzeichnen. Sie können wählen, ob die Punkte links oder rechts vom Anbaugerät aufgezeichnet werden.</value>
+  </data>
+  <data name="hb_btnGetKML" xml:space="preserve">
+    <value>Erstellen Sie eine Grenze aus einer KML Datei
+
+Im nächsten Schritte können Sie wählen, ob Ihre KML Datei eine oder mehrere Grenzen enthält.
+</value>
+  </data>
+  <data name="hb_btnLeftRight" xml:space="preserve">
+    <value>Punkte rechts oder links vom Anbaugerät setzen.
+
+Der Abstand zwischen den Punkten können Sie einstellen.</value>
+  </data>
+  <data name="hb_btnLoadBoundaryFromGE" xml:space="preserve">
+    <value>Laden Sie eine einzelne Grenze aus Google Earth (KML)
+
+Laden Sie eine Grenze aus einer KML Datei, die entweder die äußere Grenze oder eine innere Grenzen sein kann. Wenn es keine Grenzen gibt, wird sie als äußere Grenze betrachtet. Wenn bereits eine Grenze vorhanden ist, wird die neue Grenze als innere Grenze betrachtet.</value>
+  </data>
+  <data name="hb_btnLoadMultiBoundaryFromGE" xml:space="preserve">
+    <value>Laden Sie mehrer Grenzen aus Google Earth (KML)
+
+Die erste Grenze aus der KML Datei ist die äußere Grenze. Jede Weitere wird als innere Grenze betrachtet.
+
+</value>
+  </data>
+  <data name="hb_btnOpenGoogleEarth" xml:space="preserve">
+    <value>Öffnet Google Earth
+
+Öffnet Google Earth, sofern istalliert. Hier können Sie Grenzen zeichnen oder bearbeiten. Speichern Sie diese als KML ab, um sie in AOG zu nutzen.</value>
+  </data>
+  <data name="hb_btnPausePlay" xml:space="preserve">
+    <value>Pause
+
+Pausiert die Aufnahme. Solage die Aufnahme pausiert, können Sie Punkte löschen, die Seite der Aufzeichung wechseln oder eine andere Verschiebung einstellen.
+
+Der letzte Punkt vor der Pause und der erste Punkt nach der Pause werden mit einer geraden Linie verbunden. So können Sie vor und nach einer Kurve gerade Linien erzeugen - indem Sie Pause drücken.</value>
+  </data>
+  <data name="hb_btnRestart" xml:space="preserve">
+    <value>Linie neu zeichnen
+
+Löscht die Punkte und beginnt neu.</value>
+  </data>
+  <data name="hb_btnStop" xml:space="preserve">
+    <value>Stopp
+
+Die Grenze ist komplett erstellt. Dann wird der letzte Punkt automatisch mit dem Ersten verbunden. Es müssen mindestens 5 Punkte gesetzt sein.</value>
+  </data>
+  <data name="hb_nudOffset" xml:space="preserve">
+    <value>Seitenversatz vom Drehpunkt
+
+Die Grenze wird typischerweise außen gezeichnet. Dabei wird um die halbe Arbeitsbreite weg vom Drehpunkt des Fahrzeugs (meist die Hinterachse) verschoben.
+Sie können auswählen, ob rechts oder links aufgezeichnet werden soll.</value>
+  </data>
+  <data name="hc_ListViewVehicles" xml:space="preserve">
+    <value>Liste der Fahrzeuge
+
+Liste der abgespeicherten Fahrzeuge. Wenn Sie ein neues Fahrzeug auf Basis eine Anderen erstellen möchten, dann speichern Sie zuerst unter neuem Namen ab, denn sonst wirken sich die Änderungen sofort auf das Bestehende aus.</value>
+  </data>
+  <data name="hc_btnRemoveZeroOffset" xml:space="preserve">
+    <value>Seitenneigung Korrektur entfernen
+
+Entfernt die Korrenktur der Seitenneigung. Wenn das Fahrzeug eben steht, sehen Sie um wie viel die IMU nicht gerade montiert ist.</value>
+  </data>
+  <data name="hc_btnResetIMU" xml:space="preserve">
+    <value>entfernt die Neigungsanzeige vom Bildschirm
+
+Wenn Sie keine IMU angeschlossen haben, können Sie die Neigungsanzeige entfernen. Sobald eine IMU angeschlossen sit, erscheint die Anzeige wieder.</value>
+  </data>
+  <data name="hc_btnSendSteerConfigPGN" xml:space="preserve">
+    <value>Daten zur Autosteer Hardware senden
+
+Wenn Sie Einstellungen ändern, sollten Sie diesen Konpf drücken, um sicher zu stellen, dass die Daten auch abgespeichert werden.</value>
+  </data>
+  <data name="hc_btnVehicleDelete" xml:space="preserve">
+    <value>Knopf Fahrzeug löschen
+
+Wählen Sie ein Fahrzeug aus der Liste und drücken Sie diesen Knop,f um es zu löschen.</value>
+  </data>
+  <data name="hc_btnVehicleLoad" xml:space="preserve">
+    <value>Knopf Fahrzeug laden
+
+Wählen Sie ein Fahrzeug aus der Liste und drücken Sie diesen Knopf, um dieses zu laden.</value>
+  </data>
+  <data name="hc_btnVehicleSave" xml:space="preserve">
+    <value>Knopf Fahrzeug speichern.
+
+Sie können ein Fahrzeug speichern, nachdem Sie einen Namen in das Feld getippt haben.</value>
+  </data>
+  <data name="hc_btnVehicleSaveAs" xml:space="preserve">
+    <value>Knopf Fahrzeug überschreiben / save as
+
+Wählen Sie ein Fahrzeug aus der Liste und drücken Sie den Knopf save as. Dann werden, nach einer Sicherheitsabfrage, die aktuellen Einstellungen unter dem ausgewählten Fahrzeug abgespeichert.</value>
+  </data>
+  <data name="hc_btnZeroRoll" xml:space="preserve">
+    <value>Seitenneigung (roll) auf 0 setzen
+
+Setzt die Seitenneigung auf 0 und zeigt den Wert, um den korrigiert wurde, an.</value>
+  </data>
+  <data name="hc_cboxAutoSteerAuto" xml:space="preserve">
+    <value>Manuelles oder automatisches Einschalten der automatischen Lenkung.
+
+Beim manuellen Einschalten müssen Sie den AutoSteer-Knopf auf dem Bildschirm drücken, um die automatische Lenkung zu aktivieren. Der Schalter am Motor selbst (wenn vorhanden) trennt nur den Strom zum Motor, hat aber keine Wirkung auf das Programm.
+
+Wenn Sie beim automatischen Einschalten den Lenk- oder Ventillenkungsschalter betätigen, wird auch im Programm die AutoSteer-Taste automatisch aktiviert.
+
+Seien Sie vorsichtig mit dem automatischen Einschalten, wenn Sie auf der Straße fahren. Schalten Sie immer alle mechanischen Lenkautomatikgeräte aus und trennen Sie sie von der Stromversorgung.</value>
+  </data>
+  <data name="hc_cboxConv" xml:space="preserve">
+    <value>AD Wandler Modus
+
+Wählen Sie zwischen der Messung gegen Masse (=single) oder der differenziellen Messung zwischen zwei Spannungen (=differential). Bei der Messung gegen Masse wird der Lenkwinkelsensor (WAS) meist von der Platine mit Strom versorgt. Die differentielle Messung wird bei Nutzung des orginal  im Fahrzeug verbauten Sensors genutzt.</value>
+  </data>
+  <data name="hc_cboxCurrentSensor" xml:space="preserve">
+    <value>Stromsensor aktivieren.
+
+Bei installiertem Strom Sensor wird ein Widerstand in der Lenkung gemessen, der einen höheren Strom am Lenkradmotor verursacht. Damit kann ein Lenkeingriff des Fahrers festgestellt werden und die automatische Lenkung schaltet aus.</value>
+  </data>
+  <data name="hc_cboxDanfoss" xml:space="preserve">
+    <value>Danfoss Ventil
+
+Wenn Sie ein Danfoss UDC Ventil nutzen, werden in der Autosteer Platine entsprechende Einstellungen hinterlegt, die zum Ventil passen.</value>
+  </data>
+  <data name="hc_cboxDataInvertRoll" xml:space="preserve">
+    <value>Seitenneigung invertieren
+
+Wenn sich das Fahrzeug nach rechts neigt, sollten die Werte der Seitenneigung positiv sein. Hiermit können die Werte invertiert (=umgedreht) werden.</value>
+  </data>
+  <data name="hc_cboxEncoder" xml:space="preserve">
+    <value>Drehwertgeber / Steering wheel encoder
+
+Wenn Sie am Lenkrad einen Drehwertgeber installiert haben, so können Sie damit einen Lenkeingriff erkenn, der dann die automatische Lenkung ausschaltet. Legen Sie zusätzlich fest, nach wie vielen Pulsen (Counts) des Gebers die Lenkung abschaltet.</value>
+  </data>
+  <data name="hc_cboxIsDualAsIMU" xml:space="preserve">
+    <value>Dual GPS als IMU verwenden
+
+Dual GPS liefert direkt eine Fahrtrichtung. Stattdessen können Sie auch die Fahrtrichtung mittels der einzelnen GPS Positionen errechnen lassen und die Berechnung durch die Richtung aus den 2 Antennen verfeinern lassen.</value>
+  </data>
+  <data name="hc_cboxIsHydOn" xml:space="preserve">
+    <value>automatische Krafthebersteuerung
+
+Schaltet die automatische Krafthebersteuerung ein und aus. Diese wird aktiviert, wenn Sie in das Vorgewende  einfahren, oder es verlassen. Zur Nutzung der Funktion muss ein Vorgewende erstellt werden.</value>
+  </data>
+  <data name="hc_cboxIsRTK" xml:space="preserve">
+    <value>RTK Alarm
+
+Wenn aktiviert, wird ein Alam ausgelöst, wenn das GPS Signal nicht mehr in RTK Qualität kommt. </value>
+  </data>
+  <data name="hc_cboxIsRTK_KillAutoSteer" xml:space="preserve">
+    <value>automatische Lenkung aus bei RTK Verlust
+
+Wenn das GPS Signal nicht mehr in RTK Qualität vorliegt, wird die automatische Lenkung ausgeschaltet, wenn diese Funktion aktiviert ist. </value>
+  </data>
+  <data name="hc_cboxIsReverseOn" xml:space="preserve">
+    <value>Erkennung von Rückwärtsfahrt
+
+Wenn aktiviert, dann bewegt sich das Fahrzeug auf dem Bildschirm rückwärts, wenn Sie rückwärts fahren. Andernfalls dreht sich der Bildschirm und das Fahrzeug auf dem Bildschirm fährt immer vorwärts. </value>
+  </data>
+  <data name="hc_cboxMachInvertRelays" xml:space="preserve">
+    <value>Invertiert die Ein-/Ausgänge
+
+Wenn sich Ihre Schalter oder Relais genau umgekehrt verhalten, können Sie das Verhalten damit invertieren.</value>
+  </data>
+  <data name="hc_cboxMotorDrive" xml:space="preserve">
+    <value>Motor Treiber Auswahl
+
+Wählen Sie zwischen einem Cytron Motortreiber und dem IBT2, je nachdem was auf Ihrer Platine verbaut ist. </value>
+  </data>
+  <data name="hc_cboxNumSections" xml:space="preserve">
+    <value>Anzahl der Teilbreiten
+
+Wählen Sie im Dropdown-Menü die Anzahl der Teilbreiten aus, über die Ihr Gerät verfügt. Es wird der Standardwert für die Breite der Teilbreite verwendet.
+Legen Sie im am besten zuerst die Standardbreite einer Teilbreite und dann die Anzahl der Teilbreiten fest. Dann können Sie jede beliebige Teilbreite manuell bearbeiten, wenn diese unterschiedlich sind.</value>
+  </data>
+  <data name="hc_cboxPressureSensor" xml:space="preserve">
+    <value>Öldruckschalter eingebaut
+
+Wenn Sie einen Öldruckschalter zum Ausschalten bei Lenkeingriff eingebaut ahben, aktivieren Sie diesen Knopf.</value>
+  </data>
+  <data name="hc_cboxSteerEnable" xml:space="preserve">
+    <value>Art des Lenkschalters
+
+2 Arten von Schaltern werden unterstützt: Schalter oder Taster
+
+Durch Drücken und Loslassen des Tasters wird die automatische Lenkung aktiviert. Durch erneutes Drücken und Loslassen wird die automatische Lenkung ausgeschaltet.
+
+Bei Schaltern ist die automatische Lenkung aktiv, solange der Schalter geschlossen ist.
+
+Schalter werden am häufigsten für Lenkmotoren verwendet, bei denen beim Einschalten ein Schalter gedrückt wird und beim Loslassen wieder geöffnet wird.
+
+Taster sind bei hydraulischen Systemen üblicher. Sie aktivieren die Lenkung durch Tastendruck und deaktivieren sie dann einfach durch einen weiteren Tastendruck.</value>
+  </data>
+  <data name="hc_cboxTramOnBackBuffer" xml:space="preserve">
+    <value>Fahrgassen nutzen
+
+Wenn aktiviert, wird ein Signal an die Hardware gesendet, dass Sie sich über einer Fahrgasse befinden. </value>
+  </data>
+  <data name="hc_cboxXY" xml:space="preserve">
+    <value>Auswahl der Achsen der IMU. Hier lassen sich Seitenneigung und Nicken des Fahrzeugs vertauschen, wenn die IMU um 90° verdreht eingebaut wurde.</value>
+  </data>
+  <data name="hc_chkDisplayDayNight" xml:space="preserve">
+    <value>Tag-/Nacht-Modus automatisch wechseln. Nach Sonnenauf- und -untergang wird in den Tag- oder Nachtmodus gewechselt.</value>
+  </data>
+  <data name="hc_chkDisplayExtraGuides" xml:space="preserve">
+    <value>Zeigt zusätzliche Führungslinie an, außer der, auf der Sie gerade fahren.</value>
+  </data>
+  <data name="hc_chkDisplayFloor" xml:space="preserve">
+    <value>Zeigt eine Textur auf der Oberfläche des Feldes an, anstatt einheitlicher Farbe.</value>
+  </data>
+  <data name="hc_chkDisplayGrid" xml:space="preserve">
+    <value>Zeigt ein Gitter auf der Oberfläche des Feldes.</value>
+  </data>
+  <data name="hc_chkDisplayKeyboard" xml:space="preserve">
+    <value>Zeigt einen Tastatur an, wenn Sie sich in einem Eingabefeld befinden.</value>
+  </data>
+  <data name="hc_chkDisplayLightbar" xml:space="preserve">
+    <value>Zeigt den "Leuchtbalken" oben am Bildschirm an, der Ihnen den Weg zur Linie weist.</value>
+  </data>
+  <data name="hc_chkDisplayLogNMEA" xml:space="preserve">
+    <value>Loggt die NMEA Daten (= GPS Daten) in eine Datei. Achtung: erzeugt innerhalb kurzer Zeit riesige Dateien.</value>
+  </data>
+  <data name="hc_chkDisplayPolygons" xml:space="preserve">
+    <value>Zeigt die einzelnen Polygone, die zur Aufzeichnung der bearbeiteten Fläche dienen.</value>
+  </data>
+  <data name="hc_chkDisplaySky" xml:space="preserve">
+    <value>Zeigt einen Himmel in der 3D Ansicht.</value>
+  </data>
+  <data name="hc_chkDisplaySpeedo" xml:space="preserve">
+    <value>Zeigt einen Tacho in der rechten oberen Ecke</value>
+  </data>
+  <data name="hc_chkDisplayStartFullScreen" xml:space="preserve">
+    <value>Das Programm startet als Vollbild</value>
+  </data>
+  <data name="hc_chkInvertSteer" xml:space="preserve">
+    <value>Invertiert die Drehrichtung des Motors
+
+Wenn der Motor in die falsche Richtung dreht, kann er damit invertiert werden. </value>
+  </data>
+  <data name="hc_chkInvertWAS" xml:space="preserve">
+    <value>invertiert den Lenkwinkelsensor
+
+Wenn Sie nach rechts lenken, sollte der Lenkwinkel als positiven Wert angezeigt werden. Wenn nicht, invertieren Sie ihn damit.</value>
+  </data>
+  <data name="hc_chkSteerInvertRelays" xml:space="preserve">
+    <value>invertiert das Relais der automatischen Lenkung
+
+Die Einstellung wirkt auf den PWM2 Ausgang der Lenkungsplatine. </value>
+  </data>
+  <data name="hc_hsbarFusion" xml:space="preserve">
+    <value>Regler IMU Fusion
+
+Meist ist eine Einstellung in beiden Extremen schlecht. Die IMU-Balance legt fest, wie viel IMU und wie viel Fix-zu-Fix-Kurs zur Bestimmung der Richtung des Fahrzeugs (heading / Kurs) verwendet wird.
+
+Das GPS ist über einen längeren Zeitraum recht stabil, während die IMU kurzfristig sehr stabil ist, aber mit der Zeit in einen unregelmäßigen Winkel driftet.
+
+Wenn zu viel IMU eingestellt ist, kann die Korrektur durch das GPS bei scharfen Kurven lange dauern und dazu führen, dass die Lenkung in die falsche Richtung geht. Zu viel GPS führt dazu, dass die Richtung (heading) hin und her verrauscht ist, was zu unruhiger Lenkung führt.
+
+Stellen Sie die IMU vor diesem Hintergrund so ein, dass ein wenig Rauschen in der Fahrtrichtung bleibt, um eine einigermaßen sanfte Lenkung zu gewährleisten. Vergleichen Sie die Fahrtrichtung aus GPS fix to fix und die Fahrtrichtung aus der Sensorfusion (Fused). Stellen Sie sicher, dass sie einander gut folgen. Das GPS wird verrauscht sein, aber der Wert der Sensorfusion wird in der Mitte dieser verrauschten Werte ziemlich stabil bleiben.</value>
+  </data>
+  <data name="hc_lblUTurnLegDistance" xml:space="preserve">
+    <value>Länge der geraden Stücke beim automatischen Wenden.
+
+Legen Sie die Länge (m) der geraden Schenkel vor und nach der Kurve fest. Längere  gerade Stücke führen dazu, dass das Fahrzeug schöner auf die Linie fährt.</value>
+  </data>
+  <data name="hc_lblUTurnSmoothing" xml:space="preserve">
+    <value>Übergang von Gerade auf Kurve beim automatischen Wenden.
+
+Die aprupten Übergänge von Gerade zu Kurve beim Wenden werden geglättet. Das Fahrzeug kann dann leichter der Gerometrie folgen. </value>
+  </data>
+  <data name="hc_nudABLength" xml:space="preserve">
+    <value>Länge der AB Linie
+
+Stellen Sie sicher, dass die Linie lange genug ist. Als Richtwert wird die doppelte Länge des Feldes empfohlen. </value>
+  </data>
+  <data name="hc_nudAgeAlarm" xml:space="preserve">
+    <value>Alter des Korrektursignals für das GPS Signal (age)
+
+Zeit (s) bevor ein Alarm ausgelöst wird, wenn kein oder verspätetes RTK Korrektursignal eingeht. </value>
+  </data>
+  <data name="hc_nudCutoffSpeed" xml:space="preserve">
+    <value>Mindestgeschwindigkeit bei automatischer Teilbreitenschaltung
+
+Unter der eingestellten Geschwindigkeit werden die Teilbreiten ausgeschaltet. </value>
+  </data>
+  <data name="hc_nudDefaultSectionWidth" xml:space="preserve">
+    <value>Standardwert für die Breite einer Teilbreite
+
+Es wird der Standardwert für die Breite der Teilbreite verwendet, wenn Sie im Drop Down Menü die Anzahl der Teilbreiten ändern. Legen Sie im am besten zuerst die Standardbreite einer Teilbreite und dann die Anzahl der Teilbreiten fest. Dann können Sie jede beliebige Teilbreite manuell bearbeiten, wenn diese unterschiedlich sind. </value>
+  </data>
+  <data name="hc_nudGuidanceLookAhead" xml:space="preserve">
+    <value>Nächste Führungslinie auswählen
+
+Wie viele Sekunden im Voraus sollte AOG nach der nächsten Führungslinie suchen? Je schneller Sie fahren, desto weiter blickt AOG nach vorne. AOG markiert die nächste Führungslinie und Sie können die automatische Lenkung aktivieren, um auf die Spur zu fahren.</value>
+  </data>
+  <data name="hc_nudHydLiftLookAhead" xml:space="preserve">
+    <value>Vorlauf der automatischen Krafthebersteuerung
+
+Wie viele Sekunden vor dem Ende des Vorgewendes sollte AOG den Kraftheber ablassen? Ausgehoben wird das Gerät erst, wenn es die Grenze des Vorgewendes passiert hat.</value>
+  </data>
+  <data name="hc_nudLightbarCmPerPixel" xml:space="preserve">
+    <value>Auflösung der Leuchtbalkenanzeige.
+
+Wie viele cm Abweichung zur Soll-Linie stellt ein Quadrat auf dem Leuchtbalken dar.</value>
+  </data>
+  <data name="hc_nudLineWidth" xml:space="preserve">
+    <value>Breite der angezeigten Linien (Pixel)
+
+Je mehr Pixel, desto breiter erscheint die Linie auf dem Bildschirm. Zulässige Werte: 1 - 8.</value>
+  </data>
+  <data name="hc_nudLookAheadOff" xml:space="preserve">
+    <value>Zeit, die die Teilbreiten ausschalten, bevor sie die bearbeitete Fläche erreichen (=Nachlauf des Geräts)</value>
+  </data>
+  <data name="hc_nudLookAheadOn" xml:space="preserve">
+    <value>Zeit, die die Teilbreiten einschalten, bevor sie in die noch nicht bearbeitete Fläche fahren. (=Einschaltverzögerung des Geräts)</value>
+  </data>
+  <data name="hc_nudLowerTime" xml:space="preserve">
+    <value>Zeit, um den Kraftheber abzusenken.
+
+Zeit (s), in der das Signal "senken" von der Hardware ausgegeben wird.</value>
+  </data>
+  <data name="hc_nudMaxCounts" xml:space="preserve">
+    <value>Schwellwert Impulse zum Ausschalten der automatischen Lenkung.
+
+Je nach verbautem Sensor die Zahl der Impulse am Lenkrad, der Öldruck oder der Strom am Motor. Wenn dieser Wert überschritten wird, schaltet die automatische Lenkung aus.</value>
+  </data>
+  <data name="hc_nudMinCoverage" xml:space="preserve">
+    <value>Überdeckung bei automatischer Teilbreitenschaltung.
+
+Bei 100% Überdeckung arbeitet jede Teilbreite so lange, biss sie vollständig in den bearbeiteten Bereich eingefahren ist. Bei 50% schaltet die Teilbreite bereits ab, wenn erst sie zur Hälfte in der bereits bearbeiten Fläche ist. Für Spritzen mit 3m Teilbreiten wird 70% empfohlen.</value>
+  </data>
+  <data name="hc_nudMinFixStepDistance" xml:space="preserve">
+    <value>Schrittweite für die Berechnung der Fahrtrichtung (heading)
+
+Die Richtung wird bestimmt, indem 2 Punkte genommen und der Winkel gegenüber Nord berechnet wird. Je langsamer Sie fahren, desto größer sind im Verhältnis die kleinen Abweichung der GPS Punkte. Dieses Rauschen führt dazu, dass der Kurs ziemlich instabil wird. Kein Problem, wenn man schnell fährt. AOG erinnert sich zu diesem Zweck an mehrere Zeitpunkte in der Vergangenheit. Die Schrittdistanz gibt an, wie weit zurück in diesem Punktverlauf Sie zur Berechnung des Kurses zurückgreifen möchten.
+
+Ein großer Schrittabstand sorgt für stabile Werte, ABER es gibt Verzögerungen, vor allem wenn das Fahrzeug abbiegt, ist die Reaktion träge.
+
+Eine sehr kurze Distanz reagiert sehr schnell, springt aber auch herum und hat mehr Rauschen.
+
+Wenn eine IMU verbaut ist, können längere Werte eingestellt werden, um einen stabilen und trotzdem schnell reagierenden Kurs zu erreichen.</value>
+  </data>
+  <data name="hc_nudOffset" xml:space="preserve">
+    <value>Seitenversatz des Anbaugeräts
+
+Positive Werte verschieben das Gerät nach rechts, negative nach links.</value>
+  </data>
+  <data name="hc_nudOverlap" xml:space="preserve">
+    <value>Überlappung oder Lücken lassen
+
+Positive Werte für Überlappung einstellen, nagative für Lücken zwischen den bearbeiteten Spuren. Die Arbeitsbreite des Geräts wird dadurch nicht verändert.</value>
+  </data>
+  <data name="hc_nudRaiseTime" xml:space="preserve">
+    <value>Zeit, um den Kraftheber auzuheben.
+
+Zeit (s), in der das Signal "heben" von der Hardware ausgegeben wird.</value>
+  </data>
+  <data name="hc_nudSectionWidth" xml:space="preserve">
+    <value>Breite einer Teilbreite
+
+Geben Sie die Breite einer Teilbreite in cm ein. Alle Teilbreiten zusammen ergeben die Arbeitsbreite. </value>
+  </data>
+  <data name="hc_nudSnapDistance" xml:space="preserve">
+    <value>Schrittweite beim Verschieben der Linie =Nudge Distance
+
+Standardwert, der vorgeschlagen wird, wenn Sie die Linie verschieben möchten im Fenster AB Linie bearbeiten. </value>
+  </data>
+  <data name="hc_nudTramWidth" xml:space="preserve">
+    <value>Abstand der Fahrgassen zueinander
+
+Normalerweise die Breite des Spritzgestänges. </value>
+  </data>
+  <data name="hc_nudTurnDistanceFromBoundary" xml:space="preserve">
+    <value>Abstand der Wendegeometrie von der Grenze
+
+Abstand vom Scheitelpunkt der Kurve einer automatischen Wende bis zur Grenze. Der kürzeste Abstand, mit dem das Fahrzeug an der Grenze vorbeifährt. Stellen Sie sicher, dass das Fahrzeug und die halbe Arbeitsbreite die Grenze nicht überschreiten.</value>
+  </data>
+  <data name="hc_nudTurnOffDelay" xml:space="preserve">
+    <value>Nachlaufzeit der Teilbreiten. Zeit, die z.B. eine Sämaschine noch sät, da noch Körner nachlaufen, obwohl die Teilbreite bereits ausgeschaltet wurde. </value>
+  </data>
+  <data name="hc_pboxSendSteer" xml:space="preserve">
+    <value>Einstellungen geändert
+
+Sie haben Einstellungen geändert und noch nicht abgespeichert. Wenn Sie Ihre geänderten Einstellungen nicht senden, sind sie verlohren und finden keine Anwendung.</value>
+  </data>
+  <data name="hc_rbtnDisplayImperial" xml:space="preserve">
+    <value>Ändert die Maßeinheiten auf Zoll (imperial)</value>
+  </data>
+  <data name="hc_rbtnDisplayMetric" xml:space="preserve">
+    <value>Ändert die Maßeinheiten auf das metrische System (m)</value>
+  </data>
+  <data name="hc_rbtnHeadingFix" xml:space="preserve">
+    <value>Berechnung der Fahrtrichtung (heading) aus GPS Punkten (fix to fix)</value>
+  </data>
+  <data name="hc_rbtnHeadingGPS" xml:space="preserve">
+    <value>Verwendet die Fahrtrichtung aus VTG Satz (GPS System)</value>
+  </data>
+  <data name="hc_rbtnHeadingHDT" xml:space="preserve">
+    <value>Verwendet die Fahrtrichtung aus einem Dual Antennen Aufbau</value>
+  </data>
+  <data name="hc_tboxVehicleNameSave" xml:space="preserve">
+    <value>Name des neuen Fahrzeugs
+
+Geben Sie den Namen des neuen Fahrzeugs ein. Dieser muss von den anderen Namen verschieden sein. Drücken Sie abschließend speichern (save). </value>
+  </data>
+  <data name="hcur_btnAPoint" xml:space="preserve">
+    <value>A Punkt
+
+Der Startpunkt einer Kurve </value>
+  </data>
+  <data name="hcur_btnBPoint" xml:space="preserve">
+    <value>B Punkt
+
+Der Endpunkt eriner Kurve </value>
+  </data>
+  <data name="hcur_btnPausePlay" xml:space="preserve">
+    <value>Pause
+
+Unterbricht die Aufzeichnung der Punkte. Bei erneutem Drücken wird die Aufzeichnung weiter geführt.
+Gerade Stücke in der Kurvenlinie erzeugen Sie, in dem Sie während der Aufnahme Pause drücken. Dann wird der letzte Punkt vor und nach der Pause gerade verbunden.
+Nach dem speichern besteht die Möglichkeit die Kurve zu glätten.</value>
+  </data>
+  <data name="hd_btnCancelTouch" xml:space="preserve">
+    <value>Punkt löschen
+
+Löscht alle Punkte auf der Linie, um neu beginnen zu können.
+Wenn Sie einen weiteren Punkt drücken, nachdem Sie bereits 2 Punkte festgelegt haben, beginn Sie ebenfalls von neuem.  </value>
+  </data>
+  <data name="hd_btnDeleteABLine" xml:space="preserve">
+    <value>AB Linie löschen
+
+Löscht die ausgewählte AB Linie. </value>
+  </data>
+  <data name="hd_btnDeleteCurve" xml:space="preserve">
+    <value>AB Kurve löschen
+
+Löscht die ausgewählte AB Kurve. </value>
+  </data>
+  <data name="hd_btnDrawSections" xml:space="preserve">
+    <value>bearbeitete Fläche anzeigen
+
+Zeigt die bereits bearbeitete Fläche an, damit Sie eine bessere Vorstellung haben. </value>
+  </data>
+  <data name="hd_btnFlipOffset" xml:space="preserve">
+    <value>Seitenversatz wechseln
+
+Spiegelt den Seitenversatz auf die andere Seite der Linie. Verwenden Sie diese Funktion, bevor Sie die Kurve erzeugen. </value>
+  </data>
+  <data name="hd_btnMakeABLine" xml:space="preserve">
+    <value>AB Linie erstellen
+
+Sobald Sie 2 Punkte ausgewählt haben und den Grenzabstand eingestellt haben, können Sie eine neue AB Linie erzeugen. Den Namen Dieser können Sie im Textfeld ändern.</value>
+  </data>
+  <data name="hd_btnMakeBoundaryCurve" xml:space="preserve">
+    <value>Grenzkontur erstellen
+
+Erstellt einen Kontur parallel zur Außengrenze.  Die Zahl der Spuren am Vorgewende und ein weiterer Versatz kann eingestellt werden.</value>
+  </data>
+  <data name="hd_btnMakeCurve" xml:space="preserve">
+    <value>AB Kurve erstellen
+
+Sobald Sie 2 Punkte ausgewählt haben und den Grenzabstand eingestellt haben, können Sie eine neue AB Kurve erzeugen. Den Namen Dieser können Sie im Textfeld ändern.</value>
+  </data>
+  <data name="hd_btnSelectABLine" xml:space="preserve">
+    <value>Drücken Sie den Knopf um durch die Linien zu blättern.</value>
+  </data>
+  <data name="hd_btnSelectCurve" xml:space="preserve">
+    <value>Drücken Sie den Knopf um durch die Linien zu blättern.</value>
+  </data>
+  <data name="hd_nudDistance" xml:space="preserve">
+    <value>Abstand zur Grenze
+
+Geben Sie den Abstand zur Grenze nach rechts oder links ein. Stardardwert ist die halbe Arbeitsbreite. </value>
+  </data>
+  <data name="hd_oglSelf" xml:space="preserve">
+    <value>Anzeige der Grenze
+
+Tippen Sie auf 2 Punkte auf der Grenze. Tippen Sie auf AB Linie oder AB Kurve um die Linie zu erstellen. Abschließend passen Sie den Namen der Linie an. </value>
+  </data>
+  <data name="hd_tboxNameLine" xml:space="preserve">
+    <value>Linie ändern
+
+Hier ändern Sie die Linie oder deren Namen. </value>
+  </data>
+  <data name="he_btnNoSave" xml:space="preserve">
+    <value>Speichern Sie die Änderungen nur für jetzt und verlassen das Fenster.
+
+Die Änderungen an der Linie werden nicht mit dem Feld abgespeichert, sondern gehen beim Schließen des Feldes verlohren. Aber die Änderungen bleiben wirksam, bis Sie das Feld schließen. </value>
+  </data>
+  <data name="he_btnOK" xml:space="preserve">
+    <value>Speichern und zurück
+
+Die Änderungen werden mit dem Feld abgespeichert und das Fenster wird geschlossen.</value>
+  </data>
+  <data name="hh_btnDeletePoints" xml:space="preserve">
+    <value>Punkt auf der Linie löschen
+
+Wählen Sie zuerst 2 Punkt auf der Linie aus. Drücken Sie dann den "löschen" (delete) Knopf. Dabei werden alle Punkte zwischen den 2 ausgewählten Punkten gelöscht. Das macht die Linie in diesem Bereich gerade.</value>
+  </data>
+  <data name="hh_btnExit" xml:space="preserve">
+    <value>Zurück
+
+Das Fenster wird geschlossen und das Vorgewende ist aktiv. </value>
+  </data>
+  <data name="hh_btnMakeFixedHeadland" xml:space="preserve">
+    <value>zusätzlicher Abstand zur Grenze
+
+Fügt einen zusätzlichen Abstand, zu der Breite der ausgewählten Spuren, hinzu. </value>
+  </data>
+  <data name="hh_btnReset" xml:space="preserve">
+    <value>löscht das Vorgewende
+
+Das Vorgewende wird gelöscht und der Abstand zur Grenze auf 0 gesetzt. </value>
+  </data>
+  <data name="hh_btnSetDistance" xml:space="preserve">
+    <value>Abstand hinzufügen
+
+Wählen Sie 2 Punkte aus und fügen Sie zusätzlichen Abstand zur Grenze hinzu (nur zwischen den 2 gewählten Punkte).</value>
+  </data>
+  <data name="hh_btnTurnOffHeadland" xml:space="preserve">
+    <value>Vorgewende aus
+
+Schaltet das Vorgewende komplett aus. </value>
+  </data>
+  <data name="hh_cboxIsSectionControlled" xml:space="preserve">
+    <value>automatische Teilbreitensteuerung am Vorgewende
+
+Legt fest, ob die Teilbreiten im Vorgewende automatisch aus gehen. </value>
+  </data>
+  <data name="hh_cboxToolWidths" xml:space="preserve">
+    <value>Zahl der Spuren am Vorgewende
+
+wählen Sie mit dem Pull down Menü die Zahl der Spuren aus, die als Vorgewende festgelegt werden. </value>
+  </data>
+  <data name="hh_nudDistance" xml:space="preserve">
+    <value>Distanz hinzufügen
+
+Zusätzliche Breite (m) des Vorgewendes wird hinzugefügt, sobald Sie den Knopf drücken.</value>
+  </data>
+  <data name="hh_nudSetDistance" xml:space="preserve">
+    <value>Segment verschieben
+
+Wählen Sie 2 Punkte aus und verschieben Sie es um x m (nur zwischen den 2 gewählten Punkte).</value>
+  </data>
+  <data name="ht_btnAdjHalfToolWidth" xml:space="preserve">
+    <value>Verschiebung um die halbe Arbeitsbreite
+
+Verschiebt die Linie um die halbe Abreitsbreite. </value>
+  </data>
+  <data name="ht_btnCancel" xml:space="preserve">
+    <value>Fahrgassen aus
+
+Schaltet die Fahrgassen aus und löscht diese. </value>
+  </data>
+  <data name="ht_btnLeftRightNudge" xml:space="preserve">
+    <value>Linie verschieben
+
+Linie um x cm verschieben</value>
+  </data>
+  <data name="ht_btnSave" xml:space="preserve">
+    <value>Speichern und zurück
+
+Speichert und aktiviert die Fahrgassen. Das Fenster wird verlassen.</value>
+  </data>
+  <data name="ht_btnSwapAB" xml:space="preserve">
+    <value>A und B Punkt vertauschen
+
+Dreht die Linie um. Wichtig, da die Fahrgassen nur rechts von der Linie 0 erstellt werden.</value>
+  </data>
+  <data name="ht_nudPasses" xml:space="preserve">
+    <value>Zahl der erzeugten Fahrgassen
+
+Geben Sie die Zahl der zu erstellenden Fahrgassen ein.</value>
+  </data>
+</root>

@@ -1,0 +1,10 @@
+﻿[*.cs]
+
+# CS1690: Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+dotnet_diagnostic.CS1690.severity = silent
+
+# IDE1006: Naming Styles
+dotnet_diagnostic.IDE1006.severity = none
+
+# IDE0044: Add readonly modifier
+dotnet_diagnostic.IDE0044.severity = silent
