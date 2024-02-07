@@ -18,6 +18,7 @@ namespace AgOpenGPS
         private Point fixPt;
 
         private bool isA = true;
+        private bool isC = false;
         private int start = 99999, end = 99999;
         private int bndSelect = 0, smPtsChoose = 1, smPts = 4;
 
@@ -757,6 +758,9 @@ namespace AgOpenGPS
                     }
                 }
 
+                arr[start] = new vec3(pint);
+
+
                 mf.bnd.bndList[bndSelect].fenceLine.Clear();
 
                 for (int i = 0; i < arr.Length; i++)
@@ -784,10 +788,10 @@ namespace AgOpenGPS
 
             start = 99999; end = 99999;
             isA = true;
-
-            zoom = 1;
-            sX = 0;
-            sY = 0;
+            isC = false;
+            //zoom = 1;
+            //sX = 0;
+            //sY = 0;
         }
 
         private void cboxIsZoom_Click(object sender, EventArgs e)
@@ -815,20 +819,22 @@ namespace AgOpenGPS
 
         private void oglSelf_MouseDown(object sender, MouseEventArgs e)
         {
+            if (mf.bnd.bndList.Count < 1) { return; }
+
             Point ptt = oglSelf.PointToClient(Cursor.Position);
 
             int wid = oglSelf.Width;
             int halfWid = oglSelf.Width / 2;
             double scale = (double)wid * 0.903;
 
-            //if (cboxIsZoom.Checked && !zoomToggle)
-            //{
-            //    sX = ((halfWid - (double)ptt.X) / wid) * 1.1;
-            //    sY = ((halfWid - (double)ptt.Y) / -wid) * 1.1;
-            //    zoom = 0.1;
-            //    zoomToggle = true;
-            //    return;
-            //}
+            if (cboxIsZoom.Checked)
+            {
+                sX = ((halfWid - (double)ptt.X) / wid) * 1.1;
+                sY = ((halfWid - (double)ptt.Y) / -wid) * 1.1;
+                zoom = 0.1;
+                cboxIsZoom.Checked = false;
+                return;
+            }
 
             //Convert to Origin in the center of window, 800 pixels
             fixPt.X = ptt.X - halfWid;
@@ -847,7 +853,11 @@ namespace AgOpenGPS
             pint.easting = plotPt.easting;
             pint.northing = plotPt.northing;
 
-            if (mf.bnd.bndList.Count < 1) { return; }
+            if (start != 99999 & end != 99999)
+            {
+                isC = true;
+                return;
+            }
 
             if (isA)
             {
@@ -1003,14 +1013,29 @@ namespace AgOpenGPS
             //draw the actual built lines
             if (start != 99999 && end != 99999)
             {
-                GL.LineWidth(4);
-                GL.Color3(0.90f, 0.5f, 0.25f);
-                GL.Begin(PrimitiveType.Lines);
+                if (isC)
                 {
-                    GL.Vertex3(mf.bnd.bndList[0].fenceLine[start].easting, mf.bnd.bndList[0].fenceLine[start].northing, 0);
-                    GL.Vertex3(mf.bnd.bndList[0].fenceLine[end].easting, mf.bnd.bndList[0].fenceLine[end].northing, 0);
+                    GL.LineWidth(4);
+                    GL.Color3(0.90f, 0.5f, 0.25f);
+                    GL.Begin(PrimitiveType.LineStrip);
+                    {
+                        GL.Vertex3(mf.bnd.bndList[0].fenceLine[start].easting, mf.bnd.bndList[0].fenceLine[start].northing, 0);
+                        GL.Vertex3(pint.easting, pint.northing, 0);
+                        GL.Vertex3(mf.bnd.bndList[0].fenceLine[end].easting, mf.bnd.bndList[0].fenceLine[end].northing, 0);
+                    }
+                    GL.End();
                 }
-                GL.End();
+                else
+                {
+                    GL.LineWidth(4);
+                    GL.Color3(0.90f, 0.5f, 0.25f);
+                    GL.Begin(PrimitiveType.Lines);
+                    {
+                        GL.Vertex3(mf.bnd.bndList[0].fenceLine[start].easting, mf.bnd.bndList[0].fenceLine[start].northing, 0);
+                        GL.Vertex3(mf.bnd.bndList[0].fenceLine[end].easting, mf.bnd.bndList[0].fenceLine[end].northing, 0);
+                    }
+                    GL.End();
+                }
             }
 
             GL.Flush();
@@ -1035,7 +1060,15 @@ namespace AgOpenGPS
 
             GL.Color3(0.5f, 0.5f, 0.935f);
             if (end != 99999) GL.Vertex3(mf.bnd.bndList[bndSelect].fenceLine[end].easting, mf.bnd.bndList[bndSelect].fenceLine[end].northing, 0);
+
+            if (isC)
+            {
+                GL.Color3(0.95f, 0.95f, 0.35f);
+                GL.Vertex3(pint.easting, pint.northing, 0);
+            }
+
             GL.End();
+
 
 
         }
