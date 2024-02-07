@@ -1068,34 +1068,6 @@ namespace AgOpenGPS
 
             if (mf.bnd.bndList.Count > 0)
             {
-                //end
-                while (mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(xList[xList.Count - 1]))
-                {
-                    for (int i = 1; i < 100; i++)
-                    {
-                        vec3 pt = new vec3(xList[ptCnt]);
-                        pt.easting += (Math.Sin(pt.heading) * i);
-                        pt.northing += (Math.Cos(pt.heading) * i);
-                        xList.Add(pt);
-                    }
-                    ptCnt = xList.Count - 1;
-                }
-
-                //and the beginning
-                start = new vec3(xList[0]);
-
-                while (mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(xList[0]))
-                {
-                    for (int i = 1; i < 100; i++)
-                    {
-                        vec3 pt = new vec3(start);
-                        pt.easting -= (Math.Sin(pt.heading) * i);
-                        pt.northing -= (Math.Cos(pt.heading) * i);
-                        xList.Insert(0, pt);
-                    }
-                    start = new vec3(xList[0]);
-                }
-
                 for (int i = 1; i < 100; i++)
                 {
                     vec3 pt = new vec3(xList[ptCnt]);
