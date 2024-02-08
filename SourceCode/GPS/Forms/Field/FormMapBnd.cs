@@ -24,10 +24,6 @@ namespace AgOpenGPS
 
         private double zoom = 1, sX = 0, sY = 0;
 
-        private int operations;
-
-        //public List<CTrk> gTemp = new List<CTrk>();
-
         public vec3 pint = new vec3(0.0, 1.0, 0.0);
 
         public List<vec3> secList = new List<vec3>();
@@ -160,8 +156,6 @@ namespace AgOpenGPS
 
             for (int j = 0; j < secList.Count; j++)
             {
-                operations++;
-
                 if (j == currentPoint) continue;
 
                 if (arr[j].heading == 1)
@@ -354,7 +348,6 @@ namespace AgOpenGPS
         {
             //start all over
             start = end = 99999;
-            operations = 0;
             zoom = 1;
             sX = 0;
             sY = 0;

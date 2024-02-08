@@ -1608,7 +1608,6 @@ namespace AgOpenGPS
                 }
             }
         }
-
         private void DrawSteerCircle()
         {
             int sizer = 60;
@@ -1625,11 +1624,24 @@ namespace AgOpenGPS
             GL.BindTexture(TextureTarget.Texture2D, texture[11]);        // Select Our Texture
 
             if (mc.steerSwitchHigh)
+            {
                 GL.Color4(0.9752f, 0.0f, 0.03f, 0.98);
+                trk.isAutoSnapped = false;
+            }
             else if (isBtnAutoSteerOn)
+            {
                 GL.Color4(0.052f, 0.970f, 0.03f, 0.97);
+                trk.isAutoSnapped = false;
+            }
             else
+            {
                 GL.Color4(0.952f, 0.750f, 0.03f, 0.97);
+                if (trk.isAutoSnapToPivot && !trk.isAutoSnapped)
+                {
+                    trk.SnapToPivot();
+                    trk.isAutoSnapped = true;
+                }
+            }
 
             //we have lost connection to steer module
             if (steerModuleConnectedCounter++ > 30)

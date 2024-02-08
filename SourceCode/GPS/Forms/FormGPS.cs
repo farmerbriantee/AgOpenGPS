@@ -1119,6 +1119,7 @@ namespace AgOpenGPS
             SmoothABtoolStripMenu.Enabled = isOn;
             deleteContourPathsToolStripMenuItem.Enabled = isOn;
             deleteAppliedAreaToolStripMenuItem.Enabled = isOn;
+            boundaryToolToolStripMenu.Enabled = isOn;
             offsetFixToolStrip.Enabled = isOn;
 
             boundariesToolStripMenuItem.Enabled = isOn;
