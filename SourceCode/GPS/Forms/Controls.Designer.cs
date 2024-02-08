@@ -1217,6 +1217,8 @@ namespace AgOpenGPS
             if (this.WindowState == FormWindowState.Maximized)
                 this.WindowState = FormWindowState.Normal;
             else this.WindowState = FormWindowState.Maximized;
+
+            FormGPS_ResizeEnd(this, e);
         }
         private void lblCurrentField_Click(object sender, EventArgs e)
         {
