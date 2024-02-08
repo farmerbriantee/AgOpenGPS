@@ -883,7 +883,7 @@ namespace AgOpenGPS
                     panelAB.Visible = false;
                     panelLeft.Visible = false;
                     oglMain.Left = 20;
-                    oglMain.Width = this.Width - 90; //22
+                    oglMain.Width = this.Width - 98; //22
                     oglMain.Height = this.Height - 62;
                 }
                 else
@@ -892,7 +892,7 @@ namespace AgOpenGPS
                     panelRight.Visible = true;
                     panelLeft.Visible = true;
                     oglMain.Left = 80;
-                    oglMain.Width = this.Width - statusStripLeft.Width - 90; //22
+                    oglMain.Width = this.Width - statusStripLeft.Width - 92; //22
                     oglMain.Height = this.Height - 118;
                 }
             }
