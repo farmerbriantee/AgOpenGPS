@@ -82,6 +82,7 @@ namespace AgOpenGPS
         private const int HeaderLength = 100;
 
         private readonly FormGPS mf;
+        Random rnd = new Random();
 
         public ShapeFile(FormGPS _f)
         {
@@ -323,15 +324,26 @@ namespace AgOpenGPS
                                     int dd;
                                     if ((dd = table.Columns.IndexOf("rate")) >=0)
                                     {
-                                        newRateLine.rate = double.Parse(table.Rows[mf.bnd.Rate.Count][dd].ToString(), CultureInfo.InvariantCulture);
+                                        newRateLine.rate = double.Parse(table.Rows[mf.bnd.shpList.Count][dd].ToString(), CultureInfo.InvariantCulture);
                                     }
                                     if ((dd = table.Columns.IndexOf("rgb")) >= 0)
                                     {
-                                        string[] ddd = table.Rows[mf.bnd.Rate.Count][dd].ToString().Split(',');
+                                        string[] ddd = table.Rows[mf.bnd.shpList.Count][dd].ToString().Split(',');
                                         newRateLine.color = Color.FromArgb(int.Parse(ddd[0], CultureInfo.InvariantCulture), int.Parse(ddd[1], CultureInfo.InvariantCulture), int.Parse(ddd[2], CultureInfo.InvariantCulture));
+
+                                    }
+                                    else
+                                    {
+                                        newRateLine.color = Color.FromArgb((255), rnd.Next(127) + 127, rnd.Next(127) + 127, rnd.Next(127) + 127);
                                     }
 
-                                    mf.bnd.Rate.Add(newRateLine);
+                                    double bndBoxLeft = ParseDouble(ByteArray, 12, true);
+                                    double bndBoxTop = ParseDouble(ByteArray, 20, true);
+                                    double bndBoxRight = ParseDouble(ByteArray, 28, true);
+                                    double bndBoxBottom = ParseDouble(ByteArray, 36, true);
+
+
+                                    mf.bnd.shpList.Add(newRateLine);
                                 }
                             }
                         }
@@ -389,6 +401,7 @@ namespace AgOpenGPS
                                     if (type == 0)
                                     {
                                         //mf.patchList.Add(newRateLine);  TODO
+                                        throw new Exception("patchlist not implemented");
                                     }
                                     else if (type > 1)
                                     {

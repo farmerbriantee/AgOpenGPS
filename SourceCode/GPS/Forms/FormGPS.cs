@@ -508,8 +508,8 @@ namespace AgOpenGPS
             headlandToolStripMenuItem.Text = gStr.gsHeadland;
             headlandBuildToolStripMenuItem.Text = gStr.gsHeadland + " (Lines)";
             deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
-            deleteAppliedAreaToolStripMenuItem.Text = gStr.gsDeleteAppliedArea;
-            deleteForSureToolStripMenuItem.Text = gStr.gsAreYouSure;
+            deleteAppliedToolStripMenuItem.Text = gStr.gsDeleteAppliedArea;
+            toolStripAreYouSure.Text = gStr.gsAreYouSure;
             tramLinesMenuField.Text = gStr.gsTramLines;
             recordedPathStripMenu.Text = gStr.gsRecordedPathMenu;
 
@@ -948,6 +948,7 @@ namespace AgOpenGPS
 
             //clean all the lines
             bnd.bndList.Clear();
+            bnd.shpList.Clear();
 
             panelRight.Enabled = false;
             FieldMenuButtonEnableDisable(false);
@@ -1126,7 +1127,6 @@ namespace AgOpenGPS
         {
             SmoothABtoolStripMenu.Enabled = isOn;
             deleteContourPathsToolStripMenuItem.Enabled = isOn;
-            deleteAppliedAreaToolStripMenuItem.Enabled = isOn;
             boundaryToolToolStripMenu.Enabled = isOn;
             offsetFixToolStrip.Enabled = isOn;
 
