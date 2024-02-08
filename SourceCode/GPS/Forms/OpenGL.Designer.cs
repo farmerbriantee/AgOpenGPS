@@ -206,7 +206,25 @@ namespace AgOpenGPS
                     if (tram.displayMode != 0) tram.DrawTram();
 
                     GL.PolygonMode(MaterialFace.Front, PolygonMode.Fill);
-                    GL.Color3(1, 1, 1);
+                    //GL.Color3(1, 1, 1);
+
+                    if (bnd.Rate.Count > 0)
+                    {
+                        GL.Color3(0.4f, 1.0f, 0.0f);
+                        GL.Begin(PrimitiveType.LineLoop);
+                        for (int h = 0; h < bnd.Rate.Count; h++)
+                        {
+                            for (int i = 0; i < bnd.Rate[h].points.Count; i++)
+                            {
+                                {
+                                    GL.Vertex3(bnd.Rate[h].points[i].easting, bnd.Rate[h].points[i].northing, 0);
+                                }
+                            }
+                        }
+                        GL.End();
+
+                    }
+
 
                     //draw contour line if button on 
                     if (ct.isContourBtnOn)

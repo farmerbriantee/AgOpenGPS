@@ -234,6 +234,11 @@ namespace AgOpenGPS
         /// </summary>
         public CFont font;
 
+        public ShapeFile shape;
+        /// <summary>
+        /// The new brightness code
+        /// </summary>
+
         private void panelRight_Paint(object sender, PaintEventArgs e)
         {
 
@@ -339,6 +344,9 @@ namespace AgOpenGPS
 
             //brightness object class
             displayBrightness = new CWindowsSettingsBrightnessController(Properties.Settings.Default.setDisplay_isBrightnessOn);
+
+            //shape file object
+            shape = new ShapeFile(this);
         }
 
         private void FormGPS_Load(object sender, EventArgs e)

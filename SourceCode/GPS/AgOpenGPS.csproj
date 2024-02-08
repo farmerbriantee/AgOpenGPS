@@ -137,6 +137,7 @@
     <Compile Include="Classes\CRecordedPath.cs" />
     <Compile Include="Classes\CPatches.cs" />
     <Compile Include="Classes\CSettings.cs" />
+    <Compile Include="Classes\CShapeFile.cs" />
     <Compile Include="Classes\CSound.cs" />
     <Compile Include="Classes\CFieldData.cs" />
     <Compile Include="Classes\CBoundaryList.cs" />
