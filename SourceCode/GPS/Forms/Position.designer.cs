@@ -11,7 +11,7 @@ namespace AgOpenGPS
     {
         //very first fix to setup grid etc
         public bool isFirstFixPositionSet = false, isGPSPositionInitialized = false, isFirstHeadingSet = false,
-            isReverse = false, isSteerInReverse = true, isSuperSlow = false, isAutoSnapToPivot = false;
+            isReverse = false, isSteerInReverse = true, isSuperSlow = false;
         public double startGPSHeading = 0;
 
         //string to record fixes for elevation maps
