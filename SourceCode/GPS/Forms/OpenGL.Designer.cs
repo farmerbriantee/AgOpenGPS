@@ -208,22 +208,21 @@ namespace AgOpenGPS
                     GL.PolygonMode(MaterialFace.Front, PolygonMode.Fill);
                     //GL.Color3(1, 1, 1);
 
-                    if (bnd.shpList.Count > 0)
-                    {
-                        for (int h = 0; h < bnd.shpList.Count; h++)
-                        {
-                            GL.Color3(bnd.shpList[h].color.R, bnd.shpList[h].color.G, bnd.shpList[h].color.B);
-                            GL.Begin(PrimitiveType.LineLoop);
-                            for (int i = 0; i < bnd.shpList[h].points.Count; i++)
-                            {
-                                {
-                                    GL.Vertex3(bnd.shpList[h].points[i].easting, bnd.shpList[h].points[i].northing, 0);
-                                }
-                            }
-                            GL.End();
-                        }
-                    }
-
+                    //if (bnd.shpList.Count > 0)
+                    //{
+                    //    for (int h = 0; h < bnd.shpList.Count; h++)
+                    //    {
+                    //        GL.Color3(bnd.shpList[h].color.R, bnd.shpList[h].color.G, bnd.shpList[h].color.B);
+                    //        GL.Begin(PrimitiveType.LineLoop);
+                    //        for (int i = 0; i < bnd.shpList[h].points.Count; i++)
+                    //        {
+                    //            {
+                    //                GL.Vertex3(bnd.shpList[h].points[i].easting, bnd.shpList[h].points[i].northing, 0);
+                    //            }
+                    //        }
+                    //        GL.End();
+                    //    }
+                    //}
 
                     //draw contour line if button on 
                     if (ct.isContourBtnOn)

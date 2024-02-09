@@ -289,7 +289,6 @@
             this.nudSection15 = new AgOpenGPS.NudlessNumericUpDown();
             this.nudSection14 = new AgOpenGPS.NudlessNumericUpDown();
             this.nudSection13 = new AgOpenGPS.NudlessNumericUpDown();
-            this.nudNumberOfSections = new AgOpenGPS.NudlessNumericUpDown();
             this.nudSection12 = new AgOpenGPS.NudlessNumericUpDown();
             this.nudSection11 = new AgOpenGPS.NudlessNumericUpDown();
             this.nudSection10 = new AgOpenGPS.NudlessNumericUpDown();
@@ -305,6 +304,7 @@
             this.cboxSectionBoundaryControl = new System.Windows.Forms.CheckBox();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.cboxIsUnique = new System.Windows.Forms.CheckBox();
+            this.nudNumberOfSections = new AgOpenGPS.NudlessNumericUpDown();
             this.tabTSwitches = new System.Windows.Forms.TabPage();
             this.grpControls = new System.Windows.Forms.GroupBox();
             this.chkSetAutoSectionsSteer = new System.Windows.Forms.CheckBox();
@@ -624,7 +624,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSection15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfSections)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection10)).BeginInit();
@@ -638,6 +637,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSection02)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection01)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfSections)).BeginInit();
             this.tabTSwitches.SuspendLayout();
             this.grpControls.SuspendLayout();
             this.grpSwitch.SuspendLayout();
@@ -2629,7 +2629,7 @@
             this.nudTractorHitchLength.InterceptArrowKeys = false;
             this.nudTractorHitchLength.Location = new System.Drawing.Point(37, 272);
             this.nudTractorHitchLength.Maximum = new decimal(new int[] {
-            9999,
+            4000,
             0,
             0,
             0});
@@ -2653,12 +2653,12 @@
             this.nudVehicleTrack.InterceptArrowKeys = false;
             this.nudVehicleTrack.Location = new System.Drawing.Point(700, 165);
             this.nudVehicleTrack.Maximum = new decimal(new int[] {
-            9999,
+            2000,
             0,
             0,
             0});
             this.nudVehicleTrack.Minimum = new decimal(new int[] {
-            50,
+            20,
             0,
             0,
             0});
@@ -3047,6 +3047,11 @@
             this.nudMaxAngularVelocity.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudMaxAngularVelocity.InterceptArrowKeys = false;
             this.nudMaxAngularVelocity.Location = new System.Drawing.Point(630, 485);
+            this.nudMaxAngularVelocity.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
             this.nudMaxAngularVelocity.Minimum = new decimal(new int[] {
             5,
             0,
@@ -3746,15 +3751,10 @@
             this.nudOverlap.InterceptArrowKeys = false;
             this.nudOverlap.Location = new System.Drawing.Point(656, 109);
             this.nudOverlap.Maximum = new decimal(new int[] {
-            3000,
+            1000,
             0,
             0,
             0});
-            this.nudOverlap.Minimum = new decimal(new int[] {
-            3000,
-            0,
-            0,
-            -2147483648});
             this.nudOverlap.Name = "nudOverlap";
             this.nudOverlap.ReadOnly = true;
             this.nudOverlap.Size = new System.Drawing.Size(114, 52);
@@ -3881,11 +3881,6 @@
             0,
             0,
             0});
-            this.nudTrailingToolToPivotLength.Minimum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            -2147483648});
             this.nudTrailingToolToPivotLength.Name = "nudTrailingToolToPivotLength";
             this.nudTrailingToolToPivotLength.ReadOnly = true;
             this.nudTrailingToolToPivotLength.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -5104,30 +5099,6 @@
             this.nudSection13.Click += new System.EventHandler(this.NudSection1_Click);
             this.nudSection13.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
-            // nudNumberOfSections
-            // 
-            this.nudNumberOfSections.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.nudNumberOfSections.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudNumberOfSections.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudNumberOfSections.InterceptArrowKeys = false;
-            this.nudNumberOfSections.Location = new System.Drawing.Point(486, 351);
-            this.nudNumberOfSections.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudNumberOfSections.Name = "nudNumberOfSections";
-            this.nudNumberOfSections.ReadOnly = true;
-            this.nudNumberOfSections.Size = new System.Drawing.Size(108, 52);
-            this.nudNumberOfSections.TabIndex = 458;
-            this.nudNumberOfSections.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudNumberOfSections.Value = new decimal(new int[] {
-            48,
-            0,
-            0,
-            0});
-            this.nudNumberOfSections.Click += new System.EventHandler(this.nudNumberOfSections_Click);
-            // 
             // nudSection12
             // 
             this.nudSection12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -5481,6 +5452,30 @@
             this.cboxIsUnique.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxIsUnique.UseVisualStyleBackColor = false;
             this.cboxIsUnique.Click += new System.EventHandler(this.cboxIsUnique_Click);
+            // 
+            // nudNumberOfSections
+            // 
+            this.nudNumberOfSections.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.nudNumberOfSections.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudNumberOfSections.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudNumberOfSections.InterceptArrowKeys = false;
+            this.nudNumberOfSections.Location = new System.Drawing.Point(486, 351);
+            this.nudNumberOfSections.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudNumberOfSections.Name = "nudNumberOfSections";
+            this.nudNumberOfSections.ReadOnly = true;
+            this.nudNumberOfSections.Size = new System.Drawing.Size(108, 52);
+            this.nudNumberOfSections.TabIndex = 458;
+            this.nudNumberOfSections.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudNumberOfSections.Value = new decimal(new int[] {
+            48,
+            0,
+            0,
+            0});
+            this.nudNumberOfSections.Click += new System.EventHandler(this.nudNumberOfSections_Click);
             // 
             // tabTSwitches
             // 
@@ -9949,7 +9944,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSection15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfSections)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection10)).EndInit();
@@ -9963,6 +9957,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSection02)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection01)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfSections)).EndInit();
             this.tabTSwitches.ResumeLayout(false);
             this.grpControls.ResumeLayout(false);
             this.grpSwitch.ResumeLayout(false);
