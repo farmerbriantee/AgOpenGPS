@@ -1130,8 +1130,8 @@ namespace AgOpenGPS
 
                 Properties.Settings.Default.Save();
 
-                lblVehicleToolWidth.Text = Convert.ToString((int)(numberOfSections * defaultSectionWidth * 100 * mf.cm2CmOrIn));
-                SectionFeetInchesTotalWidthLabelUpdate();
+                //lblVehicleToolWidth.Text = Convert.ToString((int)(numberOfSections * defaultSectionWidth * 100 * mf.cm2CmOrIn));
+                //SectionFeetInchesTotalWidthLabelUpdate();
             }
         }
 

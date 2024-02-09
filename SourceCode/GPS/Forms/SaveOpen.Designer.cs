@@ -1711,17 +1711,16 @@ namespace AgOpenGPS
                 }
             }
 
-
             PanelsAndOGLSize();
             SetZoom();
 
-            if (Directory.Exists(fieldsDirectory + currentFieldDirectory))
-            {
-                foreach (string file in Directory.GetFiles(fieldsDirectory + currentFieldDirectory, "*.shp", SearchOption.TopDirectoryOnly))
-                {
-                    shape.Main(fieldsDirectory + currentFieldDirectory + "\\" + Path.GetFileNameWithoutExtension(file));
-                }
-            }
+            //if (Directory.Exists(fieldsDirectory + currentFieldDirectory))
+            //{
+            //    foreach (string file in Directory.GetFiles(fieldsDirectory + currentFieldDirectory, "*.shp", SearchOption.TopDirectoryOnly))
+            //    {
+            //        shape.Main(fieldsDirectory + currentFieldDirectory + "\\" + Path.GetFileNameWithoutExtension(file));
+            //    }
+            //}
 
             //Recorded Path
             fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\RecPath.txt";
