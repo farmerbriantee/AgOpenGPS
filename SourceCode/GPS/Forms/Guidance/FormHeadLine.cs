@@ -425,9 +425,9 @@ namespace AgOpenGPS
             for (int j = 0; j < mf.bnd.bndList.Count; j++)
             {
                 if (j == bndSelect)
-                    GL.Color3(0.025f, 0.05f, 0.020f);
+                    GL.Color3(0.75f, 0.75f, 0.750f);
                 else
-                    GL.Color3(0.70f, 0.25f, 0.10f);
+                    GL.Color3(0.0f, 0.25f, 0.10f);
 
                 GL.Begin(PrimitiveType.LineStrip);
                 for (int i = 0; i < mf.bnd.bndList[j].fenceLine.Count; i++)
@@ -439,12 +439,6 @@ namespace AgOpenGPS
 
             //the vehicle
             GL.PointSize(16.0f);
-            GL.Begin(PrimitiveType.Points);
-            GL.Color3(0.0f, 0.00f, 0.0f);
-            GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0.0);
-            GL.End();
-
-            GL.PointSize(8.0f);
             GL.Begin(PrimitiveType.Points);
             GL.Color3(0.95f, 0.190f, 0.20f);
             GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0.0);
@@ -464,44 +458,20 @@ namespace AgOpenGPS
             GL.Flush();
             oglSelf.SwapBuffers();
         }
-        private void oglSelf_Load(object sender, EventArgs e)
-        {
-            oglSelf.MakeCurrent();
-            GL.Enable(EnableCap.CullFace);
-            GL.CullFace(CullFaceMode.Back);
-            GL.ClearColor(1,1,1,1);
-            GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
-        }
-        private void oglSelf_Resize(object sender, EventArgs e)
-        {
-            oglSelf.MakeCurrent();
-            GL.MatrixMode(MatrixMode.Projection);
-            GL.LoadIdentity();
-
-            //58 degrees view
-            GL.Viewport(0, 0, oglSelf.Width, oglSelf.Height);
-
-            Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(1.01f, 1.0f, 1.0f, 20000);
-            GL.LoadMatrix(ref mat);
-
-            GL.MatrixMode(MatrixMode.Modelview);
-        }
-
-
         private void DrawBuiltLines()
         {
+            //GL.LineWidth(8);
+            //GL.Color3(0.03f, 0.0f, 0.150f);
+            //GL.Begin(PrimitiveType.LineLoop);
+
+            //for (int i = 0; i < mf.bnd.bndList[0].hdLine.Count; i++)
+            //{
+            //    GL.Vertex3(mf.bnd.bndList[0].hdLine[i].easting, mf.bnd.bndList[0].hdLine[i].northing, 0);
+            //}
+            //GL.End();
+
             GL.LineWidth(8);
-            GL.Color3(0.03f, 0.0f, 0.150f);
-            GL.Begin(PrimitiveType.LineLoop);
-
-            for (int i = 0; i < mf.bnd.bndList[0].hdLine.Count; i++)
-            {
-                GL.Vertex3(mf.bnd.bndList[0].hdLine[i].easting, mf.bnd.bndList[0].hdLine[i].northing, 0);
-            }
-            GL.End();
-
-            GL.LineWidth(2);
-            GL.Color3(0.943f, 0.083f, 0.9150f);
+            GL.Color3(0.943f, 0.9083f, 0.09150f);
             GL.Begin(PrimitiveType.LineLoop);
 
             for (int i = 0; i < mf.bnd.bndList[0].hdLine.Count; i++)
@@ -518,11 +488,11 @@ namespace AgOpenGPS
 
                 if (mode == (int)TrackMode.AB)
                 {
-                    GL.Color3(0.75f, 0.09f, 0.0f);
+                    GL.Color3(0.95f, 0.09f, 0.0f);
                 }
                 else
                 {
-                    GL.Color3(0.13f, 0.75f, 0.020f);
+                    GL.Color3(0.13f, 0.95f, 0.020f);
                 }
 
                 GL.Begin(PrimitiveType.LineStrip);
@@ -563,6 +533,30 @@ namespace AgOpenGPS
             if (end != 99999) GL.Vertex3(mf.bnd.bndList[bndSelect].fenceLine[end].easting, mf.bnd.bndList[bndSelect].fenceLine[end].northing, 0);
             GL.End();
         }
+
+        private void oglSelf_Load(object sender, EventArgs e)
+        {
+            oglSelf.MakeCurrent();
+            GL.Enable(EnableCap.CullFace);
+            GL.CullFace(CullFaceMode.Back);
+            GL.ClearColor(0.1f, 0.1f, 0.1f ,1.0f);
+            GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
+        }
+        private void oglSelf_Resize(object sender, EventArgs e)
+        {
+            oglSelf.MakeCurrent();
+            GL.MatrixMode(MatrixMode.Projection);
+            GL.LoadIdentity();
+
+            //58 degrees view
+            GL.Viewport(0, 0, oglSelf.Width, oglSelf.Height);
+
+            Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(1.01f, 1.0f, 1.0f, 20000);
+            GL.LoadMatrix(ref mat);
+
+            GL.MatrixMode(MatrixMode.Modelview);
+        }
+
 
         private void timer1_Tick(object sender, EventArgs e)
         {

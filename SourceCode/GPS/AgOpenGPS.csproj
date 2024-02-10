@@ -1017,6 +1017,9 @@
     <None Include="btnImages\APlusPlusB.png" />
     <None Include="btnImages\APlusMinusA.png" />
     <None Include="btnImages\APlusMinusB.png" />
+    <Content Include="OGL.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />

@@ -32,7 +32,6 @@
             this.oglSelf = new OpenTK.GLControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.headingGroupBox = new System.Windows.Forms.GroupBox();
-            this.nudSetDistance = new AgOpenGPS.NudlessNumericUpDown();
             this.lblToolWidth = new System.Windows.Forms.Label();
             this.cboxToolWidths = new System.Windows.Forms.ComboBox();
             this.tlp1 = new System.Windows.Forms.TableLayoutPanel();
@@ -50,8 +49,9 @@
             this.cboxIsZoom = new System.Windows.Forms.CheckBox();
             this.rbtnLine = new System.Windows.Forms.RadioButton();
             this.rbtnCurve = new System.Windows.Forms.RadioButton();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSetDistance)).BeginInit();
+            this.nudSetDistance = new AgOpenGPS.NudlessNumericUpDown();
             this.tlp1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSetDistance)).BeginInit();
             this.SuspendLayout();
             // 
             // oglSelf
@@ -86,25 +86,6 @@
             this.headingGroupBox.TabIndex = 438;
             this.headingGroupBox.TabStop = false;
             // 
-            // nudSetDistance
-            // 
-            this.nudSetDistance.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.nudSetDistance.BackColor = System.Drawing.Color.White;
-            this.nudSetDistance.DecimalPlaces = 1;
-            this.nudSetDistance.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSetDistance.Location = new System.Drawing.Point(11, 257);
-            this.nudSetDistance.Maximum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
-            this.nudSetDistance.Name = "nudSetDistance";
-            this.nudSetDistance.ReadOnly = true;
-            this.nudSetDistance.Size = new System.Drawing.Size(130, 46);
-            this.nudSetDistance.TabIndex = 464;
-            this.nudSetDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudSetDistance.Click += new System.EventHandler(this.nudSetDistance_Click);
-            // 
             // lblToolWidth
             // 
             this.lblToolWidth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -113,7 +94,7 @@
             this.lblToolWidth.ForeColor = System.Drawing.Color.Black;
             this.lblToolWidth.Location = new System.Drawing.Point(3, 307);
             this.lblToolWidth.Name = "lblToolWidth";
-            this.lblToolWidth.Size = new System.Drawing.Size(298, 26);
+            this.lblToolWidth.Size = new System.Drawing.Size(292, 26);
             this.lblToolWidth.TabIndex = 517;
             this.lblToolWidth.Text = "43.56 m";
             this.lblToolWidth.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -138,7 +119,7 @@
             "8",
             "9",
             "10"});
-            this.cboxToolWidths.Location = new System.Drawing.Point(184, 250);
+            this.cboxToolWidths.Location = new System.Drawing.Point(182, 250);
             this.cboxToolWidths.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxToolWidths.Name = "cboxToolWidths";
             this.cboxToolWidths.Size = new System.Drawing.Size(88, 53);
@@ -150,8 +131,8 @@
             this.tlp1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tlp1.ColumnCount = 2;
-            this.tlp1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlp1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlp1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.30263F));
+            this.tlp1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.69737F));
             this.tlp1.Controls.Add(this.nudSetDistance, 0, 3);
             this.tlp1.Controls.Add(this.btnAShrink, 1, 1);
             this.tlp1.Controls.Add(this.btnBShrink, 1, 0);
@@ -182,7 +163,7 @@
             this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.29517F));
             this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.13218F));
             this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlp1.Size = new System.Drawing.Size(304, 701);
+            this.tlp1.Size = new System.Drawing.Size(298, 701);
             this.tlp1.TabIndex = 565;
             // 
             // btnAShrink
@@ -198,7 +179,7 @@
             this.btnAShrink.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnAShrink.Image = global::AgOpenGPS.Properties.Resources.APlusMinusA;
             this.btnAShrink.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAShrink.Location = new System.Drawing.Point(181, 71);
+            this.btnAShrink.Location = new System.Drawing.Point(179, 71);
             this.btnAShrink.Name = "btnAShrink";
             this.btnAShrink.Size = new System.Drawing.Size(94, 43);
             this.btnAShrink.TabIndex = 529;
@@ -218,7 +199,7 @@
             this.btnBShrink.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnBShrink.Image = global::AgOpenGPS.Properties.Resources.APlusMinusB;
             this.btnBShrink.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBShrink.Location = new System.Drawing.Point(181, 8);
+            this.btnBShrink.Location = new System.Drawing.Point(179, 8);
             this.btnBShrink.Name = "btnBShrink";
             this.btnBShrink.Size = new System.Drawing.Size(94, 45);
             this.btnBShrink.TabIndex = 528;
@@ -238,7 +219,7 @@
             this.btnBLength.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnBLength.Image = global::AgOpenGPS.Properties.Resources.APlusPlusB;
             this.btnBLength.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBLength.Location = new System.Drawing.Point(29, 8);
+            this.btnBLength.Location = new System.Drawing.Point(30, 8);
             this.btnBLength.Name = "btnBLength";
             this.btnBLength.Size = new System.Drawing.Size(94, 45);
             this.btnBLength.TabIndex = 351;
@@ -256,7 +237,7 @@
             this.btnExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnExit.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExit.Location = new System.Drawing.Point(165, 629);
+            this.btnExit.Location = new System.Drawing.Point(163, 629);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(126, 64);
             this.btnExit.TabIndex = 0;
@@ -276,7 +257,7 @@
             this.btnALength.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnALength.Image = global::AgOpenGPS.Properties.Resources.APlusPlusA;
             this.btnALength.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnALength.Location = new System.Drawing.Point(29, 71);
+            this.btnALength.Location = new System.Drawing.Point(30, 71);
             this.btnALength.Name = "btnALength";
             this.btnALength.Size = new System.Drawing.Size(94, 43);
             this.btnALength.TabIndex = 352;
@@ -294,7 +275,7 @@
             this.btnHeadlandOff.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnHeadlandOff.Image = global::AgOpenGPS.Properties.Resources.SwitchOff;
             this.btnHeadlandOff.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnHeadlandOff.Location = new System.Drawing.Point(24, 633);
+            this.btnHeadlandOff.Location = new System.Drawing.Point(26, 633);
             this.btnHeadlandOff.Name = "btnHeadlandOff";
             this.btnHeadlandOff.Size = new System.Drawing.Size(103, 57);
             this.btnHeadlandOff.TabIndex = 518;
@@ -315,7 +296,7 @@
             this.cboxIsSectionControlled.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxIsSectionControlled.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.cboxIsSectionControlled.Image = global::AgOpenGPS.Properties.Resources.HeadlandSectionOn;
-            this.cboxIsSectionControlled.Location = new System.Drawing.Point(178, 545);
+            this.cboxIsSectionControlled.Location = new System.Drawing.Point(177, 545);
             this.cboxIsSectionControlled.Name = "cboxIsSectionControlled";
             this.cboxIsSectionControlled.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cboxIsSectionControlled.Size = new System.Drawing.Size(99, 71);
@@ -335,7 +316,7 @@
             this.btnUndo.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnUndo.Image = global::AgOpenGPS.Properties.Resources.back_button;
             this.btnUndo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnUndo.Location = new System.Drawing.Point(26, 552);
+            this.btnUndo.Location = new System.Drawing.Point(28, 552);
             this.btnUndo.Name = "btnUndo";
             this.btnUndo.Size = new System.Drawing.Size(99, 57);
             this.btnUndo.TabIndex = 514;
@@ -353,7 +334,7 @@
             this.btnBndLoop.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnBndLoop.Image = global::AgOpenGPS.Properties.Resources.HeadlandBuild;
             this.btnBndLoop.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBndLoop.Location = new System.Drawing.Point(24, 452);
+            this.btnBndLoop.Location = new System.Drawing.Point(25, 452);
             this.btnBndLoop.Name = "btnBndLoop";
             this.btnBndLoop.Size = new System.Drawing.Size(104, 72);
             this.btnBndLoop.TabIndex = 504;
@@ -371,7 +352,7 @@
             this.btnDeletePoints.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnDeletePoints.Image = global::AgOpenGPS.Properties.Resources.HeadlandReset;
             this.btnDeletePoints.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDeletePoints.Location = new System.Drawing.Point(176, 452);
+            this.btnDeletePoints.Location = new System.Drawing.Point(174, 452);
             this.btnDeletePoints.Name = "btnDeletePoints";
             this.btnDeletePoints.Size = new System.Drawing.Size(104, 72);
             this.btnDeletePoints.TabIndex = 506;
@@ -389,7 +370,7 @@
             this.btnSlice.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnSlice.Image = global::AgOpenGPS.Properties.Resources.HeadlandSlice;
             this.btnSlice.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSlice.Location = new System.Drawing.Point(176, 349);
+            this.btnSlice.Location = new System.Drawing.Point(174, 349);
             this.btnSlice.Name = "btnSlice";
             this.btnSlice.Size = new System.Drawing.Size(104, 72);
             this.btnSlice.TabIndex = 519;
@@ -407,7 +388,7 @@
             this.cboxIsZoom.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxIsZoom.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.cboxIsZoom.Image = global::AgOpenGPS.Properties.Resources.ZoomOGL;
-            this.cboxIsZoom.Location = new System.Drawing.Point(24, 355);
+            this.cboxIsZoom.Location = new System.Drawing.Point(25, 355);
             this.cboxIsZoom.Name = "cboxIsZoom";
             this.cboxIsZoom.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cboxIsZoom.Size = new System.Drawing.Size(104, 61);
@@ -426,7 +407,7 @@
             this.rbtnLine.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnLine.ForeColor = System.Drawing.Color.Black;
             this.rbtnLine.Image = global::AgOpenGPS.Properties.Resources.ABTrackAB;
-            this.rbtnLine.Location = new System.Drawing.Point(176, 136);
+            this.rbtnLine.Location = new System.Drawing.Point(174, 136);
             this.rbtnLine.Name = "rbtnLine";
             this.rbtnLine.Size = new System.Drawing.Size(104, 85);
             this.rbtnLine.TabIndex = 2;
@@ -444,7 +425,7 @@
             this.rbtnCurve.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnCurve.ForeColor = System.Drawing.Color.Black;
             this.rbtnCurve.Image = global::AgOpenGPS.Properties.Resources.ABTrackCurve;
-            this.rbtnCurve.Location = new System.Drawing.Point(24, 136);
+            this.rbtnCurve.Location = new System.Drawing.Point(25, 136);
             this.rbtnCurve.Name = "rbtnCurve";
             this.rbtnCurve.Size = new System.Drawing.Size(104, 85);
             this.rbtnCurve.TabIndex = 0;
@@ -452,12 +433,31 @@
             this.rbtnCurve.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbtnCurve.UseVisualStyleBackColor = false;
             // 
+            // nudSetDistance
+            // 
+            this.nudSetDistance.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.nudSetDistance.BackColor = System.Drawing.Color.White;
+            this.nudSetDistance.DecimalPlaces = 1;
+            this.nudSetDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSetDistance.Location = new System.Drawing.Point(6, 251);
+            this.nudSetDistance.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.nudSetDistance.Name = "nudSetDistance";
+            this.nudSetDistance.ReadOnly = true;
+            this.nudSetDistance.Size = new System.Drawing.Size(143, 52);
+            this.nudSetDistance.TabIndex = 464;
+            this.nudSetDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudSetDistance.Click += new System.EventHandler(this.nudSetDistance_Click);
+            // 
             // FormHeadLine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1006, 726);
+            this.ClientSize = new System.Drawing.Size(1006, 703);
             this.ControlBox = false;
             this.Controls.Add(this.tlp1);
             this.Controls.Add(this.headingGroupBox);
@@ -473,8 +473,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormHeadLine_FormClosing);
             this.Load += new System.EventHandler(this.FormHeadLine_Load);
             this.ResizeEnd += new System.EventHandler(this.FormHeadLine_ResizeEnd);
-            ((System.ComponentModel.ISupportInitialize)(this.nudSetDistance)).EndInit();
             this.tlp1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudSetDistance)).EndInit();
             this.ResumeLayout(false);
 
         }

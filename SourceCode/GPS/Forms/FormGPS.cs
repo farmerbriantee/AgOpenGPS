@@ -256,6 +256,7 @@ namespace AgOpenGPS
 
         #endregion // Class Props and instances
 
+
         public FormGPS()
         {
             //winform initialization
