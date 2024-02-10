@@ -723,7 +723,7 @@ namespace AgOpenGPS
                         GL.LineWidth(8);
                         GL.Disable(EnableCap.LineStipple);
                     }
-                    GL.Color3(1.0f, 0.60f, 0.40f);
+                    GL.Color3(1.0f, 0.20f, 0.20f);
 
                     GL.Begin(PrimitiveType.Lines);
 
