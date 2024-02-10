@@ -294,6 +294,9 @@
   <data name="gsFileError" xml:space="preserve">
     <value>File Error</value>
   </data>
+  <data name="gsFlagByLatLon" xml:space="preserve">
+    <value>Flag By Lat Lon</value>
+  </data>
   <data name="gsFlagFileIsCorrupt" xml:space="preserve">
     <value>Flag File Corrupt</value>
   </data>

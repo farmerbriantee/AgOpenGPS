@@ -291,6 +291,9 @@
   <data name="gsFileError" xml:space="preserve">
     <value>Erreur de fichier</value>
   </data>
+  <data name="gsFlagByLatLon" xml:space="preserve">
+    <value>Drapeau par Latitude et Longitude</value>
+  </data>
   <data name="gsFlagFileIsCorrupt" xml:space="preserve">
     <value>Fichier Flag corrompu</value>
   </data>

@@ -97,37 +97,44 @@ namespace AgOpenGPS
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            if (mf.bnd.bndBeingMadePts.Count > 2)
+            DialogResult result3 = MessageBox.Show("Done?", gStr.gsBoundaryMenu,
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2);
+            if (result3 == DialogResult.Yes)
             {
-                CBoundaryList New = new CBoundaryList();
-
-                for (int i = 0; i < mf.bnd.bndBeingMadePts.Count; i++)
+                if (mf.bnd.bndBeingMadePts.Count > 2)
                 {
-                    New.fenceLine.Add(mf.bnd.bndBeingMadePts[i]);
+                    CBoundaryList New = new CBoundaryList();
+
+                    for (int i = 0; i < mf.bnd.bndBeingMadePts.Count; i++)
+                    {
+                        New.fenceLine.Add(mf.bnd.bndBeingMadePts[i]);
+                    }
+
+                    New.CalculateFenceArea(mf.bnd.bndList.Count);
+                    New.FixFenceLine(mf.bnd.bndList.Count);
+
+                    mf.bnd.bndList.Add(New);
+                    mf.fd.UpdateFieldBoundaryGUIAreas();
+
+                    //turn lines made from boundaries
+                    mf.CalculateMinMax();
+                    mf.FileSaveBoundary();
+                    mf.bnd.BuildTurnLines();
+                    //mf.hd.BuildSingleSpaceHeadLines();
+                    mf.btnABDraw.Visible = true;
                 }
 
-                New.CalculateFenceArea(mf.bnd.bndList.Count);
-                New.FixFenceLine(mf.bnd.bndList.Count);
+                //stop it all for adding
+                mf.bnd.isOkToAddPoints = false;
+                mf.bnd.isBndBeingMade = false;
+                mf.bnd.bndBeingMadePts.Clear();
 
-                mf.bnd.bndList.Add(New);
-                mf.fd.UpdateFieldBoundaryGUIAreas();
-
-                //turn lines made from boundaries
-                mf.CalculateMinMax();
-                mf.FileSaveBoundary();
-                mf.bnd.BuildTurnLines();
-                //mf.hd.BuildSingleSpaceHeadLines();
-                mf.btnABDraw.Visible = true;
+                //close window
+                isClosing = true;
+                Close();
             }
-
-            //stop it all for adding
-            mf.bnd.isOkToAddPoints = false;
-            mf.bnd.isBndBeingMade = false;
-            mf.bnd.bndBeingMadePts.Clear();
-
-            //close window
-            isClosing = true;
-            Close();
         }
 
         //actually the record button
