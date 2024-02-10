@@ -507,12 +507,13 @@ namespace AgOpenGPS
             SmoothABtoolStripMenu.Text = gStr.gsSmoothABCurve;
             boundariesToolStripMenuItem.Text = gStr.gsBoundary;
             headlandToolStripMenuItem.Text = gStr.gsHeadland;
-            headlandBuildToolStripMenuItem.Text = gStr.gsHeadland + " (Lines)";
+            headlandBuildToolStripMenuItem.Text = gStr.gsHeadland + " (2)";
             deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
             deleteAppliedToolStripMenuItem.Text = gStr.gsDeleteAppliedArea;
-            toolStripAreYouSure.Text = gStr.gsAreYouSure;
             tramLinesMenuField.Text = gStr.gsTramLines;
             recordedPathStripMenu.Text = gStr.gsRecordedPathMenu;
+            flagByLatLonToolStripMenuItem.Text = gStr.gsFlagByLatLon;
+            boundaryToolToolStripMenu.Text = gStr.gsBoundary + "Knn";
 
             webcamToolStrip.Text = gStr.gsWebCam;
             offsetFixToolStrip.Text = gStr.gsOffsetFix;

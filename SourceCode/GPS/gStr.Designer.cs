@@ -592,6 +592,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Flag By Lat Lon.
+        /// </summary>
+        public static string gsFlagByLatLon {
+            get {
+                return ResourceManager.GetString("gsFlagByLatLon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Flag File Corrupt.
         /// </summary>
         public static string gsFlagFileIsCorrupt {

@@ -288,6 +288,9 @@
   <data name="gsFileError" xml:space="preserve">
     <value>Faila kļūda</value>
   </data>
+  <data name="gsFlagByLatLon" xml:space="preserve">
+    <value>Karogs ar Lat Lon</value>
+  </data>
   <data name="gsFlagFileIsCorrupt" xml:space="preserve">
     <value>Bojāts karoga fails</value>
   </data>
