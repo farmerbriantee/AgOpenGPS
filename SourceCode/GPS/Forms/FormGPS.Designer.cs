@@ -160,10 +160,10 @@
             this.headlandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.headlandBuildToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tramLinesMenuField = new System.Windows.Forms.ToolStripMenuItem();
-            this.flagByLatLonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.recordedPathStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteAppliedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripAreYouSure = new System.Windows.Forms.ToolStripMenuItem();
+            this.flagByLatLonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recordedPathStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.lblCurrentField = new System.Windows.Forms.Label();
             this.lblGuidanceLine = new System.Windows.Forms.Label();
             this.flp1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -1077,6 +1077,7 @@
             this.lblHz.TabIndex = 249;
             this.lblHz.Text = "5 Hz 32\r\nPPS";
             this.lblHz.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblHz.Click += new System.EventHandler(this.lblHz_Click);
             // 
             // statusStripLeft
             // 
@@ -1249,7 +1250,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 58F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 61F));
             this.panelSim.Controls.Add(this.btnSpeedDn, 5, 0);
             this.panelSim.Controls.Add(this.btnSimSpeedUp, 7, 0);
             this.panelSim.Controls.Add(this.btnResetSim, 0, 0);
@@ -1274,7 +1275,7 @@
             this.btnSpeedDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSpeedDn.Location = new System.Drawing.Point(404, 4);
             this.btnSpeedDn.Name = "btnSpeedDn";
-            this.btnSpeedDn.Size = new System.Drawing.Size(112, 34);
+            this.btnSpeedDn.Size = new System.Drawing.Size(111, 34);
             this.btnSpeedDn.TabIndex = 533;
             this.btnSpeedDn.UseVisualStyleBackColor = false;
             this.btnSpeedDn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSpeedDn_MouseDown);
@@ -1287,9 +1288,9 @@
             this.btnSimSpeedUp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSimSpeedUp.FlatAppearance.BorderSize = 0;
             this.btnSimSpeedUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSimSpeedUp.Location = new System.Drawing.Point(582, 4);
+            this.btnSimSpeedUp.Location = new System.Drawing.Point(581, 4);
             this.btnSimSpeedUp.Name = "btnSimSpeedUp";
-            this.btnSimSpeedUp.Size = new System.Drawing.Size(112, 34);
+            this.btnSimSpeedUp.Size = new System.Drawing.Size(111, 34);
             this.btnSimSpeedUp.TabIndex = 532;
             this.btnSimSpeedUp.UseVisualStyleBackColor = false;
             this.btnSimSpeedUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSimSpeedUp_MouseDown);
@@ -1303,7 +1304,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(523, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(522, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(52, 34);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -1320,7 +1321,7 @@
             this.btnSimReverseDirection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimReverseDirection.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimReverseDirection.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimReverseDirection.Location = new System.Drawing.Point(710, 4);
+            this.btnSimReverseDirection.Location = new System.Drawing.Point(709, 4);
             this.btnSimReverseDirection.Name = "btnSimReverseDirection";
             this.btnSimReverseDirection.Size = new System.Drawing.Size(35, 34);
             this.btnSimReverseDirection.TabIndex = 537;
@@ -1976,6 +1977,23 @@
             this.tramLinesMenuField.Text = "TramLines";
             this.tramLinesMenuField.Click += new System.EventHandler(this.tramLinesMenuField_Click);
             // 
+            // deleteAppliedToolStripMenuItem
+            // 
+            this.deleteAppliedToolStripMenuItem.AutoSize = false;
+            this.deleteAppliedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripAreYouSure});
+            this.deleteAppliedToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.TrashApplied;
+            this.deleteAppliedToolStripMenuItem.Name = "deleteAppliedToolStripMenuItem";
+            this.deleteAppliedToolStripMenuItem.Size = new System.Drawing.Size(500, 90);
+            this.deleteAppliedToolStripMenuItem.Text = "Delete Applied";
+            // 
+            // toolStripAreYouSure
+            // 
+            this.toolStripAreYouSure.Name = "toolStripAreYouSure";
+            this.toolStripAreYouSure.Size = new System.Drawing.Size(363, 50);
+            this.toolStripAreYouSure.Text = "Are You Sure?";
+            this.toolStripAreYouSure.Click += new System.EventHandler(this.toolStripAreYouSure_Click);
+            // 
             // flagByLatLonToolStripMenuItem
             // 
             this.flagByLatLonToolStripMenuItem.AutoSize = false;
@@ -1993,23 +2011,6 @@
             this.recordedPathStripMenu.Size = new System.Drawing.Size(500, 90);
             this.recordedPathStripMenu.Text = "Recorded Path";
             this.recordedPathStripMenu.Click += new System.EventHandler(this.recordedPathStripMenu_Click);
-            // 
-            // deleteAppliedToolStripMenuItem
-            // 
-            this.deleteAppliedToolStripMenuItem.AutoSize = false;
-            this.deleteAppliedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripAreYouSure});
-            this.deleteAppliedToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.TrashApplied;
-            this.deleteAppliedToolStripMenuItem.Name = "deleteAppliedToolStripMenuItem";
-            this.deleteAppliedToolStripMenuItem.Size = new System.Drawing.Size(500, 90);
-            this.deleteAppliedToolStripMenuItem.Text = "Delete Applied";
-            // 
-            // toolStripAreYouSure
-            // 
-            this.toolStripAreYouSure.Name = "toolStripAreYouSure";
-            this.toolStripAreYouSure.Size = new System.Drawing.Size(363, 50);
-            this.toolStripAreYouSure.Text = "Are You Sure?";
-            this.toolStripAreYouSure.Click += new System.EventHandler(this.toolStripAreYouSure_Click);
             // 
             // lblCurrentField
             // 

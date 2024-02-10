@@ -1161,7 +1161,11 @@ namespace AgOpenGPS
             form.Show(this);
 
             form.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
-            form.Left = this.Left + GPSDataWindowLeft;
+            if (isPanelABHidden)
+                form.Left = this.Left + 2;
+            else
+                form.Left = this.Left + GPSDataWindowLeft;
+
 
             Form ff = Application.OpenForms["FormGPS"];
             ff.Focus();
@@ -1199,7 +1203,10 @@ namespace AgOpenGPS
             form.Show(this);
 
             form.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
-            form.Left = this.Left + GPSDataWindowLeft;
+            if (isPanelABHidden)
+                form.Left = this.Left + 2;
+            else
+                form.Left = this.Left + GPSDataWindowLeft;
 
             Form ff = Application.OpenForms["FormGPS"];
             ff.Focus();
@@ -2138,6 +2145,24 @@ namespace AgOpenGPS
             }
             navPanelCounter = 0;
         }
+        private void lblHz_Click(object sender, EventArgs e)
+        {
+            DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
+            string strPath = di.ToString();
+            strPath += "\\OGL.exe";
+            try
+            {
+                ProcessStartInfo processInfo = new ProcessStartInfo();
+                processInfo.FileName = strPath;
+                processInfo.WorkingDirectory = Path.GetDirectoryName(strPath);
+                Process proc = Process.Start(processInfo);
+            }
+            catch
+            {
+                TimedMessageBox(2000, "No File Found", "Can't Find OGL");
+            }
+        }
+
         private void btnDayNightMode_Click(object sender, EventArgs e)
         {
             if (isTT)
