@@ -1018,6 +1018,9 @@
     <None Include="btnImages\APlusMinusA.png" />
     <None Include="btnImages\APlusMinusB.png" />
     <None Include="btnImages\Images\z_RateMap.png" />
+    <None Include="btnImages\Images\z_RateMap1.png" />
+    <None Include="btnImages\Images\z_RateMap2.png" />
+    <None Include="btnImages\Images\z_RateMap3.png" />
     <Content Include="OGL.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

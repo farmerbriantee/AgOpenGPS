@@ -47,6 +47,7 @@
             this.lblBnds = new System.Windows.Forms.Label();
             this.btnBuildRateMap = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.cboxNumberRateChannels = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,7 +65,7 @@
             this.cmbTileServers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTileServers.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbTileServers.FormattingEnabled = true;
-            this.cmbTileServers.Location = new System.Drawing.Point(12, 544);
+            this.cmbTileServers.Location = new System.Drawing.Point(12, 521);
             this.cmbTileServers.Name = "cmbTileServers";
             this.cmbTileServers.Size = new System.Drawing.Size(273, 31);
             this.cmbTileServers.TabIndex = 462;
@@ -85,7 +86,7 @@
             this.mapControl.Location = new System.Drawing.Point(3, 3);
             this.mapControl.Name = "mapControl";
             this.mapControl.ShowThumbnails = true;
-            this.mapControl.Size = new System.Drawing.Size(705, 661);
+            this.mapControl.Size = new System.Drawing.Size(705, 638);
             this.mapControl.TabIndex = 464;
             this.mapControl.ThumbnailBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.mapControl.ThumbnailForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
@@ -117,7 +118,7 @@
             this.btnGray.FlatAppearance.BorderSize = 0;
             this.btnGray.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGray.Image = global::AgOpenGPS.Properties.Resources.MapColor;
-            this.btnGray.Location = new System.Drawing.Point(28, 339);
+            this.btnGray.Location = new System.Drawing.Point(28, 297);
             this.btnGray.Name = "btnGray";
             this.btnGray.Size = new System.Drawing.Size(63, 70);
             this.btnGray.TabIndex = 483;
@@ -136,7 +137,7 @@
             this.cboxDrawMap.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxDrawMap.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxDrawMap.Image = global::AgOpenGPS.Properties.Resources.MappingOff;
-            this.cboxDrawMap.Location = new System.Drawing.Point(28, 240);
+            this.cboxDrawMap.Location = new System.Drawing.Point(28, 208);
             this.cboxDrawMap.Name = "cboxDrawMap";
             this.cboxDrawMap.Size = new System.Drawing.Size(63, 70);
             this.cboxDrawMap.TabIndex = 482;
@@ -184,7 +185,7 @@
             this.btnAddFence.FlatAppearance.BorderSize = 0;
             this.btnAddFence.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddFence.Image = global::AgOpenGPS.Properties.Resources.BoundaryOuter;
-            this.btnAddFence.Location = new System.Drawing.Point(148, 123);
+            this.btnAddFence.Location = new System.Drawing.Point(148, 120);
             this.btnAddFence.Name = "btnAddFence";
             this.btnAddFence.Size = new System.Drawing.Size(61, 61);
             this.btnAddFence.TabIndex = 470;
@@ -199,7 +200,7 @@
             this.btnDeletePoint.FlatAppearance.BorderSize = 0;
             this.btnDeletePoint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeletePoint.Image = global::AgOpenGPS.Properties.Resources.PointDelete;
-            this.btnDeletePoint.Location = new System.Drawing.Point(29, 123);
+            this.btnDeletePoint.Location = new System.Drawing.Point(29, 120);
             this.btnDeletePoint.Name = "btnDeletePoint";
             this.btnDeletePoint.Size = new System.Drawing.Size(61, 61);
             this.btnDeletePoint.TabIndex = 468;
@@ -213,7 +214,7 @@
             this.btnGo.FlatAppearance.BorderSize = 0;
             this.btnGo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGo.Image = global::AgOpenGPS.Properties.Resources.FlagGrn;
-            this.btnGo.Location = new System.Drawing.Point(28, 581);
+            this.btnGo.Location = new System.Drawing.Point(28, 584);
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(63, 57);
             this.btnGo.TabIndex = 465;
@@ -230,7 +231,7 @@
             this.btnExit.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnExit.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnExit.Location = new System.Drawing.Point(148, 578);
+            this.btnExit.Location = new System.Drawing.Point(148, 581);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(61, 63);
             this.btnExit.TabIndex = 234;
@@ -245,7 +246,7 @@
             this.btnZoomIn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnZoomIn.FlatAppearance.BorderSize = 0;
             this.btnZoomIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnZoomIn.Location = new System.Drawing.Point(154, 485);
+            this.btnZoomIn.Location = new System.Drawing.Point(154, 502);
             this.btnZoomIn.Name = "btnZoomIn";
             this.btnZoomIn.Size = new System.Drawing.Size(50, 47);
             this.btnZoomIn.TabIndex = 484;
@@ -260,7 +261,7 @@
             this.btnZoomOut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnZoomOut.FlatAppearance.BorderSize = 0;
             this.btnZoomOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnZoomOut.Location = new System.Drawing.Point(34, 485);
+            this.btnZoomOut.Location = new System.Drawing.Point(34, 502);
             this.btnZoomOut.Name = "btnZoomOut";
             this.btnZoomOut.Size = new System.Drawing.Size(50, 47);
             this.btnZoomOut.TabIndex = 485;
@@ -275,11 +276,11 @@
             this.btnBuildFieldBackground.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuildFieldBackground.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuildFieldBackground.ForeColor = System.Drawing.Color.Black;
-            this.btnBuildFieldBackground.Location = new System.Drawing.Point(135, 248);
+            this.btnBuildFieldBackground.Location = new System.Drawing.Point(135, 216);
             this.btnBuildFieldBackground.Name = "btnBuildFieldBackground";
             this.btnBuildFieldBackground.Size = new System.Drawing.Size(87, 54);
             this.btnBuildFieldBackground.TabIndex = 486;
-            this.btnBuildFieldBackground.Text = "Back";
+            this.btnBuildFieldBackground.Text = "Field";
             this.btnBuildFieldBackground.UseVisualStyleBackColor = false;
             this.btnBuildFieldBackground.Click += new System.EventHandler(this.btnBuildFieldBackground_Click);
             // 
@@ -302,7 +303,7 @@
             this.btnBuildRateMap.BackColor = System.Drawing.Color.Transparent;
             this.btnBuildRateMap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuildRateMap.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuildRateMap.Location = new System.Drawing.Point(135, 347);
+            this.btnBuildRateMap.Location = new System.Drawing.Point(135, 401);
             this.btnBuildRateMap.Name = "btnBuildRateMap";
             this.btnBuildRateMap.Size = new System.Drawing.Size(87, 54);
             this.btnBuildRateMap.TabIndex = 490;
@@ -318,34 +319,55 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.cboxNumberRateChannels, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.lblBnds, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnZoomIn, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.btnZoomOut, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.cboxDrawMap, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.btnGray, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.btnExit, 1, 8);
-            this.tableLayoutPanel1.Controls.Add(this.btnGo, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.btnZoomIn, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.btnZoomOut, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.cboxDrawMap, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.btnGray, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btnExit, 1, 7);
+            this.tableLayoutPanel1.Controls.Add(this.btnGo, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.cboxEnableLineDraw, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblPoints, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnDeleteAll, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnAddFence, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnDeletePoint, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnBuildFieldBackground, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btnBuildFieldBackground, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.btnBuildRateMap, 1, 5);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(707, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 9;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.27742F));
+            this.tableLayoutPanel1.RowCount = 8;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.00535F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.64269F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.99306F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.06866F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.61403F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(239, 655);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.08F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.36F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.28F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.44F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.6F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.1181F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(239, 657);
             this.tableLayoutPanel1.TabIndex = 491;
+            // 
+            // cboxNumberRateChannels
+            // 
+            this.cboxNumberRateChannels.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cboxNumberRateChannels.BackColor = System.Drawing.Color.Lavender;
+            this.cboxNumberRateChannels.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxNumberRateChannels.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxNumberRateChannels.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxNumberRateChannels.FormattingEnabled = true;
+            this.cboxNumberRateChannels.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3"});
+            this.cboxNumberRateChannels.Location = new System.Drawing.Point(15, 402);
+            this.cboxNumberRateChannels.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxNumberRateChannels.Name = "cboxNumberRateChannels";
+            this.cboxNumberRateChannels.Size = new System.Drawing.Size(88, 53);
+            this.cboxNumberRateChannels.TabIndex = 517;
+            this.cboxNumberRateChannels.Visible = false;
+            this.cboxNumberRateChannels.SelectedIndexChanged += new System.EventHandler(this.cboxNumberRateChannels_SelectedIndexChanged);
             // 
             // FormMap
             // 
@@ -353,7 +375,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(949, 684);
+            this.ClientSize = new System.Drawing.Size(949, 661);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.mapControl);
@@ -391,5 +413,6 @@
         private System.Windows.Forms.Label lblBnds;
         private System.Windows.Forms.Button btnBuildRateMap;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.ComboBox cboxNumberRateChannels;
     }
 }

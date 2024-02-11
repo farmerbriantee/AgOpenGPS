@@ -34,6 +34,7 @@ namespace AgOpenGPS
         public double Count = 40;
         public bool isGeoMap = false;
         public bool isRateMap = false, isRateTrigger = false;
+        public int numRateChannels = 1;
 
         public CWorldGrid(FormGPS _f)
         {
@@ -62,7 +63,7 @@ namespace AgOpenGPS
 
                 GL.Enable(EnableCap.Texture2D);
                 GL.Color4(1.0f, 1.0f, 1.0f, 0.5f);
-                GL.BindTexture(TextureTarget.Texture2D, mf.texture[(int)FormGPS.textures.RateMap]);
+                GL.BindTexture(TextureTarget.Texture2D, mf.texture[(int)FormGPS.textures.RateMap1]);
                 GL.Begin(PrimitiveType.TriangleStrip);
 
                 GL.TexCoord2(0, 0);

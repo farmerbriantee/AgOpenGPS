@@ -771,6 +771,19 @@ namespace AgOpenGPS
 
                 PanelSizeRightAndAB();
             }
+
+            if (worldGrid.isRateMap)
+            {
+                lblRed.Visible = lblGrn.Visible = lblBlu.Visible = false;
+                if (worldGrid.numRateChannels > 0) lblRed.Visible = true;
+                if (worldGrid.numRateChannels > 1) lblGrn.Visible = true;
+                if (worldGrid.numRateChannels > 2) lblBlu.Visible = true;
+            }
+            else
+            {
+                lblRed.Visible = lblGrn.Visible = lblBlu.Visible = false;
+            }
+
         }
 
         public void PanelBuildRightMenu()
@@ -854,7 +867,7 @@ namespace AgOpenGPS
 
                 if (viz == 0) return;
 
-                sizer = (Width - 280) / (viz);
+                sizer = (Width - 300) / (viz);
                 if (sizer > 120) { sizer = 120; }
 
                 for (int i = 0; i < panelAB.Controls.Count; i++)

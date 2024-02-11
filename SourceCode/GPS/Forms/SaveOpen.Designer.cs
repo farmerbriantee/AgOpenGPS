@@ -1711,9 +1711,6 @@ namespace AgOpenGPS
                 }
             }
 
-            PanelsAndOGLSize();
-            SetZoom();
-
             //if (Directory.Exists(fieldsDirectory + currentFieldDirectory))
             //{
             //    foreach (string file in Directory.GetFiles(fieldsDirectory + currentFieldDirectory, "*.shp", SearchOption.TopDirectoryOnly))
@@ -1768,6 +1765,7 @@ namespace AgOpenGPS
             }
 
             worldGrid.isGeoMap = worldGrid.isRateMap = false;
+            worldGrid.numRateChannels = 0;
 
             //Back Image
             fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\BackPic.txt";
@@ -1791,8 +1789,6 @@ namespace AgOpenGPS
                         worldGrid.northingMaxGeo = double.Parse(line, CultureInfo.InvariantCulture);
                         line = reader.ReadLine();
                         worldGrid.northingMinGeo = double.Parse(line, CultureInfo.InvariantCulture);
-
-                        worldGrid.isGeoMap = true;
                     }
                     catch (Exception)
                     {
@@ -1815,25 +1811,65 @@ namespace AgOpenGPS
                         {
                             worldGrid.isGeoMap = false;
                         }
+                    }
+                }
+            }
 
-                        fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\rateMap.png";
-                        if (File.Exists(fileAndDirectory))
+            //is there rateChannels?
+            if (!worldGrid.isGeoMap)
+            {
+                fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\RateMap.txt";
+                if (File.Exists(fileAndDirectory))
+                {
+                    using (StreamReader reader = new StreamReader(fileAndDirectory))
+                    {
+                        try
                         {
-                            worldGrid.isRateMap = true;
-                            var bitmap = new Bitmap(Image.FromFile(fileAndDirectory));
+                            //read header
+                            line = reader.ReadLine();
 
-                            GL.BindTexture(TextureTarget.Texture2D, texture[(int)textures.RateMap]);
-                            BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
-                            bitmap.UnlockBits(bitmapData);
+                            line = reader.ReadLine();
+                            worldGrid.isRateMap = bool.Parse(line);
+
+                            line = reader.ReadLine();
+                            worldGrid.eastingMaxGeo = double.Parse(line, CultureInfo.InvariantCulture);
+                            line = reader.ReadLine();
+                            worldGrid.eastingMinGeo = double.Parse(line, CultureInfo.InvariantCulture);
+                            line = reader.ReadLine();
+                            worldGrid.northingMaxGeo = double.Parse(line, CultureInfo.InvariantCulture);
+                            line = reader.ReadLine();
+                            worldGrid.northingMinGeo = double.Parse(line, CultureInfo.InvariantCulture);
+                            line = reader.ReadLine();
+                            worldGrid.numRateChannels = int.Parse(line, CultureInfo.InvariantCulture);
                         }
-                        else
+                        catch (Exception)
                         {
                             worldGrid.isRateMap = false;
+                        }
+
+                        if (worldGrid.isRateMap)
+                        {
+                            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\rateMap1.png";
+                            if (File.Exists(fileAndDirectory))
+                            {
+                                var bitmap = new Bitmap(Image.FromFile(fileAndDirectory));
+
+                                GL.BindTexture(TextureTarget.Texture2D, texture[(int)textures.RateMap1]);
+                                BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                                GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
+                                bitmap.UnlockBits(bitmapData);
+                            }
+                            else
+                            {
+                                worldGrid.isRateMap = false;
+                            }
                         }
                     }
                 }
             }
+
+            PanelsAndOGLSize();
+            SetZoom();
 
             //update field data
             oglZoom.Refresh();
@@ -2231,6 +2267,8 @@ namespace AgOpenGPS
                     writer.WriteLine(worldGrid.eastingMinGeo.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine(worldGrid.northingMaxGeo.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine(worldGrid.northingMinGeo.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine(worldGrid.numRateChannels.ToString(CultureInfo.InvariantCulture));
+
                 }
                 else
                 {
@@ -2239,6 +2277,7 @@ namespace AgOpenGPS
                     writer.WriteLine(-300);
                     writer.WriteLine(300);
                     writer.WriteLine(-300);
+                    writer.WriteLine(0);
                 }
             }
         }

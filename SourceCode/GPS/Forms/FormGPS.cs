@@ -716,16 +716,18 @@ namespace AgOpenGPS
 
         public enum textures : uint
         {
-            SkyDay, Floor, Font,
+            Floor, Font,
             Turn, TurnCancel, TurnManual,
             Compass, Speedo, SpeedoNeedle,
-            Lift, SkyNight, SteerPointer,
+            Lift, SteerPointer,
             SteerDot, Tractor, QuestionMark,
             FrontWheels, FourWDFront, FourWDRear,
-            Harvester, Lateral, bingGrid, 
+            Harvester, 
+            Lateral, bingGrid, 
             NoGPS, ZoomIn48, ZoomOut48, 
-            Pan, MenuHideShow, ToolWheels, Tire, TramDot, RateMap
-
+            Pan, MenuHideShow, 
+            ToolWheels, Tire, TramDot,
+            RateMap1, RateMap2, RateMap3
         }
 
         public void LoadGLTextures()
@@ -734,15 +736,19 @@ namespace AgOpenGPS
 
             Bitmap[] oglTextures = new Bitmap[]
             {
-                Properties.Resources.z_SkyDay,Properties.Resources.z_Floor,Properties.Resources.z_Font,
-                Properties.Resources.z_Turn,Properties.Resources.z_TurnCancel,Properties.Resources.z_TurnManual,
-                Properties.Resources.z_Compass,Properties.Resources.z_Speedo,Properties.Resources.z_SpeedoNeedle,
-                Properties.Resources.z_Lift,Properties.Resources.z_SkyNight,Properties.Resources.z_SteerPointer,
-                Properties.Resources.z_SteerDot,GetTractorBrand(Settings.Default.setBrand_TBrand),Properties.Resources.z_QuestionMark,
-                Properties.Resources.z_FrontWheels,Get4WDBrandFront(Settings.Default.setBrand_WDBrand), Get4WDBrandRear(Settings.Default.setBrand_WDBrand),
-                GetHarvesterBrand(Settings.Default.setBrand_HBrand), Properties.Resources.z_LateralManual, Resources.z_bingMap, 
-                Resources.z_NoGPS, Resources.ZoomIn48, Resources.ZoomOut48, Resources.Pan, Resources.MenuHideShow,
-                Resources.z_Tool, Resources.z_Tire, Resources.z_TramOnOff, Resources.z_RateMap
+                Resources.z_Floor,Resources.z_Font,
+                Resources.z_Turn,Resources.z_TurnCancel,Resources.z_TurnManual,
+                Resources.z_Compass,Resources.z_Speedo,Resources.z_SpeedoNeedle,
+                Resources.z_Lift,Resources.z_SteerPointer,
+                Resources.z_SteerDot,GetTractorBrand(Settings.Default.setBrand_TBrand),Resources.z_QuestionMark,
+                Resources.z_FrontWheels,Get4WDBrandFront(Settings.Default.setBrand_WDBrand), 
+                Get4WDBrandRear(Settings.Default.setBrand_WDBrand),
+                GetHarvesterBrand(Settings.Default.setBrand_HBrand), 
+                Resources.z_LateralManual, Resources.z_bingMap, 
+                Resources.z_NoGPS, Resources.ZoomIn48, Resources.ZoomOut48, 
+                Resources.Pan, Resources.MenuHideShow,
+                Resources.z_Tool, Resources.z_Tire, Resources.z_TramOnOff, 
+                Resources.z_RateMap1, Resources.z_RateMap2, Resources.z_RateMap3
             };
 
             texture = new uint[oglTextures.Length];
@@ -906,6 +912,7 @@ namespace AgOpenGPS
             isPanelABHidden = false;
 
             FieldMenuButtonEnableDisable(true);
+            PanelUpdateRightAndBottom();
             PanelsAndOGLSize();
             SetZoom();
             fileSaveCounter = 25;

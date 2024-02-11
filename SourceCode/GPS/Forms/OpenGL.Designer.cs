@@ -21,7 +21,10 @@ namespace AgOpenGPS
         //data buffer for pixels read from off screen buffer
 
         //data buffer for pixels read from off screen buffer
-        byte[] ratePixels = new byte[3];
+        byte[] rateRed = new byte[1];
+        byte[] rateGrn = new byte[1];
+        byte[] rateBlu = new byte[1];
+
         byte[] grnPixels = new byte[150001];
 
         private bool isHeadlandClose = false;
@@ -1227,37 +1230,89 @@ namespace AgOpenGPS
                 GL.Disable(EnableCap.CullFace);
                 GL.CullFace(CullFaceMode.Front);
 
-                GL.Enable(EnableCap.Texture2D);
+                //first channel
+                if (worldGrid.numRateChannels > 0)
+                {
+                    GL.Enable(EnableCap.Texture2D);
 
-                GL.BindTexture(TextureTarget.Texture2D, texture[(int)textures.RateMap]);
-                GL.Begin(PrimitiveType.TriangleStrip);
-                GL.Color3(1.0f, 1.0f, 1.0f);
-                GL.TexCoord2(0, 0);
-                GL.Vertex3(worldGrid.eastingMinGeo, worldGrid.northingMaxGeo, 0.10);
-                GL.TexCoord2(1, 0.0);
-                GL.Vertex3(worldGrid.eastingMaxGeo, worldGrid.northingMaxGeo, 0.10);
-                GL.TexCoord2(0.0, 1);
-                GL.Vertex3(worldGrid.eastingMinGeo, worldGrid.northingMinGeo, 0.10);
-                GL.TexCoord2(1, 1);
-                GL.Vertex3(worldGrid.eastingMaxGeo, worldGrid.northingMinGeo, 0.0);
-                GL.End();
+                    GL.BindTexture(TextureTarget.Texture2D, texture[(int)textures.RateMap1]);
+                    GL.Begin(PrimitiveType.TriangleStrip);
+                    GL.Color3(1.0f, 1.0f, 1.0f);
+                    GL.TexCoord2(0, 0);
+                    GL.Vertex3(worldGrid.eastingMinGeo, worldGrid.northingMaxGeo, 0.10);
+                    GL.TexCoord2(1, 0.0);
+                    GL.Vertex3(worldGrid.eastingMaxGeo, worldGrid.northingMaxGeo, 0.10);
+                    GL.TexCoord2(0.0, 1);
+                    GL.Vertex3(worldGrid.eastingMinGeo, worldGrid.northingMinGeo, 0.10);
+                    GL.TexCoord2(1, 1);
+                    GL.Vertex3(worldGrid.eastingMaxGeo, worldGrid.northingMinGeo, 0.0);
+                    GL.End();
+
+                    GL.Flush();
+
+                    //read the whole block of pixels up to max lookahead, one read only
+                    GL.ReadPixels(250, 1, 1, 1, OpenTK.Graphics.OpenGL.PixelFormat.Red, PixelType.UnsignedByte, rateRed);
+                }
+
+                //second channel
+                if (worldGrid.numRateChannels > 1)
+                {
+                    GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
+
+                    GL.BindTexture(TextureTarget.Texture2D, texture[(int)textures.RateMap1]);
+                    GL.Begin(PrimitiveType.TriangleStrip);
+                    GL.Color3(1.0f, 1.0f, 1.0f);
+                    GL.TexCoord2(0, 0);
+                    GL.Vertex3(worldGrid.eastingMinGeo, worldGrid.northingMaxGeo, 0.10);
+                    GL.TexCoord2(1, 0.0);
+                    GL.Vertex3(worldGrid.eastingMaxGeo, worldGrid.northingMaxGeo, 0.10);
+                    GL.TexCoord2(0.0, 1);
+                    GL.Vertex3(worldGrid.eastingMinGeo, worldGrid.northingMinGeo, 0.10);
+                    GL.TexCoord2(1, 1);
+                    GL.Vertex3(worldGrid.eastingMaxGeo, worldGrid.northingMinGeo, 0.0);
+                    GL.End();
+
+                    GL.Flush();
+
+                    //read the whole block of pixels up to max lookahead, one read only
+                    GL.ReadPixels(250, 1, 1, 1, OpenTK.Graphics.OpenGL.PixelFormat.Green, PixelType.UnsignedByte, rateGrn);
+                }
+
+                //3rd channel
+                if (worldGrid.numRateChannels > 2)
+                {
+                    GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
+
+                    GL.BindTexture(TextureTarget.Texture2D, texture[(int)textures.RateMap1]);
+                    GL.Begin(PrimitiveType.TriangleStrip);
+                    GL.Color3(1.0f, 1.0f, 1.0f);
+                    GL.TexCoord2(0, 0);
+                    GL.Vertex3(worldGrid.eastingMinGeo, worldGrid.northingMaxGeo, 0.10);
+                    GL.TexCoord2(1, 0.0);
+                    GL.Vertex3(worldGrid.eastingMaxGeo, worldGrid.northingMaxGeo, 0.10);
+                    GL.TexCoord2(0.0, 1);
+                    GL.Vertex3(worldGrid.eastingMinGeo, worldGrid.northingMinGeo, 0.10);
+                    GL.TexCoord2(1, 1);
+                    GL.Vertex3(worldGrid.eastingMaxGeo, worldGrid.northingMinGeo, 0.0);
+                    GL.End();
+
+
+                    GL.Flush();
+
+                    //read the whole block of pixels up to max lookahead, one read only
+                    GL.ReadPixels(250, 1, 1, 1, OpenTK.Graphics.OpenGL.PixelFormat.Blue, PixelType.UnsignedByte, rateBlu);
+                }
 
                 GL.Disable(EnableCap.Texture2D);
 
-
-                GL.Flush();
-
-                //read the whole block of pixels up to max lookahead, one read only
-                GL.ReadPixels(250, 1, 1, 1, OpenTK.Graphics.OpenGL.PixelFormat.Rgba, PixelType.UnsignedByte, ratePixels);
-
-                lblRed.Text = ratePixels[0].ToString();
-                lblGrn.Text = ratePixels[1].ToString();
-                lblBlu.Text = ratePixels[2].ToString();
+                lblRed.Text = rateRed[0].ToString();
+                lblGrn.Text = rateGrn[0].ToString();
+                lblBlu.Text = rateBlu[0].ToString();
 
                 //Red, Green, Blu
-                p_228.pgn[p_228.rate0] = (byte)ratePixels[0]; 
-                p_228.pgn[p_228.rate1] = (byte)ratePixels[1];
-                p_228.pgn[p_228.rate2] = (byte)ratePixels[2];
+                p_228.pgn[p_228.rate0] = (byte)rateRed[0]; 
+                p_228.pgn[p_228.rate1] = (byte)rateGrn[0];
+                p_228.pgn[p_228.rate2] = (byte)rateBlu[0];
 
                 SendPgnToLoop(p_228.pgn);
             }
