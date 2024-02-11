@@ -1108,6 +1108,7 @@ namespace AgOpenGPS
             PanelsAndOGLSize();
             SetZoom();
             worldGrid.isGeoMap = false;
+            worldGrid.isRateMap = false;
 
             panelSim.Top = Height - 60;
 

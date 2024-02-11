@@ -54,25 +54,25 @@ namespace AgOpenGPS
             {
                 GL.Color3(0.3f, 0.3f, 0.3f);
                 GL.Begin(PrimitiveType.TriangleStrip);
-                GL.Vertex3(eastingMin, northingMax, 0.10);
-                GL.Vertex3(eastingMax, northingMax, 0.10);
-                GL.Vertex3(eastingMin, northingMin, 0.10);
-                GL.Vertex3(eastingMax, northingMin, 0.10);
+                GL.Vertex3(eastingMin, northingMax, -0.10);
+                GL.Vertex3(eastingMax, northingMax, -0.10);
+                GL.Vertex3(eastingMin, northingMin, -0.10);
+                GL.Vertex3(eastingMax, northingMin, -0.10);
                 GL.End();
 
                 GL.Enable(EnableCap.Texture2D);
-                GL.Color4(1.0f, 1.0f, 1.0f, 0.31f);
+                GL.Color4(1.0f, 1.0f, 1.0f, 0.5f);
                 GL.BindTexture(TextureTarget.Texture2D, mf.texture[(int)FormGPS.textures.RateMap]);
                 GL.Begin(PrimitiveType.TriangleStrip);
 
                 GL.TexCoord2(0, 0);
-                GL.Vertex3(eastingMinGeo, northingMaxGeo, 0.05);
+                GL.Vertex3(eastingMinGeo, northingMaxGeo, -0.05);
                 GL.TexCoord2(1, 0);
-                GL.Vertex3(eastingMaxGeo, northingMaxGeo, 0.05);
+                GL.Vertex3(eastingMaxGeo, northingMaxGeo, -0.05);
                 GL.TexCoord2(0, 1);
-                GL.Vertex3(eastingMinGeo, northingMinGeo, 0.05);
+                GL.Vertex3(eastingMinGeo, northingMinGeo, -0.05);
                 GL.TexCoord2(1, 1);
-                GL.Vertex3(eastingMaxGeo, northingMinGeo, 0.05);
+                GL.Vertex3(eastingMaxGeo, northingMinGeo, -0.05);
 
                 GL.End();
                 GL.Disable(EnableCap.Texture2D);
@@ -95,13 +95,13 @@ namespace AgOpenGPS
                     GL.Begin(PrimitiveType.TriangleStrip);
 
                     GL.TexCoord2(0, 0);
-                    GL.Vertex3(eastingMin, northingMax, 0.10);
-                    GL.TexCoord2(Count, 0.0);
-                    GL.Vertex3(eastingMax, northingMax, 0.10);
-                    GL.TexCoord2(0.0, Count);
-                    GL.Vertex3(eastingMin, northingMin, 0.10);
-                    GL.TexCoord2(Count, Count);
-                    GL.Vertex3(eastingMax, northingMin, 0.10);
+                    GL.Vertex3(eastingMin, northingMax, -0.10);
+                    GL.TexCoord2(Count, 0.0);           
+                    GL.Vertex3(eastingMax, northingMax, -0.10);
+                    GL.TexCoord2(0.0, Count);           
+                    GL.Vertex3(eastingMin, northingMin, -0.10);
+                    GL.TexCoord2(Count, Count);         
+                    GL.Vertex3(eastingMax, northingMin, -0.10);
 
                     GL.End();
                 }
@@ -112,13 +112,13 @@ namespace AgOpenGPS
                     GL.Begin(PrimitiveType.TriangleStrip);
                     GL.Color4(0.6f, 0.6f, 0.6f, 0.5f);
                     GL.TexCoord2(0, 0);
-                    GL.Vertex3(eastingMinGeo, northingMaxGeo, 0.0);
+                    GL.Vertex3(eastingMinGeo, northingMaxGeo, -0.05);
                     GL.TexCoord2(1, 0.0);
-                    GL.Vertex3(eastingMaxGeo, northingMaxGeo, 0.0);
+                    GL.Vertex3(eastingMaxGeo, northingMaxGeo, -0.05);
                     GL.TexCoord2(0.0, 1);
-                    GL.Vertex3(eastingMinGeo, northingMinGeo, 0.0);
+                    GL.Vertex3(eastingMinGeo, northingMinGeo, -0.05);
                     GL.TexCoord2(1, 1);
-                    GL.Vertex3(eastingMaxGeo, northingMinGeo, 0.0);
+                    GL.Vertex3(eastingMaxGeo, northingMinGeo, -0.05);
 
                     GL.End();
                 }
