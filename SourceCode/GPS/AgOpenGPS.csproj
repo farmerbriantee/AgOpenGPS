@@ -1017,6 +1017,7 @@
     <None Include="btnImages\APlusPlusB.png" />
     <None Include="btnImages\APlusMinusA.png" />
     <None Include="btnImages\APlusMinusB.png" />
+    <None Include="btnImages\Images\z_RateMap.png" />
     <Content Include="OGL.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

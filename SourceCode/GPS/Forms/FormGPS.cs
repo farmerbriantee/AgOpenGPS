@@ -724,7 +724,7 @@ namespace AgOpenGPS
             FrontWheels, FourWDFront, FourWDRear,
             Harvester, Lateral, bingGrid, 
             NoGPS, ZoomIn48, ZoomOut48, 
-            Pan, MenuHideShow, ToolWheels, Tire, TramDot
+            Pan, MenuHideShow, ToolWheels, Tire, TramDot, RateMap
 
         }
 
@@ -742,7 +742,7 @@ namespace AgOpenGPS
                 Properties.Resources.z_FrontWheels,Get4WDBrandFront(Settings.Default.setBrand_WDBrand), Get4WDBrandRear(Settings.Default.setBrand_WDBrand),
                 GetHarvesterBrand(Settings.Default.setBrand_HBrand), Properties.Resources.z_LateralManual, Resources.z_bingMap, 
                 Resources.z_NoGPS, Resources.ZoomIn48, Resources.ZoomOut48, Resources.Pan, Resources.MenuHideShow,
-                Resources.z_Tool, Resources.z_Tire, Resources.z_TramOnOff
+                Resources.z_Tool, Resources.z_Tire, Resources.z_TramOnOff, Resources.z_RateMap
             };
 
             texture = new uint[oglTextures.Length];
@@ -1115,8 +1115,8 @@ namespace AgOpenGPS
 
             using (Bitmap bitmap = Properties.Resources.z_bingMap)
             {
-                GL.GenTextures(1, out texture[20]);
-                GL.BindTexture(TextureTarget.Texture2D, texture[20]);
+                GL.GenTextures(1, out texture[(int)FormGPS.textures.bingGrid]);
+                GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.bingGrid]);
                 BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                 GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
                 bitmap.UnlockBits(bitmapData);

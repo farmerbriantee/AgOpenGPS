@@ -186,7 +186,7 @@ namespace AgOpenGPS
 
                     GL.Enable(EnableCap.Texture2D);
                     GL.Color4(1, 1, 1, 0.75);
-                    GL.BindTexture(TextureTarget.Texture2D, mf.texture[26]);        // Select Our Texture
+                    GL.BindTexture(TextureTarget.Texture2D, mf.texture[(int)FormGPS.textures.ToolWheels]);        // Select Our Texture
                     GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
                     GL.TexCoord2(1, 0); GL.Vertex2(1.5, trailingTank + 1); // Top Right
                     GL.TexCoord2(0, 0); GL.Vertex2(-1.5, trailingTank + 1); // Top Left
@@ -235,7 +235,7 @@ namespace AgOpenGPS
                     textRotate += (mf.sim.stepDistance);
                     GL.Enable(EnableCap.Texture2D);
                     GL.Color4(1, 1, 1, 0.75);
-                    GL.BindTexture(TextureTarget.Texture2D, mf.texture[27]);        // Select Our Texture
+                    GL.BindTexture(TextureTarget.Texture2D, mf.texture[(int)FormGPS.textures.Tire]);        // Select Our Texture
                     GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
                     GL.TexCoord2(1, 0 + textRotate); GL.Vertex2(1.4 + offset, trailingTool + 0.51); // Top Right
                     GL.TexCoord2(0, 0 + textRotate); GL.Vertex2(0.75 + offset, trailingTool + 0.51); // Top Left

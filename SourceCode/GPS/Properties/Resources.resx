@@ -709,9 +709,6 @@
   <data name="FileDontSave" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\FileDontSave.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="z_SkyNight" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\Images\z_SkyNight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="NavigationSettings" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\NavigationSettings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1326,5 +1323,11 @@
   </data>
   <data name="APlusMinusB" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\APlusMinusB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="z_RateMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\Images\z_RateMap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="z_SkyNight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\Images\z_SkyNight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

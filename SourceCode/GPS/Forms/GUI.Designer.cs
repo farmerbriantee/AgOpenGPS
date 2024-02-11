@@ -362,6 +362,9 @@ namespace AgOpenGPS
 
                 isFlashOnOff = !isFlashOnOff;
 
+                //the ratemap trigger
+                worldGrid.isRateTrigger = true;
+
                 //the main formgps window
                 if (isMetric)  //metric or imperial
                 {

@@ -1767,7 +1767,7 @@ namespace AgOpenGPS
                 }
             }
 
-            worldGrid.isGeoMap = false;
+            worldGrid.isGeoMap = worldGrid.isRateMap = false;
 
             //Back Image
             fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\BackPic.txt";
@@ -1791,6 +1791,8 @@ namespace AgOpenGPS
                         worldGrid.northingMaxGeo = double.Parse(line, CultureInfo.InvariantCulture);
                         line = reader.ReadLine();
                         worldGrid.northingMinGeo = double.Parse(line, CultureInfo.InvariantCulture);
+
+                        worldGrid.isGeoMap = true;
                     }
                     catch (Exception)
                     {
@@ -1804,7 +1806,7 @@ namespace AgOpenGPS
                         {
                             var bitmap = new Bitmap(Image.FromFile(fileAndDirectory));
 
-                            GL.BindTexture(TextureTarget.Texture2D, texture[20]);
+                            GL.BindTexture(TextureTarget.Texture2D, texture[(int)textures.bingGrid]);
                             BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                             GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
                             bitmap.UnlockBits(bitmapData);
@@ -1813,12 +1815,28 @@ namespace AgOpenGPS
                         {
                             worldGrid.isGeoMap = false;
                         }
+
+                        fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\rateMap.png";
+                        if (File.Exists(fileAndDirectory))
+                        {
+                            worldGrid.isRateMap = true;
+                            var bitmap = new Bitmap(Image.FromFile(fileAndDirectory));
+
+                            GL.BindTexture(TextureTarget.Texture2D, texture[(int)textures.RateMap]);
+                            BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
+                            bitmap.UnlockBits(bitmapData);
+                        }
+                        else
+                        {
+                            worldGrid.isRateMap = false;
+                        }
                     }
                 }
-
-                //update field data
-                oglZoom.Refresh();
             }
+
+            //update field data
+            oglZoom.Refresh();
 
         }//end of open file
 
@@ -2174,6 +2192,39 @@ namespace AgOpenGPS
                 writer.WriteLine("$BackPic");
                 //outer track of outer boundary tram
                 if (worldGrid.isGeoMap)
+                {
+                    writer.WriteLine(true);
+                    writer.WriteLine(worldGrid.eastingMaxGeo.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine(worldGrid.eastingMinGeo.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine(worldGrid.northingMaxGeo.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine(worldGrid.northingMinGeo.ToString(CultureInfo.InvariantCulture));
+                }
+                else
+                {
+                    writer.WriteLine(false);
+                    writer.WriteLine(300);
+                    writer.WriteLine(-300);
+                    writer.WriteLine(300);
+                    writer.WriteLine(-300);
+                }
+            }
+        }
+
+        public void FileSaveRateMap()
+        {
+            //get the directory and make sure it exists, create if not
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+
+            string directoryName = Path.GetDirectoryName(dirField);
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            //write out the file
+            using (StreamWriter writer = new StreamWriter(dirField + "RateMap.Txt"))
+            {
+                writer.WriteLine("$RateMap");
+                //outer track of outer boundary tram
+                if (worldGrid.isRateMap)
                 {
                     writer.WriteLine(true);
                     writer.WriteLine(worldGrid.eastingMaxGeo.ToString(CultureInfo.InvariantCulture));
