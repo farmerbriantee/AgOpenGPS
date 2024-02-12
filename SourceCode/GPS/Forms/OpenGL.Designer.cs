@@ -1240,13 +1240,13 @@ namespace AgOpenGPS
                     GL.Begin(PrimitiveType.TriangleStrip);
                     GL.Color3(1.0f, 1.0f, 1.0f);
                     GL.TexCoord2(0, 0);
-                    GL.Vertex3(worldGrid.eastingMinGeo, worldGrid.northingMaxGeo, 0.10);
+                    GL.Vertex3(worldGrid.eastingMinRate, worldGrid.northingMaxRate, 0.10);
                     GL.TexCoord2(1, 0.0);
-                    GL.Vertex3(worldGrid.eastingMaxGeo, worldGrid.northingMaxGeo, 0.10);
+                    GL.Vertex3(worldGrid.eastingMaxRate, worldGrid.northingMaxRate, 0.10);
                     GL.TexCoord2(0.0, 1);
-                    GL.Vertex3(worldGrid.eastingMinGeo, worldGrid.northingMinGeo, 0.10);
+                    GL.Vertex3(worldGrid.eastingMinRate, worldGrid.northingMinRate, 0.10);
                     GL.TexCoord2(1, 1);
-                    GL.Vertex3(worldGrid.eastingMaxGeo, worldGrid.northingMinGeo, 0.0);
+                    GL.Vertex3(worldGrid.eastingMaxRate, worldGrid.northingMinRate, 0.0);
                     GL.End();
 
                     GL.Flush();
@@ -1264,13 +1264,13 @@ namespace AgOpenGPS
                 //    GL.Begin(PrimitiveType.TriangleStrip);
                 //    GL.Color3(1.0f, 1.0f, 1.0f);
                 //    GL.TexCoord2(0, 0);
-                //    GL.Vertex3(worldGrid.eastingMinGeo, worldGrid.northingMaxGeo, 0.10);
+                //    GL.Vertex3(worldGrid.eastingMinRate, worldGrid.northingMaxRate, 0.10);
                 //    GL.TexCoord2(1, 0.0);
-                //    GL.Vertex3(worldGrid.eastingMaxGeo, worldGrid.northingMaxGeo, 0.10);
+                //    GL.Vertex3(worldGrid.eastingMaxRate, worldGrid.northingMaxRate, 0.10);
                 //    GL.TexCoord2(0.0, 1);
-                //    GL.Vertex3(worldGrid.eastingMinGeo, worldGrid.northingMinGeo, 0.10);
+                //    GL.Vertex3(worldGrid.eastingMinRate, worldGrid.northingMinRate, 0.10);
                 //    GL.TexCoord2(1, 1);
-                //    GL.Vertex3(worldGrid.eastingMaxGeo, worldGrid.northingMinGeo, 0.0);
+                //    GL.Vertex3(worldGrid.eastingMaxRate, worldGrid.northingMinRate, 0.0);
                 //    GL.End();
 
                 //    GL.Flush();
@@ -1288,13 +1288,13 @@ namespace AgOpenGPS
                 //    GL.Begin(PrimitiveType.TriangleStrip);
                 //    GL.Color3(1.0f, 1.0f, 1.0f);
                 //    GL.TexCoord2(0, 0);
-                //    GL.Vertex3(worldGrid.eastingMinGeo, worldGrid.northingMaxGeo, 0.10);
+                //    GL.Vertex3(worldGrid.eastingMinRate, worldGrid.northingMaxRate, 0.10);
                 //    GL.TexCoord2(1, 0.0);
-                //    GL.Vertex3(worldGrid.eastingMaxGeo, worldGrid.northingMaxGeo, 0.10);
+                //    GL.Vertex3(worldGrid.eastingMaxRate, worldGrid.northingMaxRate, 0.10);
                 //    GL.TexCoord2(0.0, 1);
-                //    GL.Vertex3(worldGrid.eastingMinGeo, worldGrid.northingMinGeo, 0.10);
+                //    GL.Vertex3(worldGrid.eastingMinRate, worldGrid.northingMinRate, 0.10);
                 //    GL.TexCoord2(1, 1);
-                //    GL.Vertex3(worldGrid.eastingMaxGeo, worldGrid.northingMinGeo, 0.0);
+                //    GL.Vertex3(worldGrid.eastingMaxRate, worldGrid.northingMinRate, 0.0);
                 //    GL.End();
 
 
@@ -1306,16 +1306,15 @@ namespace AgOpenGPS
 
                 GL.Disable(EnableCap.Texture2D);
 
-                byte percent = (byte)((double)(rateRed[0]) / 2.55);
-
-                lblRed.Text = percent.ToString() + "%";
-                CExtensionMethods.SetProgressNoAnimation(pbarRate, percent);
+                byte per = (byte)(Math.Round(((double)(rateRed[0]) / 2.55), MidpointRounding.AwayFromZero));
+                lblRed.Text = per.ToString() + "%";
+                CExtensionMethods.SetProgressNoAnimation(pbarRate, per);
 
                 //lblGrn.Text = rateGrn[0].ToString();
                 //lblBlu.Text = rateBlu[0].ToString();
 
                 //Red, Green, Blu
-                p_228.pgn[p_228.rate0] = percent; 
+                p_228.pgn[p_228.rate0] = per; 
                 p_228.pgn[p_228.rate1] = (byte)rateGrn[0];
                 p_228.pgn[p_228.rate2] = (byte)rateBlu[0];
 

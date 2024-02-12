@@ -48,7 +48,7 @@ namespace AgOpenGPS
 
             mapControl.Invalidate();
 
-            if (mf.worldGrid.isGeoMap || mf.worldGrid.isRateMap)
+            if (mf.worldGrid.isRateMap)
             {
                 cboxDrawMap.Checked = true;
                 btnGray.Visible = true;
@@ -64,8 +64,9 @@ namespace AgOpenGPS
                 cboxNumberRateChannels.Visible = false;
             }
 
-            if (mf.worldGrid.isGeoMap) cboxDrawMap.Image = Properties.Resources.MappingOn;
+            if (mf.worldGrid.isRateMap) cboxDrawMap.Image = Properties.Resources.MappingOn;
             else cboxDrawMap.Image = Properties.Resources.MappingOff;
+
             cboxNumberRateChannels.Text = mf.worldGrid.numRateChannels.ToString();
         }
 
@@ -108,7 +109,6 @@ namespace AgOpenGPS
             {
                 cboxDrawMap.Image = Properties.Resources.MappingOff;
                 ResetMapGrid();
-                mf.FileSaveBackPic();
                 mf.FileSaveRateMap();
 
                 mf.worldGrid.isGeoMap = false;
@@ -138,14 +138,14 @@ namespace AgOpenGPS
             CornerPoint geoRef = mapControl.TopLeftCorner;
             mf.pn.ConvertWGS84ToLocal(geoRef.Latitude, geoRef.Longitude, out double nor, out double eas);
             if (Math.Abs(nor) > 4000 || Math.Abs(eas) > 4000) mf.worldGrid.isRateMap = false;
-            mf.worldGrid.northingMaxGeo = nor;
-            mf.worldGrid.eastingMinGeo = eas;
+            mf.worldGrid.northingMaxRate = nor;
+            mf.worldGrid.eastingMinRate = eas;
 
             geoRef = mapControl.BottomRightCorner;
             mf.pn.ConvertWGS84ToLocal(geoRef.Latitude, geoRef.Longitude, out nor, out eas);
             if (Math.Abs(nor) > 4000 || Math.Abs(eas) > 4000) mf.worldGrid.isRateMap = false;
-            mf.worldGrid.northingMinGeo = nor;
-            mf.worldGrid.eastingMaxGeo = eas;
+            mf.worldGrid.northingMinRate = nor;
+            mf.worldGrid.eastingMaxRate = eas;
 
             if (!mf.worldGrid.isRateMap)
             {
@@ -205,6 +205,7 @@ namespace AgOpenGPS
                 mf.TimedMessageBox(2000, "File in Use", "Try loading again");
             }
 
+            mf.FileSaveBackPic();
             mf.FileSaveRateMap();
         }
 
@@ -221,15 +222,7 @@ namespace AgOpenGPS
                 GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, 9729);
             }
 
-            String fileAndDirectory = mf.fieldsDirectory + mf.currentFieldDirectory + "\\BackPic.png";
-            try
-            {
-                if (File.Exists(fileAndDirectory))
-                    File.Delete(fileAndDirectory);
-            }
-            catch { }
-
-            fileAndDirectory = mf.fieldsDirectory + mf.currentFieldDirectory + "\\RateMap1.png";
+            string fileAndDirectory = mf.fieldsDirectory + mf.currentFieldDirectory + "\\RateMap1.png";
             try
             {
                 if (File.Exists(fileAndDirectory))

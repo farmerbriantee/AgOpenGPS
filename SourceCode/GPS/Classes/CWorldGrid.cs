@@ -30,6 +30,16 @@ namespace AgOpenGPS
 
         public double eastingMinGeo;
 
+        //Y
+        public double northingMaxRate;
+
+        public double northingMinRate;
+
+        //X
+        public double eastingMaxRate;
+
+        public double eastingMinRate;
+
         public double GridSize = 6000;
         public double Count = 40;
         public bool isGeoMap = false;
@@ -44,6 +54,10 @@ namespace AgOpenGPS
             northingMinGeo = -300;
             eastingMaxGeo = 300;
             eastingMinGeo = -300;
+            northingMaxRate = 300;
+            northingMinRate = -300;
+            eastingMaxRate = 300;
+            eastingMinRate = -300;
         }
 
         public void DrawFieldSurface()
@@ -85,13 +99,13 @@ namespace AgOpenGPS
                 GL.Begin(PrimitiveType.TriangleStrip);
 
                 GL.TexCoord2(0, 0);
-                GL.Vertex3(eastingMinGeo, northingMaxGeo, -1.05);
+                GL.Vertex3(eastingMinRate, northingMaxRate, -1.05);
                 GL.TexCoord2(1, 0);                        
-                GL.Vertex3(eastingMaxGeo, northingMaxGeo, -1.05);
+                GL.Vertex3(eastingMaxRate, northingMaxRate, -1.05);
                 GL.TexCoord2(0, 1);                        
-                GL.Vertex3(eastingMinGeo, northingMinGeo, -1.05);
+                GL.Vertex3(eastingMinRate, northingMinRate, -1.05);
                 GL.TexCoord2(1, 1);                        
-                GL.Vertex3(eastingMaxGeo, northingMinGeo, -1.05);
+                GL.Vertex3(eastingMaxRate, northingMinRate, -1.05);
 
                 GL.End();
 

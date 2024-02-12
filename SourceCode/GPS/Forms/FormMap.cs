@@ -53,17 +53,12 @@ namespace AgOpenGPS
                 cboxDrawMap.Checked = true;
                 btnGray.Visible = true;
                 btnBuildFieldBackground.Visible = true;
-                btnBuildRateMap.Visible = true;
-                cboxNumberRateChannels.Visible = true;
-                cboxNumberRateChannels.Text = mf.worldGrid.numRateChannels.ToString();
             }
             else
             {
                 cboxDrawMap.Checked = false;
                 btnGray.Visible = false;
                 btnBuildFieldBackground.Visible = false;
-                btnBuildRateMap.Visible = false;
-                cboxNumberRateChannels.Visible = false;
             }
 
             if (mf.worldGrid.isGeoMap) cboxDrawMap.Image = Properties.Resources.MappingOn;
@@ -341,22 +336,17 @@ namespace AgOpenGPS
                 cboxDrawMap.Image = Properties.Resources.MappingOn;
                 btnGray.Visible = true;
                 btnBuildFieldBackground.Visible = true;
-                btnBuildRateMap.Visible = true;
-                cboxNumberRateChannels.Visible = true;
             }
             else
             {
                 cboxDrawMap.Image = Properties.Resources.MappingOff;
                 ResetMapGrid();
                 mf.FileSaveBackPic();
-                mf.FileSaveRateMap();
 
                 mf.worldGrid.isGeoMap = false;
                 mf.worldGrid.isRateMap = false;
                 btnGray.Visible = false;
                 btnBuildFieldBackground.Visible = false;
-                btnBuildRateMap.Visible = false;
-                cboxNumberRateChannels.Visible = false;
             }
         }
 
@@ -374,14 +364,6 @@ namespace AgOpenGPS
             }
 
             String fileAndDirectory = mf.fieldsDirectory + mf.currentFieldDirectory + "\\BackPic.png";
-            try
-            {
-                if (File.Exists(fileAndDirectory))
-                    File.Delete(fileAndDirectory);
-            }
-            catch { }
-
-            fileAndDirectory = mf.fieldsDirectory + mf.currentFieldDirectory + "\\RateMap1.png";
             try
             {
                 if (File.Exists(fileAndDirectory))
@@ -491,6 +473,7 @@ namespace AgOpenGPS
             }
 
             mf.FileSaveBackPic();
+            mf.FileSaveRateMap();
         }
 
         private void btnBuildFieldBackground_Click(object sender, EventArgs e)
@@ -504,74 +487,6 @@ namespace AgOpenGPS
             SaveBackgroundImage();
         }
 
-        private void btnBuildRateMap_Click(object sender, EventArgs e)
-        {
-            if (mf.worldGrid.isGeoMap || mf.worldGrid.isRateMap) ResetMapGrid();
-            SaveRateImage();
-        }
-
-        private void SaveRateImage()
-        {
-            if (bingLine.Count > 0)
-            {
-                mf.TimedMessageBox(2000, gStr.gsBoundary, "Finish Making Boundary");
-                return;
-            }
-
-            mf.worldGrid.isRateMap = true;
-
-            CornerPoint geoRef = mapControl.TopLeftCorner;
-            mf.pn.ConvertWGS84ToLocal(geoRef.Latitude, geoRef.Longitude, out double nor, out double eas);
-            if (Math.Abs(nor) > 4000 || Math.Abs(eas) > 4000) mf.worldGrid.isRateMap = false;
-            mf.worldGrid.northingMaxGeo = nor;
-            mf.worldGrid.eastingMinGeo = eas;
-
-            geoRef = mapControl.BottomRightCorner;
-            mf.pn.ConvertWGS84ToLocal(geoRef.Latitude, geoRef.Longitude, out nor, out eas);
-            if (Math.Abs(nor) > 4000 || Math.Abs(eas) > 4000) mf.worldGrid.isRateMap = false;
-            mf.worldGrid.northingMinGeo = nor;
-            mf.worldGrid.eastingMaxGeo = eas;
-
-            if (!mf.worldGrid.isRateMap)
-            {
-                mf.TimedMessageBox(2000, "Map Error", "Map Too Large");
-                ResetMapGrid();
-                return;
-            }
-
-            Bitmap bitmap = new Bitmap(mapControl.Width, mapControl.Height);
-            mapControl.DrawToBitmap(bitmap, new Rectangle(0, 0, bitmap.Width, bitmap.Height));
-
-            if (!isColorMap)
-            {
-                bitmap = glm.MakeGrayscale3(bitmap);
-            }
-
-            String fileAndDirectory = mf.fieldsDirectory + mf.currentFieldDirectory + "\\RateMap1.png";
-            try
-            {
-                if (File.Exists(fileAndDirectory))
-                    File.Delete(fileAndDirectory);
-                bitmap.Save(fileAndDirectory, ImageFormat.Png);
-
-                GL.BindTexture(TextureTarget.Texture2D, mf.texture[(int)FormGPS.textures.RateMap1]);
-                BitmapData bitmapData = bitmap.LockBits(new
-                    Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly,
-                    System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                GL.TexImage2D(TextureTarget.Texture2D, 0,
-                    PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0,
-                    OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
-                bitmap.UnlockBits(bitmapData);
-            }
-            catch
-            {
-                mf.TimedMessageBox(2000, "File in Use", "Try loading again");
-            }
-
-            mf.FileSaveRateMap();
-        }
-
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             lblBnds.Text = mf.bnd.bndList.Count.ToString();
@@ -581,10 +496,5 @@ namespace AgOpenGPS
                 lblPoints.Text = "";
         }
 
-        private void cboxNumberRateChannels_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            mf.worldGrid.numRateChannels = cboxNumberRateChannels.SelectedIndex+1;
-            cboxNumberRateChannels.Text = mf.worldGrid.numRateChannels.ToString();
-        }
     }
 }

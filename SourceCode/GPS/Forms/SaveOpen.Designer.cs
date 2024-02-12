@@ -1832,13 +1832,13 @@ namespace AgOpenGPS
                             worldGrid.isRateMap = bool.Parse(line);
 
                             line = reader.ReadLine();
-                            worldGrid.eastingMaxGeo = double.Parse(line, CultureInfo.InvariantCulture);
+                            worldGrid.eastingMaxRate = double.Parse(line, CultureInfo.InvariantCulture);
                             line = reader.ReadLine();
-                            worldGrid.eastingMinGeo = double.Parse(line, CultureInfo.InvariantCulture);
+                            worldGrid.eastingMinRate = double.Parse(line, CultureInfo.InvariantCulture);
                             line = reader.ReadLine();
-                            worldGrid.northingMaxGeo = double.Parse(line, CultureInfo.InvariantCulture);
+                            worldGrid.northingMaxRate = double.Parse(line, CultureInfo.InvariantCulture);
                             line = reader.ReadLine();
-                            worldGrid.northingMinGeo = double.Parse(line, CultureInfo.InvariantCulture);
+                            worldGrid.northingMinRate = double.Parse(line, CultureInfo.InvariantCulture);
                             line = reader.ReadLine();
                             worldGrid.numRateChannels = int.Parse(line, CultureInfo.InvariantCulture);
                         }
@@ -2311,10 +2311,10 @@ namespace AgOpenGPS
                 if (worldGrid.isRateMap)
                 {
                     writer.WriteLine(true);
-                    writer.WriteLine(worldGrid.eastingMaxGeo.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine(worldGrid.eastingMinGeo.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine(worldGrid.northingMaxGeo.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine(worldGrid.northingMinGeo.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine(worldGrid.eastingMaxRate.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine(worldGrid.eastingMinRate.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine(worldGrid.northingMaxRate.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine(worldGrid.northingMinRate.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine(worldGrid.numRateChannels.ToString(CultureInfo.InvariantCulture));
 
                 }

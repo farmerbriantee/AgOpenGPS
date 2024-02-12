@@ -206,9 +206,9 @@
             this.tableLayoutPanel1.Controls.Add(this.btnGo, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.cboxDrawMap, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnGray, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.cboxNumberRateChannels, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.btnBuildRateMap, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.cboxNumberRateChannels, 0, 3);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(707, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 8;

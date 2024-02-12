@@ -1030,6 +1030,9 @@
     <None Include="btnImages\Images\z_RateMap1.png" />
     <None Include="btnImages\Images\z_RateMap2.png" />
     <None Include="btnImages\Images\z_RateMap3.png" />
+    <Content Include="GPS_Out.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="OGL.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
