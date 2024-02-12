@@ -287,7 +287,12 @@ namespace AgIO
                     }
                     else
                     {
-                        logUDPSentence.Append(DateTime.Now.ToString("ss.fff\t") + endPoint.ToString() + "\t" + " > " + byteData[3].ToString() + "\r\n");
+                        string s = byteData[0].ToString();
+                        for (int i = 1; i < byteData.Length; i++)
+                        {
+                            s += "." + byteData[i].ToString();
+                        }
+                        logUDPSentence.Append(DateTime.Now.ToString("ss.fff\t") + endPoint.ToString() + "\t" + " > " + s + "\r\n");
                     }
                 }
 
