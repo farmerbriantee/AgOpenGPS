@@ -39,9 +39,9 @@ namespace AgOpenGPS
         private void FormHeadLine_Load(object sender, EventArgs e)
         {
             mf.hdl.idx = -1;
-            label3.Text = mf.unitsFtM;
+            //label3.Text = mf.unitsFtM +"       Tool: ";
 
-            lblToolWidth.Text = ((mf.tool.width - mf.tool.overlap) * mf.m2FtOrM).ToString("N1") + " " + mf.unitsFtM;
+            lblToolWidth.Text = "( "+ mf.unitsFtM + " )           Tool: " + ((mf.tool.width - mf.tool.overlap) * mf.m2FtOrM).ToString("N1") + " " + mf.unitsFtM;
 
             start = 99999; end = 99999;
             isA = true;
@@ -75,6 +75,46 @@ namespace AgOpenGPS
             else cboxIsSectionControlled.Image = Properties.Resources.HeadlandSectionOff;
 
             cboxIsZoom.Checked = false;
+
+            Size = Properties.Settings.Default.setWindow_HeadlineSize;
+
+            Screen myScreen = Screen.FromControl(this);
+            Rectangle area = myScreen.WorkingArea;
+
+            this.Top = (area.Height - this.Height) / 2;
+            this.Left = (area.Width - this.Width) / 2;
+            FormHeadLine_ResizeEnd(this, e);
+        }
+
+        private void FormHeadLine_ResizeEnd(object sender, EventArgs e)
+        {
+            Width = (Height * 4 / 3);
+
+            oglSelf.Height = oglSelf.Width = Height - 50;
+
+            oglSelf.Left = 2;
+            oglSelf.Top = 2;
+
+            oglSelf.MakeCurrent();
+            GL.MatrixMode(MatrixMode.Projection);
+            GL.LoadIdentity();
+
+            //58 degrees view
+            GL.Viewport(0, 0, oglSelf.Width, oglSelf.Height);
+            Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(1.01f, 1.0f, 1.0f, 20000);
+            GL.LoadMatrix(ref mat);
+
+            GL.MatrixMode(MatrixMode.Modelview);
+
+            tlp1.Width = Width - oglSelf.Width - 4;
+            tlp1.Left = oglSelf.Width;
+
+            Screen myScreen = Screen.FromControl(this);
+            Rectangle area = myScreen.WorkingArea;
+
+            this.Top = (area.Height - this.Height) / 2;
+            this.Left = (area.Width - this.Width) / 2;
+
         }
 
         private void FormHeadLine_FormClosing(object sender, FormClosingEventArgs e)
@@ -91,6 +131,10 @@ namespace AgOpenGPS
                 mf.hdl.idx = 0;
             }
             else mf.hdl.idx = -1;
+
+            Properties.Settings.Default.setWindow_HeadlineSize = Size;
+            Properties.Settings.Default.Save();
+
         }
 
         private void oglSelf_MouseDown(object sender, MouseEventArgs e)
@@ -104,23 +148,28 @@ namespace AgOpenGPS
             sliceArr?.Clear();
 
             Point ptt = oglSelf.PointToClient(Cursor.Position);
+
+            int wid = oglSelf.Width;
+            int halfWid = oglSelf.Width / 2;
+            double scale = (double)wid * 0.903;
+
             if (cboxIsZoom.Checked && !zoomToggle)
             {
-                sX = ((350 - (double)ptt.X) / 700) * 1.1;
-                sY = ((350 - (double)ptt.Y) / -700) * 1.1;
+                sX = ((halfWid - (double)ptt.X) / wid) * 1.1;
+                sY = ((halfWid - (double)ptt.Y) / -wid) * 1.1;
                 zoom = 0.1;
                 zoomToggle = true;
                 return;
             }
 
             //Convert to Origin in the center of window, 800 pixels
-            fixPt.X = ptt.X - 350;
-            fixPt.Y = (700 - ptt.Y - 350);
+            fixPt.X = ptt.X - halfWid;
+            fixPt.Y = (wid - ptt.Y - halfWid);
             vec3 plotPt = new vec3
             {
                 //convert screen coordinates to field coordinates
-                easting = fixPt.X * mf.maxFieldDistance / 632 * zoom,
-                northing = fixPt.Y * mf.maxFieldDistance / 632 * zoom,
+                easting = fixPt.X * mf.maxFieldDistance / scale * zoom,
+                northing = fixPt.Y * mf.maxFieldDistance / scale * zoom,
                 heading = 0
             };
 
@@ -376,9 +425,9 @@ namespace AgOpenGPS
             for (int j = 0; j < mf.bnd.bndList.Count; j++)
             {
                 if (j == bndSelect)
-                    GL.Color3(0.025f, 0.05f, 0.020f);
+                    GL.Color3(0.75f, 0.75f, 0.750f);
                 else
-                    GL.Color3(0.70f, 0.25f, 0.10f);
+                    GL.Color3(0.0f, 0.25f, 0.10f);
 
                 GL.Begin(PrimitiveType.LineStrip);
                 for (int i = 0; i < mf.bnd.bndList[j].fenceLine.Count; i++)
@@ -390,12 +439,6 @@ namespace AgOpenGPS
 
             //the vehicle
             GL.PointSize(16.0f);
-            GL.Begin(PrimitiveType.Points);
-            GL.Color3(0.0f, 0.00f, 0.0f);
-            GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0.0);
-            GL.End();
-
-            GL.PointSize(8.0f);
             GL.Begin(PrimitiveType.Points);
             GL.Color3(0.95f, 0.190f, 0.20f);
             GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0.0);
@@ -415,21 +458,20 @@ namespace AgOpenGPS
             GL.Flush();
             oglSelf.SwapBuffers();
         }
-
         private void DrawBuiltLines()
         {
+            //GL.LineWidth(8);
+            //GL.Color3(0.03f, 0.0f, 0.150f);
+            //GL.Begin(PrimitiveType.LineLoop);
+
+            //for (int i = 0; i < mf.bnd.bndList[0].hdLine.Count; i++)
+            //{
+            //    GL.Vertex3(mf.bnd.bndList[0].hdLine[i].easting, mf.bnd.bndList[0].hdLine[i].northing, 0);
+            //}
+            //GL.End();
+
             GL.LineWidth(8);
-            GL.Color3(0.03f, 0.0f, 0.150f);
-            GL.Begin(PrimitiveType.LineLoop);
-
-            for (int i = 0; i < mf.bnd.bndList[0].hdLine.Count; i++)
-            {
-                GL.Vertex3(mf.bnd.bndList[0].hdLine[i].easting, mf.bnd.bndList[0].hdLine[i].northing, 0);
-            }
-            GL.End();
-
-            GL.LineWidth(2);
-            GL.Color3(0.943f, 0.083f, 0.9150f);
+            GL.Color3(0.943f, 0.9083f, 0.09150f);
             GL.Begin(PrimitiveType.LineLoop);
 
             for (int i = 0; i < mf.bnd.bndList[0].hdLine.Count; i++)
@@ -446,11 +488,11 @@ namespace AgOpenGPS
 
                 if (mode == (int)TrackMode.AB)
                 {
-                    GL.Color3(0.75f, 0.09f, 0.0f);
+                    GL.Color3(0.95f, 0.09f, 0.0f);
                 }
                 else
                 {
-                    GL.Color3(0.13f, 0.75f, 0.020f);
+                    GL.Color3(0.13f, 0.95f, 0.020f);
                 }
 
                 GL.Begin(PrimitiveType.LineStrip);
@@ -491,6 +533,30 @@ namespace AgOpenGPS
             if (end != 99999) GL.Vertex3(mf.bnd.bndList[bndSelect].fenceLine[end].easting, mf.bnd.bndList[bndSelect].fenceLine[end].northing, 0);
             GL.End();
         }
+
+        private void oglSelf_Load(object sender, EventArgs e)
+        {
+            oglSelf.MakeCurrent();
+            GL.Enable(EnableCap.CullFace);
+            GL.CullFace(CullFaceMode.Back);
+            GL.ClearColor(0.1f, 0.1f, 0.1f ,1.0f);
+            GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
+        }
+        private void oglSelf_Resize(object sender, EventArgs e)
+        {
+            oglSelf.MakeCurrent();
+            GL.MatrixMode(MatrixMode.Projection);
+            GL.LoadIdentity();
+
+            //58 degrees view
+            GL.Viewport(0, 0, oglSelf.Width, oglSelf.Height);
+
+            Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(1.01f, 1.0f, 1.0f, 20000);
+            GL.LoadMatrix(ref mat);
+
+            GL.MatrixMode(MatrixMode.Modelview);
+        }
+
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -563,19 +629,6 @@ namespace AgOpenGPS
 
             mf.FileSaveHeadland();
             Close();
-        }
-
-        private void oglSelf_Resize(object sender, EventArgs e)
-        {
-            oglSelf.MakeCurrent();
-            GL.MatrixMode(MatrixMode.Projection);
-            GL.LoadIdentity();
-
-            //58 degrees view
-            Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(1.01f, 1.0f, 1.0f, 20000);
-            GL.LoadMatrix(ref mat);
-
-            GL.MatrixMode(MatrixMode.Modelview);
         }
 
         private void SetLineDistance()
@@ -985,13 +1038,5 @@ namespace AgOpenGPS
             return 0; // No collision
         }
 
-        private void oglSelf_Load(object sender, EventArgs e)
-        {
-            oglSelf.MakeCurrent();
-            GL.Enable(EnableCap.CullFace);
-            GL.CullFace(CullFaceMode.Back);
-            GL.ClearColor(1,1,1,1);
-            GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
-        }
     }
 }

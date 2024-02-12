@@ -291,6 +291,9 @@
   <data name="gsFileError" xml:space="preserve">
     <value>Bestandfout</value>
   </data>
+  <data name="gsFlagByLatLon" xml:space="preserve">
+    <value>Vlag van Lat Lon</value>
+  </data>
   <data name="gsFlagFileIsCorrupt" xml:space="preserve">
     <value>POI bestand corrupt</value>
   </data>

@@ -288,6 +288,9 @@
   <data name="gsFileError" xml:space="preserve">
     <value>Ошибка файла</value>
   </data>
+  <data name="gsFlagByLatLon" xml:space="preserve">
+    <value>Флаг Лат Лона</value>
+  </data>
   <data name="gsFlagFileIsCorrupt" xml:space="preserve">
     <value>Флаг Файл Поврежден</value>
   </data>

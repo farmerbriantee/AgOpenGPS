@@ -73,6 +73,7 @@ namespace AgOpenGPS
 
             cboxIsZoom.Checked = false;
             zoomToggle = false;
+
             Size = Properties.Settings.Default.setWindow_abDrawSize;
 
             Screen myScreen = Screen.FromControl(this);
@@ -186,6 +187,7 @@ namespace AgOpenGPS
             btnMakeABLine.Enabled = false;
             btnMakeCurve.Enabled = false;
             start = 99999; end = 99999;
+            isA = true;
 
             FixLabelsCurve();
 
@@ -340,15 +342,12 @@ namespace AgOpenGPS
         {            //count the points from the boundary
             for (int q = 0; q < mf.bnd.bndList.Count; q++)
             {
+                vec3 pt3;
                 mf.curve.desList?.Clear();
-
-                //outside point
-                vec3 pt3 = new vec3();
-
                     for (int i = 0; i < mf.bnd.bndList[bndSelect].fenceLine.Count; i++)
                     {
                         //calculate the point inside the boundary
-                        pt3 = mf.bnd.bndList[bndSelect].fenceLine[i];
+                       pt3 = new vec3(mf.bnd.bndList[bndSelect].fenceLine[i]);
 
                         mf.curve.desList.Add(new vec3(pt3));
                     }
@@ -427,12 +426,12 @@ namespace AgOpenGPS
             }
 
             mf.curve.desList?.Clear();
-            vec3 pt3 = new vec3();
+            vec3 pt3;
 
                 for (int i = start; i < end; i++)
                 {
                     //calculate the point inside the boundary
-                    pt3 = mf.bnd.bndList[bndSelect].fenceLine[i];
+                    pt3 = new vec3(mf.bnd.bndList[bndSelect].fenceLine[i]);
 
                     mf.curve.desList.Add(new vec3(pt3));
 
@@ -477,7 +476,7 @@ namespace AgOpenGPS
 
                 //build the tail extensions
                 mf.curve.AddFirstLastPoints(ref mf.curve.desList);
-                mf.curve.SmoothAB(2);
+                //mf.curve.SmoothAB(2);
                 mf.curve.CalculateHeadings(ref mf.curve.desList);
 
                 //array number is 1 less since it starts at zero
@@ -669,9 +668,9 @@ namespace AgOpenGPS
             for (int j = 0; j < mf.bnd.bndList.Count; j++)
             {
                 if (j == bndSelect)
-                    GL.Color3(0.0f, 0.0f, 0.0f);
+                    GL.Color3(1.0f, 1.0f, 1.0f);
                 else
-                    GL.Color3(0.2f, 0.35f, 0.35f);
+                    GL.Color3(0.62f, 0.635f, 0.635f);
 
                 GL.Begin(PrimitiveType.LineLoop);
                 for (int i = 0; i < mf.bnd.bndList[j].fenceLineEar.Count; i++)
@@ -684,13 +683,13 @@ namespace AgOpenGPS
             //the vehicle
             GL.PointSize(16.0f);
             GL.Begin(PrimitiveType.Points);
-            GL.Color3(0.0f, 0.00f, 0.0f);
+            GL.Color3(1.0f, 0.00f, 0.0f);
             GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0.0);
             GL.End();
 
             GL.PointSize(8.0f);
             GL.Begin(PrimitiveType.Points);
-            GL.Color3(0.95f, 0.190f, 0.20f);
+            GL.Color3(0.00f, 0.0f, 0.0f);
             GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0.0);
             GL.End();
 
@@ -724,7 +723,7 @@ namespace AgOpenGPS
                         GL.LineWidth(8);
                         GL.Disable(EnableCap.LineStipple);
                     }
-                    GL.Color3(1.0f, 0.0f, 0.0f);
+                    GL.Color3(1.0f, 0.20f, 0.20f);
 
                     GL.Begin(PrimitiveType.Lines);
 
@@ -767,7 +766,7 @@ namespace AgOpenGPS
                         GL.Disable(EnableCap.LineStipple);
                     }
 
-                    GL.Color3(0.0f, 0.7f, 0.0f);
+                    GL.Color3(0.30f, 0.97f, 0.30f);
                     if (mf.trk.gArr[i].mode == (int)TrackMode.bndCurve) GL.Color3(0.70f, 0.5f, 0.2f);
                     GL.Begin(PrimitiveType.LineStrip);
                     foreach (vec3 pts in mf.trk.gArr[i].curvePts)
@@ -777,23 +776,6 @@ namespace AgOpenGPS
                     GL.End();
 
                     GL.Disable(EnableCap.LineStipple);
-
-                    if (i == mf.trk.idx)  GL.PointSize(24);
-                    else GL.PointSize(12);
-
-                    GL.Color3(0, 0, 0);
-                    GL.Begin(PrimitiveType.Points);
-
-                    GL.Vertex3(mf.trk.gArr[i].curvePts[0].easting,
-                                mf.trk.gArr[i].curvePts[0].northing,
-                                0);
-
-                    GL.Color3(0, 0, 0);
-                    GL.Vertex3(mf.trk.gArr[i].curvePts[mf.trk.gArr[i].curvePts.Count - 1].easting,
-                                mf.trk.gArr[i].curvePts[mf.trk.gArr[i].curvePts.Count - 1].northing,
-                                0);
-
-                    GL.End();
 
                     if (i == mf.trk.idx) GL.PointSize(16);
                     else GL.PointSize(8);
@@ -900,14 +882,7 @@ namespace AgOpenGPS
         {
             Width = (Height * 4 / 3);
 
-            if (Height > Width)
-            {
-                oglSelf.Height = oglSelf.Width = Width - 60;
-            }
-            else
-            {
-                oglSelf.Height = oglSelf.Width = Height - 60;
-            }
+            oglSelf.Height = oglSelf.Width = Height - 50;
 
             oglSelf.Left = 2;
             oglSelf.Top = 2;
@@ -924,17 +899,13 @@ namespace AgOpenGPS
             GL.MatrixMode(MatrixMode.Modelview);
 
             tlp1.Width = Width - oglSelf.Width - 4;
-            tlp1.Left = oglSelf.Width + 4;
+            tlp1.Left = oglSelf.Width;
 
             Screen myScreen = Screen.FromControl(this);
             Rectangle area = myScreen.WorkingArea;
 
             this.Top = (area.Height - this.Height) / 2;
             this.Left = (area.Width - this.Width) / 2;
-        }
-
-        private void FormABDraw_Resize(object sender, EventArgs e)
-        {
         }
 
         private void oglSelf_Resize(object sender, EventArgs e)
@@ -957,7 +928,7 @@ namespace AgOpenGPS
             oglSelf.MakeCurrent();
             GL.Enable(EnableCap.CullFace);
             GL.CullFace(CullFaceMode.Back);
-            GL.ClearColor(1,1,1,1);
+            GL.ClearColor(0.0f,0.0f,0.0f,1.0f);
         }
 
         private void DrawSections()

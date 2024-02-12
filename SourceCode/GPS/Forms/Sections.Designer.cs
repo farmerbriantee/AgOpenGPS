@@ -802,7 +802,7 @@ namespace AgOpenGPS
                     } // if Main SW OFF
 
                     mc.ssP[mc.swMain] = mc.ss[mc.swMain];
-                }  //Main or Rate SW
+                }  //Main or shpList SW
 
 
                 if (mc.ss[mc.swOnGr0] != 0)

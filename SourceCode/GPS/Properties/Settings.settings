@@ -692,5 +692,20 @@
     <Setting Name="setWindow_abDrawSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">1022, 742</Value>
     </Setting>
+    <Setting Name="setWindow_HeadlineSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">1022, 742</Value>
+    </Setting>
+    <Setting Name="setWindow_HeadAcheSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">1022, 742</Value>
+    </Setting>
+    <Setting Name="setWindow_MapBndSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">1022, 742</Value>
+    </Setting>
+    <Setting Name="setWindow_BingMap" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">965, 700</Value>
+    </Setting>
+    <Setting Name="setWindow_BingZoom" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

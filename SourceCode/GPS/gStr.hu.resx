@@ -296,6 +296,9 @@
   <data name="gsFileError" xml:space="preserve">
     <value>Fájl hiba</value>
   </data>
+  <data name="gsFlagByLatLon" xml:space="preserve">
+    <value>Zászló koordináták alapján</value>
+  </data>
   <data name="gsFlagFileIsCorrupt" xml:space="preserve">
     <value>Zászló fájl sérült</value>
   </data>
