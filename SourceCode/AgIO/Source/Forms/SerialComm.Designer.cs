@@ -305,8 +305,6 @@ namespace AgIO
         private void ReceiveSteerModulePort(byte[] Data)
         {
             SendToLoopBackMessageAOG(Data);
-            if (isPluginUsed) 
-                SendToLoopBackMessageVR(Data);
             traffic.helloFromAutoSteer = 0;
         }
 
@@ -516,7 +514,6 @@ namespace AgIO
             try
             {
                 SendToLoopBackMessageAOG(Data);
-                if (isPluginUsed) SendToLoopBackMessageVR(Data);
                 traffic.helloFromMachine = 0;
             }
             catch { }

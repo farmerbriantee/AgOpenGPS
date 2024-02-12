@@ -149,9 +149,6 @@
     <Setting Name="setNTRIP_sendToUDP" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="setUDP_isUsePluginApp" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="setNTRIP_packetSize" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">256</Value>
     </Setting>

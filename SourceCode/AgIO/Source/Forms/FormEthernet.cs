@@ -22,7 +22,6 @@ namespace AgIO
         private void FormUDp_Load(object sender, EventArgs e)
         {
             cboxIsUDPOn.Checked = Properties.Settings.Default.setUDP_isOn;
-            cboxPlugin.Checked = Properties.Settings.Default.setUDP_isUsePluginApp;
             cboxIsSendNMEAToUDP.Checked = Properties.Settings.Default.setUDP_isSendNMEAToUDP;
 
             //nudSub1.Value = Properties.Settings.Default.etIP_SubnetOne;
@@ -54,7 +53,6 @@ namespace AgIO
             Properties.Settings.Default.eth_loopFour = (byte)nudFourthIP.Value;
 
             Properties.Settings.Default.setUDP_isOn = cboxIsUDPOn.Checked;
-            Properties.Settings.Default.setUDP_isUsePluginApp = cboxPlugin.Checked;
             Properties.Settings.Default.setUDP_isSendNMEAToUDP = cboxIsSendNMEAToUDP.Checked;
 
             Properties.Settings.Default.Save();

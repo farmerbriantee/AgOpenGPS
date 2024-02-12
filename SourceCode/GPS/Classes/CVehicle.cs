@@ -187,7 +187,7 @@ namespace AgOpenGPS
             {
                 GL.Enable(EnableCap.Texture2D);
                 GL.Color4(1,1,1, 0.75);
-                GL.BindTexture(TextureTarget.Texture2D, mf.texture[14]);        // Select Our Texture
+                GL.BindTexture(TextureTarget.Texture2D, mf.texture[(int)FormGPS.textures.QuestionMark]);        // Select Our Texture
                 GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
                 GL.TexCoord2(1, 0); GL.Vertex2(5, 5); // Top Right
                 GL.TexCoord2(0, 0); GL.Vertex2(1, 5); // Top Left
@@ -206,7 +206,7 @@ namespace AgOpenGPS
                     //vehicle body
                     GL.Enable(EnableCap.Texture2D);
                     GL.Color4(mf.vehicleColor.R, mf.vehicleColor.G, mf.vehicleColor.B, mf.vehicleOpacityByte);
-                    GL.BindTexture(TextureTarget.Texture2D, mf.texture[13]);        // Select Our Texture
+                    GL.BindTexture(TextureTarget.Texture2D, mf.texture[(int)FormGPS.textures.Tractor]);        // Select Our Texture
 
                     double leftAckermam, rightAckerman;
 
@@ -250,7 +250,7 @@ namespace AgOpenGPS
                     GL.Translate(trackWidth * 0.5, wheelbase, 0);
                     GL.Rotate(rightAckerman, 0, 0, 1);
 
-                    GL.BindTexture(TextureTarget.Texture2D, mf.texture[15]);        // Select Our Texture
+                    GL.BindTexture(TextureTarget.Texture2D, mf.texture[(int)FormGPS.textures.FrontWheels]);        // Select Our Texture
                     GL.Color4(mf.vehicleColor.R, mf.vehicleColor.G, mf.vehicleColor.B, mf.vehicleOpacityByte);
 
                     GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
@@ -320,7 +320,7 @@ namespace AgOpenGPS
                     GL.Translate(trackWidth * 0.5, -wheelbase, 0);
                     GL.Rotate(rightAckerman, 0, 0, 1);
 
-                    GL.BindTexture(TextureTarget.Texture2D, mf.texture[15]);        // Select Our Texture
+                    GL.BindTexture(TextureTarget.Texture2D, mf.texture[(int)FormGPS.textures.FrontWheels]);        // Select Our Texture
 
                     GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
                     GL.TexCoord2(1, 0); GL.Vertex2(trackWidth * 0.25, wheelbase * 0.5); // Top Right
@@ -372,7 +372,7 @@ namespace AgOpenGPS
                     GL.Enable(EnableCap.Texture2D);
                     GL.Color4(mf.vehicleColor.R, mf.vehicleColor.G, mf.vehicleColor.B, mf.vehicleOpacityByte);
 
-                    GL.BindTexture(TextureTarget.Texture2D, mf.texture[17]);        // Select Our Texture
+                    GL.BindTexture(TextureTarget.Texture2D, mf.texture[(int)FormGPS.textures.FourWDRear]);        // Select Our Texture
 
                     GL.PushMatrix();
                     GL.Translate(0, -wheelbase * 0.5, 0);
@@ -387,7 +387,7 @@ namespace AgOpenGPS
 
                     GL.PopMatrix();
 
-                    GL.BindTexture(TextureTarget.Texture2D, mf.texture[16]);        // Select Our Texture
+                    GL.BindTexture(TextureTarget.Texture2D, mf.texture[(int)FormGPS.textures.FourWDFront]);        // Select Our Texture
 
                     GL.PushMatrix();
                     GL.Translate(0, wheelbase * 0.5, 0);

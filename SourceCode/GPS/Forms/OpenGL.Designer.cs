@@ -19,7 +19,14 @@ namespace AgOpenGPS
         public int steerModuleConnectedCounter = 0;
 
         //data buffer for pixels read from off screen buffer
+
+        //data buffer for pixels read from off screen buffer
+        byte[] rateRed = new byte[1];
+        byte[] rateGrn = new byte[1];
+        byte[] rateBlu = new byte[1];
+
         byte[] grnPixels = new byte[150001];
+
         private bool isHeadlandClose = false;
 
         // When oglMain is created
@@ -79,6 +86,8 @@ namespace AgOpenGPS
 
                     //the bounding box of the camera for cullling.
                     CalcFrustum();
+                    GL.Disable(EnableCap.Blend);
+
                     worldGrid.DrawFieldSurface();
 
                     ////if grid is on draw it
@@ -479,7 +488,7 @@ namespace AgOpenGPS
 
                 GL.Enable(EnableCap.Texture2D);
                 GL.Color4(1.25f, 1.25f, 1.275f, 0.75);
-                GL.BindTexture(TextureTarget.Texture2D, texture[21]);        // Select Our Texture
+                GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.NoGPS]);        // Select Our Texture
                 GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
                 GL.TexCoord2(1, 0); GL.Vertex2(2.5, 2.5); // Top Right
                 GL.TexCoord2(0, 0); GL.Vertex2(-2.5, 2.5); // Top Left
@@ -575,7 +584,6 @@ namespace AgOpenGPS
             GL.LoadMatrix(ref mat);
             GL.MatrixMode(MatrixMode.Modelview);
         }
-
 
         private void oglBack_Paint(object sender, PaintEventArgs e)
         {
@@ -737,7 +745,7 @@ namespace AgOpenGPS
                     isLeftIn = j == 0 ? bnd.IsPointInsideFenceArea(section[j].leftPoint) : isRightIn;
                     isRightIn = bnd.IsPointInsideFenceArea(section[j].rightPoint);
 
-                    if (tool.isSectionOffWhenOut)
+                    if (!tool.isSectionOffWhenOut)
                     {
                         //merge the two sides into in or out
                         if (isLeftIn || isRightIn) section[j].isInBoundary = true;
@@ -1201,6 +1209,122 @@ namespace AgOpenGPS
             //send the byte out to section machines
             BuildMachineByte();
 
+            if (worldGrid.isRateTrigger && worldGrid.isRateMap)
+            {
+                worldGrid.isRateTrigger = false;
+
+                oglBack.MakeCurrent();
+
+                GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
+                GL.LoadIdentity();                  // Reset The View
+
+                //back the camera up
+                GL.Translate(0, 0, -500);
+
+                //rotate camera so heading matched fix heading in the world
+                GL.Rotate(glm.toDegrees(toolPos.heading), 0, 0, 1);
+
+                GL.Translate(-toolPos.easting - Math.Sin(toolPos.heading) * 15,
+                    -toolPos.northing - Math.Cos(toolPos.heading) * 15,
+                    0);
+
+                GL.Disable(EnableCap.CullFace);
+                GL.CullFace(CullFaceMode.Front);
+
+                //first channel
+                if (worldGrid.numRateChannels > 0)
+                {
+                    GL.Enable(EnableCap.Texture2D);
+
+                    GL.BindTexture(TextureTarget.Texture2D, texture[(int)textures.RateMap1]);
+                    GL.Begin(PrimitiveType.TriangleStrip);
+                    GL.Color3(1.0f, 1.0f, 1.0f);
+                    GL.TexCoord2(0, 0);
+                    GL.Vertex3(worldGrid.eastingMinRate, worldGrid.northingMaxRate, 0.10);
+                    GL.TexCoord2(1, 0.0);
+                    GL.Vertex3(worldGrid.eastingMaxRate, worldGrid.northingMaxRate, 0.10);
+                    GL.TexCoord2(0.0, 1);
+                    GL.Vertex3(worldGrid.eastingMinRate, worldGrid.northingMinRate, 0.10);
+                    GL.TexCoord2(1, 1);
+                    GL.Vertex3(worldGrid.eastingMaxRate, worldGrid.northingMinRate, 0.0);
+                    GL.End();
+
+                    GL.Flush();
+
+                    //read the whole block of pixels up to max lookahead, one read only
+                    GL.ReadPixels(250, 1, 1, 1, OpenTK.Graphics.OpenGL.PixelFormat.Red, PixelType.UnsignedByte, rateRed);
+                }
+
+                ////second channel
+                //if (worldGrid.numRateChannels > 1)
+                //{
+                //    GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
+
+                //    GL.BindTexture(TextureTarget.Texture2D, texture[(int)textures.RateMap2]);
+                //    GL.Begin(PrimitiveType.TriangleStrip);
+                //    GL.Color3(1.0f, 1.0f, 1.0f);
+                //    GL.TexCoord2(0, 0);
+                //    GL.Vertex3(worldGrid.eastingMinRate, worldGrid.northingMaxRate, 0.10);
+                //    GL.TexCoord2(1, 0.0);
+                //    GL.Vertex3(worldGrid.eastingMaxRate, worldGrid.northingMaxRate, 0.10);
+                //    GL.TexCoord2(0.0, 1);
+                //    GL.Vertex3(worldGrid.eastingMinRate, worldGrid.northingMinRate, 0.10);
+                //    GL.TexCoord2(1, 1);
+                //    GL.Vertex3(worldGrid.eastingMaxRate, worldGrid.northingMinRate, 0.0);
+                //    GL.End();
+
+                //    GL.Flush();
+
+                //    //read the whole block of pixels up to max lookahead, one read only
+                //    GL.ReadPixels(250, 1, 1, 1, OpenTK.Graphics.OpenGL.PixelFormat.Green, PixelType.UnsignedByte, rateGrn);
+                //}
+
+                ////3rd channel
+                //if (worldGrid.numRateChannels > 2)
+                //{
+                //    GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
+
+                //    GL.BindTexture(TextureTarget.Texture2D, texture[(int)textures.RateMap3]);
+                //    GL.Begin(PrimitiveType.TriangleStrip);
+                //    GL.Color3(1.0f, 1.0f, 1.0f);
+                //    GL.TexCoord2(0, 0);
+                //    GL.Vertex3(worldGrid.eastingMinRate, worldGrid.northingMaxRate, 0.10);
+                //    GL.TexCoord2(1, 0.0);
+                //    GL.Vertex3(worldGrid.eastingMaxRate, worldGrid.northingMaxRate, 0.10);
+                //    GL.TexCoord2(0.0, 1);
+                //    GL.Vertex3(worldGrid.eastingMinRate, worldGrid.northingMinRate, 0.10);
+                //    GL.TexCoord2(1, 1);
+                //    GL.Vertex3(worldGrid.eastingMaxRate, worldGrid.northingMinRate, 0.0);
+                //    GL.End();
+
+
+                //    GL.Flush();
+
+                //    //read the whole block of pixels up to max lookahead, one read only
+                //    GL.ReadPixels(250, 1, 1, 1, OpenTK.Graphics.OpenGL.PixelFormat.Blue, PixelType.UnsignedByte, rateBlu);
+                //}
+
+                GL.Disable(EnableCap.Texture2D);
+
+                byte per = (byte)(Math.Round(((double)(rateRed[0]) / 2.55), MidpointRounding.AwayFromZero));
+                lblRed.Text = per.ToString() + "%";
+                CExtensionMethods.SetProgressNoAnimation(pbarRate, per);
+
+                //lblGrn.Text = rateGrn[0].ToString();
+                //lblBlu.Text = rateBlu[0].ToString();
+
+                //Red, Green, Blu
+                p_228.pgn[p_228.rate0] = per; 
+                p_228.pgn[p_228.rate1] = (byte)rateGrn[0];
+                p_228.pgn[p_228.rate2] = (byte)rateBlu[0];
+
+                SendPgnToLoop(p_228.pgn);
+            }
+
+            ////Paint to context for troubleshooting
+            //oglBack.MakeCurrent();
+            //oglBack.SwapBuffers();
+
             //if a minute has elapsed save the field in case of crash and to be able to resume            
             if (fileSaveCounter > 30 && sentenceCounter < 20)
             {
@@ -1240,7 +1364,7 @@ namespace AgOpenGPS
             {
                 YesMessageBox("Serious Field Origin Error" +  "\r\n\r\n" +
                     "Field Origin is More Then 20 km from your current GPS Position" +
-                    " Delete this field and create a new one as Accuracy will be poor" + 
+                    " Delete this field and create a new one as Accuracy will be poor" + "\r\n\r\n" +
                     "Or you may have a field open and drove far away");
             }
         }
@@ -1530,7 +1654,7 @@ namespace AgOpenGPS
 
             if (isUTurnOn)
             {
-                GL.BindTexture(TextureTarget.Texture2D, texture[5]);        // Select Our Texture
+                GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.TurnManual]);        // Select Our Texture
                 GL.Color3(0.90f, 0.90f, 0.293f);
 
                 int two3 = oglMain.Width / 4;
@@ -1548,7 +1672,7 @@ namespace AgOpenGPS
 
             if (isLateralOn)
             {
-                GL.BindTexture(TextureTarget.Texture2D, texture[19]);        // Select Our Texture
+                GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.Lateral]);        // Select Our Texture
                 GL.Color3(0.190f, 0.90f, 0.93f);
                 int two3 = oglMain.Width / 4;
                 GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
@@ -1570,13 +1694,13 @@ namespace AgOpenGPS
 
             if (!yt.isYouTurnTriggered)
             {
-                GL.BindTexture(TextureTarget.Texture2D, texture[3]);        // Select Our Texture
+                GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.Turn]);        // Select Our Texture
                 if (distancePivotToTurnLine > 0 && !yt.isOutOfBounds) GL.Color3(0.3f, 0.95f, 0.3f);
                 else GL.Color3(0.97f, 0.635f, 0.4f);
             }
             else
             {
-                GL.BindTexture(TextureTarget.Texture2D, texture[4]);        // Select Our Texture
+                GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.TurnCancel]);        // Select Our Texture
                 GL.Color3(0.90f, 0.90f, 0.293f);
             }
 
@@ -1637,7 +1761,7 @@ namespace AgOpenGPS
             GL.PushMatrix();
             GL.Enable(EnableCap.Texture2D);
 
-            GL.BindTexture(TextureTarget.Texture2D, texture[11]);        // Select Our Texture
+            GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.SteerPointer]);        // Select Our Texture
 
             if (mc.steerSwitchHigh)
             {
@@ -1687,7 +1811,7 @@ namespace AgOpenGPS
             GL.Enable(EnableCap.Texture2D);
 
             // stationary part
-            GL.BindTexture(TextureTarget.Texture2D, texture[12]);        // Select Our Pinion
+            GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.SteerDot]);        // Select Our Pinion
             GL.PushMatrix();
 
             GL.Translate(center, bottomSide, 0);
@@ -2045,7 +2169,7 @@ namespace AgOpenGPS
         private void DrawCompassText()
         {
             GL.Enable(EnableCap.Texture2D);
-            GL.BindTexture(TextureTarget.Texture2D, texture[22]);        // Select Our Texture
+            GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.ZoomIn48]);        // Select Our Texture
             GL.Color3(0.90f, 0.90f, 0.93f);
 
             int center = oglMain.Width / 2 - 60;
@@ -2059,7 +2183,7 @@ namespace AgOpenGPS
             }
             GL.End();
 
-            GL.BindTexture(TextureTarget.Texture2D, texture[23]);        // Select Our Texture
+            GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.ZoomOut48]);        // Select Our Texture
             GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
             {
                 GL.TexCoord2(0, 0); GL.Vertex2(center, 150); // 
@@ -2075,7 +2199,7 @@ namespace AgOpenGPS
                 center = oglMain.Width / -2 + 30;
                 if (!isPanFormVisible)
                 {
-                    GL.BindTexture(TextureTarget.Texture2D, texture[24]);        // Select Our Texture
+                    GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.Pan]);        // Select Our Texture
                     GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
                     {
                         GL.TexCoord2(0, 0); GL.Vertex2(center, 50); // 
@@ -2088,7 +2212,7 @@ namespace AgOpenGPS
 
                 //hide show bottom menu
                 int hite = oglMain.Height - 30;
-                GL.BindTexture(TextureTarget.Texture2D, texture[25]);        // Select Our Texture
+                GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.MenuHideShow]);        // Select Our Texture
                 GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
                 {
                     GL.TexCoord2(0, 0); GL.Vertex2(center, hite - 32); // 
@@ -2181,7 +2305,7 @@ namespace AgOpenGPS
             GL.PushMatrix();
             GL.Enable(EnableCap.Texture2D);
 
-            GL.BindTexture(TextureTarget.Texture2D, texture[6]);        // Select Our Texture
+            GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.Compass]);        // Select Our Texture
             GL.Color4(0.952f, 0.870f, 0.73f, 0.8);
 
 
@@ -2209,7 +2333,7 @@ namespace AgOpenGPS
                 GL.PushMatrix();
                 GL.Enable(EnableCap.Texture2D);
 
-                GL.BindTexture(TextureTarget.Texture2D, texture[9]);        // Select Our Texture
+                GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.Lift]);        // Select Our Texture
 
                 GL.Translate(-oglMain.Width / 12, oglMain.Height / 2 - 20, 0);
                 GL.Rotate(180, 0, 0, 1);
@@ -2240,7 +2364,7 @@ namespace AgOpenGPS
                 GL.PushMatrix();
                 GL.Enable(EnableCap.Texture2D);
 
-                GL.BindTexture(TextureTarget.Texture2D, texture[9]);        // Select Our Texture
+                GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.Lift]);        // Select Our Texture
 
 
 
@@ -2268,7 +2392,7 @@ namespace AgOpenGPS
             GL.PushMatrix();
             GL.Enable(EnableCap.Texture2D);
 
-            GL.BindTexture(TextureTarget.Texture2D, texture[9]);        // Select Our Texture
+            GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.Lift]);        // Select Our Texture
 
             GL.Translate(oglMain.Width / 2 - 35, oglMain.Height/2, 0);
 
@@ -2300,7 +2424,7 @@ namespace AgOpenGPS
             GL.PushMatrix();
             GL.Enable(EnableCap.Texture2D);
 
-            GL.BindTexture(TextureTarget.Texture2D, texture[7]);        // Select Our Texture
+            GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.Speedo]);        // Select Our Texture
             GL.Color4(0.952f, 0.980f, 0.98f, 0.99);
 
             GL.Translate(oglMain.Width / 2 - 130, 65, 0);
@@ -2313,7 +2437,7 @@ namespace AgOpenGPS
                 GL.TexCoord2(0, 1); GL.Vertex2(-58, 58); //
             }
             GL.End();
-            GL.BindTexture(TextureTarget.Texture2D, texture[8]);        // Select Our Texture
+            GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.SpeedoNeedle]);        // Select Our Texture
 
             double angle = 0;
             if (isMetric)
