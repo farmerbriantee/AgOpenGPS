@@ -10,7 +10,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AgOpenGPS
 {
-    public partial class FormMapBnd : Form
+    public partial class FormBndTool : Form
     {
         //access to the main GPS form and all its variables
         private readonly FormGPS mf = null;
@@ -52,7 +52,7 @@ namespace AgOpenGPS
         //baseline to calc the most right vector - starts at 270 deg.
         private double prevHeading = Math.PI + glm.PIBy2;
 
-        public FormMapBnd(Form callingForm)
+        public FormBndTool(Form callingForm)
         {
             //get copy of the calling main form
             mf = callingForm as FormGPS;
@@ -62,7 +62,7 @@ namespace AgOpenGPS
             mf.CalculateMinMax();
         }
 
-        private void FormMapBnd_Load(object sender, EventArgs e)
+        private void FormBndTool_Load(object sender, EventArgs e)
         {
             //already have a boundary
             if (mf.bnd.bndList.Count == 0)
@@ -110,16 +110,16 @@ namespace AgOpenGPS
 
             this.Top = (area.Height - this.Height) / 2;
             this.Left = (area.Width - this.Width) / 2;
-            FormMapBnd_ResizeEnd(this, e);
+            FormBndTool_ResizeEnd(this, e);
         }
 
-        private void FormMapBnd_FormClosing(object sender, FormClosingEventArgs e)
+        private void FormBndTool_FormClosing(object sender, FormClosingEventArgs e)
         {
             Properties.Settings.Default.setWindow_MapBndSize = Size;
             Properties.Settings.Default.Save();
         }
 
-        private void FormMapBnd_ResizeEnd(object sender, EventArgs e)
+        private void FormBndTool_ResizeEnd(object sender, EventArgs e)
         {
             Width = (Height * 4 / 3);
 

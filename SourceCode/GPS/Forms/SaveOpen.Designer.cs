@@ -1847,6 +1847,8 @@ namespace AgOpenGPS
                             worldGrid.isRateMap = false;
                         }
 
+                        bool isFileMissing = false;
+
                         if (worldGrid.isRateMap)
                         {
                             fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\rateMap1.png";
@@ -1861,6 +1863,52 @@ namespace AgOpenGPS
                             }
                             else
                             {
+                                isFileMissing = true;
+                            }
+
+                            if (worldGrid.numRateChannels > 1)
+                            {
+                                fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\rateMap2.png";
+                                if (File.Exists(fileAndDirectory))
+                                {
+                                    var bitmap = new Bitmap(Image.FromFile(fileAndDirectory));
+
+                                    GL.BindTexture(TextureTarget.Texture2D, texture[(int)textures.RateMap2]);
+                                    BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                                    GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
+                                    bitmap.UnlockBits(bitmapData);
+                                }
+                                else
+                                {
+                                    isFileMissing = true;
+                                }
+                            }
+
+                            if (worldGrid.numRateChannels > 2)
+                            {
+
+                                fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\rateMap3.png";
+                                if (File.Exists(fileAndDirectory))
+                                {
+                                    var bitmap = new Bitmap(Image.FromFile(fileAndDirectory));
+
+                                    GL.BindTexture(TextureTarget.Texture2D, texture[(int)textures.RateMap3]);
+                                    BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                                    GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
+                                    bitmap.UnlockBits(bitmapData);
+                                }
+                                else
+                                {
+                                    isFileMissing = true;
+                                }
+                            }
+
+                            if (isFileMissing)
+                            {
+                                YesMessageBox("Missing one of the 3 rate images, " +
+                                " There should be MapRate1, MapRate2, MapRate3, " +
+                                " VR is turned off") ;
+
                                 worldGrid.isRateMap = false;
                             }
                         }

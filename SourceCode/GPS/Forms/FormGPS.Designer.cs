@@ -118,6 +118,7 @@
             this.deleteContourPathsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.webcamToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.offsetFixToolStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.appMapToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.panelSim = new System.Windows.Forms.TableLayoutPanel();
             this.btnSpeedDn = new ProXoft.WinForms.RepeatButton();
             this.btnSimSpeedUp = new ProXoft.WinForms.RepeatButton();
@@ -201,8 +202,7 @@
             this.btnMinimizeMainForm = new System.Windows.Forms.Button();
             this.panelControlBox = new System.Windows.Forms.Panel();
             this.lblRed = new System.Windows.Forms.Label();
-            this.lblBlu = new System.Windows.Forms.Label();
-            this.lblGrn = new System.Windows.Forms.Label();
+            this.pbarRate = new System.Windows.Forms.ProgressBar();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -1096,9 +1096,9 @@
             this.distanceToolBtn,
             this.toolStripDropDownButton4});
             this.statusStripLeft.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.statusStripLeft.Location = new System.Drawing.Point(2, 65);
+            this.statusStripLeft.Location = new System.Drawing.Point(2, 64);
             this.statusStripLeft.Name = "statusStripLeft";
-            this.statusStripLeft.Size = new System.Drawing.Size(67, 111);
+            this.statusStripLeft.Size = new System.Drawing.Size(67, 109);
             this.statusStripLeft.SizingGrip = false;
             this.statusStripLeft.TabIndex = 324;
             this.statusStripLeft.Text = "UDP";
@@ -1125,7 +1125,8 @@
             this.SmoothABtoolStripMenu,
             this.deleteContourPathsToolStripMenuItem,
             this.webcamToolStrip,
-            this.offsetFixToolStrip});
+            this.offsetFixToolStrip,
+            this.appMapToolStripMenu});
             this.toolStripDropDownButton4.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripDropDownButton4.Image = global::AgOpenGPS.Properties.Resources.SpecialFunctions;
             this.toolStripDropDownButton4.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -1238,6 +1239,13 @@
             this.offsetFixToolStrip.Text = "Offset Fix";
             this.offsetFixToolStrip.Click += new System.EventHandler(this.offsetFixToolStrip_Click);
             // 
+            // appMapToolStripMenu
+            // 
+            this.appMapToolStripMenu.Name = "appMapToolStripMenu";
+            this.appMapToolStripMenu.Size = new System.Drawing.Size(450, 70);
+            this.appMapToolStripMenu.Text = "App Map";
+            this.appMapToolStripMenu.Click += new System.EventHandler(this.appMapToolStripMenu_Click);
+            // 
             // panelSim
             // 
             this.panelSim.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -1252,7 +1260,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 58F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 63F));
             this.panelSim.Controls.Add(this.btnSpeedDn, 5, 0);
             this.panelSim.Controls.Add(this.btnSimSpeedUp, 7, 0);
             this.panelSim.Controls.Add(this.btnResetSim, 0, 0);
@@ -1277,7 +1285,7 @@
             this.btnSpeedDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSpeedDn.Location = new System.Drawing.Point(404, 4);
             this.btnSpeedDn.Name = "btnSpeedDn";
-            this.btnSpeedDn.Size = new System.Drawing.Size(114, 34);
+            this.btnSpeedDn.Size = new System.Drawing.Size(110, 34);
             this.btnSpeedDn.TabIndex = 533;
             this.btnSpeedDn.UseVisualStyleBackColor = false;
             this.btnSpeedDn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSpeedDn_MouseDown);
@@ -1290,9 +1298,9 @@
             this.btnSimSpeedUp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSimSpeedUp.FlatAppearance.BorderSize = 0;
             this.btnSimSpeedUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSimSpeedUp.Location = new System.Drawing.Point(584, 4);
+            this.btnSimSpeedUp.Location = new System.Drawing.Point(580, 4);
             this.btnSimSpeedUp.Name = "btnSimSpeedUp";
-            this.btnSimSpeedUp.Size = new System.Drawing.Size(114, 34);
+            this.btnSimSpeedUp.Size = new System.Drawing.Size(110, 34);
             this.btnSimSpeedUp.TabIndex = 532;
             this.btnSimSpeedUp.UseVisualStyleBackColor = false;
             this.btnSimSpeedUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSimSpeedUp_MouseDown);
@@ -1306,7 +1314,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(525, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(521, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(52, 34);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -1323,7 +1331,7 @@
             this.btnSimReverseDirection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimReverseDirection.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimReverseDirection.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimReverseDirection.Location = new System.Drawing.Point(712, 4);
+            this.btnSimReverseDirection.Location = new System.Drawing.Point(708, 4);
             this.btnSimReverseDirection.Name = "btnSimReverseDirection";
             this.btnSimReverseDirection.Size = new System.Drawing.Size(35, 34);
             this.btnSimReverseDirection.TabIndex = 537;
@@ -1781,7 +1789,7 @@
             this.panelLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.43421F));
             this.panelLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.63816F));
             this.panelLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.47368F));
-            this.panelLeft.Size = new System.Drawing.Size(72, 652);
+            this.panelLeft.Size = new System.Drawing.Size(72, 628);
             this.panelLeft.TabIndex = 529;
             // 
             // btnConfig
@@ -1796,11 +1804,11 @@
             this.btnConfig.ForeColor = System.Drawing.Color.DarkGray;
             this.btnConfig.Image = global::AgOpenGPS.Properties.Resources.Settings48;
             this.btnConfig.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnConfig.Location = new System.Drawing.Point(0, 377);
+            this.btnConfig.Location = new System.Drawing.Point(0, 364);
             this.btnConfig.Margin = new System.Windows.Forms.Padding(0);
             this.btnConfig.Name = "btnConfig";
             this.btnConfig.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnConfig.Size = new System.Drawing.Size(72, 102);
+            this.btnConfig.Size = new System.Drawing.Size(72, 98);
             this.btnConfig.TabIndex = 537;
             this.btnConfig.UseVisualStyleBackColor = false;
             this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
@@ -1841,12 +1849,12 @@
             this.btnAutoSteerConfig.ForeColor = System.Drawing.Color.Black;
             this.btnAutoSteerConfig.Image = global::AgOpenGPS.Properties.Resources.AutoSteerConf;
             this.btnAutoSteerConfig.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAutoSteerConfig.Location = new System.Drawing.Point(0, 479);
+            this.btnAutoSteerConfig.Location = new System.Drawing.Point(0, 462);
             this.btnAutoSteerConfig.Margin = new System.Windows.Forms.Padding(0);
             this.btnAutoSteerConfig.Name = "btnAutoSteerConfig";
             this.btnAutoSteerConfig.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.btnAutoSteerConfig.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnAutoSteerConfig.Size = new System.Drawing.Size(72, 86);
+            this.btnAutoSteerConfig.Size = new System.Drawing.Size(72, 82);
             this.btnAutoSteerConfig.TabIndex = 475;
             this.btnAutoSteerConfig.Text = "-38.8.";
             this.btnAutoSteerConfig.UseVisualStyleBackColor = false;
@@ -1866,11 +1874,11 @@
             this.btnStartAgIO.ForeColor = System.Drawing.Color.DarkGray;
             this.btnStartAgIO.Image = global::AgOpenGPS.Properties.Resources.AgIO;
             this.btnStartAgIO.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnStartAgIO.Location = new System.Drawing.Point(0, 565);
+            this.btnStartAgIO.Location = new System.Drawing.Point(0, 544);
             this.btnStartAgIO.Margin = new System.Windows.Forms.Padding(0);
             this.btnStartAgIO.Name = "btnStartAgIO";
             this.btnStartAgIO.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnStartAgIO.Size = new System.Drawing.Size(72, 87);
+            this.btnStartAgIO.Size = new System.Drawing.Size(72, 84);
             this.btnStartAgIO.TabIndex = 467;
             this.btnStartAgIO.UseVisualStyleBackColor = false;
             this.btnStartAgIO.Click += new System.EventHandler(this.btnStartAgIO_Click);
@@ -1889,11 +1897,11 @@
             this.btnJobMenu.ForeColor = System.Drawing.Color.DarkGray;
             this.btnJobMenu.Image = global::AgOpenGPS.Properties.Resources.JobActive;
             this.btnJobMenu.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnJobMenu.Location = new System.Drawing.Point(0, 178);
+            this.btnJobMenu.Location = new System.Drawing.Point(0, 173);
             this.btnJobMenu.Margin = new System.Windows.Forms.Padding(0);
             this.btnJobMenu.Name = "btnJobMenu";
             this.btnJobMenu.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnJobMenu.Size = new System.Drawing.Size(72, 95);
+            this.btnJobMenu.Size = new System.Drawing.Size(72, 91);
             this.btnJobMenu.TabIndex = 536;
             this.btnJobMenu.UseVisualStyleBackColor = false;
             this.btnJobMenu.Click += new System.EventHandler(this.btnJobMenu_Click);
@@ -1912,7 +1920,7 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripBtnFieldTools});
             this.statusStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.statusStrip1.Location = new System.Drawing.Point(2, 273);
+            this.statusStrip1.Location = new System.Drawing.Point(2, 264);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(67, 90);
             this.statusStrip1.SizingGrip = false;
@@ -2704,43 +2712,27 @@
             // 
             this.lblRed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblRed.AutoSize = true;
-            this.lblRed.BackColor = System.Drawing.Color.LightCoral;
-            this.lblRed.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRed.Location = new System.Drawing.Point(80, 648);
+            this.lblRed.BackColor = System.Drawing.Color.Transparent;
+            this.lblRed.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRed.Location = new System.Drawing.Point(74, 654);
             this.lblRed.Name = "lblRed";
-            this.lblRed.Size = new System.Drawing.Size(43, 22);
+            this.lblRed.Size = new System.Drawing.Size(52, 29);
             this.lblRed.TabIndex = 543;
             this.lblRed.Text = "100";
             this.lblRed.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.lblRed.Visible = false;
             // 
-            // lblBlu
+            // pbarRate
             // 
-            this.lblBlu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblBlu.AutoSize = true;
-            this.lblBlu.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.lblBlu.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBlu.Location = new System.Drawing.Point(80, 698);
-            this.lblBlu.Name = "lblBlu";
-            this.lblBlu.Size = new System.Drawing.Size(43, 22);
-            this.lblBlu.TabIndex = 544;
-            this.lblBlu.Text = "100";
-            this.lblBlu.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.lblBlu.Visible = false;
-            // 
-            // lblGrn
-            // 
-            this.lblGrn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblGrn.AutoSize = true;
-            this.lblGrn.BackColor = System.Drawing.Color.PaleGreen;
-            this.lblGrn.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGrn.Location = new System.Drawing.Point(80, 673);
-            this.lblGrn.Name = "lblGrn";
-            this.lblGrn.Size = new System.Drawing.Size(43, 22);
-            this.lblGrn.TabIndex = 545;
-            this.lblGrn.Text = "100";
-            this.lblGrn.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.lblGrn.Visible = false;
+            this.pbarRate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pbarRate.Location = new System.Drawing.Point(18, 686);
+            this.pbarRate.Maximum = 255;
+            this.pbarRate.Name = "pbarRate";
+            this.pbarRate.RightToLeftLayout = true;
+            this.pbarRate.Size = new System.Drawing.Size(104, 15);
+            this.pbarRate.TabIndex = 544;
+            this.pbarRate.Value = 127;
+            this.pbarRate.Visible = false;
             // 
             // FormGPS
             // 
@@ -2748,8 +2740,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1000, 720);
-            this.Controls.Add(this.lblGrn);
-            this.Controls.Add(this.lblBlu);
+            this.Controls.Add(this.pbarRate);
             this.Controls.Add(this.panelControlBox);
             this.Controls.Add(this.panelRight);
             this.Controls.Add(this.panelAB);
@@ -2997,8 +2988,8 @@
         private System.Windows.Forms.ToolStripMenuItem boundaryToolToolStripMenu;
         private System.Windows.Forms.ToolStripMenuItem deleteAppliedToolStripMenuItem;
         private System.Windows.Forms.Label lblRed;
-        private System.Windows.Forms.Label lblBlu;
-        private System.Windows.Forms.Label lblGrn;
+        private System.Windows.Forms.ToolStripMenuItem appMapToolStripMenu;
+        private System.Windows.Forms.ProgressBar pbarRate;
     }
 }
 

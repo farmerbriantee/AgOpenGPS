@@ -774,16 +774,19 @@ namespace AgOpenGPS
 
             if (worldGrid.isRateMap)
             {
-                lblRed.Visible = lblGrn.Visible = lblBlu.Visible = false;
-                if (worldGrid.numRateChannels > 0) lblRed.Visible = true;
-                if (worldGrid.numRateChannels > 1) lblGrn.Visible = true;
-                if (worldGrid.numRateChannels > 2) lblBlu.Visible = true;
+                //lblRed.Visible = lblGrn.Visible = lblBlu.Visible = false;
+                //if (worldGrid.numRateChannels > 0) lblRed.Visible = true;
+                //if (worldGrid.numRateChannels > 1) lblGrn.Visible = true;
+                //if (worldGrid.numRateChannels > 2) lblBlu.Visible = true;
+                lblRed.Visible = true;
+                pbarRate.Visible = true;
             }
             else
             {
-                lblRed.Visible = lblGrn.Visible = lblBlu.Visible = false;
+                //lblRed.Visible = lblGrn.Visible = lblBlu.Visible = false;
+                lblRed.Visible = false;
+                pbarRate.Visible = false;
             }
-
         }
 
         public void PanelBuildRightMenu()

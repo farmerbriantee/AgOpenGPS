@@ -41,7 +41,7 @@ namespace AgOpenGPS
 
         private void FormMap_Load(object sender, EventArgs e)
         {
-            Size = Properties.Settings.Default.setWindow_BingMap;
+            Size = Properties.Settings.Default.setWindow_BingMapSize;
 
             mapControl.ZoomLevel = Properties.Settings.Default.setWindow_BingZoom;//mapControl
             mapControl.Center = new GeoPoint((float)mf.pn.longitude, (float)mf.pn.latitude);
@@ -78,7 +78,7 @@ namespace AgOpenGPS
                 return;
             }
 
-            Properties.Settings.Default.setWindow_BingMap = Size;
+            Properties.Settings.Default.setWindow_BingMapSize = Size;
             Properties.Settings.Default.setWindow_BingZoom = mapControl.ZoomLevel;
             Properties.Settings.Default.Save();
         }

@@ -1884,7 +1884,7 @@ namespace AgOpenGPS
         {
             if (isJobStarted)
             {
-                using (var form = new FormMapBnd(this))
+                using (var form = new FormBndTool(this))
                 {
                     form.ShowDialog(this);
                 }
@@ -2053,6 +2053,15 @@ namespace AgOpenGPS
             //
             Form formC = new FormCorrection(this);
             formC.Show(this);
+        }
+
+        private void appMapToolStripMenu_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormRateMap(this))
+            {
+                form.ShowDialog(this);
+            }
+            PanelUpdateRightAndBottom();
         }
 
         #endregion
