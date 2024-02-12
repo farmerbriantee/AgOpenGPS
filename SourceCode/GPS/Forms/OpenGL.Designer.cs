@@ -1306,14 +1306,16 @@ namespace AgOpenGPS
 
                 GL.Disable(EnableCap.Texture2D);
 
-                lblRed.Text = rateRed[0].ToString();
-                CExtensionMethods.SetProgressNoAnimation(pbarRate, rateRed[0]);
+                byte percent = (byte)((double)(rateRed[0]) / 2.55);
+
+                lblRed.Text = percent.ToString() + "%";
+                CExtensionMethods.SetProgressNoAnimation(pbarRate, percent);
 
                 //lblGrn.Text = rateGrn[0].ToString();
                 //lblBlu.Text = rateBlu[0].ToString();
 
                 //Red, Green, Blu
-                p_228.pgn[p_228.rate0] = (byte)rateRed[0]; 
+                p_228.pgn[p_228.rate0] = percent; 
                 p_228.pgn[p_228.rate1] = (byte)rateGrn[0];
                 p_228.pgn[p_228.rate2] = (byte)rateBlu[0];
 
