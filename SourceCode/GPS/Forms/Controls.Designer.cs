@@ -260,6 +260,7 @@ namespace AgOpenGPS
                 }
 
                 if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
+                if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
             }
 
             twoSecondCounter = 100;
@@ -306,6 +307,7 @@ namespace AgOpenGPS
                     }
                 }
                 if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
+                if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
             }
 
             ABLine.isABValid = false;
@@ -449,9 +451,6 @@ namespace AgOpenGPS
             {
                 flp1.Visible = false;
             }
-
-            if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
-            if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
 
             using (var form = new FormABDraw(this))
             {
