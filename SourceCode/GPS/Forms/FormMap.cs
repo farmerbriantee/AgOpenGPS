@@ -41,7 +41,9 @@ namespace AgOpenGPS
 
         private void FormMap_Load(object sender, EventArgs e)
         {
-            mapControl.ZoomLevel = 15;//mapControl
+            Size = Properties.Settings.Default.setWindow_BingMap;
+
+            mapControl.ZoomLevel = Properties.Settings.Default.setWindow_BingZoom;//mapControl
             mapControl.Center = new GeoPoint((float)mf.pn.longitude, (float)mf.pn.latitude);
 
             mapControl.Invalidate();
@@ -61,6 +63,7 @@ namespace AgOpenGPS
 
             if (mf.worldGrid.isGeoMap) cboxDrawMap.Image = Properties.Resources.MappingOn;
             else cboxDrawMap.Image = Properties.Resources.MappingOff;
+
         }
 
         private void FormMap_FormClosing(object sender, FormClosingEventArgs e)
@@ -70,6 +73,10 @@ namespace AgOpenGPS
                 e.Cancel = true;
                 return;
             }
+
+            Properties.Settings.Default.setWindow_BingMap = Size;
+            Properties.Settings.Default.setWindow_BingZoom = mapControl.ZoomLevel;
+            Properties.Settings.Default.Save();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -245,9 +252,6 @@ namespace AgOpenGPS
             btnDeleteAll.Enabled = false;
             btnAddFence.Enabled = false;
             btnDeletePoint.Enabled = false;
-            gboxField.Enabled = true;
-
-            gboxField.Enabled = true;
         }
 
         private void btnDeleteAll_Click(object sender, EventArgs e)
@@ -294,7 +298,6 @@ namespace AgOpenGPS
             btnDeleteAll.Enabled = false;
             btnAddFence.Enabled = false;
             btnDeletePoint.Enabled = false;
-            gboxField.Enabled = true;
         }
 
         private void cboxEnableLineDraw_Click(object sender, EventArgs e)
@@ -307,7 +310,6 @@ namespace AgOpenGPS
                 bingLine.Clear();
                 mapControl.Markers.Clear();
                 mapControl.Invalidate();
-                gboxField.Enabled = false;
             }
             else
             {
@@ -318,7 +320,6 @@ namespace AgOpenGPS
                 btnDeleteAll.Enabled = false;
                 btnAddFence.Enabled = false;
                 btnDeletePoint.Enabled = false;
-                gboxField.Enabled = true;
             }
         }
 

@@ -206,7 +206,23 @@ namespace AgOpenGPS
                     if (tram.displayMode != 0) tram.DrawTram();
 
                     GL.PolygonMode(MaterialFace.Front, PolygonMode.Fill);
-                    GL.Color3(1, 1, 1);
+                    //GL.Color3(1, 1, 1);
+
+                    //if (bnd.shpList.Count > 0)
+                    //{
+                    //    for (int h = 0; h < bnd.shpList.Count; h++)
+                    //    {
+                    //        GL.Color3(bnd.shpList[h].color.R, bnd.shpList[h].color.G, bnd.shpList[h].color.B);
+                    //        GL.Begin(PrimitiveType.LineLoop);
+                    //        for (int i = 0; i < bnd.shpList[h].points.Count; i++)
+                    //        {
+                    //            {
+                    //                GL.Vertex3(bnd.shpList[h].points[i].easting, bnd.shpList[h].points[i].northing, 0);
+                    //            }
+                    //        }
+                    //        GL.End();
+                    //    }
+                    //}
 
                     //draw contour line if button on 
                     if (ct.isContourBtnOn)
@@ -1609,7 +1625,6 @@ namespace AgOpenGPS
                 }
             }
         }
-
         private void DrawSteerCircle()
         {
             int sizer = 60;
@@ -1626,11 +1641,24 @@ namespace AgOpenGPS
             GL.BindTexture(TextureTarget.Texture2D, texture[11]);        // Select Our Texture
 
             if (mc.steerSwitchHigh)
+            {
                 GL.Color4(0.9752f, 0.0f, 0.03f, 0.98);
+                trk.isAutoSnapped = false;
+            }
             else if (isBtnAutoSteerOn)
+            {
                 GL.Color4(0.052f, 0.970f, 0.03f, 0.97);
+                trk.isAutoSnapped = false;
+            }
             else
+            {
                 GL.Color4(0.952f, 0.750f, 0.03f, 0.97);
+                if (trk.isAutoSnapToPivot && !trk.isAutoSnapped)
+                {
+                    trk.SnapToPivot();
+                    trk.isAutoSnapped = true;
+                }
+            }
 
             //we have lost connection to steer module
             if (steerModuleConnectedCounter++ > 30)

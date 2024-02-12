@@ -106,7 +106,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
@@ -137,6 +137,7 @@
     <Compile Include="Classes\CRecordedPath.cs" />
     <Compile Include="Classes\CPatches.cs" />
     <Compile Include="Classes\CSettings.cs" />
+    <Compile Include="Classes\CShapeFile.cs" />
     <Compile Include="Classes\CSound.cs" />
     <Compile Include="Classes\CFieldData.cs" />
     <Compile Include="Classes\CBoundaryList.cs" />
@@ -215,12 +216,6 @@
     </Compile>
     <Compile Include="Forms\FormYes.designer.cs">
       <DependentUpon>FormYes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Guidance\FormABDraw2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Guidance\FormABDraw2.Designer.cs">
-      <DependentUpon>FormABDraw2.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Guidance\FormRecordName.cs">
       <SubType>Form</SubType>
@@ -653,9 +648,6 @@
     <EmbeddedResource Include="Forms\FormYes.resx">
       <DependentUpon>FormYes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Guidance\FormABDraw2.resx">
-      <DependentUpon>FormABDraw2.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Guidance\FormRecordName.resx">
       <DependentUpon>FormRecordName.cs</DependentUpon>
     </EmbeddedResource>
@@ -1023,6 +1015,11 @@
     <None Include="btnImages\BoundaryMakeLine.png" />
     <None Include="btnImages\APlusPlusA.png" />
     <None Include="btnImages\APlusPlusB.png" />
+    <None Include="btnImages\APlusMinusA.png" />
+    <None Include="btnImages\APlusMinusB.png" />
+    <Content Include="OGL.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />
