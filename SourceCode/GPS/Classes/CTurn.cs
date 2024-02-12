@@ -181,9 +181,12 @@ namespace AgOpenGPS
                     }
                 }
 
-                vec3 end = new vec3(bndList[j].turnLine[0].easting,
-                    bndList[j].turnLine[0].northing, bndList[j].turnLine[0].heading);
-                bndList[j].turnLine.Add(end);
+                if (bndList[j].turnLine.Count > 0)
+                {
+                    vec3 end = new vec3(bndList[j].turnLine[0].easting,
+                        bndList[j].turnLine[0].northing, bndList[j].turnLine[0].heading);
+                    bndList[j].turnLine.Add(end);
+                }
             }
         }
     }

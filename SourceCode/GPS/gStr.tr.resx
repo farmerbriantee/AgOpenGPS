@@ -273,6 +273,9 @@
   <data name="gsFileError" xml:space="preserve">
     <value>Dosya hatası</value>
   </data>
+  <data name="gsFlagByLatLon" xml:space="preserve">
+    <value>Lat Lon'a göre bayrak</value>
+  </data>
   <data name="gsFlagFileIsCorrupt" xml:space="preserve">
     <value>Dosya Bozuk ile ilgili şikayetler</value>
   </data>

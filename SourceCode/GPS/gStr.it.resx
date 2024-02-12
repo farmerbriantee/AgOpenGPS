@@ -276,6 +276,9 @@
   <data name="gsFileError" xml:space="preserve">
     <value>Errore Nel File</value>
   </data>
+  <data name="gsFlagByLatLon" xml:space="preserve">
+    <value>Bandiera di Lat Lon</value>
+  </data>
   <data name="gsFlagFileIsCorrupt" xml:space="preserve">
     <value>File Segnaposto Corrotto</value>
   </data>

@@ -292,6 +292,26 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap APlusMinusA {
+            get {
+                object obj = ResourceManager.GetObject("APlusMinusA", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap APlusMinusB {
+            get {
+                object obj = ResourceManager.GetObject("APlusMinusB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap APlusPlusA {
             get {
                 object obj = ResourceManager.GetObject("APlusPlusA", resourceCulture);

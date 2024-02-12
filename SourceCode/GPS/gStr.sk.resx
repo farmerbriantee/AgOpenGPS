@@ -288,6 +288,9 @@
   <data name="gsFileError" xml:space="preserve">
     <value>Chyba súboru</value>
   </data>
+  <data name="gsFlagByLatLon" xml:space="preserve">
+    <value>Vlajka od Lat Lon</value>
+  </data>
   <data name="gsFlagFileIsCorrupt" xml:space="preserve">
     <value>Súbor so značkami je neplatný</value>
   </data>

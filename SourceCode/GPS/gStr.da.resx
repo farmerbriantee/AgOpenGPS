@@ -276,6 +276,9 @@
   <data name="gsFileError" xml:space="preserve">
     <value>Fejl I  Fil</value>
   </data>
+  <data name="gsFlagByLatLon" xml:space="preserve">
+    <value>Flag af Lat Lon</value>
+  </data>
   <data name="gsFlagFileIsCorrupt" xml:space="preserve">
     <value>Fejl I Afmærkningsfil</value>
   </data>

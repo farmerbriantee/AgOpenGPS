@@ -158,6 +158,7 @@ namespace AgOpenGPS
                 btnAutoSteer.Image = Properties.Resources.AutoSteerOff;
                 //if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
                 if (sounds.isSteerSoundOn) sounds.sndAutoSteerOff.Play();
+                trk.isAutoSnapped = false;
             }
             else
             {
@@ -166,7 +167,11 @@ namespace AgOpenGPS
                     isBtnAutoSteerOn = true;
                     btnAutoSteer.Image = Properties.Resources.AutoSteerOn;
                     if (sounds.isSteerSoundOn) sounds.sndAutoSteerOn.Play();
-                    if (isAutoSnapToPivot) trk.SnapToPivot();
+                    if (trk.isAutoSnapToPivot)
+                    {
+                        trk.SnapToPivot();
+                        trk.isAutoSnapped = true;   
+                    }
                 }
                 else
                 {
@@ -448,19 +453,9 @@ namespace AgOpenGPS
             if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
             if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
 
-            if (this.Height > 1000 && this.Width > 1000)
+            using (var form = new FormABDraw(this))
             {
-                using (var form = new FormABDraw2(this))
-                {
-                    form.ShowDialog(this);
-                }
-            }
-            else
-            {
-                using (var form = new FormABDraw(this))
-                {
-                    form.ShowDialog(this);
-                }
+                form.ShowDialog(this);
             }
 
             PanelUpdateRightAndBottom();
@@ -1166,7 +1161,11 @@ namespace AgOpenGPS
             form.Show(this);
 
             form.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
-            form.Left = this.Left + GPSDataWindowLeft;
+            if (isPanelABHidden)
+                form.Left = this.Left + 2;
+            else
+                form.Left = this.Left + GPSDataWindowLeft;
+
 
             Form ff = Application.OpenForms["FormGPS"];
             ff.Focus();
@@ -1204,7 +1203,10 @@ namespace AgOpenGPS
             form.Show(this);
 
             form.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
-            form.Left = this.Left + GPSDataWindowLeft;
+            if (isPanelABHidden)
+                form.Left = this.Left + 2;
+            else
+                form.Left = this.Left + GPSDataWindowLeft;
 
             Form ff = Application.OpenForms["FormGPS"];
             ff.Focus();
@@ -1222,6 +1224,8 @@ namespace AgOpenGPS
             if (this.WindowState == FormWindowState.Maximized)
                 this.WindowState = FormWindowState.Normal;
             else this.WindowState = FormWindowState.Maximized;
+
+            FormGPS_ResizeEnd(this, e);
         }
         private void lblCurrentField_Click(object sender, EventArgs e)
         {
@@ -2141,6 +2145,24 @@ namespace AgOpenGPS
             }
             navPanelCounter = 0;
         }
+        private void lblHz_Click(object sender, EventArgs e)
+        {
+            DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
+            string strPath = di.ToString();
+            strPath += "\\OGL.exe";
+            try
+            {
+                ProcessStartInfo processInfo = new ProcessStartInfo();
+                processInfo.FileName = strPath;
+                processInfo.WorkingDirectory = Path.GetDirectoryName(strPath);
+                Process proc = Process.Start(processInfo);
+            }
+            catch
+            {
+                TimedMessageBox(2000, "No File Found", "Can't Find OGL");
+            }
+        }
+
         private void btnDayNightMode_Click(object sender, EventArgs e)
         {
             if (isTT)

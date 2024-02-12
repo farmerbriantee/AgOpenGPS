@@ -288,6 +288,9 @@
   <data name="gsFileError" xml:space="preserve">
     <value>Failo klaida</value>
   </data>
+  <data name="gsFlagByLatLon" xml:space="preserve">
+    <value>Lat Lon vėliava</value>
+  </data>
   <data name="gsFlagFileIsCorrupt" xml:space="preserve">
     <value>Vėliavėlės failas sugadintas</value>
   </data>

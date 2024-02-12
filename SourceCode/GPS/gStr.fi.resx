@@ -291,6 +291,9 @@
   <data name="gsFileError" xml:space="preserve">
     <value>Tiedostovirhe</value>
   </data>
+  <data name="gsFlagByLatLon" xml:space="preserve">
+    <value>Lat Lonin lippu</value>
+  </data>
   <data name="gsFlagFileIsCorrupt" xml:space="preserve">
     <value>Lipputiedosto korruptoitunut</value>
   </data>
