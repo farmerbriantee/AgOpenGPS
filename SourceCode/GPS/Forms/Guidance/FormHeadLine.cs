@@ -119,6 +119,13 @@ namespace AgOpenGPS
 
         private void FormHeadLine_FormClosing(object sender, FormClosingEventArgs e)
         {
+            //hdl
+            if (mf.hdl.idx == -1)
+            {
+                if (mf.isBtnAutoSteerOn) mf.btnAutoSteer.PerformClick();
+                if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
+            }
+
             if (sliceArr.Count > 0)
             {
                 mf.hdl.idx = 0;
