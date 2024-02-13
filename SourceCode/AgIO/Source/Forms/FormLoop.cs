@@ -54,7 +54,7 @@ namespace AgIO
 
         public string lastSentence;
 
-        public bool isPluginUsed, isNTRIPToggle;
+        public bool isNTRIPToggle;
 
         //usually 256 - send ntrip to serial in chunks
         public int packetSizeNTRIP;
@@ -126,7 +126,6 @@ namespace AgIO
             LoadLoopback();
 
             isSendNMEAToUDP = Properties.Settings.Default.setUDP_isSendNMEAToUDP;
-            isPluginUsed = Properties.Settings.Default.setUDP_isUsePluginApp;
 
             packetSizeNTRIP = Properties.Settings.Default.setNTRIP_packetSize;
 

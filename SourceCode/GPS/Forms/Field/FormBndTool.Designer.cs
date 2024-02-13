@@ -1,6 +1,6 @@
 ﻿namespace AgOpenGPS
 {
-    partial class FormMapBnd
+    partial class FormBndTool
     {
         /// <summary>
         /// Required designer variable.
@@ -424,9 +424,9 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Draw AB - Click 2 points on the Boundary to Begin";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMapBnd_FormClosing);
-            this.Load += new System.EventHandler(this.FormMapBnd_Load);
-            this.ResizeEnd += new System.EventHandler(this.FormMapBnd_ResizeEnd);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormBndTool_FormClosing);
+            this.Load += new System.EventHandler(this.FormBndTool_Load);
+            this.ResizeEnd += new System.EventHandler(this.FormBndTool_ResizeEnd);
             this.tlp1.ResumeLayout(false);
             this.tlp1.PerformLayout();
             this.ResumeLayout(false);

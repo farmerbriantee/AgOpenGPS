@@ -701,10 +701,16 @@
     <Setting Name="setWindow_MapBndSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">1022, 742</Value>
     </Setting>
-    <Setting Name="setWindow_BingMap" Type="System.Drawing.Size" Scope="User">
+    <Setting Name="setWindow_BingMapSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">965, 700</Value>
     </Setting>
     <Setting Name="setWindow_BingZoom" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="setWindow_RateMapSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">1022, 742</Value>
+    </Setting>
+    <Setting Name="setWindow_RateMapZoom" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">15</Value>
     </Setting>
   </Settings>
