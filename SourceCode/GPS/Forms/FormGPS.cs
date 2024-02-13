@@ -64,7 +64,7 @@ namespace AgOpenGPS
         public bool isJobStarted = false, isBtnAutoSteerOn, isLidarBtnOn = true;
 
         //if we are saving a file
-        public bool isSavingFile = false, isLogNMEA = false, isLogElevation = false;
+        public bool isSavingFile = false, isLogNMEA = false;
 
         //texture holders
         public uint[] texture;
@@ -543,13 +543,6 @@ namespace AgOpenGPS
                     }
                 }
             }
-
-            DateTime dt2 = new DateTime(2024, 02, 13);
-            if (DateTime.Now > dt2)
-            {
-                YesMessageBox("This version is expired");
-                Environment.Exit(0);
-            }
         }
 
         private void FormGPS_FormClosing(object sender, FormClosingEventArgs e)
@@ -927,6 +920,8 @@ namespace AgOpenGPS
             recPath.resumeState = 0;
             btnResumePath.Image = Properties.Resources.pathResumeStart;
             recPath.currentPositonIndex = 0;
+
+            sbGrid.Clear();
 
             //reset field offsets
             if (!isKeepOffsetsOn)

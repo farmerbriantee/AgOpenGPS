@@ -43,7 +43,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -214,18 +213,6 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.DarkOrange;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(116, 410);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(382, 138);
-            this.label1.TabIndex = 134;
-            this.label1.Text = "This version expires:     Feb 12 2024";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // Form_First
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -233,7 +220,6 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1064, 703);
             this.ControlBox = false;
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label9);
@@ -276,6 +262,5 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label1;
     }
 }

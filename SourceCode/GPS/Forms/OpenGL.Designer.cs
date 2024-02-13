@@ -1340,8 +1340,9 @@ namespace AgOpenGPS
                     FileSaveSections();
                     FileSaveContour();
 
-                    //NMEA log file
-                    if (isLogElevation) FileSaveElevation();
+                    //NMEA elevation file
+                    if (sbGrid.Length > 0) FileSaveElevation();
+
                     //ExportFieldAs_KML();
                 }
 
