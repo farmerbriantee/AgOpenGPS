@@ -3,7 +3,9 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Text;
+using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
@@ -15,7 +17,7 @@ namespace AgOpenGPS
         public double startGPSHeading = 0;
 
         //string to record fixes for elevation maps
-        public StringBuilder sbFix = new StringBuilder();
+        public StringBuilder sbGrid = new StringBuilder();
 
         // autosteer variables for sending serial
         public short guidanceLineDistanceOff, guidanceLineSteerAngle;
@@ -51,9 +53,11 @@ namespace AgOpenGPS
         public double cosSectionHeading = 1.0, sinSectionHeading = 0.0;
 
         //how far travelled since last section was added, section points
-        double sectionTriggerDistance = 0, contourTriggerDistance = 0, sectionTriggerStepDistance = 0;
+        double sectionTriggerDistance = 0, contourTriggerDistance = 0, sectionTriggerStepDistance = 0, gridTriggerDistance = 0;
+
         public vec2 prevSectionPos = new vec2(0, 0);
         public vec2 prevContourPos = new vec2(0, 0);
+        public vec2 prevGridPos = new vec2(0, 0);
         public int patchCounter = 0;
 
         public vec2 prevBoundaryPos = new vec2(0, 0);
@@ -1059,6 +1063,20 @@ namespace AgOpenGPS
             //To prevent drawing high numbers of triangles, determine and test before drawing vertex
             sectionTriggerDistance = glm.Distance(pn.fix, prevSectionPos);
             contourTriggerDistance = glm.Distance(pn.fix, prevContourPos);
+            gridTriggerDistance = glm.DistanceSquared(pn.fix, prevGridPos);
+
+            if (gridTriggerDistance > 4 && patchCounter !=0 && isJobStarted)
+            {
+                //grab fix and elevation
+                sbGrid.Append(pivotAxlePos.easting.ToString("N2", CultureInfo.InvariantCulture) + ","
+                    + pivotAxlePos.northing.ToString("N2", CultureInfo.InvariantCulture) + ","
+                    + pivotAxlePos.heading.ToString("N3", CultureInfo.InvariantCulture) + ","
+                    + ahrs.imuRoll.ToString("N3", CultureInfo.InvariantCulture) + ","
+                    + pn.altitude.ToString("N2", CultureInfo.InvariantCulture) + "\r\n");
+
+                prevGridPos.easting = pivotAxlePos.easting;
+                prevGridPos.northing = pivotAxlePos.northing;
+            }
 
             //contour points
             if (isJobStarted &&(contourTriggerDistance > tool.contourWidth 
@@ -1071,11 +1089,6 @@ namespace AgOpenGPS
             if (sectionTriggerDistance > sectionTriggerStepDistance && isJobStarted)
             {
                 AddSectionOrPathPoints();
-
-                //grab fix and elevation
-                if (isLogElevation) sbFix.Append(pn.fix.easting.ToString("N2") + "," + pn.fix.northing.ToString("N2") + ","
-                                                    + pn.altitude.ToString("N2") + ","
-                                                    + pn.latitude + "," + pn.longitude + "\r\n");
             }
 
             //test if travelled far enough for new boundary point
