@@ -16,6 +16,9 @@ namespace AgOpenGPS
         //Off, Manual, and Auto, 3 states possible
         public btnStates manualBtnState = btnStates.Off;
         public btnStates autoBtnState = btnStates.Off;
+
+        //Manual section and zone button size
+        public int sectionButtonsHeight;
         
         //Section Manual and Auto buttons on right side
         private void btnSectionMasterManual_Click(object sender, EventArgs e)
@@ -345,23 +348,23 @@ namespace AgOpenGPS
 
             int top = 130;
 
-            int buttonMaxWidth = 400, buttonHeight = 25;
+            int buttonMaxWidth = 400; //, buttonHeight = 25;
 
             if ((Height - oglMain.Height) < 80) //max size - buttons hid
             {
-                top = Height - 70;
+                top = Height - 45 - sectionButtonsHeight;
                 if (panelSim.Visible == true)
                 {
-                    top = Height - 120;
+                    top = Height - 95 - sectionButtonsHeight;
                     panelSim.Top = Height - 78;
                 }
             }
             else //buttons exposed
             {
-                top = Height - 120;
+                top = Height - 95 - sectionButtonsHeight;
                 if (panelSim.Visible == true)
                 {
-                    top = Height - 170;
+                    top = Height - 145 - sectionButtonsHeight;
                     panelSim.Top = Height - 128;
                 }
             }
@@ -387,7 +390,7 @@ namespace AgOpenGPS
                 btnSection7Man.Size = btnSection8Man.Size = btnSection9Man.Size =
                 btnSection10Man.Size = btnSection11Man.Size = btnSection12Man.Size =
                 btnSection13Man.Size = btnSection14Man.Size = btnSection15Man.Size =
-                btnSection16Man.Size = new System.Drawing.Size(buttonWidth, buttonHeight);
+                btnSection16Man.Size = new System.Drawing.Size(buttonWidth, sectionButtonsHeight);
 
                 btnSection1Man.Left = (oglCenter) - (tool.numOfSections * btnSection1Man.Size.Width) / 2;
                 btnSection2Man.Left = btnSection1Man.Left + btnSection1Man.Size.Width;

@@ -437,6 +437,7 @@ namespace AgOpenGPS
             //OGL control
             isUTurnOn = Properties.Settings.Default.setFeatures.isUTurnOn;
             isLateralOn = Properties.Settings.Default.setFeatures.isLateralOn;
+            sectionButtonsHeight = Properties.Settings.Default.set_sectionButtonsHeight;
 
             if (isMetric)
             {
