@@ -63,13 +63,6 @@ namespace AgOpenGPS
 
         private void FormHeadLine_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //hdl
-            if (mf.hdl.idx == -1)
-            {
-                if (mf.isBtnAutoSteerOn) mf.btnAutoSteer.PerformClick();
-                if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
-            }
-
             mf.FileSaveHeadLines();
 
             if (mf.hdl.tracksArr.Count > 0)

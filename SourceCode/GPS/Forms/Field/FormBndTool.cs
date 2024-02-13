@@ -565,7 +565,11 @@ namespace AgOpenGPS
 
         private void btnStartStop_Click(object sender, EventArgs e)
         {
-            if (secList.Count == 0) return;
+            if (secList.Count < 20)
+            {
+                mf.YesMessageBox("Not enough points to make a boundary");
+                return;
+            }
 
             arr = new vec3[secList.Count];
             prevHeading = Math.PI + glm.PIBy2;

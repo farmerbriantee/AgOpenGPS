@@ -528,8 +528,6 @@ namespace AgOpenGPS
                     return;
                 }
             }
-
-            if (hdl.idx > (hdl.tracksArr.Count - 1)) hdl.idx = hdl.tracksArr.Count - 1;
         }
 
         public void FileLoadHeadLines()
