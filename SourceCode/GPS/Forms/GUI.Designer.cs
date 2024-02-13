@@ -362,6 +362,9 @@ namespace AgOpenGPS
 
                 isFlashOnOff = !isFlashOnOff;
 
+                //the ratemap trigger
+                worldGrid.isRateTrigger = true;
+
                 //the main formgps window
                 if (isMetric)  //metric or imperial
                 {
@@ -770,6 +773,22 @@ namespace AgOpenGPS
 
                 PanelSizeRightAndAB();
             }
+
+            if (worldGrid.isRateMap)
+            {
+                //lblRed.Visible = lblGrn.Visible = lblBlu.Visible = false;
+                //if (worldGrid.numRateChannels > 0) lblRed.Visible = true;
+                //if (worldGrid.numRateChannels > 1) lblGrn.Visible = true;
+                //if (worldGrid.numRateChannels > 2) lblBlu.Visible = true;
+                lblRed.Visible = true;
+                pbarRate.Visible = true;
+            }
+            else
+            {
+                //lblRed.Visible = lblGrn.Visible = lblBlu.Visible = false;
+                lblRed.Visible = false;
+                pbarRate.Visible = false;
+            }
         }
 
         public void PanelBuildRightMenu()
@@ -853,7 +872,7 @@ namespace AgOpenGPS
 
                 if (viz == 0) return;
 
-                sizer = (Width - 280) / (viz);
+                sizer = (Width - 300) / (viz);
                 if (sizer > 120) { sizer = 120; }
 
                 for (int i = 0; i < panelAB.Controls.Count; i++)

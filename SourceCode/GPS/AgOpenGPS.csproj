@@ -175,11 +175,17 @@
     <Compile Include="Forms\Field\FormEnterFlag.Designer.cs">
       <DependentUpon>FormEnterFlag.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Field\FormMapBnd.cs">
+    <Compile Include="Forms\Field\FormBndTool.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Field\FormMapBnd.Designer.cs">
-      <DependentUpon>FormMapBnd.cs</DependentUpon>
+    <Compile Include="Forms\Field\FormBndTool.Designer.cs">
+      <DependentUpon>FormBndTool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormRateMap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormRateMap.Designer.cs">
+      <DependentUpon>FormRateMap.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormPan.cs">
       <SubType>Form</SubType>
@@ -625,8 +631,11 @@
     <EmbeddedResource Include="Forms\Field\FormEnterFlag.resx">
       <DependentUpon>FormEnterFlag.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Field\FormMapBnd.resx">
-      <DependentUpon>FormMapBnd.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Field\FormBndTool.resx">
+      <DependentUpon>FormBndTool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormRateMap.resx">
+      <DependentUpon>FormRateMap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormPan.resx">
       <DependentUpon>FormPan.cs</DependentUpon>
@@ -1017,6 +1026,13 @@
     <None Include="btnImages\APlusPlusB.png" />
     <None Include="btnImages\APlusMinusA.png" />
     <None Include="btnImages\APlusMinusB.png" />
+    <None Include="btnImages\Images\z_RateMap.png" />
+    <None Include="btnImages\Images\z_RateMap1.png" />
+    <None Include="btnImages\Images\z_RateMap2.png" />
+    <None Include="btnImages\Images\z_RateMap3.png" />
+    <Content Include="GPS_Out.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="OGL.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -2823,12 +2823,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("965, 700")]
-        public global::System.Drawing.Size setWindow_BingMap {
+        public global::System.Drawing.Size setWindow_BingMapSize {
             get {
-                return ((global::System.Drawing.Size)(this["setWindow_BingMap"]));
+                return ((global::System.Drawing.Size)(this["setWindow_BingMapSize"]));
             }
             set {
-                this["setWindow_BingMap"] = value;
+                this["setWindow_BingMapSize"] = value;
             }
         }
         
@@ -2841,6 +2841,30 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setWindow_BingZoom"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1022, 742")]
+        public global::System.Drawing.Size setWindow_RateMapSize {
+            get {
+                return ((global::System.Drawing.Size)(this["setWindow_RateMapSize"]));
+            }
+            set {
+                this["setWindow_RateMapSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public int setWindow_RateMapZoom {
+            get {
+                return ((int)(this["setWindow_RateMapZoom"]));
+            }
+            set {
+                this["setWindow_RateMapZoom"] = value;
             }
         }
     }
