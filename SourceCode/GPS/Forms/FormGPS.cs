@@ -513,7 +513,7 @@ namespace AgOpenGPS
             tramLinesMenuField.Text = gStr.gsTramLines;
             recordedPathStripMenu.Text = gStr.gsRecordedPathMenu;
             flagByLatLonToolStripMenuItem.Text = gStr.gsFlagByLatLon;
-            boundaryToolToolStripMenu.Text = gStr.gsBoundaryMenu;
+            boundaryToolToolStripMenu.Text = gStr.gsBoundary + " Tool";
 
             webcamToolStrip.Text = gStr.gsWebCam;
             offsetFixToolStrip.Text = gStr.gsOffsetFix;
