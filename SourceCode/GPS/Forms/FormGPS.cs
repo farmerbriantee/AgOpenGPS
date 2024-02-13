@@ -547,8 +547,8 @@ namespace AgOpenGPS
             DateTime dt2 = new DateTime(2024, 02, 13);
             if (DateTime.Now > dt2)
             {
-                YesMessageBox("This version is expired");
-                Environment.Exit(0);
+                //YesMessageBox("This version is expired");
+                //Environment.Exit(0);
             }
         }
 
