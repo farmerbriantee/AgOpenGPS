@@ -745,8 +745,12 @@ namespace AgOpenGPS
                 p_254.pgn[p_254.sc9to16] = unchecked((byte)number);
 
                 //machine pgn
-                p_239.pgn[p_239.sc9to16] = p_254.pgn[p_254.sc9to16];
                 p_239.pgn[p_239.sc1to8] = p_254.pgn[p_254.sc1to8];
+                p_239.pgn[p_239.sc9to16] = p_254.pgn[p_254.sc9to16];
+                p_229.pgn[p_229.sc1to8] = p_254.pgn[p_254.sc1to8];
+                p_229.pgn[p_229.sc9to16] = p_254.pgn[p_254.sc9to16];
+                p_229.pgn[p_229.toolLSpeed] = unchecked((byte)(tool.farLeftSpeed * 10));
+                p_229.pgn[p_229.toolRSpeed] = unchecked((byte)(tool.farRightSpeed * 10));
             }
             else
             {
@@ -771,6 +775,12 @@ namespace AgOpenGPS
                 //tool speed to calc ramp
                 p_229.pgn[p_229.toolLSpeed] = unchecked((byte)(tool.farLeftSpeed * 10));
                 p_229.pgn[p_229.toolRSpeed] = unchecked((byte)(tool.farRightSpeed * 10));
+
+                p_239.pgn[p_239.sc9to16] = p_229.pgn[p_229.sc1to8];
+                p_239.pgn[p_239.sc1to8] = p_229.pgn[p_229.sc9to16];
+                p_254.pgn[p_254.sc1to8] = p_229.pgn[p_229.sc1to8];
+                p_254.pgn[p_254.sc9to16] = p_229.pgn[p_229.sc9to16];
+
             }
 
             p_239.pgn[p_239.speed] = unchecked((byte)(avgSpeed * 10));

@@ -443,13 +443,12 @@ namespace AgOpenGPS
                     if (isJobStarted && (bbCounter == 0))
                     {
                         oglBack.Refresh();
-
+4
                         p_239.pgn[p_239.geoStop] = mc.isOutOfBounds ? (byte)1 : (byte)0;
 
                         SendPgnToLoop(p_239.pgn);
 
-                        if (!tool.isSectionsNotZones)
-                            SendPgnToLoop(p_229.pgn);
+                        SendPgnToLoop(p_229.pgn);
                     }
 
                     //draw the zoom window
