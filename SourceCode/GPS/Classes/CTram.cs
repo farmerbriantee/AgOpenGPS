@@ -24,6 +24,8 @@ namespace AgOpenGPS
         public int passes;
         public bool isOuter;
 
+        public bool isLeftManualOn, isRightManualOn;
+
         //tramlines
         public List<vec2> tramArr = new List<vec2>();
 
