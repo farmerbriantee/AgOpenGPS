@@ -119,18 +119,20 @@ namespace AgOpenGPS
                 //nudge closest
                 flp1.Controls[0].Visible = tracksVisible > 0;
 
-                //always these 2 - Build and if a bnd then ABDraw
-                flp1.Controls[1].Visible = true;
-                flp1.Controls[2].Visible = isBnd;
+                //always these 3 - Build and if a bnd then ABDraw
+                flp1.Controls[1].Visible = isBnd;
+                flp1.Controls[2].Visible = true;
+                flp1.Controls[3].Visible = true;
+
 
                 //auto snap to pivot
-                flp1.Controls[3].Visible = tracksVisible > 1;
-
-                //off button
                 flp1.Controls[4].Visible = tracksVisible > 0;
 
-                //ref nudge
+                //off button
                 flp1.Controls[5].Visible = tracksVisible > 0;
+
+                //ref nudge
+                flp1.Controls[6].Visible = tracksVisible > 0;
 
                 //position of panel
                 flp1.Top = this.Height -260;
@@ -430,6 +432,30 @@ namespace AgOpenGPS
                 flp1.Visible = false;
             }
         }
+
+        private void btnPlusAB_Click(object sender, EventArgs e)
+        {
+            //if contour is on, turn it off
+            if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
+
+            //check if window already exists
+            Form fc = Application.OpenForms["FormQuickAB"];
+
+            if (fc != null)
+            {
+                fc.Focus();
+                return;
+            }
+
+            Form form = new FormQuickAB(this);
+            form.Show(this);
+
+            if (flp1.Visible)
+            {
+                flp1.Visible = false;
+            }
+        }
+
         private void btnABDraw_Click(object sender, EventArgs e)
         {
             if (isTT)

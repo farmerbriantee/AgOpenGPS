@@ -106,8 +106,8 @@ namespace AgOpenGPS
         //zone buttons
         private void btnZone1_Click(object sender, EventArgs e)
         {
-            btnStates state = GetNextState(section[tool.zoneRanges[0]-1].sectionBtnState);
-            IndividualZoneAndButtonToState(state, 0, tool.zoneRanges[0], btnZone1);
+            btnStates state = GetNextState(section[tool.zoneRanges[1]-1].sectionBtnState);
+            IndividualZoneAndButtonToState(state, 0, tool.zoneRanges[1], btnZone1);
         }
         private void btnZone2_Click(object sender, EventArgs e)
         {
