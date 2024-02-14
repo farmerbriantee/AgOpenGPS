@@ -199,6 +199,8 @@ namespace AgOpenGPS
                 return;
             }
 
+            yt.turnTooCloseTrigger = false;
+
             if (!yt.isYouTurnBtnOn)
             {
                 //new direction so reset where to put turn diagnostic

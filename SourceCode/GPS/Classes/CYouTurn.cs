@@ -40,7 +40,7 @@ namespace AgOpenGPS
 
         private int A, B;
         private bool isHeadingSameWay = true;
-        public bool isTurnCreationTooClose = false, isTurnCreationNotCrossingError = false;
+        public bool isTurnCreationTooClose = false, isTurnCreationNotCrossingError = false, turnTooCloseTrigger = false;
 
         //pure pursuit values
         public vec3 pivot = new vec3(0, 0, 0);
@@ -1048,7 +1048,8 @@ namespace AgOpenGPS
                     isTurnCreationTooClose = tooClose < 3;
 
                     //set the flag to Critical stop machine
-                    if (isTurnCreationTooClose) mf.mc.isOutOfBounds = true;
+                    if (isTurnCreationTooClose) 
+                        mf.mc.isOutOfBounds = true;
                     break;
 
                 case 2:

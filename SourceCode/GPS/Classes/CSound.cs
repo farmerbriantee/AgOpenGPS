@@ -6,6 +6,7 @@ namespace AgOpenGPS
     {
         //sound objects - wave files in resources
         public readonly SoundPlayer sndBoundaryAlarm = new SoundPlayer(Properties.Resources.Alarm10);
+        public readonly SoundPlayer sndUTurnTooClose = new SoundPlayer(Properties.Resources.TF012);
 
         public readonly SoundPlayer sndAutoSteerOn = new SoundPlayer(Properties.Resources.SteerOn);
         public readonly SoundPlayer sndAutoSteerOff = new SoundPlayer(Properties.Resources.SteerOff);

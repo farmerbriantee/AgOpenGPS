@@ -67,9 +67,6 @@ namespace AgOpenGPS
 
         private void FormQuickAB_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (mf.isBtnAutoSteerOn) mf.btnAutoSteer.PerformClick();
-            if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
-
             Properties.Settings.Default.setWindow_QuickABLocation = Location;
             Properties.Settings.Default.Save();
 
@@ -448,8 +445,11 @@ namespace AgOpenGPS
 
             mf.FileSaveTracks();
 
-            mf.ABLine.isMakingABLine = false;
+            if (mf.isBtnAutoSteerOn) mf.btnAutoSteer.PerformClick();
+            if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
 
+            mf.ABLine.isMakingABLine = false;
+            mf.curve.desList?.Clear();
             mf.trk.idx = idx;
 
             Close();

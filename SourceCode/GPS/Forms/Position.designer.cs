@@ -973,7 +973,16 @@ namespace AgOpenGPS
                                 else yt.BuildCurveDubinsYouTurn(yt.isYouTurnRight, pivotAxlePos);
                             }
 
-                            if (yt.uTurnStyle == 0 && yt.youTurnPhase == 3) yt.SmoothYouTurn(yt.uTurnSmoothing);
+                            if (yt.uTurnStyle == 0 && yt.youTurnPhase == 3)
+                            {
+                                yt.SmoothYouTurn(yt.uTurnSmoothing);
+                            }
+
+                            if (yt.isTurnCreationTooClose && !yt.turnTooCloseTrigger)
+                            {
+                                yt.turnTooCloseTrigger = true;
+                                sounds.sndUTurnTooClose.Play();
+                            }
                         }
                         else //wait to trigger the actual turn since its made and waiting
                         {
