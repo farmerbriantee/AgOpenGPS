@@ -223,6 +223,12 @@
     <Compile Include="Forms\FormYes.designer.cs">
       <DependentUpon>FormYes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Guidance\FormQuickAB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Guidance\FormQuickAB.Designer.cs">
+      <DependentUpon>FormQuickAB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Guidance\FormRecordName.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -657,6 +663,9 @@
     <EmbeddedResource Include="Forms\FormYes.resx">
       <DependentUpon>FormYes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Guidance\FormQuickAB.resx">
+      <DependentUpon>FormQuickAB.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Guidance\FormRecordName.resx">
       <DependentUpon>FormRecordName.cs</DependentUpon>
     </EmbeddedResource>
@@ -916,6 +925,7 @@
   <ItemGroup>
     <Content Include="AOG.ico" />
     <Content Include="aChangeLog.txt" />
+    <Content Include="Resources\TF012.WAV" />
     <None Include="Resources\SectionOn.wav" />
     <None Include="Resources\SectionOff.wav" />
     <None Include="btnImages\bing.png" />

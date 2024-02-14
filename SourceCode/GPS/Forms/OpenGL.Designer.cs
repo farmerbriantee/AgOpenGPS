@@ -448,8 +448,7 @@ namespace AgOpenGPS
 
                         SendPgnToLoop(p_239.pgn);
 
-                        if (!tool.isSectionsNotZones)
-                            SendPgnToLoop(p_229.pgn);
+                        SendPgnToLoop(p_229.pgn);
                     }
 
                     //draw the zoom window
