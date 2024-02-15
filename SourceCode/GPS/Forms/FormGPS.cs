@@ -64,7 +64,7 @@ namespace AgOpenGPS
         public bool isJobStarted = false, isBtnAutoSteerOn, isLidarBtnOn = true;
 
         //if we are saving a file
-        public bool isSavingFile = false, isLogNMEA = false, isLogElevation = false;
+        public bool isSavingFile = false, isLogNMEA = false;
 
         //texture holders
         public uint[] texture;
@@ -369,11 +369,6 @@ namespace AgOpenGPS
             panelSim.Width = 700;
             panelSim.Top = Height - 60;
 
-            timer2.Enabled = true;
-
-            pictureboxStart.BringToFront();
-            pictureboxStart.Dock = System.Windows.Forms.DockStyle.Fill;
-
             //set the language to last used
             SetLanguage(Settings.Default.setF_culture, false);
 
@@ -542,13 +537,6 @@ namespace AgOpenGPS
                         }
                     }
                 }
-            }
-
-            DateTime dt2 = new DateTime(2024, 02, 13);
-            if (DateTime.Now > dt2)
-            {
-                YesMessageBox("This version is expired");
-                Environment.Exit(0);
             }
         }
 
@@ -768,16 +756,6 @@ namespace AgOpenGPS
             }
         }
 
-        //make the start picture disappear
-        private void timer2_Tick(object sender, EventArgs e)
-        {
-            this.Controls.Remove(pictureboxStart);
-            pictureboxStart.Dispose();
-            //panel1.SendToBack();
-            timer2.Enabled = false;
-            timer2.Dispose();
-        }
-
         public bool KeypadToNUD(NudlessNumericUpDown sender, Form owner)
         {
             var colour = sender.BackColor;
@@ -927,6 +905,8 @@ namespace AgOpenGPS
             recPath.resumeState = 0;
             btnResumePath.Image = Properties.Resources.pathResumeStart;
             recPath.currentPositonIndex = 0;
+
+            sbGrid.Clear();
 
             //reset field offsets
             if (!isKeepOffsetsOn)

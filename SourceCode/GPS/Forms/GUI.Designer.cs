@@ -235,6 +235,9 @@ namespace AgOpenGPS
                         default:
                             break;
                     }
+
+                    if (tram.displayMode == 0) 
+                        tram.isRightManualOn = tram.isLeftManualOn = false;
                 }
                 else
                 {
@@ -705,6 +708,10 @@ namespace AgOpenGPS
                 buttonOrder.Add(int.Parse(words[i], CultureInfo.InvariantCulture));
             }
 
+            bnd.isSectionControlledByHeadland = Properties.Settings.Default.setHeadland_isSectionControlled;
+            if (bnd.isSectionControlledByHeadland) cboxIsSectionControlled.Image = Properties.Resources.HeadlandSectionOn;
+            else cboxIsSectionControlled.Image = Properties.Resources.HeadlandSectionOff;
+
             //right side build
             PanelBuildRightMenu();
 
@@ -756,6 +763,8 @@ namespace AgOpenGPS
                 btnTramDisplayMode.Visible = istram;
                 btnHeadlandOnOff.Visible = isHdl;
                 btnHydLift.Visible = isHdl;
+                cboxIsSectionControlled.Visible = isHdl;
+
                 btnAutoTrack.Visible = tracksVisible > 1 && trk.idx > -1 && !ct.isContourBtnOn;
 
                 if (trk.idx > -1 && trk.gArr.Count > 0 && !ct.isContourBtnOn)
@@ -779,13 +788,13 @@ namespace AgOpenGPS
                 //if (worldGrid.numRateChannels > 1) lblGrn.Visible = true;
                 //if (worldGrid.numRateChannels > 2) lblBlu.Visible = true;
                 lblRed.Visible = true;
-                pbarRate.Visible = true;
+                //pbarRate.Visible = true;
             }
             else
             {
                 //lblRed.Visible = lblGrn.Visible = lblBlu.Visible = false;
                 lblRed.Visible = false;
-                pbarRate.Visible = false;
+                //pbarRate.Visible = false;
             }
         }
 
@@ -866,16 +875,20 @@ namespace AgOpenGPS
                 {
                     if (panelAB.Controls[i].Visible && panelAB.Controls[i] is Button)
                         viz++;
+                    if (panelAB.Controls[i].Visible && panelAB.Controls[i] is CheckBox)
+                        viz++;
                 }
 
                 if (viz == 0) return;
 
-                sizer = (Width - 300) / (viz);
-                if (sizer > 120) { sizer = 120; }
+                sizer = (Width - 255) / (viz);
+                if (sizer > 150) { sizer = 150; }
 
                 for (int i = 0; i < panelAB.Controls.Count; i++)
                 {
                     if (panelAB.Controls[i].Visible && panelAB.Controls[i] is Button)
+                        panelAB.Controls[i].Width = sizer;
+                    if (panelAB.Controls[i].Visible && panelAB.Controls[i] is CheckBox)
                         panelAB.Controls[i].Width = sizer;
                 }
             }
@@ -1121,181 +1134,183 @@ namespace AgOpenGPS
 
             if (e.Button == MouseButtons.Left)
             {
+                int centerX = oglMain.Width / 2;
+                int centerY = oglMain.Height / 2;
+
                 //0 at bottom for opengl, 0 at top for windows, so invert Y value
                 Point point = oglMain.PointToClient(Cursor.Position);
 
-                if (point.Y < 90 && point.Y > 30 && (trk.idx > -1))
+                if (isJobStarted)
                 {
-
-                    int middle = oglMain.Width / 2 + oglMain.Width / 5;
-                    if (point.X > middle - 80 && point.X < middle + 80)
+                    if (isBtnAutoSteerOn || yt.isYouTurnBtnOn)
                     {
-                        if (isTT)
+                        //uturn and swap uturn direction
+                        if (point.Y < 90 && point.Y > 30 && (trk.idx > -1))
                         {
-                            MessageBox.Show(gStr.h_lblSwapDirectionCancel, gStr.gsHelp);
-                            ResetHelpBtn();
-                            return;
-                        }
-                        SwapDirection();
-                        return;
-                    }
 
-                    //manual uturn triggering
-                    middle = oglMain.Width / 2 - oglMain.Width / 4;
-                    if (point.X > middle - 140 && point.X < middle && isUTurnOn)
-                    {
-                        if (isTT)
-                        {
-                            MessageBox.Show(gStr.h_lblManualTurnCancelTouch, gStr.gsHelp);
-                            ResetHelpBtn();
-                            return;
-                        }
-
-                        
-
-                        if (yt.isYouTurnTriggered)
-                        {
-                            yt.ResetYouTurn();
-                        }
-                        else
-                        {
-                            if (vehicle.functionSpeedLimit > avgSpeed)
+                            int middle = oglMain.Width / 2 + oglMain.Width / 5;
+                            if (point.X > middle - 80 && point.X < middle + 80)
                             {
-                                yt.isYouTurnTriggered = true;
-                                yt.BuildManualYouTurn(false, true);
-                            }
-                            else
-                            {
-                                SpeedLimitExceeded();
-                            }
-                            return;
-                        }
-                    }
-
-                    if (point.X > middle && point.X < middle + 140 && isUTurnOn)
-                    {
-                        if (isTT)
-                        {
-                            MessageBox.Show(gStr.h_lblManualTurnCancelTouch, gStr.gsHelp);
-                            ResetHelpBtn();
-                            return;
-                        }
-
-                        if (yt.isYouTurnTriggered)
-                        {
-                            yt.ResetYouTurn();
-                        }
-                        else
-                        {
-                            if (vehicle.functionSpeedLimit > avgSpeed)
-                            {
-                                yt.isYouTurnTriggered = true;
-                                yt.BuildManualYouTurn(true, true);
-                            }
-                            else
-                            {
-                                SpeedLimitExceeded();
+                                if (isTT)
+                                {
+                                    MessageBox.Show(gStr.h_lblSwapDirectionCancel, gStr.gsHelp);
+                                    ResetHelpBtn();
+                                    return;
+                                }
+                                SwapDirection();
+                                return;
                             }
 
-                            return;
+                            //manual uturn triggering
+                            middle = oglMain.Width / 2 - oglMain.Width / 4;
+                            if (point.X > middle - 140 && point.X < middle && isUTurnOn)
+                            {
+                                if (isTT)
+                                {
+                                    MessageBox.Show(gStr.h_lblManualTurnCancelTouch, gStr.gsHelp);
+                                    ResetHelpBtn();
+                                    return;
+                                }
+
+                                if (yt.isYouTurnTriggered)
+                                {
+                                    yt.ResetYouTurn();
+                                }
+                                else
+                                {
+                                    if (vehicle.functionSpeedLimit > avgSpeed)
+                                    {
+                                        yt.isYouTurnTriggered = true;
+                                        yt.BuildManualYouTurn(false, true);
+                                    }
+                                    else
+                                    {
+                                        SpeedLimitExceeded();
+                                    }
+                                    return;
+                                }
+                            }
+
+                            if (point.X > middle && point.X < middle + 140 && isUTurnOn)
+                            {
+                                if (isTT)
+                                {
+                                    MessageBox.Show(gStr.h_lblManualTurnCancelTouch, gStr.gsHelp);
+                                    ResetHelpBtn();
+                                    return;
+                                }
+
+                                if (yt.isYouTurnTriggered)
+                                {
+                                    yt.ResetYouTurn();
+                                }
+                                else
+                                {
+                                    if (vehicle.functionSpeedLimit > avgSpeed)
+                                    {
+                                        yt.isYouTurnTriggered = true;
+                                        yt.BuildManualYouTurn(true, true);
+                                    }
+                                    else
+                                    {
+                                        SpeedLimitExceeded();
+                                    }
+
+                                    return;
+                                }
+                            }
+                        }
+
+                        //lateral
+                        if (point.Y < 150 && point.Y > 90 && (trk.idx > -1))
+                        {
+                            int middle = oglMain.Width / 2 - oglMain.Width / 4;
+                            if (point.X > middle - 140 && point.X < middle && isLateralOn)
+                            {
+                                if (isTT)
+                                {
+                                    MessageBox.Show(gStr.h_lblLateralTurnTouch, gStr.gsHelp);
+                                    ResetHelpBtn();
+                                    return;
+                                }
+
+                                if (vehicle.functionSpeedLimit > avgSpeed)
+                                {
+                                    yt.BuildManualYouLateral(false);
+                                }
+                                else
+                                {
+                                    SpeedLimitExceeded();
+                                }
+
+                                return;
+                            }
+
+                            if (point.X > middle && point.X < middle + 140 && isLateralOn)
+                            {
+                                if (isTT)
+                                {
+                                    MessageBox.Show(gStr.h_lblLateralTurnTouch, gStr.gsHelp);
+                                    ResetHelpBtn();
+                                    return;
+                                }
+
+                                if (vehicle.functionSpeedLimit > avgSpeed)
+                                {
+                                    yt.BuildManualYouLateral(true);
+                                }
+                                else
+                                {
+                                    SpeedLimitExceeded();
+                                }
+
+                                return;
+                            }
                         }
                     }
-                }
 
-                if (point.Y < 150 && point.Y > 90 && (trk.idx > -1))
-                {
-                    int middle = oglMain.Width / 2 - oglMain.Width / 4;
-                    if (point.X > middle - 140 && point.X < middle && isLateralOn)
+                    //pan and hide menus
+                    if (point.X > 30 && point.X < 60)
                     {
-                        if (isTT)
+                        if (point.Y > 50 && point.Y < 80)
                         {
-                            MessageBox.Show(gStr.h_lblLateralTurnTouch, gStr.gsHelp);
-                            ResetHelpBtn();
-                            return;
+                            isPanFormVisible = true;
+                            Form f = Application.OpenForms["FormPan"];
+
+                            if (f != null)
+                            {
+                                f.Focus();
+                                return;
+                            }
+
+                            Form form = new FormPan(this);
+                            form.Show(this);
+
+                            form.Top = this.Top + 90;
+                            form.Left = this.Left + 120;
                         }
 
-                        if (vehicle.functionSpeedLimit > avgSpeed)
+                        if (isJobStarted)
                         {
-                            yt.BuildManualYouLateral(false);
+                            if (point.Y > oglMain.Height - 60 && point.Y < oglMain.Height - 30)
+                            {
+                                isPanelABHidden = !isPanelABHidden;
+                                PanelsAndOGLSize();
+                                return;
+                            }
                         }
-                        else
-                        {
-                            SpeedLimitExceeded();
-                        }
-
-                        return;
                     }
 
-                    if (point.X > middle && point.X < middle + 140 && isLateralOn)
+                    //tram override
+                    if (point.Y > 68 && point.Y < 120)
                     {
-                        if (isTT)
+                        if (point.X > centerX - 100 && point.X < centerX - 40)
                         {
-                            MessageBox.Show(gStr.h_lblLateralTurnTouch, gStr.gsHelp);
-                            ResetHelpBtn();
-                            return;
+                            tram.isLeftManualOn = !tram.isLeftManualOn;
                         }
-
-                        if (vehicle.functionSpeedLimit > avgSpeed)
+                        if (point.X > centerX + 40 && point.X < centerX + 100)
                         {
-                            yt.BuildManualYouLateral(true);
-                        }
-                        else
-                        {
-                            SpeedLimitExceeded();
-                        }
-
-                        return;
-                    }
-                }
-
-                //vehicle direcvtion reset
-                int centerLeft = oglMain.Width / 2;
-                int centerUp = oglMain.Height / 2;
-
-                if (point.X > centerLeft - 40 && point.X < centerLeft + 40 
-                    && point.Y > centerUp - 60 && point.Y < centerUp + 60)
-                {
-                    if (isTT)
-                    {
-                        MessageBox.Show(gStr.h_lblVehicleDirectionResetTouch, gStr.gsHelp);        
-                        ResetHelpBtn();
-                        return;
-                    }
-
-                    Array.Clear(stepFixPts, 0, stepFixPts.Length);
-                    isFirstHeadingSet = false;
-                    isReverse = false;
-                    TimedMessageBox(2000, "Reset Direction", "Drive Forward > 1.5 kmh");
-                    return;
-                }
-
-                if (point.X > 30 && point.X < 60)
-                {
-                    if (point.Y > 50 && point.Y < 80)
-                    {
-                        isPanFormVisible = true;
-                        Form f = Application.OpenForms["FormPan"];
-
-                        if (f != null)
-                        {
-                            f.Focus();
-                            return;
-                        }
-
-                        Form form = new FormPan(this);
-                        form.Show(this);
-
-                        form.Top = this.Top + 90;
-                        form.Left = this.Left + 120;
-                    }
-
-                    if (isJobStarted)
-                    {
-                        if (point.Y > oglMain.Height - 60 && point.Y < oglMain.Height - 30) 
-                        {
-                            isPanelABHidden = !isPanelABHidden;
-                            PanelsAndOGLSize();
-                            return;
+                            tram.isRightManualOn = !tram.isRightManualOn;
                         }
                     }
                 }
@@ -1308,6 +1323,7 @@ namespace AgOpenGPS
                     return;
                 }
 
+                //zoom buttons
                 if (point.X > oglMain.Width - 80)
                 {
                     //---
@@ -1334,6 +1350,24 @@ namespace AgOpenGPS
                     }
                 }
 
+                //vehicle direcvtion reset
+                if (point.X > centerX - 40 && point.X < centerX + 40
+                    && point.Y > centerY - 60 && point.Y < centerY + 60)
+                {
+                    if (isTT)
+                    {
+                        MessageBox.Show(gStr.h_lblVehicleDirectionResetTouch, gStr.gsHelp);
+                        ResetHelpBtn();
+                        return;
+                    }
+
+                    Array.Clear(stepFixPts, 0, stepFixPts.Length);
+                    isFirstHeadingSet = false;
+                    isReverse = false;
+                    TimedMessageBox(2000, "Reset Direction", "Drive Forward > 1.5 kmh");
+                    return;
+                }
+
                 //check for help touch on steer circle
                 if (isTT)
                 {
@@ -1345,8 +1379,6 @@ namespace AgOpenGPS
                         return;
                     }
                 }
-
-
 
                 mouseX = point.X;
                 mouseY = oglMain.Height - point.Y;
