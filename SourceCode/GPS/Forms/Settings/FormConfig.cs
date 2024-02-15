@@ -303,5 +303,13 @@ namespace AgOpenGPS
             //FormConfig_Load(this, e);
         }
 
+        private void nudlessNumericUpDown1_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            {
+                Properties.Settings.Default.set_sectionButtonsHeight = (int)nudlessNumericUpDown1.Value;
+                mf.sectionButtonsHeight = Properties.Settings.Default.set_sectionButtonsHeight;
+            }
+        }
     }
 }

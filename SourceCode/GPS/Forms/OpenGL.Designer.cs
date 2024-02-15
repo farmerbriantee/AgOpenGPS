@@ -406,6 +406,7 @@ namespace AgOpenGPS
                             sounds.isRTKAlarming = true;
                             DrawLostRTK();
                             if (isRTK_KillAutosteer && isBtnAutoSteerOn) btnAutoSteer.PerformClick();
+                            if (isRTK_KillAutosteer && (recPath.isDrivingRecordedPath || recPath.isFollowingDubinsToPath || recPath.isFollowingDubinsHome)) btnPathGoStop.PerformClick();
                         }
                         else
                             sounds.isRTKAlarming = false;

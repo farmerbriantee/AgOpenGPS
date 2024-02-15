@@ -286,6 +286,7 @@ namespace AgOpenGPS
             cboxSteerSound.Checked = Properties.Settings.Default.setSound_isAutoSteerOn;
             cboxHydLiftSound.Checked = Properties.Settings.Default.setSound_isHydLiftOn;
             cboxAutoStartAgIO.Checked = Properties.Settings.Default.setDisplay_isAutoStartAgIO;
+            nudlessNumericUpDown1.Value = Properties.Settings.Default.set_sectionButtonsHeight;
         }
 
         private void tabBtns_Leave(object sender, EventArgs e)

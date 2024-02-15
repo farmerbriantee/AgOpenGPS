@@ -52,6 +52,8 @@ namespace AgIO
         List<int> rList = new List<int>();
         List<int> aList = new List<int>();
 
+        public int numFailedNtripConnections = 0;
+
         //NTRIP metering
         Queue<byte> rawTrip = new Queue<byte>();
 
@@ -102,6 +104,9 @@ namespace AgIO
                 //Bypass if sleeping
                 if (focusSkipCounter != 0)
                 {
+                    //Reset failed connection watchdog
+                    if (ntripCounter > 120) numFailedNtripConnections = 0;
+
                     //update byte counter and up counter
                     if (ntripCounter > 59) btnStartStopNtrip.Text = (ntripCounter >> 6) + " Min";
                     else if (ntripCounter < 60 && ntripCounter > 25) btnStartStopNtrip.Text = ntripCounter + " Secs";
@@ -334,6 +339,15 @@ namespace AgIO
         private void ReconnectRequest()
         {
             //TimedMessageBox(2000, "NTRIP Not Connected", " Reconnect Request");
+
+            if(numFailedNtripConnections > 15)
+            {
+                numFailedNtripConnections = 0;
+                btnStartStopNtrip.PerformClick();
+                ShowAgIO();
+                TimedMessageBox(3000, "NTRIP not connected", "Safe shutdown, check base station");
+            }
+            numFailedNtripConnections++;
             ntripCounter = 15;
             isNTRIP_Connected = false;
             isNTRIP_Starting = false;

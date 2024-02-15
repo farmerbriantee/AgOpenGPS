@@ -479,6 +479,7 @@
             this.nudTramWidth = new AgOpenGPS.NudlessNumericUpDown();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.tabBtns = new System.Windows.Forms.TabPage();
+            this.nudlessNumericUpDown1 = new AgOpenGPS.NudlessNumericUpDown();
             this.label92 = new System.Windows.Forms.Label();
             this.btnRightMenuOrder = new System.Windows.Forms.Button();
             this.label62 = new System.Windows.Forms.Label();
@@ -552,6 +553,7 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label79 = new System.Windows.Forms.Label();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -678,6 +680,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudTramWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.tabBtns.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudlessNumericUpDown1)).BeginInit();
             this.tabDisplay.SuspendLayout();
             this.unitsGroupBox.SuspendLayout();
             this.panelBottom.SuspendLayout();
@@ -8614,6 +8617,8 @@
             // tabBtns
             // 
             this.tabBtns.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabBtns.Controls.Add(this.label79);
+            this.tabBtns.Controls.Add(this.nudlessNumericUpDown1);
             this.tabBtns.Controls.Add(this.label92);
             this.tabBtns.Controls.Add(this.btnRightMenuOrder);
             this.tabBtns.Controls.Add(this.label62);
@@ -8658,13 +8663,42 @@
             this.tabBtns.Enter += new System.EventHandler(this.tabBtns_Enter);
             this.tabBtns.Leave += new System.EventHandler(this.tabBtns_Leave);
             // 
+            // nudlessNumericUpDown1
+            // 
+            this.nudlessNumericUpDown1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.nudlessNumericUpDown1.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudlessNumericUpDown1.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudlessNumericUpDown1.InterceptArrowKeys = false;
+            this.nudlessNumericUpDown1.Location = new System.Drawing.Point(474, 188);
+            this.nudlessNumericUpDown1.Maximum = new decimal(new int[] {
+            75,
+            0,
+            0,
+            0});
+            this.nudlessNumericUpDown1.Minimum = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+            this.nudlessNumericUpDown1.Name = "nudlessNumericUpDown1";
+            this.nudlessNumericUpDown1.ReadOnly = true;
+            this.nudlessNumericUpDown1.Size = new System.Drawing.Size(99, 52);
+            this.nudlessNumericUpDown1.TabIndex = 522;
+            this.nudlessNumericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudlessNumericUpDown1.Value = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+            this.nudlessNumericUpDown1.Click += new System.EventHandler(this.nudlessNumericUpDown1_Click);
+            // 
             // label92
             // 
             this.label92.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label92.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label92.ForeColor = System.Drawing.Color.Black;
             this.label92.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label92.Location = new System.Drawing.Point(384, 170);
+            this.label92.Location = new System.Drawing.Point(380, 319);
             this.label92.Name = "label92";
             this.label92.Size = new System.Drawing.Size(190, 25);
             this.label92.TabIndex = 521;
@@ -8682,7 +8716,7 @@
             this.btnRightMenuOrder.ForeColor = System.Drawing.Color.Black;
             this.btnRightMenuOrder.Image = global::AgOpenGPS.Properties.Resources.Con_RightMenuEdit;
             this.btnRightMenuOrder.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRightMenuOrder.Location = new System.Drawing.Point(431, 198);
+            this.btnRightMenuOrder.Location = new System.Drawing.Point(427, 347);
             this.btnRightMenuOrder.Name = "btnRightMenuOrder";
             this.btnRightMenuOrder.Size = new System.Drawing.Size(99, 95);
             this.btnRightMenuOrder.TabIndex = 520;
@@ -9240,7 +9274,7 @@
             this.label93.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label93.ForeColor = System.Drawing.Color.Black;
             this.label93.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label93.Location = new System.Drawing.Point(531, 231);
+            this.label93.Location = new System.Drawing.Point(527, 380);
             this.label93.Name = "label93";
             this.label93.Size = new System.Drawing.Size(43, 29);
             this.label93.TabIndex = 455;
@@ -9839,6 +9873,18 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // label79
+            // 
+            this.label79.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label79.AutoSize = true;
+            this.label79.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label79.ForeColor = System.Drawing.Color.Black;
+            this.label79.Location = new System.Drawing.Point(402, 163);
+            this.label79.Name = "label79";
+            this.label79.Size = new System.Drawing.Size(168, 16);
+            this.label79.TabIndex = 523;
+            this.label79.Text = "Manual Section Buttons Size";
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -10008,6 +10054,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.tabBtns.ResumeLayout(false);
             this.tabBtns.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudlessNumericUpDown1)).EndInit();
             this.tabDisplay.ResumeLayout(false);
             this.tabDisplay.PerformLayout();
             this.unitsGroupBox.ResumeLayout(false);
@@ -10538,5 +10585,7 @@
         private System.Windows.Forms.Button btnZeroToolOffset;
         private System.Windows.Forms.Button btnZeroOverlap;
         private System.Windows.Forms.Button btnPivotOffsetZero;
+        private NudlessNumericUpDown nudlessNumericUpDown1;
+        private System.Windows.Forms.Label label79;
     }
 }
