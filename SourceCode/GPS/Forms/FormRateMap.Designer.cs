@@ -38,8 +38,9 @@
             this.btnZoomOut = new System.Windows.Forms.Button();
             this.btnBuildRateMap = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.cboxNumberRateChannels = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.cboxNumberRateChannels = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -182,13 +183,14 @@
             // 
             this.btnBuildRateMap.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnBuildRateMap.BackColor = System.Drawing.Color.Transparent;
+            this.btnBuildRateMap.FlatAppearance.BorderSize = 0;
             this.btnBuildRateMap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuildRateMap.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuildRateMap.Location = new System.Drawing.Point(135, 285);
+            this.btnBuildRateMap.Image = global::AgOpenGPS.Properties.Resources.VR;
+            this.btnBuildRateMap.Location = new System.Drawing.Point(135, 270);
             this.btnBuildRateMap.Name = "btnBuildRateMap";
-            this.btnBuildRateMap.Size = new System.Drawing.Size(87, 54);
+            this.btnBuildRateMap.Size = new System.Drawing.Size(87, 69);
             this.btnBuildRateMap.TabIndex = 490;
-            this.btnBuildRateMap.Text = "VR Map";
             this.btnBuildRateMap.UseVisualStyleBackColor = false;
             this.btnBuildRateMap.Visible = false;
             this.btnBuildRateMap.Click += new System.EventHandler(this.btnBuildRateMap_Click);
@@ -209,6 +211,7 @@
             this.tableLayoutPanel1.Controls.Add(this.btnBuildRateMap, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.cboxNumberRateChannels, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(707, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 8;
@@ -223,6 +226,17 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(239, 657);
             this.tableLayoutPanel1.TabIndex = 491;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(9, 351);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 23);
+            this.label1.TabIndex = 518;
+            this.label1.Text = "Channels";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cboxNumberRateChannels
             // 
@@ -242,16 +256,17 @@
             this.cboxNumberRateChannels.Visible = false;
             this.cboxNumberRateChannels.SelectedIndexChanged += new System.EventHandler(this.cboxNumberRateChannels_SelectedIndexChanged);
             // 
-            // label1
+            // label2
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 351);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 23);
-            this.label1.TabIndex = 518;
-            this.label1.Text = "Channels";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tableLayoutPanel1.SetColumnSpan(this.label2, 2);
+            this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(16, 7);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(207, 60);
+            this.label2.TabIndex = 519;
+            this.label2.Text = "VR Mapping Only - Do not use";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormRateMap
             // 
@@ -291,5 +306,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ComboBox cboxNumberRateChannels;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
