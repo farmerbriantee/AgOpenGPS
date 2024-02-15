@@ -844,6 +844,22 @@ namespace AgIO
             }
         }
 
+        private void btComPortToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Specify the path to rundll32.exe
+            string rundll32Path = Environment.ExpandEnvironmentVariables(@"%SystemRoot%\system32\rundll32.exe");
+
+            // Specify the arguments for the Bluetooth Properties control panel item
+            string arguments = "shell32.dll,Control_RunDLL bthprops.cpl,,2";
+
+            // Create a ProcessStartInfo object with the specified file path and arguments
+            ProcessStartInfo psi = new ProcessStartInfo(rundll32Path, arguments);
+
+            // Start the process
+            Process.Start(psi);
+
+        }
+
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             //Save curent Settngs
