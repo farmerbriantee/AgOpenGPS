@@ -143,20 +143,27 @@ namespace AgOpenGPS
 
             //move the curline as well. 
             vec2 nudgePtA = new vec2(mf.trk.gArr[idx].ptA);
+            vec2 nudgePtB = new vec2(mf.trk.gArr[idx].ptB);
 
             nudgePtA.easting += (Math.Sin(abHeading + glm.PIBy2) * mf.trk.gArr[idx].nudgeDistance);
             nudgePtA.northing += (Math.Cos(abHeading + glm.PIBy2) * mf.trk.gArr[idx].nudgeDistance);
+
+            nudgePtB.easting += (Math.Sin(abHeading + glm.PIBy2) * mf.trk.gArr[idx].nudgeDistance);
+            nudgePtB.northing += (Math.Cos(abHeading + glm.PIBy2) * mf.trk.gArr[idx].nudgeDistance);
 
             //depending which way you are going, the offset can be either side
             vec2 point1 = new vec2((Math.Cos(-abHeading) * (distAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset))) + nudgePtA.easting,
             (Math.Sin(-abHeading) * (distAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset))) + nudgePtA.northing);
 
+            vec2 point2 = new vec2((Math.Cos(-abHeading) * (distAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset))) + nudgePtB.easting,
+            (Math.Sin(-abHeading) * (distAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset))) + nudgePtB.northing);
+
             //create the new line extent points for current ABLine based on original heading of AB line
             currentLinePtA.easting = point1.easting - (Math.Sin(abHeading) * abLength);
             currentLinePtA.northing = point1.northing - (Math.Cos(abHeading) * abLength);
 
-            currentLinePtB.easting = point1.easting + (Math.Sin(abHeading) * abLength);
-            currentLinePtB.northing = point1.northing + (Math.Cos(abHeading) * abLength);
+            currentLinePtB.easting = point2.easting + (Math.Sin(abHeading) * abLength);
+            currentLinePtB.northing = point2.northing + (Math.Cos(abHeading) * abLength);
 
             currentLinePtA.heading = abHeading;
             currentLinePtB.heading = abHeading;
