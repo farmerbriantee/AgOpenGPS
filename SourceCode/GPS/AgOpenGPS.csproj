@@ -999,8 +999,6 @@
     <None Include="btnImages\Config\ToolHitchPivotOffsetPos.png" />
     <None Include="btnImages\Config\ConS_ImplementPivot.png" />
     <None Include="btnImages\Images\z_Tire.png" />
-    <None Include="btnImages\Config\ToolLookaheadOff.png" />
-    <None Include="btnImages\Config\ToolLookaheadOn.png" />
     <None Include="btnImages\Config\SectionLookAheadOff.gif" />
     <None Include="btnImages\Config\SectionOnLookAhead.gif" />
     <None Include="btnImages\ToolHitchPageFrontHarvester.png" />
@@ -1018,7 +1016,6 @@
     <None Include="btnImages\APlusPlusB.png" />
     <None Include="btnImages\APlusMinusA.png" />
     <None Include="btnImages\APlusMinusB.png" />
-    <None Include="btnImages\Images\z_RateMap.png" />
     <None Include="btnImages\Images\z_RateMap1.png" />
     <None Include="btnImages\Images\z_RateMap2.png" />
     <None Include="btnImages\Images\z_RateMap3.png" />
@@ -1078,7 +1075,6 @@
     <None Include="btnImages\Config\ConSt_Mandatory.png" />
     <None Include="btnImages\Config\ConSt_TurnSensorCurrent.png" />
     <None Include="btnImages\Config\ConSt_TurnSensorPressure.png" />
-    <None Include="btnImages\Config\ConU_UturnStepDistance.png" />
     <None Include="btnImages\Config\Con_SourcesGPS.png" />
     <None Include="btnImages\Images\z_SpeedoNeedle.png" />
     <None Include="btnImages\Images\z_SteerPointer.png" />
@@ -1171,7 +1167,6 @@
     <None Include="btnImages\SteerDriveOff.png" />
     <None Include="btnImages\SteerDriveOn.png" />
     <None Include="btnImages\SteerZero.png" />
-    <None Include="btnImages\SteerZeroSmall.png" />
     <None Include="btnImages\NavigationSettings.png" />
     <None Include="btnImages\ColorLocked.png" />
     <None Include="btnImages\ColorUnlocked.png" />
@@ -1211,8 +1206,6 @@
     <None Include="btnImages\Steer\Sf_SteerTab.png" />
     <None Include="btnImages\Steer\Sf_PP.png" />
     <None Include="btnImages\Steer\Sf_Stanley.png" />
-    <None Include="btnImages\Config\ConT_Inner.png" />
-    <None Include="btnImages\Config\ConT_Outer.png" />
     <None Include="btnImages\Config\ConT_TramSpacing.png" />
     <None Include="btnImages\Config\Con_TramMenu.png" />
     <None Include="btnImages\FileCopy.png" />
@@ -1224,7 +1217,6 @@
     <None Include="btnImages\MappingOff.png" />
     <None Include="btnImages\MappingOn.png" />
     <None Include="btnImages\Config\ConSt_Danfoss.png" />
-    <None Include="btnImages\Config\ConT_TramBBuffOn.png" />
     <None Include="btnImages\LatLon.png" />
     <None Include="btnImages\SectionsExample.png" />
     <None Include="btnImages\Config\ConDa_ResetIMU.png" />
@@ -1239,13 +1231,9 @@
     <None Include="btnImages\Images\z_Lift.png" />
     <None Include="btnImages\Images\z_QuestionMark.png" />
     <None Include="btnImages\Images\z_Speedo.png" />
-    <None Include="btnImages\Images\z_SpeedoNedle.png" />
-    <None Include="btnImages\Images\z_Steer.png" />
-    <None Include="btnImages\Images\z_SteerPinion.png" />
     <None Include="btnImages\Images\z_Turn.png" />
     <None Include="btnImages\Images\z_TurnCancel.png" />
     <None Include="btnImages\Images\z_TurnManual.png" />
-    <None Include="btnImages\Images\z_Vehicle.png" />
     <None Include="btnImages\ImplementSettings.png" />
     <None Include="btnImages\ManualOff.png" />
     <None Include="btnImages\ManualOn.png" />

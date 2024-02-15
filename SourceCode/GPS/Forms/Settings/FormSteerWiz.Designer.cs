@@ -1546,7 +1546,7 @@
             this.btnFreeDriveZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFreeDriveZero.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFreeDriveZero.ForeColor = System.Drawing.Color.White;
-            this.btnFreeDriveZero.Image = global::AgOpenGPS.Properties.Resources.SteerZeroSmall;
+            this.btnFreeDriveZero.Image = global::AgOpenGPS.Properties.Resources.SteerZero;
             this.btnFreeDriveZero.Location = new System.Drawing.Point(340, 13);
             this.btnFreeDriveZero.Name = "btnFreeDriveZero";
             this.btnFreeDriveZero.Size = new System.Drawing.Size(73, 56);
@@ -3319,7 +3319,7 @@
             this.btnZeroWAS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZeroWAS.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZeroWAS.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnZeroWAS.Image = global::AgOpenGPS.Properties.Resources.SteerZeroSmall;
+            this.btnZeroWAS.Image = global::AgOpenGPS.Properties.Resources.SteerZero;
             this.btnZeroWAS.Location = new System.Drawing.Point(273, 97);
             this.btnZeroWAS.Name = "btnZeroWAS";
             this.btnZeroWAS.Size = new System.Drawing.Size(100, 77);
@@ -4380,7 +4380,7 @@
             this.btnZeroMinMovementSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZeroMinMovementSetting.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZeroMinMovementSetting.ForeColor = System.Drawing.Color.White;
-            this.btnZeroMinMovementSetting.Image = global::AgOpenGPS.Properties.Resources.SteerZeroSmall;
+            this.btnZeroMinMovementSetting.Image = global::AgOpenGPS.Properties.Resources.SteerZero;
             this.btnZeroMinMovementSetting.Location = new System.Drawing.Point(496, 37);
             this.btnZeroMinMovementSetting.Name = "btnZeroMinMovementSetting";
             this.btnZeroMinMovementSetting.Size = new System.Drawing.Size(76, 68);
@@ -4571,7 +4571,7 @@
             this.btnZeroPGain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZeroPGain.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZeroPGain.ForeColor = System.Drawing.Color.White;
-            this.btnZeroPGain.Image = global::AgOpenGPS.Properties.Resources.SteerZeroSmall;
+            this.btnZeroPGain.Image = global::AgOpenGPS.Properties.Resources.SteerZero;
             this.btnZeroPGain.Location = new System.Drawing.Point(520, 72);
             this.btnZeroPGain.Name = "btnZeroPGain";
             this.btnZeroPGain.Size = new System.Drawing.Size(76, 67);

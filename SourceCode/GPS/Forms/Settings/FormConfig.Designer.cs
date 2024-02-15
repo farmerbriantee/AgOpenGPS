@@ -3553,7 +3553,7 @@
             this.btnZeroOverlap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZeroOverlap.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZeroOverlap.ForeColor = System.Drawing.Color.Black;
-            this.btnZeroOverlap.Image = global::AgOpenGPS.Properties.Resources.SteerZeroSmall;
+            this.btnZeroOverlap.Image = global::AgOpenGPS.Properties.Resources.SteerZero;
             this.btnZeroOverlap.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnZeroOverlap.Location = new System.Drawing.Point(513, 109);
             this.btnZeroOverlap.Name = "btnZeroOverlap";
@@ -3571,7 +3571,7 @@
             this.btnZeroToolOffset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZeroToolOffset.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZeroToolOffset.ForeColor = System.Drawing.Color.Black;
-            this.btnZeroToolOffset.Image = global::AgOpenGPS.Properties.Resources.SteerZeroSmall;
+            this.btnZeroToolOffset.Image = global::AgOpenGPS.Properties.Resources.SteerZero;
             this.btnZeroToolOffset.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnZeroToolOffset.Location = new System.Drawing.Point(93, 109);
             this.btnZeroToolOffset.Name = "btnZeroToolOffset";
@@ -3818,7 +3818,7 @@
             this.btnPivotOffsetZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPivotOffsetZero.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPivotOffsetZero.ForeColor = System.Drawing.Color.Black;
-            this.btnPivotOffsetZero.Image = global::AgOpenGPS.Properties.Resources.SteerZeroSmall;
+            this.btnPivotOffsetZero.Image = global::AgOpenGPS.Properties.Resources.SteerZero;
             this.btnPivotOffsetZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnPivotOffsetZero.Location = new System.Drawing.Point(368, 410);
             this.btnPivotOffsetZero.Name = "btnPivotOffsetZero";
