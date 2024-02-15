@@ -369,11 +369,6 @@ namespace AgOpenGPS
             panelSim.Width = 700;
             panelSim.Top = Height - 60;
 
-            timer2.Enabled = true;
-
-            pictureboxStart.BringToFront();
-            pictureboxStart.Dock = System.Windows.Forms.DockStyle.Fill;
-
             //set the language to last used
             SetLanguage(Settings.Default.setF_culture, false);
 
@@ -759,16 +754,6 @@ namespace AgOpenGPS
                     GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, 9729);
                 }
             }
-        }
-
-        //make the start picture disappear
-        private void timer2_Tick(object sender, EventArgs e)
-        {
-            this.Controls.Remove(pictureboxStart);
-            pictureboxStart.Dispose();
-            //panel1.SendToBack();
-            timer2.Enabled = false;
-            timer2.Dispose();
         }
 
         public bool KeypadToNUD(NudlessNumericUpDown sender, Form owner)
