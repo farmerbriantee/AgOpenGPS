@@ -18,14 +18,9 @@ namespace AgOpenGPS
         private readonly FormGPS mf;
 
         private double aveLineHeading;
-        private int originalLine = 0;
-        private bool isClosing;
-        private int selectedItem = -1;
         public List<CTrk> gTemp = new List<CTrk>();
 
         private bool isRefRightSide = true; //left side 0 middle 1 right 2
-
-        private bool isOn = true;
 
         //used throughout to acces the master Track list
         private int idx;
@@ -54,8 +49,6 @@ namespace AgOpenGPS
             panelAPlus.Visible = false;
 
             this.Size = new System.Drawing.Size(270, 360);
-
-            originalLine = mf.trk.idx;
 
             mf.curve.isMakingCurve = false;
 

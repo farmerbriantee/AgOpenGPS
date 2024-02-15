@@ -148,9 +148,9 @@
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Image = global::AgOpenGPS.Properties.Resources.First;
-            this.pictureBox1.Location = new System.Drawing.Point(20, 26);
+            this.pictureBox1.Location = new System.Drawing.Point(45, 33);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(559, 363);
+            this.pictureBox1.Size = new System.Drawing.Size(496, 490);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 126;
             this.pictureBox1.TabStop = false;
@@ -205,7 +205,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button3.Location = new System.Drawing.Point(20, 395);
+            this.button3.Location = new System.Drawing.Point(3, 7);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(35, 24);
             this.button3.TabIndex = 133;

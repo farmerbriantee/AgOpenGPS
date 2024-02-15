@@ -633,6 +633,11 @@
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\vec3.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
     <EmbeddedResource Include="Forms\Field\FormEnterFlag.resx">
       <DependentUpon>FormEnterFlag.cs</DependentUpon>
@@ -889,11 +894,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -943,35 +943,25 @@
     <None Include="btnImages\FileExisting.png" />
     <None Include="btnImages\BackSpace.png" />
     <None Include="btnImages\SectionOnBoundary.png" />
-    <None Include="btnImages\BoundaryCurveLineInner.png" />
     <None Include="btnImages\SvennArrow.png" />
     <None Include="btnImages\ABLineCycleBk.png" />
-    <None Include="btnImages\DrawLineExtendA.png" />
-    <None Include="btnImages\DrawLineExtendB.png" />
     <None Include="btnImages\Config\ConT_TramOverride.png" />
-    <None Include="btnImages\ResumeField.png" />
     <None Include="btnImages\Config\4WD\z_4WDFrontHolder.png" />
     <None Include="btnImages\Config\4WD\z_4WDRearHolder.png" />
     <None Include="btnImages\Config\Brand\Holder.png" />
     <None Include="btnImages\ABTrackAB.png" />
     <None Include="btnImages\ABTrackCurve.png" />
     <None Include="btnImages\HeadlandBuild.png" />
-    <None Include="btnImages\HeadlandDelete.png" />
     <None Include="btnImages\HeadlandReset.png" />
     <None Include="btnImages\HeadlandSlice.png" />
     <None Include="btnImages\FieldTools.png" />
     <None Include="btnImages\FileClose.png" />
-    <None Include="btnImages\HeadlandMove.png" />
     <None Include="btnImages\Headache.png" />
-    <None Include="btnImages\HeadacheKey.png" />
     <None Include="btnImages\ISOXML.png" />
     <None Include="btnImages\ABSnapNudgeMenu.png" />
     <None Include="btnImages\YouTurnU.png" />
-    <None Include="btnImages\HeadacheHelp.png" />
     <None Include="btnImages\Pan.png" />
     <None Include="btnImages\PanBackground.png" />
-    <None Include="btnImages\DrawLineShrinkA.png" />
-    <None Include="btnImages\DrawLineShrinkB.png" />
     <None Include="btnImages\Config\Con_Display.png" />
     <None Include="btnImages\Config\ConS_Pins.png" />
     <None Include="btnImages\ABLinesHideShow.png" />
@@ -983,11 +973,6 @@
     <None Include="btnImages\ABDraw.png" />
     <None Include="btnImages\MenuHideShow.png" />
     <None Include="btnImages\GPSQuality.png" />
-    <None Include="btnImages\SatBlue.png" />
-    <None Include="btnImages\SatGreen.png" />
-    <None Include="btnImages\SatRed.png" />
-    <None Include="btnImages\SatYellow.png" />
-    <None Include="btnImages\FieldDataBackground.png" />
     <None Include="btnImages\ResetColors.png" />
     <None Include="btnImages\HelpSmall.png" />
     <None Include="btnImages\TrashContourRef.png" />
@@ -995,10 +980,8 @@
     <None Include="btnImages\Images\z_Tool.png" />
     <None Include="btnImages\TrackOff.png" />
     <None Include="btnImages\TrackOn.png" />
-    <None Include="btnImages\ABLineOff.png" />
     <None Include="btnImages\ABLatLonHeading.png" />
     <None Include="btnImages\ABLatLonLatLon.png" />
-    <None Include="btnImages\ABLoadFromKML.png" />
     <None Include="btnImages\ABTrackA+.png" />
     <None Include="btnImages\AutoTrack.png" />
     <None Include="btnImages\ABTracks.png" />
@@ -1016,11 +999,8 @@
     <None Include="btnImages\Config\ToolHitchPivotOffsetPos.png" />
     <None Include="btnImages\Config\ConS_ImplementPivot.png" />
     <None Include="btnImages\Images\z_Tire.png" />
-    <None Include="btnImages\Config\ToolLookaheadOff.png" />
-    <None Include="btnImages\Config\ToolLookaheadOn.png" />
     <None Include="btnImages\Config\SectionLookAheadOff.gif" />
     <None Include="btnImages\Config\SectionOnLookAhead.gif" />
-    <None Include="btnImages\ABLoadCurveFromKML - Copy.png" />
     <None Include="btnImages\ToolHitchPageFrontHarvester.png" />
     <None Include="btnImages\Config\SectionLookAheadDelay.gif" />
     <None Include="btnImages\ABSnapNudgeMenuRef.png" />
@@ -1036,7 +1016,6 @@
     <None Include="btnImages\APlusPlusB.png" />
     <None Include="btnImages\APlusMinusA.png" />
     <None Include="btnImages\APlusMinusB.png" />
-    <None Include="btnImages\Images\z_RateMap.png" />
     <None Include="btnImages\Images\z_RateMap1.png" />
     <None Include="btnImages\Images\z_RateMap2.png" />
     <None Include="btnImages\Images\z_RateMap3.png" />
@@ -1066,13 +1045,10 @@
     <None Include="btnImages\SteerLeft.png" />
     <None Include="btnImages\Previous.png" />
     <None Include="btnImages\Next.png" />
-    <None Include="btnImages\Splash.gif" />
     <None Include="btnImages\First.gif" />
     <None Include="btnImages\ResetTool.png" />
-    <None Include="btnImages\Marker.png" />
     <None Include="btnImages\MapGray.png" />
     <None Include="btnImages\MapColor.png" />
-    <None Include="btnImages\NEWS.png" />
     <None Include="btnImages\Images\z_bingMap.png" />
     <None Include="btnImages\pathResumeStart.png" />
     <None Include="btnImages\pathResumeLast.png" />
@@ -1099,7 +1075,6 @@
     <None Include="btnImages\Config\ConSt_Mandatory.png" />
     <None Include="btnImages\Config\ConSt_TurnSensorCurrent.png" />
     <None Include="btnImages\Config\ConSt_TurnSensorPressure.png" />
-    <None Include="btnImages\Config\ConU_UturnStepDistance.png" />
     <None Include="btnImages\Config\Con_SourcesGPS.png" />
     <None Include="btnImages\Images\z_SpeedoNeedle.png" />
     <None Include="btnImages\Images\z_SteerPointer.png" />
@@ -1122,17 +1097,11 @@
     <None Include="btnImages\SwitchOff.png" />
     <None Include="btnImages\SwitchOn.png" />
     <None Include="btnImages\AddNew.png" />
-    <None Include="btnImages\FileNewAndGo.png" />
     <None Include="btnImages\OK64.png" />
     <None Include="btnImages\AutoManualIsAuto.png" />
-    <None Include="btnImages\MakeBoundaryContour.png" />
-    <None Include="btnImages\ABLineEdit.png" />
     <None Include="btnImages\SnapLeft.png" />
     <None Include="btnImages\SnapRight.png" />
-    <None Include="btnImages\ABLineSnapEdit.png" />
     <None Include="btnImages\ABSwapPoints.png" />
-    <None Include="btnImages\ABTramLine.png" />
-    <None Include="btnImages\BoundaryDeleteAll.png" />
     <None Include="btnImages\BoundaryLoadMultiFromGE.png" />
     <None Include="btnImages\BoundaryLoadFromGE.png" />
     <None Include="btnImages\TramAll.png" />
@@ -1145,7 +1114,6 @@
     <None Include="btnImages\HeadlandOff.png" />
     <None Include="btnImages\HeadlandOn.png" />
     <None Include="btnImages\PointAdd.png" />
-    <None Include="btnImages\ToolPage1.jpg" />
     <None Include="btnImages\ToolChkTBT.png" />
     <None Include="btnImages\ToolChkFront.png" />
     <None Include="btnImages\ToolChkRear.png" />
@@ -1167,9 +1135,6 @@
     <None Include="btnImages\ToolHitchPageRear.png" />
     <None Include="btnImages\ToolHitchPageTBT.png" />
     <None Include="btnImages\ToolHitchPageTrailing.png" />
-    <None Include="btnImages\VehFileLoad.png" />
-    <None Include="btnImages\VehFileSave.png" />
-    <None Include="btnImages\VehFileSaveAs.png" />
     <None Include="btnImages\SnapToPivot.png" />
     <None Include="btnImages\Antenna4WD.png" />
     <None Include="btnImages\AntennaHarvester.png" />
@@ -1202,7 +1167,6 @@
     <None Include="btnImages\SteerDriveOff.png" />
     <None Include="btnImages\SteerDriveOn.png" />
     <None Include="btnImages\SteerZero.png" />
-    <None Include="btnImages\SteerZeroSmall.png" />
     <None Include="btnImages\NavigationSettings.png" />
     <None Include="btnImages\ColorLocked.png" />
     <None Include="btnImages\ColorUnlocked.png" />
@@ -1236,18 +1200,12 @@
     <None Include="btnImages\Config\ConDa_RemoveOffset.png" />
     <None Include="btnImages\JobNameCalendar.png" />
     <None Include="btnImages\JobNameTime.png" />
-    <None Include="btnImages\JobClose.png" />
     <None Include="btnImages\SectionMapping.png" />
     <None Include="btnImages\ExitAOG.png" />
-    <None Include="btnImages\FieldClose.png" />
-    <None Include="btnImages\Time.png" />
     <None Include="btnImages\Steer\Sf_GainTab.png" />
     <None Include="btnImages\Steer\Sf_SteerTab.png" />
     <None Include="btnImages\Steer\Sf_PP.png" />
     <None Include="btnImages\Steer\Sf_Stanley.png" />
-    <None Include="btnImages\ABLineDelete.png" />
-    <None Include="btnImages\Config\ConT_Inner.png" />
-    <None Include="btnImages\Config\ConT_Outer.png" />
     <None Include="btnImages\Config\ConT_TramSpacing.png" />
     <None Include="btnImages\Config\Con_TramMenu.png" />
     <None Include="btnImages\FileCopy.png" />
@@ -1259,7 +1217,6 @@
     <None Include="btnImages\MappingOff.png" />
     <None Include="btnImages\MappingOn.png" />
     <None Include="btnImages\Config\ConSt_Danfoss.png" />
-    <None Include="btnImages\Config\ConT_TramBBuffOn.png" />
     <None Include="btnImages\LatLon.png" />
     <None Include="btnImages\SectionsExample.png" />
     <None Include="btnImages\Config\ConDa_ResetIMU.png" />
@@ -1274,13 +1231,9 @@
     <None Include="btnImages\Images\z_Lift.png" />
     <None Include="btnImages\Images\z_QuestionMark.png" />
     <None Include="btnImages\Images\z_Speedo.png" />
-    <None Include="btnImages\Images\z_SpeedoNedle.png" />
-    <None Include="btnImages\Images\z_Steer.png" />
-    <None Include="btnImages\Images\z_SteerPinion.png" />
     <None Include="btnImages\Images\z_Turn.png" />
     <None Include="btnImages\Images\z_TurnCancel.png" />
     <None Include="btnImages\Images\z_TurnManual.png" />
-    <None Include="btnImages\Images\z_Vehicle.png" />
     <None Include="btnImages\ImplementSettings.png" />
     <None Include="btnImages\ManualOff.png" />
     <None Include="btnImages\ManualOn.png" />
@@ -1306,12 +1259,8 @@
     <None Include="btnImages\FlagDeleteAll.png" />
     <None Include="btnImages\GoogleEarth.png" />
     <None Include="btnImages\DnArrow64.png" />
-    <None Include="btnImages\Color.png" />
-    <None Include="btnImages\ColorField.png" />
-    <None Include="btnImages\WorkSwitch.jpg" />
     <None Include="btnImages\AutoSteerOff.png" />
     <None Include="btnImages\AutoSteerOn.png" />
-    <None Include="btnImages\ZeroPitchRoll.png" />
     <None Include="btnImages\ArrowLeft.png" />
     <None Include="btnImages\ArrowRight.png" />
     <None Include="btnImages\BoundaryLeft.png" />
@@ -1319,11 +1268,9 @@
     <None Include="btnImages\boundaryPause.png" />
     <None Include="btnImages\boundaryPlay.png" />
     <None Include="btnImages\boundaryStop.png" />
-    <None Include="btnImages\BoundaryDelete.png" />
     <None Include="btnImages\BoundaryOuter.png" />
     <None Include="btnImages\BoundaryRecord.png" />
     <None Include="btnImages\FileExplorerWindows.png" />
-    <None Include="btnImages\KeyHole.png" />
     <None Include="btnImages\SemiCircle.png" />
     <None Include="btnImages\SettingsGear64.png" />
     <None Include="btnImages\Youturn80.png" />
@@ -1331,31 +1278,20 @@
     <None Include="btnImages\PointDone.png" />
     <None Include="btnImages\PointStart.png" />
     <None Include="btnImages\YouTurnReverse.png" />
-    <None Include="btnImages\WideReturn.png" />
     <None Include="btnImages\Settings48.png" />
     <None Include="btnImages\AutoSteerConf.png" />
     <None Include="btnImages\Help.png" />
     <None Include="btnImages\Webcam.png" />
-    <None Include="btnImages\skull.png" />
-    <None Include="btnImages\CurveOff.png" />
-    <None Include="btnImages\CurveOn.png" />
     <None Include="btnImages\AutoStop.png" />
     <None Include="btnImages\Chart.png" />
-    <None Include="btnImages\MakeBoundary.png" />
     <None Include="btnImages\ABSmooth.png" />
     <None Include="btnImages\SpecialFunctions.png" />
-    <None Include="btnImages\ContourPriorityLeft.png" />
-    <None Include="btnImages\ContourPriorityRight.png" />
-    <None Include="btnImages\Camera54.png" />
     <None Include="btnImages\Camera2D64.png" />
     <None Include="btnImages\Camera3D64.png" />
     <None Include="btnImages\CameraNorth64.png" />
-    <None Include="btnImages\HideContour.png" />
     <None Include="btnImages\RecPath.png" />
     <None Include="btnImages\FileDelete.png" />
     <None Include="btnImages\FileUse.png" />
-    <None Include="btnImages\radar-icon.png" />
-    <None Include="btnImages\MakeBoundaryContour.jpg" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

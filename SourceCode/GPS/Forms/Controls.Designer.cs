@@ -1688,30 +1688,7 @@ namespace AgOpenGPS
             }
 
         }
-        private void btnStanleyPure_Click(object sender, EventArgs e)
-        {
-            if (isTT)
-            {
-                MessageBox.Show(gStr.h_btnStanleyPure, "Steer Mode");
-                ResetHelpBtn();
-                return;
-            }
 
-
-            //isStanleyUsed = !isStanleyUsed;
-
-            //if (isStanleyUsed)
-            //{
-            //    btnStanleyPure.Image = Resources.ModeStanley;
-            //}
-            //else
-            //{
-            //    btnStanleyPure.Image = Resources.ModePurePursuit;
-            //}
-
-            //Properties.Settings.Default.setVehicle_isStanleyUsed = isStanleyUsed;
-            //Properties.Settings.Default.Save();
-        }
         private void btnAutoTrack_Click(object sender, EventArgs e)
         {
             trk.isAutoTrack = !trk.isAutoTrack;
@@ -1728,6 +1705,7 @@ namespace AgOpenGPS
             toolPivotPos.easting = tankPos.easting + (Math.Sin(toolPivotPos.heading) * (tool.trailingHitchLength));
             toolPivotPos.northing = tankPos.northing + (Math.Cos(toolPivotPos.heading) * (tool.trailingHitchLength));
         }
+
         private void btnTramDisplayMode_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -1736,6 +1714,9 @@ namespace AgOpenGPS
                 ResetHelpBtn();
                 return;
             }
+
+            tram.isLeftManualOn = false;
+            tram.isRightManualOn = false;
 
             //if only lines cycle on off
             if (tram.tramList.Count > 0 && tram.tramBndOuterArr.Count == 0)
@@ -1747,17 +1728,7 @@ namespace AgOpenGPS
             {
                 tram.displayMode++;
                 if (tram.displayMode > 3) tram.displayMode = 0;
-
-                //if (tram.tramList.Count > 0 && tram.tramBndOuterArr.Count > 0)
-                //{
-                //    tram.displayMode = 1;
-                //}
-                //else if (tram.tramList.Count == 0 && tram.tramBndOuterArr.Count > 0)
-                //{
-                //    tram.displayMode = 3;
-                //}
             }
-
 
             switch (tram.displayMode)
             {
@@ -1871,8 +1842,18 @@ namespace AgOpenGPS
             }
 
             PanelUpdateRightAndBottom();
-
         }
+
+        private void cboxIsSectionControlled_Click(object sender, EventArgs e)
+        {
+            if (cboxIsSectionControlled.Checked) cboxIsSectionControlled.Image = Properties.Resources.HeadlandSectionOn;
+            else cboxIsSectionControlled.Image = Properties.Resources.HeadlandSectionOff;
+            bnd.isSectionControlledByHeadland = cboxIsSectionControlled.Checked;
+            Properties.Settings.Default.setHeadland_isSectionControlled = cboxIsSectionControlled.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+
         private void btnHydLift_Click(object sender, EventArgs e)
         {
             if (isTT)

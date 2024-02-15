@@ -32,13 +32,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.linkLabelGit = new System.Windows.Forms.LinkLabel();
             this.linkLabelCombineForum = new System.Windows.Forms.LinkLabel();
-            this.lblVersion = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnManual = new System.Windows.Forms.Button();
             this.btnVideo = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.lblVersion = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,7 +44,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(329, 5);
+            this.label6.Location = new System.Drawing.Point(270, 5);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(144, 18);
             this.label6.TabIndex = 16;
@@ -66,12 +64,12 @@
             // 
             this.linkLabelGit.AutoSize = true;
             this.linkLabelGit.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabelGit.Location = new System.Drawing.Point(329, 23);
+            this.linkLabelGit.Location = new System.Drawing.Point(270, 23);
             this.linkLabelGit.Name = "linkLabelGit";
-            this.linkLabelGit.Size = new System.Drawing.Size(345, 19);
+            this.linkLabelGit.Size = new System.Drawing.Size(407, 19);
             this.linkLabelGit.TabIndex = 11;
             this.linkLabelGit.TabStop = true;
-            this.linkLabelGit.Text = "https://github.com/farmerbriantee/AgOpenGPS";
+            this.linkLabelGit.Text = "https://github.com/farmerbriantee/AgOpenGPS/releases";
             this.linkLabelGit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelGit_LinkClicked);
             // 
             // linkLabelCombineForum
@@ -86,16 +84,6 @@
             this.linkLabelCombineForum.Text = "https://discourse.agopengps.com/";
             this.linkLabelCombineForum.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelCombineForum_LinkClicked);
             // 
-            // lblVersion
-            // 
-            this.lblVersion.AutoSize = true;
-            this.lblVersion.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVersion.Location = new System.Drawing.Point(28, 132);
-            this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(70, 19);
-            this.lblVersion.TabIndex = 34;
-            this.lblVersion.Text = "Version";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -106,16 +94,6 @@
             this.label5.TabIndex = 556;
             this.label5.Text = "What is AgOpenGPS";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(28, 109);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(136, 19);
-            this.label4.TabIndex = 34;
-            this.label4.Text = "PDF Manual For";
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::AgOpenGPS.Properties.Resources.AgOpenYouTubeChannel;
@@ -124,23 +102,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(184, 183);
             this.pictureBox1.TabIndex = 557;
             this.pictureBox1.TabStop = false;
-            // 
-            // btnManual
-            // 
-            this.btnManual.BackColor = System.Drawing.Color.Transparent;
-            this.btnManual.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnManual.FlatAppearance.BorderSize = 0;
-            this.btnManual.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnManual.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnManual.Image = global::AgOpenGPS.Properties.Resources.OpManual;
-            this.btnManual.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnManual.Location = new System.Drawing.Point(34, 157);
-            this.btnManual.Name = "btnManual";
-            this.btnManual.Size = new System.Drawing.Size(96, 96);
-            this.btnManual.TabIndex = 130;
-            this.btnManual.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnManual.UseVisualStyleBackColor = false;
-            this.btnManual.Click += new System.EventHandler(this.btnManual_Click);
             // 
             // btnVideo
             // 
@@ -172,6 +133,16 @@
             this.button1.TabIndex = 10;
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // lblVersion
+            // 
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersion.Location = new System.Drawing.Point(28, 132);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(70, 19);
+            this.lblVersion.TabIndex = 34;
+            this.lblVersion.Text = "Version";
+            // 
             // Form_Help
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -182,9 +153,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.btnManual);
             this.Controls.Add(this.btnVideo);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
@@ -210,10 +179,8 @@
         private System.Windows.Forms.LinkLabel linkLabelCombineForum;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnVideo;
-        private System.Windows.Forms.Label lblVersion;
-        private System.Windows.Forms.Button btnManual;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblVersion;
     }
 }
