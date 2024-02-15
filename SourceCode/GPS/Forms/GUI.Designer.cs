@@ -708,6 +708,10 @@ namespace AgOpenGPS
                 buttonOrder.Add(int.Parse(words[i], CultureInfo.InvariantCulture));
             }
 
+            bnd.isSectionControlledByHeadland = Properties.Settings.Default.setHeadland_isSectionControlled;
+            if (bnd.isSectionControlledByHeadland) cboxIsSectionControlled.Image = Properties.Resources.HeadlandSectionOn;
+            else cboxIsSectionControlled.Image = Properties.Resources.HeadlandSectionOff;
+
             //right side build
             PanelBuildRightMenu();
 
@@ -759,6 +763,8 @@ namespace AgOpenGPS
                 btnTramDisplayMode.Visible = istram;
                 btnHeadlandOnOff.Visible = isHdl;
                 btnHydLift.Visible = isHdl;
+                cboxIsSectionControlled.Visible = isHdl;
+
                 btnAutoTrack.Visible = tracksVisible > 1 && trk.idx > -1 && !ct.isContourBtnOn;
 
                 if (trk.idx > -1 && trk.gArr.Count > 0 && !ct.isContourBtnOn)
@@ -782,13 +788,13 @@ namespace AgOpenGPS
                 //if (worldGrid.numRateChannels > 1) lblGrn.Visible = true;
                 //if (worldGrid.numRateChannels > 2) lblBlu.Visible = true;
                 lblRed.Visible = true;
-                pbarRate.Visible = true;
+                //pbarRate.Visible = true;
             }
             else
             {
                 //lblRed.Visible = lblGrn.Visible = lblBlu.Visible = false;
                 lblRed.Visible = false;
-                pbarRate.Visible = false;
+                //pbarRate.Visible = false;
             }
         }
 
@@ -869,16 +875,20 @@ namespace AgOpenGPS
                 {
                     if (panelAB.Controls[i].Visible && panelAB.Controls[i] is Button)
                         viz++;
+                    if (panelAB.Controls[i].Visible && panelAB.Controls[i] is CheckBox)
+                        viz++;
                 }
 
                 if (viz == 0) return;
 
-                sizer = (Width - 300) / (viz);
-                if (sizer > 120) { sizer = 120; }
+                sizer = (Width - 255) / (viz);
+                if (sizer > 150) { sizer = 150; }
 
                 for (int i = 0; i < panelAB.Controls.Count; i++)
                 {
                     if (panelAB.Controls[i].Visible && panelAB.Controls[i] is Button)
+                        panelAB.Controls[i].Width = sizer;
+                    if (panelAB.Controls[i].Visible && panelAB.Controls[i] is CheckBox)
                         panelAB.Controls[i].Width = sizer;
                 }
             }

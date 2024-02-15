@@ -1308,7 +1308,7 @@ namespace AgOpenGPS
 
                 byte per = (byte)(Math.Round(((double)(rateRed[0]) / 2.55), MidpointRounding.AwayFromZero));
                 lblRed.Text = per.ToString() + "%";
-                CExtensionMethods.SetProgressNoAnimation(pbarRate, per);
+                //CExtensionMethods.SetProgressNoAnimation(pbarRate, per);
 
                 //lblGrn.Text = rateGrn[0].ToString();
                 //lblBlu.Text = rateBlu[0].ToString();
