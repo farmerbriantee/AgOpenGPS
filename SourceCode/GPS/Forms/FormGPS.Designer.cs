@@ -1055,9 +1055,9 @@
             this.flp1.Controls.Add(this.cboxAutoSnapToPivot);
             this.flp1.Controls.Add(this.btnRefNudge);
             this.flp1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flp1.Location = new System.Drawing.Point(146, 505);
+            this.flp1.Location = new System.Drawing.Point(222, 484);
             this.flp1.Name = "flp1";
-            this.flp1.Size = new System.Drawing.Size(792, 102);
+            this.flp1.Size = new System.Drawing.Size(678, 102);
             this.flp1.TabIndex = 539;
             // 
             // panelAB
@@ -1630,9 +1630,9 @@
             this.btnNudge.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNudge.Image = global::AgOpenGPS.Properties.Resources.ABSnapNudgeMenu;
             this.btnNudge.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNudge.Location = new System.Drawing.Point(679, 3);
+            this.btnNudge.Location = new System.Drawing.Point(579, 3);
             this.btnNudge.Name = "btnNudge";
-            this.btnNudge.Size = new System.Drawing.Size(110, 96);
+            this.btnNudge.Size = new System.Drawing.Size(96, 96);
             this.btnNudge.TabIndex = 489;
             this.btnNudge.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnNudge.UseVisualStyleBackColor = false;
@@ -1650,9 +1650,9 @@
             this.btnABDraw.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnABDraw.Image = global::AgOpenGPS.Properties.Resources.ABDraw;
             this.btnABDraw.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnABDraw.Location = new System.Drawing.Point(563, 3);
+            this.btnABDraw.Location = new System.Drawing.Point(483, 6);
             this.btnABDraw.Name = "btnABDraw";
-            this.btnABDraw.Size = new System.Drawing.Size(110, 96);
+            this.btnABDraw.Size = new System.Drawing.Size(90, 90);
             this.btnABDraw.TabIndex = 250;
             this.btnABDraw.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnABDraw.UseVisualStyleBackColor = false;
@@ -1669,9 +1669,9 @@
             this.btnPlusAB.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnPlusAB.Image = global::AgOpenGPS.Properties.Resources.AddNew;
             this.btnPlusAB.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPlusAB.Location = new System.Drawing.Point(447, 3);
+            this.btnPlusAB.Location = new System.Drawing.Point(387, 6);
             this.btnPlusAB.Name = "btnPlusAB";
-            this.btnPlusAB.Size = new System.Drawing.Size(110, 96);
+            this.btnPlusAB.Size = new System.Drawing.Size(90, 90);
             this.btnPlusAB.TabIndex = 545;
             this.btnPlusAB.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnPlusAB.UseVisualStyleBackColor = false;
@@ -1688,9 +1688,9 @@
             this.btnBuildTracks.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnBuildTracks.Image = global::AgOpenGPS.Properties.Resources.ABTracks;
             this.btnBuildTracks.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBuildTracks.Location = new System.Drawing.Point(331, 3);
+            this.btnBuildTracks.Location = new System.Drawing.Point(291, 6);
             this.btnBuildTracks.Name = "btnBuildTracks";
-            this.btnBuildTracks.Size = new System.Drawing.Size(110, 96);
+            this.btnBuildTracks.Size = new System.Drawing.Size(90, 90);
             this.btnBuildTracks.TabIndex = 539;
             this.btnBuildTracks.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnBuildTracks.UseVisualStyleBackColor = false;
@@ -1706,9 +1706,9 @@
             this.btnTracksOff.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTracksOff.Image = global::AgOpenGPS.Properties.Resources.SwitchOff;
             this.btnTracksOff.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTracksOff.Location = new System.Drawing.Point(215, 3);
+            this.btnTracksOff.Location = new System.Drawing.Point(195, 6);
             this.btnTracksOff.Name = "btnTracksOff";
-            this.btnTracksOff.Size = new System.Drawing.Size(110, 96);
+            this.btnTracksOff.Size = new System.Drawing.Size(90, 90);
             this.btnTracksOff.TabIndex = 539;
             this.btnTracksOff.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnTracksOff.UseVisualStyleBackColor = false;
@@ -1726,10 +1726,10 @@
             this.cboxAutoSnapToPivot.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.cboxAutoSnapToPivot.Image = global::AgOpenGPS.Properties.Resources.AutoSteerSnapToPivot;
             this.cboxAutoSnapToPivot.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cboxAutoSnapToPivot.Location = new System.Drawing.Point(109, 6);
+            this.cboxAutoSnapToPivot.Location = new System.Drawing.Point(99, 6);
             this.cboxAutoSnapToPivot.Name = "cboxAutoSnapToPivot";
             this.cboxAutoSnapToPivot.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cboxAutoSnapToPivot.Size = new System.Drawing.Size(100, 90);
+            this.cboxAutoSnapToPivot.Size = new System.Drawing.Size(90, 90);
             this.cboxAutoSnapToPivot.TabIndex = 468;
             this.cboxAutoSnapToPivot.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             this.cboxAutoSnapToPivot.UseVisualStyleBackColor = false;
@@ -1747,7 +1747,7 @@
             this.btnRefNudge.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnRefNudge.Location = new System.Drawing.Point(3, 6);
             this.btnRefNudge.Name = "btnRefNudge";
-            this.btnRefNudge.Size = new System.Drawing.Size(100, 90);
+            this.btnRefNudge.Size = new System.Drawing.Size(90, 90);
             this.btnRefNudge.TabIndex = 538;
             this.btnRefNudge.Text = "Ref";
             this.btnRefNudge.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
