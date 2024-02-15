@@ -2134,7 +2134,7 @@ namespace AgOpenGPS
             }
         }
 
-        //save the contour points which include elevation values
+        //save the contour points
         public void FileSaveContour()
         {
             //1  - points in patch
@@ -2611,9 +2611,9 @@ namespace AgOpenGPS
         {
             using (StreamWriter writer = new StreamWriter((fieldsDirectory + currentFieldDirectory + "\\Elevation.txt"), true))
             {
-                writer.Write(sbFix.ToString());
+                writer.Write(sbGrid.ToString());
             }
-            sbFix.Clear();
+            sbGrid.Clear();
         }
 
         //generate KML file from flag

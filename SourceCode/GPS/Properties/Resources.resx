@@ -145,9 +145,6 @@
   <data name="SemiCircle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\SemiCircle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SteerZeroSmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\SteerZeroSmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Play" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -306,9 +303,6 @@
   </data>
   <data name="FileClose" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\FileClose.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="HeadacheHelp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\HeadacheHelp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="z_TractorKubota" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Config\Tractor\z_TractorKubota.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -1180,9 +1174,6 @@
   <data name="ABSmooth" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\ABSmooth.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Splash" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\Splash.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="WindowDayMode" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\WindowDayMode.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1335,5 +1326,8 @@
   </data>
   <data name="z_RateMap3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Images\z_RateMap3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TF012" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TF012.WAV;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

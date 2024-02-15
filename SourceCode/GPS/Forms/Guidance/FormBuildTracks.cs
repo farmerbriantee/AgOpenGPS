@@ -110,6 +110,7 @@ namespace AgOpenGPS
             }
 
             Properties.Settings.Default.setWindow_buildTracksLocation = Location;
+            Properties.Settings.Default.Save();
 
             mf.twoSecondCounter = 100;
 

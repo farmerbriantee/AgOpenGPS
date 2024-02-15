@@ -1505,7 +1505,7 @@
             this.btnFreeDriveZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFreeDriveZero.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFreeDriveZero.ForeColor = System.Drawing.Color.White;
-            this.btnFreeDriveZero.Image = global::AgOpenGPS.Properties.Resources.SteerZeroSmall;
+            this.btnFreeDriveZero.Image = global::AgOpenGPS.Properties.Resources.SteerZero;
             this.btnFreeDriveZero.Location = new System.Drawing.Point(277, 22);
             this.btnFreeDriveZero.Name = "btnFreeDriveZero";
             this.btnFreeDriveZero.Size = new System.Drawing.Size(73, 56);

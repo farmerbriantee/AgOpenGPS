@@ -1882,16 +1882,6 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap HeadacheHelp {
-            get {
-                object obj = ResourceManager.GetObject("HeadacheHelp", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap HeadlandBuild {
             get {
                 object obj = ResourceManager.GetObject("HeadlandBuild", resourceCulture);
@@ -2767,16 +2757,6 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Splash {
-            get {
-                object obj = ResourceManager.GetObject("Splash", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap SteerDriveOff {
             get {
                 object obj = ResourceManager.GetObject("SteerDriveOff", resourceCulture);
@@ -2838,16 +2818,6 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap SteerZero {
             get {
                 object obj = ResourceManager.GetObject("SteerZero", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SteerZeroSmall {
-            get {
-                object obj = ResourceManager.GetObject("SteerZeroSmall", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -2919,6 +2889,15 @@ namespace AgOpenGPS.Properties {
             get {
                 object obj = ResourceManager.GetObject("SwitchOn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream TF012 {
+            get {
+                return ResourceManager.GetStream("TF012", resourceCulture);
             }
         }
         

@@ -2867,5 +2867,17 @@ namespace AgOpenGPS.Properties {
                 this["setWindow_RateMapZoom"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
+        public global::System.Drawing.Point setWindow_QuickABLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["setWindow_QuickABLocation"]));
+            }
+            set {
+                this["setWindow_QuickABLocation"] = value;
+            }
+        }
     }
 }

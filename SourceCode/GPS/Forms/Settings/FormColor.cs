@@ -3,6 +3,7 @@
 using AgOpenGPS.Properties;
 using System;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -203,7 +204,20 @@ namespace AgOpenGPS
             Settings.Default.setDisplay_colorTextDay = mf.textColorDay;
             Settings.Default.setDisplay_colorTextNight = mf.textColorNight;
 
+            Settings.Default.setDisplay_customColors = "-62208,-12299010,-16190712,-1505559,-3621034,-16712458,-7330570,-1546731,-24406,-3289866,-2756674,-538377,-134768,-4457734,-1848839,-530985";
+
             Properties.Settings.Default.Save();
+
+            string[] words = Properties.Settings.Default.setDisplay_customColors.Split(',');
+
+            for (int i = 0; i < 16; i++)
+            {
+                Color test;
+                mf.customColorsList[i] = int.Parse(words[i], CultureInfo.InvariantCulture);
+                test = Color.FromArgb(mf.customColorsList[i]).CheckColorFor255();
+                int iCol = (test.A << 24) | (test.R << 16) | (test.G << 8) | test.B;
+                mf.customColorsList[i] = iCol;
+            }
 
             mf.SwapDayNightMode();
             mf.SwapDayNightMode();
