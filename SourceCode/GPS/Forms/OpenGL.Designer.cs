@@ -449,8 +449,7 @@ namespace AgOpenGPS
 
                         SendPgnToLoop(p_239.pgn);
 
-                        if (!tool.isSectionsNotZones)
-                            SendPgnToLoop(p_229.pgn);
+                        SendPgnToLoop(p_229.pgn);
                     }
 
                     //draw the zoom window
@@ -808,15 +807,16 @@ namespace AgOpenGPS
                 //1 pixels in is there a tram line?
                 if (tram.isOuter)
                 {
-                    if (grnPixels[(int)(tram.halfWheelTrack * 10)] == 245) tram.controlByte += 2;
-                    if (grnPixels[tool.rpWidth - (int)(tram.halfWheelTrack * 10)] == 245) tram.controlByte += 1;
+                    if (grnPixels[tool.rpWidth - (int)(tram.halfWheelTrack * 10)] == 245 || tram.isRightManualOn) tram.controlByte += 1;
+                    if (grnPixels[(int)(tram.halfWheelTrack * 10)] == 245 || tram.isLeftManualOn) tram.controlByte += 2;
                 }
                 else
                 {
-                    if (grnPixels[tool.rpWidth / 2 - (int)(tram.halfWheelTrack * 10)] == 245) tram.controlByte += 2;
-                    if (grnPixels[tool.rpWidth / 2 + (int)(tram.halfWheelTrack * 10)] == 245) tram.controlByte += 1;
+                    if (grnPixels[tool.rpWidth / 2 + (int)(tram.halfWheelTrack * 10)] == 245 || tram.isRightManualOn) tram.controlByte += 1;
+                    if (grnPixels[tool.rpWidth / 2 - (int)(tram.halfWheelTrack * 10)] == 245 || tram.isLeftManualOn) tram.controlByte += 2;
                 }
             }
+            else tram.controlByte = 0;
 
             //determine if in or out of headland, do hydraulics if on
             if (bnd.isHeadlandOn)
@@ -1309,7 +1309,7 @@ namespace AgOpenGPS
 
                 byte per = (byte)(Math.Round(((double)(rateRed[0]) / 2.55), MidpointRounding.AwayFromZero));
                 lblRed.Text = per.ToString() + "%";
-                CExtensionMethods.SetProgressNoAnimation(pbarRate, per);
+                //CExtensionMethods.SetProgressNoAnimation(pbarRate, per);
 
                 //lblGrn.Text = rateGrn[0].ToString();
                 //lblBlu.Text = rateBlu[0].ToString();
@@ -1341,8 +1341,9 @@ namespace AgOpenGPS
                     FileSaveSections();
                     FileSaveContour();
 
-                    //NMEA log file
-                    if (isLogElevation) FileSaveElevation();
+                    //NMEA elevation file
+                    if (sbGrid.Length > 0) FileSaveElevation();
+
                     //ExportFieldAs_KML();
                 }
 
@@ -1841,8 +1842,14 @@ namespace AgOpenGPS
 
             GL.BindTexture(TextureTarget.Texture2D, texture[(int)textures.TramDot]);        // Select Our Texture
 
-            if (((tram.controlByte) & 2) == 2) GL.Color4(0.29f, 0.90f, 0.290f, 0.983f);
+            if (((tram.controlByte) & 2) == 2) GL.Color4(0.29f, 0.990f, 0.290f, 0.983f);
             else GL.Color4(0.9f, 0.0f, 0.0f, 0.53f);
+
+            if (tram.isLeftManualOn)
+            {
+                if (isFlashOnOff) GL.Color4(0.0f, 0.0f, 0.0f, 0.993f);
+                else GL.Color4(0.99f, 0.990f, 0.0f, 0.993f);
+            }
 
             GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
             {
@@ -1853,8 +1860,14 @@ namespace AgOpenGPS
             }
             GL.End();
 
-            if (((tram.controlByte) & 1) == 1) GL.Color4(0.29f, 0.90f, 0.290f, 0.983f);
+            if (((tram.controlByte) & 1) == 1) GL.Color4(0.29f, 0.990f, 0.290f, 0.983f);
             else GL.Color4(0.9f, 0.0f, 0.0f, 0.53f);
+
+            if (tram.isRightManualOn)
+            {
+                if (isFlashOnOff) GL.Color4(0.0f, 0.0f, 0.0f, 0.993f);
+                else GL.Color4(0.99f, 0.990f, 0.0f, 0.993f);
+            }
 
             center += 100;
 
@@ -1866,7 +1879,6 @@ namespace AgOpenGPS
                 GL.TexCoord2(0, 1); GL.Vertex2(center - 32, bottomSide + 32); //
             }
             GL.End();
-
 
             GL.Disable(EnableCap.Texture2D);
 

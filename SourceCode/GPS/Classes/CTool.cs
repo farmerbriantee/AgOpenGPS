@@ -111,6 +111,7 @@ namespace AgOpenGPS
 
             string[] words = Properties.Settings.Default.setTool_zones.Split(',');
             zones = int.Parse(words[0]);
+
             for (int i = 0; i < words.Length; i++)
             {
                 zoneRanges[i] = int.Parse(words[i]);
