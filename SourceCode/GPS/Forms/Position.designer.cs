@@ -867,9 +867,10 @@ namespace AgOpenGPS
                 if (avgSpeed > 20 && steerModuleConnectedCounter > 30)
                 {
                     speedTimer++;
-                    if (speedTimer > 20)
+                    if (speedTimer > 30)
                     {
-                        TimedMessageBox(2000, "Disable Steering", "Above maximum working speed: 20 Kmh");
+                        TimedMessageBox(3000, "Disable Steering", "Above maximum working speed: 20 Kmh");
+                        sounds.sndUTurnTooClose.Play();
                         speedTimer = 0;
                     }
                 }
