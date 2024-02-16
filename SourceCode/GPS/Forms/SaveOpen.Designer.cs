@@ -825,12 +825,7 @@ namespace AgOpenGPS
                 }
             }
 
-            if (trk.gArr.Count == 0)
-            {
-                trk.idx = -1;
-            }
-
-            if (trk.idx > (trk.gArr.Count - 1)) trk.idx = trk.gArr.Count - 1;
+            trk.idx = -1;
         }
 
         public void FileSaveCurveLines()

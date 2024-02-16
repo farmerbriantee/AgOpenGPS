@@ -1080,8 +1080,10 @@ namespace AgOpenGPS
                 sbGrid.Append(pivotAxlePos.easting.ToString("N2", CultureInfo.InvariantCulture) + ","
                     + pivotAxlePos.northing.ToString("N2", CultureInfo.InvariantCulture) + ","
                     + pivotAxlePos.heading.ToString("N3", CultureInfo.InvariantCulture) + ","
-                    + ahrs.imuRoll.ToString("N3", CultureInfo.InvariantCulture) + ","
-                    + pn.altitude.ToString("N2", CultureInfo.InvariantCulture) + "\r\n");
+                    + Math.Round(ahrs.imuRoll,3).ToString(CultureInfo.InvariantCulture) + ","
+                    + Math.Round(pn.altitude,3).ToString(CultureInfo.InvariantCulture) + ","
+                    + pn.fixQuality.ToString(CultureInfo.InvariantCulture) +
+                    "\r\n");
 
                 prevGridPos.easting = pivotAxlePos.easting;
                 prevGridPos.northing = pivotAxlePos.northing;

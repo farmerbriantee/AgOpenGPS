@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -618,17 +619,17 @@ namespace AgOpenGPS
 
             trk.idx = -1;
 
-            if (isJobStarted && trk.gArr.Count > 0)
-            {
-                for (int i = 0; i < trk.gArr.Count; i++)
-                {
-                    if (trk.gArr[i].isVisible)
-                    {
-                        trk.idx = i;
-                        break;
-                    }
-                }
-            }
+            //if (isJobStarted && trk.gArr.Count > 0)
+            //{
+            //    for (int i = 0; i < trk.gArr.Count; i++)
+            //    {
+            //        if (trk.gArr[i].isVisible)
+            //        {
+            //            trk.idx = i;
+            //            break;
+            //        }
+            //    }
+            //}
 
             PanelUpdateRightAndBottom();
 
@@ -1139,7 +1140,8 @@ namespace AgOpenGPS
             }
 
             int nextflag = flagPts.Count + 1;
-            CFlag flagPt = new CFlag(pn.latitude, pn.longitude, pn.fix.easting, pn.fix.northing, fixHeading, flagColor, nextflag, (nextflag).ToString());
+            CFlag flagPt = new CFlag(pn.latitude, pn.longitude, pn.fix.easting, pn.fix.northing, fixHeading, flagColor, nextflag, 
+                " +" + Math.Round(pn.altitude, 3).ToString(CultureInfo.InvariantCulture) + "m");
             flagPts.Add(flagPt);
             FileSaveFlags();
 
