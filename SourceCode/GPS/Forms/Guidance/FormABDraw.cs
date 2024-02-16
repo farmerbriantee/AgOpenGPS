@@ -754,7 +754,7 @@ namespace AgOpenGPS
                     GL.Begin(PrimitiveType.Lines);
 
                     GL.Vertex3(gTemp[i].ptA.easting - (Math.Sin(gTemp[i].heading) * mf.ABLine.abLength), gTemp[i].ptA.northing - (Math.Cos(gTemp[i].heading) * mf.ABLine.abLength), 0);
-                    GL.Vertex3(gTemp[i].ptA.easting + (Math.Sin(gTemp[i].heading) * mf.ABLine.abLength), gTemp[i].ptA.northing + (Math.Cos(gTemp[i].heading) * mf.ABLine.abLength), 0);
+                    GL.Vertex3(gTemp[i].ptB.easting + (Math.Sin(gTemp[i].heading) * mf.ABLine.abLength), gTemp[i].ptB.northing + (Math.Cos(gTemp[i].heading) * mf.ABLine.abLength), 0);
 
                     GL.End();
 

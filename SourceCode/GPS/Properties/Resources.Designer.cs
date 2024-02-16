@@ -442,6 +442,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Background {
+            get {
+                object obj = ResourceManager.GetObject("Background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap BackSpace {
             get {
                 object obj = ResourceManager.GetObject("BackSpace", resourceCulture);
@@ -3307,6 +3317,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap VideoLink {
             get {
                 object obj = ResourceManager.GetObject("VideoLink", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap VR {
+            get {
+                object obj = ResourceManager.GetObject("VR", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
