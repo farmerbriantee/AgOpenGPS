@@ -1,6 +1,6 @@
 name: Build and release
 
-on: workflow_call
+on: workflow_dispatch
 env:
   # Path to the solution file relative to the root of the project.https://github.com/jaapvandenhandel/AgOpenGPS/network/members
   SOLUTION_FILE_PATH: ./SourceCode/AgOpenGPS.sln
