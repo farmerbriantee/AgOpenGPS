@@ -1,15 +1,6 @@
 name: Build and release
 
-on:
-  # Trigger the workflow on push or pull request,
-  # but only for the dev branch
-  push:
-    branches:
-      - dev
-      - feature/*
-      - release/*
-      - master
-
+on: workflow_call
 env:
   # Path to the solution file relative to the root of the project.https://github.com/jaapvandenhandel/AgOpenGPS/network/members
   SOLUTION_FILE_PATH: ./SourceCode/AgOpenGPS.sln
