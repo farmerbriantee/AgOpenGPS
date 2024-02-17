@@ -584,9 +584,10 @@ namespace AgOpenGPS
             double hsin = Math.Sin(abHeading);
             double hcos = Math.Cos(abHeading);
 
+            double len = glm.Distance(mf.trk.gArr[mf.trk.idx].endPtA, mf.trk.gArr[mf.trk.idx].endPtB);
             //divide up the AB line into segments
             vec2 P1 = new vec2();
-            for (int i = 0; i < 3200; i += 4)
+            for (int i = 0; i < (int)len; i += 4)
             {
                 P1.easting = (hsin * i) + mf.trk.gArr[mf.trk.idx].endPtA.easting;
                 P1.northing = (hcos * i) + mf.trk.gArr[mf.trk.idx].endPtA.northing;
