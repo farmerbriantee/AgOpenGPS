@@ -10,7 +10,7 @@ namespace AgIO
             if (value < numericUpDown.Minimum)
             {
                 value = numericUpDown.Minimum;
-                MessageBox.Show("Serious Settings Problem with - " + numericUpDown.Name
+                MessageBox.Show("Serious Settings Problem With - " + numericUpDown.Name
                     + " \n\rMinimum has been exceeded\n\rDouble check ALL your Settings and \n\rFix it and Resave Vehicle File",
                 "Critical Settings Warning",
                 MessageBoxButtons.OK,
@@ -21,7 +21,7 @@ namespace AgIO
             {
                 value = numericUpDown.Maximum;
                 MessageBox.Show("Serious Settings Problem with - " + numericUpDown.Name
-                    + " \n\rMaximum has been exceeded\n\rDouble check ALL your Settings and \n\rFix it and Resave Vehicle File",
+                    + " \n\rMaximum has been exceeded\n\rDouble Check ALL your Settings and \n\rFix it and Resave Vehicle File",
                 "Critical Settings Warning",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
