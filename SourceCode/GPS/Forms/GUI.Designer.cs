@@ -1158,6 +1158,8 @@ namespace AgOpenGPS
                                     return;
                                 }
                                 SwapDirection();
+                                yt.turnTooCloseTrigger = false;
+                                yt.isTurnCreationTooClose = false;
                                 return;
                             }
 
