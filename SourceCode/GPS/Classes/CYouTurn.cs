@@ -230,20 +230,20 @@ namespace AgOpenGPS
         public void AddSequenceLines(double head)
         {
             vec3 pt;
-            for (int a = 0; a < youTurnStartOffset * 2; a++)
+            for (int a = 0; a < youTurnStartOffset; a++)
             {
-                pt.easting = ytList[0].easting + (Math.Sin(head) * 0.2);
-                pt.northing = ytList[0].northing + (Math.Cos(head) * 0.2);
+                pt.easting = ytList[0].easting + (Math.Sin(head) * 0.511);
+                pt.northing = ytList[0].northing + (Math.Cos(head) * 0.511);
                 pt.heading = ytList[0].heading;
                 ytList.Insert(0, pt);
             }
 
             int count = ytList.Count;
 
-            for (int i = 1; i <= youTurnStartOffset * 2; i++)
+            for (int i = 1; i <= youTurnStartOffset; i++)
             {
-                pt.easting = ytList[count - 1].easting + (Math.Sin(head) * i * 0.2);
-                pt.northing = ytList[count - 1].northing + (Math.Cos(head) * i * 0.2);
+                pt.easting = ytList[count - 1].easting + (Math.Sin(head) * i * 0.511);
+                pt.northing = ytList[count - 1].northing + (Math.Cos(head) * i * 0.511);
                 pt.heading = head;
                 ytList.Add(pt);
             }
@@ -724,13 +724,13 @@ namespace AgOpenGPS
                         vec3 currentPos = new vec3(rEastYT, rNorthYT, head);
                         ytList.Add(currentPos);
 
-                        CDubins.turningRadius = youTurnRadius;
+                        ///CDubins.turningRadius = youTurnRadius;
                         //Taken from Dubbins
                         while (Math.Abs(head - currentPos.heading) < Math.PI)
                         {
                             //Update the position of the car
-                            currentPos.easting += CDubins.driveDistance * Math.Sin(currentPos.heading);
-                            currentPos.northing += CDubins.driveDistance * Math.Cos(currentPos.heading);
+                            currentPos.easting += 0.511 * Math.Sin(currentPos.heading);
+                            currentPos.northing += 0.511 * Math.Cos(currentPos.heading);
 
                             //Which way are we turning?
                             double turnParameter = 1.0;
@@ -738,7 +738,7 @@ namespace AgOpenGPS
                             if (isTurnRight) turnParameter = -1.0;
 
                             //Update the heading
-                            currentPos.heading += (CDubins.driveDistance / CDubins.turningRadius) * turnParameter;
+                            currentPos.heading += (0.511 / youTurnRadius) * turnParameter;
 
                             //Add the new coordinate to the path
                             ytList.Add(currentPos);
@@ -767,7 +767,7 @@ namespace AgOpenGPS
                         for (int i = 0; i < cnt; i++)
                         {
                             if (mf.bnd.IsPointInsideTurnArea(arr23[i]) != 0) break;
-                            if (arr23[i].heading > Math.PI * 2) arr23[i].heading -= glm.twoPI;
+                            if (arr23[i].heading > glm.twoPI) arr23[i].heading -= glm.twoPI;
                             else if (arr23[i].heading < 0) arr23[i].heading += glm.twoPI;
                             ytList.Add(arr23[i]);
                         }
@@ -833,13 +833,13 @@ namespace AgOpenGPS
                         //step 3 create half cirkle in new list
                         ytList2.Clear();
                         ytList2.Add(pointPos);
-                        CDubins.turningRadius = youTurnRadius;
+                        //CDubins.turningRadius = youTurnRadius;
                         //Taken from Dubbins
                         while (Math.Abs(head - pointPos.heading) < Math.PI)
                         {
                             //Update the position of the car
-                            pointPos.easting += CDubins.driveDistance * Math.Sin(pointPos.heading);
-                            pointPos.northing += CDubins.driveDistance * Math.Cos(pointPos.heading);
+                            pointPos.easting +=  0.511 * Math.Sin(pointPos.heading);
+                            pointPos.northing += 0.511 * Math.Cos(pointPos.heading);
 
                             //Which way are we turning?
                             double turnParameter = 1.0;
@@ -847,8 +847,7 @@ namespace AgOpenGPS
                             if (!isTurnRight) turnParameter = -1.0; //now we turn "the wrong" way
 
                             //Update the heading
-                            pointPos.heading += (CDubins.driveDistance / CDubins.turningRadius) * turnParameter;
-
+                            pointPos.heading += (0.511 / youTurnRadius) * turnParameter;
 
                             //Add the new coordinate to the path
                             ytList2.Add(pointPos);
@@ -977,11 +976,11 @@ namespace AgOpenGPS
 
 
                                 //creates points to that point
-                                for (int i = 0; i * CDubins.driveDistance < distanceToNextPoint; i++)
+                                for (int i = 0; i * 0.511 < distanceToNextPoint; i++)
                                 {
 
-                                    startPoint.easting += CDubins.driveDistance * Math.Sin(startPoint.heading);
-                                    startPoint.northing += CDubins.driveDistance * Math.Cos(startPoint.heading);
+                                    startPoint.easting += 0.511 * Math.Sin(startPoint.heading);
+                                    startPoint.northing += 0.511 * Math.Cos(startPoint.heading);
                                     ytList.Add(startPoint);
                                 }
 
@@ -1008,11 +1007,11 @@ namespace AgOpenGPS
                                 if (startPointIndex <= 0) startPointIndex = mf.bnd.bndList[pointList].turnLine.Count - 1;
                                 distanceToNextPoint = glm.Distance(startPoint, mf.bnd.bndList[pointList].turnLine[startPointIndex]);
 
-                                for (int i = 0; i * CDubins.driveDistance < distanceToNextPoint; i++)
+                                for (int i = 0; i * 0.511 < distanceToNextPoint; i++)
                                 {
 
-                                    startPoint.easting += CDubins.driveDistance * Math.Sin(startPoint.heading);
-                                    startPoint.northing += CDubins.driveDistance * Math.Cos(startPoint.heading);
+                                    startPoint.easting += 0.511 * Math.Sin(startPoint.heading);
+                                    startPoint.northing += 0.511 * Math.Cos(startPoint.heading);
 
                                     ytList.Add(startPoint);
                                 }
@@ -1030,11 +1029,11 @@ namespace AgOpenGPS
                         // step 3 create points from last turnline point to goalPoint
                         double distanceToGoalPoint = glm.Distance(startPoint, goalPoint);
 
-                        for (int i = 0; i * CDubins.driveDistance < distanceToGoalPoint; i++)
+                        for (int i = 0; i * 0.511 < distanceToGoalPoint; i++)
                         {
 
-                            startPoint.easting += CDubins.driveDistance * Math.Sin(startPoint.heading);
-                            startPoint.northing += CDubins.driveDistance * Math.Cos(startPoint.heading);
+                            startPoint.easting += 0.511 * Math.Sin(startPoint.heading);
+                            startPoint.northing += 0.511 * Math.Cos(startPoint.heading);
 
                             ytList.Add(startPoint);
                         }
@@ -1053,6 +1052,8 @@ namespace AgOpenGPS
                         AddSequenceLines(head);
                         isOutOfBounds = false;
                         youTurnPhase = 3;
+                        turnTooCloseTrigger = false;
+                        isTurnCreationTooClose = false;
                         //time2 = timer.ElapsedMilliseconds;
                         //timer.Stop();
                         //mf.TimedMessageBox(5000, "Timed", "Time0: " + time0.ToString() + "  Time1: " + time1.ToString() + "  Time2: " + time2.ToString());
@@ -2256,25 +2257,17 @@ namespace AgOpenGPS
                 {
                     if (mf.bnd.IsPointInsideTurnArea(arr2[a]) != 0)
                     {
-                        pointOutOfBnd = true;
-                        break;
+                        uTurnList.AddRange(arr2);
+                        return uTurnList;
                     }
                 }
-
-                if (pointOutOfBnd)
-                {
-                    pointOutOfBnd = false;
-                    break;
-                }
             }
+
+            //if empty - no creation.
+            return uTurnList;
 
             //step 6, we have now placed the turn, so send it back in a list
-            for (int i = 0; i < cnt; i++)
-            {
-                uTurnList.Add(arr2[i]);
-            }
 
-            return uTurnList;
         }
     }
 }
