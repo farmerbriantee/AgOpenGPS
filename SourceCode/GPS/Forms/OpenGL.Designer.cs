@@ -1756,8 +1756,8 @@ namespace AgOpenGPS
             int bottomSide = oglMain.Height - 30;
 
             //draw the clock
-            //GL.Color4(0.9752f, 0.80f, 0.3f, 0.98);
-            //font.DrawText(center -210, oglMain.Height - 26, DateTime.Now.ToString("T"), 0.8);
+            GL.Color4(0.9752f, 0.80f, 0.3f, 0.98);
+            font.DrawText(center - 210, oglMain.Height - 26, DateTime.Now.ToString("T"), 0.8);
 
             GL.PushMatrix();
             GL.Enable(EnableCap.Texture2D);
