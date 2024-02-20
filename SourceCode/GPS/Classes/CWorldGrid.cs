@@ -83,11 +83,11 @@ namespace AgOpenGPS
 
                 GL.TexCoord2(0, 0);
                 GL.Vertex3(eastingMin, northingMax, -2.10);
-                GL.TexCoord2(Count, 0.0);            
+                GL.TexCoord2(Count, 0.0);
                 GL.Vertex3(eastingMax, northingMax, -2.10);
-                GL.TexCoord2(0.0, Count);            
+                GL.TexCoord2(0.0, Count);
                 GL.Vertex3(eastingMin, northingMin, -2.10);
-                GL.TexCoord2(Count, Count);          
+                GL.TexCoord2(Count, Count);
                 GL.Vertex3(eastingMax, northingMin, -2.10);
 
                 GL.End();
@@ -100,11 +100,11 @@ namespace AgOpenGPS
 
                 GL.TexCoord2(0, 0);
                 GL.Vertex3(eastingMinRate, northingMaxRate, -1.05);
-                GL.TexCoord2(1, 0);                        
+                GL.TexCoord2(1, 0);
                 GL.Vertex3(eastingMaxRate, northingMaxRate, -1.05);
-                GL.TexCoord2(0, 1);                        
+                GL.TexCoord2(0, 1);
                 GL.Vertex3(eastingMinRate, northingMinRate, -1.05);
-                GL.TexCoord2(1, 1);                        
+                GL.TexCoord2(1, 1);
                 GL.Vertex3(eastingMaxRate, northingMinRate, -1.05);
 
                 GL.End();
@@ -143,47 +143,45 @@ namespace AgOpenGPS
             }
             else
             {
+                //adjust bitmap zoom based on cam zoom
+                if (mf.camera.zoomValue > 100) Count = 4;
+                else if (mf.camera.zoomValue > 80) Count = 8;
+                else if (mf.camera.zoomValue > 50) Count = 16;
+                else if (mf.camera.zoomValue > 20) Count = 32;
+                else if (mf.camera.zoomValue > 10) Count = 64;
+                else Count = 80;
+
+                GL.Color3(field.R, field.G, field.B);
                 if (mf.isTextureOn)
                 {
-                    //adjust bitmap zoom based on cam zoom
-                    if (mf.camera.zoomValue > 100) Count = 4;
-                    else if (mf.camera.zoomValue > 80) Count = 8;
-                    else if (mf.camera.zoomValue > 50) Count = 16;
-                    else if (mf.camera.zoomValue > 20) Count = 32;
-                    else if (mf.camera.zoomValue > 10) Count = 64;
-                    else Count = 80;
-
                     GL.Enable(EnableCap.Texture2D);
-                    GL.Color3(field.R, field.G, field.B);
                     GL.BindTexture(TextureTarget.Texture2D, mf.texture[(int)FormGPS.textures.Floor]);
-                    GL.Begin(PrimitiveType.TriangleStrip);
+                }
 
+                GL.Begin(PrimitiveType.TriangleStrip);
                     GL.TexCoord2(0, 0);
                     GL.Vertex3(eastingMin, northingMax, -0.10);
-                    GL.TexCoord2(Count, 0.0);           
+                    GL.TexCoord2(Count, 0.0);
                     GL.Vertex3(eastingMax, northingMax, -0.10);
-                    GL.TexCoord2(0.0, Count);           
+                    GL.TexCoord2(0.0, Count);
                     GL.Vertex3(eastingMin, northingMin, -0.10);
-                    GL.TexCoord2(Count, Count);         
+                    GL.TexCoord2(Count, Count);
                     GL.Vertex3(eastingMax, northingMin, -0.10);
-
-                    GL.End();
-                }
+                GL.End();
 
                 if (isGeoMap)
                 {
                     GL.BindTexture(TextureTarget.Texture2D, mf.texture[(int)FormGPS.textures.bingGrid]);
                     GL.Begin(PrimitiveType.TriangleStrip);
-                    GL.Color4(0.6f, 0.6f, 0.6f, 0.5f);
-                    GL.TexCoord2(0, 0);
-                    GL.Vertex3(eastingMinGeo, northingMaxGeo, -0.05);
-                    GL.TexCoord2(1, 0.0);
-                    GL.Vertex3(eastingMaxGeo, northingMaxGeo, -0.05);
-                    GL.TexCoord2(0.0, 1);
-                    GL.Vertex3(eastingMinGeo, northingMinGeo, -0.05);
-                    GL.TexCoord2(1, 1);
-                    GL.Vertex3(eastingMaxGeo, northingMinGeo, -0.05);
-
+                        GL.Color4(0.6f, 0.6f, 0.6f, 0.5f);
+                        GL.TexCoord2(0, 0);
+                        GL.Vertex3(eastingMinGeo, northingMaxGeo, -0.05);
+                        GL.TexCoord2(1, 0.0);
+                        GL.Vertex3(eastingMaxGeo, northingMaxGeo, -0.05);
+                        GL.TexCoord2(0.0, 1);
+                        GL.Vertex3(eastingMinGeo, northingMinGeo, -0.05);
+                        GL.TexCoord2(1, 1);
+                        GL.Vertex3(eastingMaxGeo, northingMinGeo, -0.05);
                     GL.End();
                 }
                 GL.Disable(EnableCap.Texture2D);

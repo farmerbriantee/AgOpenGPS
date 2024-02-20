@@ -2190,7 +2190,7 @@ namespace AgOpenGPS
                     arr2[i].northing -= (cosHead);
                 }
 
-                for (; j < cnt; j += 2)
+                for (; j < cnt; j += 1)
                 {
                     if (mf.bnd.IsPointInsideTurnArea(arr2[j]) != 0)
                     {
@@ -2208,39 +2208,39 @@ namespace AgOpenGPS
                 }
             }
 
-            //step 3, the turn is now inside by 0-1 meters so we move it out again 1 meter
-            for (int i = 0; i < cnt; i++)
-            {
-                arr2[i].easting += (sinHead);
-                arr2[i].northing += (cosHead);
-            }
+            ////step 3, the turn is now inside by 0-1 meters so we move it out again 1 meter
+            //for (int i = 0; i < cnt; i++)
+            //{
+            //    arr2[i].easting += (sinHead);
+            //    arr2[i].northing += (cosHead);
+            //}
 
             //step 4, the turn is now outside again we move it inside in steps of 0.1 meters
 
-            pointOutOfBnd = true;
-            j = 0;
-            while (pointOutOfBnd)
-            {
-                pointOutOfBnd = false;
-                mf.distancePivotToTurnLine = glm.Distance(arr2[0], mf.pivotAxlePos);
+            //pointOutOfBnd = true;
+            //j = 0;
+            //while (pointOutOfBnd)
+            //{
+            //    pointOutOfBnd = false;
+            //    mf.distancePivotToTurnLine = glm.Distance(arr2[0], mf.pivotAxlePos);
 
-                for (int i = 0; i < cnt; i++)
-                {
-                    arr2[i].easting -= (sinHead * 0.1);
-                    arr2[i].northing -= (cosHead * 0.1);
-                }
+            //    for (int i = 0; i < cnt; i++)
+            //    {
+            //        arr2[i].easting -= (sinHead * 0.1);
+            //        arr2[i].northing -= (cosHead * 0.1);
+            //    }
 
-                for (; j < cnt; j += 2)
-                {
-                    if (mf.bnd.IsPointInsideTurnArea(arr2[j]) != 0)
-                    {
-                        pointOutOfBnd = true;
-                        if (j > 0) j--;
-                        break;
-                    }
-                }
-                //no error handeling since we just were 1 meter back and it was okay then
-            }
+            //    for (; j < cnt; j += 2)
+            //    {
+            //        if (mf.bnd.IsPointInsideTurnArea(arr2[j]) != 0)
+            //        {
+            //            pointOutOfBnd = true;
+            //            if (j > 0) j--;
+            //            break;
+            //        }
+            //    }
+            //    //no error handeling since we just were 1 meter back and it was okay then
+            //}
 
 
             //step 5, we ar now inside turnfence by 0-0.1 meters, move the turn forward until it hits the turnfence in steps of 0.05 meters
@@ -2249,8 +2249,8 @@ namespace AgOpenGPS
 
                 for (int i = 0; i < cnt; i++)
                 {
-                    arr2[i].easting += (sinHead * 0.05);
-                    arr2[i].northing += (cosHead * 0.05);
+                    arr2[i].easting += (sinHead * 0.1);
+                    arr2[i].northing += (cosHead * 0.1);
                 }
 
                 for (int a = 0; a < cnt; a++)
