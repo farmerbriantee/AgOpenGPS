@@ -828,6 +828,8 @@ namespace AgOpenGPS
                             {
                                 for (int i = 0; i < loops; i++)
                                 {
+                                    if ((inClosestTurnPt.segmentIndex + 1) >= turnCount) inClosestTurnPt.segmentIndex = -1;
+
                                     tPoint = mf.bnd.bndList[inClosestTurnPt.turnLineNum].turnLine[inClosestTurnPt.segmentIndex + 1];
                                     inClosestTurnPt.segmentIndex++;
                                     if (inClosestTurnPt.segmentIndex >= turnCount)
@@ -1454,8 +1456,6 @@ namespace AgOpenGPS
 
         public void SmoothYouTurn(int smPts)
         {
-            return;
-
             //count the reference list of original curve
             int cnt = ytList.Count;
 
