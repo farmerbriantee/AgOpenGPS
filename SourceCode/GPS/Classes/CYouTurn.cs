@@ -272,9 +272,8 @@ namespace AgOpenGPS
                 }
                 else
                 {
-                    isTurnCreationTooClose = true;
                     //set the flag to Critical stop machine
-                    if (isTurnCreationTooClose) mf.mc.isOutOfBounds = true;
+                    FailCreate();
                     break;
                 }
             }
@@ -704,11 +703,7 @@ namespace AgOpenGPS
                         //if it couldn't be done this will trigger
                         if (ytList.Count < 5 || semiCircleIndex == -1)
                         {
-                            isOutOfBounds = true;
-                            isTurnCreationTooClose = true;
-                            youTurnPhase = 4;
-                            mf.mc.isOutOfBounds = true;
-                            //mf.TimedMessageBox(5000, "Timed", "Time:  " + timer.ElapsedMilliseconds.ToString());
+                            FailCreate();
                             return false;
                         }
 
@@ -771,11 +766,7 @@ namespace AgOpenGPS
                             pointPos.northing -= cosHead;
                             if (stopIfWayOut == 200)
                             {
-                                //mf.TimedMessageBox(5000, "Timed", "Time:  " + timer.ElapsedMilliseconds.ToString());
-                                isTurnCreationTooClose = true;
-                                isOutOfBounds = true;
-                                youTurnPhase = 4; //turn is not valid since it is outside
-                                mf.mc.isOutOfBounds = true;
+                                FailCreate();
                                 return false;
                             }
                         }
@@ -818,11 +809,7 @@ namespace AgOpenGPS
 
                         if (ytList2.Count < 5 || semiCircleIndex == -1)
                         {
-                            //mf.TimedMessageBox(5000, "Timed", "Time:  " + timer.ElapsedMilliseconds.ToString());
-                            isOutOfBounds = true;
-                            isTurnCreationTooClose = true;
-                            mf.mc.isOutOfBounds = true;
-                            youTurnPhase = 4;
+                            FailCreate();
                             return false;
                         }
 
@@ -865,11 +852,7 @@ namespace AgOpenGPS
                         //we have 2 different turnLine crossings
                         if (inClosestTurnPt.turnLineNum != outClosestTurnPt.turnLineNum)
                         {
-                            //fail
-                            isOutOfBounds = true;
-                            isTurnCreationTooClose = true;
-                            mf.mc.isOutOfBounds = true;
-                            youTurnPhase = 4;
+                            FailCreate();
                             return false;
                         }
 
@@ -892,6 +875,11 @@ namespace AgOpenGPS
                             if (heady >= glm.twoPI) heady -= glm.twoPI;
 
                             AddSequenceLines(heady);
+                            if (isTurnCreationTooClose)
+                            {
+                                FailCreate();
+                                return false;
+                            }
 
                             double distance;
                             pointSpacing = (pointSpacing + 0.1) * (pointSpacing + 0.1);
@@ -903,7 +891,7 @@ namespace AgOpenGPS
                                 int j = i + 1;
                                 if (j == cnt - 1) continue;
                                 distance = glm.DistanceSquared(ytList[i], ytList[j]);
-                                if (distance > pointSpacing)
+                                if (distance > 1)
                                 {
                                     vec3 pointB = new vec3((ytList[i].easting + ytList[j].easting) / 2.0, 
                                         (ytList[i].northing + ytList[j].northing) / 2.0, ytList[i].heading);
@@ -1109,6 +1097,14 @@ namespace AgOpenGPS
             {
                 return false;
             }
+        }
+
+        public void FailCreate()
+        {
+            //fail
+            isTurnCreationTooClose = true;
+            mf.mc.isOutOfBounds = true;
+            youTurnPhase = 4;
         }
 
         public bool KStyleTurn(bool isTurnRight, double headAB)
@@ -1988,12 +1984,10 @@ namespace AgOpenGPS
                     onA = A;
                     double distancePiv = glm.Distance(ytList[A], pivot);
 
-                    if (distancePiv > 1 || (B >= ptCount - 1))
+                    if (distancePiv > 2 || (B >= ptCount - 1))
                     {
-                        {
-                            CompleteYouTurn();
-                            return false;
-                        }
+                        CompleteYouTurn();
+                        return false;
                     }
 
                     //get the distance from currently active AB line
