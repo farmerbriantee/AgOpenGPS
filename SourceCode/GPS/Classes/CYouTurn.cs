@@ -286,7 +286,7 @@ namespace AgOpenGPS
             else
             {
                 //Full emergency stop code goes here, it thinks its auto turn, but its not!
-                mf.distancePivotToTurnLine = -3333;
+                return false;
             }
 
             //delta between AB heading and boundary closest point heading
@@ -575,7 +575,7 @@ namespace AgOpenGPS
                         else
                         {
                             //Full emergency stop code goes here, it thinks its auto turn, but its not!
-                            mf.distancePivotToTurnLine = -3333;
+                            return false;
                         }
 
                         //distance from TurnLine for trigger added in youturn form, include the 3 m bump forward
@@ -671,7 +671,6 @@ namespace AgOpenGPS
                     //*********   Albin Vigre - wide uturn line following **************************************************
 
                     double pointSpacing = youTurnRadius * 0.1;
-                    int bndNumFirst = -1;
 
                     //step 1 turn in to the turnline
                     if (youTurnPhase == 0)
@@ -685,22 +684,13 @@ namespace AgOpenGPS
                         FindClosestTurnPoint(onPurePoint);
 
                         //save a copy for first point
-                        firstClosestTurnPt = new CClose(closestTurnPt);
+                        inClosestTurnPt = new CClose(closestTurnPt);
 
                         //already no turnline
-                        if (firstClosestTurnPt.bndNum == -1) return false;
+                        if (inClosestTurnPt.segmentIndex == -1) return false;
 
-                        //or did we lose the turnLine - we are on the highway cuz we left the outer/inner turn boundary
-                        if (closestTurnPt.segmentIndex != -1)
-                        {
-                            //calculate the distance to the turnline
-                            mf.distancePivotToTurnLine = glm.Distance(mf.pivotAxlePos, closestTurnPt.closePt);
-                        }
-                        else
-                        {
-                            //Full emergency stop code goes here, it thinks its auto turn, but its not!
-                            mf.distancePivotToTurnLine = -3333;
-                        }
+                        //calculate the distance to the turnline
+                        mf.distancePivotToTurnLine = glm.Distance(mf.pivotAxlePos, closestTurnPt.closePt);
 
                         //point on AB line closest to pivot axle point from ABLine PurePursuit aka where we are
                         rEastYT = mf.ABLine.rEastAB;
@@ -742,7 +732,7 @@ namespace AgOpenGPS
                             ytList.Add(currentPos);
                         }
 
-                        //move the half cirkle to tangent the turnline
+                        //move the half circle to tangent the turnline
                         ytList = MoveTurnInsideTurnLine(ytList, head);
 
                         //if it couldn't be done this will trigger
@@ -766,7 +756,7 @@ namespace AgOpenGPS
                         {
                             if (i == semiCircleIndex)
                                 break;
-                            if (arr23[i].heading > glm.twoPI) arr23[i].heading -= glm.twoPI;
+                            if (arr23[i].heading >= glm.twoPI) arr23[i].heading -= glm.twoPI;
                             else if (arr23[i].heading < 0) arr23[i].heading += glm.twoPI;
                             ytList.Add(arr23[i]);
                         }
@@ -857,7 +847,7 @@ namespace AgOpenGPS
                         //move the half cirkel to tangent the turnline
                         ytList2 = MoveTurnInsideTurnLine(ytList2, head);
 
-                        if (ytList.Count < 5 || semiCircleIndex == -1)
+                        if (ytList2.Count < 5 || semiCircleIndex == -1)
                         {
                             //mf.TimedMessageBox(5000, "Timed", "Time:  " + timer.ElapsedMilliseconds.ToString());
                             isOutOfBounds = true;
@@ -879,15 +869,12 @@ namespace AgOpenGPS
                             if (i == semiCircleIndex)
                                 break;
                             arr23[i].heading += Math.PI;
-                            if (arr23[i].heading > Math.PI * 2) arr23[i].heading -= glm.twoPI;
+                            if (arr23[i].heading >= glm.twoPI) arr23[i].heading -= glm.twoPI;
                             else if (arr23[i].heading < 0) arr23[i].heading += glm.twoPI;
                             ytList2.Add(arr23[i]);
                         }
 
                         youTurnPhase = 2;
-                        //time1 = timer.ElapsedMilliseconds;
-                        //timer.Stop();
-                        //timer.Reset();
                         return true;
                     }
 
@@ -900,10 +887,19 @@ namespace AgOpenGPS
 
                         //finds out start and goal point along the tunline
                         //gives a very smal error tho
+
+
                         FindClosestTurnPoint(ytList[cnt1 - 1]);
-                        vec3 startPoint = closestTurnPt.closePt;
+                        inClosestTurnPt = new CClose(closestTurnPt);
                         FindClosestTurnPoint(ytList2[cnt2 - 1]);
-                        vec3 goalPoint = closestTurnPt.closePt;
+                        outClosestTurnPt = new CClose(closestTurnPt);
+
+                        //we have 2 different turnLine crossings
+                        if (inClosestTurnPt.turnLineNum != outClosestTurnPt.turnLineNum)
+                            return false;
+
+                        vec3 startPoint = inClosestTurnPt.closePt;
+                        vec3 goalPoint = outClosestTurnPt.closePt;
 
                         //we will find the closest turnline point to the start- and goalpoint int the list of turnline points
                         int startPointIndex = 0;
@@ -1081,7 +1077,10 @@ namespace AgOpenGPS
 
         //point at the farthest turn segment from pivotAxle
         public CClose closestTurnPt = new CClose();
-        public CClose firstClosestTurnPt = new CClose();
+
+        //where the in and out tangents cross for ALbin curve
+        public CClose inClosestTurnPt = new CClose();
+        public CClose outClosestTurnPt = new CClose();
 
         public void FindClosestTurnPoint(vec3 fromPt)
         {
@@ -1127,7 +1126,7 @@ namespace AgOpenGPS
                             mf.bnd.bndList[j].turnLine[i + 1].northing - mf.bnd.bndList[j].turnLine[i].northing);
                         if (hed < 0) hed += glm.twoPI;
                         cClose.closePt.heading = hed;
-                        cClose.bndNum = j;
+                        cClose.turnLineNum = j;
                         cClose.segmentIndex = i;
 
                         turnClosestList.Add(new CClose(cClose));
@@ -2073,20 +2072,20 @@ namespace AgOpenGPS
         public class CClose
         {
             public vec3 closePt = new vec3();
-            public int bndNum;
+            public int turnLineNum;
             public int segmentIndex;
 
             public CClose()
             {
                 closePt = new vec3();
-                bndNum = -1;
+                turnLineNum = -1;
                 segmentIndex = -1;
             }
 
             public CClose(CClose _clo)
             {
                 closePt = new vec3(_clo.closePt);
-                bndNum = _clo.bndNum;
+                turnLineNum = _clo.turnLineNum;
                 segmentIndex = _clo.segmentIndex;
             }
         }
