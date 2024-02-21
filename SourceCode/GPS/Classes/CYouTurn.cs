@@ -684,11 +684,11 @@ namespace AgOpenGPS
                         //how far are we from any turn boundary
                         FindClosestTurnPoint(onPurePoint);
 
-                        // record the first uturn line index
-                        bndNumFirst = closestTurnPt.bndNum;
+                        //save a copy for first point
+                        firstClosestTurnPt = new CClose(closestTurnPt);
 
                         //already no turnline
-                        if (bndNumFirst == -1) return false;
+                        if (firstClosestTurnPt.bndNum == -1) return false;
 
                         //or did we lose the turnLine - we are on the highway cuz we left the outer/inner turn boundary
                         if (closestTurnPt.segmentIndex != -1)
@@ -1081,6 +1081,7 @@ namespace AgOpenGPS
 
         //point at the farthest turn segment from pivotAxle
         public CClose closestTurnPt = new CClose();
+        public CClose firstClosestTurnPt = new CClose();
 
         public void FindClosestTurnPoint(vec3 fromPt)
         {
