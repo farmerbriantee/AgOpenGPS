@@ -633,7 +633,7 @@ namespace AgOpenGPS
                 }
                 else
                 {   
-                    //*********   Albin Vigre - wide uturn line following **************************************************
+                    //**********************************************Albin Vigre - wide uturn line following *****************
 
                     double pointSpacing = youTurnRadius * 0.1;
 
@@ -741,18 +741,21 @@ namespace AgOpenGPS
                         if (!isHeadingSameWay) head += Math.PI;
                         if (head >= glm.twoPI) head -= glm.twoPI;
 
-                        double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isYouTurnRight ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0);
+                        double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth 
+                            + (isYouTurnRight ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0);
 
                         //we move the turnline crossing point perpenicualar out from the ABline
                         CDubins.turningRadius = turnOffset;
                         vec2 pointpos;
                         if (!isTurnRight)
                         {
-                            pointpos = DubinsMath.GetRightCircleCenterPos(new vec2(inClosestTurnPt.closePt.easting, inClosestTurnPt.closePt.northing), head);
+                            pointpos = DubinsMath.GetRightCircleCenterPos(new vec2(inClosestTurnPt.closePt.easting, 
+                                inClosestTurnPt.closePt.northing), head);
                         }
                         else
                         {
-                            pointpos = DubinsMath.GetLeftCircleCenterPos(new vec2(inClosestTurnPt.closePt.easting, inClosestTurnPt.closePt.northing), head);
+                            pointpos = DubinsMath.GetLeftCircleCenterPos(new vec2(inClosestTurnPt.closePt.easting, 
+                                inClosestTurnPt.closePt.northing), head);
                         }
 
                         vec3 pointPos = new vec3(pointpos.easting, pointpos.northing, head);
@@ -824,7 +827,8 @@ namespace AgOpenGPS
                         }
 
                         //we need to delete the points after the point that is outside
-                        //we need to turn the heading of the poinnts since they were created the wrong way, and delete the point after the one that is out of turnbnd
+                        //we need to turn the heading of the poinnts since they were created the wrong way,
+                        //and delete the point after the one that is out of turnbnd
                         int cnt = ytList2.Count;
                         vec3[] arr23 = new vec3[cnt];
                         ytList2.CopyTo(arr23);
@@ -901,7 +905,8 @@ namespace AgOpenGPS
                                 distance = glm.DistanceSquared(ytList[i], ytList[j]);
                                 if (distance > pointSpacing)
                                 {
-                                    vec3 pointB = new vec3((ytList[i].easting + ytList[j].easting) / 2.0, (ytList[i].northing + ytList[j].northing) / 2.0, ytList[i].heading);
+                                    vec3 pointB = new vec3((ytList[i].easting + ytList[j].easting) / 2.0, 
+                                        (ytList[i].northing + ytList[j].northing) / 2.0, ytList[i].heading);
 
                                     ytList.Insert(j, pointB);
                                     cnt = ytList.Count;
@@ -919,7 +924,8 @@ namespace AgOpenGPS
                             for (int i = 2; i < cnt; i++)
                             {
                                 vec3 pt3 = new vec3(arr[i]);
-                                pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i].easting, arr[i + 1].northing - arr[i].northing);
+                                pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i].easting, 
+                                    arr[i + 1].northing - arr[i].northing);
                                 if (pt3.heading < 0) pt3.heading += glm.twoPI;
                                 ytList.Add(pt3);
                             }
@@ -952,7 +958,7 @@ namespace AgOpenGPS
                                 {
                                     //heading between the boundarylines
                                     double hed = Math.Atan2(mf.bnd.bndList[i].turnLine[j + 1].easting - mf.bnd.bndList[i].turnLine[j].easting,
-                                 mf.bnd.bndList[i].turnLine[j + 1].northing - mf.bnd.bndList[i].turnLine[j].northing);
+                                        mf.bnd.bndList[i].turnLine[j + 1].northing - mf.bnd.bndList[i].turnLine[j].northing);
                                     if (hed < 0) hed += glm.twoPI;
 
                                     //chek if the heading matches
