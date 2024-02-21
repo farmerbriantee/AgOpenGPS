@@ -699,6 +699,7 @@ namespace AgOpenGPS
                         double head = mf.ABLine.abHeading;
 
                         if (!isHeadingSameWay) head += Math.PI;
+                        if (head >= glm.twoPI) head -= glm.twoPI;
 
                         //thistance to turnline from where we are
                         double turnDiagDistance = mf.distancePivotToTurnLine;
@@ -844,7 +845,7 @@ namespace AgOpenGPS
                             ytList2.Add(pointPos);
                         }
 
-                        //move the half cirkel to tangent the turnline
+                        //move the half circle to tangent the turnline
                         ytList2 = MoveTurnInsideTurnLine(ytList2, head);
 
                         if (ytList2.Count < 5 || semiCircleIndex == -1)
@@ -886,9 +887,6 @@ namespace AgOpenGPS
                         int cnt2 = ytList2.Count;
 
                         //finds out start and goal point along the tunline
-                        //gives a very smal error tho
-
-
                         FindClosestTurnPoint(ytList[cnt1 - 1]);
                         inClosestTurnPt = new CClose(closestTurnPt);
                         FindClosestTurnPoint(ytList2[cnt2 - 1]);
@@ -1046,6 +1044,7 @@ namespace AgOpenGPS
                         isHeadingSameWay = mf.ABLine.isHeadingSameWay;
                         double head = mf.ABLine.abHeading;
                         if (isHeadingSameWay) head += Math.PI;
+                        if (head >= glm.twoPI) head -= glm.twoPI;
 
                         AddSequenceLines(head);
                         isOutOfBounds = false;
