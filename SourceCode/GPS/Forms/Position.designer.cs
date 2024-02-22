@@ -936,7 +936,6 @@ namespace AgOpenGPS
 
             //reset the fault distance to an appropriate weird number
             //-2222 means it fell out of the loop completely
-            //-3333 means unable to find a nearest point at all even though inside the work area of field
             // -4444 means cross trac error too high
             distancePivotToTurnLine = -4444;
 

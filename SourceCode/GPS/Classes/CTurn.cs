@@ -5,14 +5,14 @@ namespace AgOpenGPS
 {
     public partial class CBoundary
     {
-        // the list of possible bounds points
-        public List<vec3> turnClosestList = new List<vec3>();
 
         public int turnSelected, closestTurnNum;
         public double iE = 0, iN = 0;
+        // the list of possible bounds points
+        //public List<vec3> turnClosestList = new List<vec3>();
 
         //point at the farthest turn segment from pivotAxle
-        public vec3 closestTurnPt = new vec3(-10000, -10000, 9);
+        //public vec3 closestTurnPt = new vec3(-10000, -10000, 9);
 
         public int IsPointInsideTurnArea(vec3 pt)
         {
@@ -31,84 +31,84 @@ namespace AgOpenGPS
             return -1; //is outside border turn
         }
 
-        public vec3 closePt;
+        //public vec3 closePt;
 
-        public void FindClosestTurnPoint(vec3 fromPt)
-        {
-            double eP = fromPt.easting;
-            double nP = fromPt.northing;
-            double eAB, nAB;
+        //public void FoindClosestTurnPoint(vec3 fromPt)
+        //{
+        //    double eP = fromPt.easting;
+        //    double nP = fromPt.northing;
+        //    double eAB, nAB;
 
-            if (mf.ABLine.isHeadingSameWay)
-            {
-                eAB = mf.ABLine.currentLinePtB.easting;
-                nAB = mf.ABLine.currentLinePtB.northing;
-            }
-            else
-            {
-                eAB = mf.ABLine.currentLinePtA.easting;
-                nAB = mf.ABLine.currentLinePtA.northing;
-            }
+        //    if (mf.ABLine.isHeadingSameWay)
+        //    {
+        //        eAB = mf.ABLine.currentLinePtB.easting;
+        //        nAB = mf.ABLine.currentLinePtB.northing;
+        //    }
+        //    else
+        //    {
+        //        eAB = mf.ABLine.currentLinePtA.easting;
+        //        nAB = mf.ABLine.currentLinePtA.northing;
+        //    }
 
-            turnClosestList.Clear();
+        //    turnClosestList.Clear();
 
-            for (int j = 0; j < bndList.Count; j++)
-            {
-                for (int i = 0; i < mf.bnd.bndList[j].turnLine.Count - 1; i++)
-                {
-                    int res = mf.yt.GetLineIntersection(
-                        mf.bnd.bndList[j].turnLine[i].easting,
-                        mf.bnd.bndList[j].turnLine[i].northing,
-                        mf.bnd.bndList[j].turnLine[i + 1].easting,
-                        mf.bnd.bndList[j].turnLine[i + 1].northing,
-                        eP, nP, eAB, nAB, ref iE, ref iN
-                        );
+        //    for (int j = 0; j < bndList.Count; j++)
+        //    {
+        //        for (int i = 0; i < mf.bnd.bndList[j].turnLine.Count - 1; i++)
+        //        {
+        //            int res = mf.yt.GetLineIntersection(
+        //                mf.bnd.bndList[j].turnLine[i].easting,
+        //                mf.bnd.bndList[j].turnLine[i].northing,
+        //                mf.bnd.bndList[j].turnLine[i + 1].easting,
+        //                mf.bnd.bndList[j].turnLine[i + 1].northing,
+        //                eP, nP, eAB, nAB, ref iE, ref iN
+        //                );
 
-                    if (res == 1)
-                    {
-                        closePt.easting = iE;
-                        closePt.northing = iN;
+        //            if (res == 1)
+        //            {
+        //                closePt.easting = iE;
+        //                closePt.northing = iN;
 
-                        double hed = Math.Atan2(mf.bnd.bndList[j].turnLine[i + 1].easting - mf.bnd.bndList[j].turnLine[i].easting,
-                            mf.bnd.bndList[j].turnLine[i + 1].northing - mf.bnd.bndList[j].turnLine[i].northing);
-                        if (hed < 0) hed += glm.twoPI;
-                        closePt.heading = hed;
-                        turnClosestList.Add(closePt);
-                    }
-                }
-            }
+        //                double hed = Math.Atan2(mf.bnd.bndList[j].turnLine[i + 1].easting - mf.bnd.bndList[j].turnLine[i].easting,
+        //                    mf.bnd.bndList[j].turnLine[i + 1].northing - mf.bnd.bndList[j].turnLine[i].northing);
+        //                if (hed < 0) hed += glm.twoPI;
+        //                closePt.heading = hed;
+        //                turnClosestList.Add(closePt);
+        //            }
+        //        }
+        //    }
 
-            //determine closest point
-            double minDistance = double.MaxValue;
+        //    //determine closest point
+        //    double minDistance = double.MaxValue;
 
-            if (turnClosestList.Count == 1)
-            {
-                closestTurnPt.easting = turnClosestList[0].easting;
-                closestTurnPt.northing = turnClosestList[0].northing;
-                closestTurnPt.heading = turnClosestList[0].heading;
+        //    if (turnClosestList.Count == 1)
+        //    {
+        //        closestTurnPt.easting = turnClosestList[0].easting;
+        //        closestTurnPt.northing = turnClosestList[0].northing;
+        //        closestTurnPt.heading = turnClosestList[0].heading;
 
-                if (closestTurnPt.heading < 0) closestTurnPt.heading += glm.twoPI;
-                return;
-            }
+        //        if (closestTurnPt.heading < 0) closestTurnPt.heading += glm.twoPI;
+        //        return;
+        //    }
 
-            if (turnClosestList.Count > 0 || turnClosestList.Count != 0)
-            {
-                for (int i = 0; i < turnClosestList.Count; i++)
-                {
-                    double dist = (((fromPt.easting - turnClosestList[i].easting) * (fromPt.easting - turnClosestList[i].easting))
-                                    + ((fromPt.northing - turnClosestList[i].northing) * (fromPt.northing - turnClosestList[i].northing)));
+        //    if (turnClosestList.Count > 0 || turnClosestList.Count != 0)
+        //    {
+        //        for (int i = 0; i < turnClosestList.Count; i++)
+        //        {
+        //            double dist = (((fromPt.easting - turnClosestList[i].easting) * (fromPt.easting - turnClosestList[i].easting))
+        //                            + ((fromPt.northing - turnClosestList[i].northing) * (fromPt.northing - turnClosestList[i].northing)));
 
-                    if (minDistance >= dist)
-                    {
-                        minDistance = dist;
-                        closestTurnPt.easting = turnClosestList[i].easting;
-                        closestTurnPt.northing = turnClosestList[i].northing;
-                        closestTurnPt.heading = turnClosestList[i].heading;
-                    }
-                }
-                if (closestTurnPt.heading < 0) closestTurnPt.heading += glm.twoPI;
-            }
-        }
+        //            if (minDistance >= dist)
+        //            {
+        //                minDistance = dist;
+        //                closestTurnPt.easting = turnClosestList[i].easting;
+        //                closestTurnPt.northing = turnClosestList[i].northing;
+        //                closestTurnPt.heading = turnClosestList[i].heading;
+        //            }
+        //        }
+        //        if (closestTurnPt.heading < 0) closestTurnPt.heading += glm.twoPI;
+        //    }
+        //}
 
         public void BuildTurnLines()
         {
