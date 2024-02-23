@@ -972,10 +972,10 @@ namespace AgOpenGPS
                                 else yt.BuildCurveDubinsYouTurn(yt.isYouTurnRight, pivotAxlePos);
                             }
 
-                            if (yt.uTurnStyle == 0 && yt.youTurnPhase == 3)
-                            {
-                                yt.SmoothYouTurn(yt.uTurnSmoothing);
-                            }
+                            //if (yt.uTurnStyle == 0 && yt.youTurnPhase == 3)
+                            //{
+                            //    //yt.SmoothYouTurn(yt.uTurnSmoothing);
+                            //}
 
                             if (yt.isTurnCreationTooClose && !yt.turnTooCloseTrigger)
                             {
@@ -986,7 +986,7 @@ namespace AgOpenGPS
                         else //wait to trigger the actual turn since its made and waiting
                         {
                             //distance from current pivot to first point of youturn pattern
-                            distancePivotToTurnLine = glm.Distance(yt.ytList[5], pivotAxlePos);
+                            if (yt.ytList.Count > 5) distancePivotToTurnLine = glm.Distance(yt.ytList[5], pivotAxlePos);
 
                             if ((distancePivotToTurnLine <= 20.0) && (distancePivotToTurnLine >= 18.0) && !yt.isYouTurnTriggered)
 

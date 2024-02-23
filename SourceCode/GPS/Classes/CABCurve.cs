@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
+using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
@@ -200,7 +201,7 @@ namespace AgOpenGPS
                     {
                         double dist = ((point.easting - curList[curList.Count - 1].easting) * (point.easting - curList[curList.Count - 1].easting))
                             + ((point.northing - curList[curList.Count - 1].northing) * (point.northing - curList[curList.Count - 1].northing));
-                        if (dist > 1.5)
+                        if (dist > 2)
                             curList.Add(point);
                     }
                     else curList.Add(point);
@@ -269,7 +270,7 @@ namespace AgOpenGPS
                 //curList.AddRange(arr);
                 cnt = arr.Length;
                 double distance;
-                double spacing = 1.5;
+                double spacing = 3;
 
                 //add the first point of loop - it will be p1
                 curList.Add(arr[0]);
@@ -332,8 +333,8 @@ namespace AgOpenGPS
                         for (int i = 1; i < 10; i++)
                         {
                             vec3 pt = new vec3(curList[ptCnt]);
-                            pt.easting += (Math.Sin(pt.heading) * i);
-                            pt.northing += (Math.Cos(pt.heading) * i);
+                            pt.easting += (Math.Sin(pt.heading) * i * 2);
+                            pt.northing += (Math.Cos(pt.heading) * i * 2);
                             curList.Add(pt);
                         }
                         ptCnt = curList.Count - 1;
@@ -349,8 +350,8 @@ namespace AgOpenGPS
                         for (int i = 1; i < 10; i++)
                         {
                             vec3 pt = new vec3(pt33);
-                            pt.easting -= (Math.Sin(pt.heading) * i);
-                            pt.northing -= (Math.Cos(pt.heading) * i);
+                            pt.easting -= (Math.Sin(pt.heading) * i * 2);
+                            pt.northing -= (Math.Cos(pt.heading) * i * 2);
                             curList.Insert(0, pt);
                         }
                     }
@@ -761,6 +762,14 @@ namespace AgOpenGPS
                         GL.End();
                     }
                     mf.yt.DrawYouTurn();
+
+                    GL.PointSize(2.0f);
+                    GL.Begin(PrimitiveType.Points);
+                    GL.Color3(0.20f, 1.0f, 0.950f);
+                    for (int h = 0; h < curList.Count; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
+                    GL.End();
+                    GL.PointSize(1.0f);
+
                 }
             }
             GL.PointSize(1.0f);
