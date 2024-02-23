@@ -54,6 +54,10 @@ namespace AgOpenGPS
         public List<vec3> ytList = new List<vec3>();
         private List<vec3> ytList2 = new List<vec3>();
 
+        //the list of points of next curve to build out turn and point over
+        public List<vec3> outList = new List<vec3>();
+        public vec3 nextLookPos = new vec3(0, 0, 0);
+
         //for 3Pt turns - second turn
         public List<vec3> pt3ListSecondLine = new List<vec3>();
 
@@ -212,7 +216,7 @@ namespace AgOpenGPS
                             }
                         }
 
-                        if (stopIfWayOut == 100 || (mf.distancePivotToTurnLine < 3))
+                        if (stopIfWayOut == 300 || (mf.distancePivotToTurnLine < 3))
                         {
                             //for some reason it doesn't go inside boundary, return empty list
                             return false;
@@ -226,10 +230,24 @@ namespace AgOpenGPS
                         //add start extension from curve points
                         curveIndex -= count;
 
-                        for (int i = 1; i < 6; i++)
+                        if (!isTurnRight)
+                        {
+                            nextLookPos.easting = pivotPos.easting + (Math.Cos(-pivotPos.heading) * turnOffset);
+                            nextLookPos.northing = pivotPos.northing + (Math.Sin(-pivotPos.heading) * turnOffset);
+                        }
+                        else
+                        {
+                            nextLookPos.easting = pivotPos.easting - (Math.Cos(-pivotPos.heading) * turnOffset);
+                            nextLookPos.northing = pivotPos.northing - (Math.Sin(-pivotPos.heading) * turnOffset);
+                        }
+
+                        mf.curve.BuildOutGuidanceList(pivotPos);
+
+                        for (int i = 1; i < 3; i++)
                         {
                             ytList.Insert(0, new vec3(mf.curve.curList[curveIndex + i * count]));
                         }
+
 
                         iE = mf.curve.curList[curveIndex].easting;
                         iN = mf.curve.curList[curveIndex].northing;
@@ -2172,7 +2190,17 @@ namespace AgOpenGPS
             GL.Color3(0.195f, 0.41f, 0.980f);
             GL.End();
 
-
+            if (outList.Count > 0)
+            {
+                GL.PointSize(mf.ABLine.lineWidth + 2);
+                GL.Color3(0.3f, 0.941f, 0.980f);
+                GL.Begin(PrimitiveType.Points);
+                for (int i = 0; i < outList.Count; i++)
+                {
+                    GL.Vertex3(outList[i].easting, outList[i].northing, 0);
+                }
+                GL.End();
+            }
         }
 
         public class CClose
