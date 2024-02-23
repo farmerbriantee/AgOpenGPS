@@ -482,6 +482,7 @@ namespace AgOpenGPS
                             curList[B].easting, curList[B].northing, pivot.easting, pivot.northing))
                             goto SegmentFound;
 
+                        //realy really lost
                         return;
                     }
 
