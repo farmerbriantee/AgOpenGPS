@@ -1191,9 +1191,6 @@ namespace AgOpenGPS
             //same way as line creation or not
             bool isHeadSameWay = Math.PI - Math.Abs(Math.Abs(pivot.heading - mf.trk.gArr[idx].curvePts[rA].heading) - Math.PI) < glm.PIBy2;
 
-            //we want it to go the other way
-            isHeadSameWay = !isHeadSameWay;
-
             //which side of the closest point are we on is next
             //calculate endpoints of reference line based on closest point
             refPoint1.easting = mf.trk.gArr[idx].curvePts[rA].easting - (Math.Sin(mf.trk.gArr[idx].curvePts[rA].heading) * 300.0);
@@ -1225,17 +1222,20 @@ namespace AgOpenGPS
 
             double RefDist = (distanceFromRefLine + (isHeadSameWay ? mf.tool.offset : -mf.tool.offset)) / widthMinusOverlap;
 
-            if (RefDist < 0) howManyPathsAway = (int)(RefDist - 0.5);
-            else howManyPathsAway = (int)(RefDist + 0.5);
+            int howManyPaths = 0;
+
+            if (RefDist < 0) howManyPaths = (int)(RefDist - 0.5);
+            else howManyPaths = (int)(RefDist + 0.5);
 
             //build the current line
             mf.yt.outList?.Clear();
 
-            double distAway = widthMinusOverlap * howManyPathsAway + (isHeadSameWay ? -mf.tool.offset : mf.tool.offset) + mf.trk.gArr[idx].nudgeDistance;
+            double distAway = widthMinusOverlap * howManyPaths + 
+                (isHeadSameWay ? -mf.tool.offset : mf.tool.offset) + mf.trk.gArr[idx].nudgeDistance;
 
             distAway += (0.5 * widthMinusOverlap);
 
-            if (howManyPathsAway > -1) howManyPathsAway += 1;
+            if (howManyPaths > -1) howManyPaths += 1;
 
             double distSqAway = (distAway * distAway) - 0.01;
             vec3 point;
@@ -1378,10 +1378,6 @@ namespace AgOpenGPS
                     }
                 }
             }
-
-            lastSecond = mf.secondsSinceStart;
         }
-
     }
-
 }
