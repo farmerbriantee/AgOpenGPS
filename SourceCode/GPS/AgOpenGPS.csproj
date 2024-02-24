@@ -826,6 +826,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.lv.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="gStr.no.resx" />
     <EmbeddedResource Include="gStr.tr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.tr.Designer.cs</LastGenOutput>
