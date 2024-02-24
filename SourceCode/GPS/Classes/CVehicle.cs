@@ -183,7 +183,7 @@ namespace AgOpenGPS
 
             //draw the vehicle Body
 
-            if (!mf.isFirstHeadingSet)
+            if (!mf.isFirstHeadingSet && mf.headingFromSource != "Dual")
             {
                 GL.Enable(EnableCap.Texture2D);
                 GL.Color4(1,1,1, 0.75);
