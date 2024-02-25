@@ -69,9 +69,8 @@ namespace AgOpenGPS
 
         //makes nav panel disappear after 6 seconds
         private int navPanelCounter = 0, trackMethodPanelCounter = 0;
-        public int guideLineCounter = 0, lastGuidelineIndex, proposedGuideLineIndex;
-
         public uint sentenceCounter = 0;
+        public int guideLineCounter = 0;
 
         private int currentFieldTextCounter = 0;
 
@@ -1318,7 +1317,7 @@ namespace AgOpenGPS
                 }
 
                 //prevent flag selection if flag form is up
-                Form fc = Application.OpenForms["Forags"];
+                Form fc = Application.OpenForms["Flags"];
                 if (fc != null)
                 {
                     fc.Focus();
@@ -1356,6 +1355,7 @@ namespace AgOpenGPS
                 if (point.X > centerX - 40 && point.X < centerX + 40
                     && point.Y > centerY - 60 && point.Y < centerY + 60)
                 {
+                    if (headingFromSource == "Dual") return;
                     if (isTT)
                     {
                         MessageBox.Show(gStr.h_lblVehicleDirectionResetTouch, gStr.gsHelp);

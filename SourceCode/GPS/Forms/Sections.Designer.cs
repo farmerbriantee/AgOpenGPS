@@ -823,41 +823,49 @@ namespace AgOpenGPS
                     {
                         if (section[7].sectionBtnState != btnStates.Auto) section[7].sectionBtnState = btnStates.Auto;
                         btnSection8Man.PerformClick();
+                        btnZone8.PerformClick();
                     }
                     if ((mc.ss[mc.swOnGr0] & 64) == 64 & tool.numOfSections > 6)
                     {
                         if (section[6].sectionBtnState != btnStates.Auto) section[6].sectionBtnState = btnStates.Auto;
                         btnSection7Man.PerformClick();
+                        btnZone7.PerformClick();
                     }
                     if ((mc.ss[mc.swOnGr0] & 32) == 32 & tool.numOfSections > 5)
                     {
                         if (section[5].sectionBtnState != btnStates.Auto) section[5].sectionBtnState = btnStates.Auto;
                         btnSection6Man.PerformClick();
+                        btnZone6.PerformClick();
                     }
                     if ((mc.ss[mc.swOnGr0] & 16) == 16 & tool.numOfSections > 4)
                     {
                         if (section[4].sectionBtnState != btnStates.Auto) section[4].sectionBtnState = btnStates.Auto;
                         btnSection5Man.PerformClick();
+                        btnZone5.PerformClick();
                     }
                     if ((mc.ss[mc.swOnGr0] & 8) == 8 & tool.numOfSections > 3)
                     {
                         if (section[3].sectionBtnState != btnStates.Auto) section[3].sectionBtnState = btnStates.Auto;
                         btnSection4Man.PerformClick();
+                        btnZone4.PerformClick();
                     }
                     if ((mc.ss[mc.swOnGr0] & 4) == 4 & tool.numOfSections > 2)
                     {
                         if (section[2].sectionBtnState != btnStates.Auto) section[2].sectionBtnState = btnStates.Auto;
                         btnSection3Man.PerformClick();
+                        btnZone3.PerformClick();
                     }
                     if ((mc.ss[mc.swOnGr0] & 2) == 2 & tool.numOfSections > 1)
                     {
                         if (section[1].sectionBtnState != btnStates.Auto) section[1].sectionBtnState = btnStates.Auto;
                         btnSection2Man.PerformClick();
+                        btnZone2.PerformClick();
                     }
                     if ((mc.ss[mc.swOnGr0] & 1) == 1)
                     {
                         if (section[0].sectionBtnState != btnStates.Auto) section[0].sectionBtnState = btnStates.Auto;
                         btnSection1Man.PerformClick();
+                        btnZone1.PerformClick();
                     }
                     mc.ssP[mc.swOnGr0] = mc.ss[mc.swOnGr0];
                 } //if swONLo != 0 
@@ -920,34 +928,42 @@ namespace AgOpenGPS
                         if (((mc.ssP[mc.swOffGr0] & 128) == 128) & ((mc.ss[mc.swOffGr0] & 128) != 128) & (section[7].sectionBtnState == btnStates.Off))
                         {
                             btnSection8Man.PerformClick();
+                            btnZone8.PerformClick();
                         }
                         if (((mc.ssP[mc.swOffGr0] & 64) == 64) & ((mc.ss[mc.swOffGr0] & 64) != 64) & (section[6].sectionBtnState == btnStates.Off))
                         {
                             btnSection7Man.PerformClick();
+                            btnZone7.PerformClick();
                         }
                         if (((mc.ssP[mc.swOffGr0] & 32) == 32) & ((mc.ss[mc.swOffGr0] & 32) != 32) & (section[5].sectionBtnState == btnStates.Off))
                         {
                             btnSection6Man.PerformClick();
+                            btnZone6.PerformClick();
                         }
                         if (((mc.ssP[mc.swOffGr0] & 16) == 16) & ((mc.ss[mc.swOffGr0] & 16) != 16) & (section[4].sectionBtnState == btnStates.Off))
                         {
                             btnSection5Man.PerformClick();
+                            btnZone5.PerformClick();
                         }
                         if (((mc.ssP[mc.swOffGr0] & 8) == 8) & ((mc.ss[mc.swOffGr0] & 8) != 8) & (section[3].sectionBtnState == btnStates.Off))
                         {
                             btnSection4Man.PerformClick();
+                            btnZone4.PerformClick();
                         }
                         if (((mc.ssP[mc.swOffGr0] & 4) == 4) & ((mc.ss[mc.swOffGr0] & 4) != 4) & (section[2].sectionBtnState == btnStates.Off))
                         {
                             btnSection3Man.PerformClick();
+                            btnZone3.PerformClick();
                         }
                         if (((mc.ssP[mc.swOffGr0] & 2) == 2) & ((mc.ss[mc.swOffGr0] & 2) != 2) & (section[1].sectionBtnState == btnStates.Off))
                         {
                             btnSection2Man.PerformClick();
+                            btnZone2.PerformClick();
                         }
                         if (((mc.ssP[mc.swOffGr0] & 1) == 1) & ((mc.ss[mc.swOffGr0] & 1) != 1) & (section[0].sectionBtnState == btnStates.Off))
                         {
                             btnSection1Man.PerformClick();
+                            btnZone1.PerformClick();
                         }
                     }
                     mc.ssP[mc.swOffGr0] = mc.ss[mc.swOffGr0];
@@ -999,41 +1015,49 @@ namespace AgOpenGPS
                     {
                         section[7].sectionBtnState = btnStates.On;
                         btnSection8Man.PerformClick();
+                        btnZone8.PerformClick();
                     }
                     if ((mc.ss[mc.swOffGr0] & 64) == 64 & section[6].sectionBtnState != btnStates.Off)
                     {
                         section[6].sectionBtnState = btnStates.On;
                         btnSection7Man.PerformClick();
+                        btnZone7.PerformClick();
                     }
                     if ((mc.ss[mc.swOffGr0] & 32) == 32 & section[5].sectionBtnState != btnStates.Off)
                     {
                         section[5].sectionBtnState = btnStates.On;
                         btnSection6Man.PerformClick();
+                        btnZone6.PerformClick();
                     }
                     if ((mc.ss[mc.swOffGr0] & 16) == 16 & section[4].sectionBtnState != btnStates.Off)
                     {
                         section[4].sectionBtnState = btnStates.On;
                         btnSection5Man.PerformClick();
+                        btnZone5.PerformClick();
                     }
                     if ((mc.ss[mc.swOffGr0] & 8) == 8 & section[3].sectionBtnState != btnStates.Off)
                     {
                         section[3].sectionBtnState = btnStates.On;
                         btnSection4Man.PerformClick();
+                        btnZone4.PerformClick();
                     }
                     if ((mc.ss[mc.swOffGr0] & 4) == 4 & section[2].sectionBtnState != btnStates.Off)
                     {
                         section[2].sectionBtnState = btnStates.On;
                         btnSection3Man.PerformClick();
+                        btnZone3.PerformClick();
                     }
                     if ((mc.ss[mc.swOffGr0] & 2) == 2 & section[1].sectionBtnState != btnStates.Off)
                     {
                         section[1].sectionBtnState = btnStates.On;
                         btnSection2Man.PerformClick();
+                        btnZone2.PerformClick();
                     }
                     if ((mc.ss[mc.swOffGr0] & 1) == 1 & section[0].sectionBtnState != btnStates.Off)
                     {
                         section[0].sectionBtnState = btnStates.On;
                         btnSection1Man.PerformClick();
+                        btnZone1.PerformClick();
                     }
                 } // if swOFFLo !=0
                 if (mc.ss[mc.swOffGr1] != 0)

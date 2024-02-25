@@ -59,11 +59,15 @@ namespace AgOpenGPS
             bool[] isAlignedArr = new bool[gArr.Count];
             for (int i = 0; i < gArr.Count; i++)
             {
-                double diff = Math.PI - Math.Abs(Math.Abs(pivot.heading - gArr[i].heading) - Math.PI);
-                if (diff < 0.5 || diff > 2.64)
-                    isAlignedArr[i] = true;
+                if (gArr[i].mode == (int)TrackMode.Curve) isAlignedArr[i] = true;
                 else
-                    isAlignedArr[i] = false;
+                {
+                    double diff = Math.PI - Math.Abs(Math.Abs(pivot.heading - gArr[i].heading) - Math.PI);
+                    if (diff < 0.6 || diff > 2.54)
+                        isAlignedArr[i] = true;
+                    else
+                        isAlignedArr[i] = false;
+                }
             }
 
             double minDistA = double.MaxValue;

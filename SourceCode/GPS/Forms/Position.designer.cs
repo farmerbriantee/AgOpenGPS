@@ -934,11 +934,6 @@ namespace AgOpenGPS
 
             #region Youturn
 
-            //reset the fault distance to an appropriate weird number
-            //-2222 means it fell out of the loop completely
-            // -4444 means cross trac error too high
-            distancePivotToTurnLine = -4444;
-
             //if an outer boundary is set, then apply critical stop logic
             if (bnd.bndList.Count > 0)
             {
@@ -957,9 +952,9 @@ namespace AgOpenGPS
                     {
                         mc.isOutOfBounds = false;
                         //now check to make sure we are not in an inner turn boundary - drive thru is ok
-                        if (yt.youTurnPhase != 3)
+                        if (yt.youTurnPhase != 10)
                         {
-                            if (crossTrackError > 500)
+                            if (crossTrackError > 800)
                             {
                                 yt.ResetCreatedYouTurn();
                             }
@@ -972,9 +967,9 @@ namespace AgOpenGPS
                                 else yt.BuildCurveDubinsYouTurn(yt.isYouTurnRight, pivotAxlePos);
                             }
 
-                            if (yt.uTurnStyle == 0 && yt.youTurnPhase == 3)
+                            if (yt.uTurnStyle == 0 && yt.youTurnPhase == 10)
                             {
-                                yt.SmoothYouTurn(yt.uTurnSmoothing);
+                                yt.SmoothYouTurn(4);
                             }
 
                             if (yt.isTurnCreationTooClose && !yt.turnTooCloseTrigger)
@@ -986,7 +981,7 @@ namespace AgOpenGPS
                         else //wait to trigger the actual turn since its made and waiting
                         {
                             //distance from current pivot to first point of youturn pattern
-                            distancePivotToTurnLine = glm.Distance(yt.ytList[5], pivotAxlePos);
+                            if (yt.ytList.Count > 5) distancePivotToTurnLine = glm.Distance(yt.ytList[2], pivotAxlePos);
 
                             if ((distancePivotToTurnLine <= 20.0) && (distancePivotToTurnLine >= 18.0) && !yt.isYouTurnTriggered)
 
