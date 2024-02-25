@@ -244,18 +244,18 @@ namespace AgOpenGPS
             trk.isAutoTrack = false;
             btnAutoTrack.Image = Resources.AutoTrackOff;
 
-            if (guideLineCounter == 0) proposedGuideLineIndex = trk.idx;           
 
             if (trk.gArr.Count > 1)
             {
                 while (true)
                 {
-                    proposedGuideLineIndex++;
-                    if (proposedGuideLineIndex == trk.gArr.Count) proposedGuideLineIndex = 0;
+                    trk.idx++;
+                    if (trk.idx == trk.gArr.Count) trk.idx = 0;
 
-                    if (trk.gArr[proposedGuideLineIndex].isVisible)
+                    if (trk.gArr[trk.idx].isVisible)
                     {
-                        lastGuidelineIndex = proposedGuideLineIndex;
+                        guideLineCounter = 20;
+                        lblGuidanceLine.Visible = true;
                         break;
                     }
                 }
@@ -292,21 +292,21 @@ namespace AgOpenGPS
             trk.isAutoTrack = false;
             btnAutoTrack.Image = Resources.AutoTrackOff;
 
-            if (guideLineCounter == 0) proposedGuideLineIndex = trk.idx;
-
             if (trk.gArr.Count > 1)
             {
                 while (true)
                 {
-                    proposedGuideLineIndex--;
-                    if (proposedGuideLineIndex == -1) proposedGuideLineIndex = trk.gArr.Count - 1;
+                    trk.idx--;
+                    if (trk.idx == -1) trk.idx = trk.gArr.Count - 1;
 
-                    if (trk.gArr[proposedGuideLineIndex].isVisible)
+                    if (trk.gArr[trk.idx].isVisible)
                     {
-                        lastGuidelineIndex = proposedGuideLineIndex;
+                        guideLineCounter = 20;
+                        lblGuidanceLine.Visible = true;
                         break;
                     }
                 }
+
                 if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
                 if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
             }

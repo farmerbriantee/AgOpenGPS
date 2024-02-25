@@ -69,9 +69,8 @@ namespace AgOpenGPS
 
         //makes nav panel disappear after 6 seconds
         private int navPanelCounter = 0, trackMethodPanelCounter = 0;
-        public int guideLineCounter = 0, lastGuidelineIndex, proposedGuideLineIndex;
-
         public uint sentenceCounter = 0;
+        public int guideLineCounter = 0;
 
         private int currentFieldTextCounter = 0;
 

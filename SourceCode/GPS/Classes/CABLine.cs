@@ -375,20 +375,6 @@ namespace AgOpenGPS
                 mf.font.DrawText3D(desPtB.easting, desPtB.northing, "&B");
         }
 
-        public void DrawProposed(int i)
-        {
-            GL.LineWidth(4);
-            GL.Color3(0.30f, 0.972f, 0.32f);
-            GL.Begin(PrimitiveType.Lines);
-            {
-                GL.Vertex3(mf.trk.gArr[i].ptA.easting - (Math.Sin(mf.trk.gArr[i].heading) * abLength), 
-                    mf.trk.gArr[i].ptA.northing - (Math.Cos(mf.trk.gArr[i].heading) * abLength), 0);
-                GL.Vertex3(mf.trk.gArr[i].ptB.easting + (Math.Sin(mf.trk.gArr[i].heading) * abLength),
-                    mf.trk.gArr[i].ptB.northing + (Math.Cos(mf.trk.gArr[i].heading) * abLength), 0);
-            }
-            GL.End();
-        }
-
         public void DrawABLines()
         {
             //Draw AB Points
