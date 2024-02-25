@@ -1,6 +1,7 @@
 ﻿using OpenTK.Graphics.OpenGL;
 using System;
 using System.Collections.Generic;
+using System.IO.Compression;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -10,6 +11,7 @@ namespace AgOpenGPS
 {
     public class CYouTurn
     {
+        #region Fields
         //copy of the mainform address
         private readonly FormGPS mf;
 
@@ -88,6 +90,7 @@ namespace AgOpenGPS
         //where the in and out tangents cross for ALbin curve
         public CClose inClosestTurnPt = new CClose();
         public CClose outClosestTurnPt = new CClose();
+#endregion
 
         //constructor
         public CYouTurn(FormGPS _f)
@@ -112,7 +115,7 @@ namespace AgOpenGPS
         }
 
         //Finds the point where an AB Curve crosses the turn line
-        public bool BuildCurveDubinsYouTurn(bool isTurnRight, vec3 pivotPos)
+        public bool BuildCurveDubinsYouTurn(bool isTurnLeft, vec3 pivotPos)
         {
             //grab the vehicle widths and offsets
             double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isYouTurnRight ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0);
@@ -127,10 +130,14 @@ namespace AgOpenGPS
                 {
                     case 0: //find the crossing points
                         if (FindCurveTurnPoints(ref mf.curve.curList)) youTurnPhase = 1;
+
+                        //save a copy 
+                        inClosestTurnPt = new CClose(closestTurnPt);
+
                         ytList?.Clear();                        
 
                         int count = isHeadingSameWay ? -1 : 1;
-                        int curveIndex = closestTurnPt.curveIndex + count;
+                        int curveIndex = inClosestTurnPt.curveIndex + count;
 
                         bool pointOutOfBnd = true;
                         int stopIfWayOut = 0;
@@ -165,7 +172,7 @@ namespace AgOpenGPS
                                 currentPos.northing += pointSpacing * Math.Cos(currentPos.heading);
 
                                 //Which way are we turning?
-                                double turnParameter = isTurnRight ? -1.0 : 1.0;
+                                double turnParameter = isTurnLeft ? -1.0 : 1.0;
 
                                 //Update the heading
                                 currentPos.heading += (pointSpacing / youTurnRadius) * turnParameter;
@@ -236,7 +243,7 @@ namespace AgOpenGPS
                         //add start extension from curve points
                         curveIndex -= count;
 
-                        if (!isTurnRight)
+                        if (!isTurnLeft)
                         {
                             nextLookPos.easting = pivotPos.easting + (Math.Cos(-pivotPos.heading) * turnOffset);
                             nextLookPos.northing = pivotPos.northing + (Math.Sin(-pivotPos.heading) * turnOffset);
@@ -256,8 +263,11 @@ namespace AgOpenGPS
 
 
                         //outbound curve  -----------------------------------------------------------------------------------------
-                        
-                        if (FindCurveTurnPoints(ref outList)) youTurnPhase = 1;
+
+                        //if left turn, counts down - right counts up
+
+                        //zip down the line and find closest crossing to in crossing
+                        FindOutTurnPoint(ref outList, inClosestTurnPt.turnLineNum);
                         ytList2?.Clear();
 
                         curveIndex = closestTurnPt.curveIndex + count;
@@ -296,7 +306,7 @@ namespace AgOpenGPS
                                 currentPos.northing += pointSpacing * Math.Cos(currentPos.heading);
 
                                 //Which way are we turning?
-                                double turnParameter = isTurnRight ? 1.0 : -1.0;
+                                double turnParameter = isTurnLeft ? 1.0 : -1.0;
 
                                 //Update the heading
                                 currentPos.heading += (pointSpacing / youTurnRadius) * turnParameter;
@@ -644,7 +654,7 @@ namespace AgOpenGPS
                     }
                     else
                     {
-                        if (!isTurnRight)
+                        if (!isTurnLeft)
                         {
                             goal.easting = closestTurnPt.closePt.easting - (Math.Cos(-head) * turnOffset);
                             goal.northing = closestTurnPt.closePt.northing - (Math.Sin(-head) * turnOffset);
@@ -764,6 +774,74 @@ namespace AgOpenGPS
                 }
                 return true;
             }
+        }
+
+        public bool FindOutTurnPoint(ref List<vec3> xList, int turnNum)
+        {
+            //find closet AB Curve point that will cross and go out of bounds
+            turnClosestList?.Clear();
+
+            for (int j = 0; j < xList.Count-1; j++) 
+            {
+                for (int i = 0; i < mf.bnd.bndList[turnNum].turnLine.Count - 2; i++)
+                {
+                    int res = GetLineIntersection(
+                            mf.bnd.bndList[turnNum].turnLine[i].easting,
+                            mf.bnd.bndList[turnNum].turnLine[i].northing,
+                            mf.bnd.bndList[turnNum].turnLine[i + 1].easting,
+                            mf.bnd.bndList[turnNum].turnLine[i + 1].northing,
+
+                            xList[j].easting,
+                            xList[j].northing,
+                            xList[j + 1].easting,
+                            xList[j + 1].northing,
+
+                             ref iE, ref iN);
+
+                    if (res == 1)
+                    {
+                        closestTurnPt = new CClose();
+                        closestTurnPt.closePt.easting = iE;
+                        closestTurnPt.closePt.northing = iN;
+                        closestTurnPt.turnLineIndex = i;
+                        closestTurnPt.curveIndex = j;
+                        closestTurnPt.turnLineNum = turnNum;
+
+                        turnClosestList.Add(closestTurnPt);
+
+                        break;
+                    }
+                }
+            }
+
+            //determine closest point
+            double minDistance = double.MaxValue;
+
+            if (turnClosestList.Count > 0)
+            {
+                for (int i = 0; i < turnClosestList.Count; i++)
+                {
+                    double dist = 
+                        ((inClosestTurnPt.closePt.easting - turnClosestList[i].closePt.easting) 
+                        * (inClosestTurnPt.closePt.easting - turnClosestList[i].closePt.easting)) +
+                            
+                        ((inClosestTurnPt.closePt.northing - turnClosestList[i].closePt.northing) 
+                        * (inClosestTurnPt.closePt.northing - turnClosestList[i].closePt.northing));
+
+                    if (minDistance >= dist)
+                    {
+
+                        minDistance = dist;
+                        closestTurnPt = new CClose(turnClosestList[i]);
+                    }
+                }
+            }
+            else
+            {
+                return false;
+            }
+            
+            return true;
         }
 
         public bool FindInnerTurnPoints(ref List<vec3> xList)
@@ -901,7 +979,7 @@ namespace AgOpenGPS
             //return true;
         }
 
-        public bool BuildABLineDubinsYouTurn(bool isTurnRight)
+        public bool BuildABLineDubinsYouTurn(bool isTurnLeft)
         {
             double headAB = mf.ABLine.abHeading;
 
@@ -977,7 +1055,7 @@ namespace AgOpenGPS
                         if (head < -Math.PI) head += glm.twoPI;
                         if (head > Math.PI) head -= glm.twoPI;
 
-                        if (!isTurnRight)
+                        if (!isTurnLeft)
                         {
                             goal.easting = rEastYT - (Math.Cos(-head) * turnOffset);
                             goal.northing = rNorthYT - (Math.Sin(-head) * turnOffset);
@@ -1086,7 +1164,7 @@ namespace AgOpenGPS
                             //Which way are we turning?
                             double turnParameter = 1.0;
 
-                            if (isTurnRight) turnParameter = -1.0;
+                            if (isTurnLeft) turnParameter = -1.0;
 
                             //Update the heading
                             currentPos.heading += (pointSpacing / youTurnRadius) * turnParameter;
@@ -1140,7 +1218,7 @@ namespace AgOpenGPS
                         //we move the turnline crossing point perpenicualar out from the ABline
                         CDubins.turningRadius = turnOffset;
                         vec2 pointpos;
-                        if (!isTurnRight)
+                        if (!isTurnLeft)
                         {
                             pointpos = DubinsMath.GetRightCircleCenterPos(new vec2(inClosestTurnPt.closePt.easting, 
                                 inClosestTurnPt.closePt.northing), head);
@@ -1193,7 +1271,7 @@ namespace AgOpenGPS
                             //Which way are we turning?
                             double turnParameter = 1.0;
 
-                            if (!isTurnRight) turnParameter = -1.0; //now we turn "the wrong" way
+                            if (!isTurnLeft) turnParameter = -1.0; //now we turn "the wrong" way
 
                             //Update the heading
                             pointPos.heading += (pointSpacing / youTurnRadius) * turnParameter;
@@ -1390,7 +1468,7 @@ namespace AgOpenGPS
             else if (uTurnStyle == 1)
             {
                 // ************************************************** K Turn ***************************************
-                return (KStyleTurn(isTurnRight, headAB));
+                return (KStyleTurn(isTurnLeft, headAB));
             }
 
             //just in case
@@ -1476,7 +1554,7 @@ namespace AgOpenGPS
             youTurnPhase = 4;
         }
 
-        public bool KStyleTurn(bool isTurnRight, double headAB)
+        public bool KStyleTurn(bool isTurnLeft, double headAB)
         {
             //grab the pure pursuit point right on ABLine
             vec3 onPurePoint = new vec3(mf.ABLine.rEastAB, mf.ABLine.rNorthAB, 0);
@@ -1582,7 +1660,7 @@ namespace AgOpenGPS
 
             double arcAngle = glm.PIBy2;
             // move the goal left or right at 90 degrees
-            if (!isTurnRight) //means going right
+            if (!isTurnLeft) //means going right
             {
                 head += glm.PIBy2;
                 arcAngle -= boundaryAngleOffPerpendicular;
@@ -2057,7 +2135,7 @@ namespace AgOpenGPS
             mf.p_239.pgn[mf.p_239.uturn] = 0;
         }
 
-        public void BuildManualYouLateral(bool isTurnRight)
+        public void BuildManualYouLateral(bool isTurnLeft)
         {
             double head;
             //point on AB line closest to pivot axle point from ABLine PurePursuit
@@ -2092,7 +2170,7 @@ namespace AgOpenGPS
             rEastYT += (Math.Sin(head) * 2);
             rNorthYT += (Math.Cos(head) * 2);
 
-            if (isTurnRight)
+            if (isTurnLeft)
             {
                 mf.guidanceLookPos.easting = rEastYT + (Math.Cos(-head) * turnOffset);
                 mf.guidanceLookPos.northing = rNorthYT + (Math.Sin(-head) * turnOffset);
@@ -2108,7 +2186,7 @@ namespace AgOpenGPS
         }
 
         //build the points and path of youturn to be scaled and transformed
-        public void BuildManualYouTurn(bool isTurnRight, bool isTurnButtonTriggered)
+        public void BuildManualYouTurn(bool isTurnLeft, bool isTurnButtonTriggered)
         {
             isYouTurnTriggered = true;
 
@@ -2137,7 +2215,7 @@ namespace AgOpenGPS
             else return;
 
             //grab the vehicle widths and offsets
-            double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isTurnRight ? mf.tool.offset * 2.0 : -mf.tool.offset * 2.0);
+            double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isTurnLeft ? mf.tool.offset * 2.0 : -mf.tool.offset * 2.0);
 
             CDubins dubYouTurnPath = new CDubins();
             CDubins.turningRadius = youTurnRadius;
@@ -2162,7 +2240,7 @@ namespace AgOpenGPS
             goal.heading = head;
             if (isTurnButtonTriggered)
             {
-                if (isTurnRight)
+                if (isTurnLeft)
                 {
                     goal.easting = rEastYT - (Math.Cos(-head) * turnOffset);
                     goal.northing = rNorthYT - (Math.Sin(-head) * turnOffset);
@@ -2488,7 +2566,7 @@ namespace AgOpenGPS
             int ptCount = ytList.Count;
             if (ptCount < 3) return;
 
-            GL.PointSize(mf.ABLine.lineWidth + 10);
+            GL.PointSize(mf.ABLine.lineWidth + 4);
 
             if (isYouTurnTriggered)
                 GL.Color3(0.95f, 0.5f, 0.95f);
