@@ -169,6 +169,9 @@ namespace AgOpenGPS
 
                                 //Update the heading
                                 currentPos.heading += (pointSpacing / youTurnRadius) * turnParameter;
+                                if (currentPos.heading >= glm.twoPI) currentPos.heading -= glm.twoPI;
+                                else if (currentPos.heading < 0) currentPos.heading += glm.twoPI;
+
 
                                 //Add the new coordinate to the path
                                 ytList.Add(currentPos);
@@ -451,7 +454,7 @@ namespace AgOpenGPS
                             }
 
                             //add the out from ytList2
-                            for (int a = 0; a < ytList2.Count; a++)
+                            for (int a = ytList2.Count-1; a >-1 ; a--)
                             {
                                 ytList.Add(new vec3(ytList2[a]));
                             }
@@ -474,39 +477,39 @@ namespace AgOpenGPS
                             return false;
                         }
 
-                        //fill in the gaps
-                        double distance;
+                        ////fill in the gaps
+                        //double distance;
 
-                        int cnt = ytList.Count;
-                        for (int i = 1; i < cnt - 2; i++)
-                        {
-                            j = i + 1;
-                            if (j == cnt - 1) continue;
-                            distance = glm.DistanceSquared(ytList[i], ytList[j]);
-                            if (distance > 1)
-                            {
-                                vec3 pointB = new vec3((ytList[i].easting + ytList[j].easting) / 2.0,
-                                    (ytList[i].northing + ytList[j].northing) / 2.0, ytList[i].heading);
+                        //int cnt = ytList.Count;
+                        //for (int i = 1; i < cnt - 2; i++)
+                        //{
+                        //    j = i + 1;
+                        //    if (j == cnt - 1) continue;
+                        //    distance = glm.DistanceSquared(ytList[i], ytList[j]);
+                        //    if (distance > 1)
+                        //    {
+                        //        vec3 pointB = new vec3((ytList[i].easting + ytList[j].easting) / 2.0,
+                        //            (ytList[i].northing + ytList[j].northing) / 2.0, ytList[i].heading);
 
-                                ytList.Insert(j, pointB);
-                                cnt = ytList.Count;
-                                i--;
-                            }
-                        }
+                        //        ytList.Insert(j, pointB);
+                        //        cnt = ytList.Count;
+                        //        i--;
+                        //    }
+                        //}
 
                         //calculate the new points headings based on fore and aft of point - smoother turns
-                        cnt = ytList.Count;
+                        int cnt = ytList.Count;
                         vec3[] arr = new vec3[cnt];
                         cnt -= 2;
                         ytList.CopyTo(arr);
                         ytList.Clear();
 
 
-                        for (int i = 2; i < cnt; i++)
+                        for (int i = 0; i < cnt; i++)
                         {
                             vec3 pt3 = new vec3(arr[i]);
-                            pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting,
-                                arr[i + 1].northing - arr[i - 1].northing);
+                            pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i].easting,
+                                arr[i + 1].northing - arr[i].northing);
                             if (pt3.heading < 0) pt3.heading += glm.twoPI;
                             ytList.Add(pt3);
                         }
@@ -2053,6 +2056,7 @@ namespace AgOpenGPS
             mf.sounds.isBoundAlarming = false;
             isTurnCreationTooClose = false;
             isTurnCreationNotCrossingError = false;
+            mf.p_239.pgn[mf.p_239.uturn] = 0;
         }
 
         public void ResetCreatedYouTurn()
@@ -2061,6 +2065,7 @@ namespace AgOpenGPS
             ytList?.Clear();
             pt3ListSecondLine?.Clear();
             pt3Phase = 0;
+            mf.p_239.pgn[mf.p_239.uturn] = 0;
         }
 
         public void BuildManualYouLateral(bool isTurnRight)
@@ -2494,7 +2499,7 @@ namespace AgOpenGPS
             int ptCount = ytList.Count;
             if (ptCount < 3) return;
 
-            GL.PointSize(mf.ABLine.lineWidth + 5);
+            GL.PointSize(mf.ABLine.lineWidth + 10);
 
             if (isYouTurnTriggered)
                 GL.Color3(0.95f, 0.5f, 0.95f);

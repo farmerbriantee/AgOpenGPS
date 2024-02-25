@@ -213,7 +213,6 @@ namespace AgOpenGPS
                 yt.isTurnCreationTooClose = false;
                 yt.isTurnCreationNotCrossingError = false;
                 yt.ResetYouTurn();
-                p_239.pgn[p_239.uturn] = 0;
                 btnAutoYouTurn.Image = Properties.Resources.Youturn80;
             }
             else
@@ -227,9 +226,6 @@ namespace AgOpenGPS
 
                 //new direction so reset where to put turn diagnostic
                 yt.ResetCreatedYouTurn();
-
-                //mc.autoSteerData[mc.sdX] = 0;
-                p_239.pgn[p_239.uturn] = 0;
             }
         }
         private void btnCycleLines_Click(object sender, EventArgs e)
