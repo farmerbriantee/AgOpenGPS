@@ -136,22 +136,22 @@ namespace AgOpenGPS
         {
             if (polygon.Count > 2)
             {
-                GL.Begin(PrimitiveType.LineLoop);
+                GL.Begin(PrimitiveType.LineStrip);
                 for (int i = 0; i < polygon.Count; i++)
                 {
                     GL.Vertex3(polygon[i].easting, polygon[i].northing, 0);
                 }
                 GL.End();
 
-                GL.PointSize(6.0f);
-                GL.Begin(PrimitiveType.Points);
-                GL.Color3(1.0f, 1.0f, 0.50f);
-                for (int i = 0; i < polygon.Count; i++)
-                {
-                    GL.Vertex3(polygon[i].easting, polygon[i].northing, 0);
-                }
-                GL.End();
-                GL.PointSize(1.0f);
+                //GL.PointSize(4.0f);
+                //GL.Begin(PrimitiveType.Points);
+                //GL.Color3(1.0f, 1.0f, 0.50f);
+                //for (int i = 0; i < polygon.Count; i++)
+                //{
+                //    GL.Vertex3(polygon[i].easting, polygon[i].northing, 0);
+                //}
+                //GL.End();
+                //GL.PointSize(1.0f);
             }
         }
 
