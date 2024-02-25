@@ -169,9 +169,6 @@ namespace AgOpenGPS
 
                                 //Update the heading
                                 currentPos.heading += (pointSpacing / youTurnRadius) * turnParameter;
-                                if (currentPos.heading >= glm.twoPI) currentPos.heading -= glm.twoPI;
-                                else if (currentPos.heading < 0) currentPos.heading += glm.twoPI;
-
 
                                 //Add the new coordinate to the path
                                 ytList.Add(currentPos);
@@ -231,7 +228,9 @@ namespace AgOpenGPS
 
                         for (int a = 0; a <= semiCircleIndex; a++)
                         {
-                            ytList.Add(arr2[a]);
+                            if (arr2[a].heading >= glm.twoPI) arr2[a].heading -= glm.twoPI;
+                            if (arr2[a].heading < 0) arr2[a].heading += glm.twoPI;
+                                ytList.Add(arr2[a]);
                         }
 
                         //add start extension from curve points
@@ -460,15 +459,6 @@ namespace AgOpenGPS
                             }
                         }
 
-                        //fill in points, do headings
-
-                        //isHeadingSameWay = mf.ABLine.isHeadingSameWay;
-                        //double heady = mf.ABLine.abHeading;
-                        //if (isHeadingSameWay) heady += Math.PI;
-                        //if (heady >= glm.twoPI) heady -= glm.twoPI;
-
-                        //AddSequenceLines(heady);
-
                         ytList2?.Clear();
 
                         if (isTurnCreationTooClose)
@@ -477,28 +467,28 @@ namespace AgOpenGPS
                             return false;
                         }
 
-                        ////fill in the gaps
-                        //double distance;
+                        //fill in the gaps
+                        double distance;
 
-                        //int cnt = ytList.Count;
-                        //for (int i = 1; i < cnt - 2; i++)
-                        //{
-                        //    j = i + 1;
-                        //    if (j == cnt - 1) continue;
-                        //    distance = glm.DistanceSquared(ytList[i], ytList[j]);
-                        //    if (distance > 1)
-                        //    {
-                        //        vec3 pointB = new vec3((ytList[i].easting + ytList[j].easting) / 2.0,
-                        //            (ytList[i].northing + ytList[j].northing) / 2.0, ytList[i].heading);
+                        int cnt = ytList.Count;
+                        for (int i = 1; i < cnt - 2; i++)
+                        {
+                            j = i + 1;
+                            if (j == cnt - 1) continue;
+                            distance = glm.DistanceSquared(ytList[i], ytList[j]);
+                            if (distance > 1)
+                            {
+                                vec3 pointB = new vec3((ytList[i].easting + ytList[j].easting) / 2.0,
+                                    (ytList[i].northing + ytList[j].northing) / 2.0, ytList[i].heading);
 
-                        //        ytList.Insert(j, pointB);
-                        //        cnt = ytList.Count;
-                        //        i--;
-                        //    }
-                        //}
+                                ytList.Insert(j, pointB);
+                                cnt = ytList.Count;
+                                i--;
+                            }
+                        }
 
                         //calculate the new points headings based on fore and aft of point - smoother turns
-                        int cnt = ytList.Count;
+                        cnt = ytList.Count;
                         vec3[] arr = new vec3[cnt];
                         cnt -= 2;
                         ytList.CopyTo(arr);
@@ -842,7 +832,6 @@ namespace AgOpenGPS
             return closestTurnPt.turnLineIndex != -1 && closestTurnPt.curveIndex != -1;
             //return true;
         }
-
 
         public bool FindCurveTurnPoints(ref List<vec3> xList)
         {
