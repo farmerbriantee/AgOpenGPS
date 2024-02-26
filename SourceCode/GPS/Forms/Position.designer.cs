@@ -969,7 +969,7 @@ namespace AgOpenGPS
 
                             if (yt.uTurnStyle == 0 && yt.youTurnPhase == 10)
                             {
-                                yt.SmoothYouTurn(4);
+                                yt.SmoothYouTurn(6);
                             }
 
                             if (yt.isTurnCreationTooClose && !yt.turnTooCloseTrigger)
