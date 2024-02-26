@@ -992,16 +992,25 @@ namespace AgOpenGPS
                 //calculate the distance to the turnline
                 mf.distancePivotToTurnLine = glm.Distance(mf.pivotAxlePos, closestTurnPt.closePt);
 
+                //point on AB line closest to pivot axle point from ABLine PurePursuit aka where we are
+                rEastYT = mf.ABLine.rEastAB;
+                rNorthYT = mf.ABLine.rNorthAB;
                 isHeadingSameWay = mf.ABLine.isHeadingSameWay;
                 double head = mf.ABLine.abHeading;
 
                 if (!isHeadingSameWay) head += Math.PI;
                 if (head >= glm.twoPI) head -= glm.twoPI;
 
-                //creates half a circle starting at the crossing point
-                vec3 currentPos = new vec3(rEastYT, rNorthYT, head);
+                //thistance to turnline from where we are
+                double turnDiagDistance = mf.distancePivotToTurnLine;
 
+                //moves the point to the crossing with the turnline
+                rEastYT += (Math.Sin(head) * turnDiagDistance);
+                rNorthYT += (Math.Cos(head) * turnDiagDistance);
+
+                //creates half a circle starting at the crossing point
                 ytList.Clear();
+                vec3 currentPos = new vec3(rEastYT, rNorthYT, head);
                 ytList.Add(currentPos);
 
                 ///CDubins.turningRadius = youTurnRadius;
@@ -1120,9 +1129,9 @@ namespace AgOpenGPS
                     pointPos.northing += pointSpacing * Math.Cos(pointPos.heading);
 
                     //Which way are we turning?
-                    double turnParameter = -1.0;
+                    double turnParameter = 1.0;
 
-                    if (isTurnLeft) turnParameter = 1.0; //now we turn "the wrong" way
+                    if (!isTurnLeft) turnParameter = -1.0; //now we turn "the wrong" way
 
                     //Update the heading
                     pointPos.heading += (pointSpacing / youTurnRadius) * turnParameter;
@@ -1310,11 +1319,13 @@ namespace AgOpenGPS
                 youTurnPhase = 10;
                 turnTooCloseTrigger = false;
                 isTurnCreationTooClose = false;
+                return true;
             }
-            return true;
+        
+                return true;
         }
 
-        private bool CreateABLineOmegaTurn(bool isTurnLeft)
+    private bool CreateABLineOmegaTurn(bool isTurnLeft)
         {
             //we are doing an omega turn
             if (youTurnPhase == 0)
