@@ -80,6 +80,7 @@ namespace AgOpenGPS
 
         // Returns 1 if the lines intersect, otherwis
         public double iE = 0, iN = 0;
+        public int onA;
 
         // the list of possible bounds points
         public List<CClose> turnClosestList = new List<CClose>();
@@ -90,7 +91,7 @@ namespace AgOpenGPS
         //where the in and out tangents cross for ALbin curve
         public CClose inClosestTurnPt = new CClose();
         public CClose outClosestTurnPt = new CClose();
-#endregion
+        #endregion
 
         //constructor
         public CYouTurn(FormGPS _f)
@@ -114,7 +115,62 @@ namespace AgOpenGPS
             uTurnSmoothing = Properties.Settings.Default.setAS_uTurnSmoothing;
         }
 
+        //Duh.... What does this do....
+        public void DrawYouTurn()
+        {
+            //GL.PointSize(12.0f);
+            //GL.Begin(PrimitiveType.Points);
+            //GL.Color3(0.95f, 0.73f, 1.0f);
+            //    GL.Vertex3(iE, iN, 0);
+            //GL.End();
+            //GL.PointSize(1.0f);
+
+            int ptCount = ytList.Count;
+            if (ptCount < 3) return;
+
+            GL.PointSize(mf.ABLine.lineWidth + 2);
+
+            if (isYouTurnTriggered)
+                GL.Color3(0.95f, 0.5f, 0.95f);
+            else if (isOutOfBounds)
+                GL.Color3(0.9495f, 0.395f, 0.325f);
+            else
+                GL.Color3(0.395f, 0.925f, 0.30f);
+
+            GL.Begin(PrimitiveType.Points);
+            for (int i = 0; i < ptCount; i++)
+            {
+                GL.Vertex3(ytList[i].easting, ytList[i].northing, 0);
+            }
+            GL.End();
+
+            //if (ytList2.Count > 0)
+            //{
+            //    GL.Begin(PrimitiveType.Points);
+            //    GL.Color3(0.95f, 0.41f, 0.980f);
+            //    for (int i = 0; i < ytList2.Count; i++)
+            //    {
+            //        GL.Vertex3(ytList2[i].easting, ytList2[i].northing, 0);
+            //    }
+            //    GL.End();
+            //}
+
+            //if (outList.Count > 0)
+            //{
+            //    GL.PointSize(mf.ABLine.lineWidth + 2);
+            //    GL.Color3(0.3f, 0.941f, 0.980f);
+            //    GL.Begin(PrimitiveType.Points);
+            //    for (int i = 0; i < outList.Count; i++)
+            //    {
+            //        GL.Vertex3(outList[i].easting, outList[i].northing, 0);
+            //    }
+            //    GL.End();
+            //}
+        }
+
         //Finds the point where an AB Curve crosses the turn line
+
+        #region curve
         public bool BuildCurveDubinsYouTurn(bool isTurnLeft, vec3 pivotPos)
         {
             //grab the vehicle widths and offsets
@@ -208,7 +264,7 @@ namespace AgOpenGPS
                         {
                             goal.easting = mf.curve.curList[curveIndex - count].easting - (Math.Cos(-head) * turnOffset);
                             goal.northing = mf.curve.curList[curveIndex - count].northing - (Math.Sin(-head) * turnOffset);
-                        }                      
+                        }
 
                         goal.heading = head;
 
@@ -240,10 +296,10 @@ namespace AgOpenGPS
                     int cnt = ytList.Count;
                     for (int i = 1; i < cnt - 2; i++)
                     {
-                        distance = glm.DistanceSquared(ytList[i], ytList[i+1]);
+                        distance = glm.DistanceSquared(ytList[i], ytList[i + 1]);
                         if (distance < pointSpacing)
                         {
-                            ytList.RemoveAt(i+1);
+                            ytList.RemoveAt(i + 1);
                             i--;
                             cnt = ytList.Count;
                         }
@@ -284,7 +340,7 @@ namespace AgOpenGPS
 
                         if (stopIfWayOut == 300 || (mf.distancePivotToTurnLine < 6))
                         {
-                            FailCreate(); 
+                            FailCreate();
                             return false;
                         }
                     }
@@ -292,7 +348,7 @@ namespace AgOpenGPS
                     ytList.AddRange(arr2);
                     youTurnPhase = 2;
                     break;
-            
+
 
                 case 2:
                     AddSequenceLines(ytList[0].heading - Math.PI);
@@ -729,7 +785,7 @@ namespace AgOpenGPS
             //find closet AB Curve point that will cross and go out of bounds
             turnClosestList?.Clear();
 
-            for (int j = 0; j < xList.Count-1; j++) 
+            for (int j = 0; j < xList.Count - 1; j++)
             {
                 for (int i = 0; i < mf.bnd.bndList[turnNum].turnLine.Count - 1; i++)
                 {
@@ -769,11 +825,11 @@ namespace AgOpenGPS
             {
                 for (int i = 0; i < turnClosestList.Count; i++)
                 {
-                    double dist = 
-                        ((inClosestTurnPt.closePt.easting - turnClosestList[i].closePt.easting) 
+                    double dist =
+                        ((inClosestTurnPt.closePt.easting - turnClosestList[i].closePt.easting)
                         * (inClosestTurnPt.closePt.easting - turnClosestList[i].closePt.easting)) +
-                            
-                        ((inClosestTurnPt.closePt.northing - turnClosestList[i].closePt.northing) 
+
+                        ((inClosestTurnPt.closePt.northing - turnClosestList[i].closePt.northing)
                         * (inClosestTurnPt.closePt.northing - turnClosestList[i].closePt.northing));
 
                     if (minDistance >= dist)
@@ -788,7 +844,7 @@ namespace AgOpenGPS
             {
                 return false;
             }
-            
+
             return true;
         }
 
@@ -800,7 +856,7 @@ namespace AgOpenGPS
 
             closestTurnPt = new CClose();
 
-            for (j = 0; j < xList.Count; j ++)
+            for (j = 0; j < xList.Count; j++)
             {
                 int turnIndex = mf.bnd.IsPointInsideTurnArea(xList[j]);
                 if (turnIndex != 0)
@@ -918,7 +974,7 @@ namespace AgOpenGPS
                         xList[closestTurnPt.curveIndex + Count].easting,
                         xList[closestTurnPt.curveIndex + Count].northing,
 
-                         ref iE, ref iN );
+                         ref iE, ref iN);
 
                 if (res == 1)
                 {
@@ -940,6 +996,9 @@ namespace AgOpenGPS
             //return true;
         }
 
+        #endregion
+
+        #region ABLine
         public bool BuildABLineDubinsYouTurn(bool isTurnLeft)
         {
             if (!mf.isBtnAutoSteerOn) mf.ABLine.isHeadingSameWay
@@ -955,7 +1014,7 @@ namespace AgOpenGPS
                     if (CreateABLineOmegaTurn(isTurnLeft)) return true;
                 }
                 else
-                {   
+                {
                     return (CreateABLineWideTurn(isTurnLeft));
                 }
             }
@@ -1321,11 +1380,11 @@ namespace AgOpenGPS
                 isTurnCreationTooClose = false;
                 return true;
             }
-        
-                return true;
+
+            return true;
         }
 
-    private bool CreateABLineOmegaTurn(bool isTurnLeft)
+        private bool CreateABLineOmegaTurn(bool isTurnLeft)
         {
             //we are doing an omega turn
             if (youTurnPhase == 0)
@@ -1426,85 +1485,6 @@ namespace AgOpenGPS
             }
 
             return true;
-        }
-
-        public int GetLineIntersection(double p0x, double p0y, double p1x, double p1y,
-                double p2x, double p2y, double p3x, double p3y, ref double iEast, ref double iNorth)
-        {
-            double s1x, s1y, s2x, s2y;
-            s1x = p1x - p0x;
-            s1y = p1y - p0y;
-
-            s2x = p3x - p2x;
-            s2y = p3y - p2y;
-
-            double s, t;
-            s = (-s1y * (p0x - p2x) + s1x * (p0y - p2y)) / (-s2x * s1y + s1x * s2y);
-
-            if (s >= 0 && s <= 1)
-            {
-                //check oher side
-                t = (s2x * (p0y - p2y) - s2y * (p0x - p2x)) / (-s2x * s1y + s1x * s2y);
-                if (t >= 0 && t <= 1)
-                {
-                    // Collision detected
-                    iEast = p0x + (t * s1x);
-                    iNorth = p0y + (t * s1y);
-                    return 1;
-                }
-            }
-
-            return 0; // No collision
-        }
-
-        public void AddSequenceLines(double head)
-        {
-            //how many points striaght out
-            double lenny = 8;
-
-            vec3 pt;
-            for (int a = 0; a < lenny; a++)
-            {
-                pt.easting = ytList[0].easting + (Math.Sin(head) * 0.511);
-                pt.northing = ytList[0].northing + (Math.Cos(head) * 0.511);
-                pt.heading = ytList[0].heading;
-                ytList.Insert(0, pt);
-            }
-
-            int count = ytList.Count;
-
-            for (int i = 1; i <= lenny; i++)
-            {
-                pt.easting = ytList[count - 1].easting + (Math.Sin(head) * i * 0.511);
-                pt.northing = ytList[count - 1].northing + (Math.Cos(head) * i * 0.511);
-                pt.heading = head;
-                ytList.Add(pt);
-            }
-
-            double distancePivotToTurnLine;
-            count = ytList.Count;
-            for (int i = 0; i < count; i += 2)
-            {
-                distancePivotToTurnLine = glm.DistanceSquared(ytList[i], mf.pivotAxlePos);
-                if (distancePivotToTurnLine > 6)
-                {
-                    isTurnCreationTooClose = false;
-                }
-                else
-                {
-                    //set the flag to Critical stop machine
-                    FailCreate();
-                    break;
-                }
-            }
-        }
-
-        public void FailCreate()
-        {
-            //fail
-            isTurnCreationTooClose = true;
-            mf.mc.isOutOfBounds = true;
-            youTurnPhase = 11;
         }
 
         public bool KStyleTurn(bool isTurnLeft)
@@ -1779,6 +1759,8 @@ namespace AgOpenGPS
 
         }
 
+        #endregion
+
         public void FindClosestTurnPoint(vec3 fromPt)
         {
             double eP = fromPt.easting;
@@ -1843,7 +1825,7 @@ namespace AgOpenGPS
 
                     if (minDistance >= dist)
                     {
-                        
+
                         minDistance = dist;
                         closestTurnPt = new CClose(turnClosestList[i]);
                     }
@@ -1895,41 +1877,6 @@ namespace AgOpenGPS
                 }
             }
 
-            ////step 3, the turn is now inside by 0-1 meters so we move it out again 1 meter
-            //for (int i = 0; i < cnt; i++)
-            //{
-            //    arr2[i].easting += (sinHead);
-            //    arr2[i].northing += (cosHead);
-            //}
-
-            //step 4, the turn is now outside again we move it inside in steps of 0.1 meters
-
-            //pointOutOfBnd = true;
-            //j = 0;
-            //while (pointOutOfBnd)
-            //{
-            //    pointOutOfBnd = false;
-            //    mf.distancePivotToTurnLine = glm.Distance(arr2[0], mf.pivotAxlePos);
-
-            //    for (int i = 0; i < cnt; i++)
-            //    {
-            //        arr2[i].easting -= (sinHead * 0.1);
-            //        arr2[i].northing -= (cosHead * 0.1);
-            //    }
-
-            //    for (; j < cnt; j += 2)
-            //    {
-            //        if (mf.bnd.IsPointInsideTurnArea(arr2[j]) != 0)
-            //        {
-            //            pointOutOfBnd = true;
-            //            if (j > 0) j--;
-            //            break;
-            //        }
-            //    }
-            //    //no error handeling since we just were 1 meter back and it was okay then
-            //}
-
-
             //step 5, we ar now inside turnfence by 0-0.1 meters, move the turn forward until it hits the turnfence in steps of 0.05 meters
             while (!pointOutOfBnd)
             {
@@ -1958,137 +1905,7 @@ namespace AgOpenGPS
 
         }
 
-        public void SmoothYouTurn(int smPts)
-        {
-            //count the reference list of original curve
-            int cnt = ytList.Count;
-
-            //the temp array
-            vec3[] arr = new vec3[cnt];
-
-            //read the points before and after the setpoint
-            for (int s = 0; s < smPts / 2; s++)
-            {
-                arr[s].easting = ytList[s].easting;
-                arr[s].northing = ytList[s].northing;
-                arr[s].heading = ytList[s].heading;
-            }
-
-            for (int s = cnt - (smPts / 2); s < cnt; s++)
-            {
-                arr[s].easting = ytList[s].easting;
-                arr[s].northing = ytList[s].northing;
-                arr[s].heading = ytList[s].heading;
-            }
-
-            //average them - center weighted average
-            for (int i = smPts / 2; i < cnt - (smPts / 2); i++)
-            {
-                for (int j = -smPts / 2; j < smPts / 2; j++)
-                {
-                    arr[i].easting += ytList[j + i].easting;
-                    arr[i].northing += ytList[j + i].northing;
-                }
-                arr[i].easting /= smPts;
-                arr[i].northing /= smPts;
-                arr[i].heading = ytList[i].heading;
-            }
-
-            ytList?.Clear();
-
-            //calculate new headings on smoothed line
-            for (int i = 1; i < cnt - 1; i++)
-            {
-                arr[i].heading = Math.Atan2(arr[i + 1].easting - arr[i].easting, arr[i + 1].northing - arr[i].northing);
-                if (arr[i].heading < 0) arr[i].heading += glm.twoPI;
-                ytList.Add(arr[i]);
-            }
-        }
-
-        //called to initiate turn
-        public void YouTurnTrigger()
-        {
-            //trigger pulled
-            isYouTurnTriggered = true;
-
-            if (alternateSkips && rowSkipsWidth2 > 1)
-            {
-                if (--turnSkips == 0)
-                {
-                    isYouTurnRight = !isYouTurnRight;
-                    turnSkips = rowSkipsWidth2 * 2 - 1;
-                }
-                else if (previousBigSkip = !previousBigSkip)
-                    rowSkipsWidth = rowSkipsWidth2 - 1;
-                else
-                    rowSkipsWidth = rowSkipsWidth2;
-            }
-            else isYouTurnRight = !isYouTurnRight;
-
-            if (uTurnStyle == 0)
-            {
-                mf.guidanceLookPos.easting = ytList[ytList.Count - 1].easting;
-                mf.guidanceLookPos.northing = ytList[ytList.Count - 1].northing;
-            }
-            else if (uTurnStyle == 1)
-            {
-                mf.guidanceLookPos.easting = pt3TurnNewAB.easting;
-                mf.guidanceLookPos.northing = pt3TurnNewAB.northing;
-
-                pt3Phase = 0;
-            }
-
-            if (mf.trk.idx > -1 && mf.trk.gArr.Count > 0)
-            {
-                if (mf.trk.gArr[mf.trk.idx].mode == (int)TrackMode.AB)
-                {
-                    mf.ABLine.isLateralTriggered = true;
-                    mf.ABLine.isABValid = false;
-                }
-                else
-                {
-                    mf.curve.isLateralTriggered = true;
-                    mf.curve.isCurveValid = false;
-                }
-            }
-        }
-
-        //Normal copmpletion of youturn
-        public void CompleteYouTurn()
-        {
-            isYouTurnTriggered = false;
-            ResetCreatedYouTurn();
-            mf.sounds.isBoundAlarming = false;
-        }
-
-        public void Set_Alternate_skips()
-        {
-            rowSkipsWidth2 = rowSkipsWidth;
-            turnSkips = rowSkipsWidth2 * 2 - 1;
-            previousBigSkip = false;
-        }
-
-        //something went seriously wrong so reset everything
-        public void ResetYouTurn()
-        {
-            //fix you turn
-            isYouTurnTriggered = false;
-            ytList?.Clear();
-            ResetCreatedYouTurn();
-            mf.sounds.isBoundAlarming = false;
-            isTurnCreationTooClose = false;
-            isTurnCreationNotCrossingError = false;
-            mf.p_239.pgn[mf.p_239.uturn] = 0;
-        }
-
-        public void ResetCreatedYouTurn()
-        {
-            youTurnPhase = 0;
-            ytList?.Clear();
-            pt3ListSecondLine?.Clear();
-            pt3Phase = 0;
-            mf.p_239.pgn[mf.p_239.uturn] = 0;
-        }
+        #region Manual Turns
 
         public void BuildManualYouLateral(bool isTurnLeft)
         {
@@ -2236,7 +2053,218 @@ namespace AgOpenGPS
             mf.curve.isCurveValid = false;
         }
 
-        public int onA;
+        #endregion
+
+        public int GetLineIntersection(double p0x, double p0y, double p1x, double p1y,
+                double p2x, double p2y, double p3x, double p3y, ref double iEast, ref double iNorth)
+        {
+            double s1x, s1y, s2x, s2y;
+            s1x = p1x - p0x;
+            s1y = p1y - p0y;
+
+            s2x = p3x - p2x;
+            s2y = p3y - p2y;
+
+            double s, t;
+            s = (-s1y * (p0x - p2x) + s1x * (p0y - p2y)) / (-s2x * s1y + s1x * s2y);
+
+            if (s >= 0 && s <= 1)
+            {
+                //check oher side
+                t = (s2x * (p0y - p2y) - s2y * (p0x - p2x)) / (-s2x * s1y + s1x * s2y);
+                if (t >= 0 && t <= 1)
+                {
+                    // Collision detected
+                    iEast = p0x + (t * s1x);
+                    iNorth = p0y + (t * s1y);
+                    return 1;
+                }
+            }
+
+            return 0; // No collision
+        }
+
+        public void AddSequenceLines(double head)
+        {
+            //how many points striaght out
+            double lenny = 8;
+
+            vec3 pt;
+            for (int a = 0; a < lenny; a++)
+            {
+                pt.easting = ytList[0].easting + (Math.Sin(head) * 0.511);
+                pt.northing = ytList[0].northing + (Math.Cos(head) * 0.511);
+                pt.heading = ytList[0].heading;
+                ytList.Insert(0, pt);
+            }
+
+            int count = ytList.Count;
+
+            for (int i = 1; i <= lenny; i++)
+            {
+                pt.easting = ytList[count - 1].easting + (Math.Sin(head) * i * 0.511);
+                pt.northing = ytList[count - 1].northing + (Math.Cos(head) * i * 0.511);
+                pt.heading = head;
+                ytList.Add(pt);
+            }
+
+            double distancePivotToTurnLine;
+            count = ytList.Count;
+            for (int i = 0; i < count; i += 2)
+            {
+                distancePivotToTurnLine = glm.DistanceSquared(ytList[i], mf.pivotAxlePos);
+                if (distancePivotToTurnLine > 6)
+                {
+                    isTurnCreationTooClose = false;
+                }
+                else
+                {
+                    //set the flag to Critical stop machine
+                    FailCreate();
+                    break;
+                }
+            }
+        }
+
+        public void FailCreate()
+        {
+            //fail
+            isTurnCreationTooClose = true;
+            mf.mc.isOutOfBounds = true;
+            youTurnPhase = 11;
+        }
+
+        public void SmoothYouTurn(int smPts)
+        {
+            //count the reference list of original curve
+            int cnt = ytList.Count;
+
+            //the temp array
+            vec3[] arr = new vec3[cnt];
+
+            //read the points before and after the setpoint
+            for (int s = 0; s < smPts / 2; s++)
+            {
+                arr[s].easting = ytList[s].easting;
+                arr[s].northing = ytList[s].northing;
+                arr[s].heading = ytList[s].heading;
+            }
+
+            for (int s = cnt - (smPts / 2); s < cnt; s++)
+            {
+                arr[s].easting = ytList[s].easting;
+                arr[s].northing = ytList[s].northing;
+                arr[s].heading = ytList[s].heading;
+            }
+
+            //average them - center weighted average
+            for (int i = smPts / 2; i < cnt - (smPts / 2); i++)
+            {
+                for (int j = -smPts / 2; j < smPts / 2; j++)
+                {
+                    arr[i].easting += ytList[j + i].easting;
+                    arr[i].northing += ytList[j + i].northing;
+                }
+                arr[i].easting /= smPts;
+                arr[i].northing /= smPts;
+                arr[i].heading = ytList[i].heading;
+            }
+
+            ytList?.Clear();
+
+            //calculate new headings on smoothed line
+            for (int i = 1; i < cnt - 1; i++)
+            {
+                arr[i].heading = Math.Atan2(arr[i + 1].easting - arr[i].easting, arr[i + 1].northing - arr[i].northing);
+                if (arr[i].heading < 0) arr[i].heading += glm.twoPI;
+                ytList.Add(arr[i]);
+            }
+        }
+
+        //called to initiate turn
+        public void YouTurnTrigger()
+        {
+            //trigger pulled
+            isYouTurnTriggered = true;
+
+            if (alternateSkips && rowSkipsWidth2 > 1)
+            {
+                if (--turnSkips == 0)
+                {
+                    isYouTurnRight = !isYouTurnRight;
+                    turnSkips = rowSkipsWidth2 * 2 - 1;
+                }
+                else if (previousBigSkip = !previousBigSkip)
+                    rowSkipsWidth = rowSkipsWidth2 - 1;
+                else
+                    rowSkipsWidth = rowSkipsWidth2;
+            }
+            else isYouTurnRight = !isYouTurnRight;
+
+            if (uTurnStyle == 0)
+            {
+                mf.guidanceLookPos.easting = ytList[ytList.Count - 1].easting;
+                mf.guidanceLookPos.northing = ytList[ytList.Count - 1].northing;
+            }
+            else if (uTurnStyle == 1)
+            {
+                mf.guidanceLookPos.easting = pt3TurnNewAB.easting;
+                mf.guidanceLookPos.northing = pt3TurnNewAB.northing;
+
+                pt3Phase = 0;
+            }
+
+            if (mf.trk.idx > -1 && mf.trk.gArr.Count > 0)
+            {
+                if (mf.trk.gArr[mf.trk.idx].mode == (int)TrackMode.AB)
+                {
+                    mf.ABLine.isLateralTriggered = true;
+                    mf.ABLine.isABValid = false;
+                }
+                else
+                {
+                    mf.curve.isLateralTriggered = true;
+                    mf.curve.isCurveValid = false;
+                }
+            }
+        }
+
+        //Normal copmpletion of youturn
+        public void CompleteYouTurn()
+        {
+            isYouTurnTriggered = false;
+            ResetCreatedYouTurn();
+            mf.sounds.isBoundAlarming = false;
+        }
+
+        public void Set_Alternate_skips()
+        {
+            rowSkipsWidth2 = rowSkipsWidth;
+            turnSkips = rowSkipsWidth2 * 2 - 1;
+            previousBigSkip = false;
+        }
+
+        //something went seriously wrong so reset everything
+        public void ResetYouTurn()
+        {
+            //fix you turn
+            isYouTurnTriggered = false;
+            ytList?.Clear();
+            ResetCreatedYouTurn();
+            mf.sounds.isBoundAlarming = false;
+            isTurnCreationTooClose = false;
+            isTurnCreationNotCrossingError = false;
+            mf.p_239.pgn[mf.p_239.uturn] = 0;
+        }
+
+        public void ResetCreatedYouTurn()
+        {
+            youTurnPhase = 0;
+            ytList?.Clear();
+            pt3ListSecondLine?.Clear();
+            pt3Phase = 0;
+            mf.p_239.pgn[mf.p_239.uturn] = 0;
+        }
 
         //determine distance from youTurn guidance line
         public bool DistanceFromYouTurnLine()
@@ -2506,59 +2534,6 @@ namespace AgOpenGPS
                 CompleteYouTurn();
                 return false;
             }
-        }
-
-        //Duh.... What does this do....
-        public void DrawYouTurn()
-        {
-            //GL.PointSize(12.0f);
-            //GL.Begin(PrimitiveType.Points);
-            //GL.Color3(0.95f, 0.73f, 1.0f);
-            //    GL.Vertex3(iE, iN, 0);
-            //GL.End();
-            //GL.PointSize(1.0f);
-
-            int ptCount = ytList.Count;
-            if (ptCount < 3) return;
-
-            GL.PointSize(mf.ABLine.lineWidth + 2);
-
-            if (isYouTurnTriggered)
-                GL.Color3(0.95f, 0.5f, 0.95f);
-            else if (isOutOfBounds)
-                GL.Color3(0.9495f, 0.395f, 0.325f);
-            else
-                GL.Color3(0.395f, 0.925f, 0.30f);
-
-            GL.Begin(PrimitiveType.Points);
-            for (int i = 0; i < ptCount; i++)
-            {
-                GL.Vertex3(ytList[i].easting, ytList[i].northing, 0);
-            }
-            GL.End();
-
-            //if (ytList2.Count > 0)
-            //{
-            //    GL.Begin(PrimitiveType.Points);
-            //    GL.Color3(0.95f, 0.41f, 0.980f);
-            //    for (int i = 0; i < ytList2.Count; i++)
-            //    {
-            //        GL.Vertex3(ytList2[i].easting, ytList2[i].northing, 0);
-            //    }
-            //    GL.End();
-            //}
-
-            //if (outList.Count > 0)
-            //{
-            //    GL.PointSize(mf.ABLine.lineWidth + 2);
-            //    GL.Color3(0.3f, 0.941f, 0.980f);
-            //    GL.Begin(PrimitiveType.Points);
-            //    for (int i = 0; i < outList.Count; i++)
-            //    {
-            //        GL.Vertex3(outList[i].easting, outList[i].northing, 0);
-            //    }
-            //    GL.End();
-            //}
         }
 
         public class CClose
