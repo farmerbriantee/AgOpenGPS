@@ -67,6 +67,8 @@ namespace AgOpenGPS
         public bool isFlashOnOff = false, isPanFormVisible = false;
         public bool isPanelABHidden = false;
 
+        public int makeUTurnCounter = 0;
+
         //makes nav panel disappear after 6 seconds
         private int navPanelCounter = 0, trackMethodPanelCounter = 0;
         public uint sentenceCounter = 0;
@@ -405,6 +407,7 @@ namespace AgOpenGPS
                 //reset the counter
                 oneHalfSecondCounter++;
                 oneSecondCounter++;
+                makeUTurnCounter++;
 
                 btnAutoSteerConfig.Text = SetSteerAngle + "\r\n" + ActualSteerAngle;
 

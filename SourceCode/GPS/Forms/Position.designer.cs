@@ -372,15 +372,15 @@ namespace AgOpenGPS
                             //Difference between the IMU heading and the GPS heading
                             double gyroDelta = 0;
 
-                            if (!isReverseWithIMU)
+                            //if (!isReverseWithIMU)
                                 gyroDelta = (imuHeading + imuGPS_Offset) - gpsHeading;
-                            else
-                            {
-                                gyroDelta = 0;
-                            }
+                            //else
+                            //{
+                            //    gyroDelta = 0;
+                            //}
 
                             if (gyroDelta < 0) gyroDelta += glm.twoPI;
-                            else if (gyroDelta > glm.twoPI) gyroDelta -= glm.twoPI;
+                            else if (gyroDelta >= glm.twoPI) gyroDelta -= glm.twoPI;
 
                             //calculate delta based on circular data problem 0 to 360 to 0, clamp to +- 2 Pi
                             if (gyroDelta >= -glm.PIBy2 && gyroDelta <= glm.PIBy2) gyroDelta *= -1.0;
@@ -393,8 +393,10 @@ namespace AgOpenGPS
                             else if (gyroDelta < -glm.twoPI) gyroDelta += glm.twoPI;
 
                             //moe the offset to line up imu with gps
-                            imuGPS_Offset += (gyroDelta * (ahrs.fusionWeight));
-                            //imuGPS_Offset += (gyroDelta * (0.06));
+                            if (!isReverseWithIMU)
+                                imuGPS_Offset += (gyroDelta * (ahrs.fusionWeight));
+                            else
+                                imuGPS_Offset += (gyroDelta * (0.02));
 
                             if (imuGPS_Offset > glm.twoPI) imuGPS_Offset -= glm.twoPI;
                             else if (imuGPS_Offset < 0) imuGPS_Offset += glm.twoPI;
@@ -954,7 +956,7 @@ namespace AgOpenGPS
                         //now check to make sure we are not in an inner turn boundary - drive thru is ok
                         if (yt.youTurnPhase != 10)
                         {
-                            if (crossTrackError > 800)
+                            if (crossTrackError > 1400)
                             {
                                 yt.ResetCreatedYouTurn();
                             }
