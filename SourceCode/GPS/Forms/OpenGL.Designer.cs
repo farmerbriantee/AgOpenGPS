@@ -1716,8 +1716,36 @@ namespace AgOpenGPS
             }
             //
             GL.End();
+
+            //draw K turn/ normal turn button
+            two3 += 140;
+
+            if (yt.uTurnStyle == 0)
+            {
+                GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.Speedo]);        // Select Our Texture
+                GL.Color3(0.97f, 0.635f, 0.4f);
+            }
+            else
+            {
+                GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.Compass]);        // Select Our Texture
+                GL.Color3(0.27f, 0.635f, 0.94f);
+            }
+
+            GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
+            {
+                GL.TexCoord2(0, 0); GL.Vertex2(-31 + two3, 40); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(31 + two3, 40); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(31 + two3, 110); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(-31 + two3, 110); //
+            }
+            GL.End();
+
             GL.Disable(EnableCap.Texture2D);
             // Done Building Triangle Strip
+
+            two3 -= 140;
+            GL.Color3(0.927f, 0.9635f, 0.74f);
+
             if (isMetric)
             {
                 if (!yt.isYouTurnTriggered)
@@ -1731,7 +1759,6 @@ namespace AgOpenGPS
             }
             else
             {
-
                 if (!yt.isYouTurnTriggered)
                 {
                     font.DrawText(-40 + two3, 80, DistPivotFt);
@@ -1742,6 +1769,7 @@ namespace AgOpenGPS
                 }
             }
         }
+
         private void DrawSteerCircle()
         {
             int sizer = 60;

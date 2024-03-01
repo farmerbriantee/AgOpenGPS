@@ -1165,6 +1165,22 @@ namespace AgOpenGPS
                                 return;
                             }
 
+                            //k turn or u turn
+                            middle += 140;
+                            if (point.X > middle - 25 && point.X < middle + 25)
+                            {
+                                if (isTT)
+                                {
+                                    MessageBox.Show(gStr.h_lblSwapDirectionCancel, gStr.gsHelp);
+                                    ResetHelpBtn();
+                                    return;
+                                }
+                                yt.uTurnStyle++;
+                                if (yt.uTurnStyle > 1) yt.uTurnStyle = 0;
+                                yt.ResetCreatedYouTurn();
+                                return;
+                            }
+
                             //manual uturn triggering
                             middle = oglMain.Width / 2 - oglMain.Width / 4;
                             if (point.X > middle - 140 && point.X < middle && isUTurnOn)
