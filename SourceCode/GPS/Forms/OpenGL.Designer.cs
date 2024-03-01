@@ -1720,23 +1720,22 @@ namespace AgOpenGPS
             //draw K turn/ normal turn button
             two3 += 140;
 
+            GL.Color3(1.0f, 1.0f, 1.0f);
             if (yt.uTurnStyle == 0)
             {
-                GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.Speedo]);        // Select Our Texture
-                GL.Color3(0.97f, 0.635f, 0.4f);
+                GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.YouTurnU]);        // Select Our Texture
             }
             else
             {
-                GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.Compass]);        // Select Our Texture
-                GL.Color3(0.27f, 0.635f, 0.94f);
+                GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.YouTurnH]);        // Select Our Texture
             }
 
             GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
             {
-                GL.TexCoord2(0, 0); GL.Vertex2(-31 + two3, 40); // 
-                GL.TexCoord2(1, 0); GL.Vertex2(31 + two3, 40); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(31 + two3, 110); // 
-                GL.TexCoord2(0, 1); GL.Vertex2(-31 + two3, 110); //
+                GL.TexCoord2(0, 0); GL.Vertex2(-32 + two3, 46); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(32 + two3, 46); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(32 + two3, 110); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(-32 + two3, 110); //
             }
             GL.End();
 
