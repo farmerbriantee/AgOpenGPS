@@ -906,6 +906,9 @@ Green - Connected, enabled, and auto steering. Fully functional.</value>
   <data name="h_lblSwapDirectionCancel" xml:space="preserve">
     <value>This area shows the distance to the start of the next U Turn. There are normally 2 functions here. When not in a U Turn, touching this area allows you to now turn the opposite direction. If you are doing a U Turn then touching this area cancels the U Turn - so be careful and grab the wheel.</value>
   </data>
+  <data name="h_lblUTurnStyle" xml:space="preserve">
+    <value>Set the type of Uturn style, either normal U shaped turn or K style Turn</value>
+  </data>
   <data name="h_lblVehicleDirectionResetTouch" xml:space="preserve">
     <value>Swap Direction Touch
 

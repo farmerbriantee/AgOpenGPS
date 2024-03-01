@@ -85,8 +85,6 @@ namespace AgOpenGPS
 
         public List<int> buttonOrder = new List<int>();
 
-
-
         //Timer triggers at 125 msec
         private void tmrWatchdog_tick(object sender, EventArgs e)
         {
@@ -1171,13 +1169,17 @@ namespace AgOpenGPS
                             {
                                 if (isTT)
                                 {
-                                    MessageBox.Show(gStr.h_lblSwapDirectionCancel, gStr.gsHelp);
+                                    MessageBox.Show(gStr.h_lblUTurnStyle, gStr.gsHelp);
                                     ResetHelpBtn();
                                     return;
                                 }
                                 yt.uTurnStyle++;
                                 if (yt.uTurnStyle > 1) yt.uTurnStyle = 0;
                                 yt.ResetCreatedYouTurn();
+
+                                Properties.Settings.Default.set_uTurnStyle = yt.uTurnStyle;
+                                Properties.Settings.Default.Save();
+
                                 return;
                             }
 

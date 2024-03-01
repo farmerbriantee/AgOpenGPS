@@ -2105,6 +2105,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set the type of Uturn style, either normal U shaped turn or K style Turn.
+        /// </summary>
+        public static string h_lblUTurnStyle {
+            get {
+                return ResourceManager.GetString("h_lblUTurnStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Swap Direction Touch
         ///
         ///Touch here if the vehicle is pointing backwards while travelling forwards. Without dual heading you don&apos;t know if you are backing up or going forward. Backing up is position to position like going forward but 180 degrees is added to your heading to make it look like you are backing up. At times, like turning sharp when going slow the direction can get confused and this resets that direction. Drive forward and touch this area to tell AOG which way forward is. Can be touched at any tim [rest of string was truncated]&quot;;.
