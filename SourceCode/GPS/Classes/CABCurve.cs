@@ -130,7 +130,7 @@ namespace AgOpenGPS
             //same way as line creation or not
             isHeadingSameWay = Math.PI - Math.Abs(Math.Abs(pivot.heading - mf.trk.gArr[idx].curvePts[rA].heading) - Math.PI) < glm.PIBy2;
 
-            if (mf.yt.isYouTurnTriggered) isHeadingSameWay = !isHeadingSameWay;
+            if (mf.yt.isYouTurnTriggered && !mf.yt.isGoingStraightThrough) isHeadingSameWay = !isHeadingSameWay;
 
             //which side of the closest point are we on is next
             //calculate endpoints of reference line based on closest point

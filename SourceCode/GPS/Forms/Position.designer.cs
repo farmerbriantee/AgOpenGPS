@@ -956,7 +956,7 @@ namespace AgOpenGPS
                         //now check to make sure we are not in an inner turn boundary - drive thru is ok
                         if (yt.youTurnPhase != 10)
                         {
-                            if (crossTrackError > 1400)
+                            if (crossTrackError > 1000)
                             {
                                 yt.ResetCreatedYouTurn();
                             }
