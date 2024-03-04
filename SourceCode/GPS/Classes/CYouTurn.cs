@@ -193,7 +193,7 @@ namespace AgOpenGPS
         private bool CreateCurveOmegaTurn(bool isTurnLeft, vec3 pivotPos)
         {
             //keep from making turns constantly - wait 1.5 seconds
-            if (mf.makeUTurnCounter < 6)
+            if (mf.makeUTurnCounter < 4)
             {
                 youTurnPhase = 0;
                 return true;
@@ -237,7 +237,6 @@ namespace AgOpenGPS
                             return false;
                         }
 
-
                         curveIndex += count;
 
                         vec3 currentPos = new vec3(mf.curve.curList[curveIndex]);
@@ -255,6 +254,9 @@ namespace AgOpenGPS
                         if (invertHead >= Math.PI) invertHead -= glm.twoPI;
 
                         vec3 goal = new vec3();
+
+                        if (!mf.tool.isToolTrailing || !mf.tool.isToolTBT)
+                            count = 0;
 
                         //neat trick to not have to add pi/2
                         if (isTurnLeft)
@@ -319,9 +321,7 @@ namespace AgOpenGPS
                     }
 
                     youTurnPhase = 1;
-
                     break;
-
 
                 case 1:
                     //build the next line to add sequencelines
@@ -421,7 +421,7 @@ namespace AgOpenGPS
         private bool CreateCurveWideTurn(bool isTurnLeft, vec3 pivotPos)
         {
             //keep from making turns constantly - wait 1.5 seconds
-            if (mf.makeUTurnCounter < 6)
+            if (mf.makeUTurnCounter < 4)
             {
                 youTurnPhase = 0;
                 return true;
@@ -434,7 +434,6 @@ namespace AgOpenGPS
             {
                 case 0:
                     //Create first semicircle
-
                     if (!FindCurveTurnPoint(mf.curve))
                     {
                         //error
@@ -682,7 +681,6 @@ namespace AgOpenGPS
                         {
                             ytList.Add(new vec3(ytList2[cnt2 - 1]));
                         }
-
                     }
                     else
                     {
@@ -801,7 +799,7 @@ namespace AgOpenGPS
         private bool CreateABOmegaTurn(bool isTurnLeft)
         {
             //keep from making turns constantly - wait 1.5 seconds
-            if (mf.makeUTurnCounter < 6)
+            if (mf.makeUTurnCounter < 4)
             {
                 youTurnPhase = 0;
                 return true;
@@ -842,6 +840,12 @@ namespace AgOpenGPS
                     start.heading = head;
 
                     vec3 goal = new vec3(start);
+
+                    if (mf.tool.isToolTrailing || mf.tool.isToolTBT)
+                    {
+                        goal.easting += Math.Sin(head);
+                        goal.northing += Math.Cos(head);
+                    }
 
                     //now we go the other way to turn round
                     double invertedHead = head - Math.PI;
@@ -916,7 +920,7 @@ namespace AgOpenGPS
         private bool CreateABWideTurn(bool isTurnLeft)
         {
             //keep from making turns constantly - wait 1.5 seconds
-            if (mf.makeUTurnCounter < 6)
+            if (mf.makeUTurnCounter < 4)
             {
                 youTurnPhase = 0;
                 return true;
@@ -1235,7 +1239,7 @@ namespace AgOpenGPS
             isHeadingSameWay = mf.curve.isHeadingSameWay;
 
             int turnIndex = mf.bnd.IsPointInsideTurnArea(mf.pivotAxlePos);
-            if (turnIndex != 0 || mf.makeUTurnCounter < 6)
+            if (mf.makeUTurnCounter < 4 || turnIndex != 0)
             {
                 youTurnPhase = 0;
                 return true;
@@ -1445,7 +1449,7 @@ namespace AgOpenGPS
             double pointSpacing = youTurnRadius * 0.1;
 
             int turnIndex = mf.bnd.IsPointInsideTurnArea(mf.pivotAxlePos);
-            if (turnIndex != 0 || mf.makeUTurnCounter < 6)
+            if (mf.makeUTurnCounter < 4 || turnIndex != 0)
             {
                 youTurnPhase = 0;
                 return true;
