@@ -1296,7 +1296,8 @@ namespace AgOpenGPS
                 GL.Disable(EnableCap.Texture2D);
 
                 byte per = (byte)(Math.Round(((double)(rateRed[0]) / 2.55), MidpointRounding.AwayFromZero));
-                lblRed.Text = per.ToString() + "%";
+                //lblRed.Text = per.ToString() + "%";
+                btnSection1Man.Text = per.ToString() + "%";
                 //CExtensionMethods.SetProgressNoAnimation(pbarRate, per);
 
                 //lblGrn.Text = rateGrn[0].ToString();

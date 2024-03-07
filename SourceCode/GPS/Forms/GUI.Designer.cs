@@ -65,7 +65,7 @@ namespace AgOpenGPS
         public DateTime sunset = DateTime.Now;
 
         public bool isFlashOnOff = false, isPanFormVisible = false;
-        public bool isPanelABHidden = false;
+        public bool isPanelBottomHidden = false;
 
         public int makeUTurnCounter = 0;
 
@@ -760,11 +760,16 @@ namespace AgOpenGPS
 
                 cboxpRowWidth.Visible = trk.idx > -1;
                 btnYouSkipEnable.Visible = trk.idx > -1;
+                btnSnapToPivot.Visible = trk.idx > -1;
+                btnAdjLeft.Visible = trk.idx > -1;
+                btnAdjRight.Visible = trk.idx > -1;
 
                 btnTramDisplayMode.Visible = istram;
                 btnHeadlandOnOff.Visible = isHdl;
                 btnHydLift.Visible = isHdl;
                 cboxIsSectionControlled.Visible = isHdl;
+
+                //btnResetToolHeading.Visible = this.Width > 1190;
 
                 btnAutoTrack.Visible = tracksVisible > 1 && trk.idx > -1 && !ct.isContourBtnOn;
 
@@ -779,7 +784,7 @@ namespace AgOpenGPS
                     lblNumCu.Text = "";
                 }
 
-                PanelSizeRightAndAB();
+                PanelSizeRightAndBottom();
             }
 
             if (worldGrid.isRateMap)
@@ -788,13 +793,13 @@ namespace AgOpenGPS
                 //if (worldGrid.numRateChannels > 0) lblRed.Visible = true;
                 //if (worldGrid.numRateChannels > 1) lblGrn.Visible = true;
                 //if (worldGrid.numRateChannels > 2) lblBlu.Visible = true;
-                lblRed.Visible = true;
+                //lblRed.Visible = true;
                 //pbarRate.Visible = true;
             }
             else
             {
                 //lblRed.Visible = lblGrn.Visible = lblBlu.Visible = false;
-                lblRed.Visible = false;
+                //lblRed.Visible = false;
                 //pbarRate.Visible = false;
             }
         }
@@ -848,8 +853,9 @@ namespace AgOpenGPS
             panelRight.Controls.Add(lblNumCu);
         }
 
-        public void PanelSizeRightAndAB()
+        public void PanelSizeRightAndBottom()
         {
+            btnResetToolHeading.Visible = false;
             int viz = 0;
             for (int i = 0; i < panelRight.Controls.Count; i++)
             {
@@ -869,32 +875,42 @@ namespace AgOpenGPS
                 }
             }
 
-            if (panelAB.Visible)
+            if (panelBottom.Visible)
             {
                 viz = 0;
-                for (int i = 0; i < panelAB.Controls.Count; i++)
+                for (int i = 0; i < panelBottom.Controls.Count; i++)
                 {
-                    if (panelAB.Controls[i].Visible && panelAB.Controls[i] is Button)
+                    if (panelBottom.Controls[i].Visible && panelBottom.Controls[i] is Button)
                         viz++;
-                    if (panelAB.Controls[i].Visible && panelAB.Controls[i] is CheckBox)
+                    if (panelBottom.Controls[i].Visible && panelBottom.Controls[i] is CheckBox)
                         viz++;
                 }
 
                 if (viz == 0) return;
+                if (viz > 9 && Width < 1190)
+                {
+                    btnResetToolHeading.Visible = false;
+                }
+                else
+                {
+                    btnResetToolHeading.Visible = true;
+                    viz++;
+                }
 
-                sizer = (Width - 255) / (viz);
+                sizer = (Width - 185) / (viz);
                 if (sizer > 150) { sizer = 150; }
 
-                for (int i = 0; i < panelAB.Controls.Count; i++)
+                for (int i = 0; i < panelBottom.Controls.Count; i++)
                 {
-                    if (panelAB.Controls[i].Visible && panelAB.Controls[i] is Button)
-                        panelAB.Controls[i].Width = sizer;
-                    if (panelAB.Controls[i].Visible && panelAB.Controls[i] is CheckBox)
-                        panelAB.Controls[i].Width = sizer;
+                    if (panelBottom.Controls[i].Visible && panelBottom.Controls[i] is Button)
+                        panelBottom.Controls[i].Width = sizer;
+                    if (panelBottom.Controls[i].Visible && panelBottom.Controls[i] is CheckBox)
+                        panelBottom.Controls[i].Width = sizer;
                 }
+
             }
 
-            flp1.Top = this.Height - 200;
+            flp1.Top = this.Height - 230;
             flp1.Left = this.Width - 120 - flp1.Width;
         }
 
@@ -902,7 +918,7 @@ namespace AgOpenGPS
         {
             if (!isJobStarted)
             {
-                panelAB.Visible = false;
+                panelBottom.Visible = false;
                 panelRight.Visible = false;
 
                 oglMain.Left = 80;
@@ -911,9 +927,9 @@ namespace AgOpenGPS
             }
             else
             {
-                if (isPanelABHidden)
+                if (isPanelBottomHidden)
                 {
-                    panelAB.Visible = false;
+                    panelBottom.Visible = false;
                     panelLeft.Visible = false;
                     oglMain.Left = 20;
                     oglMain.Width = this.Width - 98; //22
@@ -921,7 +937,7 @@ namespace AgOpenGPS
                 }
                 else
                 {
-                    panelAB.Visible = true;
+                    panelBottom.Visible = true;
                     panelRight.Visible = true;
                     panelLeft.Visible = true;
                     oglMain.Left = 80;
@@ -930,7 +946,7 @@ namespace AgOpenGPS
                 }
             }
 
-            PanelSizeRightAndAB();
+            PanelSizeRightAndBottom();
 
             if (tool.isSectionsNotZones)
             {
@@ -1317,7 +1333,7 @@ namespace AgOpenGPS
                         {
                             if (point.Y > oglMain.Height - 60 && point.Y < oglMain.Height - 30)
                             {
-                                isPanelABHidden = !isPanelABHidden;
+                                isPanelBottomHidden = !isPanelBottomHidden;
                                 PanelsAndOGLSize();
                                 return;
                             }

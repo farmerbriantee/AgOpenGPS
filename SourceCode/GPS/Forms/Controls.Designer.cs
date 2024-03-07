@@ -1157,6 +1157,21 @@ namespace AgOpenGPS
             }
         }
 
+        private void btnSnapToPivot_Click(object sender, EventArgs e)
+        {
+            trk.SnapToPivot();
+        }
+
+        private void btnAdjRight_Click(object sender, EventArgs e)
+        {
+            trk.NudgeTrack(Properties.Settings.Default.setAS_snapDistance*0.01);
+        }
+
+        private void btnAdjLeft_Click(object sender, EventArgs e)
+        {
+            trk.NudgeTrack(-Properties.Settings.Default.setAS_snapDistance*0.01);
+        }
+
         #endregion
 
         #region Top Panel
@@ -1186,7 +1201,7 @@ namespace AgOpenGPS
             form.Show(this);
 
             form.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
-            if (isPanelABHidden)
+            if (isPanelBottomHidden)
                 form.Left = this.Left + 2;
             else
                 form.Left = this.Left + GPSDataWindowLeft;
@@ -1194,8 +1209,6 @@ namespace AgOpenGPS
 
             Form ff = Application.OpenForms["FormGPS"];
             ff.Focus();
-
-
         }
         private void btnGPSData_Click(object sender, EventArgs e)
         {
@@ -1228,7 +1241,7 @@ namespace AgOpenGPS
             form.Show(this);
 
             form.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
-            if (isPanelABHidden)
+            if (isPanelBottomHidden)
                 form.Left = this.Left + 2;
             else
                 form.Left = this.Left + GPSDataWindowLeft;

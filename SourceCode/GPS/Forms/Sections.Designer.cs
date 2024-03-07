@@ -341,7 +341,7 @@ namespace AgOpenGPS
             btnZone8.Visible = false;
 
 
-            int oglCenter = isPanelABHidden ? oglCenter = oglMain.Width / 2 + 30 : statusStripLeft.Width + oglMain.Width / 2;
+            int oglCenter = isPanelBottomHidden ? oglCenter = oglMain.Width / 2 + 30 : statusStripLeft.Width + oglMain.Width / 2;
 
             int top = 130;
 
@@ -523,7 +523,7 @@ namespace AgOpenGPS
                 return;
             }
 
-            int oglCenter = isPanelABHidden?oglCenter = oglMain.Width / 2 + 30:statusStripLeft.Width + oglMain.Width / 2;
+            int oglCenter = isPanelBottomHidden?oglCenter = oglMain.Width / 2 + 30:statusStripLeft.Width + oglMain.Width / 2;
 
             int top = 130;
 

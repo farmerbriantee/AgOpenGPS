@@ -16,7 +16,6 @@ using System.Media;
 using System.Net.Sockets;
 using System.Reflection;
 using System.Resources;
-using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -255,7 +254,6 @@ namespace AgOpenGPS
         public CWindowsSettingsBrightnessController displayBrightness;
 
         #endregion // Class Props and instances
-
 
         public FormGPS()
         {
@@ -889,7 +887,7 @@ namespace AgOpenGPS
             this.menustripLanguage.Enabled = false;
             panelRight.Enabled = true;
             //boundaryToolStripBtn.Enabled = true;
-            isPanelABHidden = false;
+            isPanelBottomHidden = false;
 
             FieldMenuButtonEnableDisable(true);
             PanelUpdateRightAndBottom();
@@ -1092,7 +1090,7 @@ namespace AgOpenGPS
             recPath.shortestDubinsList?.Clear();
             recPath.shuttleDubinsList?.Clear();
             
-            isPanelABHidden = false;
+            isPanelBottomHidden = false;
 
             PanelsAndOGLSize();
             SetZoom();
