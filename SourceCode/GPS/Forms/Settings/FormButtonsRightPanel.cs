@@ -207,7 +207,7 @@ namespace AgOpenGPS
             //Start application here
             DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
             string strPath = di.ToString();
-            strPath += "\\Buttons.mp4";
+            strPath = Path.Combine(strPath, "Buttons.mp4");
 
             try
             {

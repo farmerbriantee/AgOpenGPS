@@ -38,7 +38,7 @@ namespace AgIO
 
         private void cboxVeh_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SettingsIO.ImportSettings(mf.commDirectory + cboxEnv.SelectedItem.ToString() + ".xml");
+            SettingsIO.ImportSettings(Path.Combine(mf.commDirectory, cboxEnv.SelectedItem.ToString(), ".xml"));
 
             DialogResult = DialogResult.OK;
             Close();

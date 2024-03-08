@@ -33,7 +33,7 @@ namespace AgOpenGPS
         {
             //check if directory and file exists, maybe was deleted etc
             if (String.IsNullOrEmpty(mf.currentFieldDirectory)) btnJobResume.Enabled = false;
-            string directoryName = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
+            string directoryName = Path.Combine(mf.fieldsDirectory, mf.currentFieldDirectory, "");
 
             string fileAndDirectory = directoryName + "Field.txt";
 
@@ -121,7 +121,7 @@ namespace AgOpenGPS
                 double lon = 0;
 
                 string fieldDirectory = Path.GetFileName(dir);
-                string filename = dir + "\\Field.txt";
+                string filename = Path.Combine(dir,"Field.txt");
                 string line;
 
                 //make sure directory has a field.txt in it
@@ -189,7 +189,7 @@ namespace AgOpenGPS
                 }
                 else // 1 field found
                 {
-                    mf.filePickerFileAndDirectory = mf.fieldsDirectory + infieldList + "\\Field.txt";
+                    mf.filePickerFileAndDirectory = Path.Combine(mf.fieldsDirectory, infieldList, "Field.txt");
                     mf.FileOpenField(mf.filePickerFileAndDirectory);
                     Close();
                 }
