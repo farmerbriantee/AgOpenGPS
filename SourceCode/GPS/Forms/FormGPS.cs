@@ -365,7 +365,7 @@ namespace AgOpenGPS
             oglMain.Left = 75;
             oglMain.Width = this.Width - statusStripLeft.Width - 84;
 
-            panelSim.Left = Width/2 -330;
+            panelSim.Left = Width / 2 - 330;
             panelSim.Width = 700;
             panelSim.Top = Height - 60;
 
@@ -382,21 +382,21 @@ namespace AgOpenGPS
             inoVersionStr = inoV.ToString();
 
             if (Settings.Default.setF_workingDirectory == "Default")
-                baseDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\AgOpenGPS\\";
-            else baseDirectory = Settings.Default.setF_workingDirectory + "\\AgOpenGPS\\";
+                baseDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "AgOpenGPS");
+            else baseDirectory = Path.Combine(Settings.Default.setF_workingDirectory, "AgOpenGPS");
 
             //get the fields directory, if not exist, create
-            fieldsDirectory = baseDirectory + "Fields\\";
+            fieldsDirectory = Path.Combine(baseDirectory, "Fields");
             string dir = Path.GetDirectoryName(fieldsDirectory);
             if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
 
             //get the fields directory, if not exist, create
-            vehiclesDirectory = baseDirectory + "Vehicles\\";
+            vehiclesDirectory = Path.Combine(baseDirectory, "Vehicles");
             dir = Path.GetDirectoryName(vehiclesDirectory);
             if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
 
             //get the abLines directory, if not exist, create
-            ablinesDirectory = baseDirectory + "ABLines\\";
+            ablinesDirectory = Path.Combine(baseDirectory, "ABLines");
             dir = Path.GetDirectoryName(fieldsDirectory);
             if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
 
@@ -465,7 +465,7 @@ namespace AgOpenGPS
                     //Start application here
                     DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
                     string strPath = di.ToString();
-                    strPath += "\\AgIO.exe";
+                    strPath = Path.Combine(strPath, "AgIO.exe");
                     try
                     {
                         ProcessStartInfo processInfo = new ProcessStartInfo
@@ -621,7 +621,7 @@ namespace AgOpenGPS
             }
 
             //save current vehicle
-            SettingsIO.ExportAll(vehiclesDirectory + vehicleFileName + ".XML");
+            SettingsIO.ExportAll(Path.Combine(vehiclesDirectory, vehicleFileName, ".XML"));
 
             if (displayBrightness.isWmiMonitor)
                 displayBrightness.SetBrightness(Settings.Default.setDisplay_brightnessSystem);
@@ -710,10 +710,10 @@ namespace AgOpenGPS
             Lift, SteerPointer,
             SteerDot, Tractor, QuestionMark,
             FrontWheels, FourWDFront, FourWDRear,
-            Harvester, 
-            Lateral, bingGrid, 
-            NoGPS, ZoomIn48, ZoomOut48, 
-            Pan, MenuHideShow, 
+            Harvester,
+            Lateral, bingGrid,
+            NoGPS, ZoomIn48, ZoomOut48,
+            Pan, MenuHideShow,
             ToolWheels, Tire, TramDot,
             RateMap1, RateMap2, RateMap3
         }
@@ -729,13 +729,13 @@ namespace AgOpenGPS
                 Resources.z_Compass,Resources.z_Speedo,Resources.z_SpeedoNeedle,
                 Resources.z_Lift,Resources.z_SteerPointer,
                 Resources.z_SteerDot,GetTractorBrand(Settings.Default.setBrand_TBrand),Resources.z_QuestionMark,
-                Resources.z_FrontWheels,Get4WDBrandFront(Settings.Default.setBrand_WDBrand), 
+                Resources.z_FrontWheels,Get4WDBrandFront(Settings.Default.setBrand_WDBrand),
                 Get4WDBrandRear(Settings.Default.setBrand_WDBrand),
-                GetHarvesterBrand(Settings.Default.setBrand_HBrand), 
-                Resources.z_LateralManual, Resources.z_bingMap, 
-                Resources.z_NoGPS, Resources.ZoomIn48, Resources.ZoomOut48, 
+                GetHarvesterBrand(Settings.Default.setBrand_HBrand),
+                Resources.z_LateralManual, Resources.z_bingMap,
+                Resources.z_NoGPS, Resources.ZoomIn48, Resources.ZoomOut48,
                 Resources.Pan, Resources.MenuHideShow,
-                Resources.z_Tool, Resources.z_Tire, Resources.z_TramOnOff, 
+                Resources.z_Tool, Resources.z_Tire, Resources.z_TramOnOff,
                 Resources.z_RateMap1, Resources.z_RateMap2, Resources.z_RateMap3
             };
 
@@ -1038,7 +1038,7 @@ namespace AgOpenGPS
 
             //curve line
             curve.ResetCurveLine();
-            
+
             //tracks
             trk.gArr?.Clear();
             trk.idx = -1;
@@ -1089,7 +1089,7 @@ namespace AgOpenGPS
             recPath.recList?.Clear();
             recPath.shortestDubinsList?.Clear();
             recPath.shuttleDubinsList?.Clear();
-            
+
             isPanelABHidden = false;
 
             PanelsAndOGLSize();
@@ -1162,7 +1162,7 @@ namespace AgOpenGPS
                 //string strPath = Application.StartupPath;
 
                 //Write out the error appending to existing
-                File.AppendAllText(baseDirectory + "\\" + strFileName, strErrorText + " - " +
+                File.AppendAllText(Path.Combine(baseDirectory ,strFileName), strErrorText + " - " +
                     DateTime.Now.ToString() + "\r\n\r\n");
             }
             catch (Exception ex)
