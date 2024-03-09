@@ -39,7 +39,7 @@
             this.btnAddPoint = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
             this.btnPausePlay = new System.Windows.Forms.Button();
-            this.nudOffset = new NudlessNumericUpDown();
+            this.nudOffset = new AgOpenGPS.NudlessNumericUpDown();
             this.btnLeftRight = new System.Windows.Forms.Button();
             this.lblMetersInches = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudOffset)).BeginInit();
@@ -116,7 +116,6 @@
             this.btnRestart.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnRestart.UseVisualStyleBackColor = false;
             this.btnRestart.Click += new System.EventHandler(this.btnRestart_Click);
-            this.btnRestart.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnRestart_HelpRequested);
             // 
             // btnDeleteLast
             // 
@@ -133,7 +132,6 @@
             this.btnDeleteLast.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDeleteLast.UseVisualStyleBackColor = false;
             this.btnDeleteLast.Click += new System.EventHandler(this.btnDeleteLast_Click);
-            this.btnDeleteLast.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnDeleteLast_HelpRequested);
             // 
             // btnAddPoint
             // 
@@ -150,7 +148,6 @@
             this.btnAddPoint.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAddPoint.UseVisualStyleBackColor = false;
             this.btnAddPoint.Click += new System.EventHandler(this.btnAddPoint_Click);
-            this.btnAddPoint.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnAddPoint_HelpRequested);
             // 
             // btnStop
             // 
@@ -166,7 +163,6 @@
             this.btnStop.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnStop.UseVisualStyleBackColor = false;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
-            this.btnStop.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnStop_HelpRequested);
             // 
             // btnPausePlay
             // 
@@ -183,7 +179,6 @@
             this.btnPausePlay.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnPausePlay.UseVisualStyleBackColor = false;
             this.btnPausePlay.Click += new System.EventHandler(this.btnPausePlay_Click);
-            this.btnPausePlay.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnPausePlay_HelpRequested);
             // 
             // nudOffset
             // 
@@ -206,7 +201,6 @@
             0,
             0});
             this.nudOffset.Click += new System.EventHandler(this.nudOffset_Click);
-            this.nudOffset.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudOffset_HelpRequested);
             // 
             // btnLeftRight
             // 
@@ -220,7 +214,6 @@
             this.btnLeftRight.TabIndex = 68;
             this.btnLeftRight.UseVisualStyleBackColor = true;
             this.btnLeftRight.Click += new System.EventHandler(this.btnLeftRight_Click);
-            this.btnLeftRight.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnLeftRight_HelpRequested);
             // 
             // lblMetersInches
             // 
@@ -240,6 +233,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(261, 399);
+            this.ControlBox = false;
             this.Controls.Add(this.btnAddPoint);
             this.Controls.Add(this.lblPoints);
             this.Controls.Add(this.btnLeftRight);

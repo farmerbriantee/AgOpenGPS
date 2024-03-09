@@ -433,38 +433,6 @@ namespace AgOpenGPS
             panelKML.Visible = true;
         }
 
-        #region Help
-
-        private void btnDelete_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hb_btnDelete, gStr.gsHelp);
-        }
-
-        private void btnDeleteAll_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hb_btnDeleteAll, gStr.gsHelp);
-        }
-
-        private void btnOpenGoogleEarth_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hb_btnOpenGoogleEarth, gStr.gsHelp);
-        }
-
-        private void btnAdd_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hb_btnAdd, gStr.gsHelp);
-        }
-
-        private void btnCancel_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hb_btnCancel, gStr.gsHelp);
-        }
-
-        private void btnGetKML_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hb_btnGetKML, gStr.gsHelp);
-        }
-
         private void btnBingMaps_Click(object sender, EventArgs e)
         {
             panelMain.Visible = false;
@@ -477,22 +445,5 @@ namespace AgOpenGPS
         {
             this.Width = 600;
         }
-
-        private void btnDriveOrExt_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hb_btnDriveOrExt, gStr.gsHelp);
-        }
-
-        private void btnLoadMultiBoundaryFromGE_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hb_btnLoadMultiBoundaryFromGE, gStr.gsHelp);
-        }
-
-        private void btnLoadBoundaryFromGE_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hb_btnLoadBoundaryFromGE, gStr.gsHelp);
-        }
-
-        #endregion Help
     }
 }

@@ -195,7 +195,7 @@ namespace AgOpenGPS
                                         + "  App: " + fd.WorkedAcres
                                         + "  Actual: " + fd.ActualAreaWorkedAcres
                                         + "  " + fd.WorkedAreaRemainPercentage
-                                        + "  " + fd.WorkRateHectares;
+                                        + "  " + fd.WorkRateAcres;
                                 }
                             }
                             else
@@ -1171,12 +1171,6 @@ namespace AgOpenGPS
                             int middle = oglMain.Width / 2 + oglMain.Width / 5;
                             if (point.X > middle - 80 && point.X < middle + 80)
                             {
-                                if (isTT)
-                                {
-                                    MessageBox.Show(gStr.h_lblSwapDirectionCancel, gStr.gsHelp);
-                                    ResetHelpBtn();
-                                    return;
-                                }
                                 SwapDirection();
                                 yt.turnTooCloseTrigger = false;
                                 yt.isTurnCreationTooClose = false;
@@ -1187,12 +1181,6 @@ namespace AgOpenGPS
                             middle += 140;
                             if (point.X > middle - 25 && point.X < middle + 25)
                             {
-                                if (isTT)
-                                {
-                                    MessageBox.Show(gStr.h_lblUTurnStyle, gStr.gsHelp);
-                                    ResetHelpBtn();
-                                    return;
-                                }
                                 yt.uTurnStyle++;
                                 if (yt.uTurnStyle > 1) yt.uTurnStyle = 0;
                                 yt.ResetCreatedYouTurn();
@@ -1207,13 +1195,6 @@ namespace AgOpenGPS
                             middle = oglMain.Width / 2 - oglMain.Width / 4;
                             if (point.X > middle - 140 && point.X < middle && isUTurnOn)
                             {
-                                if (isTT)
-                                {
-                                    MessageBox.Show(gStr.h_lblManualTurnCancelTouch, gStr.gsHelp);
-                                    ResetHelpBtn();
-                                    return;
-                                }
-
                                 if (yt.isYouTurnTriggered)
                                 {
                                     yt.ResetYouTurn();
@@ -1235,13 +1216,6 @@ namespace AgOpenGPS
 
                             if (point.X > middle && point.X < middle + 140 && isUTurnOn)
                             {
-                                if (isTT)
-                                {
-                                    MessageBox.Show(gStr.h_lblManualTurnCancelTouch, gStr.gsHelp);
-                                    ResetHelpBtn();
-                                    return;
-                                }
-
                                 if (yt.isYouTurnTriggered)
                                 {
                                     yt.ResetYouTurn();
@@ -1269,13 +1243,6 @@ namespace AgOpenGPS
                             int middle = oglMain.Width / 2 - oglMain.Width / 4;
                             if (point.X > middle - 140 && point.X < middle && isLateralOn)
                             {
-                                if (isTT)
-                                {
-                                    MessageBox.Show(gStr.h_lblLateralTurnTouch, gStr.gsHelp);
-                                    ResetHelpBtn();
-                                    return;
-                                }
-
                                 if (vehicle.functionSpeedLimit > avgSpeed)
                                 {
                                     yt.BuildManualYouLateral(false);
@@ -1290,13 +1257,6 @@ namespace AgOpenGPS
 
                             if (point.X > middle && point.X < middle + 140 && isLateralOn)
                             {
-                                if (isTT)
-                                {
-                                    MessageBox.Show(gStr.h_lblLateralTurnTouch, gStr.gsHelp);
-                                    ResetHelpBtn();
-                                    return;
-                                }
-
                                 if (vehicle.functionSpeedLimit > avgSpeed)
                                 {
                                     yt.BuildManualYouLateral(true);
@@ -1397,12 +1357,6 @@ namespace AgOpenGPS
                     && point.Y > centerY - 60 && point.Y < centerY + 60)
                 {
                     if (headingFromSource == "Dual") return;
-                    if (isTT)
-                    {
-                        MessageBox.Show(gStr.h_lblVehicleDirectionResetTouch, gStr.gsHelp);
-                        ResetHelpBtn();
-                        return;
-                    }
 
                     Array.Clear(stepFixPts, 0, stepFixPts.Length);
                     isFirstHeadingSet = false;
@@ -1411,24 +1365,10 @@ namespace AgOpenGPS
                     return;
                 }
 
-                //check for help touch on steer circle
-                if (isTT)
-                {
-                    int sizer = oglMain.Height / 9;
-                    if(point.Y > oglMain.Height-sizer && point.X > oglMain.Width - sizer)
-                    {
-                        MessageBox.Show(gStr.h_lblSteerCircleTouch, gStr.gsHelp);
-                        ResetHelpBtn();
-                        return;
-                    }
-                }
-
                 mouseX = point.X;
                 mouseY = oglMain.Height - point.Y;
                 leftMouseDownOnOpenGL = true;
             }
-
-            ResetHelpBtn();
         }
         private void SpeedLimitExceeded()
         {

@@ -549,10 +549,4 @@
   <data name="gsXTEChart" xml:space="preserve">
     <value>XTE kaavio</value>
   </data>
-  <data name="h_btn2D" xml:space="preserve">
-    <value>2D -näkymä -painike.</value>
-  </data>
-  <data name="h_btn3D" xml:space="preserve">
-    <value>3D -näkymä -painike.</value>
-  </data>
 </root>

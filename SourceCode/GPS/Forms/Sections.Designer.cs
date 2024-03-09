@@ -20,13 +20,6 @@ namespace AgOpenGPS
         //Section Manual and Auto buttons on right side
         private void btnSectionMasterManual_Click(object sender, EventArgs e)
         {
-            if (isTT)
-            {
-                MessageBox.Show(gStr.h_btnManualOffOn, gStr.gsHelp);
-                ResetHelpBtn();
-                return;
-            }
-
             //System.Media.SystemSounds.Asterisk.Play();
             sounds.sndSectionOff.Play();
 
@@ -55,15 +48,6 @@ namespace AgOpenGPS
         }
         private void btnSectionMasterAuto_Click(object sender, EventArgs e)
         {
-            if (isTT)
-            {
-                MessageBox.Show(gStr.h_btnSectionOffAutoOn, gStr.gsHelp);
-                ResetHelpBtn();
-                return;
-            }
-
-            //System.Media.SystemSounds.Exclamation.Play();
-
             //turn off manual if on
             manualBtnState = btnStates.Off;
             btnSectionMasterManual.Image = Properties.Resources.ManualOff;

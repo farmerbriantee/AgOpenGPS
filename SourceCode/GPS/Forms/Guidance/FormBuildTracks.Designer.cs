@@ -112,7 +112,7 @@
             this.label20 = new System.Windows.Forms.Label();
             this.nudLatitudeA = new AgOpenGPS.NudlessNumericUpDown();
             this.nudLongitudeA = new AgOpenGPS.NudlessNumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCancelLatLonLatLon = new System.Windows.Forms.Button();
             this.btnEnter_LatLonLatLon = new System.Windows.Forms.Button();
             this.panelName.SuspendLayout();
             this.panelMain.SuspendLayout();
@@ -214,7 +214,6 @@
             this.btnAddTime.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAddTime.UseVisualStyleBackColor = false;
             this.btnAddTime.Click += new System.EventHandler(this.btnAddTime_Click);
-            this.btnAddTime.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnAddTime_HelpRequested);
             // 
             // btnAdd
             // 
@@ -232,7 +231,6 @@
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            this.btnAdd.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnAdd_HelpRequested);
             // 
             // btnCancel_Name
             // 
@@ -250,7 +248,6 @@
             this.btnCancel_Name.TabIndex = 423;
             this.btnCancel_Name.UseVisualStyleBackColor = false;
             this.btnCancel_Name.Click += new System.EventHandler(this.btnCancelCurve_Click);
-            this.btnCancel_Name.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnCancel_Name_HelpRequested);
             // 
             // textBox1
             // 
@@ -266,7 +263,6 @@
             this.textBox1.TabIndex = 145;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox1.Click += new System.EventHandler(this.textBox_Click);
-            this.textBox1.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.textBox1_HelpRequested);
             // 
             // panelMain
             // 
@@ -303,7 +299,6 @@
             this.btnListDelete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnListDelete.UseVisualStyleBackColor = false;
             this.btnListDelete.Click += new System.EventHandler(this.btnListDelete_Click);
-            this.btnListDelete.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnListDelete_HelpRequested);
             // 
             // btnCancelMain
             // 
@@ -385,7 +380,6 @@
             this.btnSwapAB.TabIndex = 426;
             this.btnSwapAB.UseVisualStyleBackColor = true;
             this.btnSwapAB.Click += new System.EventHandler(this.btnSwapAB_Click);
-            this.btnSwapAB.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnSwapAB_HelpRequested);
             // 
             // btnEditName
             // 
@@ -402,7 +396,6 @@
             this.btnEditName.TabIndex = 425;
             this.btnEditName.UseVisualStyleBackColor = false;
             this.btnEditName.Click += new System.EventHandler(this.btnEditName_Click);
-            this.btnEditName.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnEditName_HelpRequested);
             // 
             // btnDuplicate
             // 
@@ -419,7 +412,6 @@
             this.btnDuplicate.TabIndex = 424;
             this.btnDuplicate.UseVisualStyleBackColor = false;
             this.btnDuplicate.Click += new System.EventHandler(this.btnDuplicate_Click);
-            this.btnDuplicate.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnDuplicate_HelpRequested);
             // 
             // btnNewTrack
             // 
@@ -437,7 +429,6 @@
             this.btnNewTrack.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnNewTrack.UseVisualStyleBackColor = false;
             this.btnNewTrack.Click += new System.EventHandler(this.btnNewTrack_Click);
-            this.btnNewTrack.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnNewCurve_HelpRequested);
             // 
             // btnListUse
             // 
@@ -456,7 +447,6 @@
             this.btnListUse.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnListUse.UseVisualStyleBackColor = false;
             this.btnListUse.Click += new System.EventHandler(this.btnListUse_Click);
-            this.btnListUse.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnListUse_HelpRequested);
             // 
             // panelCurve
             // 
@@ -506,7 +496,6 @@
             this.btnCancel_Curve.TabIndex = 423;
             this.btnCancel_Curve.UseVisualStyleBackColor = false;
             this.btnCancel_Curve.Click += new System.EventHandler(this.btnCancelCurve_Click);
-            this.btnCancel_Curve.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnCancelCurve_HelpRequested);
             // 
             // btnACurve
             // 
@@ -523,7 +512,6 @@
             this.btnACurve.TabIndex = 63;
             this.btnACurve.UseVisualStyleBackColor = false;
             this.btnACurve.Click += new System.EventHandler(this.btnACurve_Click);
-            this.btnACurve.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnAPoint_HelpRequested);
             // 
             // btnBCurve
             // 
@@ -541,7 +529,6 @@
             this.btnBCurve.TabIndex = 64;
             this.btnBCurve.UseVisualStyleBackColor = false;
             this.btnBCurve.Click += new System.EventHandler(this.btnBCurve_Click);
-            this.btnBCurve.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnBPoint_HelpRequested);
             // 
             // btnPausePlay
             // 
@@ -560,7 +547,6 @@
             this.btnPausePlay.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnPausePlay.UseVisualStyleBackColor = false;
             this.btnPausePlay.Click += new System.EventHandler(this.btnPausePlayCurve_Click);
-            this.btnPausePlay.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnPausePlay_HelpRequested);
             // 
             // panelEditName
             // 
@@ -616,7 +602,6 @@
             this.btnAddTimeEdit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAddTimeEdit.UseVisualStyleBackColor = false;
             this.btnAddTimeEdit.Click += new System.EventHandler(this.btnAddTimeEdit_Click);
-            this.btnAddTimeEdit.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnAddTimeEdit_HelpRequested);
             // 
             // btnSaveEditName
             // 
@@ -634,7 +619,6 @@
             this.btnSaveEditName.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSaveEditName.UseVisualStyleBackColor = false;
             this.btnSaveEditName.Click += new System.EventHandler(this.btnSaveEditName_Click);
-            this.btnSaveEditName.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnSaveEditName_HelpRequested);
             // 
             // btnCancel_EditName
             // 
@@ -652,7 +636,6 @@
             this.btnCancel_EditName.TabIndex = 423;
             this.btnCancel_EditName.UseVisualStyleBackColor = false;
             this.btnCancel_EditName.Click += new System.EventHandler(this.btnCancelCurve_Click);
-            this.btnCancel_EditName.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnCancelEditName_HelpRequested);
             // 
             // textBox2
             // 
@@ -669,7 +652,6 @@
             this.textBox2.TabIndex = 145;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox2.Click += new System.EventHandler(this.textBox_Click);
-            this.textBox2.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.textBox2_HelpRequested);
             // 
             // panelKML
             // 
@@ -1318,7 +1300,7 @@
             this.panel1.Controls.Add(this.label20);
             this.panel1.Controls.Add(this.nudLatitudeA);
             this.panel1.Controls.Add(this.nudLongitudeA);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnCancelLatLonLatLon);
             this.panel1.Controls.Add(this.btnEnter_LatLonLatLon);
             this.panel1.Location = new System.Drawing.Point(1603, 2);
             this.panel1.Name = "panel1";
@@ -1505,21 +1487,22 @@
             -2147024896});
             this.nudLongitudeA.Click += new System.EventHandler(this.nudLongitudeA_Click);
             // 
-            // button1
+            // btnCancelLatLonLatLon
             // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.button1.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1.Location = new System.Drawing.Point(13, 338);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(63, 60);
-            this.button1.TabIndex = 428;
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnCancelLatLonLatLon.BackColor = System.Drawing.Color.Transparent;
+            this.btnCancelLatLonLatLon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCancelLatLonLatLon.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelLatLonLatLon.FlatAppearance.BorderSize = 0;
+            this.btnCancelLatLonLatLon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelLatLonLatLon.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnCancelLatLonLatLon.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
+            this.btnCancelLatLonLatLon.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnCancelLatLonLatLon.Location = new System.Drawing.Point(13, 338);
+            this.btnCancelLatLonLatLon.Name = "btnCancelLatLonLatLon";
+            this.btnCancelLatLonLatLon.Size = new System.Drawing.Size(63, 60);
+            this.btnCancelLatLonLatLon.TabIndex = 428;
+            this.btnCancelLatLonLatLon.UseVisualStyleBackColor = false;
+            this.btnCancelLatLonLatLon.Click += new System.EventHandler(this.btnCancelCurve_Click);
             // 
             // btnEnter_LatLonLatLon
             // 
@@ -1671,7 +1654,7 @@
         private System.Windows.Forms.Label label20;
         private NudlessNumericUpDown nudLatitudeA;
         private NudlessNumericUpDown nudLongitudeA;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCancelLatLonLatLon;
         private System.Windows.Forms.Button btnEnter_LatLonLatLon;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label22;

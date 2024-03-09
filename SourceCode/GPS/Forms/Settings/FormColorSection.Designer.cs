@@ -680,7 +680,7 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Select Preset Color";
             // 
-            // FormSectionColor
+            // FormColorSection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -688,6 +688,7 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(883, 566);
+            this.ControlBox = false;
             this.Controls.Add(this.cb16);
             this.Controls.Add(this.cb15);
             this.Controls.Add(this.cb14);
@@ -714,7 +715,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FormSectionColor";
+            this.Name = "FormColorSection";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Section Color Set";

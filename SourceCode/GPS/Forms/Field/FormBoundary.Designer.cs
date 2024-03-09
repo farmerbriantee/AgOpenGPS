@@ -32,6 +32,7 @@
             this.Thru = new System.Windows.Forms.Label();
             this.Area = new System.Windows.Forms.Label();
             this.panelMain = new System.Windows.Forms.Panel();
+            this.flp1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnBingMaps = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -48,7 +49,6 @@
             this.btnCancelKML = new System.Windows.Forms.Button();
             this.btnLoadBoundaryFromGE = new System.Windows.Forms.Button();
             this.btnLoadMultiBoundaryFromGE = new System.Windows.Forms.Button();
-            this.flp1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panelMain.SuspendLayout();
             this.panelChoose.SuspendLayout();
             this.panelKML.SuspendLayout();
@@ -110,6 +110,16 @@
             this.panelMain.Size = new System.Drawing.Size(608, 299);
             this.panelMain.TabIndex = 417;
             // 
+            // flp1
+            // 
+            this.flp1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.flp1.AutoScroll = true;
+            this.flp1.Location = new System.Drawing.Point(11, 120);
+            this.flp1.Name = "flp1";
+            this.flp1.Size = new System.Drawing.Size(586, 166);
+            this.flp1.TabIndex = 218;
+            // 
             // btnBingMaps
             // 
             this.btnBingMaps.DialogResult = System.Windows.Forms.DialogResult.Yes;
@@ -123,7 +133,6 @@
             this.btnBingMaps.TabIndex = 217;
             this.btnBingMaps.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnBingMaps.UseVisualStyleBackColor = true;
-            this.btnBingMaps.Click += new System.EventHandler(this.btnBingMaps_Click);
             // 
             // btnAdd
             // 
@@ -138,7 +147,6 @@
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            this.btnAdd.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnAdd_HelpRequested);
             // 
             // btnCancel
             // 
@@ -155,7 +163,6 @@
             this.btnCancel.TabIndex = 206;
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnReturn_Click);
-            this.btnCancel.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnCancel_HelpRequested);
             // 
             // btnOpenGoogleEarth
             // 
@@ -170,7 +177,6 @@
             this.btnOpenGoogleEarth.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnOpenGoogleEarth.UseVisualStyleBackColor = true;
             this.btnOpenGoogleEarth.Click += new System.EventHandler(this.btnOpenGoogleEarth_Click);
-            this.btnOpenGoogleEarth.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnOpenGoogleEarth_HelpRequested);
             // 
             // btnDelete
             // 
@@ -185,7 +191,6 @@
             this.btnDelete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            this.btnDelete.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnDelete_HelpRequested);
             // 
             // panelChoose
             // 
@@ -243,7 +248,6 @@
             this.btnGetKML.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnGetKML.UseVisualStyleBackColor = true;
             this.btnGetKML.Click += new System.EventHandler(this.btnGetKML_Click);
-            this.btnGetKML.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnGetKML_HelpRequested);
             // 
             // btnDriveOrExt
             // 
@@ -260,7 +264,6 @@
             this.btnDriveOrExt.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDriveOrExt.UseVisualStyleBackColor = true;
             this.btnDriveOrExt.Click += new System.EventHandler(this.btnDriveOrExt_Click);
-            this.btnDriveOrExt.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnDriveOrExt_HelpRequested);
             // 
             // panelKML
             // 
@@ -332,7 +335,6 @@
             this.btnLoadBoundaryFromGE.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnLoadBoundaryFromGE.UseVisualStyleBackColor = true;
             this.btnLoadBoundaryFromGE.Click += new System.EventHandler(this.btnLoadBoundaryFromGE_Click);
-            this.btnLoadBoundaryFromGE.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnLoadBoundaryFromGE_HelpRequested);
             // 
             // btnLoadMultiBoundaryFromGE
             // 
@@ -349,17 +351,6 @@
             this.btnLoadMultiBoundaryFromGE.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnLoadMultiBoundaryFromGE.UseVisualStyleBackColor = true;
             this.btnLoadMultiBoundaryFromGE.Click += new System.EventHandler(this.btnLoadBoundaryFromGE_Click);
-            this.btnLoadMultiBoundaryFromGE.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnLoadMultiBoundaryFromGE_HelpRequested);
-            // 
-            // flp1
-            // 
-            this.flp1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.flp1.AutoScroll = true;
-            this.flp1.Location = new System.Drawing.Point(11, 120);
-            this.flp1.Name = "flp1";
-            this.flp1.Size = new System.Drawing.Size(586, 166);
-            this.flp1.TabIndex = 218;
             // 
             // FormBoundary
             // 
@@ -367,6 +358,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Cyan;
             this.ClientSize = new System.Drawing.Size(1084, 310);
+            this.ControlBox = false;
             this.Controls.Add(this.panelChoose);
             this.Controls.Add(this.panelKML);
             this.Controls.Add(this.panelMain);

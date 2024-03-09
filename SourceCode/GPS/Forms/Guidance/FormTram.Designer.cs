@@ -89,7 +89,6 @@
             0,
             0});
             this.nudPasses.Click += new System.EventHandler(this.nudPasses_Click);
-            this.nudPasses.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudPasses_HelpRequested);
             // 
             // label3
             // 
@@ -118,7 +117,6 @@
             this.btnMode.TabIndex = 460;
             this.btnMode.UseVisualStyleBackColor = false;
             this.btnMode.Click += new System.EventHandler(this.btnMode_Click);
-            this.btnMode.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnMode_HelpRequested);
             // 
             // btnSwapAB
             // 
@@ -134,7 +132,6 @@
             this.btnSwapAB.TabIndex = 438;
             this.btnSwapAB.UseVisualStyleBackColor = false;
             this.btnSwapAB.Click += new System.EventHandler(this.btnSwapAB_Click);
-            this.btnSwapAB.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnSwapAB_HelpRequested);
             // 
             // btnCancel
             // 
@@ -154,7 +151,6 @@
             this.btnCancel.TabIndex = 421;
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            this.btnCancel.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnCancel_HelpRequested);
             // 
             // btnExit
             // 
@@ -172,7 +168,6 @@
             this.btnExit.TabIndex = 234;
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            this.btnExit.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnExit_HelpRequested);
             // 
             // lblTrack
             // 
@@ -288,6 +283,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(330, 354);
+            this.ControlBox = false;
             this.Controls.Add(this.btnUpTrams);
             this.Controls.Add(this.btnDnTrams);
             this.Controls.Add(this.label4);

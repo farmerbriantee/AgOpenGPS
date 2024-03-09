@@ -474,6 +474,8 @@
             this.nudTramWidth = new AgOpenGPS.NudlessNumericUpDown();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.tabBtns = new System.Windows.Forms.TabPage();
+            this.label54 = new System.Windows.Forms.Label();
+            this.cboxFeatureNudge = new System.Windows.Forms.CheckBox();
             this.label92 = new System.Windows.Forms.Label();
             this.btnRightMenuOrder = new System.Windows.Forms.Button();
             this.label62 = new System.Windows.Forms.Label();
@@ -547,8 +549,6 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.cboxFeatureNudge = new System.Windows.Forms.CheckBox();
-            this.label54 = new System.Windows.Forms.Label();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -1591,7 +1591,6 @@
             this.btnVehicleLoad.TabIndex = 456;
             this.btnVehicleLoad.UseVisualStyleBackColor = false;
             this.btnVehicleLoad.Click += new System.EventHandler(this.btnVehicleLoad_Click);
-            this.btnVehicleLoad.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnVehicleLoad_HelpRequested);
             // 
             // btnVehicleDelete
             // 
@@ -1608,7 +1607,6 @@
             this.btnVehicleDelete.TabIndex = 455;
             this.btnVehicleDelete.UseVisualStyleBackColor = false;
             this.btnVehicleDelete.Click += new System.EventHandler(this.btnVehicleDelete_Click);
-            this.btnVehicleDelete.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnVehicleDelete_HelpRequested);
             // 
             // lvVehicles
             // 
@@ -1633,7 +1631,6 @@
             this.lvVehicles.TileSize = new System.Drawing.Size(490, 35);
             this.lvVehicles.UseCompatibleStateImageBehavior = false;
             this.lvVehicles.View = System.Windows.Forms.View.Tile;
-            this.lvVehicles.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.lvVehicles_HelpRequested);
             // 
             // chVehicle
             // 
@@ -1651,7 +1648,6 @@
             this.tboxVehicleNameSave.TabIndex = 451;
             this.tboxVehicleNameSave.Click += new System.EventHandler(this.tboxVehicleNameSave_Click);
             this.tboxVehicleNameSave.TextChanged += new System.EventHandler(this.tboxVehicleNameSave_TextChanged);
-            this.tboxVehicleNameSave.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.tboxVehicleNameSave_HelpRequested);
             this.tboxVehicleNameSave.Enter += new System.EventHandler(this.tboxVehicleNameSave_Enter);
             // 
             // btnVehicleSave
@@ -1669,7 +1665,6 @@
             this.btnVehicleSave.TabIndex = 457;
             this.btnVehicleSave.UseVisualStyleBackColor = false;
             this.btnVehicleSave.Click += new System.EventHandler(this.btnVehicleSave_Click);
-            this.btnVehicleSave.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnVehicleSave_HelpRequested);
             // 
             // label29
             // 
@@ -3116,7 +3111,6 @@
             0,
             0});
             this.nudGuidanceLookAhead.Click += new System.EventHandler(this.nudGuidanceLookAhead_Click);
-            this.nudGuidanceLookAhead.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudGuidanceLookAhead_HelpRequested);
             // 
             // nudSnapDistance
             // 
@@ -3140,7 +3134,6 @@
             0,
             0});
             this.nudSnapDistance.Click += new System.EventHandler(this.nudSnapDistance_Click);
-            this.nudSnapDistance.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSnapDistance_HelpRequested);
             // 
             // nudLineWidth
             // 
@@ -3169,7 +3162,6 @@
             0,
             0});
             this.nudLineWidth.Click += new System.EventHandler(this.nudLineWidth_Click);
-            this.nudLineWidth.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudLineWidth_HelpRequested);
             // 
             // pictureBox17
             // 
@@ -3260,7 +3252,6 @@
             this.cboxAutoSteerAuto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.cboxAutoSteerAuto.UseVisualStyleBackColor = false;
             this.cboxAutoSteerAuto.Click += new System.EventHandler(this.cboxAutoSteerAuto_Click);
-            this.cboxAutoSteerAuto.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxAutoSteerAuto_HelpRequested);
             // 
             // pictureBox5
             // 
@@ -3762,7 +3753,6 @@
             0,
             0});
             this.nudOverlap.Click += new System.EventHandler(this.nudOverlap_Click);
-            this.nudOverlap.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudOverlap_HelpRequested);
             // 
             // nudOffset
             // 
@@ -3786,7 +3776,6 @@
             0,
             0});
             this.nudOffset.Click += new System.EventHandler(this.nudOffset_Click);
-            this.nudOffset.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudOffset_HelpRequested);
             // 
             // tabToolPivot
             // 
@@ -4628,7 +4617,6 @@
             this.cboxNumSections.Size = new System.Drawing.Size(74, 50);
             this.cboxNumSections.TabIndex = 295;
             this.cboxNumSections.SelectedIndexChanged += new System.EventHandler(this.cboxNumSections_SelectedIndexChanged);
-            this.cboxNumSections.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxNumSections_HelpRequested);
             // 
             // lblVehicleToolWidth
             // 
@@ -4973,7 +4961,6 @@
             0,
             0});
             this.nudDefaultSectionWidth.Click += new System.EventHandler(this.nudDefaultSectionWidth_Click);
-            this.nudDefaultSectionWidth.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudDefaultSectionWidth_HelpRequested);
             // 
             // nudMinCoverage
             // 
@@ -4993,7 +4980,6 @@
             0,
             0});
             this.nudMinCoverage.Click += new System.EventHandler(this.nudMinCoverage_Click);
-            this.nudMinCoverage.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudMinCoverage_HelpRequested);
             // 
             // nudSection16
             // 
@@ -5018,7 +5004,6 @@
             0,
             0});
             this.nudSection16.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection16.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection15
             // 
@@ -5043,7 +5028,6 @@
             0,
             0});
             this.nudSection15.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection15.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection14
             // 
@@ -5068,7 +5052,6 @@
             0,
             0});
             this.nudSection14.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection14.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection13
             // 
@@ -5093,7 +5076,6 @@
             0,
             0});
             this.nudSection13.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection13.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection12
             // 
@@ -5118,7 +5100,6 @@
             0,
             0});
             this.nudSection12.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection12.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection11
             // 
@@ -5143,7 +5124,6 @@
             0,
             0});
             this.nudSection11.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection11.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection10
             // 
@@ -5168,7 +5148,6 @@
             0,
             0});
             this.nudSection10.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection10.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection09
             // 
@@ -5193,7 +5172,6 @@
             0,
             0});
             this.nudSection09.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection09.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection08
             // 
@@ -5218,7 +5196,6 @@
             0,
             0});
             this.nudSection08.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection08.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection07
             // 
@@ -5243,7 +5220,6 @@
             0,
             0});
             this.nudSection07.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection07.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection06
             // 
@@ -5268,7 +5244,6 @@
             0,
             0});
             this.nudSection06.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection06.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection05
             // 
@@ -5293,7 +5268,6 @@
             0,
             0});
             this.nudSection05.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection05.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection04
             // 
@@ -5318,7 +5292,6 @@
             0,
             0});
             this.nudSection04.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection04.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection03
             // 
@@ -5343,7 +5316,6 @@
             0,
             0});
             this.nudSection03.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection03.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection02
             // 
@@ -5368,7 +5340,6 @@
             0,
             0});
             this.nudSection02.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection02.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection01
             // 
@@ -5393,7 +5364,6 @@
             0,
             0});
             this.nudSection01.Click += new System.EventHandler(this.NudSection1_Click);
-            this.nudSection01.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // cboxSectionBoundaryControl
             // 
@@ -5757,7 +5727,6 @@
             0,
             65536});
             this.nudLookAheadOff.Click += new System.EventHandler(this.nudLookAheadOff_Click);
-            this.nudLookAheadOff.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudLookAheadOff_HelpRequested);
             // 
             // nudTurnOffDelay
             // 
@@ -5783,7 +5752,6 @@
             this.nudTurnOffDelay.TabIndex = 119;
             this.nudTurnOffDelay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudTurnOffDelay.Click += new System.EventHandler(this.nudTurnOffDelay_Click);
-            this.nudTurnOffDelay.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudTurnOffDelay_HelpRequested);
             // 
             // nudLookAhead
             // 
@@ -5819,7 +5787,6 @@
             0,
             65536});
             this.nudLookAhead.Click += new System.EventHandler(this.nudLookAhead_Click);
-            this.nudLookAhead.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudLookAhead_HelpRequested);
             // 
             // pictureBox18
             // 
@@ -6076,7 +6043,6 @@
             this.hsbarFusion.TabIndex = 471;
             this.hsbarFusion.Value = 30;
             this.hsbarFusion.ValueChanged += new System.EventHandler(this.hsbarFusion_ValueChanged);
-            this.hsbarFusion.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.hsbarFusion_HelpRequested);
             // 
             // lblFusion
             // 
@@ -6118,7 +6084,6 @@
             this.cboxIsReverseOn.Text = "Reverse Detection";
             this.cboxIsReverseOn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxIsReverseOn.UseVisualStyleBackColor = false;
-            this.cboxIsReverseOn.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxIsReverseOn_HelpRequested);
             // 
             // label8
             // 
@@ -6177,7 +6142,6 @@
             this.rbtnHeadingHDT.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbtnHeadingHDT.UseVisualStyleBackColor = false;
             this.rbtnHeadingHDT.CheckedChanged += new System.EventHandler(this.rbtnHeadingFix_CheckedChanged);
-            this.rbtnHeadingHDT.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.rbtnHeadingHDT_HelpRequested);
             // 
             // rbtnHeadingFix
             // 
@@ -6196,7 +6160,6 @@
             this.rbtnHeadingFix.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbtnHeadingFix.UseVisualStyleBackColor = false;
             this.rbtnHeadingFix.CheckedChanged += new System.EventHandler(this.rbtnHeadingFix_CheckedChanged);
-            this.rbtnHeadingFix.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.rbtnHeadingFix_HelpRequested);
             // 
             // cboxIsRTK_KillAutoSteer
             // 
@@ -6214,7 +6177,6 @@
             this.cboxIsRTK_KillAutoSteer.TabIndex = 467;
             this.cboxIsRTK_KillAutoSteer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxIsRTK_KillAutoSteer.UseVisualStyleBackColor = false;
-            this.cboxIsRTK_KillAutoSteer.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxIsRTK_KillAutoSteer_HelpRequested);
             // 
             // cboxIsRTK
             // 
@@ -6232,7 +6194,6 @@
             this.cboxIsRTK.TabIndex = 309;
             this.cboxIsRTK.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxIsRTK.UseVisualStyleBackColor = false;
-            this.cboxIsRTK.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxIsRTK_HelpRequested);
             // 
             // tabDRoll
             // 
@@ -6428,7 +6389,6 @@
             this.btnResetIMU.TabIndex = 85;
             this.btnResetIMU.UseVisualStyleBackColor = false;
             this.btnResetIMU.Click += new System.EventHandler(this.btnResetIMU_Click);
-            this.btnResetIMU.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnResetIMU_HelpRequested);
             // 
             // btnZeroRoll
             // 
@@ -6446,7 +6406,6 @@
             this.btnZeroRoll.TabIndex = 76;
             this.btnZeroRoll.UseVisualStyleBackColor = false;
             this.btnZeroRoll.Click += new System.EventHandler(this.btnZeroRoll_Click);
-            this.btnZeroRoll.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnZeroRoll_HelpRequested);
             // 
             // btnRemoveZeroOffset
             // 
@@ -6464,7 +6423,6 @@
             this.btnRemoveZeroOffset.TabIndex = 76;
             this.btnRemoveZeroOffset.UseVisualStyleBackColor = false;
             this.btnRemoveZeroOffset.Click += new System.EventHandler(this.btnRemoveZeroOffset_Click);
-            this.btnRemoveZeroOffset.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnRemoveZeroOffset_HelpRequested);
             // 
             // cboxDataInvertRoll
             // 
@@ -6483,7 +6441,6 @@
             this.cboxDataInvertRoll.TabIndex = 452;
             this.cboxDataInvertRoll.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxDataInvertRoll.UseVisualStyleBackColor = false;
-            this.cboxDataInvertRoll.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxDataInvertRoll_HelpRequested);
             // 
             // tabUTurn
             // 
@@ -6570,7 +6527,6 @@
             this.lblSmoothing.Size = new System.Drawing.Size(95, 45);
             this.lblSmoothing.TabIndex = 464;
             this.lblSmoothing.Text = "XXX";
-            this.lblSmoothing.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.lblSmoothing_HelpRequested);
             // 
             // lblDistance
             // 
@@ -6584,7 +6540,6 @@
             this.lblDistance.Size = new System.Drawing.Size(95, 45);
             this.lblDistance.TabIndex = 455;
             this.lblDistance.Text = "XXX";
-            this.lblDistance.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.lblDistance_HelpRequested);
             // 
             // nudYouTurnRadius
             // 
@@ -6640,7 +6595,6 @@
             0,
             65536});
             this.nudTurnDistanceFromBoundary.Click += new System.EventHandler(this.nudTurnDistanceFromBoundary_Click);
-            this.nudTurnDistanceFromBoundary.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudTurnDistanceFromBoundary_HelpRequested);
             this.nudTurnDistanceFromBoundary.Enter += new System.EventHandler(this.nudTurnDistanceFromBoundary_Click);
             // 
             // label64
@@ -8074,7 +8028,6 @@
             0,
             0});
             this.nudHydLiftLookAhead.Click += new System.EventHandler(this.nudHydLiftSecs_Click);
-            this.nudHydLiftLookAhead.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudHydLiftLookAhead_HelpRequested);
             // 
             // label69
             // 
@@ -8139,7 +8092,6 @@
             this.cboxIsHydOn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxIsHydOn.UseVisualStyleBackColor = false;
             this.cboxIsHydOn.CheckStateChanged += new System.EventHandler(this.cboxIsHydOn_CheckStateChanged);
-            this.cboxIsHydOn.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxIsHydOn_HelpRequested);
             // 
             // pictureBox6
             // 
@@ -8178,7 +8130,6 @@
             0,
             0});
             this.nudLowerTime.Click += new System.EventHandler(this.nudLowerTime_Click);
-            this.nudLowerTime.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudLowerTime_HelpRequested);
             // 
             // pictureBox7
             // 
@@ -8217,7 +8168,6 @@
             0,
             0});
             this.nudRaiseTime.Click += new System.EventHandler(this.nudRaiseTime_Click);
-            this.nudRaiseTime.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudRaiseTime_HelpRequested);
             // 
             // label72
             // 
@@ -8366,7 +8316,6 @@
             this.pboxSendMachine.TabIndex = 483;
             this.pboxSendMachine.TabStop = false;
             this.pboxSendMachine.Visible = false;
-            this.pboxSendMachine.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.pboxSendMachine_HelpRequested);
             // 
             // cboxMachInvertRelays
             // 
@@ -8389,7 +8338,6 @@
             this.cboxMachInvertRelays.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxMachInvertRelays.UseVisualStyleBackColor = false;
             this.cboxMachInvertRelays.Click += new System.EventHandler(this.Enable_AlertM_Click);
-            this.cboxMachInvertRelays.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxMachInvertRelays_HelpRequested);
             // 
             // btnSendMachinePGN
             // 
@@ -8405,7 +8353,6 @@
             this.btnSendMachinePGN.TabIndex = 1;
             this.btnSendMachinePGN.UseVisualStyleBackColor = false;
             this.btnSendMachinePGN.Click += new System.EventHandler(this.btnSendMachinePGN_Click);
-            this.btnSendMachinePGN.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnSendMachinePGN_HelpRequested);
             // 
             // tabTram
             // 
@@ -8513,7 +8460,6 @@
             0,
             0});
             this.nudTramWidth.Click += new System.EventHandler(this.nudTramWidth_Click);
-            this.nudTramWidth.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudTramWidth_HelpRequested);
             // 
             // pictureBox8
             // 
@@ -8573,6 +8519,42 @@
             this.tabBtns.Text = "fBtns";
             this.tabBtns.Enter += new System.EventHandler(this.tabBtns_Enter);
             this.tabBtns.Leave += new System.EventHandler(this.tabBtns_Leave);
+            // 
+            // label54
+            // 
+            this.label54.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label54.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label54.ForeColor = System.Drawing.Color.Black;
+            this.label54.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label54.Location = new System.Drawing.Point(380, 215);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(190, 25);
+            this.label54.TabIndex = 523;
+            this.label54.Text = "Nudge Controls";
+            this.label54.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cboxFeatureNudge
+            // 
+            this.cboxFeatureNudge.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cboxFeatureNudge.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxFeatureNudge.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cboxFeatureNudge.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.cboxFeatureNudge.Checked = true;
+            this.cboxFeatureNudge.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxFeatureNudge.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.cboxFeatureNudge.FlatAppearance.BorderSize = 2;
+            this.cboxFeatureNudge.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
+            this.cboxFeatureNudge.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxFeatureNudge.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureNudge.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cboxFeatureNudge.Image = global::AgOpenGPS.Properties.Resources.SnapToPivot;
+            this.cboxFeatureNudge.Location = new System.Drawing.Point(428, 249);
+            this.cboxFeatureNudge.Name = "cboxFeatureNudge";
+            this.cboxFeatureNudge.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cboxFeatureNudge.Size = new System.Drawing.Size(77, 77);
+            this.cboxFeatureNudge.TabIndex = 522;
+            this.cboxFeatureNudge.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cboxFeatureNudge.UseVisualStyleBackColor = false;
             // 
             // label92
             // 
@@ -9755,48 +9737,13 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // cboxFeatureNudge
-            // 
-            this.cboxFeatureNudge.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cboxFeatureNudge.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxFeatureNudge.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cboxFeatureNudge.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.cboxFeatureNudge.Checked = true;
-            this.cboxFeatureNudge.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cboxFeatureNudge.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.cboxFeatureNudge.FlatAppearance.BorderSize = 2;
-            this.cboxFeatureNudge.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
-            this.cboxFeatureNudge.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureNudge.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxFeatureNudge.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboxFeatureNudge.Image = global::AgOpenGPS.Properties.Resources.SnapToPivot;
-            this.cboxFeatureNudge.Location = new System.Drawing.Point(428, 249);
-            this.cboxFeatureNudge.Name = "cboxFeatureNudge";
-            this.cboxFeatureNudge.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cboxFeatureNudge.Size = new System.Drawing.Size(77, 77);
-            this.cboxFeatureNudge.TabIndex = 522;
-            this.cboxFeatureNudge.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cboxFeatureNudge.UseVisualStyleBackColor = false;
-            // 
-            // label54
-            // 
-            this.label54.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label54.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label54.ForeColor = System.Drawing.Color.Black;
-            this.label54.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label54.Location = new System.Drawing.Point(380, 215);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(190, 25);
-            this.label54.TabIndex = 523;
-            this.label54.Text = "Nudge Controls";
-            this.label54.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(990, 715);
+            this.ControlBox = false;
             this.Controls.Add(this.tab1);
             this.Controls.Add(this.panelBottom);
             this.Controls.Add(this.panelLeftSideMenu);
@@ -9810,6 +9757,7 @@
             this.Padding = new System.Windows.Forms.Padding(4);
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Configuration";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormConfig_FormClosing);
             this.Load += new System.EventHandler(this.FormConfig_Load);
             this.panelLeftSideMenu.ResumeLayout(false);

@@ -513,6 +513,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
             this.ClientSize = new System.Drawing.Size(741, 664);
+            this.ControlBox = false;
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.label15);

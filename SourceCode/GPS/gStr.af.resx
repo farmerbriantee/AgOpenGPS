@@ -552,10 +552,4 @@
   <data name="gsXTEChart" xml:space="preserve">
     <value>zXTE Chart</value>
   </data>
-  <data name="h_FieldData" xml:space="preserve">
-    <value>zField Data</value>
-  </data>
-  <data name="h_lblUTurnStyle" xml:space="preserve">
-    <value>zSet the type of Uturn style, either normal U shaped turn or K style Turn</value>
-  </data>
 </root>

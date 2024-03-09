@@ -63,7 +63,6 @@
             this.oglSelf.TabIndex = 183;
             this.oglSelf.VSync = false;
             this.oglSelf.Load += new System.EventHandler(this.oglSelf_Load);
-            this.oglSelf.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.oglSelf_HelpRequested);
             this.oglSelf.Paint += new System.Windows.Forms.PaintEventHandler(this.oglSelf_Paint);
             this.oglSelf.MouseDown += new System.Windows.Forms.MouseEventHandler(this.oglSelf_MouseDown);
             this.oglSelf.Resize += new System.EventHandler(this.oglSelf_Resize);
@@ -101,7 +100,6 @@
             this.tboxNameCurve.Size = new System.Drawing.Size(299, 36);
             this.tboxNameCurve.TabIndex = 10;
             this.tboxNameCurve.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tboxNameCurve.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.tboxNameCurve_HelpRequested);
             this.tboxNameCurve.Enter += new System.EventHandler(this.tboxNameCurve_Enter);
             this.tboxNameCurve.Leave += new System.EventHandler(this.tboxNameCurve_Leave);
             // 
@@ -182,7 +180,6 @@
             this.btnDrawSections.TabIndex = 11;
             this.btnDrawSections.UseVisualStyleBackColor = false;
             this.btnDrawSections.Click += new System.EventHandler(this.btnDrawSections_Click);
-            this.btnDrawSections.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnDrawSections_HelpRequested);
             // 
             // btnCancel
             // 
@@ -239,7 +236,6 @@
             this.btnExit.TabIndex = 0;
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            this.btnExit.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnExit_HelpRequested);
             // 
             // btnDeleteCurve
             // 
@@ -258,7 +254,6 @@
             this.btnDeleteCurve.TabIndex = 6;
             this.btnDeleteCurve.UseVisualStyleBackColor = false;
             this.btnDeleteCurve.Click += new System.EventHandler(this.btnDeleteCurve_Click);
-            this.btnDeleteCurve.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnDeleteCurve_HelpRequested);
             // 
             // btnMakeCurve
             // 
@@ -278,7 +273,6 @@
             this.btnMakeCurve.TabIndex = 2;
             this.btnMakeCurve.UseVisualStyleBackColor = false;
             this.btnMakeCurve.Click += new System.EventHandler(this.BtnMakeCurve_Click);
-            this.btnMakeCurve.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnMakeCurve_HelpRequested);
             // 
             // btnMakeABLine
             // 
@@ -298,7 +292,6 @@
             this.btnMakeABLine.TabIndex = 3;
             this.btnMakeABLine.UseVisualStyleBackColor = false;
             this.btnMakeABLine.Click += new System.EventHandler(this.BtnMakeABLine_Click);
-            this.btnMakeABLine.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnMakeABLine_HelpRequested);
             // 
             // cboxIsZoom
             // 
@@ -359,7 +352,6 @@
             this.btnMakeBoundaryCurve.TabIndex = 4;
             this.btnMakeBoundaryCurve.UseVisualStyleBackColor = false;
             this.btnMakeBoundaryCurve.Click += new System.EventHandler(this.btnMakeBoundaryCurve_Click);
-            this.btnMakeBoundaryCurve.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnMakeBoundaryCurve_HelpRequested);
             // 
             // btnCancelTouch
             // 
@@ -378,7 +370,6 @@
             this.btnCancelTouch.TabIndex = 470;
             this.btnCancelTouch.UseVisualStyleBackColor = false;
             this.btnCancelTouch.Click += new System.EventHandler(this.btnCancelTouch_Click);
-            this.btnCancelTouch.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnCancelTouch_HelpRequested);
             // 
             // btnSelectCurveBk
             // 
@@ -415,7 +406,6 @@
             this.btnSelectCurve.TabIndex = 5;
             this.btnSelectCurve.UseVisualStyleBackColor = false;
             this.btnSelectCurve.Click += new System.EventHandler(this.btnSelectCurve_Click);
-            this.btnSelectCurve.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnSelectCurve_HelpRequested);
             // 
             // btnAddTime
             // 
@@ -442,6 +432,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1006, 703);
+            this.ControlBox = false;
             this.Controls.Add(this.tlp1);
             this.Controls.Add(this.oglSelf);
             this.ForeColor = System.Drawing.Color.Black;

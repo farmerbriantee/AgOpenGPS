@@ -407,12 +407,13 @@
             this.tlp1.Size = new System.Drawing.Size(299, 700);
             this.tlp1.TabIndex = 572;
             // 
-            // FormMapBnd
+            // FormBndTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1006, 703);
+            this.ControlBox = false;
             this.Controls.Add(this.tlp1);
             this.Controls.Add(this.oglSelf);
             this.ForeColor = System.Drawing.Color.Black;
@@ -420,7 +421,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1022, 742);
-            this.Name = "FormMapBnd";
+            this.Name = "FormBndTool";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Draw AB - Click 2 points on the Boundary to Begin";

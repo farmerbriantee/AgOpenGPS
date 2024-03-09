@@ -491,51 +491,5 @@ namespace AgOpenGPS
                 mf.curve.desList.Add(arr[i]);
             }
         }
-
-        #region Help
-
-        private void btnAddTime_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.ha_btnAddTime, gStr.gsHelp);
-        }
-
-        private void btnCancel_Name_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.ha_btnCancelCreate, gStr.gsHelp);
-        }
-
-        private void btnCancelCurve_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.ha_btnCancelCreate, gStr.gsHelp);
-        }
-
-        private void btnAdd_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.ha_btnEnterContinue, gStr.gsHelp);
-        }
-
-        private void btnAPoint_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hcur_btnAPoint, gStr.gsHelp);
-        }
-
-        private void btnBPoint_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hcur_btnBPoint, gStr.gsHelp);
-        }
-
-        private void btnPausePlay_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hcur_btnPausePlay, gStr.gsHelp);
-        }
-
-        private void textBox1_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.ha_textBox1, gStr.gsHelp);
-        }
-
-        #endregion Help
-
-
     }
 }
