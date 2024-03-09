@@ -272,6 +272,9 @@ namespace AgOpenGPS
             cboxFeatureTram.Checked = Properties.Settings.Default.setFeatures.isTramOn;
             cboxFeatureHeadland.Checked = Properties.Settings.Default.setFeatures.isHeadlandOn;
             cboxFeatureBoundary.Checked = Properties.Settings.Default.setFeatures.isBoundaryOn;
+
+            //the nudge controls at bottom menu
+            cboxFeatureNudge.Checked = Properties.Settings.Default.setFeatures.isABLineOn;
             //cboxFeatureBoundaryContour.Checked = Properties.Settings.Default.setFeatures.isBndContourOn;
             cboxFeatureRecPath.Checked = Properties.Settings.Default.setFeatures.isRecPathOn;
             cboxFeatureABSmooth.Checked = Properties.Settings.Default.setFeatures.isABSmoothOn;
@@ -292,6 +295,8 @@ namespace AgOpenGPS
         {
             Properties.Settings.Default.setFeatures.isTramOn = cboxFeatureTram.Checked;
             Properties.Settings.Default.setFeatures.isHeadlandOn = cboxFeatureHeadland.Checked;
+
+            Properties.Settings.Default.setFeatures.isABLineOn = cboxFeatureNudge.Checked;
 
             Properties.Settings.Default.setFeatures.isBoundaryOn = cboxFeatureBoundary.Checked;
             //Properties.Settings.Default.setFeatures.isBndContourOn = cboxFeatureBoundaryContour.Checked;

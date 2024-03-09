@@ -55,7 +55,7 @@ namespace AgOpenGPS
         public bool isDay = true, isDayTime = true, isBrightnessOn = true;
         public bool isKeyboardOn = true, isAutoStartAgIO = true, isSvennArrowOn = true, isTermsAccepted = false;
 
-        public bool isUTurnOn = true, isLateralOn = true;
+        public bool isUTurnOn = true, isLateralOn = true, isNudgeOn = true;
 
         public int[] customColorsList = new int[16];
 
@@ -428,6 +428,7 @@ namespace AgOpenGPS
             tramLinesMenuField.Visible = Properties.Settings.Default.setFeatures.isTramOn;
             recordedPathStripMenu.Visible = Properties.Settings.Default.setFeatures.isRecPathOn;
 
+
             //tools menu
             SmoothABtoolStripMenu.Visible = Properties.Settings.Default.setFeatures.isABSmoothOn;
             deleteContourPathsToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isHideContourOn;
@@ -440,6 +441,7 @@ namespace AgOpenGPS
             //OGL control
             isUTurnOn = Properties.Settings.Default.setFeatures.isUTurnOn;
             isLateralOn = Properties.Settings.Default.setFeatures.isLateralOn;
+            isNudgeOn = Properties.Settings.Default.setFeatures.isABLineOn;
 
             if (isMetric)
             {
@@ -760,9 +762,10 @@ namespace AgOpenGPS
 
                 cboxpRowWidth.Visible = trk.idx > -1;
                 btnYouSkipEnable.Visible = trk.idx > -1;
-                btnSnapToPivot.Visible = trk.idx > -1;
-                btnAdjLeft.Visible = trk.idx > -1;
-                btnAdjRight.Visible = trk.idx > -1;
+
+                btnSnapToPivot.Visible = trk.idx > -1 && isNudgeOn;
+                btnAdjLeft.Visible = trk.idx > -1 && isNudgeOn;
+                btnAdjRight.Visible = trk.idx > -1 && isNudgeOn;
 
                 btnTramDisplayMode.Visible = istram;
                 btnHeadlandOnOff.Visible = isHdl;

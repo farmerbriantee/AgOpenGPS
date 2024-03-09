@@ -475,7 +475,7 @@ namespace AgOpenGPS
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
 
-            string filename = directoryName + "\\HeadLines.txt";
+            string filename = directoryName + "\\Headlines.txt";
 
             int cnt = hdl.tracksArr.Count;
 
@@ -541,13 +541,13 @@ namespace AgOpenGPS
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
 
-            string filename = directoryName + "\\HeadLines.txt";
+            string filename = directoryName + "\\Headlines.txt";
 
             if (!File.Exists(filename))
             {
                 using (StreamWriter writer = new StreamWriter(filename))
                 {
-                    writer.WriteLine("$HeadLines");
+                    writer.WriteLine("$Headlines");
                 }
             }
 
@@ -557,7 +557,7 @@ namespace AgOpenGPS
 
             if (!File.Exists(filename))
             {
-                TimedMessageBox(2000, gStr.gsFileError, "Missing HeadLines File");
+                TimedMessageBox(2000, gStr.gsFileError, "Missing Headlines File");
             }
             else
             {
@@ -628,13 +628,13 @@ namespace AgOpenGPS
                         if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
                         { Directory.CreateDirectory(directoryName); }
 
-                        filename = directoryName + "\\HeadLines.txt";
+                        filename = directoryName + "\\Headlines.txt";
 
                         using (StreamWriter writer = new StreamWriter(filename, false))
                         {
                             try
                             {
-                                writer.WriteLine("$HeadLines");
+                                writer.WriteLine("$Headlines");
                                 return;
 
                             }

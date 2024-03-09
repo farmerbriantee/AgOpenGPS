@@ -547,6 +547,8 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.cboxFeatureNudge = new System.Windows.Forms.CheckBox();
+            this.label54 = new System.Windows.Forms.Label();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -8526,6 +8528,8 @@
             // tabBtns
             // 
             this.tabBtns.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabBtns.Controls.Add(this.label54);
+            this.tabBtns.Controls.Add(this.cboxFeatureNudge);
             this.tabBtns.Controls.Add(this.label92);
             this.tabBtns.Controls.Add(this.btnRightMenuOrder);
             this.tabBtns.Controls.Add(this.label62);
@@ -8576,7 +8580,7 @@
             this.label92.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label92.ForeColor = System.Drawing.Color.Black;
             this.label92.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label92.Location = new System.Drawing.Point(384, 170);
+            this.label92.Location = new System.Drawing.Point(408, 424);
             this.label92.Name = "label92";
             this.label92.Size = new System.Drawing.Size(190, 25);
             this.label92.TabIndex = 521;
@@ -8594,7 +8598,7 @@
             this.btnRightMenuOrder.ForeColor = System.Drawing.Color.Black;
             this.btnRightMenuOrder.Image = global::AgOpenGPS.Properties.Resources.Con_RightMenuEdit;
             this.btnRightMenuOrder.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRightMenuOrder.Location = new System.Drawing.Point(431, 198);
+            this.btnRightMenuOrder.Location = new System.Drawing.Point(455, 452);
             this.btnRightMenuOrder.Name = "btnRightMenuOrder";
             this.btnRightMenuOrder.Size = new System.Drawing.Size(99, 95);
             this.btnRightMenuOrder.TabIndex = 520;
@@ -9152,7 +9156,7 @@
             this.label93.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label93.ForeColor = System.Drawing.Color.Black;
             this.label93.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label93.Location = new System.Drawing.Point(531, 231);
+            this.label93.Location = new System.Drawing.Point(555, 485);
             this.label93.Name = "label93";
             this.label93.Size = new System.Drawing.Size(43, 29);
             this.label93.TabIndex = 455;
@@ -9750,6 +9754,42 @@
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // cboxFeatureNudge
+            // 
+            this.cboxFeatureNudge.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cboxFeatureNudge.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxFeatureNudge.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cboxFeatureNudge.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.cboxFeatureNudge.Checked = true;
+            this.cboxFeatureNudge.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxFeatureNudge.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.cboxFeatureNudge.FlatAppearance.BorderSize = 2;
+            this.cboxFeatureNudge.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
+            this.cboxFeatureNudge.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxFeatureNudge.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureNudge.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cboxFeatureNudge.Image = global::AgOpenGPS.Properties.Resources.SnapToPivot;
+            this.cboxFeatureNudge.Location = new System.Drawing.Point(428, 249);
+            this.cboxFeatureNudge.Name = "cboxFeatureNudge";
+            this.cboxFeatureNudge.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cboxFeatureNudge.Size = new System.Drawing.Size(77, 77);
+            this.cboxFeatureNudge.TabIndex = 522;
+            this.cboxFeatureNudge.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cboxFeatureNudge.UseVisualStyleBackColor = false;
+            // 
+            // label54
+            // 
+            this.label54.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label54.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label54.ForeColor = System.Drawing.Color.Black;
+            this.label54.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label54.Location = new System.Drawing.Point(380, 215);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(190, 25);
+            this.label54.TabIndex = 523;
+            this.label54.Text = "Nudge Controls";
+            this.label54.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormConfig
             // 
@@ -10443,5 +10483,7 @@
         private System.Windows.Forms.Button btnZeroToolOffset;
         private System.Windows.Forms.Button btnZeroOverlap;
         private System.Windows.Forms.Button btnPivotOffsetZero;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.CheckBox cboxFeatureNudge;
     }
 }
