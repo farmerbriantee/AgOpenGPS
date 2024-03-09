@@ -1994,7 +1994,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(944, 680);
-            this.ControlBox = false;
             this.Controls.Add(this.label35);
             this.Controls.Add(this.btnSteerWizard);
             this.Controls.Add(this.tabSteerSettings);
@@ -2007,15 +2006,12 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HelpButton = true;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(960, 720);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(388, 480);
             this.Name = "FormSteer";
             this.Padding = new System.Windows.Forms.Padding(2);
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Auto Steer Configuration";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSteer_FormClosing);

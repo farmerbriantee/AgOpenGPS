@@ -167,7 +167,7 @@
             this.chkGuidanceLines.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkGuidanceLines.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkGuidanceLines.ForeColor = System.Drawing.Color.White;
-            this.chkGuidanceLines.Image = global::AgOpenGPS.Properties.Resources.ABSnapNudgeMenu;
+            this.chkGuidanceLines.Image = global::AgOpenGPS.Properties.Resources.ABTrackAB;
             this.chkGuidanceLines.Location = new System.Drawing.Point(695, 575);
             this.chkGuidanceLines.Name = "chkGuidanceLines";
             this.chkGuidanceLines.RightToLeft = System.Windows.Forms.RightToLeft.Yes;

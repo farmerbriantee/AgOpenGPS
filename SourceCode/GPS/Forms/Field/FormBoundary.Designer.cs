@@ -40,7 +40,6 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.panelChoose = new System.Windows.Forms.Panel();
             this.btnCancelChoose = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.btnGetKML = new System.Windows.Forms.Button();
             this.btnDriveOrExt = new System.Windows.Forms.Button();
             this.panelKML = new System.Windows.Forms.Panel();
@@ -196,7 +195,6 @@
             // 
             this.panelChoose.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelChoose.Controls.Add(this.btnCancelChoose);
-            this.panelChoose.Controls.Add(this.label4);
             this.panelChoose.Controls.Add(this.btnGetKML);
             this.panelChoose.Controls.Add(this.btnDriveOrExt);
             this.panelChoose.Location = new System.Drawing.Point(619, 6);
@@ -213,26 +211,12 @@
             this.btnCancelChoose.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancelChoose.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancelChoose.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancelChoose.Location = new System.Drawing.Point(141, 240);
+            this.btnCancelChoose.Location = new System.Drawing.Point(141, 237);
             this.btnCancelChoose.Name = "btnCancelChoose";
             this.btnCancelChoose.Size = new System.Drawing.Size(68, 58);
             this.btnCancelChoose.TabIndex = 425;
             this.btnCancelChoose.UseVisualStyleBackColor = false;
             this.btnCancelChoose.Click += new System.EventHandler(this.btnReturn_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(66, 110);
-            this.label4.Name = "label4";
-            this.label4.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label4.Size = new System.Drawing.Size(35, 39);
-            this.label4.TabIndex = 420;
-            this.label4.Text = "?";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnGetKML
             // 
@@ -257,7 +241,7 @@
             this.btnDriveOrExt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDriveOrExt.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDriveOrExt.Image = global::AgOpenGPS.Properties.Resources.SteerRight;
-            this.btnDriveOrExt.Location = new System.Drawing.Point(41, 163);
+            this.btnDriveOrExt.Location = new System.Drawing.Point(41, 139);
             this.btnDriveOrExt.Name = "btnDriveOrExt";
             this.btnDriveOrExt.Size = new System.Drawing.Size(81, 78);
             this.btnDriveOrExt.TabIndex = 212;
@@ -313,7 +297,7 @@
             this.btnCancelKML.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancelKML.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancelKML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancelKML.Location = new System.Drawing.Point(153, 240);
+            this.btnCancelKML.Location = new System.Drawing.Point(153, 237);
             this.btnCancelKML.Name = "btnCancelKML";
             this.btnCancelKML.Size = new System.Drawing.Size(68, 58);
             this.btnCancelKML.TabIndex = 426;
@@ -377,7 +361,6 @@
             this.ResizeEnd += new System.EventHandler(this.FormBoundary_ResizeEnd);
             this.panelMain.ResumeLayout(false);
             this.panelChoose.ResumeLayout(false);
-            this.panelChoose.PerformLayout();
             this.panelKML.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -396,7 +379,6 @@
         private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.Panel panelKML;
         private System.Windows.Forms.Panel panelChoose;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnGetKML;
         private System.Windows.Forms.Button btnCancelKML;
         private System.Windows.Forms.Button btnCancelChoose;
