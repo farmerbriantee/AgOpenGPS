@@ -48,6 +48,7 @@
             this.btnZoomOut = new System.Windows.Forms.Button();
             this.btnZoomIn = new System.Windows.Forms.Button();
             this.tlp1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
             this.tlp1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -394,26 +395,42 @@
             this.tlp1.Controls.Add(this.cboxSmooth, 0, 4);
             this.tlp1.Controls.Add(this.btnExit, 4, 7);
             this.tlp1.Controls.Add(this.cboxIsZoom, 0, 5);
+            this.tlp1.Controls.Add(this.label2, 3, 3);
             this.tlp1.Location = new System.Drawing.Point(701, 0);
             this.tlp1.Name = "tlp1";
             this.tlp1.RowCount = 8;
             this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.57143F));
             this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.428571F));
-            this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.42857F));
-            this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.857143F));
+            this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
             this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.85714F));
             this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.71428F));
             this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.28572F));
             this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.71429F));
+            this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlp1.Size = new System.Drawing.Size(299, 700);
             this.tlp1.TabIndex = 572;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label2.AutoSize = true;
+            this.tlp1.SetColumnSpan(this.label2, 3);
+            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(195, 242);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(64, 19);
+            this.label2.TabIndex = 572;
+            this.label2.Text = "Create";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormBndTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(1006, 726);
+            this.ClientSize = new System.Drawing.Size(1006, 704);
             this.ControlBox = false;
             this.Controls.Add(this.tlp1);
             this.Controls.Add(this.oglSelf);
@@ -425,7 +442,7 @@
             this.Name = "FormBndTool";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Draw AB - Click 2 points on the Boundary to Begin";
+            this.Text = "Create Boundary From Mapping";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormBndTool_FormClosing);
             this.Load += new System.EventHandler(this.FormBndTool_Load);
             this.ResizeEnd += new System.EventHandler(this.FormBndTool_ResizeEnd);
@@ -456,5 +473,6 @@
         private System.Windows.Forms.Button btnZoomOut;
         private System.Windows.Forms.Button btnZoomIn;
         private System.Windows.Forms.TableLayoutPanel tlp1;
+        private System.Windows.Forms.Label label2;
     }
 }

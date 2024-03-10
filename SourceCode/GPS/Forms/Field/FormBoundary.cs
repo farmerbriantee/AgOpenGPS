@@ -200,6 +200,7 @@ namespace AgOpenGPS
 
                 if (mf.bnd.bndList.Count > fenceSelected)
                 {
+                    mf.bnd.bndList[fenceSelected].hdLine?.Clear();
                     mf.bnd.bndList.RemoveAt(fenceSelected);
                 }
                 fenceSelected = -1;
