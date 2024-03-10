@@ -132,6 +132,7 @@
             this.btnBingMaps.TabIndex = 217;
             this.btnBingMaps.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnBingMaps.UseVisualStyleBackColor = true;
+            this.btnBingMaps.Click += new System.EventHandler(this.btnBingMaps_Click);
             // 
             // btnAdd
             // 
