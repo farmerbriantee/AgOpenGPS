@@ -272,6 +272,7 @@ namespace AgOpenGPS
             chkDisplayPolygons.Checked = mf.isDrawPolygons;
             chkDisplayLightbar.Checked = mf.isLightbarOn;
             chkDisplayKeyboard.Checked = mf.isKeyboardOn;
+            chkDisplayLogElevation.Checked = mf.isLogElevation;
 
             if (mf.isMetric) rbtnDisplayMetric.Checked = true;
             else rbtnDisplayImperial.Checked = true;

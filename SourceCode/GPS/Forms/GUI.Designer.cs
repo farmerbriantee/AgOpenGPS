@@ -53,6 +53,7 @@ namespace AgOpenGPS
         public bool isUTurnAlwaysOn, isCompassOn, isSpeedoOn, isSideGuideLines = true;
         public bool isPureDisplayOn = true, isSkyOn = true, isRollMeterOn = false, isTextureOn = true;
         public bool isDay = true, isDayTime = true, isBrightnessOn = true;
+        public bool isLogElevation = false;
         public bool isKeyboardOn = true, isAutoStartAgIO = true, isSvennArrowOn = true, isTermsAccepted = false;
 
         public bool isUTurnOn = true, isLateralOn = true, isNudgeOn = true;
@@ -514,6 +515,7 @@ namespace AgOpenGPS
 
 
             isTextureOn = Settings.Default.setDisplay_isTextureOn;
+            isLogElevation = Settings.Default.setDisplay_isLogElevation;
 
             isGridOn = Settings.Default.setMenu_isGridOn;
             isBrightnessOn = Settings.Default.setDisplay_isBrightnessOn;

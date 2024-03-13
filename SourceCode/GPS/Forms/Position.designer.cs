@@ -1070,15 +1070,18 @@ namespace AgOpenGPS
             contourTriggerDistance = glm.Distance(pn.fix, prevContourPos);
             gridTriggerDistance = glm.DistanceSquared(pn.fix, prevGridPos);
 
-            if (gridTriggerDistance > 4 && patchCounter !=0 && isJobStarted)
+            if ( isLogElevation && gridTriggerDistance > 2.9 && patchCounter !=0 && isJobStarted)
             {
                 //grab fix and elevation
-                sbGrid.Append(pivotAxlePos.easting.ToString("N2", CultureInfo.InvariantCulture) + ","
-                    + pivotAxlePos.northing.ToString("N2", CultureInfo.InvariantCulture) + ","
-                    + pivotAxlePos.heading.ToString("N3", CultureInfo.InvariantCulture) + ","
-                    + Math.Round(ahrs.imuRoll,3).ToString(CultureInfo.InvariantCulture) + ","
+                sbGrid.Append(
+                    pn.fix.northing.ToString("N2", CultureInfo.InvariantCulture) + ","
+                    + pn.fix.easting.ToString("N2", CultureInfo.InvariantCulture) + ","
+                    + pn.latitude.ToString("N7", CultureInfo.InvariantCulture) + ","
+                    + pn.longitude.ToString("N7", CultureInfo.InvariantCulture) + ","
                     + Math.Round(pn.altitude,3).ToString(CultureInfo.InvariantCulture) + ","
-                    + pn.fixQuality.ToString(CultureInfo.InvariantCulture) +
+                    + pn.fixQuality.ToString(CultureInfo.InvariantCulture) + ","
+                    + pivotAxlePos.heading.ToString("N3", CultureInfo.InvariantCulture) + ","
+                    + Math.Round(ahrs.imuRoll,3).ToString(CultureInfo.InvariantCulture) + 
                     "\r\n");
 
                 prevGridPos.easting = pivotAxlePos.easting;
