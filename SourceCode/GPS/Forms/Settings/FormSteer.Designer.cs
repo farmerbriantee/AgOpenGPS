@@ -759,6 +759,7 @@
             this.hsbarProportionalGain.LargeChange = 1;
             this.hsbarProportionalGain.Location = new System.Drawing.Point(68, 89);
             this.hsbarProportionalGain.Maximum = 200;
+            this.hsbarProportionalGain.Minimum = 1;
             this.hsbarProportionalGain.Name = "hsbarProportionalGain";
             this.hsbarProportionalGain.Size = new System.Drawing.Size(202, 30);
             this.hsbarProportionalGain.TabIndex = 254;

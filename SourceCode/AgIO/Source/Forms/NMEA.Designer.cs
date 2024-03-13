@@ -113,11 +113,12 @@ namespace AgIO
 
             if (rawBuffer.Length > 301)
             {
-                if (isLogNMEA)
-                {
-                    logNMEASentence.Append("\r\n" +
-                        DateTime.UtcNow.ToString(" ->>  mm:ss.fff ", CultureInfo.InvariantCulture) + "\r\n" + rawBuffer + "\r\n");
-                }
+                //if (isLogNMEA)
+                //{
+                //    logNMEASentence.Append("\r\n" +
+                //        DateTime.UtcNow.ToString(" ->>  mm:ss.fff ", CultureInfo.InvariantCulture)
+                //        + "\r\n" + rawBuffer + "\r\n");
+                //}
 
                 rawBuffer = "";
                 return;
@@ -125,7 +126,8 @@ namespace AgIO
 
             if (isLogMonitorOn)
             {
-                logMonitorSentence.Append(DateTime.UtcNow.ToString("mm:ss.fff ", CultureInfo.InvariantCulture)+rawBuffer);
+                logMonitorSentence.Append(DateTime.UtcNow
+                    .ToString("mm:ss.fff ", CultureInfo.InvariantCulture)+rawBuffer);
             }
 
 
@@ -138,10 +140,11 @@ namespace AgIO
 
                 words = nextNMEASentence.Split(',');
 
-                if (isLogNMEA)
-                {
-                    logNMEASentence.Append(DateTime.UtcNow.ToString("HHmmss.fff ", CultureInfo.InvariantCulture) + " " + nextNMEASentence + "\r\n");
-                }
+                //if (isLogNMEA)
+                //{
+                //    logNMEASentence.Append(DateTime.UtcNow.ToString("HHmmss.fff ", CultureInfo.InvariantCulture)
+                //    + " " + nextNMEASentence + "\r\n");
+                //}
 
                 //parse them accordingly
                 if (words.Length < 3) break;
@@ -712,8 +715,10 @@ namespace AgIO
                 }
 
                 decim -= 2;
-                double.TryParse(words[2].Substring(0, decim), NumberStyles.Float, CultureInfo.InvariantCulture, out latitude);
-                double.TryParse(words[2].Substring(decim), NumberStyles.Float, CultureInfo.InvariantCulture, out double temp);
+                double.TryParse(words[2].Substring(0, decim), 
+                    NumberStyles.Float, CultureInfo.InvariantCulture, out latitude);
+                double.TryParse(words[2].Substring(decim), 
+                    NumberStyles.Float, CultureInfo.InvariantCulture, out double temp);
                 temp *= 0.01666666666666666666666666666667;
                 latitude += temp;
                 if (words[3] == "S")
@@ -730,8 +735,10 @@ namespace AgIO
                 }
 
                 decim -= 2;
-                double.TryParse(words[4].Substring(0, decim), NumberStyles.Float, CultureInfo.InvariantCulture, out longitude);
-                double.TryParse(words[4].Substring(decim), NumberStyles.Float, CultureInfo.InvariantCulture, out temp);
+                double.TryParse(words[4].Substring(0, decim), 
+                    NumberStyles.Float, CultureInfo.InvariantCulture, out longitude);
+                double.TryParse(words[4].Substring(decim), 
+                    NumberStyles.Float, CultureInfo.InvariantCulture, out temp);
                 longitude += temp * 0.01666666666666666666666666666667;
 
                 { if (words[5] == "W") longitude *= -1; }

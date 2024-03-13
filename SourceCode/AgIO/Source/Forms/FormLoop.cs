@@ -460,14 +460,14 @@ namespace AgIO
             //send a hello to modules
             SendUDPMessage(helloFromAgIO, epModule);
 
-            if (isLogNMEA)
-            {
-                using (StreamWriter writer = new StreamWriter("zAgIO_log.txt", true))
-                {
-                    writer.Write(logNMEASentence.ToString());
-                }
-                logNMEASentence.Clear();
-            }
+            //if (isLogNMEA)
+            //{
+            //    using (StreamWriter writer = new StreamWriter("zAgIO_log.txt", true))
+            //    {
+            //        writer.Write(logNMEASentence.ToString());
+            //    }
+            //    logNMEASentence.Clear();
+            //}
 
             if (focusSkipCounter < 310) lblSkipCounter.Text = focusSkipCounter.ToString();
             else lblSkipCounter.Text = "On";
@@ -972,11 +972,6 @@ namespace AgIO
 
             Form form = new FormGPSData(this);
             form.Show(this);
-        }
-
-        private void cboxLogNMEA_CheckedChanged(object sender, EventArgs e)
-        {
-            isLogNMEA = cboxLogNMEA.Checked;
         }
     }
 }
