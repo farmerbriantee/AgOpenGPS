@@ -1074,12 +1074,12 @@ namespace AgOpenGPS
             {
                 //grab fix and elevation
                 sbGrid.Append(
-                    pn.fix.northing.ToString("N2", CultureInfo.InvariantCulture) + ","
-                    + pn.fix.easting.ToString("N2", CultureInfo.InvariantCulture) + ","
-                    + pn.latitude.ToString("N7", CultureInfo.InvariantCulture) + ","
+                      pn.latitude.ToString("N7", CultureInfo.InvariantCulture) + ","
                     + pn.longitude.ToString("N7", CultureInfo.InvariantCulture) + ","
-                    + Math.Round(pn.altitude,3).ToString(CultureInfo.InvariantCulture) + ","
+                    + Math.Round((pn.altitude - vehicle.antennaHeight),3).ToString(CultureInfo.InvariantCulture) + ","
                     + pn.fixQuality.ToString(CultureInfo.InvariantCulture) + ","
+                    + pn.fix.easting.ToString("N2", CultureInfo.InvariantCulture) + ","
+                    + pn.fix.northing.ToString("N2", CultureInfo.InvariantCulture) + ","
                     + pivotAxlePos.heading.ToString("N3", CultureInfo.InvariantCulture) + ","
                     + Math.Round(ahrs.imuRoll,3).ToString(CultureInfo.InvariantCulture) + 
                     "\r\n");
