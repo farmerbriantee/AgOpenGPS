@@ -276,7 +276,7 @@ namespace AgOpenGPS
                         }
 
                         //Draw headland
-                        if (bnd.isHeadlandOn)
+                        if (bnd.isHeadlandOn && bnd.bndList.Count > 0)
                         {
                             GL.Color3(0.960f, 0.96232f, 0.30f);
                                 bnd.bndList[0].hdLine.DrawPolygon();

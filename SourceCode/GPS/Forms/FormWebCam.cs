@@ -6,9 +6,11 @@ namespace AgOpenGPS
 {
     public partial class FormWebCam : Form
     {
-        public FormWebCam()
+        private readonly FormGPS mf = null;
+        public FormWebCam(Form callingForm)
         {
             InitializeComponent();
+            mf = callingForm as FormGPS;
         }
 
         private class ComboBoxItem
@@ -61,6 +63,11 @@ namespace AgOpenGPS
             try
             {
                 webCameraControl1.StartCapture(i.Id);
+            }
+            catch
+            {
+                mf.TimedMessageBox(2000, "Error opening webcam", "Is something else using it perhaps? OBS?");
+
             }
             finally
             {

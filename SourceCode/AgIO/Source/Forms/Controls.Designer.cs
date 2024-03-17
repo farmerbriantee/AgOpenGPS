@@ -178,7 +178,7 @@ namespace AgIO
             }
             else
             {
-                TimedMessageBox(2000, "Turn on NTRIP", "NTRIP Client Not Set Up");
+                mf.TimedMessageBox(2000, "Turn on NTRIP", "NTRIP Client Not Set Up");
             }
         }
 
