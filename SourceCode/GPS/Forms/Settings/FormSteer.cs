@@ -311,7 +311,10 @@ namespace AgOpenGPS
             {
                 if (mf.mc.sensorData < 0 || mf.mc.sensorData > 255) mf.mc.sensorData = 0;
                 CExtensionMethods.SetProgressNoAnimation(pbarSensor, mf.mc.sensorData);
-                lblPercentFS.Text = ((int)((double)mf.mc.sensorData * 0.3921568627)).ToString() + "%";
+                if (nudMaxCounts.Visible == false)
+                    lblPercentFS.Text = ((int)((double)mf.mc.sensorData * 0.3921568627)).ToString() + "%";
+                else
+                    lblPercentFS.Text = mf.mc.sensorData.ToString();
             }
         }
 
@@ -669,9 +672,9 @@ namespace AgOpenGPS
                         cboxPressureSensor.Checked = false;
                         cboxCurrentSensor.Checked = false;
                         label61.Visible = true;
-                        lblPercentFS.Visible = false;
+                        lblPercentFS.Visible = true;
                         nudMaxCounts.Visible = true;
-                        pbarSensor.Visible = false;
+                        pbarSensor.Visible = true;
                         hsbarSensor.Visible = false;
                         lblhsbarSensor.Visible = false;
                         label61.Text = gStr.gsEncoderCounts;

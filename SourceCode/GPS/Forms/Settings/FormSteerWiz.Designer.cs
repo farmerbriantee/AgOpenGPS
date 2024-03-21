@@ -1514,7 +1514,7 @@
             this.label34.Text = "Right";
             this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // panel1
+            // panelLatLonLatLon
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel1.Controls.Add(this.label38);

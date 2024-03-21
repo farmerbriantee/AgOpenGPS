@@ -58,7 +58,7 @@
             this.label2.Size = new System.Drawing.Size(0, 25);
             this.label2.TabIndex = 7;
             // 
-            // panel1
+            // panelLatLonLatLon
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;

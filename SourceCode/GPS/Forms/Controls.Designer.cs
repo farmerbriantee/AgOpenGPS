@@ -932,23 +932,15 @@ namespace AgOpenGPS
             if (fc != null)
             {
                 fc.Focus();
-
-                if (fc.Width > 400)
-                    fc.Close();
-                else
-                {
-                    fc.Width = 960;
-                    fc.Height = 720;
-                }
-            
+                fc.Close();
 
                 return;
             }
 
             //
             Form form = new FormSteer(this);
-            form.Top = 0;
-            form.Left = 0;
+            //form.Top = 0;
+            //form.Left = 0;
             form.Show(this);
 
         }
@@ -998,8 +990,8 @@ namespace AgOpenGPS
         private void btnFlag_Click(object sender, EventArgs e)
         {
             int nextflag = flagPts.Count + 1;
-            CFlag flagPt = new CFlag(pn.latitude, pn.longitude, pn.fix.easting, pn.fix.northing, fixHeading, flagColor, nextflag, 
-                " +" + Math.Round(pn.altitude, 3).ToString(CultureInfo.InvariantCulture) + "m");
+            CFlag flagPt = new CFlag(pn.latitude, pn.longitude, pn.fix.easting, pn.fix.northing, 
+                fixHeading, flagColor, nextflag, nextflag.ToString());
             flagPts.Add(flagPt);
             FileSaveFlags();
 

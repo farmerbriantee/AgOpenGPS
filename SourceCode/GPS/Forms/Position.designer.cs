@@ -333,22 +333,29 @@ namespace AgOpenGPS
                                                     pn.fix.northing - stepFixPts[currentStepFix].northing);
                             if (newGPSHeading < 0) newGPSHeading += glm.twoPI;
 
-                            ////what is angle between the last valid heading before stopping and one just now
-                            delta = Math.Abs(Math.PI - Math.Abs(Math.Abs(newGPSHeading - imuCorrected) - Math.PI));
-
-                            //ie change in direction
-                            if (delta > 1.57) //
+                            if (ahrs.isReverseOn)
                             {
-                                isReverse = true;
-                                newGPSHeading += Math.PI;
-                                if (newGPSHeading < 0) newGPSHeading += glm.twoPI;
-                                else if (newGPSHeading >= glm.twoPI) newGPSHeading -= glm.twoPI;
-                                isReverseWithIMU = true;
+                                ////what is angle between the last valid heading before stopping and one just now
+                                delta = Math.Abs(Math.PI - Math.Abs(Math.Abs(newGPSHeading - imuCorrected) - Math.PI));
+
+                                //ie change in direction
+                                if (delta > 1.57) //
+                                {
+                                    isReverse = true;
+                                    newGPSHeading += Math.PI;
+                                    if (newGPSHeading < 0) newGPSHeading += glm.twoPI;
+                                    else if (newGPSHeading >= glm.twoPI) newGPSHeading -= glm.twoPI;
+                                    isReverseWithIMU = true;
+                                }
+                                else
+                                {
+                                    isReverse = false;
+                                    isReverseWithIMU = false;
+                                }
                             }
                             else
                             {
                                 isReverse = false;
-                                isReverseWithIMU = false;
                             }
 
                             if (isReverse)
@@ -373,7 +380,7 @@ namespace AgOpenGPS
                             double gyroDelta = 0;
 
                             //if (!isReverseWithIMU)
-                                gyroDelta = (imuHeading + imuGPS_Offset) - gpsHeading;
+                            gyroDelta = (imuHeading + imuGPS_Offset) - gpsHeading;
                             //else
                             //{
                             //    gyroDelta = 0;
@@ -440,45 +447,54 @@ namespace AgOpenGPS
                                                     pn.fix.northing - stepFixPts[currentStepFix].northing);
                             if (newGPSHeading < 0) newGPSHeading += glm.twoPI;
 
-                            ////what is angle between the last valid heading before stopping and one just now
-                            delta = Math.Abs(Math.PI - Math.Abs(Math.Abs(newGPSHeading - gpsHeading) - Math.PI));
-
-                            filteredDelta = delta * 0.2 + filteredDelta * 0.8;
-
-                            //filtered delta different then delta
-                            if (Math.Abs(filteredDelta - delta) > 0.5)
+                            if (ahrs.isReverseOn)
                             {
-                                isChangingDirection = true;
-                            }
-                            else
-                            {
-                                isChangingDirection = false;
-                            }
 
-                            //we can't be sure if changing direction so do nothing
-                            if (isChangingDirection)
-                                goto byPass;
+                                ////what is angle between the last valid heading before stopping and one just now
+                                delta = Math.Abs(Math.PI - Math.Abs(Math.Abs(newGPSHeading - gpsHeading) - Math.PI));
 
-                            //ie change in direction
-                            if (filteredDelta > 1.57) //
-                            {
-                                isReverse = true;
-                                newGPSHeading += Math.PI;
+                                filteredDelta = delta * 0.2 + filteredDelta * 0.8;
+
+                                //filtered delta different then delta
+                                if (Math.Abs(filteredDelta - delta) > 0.5)
+                                {
+                                    isChangingDirection = true;
+                                }
+                                else
+                                {
+                                    isChangingDirection = false;
+                                }
+
+                                //we can't be sure if changing direction so do nothing
+                                if (isChangingDirection)
+                                    goto byPass;
+
+                                //ie change in direction
+                                if (filteredDelta > 1.57) //
+                                {
+                                    isReverse = true;
+                                    newGPSHeading += Math.PI;
+                                    if (newGPSHeading < 0) newGPSHeading += glm.twoPI;
+                                    else if (newGPSHeading >= glm.twoPI) newGPSHeading -= glm.twoPI;
+                                }
+                                else
+                                    isReverse = false;
+
+                                if (isReverse)
+                                    newGPSHeading -= glm.toRadians(vehicle.antennaPivot / 1
+                                        * mc.actualSteerAngleDegrees * ahrs.reverseComp);
+                                else
+                                    newGPSHeading -= glm.toRadians(vehicle.antennaPivot / 1
+                                        * mc.actualSteerAngleDegrees * ahrs.forwardComp);
+
                                 if (newGPSHeading < 0) newGPSHeading += glm.twoPI;
                                 else if (newGPSHeading >= glm.twoPI) newGPSHeading -= glm.twoPI;
                             }
+
                             else
+                            {
                                 isReverse = false;
-
-                            if (isReverse)
-                                newGPSHeading -= glm.toRadians(vehicle.antennaPivot / 1
-                                    * mc.actualSteerAngleDegrees * ahrs.reverseComp);
-                            else
-                                newGPSHeading -= glm.toRadians(vehicle.antennaPivot / 1
-                                    * mc.actualSteerAngleDegrees * ahrs.forwardComp);
-
-                            if (newGPSHeading < 0) newGPSHeading += glm.twoPI;
-                            else if (newGPSHeading >= glm.twoPI) newGPSHeading -= glm.twoPI;
+                            }
 
                             //set the headings
                             fixHeading = gpsHeading = newGPSHeading;

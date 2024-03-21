@@ -255,9 +255,6 @@ namespace AgOpenGPS
 
                         vec3 goal = new vec3();
 
-                        if (!mf.tool.isToolTrailing || !mf.tool.isToolTBT)
-                            count = 0;
-
                         //neat trick to not have to add pi/2
                         if (isTurnLeft)
                         {
@@ -840,12 +837,6 @@ namespace AgOpenGPS
                     start.heading = head;
 
                     vec3 goal = new vec3(start);
-
-                    if (mf.tool.isToolTrailing || mf.tool.isToolTBT)
-                    {
-                        goal.easting += Math.Sin(head);
-                        goal.northing += Math.Cos(head);
-                    }
 
                     //now we go the other way to turn round
                     double invertedHead = head - Math.PI;

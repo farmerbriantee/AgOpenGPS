@@ -62,7 +62,7 @@
             this.lblMessage2.TabIndex = 1;
             this.lblMessage2.Text = "Message 2";
             // 
-            // panel1
+            // panelLatLonLatLon
             // 
             this.panel1.BackColor = System.Drawing.Color.OldLace;
             this.panel1.Controls.Add(this.lblMessage2);

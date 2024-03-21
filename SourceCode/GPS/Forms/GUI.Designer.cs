@@ -700,7 +700,6 @@ namespace AgOpenGPS
 
             //load uturn properties
             yt = new CYouTurn(this);
-            cboxpRowWidth.Text = yt.rowSkipsWidth.ToString();
 
             lblNumCu.Visible = false;
             lblNumCu.Text = "";

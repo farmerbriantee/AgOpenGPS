@@ -114,8 +114,6 @@ namespace AgIO
                 lbl1To8.Visible = false;
                 lbl9To16.Visible = false;
 
-                btnRelayTest.Visible = false;
-
                 btnUDP.BackColor = Color.Gainsboro;
                 lblIP.Text = "Off";
             }
@@ -806,29 +804,6 @@ namespace AgIO
                     //Environment.Exit(0);
                 }
             }
-        }
-
-        private void btnRelayTest_Click(object sender, EventArgs e)
-        {
-            helloFromAgIO[7] = 1;
-        }
-
-        private void toolStripMenuItem4_Click(object sender, EventArgs e)
-        {
-            Form f = Application.OpenForms["FormGPSData"];
-
-            if (f != null)
-            {
-                f.Focus();
-                f.Close();
-                isGPSSentencesOn = false;
-                return;
-            }
-
-            isGPSSentencesOn = true;
-
-            Form form = new FormGPSData(this);
-            form.Show(this);
         }
 
         private void lblIP_Click(object sender, EventArgs e)

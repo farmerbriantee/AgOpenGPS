@@ -937,6 +937,8 @@
     <Content Include="aChangeLog.txt" />
     <None Include="btnImages\VR.png" />
     <None Include="btnImages\Background.png" />
+    <None Include="btnImages\ABPivot.png" />
+    <None Include="btnImages\TrackPivot.png" />
     <Content Include="Resources\TF012.WAV" />
     <None Include="Resources\SectionOn.wav" />
     <None Include="Resources\SectionOff.wav" />

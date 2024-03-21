@@ -59,7 +59,8 @@ namespace AgOpenGPS
             panelABLine.Top = 3; panelABLine.Left = 3;
             panelAPlus.Top = 3; panelAPlus.Left = 3;
             panelLatLonPlus.Top = 3; panelLatLonPlus.Left = 3;
-            panel1.Top = 3; panel1.Left = 3;
+            panelLatLonLatLon.Top = 3; panelLatLonLatLon.Left = 3;
+            panelPivot.Top = 3; panelPivot.Left = 3;
 
             panelEditName.Visible = false;
             panelMain.Visible = true;
@@ -70,7 +71,8 @@ namespace AgOpenGPS
             panelABLine.Visible = false;
             panelAPlus.Visible = false;
             panelLatLonPlus.Visible = false;
-            panel1.Visible = false;
+            panelLatLonLatLon.Visible = false;
+            panelPivot.Visible = false;
 
             this.Size = new System.Drawing.Size(650, 480);
 
@@ -222,7 +224,6 @@ namespace AgOpenGPS
                     Size = new Size(40, 25),
                     Name = i.ToString(),
                     TextAlign = ContentAlignment.MiddleCenter,
-                    //ForeColor = System.Drawing.SystemColors.ButtonFace
                 };
                 a.Click += A_Click;
 
@@ -238,22 +239,16 @@ namespace AgOpenGPS
                     Name = i.ToString(),
                     TextAlign = ContentAlignment.MiddleCenter,
                     FlatStyle = FlatStyle.Flat,
-                    //BackColor = System.Drawing.SystemColors.ButtonFace
             };
 
                 if (mf.trk.gArr[i].mode == (int)TrackMode.AB)
                     b.Image = Properties.Resources.TrackLine;
+                else if (mf.trk.gArr[i].mode == (int)TrackMode.waterPivot)
+                    b.Image = Properties.Resources.TrackPivot;
                 else
                     b.Image = Properties.Resources.TrackCurve;
 
-               b.FlatAppearance.BorderSize = 0;
-
-                //a.Font = backupfont;
-                //a.FlatStyle = FlatStyle.Flat;
-                //a.FlatAppearance.BorderColor = Color.Cyan;
-                //a.BackColor = Color.Transparent;
-                //a.FlatAppearance.MouseOverBackColor = BackColor;
-                //a.FlatAppearance.MouseDownBackColor = BackColor;
+                b.FlatAppearance.BorderSize = 0;
 
                 TextBox t = new TextBox
                 {
@@ -568,14 +563,28 @@ namespace AgOpenGPS
             panelChoose.Visible = false;
             panelLatLonPlus.Visible = true;
             this.Size = new System.Drawing.Size(370, 460);
+
+            nudLatitudePlus.Value = (decimal)mf.pn.latitude;
+            nudLongitudePlus.Value = (decimal)mf.pn.longitude;
         }
 
         private void btnzLatLon_Click(object sender, EventArgs e)
         {
             panelChoose.Visible = false;
-            panel1.Visible = true;
+            panelLatLonLatLon.Visible = true;
             this.Size = new System.Drawing.Size(370, 460);
         }
+        private void btnLatLonPivot_Click(object sender, EventArgs e)
+        {
+
+            panelChoose.Visible = false;
+            panelPivot.Visible = true;
+            this.Size = new System.Drawing.Size(370,360);
+
+            nudLatitudePivot.Value = (decimal)mf.pn.latitude;
+            nudLongitudePivot.Value = (decimal)mf.pn.longitude;
+        }
+
         #endregion
 
         #region Curve
@@ -1074,6 +1083,85 @@ namespace AgOpenGPS
 
         #endregion
 
+        #region LatLon LatLon
+
+        private void nudLatitudeA_Click(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NudlessNumericUpDown)sender, this);
+        }
+
+        private void nudLongitudeA_Click(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NudlessNumericUpDown)sender, this);
+        }
+
+        private void nudLatitudeB_Click(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NudlessNumericUpDown)sender, this);
+        }
+
+        private void nudLongitudeB_Click(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NudlessNumericUpDown)sender, this);
+        }
+
+        private void btnEnter_LatLonLatLon_Click(object sender, EventArgs e)
+        {
+            CalcHeadingAB();
+
+            mf.ABLine.isMakingABLine = false;
+            mf.trk.gArr.Add(new CTrk());
+
+            idx = mf.trk.gArr.Count - 1;
+
+            mf.trk.gArr[idx].ptA = new vec2(mf.ABLine.desPtA);
+            mf.trk.gArr[idx].ptB = new vec2(mf.ABLine.desPtB);
+
+            mf.trk.gArr[idx].mode = (int)TrackMode.AB;
+
+            mf.trk.gArr[idx].heading = mf.ABLine.desHeading;
+
+            mf.ABLine.desName = "AB " +
+                (Math.Round(glm.toDegrees(mf.ABLine.desHeading), 1)).ToString(CultureInfo.InvariantCulture) + "\u00B0 ";
+            textBox1.Text = mf.ABLine.desName;
+
+            panelLatLonLatLon.Visible = false;
+            panelName.Visible = true;
+
+            this.Size = new System.Drawing.Size(270, 360);
+        }
+
+        public void CalcHeadingAB()
+        {
+            mf.pn.ConvertWGS84ToLocal((double)nudLatitudeA.Value, (double)nudLongitudeA.Value, out double nort, out double east);
+
+            mf.ABLine.desPtA.easting = east;
+            mf.ABLine.desPtA.northing = nort;
+
+            mf.pn.ConvertWGS84ToLocal((double)nudLatitudeB.Value, (double)nudLongitudeB.Value, out nort, out east);
+            mf.ABLine.desPtB.easting = east;
+            mf.ABLine.desPtB.northing = nort;
+
+            // heading based on AB points
+            mf.ABLine.desHeading = Math.Atan2(mf.ABLine.desPtB.easting - mf.ABLine.desPtA.easting,
+                mf.ABLine.desPtB.northing - mf.ABLine.desPtA.northing);
+            if (mf.ABLine.desHeading < 0) mf.ABLine.desHeading += glm.twoPI;
+        }
+
+        private void btnFillLatLonLatLonA_Click(object sender, EventArgs e)
+        {
+            nudLatitudeA.Value = (decimal)mf.pn.latitude;
+            nudLongitudeA.Value = (decimal)mf.pn.longitude;
+        }
+
+        private void btnFillLatLonLatLonB_Click(object sender, EventArgs e)
+        {
+            nudLatitudeB.Value = (decimal)mf.pn.latitude;
+            nudLongitudeB.Value = (decimal)mf.pn.longitude;
+        }
+
+        #endregion
+
         #region LatLon +
 
         private void nudLatitudePlus_Click(object sender, EventArgs e)
@@ -1121,6 +1209,12 @@ namespace AgOpenGPS
             this.Size = new System.Drawing.Size(270, 360);
         }
 
+        private void btnFillLatLonPlus_Click(object sender, EventArgs e)
+        {
+            nudLatitudePlus.Value = (decimal)mf.pn.latitude;
+            nudLongitudePlus.Value = (decimal)mf.pn.longitude;
+        }
+
         public void CalcHeadingAPlus()
         {
             mf.pn.ConvertWGS84ToLocal((double)nudLatitudePlus.Value, (double)nudLongitudePlus.Value, out double nort, out double east);
@@ -1132,79 +1226,46 @@ namespace AgOpenGPS
 
         #endregion
 
-        #region LatLon LatLon
+        #region Lat Lon Pivot
 
-        private void nudLatitudeA_Click(object sender, EventArgs e)
+        private void nudLatitudePivot_Click(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NudlessNumericUpDown)sender, this);
         }
 
-        private void nudLongitudeA_Click(object sender, EventArgs e)
+        private void nudLongitudePivot_Click(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NudlessNumericUpDown)sender, this);
         }
 
-        private void nudLatitudeB_Click(object sender, EventArgs e)
+        private void btnEnter_Pivot_Click(object sender, EventArgs e)
         {
-            mf.KeypadToNUD((NudlessNumericUpDown)sender, this);
-        }
+            mf.pn.ConvertWGS84ToLocal((double)nudLatitudePivot.Value, (double)nudLongitudePivot.Value, out double nort, out double east);
 
-        private void nudLongitudeB_Click(object sender, EventArgs e)
-        {
-            mf.KeypadToNUD((NudlessNumericUpDown)sender, this);
-        }
-
-        private void btnEnter_LatLonLatLon_Click(object sender, EventArgs e)
-        {
-            CalcHeadingAB();
-
-            mf.ABLine.isMakingABLine = false;
             mf.trk.gArr.Add(new CTrk());
 
             idx = mf.trk.gArr.Count - 1;
 
-            mf.trk.gArr[idx].ptA = new vec2(mf.ABLine.desPtA);
-            mf.trk.gArr[idx].ptB = new vec2(mf.ABLine.desPtB);
+            mf.trk.gArr[idx].ptA.easting = east;
+            mf.trk.gArr[idx].ptA.northing = nort;
+            mf.trk.gArr[idx].mode = (int)TrackMode.waterPivot;
 
-            mf.trk.gArr[idx].mode = (int)TrackMode.AB;
-
-            mf.trk.gArr[idx].heading = mf.ABLine.desHeading;
-
-            mf.ABLine.desName = "AB " +
-                (Math.Round(glm.toDegrees(mf.ABLine.desHeading), 1)).ToString(CultureInfo.InvariantCulture) + "\u00B0 ";
+            mf.ABLine.desName = "Piv";
             textBox1.Text = mf.ABLine.desName;
 
-            panel1.Visible = false;
+            panelPivot.Visible = false;
             panelName.Visible = true;
 
             this.Size = new System.Drawing.Size(270, 360);
         }
 
-        public void CalcHeadingAB()
+        private void btnFillLAtLonPivot_Click(object sender, EventArgs e)
         {
-            mf.pn.ConvertWGS84ToLocal((double)nudLatitudeA.Value, (double)nudLongitudeA.Value, out double nort, out double east);
-
-            mf.ABLine.desPtA.easting = east;
-            mf.ABLine.desPtA.northing = nort;
-
-            mf.pn.ConvertWGS84ToLocal((double)nudLatitudeB.Value, (double)nudLongitudeB.Value, out nort, out east);
-            mf.ABLine.desPtB.easting = east;
-            mf.ABLine.desPtB.northing = nort;
-
-            // heading based on AB points
-            mf.ABLine.desHeading = Math.Atan2(mf.ABLine.desPtB.easting - mf.ABLine.desPtA.easting,
-                mf.ABLine.desPtB.northing - mf.ABLine.desPtA.northing);
-            if (mf.ABLine.desHeading < 0) mf.ABLine.desHeading += glm.twoPI;
+            nudLatitudePivot.Value = (decimal)mf.pn.latitude;
+            nudLongitudePivot.Value = (decimal)mf.pn.longitude;
         }
 
         #endregion
-
-
-        private void btnAddTime_Click(object sender, EventArgs e)
-        {
-            textBox1.Text += DateTime.Now.ToString(" hh:mm:ss", CultureInfo.InvariantCulture);
-            mf.curve.desName = textBox1.Text;
-        }
 
         private void btnCancelCurve_Click(object sender, EventArgs e)
         {
@@ -1218,9 +1279,10 @@ namespace AgOpenGPS
             panelCurve.Visible = false;
             panelABLine.Visible = false;
             panelAPlus.Visible = false;
-            panel1.Visible = false;
+            panelLatLonLatLon.Visible = false;
             panelLatLonPlus.Visible = false;
             panelKML.Visible = false;
+            panelPivot.Visible = false;
 
             this.Size = new System.Drawing.Size(650, 480);
         }
@@ -1246,6 +1308,12 @@ namespace AgOpenGPS
 
             mf.curve.desList?.Clear();
             UpdateTable();
+        }
+
+        private void btnAddTime_Click(object sender, EventArgs e)
+        {
+            textBox1.Text += DateTime.Now.ToString(" hh:mm:ss", CultureInfo.InvariantCulture);
+            mf.curve.desName = textBox1.Text;
         }
 
         private void btnAddTimeEdit_Click(object sender, EventArgs e)
