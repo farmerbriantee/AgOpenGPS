@@ -1016,10 +1016,10 @@ namespace AgOpenGPS
                                 sounds.isBoundAlarming = false;
                             }
 
-                            if (isBtnAutoSteerOn && guidanceLineDistanceOff > 300 && !yt.isYouTurnTriggered)
-                            {
-                                yt.ResetCreatedYouTurn();
-                            }
+                            //if (isBtnAutoSteerOn && guidanceLineDistanceOff > 300 && !yt.isYouTurnTriggered)
+                            //{
+                            //    yt.ResetCreatedYouTurn();
+                            //}
                         }
                     }
                     else

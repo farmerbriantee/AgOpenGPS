@@ -2558,7 +2558,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
         public double setAS_functionSpeedLimit {
             get {
                 return ((double)(this["setAS_functionSpeedLimit"]));
@@ -2582,7 +2582,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public double setAS_minSteerSpeed {
             get {
                 return ((double)(this["setAS_minSteerSpeed"]));
@@ -2889,6 +2889,18 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setDisplay_isLogElevation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setSound_isSectionsOn {
+            get {
+                return ((bool)(this["setSound_isSectionsOn"]));
+            }
+            set {
+                this["setSound_isSectionsOn"] = value;
             }
         }
     }

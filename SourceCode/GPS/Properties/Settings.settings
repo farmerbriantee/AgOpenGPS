@@ -636,13 +636,13 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setAS_functionSpeedLimit" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">5</Value>
+      <Value Profile="(Default)">8</Value>
     </Setting>
     <Setting Name="setAS_maxSteerSpeed" Type="System.Double" Scope="User">
       <Value Profile="(Default)">15</Value>
     </Setting>
     <Setting Name="setAS_minSteerSpeed" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="setBrand_HBrand" Type="AgOpenGPS.HBrand" Scope="User">
       <Value Profile="(Default)">AgOpenGPS</Value>
@@ -718,6 +718,9 @@
     </Setting>
     <Setting Name="setDisplay_isLogElevation" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setSound_isSectionsOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>
