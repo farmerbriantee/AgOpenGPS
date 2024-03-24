@@ -129,6 +129,8 @@ namespace AgOpenGPS
         }
         private void btnAutoSteer_Click(object sender, EventArgs e)
         {
+            longAvgPivDistance = 0;
+
             if (isBtnAutoSteerOn)
             {
                 isBtnAutoSteerOn = false;

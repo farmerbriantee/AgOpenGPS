@@ -823,7 +823,7 @@ namespace AgOpenGPS
                         if (!mf.isStanleyUsed && mf.camera.camSetDistance > -200)
                         {
                             //Draw lookahead Point
-                            GL.PointSize(8.0f);
+                            GL.PointSize(4.0f);
                             GL.Begin(PrimitiveType.Points);
                             GL.Color3(1.0f, 0.95f, 0.195f);
                             GL.Vertex3(goalPointCu.easting, goalPointCu.northing, 0.0);
@@ -831,7 +831,7 @@ namespace AgOpenGPS
                         }
                         mf.yt.DrawYouTurn();
 
-                        GL.PointSize(4.0f);
+                        GL.PointSize(3.0f);
                         GL.Begin(PrimitiveType.Points);
                         GL.Color3(0.920f, 0.6f, 0.950f);
                         for (int h = 0; h < curList.Count; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);

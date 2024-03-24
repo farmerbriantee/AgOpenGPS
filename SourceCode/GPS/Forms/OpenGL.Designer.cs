@@ -317,13 +317,13 @@ namespace AgOpenGPS
                         {
                             if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
                             {
-                                GL.PointSize(16);
+                                GL.PointSize(8);
                                 GL.Begin(PrimitiveType.Points);
                                 GL.Color3(0, 0, 0);
                                 GL.Vertex3(ABLine.goalPointAB.easting, ABLine.goalPointAB.northing, 0.0);
                                 GL.End();
 
-                                GL.PointSize(10);
+                                GL.PointSize(5);
                                 GL.Begin(PrimitiveType.Points);
                                 GL.Color3(0.98, 0.98, 0.098);
                                 GL.Vertex3(ABLine.goalPointAB.easting, ABLine.goalPointAB.northing, 0.0);
@@ -331,13 +331,13 @@ namespace AgOpenGPS
                             }
                             else
                             {
-                                GL.PointSize(16);
+                                GL.PointSize(8);
                                 GL.Begin(PrimitiveType.Points);
                                 GL.Color3(0, 0, 0);
                                 GL.Vertex3(curve.goalPointCu.easting, curve.goalPointCu.northing, 0.0);
                                 GL.End();
 
-                                GL.PointSize(10);
+                                GL.PointSize(5);
                                 GL.Begin(PrimitiveType.Points);
                                 GL.Color3(0.98, 0.98, 0.098);
                                 GL.Vertex3(curve.goalPointCu.easting, curve.goalPointCu.northing, 0.0);
@@ -2147,7 +2147,7 @@ namespace AgOpenGPS
             //}
         }
 
-        private double avgPivDistance, lightbarDistance;
+        private double avgPivDistance, lightbarDistance, longAvgPivDistance;
         private void DrawLightBarText()
         {
 
@@ -2161,7 +2161,11 @@ namespace AgOpenGPS
                 // in millimeters
                 avgPivDistance = avgPivDistance * 0.5 + lightbarDistance * 0.5;
 
+                longAvgPivDistance = longAvgPivDistance * 0.99 + Math.Abs(avgPivDistance) * 0.01;
+
                 double avgPivotDistance = avgPivDistance * (isMetric ? 0.1 : 0.03937);
+                double longAvgPivotDistance = longAvgPivDistance * (isMetric ? 0.1 : 0.03937);
+
                 string hede;
 
                 DrawLightBar(oglMain.Width, oglMain.Height, avgPivotDistance);
@@ -2177,8 +2181,14 @@ namespace AgOpenGPS
                     hede = (Math.Abs(avgPivotDistance)).ToString("N0");
                 }
 
-                int center = -(int)(((double)(hede.Length) * 0.5) * 16);
-                font.DrawText(center, 8, hede, 1.2);
+                int center = -(int)(((double)(hede.Length) * 0.5) * 22);
+                font.DrawText(center, 2, hede, 1.5);
+
+                hede = (Math.Abs(longAvgPivotDistance)).ToString("N1");
+
+                GL.Color3(0.950f, 0.952f, 0.3f);
+                center = -(int)(((double)(hede.Length) * 0.5) * 16);
+                font.DrawText(center, 50, hede, 1);
 
                 ////draw the modeTimeCounter
                 //if (!isStanleyUsed)
@@ -2306,8 +2316,8 @@ namespace AgOpenGPS
             //GL.Color3(0.9652f, 0.9752f, 0.1f);
             //font.DrawText(center, 150, "BETA 5.0.0.5", 1);
 
-            GL.Color3(0.9752f, 0.62f, 0.325f);
-            if (timerSim.Enabled) font.DrawText(-100, 35, "Simulator On", 1);
+            //GL.Color3(0.9752f, 0.62f, 0.325f);
+            //if (timerSim.Enabled) font.DrawText(-100, 35, "Simulator On", 1);
 
             //if (ct.isContourBtnOn)
             //{
