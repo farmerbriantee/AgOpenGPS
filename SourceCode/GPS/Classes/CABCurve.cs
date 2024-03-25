@@ -862,16 +862,11 @@ namespace AgOpenGPS
                         GL.Vertex3(goalPointCu.easting, goalPointCu.northing, 0.0);
                         GL.End();
                     }
-
-                    GL.PointSize(4.0f);
-                    GL.Begin(PrimitiveType.Points);
-                    GL.Color3(1.0f, 0.95f, 0.5f);
-                    GL.Vertex3(goalPointCu.easting, goalPointCu.northing, 0.0);
-                    GL.End();
                 }
             }
             GL.PointSize(1.0f);
         }
+
         public void BuildTram()
         {
             //if all or bnd only then make outer loop pass
