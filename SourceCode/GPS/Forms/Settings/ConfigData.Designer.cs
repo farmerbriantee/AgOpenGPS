@@ -26,6 +26,7 @@ namespace AgOpenGPS
             }
 
             nudDualHeadingOffset.Value = (decimal)Properties.Settings.Default.setGPS_dualHeadingOffset;
+            nudDualReverseDistance.Value = (decimal)Properties.Settings.Default.setGPS_dualReverseDetectionDistance;
 
             hsbarFusion.Value = (int)(Properties.Settings.Default.setIMU_fusionWeight2 * 500);
             lblFusion.Text = (hsbarFusion.Value).ToString();
@@ -72,7 +73,7 @@ namespace AgOpenGPS
             //nudAgeAlarm.Value = Properties.Settings.Default.setGPS_ageAlarm;
         }
 
-            private void tabDHeading_Leave(object sender, EventArgs e)
+        private void tabDHeading_Leave(object sender, EventArgs e)
         {
             Properties.Settings.Default.setIMU_fusionWeight2 = (double)hsbarFusion.Value * 0.002;
             mf.ahrs.fusionWeight = (double)hsbarFusion.Value * 0.002;
@@ -124,6 +125,14 @@ namespace AgOpenGPS
             }
         }
 
+         private void nudDualReverseDistance_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            {
+                Properties.Settings.Default.setGPS_dualReverseDetectionDistance = ((double)nudDualReverseDistance.Value);
+                mf.dualReverseDetectionDistance = Properties.Settings.Default.setGPS_dualReverseDetectionDistance;
+            }
+        }
         //private void nudMinimumFrameTime_Click(object sender, EventArgs e)
         //{
         //    if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))

@@ -1602,6 +1602,8 @@ namespace AgOpenGPS
                     break;
             }
         }
+
+        public bool isPatchesChangingColor = false;
         private void btnChangeMappingColor_Click(object sender, EventArgs e)
         {
             using (var form = new FormColorPicker(this, sectionColorDay))
@@ -1614,6 +1616,8 @@ namespace AgOpenGPS
 
             Settings.Default.setDisplay_colorSectionsDay = sectionColorDay;
             Settings.Default.Save();
+
+            isPatchesChangingColor = true;
         }
         private void btnYouSkipEnable_Click(object sender, EventArgs e)
         {

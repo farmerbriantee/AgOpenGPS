@@ -2903,5 +2903,17 @@ namespace AgOpenGPS.Properties {
                 this["setSound_isSectionsOn"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.25")]
+        public double setGPS_dualReverseDetectionDistance {
+            get {
+                return ((double)(this["setGPS_dualReverseDetectionDistance"]));
+            }
+            set {
+                this["setGPS_dualReverseDetectionDistance"] = value;
+            }
+        }
     }
 }

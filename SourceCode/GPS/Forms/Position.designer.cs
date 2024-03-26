@@ -30,6 +30,7 @@ namespace AgOpenGPS
         //guidance line look ahead
         public double guidanceLookAheadTime = 2;
         public vec2 guidanceLookPos = new vec2(0, 0);
+        public double dualReverseDetectionDistance;
 
         //for heading or Atan2 as camera
         public string headingFromSource, headingFromSourceBak;
@@ -706,7 +707,7 @@ namespace AgOpenGPS
                         distanceCurrentStepFixDisplay = distanceCurrentStepFix * 100;
                         prevDistFix = pn.fix;
 
-                        if (glm.DistanceSquared(lastReverseFix, pn.fix) > 0.20)
+                        if (glm.Distance(lastReverseFix, pn.fix) > dualReverseDetectionDistance)
                         {
                             //most recent heading
                             double newHeading = Math.Atan2(pn.fix.easting - lastReverseFix.easting,
@@ -1502,6 +1503,9 @@ namespace AgOpenGPS
             {
                 if (triStrip[j].isDrawing)
                 {
+                    if (isPatchesChangingColor)
+                        triStrip[j].numTriangles = 64;
+
                     triStrip[j].AddMappingPoint(j);
                     patchCounter++;
                 }

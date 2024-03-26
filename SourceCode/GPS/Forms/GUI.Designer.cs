@@ -477,6 +477,7 @@ namespace AgOpenGPS
 
             udpWatchLimit = Properties.Settings.Default.SetGPS_udpWatchMsec;
             pn.headingTrueDualOffset = Properties.Settings.Default.setGPS_dualHeadingOffset;
+            dualReverseDetectionDistance = Properties.Settings.Default.setGPS_dualReverseDetectionDistance;
 
             frameDayColor = Properties.Settings.Default.setDisplay_colorDayFrame.CheckColorFor255();
             frameNightColor = Properties.Settings.Default.setDisplay_colorNightFrame.CheckColorFor255();

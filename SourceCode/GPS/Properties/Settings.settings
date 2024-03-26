@@ -722,5 +722,8 @@
     <Setting Name="setSound_isSectionsOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="setGPS_dualReverseDetectionDistance" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.25</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
