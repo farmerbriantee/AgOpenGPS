@@ -1398,7 +1398,7 @@ namespace AgOpenGPS
             {
                 if (sentenceCounter < 299)
                 {
-                    TimedMessageBox(2000, "Conected", "GPS");
+                    TimedMessageBox(2000, "Connected", "GPS");
                     simulatorOnToolStripMenuItem.Checked = false;
                     return;
                 }
