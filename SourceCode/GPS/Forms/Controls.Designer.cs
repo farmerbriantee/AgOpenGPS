@@ -122,7 +122,7 @@ namespace AgOpenGPS
                 //position of panel
                 flp1.Top = this.Height -260;
                 flp1.Left = this.Width - 120 - flp1.Width;
-                trackMethodPanelCounter = 3;
+                trackMethodPanelCounter = 4;
             }
 
             PanelUpdateRightAndBottom();
