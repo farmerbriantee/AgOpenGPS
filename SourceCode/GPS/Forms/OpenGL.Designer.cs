@@ -2150,7 +2150,6 @@ namespace AgOpenGPS
         private double avgPivDistance, lightbarDistance, longAvgPivDistance;
         private void DrawLightBarText()
         {
-
             GL.Disable(EnableCap.DepthTest);
 
             if (ct.isContourBtnOn || trk.idx > -1 || recPath.isDrivingRecordedPath)
