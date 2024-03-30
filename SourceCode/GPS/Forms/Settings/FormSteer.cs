@@ -311,7 +311,10 @@ namespace AgOpenGPS
             {
                 if (mf.mc.sensorData < 0 || mf.mc.sensorData > 255) mf.mc.sensorData = 0;
                 CExtensionMethods.SetProgressNoAnimation(pbarSensor, mf.mc.sensorData);
-                lblPercentFS.Text = ((int)((double)mf.mc.sensorData * 0.3921568627)).ToString() + "%";
+                if (nudMaxCounts.Visible == false)
+                    lblPercentFS.Text = ((int)((double)mf.mc.sensorData * 0.3921568627)).ToString() + "%";
+                else
+                    lblPercentFS.Text = mf.mc.sensorData.ToString();
             }
         }
 
@@ -669,9 +672,9 @@ namespace AgOpenGPS
                         cboxPressureSensor.Checked = false;
                         cboxCurrentSensor.Checked = false;
                         label61.Visible = true;
-                        lblPercentFS.Visible = false;
+                        lblPercentFS.Visible = true;
                         nudMaxCounts.Visible = true;
-                        pbarSensor.Visible = false;
+                        pbarSensor.Visible = true;
                         hsbarSensor.Visible = false;
                         lblhsbarSensor.Visible = false;
                         label61.Text = gStr.gsEncoderCounts;
@@ -861,167 +864,6 @@ namespace AgOpenGPS
 
         #endregion
 
-        #region Help
-
-        private void btnZeroWAS_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_btnZeroWAS, gStr.gsHelp);
-        }
-
-        private void hsbarWasOffset_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarWasOffset, gStr.gsHelp);
-        }
-
-        private void hsbarCountsPerDegree_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarCountsPerDegree, gStr.gsHelp);
-        }
-
-        private void hsbarAckerman_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarAckerman, gStr.gsHelp);
-        }
-
-        private void hsbarMaxSteerAngle_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarMaxSteerAngle, gStr.gsHelp);
-        }
-
-        private void hsbarProportionalGain_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarProportionalGain, gStr.gsHelp);
-        }
-
-        private void hsbarHighSteerPWM_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarHighSteerPWM, gStr.gsHelp);
-        }
-
-        private void hsbarLowSteerPWM_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarLowSteerPWM, gStr.gsHelp);
-        }
-
-        private void hsbarMinPWM_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarMinPWM, gStr.gsHelp);
-        }
-
-        private void hsbarStanleyGain_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarStanleyGain, gStr.gsHelp);
-        }
-
-        private void hsbarHeadingErrorGain_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarHeadingErrorGain, gStr.gsHelp);
-        }
-
-        private void hsbarIntegral_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarIntegral, gStr.gsHelp);
-        }
-
-        private void hsbarLookAhead_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarLookAhead, gStr.gsHelp);
-        }
-
-        private void hsbarLookAheadMult_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarLookAheadMult, gStr.gsHelp);
-        }
-
-        private void hsbarSideHillComp_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarSideHillComp, gStr.gsHelp);
-        }
-
-        private void hsbarHoldLookAhead_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarHoldLookAhead, gStr.gsHelp);
-        }
-
-        private void hsbarIntegralPurePursuit_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarIntegralPurePursuit, gStr.gsHelp);
-        }
-
-        private void btnFreeDrive_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_btnFreeDrive, gStr.gsHelp);
-        }
-
-        private void btnSteerAngleDown_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_btnSteerAngleDown, gStr.gsHelp);
-        }
-
-        private void btnSteerAngleUp_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_btnSteerAngleUp, gStr.gsHelp);
-        }
-
-        private void btnFreeDriveZero_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_btnFreeDriveZero, gStr.gsHelp);
-        }
-
-        private void btnStartSA_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_btnStartSA, gStr.gsHelp);
-        }
-
-        private void chkInvertWAS_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hc_chkInvertWAS, gStr.gsHelp);
-        }
-
-        private void chkInvertSteer_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hc_chkInvertSteer, gStr.gsHelp);
-        }
-
-        private void chkSteerInvertRelays_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hc_chkSteerInvertRelays, gStr.gsHelp);
-        }
-
-        private void cboxDanfoss_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hc_cboxDanfoss, gStr.gsHelp);
-        }
-
-        private void cboxEncoder_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hc_cboxEncoder, gStr.gsHelp);
-        }
-
-        private void cboxPressureSensor_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hc_cboxPressureSensor, gStr.gsHelp);
-        }
-
-        private void cboxCurrentSensor_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hc_cboxCurrentSensor, gStr.gsHelp);
-        }
-
-        private void nudMaxCounts_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hc_nudMaxCounts, gStr.gsHelp);
-        }
-
-        private void cboxMotorDrive_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hc_cboxMotorDrive, gStr.gsHelp);
-        }
-
-        private void cboxXY_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hc_cboxXY, gStr.gsHelp);
-        }
 
         private void btnStanleyPure_Click(object sender, EventArgs e)
         {
@@ -1046,53 +888,5 @@ namespace AgOpenGPS
             Form form = new FormSteerWiz(mf);
             form.Show(mf);
         }
-
-        private void cboxConv_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hc_cboxConv, gStr.gsHelp);
-        }
-
-        private void cboxSteerEnable_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hc_cboxSteerEnable, gStr.gsHelp);
-        }
-
-        private void pboxSendSteer_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hc_pboxSendSteer, gStr.gsHelp);
-        }
-
-        private void btnSendSteerConfigPGN_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hc_btnSendSteerConfigPGN, gStr.gsHelp);
-        }
-
-        #endregion
-
-        //private void hsBarModeMultiplier_ValueChanged(object sender, EventArgs e)
-        //{
-        //    mf.vehicle.modeMultiplier = (hsBarModeMultiplier.Value * 0.1) - 1;
-        //    lblModeMultiplier.Text = (mf.vehicle.modeMultiplier +1).ToString();
-        //}
-
-        //private void hsBarModeMultiplierStanley_ValueChanged(object sender, EventArgs e)
-        //{
-        //    mf.vehicle.modeMultiplierStanley = (hsBarModeMultiplierStanley.Value * 0.1);
-        //    lblModeMultiplierStanley.Text = (mf.vehicle.modeMultiplierStanley).ToString();
-
-        //}
-
-        //private void hsbarModeXTE_ValueChanged(object sender, EventArgs e)
-        //{
-        //    mf.vehicle.modeXTE = hsbarModeXTE.Value * 0.01;
-        //    lblModeXTE.Text = hsbarModeXTE.Value.ToString();
-
-        //}
-
-        //private void hsbarModeTime_ValueChanged(object sender, EventArgs e)
-        //{
-        //    mf.vehicle.modeTime = hsbarModeTime.Value;
-        //    lblModeTime.Text = hsbarModeTime.Value.ToString();
-        //}
     }
 }

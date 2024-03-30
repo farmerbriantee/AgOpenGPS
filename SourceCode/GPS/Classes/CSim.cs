@@ -84,7 +84,18 @@ namespace AgOpenGPS
             mf.pn.longitude = longitude;
 
             mf.pn.hdop = 0.7;
-            mf.pn.altitude = 732;
+
+            temp = Math.Abs(mf.pn.latitude * 100);
+            temp -= ((int)(temp));
+            temp *= 100;
+            mf.pn.altitude = temp+200;
+
+            temp = Math.Abs(mf.pn.longitude * 100);
+            temp -= ((int)(temp));
+            temp *= 100;
+            mf.pn.altitude += temp;
+
+            
             mf.pn.satellitesTracked = 12;
 
             mf.sentenceCounter = 0;

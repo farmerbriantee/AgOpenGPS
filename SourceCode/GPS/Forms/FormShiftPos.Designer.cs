@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.nudNorth = new NudlessNumericUpDown();
-            this.nudEast = new NudlessNumericUpDown();
+            this.nudNorth = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudEast = new AgOpenGPS.NudlessNumericUpDown();
             this.label27 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -295,6 +295,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(658, 674);
+            this.ControlBox = false;
             this.Controls.Add(this.label7);
             this.Controls.Add(this.chkOffsetsOn);
             this.Controls.Add(this.label6);

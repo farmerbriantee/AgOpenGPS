@@ -272,6 +272,7 @@ namespace AgOpenGPS
             {
                 if (mf.bnd.bndList == null || mf.bnd.bndList.Count == 0) return;
                 int cnt = mf.bnd.bndList.Count;
+                mf.bnd.bndList[cnt-1].hdLine?.Clear();
                 mf.bnd.bndList.RemoveAt(cnt - 1);
 
                 mf.FileSaveBoundary();

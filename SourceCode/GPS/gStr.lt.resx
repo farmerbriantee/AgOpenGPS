@@ -537,25 +537,4 @@
   <data name="gsXTEChart" xml:space="preserve">
     <value>Diagrama: nuokrypis nuo linijos (XTE)</value>
   </data>
-  <data name="h_btn2D" xml:space="preserve">
-    <value>2D peržiūros mygtukas.</value>
-  </data>
-  <data name="h_btn3D" xml:space="preserve">
-    <value>3D peržiūros mygtukas.</value>
-  </data>
-  <data name="h_btnABDraw" xml:space="preserve">
-    <value>AB linijos piešimo mygtukas </value>
-  </data>
-  <data name="h_btnABLine" xml:space="preserve">
-    <value>AB linijų mygtukas</value>
-  </data>
-  <data name="h_btnAutoSteer" xml:space="preserve">
-    <value>Automatinio vairavimo mygtukas</value>
-  </data>
-  <data name="h_btnAutoSteerConfig" xml:space="preserve">
-    <value>Automatinio valdymo kampo ir nustatymų mygtukas </value>
-  </data>
-  <data name="h_btnAutoYouTurn" xml:space="preserve">
-    <value>U posūkio mygtukas </value>
-  </data>
 </root>

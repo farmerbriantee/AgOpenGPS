@@ -26,7 +26,7 @@ namespace AgOpenGPS
             string language = Properties.Settings.Default.setF_culture;
             if (language == "fr")
             {
-                this.Height = 570;
+                this.Height = 575;
             }
             else
             {

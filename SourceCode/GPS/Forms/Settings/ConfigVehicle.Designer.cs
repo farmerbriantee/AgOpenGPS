@@ -434,12 +434,15 @@ namespace AgOpenGPS
             mf.isGridOn = chkDisplayGrid.Checked;
             mf.isSpeedoOn = chkDisplaySpeedo.Checked;
             mf.isSideGuideLines = chkDisplayExtraGuides.Checked;
+
             mf.isLogNMEA = chkDisplayLogNMEA.Checked;
             mf.isDrawPolygons = chkDisplayPolygons.Checked;
             mf.isLightbarOn = chkDisplayLightbar.Checked;
             mf.isKeyboardOn = chkDisplayKeyboard.Checked;
+
             mf.isBrightnessOn = chkDisplayBrightness.Checked;
             mf.isSvennArrowOn = chkSvennArrow.Checked;
+            mf.isLogElevation = chkDisplayLogElevation.Checked;
 
             //mf.timeToShowMenus = (int)nudMenusOnTime.Value;
 
@@ -447,15 +450,16 @@ namespace AgOpenGPS
             Properties.Settings.Default.setDisplay_isTextureOn = mf.isTextureOn;
             Properties.Settings.Default.setMenu_isGridOn = mf.isGridOn;
             Properties.Settings.Default.setMenu_isCompassOn = mf.isCompassOn;
+
             Properties.Settings.Default.setDisplay_isSvennArrowOn = mf.isSvennArrowOn;
             Properties.Settings.Default.setMenu_isSpeedoOn = mf.isSpeedoOn;
             Properties.Settings.Default.setDisplay_isStartFullScreen = chkDisplayStartFullScreen.Checked;
             Properties.Settings.Default.setMenu_isSideGuideLines = mf.isSideGuideLines;
-            //Properties.Settings.Default.setMenu_isLogNMEA = mf.isLogNMEA;
+
             Properties.Settings.Default.setMenu_isPureOn = mf.isPureDisplayOn;
             Properties.Settings.Default.setMenu_isLightbarOn = mf.isLightbarOn;
             Properties.Settings.Default.setDisplay_isKeyboardOn = mf.isKeyboardOn;
-            //Properties.Settings.Default.setDisplay_showMenusTime = mf.timeToShowMenus;
+            Properties.Settings.Default.setDisplay_isLogElevation = mf.isLogElevation;
 
             if (rbtnDisplayMetric.Checked) { Properties.Settings.Default.setMenu_isMetric = true; mf.isMetric = true; }
             else { Properties.Settings.Default.setMenu_isMetric = false; mf.isMetric = false; }

@@ -317,13 +317,13 @@ namespace AgOpenGPS
                         {
                             if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
                             {
-                                GL.PointSize(16);
+                                GL.PointSize(8);
                                 GL.Begin(PrimitiveType.Points);
                                 GL.Color3(0, 0, 0);
                                 GL.Vertex3(ABLine.goalPointAB.easting, ABLine.goalPointAB.northing, 0.0);
                                 GL.End();
 
-                                GL.PointSize(10);
+                                GL.PointSize(5);
                                 GL.Begin(PrimitiveType.Points);
                                 GL.Color3(0.98, 0.98, 0.098);
                                 GL.Vertex3(ABLine.goalPointAB.easting, ABLine.goalPointAB.northing, 0.0);
@@ -331,13 +331,13 @@ namespace AgOpenGPS
                             }
                             else
                             {
-                                GL.PointSize(16);
+                                GL.PointSize(8);
                                 GL.Begin(PrimitiveType.Points);
                                 GL.Color3(0, 0, 0);
                                 GL.Vertex3(curve.goalPointCu.easting, curve.goalPointCu.northing, 0.0);
                                 GL.End();
 
-                                GL.PointSize(10);
+                                GL.PointSize(5);
                                 GL.Begin(PrimitiveType.Points);
                                 GL.Color3(0.98, 0.98, 0.098);
                                 GL.Vertex3(curve.goalPointCu.easting, curve.goalPointCu.northing, 0.0);
@@ -1296,7 +1296,8 @@ namespace AgOpenGPS
                 GL.Disable(EnableCap.Texture2D);
 
                 byte per = (byte)(Math.Round(((double)(rateRed[0]) / 2.55), MidpointRounding.AwayFromZero));
-                lblRed.Text = per.ToString() + "%";
+                //lblRed.Text = per.ToString() + "%";
+                btnSection1Man.Text = per.ToString() + "%";
                 //CExtensionMethods.SetProgressNoAnimation(pbarRate, per);
 
                 //lblGrn.Text = rateGrn[0].ToString();
@@ -1330,7 +1331,7 @@ namespace AgOpenGPS
                     FileSaveContour();
 
                     //NMEA elevation file
-                    if (sbGrid.Length > 0) FileSaveElevation();
+                    if (isLogElevation && sbGrid.Length > 0) FileSaveElevation();
 
                     //ExportFieldAs_KML();
                 }
@@ -1685,7 +1686,7 @@ namespace AgOpenGPS
             if (!yt.isYouTurnTriggered)
             {
                 GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.Turn]);        // Select Our Texture
-                if (distancePivotToTurnLine > 0 && !yt.isOutOfBounds) GL.Color3(0.3f, 0.95f, 0.3f);
+                if (distancePivotToTurnLine > 0 && !yt.isOutOfBounds && yt.youTurnPhase == 10) GL.Color3(0.3f, 0.95f, 0.3f);
                 else GL.Color3(0.97f, 0.635f, 0.4f);
                 //mc.autoSteerData[mc.sdX] = 0;
                 p_239.pgn[p_239.uturn] = 0;
@@ -1716,8 +1717,35 @@ namespace AgOpenGPS
             }
             //
             GL.End();
+
+            //draw K turn/ normal turn button
+            two3 += 140;
+
+            GL.Color3(1.0f, 1.0f, 1.0f);
+            if (yt.uTurnStyle == 0)
+            {
+                GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.YouTurnU]);        // Select Our Texture
+            }
+            else
+            {
+                GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.YouTurnH]);        // Select Our Texture
+            }
+
+            GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
+            {
+                GL.TexCoord2(0, 0); GL.Vertex2(-32 + two3, 46); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(32 + two3, 46); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(32 + two3, 110); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(-32 + two3, 110); //
+            }
+            GL.End();
+
             GL.Disable(EnableCap.Texture2D);
             // Done Building Triangle Strip
+
+            two3 -= 140;
+            GL.Color3(0.927f, 0.9635f, 0.74f);
+
             if (isMetric)
             {
                 if (!yt.isYouTurnTriggered)
@@ -1731,7 +1759,6 @@ namespace AgOpenGPS
             }
             else
             {
-
                 if (!yt.isYouTurnTriggered)
                 {
                     font.DrawText(-40 + two3, 80, DistPivotFt);
@@ -1742,6 +1769,7 @@ namespace AgOpenGPS
                 }
             }
         }
+
         private void DrawSteerCircle()
         {
             int sizer = 60;
@@ -2119,7 +2147,7 @@ namespace AgOpenGPS
             //}
         }
 
-        private double avgPivDistance, lightbarDistance;
+        private double avgPivDistance, lightbarDistance, longAvgPivDistance;
         private void DrawLightBarText()
         {
 
@@ -2133,7 +2161,11 @@ namespace AgOpenGPS
                 // in millimeters
                 avgPivDistance = avgPivDistance * 0.5 + lightbarDistance * 0.5;
 
+                longAvgPivDistance = longAvgPivDistance * 0.99 + Math.Abs(avgPivDistance) * 0.01;
+
                 double avgPivotDistance = avgPivDistance * (isMetric ? 0.1 : 0.03937);
+                double longAvgPivotDistance = longAvgPivDistance * (isMetric ? 0.1 : 0.03937);
+
                 string hede;
 
                 DrawLightBar(oglMain.Width, oglMain.Height, avgPivotDistance);
@@ -2149,8 +2181,14 @@ namespace AgOpenGPS
                     hede = (Math.Abs(avgPivotDistance)).ToString("N0");
                 }
 
-                int center = -(int)(((double)(hede.Length) * 0.5) * 16);
-                font.DrawText(center, 8, hede, 1.2);
+                int center = -(int)(((double)(hede.Length) * 0.5) * 22);
+                font.DrawText(center, 2, hede, 1.5);
+
+                hede = (Math.Abs(longAvgPivotDistance)).ToString("N1");
+
+                GL.Color3(0.950f, 0.952f, 0.3f);
+                center = -(int)(((double)(hede.Length) * 0.5) * 16);
+                font.DrawText(center, 50, hede, 1);
 
                 ////draw the modeTimeCounter
                 //if (!isStanleyUsed)
@@ -2278,8 +2316,8 @@ namespace AgOpenGPS
             //GL.Color3(0.9652f, 0.9752f, 0.1f);
             //font.DrawText(center, 150, "BETA 5.0.0.5", 1);
 
-            GL.Color3(0.9752f, 0.62f, 0.325f);
-            if (timerSim.Enabled) font.DrawText(-100, 35, "Simulator On", 1);
+            //GL.Color3(0.9752f, 0.62f, 0.325f);
+            //if (timerSim.Enabled) font.DrawText(-100, 35, "Simulator On", 1);
 
             //if (ct.isContourBtnOn)
             //{
@@ -2357,9 +2395,9 @@ namespace AgOpenGPS
             }
             else
             {
-                GL.Color3(0.952f, 0.980f, 0.980f);
-                int lenny = (gStr.gsIfWrongDirectionTapVehicle.Length * 12) / 2;
-                font.DrawText(-lenny, 150, gStr.gsIfWrongDirectionTapVehicle, 0.8f);
+                //GL.Color3(0.952f, 0.980f, 0.980f);
+                //int lenny = (gStr.gsIfWrongDirectionTapVehicle.Length * 12) / 2;
+                //font.DrawText(-lenny, 150, gStr.gsIfWrongDirectionTapVehicle, 0.8f);
 
                 if (isReverse) GL.Color3(0.952f, 0.0f, 0.0f);
                 else GL.Color3(0.952f, 0.0f, 0.0f);

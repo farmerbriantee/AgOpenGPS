@@ -26,7 +26,7 @@ namespace AgOpenGPS
                 for (int i = 1; i < bndList.Count; i++)
                 {
                     //make sure not inside a non drivethru boundary
-                    if (bndList[i].isDriveThru) continue;
+                    //if (bndList[i].isDriveThru) continue;
                     if (bndList[i].fenceLineEar.IsPointInPolygon(testPoint))
                     {
                         return false;
@@ -46,7 +46,7 @@ namespace AgOpenGPS
                 for (int i = 1; i < bndList.Count; i++)
                 {
                     //make sure not inside a non drivethru boundary
-                    if (bndList[i].isDriveThru) continue;
+                    //if (bndList[i].isDriveThru) continue;
                     if (bndList[i].fenceLineEar.IsPointInPolygon(testPoint))
                     {
                         return false;

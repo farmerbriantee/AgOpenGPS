@@ -34,9 +34,9 @@ namespace AgOpenGPS
         public double userSquareMetersAlarm;
 
         //Area inside Boundary less inside boundary areas
-        public string AreaBoundaryLessInnersHectares=>(areaBoundaryOuterLessInner * glm.m2ha).ToString("N1");
+        public string AreaBoundaryLessInnersHectares=>(areaBoundaryOuterLessInner * glm.m2ha).ToString("N2");
 
-        public string AreaBoundaryLessInnersAcres => (areaBoundaryOuterLessInner * glm.m2ac).ToString("N1");
+        public string AreaBoundaryLessInnersAcres => (areaBoundaryOuterLessInner * glm.m2ac).ToString("N2");
 
         //USer tally string
         public string WorkedUserHectares => (workedAreaTotalUser * glm.m2ha).ToString("N2");
@@ -45,9 +45,9 @@ namespace AgOpenGPS
         public string WorkedUserAcres => (workedAreaTotalUser * glm.m2ac).ToString("N2");
 
         //String of Area worked
-        public string WorkedAcres => (workedAreaTotal * 0.000247105).ToString("N1");
+        public string WorkedAcres => (workedAreaTotal * 0.000247105).ToString("N2");
 
-        public string WorkedHectares => (workedAreaTotal * 0.0001).ToString("N1");
+        public string WorkedHectares => (workedAreaTotal * 0.0001).ToString("N2");
 
         //User Distance strings
         public string DistanceUserMeters => Convert.ToString(Math.Round(distanceUser, 3));
@@ -77,8 +77,8 @@ namespace AgOpenGPS
         }
 
         //overlap strings
-        public string ActualAreaWorkedHectares => (actualAreaCovered * glm.m2ha).ToString("N1");
-        public string ActualAreaWorkedAcres => (actualAreaCovered * glm.m2ac).ToString("N1");
+        public string ActualAreaWorkedHectares => (actualAreaCovered * glm.m2ha).ToString("N2");
+        public string ActualAreaWorkedAcres => (actualAreaCovered * glm.m2ac).ToString("N2");
 
         public string ActualRemainHectares => ((areaBoundaryOuterLessInner - actualAreaCovered) * glm.m2ha).ToString("N2");
         public string ActualRemainAcres => ((areaBoundaryOuterLessInner - actualAreaCovered) * glm.m2ac).ToString("N2");

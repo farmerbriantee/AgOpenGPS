@@ -26,6 +26,7 @@ namespace AgOpenGPS
             }
 
             nudDualHeadingOffset.Value = (decimal)Properties.Settings.Default.setGPS_dualHeadingOffset;
+            nudDualReverseDistance.Value = (decimal)Properties.Settings.Default.setGPS_dualReverseDetectionDistance;
 
             hsbarFusion.Value = (int)(Properties.Settings.Default.setIMU_fusionWeight2 * 500);
             lblFusion.Text = (hsbarFusion.Value).ToString();
@@ -72,7 +73,7 @@ namespace AgOpenGPS
             //nudAgeAlarm.Value = Properties.Settings.Default.setGPS_ageAlarm;
         }
 
-            private void tabDHeading_Leave(object sender, EventArgs e)
+        private void tabDHeading_Leave(object sender, EventArgs e)
         {
             Properties.Settings.Default.setIMU_fusionWeight2 = (double)hsbarFusion.Value * 0.002;
             mf.ahrs.fusionWeight = (double)hsbarFusion.Value * 0.002;
@@ -124,6 +125,14 @@ namespace AgOpenGPS
             }
         }
 
+         private void nudDualReverseDistance_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            {
+                Properties.Settings.Default.setGPS_dualReverseDetectionDistance = ((double)nudDualReverseDistance.Value);
+                mf.dualReverseDetectionDistance = Properties.Settings.Default.setGPS_dualReverseDetectionDistance;
+            }
+        }
         //private void nudMinimumFrameTime_Click(object sender, EventArgs e)
         //{
         //    if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
@@ -272,6 +281,9 @@ namespace AgOpenGPS
             cboxFeatureTram.Checked = Properties.Settings.Default.setFeatures.isTramOn;
             cboxFeatureHeadland.Checked = Properties.Settings.Default.setFeatures.isHeadlandOn;
             cboxFeatureBoundary.Checked = Properties.Settings.Default.setFeatures.isBoundaryOn;
+
+            //the nudge controls at bottom menu
+            cboxFeatureNudge.Checked = Properties.Settings.Default.setFeatures.isABLineOn;
             //cboxFeatureBoundaryContour.Checked = Properties.Settings.Default.setFeatures.isBndContourOn;
             cboxFeatureRecPath.Checked = Properties.Settings.Default.setFeatures.isRecPathOn;
             cboxFeatureABSmooth.Checked = Properties.Settings.Default.setFeatures.isABSmoothOn;
@@ -285,6 +297,8 @@ namespace AgOpenGPS
             cboxTurnSound.Checked = Properties.Settings.Default.setSound_isUturnOn;
             cboxSteerSound.Checked = Properties.Settings.Default.setSound_isAutoSteerOn;
             cboxHydLiftSound.Checked = Properties.Settings.Default.setSound_isHydLiftOn;
+            cboxSectionsSound.Checked = Properties.Settings.Default.setSound_isSectionsOn;
+
             cboxAutoStartAgIO.Checked = Properties.Settings.Default.setDisplay_isAutoStartAgIO;
         }
 
@@ -292,6 +306,8 @@ namespace AgOpenGPS
         {
             Properties.Settings.Default.setFeatures.isTramOn = cboxFeatureTram.Checked;
             Properties.Settings.Default.setFeatures.isHeadlandOn = cboxFeatureHeadland.Checked;
+
+            Properties.Settings.Default.setFeatures.isABLineOn = cboxFeatureNudge.Checked;
 
             Properties.Settings.Default.setFeatures.isBoundaryOn = cboxFeatureBoundary.Checked;
             //Properties.Settings.Default.setFeatures.isBndContourOn = cboxFeatureBoundaryContour.Checked;
@@ -308,6 +324,8 @@ namespace AgOpenGPS
             mf.sounds.isTurnSoundOn = cboxTurnSound.Checked;
             Properties.Settings.Default.setSound_isAutoSteerOn = cboxSteerSound.Checked;
             mf.sounds.isSteerSoundOn = cboxSteerSound.Checked;
+            Properties.Settings.Default.setSound_isSectionsOn = cboxSectionsSound.Checked;
+            mf.sounds.isSectionsSoundOn = cboxSectionsSound.Checked;
             Properties.Settings.Default.setSound_isHydLiftOn = cboxHydLiftSound.Checked;
             mf.sounds.isHydLiftSoundOn = cboxHydLiftSound.Checked;
 

@@ -33,7 +33,7 @@ namespace AgOpenGPS
 
         private void FormBoundary_Load(object sender, EventArgs e)
         {
-            this.Size = new Size(632,359);
+            this.Size = new Size(600,300);
 
             //update the list view with real data
             UpdateChart();
@@ -52,18 +52,17 @@ namespace AgOpenGPS
         {
             int inner = 1;
 
-            tableLayoutPanel1.Controls.Clear();
-            tableLayoutPanel1.RowStyles.Clear();
+            flp1.Controls.Clear();
 
             Font backupfont = new Font(Font.FontFamily, 18F, FontStyle.Bold);
 
-            for (int i = 0; i < mf.bnd.bndList.Count && i < 6; i++)
+            for (int i = 0; i < mf.bnd.bndList.Count; i++)
             {
                 //outer inner
                 Button a = new Button
                 {
-                    Margin = new Padding(6),
-                    Size = new Size(150, 35),
+                    Margin = new Padding(10),
+                    Size = new Size(180, 35),
                     Name = i.ToString(),
                     TextAlign = ContentAlignment.MiddleCenter,
                     //ForeColor = System.Drawing.SystemColors.ButtonFace
@@ -74,8 +73,8 @@ namespace AgOpenGPS
                 //area
                 Button b = new Button
                 {
-                    Margin = new Padding(6),
-                    Size = new System.Drawing.Size(150, 35),
+                    Margin = new Padding(10),
+                    Size = new System.Drawing.Size(180, 35),
                     Name = i.ToString(),
                     TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
                     //ForeColor = System.Drawing.SystemColors.ButtonFace
@@ -86,8 +85,8 @@ namespace AgOpenGPS
                 //drive thru
                 Button d = new Button
                 {
-                    Margin = new Padding(6),
-                    Size = new System.Drawing.Size(80, 35),
+                    Margin = new Padding(10),
+                    Size = new System.Drawing.Size(110, 35),
                     Name = i.ToString(),
                     TextAlign = ContentAlignment.MiddleCenter,
                     //ForeColor = System.Drawing.SystemColors.ButtonFace
@@ -97,9 +96,9 @@ namespace AgOpenGPS
                 d.BackColor = System.Drawing.SystemColors.ButtonFace;
                 d.Visible = true;
 
-                tableLayoutPanel1.Controls.Add(a, 0, i);
-                tableLayoutPanel1.Controls.Add(b, 1, i);
-                tableLayoutPanel1.Controls.Add(d, 2, i);
+                flp1.Controls.Add(a);
+                flp1.Controls.Add(b);
+                flp1.Controls.Add(d);
 
                 if (i == 0)
                 {
@@ -201,6 +200,7 @@ namespace AgOpenGPS
 
                 if (mf.bnd.bndList.Count > fenceSelected)
                 {
+                    mf.bnd.bndList[fenceSelected].hdLine?.Clear();
                     mf.bnd.bndList.RemoveAt(fenceSelected);
                 }
                 fenceSelected = -1;
@@ -221,8 +221,7 @@ namespace AgOpenGPS
             fenceSelected = -1;
             mf.bnd.bndList.Clear();
             mf.FileSaveBoundary();
-            tableLayoutPanel1.Controls.Clear();
-            tableLayoutPanel1.RowStyles.Clear();
+            flp1.Controls.Clear();
 
             UpdateChart();
             mf.bnd.BuildTurnLines();
@@ -268,7 +267,7 @@ namespace AgOpenGPS
             panelChoose.Visible = false;
             panelKML.Visible = false;
 
-            this.Size = new System.Drawing.Size(632,359);
+            this.Size = new System.Drawing.Size(600,300);
             isClosing = true;
             UpdateChart();
             Close();
@@ -286,7 +285,7 @@ namespace AgOpenGPS
             panelChoose.Visible = true;
             panelChoose.Dock = DockStyle.Fill;
 
-            this.Size = new Size(245,359);
+            this.Size = new Size(245,350);
         }
 
         private void FormBoundary_FormClosing(object sender, FormClosingEventArgs e)
@@ -415,7 +414,7 @@ namespace AgOpenGPS
             panelChoose.Visible = false;
             panelKML.Visible = false;
 
-            this.Size = new Size(632,359);
+            this.Size = new Size(600,300);
 
             UpdateChart();
         }
@@ -435,38 +434,6 @@ namespace AgOpenGPS
             panelKML.Visible = true;
         }
 
-        #region Help
-
-        private void btnDelete_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hb_btnDelete, gStr.gsHelp);
-        }
-
-        private void btnDeleteAll_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hb_btnDeleteAll, gStr.gsHelp);
-        }
-
-        private void btnOpenGoogleEarth_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hb_btnOpenGoogleEarth, gStr.gsHelp);
-        }
-
-        private void btnAdd_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hb_btnAdd, gStr.gsHelp);
-        }
-
-        private void btnCancel_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hb_btnCancel, gStr.gsHelp);
-        }
-
-        private void btnGetKML_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hb_btnGetKML, gStr.gsHelp);
-        }
-
         private void btnBingMaps_Click(object sender, EventArgs e)
         {
             panelMain.Visible = false;
@@ -475,21 +442,9 @@ namespace AgOpenGPS
             isClosing = true;
         }
 
-        private void btnDriveOrExt_HelpRequested(object sender, HelpEventArgs hlpevent)
+        private void FormBoundary_ResizeEnd(object sender, EventArgs e)
         {
-            MessageBox.Show(gStr.hb_btnDriveOrExt, gStr.gsHelp);
+            this.Width = 600;
         }
-
-        private void btnLoadMultiBoundaryFromGE_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hb_btnLoadMultiBoundaryFromGE, gStr.gsHelp);
-        }
-
-        private void btnLoadBoundaryFromGE_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.hb_btnLoadBoundaryFromGE, gStr.gsHelp);
-        }
-
-        #endregion Help
     }
 }

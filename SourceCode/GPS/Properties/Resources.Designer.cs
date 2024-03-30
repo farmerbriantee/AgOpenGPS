@@ -123,6 +123,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ABPivot {
+            get {
+                object obj = ResourceManager.GetObject("ABPivot", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ABShrinkGrow {
             get {
                 object obj = ResourceManager.GetObject("ABShrinkGrow", resourceCulture);
@@ -1095,6 +1105,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap ConF_HydLiftSound {
             get {
                 object obj = ResourceManager.GetObject("ConF_HydLiftSound", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ConF_SoundSections {
+            get {
+                object obj = ResourceManager.GetObject("ConF_SoundSections", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -3127,6 +3147,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap TrackOn {
             get {
                 object obj = ResourceManager.GetObject("TrackOn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TrackPivot {
+            get {
+                object obj = ResourceManager.GetObject("TrackPivot", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

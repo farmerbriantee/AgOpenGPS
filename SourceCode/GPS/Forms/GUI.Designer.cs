@@ -53,9 +53,10 @@ namespace AgOpenGPS
         public bool isUTurnAlwaysOn, isCompassOn, isSpeedoOn, isSideGuideLines = true;
         public bool isPureDisplayOn = true, isSkyOn = true, isRollMeterOn = false, isTextureOn = true;
         public bool isDay = true, isDayTime = true, isBrightnessOn = true;
+        public bool isLogElevation = false;
         public bool isKeyboardOn = true, isAutoStartAgIO = true, isSvennArrowOn = true, isTermsAccepted = false;
 
-        public bool isUTurnOn = true, isLateralOn = true;
+        public bool isUTurnOn = true, isLateralOn = true, isNudgeOn = true;
 
         public int[] customColorsList = new int[16];
 
@@ -65,7 +66,9 @@ namespace AgOpenGPS
         public DateTime sunset = DateTime.Now;
 
         public bool isFlashOnOff = false, isPanFormVisible = false;
-        public bool isPanelABHidden = false;
+        public bool isPanelBottomHidden = false;
+
+        public int makeUTurnCounter = 0;
 
         //makes nav panel disappear after 6 seconds
         private int navPanelCounter = 0, trackMethodPanelCounter = 0;
@@ -83,8 +86,6 @@ namespace AgOpenGPS
 
         public List<int> buttonOrder = new List<int>();
 
-
-
         //Timer triggers at 125 msec
         private void tmrWatchdog_tick(object sender, EventArgs e)
         {
@@ -96,8 +97,8 @@ namespace AgOpenGPS
             }
 
             ////////////////////////////////////////////// 10 second ///////////////////////////////////////////////////////
-            //every 4 second update status
-            if (fourSecondCounter >= 4)
+            //every 3 second update status
+            if (fourSecondCounter >= 3)
             {
                 if (!isPauseFieldTextCounter)
                 {
@@ -195,7 +196,7 @@ namespace AgOpenGPS
                                         + "  App: " + fd.WorkedAcres
                                         + "  Actual: " + fd.ActualAreaWorkedAcres
                                         + "  " + fd.WorkedAreaRemainPercentage
-                                        + "  " + fd.WorkRateHectares;
+                                        + "  " + fd.WorkRateAcres;
                                 }
                             }
                             else
@@ -405,6 +406,7 @@ namespace AgOpenGPS
                 //reset the counter
                 oneHalfSecondCounter++;
                 oneSecondCounter++;
+                makeUTurnCounter++;
 
                 btnAutoSteerConfig.Text = SetSteerAngle + "\r\n" + ActualSteerAngle;
 
@@ -427,6 +429,7 @@ namespace AgOpenGPS
             tramLinesMenuField.Visible = Properties.Settings.Default.setFeatures.isTramOn;
             recordedPathStripMenu.Visible = Properties.Settings.Default.setFeatures.isRecPathOn;
 
+
             //tools menu
             SmoothABtoolStripMenu.Visible = Properties.Settings.Default.setFeatures.isABSmoothOn;
             deleteContourPathsToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isHideContourOn;
@@ -439,6 +442,7 @@ namespace AgOpenGPS
             //OGL control
             isUTurnOn = Properties.Settings.Default.setFeatures.isUTurnOn;
             isLateralOn = Properties.Settings.Default.setFeatures.isLateralOn;
+            isNudgeOn = Properties.Settings.Default.setFeatures.isABLineOn;
 
             if (isMetric)
             {
@@ -473,6 +477,7 @@ namespace AgOpenGPS
 
             udpWatchLimit = Properties.Settings.Default.SetGPS_udpWatchMsec;
             pn.headingTrueDualOffset = Properties.Settings.Default.setGPS_dualHeadingOffset;
+            dualReverseDetectionDistance = Properties.Settings.Default.setGPS_dualReverseDetectionDistance;
 
             frameDayColor = Properties.Settings.Default.setDisplay_colorDayFrame.CheckColorFor255();
             frameNightColor = Properties.Settings.Default.setDisplay_colorNightFrame.CheckColorFor255();
@@ -511,6 +516,7 @@ namespace AgOpenGPS
 
 
             isTextureOn = Settings.Default.setDisplay_isTextureOn;
+            isLogElevation = Settings.Default.setDisplay_isLogElevation;
 
             isGridOn = Settings.Default.setMenu_isGridOn;
             isBrightnessOn = Settings.Default.setDisplay_isBrightnessOn;
@@ -759,10 +765,16 @@ namespace AgOpenGPS
                 cboxpRowWidth.Visible = trk.idx > -1;
                 btnYouSkipEnable.Visible = trk.idx > -1;
 
+                btnSnapToPivot.Visible = trk.idx > -1 && isNudgeOn;
+                btnAdjLeft.Visible = trk.idx > -1 && isNudgeOn;
+                btnAdjRight.Visible = trk.idx > -1 && isNudgeOn;
+
                 btnTramDisplayMode.Visible = istram;
                 btnHeadlandOnOff.Visible = isHdl;
                 btnHydLift.Visible = isHdl;
                 cboxIsSectionControlled.Visible = isHdl;
+
+                //btnResetToolHeading.Visible = this.Width > 1190;
 
                 btnAutoTrack.Visible = tracksVisible > 1 && trk.idx > -1 && !ct.isContourBtnOn;
 
@@ -777,7 +789,7 @@ namespace AgOpenGPS
                     lblNumCu.Text = "";
                 }
 
-                PanelSizeRightAndAB();
+                PanelSizeRightAndBottom();
             }
 
             if (worldGrid.isRateMap)
@@ -786,13 +798,13 @@ namespace AgOpenGPS
                 //if (worldGrid.numRateChannels > 0) lblRed.Visible = true;
                 //if (worldGrid.numRateChannels > 1) lblGrn.Visible = true;
                 //if (worldGrid.numRateChannels > 2) lblBlu.Visible = true;
-                lblRed.Visible = true;
+                //lblRed.Visible = true;
                 //pbarRate.Visible = true;
             }
             else
             {
                 //lblRed.Visible = lblGrn.Visible = lblBlu.Visible = false;
-                lblRed.Visible = false;
+                //lblRed.Visible = false;
                 //pbarRate.Visible = false;
             }
         }
@@ -846,8 +858,9 @@ namespace AgOpenGPS
             panelRight.Controls.Add(lblNumCu);
         }
 
-        public void PanelSizeRightAndAB()
+        public void PanelSizeRightAndBottom()
         {
+            btnResetToolHeading.Visible = false;
             int viz = 0;
             for (int i = 0; i < panelRight.Controls.Count; i++)
             {
@@ -867,32 +880,42 @@ namespace AgOpenGPS
                 }
             }
 
-            if (panelAB.Visible)
+            if (panelBottom.Visible)
             {
                 viz = 0;
-                for (int i = 0; i < panelAB.Controls.Count; i++)
+                for (int i = 0; i < panelBottom.Controls.Count; i++)
                 {
-                    if (panelAB.Controls[i].Visible && panelAB.Controls[i] is Button)
+                    if (panelBottom.Controls[i].Visible && panelBottom.Controls[i] is Button)
                         viz++;
-                    if (panelAB.Controls[i].Visible && panelAB.Controls[i] is CheckBox)
+                    if (panelBottom.Controls[i].Visible && panelBottom.Controls[i] is CheckBox)
                         viz++;
                 }
 
                 if (viz == 0) return;
+                if (viz > 9 && Width < 1190)
+                {
+                    btnResetToolHeading.Visible = false;
+                }
+                else
+                {
+                    btnResetToolHeading.Visible = true;
+                    viz++;
+                }
 
-                sizer = (Width - 255) / (viz);
+                sizer = (Width - 185) / (viz);
                 if (sizer > 150) { sizer = 150; }
 
-                for (int i = 0; i < panelAB.Controls.Count; i++)
+                for (int i = 0; i < panelBottom.Controls.Count; i++)
                 {
-                    if (panelAB.Controls[i].Visible && panelAB.Controls[i] is Button)
-                        panelAB.Controls[i].Width = sizer;
-                    if (panelAB.Controls[i].Visible && panelAB.Controls[i] is CheckBox)
-                        panelAB.Controls[i].Width = sizer;
+                    if (panelBottom.Controls[i].Visible && panelBottom.Controls[i] is Button)
+                        panelBottom.Controls[i].Width = sizer;
+                    if (panelBottom.Controls[i].Visible && panelBottom.Controls[i] is CheckBox)
+                        panelBottom.Controls[i].Width = sizer;
                 }
+
             }
 
-            flp1.Top = this.Height - 200;
+            flp1.Top = this.Height - 230;
             flp1.Left = this.Width - 120 - flp1.Width;
         }
 
@@ -900,7 +923,7 @@ namespace AgOpenGPS
         {
             if (!isJobStarted)
             {
-                panelAB.Visible = false;
+                panelBottom.Visible = false;
                 panelRight.Visible = false;
 
                 oglMain.Left = 80;
@@ -909,9 +932,9 @@ namespace AgOpenGPS
             }
             else
             {
-                if (isPanelABHidden)
+                if (isPanelBottomHidden)
                 {
-                    panelAB.Visible = false;
+                    panelBottom.Visible = false;
                     panelLeft.Visible = false;
                     oglMain.Left = 20;
                     oglMain.Width = this.Width - 98; //22
@@ -919,7 +942,7 @@ namespace AgOpenGPS
                 }
                 else
                 {
-                    panelAB.Visible = true;
+                    panelBottom.Visible = true;
                     panelRight.Visible = true;
                     panelLeft.Visible = true;
                     oglMain.Left = 80;
@@ -928,7 +951,7 @@ namespace AgOpenGPS
                 }
             }
 
-            PanelSizeRightAndAB();
+            PanelSizeRightAndBottom();
 
             if (tool.isSectionsNotZones)
             {
@@ -1150,15 +1173,23 @@ namespace AgOpenGPS
                             int middle = oglMain.Width / 2 + oglMain.Width / 5;
                             if (point.X > middle - 80 && point.X < middle + 80)
                             {
-                                if (isTT)
-                                {
-                                    MessageBox.Show(gStr.h_lblSwapDirectionCancel, gStr.gsHelp);
-                                    ResetHelpBtn();
-                                    return;
-                                }
                                 SwapDirection();
                                 yt.turnTooCloseTrigger = false;
                                 yt.isTurnCreationTooClose = false;
+                                return;
+                            }
+
+                            //k turn or u turn
+                            middle += 140;
+                            if (point.X > middle - 25 && point.X < middle + 25)
+                            {
+                                yt.uTurnStyle++;
+                                if (yt.uTurnStyle > 1) yt.uTurnStyle = 0;
+                                yt.ResetCreatedYouTurn();
+
+                                Properties.Settings.Default.set_uTurnStyle = yt.uTurnStyle;
+                                Properties.Settings.Default.Save();
+
                                 return;
                             }
 
@@ -1166,13 +1197,6 @@ namespace AgOpenGPS
                             middle = oglMain.Width / 2 - oglMain.Width / 4;
                             if (point.X > middle - 140 && point.X < middle && isUTurnOn)
                             {
-                                if (isTT)
-                                {
-                                    MessageBox.Show(gStr.h_lblManualTurnCancelTouch, gStr.gsHelp);
-                                    ResetHelpBtn();
-                                    return;
-                                }
-
                                 if (yt.isYouTurnTriggered)
                                 {
                                     yt.ResetYouTurn();
@@ -1194,13 +1218,6 @@ namespace AgOpenGPS
 
                             if (point.X > middle && point.X < middle + 140 && isUTurnOn)
                             {
-                                if (isTT)
-                                {
-                                    MessageBox.Show(gStr.h_lblManualTurnCancelTouch, gStr.gsHelp);
-                                    ResetHelpBtn();
-                                    return;
-                                }
-
                                 if (yt.isYouTurnTriggered)
                                 {
                                     yt.ResetYouTurn();
@@ -1228,13 +1245,6 @@ namespace AgOpenGPS
                             int middle = oglMain.Width / 2 - oglMain.Width / 4;
                             if (point.X > middle - 140 && point.X < middle && isLateralOn)
                             {
-                                if (isTT)
-                                {
-                                    MessageBox.Show(gStr.h_lblLateralTurnTouch, gStr.gsHelp);
-                                    ResetHelpBtn();
-                                    return;
-                                }
-
                                 if (vehicle.functionSpeedLimit > avgSpeed)
                                 {
                                     yt.BuildManualYouLateral(false);
@@ -1249,13 +1259,6 @@ namespace AgOpenGPS
 
                             if (point.X > middle && point.X < middle + 140 && isLateralOn)
                             {
-                                if (isTT)
-                                {
-                                    MessageBox.Show(gStr.h_lblLateralTurnTouch, gStr.gsHelp);
-                                    ResetHelpBtn();
-                                    return;
-                                }
-
                                 if (vehicle.functionSpeedLimit > avgSpeed)
                                 {
                                     yt.BuildManualYouLateral(true);
@@ -1295,7 +1298,7 @@ namespace AgOpenGPS
                         {
                             if (point.Y > oglMain.Height - 60 && point.Y < oglMain.Height - 30)
                             {
-                                isPanelABHidden = !isPanelABHidden;
+                                isPanelBottomHidden = !isPanelBottomHidden;
                                 PanelsAndOGLSize();
                                 return;
                             }
@@ -1356,12 +1359,6 @@ namespace AgOpenGPS
                     && point.Y > centerY - 60 && point.Y < centerY + 60)
                 {
                     if (headingFromSource == "Dual") return;
-                    if (isTT)
-                    {
-                        MessageBox.Show(gStr.h_lblVehicleDirectionResetTouch, gStr.gsHelp);
-                        ResetHelpBtn();
-                        return;
-                    }
 
                     Array.Clear(stepFixPts, 0, stepFixPts.Length);
                     isFirstHeadingSet = false;
@@ -1370,24 +1367,10 @@ namespace AgOpenGPS
                     return;
                 }
 
-                //check for help touch on steer circle
-                if (isTT)
-                {
-                    int sizer = oglMain.Height / 9;
-                    if(point.Y > oglMain.Height-sizer && point.X > oglMain.Width - sizer)
-                    {
-                        MessageBox.Show(gStr.h_lblSteerCircleTouch, gStr.gsHelp);
-                        ResetHelpBtn();
-                        return;
-                    }
-                }
-
                 mouseX = point.X;
                 mouseY = oglMain.Height - point.Y;
                 leftMouseDownOnOpenGL = true;
             }
-
-            ResetHelpBtn();
         }
         private void SpeedLimitExceeded()
         {
@@ -1519,7 +1502,7 @@ namespace AgOpenGPS
         public string FixOffset { get { return (pn.fixOffset.easting.ToString("N2") + ", " + pn.fixOffset.northing.ToString("N2")); } }
         public string FixOffsetInch { get { return ((pn.fixOffset.easting*glm.m2in).ToString("N0")+ ", " + (pn.fixOffset.northing*glm.m2in).ToString("N0")); } }
 
-        public string Altitude { get { return Convert.ToString(Math.Round(pn.altitude,1)); } }
+        public string Altitude { get { return Convert.ToString(Math.Round(pn.altitude,2)); } }
         public string AltitudeFeet { get { return Convert.ToString((Math.Round((pn.altitude * 3.28084),1))); } }
         public string DistPivotM
         {

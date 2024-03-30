@@ -244,56 +244,5 @@ namespace AgOpenGPS
 
             MoveBuildTramLine(0);
         }
-
-        #region Help
-
-        private void btnAdjLeft_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.ht_btnAdjHalfToolWidth, gStr.gsHelp);
-        }
-
-        private void btnAdjRight_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.ht_btnAdjHalfToolWidth, gStr.gsHelp);
-        }
-
-        private void btnLeft_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.ht_btnLeftRightNudge, gStr.gsHelp);
-        }
-
-        private void btnRight_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.ht_btnLeftRightNudge, gStr.gsHelp);
-        }
-
-        private void btnSwapAB_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.ht_btnSwapAB, gStr.gsHelp);
-        }
-
-        private void btnMode_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_btnTramDisplayMode, gStr.gsHelp);
-        }
-
-        private void nudPasses_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.ht_nudPasses, gStr.gsHelp);
-        }
-
-        private void btnCancel_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.ht_btnCancel, gStr.gsHelp);
-        }
-
-        private void btnExit_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.ht_btnSave, gStr.gsHelp);
-        }
-
-        #endregion Help
-
-
     }
 }
