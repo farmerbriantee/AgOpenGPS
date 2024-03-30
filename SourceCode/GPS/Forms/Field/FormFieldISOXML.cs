@@ -197,7 +197,7 @@ namespace AgOpenGPS
         private void btnBuildFields_Click(object sender, EventArgs e)
         {
             mf.currentFieldDirectory = tboxFieldName.Text.Trim();
-            string dirNewField = Path.Combine(mf.fieldsDirectory, mf.currentFieldDirectory);
+            string dirNewField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
 
             //create new field files.
             string directoryName = Path.GetDirectoryName(dirNewField);
@@ -244,7 +244,7 @@ namespace AgOpenGPS
                     }
                 }
 
-                if (counter == 0)
+                if (counter  == 0) 
                 {
                     mf.YesMessageBox("Field Requires Outer Boundary.");
                     return;
@@ -313,7 +313,7 @@ namespace AgOpenGPS
                     string myFileName, dirField;
 
                     //get the directory and make sure it exists, create if not
-                    dirField = Path.Combine(mf.fieldsDirectory, mf.currentFieldDirectory);
+                    dirField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
                     directoryName = Path.GetDirectoryName(dirField);
 
                     if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
@@ -321,7 +321,7 @@ namespace AgOpenGPS
 
                     myFileName = "Field.txt";
 
-                    using (StreamWriter writer = new StreamWriter(Path.Combine(dirField, myFileName)))
+                    using (StreamWriter writer = new StreamWriter(dirField + myFileName))
                     {
                         //Write out the date
                         writer.WriteLine(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture));
@@ -616,7 +616,7 @@ namespace AgOpenGPS
                                         if (cnt > 3)
                                         {
                                             mf.trk.gArr.Add(new CTrk());
-                                            int idx = mf.trk.gArr.Count - 1;
+                                            int idx = mf.trk.gArr.Count-1;
 
                                             //make sure point distance isn't too big 
                                             mf.curve.MakePointMinimumSpacing(ref mf.curve.desList, 1.6);
@@ -794,7 +794,7 @@ namespace AgOpenGPS
                                         mf.trk.gArr[idx].name = mf.curve.desName;
                                     else mf.trk.gArr[idx].name =
                                             (Math.Round(glm.toDegrees(mf.trk.gArr[idx].heading), 1)).ToString(CultureInfo.InvariantCulture)
-                                            + "\u00B0"
+                                            + "\u00B0" 
                                             + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
                                     mf.trk.gArr[idx].mode = (int)TrackMode.Curve;

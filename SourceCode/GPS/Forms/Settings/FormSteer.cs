@@ -1,6 +1,5 @@
 ﻿using AgOpenGPS.Properties;
 using System;
-using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -352,7 +351,7 @@ namespace AgOpenGPS
             Properties.Settings.Default.Save();
 
             //save current vehicle
-            SettingsIO.ExportAll(Path.Combine(mf.vehiclesDirectory, mf.vehicleFileName, ".XML"));
+            SettingsIO.ExportAll(mf.vehiclesDirectory + mf.vehicleFileName + ".XML");
         }
 
         private void btnVehicleReset_Click(object sender, EventArgs e)
@@ -416,7 +415,7 @@ namespace AgOpenGPS
                 Properties.Settings.Default.Save();
 
                 //save current vehicle
-                SettingsIO.ExportAll(Path.Combine(mf.vehiclesDirectory, mf.vehicleFileName, ".XML"));
+                SettingsIO.ExportAll(mf.vehiclesDirectory + mf.vehicleFileName + ".XML");
 
                 FormSteer_Load(this, e);
 

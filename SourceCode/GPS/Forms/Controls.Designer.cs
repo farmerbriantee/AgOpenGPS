@@ -57,7 +57,7 @@ namespace AgOpenGPS
             }
 
             PanelUpdateRightAndBottom();
-        }
+        }                
         private void btnContourLock_Click(object sender, EventArgs e)
         {
             if (ct.isContourBtnOn)
@@ -116,7 +116,7 @@ namespace AgOpenGPS
                         tracksVisible++;
                     }
                 }
-
+                
                 //nudge closest
                 flp1.Controls[0].Visible = tracksVisible > 0;
 
@@ -136,7 +136,7 @@ namespace AgOpenGPS
                 flp1.Controls[6].Visible = tracksVisible > 0;
 
                 //position of panel
-                flp1.Top = this.Height - 260;
+                flp1.Top = this.Height -260;
                 flp1.Left = this.Width - 120 - flp1.Width;
                 trackMethodPanelCounter = 3;
             }
@@ -173,7 +173,7 @@ namespace AgOpenGPS
                     if (trk.isAutoSnapToPivot)
                     {
                         trk.SnapToPivot();
-                        trk.isAutoSnapped = true;
+                        trk.isAutoSnapped = true;   
                     }
                 }
                 else
@@ -355,7 +355,7 @@ namespace AgOpenGPS
                 flp1.Visible = false;
             }
 
-            panelRight.Visible = false;
+            panelRight.Visible = false; 
         }
         private void btnTracksOff_Click(object sender, EventArgs e)
         {
@@ -692,13 +692,13 @@ namespace AgOpenGPS
         }
         public void GetHeadland()
         {
-            using (var form = new FormHeadLine(this))
+            using (var form = new FormHeadLine (this))
             {
                 form.ShowDialog(this);
             }
 
             bnd.isHeadlandOn = (bnd.bndList.Count > 0 && bnd.bndList[0].hdLine.Count > 0);
-
+            
             PanelsAndOGLSize();
             PanelUpdateRightAndBottom();
             SetZoom();
@@ -788,7 +788,7 @@ namespace AgOpenGPS
                 btnPathGoStop.Image = Properties.Resources.boundaryPlay;
                 btnPathRecordStop.Enabled = true;
                 btnPickPath.Enabled = true;
-                btnResumePath.Enabled = true;
+                btnResumePath.Enabled = true;   
                 return;
             }
 
@@ -825,7 +825,7 @@ namespace AgOpenGPS
                 using (var form = new FormRecordName(this))
                 {
                     form.ShowDialog(this);
-                    if (form.DialogResult == DialogResult.OK)
+                    if(form.DialogResult == DialogResult.OK) 
                     {
                         String filename = form.filename + ".rec";
                         FileSaveRecPath();
@@ -835,7 +835,7 @@ namespace AgOpenGPS
                     {
                         recPath.recList.Clear();
                     }
-                }
+                }                
             }
             else if (isJobStarted)
             {
@@ -859,7 +859,7 @@ namespace AgOpenGPS
             else if (recPath.resumeState == 1)
             {
                 recPath.resumeState++;
-                btnResumePath.Image = Properties.Resources.pathResumeClose;
+                btnResumePath.Image = Properties.Resources.pathResumeClose; 
                 TimedMessageBox(1500, "Resume Style", "Closest Point");
             }
             else
@@ -965,7 +965,7 @@ namespace AgOpenGPS
             }
             fd.distanceUser = 0;
             fd.workedAreaTotalUser = 0;
-        }
+        }          
         private void lblFieldStatus_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -1020,7 +1020,7 @@ namespace AgOpenGPS
                 //Start application here
                 DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
                 string strPath = di.ToString();
-                strPath = Path.Combine(strPath, "AgIO.exe");
+                strPath += "\\AgIO.exe";
                 try
                 {
                     //TimedMessageBox(2000, "Please Wait", "Starting AgIO");
@@ -1065,7 +1065,7 @@ namespace AgOpenGPS
                     fc.Width = 960;
                     fc.Height = 720;
                 }
-
+            
 
                 return;
             }
@@ -1124,7 +1124,7 @@ namespace AgOpenGPS
                 flagNumberPicked = 1;
                 Form form = new FormFlags(this);
                 form.Show(this);
-            }
+            }            
         }
         private void btnFlag_Click(object sender, EventArgs e)
         {
@@ -1136,7 +1136,7 @@ namespace AgOpenGPS
             }
 
             int nextflag = flagPts.Count + 1;
-            CFlag flagPt = new CFlag(pn.latitude, pn.longitude, pn.fix.easting, pn.fix.northing, fixHeading, flagColor, nextflag,
+            CFlag flagPt = new CFlag(pn.latitude, pn.longitude, pn.fix.easting, pn.fix.northing, fixHeading, flagColor, nextflag, 
                 " +" + Math.Round(pn.altitude, 3).ToString(CultureInfo.InvariantCulture) + "m");
             flagPts.Add(flagPt);
             FileSaveFlags();
@@ -1205,7 +1205,7 @@ namespace AgOpenGPS
                 ResetHelpBtn();
                 return;
             }
-
+            
             Form f = Application.OpenForms["FormGPSData"];
 
             if (f != null)
@@ -1319,7 +1319,7 @@ namespace AgOpenGPS
             {
                 form.ShowDialog(this);
             }
-        }
+        }                
         private void hotKeysToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (var form = new Form_Keys(this))
@@ -1382,7 +1382,7 @@ namespace AgOpenGPS
         }
         private void helpMenuItem_Click(object sender, EventArgs e)
         {
-            using (var form = new Form_Help(this))
+             using (var form = new Form_Help(this))
             {
                 form.ShowDialog(this);
             }
@@ -1445,7 +1445,7 @@ namespace AgOpenGPS
             {
                 form.ShowDialog(this);
             }
-            SettingsIO.ExportAll(Path.Combine(vehiclesDirectory, vehicleFileName, ".XML"));
+            SettingsIO.ExportAll(vehiclesDirectory + vehicleFileName + ".XML");
         }
         private void colorsSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1455,7 +1455,7 @@ namespace AgOpenGPS
                 {
                     form.ShowDialog(this);
                 }
-                SettingsIO.ExportAll(Path.Combine(vehiclesDirectory, vehicleFileName, ".XML"));
+                SettingsIO.ExportAll(vehiclesDirectory + vehicleFileName + ".XML");
             }
             else
             {
@@ -1519,7 +1519,7 @@ namespace AgOpenGPS
         private void menuLanguageTurkish_Click(object sender, EventArgs e)
         {
             SetLanguage("tr", true);
-        }
+        }          
         private void finnishToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SetLanguage("fi", true);
@@ -1690,7 +1690,7 @@ namespace AgOpenGPS
         private void btnAutoTrack_Click(object sender, EventArgs e)
         {
             trk.isAutoTrack = !trk.isAutoTrack;
-            btnAutoTrack.Image = trk.isAutoTrack ? Resources.AutoTrack : Resources.AutoTrackOff;
+            btnAutoTrack.Image = trk.isAutoTrack ? Resources.AutoTrack : Resources.AutoTrackOff;            
         }
 
         private void btnResetToolHeading_Click(object sender, EventArgs e)
@@ -1698,7 +1698,7 @@ namespace AgOpenGPS
             tankPos.heading = fixHeading;
             tankPos.easting = hitchPos.easting + (Math.Sin(tankPos.heading) * (tool.tankTrailingHitchLength));
             tankPos.northing = hitchPos.northing + (Math.Cos(tankPos.heading) * (tool.tankTrailingHitchLength));
-
+            
             toolPivotPos.heading = tankPos.heading;
             toolPivotPos.easting = tankPos.easting + (Math.Sin(toolPivotPos.heading) * (tool.trailingHitchLength));
             toolPivotPos.northing = tankPos.northing + (Math.Cos(toolPivotPos.heading) * (tool.trailingHitchLength));
@@ -1775,7 +1775,7 @@ namespace AgOpenGPS
                 ResetHelpBtn();
                 return;
             }
-
+            
             yt.alternateSkips = !yt.alternateSkips;
             if (yt.alternateSkips)
             {
@@ -1912,7 +1912,7 @@ namespace AgOpenGPS
                 else TimedMessageBox(2000, gStr.gsCurveNotOn, gStr.gsTurnABCurveOn);
             }
         }
-        private void deleteContourPathsToolStripMenuItem_Click(object sender, EventArgs e)
+         private void deleteContourPathsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //FileCreateContour();
             ct.stripList?.Clear();
@@ -1984,7 +1984,7 @@ namespace AgOpenGPS
                 }
                 else
                 {
-                    TimedMessageBox(1500, "Sections are on", "Turn Auto or Manual Off First");
+                   TimedMessageBox(1500, "Sections are on", "Turn Auto or Manual Off First");
                 }
             }
         }
@@ -2017,7 +2017,7 @@ namespace AgOpenGPS
             //
             Form formG = new FormGraphSteer(this);
             formG.Show(this);
-        }
+        }               
         private void xTEChartToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //check if window already exists
@@ -2164,7 +2164,7 @@ namespace AgOpenGPS
         {
             DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
             string strPath = di.ToString();
-            strPath = Path.Combine(strPath, "OGL.exe");
+            strPath += "\\OGL.exe";
             try
             {
                 ProcessStartInfo processInfo = new ProcessStartInfo();
@@ -2237,8 +2237,8 @@ namespace AgOpenGPS
                 //save new copy of kml with selected flag and view in GoogleEarth
                 FileSaveSingleFlagKML(flagNumberPicked);
 
-                //Process.Start(@"C:\Program Files (x86)\Google\Google Earth\client\googleearth", Path.Combine(workingDirectory, currentFieldDirectory, "Flags.KML"));
-                Process.Start(Path.Combine(fieldsDirectory, currentFieldDirectory, "Flag.KML"));
+                //Process.Start(@"C:\Program Files (x86)\Google\Google Earth\client\googleearth", workingDirectory + currentFieldDirectory + "\\Flags.KML");
+                Process.Start(fieldsDirectory + currentFieldDirectory + "\\Flag.KML");
             }
         }
 
@@ -2253,8 +2253,8 @@ namespace AgOpenGPS
                 sim.stepDistance = 0;
                 return;
             }
-            if (sim.stepDistance < 0.2) sim.stepDistance += 0.02;
-            else
+            if (sim.stepDistance < 0.2 ) sim.stepDistance += 0.02;
+            else 
                 sim.stepDistance *= 1.15;
 
             if (sim.stepDistance > 7.5) sim.stepDistance = 7.5;

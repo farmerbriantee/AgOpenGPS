@@ -12,7 +12,7 @@ using System.Text;
 
 namespace AgOpenGPS
 {
-
+    
     public partial class FormGPS
     {
         //list of the list of patch data individual triangles for field sections
@@ -226,7 +226,7 @@ namespace AgOpenGPS
             string directoryName = Path.GetDirectoryName(dirField);
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
-
+           
             string myFileName = "TASKDATA.xml";
 
             try
@@ -447,35 +447,35 @@ namespace AgOpenGPS
                 //Write the XML to file and close the kml
                 xml.Close();
 
-            }
+        }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
 
-            /*
-                //xml.WriteStartElement("TSK");//Task
-                //xml.WriteAttributeString("A", "TSK1");
-                //xml.WriteAttributeString("B", "Tractor Work");
-                //xml.WriteAttributeString("C", "CTR1");
-                //xml.WriteAttributeString("E", "PFD-1");
-                //xml.WriteAttributeString("G", "1");
-                //xml.WriteAttributeString("I", "1");
-                //xml.WriteAttributeString("J", "0");
-                //xml.WriteEndElement();//Task
-            */
+    /*
+        //xml.WriteStartElement("TSK");//Task
+        //xml.WriteAttributeString("A", "TSK1");
+        //xml.WriteAttributeString("B", "Tractor Work");
+        //xml.WriteAttributeString("C", "CTR1");
+        //xml.WriteAttributeString("E", "PFD-1");
+        //xml.WriteAttributeString("G", "1");
+        //xml.WriteAttributeString("I", "1");
+        //xml.WriteAttributeString("J", "0");
+        //xml.WriteEndElement();//Task
+    */
 
-        }
+}
 
         public void FileSaveHeadLines()
         {
-            string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
 
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
 
-            string filename = Path.Combine(directoryName, "HeadLines.txt");
+            string filename = directoryName + "\\HeadLines.txt";
 
             int cnt = hdl.tracksArr.Count;
 
@@ -498,7 +498,7 @@ namespace AgOpenGPS
 
                             //write out the mode
                             writer.WriteLine(hdl.tracksArr[i].mode.ToString(CultureInfo.InvariantCulture));
-
+                            
                             //write out the A_Point index
                             writer.WriteLine(hdl.tracksArr[i].a_point.ToString(CultureInfo.InvariantCulture));
 
@@ -535,13 +535,13 @@ namespace AgOpenGPS
             hdl.tracksArr?.Clear();
 
             //get the directory and make sure it exists, create if not
-            string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField);
 
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
 
-            string filename = Path.Combine(directoryName, "HeadLines.txt");
+            string filename = directoryName + "\\HeadLines.txt";
 
             if (!File.Exists(filename))
             {
@@ -622,13 +622,13 @@ namespace AgOpenGPS
                         var form = new FormTimedMessage(2000, "Headline Error", "Lines Deleted");
                         form.Show(this);
 
-                        dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
+                        dirField = fieldsDirectory + currentFieldDirectory + "\\";
                         directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
 
                         if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
                         { Directory.CreateDirectory(directoryName); }
 
-                        filename = Path.Combine(directoryName, "HeadLines.txt");
+                        filename = directoryName + "\\HeadLines.txt";
 
                         using (StreamWriter writer = new StreamWriter(filename, false))
                         {
@@ -650,13 +650,13 @@ namespace AgOpenGPS
 
         public void FileSaveTracks()
         {
-            string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
 
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
 
-            string filename = Path.Combine(directoryName, "TrackLines.txt");
+            string filename = directoryName + "\\TrackLines.txt";
 
             int cnt = trk.gArr.Count;
 
@@ -729,13 +729,13 @@ namespace AgOpenGPS
             trk.gArr?.Clear();
 
             //get the directory and make sure it exists, create if not
-            string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField);
 
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
 
-            string filename = Path.Combine(directoryName, "TrackLines.txt");
+            string filename = directoryName + "\\TrackLines.txt";
 
             if (!File.Exists(filename))
             {
@@ -830,13 +830,13 @@ namespace AgOpenGPS
 
         public void FileSaveCurveLines()
         {
-            string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
 
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
 
-            string filename = Path.Combine(directoryName, "CurveLines.txt");
+            string filename = directoryName + "\\CurveLines.txt";
 
             int cnt = trk.gArr.Count;
 
@@ -888,13 +888,13 @@ namespace AgOpenGPS
         public void FileLoadCurveLines()
         {
             //get the directory and make sure it exists, create if not
-            string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField);
 
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
 
-            string filename = Path.Combine(directoryName, "CurveLines.txt");
+            string filename = directoryName + "\\CurveLines.txt";
 
             if (!File.Exists(filename))
             {
@@ -953,7 +953,7 @@ namespace AgOpenGPS
                             line = reader.ReadLine();
                             int numPoints = int.Parse(line);
 
-                            if (numPoints > 1)
+                            if (numPoints > 1) 
                             {
                                 trk.gArr[trk.gArr.Count - 1].curvePts?.Clear();
 
@@ -969,7 +969,7 @@ namespace AgOpenGPS
 
                                 trk.gArr[trk.gArr.Count - 1].ptB.easting = trk.gArr[trk.gArr.Count - 1].curvePts[0].easting;
                                 trk.gArr[trk.gArr.Count - 1].ptB.northing = trk.gArr[trk.gArr.Count - 1].curvePts[0].northing;
-
+                                
                                 trk.gArr[trk.gArr.Count - 1].ptB.easting = trk.gArr[trk.gArr.Count - 1].curvePts[trk.gArr[trk.gArr.Count - 1].curvePts.Count - 1].easting;
                                 trk.gArr[trk.gArr.Count - 1].ptB.northing = trk.gArr[trk.gArr.Count - 1].curvePts[trk.gArr[trk.gArr.Count - 1].curvePts.Count - 1].northing;
                             }
@@ -995,14 +995,14 @@ namespace AgOpenGPS
         public void FileSaveABLines()
         {
             //make sure at least a global blank AB Line file exists
-            string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
 
             //get the file of previous AB Lines
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
 
-            string filename = Path.Combine(directoryName, "ABLines.txt");
+            string filename = directoryName + "\\ABLines.txt";
             int cnt = trk.gArr.Count;
 
             using (StreamWriter writer = new StreamWriter(filename, false))
@@ -1030,13 +1030,13 @@ namespace AgOpenGPS
         public void FileLoadABLines()
         {
             //make sure at least a global blank AB Line file exists
-            string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
 
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
 
-            string filename = Path.Combine(directoryName, "ABLines.txt");
+            string filename = directoryName + "\\ABLines.txt";
 
             if (!File.Exists(filename))
             {
@@ -1113,7 +1113,7 @@ namespace AgOpenGPS
                 case "Resume":
                     {
                         //Either exit or update running save
-                        fileAndDirectory = Path.Combine(fieldsDirectory, currentFieldDirectory, "Field.txt");
+                        fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Field.txt";
                         if (!File.Exists(fileAndDirectory)) fileAndDirectory = "Cancel";
                         break;
                     }
@@ -1229,9 +1229,9 @@ namespace AgOpenGPS
 
             FileLoadTracks();
 
-
+            
             //section patches
-            fileAndDirectory = Path.Combine(fieldsDirectory, currentFieldDirectory, "Sections.txt");
+            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Sections.txt";
             if (!File.Exists(fileAndDirectory))
             {
                 var form = new FormTimedMessage(2000, gStr.gsMissingSectionFile, gStr.gsButFieldIsLoaded);
@@ -1305,23 +1305,23 @@ namespace AgOpenGPS
                 //was old version prior to v4
                 if (isv3)
                 {
-                    //Append the current list to the field file
-                    using (StreamWriter writer = new StreamWriter((Path.Combine(fieldsDirectory, currentFieldDirectory, "Sections.txt")), false))
-                    {
-                    }
+                        //Append the current list to the field file
+                        using (StreamWriter writer = new StreamWriter((fieldsDirectory + currentFieldDirectory + "\\Sections.txt"), false))
+                        {
+                        }
                 }
             }
 
             // Contour points ----------------------------------------------------------------------------
 
-            fileAndDirectory = Path.Combine(fieldsDirectory, currentFieldDirectory, "Contour.txt");
+            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Contour.txt";
             if (!File.Exists(fileAndDirectory))
             {
                 var form = new FormTimedMessage(2000, gStr.gsMissingContourFile, gStr.gsButFieldIsLoaded);
                 form.Show(this);
                 //return;
             }
-
+            
             //Points in Patch followed by easting, heading, northing, altitude
             else
             {
@@ -1369,7 +1369,7 @@ namespace AgOpenGPS
             // Flags -------------------------------------------------------------------------------------------------
 
             //Either exit or update running save
-            fileAndDirectory = Path.Combine(fieldsDirectory, currentFieldDirectory, "Flags.txt");
+            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Flags.txt";
             if (!File.Exists(fileAndDirectory))
             {
                 var form = new FormTimedMessage(2000, gStr.gsMissingFlagsFile, gStr.gsButFieldIsLoaded);
@@ -1445,7 +1445,7 @@ namespace AgOpenGPS
 
             //Boundaries
             //Either exit or update running save
-            fileAndDirectory = Path.Combine(fieldsDirectory, currentFieldDirectory, "Boundary.txt");
+            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Boundary.txt";
             if (!File.Exists(fileAndDirectory))
             {
                 var form = new FormTimedMessage(2000, gStr.gsMissingBoundaryFile, gStr.gsButFieldIsLoaded);
@@ -1539,7 +1539,7 @@ namespace AgOpenGPS
             }
 
             // Headland  -------------------------------------------------------------------------------------------------
-            fileAndDirectory = Path.Combine(fieldsDirectory, currentFieldDirectory, "Headland.txt");
+            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Headland.txt";
 
             if (File.Exists(fileAndDirectory))
             {
@@ -1607,7 +1607,7 @@ namespace AgOpenGPS
             }
 
             //trams ---------------------------------------------------------------------------------
-            fileAndDirectory = Path.Combine(fieldsDirectory, currentFieldDirectory, "Tram.txt");
+            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Tram.txt";
 
             tram.tramBndOuterArr?.Clear();
             tram.tramBndInnerArr?.Clear();
@@ -1708,12 +1708,12 @@ namespace AgOpenGPS
             //{
             //    foreach (string file in Directory.GetFiles(fieldsDirectory + currentFieldDirectory, "*.shp", SearchOption.TopDirectoryOnly))
             //    {
-            //        shape.Main(Path.Combine(fieldsDirectory, currentFieldDirectory) + Path.GetFileNameWithoutExtension(file));
+            //        shape.Main(fieldsDirectory + currentFieldDirectory + "\\" + Path.GetFileNameWithoutExtension(file));
             //    }
             //}
 
             //Recorded Path
-            fileAndDirectory = Path.Combine(fieldsDirectory, currentFieldDirectory, "RecPath.txt");
+            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\RecPath.txt";
             if (File.Exists(fileAndDirectory))
             {
                 using (StreamReader reader = new StreamReader(fileAndDirectory))
@@ -1761,7 +1761,7 @@ namespace AgOpenGPS
             worldGrid.numRateChannels = 0;
 
             //Back Image
-            fileAndDirectory = Path.Combine(fieldsDirectory, currentFieldDirectory, "BackPic.txt");
+            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\BackPic.txt";
             if (File.Exists(fileAndDirectory))
             {
                 using (StreamReader reader = new StreamReader(fileAndDirectory))
@@ -1790,7 +1790,7 @@ namespace AgOpenGPS
 
                     if (worldGrid.isGeoMap)
                     {
-                        fileAndDirectory = Path.Combine(fieldsDirectory, currentFieldDirectory, "BackPic.png");
+                        fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\BackPic.png";
                         if (File.Exists(fileAndDirectory))
                         {
                             var bitmap = new Bitmap(Image.FromFile(fileAndDirectory));
@@ -1811,7 +1811,7 @@ namespace AgOpenGPS
             //is there rateChannels?
             if (!worldGrid.isGeoMap)
             {
-                fileAndDirectory = Path.Combine(fieldsDirectory, currentFieldDirectory, "RateMap.txt");
+                fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\RateMap.txt";
                 if (File.Exists(fileAndDirectory))
                 {
                     using (StreamReader reader = new StreamReader(fileAndDirectory))
@@ -1844,7 +1844,7 @@ namespace AgOpenGPS
 
                         if (worldGrid.isRateMap)
                         {
-                            fileAndDirectory = Path.Combine(fieldsDirectory, currentFieldDirectory, "rateMap1.png");
+                            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\rateMap1.png";
                             if (File.Exists(fileAndDirectory))
                             {
                                 var bitmap = new Bitmap(Image.FromFile(fileAndDirectory));
@@ -1861,7 +1861,7 @@ namespace AgOpenGPS
 
                             if (worldGrid.numRateChannels > 1)
                             {
-                                fileAndDirectory = Path.Combine(fieldsDirectory, currentFieldDirectory, "rateMap2.png");
+                                fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\rateMap2.png";
                                 if (File.Exists(fileAndDirectory))
                                 {
                                     var bitmap = new Bitmap(Image.FromFile(fileAndDirectory));
@@ -1880,7 +1880,7 @@ namespace AgOpenGPS
                             if (worldGrid.numRateChannels > 2)
                             {
 
-                                fileAndDirectory = Path.Combine(fieldsDirectory, currentFieldDirectory, "rateMap3.png");
+                                fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\rateMap3.png";
                                 if (File.Exists(fileAndDirectory))
                                 {
                                     var bitmap = new Bitmap(Image.FromFile(fileAndDirectory));
@@ -1900,7 +1900,7 @@ namespace AgOpenGPS
                             {
                                 YesMessageBox("Missing one of the 3 rate images, " +
                                 " There should be MapRate1, MapRate2, MapRate3, " +
-                                " VR is turned off");
+                                " VR is turned off") ;
 
                                 worldGrid.isRateMap = false;
                             }
@@ -1935,7 +1935,7 @@ namespace AgOpenGPS
             string myFileName, dirField;
 
             //get the directory and make sure it exists, create if not
-            dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
+            dirField = fieldsDirectory + currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField);
 
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
@@ -1943,7 +1943,7 @@ namespace AgOpenGPS
 
             myFileName = "Field.txt";
 
-            using (StreamWriter writer = new StreamWriter(Path.Combine(dirField, myFileName)))
+            using (StreamWriter writer = new StreamWriter(dirField + myFileName))
             {
                 //Write out the date
                 writer.WriteLine(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture));
@@ -1981,7 +1981,7 @@ namespace AgOpenGPS
             string myFileName, dirField;
 
             //get the directory and make sure it exists, create if not
-            dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
+            dirField = fieldsDirectory + currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField);
 
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
@@ -1989,7 +1989,7 @@ namespace AgOpenGPS
 
             myFileName = "Elevation.txt";
 
-            using (StreamWriter writer = new StreamWriter(Path.Combine(dirField, myFileName)))
+            using (StreamWriter writer = new StreamWriter(dirField + myFileName))
             {
                 //Write out the date
                 writer.WriteLine(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture));
@@ -2016,7 +2016,7 @@ namespace AgOpenGPS
             if (patchSaveList.Count() > 0)
             {
                 //Append the current list to the field file
-                using (StreamWriter writer = new StreamWriter((Path.Combine(fieldsDirectory, currentFieldDirectory, "Sections.txt")), true))
+                using (StreamWriter writer = new StreamWriter((fieldsDirectory + currentFieldDirectory + "\\Sections.txt"), true))
                 {
                     //for each patch, write out the list of triangles to the file
                     foreach (var triList in patchSaveList)
@@ -2025,8 +2025,8 @@ namespace AgOpenGPS
                         writer.WriteLine(count2.ToString(CultureInfo.InvariantCulture));
 
                         for (int i = 0; i < count2; i++)
-                            writer.WriteLine((Math.Round(triList[i].easting, 3)).ToString(CultureInfo.InvariantCulture) +
-                                "," + (Math.Round(triList[i].northing, 3)).ToString(CultureInfo.InvariantCulture) +
+                            writer.WriteLine((Math.Round(triList[i].easting,3)).ToString(CultureInfo.InvariantCulture) +
+                                "," + (Math.Round(triList[i].northing,3)).ToString(CultureInfo.InvariantCulture) +
                                  "," + (Math.Round(triList[i].heading, 3)).ToString(CultureInfo.InvariantCulture));
                     }
                 }
@@ -2044,7 +2044,7 @@ namespace AgOpenGPS
             //10.1728031317344,0.723157039771303 -easting, northing
 
             //get the directory and make sure it exists, create if not
-            string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
 
             string directoryName = Path.GetDirectoryName(dirField);
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
@@ -2053,7 +2053,7 @@ namespace AgOpenGPS
             string myFileName = "Sections.txt";
 
             //write out the file
-            using (StreamWriter writer = new StreamWriter(Path.Combine(dirField, myFileName)))
+            using (StreamWriter writer = new StreamWriter(dirField + myFileName))
             {
                 //write paths # of sections
                 //writer.WriteLine("$Sectionsv4");
@@ -2067,7 +2067,7 @@ namespace AgOpenGPS
             //10.1728031317344,0.723157039771303 -easting, northing
 
             //get the directory and make sure it exists, create if not
-            string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
 
             string directoryName = Path.GetDirectoryName(dirField);
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
@@ -2076,7 +2076,7 @@ namespace AgOpenGPS
             string myFileName = "Boundary.txt";
 
             //write out the file
-            using (StreamWriter writer = new StreamWriter(Path.Combine(dirField, myFileName)))
+            using (StreamWriter writer = new StreamWriter(dirField + myFileName))
             {
                 //write paths # of sections
                 writer.WriteLine("$Boundary");
@@ -2091,7 +2091,7 @@ namespace AgOpenGPS
             //10.1728031317344,0.723157039771303 -easting, northing
 
             //get the directory and make sure it exists, create if not
-            string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
 
             string directoryName = Path.GetDirectoryName(dirField);
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
@@ -2100,7 +2100,7 @@ namespace AgOpenGPS
             string myFileName = "Flags.txt";
 
             //write out the file
-            using (StreamWriter writer = new StreamWriter(Path.Combine(dirField, myFileName)))
+            using (StreamWriter writer = new StreamWriter(dirField + myFileName))
             {
                 //write paths # of sections
                 //writer.WriteLine("$Sectionsv4");
@@ -2114,7 +2114,7 @@ namespace AgOpenGPS
             //64.697,0.168,-21.654,0 - east, heading, north, altitude
 
             //get the directory and make sure it exists, create if not
-            string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
 
             string directoryName = Path.GetDirectoryName(dirField);
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
@@ -2123,7 +2123,7 @@ namespace AgOpenGPS
             string myFileName = "Contour.txt";
 
             //write out the file
-            using (StreamWriter writer = new StreamWriter(Path.Combine(dirField, myFileName)))
+            using (StreamWriter writer = new StreamWriter(dirField + myFileName))
             {
                 writer.WriteLine("$Contour");
             }
@@ -2139,7 +2139,7 @@ namespace AgOpenGPS
             if (contourSaveList.Count() > 0)
             {
                 //Append the current list to the field file
-                using (StreamWriter writer = new StreamWriter((Path.Combine(fieldsDirectory, currentFieldDirectory, "Contour.txt")), true))
+                using (StreamWriter writer = new StreamWriter((fieldsDirectory + currentFieldDirectory + "\\Contour.txt"), true))
                 {
 
                     //for every new chunk of patch in the whole section
@@ -2152,7 +2152,7 @@ namespace AgOpenGPS
                         for (int i = 0; i < count2; i++)
                         {
                             writer.WriteLine(Math.Round((triList[i].easting), 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                Math.Round(triList[i].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                Math.Round(triList[i].northing, 3).ToString(CultureInfo.InvariantCulture)+ "," +
                                 Math.Round(triList[i].heading, 3).ToString(CultureInfo.InvariantCulture));
                         }
                     }
@@ -2167,14 +2167,14 @@ namespace AgOpenGPS
         public void FileSaveBoundary()
         {
             //get the directory and make sure it exists, create if not
-            string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
 
             string directoryName = Path.GetDirectoryName(dirField);
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
 
             //write out the file
-            using (StreamWriter writer = new StreamWriter(Path.Combine(dirField, "Boundary.Txt")))
+            using (StreamWriter writer = new StreamWriter(dirField + "Boundary.Txt"))
             {
                 writer.WriteLine("$Boundary");
                 for (int i = 0; i < bnd.bndList.Count; i++)
@@ -2186,9 +2186,9 @@ namespace AgOpenGPS
                     if (bnd.bndList[i].fenceLine.Count > 0)
                     {
                         for (int j = 0; j < bnd.bndList[i].fenceLine.Count; j++)
-                            writer.WriteLine(Math.Round(bnd.bndList[i].fenceLine[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                            writer.WriteLine(Math.Round(bnd.bndList[i].fenceLine[j].easting,3).ToString(CultureInfo.InvariantCulture) + "," +
                                                 Math.Round(bnd.bndList[i].fenceLine[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                                    Math.Round(bnd.bndList[i].fenceLine[j].heading, 5).ToString(CultureInfo.InvariantCulture));
+                                                    Math.Round(bnd.bndList[i].fenceLine[j].heading,5).ToString(CultureInfo.InvariantCulture));
                     }
                 }
             }
@@ -2198,14 +2198,14 @@ namespace AgOpenGPS
         public void FileSaveTram()
         {
             //get the directory and make sure it exists, create if not
-            string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
 
             string directoryName = Path.GetDirectoryName(dirField);
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
 
             //write out the file
-            using (StreamWriter writer = new StreamWriter(Path.Combine(dirField, "Tram.Txt")))
+            using (StreamWriter writer = new StreamWriter(dirField + "Tram.Txt"))
             {
                 writer.WriteLine("$Tram");
 
@@ -2257,14 +2257,14 @@ namespace AgOpenGPS
         public void FileSaveBackPic()
         {
             //get the directory and make sure it exists, create if not
-            string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
 
             string directoryName = Path.GetDirectoryName(dirField);
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
 
             //write out the file
-            using (StreamWriter writer = new StreamWriter(Path.Combine(dirField, "BackPic.Txt")))
+            using (StreamWriter writer = new StreamWriter(dirField + "BackPic.Txt"))
             {
                 writer.WriteLine("$BackPic");
                 //outer track of outer boundary tram
@@ -2290,14 +2290,14 @@ namespace AgOpenGPS
         public void FileSaveRateMap()
         {
             //get the directory and make sure it exists, create if not
-            string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
 
             string directoryName = Path.GetDirectoryName(dirField);
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
 
             //write out the file
-            using (StreamWriter writer = new StreamWriter(Path.Combine(dirField, "RateMap.Txt")))
+            using (StreamWriter writer = new StreamWriter(dirField + "RateMap.Txt"))
             {
                 writer.WriteLine("$RateMap");
                 //outer track of outer boundary tram
@@ -2327,14 +2327,14 @@ namespace AgOpenGPS
         public void FileSaveHeadland()
         {
             //get the directory and make sure it exists, create if not
-            string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
 
             string directoryName = Path.GetDirectoryName(dirField);
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
 
             //write out the file
-            using (StreamWriter writer = new StreamWriter(Path.Combine(dirField, "Headland.Txt")))
+            using (StreamWriter writer = new StreamWriter(dirField + "Headland.Txt"))
             {
                 writer.WriteLine("$Headland");
 
@@ -2359,7 +2359,7 @@ namespace AgOpenGPS
         public void FileCreateRecPath()
         {
             //get the directory and make sure it exists, create if not
-            string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
 
             string directoryName = Path.GetDirectoryName(dirField);
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
@@ -2368,7 +2368,7 @@ namespace AgOpenGPS
             string myFileName = "RecPath.txt";
 
             //write out the file
-            using (StreamWriter writer = new StreamWriter(Path.Combine(dirField, myFileName)))
+            using (StreamWriter writer = new StreamWriter(dirField + myFileName))
             {
                 //write paths # of sections
                 writer.WriteLine("$RecPath");
@@ -2380,756 +2380,756 @@ namespace AgOpenGPS
         public void FileSaveRecPath(string name = "RecPath.Txt")
         {
             //get the directory and make sure it exists, create if not
-            string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
 
             string directoryName = Path.GetDirectoryName(dirField);
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
 
-            //string fileAndDirectory = Path.Combine(fieldsDirectory, currentFieldDirectory, "RecPath.txt");
+            //string fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\RecPath.txt";
             //if (!File.Exists(fileAndDirectory)) FileCreateRecPath();
 
             //write out the file
-            using (StreamWriter writer = new StreamWriter(Path.Combine(dirField, name)))
+            using (StreamWriter writer = new StreamWriter((dirField + name)))
             {
                 writer.WriteLine("$RecPath");
-            writer.WriteLine(recPath.recList.Count.ToString(CultureInfo.InvariantCulture));
-            if (recPath.recList.Count > 0)
-            {
-                for (int j = 0; j < recPath.recList.Count; j++)
-                    writer.WriteLine(
-                        Math.Round(recPath.recList[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                        Math.Round(recPath.recList[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                        Math.Round(recPath.recList[j].heading, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                        Math.Round(recPath.recList[j].speed, 1).ToString(CultureInfo.InvariantCulture) + "," +
-                        (recPath.recList[j].autoBtnState).ToString());
+                writer.WriteLine(recPath.recList.Count.ToString(CultureInfo.InvariantCulture));
+                if (recPath.recList.Count > 0)
+                {
+                    for (int j = 0; j < recPath.recList.Count; j++)
+                        writer.WriteLine(
+                            Math.Round(recPath.recList[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                            Math.Round(recPath.recList[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                            Math.Round(recPath.recList[j].heading, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                            Math.Round(recPath.recList[j].speed, 1).ToString(CultureInfo.InvariantCulture) + "," +
+                            (recPath.recList[j].autoBtnState).ToString());
 
-                //Clear list
-                //recPath.recList.Clear();
+                    //Clear list
+                    //recPath.recList.Clear();
+                }
             }
         }
-    }
 
-    //load Recpath.txt
-    public void FileLoadRecPath()
-    {
-        string line;
-        //Recorded Path
-        string fileAndDirectory = Path.Combine(fieldsDirectory, currentFieldDirectory, "RecPath.txt");
-        if (File.Exists(fileAndDirectory))
+        //load Recpath.txt
+        public void FileLoadRecPath()
         {
-            using (StreamReader reader = new StreamReader(fileAndDirectory))
+            string line;
+            //Recorded Path
+            string fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\RecPath.txt";
+            if (File.Exists(fileAndDirectory))
+            {
+                using (StreamReader reader = new StreamReader(fileAndDirectory))
+                {
+                    try
+                    {
+                        //read header
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        int numPoints = int.Parse(line);
+                        recPath.recList.Clear();
+
+                        while (!reader.EndOfStream)
+                        {
+                            for (int v = 0; v < numPoints; v++)
+                            {
+                                line = reader.ReadLine();
+                                string[] words = line.Split(',');
+                                CRecPathPt point = new CRecPathPt(
+                                    double.Parse(words[0], CultureInfo.InvariantCulture),
+                                    double.Parse(words[1], CultureInfo.InvariantCulture),
+                                    double.Parse(words[2], CultureInfo.InvariantCulture),
+                                    double.Parse(words[3], CultureInfo.InvariantCulture),
+                                    bool.Parse(words[4]));
+
+                                //add the point
+                                recPath.recList.Add(point);
+                            }
+                        }
+                    }
+
+                    catch (Exception e)
+                    {
+                        var form = new FormTimedMessage(2000, gStr.gsRecordedPathFileIsCorrupt, gStr.gsButFieldIsLoaded);
+                        form.Show(this);
+                        WriteErrorLog("Load Recorded Path" + e.ToString());
+                    }
+                }
+            }
+        }
+
+        //save all the flag markers
+        public void FileSaveFlags()
+        {
+            //Saturday, February 11, 2017  -->  7:26:52 AM
+            //$FlagsDir
+            //Bob_Feb11
+            //$Offsets
+            //533172,5927719,12 - offset easting, northing, zone
+
+            //get the directory and make sure it exists, create if not
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+
+            string directoryName = Path.GetDirectoryName(dirField);
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            //use Streamwriter to create and overwrite existing flag file
+            using (StreamWriter writer = new StreamWriter(dirField + "Flags.txt"))
             {
                 try
                 {
-                    //read header
-                    line = reader.ReadLine();
-                    line = reader.ReadLine();
-                    int numPoints = int.Parse(line);
-                    recPath.recList.Clear();
+                    writer.WriteLine("$Flags");
 
-                    while (!reader.EndOfStream)
+                    int count2 = flagPts.Count;
+                    writer.WriteLine(count2);
+
+                    for (int i = 0; i < count2; i++)
                     {
-                        for (int v = 0; v < numPoints; v++)
-                        {
-                            line = reader.ReadLine();
-                            string[] words = line.Split(',');
-                            CRecPathPt point = new CRecPathPt(
-                                double.Parse(words[0], CultureInfo.InvariantCulture),
-                                double.Parse(words[1], CultureInfo.InvariantCulture),
-                                double.Parse(words[2], CultureInfo.InvariantCulture),
-                                double.Parse(words[3], CultureInfo.InvariantCulture),
-                                bool.Parse(words[4]));
-
-                            //add the point
-                            recPath.recList.Add(point);
-                        }
+                        writer.WriteLine(
+                            flagPts[i].latitude.ToString(CultureInfo.InvariantCulture) + "," +
+                            flagPts[i].longitude.ToString(CultureInfo.InvariantCulture) + "," +
+                            flagPts[i].easting.ToString(CultureInfo.InvariantCulture) + "," +
+                            flagPts[i].northing.ToString(CultureInfo.InvariantCulture) + "," +
+                            flagPts[i].heading.ToString(CultureInfo.InvariantCulture) + "," +
+                            flagPts[i].color.ToString(CultureInfo.InvariantCulture) + "," +
+                            flagPts[i].ID.ToString(CultureInfo.InvariantCulture) + "," +
+                            flagPts[i].notes);
                     }
                 }
 
                 catch (Exception e)
                 {
-                    var form = new FormTimedMessage(2000, gStr.gsRecordedPathFileIsCorrupt, gStr.gsButFieldIsLoaded);
-                    form.Show(this);
-                    WriteErrorLog("Load Recorded Path" + e.ToString());
+                    Console.WriteLine(e.Message + "\n Cannot write to file.");
+                    WriteErrorLog("Saving Flags" + e.ToString());
+                    return;
                 }
             }
         }
-    }
 
-    //save all the flag markers
-    public void FileSaveFlags()
-    {
-        //Saturday, February 11, 2017  -->  7:26:52 AM
-        //$FlagsDir
-        //Bob_Feb11
-        //$Offsets
-        //533172,5927719,12 - offset easting, northing, zone
+        //save all the flag markers
+        //public void FileSaveABLine()
+        //{
+        //    //Saturday, February 11, 2017  -->  7:26:52 AM
 
-        //get the directory and make sure it exists, create if not
-        string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
+        //    //get the directory and make sure it exists, create if not
+        //    string dirField = fieldsDirectory + currentFieldDirectory + "\\";
 
-        string directoryName = Path.GetDirectoryName(dirField);
-        if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-        { Directory.CreateDirectory(directoryName); }
+        //    string directoryName = Path.GetDirectoryName(dirField);
+        //    if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+        //    { Directory.CreateDirectory(directoryName); }
 
-        //use Streamwriter to create and overwrite existing flag file
-        using (StreamWriter writer = new StreamWriter(Path.Combine(dirField, "Flags.txt")))
+        //    //use Streamwriter to create and overwrite existing ABLine file
+        //    using (StreamWriter writer = new StreamWriter(dirField + "ABLine.txt"))
+        //    {
+        //        try
+        //        {
+        //            //write out the ABLine
+        //            writer.WriteLine("$ABLine");
+
+        //            //true or false if ABLine is set
+        //            if (ABLine.isABLineSet) writer.WriteLine(true);
+        //            else writer.WriteLine(false);
+
+        //            writer.WriteLine(ABLine.abHeading.ToString(CultureInfo.InvariantCulture));
+        //            writer.WriteLine(ABLine.refPtA.easting.ToString(CultureInfo.InvariantCulture) + "," + ABLine.refPtA.northing.ToString(CultureInfo.InvariantCulture));
+        //            writer.WriteLine(ABLine.refPtB.easting.ToString(CultureInfo.InvariantCulture) + "," + ABLine.refPtB.northing.ToString(CultureInfo.InvariantCulture));
+        //            writer.WriteLine(ABLine.tramPassEvery.ToString(CultureInfo.InvariantCulture) + "," + ABLine.passBasedOn.ToString(CultureInfo.InvariantCulture));
+        //        }
+
+        //        catch (Exception e)
+        //        {
+        //            Console.WriteLine(e.Message + "\n Cannot write to file.");
+        //            WriteErrorLog("Saving AB Line" + e.ToString());
+
+        //            return;
+        //        }
+
+        //    }
+        //}
+
+        //save all the flag markers
+        //public void FileSaveCurveLine()
+        //{
+        //    //Saturday, February 11, 2017  -->  7:26:52 AM
+
+        //    //get the directory and make sure it exists, create if not
+        //    string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+
+        //    string directoryName = Path.GetDirectoryName(dirField);
+        //    if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+        //    { Directory.CreateDirectory(directoryName); }
+
+        //    //use Streamwriter to create and overwrite existing ABLine file
+        //    using (StreamWriter writer = new StreamWriter(dirField + "CurveLine.txt"))
+        //    {
+        //        try
+        //        {
+        //            //write out the ABLine
+        //            writer.WriteLine("$CurveLine");
+
+        //            //write out the heading
+        //            writer.WriteLine(curve.refCurve.heading.ToString(CultureInfo.InvariantCulture));
+
+        //            //write out the points of ref line
+        //            writer.WriteLine(curve.refCurve.curvePts.Count.ToString(CultureInfo.InvariantCulture));
+        //            if (curve.refCurve.curvePts.Count > 0)
+        //            {
+        //                for (int j = 0; j < curve.refCurve.curvePts.Count; j++)
+        //                    writer.WriteLine(Math.Round(curve.refCurve.curvePts[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
+        //                                        Math.Round(curve.refCurve.curvePts[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
+        //                                            Math.Round(curve.refCurve.curvePts[j].heading, 5).ToString(CultureInfo.InvariantCulture));
+        //            }
+        //        }
+
+        //        catch (Exception e)
+        //        {
+        //            WriteErrorLog("Saving Curve Line" + e.ToString());
+
+        //            return;
+        //        }
+
+        //    }
+        //}
+
+        //save nmea sentences
+        public void FileSaveNMEA()
         {
-            try
+            using (StreamWriter writer = new StreamWriter("zAOG_log.txt", true))
             {
-                writer.WriteLine("$Flags");
-
-                int count2 = flagPts.Count;
-                writer.WriteLine(count2);
-
-                for (int i = 0; i < count2; i++)
-                {
-                    writer.WriteLine(
-                        flagPts[i].latitude.ToString(CultureInfo.InvariantCulture) + "," +
-                        flagPts[i].longitude.ToString(CultureInfo.InvariantCulture) + "," +
-                        flagPts[i].easting.ToString(CultureInfo.InvariantCulture) + "," +
-                        flagPts[i].northing.ToString(CultureInfo.InvariantCulture) + "," +
-                        flagPts[i].heading.ToString(CultureInfo.InvariantCulture) + "," +
-                        flagPts[i].color.ToString(CultureInfo.InvariantCulture) + "," +
-                        flagPts[i].ID.ToString(CultureInfo.InvariantCulture) + "," +
-                        flagPts[i].notes);
-                }
+                writer.Write(pn.logNMEASentence.ToString());
             }
+            pn.logNMEASentence.Clear();
+        }
 
-            catch (Exception e)
+        //save nmea sentences
+        public void FileSaveElevation()
+        {
+            using (StreamWriter writer = new StreamWriter((fieldsDirectory + currentFieldDirectory + "\\Elevation.txt"), true))
             {
-                Console.WriteLine(e.Message + "\n Cannot write to file.");
-                WriteErrorLog("Saving Flags" + e.ToString());
-                return;
+                writer.Write(sbGrid.ToString());
             }
-        }
-    }
-
-    //save all the flag markers
-    //public void FileSaveABLine()
-    //{
-    //    //Saturday, February 11, 2017  -->  7:26:52 AM
-
-    //    //get the directory and make sure it exists, create if not
-    //    string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
-
-    //    string directoryName = Path.GetDirectoryName(dirField);
-    //    if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-    //    { Directory.CreateDirectory(directoryName); }
-
-    //    //use Streamwriter to create and overwrite existing ABLine file
-    //    using (StreamWriter writer = new StreamWriter(Path.Combine(dirField, "ABLine.txt")))
-    //    {
-    //        try
-    //        {
-    //            //write out the ABLine
-    //            writer.WriteLine("$ABLine");
-
-    //            //true or false if ABLine is set
-    //            if (ABLine.isABLineSet) writer.WriteLine(true);
-    //            else writer.WriteLine(false);
-
-    //            writer.WriteLine(ABLine.abHeading.ToString(CultureInfo.InvariantCulture));
-    //            writer.WriteLine(ABLine.refPtA.easting.ToString(CultureInfo.InvariantCulture) + "," + ABLine.refPtA.northing.ToString(CultureInfo.InvariantCulture));
-    //            writer.WriteLine(ABLine.refPtB.easting.ToString(CultureInfo.InvariantCulture) + "," + ABLine.refPtB.northing.ToString(CultureInfo.InvariantCulture));
-    //            writer.WriteLine(ABLine.tramPassEvery.ToString(CultureInfo.InvariantCulture) + "," + ABLine.passBasedOn.ToString(CultureInfo.InvariantCulture));
-    //        }
-
-    //        catch (Exception e)
-    //        {
-    //            Console.WriteLine(e.Message + "\n Cannot write to file.");
-    //            WriteErrorLog("Saving AB Line" + e.ToString());
-
-    //            return;
-    //        }
-
-    //    }
-    //}
-
-    //save all the flag markers
-    //public void FileSaveCurveLine()
-    //{
-    //    //Saturday, February 11, 2017  -->  7:26:52 AM
-
-    //    //get the directory and make sure it exists, create if not
-    //    string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
-
-    //    string directoryName = Path.GetDirectoryName(dirField);
-    //    if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-    //    { Directory.CreateDirectory(directoryName); }
-
-    //    //use Streamwriter to create and overwrite existing ABLine file
-    //    using (StreamWriter writer = new StreamWriter(Path.Combine(dirField, "CurveLine.txt")))
-    //    {
-    //        try
-    //        {
-    //            //write out the ABLine
-    //            writer.WriteLine("$CurveLine");
-
-    //            //write out the heading
-    //            writer.WriteLine(curve.refCurve.heading.ToString(CultureInfo.InvariantCulture));
-
-    //            //write out the points of ref line
-    //            writer.WriteLine(curve.refCurve.curvePts.Count.ToString(CultureInfo.InvariantCulture));
-    //            if (curve.refCurve.curvePts.Count > 0)
-    //            {
-    //                for (int j = 0; j < curve.refCurve.curvePts.Count; j++)
-    //                    writer.WriteLine(Math.Round(curve.refCurve.curvePts[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
-    //                                        Math.Round(curve.refCurve.curvePts[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
-    //                                            Math.Round(curve.refCurve.curvePts[j].heading, 5).ToString(CultureInfo.InvariantCulture));
-    //            }
-    //        }
-
-    //        catch (Exception e)
-    //        {
-    //            WriteErrorLog("Saving Curve Line" + e.ToString());
-
-    //            return;
-    //        }
-
-    //    }
-    //}
-
-    //save nmea sentences
-    public void FileSaveNMEA()
-    {
-        using (StreamWriter writer = new StreamWriter("zAOG_log.txt", true))
-        {
-            writer.Write(pn.logNMEASentence.ToString());
-        }
-        pn.logNMEASentence.Clear();
-    }
-
-    //save nmea sentences
-    public void FileSaveElevation()
-    {
-        using (StreamWriter writer = new StreamWriter((Path.Combine(fieldsDirectory, currentFieldDirectory, "Elevation.txt")), true))
-        {
-            writer.Write(sbGrid.ToString());
-        }
-        sbGrid.Clear();
-    }
-
-    //generate KML file from flag
-    public void FileSaveSingleFlagKML2(int flagNumber)
-    {
-        double lat = 0;
-        double lon = 0;
-
-        pn.ConvertLocalToWGS84(flagPts[flagNumber - 1].northing, flagPts[flagNumber - 1].easting, out lat, out lon);
-
-        //get the directory and make sure it exists, create if not
-        string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
-
-        string directoryName = Path.GetDirectoryName(dirField);
-        if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-        { Directory.CreateDirectory(directoryName); }
-
-        string myFileName;
-        myFileName = "Flag.kml";
-
-        using (StreamWriter writer = new StreamWriter(Path.Combine(dirField, myFileName)))
-        {
-            //match new fix to current position
-
-
-            writer.WriteLine(@"<?xml version=""1.0"" encoding=""UTF-8""?>     ");
-            writer.WriteLine(@"<kml xmlns=""http://www.opengis.net/kml/2.2""> ");
-
-            int count2 = flagPts.Count;
-
-            writer.WriteLine(@"<Document>");
-
-            writer.WriteLine(@"  <Placemark>                                  ");
-            writer.WriteLine(@"<Style> <IconStyle>");
-            if (flagPts[flagNumber - 1].color == 0)  //red - xbgr
-                writer.WriteLine(@"<color>ff4400ff</color>");
-            if (flagPts[flagNumber - 1].color == 1)  //grn - xbgr
-                writer.WriteLine(@"<color>ff44ff00</color>");
-            if (flagPts[flagNumber - 1].color == 2)  //yel - xbgr
-                writer.WriteLine(@"<color>ff44ffff</color>");
-            writer.WriteLine(@"</IconStyle> </Style>");
-            writer.WriteLine(@" <name> " + flagNumber.ToString(CultureInfo.InvariantCulture) + @"</name>");
-            writer.WriteLine(@"<Point><coordinates> " +
-                            lon.ToString(CultureInfo.InvariantCulture) + "," + lat.ToString(CultureInfo.InvariantCulture) + ",0" +
-                            @"</coordinates> </Point> ");
-            writer.WriteLine(@"  </Placemark>                                 ");
-            writer.WriteLine(@"</Document>");
-            writer.WriteLine(@"</kml>                                         ");
-
-        }
-    }
-
-    //generate KML file from flag
-    public void FileSaveSingleFlagKML(int flagNumber)
-    {
-
-        //get the directory and make sure it exists, create if not
-        string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
-
-        string directoryName = Path.GetDirectoryName(dirField);
-        if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-        { Directory.CreateDirectory(directoryName); }
-
-        string myFileName;
-        myFileName = "Flag.kml";
-
-        using (StreamWriter writer = new StreamWriter(Path.Combine(dirField, myFileName)))
-        {
-            //match new fix to current position
-
-            writer.WriteLine(@"<?xml version=""1.0"" encoding=""UTF-8""?>     ");
-            writer.WriteLine(@"<kml xmlns=""http://www.opengis.net/kml/2.2""> ");
-
-            int count2 = flagPts.Count;
-
-            writer.WriteLine(@"<Document>");
-
-            writer.WriteLine(@"  <Placemark>                                  ");
-            writer.WriteLine(@"<Style> <IconStyle>");
-            if (flagPts[flagNumber - 1].color == 0)  //red - xbgr
-                writer.WriteLine(@"<color>ff4400ff</color>");
-            if (flagPts[flagNumber - 1].color == 1)  //grn - xbgr
-                writer.WriteLine(@"<color>ff44ff00</color>");
-            if (flagPts[flagNumber - 1].color == 2)  //yel - xbgr
-                writer.WriteLine(@"<color>ff44ffff</color>");
-            writer.WriteLine(@"</IconStyle> </Style>");
-            writer.WriteLine(@" <name> " + flagNumber.ToString(CultureInfo.InvariantCulture) + @"</name>");
-            writer.WriteLine(@"<Point><coordinates> " +
-                            flagPts[flagNumber - 1].longitude.ToString(CultureInfo.InvariantCulture) + "," + flagPts[flagNumber - 1].latitude.ToString(CultureInfo.InvariantCulture) + ",0" +
-                            @"</coordinates> </Point> ");
-            writer.WriteLine(@"  </Placemark>                                 ");
-            writer.WriteLine(@"</Document>");
-            writer.WriteLine(@"</kml>                                         ");
-
-        }
-    }
-
-    //generate KML file from flag
-    public void FileMakeKMLFromCurrentPosition(double lat, double lon)
-    {
-        //get the directory and make sure it exists, create if not
-        string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
-
-        string directoryName = Path.GetDirectoryName(dirField);
-        if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-        { Directory.CreateDirectory(directoryName); }
-
-
-        using (StreamWriter writer = new StreamWriter(Path.Combine(dirField, "CurrentPosition.kml")))
-        {
-
-            writer.WriteLine(@"<?xml version=""1.0"" encoding=""UTF-8""?>     ");
-            writer.WriteLine(@"<kml xmlns=""http://www.opengis.net/kml/2.2""> ");
-
-            int count2 = flagPts.Count;
-
-            writer.WriteLine(@"<Document>");
-
-            writer.WriteLine(@"  <Placemark>                                  ");
-            writer.WriteLine(@"<Style> <IconStyle>");
-            writer.WriteLine(@"<color>ff4400ff</color>");
-            writer.WriteLine(@"</IconStyle> </Style>");
-            writer.WriteLine(@" <name> Your Current Position </name>");
-            writer.WriteLine(@"<Point><coordinates> " +
-                            lon.ToString(CultureInfo.InvariantCulture) + "," + lat.ToString(CultureInfo.InvariantCulture) + ",0" +
-                            @"</coordinates> </Point> ");
-            writer.WriteLine(@"  </Placemark>                                 ");
-            writer.WriteLine(@"</Document>");
-            writer.WriteLine(@"</kml>                                         ");
-
-        }
-    }
-
-    //generate KML file from flags
-    public void ExportFieldAs_KML()
-    {
-        //get the directory and make sure it exists, create if not
-        string dirField = Path.Combine(fieldsDirectory, currentFieldDirectory);
-
-        string directoryName = Path.GetDirectoryName(dirField);
-        if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-        { Directory.CreateDirectory(directoryName); }
-
-        string myFileName;
-        myFileName = "Field.kml";
-
-        XmlTextWriter kml = new XmlTextWriter(dirField + myFileName, Encoding.UTF8);
-
-        kml.Formatting = Formatting.Indented;
-        kml.Indentation = 3;
-
-        kml.WriteStartDocument();
-        kml.WriteStartElement("kml", "http://www.opengis.net/kml/2.2");
-        kml.WriteStartElement("Document");
-
-        //Description  ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-        kml.WriteStartElement("Folder");
-        kml.WriteElementString("name", "Field Stats");
-        kml.WriteElementString("description", fd.GetDescription());
-        kml.WriteEndElement(); // <Folder>
-                               //End of Desc
-
-        //Boundary  ----------------------------------------------------------------------
-        kml.WriteStartElement("Folder");
-        kml.WriteElementString("name", "Boundaries");
-
-        for (int i = 0; i < bnd.bndList.Count; i++)
-        {
-            kml.WriteStartElement("Placemark");
-            if (i == 0) kml.WriteElementString("name", currentFieldDirectory);
-
-            //lineStyle
-            kml.WriteStartElement("Style");
-            kml.WriteStartElement("LineStyle");
-            if (i == 0) kml.WriteElementString("color", "ffdd00dd");
-            else kml.WriteElementString("color", "ff4d3ffd");
-            kml.WriteElementString("width", "4");
-            kml.WriteEndElement(); // <LineStyle>
-
-            kml.WriteStartElement("PolyStyle");
-            if (i == 0) kml.WriteElementString("color", "407f3f55");
-            else kml.WriteElementString("color", "703f38f1");
-            kml.WriteEndElement(); // <PloyStyle>
-            kml.WriteEndElement(); //Style
-
-            kml.WriteStartElement("Polygon");
-            kml.WriteElementString("tessellate", "1");
-            kml.WriteStartElement("outerBoundaryIs");
-            kml.WriteStartElement("LinearRing");
-
-            //coords
-            kml.WriteStartElement("coordinates");
-            string bndPts = "";
-            if (bnd.bndList[i].fenceLine.Count > 3)
-                bndPts = GetBoundaryPointsLatLon(i);
-            kml.WriteRaw(bndPts);
-            kml.WriteEndElement(); // <coordinates>
-
-            kml.WriteEndElement(); // <Linear>
-            kml.WriteEndElement(); // <OuterBoundary>
-            kml.WriteEndElement(); // <Polygon>
-            kml.WriteEndElement(); // <Placemark>
+            sbGrid.Clear();
         }
 
-        kml.WriteEndElement(); // <Folder>  
-                               //End of Boundary
-
-        //guidance lines AB
-        kml.WriteStartElement("Folder");
-        kml.WriteElementString("name", "AB_Lines");
-        kml.WriteElementString("visibility", "0");
-
-        string linePts = "";
-
-        for (int i = 0; i < trk.gArr.Count; i++)
-        {
-            kml.WriteStartElement("Placemark");
-            kml.WriteElementString("visibility", "0");
-
-            kml.WriteElementString("name", trk.gArr[i].name);
-            kml.WriteStartElement("Style");
-
-            kml.WriteStartElement("LineStyle");
-            kml.WriteElementString("color", "ff0000ff");
-            kml.WriteElementString("width", "2");
-            kml.WriteEndElement(); // <LineStyle>
-            kml.WriteEndElement(); //Style
-
-            kml.WriteStartElement("LineString");
-            kml.WriteElementString("tessellate", "1");
-            kml.WriteStartElement("coordinates");
-
-            linePts = pn.GetLocalToWSG84_KML(trk.gArr[i].ptA.easting - (Math.Sin(trk.gArr[i].heading) * ABLine.abLength),
-                trk.gArr[i].ptA.northing - (Math.Cos(trk.gArr[i].heading) * ABLine.abLength));
-            linePts += pn.GetLocalToWSG84_KML(trk.gArr[i].ptA.easting + (Math.Sin(trk.gArr[i].heading) * ABLine.abLength),
-                trk.gArr[i].ptA.northing + (Math.Cos(trk.gArr[i].heading) * ABLine.abLength));
-            kml.WriteRaw(linePts);
-
-            kml.WriteEndElement(); // <coordinates>
-            kml.WriteEndElement(); // <LineString>
-
-            kml.WriteEndElement(); // <Placemark>
-
-        }
-        kml.WriteEndElement(); // <Folder>   
-
-        //guidance lines Curve
-        kml.WriteStartElement("Folder");
-        kml.WriteElementString("name", "Curve_Lines");
-        kml.WriteElementString("visibility", "0");
-
-        for (int i = 0; i < trk.gArr.Count; i++)
-        {
-            linePts = "";
-            kml.WriteStartElement("Placemark");
-            kml.WriteElementString("visibility", "0");
-
-            kml.WriteElementString("name", trk.gArr[i].name);
-            kml.WriteStartElement("Style");
-
-            kml.WriteStartElement("LineStyle");
-            kml.WriteElementString("color", "ff6699ff");
-            kml.WriteElementString("width", "2");
-            kml.WriteEndElement(); // <LineStyle>
-            kml.WriteEndElement(); //Style
-
-            kml.WriteStartElement("LineString");
-            kml.WriteElementString("tessellate", "1");
-            kml.WriteStartElement("coordinates");
-
-            for (int j = 0; j < trk.gArr[i].curvePts.Count; j++)
-            {
-                linePts += pn.GetLocalToWSG84_KML(trk.gArr[i].curvePts[j].easting, trk.gArr[i].curvePts[j].northing);
-            }
-            kml.WriteRaw(linePts);
-
-            kml.WriteEndElement(); // <coordinates>
-            kml.WriteEndElement(); // <LineString>
-
-            kml.WriteEndElement(); // <Placemark>
-        }
-        kml.WriteEndElement(); // <Folder>   
-
-        //Recorded Path
-        kml.WriteStartElement("Folder");
-        kml.WriteElementString("name", "Recorded Path");
-        kml.WriteElementString("visibility", "1");
-
-        linePts = "";
-        kml.WriteStartElement("Placemark");
-        kml.WriteElementString("visibility", "1");
-
-        kml.WriteElementString("name", "Path " + 1);
-        kml.WriteStartElement("Style");
-
-        kml.WriteStartElement("LineStyle");
-        kml.WriteElementString("color", "ff44ffff");
-        kml.WriteElementString("width", "2");
-        kml.WriteEndElement(); // <LineStyle>
-        kml.WriteEndElement(); //Style
-
-        kml.WriteStartElement("LineString");
-        kml.WriteElementString("tessellate", "1");
-        kml.WriteStartElement("coordinates");
-
-        for (int j = 0; j < recPath.recList.Count; j++)
-        {
-            linePts += pn.GetLocalToWSG84_KML(recPath.recList[j].easting, recPath.recList[j].northing);
-        }
-        kml.WriteRaw(linePts);
-
-        kml.WriteEndElement(); // <coordinates>
-        kml.WriteEndElement(); // <LineString>
-
-        kml.WriteEndElement(); // <Placemark>
-        kml.WriteEndElement(); // <Folder>
-
-        //flags  *************************************************************************
-        kml.WriteStartElement("Folder");
-        kml.WriteElementString("name", "Flags");
-
-        for (int i = 0; i < flagPts.Count; i++)
-        {
-            kml.WriteStartElement("Placemark");
-            kml.WriteElementString("name", "Flag_" + i.ToString());
-
-            kml.WriteStartElement("Style");
-            kml.WriteStartElement("IconStyle");
-
-            if (flagPts[i].color == 0)  //red - xbgr
-                kml.WriteElementString("color", "ff4400ff");
-            if (flagPts[i].color == 1)  //grn - xbgr
-                kml.WriteElementString("color", "ff44ff00");
-            if (flagPts[i].color == 2)  //yel - xbgr
-                kml.WriteElementString("color", "ff44ffff");
-
-            kml.WriteEndElement(); //IconStyle
-            kml.WriteEndElement(); //Style
-
-            kml.WriteElementString("name", ((i + 1).ToString() + " " + flagPts[i].notes));
-            kml.WriteStartElement("Point");
-            kml.WriteElementString("coordinates", flagPts[i].longitude.ToString(CultureInfo.InvariantCulture) +
-                "," + flagPts[i].latitude.ToString(CultureInfo.InvariantCulture) + ",0");
-            kml.WriteEndElement(); //Point
-            kml.WriteEndElement(); // <Placemark>
-        }
-        kml.WriteEndElement(); // <Folder>   
-                               //End of Flags
-
-        //Sections  ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-        kml.WriteStartElement("Folder");
-        kml.WriteElementString("name", "Sections");
-        //kml.WriteElementString("description", fd.GetDescription() );
-
-        string secPts = "";
-        int cntr = 0;
-
-        for (int j = 0; j < triStrip.Count; j++)
-        {
-            int patches = triStrip[j].patchList.Count;
-
-            if (patches > 0)
-            {
-                //for every new chunk of patch
-                foreach (var triList in triStrip[j].patchList)
-                {
-                    if (triList.Count > 0)
-                    {
-                        kml.WriteStartElement("Placemark");
-                        kml.WriteElementString("name", "Sections_" + cntr.ToString());
-                        cntr++;
-
-                        string collor = "F0" + ((byte)(triList[0].heading)).ToString("X2") +
-                            ((byte)(triList[0].northing)).ToString("X2") + ((byte)(triList[0].easting)).ToString("X2");
-
-                        //lineStyle
-                        kml.WriteStartElement("Style");
-
-                        kml.WriteStartElement("LineStyle");
-                        kml.WriteElementString("color", collor);
-                        //kml.WriteElementString("width", "6");
-                        kml.WriteEndElement(); // <LineStyle>
-
-                        kml.WriteStartElement("PolyStyle");
-                        kml.WriteElementString("color", collor);
-                        kml.WriteEndElement(); // <PloyStyle>
-                        kml.WriteEndElement(); //Style
-
-                        kml.WriteStartElement("Polygon");
-                        kml.WriteElementString("tessellate", "1");
-                        kml.WriteStartElement("outerBoundaryIs");
-                        kml.WriteStartElement("LinearRing");
-
-                        //coords
-                        kml.WriteStartElement("coordinates");
-                        secPts = "";
-                        for (int i = 1; i < triList.Count; i += 2)
-                        {
-                            secPts += pn.GetLocalToWSG84_KML(triList[i].easting, triList[i].northing);
-                        }
-                        for (int i = triList.Count - 1; i > 1; i -= 2)
-                        {
-                            secPts += pn.GetLocalToWSG84_KML(triList[i].easting, triList[i].northing);
-                        }
-                        secPts += pn.GetLocalToWSG84_KML(triList[1].easting, triList[1].northing);
-
-                        kml.WriteRaw(secPts);
-                        kml.WriteEndElement(); // <coordinates>
-
-                        kml.WriteEndElement(); // <LinearRing>
-                        kml.WriteEndElement(); // <outerBoundaryIs>
-                        kml.WriteEndElement(); // <Polygon>
-
-                        kml.WriteEndElement(); // <Placemark>
-                    }
-                }
-            }
-        }
-        kml.WriteEndElement(); // <Folder>
-                               //End of sections
-
-        //end of document
-        kml.WriteEndElement(); // <Document>
-        kml.WriteEndElement(); // <kml>
-
-        //The end
-        kml.WriteEndDocument();
-
-        kml.Flush();
-
-        //Write the XML to file and close the kml
-        kml.Close();
-    }
-
-    public string GetBoundaryPointsLatLon(int bndNum)
-    {
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < bnd.bndList[bndNum].fenceLine.Count; i++)
+        //generate KML file from flag
+        public void FileSaveSingleFlagKML2(int flagNumber)
         {
             double lat = 0;
             double lon = 0;
 
-            pn.ConvertLocalToWGS84(bnd.bndList[bndNum].fenceLine[i].northing, bnd.bndList[bndNum].fenceLine[i].easting, out lat, out lon);
+            pn.ConvertLocalToWGS84(flagPts[flagNumber - 1].northing, flagPts[flagNumber - 1].easting, out lat, out lon);
 
-            sb.Append(lon.ToString("N7", CultureInfo.InvariantCulture) + ',' + lat.ToString("N7", CultureInfo.InvariantCulture) + ",0 ");
-        }
-        return sb.ToString();
-    }
+            //get the directory and make sure it exists, create if not
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
 
-    private void FileUpdateAllFieldsKML()
-    {
+            string directoryName = Path.GetDirectoryName(dirField);
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
 
-        //get the directory and make sure it exists, create if not
-        string dirAllField = Path.Combine(fieldsDirectory);
+            string myFileName;
+            myFileName = "Flag.kml";
 
-        string directoryName = Path.GetDirectoryName(dirAllField);
-        if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-        {
-            return; //We have no fields to aggregate.
-        }
-
-        string myFileName;
-        myFileName = "AllFields.kml";
-
-        XmlTextWriter kml = new XmlTextWriter(dirAllField + myFileName, Encoding.UTF8);
-
-        kml.Formatting = Formatting.Indented;
-        kml.Indentation = 3;
-
-        kml.WriteStartDocument();
-        kml.WriteStartElement("kml", "http://www.opengis.net/kml/2.2");
-        kml.WriteStartElement("Document");
-
-        foreach (String dir in Directory.EnumerateDirectories(directoryName).OrderBy(d => new DirectoryInfo(d).Name).ToArray())
-        //loop
-        {
-            if (!File.Exists(Path.Combine(dir, "Field.kml"))) continue;
-
-            directoryName = Path.GetFileName(dir);
-            kml.WriteStartElement("Folder");
-            kml.WriteElementString("name", directoryName);
-
-            var lines = File.ReadAllLines(Path.Combine(dir, "Field.kml"));
-            LinkedList<string> linebuffer = new LinkedList<string>();
-            for (var i = 3; i < lines.Length - 2; i++)  //We want to skip the first 3 and last 2 lines
+            using (StreamWriter writer = new StreamWriter(dirField + myFileName))
             {
-                linebuffer.AddLast(lines[i]);
-                if (linebuffer.Count > 2)
+                //match new fix to current position
+
+
+                writer.WriteLine(@"<?xml version=""1.0"" encoding=""UTF-8""?>     ");
+                writer.WriteLine(@"<kml xmlns=""http://www.opengis.net/kml/2.2""> ");
+
+                int count2 = flagPts.Count;
+
+                writer.WriteLine(@"<Document>");
+
+                writer.WriteLine(@"  <Placemark>                                  ");
+                writer.WriteLine(@"<Style> <IconStyle>");
+                if (flagPts[flagNumber - 1].color == 0)  //red - xbgr
+                    writer.WriteLine(@"<color>ff4400ff</color>");
+                if (flagPts[flagNumber - 1].color == 1)  //grn - xbgr
+                    writer.WriteLine(@"<color>ff44ff00</color>");
+                if (flagPts[flagNumber - 1].color == 2)  //yel - xbgr
+                    writer.WriteLine(@"<color>ff44ffff</color>");
+                writer.WriteLine(@"</IconStyle> </Style>");
+                writer.WriteLine(@" <name> " + flagNumber.ToString(CultureInfo.InvariantCulture) + @"</name>");
+                writer.WriteLine(@"<Point><coordinates> " +
+                                lon.ToString(CultureInfo.InvariantCulture) + "," + lat.ToString(CultureInfo.InvariantCulture) + ",0" +
+                                @"</coordinates> </Point> ");
+                writer.WriteLine(@"  </Placemark>                                 ");
+                writer.WriteLine(@"</Document>");
+                writer.WriteLine(@"</kml>                                         ");
+
+            }
+        }
+                                   
+        //generate KML file from flag
+        public void FileSaveSingleFlagKML(int flagNumber)
+        {
+
+            //get the directory and make sure it exists, create if not
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+
+            string directoryName = Path.GetDirectoryName(dirField);
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            string myFileName;
+            myFileName = "Flag.kml";
+
+            using (StreamWriter writer = new StreamWriter(dirField + myFileName))
+            {
+                //match new fix to current position
+
+                writer.WriteLine(@"<?xml version=""1.0"" encoding=""UTF-8""?>     ");
+                writer.WriteLine(@"<kml xmlns=""http://www.opengis.net/kml/2.2""> ");
+
+                int count2 = flagPts.Count;
+
+                writer.WriteLine(@"<Document>");
+
+                    writer.WriteLine(@"  <Placemark>                                  ");
+                    writer.WriteLine(@"<Style> <IconStyle>");
+                    if (flagPts[flagNumber - 1].color == 0)  //red - xbgr
+                        writer.WriteLine(@"<color>ff4400ff</color>");
+                    if (flagPts[flagNumber - 1].color == 1)  //grn - xbgr
+                        writer.WriteLine(@"<color>ff44ff00</color>");
+                    if (flagPts[flagNumber - 1].color == 2)  //yel - xbgr
+                        writer.WriteLine(@"<color>ff44ffff</color>");
+                    writer.WriteLine(@"</IconStyle> </Style>");
+                    writer.WriteLine(@" <name> " + flagNumber.ToString(CultureInfo.InvariantCulture) + @"</name>");
+                    writer.WriteLine(@"<Point><coordinates> " +
+                                    flagPts[flagNumber-1].longitude.ToString(CultureInfo.InvariantCulture) + "," + flagPts[flagNumber-1].latitude.ToString(CultureInfo.InvariantCulture) + ",0" +
+                                    @"</coordinates> </Point> ");
+                    writer.WriteLine(@"  </Placemark>                                 ");
+                writer.WriteLine(@"</Document>");
+                writer.WriteLine(@"</kml>                                         ");
+
+            }
+        }
+
+        //generate KML file from flag
+        public void FileMakeKMLFromCurrentPosition(double lat, double lon)
+        {
+            //get the directory and make sure it exists, create if not
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+
+            string directoryName = Path.GetDirectoryName(dirField);
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+
+            using (StreamWriter writer = new StreamWriter(dirField + "CurrentPosition.kml"))
+            {
+
+                writer.WriteLine(@"<?xml version=""1.0"" encoding=""UTF-8""?>     ");
+                writer.WriteLine(@"<kml xmlns=""http://www.opengis.net/kml/2.2""> ");
+
+                int count2 = flagPts.Count;
+
+                writer.WriteLine(@"<Document>");
+
+                writer.WriteLine(@"  <Placemark>                                  ");
+                writer.WriteLine(@"<Style> <IconStyle>");
+                writer.WriteLine(@"<color>ff4400ff</color>");
+                writer.WriteLine(@"</IconStyle> </Style>");
+                writer.WriteLine(@" <name> Your Current Position </name>");
+                writer.WriteLine(@"<Point><coordinates> " +
+                                lon.ToString(CultureInfo.InvariantCulture) + "," + lat.ToString(CultureInfo.InvariantCulture) + ",0" +
+                                @"</coordinates> </Point> ");
+                writer.WriteLine(@"  </Placemark>                                 ");
+                writer.WriteLine(@"</Document>");
+                writer.WriteLine(@"</kml>                                         ");
+
+            }
+        }
+
+        //generate KML file from flags
+        public void ExportFieldAs_KML()
+        {
+            //get the directory and make sure it exists, create if not
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+
+            string directoryName = Path.GetDirectoryName(dirField);
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            string myFileName;
+            myFileName = "Field.kml";
+
+            XmlTextWriter kml = new XmlTextWriter(dirField + myFileName, Encoding.UTF8);
+
+            kml.Formatting = Formatting.Indented;
+            kml.Indentation = 3;
+
+            kml.WriteStartDocument();
+            kml.WriteStartElement("kml", "http://www.opengis.net/kml/2.2");
+            kml.WriteStartElement("Document");
+
+            //Description  ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+            kml.WriteStartElement("Folder");
+            kml.WriteElementString("name", "Field Stats");
+            kml.WriteElementString("description", fd.GetDescription());
+            kml.WriteEndElement(); // <Folder>
+            //End of Desc
+
+            //Boundary  ----------------------------------------------------------------------
+            kml.WriteStartElement("Folder");
+            kml.WriteElementString("name", "Boundaries");
+
+            for (int i = 0; i < bnd.bndList.Count; i++)
+            {
+                kml.WriteStartElement("Placemark");
+                if (i == 0) kml.WriteElementString("name", currentFieldDirectory);
+
+                //lineStyle
+                kml.WriteStartElement("Style");
+                kml.WriteStartElement("LineStyle");
+                if (i == 0) kml.WriteElementString("color", "ffdd00dd");
+                else kml.WriteElementString("color", "ff4d3ffd");
+                kml.WriteElementString("width", "4");
+                kml.WriteEndElement(); // <LineStyle>
+
+                kml.WriteStartElement("PolyStyle");
+                if (i == 0) kml.WriteElementString("color", "407f3f55");
+                else kml.WriteElementString("color", "703f38f1");
+                kml.WriteEndElement(); // <PloyStyle>
+                kml.WriteEndElement(); //Style
+
+                kml.WriteStartElement("Polygon");
+                kml.WriteElementString("tessellate", "1");
+                kml.WriteStartElement("outerBoundaryIs");
+                kml.WriteStartElement("LinearRing");
+
+                //coords
+                kml.WriteStartElement("coordinates");
+                string bndPts = "";
+                if (bnd.bndList[i].fenceLine.Count > 3)
+                    bndPts = GetBoundaryPointsLatLon(i);
+                kml.WriteRaw(bndPts);
+                kml.WriteEndElement(); // <coordinates>
+
+                kml.WriteEndElement(); // <Linear>
+                kml.WriteEndElement(); // <OuterBoundary>
+                kml.WriteEndElement(); // <Polygon>
+                kml.WriteEndElement(); // <Placemark>
+            }
+
+            kml.WriteEndElement(); // <Folder>  
+            //End of Boundary
+
+            //guidance lines AB
+            kml.WriteStartElement("Folder");
+            kml.WriteElementString("name", "AB_Lines");
+            kml.WriteElementString("visibility", "0");
+
+            string linePts = "";
+
+            for (int i = 0; i < trk.gArr.Count; i++)
+            {
+                kml.WriteStartElement("Placemark");
+                kml.WriteElementString("visibility", "0");
+
+                kml.WriteElementString("name", trk.gArr[i].name);
+                kml.WriteStartElement("Style");
+
+                kml.WriteStartElement("LineStyle");
+                kml.WriteElementString("color", "ff0000ff");
+                kml.WriteElementString("width", "2");
+                kml.WriteEndElement(); // <LineStyle>
+                kml.WriteEndElement(); //Style
+
+                kml.WriteStartElement("LineString");
+                kml.WriteElementString("tessellate", "1");
+                kml.WriteStartElement("coordinates");
+
+                linePts = pn.GetLocalToWSG84_KML(trk.gArr[i].ptA.easting - (Math.Sin(trk.gArr[i].heading) * ABLine.abLength),
+                    trk.gArr[i].ptA.northing - (Math.Cos(trk.gArr[i].heading) * ABLine.abLength));
+                linePts += pn.GetLocalToWSG84_KML(trk.gArr[i].ptA.easting + (Math.Sin(trk.gArr[i].heading) * ABLine.abLength),
+                    trk.gArr[i].ptA.northing + (Math.Cos(trk.gArr[i].heading) * ABLine.abLength));
+                kml.WriteRaw(linePts);
+
+                kml.WriteEndElement(); // <coordinates>
+                kml.WriteEndElement(); // <LineString>
+
+                kml.WriteEndElement(); // <Placemark>
+
+            }
+            kml.WriteEndElement(); // <Folder>   
+
+            //guidance lines Curve
+            kml.WriteStartElement("Folder");
+            kml.WriteElementString("name", "Curve_Lines");
+            kml.WriteElementString("visibility", "0");
+
+            for (int i = 0; i < trk.gArr.Count; i++)
+            {
+                linePts = "";
+                kml.WriteStartElement("Placemark");
+                kml.WriteElementString("visibility", "0");
+
+                kml.WriteElementString("name", trk.gArr[i].name);
+                kml.WriteStartElement("Style");
+
+                kml.WriteStartElement("LineStyle");
+                kml.WriteElementString("color", "ff6699ff");
+                kml.WriteElementString("width", "2");
+                kml.WriteEndElement(); // <LineStyle>
+                kml.WriteEndElement(); //Style
+
+                kml.WriteStartElement("LineString");
+                kml.WriteElementString("tessellate", "1");
+                kml.WriteStartElement("coordinates");
+
+                for (int j = 0; j < trk.gArr[i].curvePts.Count; j++)
                 {
-                    kml.WriteRaw("   ");
-                    kml.WriteRaw(Environment.NewLine);
-                    kml.WriteRaw(linebuffer.First.Value);
-                    linebuffer.RemoveFirst();
+                    linePts += pn.GetLocalToWSG84_KML(trk.gArr[i].curvePts[j].easting, trk.gArr[i].curvePts[j].northing);
+                }
+                kml.WriteRaw(linePts);
+
+                kml.WriteEndElement(); // <coordinates>
+                kml.WriteEndElement(); // <LineString>
+
+                kml.WriteEndElement(); // <Placemark>
+            }
+            kml.WriteEndElement(); // <Folder>   
+
+            //Recorded Path
+            kml.WriteStartElement("Folder");
+            kml.WriteElementString("name", "Recorded Path");
+            kml.WriteElementString("visibility", "1");
+
+            linePts = "";
+            kml.WriteStartElement("Placemark");
+            kml.WriteElementString("visibility", "1");
+
+            kml.WriteElementString("name", "Path " + 1);
+            kml.WriteStartElement("Style");
+
+            kml.WriteStartElement("LineStyle");
+            kml.WriteElementString("color", "ff44ffff");
+            kml.WriteElementString("width", "2");
+            kml.WriteEndElement(); // <LineStyle>
+            kml.WriteEndElement(); //Style
+
+            kml.WriteStartElement("LineString");
+            kml.WriteElementString("tessellate", "1");
+            kml.WriteStartElement("coordinates");
+
+            for (int j = 0; j < recPath.recList.Count; j++)
+            {
+                linePts += pn.GetLocalToWSG84_KML(recPath.recList[j].easting, recPath.recList[j].northing);
+            }
+            kml.WriteRaw(linePts);
+
+            kml.WriteEndElement(); // <coordinates>
+            kml.WriteEndElement(); // <LineString>
+
+            kml.WriteEndElement(); // <Placemark>
+            kml.WriteEndElement(); // <Folder>
+
+            //flags  *************************************************************************
+            kml.WriteStartElement("Folder");
+            kml.WriteElementString("name", "Flags");
+
+            for (int i = 0; i < flagPts.Count; i++)
+            {
+                kml.WriteStartElement("Placemark");
+                kml.WriteElementString("name", "Flag_"+ i.ToString());
+
+                kml.WriteStartElement("Style");
+                kml.WriteStartElement("IconStyle");
+
+                if (flagPts[i].color == 0)  //red - xbgr
+                    kml.WriteElementString("color", "ff4400ff");
+                if (flagPts[i].color == 1)  //grn - xbgr
+                    kml.WriteElementString("color", "ff44ff00");
+                if (flagPts[i].color == 2)  //yel - xbgr
+                    kml.WriteElementString("color", "ff44ffff");
+
+                kml.WriteEndElement(); //IconStyle
+                kml.WriteEndElement(); //Style
+
+                kml.WriteElementString("name", ((i + 1).ToString() + " " + flagPts[i].notes));
+                kml.WriteStartElement("Point");
+                kml.WriteElementString("coordinates", flagPts[i].longitude.ToString(CultureInfo.InvariantCulture) +
+                    "," + flagPts[i].latitude.ToString(CultureInfo.InvariantCulture) + ",0");
+                kml.WriteEndElement(); //Point
+                kml.WriteEndElement(); // <Placemark>
+            }
+            kml.WriteEndElement(); // <Folder>   
+            //End of Flags
+
+            //Sections  ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+            kml.WriteStartElement("Folder");
+            kml.WriteElementString("name", "Sections");
+            //kml.WriteElementString("description", fd.GetDescription() );
+
+            string secPts = "";
+            int cntr = 0;
+
+            for (int j = 0; j < triStrip.Count; j++)
+            {
+                int patches = triStrip[j].patchList.Count;
+
+                if (patches > 0)
+                {
+                    //for every new chunk of patch
+                    foreach (var triList in triStrip[j].patchList)
+                    {
+                        if (triList.Count > 0)
+                        {
+                            kml.WriteStartElement("Placemark");
+                            kml.WriteElementString("name", "Sections_" + cntr.ToString());
+                            cntr++;
+
+                            string collor = "F0" + ((byte)(triList[0].heading)).ToString("X2") +
+                                ((byte)(triList[0].northing)).ToString("X2") + ((byte)(triList[0].easting)).ToString("X2");
+
+                            //lineStyle
+                            kml.WriteStartElement("Style");
+
+                            kml.WriteStartElement("LineStyle");
+                            kml.WriteElementString("color", collor);
+                            //kml.WriteElementString("width", "6");
+                            kml.WriteEndElement(); // <LineStyle>
+                            
+                            kml.WriteStartElement("PolyStyle");
+                            kml.WriteElementString("color", collor);
+                            kml.WriteEndElement(); // <PloyStyle>
+                            kml.WriteEndElement(); //Style
+
+                            kml.WriteStartElement("Polygon");
+                            kml.WriteElementString("tessellate", "1");
+                            kml.WriteStartElement("outerBoundaryIs");
+                            kml.WriteStartElement("LinearRing");
+                            
+                            //coords
+                            kml.WriteStartElement("coordinates");
+                            secPts = "";
+                            for (int i = 1; i < triList.Count; i += 2)
+                            {
+                                secPts += pn.GetLocalToWSG84_KML(triList[i].easting, triList[i].northing);
+                            }
+                            for (int i = triList.Count - 1; i > 1; i -= 2)
+                            {
+                                secPts += pn.GetLocalToWSG84_KML(triList[i].easting, triList[i].northing);
+                            }
+                            secPts += pn.GetLocalToWSG84_KML(triList[1].easting, triList[1].northing);
+
+                            kml.WriteRaw(secPts);
+                            kml.WriteEndElement(); // <coordinates>
+
+                            kml.WriteEndElement(); // <LinearRing>
+                            kml.WriteEndElement(); // <outerBoundaryIs>
+                            kml.WriteEndElement(); // <Polygon>
+
+                            kml.WriteEndElement(); // <Placemark>
+                        }
+                    }
                 }
             }
-            kml.WriteRaw("   ");
-            kml.WriteRaw(Environment.NewLine);
-            kml.WriteRaw(linebuffer.First.Value);
-            linebuffer.RemoveFirst();
-            kml.WriteRaw("   ");
-            kml.WriteRaw(Environment.NewLine);
-            kml.WriteRaw(linebuffer.First.Value);
-            kml.WriteRaw(Environment.NewLine);
-
             kml.WriteEndElement(); // <Folder>
-            kml.WriteComment("End of " + directoryName);
+            //End of sections
+
+            //end of document
+            kml.WriteEndElement(); // <Document>
+            kml.WriteEndElement(); // <kml>
+
+            //The end
+            kml.WriteEndDocument();
+
+            kml.Flush();
+
+            //Write the XML to file and close the kml
+            kml.Close();
         }
 
-        //end of document
-        kml.WriteEndElement(); // <Document>
-        kml.WriteEndElement(); // <kml>
+        public string GetBoundaryPointsLatLon(int bndNum)
+        {
+            StringBuilder sb = new StringBuilder();
 
-        //The end
-        kml.WriteEndDocument();
+            for (int i = 0; i < bnd.bndList[bndNum].fenceLine.Count; i++)
+            {
+                double lat = 0;
+                double lon = 0;
 
-        kml.Flush();
+                pn.ConvertLocalToWGS84(bnd.bndList[bndNum].fenceLine[i].northing, bnd.bndList[bndNum].fenceLine[i].easting, out lat, out lon);
 
-        //Write the XML to file and close the kml
-        kml.Close();
+                sb.Append(lon.ToString("N7", CultureInfo.InvariantCulture) + ',' + lat.ToString("N7", CultureInfo.InvariantCulture) + ",0 ");
+            }
+            return sb.ToString();
+        }
 
+        private void FileUpdateAllFieldsKML()
+        {
+
+            //get the directory and make sure it exists, create if not
+            string dirAllField = fieldsDirectory + "\\";
+
+            string directoryName = Path.GetDirectoryName(dirAllField);
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            {
+                return; //We have no fields to aggregate.
+            }
+
+            string myFileName;
+            myFileName = "AllFields.kml";
+
+            XmlTextWriter kml = new XmlTextWriter(dirAllField + myFileName, Encoding.UTF8);
+
+            kml.Formatting = Formatting.Indented;
+            kml.Indentation = 3;
+
+            kml.WriteStartDocument();
+            kml.WriteStartElement("kml", "http://www.opengis.net/kml/2.2");
+            kml.WriteStartElement("Document");
+
+            foreach(String dir in Directory.EnumerateDirectories(directoryName).OrderBy(d => new DirectoryInfo(d).Name).ToArray())
+            //loop
+            {
+                if (!File.Exists(dir + "\\" + "Field.kml")) continue;
+
+                directoryName = Path.GetFileName(dir);
+                kml.WriteStartElement("Folder");
+                kml.WriteElementString("name", directoryName);
+
+                var lines = File.ReadAllLines(dir + "\\" + "Field.kml");
+                LinkedList<string> linebuffer = new LinkedList<string>();
+                for( var i = 3; i < lines.Length-2; i++)  //We want to skip the first 3 and last 2 lines
+                {
+                    linebuffer.AddLast(lines[i]);
+                    if(linebuffer.Count > 2)
+                    {
+                        kml.WriteRaw("   ");
+                        kml.WriteRaw(Environment.NewLine);
+                        kml.WriteRaw(linebuffer.First.Value);
+                        linebuffer.RemoveFirst();
+                    }
+                }
+                kml.WriteRaw("   ");
+                kml.WriteRaw(Environment.NewLine);
+                kml.WriteRaw(linebuffer.First.Value);
+                linebuffer.RemoveFirst();
+                kml.WriteRaw("   ");
+                kml.WriteRaw(Environment.NewLine);
+                kml.WriteRaw(linebuffer.First.Value);
+                kml.WriteRaw(Environment.NewLine);
+
+                kml.WriteEndElement(); // <Folder>
+                kml.WriteComment("End of " +directoryName);
+            }
+
+            //end of document
+            kml.WriteEndElement(); // <Document>
+            kml.WriteEndElement(); // <kml>
+
+            //The end
+            kml.WriteEndDocument();
+
+            kml.Flush();
+
+            //Write the XML to file and close the kml
+            kml.Close();
+
+        }
     }
-}
 }

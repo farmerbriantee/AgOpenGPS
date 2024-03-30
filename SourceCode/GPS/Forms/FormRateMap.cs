@@ -162,7 +162,7 @@ namespace AgOpenGPS
                 bitmap = glm.MakeGrayscale3(bitmap);
             }
 
-            String fileAndDirectory = Path.Combine(mf.fieldsDirectory, mf.currentFieldDirectory, "RateMap1.png");
+            String fileAndDirectory = mf.fieldsDirectory + mf.currentFieldDirectory + "\\RateMap1.png";
             try
             {
                 if (File.Exists(fileAndDirectory))
@@ -197,8 +197,8 @@ namespace AgOpenGPS
                 //bitmap.UnlockBits(bitmapData);
 
 
-                //File.Copy(fileAndDirectory, Path.Combine(mf.fieldsDirectory, mf.currentFieldDirectory, "RateMap2.png"));
-                //File.Copy(fileAndDirectory, Path.Combine(mf.fieldsDirectory, mf.currentFieldDirectory, "RateMap3.png"));
+                //File.Copy(fileAndDirectory, mf.fieldsDirectory + mf.currentFieldDirectory + "\\RateMap2.png");
+                //File.Copy(fileAndDirectory, mf.fieldsDirectory + mf.currentFieldDirectory + "\\RateMap3.png");
             }
             catch
             {
@@ -222,7 +222,7 @@ namespace AgOpenGPS
                 GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, 9729);
             }
 
-            string fileAndDirectory = Path.Combine(mf.fieldsDirectory, mf.currentFieldDirectory, "RateMap1.png");
+            string fileAndDirectory = mf.fieldsDirectory + mf.currentFieldDirectory + "\\RateMap1.png";
             try
             {
                 if (File.Exists(fileAndDirectory))

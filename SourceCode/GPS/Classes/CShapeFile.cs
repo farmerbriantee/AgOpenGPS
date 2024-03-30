@@ -91,13 +91,13 @@ namespace AgOpenGPS
 
         public void Main(string FilePath)
         {
-            FileStream MainStream = File.Open(Path.Combine(FilePath, ".shp"), FileMode.Open, FileAccess.Read, FileShare.Read);
+            FileStream MainStream = File.Open(FilePath + ".shp", FileMode.Open, FileAccess.Read, FileShare.Read);
 
             DataTable table = new DataTable();
 
-            if (File.Exists(Path.Combine(FilePath, ".dbf")))
+            if (File.Exists(FilePath + ".dbf"))
             {
-                FileStream DBFStream = File.Open(Path.Combine(FilePath, ".dbf"), FileMode.Open, FileAccess.Read, FileShare.Read);
+                FileStream DBFStream = File.Open(FilePath + ".dbf", FileMode.Open, FileAccess.Read, FileShare.Read);
 
                 byte[] buffer = new byte[4];
                 DBFStream.Position = 4;
@@ -460,15 +460,15 @@ namespace AgOpenGPS
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
 
-            using (FileStream StringWriter = new FileStream(Path.Combine(mf.baseDirectory, "WTest.prj"), FileMode.Create))
+            using (FileStream StringWriter = new FileStream(mf.baseDirectory + "WTest.prj", FileMode.Create))
             {
                 byte[] text = Encoding.ASCII.GetBytes("GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"Degree\",0.017453292519943295]]");
                 StringWriter.Write(text, 0, text.Length);
             }
 
-            using (FileStream IndexWriter = new FileStream(Path.Combine(mf.baseDirectory, "WTest.shx"), FileMode.Create))
+            using (FileStream IndexWriter = new FileStream(mf.baseDirectory + "WTest.shx", FileMode.Create))
             {
-                using (FileStream MainWriter = new FileStream(Path.Combine(mf.baseDirectory, "WTest.shp"), FileMode.Create))
+                using (FileStream MainWriter = new FileStream(mf.baseDirectory + "WTest.shp", FileMode.Create))
                 {
                     int mainIndex = 100, Cnt = 0;
                     double MaxBndBoxLeft = 0;
@@ -584,14 +584,14 @@ namespace AgOpenGPS
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
 
-            using (FileStream StringWriter = new FileStream(Path.Combine(mf.baseDirectory, "WTest2.prj"), FileMode.Create))
+            using (FileStream StringWriter = new FileStream(mf.baseDirectory + "WTest2.prj", FileMode.Create))
             {
                 byte[] text = Encoding.ASCII.GetBytes("GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"Degree\",0.017453292519943295]]");
                 StringWriter.Write(text, 0, text.Length);
             }
-            using (FileStream IndexWriter = new FileStream(Path.Combine(mf.baseDirectory, "WTest2.shx"), FileMode.Create))
+            using (FileStream IndexWriter = new FileStream(mf.baseDirectory + "WTest2.shx", FileMode.Create))
             {
-                using (FileStream MainWriter = new FileStream(Path.Combine(mf.baseDirectory, "WTest2.shp"), FileMode.Create))
+                using (FileStream MainWriter = new FileStream(mf.baseDirectory + "WTest2.shp", FileMode.Create))
                 {
                     int mainIndex = 100, Cnt = 0;
                     double MaxBndBoxLeft = 0;

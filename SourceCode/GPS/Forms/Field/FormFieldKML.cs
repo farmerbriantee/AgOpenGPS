@@ -301,7 +301,7 @@ namespace AgOpenGPS
             mf.currentFieldDirectory = tboxFieldName.Text.Trim();
 
             //get the directory and make sure it exists, create if not
-            string dirNewField = Path.Combine(mf.fieldsDirectory, mf.currentFieldDirectory);
+            string dirNewField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
 
             mf.menustripLanguage.Enabled = false;
             //if no template set just make a new file.
@@ -352,7 +352,7 @@ namespace AgOpenGPS
                     string myFileName, dirField;
 
                     //get the directory and make sure it exists, create if not
-                    dirField = Path.Combine(mf.fieldsDirectory, mf.currentFieldDirectory);
+                    dirField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
                     directoryName = Path.GetDirectoryName(dirField);
 
                     if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
@@ -360,7 +360,7 @@ namespace AgOpenGPS
 
                     myFileName = "Field.txt";
 
-                    using (StreamWriter writer = new StreamWriter(Path.Combine(dirField, myFileName)))
+                    using (StreamWriter writer = new StreamWriter(dirField + myFileName))
                     {
                         //Write out the date
                         writer.WriteLine(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture));

@@ -131,7 +131,7 @@ namespace AgIO
                 //Start application here
                 DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
                 string strPath = di.ToString();
-                strPath = Path.Combine(strPath, "AgOpenGPS.exe");
+                strPath += "\\AgOpenGPS.exe";
 
                 try
                 {

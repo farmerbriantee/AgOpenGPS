@@ -52,7 +52,7 @@ namespace AgOpenGPS
                 double lonStart = 0;
                 double distance = 0;
                 string fieldDirectory = Path.GetFileName(dir);
-                string filename = Path.Combine(dir, "Field.txt");
+                string filename = dir + "\\Field.txt";
                 string line;
 
                 //make sure directory has a field.txt in it
@@ -106,7 +106,7 @@ namespace AgOpenGPS
                 else continue;
 
                 //grab the boundary area
-                filename = Path.Combine(dir, "Boundary.txt");
+                filename = dir + "\\Boundary.txt";
                 if (File.Exists(filename))
                 {
                     List<vec3> pointList = new List<vec3>();
@@ -191,7 +191,7 @@ namespace AgOpenGPS
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                filename = Path.Combine(dir, "Field.txt");
+                filename = dir + "\\Field.txt";
             }
 
             if (fileList == null || fileList.Count < 1)
@@ -258,7 +258,7 @@ namespace AgOpenGPS
                 return;
             }
 
-            string fileStr = Path.Combine(mf.fieldsDirectory, lblTemplateChosen.Text, "Field.txt");
+            string fileStr = mf.fieldsDirectory + lblTemplateChosen.Text + "\\Field.txt";
 
             if (!File.Exists(fileStr))
             {
@@ -269,7 +269,7 @@ namespace AgOpenGPS
             if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
 
             //get the directory and make sure it exists, create if not
-            string dirNewField = Path.Combine(mf.fieldsDirectory, tboxFieldName.Text.Trim());
+            string dirNewField = mf.fieldsDirectory + tboxFieldName.Text.Trim() + "\\";
 
             // create from template
             string directoryName = Path.GetDirectoryName(dirNewField);
@@ -319,7 +319,7 @@ namespace AgOpenGPS
 
                 const string myFileName = "Field.txt";
 
-                using (StreamWriter writer = new StreamWriter(Path.Combine(dirNewField, myFileName)))
+                using (StreamWriter writer = new StreamWriter(dirNewField + myFileName))
                 {
                     //Write out the date
                     writer.WriteLine(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture));
@@ -345,66 +345,66 @@ namespace AgOpenGPS
 
                 if (chkApplied.Checked)
                 {
-                    fileToCopy = Path.Combine(templateDirectoryName, "Contour.txt");
-                    destinationDirectory = Path.Combine(directoryName, "Contour.txt");
+                    fileToCopy = templateDirectoryName + "\\Contour.txt";
+                    destinationDirectory = directoryName + "\\Contour.txt";
                     if (File.Exists(fileToCopy))
                         File.Copy(fileToCopy, destinationDirectory);
 
-                    fileToCopy = Path.Combine(templateDirectoryName, "Sections.txt");
-                    destinationDirectory = Path.Combine(directoryName, "Sections.txt");
+                    fileToCopy = templateDirectoryName + "\\Sections.txt";
+                    destinationDirectory = directoryName + "\\Sections.txt";
                     if (File.Exists(fileToCopy))
                         File.Copy(fileToCopy, destinationDirectory);
                 }
                 else
                 {
                     //create blank Contour and Section files
-                    using (StreamWriter writer = new StreamWriter(Path.Combine(dirNewField, "Sections.txt")))
+                    using (StreamWriter writer = new StreamWriter(dirNewField + "\\Sections.txt"))
                     {
                         //blank
                     }
 
-                    using (StreamWriter writer = new StreamWriter(Path.Combine(dirNewField, "Contour.txt")))
+                    using (StreamWriter writer = new StreamWriter(dirNewField + "\\Contour.txt"))
                     {
                         writer.WriteLine("$Contour");
                     }
                 }
 
-                fileToCopy = Path.Combine(templateDirectoryName, "BackPic.txt");
-                destinationDirectory = Path.Combine(directoryName, "BackPic.txt");
+                fileToCopy = templateDirectoryName + "\\BackPic.txt";
+                destinationDirectory = directoryName + "\\BackPic.txt";
                 if (File.Exists(fileToCopy))
                     File.Copy(fileToCopy, destinationDirectory);
 
-                fileToCopy = Path.Combine(templateDirectoryName, "BackPic.png");
-                destinationDirectory = Path.Combine(directoryName, "BackPic.png");
+                fileToCopy = templateDirectoryName + "\\BackPic.png";
+                destinationDirectory = directoryName + "\\BackPic.png";
                 if (File.Exists(fileToCopy))
                     File.Copy(fileToCopy, destinationDirectory);
 
-                fileToCopy = Path.Combine(templateDirectoryName, "Boundary.txt");
-                destinationDirectory = Path.Combine(directoryName, "Boundary.txt");
+                fileToCopy = templateDirectoryName + "\\Boundary.txt";
+                destinationDirectory = directoryName + "\\Boundary.txt";
                 if (File.Exists(fileToCopy))
                     File.Copy(fileToCopy, destinationDirectory);
 
 
-                fileToCopy = Path.Combine(templateDirectoryName, "Headlines.txt");
-                destinationDirectory = Path.Combine(directoryName, "Headlines.txt");
+                fileToCopy = templateDirectoryName + "\\Headlines.txt";
+                destinationDirectory = directoryName + "\\Headlines.txt";
                 if (File.Exists(fileToCopy))
                     File.Copy(fileToCopy, destinationDirectory);
                 else
-                    using (StreamWriter writer = new StreamWriter(Path.Combine(dirNewField, "Headlines.txt")))
+                    using (StreamWriter writer = new StreamWriter(dirNewField + "\\Headlines.txt"))
                     {
                         writer.WriteLine("$Headlines");
                     }
 
                 if (chkFlags.Checked)
                 {
-                    fileToCopy = Path.Combine(templateDirectoryName, "Flags.txt");
-                    destinationDirectory = Path.Combine(directoryName, "Flags.txt");
+                    fileToCopy = templateDirectoryName + "\\Flags.txt";
+                    destinationDirectory = directoryName + "\\Flags.txt";
                     if (File.Exists(fileToCopy))
                         File.Copy(fileToCopy, destinationDirectory);
                 }
                 else
                 {
-                    using (StreamWriter writer = new StreamWriter(Path.Combine(dirNewField, "Flags.txt")))
+                    using (StreamWriter writer = new StreamWriter(dirNewField + "\\Flags.txt"))
                     {
                         writer.WriteLine("$Flags");
                         writer.WriteLine("0");
@@ -413,29 +413,29 @@ namespace AgOpenGPS
 
                 if (chkGuidanceLines.Checked)
                 {
-                    fileToCopy = Path.Combine(templateDirectoryName, "ABLines.txt");
-                    destinationDirectory = Path.Combine(directoryName, "ABLines.txt");
+                    fileToCopy = templateDirectoryName + "\\ABLines.txt";
+                    destinationDirectory = directoryName + "\\ABLines.txt";
                     if (File.Exists(fileToCopy))
                         File.Copy(fileToCopy, destinationDirectory);
 
-                    fileToCopy = Path.Combine(templateDirectoryName, "RecPath.txt");
-                    destinationDirectory = Path.Combine(directoryName, "RecPath.txt");
+                    fileToCopy = templateDirectoryName + "\\RecPath.txt";
+                    destinationDirectory = directoryName + "\\RecPath.txt";
                     if (File.Exists(fileToCopy))
                         File.Copy(fileToCopy, destinationDirectory);
 
-                    fileToCopy = Path.Combine(templateDirectoryName, "CurveLines.txt");
-                    destinationDirectory = Path.Combine(directoryName, "CurveLines.txt");
+                    fileToCopy = templateDirectoryName + "\\CurveLines.txt";
+                    destinationDirectory = directoryName + "\\CurveLines.txt";
                     if (File.Exists(fileToCopy))
                         File.Copy(fileToCopy, destinationDirectory);
 
-                    fileToCopy = Path.Combine(templateDirectoryName, "Tram.txt");
-                    destinationDirectory = Path.Combine(directoryName, "Tram.txt");
+                    fileToCopy = templateDirectoryName + "\\Tram.txt";
+                    destinationDirectory = directoryName + "\\Tram.txt";
                     if (File.Exists(fileToCopy))
                         File.Copy(fileToCopy, destinationDirectory);
                 }
                 else
                 {
-                    using (StreamWriter writer = new StreamWriter(Path.Combine(dirNewField, "RecPath.txt")))
+                    using (StreamWriter writer = new StreamWriter(dirNewField + "\\RecPath.txt"))
                     {
                         writer.WriteLine("$RecPath");
                         writer.WriteLine("0");
@@ -444,14 +444,14 @@ namespace AgOpenGPS
 
                 if (chkHeadland.Checked)
                 {
-                    fileToCopy = Path.Combine(templateDirectoryName, "Headland.txt");
-                    destinationDirectory = Path.Combine(directoryName, "Headland.txt");
+                    fileToCopy = templateDirectoryName + "\\Headland.txt";
+                    destinationDirectory = directoryName + "\\Headland.txt";
                     if (File.Exists(fileToCopy))
                         File.Copy(fileToCopy, destinationDirectory);
                 }
 
                 //now open the newly cloned field
-                mf.FileOpenField(Path.Combine(dirNewField, myFileName));
+                mf.FileOpenField(dirNewField + myFileName);
                 mf.displayFieldName = mf.currentFieldDirectory;
             }
 
