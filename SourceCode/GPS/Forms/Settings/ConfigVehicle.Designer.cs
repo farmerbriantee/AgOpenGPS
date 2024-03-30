@@ -20,7 +20,7 @@ namespace AgOpenGPS
         {
             if (tboxVehicleNameSave.Text.Trim().Length > 0)
             {
-                SettingsIO.ExportAll(mf.vehiclesDirectory + tboxVehicleNameSave.Text.Trim() + ".XML");
+                SettingsIO.ExportAll(Path.Combine(mf.vehiclesDirectory, tboxVehicleNameSave.Text.Trim(), ".XML"));
                 Properties.Settings.Default.setVehicle_vehicleName = tboxVehicleNameSave.Text.Trim();
                 Properties.Settings.Default.Save();
                 tboxVehicleNameSave.Text = "";
@@ -115,7 +115,7 @@ namespace AgOpenGPS
         //{
         //    if (tboxCreateNewVehicle.Text.Trim().Length > 0)
         //    {
-        //        //SettingsIO.ExportAll(mf.vehiclesDirectory + tboxCreateNewVehicle.Text.Trim() + ".XML");
+        //        //SettingsIO.ExportAll(Path.Combine(mf.vehiclesDirectory, tboxCreateNewVehicle.Text.Trim(), ".XML"));
 
         //        Settings.Default.Reset();
         //        Settings.Default.Save();
@@ -129,7 +129,7 @@ namespace AgOpenGPS
 
         //        lblCurrentVehicle.Text = mf.vehicleFileName = Properties.Settings.Default.setVehicle_vehicleName;
 
-        //        SettingsIO.ExportAll(mf.vehiclesDirectory + mf.vehicleFileName + ".XML");
+        //        SettingsIO.ExportAll(Path.Combine(mf.vehiclesDirectory, mf.vehicleFileName, ".XML"));
         //        LoadBrandImage();
 
         //        mf.vehicle = new CVehicle(mf);
@@ -246,7 +246,7 @@ namespace AgOpenGPS
                         MessageBoxDefaultButton.Button2);
                     if (result3 == DialogResult.Yes)
                     {
-                        SettingsIO.ExportAll(mf.vehiclesDirectory + lvVehicles.SelectedItems[0].SubItems[0].Text + ".XML");
+                        SettingsIO.ExportAll(Path.Combine(mf.vehiclesDirectory, lvVehicles.SelectedItems[0].SubItems[0].Text, ".XML"));
                     }
                     UpdateVehicleListView();
                 }
@@ -284,7 +284,7 @@ namespace AgOpenGPS
             if (!mf.isJobStarted)
             {
                 //save current vehicle
-                SettingsIO.ExportAll(mf.vehiclesDirectory + mf.vehicleFileName + ".XML");
+                SettingsIO.ExportAll(Path.Combine(mf.vehiclesDirectory, mf.vehicleFileName, ".XML"));
 
 
                 if (lvVehicles.SelectedItems.Count > 0)
@@ -298,7 +298,7 @@ namespace AgOpenGPS
                     
                     if (result3 == DialogResult.Yes)
                     {
-                        bool success = SettingsIO.ImportAll(mf.vehiclesDirectory + lvVehicles.SelectedItems[0].SubItems[0].Text + ".XML");
+                        bool success = SettingsIO.ImportAll(Path.Combine(mf.vehiclesDirectory, lvVehicles.SelectedItems[0].SubItems[0].Text, ".XML"));
                         if (!success) return;
 
                         mf.vehicleFileName = lvVehicles.SelectedItems[0].SubItems[0].Text;
@@ -396,7 +396,7 @@ namespace AgOpenGPS
                         MessageBoxDefaultButton.Button2);
                         if (result3 == DialogResult.Yes)
                         {
-                            File.Delete(mf.vehiclesDirectory + lvVehicles.SelectedItems[0].SubItems[0].Text + ".XML");
+                            File.Delete(Path.Combine(mf.vehiclesDirectory, lvVehicles.SelectedItems[0].SubItems[0].Text, ".XML"));
                         }
                     }
                     else

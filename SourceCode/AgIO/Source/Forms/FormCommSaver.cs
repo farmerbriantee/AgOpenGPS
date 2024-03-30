@@ -45,7 +45,7 @@ namespace AgIO
 
             if (result3 == DialogResult.Yes)
             {
-                SettingsIO.ExportSettings(mf.commDirectory + cboxEnv.SelectedItem.ToString() + ".xml");
+                SettingsIO.ExportSettings(Path.Combine(mf.commDirectory, cboxEnv.SelectedItem.ToString(), ".xml"));
                 Close();
             }
         }
@@ -63,7 +63,7 @@ namespace AgIO
         {
             if (tboxName.Text.Trim().Length > 0)
             {
-                SettingsIO.ExportSettings(mf.commDirectory + tboxName.Text.Trim() + ".xml");
+                SettingsIO.ExportSettings(Path.Combine(mf.commDirectory, tboxName.Text.Trim(), ".xml"));
                 Close();
             }
             else
