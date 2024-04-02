@@ -421,7 +421,15 @@ namespace AgOpenGPS
         {
             if (!isFirstFixPositionSet || sentenceCounter > 299)
             {
-                TimedMessageBox(2500, "No GPS", "You are lost with no GPS, Fix that First");
+                if (isJobStarted)
+                {
+                    FileSaveEverythingBeforeClosingField();
+                    TimedMessageBox(2500, gStr.gsField, "Field is now closed");
+                }
+                else
+                {
+                    TimedMessageBox(2500, "No GPS", "No GPS Position Found");
+                }
                 return;
             }
 
