@@ -940,6 +940,7 @@
     <None Include="btnImages\ABPivot.png" />
     <None Include="btnImages\TrackPivot.png" />
     <None Include="btnImages\Config\ConF_SoundSections.png" />
+    <None Include="btnImages\Config\ConD_LogElevation.png" />
     <Content Include="Resources\TF012.WAV" />
     <None Include="Resources\SectionOn.wav" />
     <None Include="Resources\SectionOff.wav" />
