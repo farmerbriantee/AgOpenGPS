@@ -378,11 +378,13 @@ namespace AgOpenGPS
                     - (mf.pivotAxlePos.northing - refPoint1.northing) * (mf.steerAxlePos.easting - refPoint1.easting)) < 0;
 
                 //how far are we away from the reference line at 90 degrees - 2D cross product and distance
-                distanceFromRefLine = glm.Distance(mf.guidanceLookPos, refPoint1);
+                distanceFromRefLine = glm.Distance(mf.pivotAxlePos, refPoint1);
 
                 distanceFromRefLine -= (0.5 * widthMinusOverlap);
 
-                double RefDist = (distanceFromRefLine + (isHeadingSameWay ? mf.tool.offset : -mf.tool.offset)) / widthMinusOverlap;
+                double RefDist = (distanceFromRefLine 
+                    + (isHeadingSameWay ? mf.tool.offset : -mf.tool.offset) 
+                    + mf.trk.gArr[idx].nudgeDistance) / widthMinusOverlap;
 
                 if (RefDist < 0) howManyPathsAway = (int)(RefDist - 0.5);
                 else howManyPathsAway = (int)(RefDist + 0.5);

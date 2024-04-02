@@ -519,20 +519,7 @@ namespace AgOpenGPS
 
             trk.idx = -1;
 
-            //if (isJobStarted && trk.gArr.Count > 0)
-            //{
-            //    for (int i = 0; i < trk.gArr.Count; i++)
-            //    {
-            //        if (trk.gArr[i].isVisible)
-            //        {
-            //            trk.idx = i;
-            //            break;
-            //        }
-            //    }
-            //}
-
             PanelUpdateRightAndBottom();
-
         }
         public void FileSaveEverythingBeforeClosingField()
         {
@@ -562,6 +549,7 @@ namespace AgOpenGPS
             FileSaveBoundary();
             FileSaveSections();
             FileSaveContour();
+            FileSaveTracks();
 
             ExportFieldAs_KML();
             ExportFieldAs_ISOXMLv3();
