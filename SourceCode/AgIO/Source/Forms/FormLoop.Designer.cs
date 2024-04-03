@@ -329,7 +329,7 @@ namespace AgIO
             this.toolStripEthernet.Image = global::AgIO.Properties.Resources.EthernetSetup;
             this.toolStripEthernet.Name = "toolStripEthernet";
             this.toolStripEthernet.Size = new System.Drawing.Size(296, 70);
-            this.toolStripEthernet.Text = "Ethernet Setup";
+            this.toolStripEthernet.Text = "Linux Users";
             this.toolStripEthernet.Click += new System.EventHandler(this.toolStripEthernet_Click);
             // 
             // deviceManagerToolStripMenuItem

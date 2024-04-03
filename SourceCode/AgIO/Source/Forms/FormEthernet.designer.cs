@@ -65,14 +65,13 @@
             // 
             // label13
             // 
-            this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.White;
             this.label13.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(2, 23);
+            this.label13.Location = new System.Drawing.Point(2, 7);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(161, 46);
+            this.label13.Size = new System.Drawing.Size(161, 77);
             this.label13.TabIndex = 518;
-            this.label13.Text = "Loopback Address\r\n(Don\'t Change)";
+            this.label13.Text = "Loopback Address\r\n(Don\'t Change For Windows)";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cboxIsSendNMEAToUDP
