@@ -377,7 +377,7 @@ namespace AgOpenGPS
 
                     DrawSteerCircle();
 
-                    if (tram.displayMode != 0) { DrawTramMarkers(); }                       
+                    if (tool.isDisplayTramControl && tram.displayMode != 0) { DrawTramMarkers(); }                       
 
                     if (vehicle.isHydLiftOn) DrawLiftIndicator();
 
@@ -643,7 +643,7 @@ namespace AgOpenGPS
 
             //draw 245 green for the tram tracks
 
-            if (tram.displayMode != 0 && (trk.idx > -1))
+            if (tool.isDisplayTramControl && tram.displayMode != 0 && (trk.idx > -1))
             {
                 GL.Color3((byte)0, (byte)245, (byte)0);
                 GL.LineWidth(8);

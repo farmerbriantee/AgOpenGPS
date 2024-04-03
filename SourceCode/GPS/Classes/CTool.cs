@@ -54,6 +54,8 @@ namespace AgOpenGPS
         public int zones;
         public int[] zoneRanges = new int[9];
 
+        public bool isDisplayTramControl;
+
         //Constructor called by FormGPS
         public CTool(FormGPS _f)
         {
@@ -116,6 +118,8 @@ namespace AgOpenGPS
             {
                 zoneRanges[i] = int.Parse(words[i]);
             }
+
+            isDisplayTramControl = Properties.Settings.Default.setTool_isDisplayTramControl;
         }
 
         public void DrawTool()
@@ -371,7 +375,7 @@ namespace AgOpenGPS
                 }
 
                 //tram Dots
-                if (mf.tram.displayMode != 0)
+                if (isDisplayTramControl && mf.tram.displayMode != 0)
                 {
                     if (mf.camera.camSetDistance > -300)
                     {

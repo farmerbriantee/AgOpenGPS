@@ -725,5 +725,8 @@
     <Setting Name="setGPS_dualReverseDetectionDistance" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.25</Value>
     </Setting>
+    <Setting Name="setTool_isDisplayTramControl" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

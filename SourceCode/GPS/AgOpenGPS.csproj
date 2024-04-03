@@ -941,6 +941,7 @@
     <None Include="btnImages\TrackPivot.png" />
     <None Include="btnImages\Config\ConF_SoundSections.png" />
     <None Include="btnImages\Config\ConD_LogElevation.png" />
+    <None Include="btnImages\Config\ConT_TramOverrideDisplay.png" />
     <Content Include="Resources\TF012.WAV" />
     <None Include="Resources\SectionOn.wav" />
     <None Include="Resources\SectionOff.wav" />

@@ -498,6 +498,7 @@
             this.pboxSendMachine = new System.Windows.Forms.PictureBox();
             this.cboxMachInvertRelays = new System.Windows.Forms.CheckBox();
             this.btnSendMachinePGN = new System.Windows.Forms.Button();
+            this.cboxDisplayTramControl = new System.Windows.Forms.CheckBox();
             this.chkBoxOverrideTramControlPos = new System.Windows.Forms.CheckBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.cboxSectionsSound = new System.Windows.Forms.CheckBox();
@@ -555,6 +556,7 @@
             this.btnSubDimensions = new System.Windows.Forms.Button();
             this.btnSubVehicleType = new System.Windows.Forms.Button();
             this.btnVehicle = new System.Windows.Forms.Button();
+            this.label111 = new System.Windows.Forms.Label();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -6353,6 +6355,8 @@
             // tabTram
             // 
             this.tabTram.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabTram.Controls.Add(this.label111);
+            this.tabTram.Controls.Add(this.cboxDisplayTramControl);
             this.tabTram.Controls.Add(this.chkBoxOverrideTramControlPos);
             this.tabTram.Controls.Add(this.label85);
             this.tabTram.Controls.Add(this.lblTramWidthUnits);
@@ -6376,7 +6380,7 @@
             this.label85.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label85.ForeColor = System.Drawing.Color.Black;
             this.label85.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label85.Location = new System.Drawing.Point(278, 287);
+            this.label85.Location = new System.Drawing.Point(407, 286);
             this.label85.Name = "label85";
             this.label85.Size = new System.Drawing.Size(51, 16);
             this.label85.TabIndex = 483;
@@ -6390,7 +6394,7 @@
             this.lblTramWidthUnits.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTramWidthUnits.ForeColor = System.Drawing.Color.Black;
             this.lblTramWidthUnits.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblTramWidthUnits.Location = new System.Drawing.Point(517, 120);
+            this.lblTramWidthUnits.Location = new System.Drawing.Point(452, 120);
             this.lblTramWidthUnits.Name = "lblTramWidthUnits";
             this.lblTramWidthUnits.Size = new System.Drawing.Size(30, 19);
             this.lblTramWidthUnits.TabIndex = 478;
@@ -6402,7 +6406,7 @@
             this.label75.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label75.AutoSize = true;
             this.label75.ForeColor = System.Drawing.Color.Black;
-            this.label75.Location = new System.Drawing.Point(391, 85);
+            this.label75.Location = new System.Drawing.Point(326, 85);
             this.label75.Name = "label75";
             this.label75.Size = new System.Drawing.Size(75, 16);
             this.label75.TabIndex = 477;
@@ -6415,7 +6419,7 @@
             this.nudTramWidth.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.nudTramWidth.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudTramWidth.InterceptArrowKeys = false;
-            this.nudTramWidth.Location = new System.Drawing.Point(356, 105);
+            this.nudTramWidth.Location = new System.Drawing.Point(291, 105);
             this.nudTramWidth.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -8682,6 +8686,25 @@
             this.btnSendMachinePGN.UseVisualStyleBackColor = false;
             this.btnSendMachinePGN.Click += new System.EventHandler(this.btnSendMachinePGN_Click);
             // 
+            // cboxDisplayTramControl
+            // 
+            this.cboxDisplayTramControl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cboxDisplayTramControl.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxDisplayTramControl.BackColor = System.Drawing.Color.Transparent;
+            this.cboxDisplayTramControl.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.cboxDisplayTramControl.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
+            this.cboxDisplayTramControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxDisplayTramControl.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxDisplayTramControl.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.cboxDisplayTramControl.Image = global::AgOpenGPS.Properties.Resources.ConT_TramOverrideDisplay;
+            this.cboxDisplayTramControl.Location = new System.Drawing.Point(594, 31);
+            this.cboxDisplayTramControl.Name = "cboxDisplayTramControl";
+            this.cboxDisplayTramControl.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cboxDisplayTramControl.Size = new System.Drawing.Size(179, 195);
+            this.cboxDisplayTramControl.TabIndex = 485;
+            this.cboxDisplayTramControl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cboxDisplayTramControl.UseVisualStyleBackColor = false;
+            // 
             // chkBoxOverrideTramControlPos
             // 
             this.chkBoxOverrideTramControlPos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -8693,7 +8716,7 @@
             this.chkBoxOverrideTramControlPos.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkBoxOverrideTramControlPos.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.chkBoxOverrideTramControlPos.Image = global::AgOpenGPS.Properties.Resources.ConT_TramOverride;
-            this.chkBoxOverrideTramControlPos.Location = new System.Drawing.Point(172, 306);
+            this.chkBoxOverrideTramControlPos.Location = new System.Drawing.Point(301, 305);
             this.chkBoxOverrideTramControlPos.Name = "chkBoxOverrideTramControlPos";
             this.chkBoxOverrideTramControlPos.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkBoxOverrideTramControlPos.Size = new System.Drawing.Size(282, 232);
@@ -8705,7 +8728,7 @@
             // 
             this.pictureBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox8.Image = global::AgOpenGPS.Properties.Resources.ConT_TramSpacing;
-            this.pictureBox8.Location = new System.Drawing.Point(172, 31);
+            this.pictureBox8.Location = new System.Drawing.Point(107, 31);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(179, 195);
             this.pictureBox8.TabIndex = 119;
@@ -9857,6 +9880,21 @@
             this.btnVehicle.UseVisualStyleBackColor = false;
             this.btnVehicle.Click += new System.EventHandler(this.btnVehicle_Click);
             // 
+            // label111
+            // 
+            this.label111.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label111.AutoSize = true;
+            this.label111.BackColor = System.Drawing.Color.Transparent;
+            this.label111.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label111.ForeColor = System.Drawing.Color.Black;
+            this.label111.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label111.Location = new System.Drawing.Point(655, 13);
+            this.label111.Name = "label111";
+            this.label111.Size = new System.Drawing.Size(53, 16);
+            this.label111.TabIndex = 486;
+            this.label111.Text = "Display?";
+            this.label111.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -10560,5 +10598,7 @@
         private System.Windows.Forms.CheckBox cboxSectionsSound;
         private System.Windows.Forms.Label label102;
         private NudlessNumericUpDown nudDualReverseDistance;
+        private System.Windows.Forms.CheckBox cboxDisplayTramControl;
+        private System.Windows.Forms.Label label111;
     }
 }

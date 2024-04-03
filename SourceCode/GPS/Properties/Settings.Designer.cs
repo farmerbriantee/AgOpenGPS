@@ -2915,5 +2915,17 @@ namespace AgOpenGPS.Properties {
                 this["setGPS_dualReverseDetectionDistance"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setTool_isDisplayTramControl {
+            get {
+                return ((bool)(this["setTool_isDisplayTramControl"]));
+            }
+            set {
+                this["setTool_isDisplayTramControl"] = value;
+            }
+        }
     }
 }
