@@ -277,8 +277,8 @@ namespace AgOpenGPS
                 //find the closest 2 points of pivot back from steer
                 for (int j = cc; j < dd; j++)
                 {
-                    double dist = ((pivot.easting - curList[j].easting) * (pivot.easting - curList[j].easting))
-                                    + ((pivot.northing - curList[j].northing) * (pivot.northing - curList[j].northing));
+                    double dist = ((steer.easting - curList[j].easting) * (steer.easting - curList[j].easting))
+                                    + ((steer.northing - curList[j].northing) * (steer.northing - curList[j].northing));
                     if (dist < minDistA)
                     {
                         minDistB = minDistA;
@@ -323,13 +323,13 @@ namespace AgOpenGPS
                 if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dz) < Double.Epsilon) return;
 
                 //how far from current AB Line is fix
-                distanceFromCurrentLinePivot = ((dz * pivot.easting) - (dx * pivot.northing) + (pivB.easting
+                distanceFromCurrentLinePivot = ((dz * steer.easting) - (dx * steer.northing) + (pivB.easting
                             * pivA.northing) - (pivB.northing * pivA.easting))
                                 / Math.Sqrt((dz * dz) + (dx * dx));
 
                 mf.curve.distanceFromCurrentLinePivot = distanceFromCurrentLinePivot;
-                double U = (((pivot.easting - pivA.easting) * dx)
-                                + ((pivot.northing - pivA.northing) * dz))
+                double U = (((steer.easting - pivA.easting) * dx)
+                                + ((steer.northing - pivA.northing) * dz))
                                 / ((dx * dx) + (dz * dz));
 
                 rEastPivot = pivA.easting + (U * dx);

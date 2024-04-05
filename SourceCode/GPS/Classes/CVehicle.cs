@@ -23,7 +23,7 @@ namespace AgOpenGPS
         public double slowSpeedCutoff = 0;
 
         //autosteer values
-        public double goalPointLookAhead, goalPointLookAheadHold, goalPointLookAheadMult;
+        public double goalPointLookAhead, goalPointLookAheadHold, goalPointLookAheadMult, uturnCompensation;
 
         public double stanleyDistanceErrorGain, stanleyHeadingErrorGain;
         public double minLookAheadDistance = 2.0;
@@ -97,6 +97,8 @@ namespace AgOpenGPS
             functionSpeedLimit = Properties.Settings.Default.setAS_functionSpeedLimit;
             maxSteerSpeed = Properties.Settings.Default.setAS_maxSteerSpeed;
             minSteerSpeed = Properties.Settings.Default.setAS_minSteerSpeed;
+
+            uturnCompensation = Properties.Settings.Default.setAS_uTurnCompensation;
         }
 
         public int modeTimeCounter = 0;

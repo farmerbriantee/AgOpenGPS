@@ -758,12 +758,12 @@ namespace AgOpenGPS
                     btnAutoSteer.Enabled = false;
                 }
 
-                btnAutoYouTurn.Visible = trk.idx > -1 && !ct.isContourBtnOn && isBnd && !isStanleyUsed;
+                btnAutoYouTurn.Visible = trk.idx > -1 && !ct.isContourBtnOn && isBnd;
                 btnCycleLines.Visible = tracksVisible > 1 && trk.idx > -1 && !ct.isContourBtnOn;
                 btnCycleLinesBk.Visible = tracksVisible > 1 && trk.idx > -1 && !ct.isContourBtnOn;
 
-                cboxpRowWidth.Visible = trk.idx > -1 && !isStanleyUsed;
-                btnYouSkipEnable.Visible = trk.idx > -1 && !isStanleyUsed;
+                cboxpRowWidth.Visible = trk.idx > -1;
+                btnYouSkipEnable.Visible = trk.idx > -1;
 
                 btnSnapToPivot.Visible = trk.idx > -1 && isNudgeOn;
                 btnAdjLeft.Visible = trk.idx > -1 && isNudgeOn;

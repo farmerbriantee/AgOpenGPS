@@ -2927,5 +2927,17 @@ namespace AgOpenGPS.Properties {
                 this["setTool_isDisplayTramControl"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public double setAS_uTurnCompensation {
+            get {
+                return ((double)(this["setAS_uTurnCompensation"]));
+            }
+            set {
+                this["setAS_uTurnCompensation"] = value;
+            }
+        }
     }
 }
