@@ -119,7 +119,7 @@ namespace AgOpenGPS
         /// <param name="isValid"></param>
         public void StanleyGuidanceABLine(vec3 curPtA, vec3 curPtB, vec3 pivot, vec3 steer)
         {
-            //get the pivot distance from currently active AB segment   ///////////  Pivot  ////////////
+            //get the steer distance from currently active AB segment   ///////////  steer  ////////////
             double dx = curPtB.easting - curPtA.easting;
             double dy = curPtB.northing - curPtA.northing;
             if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dy) < Double.Epsilon) return;
@@ -128,7 +128,7 @@ namespace AgOpenGPS
             mf.yt.dxAB = dx; mf.yt.dyAB = dy;
 
             //how far from current AB Line is fix
-            distanceFromCurrentLinePivot = ((dy * pivot.easting) - (dx * pivot.northing) + (curPtB.easting
+            distanceFromCurrentLinePivot = ((dy * steer.easting) - (dx * steer.northing) + (curPtB.easting
                         * curPtA.northing) - (curPtB.northing * curPtA.easting))
                             / Math.Sqrt((dy * dy) + (dx * dx));
 
@@ -136,8 +136,8 @@ namespace AgOpenGPS
                 distanceFromCurrentLinePivot *= -1.0;
 
             mf.ABLine.distanceFromCurrentLinePivot = distanceFromCurrentLinePivot;
-            double U = (((pivot.easting - curPtA.easting) * dx)
-                            + ((pivot.northing - curPtA.northing) * dy))
+            double U = (((steer.easting - curPtA.easting) * dx)
+                            + ((steer.northing - curPtA.northing) * dy))
                             / ((dx * dx) + (dy * dy));
 
             rEastPivot = curPtA.easting + (U * dx);
