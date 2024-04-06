@@ -2582,7 +2582,7 @@ namespace AgOpenGPS
             double turnOffset = (mf.tool.width - mf.tool.overlap); //remove rowSkips
 
             //if its straight across it makes 2 loops instead so goal is a little lower then start
-            if (!isHeadingSameWay) head += Math.PI;
+            if (!mf.isStanleyUsed &&!isHeadingSameWay) head += Math.PI;
 
             //move the start forward 2 meters, this point is critical to formation of uturn
             rEastYT += (Math.Sin(head) * 2);

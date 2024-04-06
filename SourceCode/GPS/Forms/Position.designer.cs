@@ -994,7 +994,7 @@ namespace AgOpenGPS
                             if (yt.isTurnCreationTooClose && !yt.turnTooCloseTrigger)
                             {
                                 yt.turnTooCloseTrigger = true;
-                                sounds.sndUTurnTooClose.Play();
+                                if (sounds.isTurnSoundOn) sounds.sndUTurnTooClose.Play();
                             }
                         }
                         else //wait to trigger the actual turn since its made and waiting
