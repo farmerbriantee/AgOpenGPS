@@ -159,14 +159,14 @@
             this.tabSensors = new System.Windows.Forms.TabPage();
             this.tabConfig = new System.Windows.Forms.TabPage();
             this.tabSettings = new System.Windows.Forms.TabPage();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
             this.hsbarUTurnCompensation = new System.Windows.Forms.HScrollBar();
             this.lblUTurnCompensation = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.btnSteerWizard = new System.Windows.Forms.Button();
             this.label35 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabSteer.SuspendLayout();
             this.tabGain.SuspendLayout();
@@ -1001,7 +1001,7 @@
             // 
             this.hsbarHoldLookAhead.LargeChange = 1;
             this.hsbarHoldLookAhead.Location = new System.Drawing.Point(68, 132);
-            this.hsbarHoldLookAhead.Maximum = 50;
+            this.hsbarHoldLookAhead.Maximum = 70;
             this.hsbarHoldLookAhead.Minimum = 10;
             this.hsbarHoldLookAhead.Name = "hsbarHoldLookAhead";
             this.hsbarHoldLookAhead.Size = new System.Drawing.Size(217, 30);
@@ -1135,7 +1135,7 @@
             // 
             this.hsbarLookAhead.LargeChange = 1;
             this.hsbarLookAhead.Location = new System.Drawing.Point(68, 54);
-            this.hsbarLookAhead.Maximum = 50;
+            this.hsbarLookAhead.Maximum = 70;
             this.hsbarLookAhead.Minimum = 10;
             this.hsbarLookAhead.Name = "hsbarLookAhead";
             this.hsbarLookAhead.Size = new System.Drawing.Size(217, 30);
@@ -1962,6 +1962,34 @@
             this.tabSettings.TabIndex = 2;
             this.tabSettings.Text = "Settings";
             // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.BackColor = System.Drawing.Color.Transparent;
+            this.label41.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.ForeColor = System.Drawing.Color.Black;
+            this.label41.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label41.Location = new System.Drawing.Point(454, 118);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(18, 16);
+            this.label41.TabIndex = 532;
+            this.label41.Text = "In";
+            this.label41.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.BackColor = System.Drawing.Color.Transparent;
+            this.label39.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.ForeColor = System.Drawing.Color.Black;
+            this.label39.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label39.Location = new System.Drawing.Point(140, 118);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(27, 16);
+            this.label39.TabIndex = 531;
+            this.label39.Text = "Out";
+            this.label39.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
             // hsbarUTurnCompensation
             // 
             this.hsbarUTurnCompensation.LargeChange = 1;
@@ -2033,34 +2061,6 @@
             this.label35.TabIndex = 530;
             this.label35.Text = "Wizard";
             this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.BackColor = System.Drawing.Color.Transparent;
-            this.label39.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.ForeColor = System.Drawing.Color.Black;
-            this.label39.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label39.Location = new System.Drawing.Point(140, 118);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(27, 16);
-            this.label39.TabIndex = 531;
-            this.label39.Text = "Out";
-            this.label39.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.BackColor = System.Drawing.Color.Transparent;
-            this.label41.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.ForeColor = System.Drawing.Color.Black;
-            this.label41.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label41.Location = new System.Drawing.Point(454, 118);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(18, 16);
-            this.label41.TabIndex = 532;
-            this.label41.Text = "In";
-            this.label41.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // FormSteer
             // 
