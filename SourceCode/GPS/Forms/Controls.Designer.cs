@@ -1391,6 +1391,11 @@ namespace AgOpenGPS
             SetLanguage("lt", true);
         }
 
+        private void menuLanguageChinese_Click(object sender, EventArgs e)
+        {
+            SetLanguage("zh-CHS", true);
+        }
+
 
         private void SetLanguage(string lang, bool Restart)
         {
@@ -1418,6 +1423,7 @@ namespace AgOpenGPS
             menuLanguageLithuanian.Checked = false;
             menuLanguageFinnish.Checked = false;
             menuLanguageLatvian.Checked = false;
+            menuLanguageChinese.Checked = false;
 
             menuLanguageTest.Checked = false;
 
@@ -1489,6 +1495,10 @@ namespace AgOpenGPS
 
                 case "fi":
                     menuLanguageFinnish.Checked = true;
+                    break;
+
+                case "zh-CHS":
+                    menuLanguageChinese.Checked = true;
                     break;
 
                 default:
