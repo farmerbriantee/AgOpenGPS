@@ -555,11 +555,15 @@ namespace AgOpenGPS
 
             nudTramWidth.Value = (int)(Math.Abs(Properties.Settings.Default.setTram_tramWidth) * mf.m2InchOrCm);
             chkBoxOverrideTramControlPos.Checked = Properties.Settings.Default.setTool_isTramOuterInverted;
+            cboxDisplayTramControl.Checked = Properties.Settings.Default.setTool_isDisplayTramControl;
         }
 
         private void tabTram_Leave(object sender, EventArgs e)
         {
             Properties.Settings.Default.setTool_isTramOuterInverted = chkBoxOverrideTramControlPos.Checked;
+
+            Properties.Settings.Default.setTool_isDisplayTramControl = cboxDisplayTramControl.Checked;
+            mf.tool.isDisplayTramControl = cboxDisplayTramControl.Checked;
 
             mf.tram.IsTramOuterOrInner();
 

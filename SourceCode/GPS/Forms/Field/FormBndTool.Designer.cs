@@ -139,6 +139,7 @@
             this.cboxSmooth.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxSmooth.FormattingEnabled = true;
             this.cboxSmooth.Items.AddRange(new object[] {
+            "0",
             "4",
             "8",
             "16",
@@ -282,12 +283,12 @@
             // 
             this.btnResetReduce.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnResetReduce.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnResetReduce.BackgroundImage = global::AgOpenGPS.Properties.Resources.Play;
             this.btnResetReduce.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.tlp1.SetColumnSpan(this.btnResetReduce, 3);
             this.btnResetReduce.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnResetReduce.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetReduce.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnResetReduce.Image = global::AgOpenGPS.Properties.Resources.SwitchOn;
             this.btnResetReduce.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnResetReduce.Location = new System.Drawing.Point(20, 20);
             this.btnResetReduce.Name = "btnResetReduce";
@@ -430,7 +431,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(1006, 704);
+            this.ClientSize = new System.Drawing.Size(1006, 726);
             this.ControlBox = false;
             this.Controls.Add(this.tlp1);
             this.Controls.Add(this.oglSelf);

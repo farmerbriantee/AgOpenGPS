@@ -377,7 +377,7 @@ namespace AgOpenGPS
 
                     DrawSteerCircle();
 
-                    if (tram.displayMode != 0) { DrawTramMarkers(); }                       
+                    if (tool.isDisplayTramControl && tram.displayMode != 0) { DrawTramMarkers(); }                       
 
                     if (vehicle.isHydLiftOn) DrawLiftIndicator();
 
@@ -643,7 +643,7 @@ namespace AgOpenGPS
 
             //draw 245 green for the tram tracks
 
-            if (tram.displayMode != 0 && (trk.idx > -1))
+            if (tool.isDisplayTramControl && tram.displayMode != 0 && (trk.idx > -1))
             {
                 GL.Color3((byte)0, (byte)245, (byte)0);
                 GL.LineWidth(8);
@@ -1643,7 +1643,7 @@ namespace AgOpenGPS
         {
             GL.Enable(EnableCap.Texture2D);
 
-            if (isUTurnOn)
+            if (!isStanleyUsed && isUTurnOn)
             {
                 GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.TurnManual]);        // Select Our Texture
                 GL.Color3(0.90f, 0.90f, 0.293f);
@@ -1664,14 +1664,14 @@ namespace AgOpenGPS
             if (isLateralOn)
             {
                 GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.Lateral]);        // Select Our Texture
-                GL.Color3(0.190f, 0.90f, 0.93f);
+                GL.Color3(0.590f, 0.90f, 0.93f);
                 int two3 = oglMain.Width / 4;
                 GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
                 {
-                    GL.TexCoord2(0, 0); GL.Vertex2(-82 - two3, 90); // 
-                    GL.TexCoord2(1, 0); GL.Vertex2(82 - two3, 90); // 
-                    GL.TexCoord2(1, 1); GL.Vertex2(82 - two3, 150); // 
-                    GL.TexCoord2(0, 1); GL.Vertex2(-82 - two3, 150); //
+                    GL.TexCoord2(0, 0); GL.Vertex2(-100 - two3, 90); // 
+                    GL.TexCoord2(1, 0); GL.Vertex2(100 - two3, 90); // 
+                    GL.TexCoord2(1, 1); GL.Vertex2(100 - two3, 150); // 
+                    GL.TexCoord2(0, 1); GL.Vertex2(-100 - two3, 150); //
                 }
                 GL.End();
             }
@@ -1750,11 +1750,11 @@ namespace AgOpenGPS
             {
                 if (!yt.isYouTurnTriggered)
                 {
-                    font.DrawText(-30 + two3, 80, DistPivotM);
+                    font.DrawText(-40 + two3, 80, DistPivotM);
                 }
                 else
                 {
-                    font.DrawText(-30 + two3, 80, yt.onA.ToString());
+                    font.DrawText(-40 + two3, 80, yt.onA.ToString());
                 }
             }
             else

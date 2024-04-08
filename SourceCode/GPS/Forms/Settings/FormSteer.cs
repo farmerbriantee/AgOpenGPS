@@ -110,6 +110,9 @@ namespace AgOpenGPS
             hsbarLookAheadMult.Value = (Int16)(Properties.Settings.Default.setVehicle_goalPointLookAheadMult * 10);
             lblLookAheadMult.Text = mf.vehicle.goalPointLookAheadMult.ToString();
 
+            hsbarUTurnCompensation.Value = (Int16)(mf.vehicle.uturnCompensation * 10);
+            lblUTurnCompensation.Text = (hsbarUTurnCompensation.Value - 10).ToString();
+
             //make sure free drive is off
             btnFreeDrive.Image = Properties.Resources.SteerDriveOff;
             mf.vehicle.isInFreeDriveMode = false;
@@ -351,6 +354,8 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.setWindow_steerSettingsLocation = Location;
 
+            Properties.Settings.Default.setAS_uTurnCompensation = mf.vehicle.uturnCompensation;
+
             Properties.Settings.Default.Save();
 
             //save current vehicle
@@ -400,6 +405,8 @@ namespace AgOpenGPS
                 Properties.Settings.Default.purePursuitIntegralGainAB = 0.15;
 
                 Properties.Settings.Default.setAS_sideHillComp = 0;
+
+                Properties.Settings.Default.setAS_uTurnCompensation = 1;
 
                 //Properties.Settings.Default.setVehicle_wheelbase = 2.8;
 
@@ -554,6 +561,12 @@ namespace AgOpenGPS
         }
 
         #endregion
+
+        private void hsbarUTurnCompensation_ValueChanged(object sender, EventArgs e)
+        {
+            mf.vehicle.uturnCompensation = hsbarUTurnCompensation.Value * 0.1;
+            lblUTurnCompensation.Text = (hsbarUTurnCompensation.Value - 10).ToString();
+        }
 
         #region Pure
 

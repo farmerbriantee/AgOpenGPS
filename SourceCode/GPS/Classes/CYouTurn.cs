@@ -231,11 +231,6 @@ namespace AgOpenGPS
 
                         //creates half a circle starting at the crossing point
                         ytList.Clear();
-                        if (curveIndex >= mf.curve.curList.Count - 3 || curveIndex < 3)
-                        {
-                            FailCreate();
-                            return false;
-                        }
 
                         curveIndex += count;
 
@@ -2587,7 +2582,7 @@ namespace AgOpenGPS
             double turnOffset = (mf.tool.width - mf.tool.overlap); //remove rowSkips
 
             //if its straight across it makes 2 loops instead so goal is a little lower then start
-            if (!isHeadingSameWay) head += Math.PI;
+            if (!mf.isStanleyUsed &&!isHeadingSameWay) head += Math.PI;
 
             //move the start forward 2 meters, this point is critical to formation of uturn
             rEastYT += (Math.Sin(head) * 2);
@@ -2762,7 +2757,6 @@ namespace AgOpenGPS
                     //}
 
                     //feed backward to turn slower to keep pivot on
-                    A -= 7;
                     if (A < 0)
                     {
                         A = 0;
@@ -2770,10 +2764,16 @@ namespace AgOpenGPS
                     B = A + 1;
 
                     //return and reset if too far away or end of the line
-                    if (B >= ptCount - 8)
+                    if (B >= ptCount - 1)
                     {
                         CompleteYouTurn();
                         return false;
+                    }
+
+                    if (uTurnStyle == 1 && pt3Phase == 0 && mf.isReverse)
+                    {
+                        CompleteYouTurn();
+                        return true;
                     }
 
                     //get the distance from currently active AB line, precalc the norm of line
@@ -2820,7 +2820,7 @@ namespace AgOpenGPS
                     if (steerAngleYT < -0.74) steerAngleYT = -0.74;
 
                     //add them up and clamp to max in vehicle settings
-                    steerAngleYT = glm.toDegrees((steerAngleYT + abFixHeadingDelta) * -1.0);
+                    steerAngleYT = glm.toDegrees((steerAngleYT + abFixHeadingDelta * mf.vehicle.uturnCompensation) * -1.0);
                     if (steerAngleYT < -mf.vehicle.maxSteerAngle) steerAngleYT = -mf.vehicle.maxSteerAngle;
                     if (steerAngleYT > mf.vehicle.maxSteerAngle) steerAngleYT = mf.vehicle.maxSteerAngle;
                 }
@@ -2883,7 +2883,9 @@ namespace AgOpenGPS
 
                     //sharp turns on you turn.
                     //update base on autosteer settings and distance from line
-                    double goalPointDistance = 0.8 * mf.vehicle.UpdateGoalPointDistance();
+                    double goalPointDistance = mf.vehicle.UpdateGoalPointDistance();
+
+                    //goalPointDistance *= mf.vehicle.uturnCompensation;
 
                     isHeadingSameWay = true;
                     bool ReverseHeading = !mf.isReverse;
@@ -2932,6 +2934,8 @@ namespace AgOpenGPS
 
                     steerAngleYT = glm.toDegrees(Math.Atan(2 * (((goalPointYT.easting - pivot.easting) * Math.Cos(localHeading))
                         + ((goalPointYT.northing - pivot.northing) * Math.Sin(localHeading))) * mf.vehicle.wheelbase / goalPointDistanceSquared));
+
+                    steerAngleYT *= mf.vehicle.uturnCompensation;
 
                     if (steerAngleYT < -mf.vehicle.maxSteerAngle) steerAngleYT = -mf.vehicle.maxSteerAngle;
                     if (steerAngleYT > mf.vehicle.maxSteerAngle) steerAngleYT = mf.vehicle.maxSteerAngle;

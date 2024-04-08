@@ -917,6 +917,7 @@ namespace AgOpenGPS
 
             flp1.Top = this.Height - 230;
             flp1.Left = this.Width - 120 - flp1.Width;
+            btnFlag.Text = isStanleyUsed ? "S" : "P";
         }
 
         private void PanelsAndOGLSize()
@@ -1193,48 +1194,51 @@ namespace AgOpenGPS
                                 return;
                             }
 
-                            //manual uturn triggering
-                            middle = oglMain.Width / 2 - oglMain.Width / 4;
-                            if (point.X > middle - 140 && point.X < middle && isUTurnOn)
+                            if (!isStanleyUsed)
                             {
-                                if (yt.isYouTurnTriggered)
+                                //manual uturn triggering
+                                middle = oglMain.Width / 2 - oglMain.Width / 4;
+                                if (point.X > middle - 140 && point.X < middle && isUTurnOn)
                                 {
-                                    yt.ResetYouTurn();
-                                }
-                                else
-                                {
-                                    if (vehicle.functionSpeedLimit > avgSpeed)
+                                    if (yt.isYouTurnTriggered)
                                     {
-                                        yt.isYouTurnTriggered = true;
-                                        yt.BuildManualYouTurn(false, true);
+                                        yt.ResetYouTurn();
                                     }
                                     else
                                     {
-                                        SpeedLimitExceeded();
+                                        if (vehicle.functionSpeedLimit > avgSpeed)
+                                        {
+                                            yt.isYouTurnTriggered = true;
+                                            yt.BuildManualYouTurn(false, true);
+                                        }
+                                        else
+                                        {
+                                            SpeedLimitExceeded();
+                                        }
+                                        return;
                                     }
-                                    return;
                                 }
-                            }
 
-                            if (point.X > middle && point.X < middle + 140 && isUTurnOn)
-                            {
-                                if (yt.isYouTurnTriggered)
+                                if (point.X > middle && point.X < middle + 140 && isUTurnOn)
                                 {
-                                    yt.ResetYouTurn();
-                                }
-                                else
-                                {
-                                    if (vehicle.functionSpeedLimit > avgSpeed)
+                                    if (yt.isYouTurnTriggered)
                                     {
-                                        yt.isYouTurnTriggered = true;
-                                        yt.BuildManualYouTurn(true, true);
+                                        yt.ResetYouTurn();
                                     }
                                     else
                                     {
-                                        SpeedLimitExceeded();
-                                    }
+                                        if (vehicle.functionSpeedLimit > avgSpeed)
+                                        {
+                                            yt.isYouTurnTriggered = true;
+                                            yt.BuildManualYouTurn(true, true);
+                                        }
+                                        else
+                                        {
+                                            SpeedLimitExceeded();
+                                        }
 
-                                    return;
+                                        return;
+                                    }
                                 }
                             }
                         }
@@ -1243,11 +1247,12 @@ namespace AgOpenGPS
                         if (point.Y < 150 && point.Y > 90 && (trk.idx > -1))
                         {
                             int middle = oglMain.Width / 2 - oglMain.Width / 4;
-                            if (point.X > middle - 140 && point.X < middle && isLateralOn)
+                            if (point.X > middle - 160 && point.X < middle && isLateralOn)
                             {
                                 if (vehicle.functionSpeedLimit > avgSpeed)
                                 {
                                     yt.BuildManualYouLateral(false);
+                                    yt.ResetYouTurn();
                                 }
                                 else
                                 {
@@ -1257,11 +1262,12 @@ namespace AgOpenGPS
                                 return;
                             }
 
-                            if (point.X > middle && point.X < middle + 140 && isLateralOn)
+                            if (point.X > middle && point.X < middle + 160 && isLateralOn)
                             {
                                 if (vehicle.functionSpeedLimit > avgSpeed)
                                 {
                                     yt.BuildManualYouLateral(true);
+                                    yt.ResetYouTurn();
                                 }
                                 else
                                 {
@@ -1306,7 +1312,7 @@ namespace AgOpenGPS
                     }
 
                     //tram override
-                    if (point.Y > 68 && point.Y < 120)
+                    if (tool.isDisplayTramControl && (point.Y > 68 && point.Y < 120))
                     {
                         if (point.X > centerX - 100 && point.X < centerX - 40)
                         {

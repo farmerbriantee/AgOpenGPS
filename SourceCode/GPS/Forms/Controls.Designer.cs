@@ -421,7 +421,15 @@ namespace AgOpenGPS
         {
             if (!isFirstFixPositionSet || sentenceCounter > 299)
             {
-                TimedMessageBox(2500, "No GPS", "You are lost with no GPS, Fix that First");
+                if (isJobStarted)
+                {
+                    FileSaveEverythingBeforeClosingField();
+                    TimedMessageBox(2500, gStr.gsField, "Field is now closed");
+                }
+                else
+                {
+                    TimedMessageBox(2500, "No GPS", "No GPS Position Found");
+                }
                 return;
             }
 
@@ -519,20 +527,7 @@ namespace AgOpenGPS
 
             trk.idx = -1;
 
-            //if (isJobStarted && trk.gArr.Count > 0)
-            //{
-            //    for (int i = 0; i < trk.gArr.Count; i++)
-            //    {
-            //        if (trk.gArr[i].isVisible)
-            //        {
-            //            trk.idx = i;
-            //            break;
-            //        }
-            //    }
-            //}
-
             PanelUpdateRightAndBottom();
-
         }
         public void FileSaveEverythingBeforeClosingField()
         {
@@ -562,6 +557,7 @@ namespace AgOpenGPS
             FileSaveBoundary();
             FileSaveSections();
             FileSaveContour();
+            FileSaveTracks();
 
             ExportFieldAs_KML();
             ExportFieldAs_ISOXMLv3();

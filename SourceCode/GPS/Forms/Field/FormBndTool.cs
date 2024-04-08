@@ -452,11 +452,20 @@ namespace AgOpenGPS
 
         private void cboxSmooth_SelectedIndexChanged(object sender, EventArgs e)
         {
-            smPtsChoose = cboxSmooth.SelectedIndex + 1;
-            smPts = 2;
-            for (int i = 1; i <= smPtsChoose; i++)
-                smPts *= 2;
-            cboxSmooth.Text = smPts.ToString();
+            smPtsChoose = cboxSmooth.SelectedIndex;
+
+            if (smPtsChoose == 0)
+            {
+                smPts = 0;
+                cboxSmooth.Text = smPts.ToString();
+            }
+            else
+            {
+                smPts = 2;
+                for (int i = 1; i <= smPtsChoose; i++)
+                    smPts *= 2;
+                cboxSmooth.Text = smPts.ToString();
+            }
             SmoothList();
         }
 
@@ -464,6 +473,7 @@ namespace AgOpenGPS
         {
             timer1.Interval = 500;
             isStep = false;
+            cboxPointDistance.Enabled = false;
 
             minDistDisp = (double)(cboxPointDistance.SelectedIndex + 1);
             minDistSq = minDistDisp * minDistDisp;
@@ -565,6 +575,7 @@ namespace AgOpenGPS
 
         private void btnStartStop_Click(object sender, EventArgs e)
         {
+            btnStartStop.Enabled = false;
             if (secList.Count < 20)
             {
                 mf.YesMessageBox("Not enough points to make a boundary");
@@ -615,32 +626,43 @@ namespace AgOpenGPS
             //the temp array
             vec3[] arr = new vec3[cnt];
 
-            //read the points before and after the setpoint
-            for (int s = 0; s < smPts / 2; s++)
+            if (smPts != 0)
             {
-                arr[s].easting = bndList[s].easting;
-                arr[s].northing = bndList[s].northing;
-                arr[s].heading = bndList[s].heading;
-            }
 
-            for (int s = cnt - (smPts / 2); s < cnt; s++)
-            {
-                arr[s].easting = bndList[s].easting;
-                arr[s].northing = bndList[s].northing;
-                arr[s].heading = bndList[s].heading;
-            }
-
-            //average them - center weighted average
-            for (int i = smPts / 2; i < cnt - (smPts / 2); i++)
-            {
-                for (int j = -smPts / 2; j < smPts / 2; j++)
+                //read the points before and after the setpoint
+                for (int s = 0; s < smPts / 2; s++)
                 {
-                    arr[i].easting += bndList[j + i].easting;
-                    arr[i].northing += bndList[j + i].northing;
+                    arr[s].easting = bndList[s].easting;
+                    arr[s].northing = bndList[s].northing;
+                    arr[s].heading = bndList[s].heading;
                 }
-                arr[i].easting /= smPts;
-                arr[i].northing /= smPts;
-                arr[i].heading = bndList[i].heading;
+
+                for (int s = cnt - (smPts / 2); s < cnt; s++)
+                {
+                    arr[s].easting = bndList[s].easting;
+                    arr[s].northing = bndList[s].northing;
+                    arr[s].heading = bndList[s].heading;
+                }
+
+                //average them - center weighted average
+                for (int i = smPts / 2; i < cnt - (smPts / 2); i++)
+                {
+                    for (int j = -smPts / 2; j < smPts / 2; j++)
+                    {
+                        arr[i].easting += bndList[j + i].easting;
+                        arr[i].northing += bndList[j + i].northing;
+                    }
+                    arr[i].easting /= smPts;
+                    arr[i].northing /= smPts;
+                    arr[i].heading = bndList[i].heading;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < bndList.Count; i++)
+                {
+                    arr[i] = bndList[i];
+                }
             }
 
             //make a list to draw

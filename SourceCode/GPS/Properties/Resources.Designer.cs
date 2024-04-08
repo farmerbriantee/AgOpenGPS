@@ -1002,6 +1002,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ConD_LogElevation {
+            get {
+                object obj = ResourceManager.GetObject("ConD_LogElevation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ConD_LogNMEA {
             get {
                 object obj = ResourceManager.GetObject("ConD_LogNMEA", resourceCulture);
@@ -1445,6 +1455,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap ConT_TramOverride {
             get {
                 object obj = ResourceManager.GetObject("ConT_TramOverride", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ConT_TramOverrideDisplay {
+            get {
+                object obj = ResourceManager.GetObject("ConT_TramOverrideDisplay", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

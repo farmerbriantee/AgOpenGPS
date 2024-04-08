@@ -337,9 +337,11 @@ namespace AgOpenGPS
                     {
                         int ptCnt = curList.Count - 1;
 
+                        bool isAdding = false;
                         //end
                         while (mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(curList[curList.Count - 1]))
                         {
+                            isAdding = true;
                             for (int i = 1; i < 10; i++)
                             {
                                 vec3 pt = new vec3(curList[ptCnt]);
@@ -350,11 +352,25 @@ namespace AgOpenGPS
                             ptCnt = curList.Count - 1;
                         }
 
+                        if (isAdding)
+                        {
+                            vec3 pt = new vec3(curList[curList.Count - 1]);
+                            for (int i = 1; i < 5; i++)
+                            {
+                                pt.easting += (Math.Sin(pt.heading) * 2);
+                                pt.northing += (Math.Cos(pt.heading) * 2);
+                                curList.Add(pt);
+                            }
+                        }
+
+                        isAdding = false;
+
                         //and the beginning
                         pt33 = new vec3(curList[0]);
 
                         while (mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(curList[0]))
                         {
+                            isAdding = true;
                             pt33 = new vec3(curList[0]);
 
                             for (int i = 1; i < 10; i++)
@@ -365,6 +381,18 @@ namespace AgOpenGPS
                                 curList.Insert(0, pt);
                             }
                         }
+
+                        if (isAdding)
+                        {
+                            vec3 pt = new vec3(curList[0]);
+                            for (int i = 1; i < 5; i++)
+                            {
+                                pt.easting -= (Math.Sin(pt.heading) * 2);
+                                pt.northing -= (Math.Cos(pt.heading) * 2);
+                                curList.Insert(0, pt);
+                            }
+                        }
+
                     }
                 }
             }
@@ -378,11 +406,13 @@ namespace AgOpenGPS
                     - (mf.pivotAxlePos.northing - refPoint1.northing) * (mf.steerAxlePos.easting - refPoint1.easting)) < 0;
 
                 //how far are we away from the reference line at 90 degrees - 2D cross product and distance
-                distanceFromRefLine = glm.Distance(mf.guidanceLookPos, refPoint1);
+                distanceFromRefLine = glm.Distance(mf.pivotAxlePos, refPoint1);
 
                 distanceFromRefLine -= (0.5 * widthMinusOverlap);
 
-                double RefDist = (distanceFromRefLine + (isHeadingSameWay ? mf.tool.offset : -mf.tool.offset)) / widthMinusOverlap;
+                double RefDist = (distanceFromRefLine 
+                    + (isHeadingSameWay ? mf.tool.offset : -mf.tool.offset) 
+                    + mf.trk.gArr[idx].nudgeDistance) / widthMinusOverlap;
 
                 if (RefDist < 0) howManyPathsAway = (int)(RefDist - 0.5);
                 else howManyPathsAway = (int)(RefDist + 0.5);
