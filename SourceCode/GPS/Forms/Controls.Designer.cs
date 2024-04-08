@@ -1654,10 +1654,8 @@ namespace AgOpenGPS
             Properties.Settings.Default.set_youSkipWidth = yt.rowSkipsWidth;
             Properties.Settings.Default.Save();
         }
-        private void cboxpRowWidth_Click(object sender, EventArgs e)
-        {
-        }
-        private void btnHeadlandOnOff_Click(object sender, EventArgs e)
+        private void 
+            btnHeadlandOnOff_Click(object sender, EventArgs e)
         {
             bnd.isHeadlandOn = !bnd.isHeadlandOn;
             if (bnd.isHeadlandOn)
