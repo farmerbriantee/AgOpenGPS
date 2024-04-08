@@ -2133,4 +2133,5 @@ namespace AgOpenGPS
         private ToolStripMenuItem headingChartToolStripMenuItem;
         private ToolStripMenuItem xTEChartToolStripMenuItem;
     }//end class
+
 }//end namespace
