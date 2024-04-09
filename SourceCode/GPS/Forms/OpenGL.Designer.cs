@@ -2160,10 +2160,10 @@ namespace AgOpenGPS
                 // in millimeters
                 avgPivDistance = avgPivDistance * 0.5 + lightbarDistance * 0.5;
 
-                longAvgPivDistance = longAvgPivDistance * 0.98 + Math.Abs(avgPivDistance) * 0.02;
+                if (avgPivDistance > 150) longAvgPivDistance = 150;
+                    longAvgPivDistance = longAvgPivDistance * 0.97 + Math.Abs(avgPivDistance) * 0.03;
 
                 double avgPivotDistance = avgPivDistance * (isMetric ? 0.1 : 0.03937);
-                double longAvgPivotDistance = longAvgPivDistance * (isMetric ? 0.1 : 0.03937);
 
                 string hede;
 
@@ -2183,11 +2183,14 @@ namespace AgOpenGPS
                 int center = -(int)(((double)(hede.Length) * 0.5) * 22);
                 font.DrawText(center, 2, hede, 1.5);
 
-                hede = (Math.Abs(longAvgPivotDistance)).ToString("N1");
+                if (longAvgPivDistance < 150)
+                {
+                    hede = (Math.Abs(longAvgPivDistance * (isMetric ? 0.1 : 0.03937))).ToString("N1");
 
-                GL.Color3(0.950f, 0.952f, 0.3f);
-                center = -(int)(((double)(hede.Length) * 0.5) * 16);
-                font.DrawText(center, 50, hede, 1);
+                    GL.Color3(0.950f, 0.952f, 0.3f);
+                    center = -(int)(((double)(hede.Length) * 0.5) * 16);
+                    font.DrawText(center, 45, hede, 1);
+                }
 
                 ////draw the modeTimeCounter
                 //if (!isStanleyUsed)
