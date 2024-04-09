@@ -466,18 +466,22 @@ namespace AgOpenGPS
                 return;
             }
 
-            if (isJobStarted)
-            {
-                if (autoBtnState == btnStates.Auto)
-                    btnSectionMasterAuto.PerformClick();
-
-                if (manualBtnState == btnStates.On)
-                    btnSectionMasterManual.PerformClick();
-            }
-
             using (var form = new FormJob(this))
             {
                 var result = form.ShowDialog(this);
+
+                if (result == DialogResult.Cancel)
+                    return;
+
+                if (isJobStarted)
+                {
+                    if (autoBtnState == btnStates.Auto)
+                        btnSectionMasterAuto.PerformClick();
+
+                    if (manualBtnState == btnStates.On)
+                        btnSectionMasterManual.PerformClick();
+                }
+
                 if (result == DialogResult.Yes)
                 {
                     //new field - ask for a directory name
@@ -517,6 +521,8 @@ namespace AgOpenGPS
                     if (distance > 10) TimedMessageBox(2500, "High Field Start Distance Warning", "Field Start is "
                         + distance.ToString("N1") + " km From current position");
                 }
+
+
             }
 
             FieldMenuButtonEnableDisable(isJobStarted);
