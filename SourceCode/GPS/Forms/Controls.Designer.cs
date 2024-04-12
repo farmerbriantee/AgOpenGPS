@@ -417,6 +417,8 @@ namespace AgOpenGPS
 
             tramLinesMenuField.Enabled = (trk.gArr.Count > 0 && trk.idx > -1);
         }
+
+        public bool isCancelJobMenu;
         private void btnJobMenu_Click(object sender, EventArgs e)
         {
             if (!isFirstFixPositionSet || sentenceCounter > 299)
@@ -466,18 +468,25 @@ namespace AgOpenGPS
                 return;
             }
 
-            if (isJobStarted)
-            {
-                if (autoBtnState == btnStates.Auto)
-                    btnSectionMasterAuto.PerformClick();
-
-                if (manualBtnState == btnStates.On)
-                    btnSectionMasterManual.PerformClick();
-            }
-
             using (var form = new FormJob(this))
             {
                 var result = form.ShowDialog(this);
+
+                if (isCancelJobMenu)
+                {
+                    isCancelJobMenu = false;
+                    return;
+                }
+
+                if (isJobStarted)
+                {
+                    if (autoBtnState == btnStates.Auto)
+                        btnSectionMasterAuto.PerformClick();
+
+                    if (manualBtnState == btnStates.On)
+                        btnSectionMasterManual.PerformClick();
+                }
+
                 if (result == DialogResult.Yes)
                 {
                     //new field - ask for a directory name

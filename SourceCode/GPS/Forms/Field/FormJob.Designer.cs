@@ -333,6 +333,7 @@
             this.btnDeleteAB.TabIndex = 4;
             this.btnDeleteAB.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDeleteAB.UseVisualStyleBackColor = false;
+            this.btnDeleteAB.Click += new System.EventHandler(this.btnDeleteAB_Click);
             // 
             // FormJob
             // 

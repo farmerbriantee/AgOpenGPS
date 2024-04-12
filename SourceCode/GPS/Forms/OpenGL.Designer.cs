@@ -2161,7 +2161,9 @@ namespace AgOpenGPS
                 avgPivDistance = avgPivDistance * 0.5 + lightbarDistance * 0.5;
 
                 if (avgPivDistance > 150) longAvgPivDistance = 150;
-                    longAvgPivDistance = longAvgPivDistance * 0.97 + Math.Abs(avgPivDistance) * 0.03;
+                if (longAvgPivDistance > 150) longAvgPivDistance = 150;
+
+                longAvgPivDistance = longAvgPivDistance * 0.97 + Math.Abs(avgPivDistance) * 0.03;
 
                 double avgPivotDistance = avgPivDistance * (isMetric ? 0.1 : 0.03937);
 
