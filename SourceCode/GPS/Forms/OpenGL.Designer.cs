@@ -2268,6 +2268,10 @@ namespace AgOpenGPS
                     GL.TexCoord2(0, 1); GL.Vertex2(center, hite); //
                 }
                 GL.End();
+
+                center += 50;
+                font.DrawText(center, hite-32, "x" + gridToolSpacing.ToString(), 1);
+
             }
 
             center = oglMain.Width / -2 + 10;

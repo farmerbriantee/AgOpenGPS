@@ -223,6 +223,12 @@
     <Compile Include="Forms\FormYes.designer.cs">
       <DependentUpon>FormYes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Guidance\FormGrid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Guidance\FormGrid.Designer.cs">
+      <DependentUpon>FormGrid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Guidance\FormQuickAB.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -631,6 +637,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.uk.resx</DependentUpon>
     </Compile>
+    <Compile Include="gStr.zh-CHS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gStr.zh-CHS.resx</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\UDPComm.Designer.cs">
@@ -672,6 +683,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormYes.resx">
       <DependentUpon>FormYes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Guidance\FormGrid.resx">
+      <DependentUpon>FormGrid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Guidance\FormQuickAB.resx">
       <DependentUpon>FormQuickAB.cs</DependentUpon>
@@ -890,7 +904,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.uk.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.zh-CHS.resx" />
+    <EmbeddedResource Include="gStr.zh-CHS.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.zh-CHS.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -943,6 +960,7 @@
     <None Include="btnImages\Config\ConF_SoundSections.png" />
     <None Include="btnImages\Config\ConD_LogElevation.png" />
     <None Include="btnImages\Config\ConT_TramOverrideDisplay.png" />
+    <None Include="btnImages\GridRotate.png" />
     <Content Include="Resources\TF012.WAV" />
     <None Include="Resources\SectionOn.wav" />
     <None Include="Resources\SectionOff.wav" />

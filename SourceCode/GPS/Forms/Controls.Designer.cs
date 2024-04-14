@@ -899,6 +899,10 @@ namespace AgOpenGPS
                 if (displayBrightness.isWmiMonitor) btnBrightnessDn.Text = (displayBrightness.GetBrightness().ToString()) + "%";
                 else btnBrightnessDn.Text = "??";
             }
+
+            if (isJobStarted) btnGrid.Enabled = true;
+            else btnGrid.Enabled = false;
+
         }
         private void btnStartAgIO_Click(object sender, EventArgs e)
         {
@@ -1939,18 +1943,25 @@ namespace AgOpenGPS
             camera.camPitch = -65;
             navPanelCounter = 0;
         }
-        private void btnN2D_Click(object sender, EventArgs e)
+        //private void btnN2D_Click(object sender, EventArgs e)
+        //{
+        //    camera.camFollowing = false;
+        //    camera.camPitch = 0;
+        //    navPanelCounter = 0;
+        //}
+        //private void btnN3D_Click(object sender, EventArgs e)
+        //{
+        //    camera.camPitch = -65;
+        //    camera.camFollowing = false;
+        //    navPanelCounter = 0;
+        //}
+
+        private void btnGrid_Click(object sender, EventArgs e)
         {
-            camera.camFollowing = false;
-            camera.camPitch = 0;
-            navPanelCounter = 0;
+            var form = new FormGrid(this);
+                form.Show(this);
         }
-        private void btnN3D_Click(object sender, EventArgs e)
-        {
-            camera.camPitch = -65;
-            camera.camFollowing = false;
-            navPanelCounter = 0;
-        }
+
         private void btnBrightnessUp_Click(object sender, EventArgs e)
         {
             if (displayBrightness.isWmiMonitor)

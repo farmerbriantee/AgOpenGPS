@@ -77,6 +77,7 @@ namespace AgOpenGPS
         private readonly Stopwatch swFrame = new Stopwatch();
 
         public double secondsSinceStart;
+        public double gridToolSpacing;
 
         //private readonly Stopwatch swDraw = new Stopwatch();
         //swDraw.Reset();
@@ -1133,15 +1134,19 @@ namespace AgOpenGPS
         public void SetZoom()
         {
             //match grid to cam distance and redo perspective
-            if (camera.camSetDistance > -50) camera.gridZoom = 10;
-            else if (camera.camSetDistance > -150) camera.gridZoom = 20;
-            else if (camera.camSetDistance > -250) camera.gridZoom = 40;
-            else if (camera.camSetDistance > -500) camera.gridZoom = 80;
-            else if (camera.camSetDistance > -1000) camera.gridZoom = 160;
-            else if (camera.camSetDistance > -2000) camera.gridZoom = 320;
-            else if (camera.camSetDistance > -5000) camera.gridZoom = 640;
-            else if (camera.camSetDistance > -10000) camera.gridZoom = 1280;
-            else if (camera.camSetDistance > -20000) camera.gridZoom = 2000;
+            if (camera.camSetDistance > -40) camera.gridZoom = 4;
+            else if (camera.camSetDistance > -80) camera.gridZoom = 4;
+            else if (camera.camSetDistance > -160) camera.gridZoom = 8;
+            else if (camera.camSetDistance > -320) camera.gridZoom = 16;
+            else if (camera.camSetDistance > -640) camera.gridZoom = 32;
+            else if (camera.camSetDistance > -1280) camera.gridZoom = 64;
+            else if (camera.camSetDistance > -2560) camera.gridZoom = 128;
+            else if (camera.camSetDistance > -5120) camera.gridZoom = 256;
+            else if (camera.camSetDistance > -10240) camera.gridZoom = 512;
+
+            gridToolSpacing = (int)(camera.gridZoom / tool.width + 0.5);
+            if (gridToolSpacing < 1) gridToolSpacing = 1;
+            camera.gridZoom = gridToolSpacing * tool.width;
 
             oglMain.MakeCurrent();
             GL.MatrixMode(MatrixMode.Projection);
