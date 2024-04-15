@@ -32,6 +32,9 @@ namespace AgOpenGPS
 
         private void FormSteer_Load(object sender, EventArgs e)
         {
+            if (mf.isStanleyUsed) tabControl1.TabPages.Remove(tabInt);
+            else tabControl1.TabPages.Remove(tabStan);
+
             Location = Properties.Settings.Default.setWindow_steerSettingsLocation;
             //WAS Zero, CPD
             hsbarWasOffset.ValueChanged -= hsbarSteerAngleSensorZero_ValueChanged;
@@ -226,7 +229,6 @@ namespace AgOpenGPS
                 pbarSensor.Visible = false;
                 hsbarSensor.Visible = false;
                 lblhsbarSensor.Visible = false;
-                return;
             }
         }
 
@@ -893,6 +895,12 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.setVehicle_isStanleyUsed = mf.isStanleyUsed;
             Properties.Settings.Default.Save();
+
+            tabControl1.TabPages.Remove(tabInt);
+            tabControl1.TabPages.Remove(tabStan);
+
+            if (mf.isStanleyUsed) tabControl1.TabPages.Add(tabStan);
+            else tabControl1.TabPages.Add(tabInt);
         }
 
         private void btnSteerWizard_Click(object sender, EventArgs e)

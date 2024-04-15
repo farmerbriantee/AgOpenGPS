@@ -124,7 +124,6 @@
             this.label63 = new System.Windows.Forms.Label();
             this.label64 = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
-            this.nudMaxCounts = new AgOpenGPS.NudlessNumericUpDown();
             this.label55 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -138,7 +137,6 @@
             this.hsbarSensor = new System.Windows.Forms.HScrollBar();
             this.lblhsbarSensor = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.nudPanicStopSpeed = new AgOpenGPS.NudlessNumericUpDown();
             this.label31 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
@@ -167,20 +165,22 @@
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.btnSteerWizard = new System.Windows.Forms.Button();
             this.label35 = new System.Windows.Forms.Label();
+            this.nudMaxCounts = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudPanicStopSpeed = new AgOpenGPS.NudlessNumericUpDown();
             this.tabControl1.SuspendLayout();
             this.tabSteer.SuspendLayout();
             this.tabGain.SuspendLayout();
             this.tabStan.SuspendLayout();
             this.tabInt.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMaxCounts)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudPanicStopSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxSendSteer)).BeginInit();
             this.tabSteerSettings.SuspendLayout();
             this.tabSensors.SuspendLayout();
             this.tabConfig.SuspendLayout();
             this.tabSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxCounts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPanicStopSpeed)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -398,13 +398,13 @@
             // tabControl1
             // 
             this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons;
-            this.tabControl1.Controls.Add(this.tabSteer);
-            this.tabControl1.Controls.Add(this.tabGain);
-            this.tabControl1.Controls.Add(this.tabStan);
             this.tabControl1.Controls.Add(this.tabInt);
+            this.tabControl1.Controls.Add(this.tabStan);
+            this.tabControl1.Controls.Add(this.tabGain);
+            this.tabControl1.Controls.Add(this.tabSteer);
             this.tabControl1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.ImageList = this.imageList1;
-            this.tabControl1.ItemSize = new System.Drawing.Size(88, 48);
+            this.tabControl1.ItemSize = new System.Drawing.Size(105, 48);
             this.tabControl1.Location = new System.Drawing.Point(3, 0);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Multiline = true;
@@ -970,9 +970,9 @@
             this.tabInt.Controls.Add(this.hsbarLookAhead);
             this.tabInt.ForeColor = System.Drawing.Color.Black;
             this.tabInt.ImageIndex = 3;
-            this.tabInt.Location = new System.Drawing.Point(4, 52);
+            this.tabInt.Location = new System.Drawing.Point(4, 103);
             this.tabInt.Name = "tabInt";
-            this.tabInt.Size = new System.Drawing.Size(358, 346);
+            this.tabInt.Size = new System.Drawing.Size(358, 295);
             this.tabInt.TabIndex = 16;
             // 
             // label32
@@ -1369,29 +1369,6 @@
             this.label61.Text = "Turn Sensor";
             this.label61.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
-            // nudMaxCounts
-            // 
-            this.nudMaxCounts.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudMaxCounts.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudMaxCounts.InterceptArrowKeys = false;
-            this.nudMaxCounts.Location = new System.Drawing.Point(21, 245);
-            this.nudMaxCounts.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.nudMaxCounts.Name = "nudMaxCounts";
-            this.nudMaxCounts.ReadOnly = true;
-            this.nudMaxCounts.Size = new System.Drawing.Size(107, 52);
-            this.nudMaxCounts.TabIndex = 493;
-            this.nudMaxCounts.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudMaxCounts.Value = new decimal(new int[] {
-            15,
-            0,
-            0,
-            0});
-            this.nudMaxCounts.Click += new System.EventHandler(this.nudMaxCounts_Click);
-            // 
             // label55
             // 
             this.label55.AutoSize = true;
@@ -1582,29 +1559,6 @@
             this.label16.TabIndex = 520;
             this.label16.Text = "Panic Stop Speed";
             this.label16.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // nudPanicStopSpeed
-            // 
-            this.nudPanicStopSpeed.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudPanicStopSpeed.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudPanicStopSpeed.InterceptArrowKeys = false;
-            this.nudPanicStopSpeed.Location = new System.Drawing.Point(151, 186);
-            this.nudPanicStopSpeed.Maximum = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.nudPanicStopSpeed.Name = "nudPanicStopSpeed";
-            this.nudPanicStopSpeed.ReadOnly = true;
-            this.nudPanicStopSpeed.Size = new System.Drawing.Size(107, 52);
-            this.nudPanicStopSpeed.TabIndex = 519;
-            this.nudPanicStopSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudPanicStopSpeed.Value = new decimal(new int[] {
-            15,
-            0,
-            0,
-            0});
-            this.nudPanicStopSpeed.Click += new System.EventHandler(this.nudPanicStopSpeed_Click);
             // 
             // label31
             // 
@@ -1951,9 +1905,9 @@
             this.tabSettings.Controls.Add(this.lblSideHillComp);
             this.tabSettings.Controls.Add(this.label22);
             this.tabSettings.Controls.Add(this.btnStanleyPure);
-            this.tabSettings.Controls.Add(this.nudPanicStopSpeed);
             this.tabSettings.Controls.Add(this.label16);
             this.tabSettings.Controls.Add(this.label31);
+            this.tabSettings.Controls.Add(this.nudPanicStopSpeed);
             this.tabSettings.ImageIndex = 2;
             this.tabSettings.Location = new System.Drawing.Point(4, 68);
             this.tabSettings.Name = "tabSettings";
@@ -2062,6 +2016,52 @@
             this.label35.Text = "Wizard";
             this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // nudMaxCounts
+            // 
+            this.nudMaxCounts.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudMaxCounts.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudMaxCounts.InterceptArrowKeys = false;
+            this.nudMaxCounts.Location = new System.Drawing.Point(21, 245);
+            this.nudMaxCounts.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nudMaxCounts.Name = "nudMaxCounts";
+            this.nudMaxCounts.ReadOnly = true;
+            this.nudMaxCounts.Size = new System.Drawing.Size(107, 52);
+            this.nudMaxCounts.TabIndex = 493;
+            this.nudMaxCounts.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudMaxCounts.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            this.nudMaxCounts.Click += new System.EventHandler(this.nudMaxCounts_Click);
+            // 
+            // nudPanicStopSpeed
+            // 
+            this.nudPanicStopSpeed.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudPanicStopSpeed.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudPanicStopSpeed.InterceptArrowKeys = false;
+            this.nudPanicStopSpeed.Location = new System.Drawing.Point(151, 186);
+            this.nudPanicStopSpeed.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.nudPanicStopSpeed.Name = "nudPanicStopSpeed";
+            this.nudPanicStopSpeed.ReadOnly = true;
+            this.nudPanicStopSpeed.Size = new System.Drawing.Size(107, 52);
+            this.nudPanicStopSpeed.TabIndex = 519;
+            this.nudPanicStopSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudPanicStopSpeed.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            this.nudPanicStopSpeed.Click += new System.EventHandler(this.nudPanicStopSpeed_Click);
+            // 
             // FormSteer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -2097,12 +2097,10 @@
             this.tabGain.PerformLayout();
             this.tabStan.ResumeLayout(false);
             this.tabInt.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nudMaxCounts)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudPanicStopSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxSendSteer)).EndInit();
             this.tabSteerSettings.ResumeLayout(false);
             this.tabSensors.ResumeLayout(false);
@@ -2111,6 +2109,8 @@
             this.tabConfig.PerformLayout();
             this.tabSettings.ResumeLayout(false);
             this.tabSettings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxCounts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPanicStopSpeed)).EndInit();
             this.ResumeLayout(false);
 
         }

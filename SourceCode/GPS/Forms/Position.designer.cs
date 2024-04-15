@@ -773,7 +773,7 @@ namespace AgOpenGPS
             else
             {
                 //auto track routine
-                if (trk.isAutoTrack && !isBtnAutoSteerOn && trk.autoTrack3SecTimer >= 3)
+                if (trk.isAutoTrack && !isBtnAutoSteerOn && trk.autoTrack3SecTimer >= 1)
                 {
                     trk.autoTrack3SecTimer = 0;
                     int lastIndex = trk.idx;
