@@ -56,19 +56,19 @@ namespace AgOpenGPS
             if (cntr == 0) return -1;
 
             //determine if any aligned reasonably close
-            //bool[] isAlignedArr = new bool[gArr.Count];
-            //for (int i = 0; i < gArr.Count; i++)
-            //{
-            //    if (gArr[i].mode == (int)TrackMode.Curve) isAlignedArr[i] = true;
-            //    else
-            //    {
-            //        double diff = Math.PI - Math.Abs(Math.Abs(pivot.heading - gArr[i].heading) - Math.PI);
-            //        if (diff < 0.6 || diff > 2.54)
-            //            isAlignedArr[i] = true;
-            //        else
-            //            isAlignedArr[i] = false;
-            //    }
-            //}
+            bool[] isAlignedArr = new bool[gArr.Count];
+            for (int i = 0; i < gArr.Count; i++)
+            {
+                if (gArr[i].mode == (int)TrackMode.Curve) isAlignedArr[i] = true;
+                else
+                {
+                    double diff = Math.PI - Math.Abs(Math.Abs(pivot.heading - gArr[i].heading) - Math.PI);
+                    if (diff < 0.6 || diff > 2.54)
+                        isAlignedArr[i] = true;
+                    else
+                        isAlignedArr[i] = false;
+                }
+            }
 
             double minDistA = double.MaxValue;
             double dist;
@@ -77,7 +77,7 @@ namespace AgOpenGPS
 
             for (int i = 0; i < gArr.Count; i++)
             {
-                //if (!isAlignedArr[i]) continue;
+                if (!isAlignedArr[i]) continue;
                 if (!gArr[i].isVisible) continue;
 
                 if (gArr[i].mode == (int)TrackMode.AB)
