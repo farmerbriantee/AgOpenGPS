@@ -1134,15 +1134,7 @@ namespace AgOpenGPS
         public void SetZoom()
         {
             //match grid to cam distance and redo perspective
-            if (camera.camSetDistance > -40) camera.gridZoom = 4;
-            else if (camera.camSetDistance > -80) camera.gridZoom = 4;
-            else if (camera.camSetDistance > -160) camera.gridZoom = 8;
-            else if (camera.camSetDistance > -320) camera.gridZoom = 16;
-            else if (camera.camSetDistance > -640) camera.gridZoom = 32;
-            else if (camera.camSetDistance > -1280) camera.gridZoom = 64;
-            else if (camera.camSetDistance > -2560) camera.gridZoom = 128;
-            else if (camera.camSetDistance > -5120) camera.gridZoom = 256;
-            else if (camera.camSetDistance > -10240) camera.gridZoom = 512;
+            camera.gridZoom = camera.camSetDistance / -15;
 
             gridToolSpacing = (int)(camera.gridZoom / tool.width + 0.5);
             if (gridToolSpacing < 1) gridToolSpacing = 1;

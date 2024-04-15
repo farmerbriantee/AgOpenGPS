@@ -220,6 +220,8 @@ namespace AgOpenGPS
 
                 if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
                 if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
+
+                lblNumCu.Text = (trk.idx + 1).ToString() + "/" + trk.gArr.Count.ToString();
             }
 
             twoSecondCounter = 100;
@@ -256,6 +258,8 @@ namespace AgOpenGPS
 
                 if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
                 if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
+
+                lblNumCu.Text = (trk.idx + 1).ToString() + "/" + trk.gArr.Count.ToString();
             }
 
             ABLine.isABValid = false;
