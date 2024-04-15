@@ -43,13 +43,12 @@ namespace AgOpenGPS
         {
             originalLine = mf.trk.idx;
 
-            Size = Properties.Settings.Default.setWindow_abDrawSize;
+            Size = Properties.Settings.Default.setWindow_gridSize;
 
             Screen myScreen = Screen.FromControl(this);
             Rectangle area = myScreen.WorkingArea;
 
-            this.Top = (area.Height - this.Height) / 2;
-            this.Left = (area.Width - this.Width) / 2;
+            Location = Properties.Settings.Default.setWindow_gridLocation;
             FormABDraw_ResizeEnd(this, e);
         }
 
@@ -60,7 +59,8 @@ namespace AgOpenGPS
 
             mf.twoSecondCounter = 100;
 
-            Properties.Settings.Default.setWindow_abDrawSize = Size;
+            Properties.Settings.Default.setWindow_gridSize = Size;
+            Properties.Settings.Default.setWindow_gridLocation = Location;
             Properties.Settings.Default.Save();
         }
 

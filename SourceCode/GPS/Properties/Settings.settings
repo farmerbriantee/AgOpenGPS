@@ -731,5 +731,11 @@
     <Setting Name="setAS_uTurnCompensation" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
+    <Setting Name="setWindow_gridSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">400, 400</Value>
+    </Setting>
+    <Setting Name="setWindow_gridLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">20, 20</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
