@@ -1964,6 +1964,7 @@ namespace AgOpenGPS
         {
             var form = new FormGrid(this);
                 form.Show(this);
+            navPanelCounter = 0;
         }
 
         private void btnBrightnessUp_Click(object sender, EventArgs e)
