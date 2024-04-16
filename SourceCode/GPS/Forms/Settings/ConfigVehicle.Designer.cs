@@ -532,8 +532,6 @@ namespace AgOpenGPS
 
         private void tabVDimensions_Enter(object sender, EventArgs e)
         {
-            nudMinTurnRadius.Value = (int)(Properties.Settings.Default.setVehicle_minTurningRadius * mf.m2InchOrCm);
-
             nudWheelbase.Value = (int)(Math.Abs(Properties.Settings.Default.setVehicle_wheelbase) * mf.m2InchOrCm);
 
             nudVehicleTrack.Value = (int)(Math.Abs(Properties.Settings.Default.setVehicle_trackWidth) * mf.m2InchOrCm);
@@ -571,7 +569,6 @@ namespace AgOpenGPS
 
             label94.Text = mf.unitsInCm;
             label95.Text = mf.unitsInCm;
-            label96.Text = mf.unitsInCm;
             label97.Text = mf.unitsInCm;
         }
 
@@ -589,15 +586,6 @@ namespace AgOpenGPS
         }
 
 
-        private void nudMinTurnRadius_Click(object sender, EventArgs e)
-        {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
-            {
-                Properties.Settings.Default.setVehicle_minTurningRadius = (double)nudMinTurnRadius.Value * mf.inchOrCm2m;
-                mf.vehicle.minTurningRadius = Properties.Settings.Default.setVehicle_minTurningRadius;
-                Properties.Settings.Default.Save();
-            }
-        }
 
         private void nudWheelbase_Click(object sender, EventArgs e)
         {

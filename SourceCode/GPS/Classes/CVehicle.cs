@@ -15,7 +15,6 @@ namespace AgOpenGPS
         public double antennaHeight;
         public double antennaPivot;
         public double wheelbase;
-        public double minTurningRadius;
         public double antennaOffset, panicStopSpeed;
         public int vehicleType;
 
@@ -58,7 +57,6 @@ namespace AgOpenGPS
             antennaOffset = Properties.Settings.Default.setVehicle_antennaOffset;
 
             wheelbase = Properties.Settings.Default.setVehicle_wheelbase;
-            minTurningRadius = Properties.Settings.Default.setVehicle_minTurningRadius;
             isSteerAxleAhead = Properties.Settings.Default.setVehicle_isSteerAxleAhead;
 
             slowSpeedCutoff = Properties.Settings.Default.setVehicle_slowSpeedCutoff;

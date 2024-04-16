@@ -38,7 +38,6 @@ namespace AgOpenGPS
             nudOverlap.Controls[0].Enabled = false;
             nudCutoffSpeed.Controls[0].Enabled = false;
 
-            nudMinTurnRadius.Controls[0].Enabled = false;
             nudAntennaHeight.Controls[0].Enabled = false;
             nudAntennaOffset.Controls[0].Enabled = false;
             nudAntennaPivot.Controls[0].Enabled = false;
@@ -162,9 +161,6 @@ namespace AgOpenGPS
 
             nudWheelbase.Maximum = Math.Round(nudWheelbase.Maximum / 2.54M);
             nudWheelbase.Minimum = Math.Round(nudWheelbase.Minimum / 2.54M);
-
-            nudMinTurnRadius.Maximum = Math.Round(nudMinTurnRadius.Maximum / 2.54M);
-            nudMinTurnRadius.Minimum = Math.Round(nudMinTurnRadius.Minimum / 2.54M);
 
             nudOverlap.Maximum = Math.Round(nudOverlap.Maximum / 2.54M);
             nudOverlap.Minimum = Math.Round(nudOverlap.Minimum / 2.54M);
