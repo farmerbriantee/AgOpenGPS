@@ -32,12 +32,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.linkLabelGit = new System.Windows.Forms.LinkLabel();
             this.linkLabelCombineForum = new System.Windows.Forms.LinkLabel();
-            this.label5 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnVideo = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.linkLabelYouTube = new System.Windows.Forms.LinkLabel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // label6
@@ -84,16 +86,6 @@
             this.linkLabelCombineForum.Text = "https://discourse.agopengps.com/";
             this.linkLabelCombineForum.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelCombineForum_LinkClicked);
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(253, 132);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(172, 19);
-            this.label5.TabIndex = 556;
-            this.label5.Text = "What is AgOpenGPS";
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::AgOpenGPS.Properties.Resources.AgOpenYouTubeChannel;
@@ -102,23 +94,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(184, 183);
             this.pictureBox1.TabIndex = 557;
             this.pictureBox1.TabStop = false;
-            // 
-            // btnVideo
-            // 
-            this.btnVideo.BackColor = System.Drawing.Color.Transparent;
-            this.btnVideo.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnVideo.FlatAppearance.BorderSize = 0;
-            this.btnVideo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVideo.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVideo.Image = global::AgOpenGPS.Properties.Resources.Webcam;
-            this.btnVideo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnVideo.Location = new System.Drawing.Point(257, 157);
-            this.btnVideo.Name = "btnVideo";
-            this.btnVideo.Size = new System.Drawing.Size(99, 96);
-            this.btnVideo.TabIndex = 130;
-            this.btnVideo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnVideo.UseVisualStyleBackColor = false;
-            this.btnVideo.Click += new System.EventHandler(this.btnVideo_Click);
             // 
             // button1
             // 
@@ -143,6 +118,39 @@
             this.lblVersion.TabIndex = 34;
             this.lblVersion.Text = "Version";
             // 
+            // linkLabelYouTube
+            // 
+            this.linkLabelYouTube.AutoSize = true;
+            this.linkLabelYouTube.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabelYouTube.Location = new System.Drawing.Point(28, 351);
+            this.linkLabelYouTube.Name = "linkLabelYouTube";
+            this.linkLabelYouTube.Size = new System.Drawing.Size(354, 19);
+            this.linkLabelYouTube.TabIndex = 11;
+            this.linkLabelYouTube.TabStop = true;
+            this.linkLabelYouTube.Text = "https://www.youtube.com/@AgOpenGPS/videos";
+            this.linkLabelYouTube.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelYouTube_LinkClicked);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(57, 287);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(185, 23);
+            this.label1.TabIndex = 558;
+            this.label1.Text = "YouTube Tutorials";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImage = global::AgOpenGPS.Properties.Resources.boundaryPlay;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox2.Location = new System.Drawing.Point(247, 258);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(88, 77);
+            this.pictureBox2.TabIndex = 559;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
             // Form_Help
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -151,12 +159,13 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(689, 402);
             this.ControlBox = false;
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.btnVideo);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.linkLabelYouTube);
             this.Controls.Add(this.linkLabelGit);
             this.Controls.Add(this.linkLabelCombineForum);
             this.Controls.Add(this.button1);
@@ -167,6 +176,7 @@
             this.Text = "AgOpenGPS Help";
             this.Load += new System.EventHandler(this.Form_About_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -178,9 +188,10 @@
         private System.Windows.Forms.LinkLabel linkLabelGit;
         private System.Windows.Forms.LinkLabel linkLabelCombineForum;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnVideo;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.LinkLabel linkLabelYouTube;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
