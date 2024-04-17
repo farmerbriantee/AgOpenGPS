@@ -64,6 +64,8 @@ namespace AgOpenGPS
 
         private void FormBndTool_Load(object sender, EventArgs e)
         {
+            panel1.Visible = false;
+
             //already have a boundary
             if (mf.bnd.bndList.Count == 0)
             {
@@ -95,11 +97,11 @@ namespace AgOpenGPS
             }
 
             cboxPointDistance.SelectedIndexChanged -= cboxPointDistance_SelectedIndexChanged;
-            cboxPointDistance.Text = "1";
+            cboxPointDistance.Text = "?";
             cboxPointDistance.SelectedIndexChanged += cboxPointDistance_SelectedIndexChanged;
 
             cboxSmooth.SelectedIndexChanged -= cboxSmooth_SelectedIndexChanged;
-            cboxSmooth.Text = "4";
+            cboxSmooth.Text = "?";
             cboxSmooth.SelectedIndexChanged += cboxSmooth_SelectedIndexChanged;
             cboxIsZoom.Checked = false;
 
@@ -410,6 +412,15 @@ namespace AgOpenGPS
             btnStartStop.BackColor = Color.OrangeRed;
 
             cboxPointDistance.Enabled = true;
+
+            cboxPointDistance.SelectedIndexChanged -= cboxPointDistance_SelectedIndexChanged;
+            cboxPointDistance.Text = "?";
+            cboxPointDistance.SelectedIndexChanged += cboxPointDistance_SelectedIndexChanged;
+
+            cboxSmooth.SelectedIndexChanged -= cboxSmooth_SelectedIndexChanged;
+            cboxSmooth.Text = "?";
+            cboxSmooth.SelectedIndexChanged += cboxSmooth_SelectedIndexChanged;
+
         }
 
         private void btnMakeBoundary_Click(object sender, EventArgs e)
@@ -452,6 +463,8 @@ namespace AgOpenGPS
 
         private void cboxSmooth_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cboxSmooth.SelectedIndex == 6) return;
+
             smPtsChoose = cboxSmooth.SelectedIndex;
 
             if (smPtsChoose == 0)
@@ -471,12 +484,14 @@ namespace AgOpenGPS
 
         private void cboxPointDistance_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cboxPointDistance.SelectedIndex == 10) return;
             timer1.Interval = 500;
             isStep = false;
             cboxPointDistance.Enabled = false;
 
             minDistDisp = (double)(cboxPointDistance.SelectedIndex + 1);
             minDistSq = minDistDisp * minDistDisp;
+
 
             rA = rB = rC = rD = rE = rF = rG = firstPoint = currentPoint = 0;
 
@@ -505,6 +520,12 @@ namespace AgOpenGPS
             vec3[] arr = new vec3[secList.Count];
             secList.CopyTo(arr);
 
+            int cntr = 0;
+
+            lblPointToProcess.Text = secList.Count.ToString();
+
+            panel1.Visible = true;
+
             for (int i = 0; i < secList.Count; i++)
             {
                 //already checked
@@ -529,7 +550,18 @@ namespace AgOpenGPS
 
                 //points all around it are removed or > minDist
                 arr[i].heading = 2;
+                
+                cntr++;
+
+                if (cntr > 200)
+                {
+                    lblI.Text = i.ToString();
+                    panel1.Refresh();
+                    cntr = 0;
+                }
             }
+
+            panel1.Visible = false;
 
             secList?.Clear();
             foreach (var item in arr)

@@ -49,7 +49,14 @@
             this.btnZoomIn = new System.Windows.Forms.Button();
             this.tlp1 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblI = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblPointToProcess = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.tlp1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // oglSelf
@@ -106,7 +113,8 @@
             "7",
             "8",
             "9",
-            "10"});
+            "10",
+            "?"});
             this.cboxPointDistance.Location = new System.Drawing.Point(27, 136);
             this.cboxPointDistance.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxPointDistance.Name = "cboxPointDistance";
@@ -144,7 +152,8 @@
             "8",
             "16",
             "32",
-            "64"});
+            "64",
+            "?"});
             this.cboxSmooth.Location = new System.Drawing.Point(27, 264);
             this.cboxSmooth.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxSmooth.Name = "cboxSmooth";
@@ -155,16 +164,15 @@
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label1.AutoSize = true;
-            this.tlp1.SetColumnSpan(this.label1, 2);
+            this.tlp1.SetColumnSpan(this.label1, 3);
             this.label1.Enabled = false;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(38, 108);
+            this.label1.Location = new System.Drawing.Point(12, 108);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 25);
+            this.label1.Size = new System.Drawing.Size(130, 25);
             this.label1.TabIndex = 562;
-            this.label1.Text = "m";
+            this.label1.Text = "Spacing (m)";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label6
@@ -426,6 +434,74 @@
             this.label2.Text = "Create";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.MistyRose;
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.lblPointToProcess);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.lblI);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Location = new System.Drawing.Point(137, 181);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(445, 305);
+            this.panel1.TabIndex = 573;
+            // 
+            // lblI
+            // 
+            this.lblI.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblI.ForeColor = System.Drawing.Color.Black;
+            this.lblI.Location = new System.Drawing.Point(205, 202);
+            this.lblI.Name = "lblI";
+            this.lblI.Size = new System.Drawing.Size(139, 25);
+            this.lblI.TabIndex = 525;
+            this.lblI.Text = "Points";
+            this.lblI.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(84, 151);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(180, 25);
+            this.label3.TabIndex = 526;
+            this.label3.Text = "Points to Process: ";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblPointToProcess
+            // 
+            this.lblPointToProcess.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPointToProcess.ForeColor = System.Drawing.Color.Black;
+            this.lblPointToProcess.Location = new System.Drawing.Point(260, 152);
+            this.lblPointToProcess.Name = "lblPointToProcess";
+            this.lblPointToProcess.Size = new System.Drawing.Size(98, 25);
+            this.lblPointToProcess.TabIndex = 527;
+            this.lblPointToProcess.Text = "100,000";
+            this.lblPointToProcess.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(132, 201);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(82, 25);
+            this.label5.TabIndex = 528;
+            this.label5.Text = "Points:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(159, 71);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(161, 25);
+            this.label4.TabIndex = 529;
+            this.label4.Text = "Please Wait";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // FormBndTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -433,6 +509,7 @@
             this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(1006, 726);
             this.ControlBox = false;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.tlp1);
             this.Controls.Add(this.oglSelf);
             this.ForeColor = System.Drawing.Color.Black;
@@ -449,6 +526,7 @@
             this.ResizeEnd += new System.EventHandler(this.FormBndTool_ResizeEnd);
             this.tlp1.ResumeLayout(false);
             this.tlp1.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -475,5 +553,11 @@
         private System.Windows.Forms.Button btnZoomIn;
         private System.Windows.Forms.TableLayoutPanel tlp1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblI;
+        private System.Windows.Forms.Label lblPointToProcess;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
     }
 }
