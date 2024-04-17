@@ -348,6 +348,14 @@ namespace AgOpenGPS
 
         private void btnResetReduce_Click(object sender, EventArgs e)
         {
+            cboxIsZoom.Visible = false;
+            btnSlice.Visible = false;
+            btnCenterOGL.Visible = false;
+            btnCancelTouch.Visible = false;
+            btnZoomIn.Visible = false;
+            btnZoomOut.Visible = false;
+
+
             //start all over
             start = end = 99999;
             zoom = 1;
@@ -459,6 +467,13 @@ namespace AgOpenGPS
             cboxPointDistance.Enabled = false;
             cboxSmooth.Enabled = false;
             btnMakeBoundary.Enabled = false;
+
+            cboxIsZoom.Visible = true;
+            btnSlice.Visible = true;
+            btnCenterOGL.Visible = true;
+            btnCancelTouch.Visible = true;
+            btnZoomIn.Visible = true;
+            btnZoomOut.Visible = true;
         }
 
         private void cboxSmooth_SelectedIndexChanged(object sender, EventArgs e)
