@@ -1078,7 +1078,10 @@ namespace AgOpenGPS
 
             Form ff = Application.OpenForms["FormGPS"];
             ff.Focus();
+
+            btnAutoSteerConfig.Focus();
         }
+
         private void btnGPSData_Click(object sender, EventArgs e)
         {            
             Form f = Application.OpenForms["FormGPSData"];
