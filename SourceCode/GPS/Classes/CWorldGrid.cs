@@ -46,7 +46,7 @@ namespace AgOpenGPS
         public bool isRateMap = false, isRateTrigger = false;
         public int numRateChannels = 1;
 
-        public double gridRotation = 0.75;
+        public double gridRotation = 0.0;
 
         public CWorldGrid(FormGPS _f)
         {
