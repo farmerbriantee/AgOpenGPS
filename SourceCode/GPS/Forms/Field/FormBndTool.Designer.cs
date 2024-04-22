@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.oglSelf = new OpenTK.GLControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.lblStartPoints = new System.Windows.Forms.Label();
             this.cboxPointDistance = new System.Windows.Forms.ComboBox();
             this.lblReducedPoints = new System.Windows.Forms.Label();
             this.cboxSmooth = new System.Windows.Forms.ComboBox();
@@ -50,11 +49,12 @@
             this.tlp1 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblI = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblPointToProcess = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.lblPointToProcess = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblI = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnAddPoints = new System.Windows.Forms.Button();
             this.tlp1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -79,19 +79,6 @@
             this.timer1.Enabled = true;
             this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // lblStartPoints
-            // 
-            this.lblStartPoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tlp1.SetColumnSpan(this.lblStartPoints, 3);
-            this.lblStartPoints.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStartPoints.ForeColor = System.Drawing.Color.Black;
-            this.lblStartPoints.Location = new System.Drawing.Point(158, 38);
-            this.lblStartPoints.Name = "lblStartPoints";
-            this.lblStartPoints.Size = new System.Drawing.Size(138, 25);
-            this.lblStartPoints.TabIndex = 524;
-            this.lblStartPoints.Text = "Points";
-            this.lblStartPoints.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // cboxPointDistance
             // 
@@ -220,6 +207,7 @@
             this.btnCenterOGL.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tlp1.SetColumnSpan(this.btnCenterOGL, 3);
             this.btnCenterOGL.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnCenterOGL.FlatAppearance.BorderSize = 0;
             this.btnCenterOGL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCenterOGL.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCenterOGL.Image = global::AgOpenGPS.Properties.Resources.ConS_SourceFix;
@@ -238,6 +226,7 @@
             this.btnSlice.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tlp1.SetColumnSpan(this.btnSlice, 3);
             this.btnSlice.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnSlice.FlatAppearance.BorderSize = 0;
             this.btnSlice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSlice.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnSlice.Image = global::AgOpenGPS.Properties.Resources.BoundaryMakeLine;
@@ -257,6 +246,7 @@
             this.tlp1.SetColumnSpan(this.btnMakeBoundary, 3);
             this.btnMakeBoundary.Enabled = false;
             this.btnMakeBoundary.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnMakeBoundary.FlatAppearance.BorderSize = 0;
             this.btnMakeBoundary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMakeBoundary.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnMakeBoundary.Image = global::AgOpenGPS.Properties.Resources.BoundaryOuter;
@@ -276,6 +266,7 @@
             this.tlp1.SetColumnSpan(this.btnStartStop, 3);
             this.btnStartStop.Enabled = false;
             this.btnStartStop.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnStartStop.FlatAppearance.BorderSize = 0;
             this.btnStartStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStartStop.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnStartStop.Image = global::AgOpenGPS.Properties.Resources.BoundaryReduce;
@@ -294,14 +285,19 @@
             this.btnResetReduce.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.tlp1.SetColumnSpan(this.btnResetReduce, 3);
             this.btnResetReduce.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnResetReduce.FlatAppearance.BorderSize = 0;
             this.btnResetReduce.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetReduce.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnResetReduce.Image = global::AgOpenGPS.Properties.Resources.SwitchOn;
+            this.btnResetReduce.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnResetReduce.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetReduce.Location = new System.Drawing.Point(20, 20);
+            this.btnResetReduce.Location = new System.Drawing.Point(31, 10);
+            this.btnResetReduce.Margin = new System.Windows.Forms.Padding(0);
             this.btnResetReduce.Name = "btnResetReduce";
-            this.btnResetReduce.Size = new System.Drawing.Size(115, 61);
+            this.btnResetReduce.Size = new System.Drawing.Size(93, 81);
             this.btnResetReduce.TabIndex = 540;
+            this.btnResetReduce.Text = "Start";
+            this.btnResetReduce.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnResetReduce.UseVisualStyleBackColor = false;
             this.btnResetReduce.Click += new System.EventHandler(this.btnResetReduce_Click);
             // 
@@ -312,6 +308,7 @@
             this.btnCancelTouch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.tlp1.SetColumnSpan(this.btnCancelTouch, 3);
             this.btnCancelTouch.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
+            this.btnCancelTouch.FlatAppearance.BorderSize = 0;
             this.btnCancelTouch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelTouch.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancelTouch.Image = global::AgOpenGPS.Properties.Resources.HeadlandDeletePoints;
@@ -348,6 +345,7 @@
             this.btnZoomOut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tlp1.SetColumnSpan(this.btnZoomOut, 2);
             this.btnZoomOut.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnZoomOut.FlatAppearance.BorderSize = 0;
             this.btnZoomOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZoomOut.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZoomOut.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -366,6 +364,7 @@
             this.btnZoomIn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tlp1.SetColumnSpan(this.btnZoomIn, 2);
             this.btnZoomIn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnZoomIn.FlatAppearance.BorderSize = 0;
             this.btnZoomIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZoomIn.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZoomIn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -391,7 +390,6 @@
             this.tlp1.Controls.Add(this.btnZoomOut, 0, 7);
             this.tlp1.Controls.Add(this.label6, 0, 3);
             this.tlp1.Controls.Add(this.btnZoomIn, 2, 7);
-            this.tlp1.Controls.Add(this.lblStartPoints, 3, 0);
             this.tlp1.Controls.Add(this.btnResetReduce, 0, 0);
             this.tlp1.Controls.Add(this.cboxPointDistance, 0, 2);
             this.tlp1.Controls.Add(this.btnCancelTouch, 3, 6);
@@ -405,6 +403,7 @@
             this.tlp1.Controls.Add(this.btnExit, 4, 7);
             this.tlp1.Controls.Add(this.cboxIsZoom, 0, 5);
             this.tlp1.Controls.Add(this.label2, 3, 3);
+            this.tlp1.Controls.Add(this.btnAddPoints, 3, 0);
             this.tlp1.Location = new System.Drawing.Point(701, 0);
             this.tlp1.Name = "tlp1";
             this.tlp1.RowCount = 8;
@@ -447,27 +446,16 @@
             this.panel1.Size = new System.Drawing.Size(445, 305);
             this.panel1.TabIndex = 573;
             // 
-            // lblI
+            // label4
             // 
-            this.lblI.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblI.ForeColor = System.Drawing.Color.Black;
-            this.lblI.Location = new System.Drawing.Point(205, 202);
-            this.lblI.Name = "lblI";
-            this.lblI.Size = new System.Drawing.Size(139, 25);
-            this.lblI.TabIndex = 525;
-            this.lblI.Text = "Points";
-            this.lblI.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(84, 151);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(180, 25);
-            this.label3.TabIndex = 526;
-            this.label3.Text = "Points to Process: ";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(159, 71);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(161, 25);
+            this.label4.TabIndex = 529;
+            this.label4.Text = "Please Wait";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblPointToProcess
             // 
@@ -480,6 +468,28 @@
             this.lblPointToProcess.Text = "100,000";
             this.lblPointToProcess.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(84, 151);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(180, 25);
+            this.label3.TabIndex = 526;
+            this.label3.Text = "Points to Process: ";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblI
+            // 
+            this.lblI.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblI.ForeColor = System.Drawing.Color.Black;
+            this.lblI.Location = new System.Drawing.Point(205, 202);
+            this.lblI.Name = "lblI";
+            this.lblI.Size = new System.Drawing.Size(139, 25);
+            this.lblI.TabIndex = 525;
+            this.lblI.Text = "Points";
+            this.lblI.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -491,16 +501,25 @@
             this.label5.Text = "Points:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label4
+            // btnAddPoints
             // 
-            this.label4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(159, 71);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(161, 25);
-            this.label4.TabIndex = 529;
-            this.label4.Text = "Please Wait";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddPoints.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAddPoints.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnAddPoints.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.tlp1.SetColumnSpan(this.btnAddPoints, 3);
+            this.btnAddPoints.Enabled = false;
+            this.btnAddPoints.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnAddPoints.FlatAppearance.BorderSize = 0;
+            this.btnAddPoints.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddPoints.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnAddPoints.Image = global::AgOpenGPS.Properties.Resources.PointAdd;
+            this.btnAddPoints.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnAddPoints.Location = new System.Drawing.Point(190, 17);
+            this.btnAddPoints.Name = "btnAddPoints";
+            this.btnAddPoints.Size = new System.Drawing.Size(74, 68);
+            this.btnAddPoints.TabIndex = 574;
+            this.btnAddPoints.UseVisualStyleBackColor = false;
+            this.btnAddPoints.Click += new System.EventHandler(this.btnAddPoints_Click);
             // 
             // FormBndTool
             // 
@@ -537,7 +556,6 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnCancelTouch;
-        private System.Windows.Forms.Label lblStartPoints;
         private System.Windows.Forms.ComboBox cboxPointDistance;
         private System.Windows.Forms.Button btnResetReduce;
         private System.Windows.Forms.Label lblReducedPoints;
@@ -559,5 +577,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnAddPoints;
     }
 }
