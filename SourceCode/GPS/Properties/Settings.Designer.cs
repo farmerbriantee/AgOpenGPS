@@ -1658,7 +1658,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.15")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public double purePursuitIntegralGainAB {
             get {
                 return ((double)(this["purePursuitIntegralGainAB"]));
@@ -2294,7 +2294,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.15")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public double stanleyIntegralGainAB {
             get {
                 return ((double)(this["stanleyIntegralGainAB"]));

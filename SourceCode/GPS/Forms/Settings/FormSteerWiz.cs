@@ -571,9 +571,9 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.stanleyHeadingErrorGain = 1;
             Properties.Settings.Default.stanleyDistanceErrorGain = 1;
-            Properties.Settings.Default.stanleyIntegralGainAB = 0.15;
+            Properties.Settings.Default.stanleyIntegralGainAB = 0;
 
-            Properties.Settings.Default.purePursuitIntegralGainAB = 0.15;
+            Properties.Settings.Default.purePursuitIntegralGainAB = 0;
 
             Properties.Settings.Default.setAS_sideHillComp = 0;
 

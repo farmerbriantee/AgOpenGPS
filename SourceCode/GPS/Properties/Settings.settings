@@ -411,7 +411,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="purePursuitIntegralGainAB" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.15</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="set_youMoveDistance" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.25</Value>
@@ -570,7 +570,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="stanleyIntegralGainAB" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.15</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="setSection_isFast" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
