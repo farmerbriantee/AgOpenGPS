@@ -58,6 +58,9 @@ namespace AgOpenGPS
 
         public double inty;
 
+        // Should we find the global nearest curve point (instead of local) on the next search.
+        private bool findGlobalNearestCurvePoint = false;
+
         public CABCurve(FormGPS _f)
         {
             //constructor
@@ -466,6 +469,7 @@ namespace AgOpenGPS
             }
 
             lastSecond = mf.secondsSinceStart;
+            findGlobalNearestCurvePoint = true;
         }
 
         public void GetCurrentCurveLine(vec3 pivot, vec3 steer)
@@ -484,6 +488,10 @@ namespace AgOpenGPS
 
             if (curList.Count > 0)
             {
+                // Update based on autosteer settings and distance from line
+                double goalPointDistance = mf.vehicle.UpdateGoalPointDistance();
+                bool ReverseHeading = mf.isReverse ? !isHeadingSameWay : isHeadingSameWay;
+
                 if (mf.yt.isYouTurnTriggered && mf.yt.DistanceFromYouTurnLine())//do the pure pursuit from youTurn
                 {
                     //now substitute what it thinks are AB line values with auto turn values
@@ -513,14 +521,21 @@ namespace AgOpenGPS
                         //close call hit
                         int cc = 0, dd;
 
-                        for (int j = 0; j < curList.Count; j += 10)
+                        if (findGlobalNearestCurvePoint)
                         {
-                            dist = glm.DistanceSquared(pivot, curList[j]);
-                            if (dist < minDistA)
-                            {
-                                minDistA = dist;
-                                cc = j;
-                            }
+                            // When not already following some line, find the globally nearest point
+
+                            cc = findNearestGlobalCurvePoint(pivot, 10);
+
+                            findGlobalNearestCurvePoint = false;
+                        }
+                        else
+                        {
+                            // When already "locked" to follow some line, try to find the "local" nearest point
+                            // based on the last one. This prevents jumping between lines close to each other (or crossing lines).
+                            // As this is prone to find a "local minimum", this should only be used when already following some line.
+
+                            cc = findNearestLocalCurvePoint(pivot, currentLocationIndex, goalPointDistance, ReverseHeading);
                         }
 
                         minDistA = double.MaxValue;
@@ -556,14 +571,21 @@ namespace AgOpenGPS
                     }
                     else
                     {
-                        for (int j = 0; j < curList.Count; j++)
+                        if (findGlobalNearestCurvePoint)
                         {
-                            dist = glm.DistanceSquared(pivot, curList[j]);
-                            if (dist < minDistA)
-                            {
-                                minDistA = dist;
-                                A = j;
-                            }
+                            // When not already following some line, find the globally nearest point
+
+                            A = findNearestGlobalCurvePoint(pivot);
+
+                            findGlobalNearestCurvePoint = false;
+                        }
+                        else
+                        {
+                            // When already "locked" to follow some line, try to find the "local" nearest point
+                            // based on the last one. This prevents jumping between lines close to each other (or crossing lines).
+                            // As this is prone to find a "local minimum", this should only be used when already following some line.
+
+                            A = findNearestLocalCurvePoint(pivot, currentLocationIndex, goalPointDistance, ReverseHeading);
                         }
 
                         currentLocationIndex = A;
@@ -579,7 +601,6 @@ namespace AgOpenGPS
                              curList[B].easting, curList[B].northing, pivot.easting, pivot.northing))
                             goto SegmentFound;
 
-                        A = currentLocationIndex;
                         //step back one
                         if (A == 0)
                         {
@@ -665,11 +686,6 @@ namespace AgOpenGPS
                     rEastCu = curList[A].easting + (U * dx);
                     rNorthCu = curList[A].northing + (U * dz);
                     manualUturnHeading = curList[A].heading;
-
-                    //update base on autosteer settings and distance from line
-                    double goalPointDistance = mf.vehicle.UpdateGoalPointDistance();
-
-                    bool ReverseHeading = mf.isReverse ? !isHeadingSameWay : isHeadingSameWay;
 
                     int count = ReverseHeading ? 1 : -1;
                     vec3 start = new vec3(rEastCu, rNorthCu, 0);
@@ -1250,5 +1266,102 @@ namespace AgOpenGPS
             mf.trk.idx = -1;
         }
 
+        // Searches for the nearest "global" curve point to the refPoint by checking all points of the curve.
+        // Parameter "increment" added here to give possibility to make a "sparser" search (to speed it up?)
+        // Return: index to the nearest point
+        private int findNearestGlobalCurvePoint(vec3 refPoint, int increment = 1)
+        {
+            double minDist = double.MaxValue;
+            int minDistIndex = 0;
+
+            for (int i = 0; i < curList.Count; i += increment)
+            {
+                double dist = glm.DistanceSquared(refPoint, curList[i]);
+                if (dist < minDist)
+                {
+                    minDist = dist;
+                    minDistIndex = i;
+                }
+            }
+            return minDistIndex;
+        }
+
+        // Searches for the nearest "local" curve point to the refPoint by traversing forward and backward on the curve
+        // startIndex means the starting point (index to curList) of the search.
+        // Return: index to the nearest (local) point
+        private int findNearestLocalCurvePoint(vec3 refPoint, int startIndex, double minSearchDistance, bool reverseSearchDirection)
+        {
+            double minDist = glm.DistanceSquared(refPoint, curList[startIndex]);
+            int minDistIndex = startIndex;
+
+            int directionMultiplier = reverseSearchDirection ? 1 : -1;
+            double distSoFar = 0;
+            vec3 start = curList[startIndex];
+
+            // Check all points' distances from the pivot inside the "look ahead"-distance and find the nearest
+            int offset = 1;
+
+            while (offset < curList.Count)
+            {
+                int pointIndex = (startIndex + (offset * directionMultiplier) + curList.Count) % curList.Count;  // Wrap around
+                double dist = glm.DistanceSquared(refPoint, curList[pointIndex]);
+
+                if (dist < minDist)
+                {
+                    minDist = dist;
+                    minDistIndex = pointIndex;
+                }
+
+                distSoFar += glm.Distance(start, curList[pointIndex]);
+                start = curList[pointIndex];
+
+                offset++;
+
+                if (distSoFar > minSearchDistance)
+                {
+                    break;
+                }
+            }
+
+            // Continue traversing until the distance starts growing
+            while (offset < curList.Count)
+            {
+                int pointIndex = (startIndex + (offset * directionMultiplier) + curList.Count) % curList.Count;  // Wrap around
+                double dist = glm.DistanceSquared(refPoint, curList[pointIndex]);
+                if (dist < minDist)
+                {
+                    // Getting closer
+                    minDist = dist;
+                    minDistIndex = pointIndex;
+                }
+                else
+                {
+                    // Getting farther, no point to continue
+                    break;
+                }
+                offset++;
+            }
+
+            // Traverse from the start point also into another direction to be sure we choose the minimum local distance.
+            // (This is also needed due to the way AB-curve is handled (the search may start one off from the last known nearest point)).
+            for (offset = 1; offset < curList.Count; offset++)
+            {
+                int pointIndex = (startIndex + (offset * (-directionMultiplier)) + curList.Count) % curList.Count;  // Wrap around
+                double dist = glm.DistanceSquared(refPoint, curList[pointIndex]);
+                if (dist < minDist)
+                {
+                    // Getting closer
+                    minDist = dist;
+                    minDistIndex = pointIndex;
+                }
+                else
+                {
+                    // Getting farther, no point to continue
+                    break;
+                }
+            }
+
+            return minDistIndex;
+        }
     }
 }
