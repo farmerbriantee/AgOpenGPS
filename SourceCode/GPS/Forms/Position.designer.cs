@@ -756,10 +756,32 @@ namespace AgOpenGPS
                 default:
                     break;
             }
-            #endregion
 
             if (fixHeading >= glm.twoPI) 
                 fixHeading-= glm.twoPI;
+
+            #endregion
+
+            #region Corrected Position for GPS_OUT
+
+            double rollCorrectedLat;
+            double rollCorrectedLon;
+            pn.ConvertLocalToWGS84(pn.fix.northing, pn.fix.easting, out rollCorrectedLat, out rollCorrectedLon);
+
+            byte[] pgnRollCorrectedLatLon = new byte[22];
+
+            pgnRollCorrectedLatLon[0] = 0x80;
+            pgnRollCorrectedLatLon[1] = 0x81;
+            pgnRollCorrectedLatLon[2] = 0x7F;
+            pgnRollCorrectedLatLon[3] = 0x64;
+            pgnRollCorrectedLatLon[4] = 16;
+
+            Buffer.BlockCopy(BitConverter.GetBytes(rollCorrectedLon), 0, pgnRollCorrectedLatLon, 5, 8);
+            Buffer.BlockCopy(BitConverter.GetBytes(rollCorrectedLat), 0, pgnRollCorrectedLatLon, 13, 8);
+
+            SendPgnToLoop(pgnRollCorrectedLatLon);
+
+            #endregion
 
             #region AutoSteer
 
