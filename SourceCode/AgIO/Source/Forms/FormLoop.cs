@@ -50,7 +50,7 @@ namespace AgIO
         public bool isGPSSentencesOn = false, isSendNMEAToUDP;
 
         //timer variables
-        public double secondsSinceStart, twoSecondTimer, tenSecondTimer, threeMinuteTimer;
+        public double secondsSinceStart, twoSecondTimer, tenSecondTimer, threeMinuteTimer, pingSecondsStart;
 
         public string lastSentence;
 
@@ -455,8 +455,12 @@ namespace AgIO
 
             DoTraffic();
 
+            pingSecondsStart = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
+            lblPing.Text = "*";
+
             //send a hello to modules
             SendUDPMessage(helloFromAgIO, epModule);
+
 
             //if (isLogNMEA)
             //{

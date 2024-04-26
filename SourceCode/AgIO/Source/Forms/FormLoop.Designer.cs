@@ -100,6 +100,7 @@ namespace AgIO
             this.btnRunAOG = new System.Windows.Forms.Button();
             this.btnUDP = new System.Windows.Forms.Button();
             this.btnGPSData = new System.Windows.Forms.Button();
+            this.lblPing = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -1068,6 +1069,20 @@ namespace AgIO
             this.btnGPSData.UseVisualStyleBackColor = false;
             this.btnGPSData.Click += new System.EventHandler(this.btnGPSData_Click);
             // 
+            // lblPing
+            // 
+            this.lblPing.AutoSize = true;
+            this.lblPing.BackColor = System.Drawing.Color.Transparent;
+            this.lblPing.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPing.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblPing.Location = new System.Drawing.Point(77, 54);
+            this.lblPing.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPing.Name = "lblPing";
+            this.lblPing.Size = new System.Drawing.Size(28, 16);
+            this.lblPing.TabIndex = 524;
+            this.lblPing.Text = "285";
+            this.lblPing.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormLoop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -1075,6 +1090,7 @@ namespace AgIO
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(734, 475);
+            this.Controls.Add(this.lblPing);
             this.Controls.Add(this.btnGPS_Out);
             this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.label7);
@@ -1218,6 +1234,7 @@ namespace AgIO
         private System.Windows.Forms.ToolStripMenuItem toolStripSerialMonitor;
         private System.Windows.Forms.ToolStripMenuItem toolStripUDPMonitor;
         private System.Windows.Forms.Button btnGPS_Out;
+        private System.Windows.Forms.Label lblPing;
     }
 }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Net;
 using System.Net.Sockets;
@@ -348,6 +349,8 @@ namespace AgIO
                     //check for Scan and Hello
                     if (data[3] == 126 && data.Length == 11)
                     {
+                        lblPing.Text = (((DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds - pingSecondsStart) * 1000).ToString("N0");
+
                         traffic.helloFromAutoSteer = 0;
                         if (isViewAdvanced)
                         {
