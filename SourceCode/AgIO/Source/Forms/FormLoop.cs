@@ -455,8 +455,11 @@ namespace AgIO
 
             DoTraffic();
 
-            pingSecondsStart = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
-            lblPing.Text = "*";
+            if (isViewAdvanced)
+            {
+                pingSecondsStart = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
+                lblPing.Text = lblPingMachine.Text = "*";
+            }
 
             //send a hello to modules
             SendUDPMessage(helloFromAgIO, epModule);
@@ -471,8 +474,8 @@ namespace AgIO
             //    logNMEASentence.Clear();
             //}
 
-            if (focusSkipCounter < 310) lblSkipCounter.Text = focusSkipCounter.ToString();
-            else lblSkipCounter.Text = "On";
+            //if (focusSkipCounter < 310) lblSkipCounter.Text = focusSkipCounter.ToString();
+            //else lblSkipCounter.Text = "On";
         }
 
         private void TenSecondLoop()
