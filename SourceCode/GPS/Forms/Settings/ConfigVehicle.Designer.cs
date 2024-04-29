@@ -631,7 +631,6 @@ namespace AgOpenGPS
         private void tabVGuidance_Leave(object sender, EventArgs e)
         {
         }
-
         #endregion
 
         #region VConfig Enter/Leave

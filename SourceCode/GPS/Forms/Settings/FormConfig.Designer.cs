@@ -53,7 +53,7 @@
             this.btnTool = new System.Windows.Forms.Button();
             this.panelVehicleSubMenu = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
-            this.btnSubGuidance = new System.Windows.Forms.Button();
+            this.btnSubAntenna = new System.Windows.Forms.Button();
             this.btnSubDimensions = new System.Windows.Forms.Button();
             this.btnSubVehicleType = new System.Windows.Forms.Button();
             this.btnVehicle = new System.Windows.Forms.Button();
@@ -1066,7 +1066,7 @@
             // 
             this.panelVehicleSubMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.panelVehicleSubMenu.Controls.Add(this.button1);
-            this.panelVehicleSubMenu.Controls.Add(this.btnSubGuidance);
+            this.panelVehicleSubMenu.Controls.Add(this.btnSubAntenna);
             this.panelVehicleSubMenu.Controls.Add(this.btnSubDimensions);
             this.panelVehicleSubMenu.Controls.Add(this.btnSubVehicleType);
             this.panelVehicleSubMenu.Dock = System.Windows.Forms.DockStyle.Top;
@@ -1091,25 +1091,25 @@
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // btnSubGuidance
+            // btnSubAntenna
             // 
-            this.btnSubGuidance.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnSubGuidance.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnSubGuidance.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.btnSubGuidance.FlatAppearance.BorderSize = 0;
-            this.btnSubGuidance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSubGuidance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSubGuidance.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnSubGuidance.Image = global::AgOpenGPS.Properties.Resources.ConS_ModulesSteer;
-            this.btnSubGuidance.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSubGuidance.Location = new System.Drawing.Point(0, 144);
-            this.btnSubGuidance.Name = "btnSubGuidance";
-            this.btnSubGuidance.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnSubGuidance.Size = new System.Drawing.Size(120, 72);
-            this.btnSubGuidance.TabIndex = 3;
-            this.btnSubGuidance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSubGuidance.UseVisualStyleBackColor = false;
-            this.btnSubGuidance.Click += new System.EventHandler(this.btnSubGuidance_Click);
+            this.btnSubAntenna.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnSubAntenna.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnSubAntenna.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnSubAntenna.FlatAppearance.BorderSize = 0;
+            this.btnSubAntenna.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSubAntenna.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubAntenna.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnSubAntenna.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementAntenna;
+            this.btnSubAntenna.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSubAntenna.Location = new System.Drawing.Point(0, 144);
+            this.btnSubAntenna.Name = "btnSubAntenna";
+            this.btnSubAntenna.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
+            this.btnSubAntenna.Size = new System.Drawing.Size(120, 72);
+            this.btnSubAntenna.TabIndex = 2;
+            this.btnSubAntenna.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSubAntenna.UseVisualStyleBackColor = false;
+            this.btnSubAntenna.Click += new System.EventHandler(this.btnSubAntenna_Click);
             // 
             // btnSubDimensions
             // 
@@ -9412,7 +9412,7 @@
         private System.Windows.Forms.Button btnSubSections;
         private System.Windows.Forms.Button btnTool;
         private System.Windows.Forms.Panel panelVehicleSubMenu;
-        private System.Windows.Forms.Button btnSubGuidance;
+        private System.Windows.Forms.Button btnSubAntenna;
         private System.Windows.Forms.Button btnSubDimensions;
         private System.Windows.Forms.Button btnSubVehicleType;
         private System.Windows.Forms.TabControl tab1;

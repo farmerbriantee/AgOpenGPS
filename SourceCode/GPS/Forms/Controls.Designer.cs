@@ -1979,7 +1979,7 @@ namespace AgOpenGPS
                 Settings.Default.setDisplay_brightness = displayBrightness.GetBrightness();
                 Settings.Default.Save();
             }
-            navPanelCounter = 0;
+            navPanelCounter = 3;
         }
         private void btnBrightnessDn_Click(object sender, EventArgs e)
         {
@@ -1990,7 +1990,7 @@ namespace AgOpenGPS
                 Settings.Default.setDisplay_brightness = displayBrightness.GetBrightness();
                 Settings.Default.Save();
             }
-            navPanelCounter = 0;
+            navPanelCounter = 3;
         }
         private void lblHz_Click(object sender, EventArgs e)
         {

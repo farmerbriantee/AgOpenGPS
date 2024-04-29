@@ -82,7 +82,6 @@ namespace AgOpenGPS
 
             nudTramWidth.Controls[0].Enabled = false;
 
-
             nudDualHeadingOffset.Controls[0].Enabled = false;
             nudDualReverseDistance.Controls[0].Enabled = false;
 
