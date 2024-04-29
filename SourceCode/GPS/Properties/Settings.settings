@@ -411,7 +411,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="purePursuitIntegralGainAB" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.15</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="set_youMoveDistance" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.25</Value>
@@ -570,7 +570,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="stanleyIntegralGainAB" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.15</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="setSection_isFast" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -730,6 +730,12 @@
     </Setting>
     <Setting Name="setAS_uTurnCompensation" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="setWindow_gridSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">400, 400</Value>
+    </Setting>
+    <Setting Name="setWindow_gridLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">20, 20</Value>
     </Setting>
   </Settings>
 </SettingsFile>

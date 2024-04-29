@@ -77,6 +77,7 @@ namespace AgOpenGPS
         private readonly Stopwatch swFrame = new Stopwatch();
 
         public double secondsSinceStart;
+        public double gridToolSpacing;
 
         //private readonly Stopwatch swDraw = new Stopwatch();
         //swDraw.Reset();
@@ -1133,15 +1134,11 @@ namespace AgOpenGPS
         public void SetZoom()
         {
             //match grid to cam distance and redo perspective
-            if (camera.camSetDistance > -50) camera.gridZoom = 10;
-            else if (camera.camSetDistance > -150) camera.gridZoom = 20;
-            else if (camera.camSetDistance > -250) camera.gridZoom = 40;
-            else if (camera.camSetDistance > -500) camera.gridZoom = 80;
-            else if (camera.camSetDistance > -1000) camera.gridZoom = 160;
-            else if (camera.camSetDistance > -2000) camera.gridZoom = 320;
-            else if (camera.camSetDistance > -5000) camera.gridZoom = 640;
-            else if (camera.camSetDistance > -10000) camera.gridZoom = 1280;
-            else if (camera.camSetDistance > -20000) camera.gridZoom = 2000;
+            camera.gridZoom = camera.camSetDistance / -15;
+
+            gridToolSpacing = (int)(camera.gridZoom / tool.width + 0.5);
+            if (gridToolSpacing < 1) gridToolSpacing = 1;
+            camera.gridZoom = gridToolSpacing * tool.width;
 
             oglMain.MakeCurrent();
             GL.MatrixMode(MatrixMode.Projection);

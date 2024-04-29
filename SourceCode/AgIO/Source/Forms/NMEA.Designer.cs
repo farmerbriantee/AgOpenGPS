@@ -208,7 +208,7 @@ namespace AgIO
                     ParseTRA();
                 }
 
-                else if (words[0] == "$PSTI" && words[1] == "032")
+                else if (words[0] == "$PSTI" && (words[1] == "032" || words[1] == "035") )
                 {
                     ParseSTI032(); //there is also an $PSTI,030,... wich contains different data!
                 }

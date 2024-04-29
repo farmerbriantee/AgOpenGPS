@@ -1658,7 +1658,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.15")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public double purePursuitIntegralGainAB {
             get {
                 return ((double)(this["purePursuitIntegralGainAB"]));
@@ -2294,7 +2294,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.15")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public double stanleyIntegralGainAB {
             get {
                 return ((double)(this["stanleyIntegralGainAB"]));
@@ -2937,6 +2937,30 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setAS_uTurnCompensation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("400, 400")]
+        public global::System.Drawing.Size setWindow_gridSize {
+            get {
+                return ((global::System.Drawing.Size)(this["setWindow_gridSize"]));
+            }
+            set {
+                this["setWindow_gridSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20, 20")]
+        public global::System.Drawing.Point setWindow_gridLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["setWindow_gridLocation"]));
+            }
+            set {
+                this["setWindow_gridLocation"] = value;
             }
         }
     }

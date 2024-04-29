@@ -38,14 +38,11 @@ namespace AgOpenGPS
             nudOverlap.Controls[0].Enabled = false;
             nudCutoffSpeed.Controls[0].Enabled = false;
 
-            nudMinTurnRadius.Controls[0].Enabled = false;
             nudAntennaHeight.Controls[0].Enabled = false;
             nudAntennaOffset.Controls[0].Enabled = false;
             nudAntennaPivot.Controls[0].Enabled = false;
             nudVehicleTrack.Controls[0].Enabled = false;
-            nudSnapDistance.Controls[0].Enabled = false;
             nudWheelbase.Controls[0].Enabled = false;
-            nudLineWidth.Controls[0].Enabled = false;
 
             nudMinCoverage.Controls[0].Enabled = false;
             nudDefaultSectionWidth.Controls[0].Enabled = false;
@@ -85,16 +82,9 @@ namespace AgOpenGPS
 
             nudTramWidth.Controls[0].Enabled = false;
 
-            nudGuidanceLookAhead.Controls[0].Enabled = false;
 
             nudDualHeadingOffset.Controls[0].Enabled = false;
             nudDualReverseDistance.Controls[0].Enabled = false;
-
-            nudMaxAngularVelocity.Controls[0].Enabled = false;
-
-            nudGuidanceSpeedLimit.Controls[0].Enabled = false;
-            nudMaxSteerSpeed.Controls[0].Enabled = false;
-            nudMinSteerSpeed.Controls[0].Enabled = false;
 
             nudOverlap.Controls[0].Enabled = false;
             nudOffset.Controls[0].Enabled = false;
@@ -154,17 +144,11 @@ namespace AgOpenGPS
             nudTractorHitchLength.Maximum = Math.Round(nudTractorHitchLength.Maximum / 2.54M);
             nudTractorHitchLength.Minimum = Math.Round(nudTractorHitchLength.Minimum / 2.54M);
 
-            nudSnapDistance.Maximum = Math.Round(nudSnapDistance.Maximum / 2.54M);
-            nudSnapDistance.Minimum = Math.Round(nudSnapDistance.Minimum / 2.54M);
-
             nudVehicleTrack.Maximum = Math.Round(nudVehicleTrack.Maximum / 2.54M);
             nudVehicleTrack.Minimum = Math.Round(nudVehicleTrack.Minimum / 2.54M);
 
             nudWheelbase.Maximum = Math.Round(nudWheelbase.Maximum / 2.54M);
             nudWheelbase.Minimum = Math.Round(nudWheelbase.Minimum / 2.54M);
-
-            nudMinTurnRadius.Maximum = Math.Round(nudMinTurnRadius.Maximum / 2.54M);
-            nudMinTurnRadius.Minimum = Math.Round(nudMinTurnRadius.Minimum / 2.54M);
 
             nudOverlap.Maximum = Math.Round(nudOverlap.Maximum / 2.54M);
             nudOverlap.Minimum = Math.Round(nudOverlap.Minimum / 2.54M);
@@ -210,9 +194,6 @@ namespace AgOpenGPS
 
             nudTramWidth.Minimum = Math.Round(nudTramWidth.Minimum / 2.54M);
             nudTramWidth.Maximum = Math.Round(nudTramWidth.Maximum / 2.54M);
-
-            nudSnapDistance.Minimum = Math.Round(nudSnapDistance.Minimum / 2.54M);
-            nudSnapDistance.Maximum = Math.Round(nudSnapDistance.Maximum / 2.54M);
 
             //Meters to feet
             nudTurnDistanceFromBoundary.Minimum = Math.Round(nudTurnDistanceFromBoundary.Minimum * 3.28M);

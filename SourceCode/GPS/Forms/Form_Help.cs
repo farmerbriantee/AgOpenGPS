@@ -25,6 +25,11 @@ namespace AgOpenGPS
             System.Diagnostics.Process.Start(e.Link.LinkData.ToString());
         }
 
+        private void linkLabelYouTube_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(e.Link.LinkData.ToString());
+        }
+
         private void Form_About_Load(object sender, EventArgs e)
         {
             lblVersion.Text = "Version " + Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
@@ -39,92 +44,105 @@ namespace AgOpenGPS
                 LinkData = "https://discourse.agopengps.com/"
             };
             linkLabelCombineForum.Links.Add(linkCf);
+
+            // Add a link to the LinkLabel youtube
+            LinkLabel.Link youtube = new LinkLabel.Link
+            {
+                LinkData = "https://www.youtube.com/@AgOpenGPS/videos"
+            };
+            linkLabelYouTube.Links.Add(youtube);
         }
 
-        private void btnVideo_Click(object sender, EventArgs e)
+        private void pictureBox2_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(gStr.v_AboutIntro))
-                System.Diagnostics.Process.Start(gStr.v_AboutIntro);
+            System.Diagnostics.Process.Start(linkLabelYouTube.Links[0].LinkData.ToString());
         }
 
-        private void btnManual_Click(object sender, EventArgs e)
-        {
-            bool notFound = false;
-            try
-            {
-                switch (Properties.Settings.Default.setF_culture)
-                {
-                    case "en":
-                        System.Diagnostics.Process.Start("Manual.pdf");
-                        break;
+        //private void btnVideo_Click(object sender, EventArgs e)
+        //{
+        //    if (!string.IsNullOrEmpty(gStr.v_AboutIntro))
+        //        System.Diagnostics.Process.Start(gStr.v_AboutIntro);
+        //}
 
-                    case "ru":
-                        System.Diagnostics.Process.Start("Manual.ru.pdf");
-                        break;
+        //private void btnManual_Click(object sender, EventArgs e)
+        //{
+        //    bool notFound = false;
+        //    try
+        //    {
+        //        switch (Properties.Settings.Default.setF_culture)
+        //        {
+        //            case "en":
+        //                System.Diagnostics.Process.Start("Manual.pdf");
+        //                break;
 
-                    case "da":
-                        System.Diagnostics.Process.Start("Manual.da.pdf");
-                        break;
+        //            case "ru":
+        //                System.Diagnostics.Process.Start("Manual.ru.pdf");
+        //                break;
 
-                    case "de":
-                        System.Diagnostics.Process.Start("Manual.de.pdf");
-                        break;
+        //            case "da":
+        //                System.Diagnostics.Process.Start("Manual.da.pdf");
+        //                break;
 
-                    case "nl":
-                        System.Diagnostics.Process.Start("Manual.nl.pdf");
-                        break;
+        //            case "de":
+        //                System.Diagnostics.Process.Start("Manual.de.pdf");
+        //                break;
 
-                    case "it":
-                        System.Diagnostics.Process.Start("Manual.it.pdf");
-                        break;
+        //            case "nl":
+        //                System.Diagnostics.Process.Start("Manual.nl.pdf");
+        //                break;
 
-                    case "es":
-                        System.Diagnostics.Process.Start("Manual.es.pdf");
-                        break;
+        //            case "it":
+        //                System.Diagnostics.Process.Start("Manual.it.pdf");
+        //                break;
 
-                    case "fr":
-                        System.Diagnostics.Process.Start("Manual.fr.pdf");
-                        break;
+        //            case "es":
+        //                System.Diagnostics.Process.Start("Manual.es.pdf");
+        //                break;
 
-                    case "uk":
-                        System.Diagnostics.Process.Start("Manual.uk.pdf");
-                        break;
+        //            case "fr":
+        //                System.Diagnostics.Process.Start("Manual.fr.pdf");
+        //                break;
 
-                    case "sk":
-                        System.Diagnostics.Process.Start("Manual.sk.pdf");
-                        break;
+        //            case "uk":
+        //                System.Diagnostics.Process.Start("Manual.uk.pdf");
+        //                break;
 
-                    case "pl":
-                        System.Diagnostics.Process.Start("Manual.pl.pdf");
-                        break;
+        //            case "sk":
+        //                System.Diagnostics.Process.Start("Manual.sk.pdf");
+        //                break;
 
-                    case "af":
-                        System.Diagnostics.Process.Start("Manual.af.pdf");
-                        break;
+        //            case "pl":
+        //                System.Diagnostics.Process.Start("Manual.pl.pdf");
+        //                break;
 
-                    default:
-                        System.Diagnostics.Process.Start("Manual.pdf");
-                        break;
-                }
-            }
-            catch
-            {
-                notFound = true;
-            }
+        //            case "af":
+        //                System.Diagnostics.Process.Start("Manual.af.pdf");
+        //                break;
 
-            if (notFound)
-            {
-                try
-                {
-                    System.Diagnostics.Process.Start("Manual.pdf");
-                }
-                catch
-                {
-                    //mf.TimedMessageBox(2000, "No File Found", "Can't Find Manual.pdf");
-                }
-            }
+        //            default:
+        //                System.Diagnostics.Process.Start("Manual.pdf");
+        //                break;
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        notFound = true;
+        //    }
 
-            Close();
-        }
+        //    if (notFound)
+        //    {
+        //        try
+        //        {
+        //            System.Diagnostics.Process.Start("Manual.pdf");
+        //        }
+        //        catch
+        //        {
+        //            //mf.TimedMessageBox(2000, "No File Found", "Can't Find Manual.pdf");
+        //        }
+        //    }
+
+        //    Close();
+        //}
+
     }
 }

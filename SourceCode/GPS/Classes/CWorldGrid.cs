@@ -46,6 +46,8 @@ namespace AgOpenGPS
         public bool isRateMap = false, isRateTrigger = false;
         public int numRateChannels = 1;
 
+        public double gridRotation = 0.0;
+
         public CWorldGrid(FormGPS _f)
         {
             mf = _f;
@@ -190,7 +192,9 @@ namespace AgOpenGPS
 
         public void DrawWorldGrid(double _gridZoom)
         {
-            _gridZoom *= 0.5;
+            //_gridZoom *= 0.5;
+
+            GL.Rotate(-gridRotation, 0, 0, 1.0);
 
             if (mf.isDay)
             {
@@ -217,6 +221,9 @@ namespace AgOpenGPS
                 GL.Vertex3(eastingMin, num2, 0.1);
             }
             GL.End();
+
+            GL.Rotate(gridRotation, 0, 0, 1.0);
+
         }
 
         public void checkZoomWorldGrid(double northing, double easting)

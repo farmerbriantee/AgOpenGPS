@@ -79,12 +79,10 @@ namespace AgIO
             this.label12 = new System.Windows.Forms.Label();
             this.lblStationID = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.lblSkipCounter = new System.Windows.Forms.Label();
             this.lblCount = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.lblToGPS = new System.Windows.Forms.Label();
             this.btnGPS_Out = new System.Windows.Forms.Button();
-            this.btnHelp = new System.Windows.Forms.Button();
             this.btnResetTimer = new System.Windows.Forms.Button();
             this.cboxIsSteerModule = new System.Windows.Forms.CheckBox();
             this.cboxIsIMUModule = new System.Windows.Forms.CheckBox();
@@ -100,6 +98,9 @@ namespace AgIO
             this.btnRunAOG = new System.Windows.Forms.Button();
             this.btnUDP = new System.Windows.Forms.Button();
             this.btnGPSData = new System.Windows.Forms.Button();
+            this.lblPing = new System.Windows.Forms.Label();
+            this.lblPingMachine = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -702,20 +703,6 @@ namespace AgIO
             this.label13.TabIndex = 508;
             this.label13.Text = "ID:";
             // 
-            // lblSkipCounter
-            // 
-            this.lblSkipCounter.AutoSize = true;
-            this.lblSkipCounter.BackColor = System.Drawing.Color.Transparent;
-            this.lblSkipCounter.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSkipCounter.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblSkipCounter.Location = new System.Drawing.Point(30, 54);
-            this.lblSkipCounter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblSkipCounter.Name = "lblSkipCounter";
-            this.lblSkipCounter.Size = new System.Drawing.Size(28, 16);
-            this.lblSkipCounter.TabIndex = 509;
-            this.lblSkipCounter.Text = "285";
-            this.lblSkipCounter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // lblCount
             // 
             this.lblCount.BackColor = System.Drawing.Color.Transparent;
@@ -735,12 +722,12 @@ namespace AgIO
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label7.Location = new System.Drawing.Point(3, 54);
+            this.label7.Location = new System.Drawing.Point(489, 343);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(27, 16);
+            this.label7.Size = new System.Drawing.Size(71, 16);
             this.label7.TabIndex = 511;
-            this.label7.Text = "Min";
+            this.label7.Text = "Steer Ping:";
             // 
             // lblToGPS
             // 
@@ -775,22 +762,6 @@ namespace AgIO
             this.btnGPS_Out.TabIndex = 523;
             this.btnGPS_Out.UseVisualStyleBackColor = false;
             this.btnGPS_Out.Click += new System.EventHandler(this.btnGPS_Out_Click);
-            // 
-            // btnHelp
-            // 
-            this.btnHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnHelp.FlatAppearance.BorderSize = 0;
-            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHelp.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHelp.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnHelp.Image = global::AgIO.Properties.Resources.Help;
-            this.btnHelp.Location = new System.Drawing.Point(251, 6);
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(56, 49);
-            this.btnHelp.TabIndex = 522;
-            this.btnHelp.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnHelp.UseVisualStyleBackColor = true;
-            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
             // btnResetTimer
             // 
@@ -971,10 +942,10 @@ namespace AgIO
             this.btnSlide.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSlide.ForeColor = System.Drawing.Color.White;
             this.btnSlide.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSlide.Location = new System.Drawing.Point(357, 6);
+            this.btnSlide.Location = new System.Drawing.Point(324, 6);
             this.btnSlide.Margin = new System.Windows.Forms.Padding(4);
             this.btnSlide.Name = "btnSlide";
-            this.btnSlide.Size = new System.Drawing.Size(56, 49);
+            this.btnSlide.Size = new System.Drawing.Size(89, 49);
             this.btnSlide.TabIndex = 475;
             this.btnSlide.UseVisualStyleBackColor = false;
             this.btnSlide.Click += new System.EventHandler(this.btnSlide_Click);
@@ -984,7 +955,7 @@ namespace AgIO
             this.pictureBox1.BackColor = System.Drawing.Color.Black;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox1.Image = global::AgIO.Properties.Resources.AgIO_First;
-            this.pictureBox1.Location = new System.Drawing.Point(583, 360);
+            this.pictureBox1.Location = new System.Drawing.Point(407, 387);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(42, 35);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -1060,13 +1031,54 @@ namespace AgIO
             this.btnGPSData.ForeColor = System.Drawing.Color.Black;
             this.btnGPSData.Image = global::AgIO.Properties.Resources.Nmea;
             this.btnGPSData.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnGPSData.Location = new System.Drawing.Point(129, 6);
+            this.btnGPSData.Location = new System.Drawing.Point(164, 6);
             this.btnGPSData.Margin = new System.Windows.Forms.Padding(4);
             this.btnGPSData.Name = "btnGPSData";
             this.btnGPSData.Size = new System.Drawing.Size(56, 49);
             this.btnGPSData.TabIndex = 513;
             this.btnGPSData.UseVisualStyleBackColor = false;
             this.btnGPSData.Click += new System.EventHandler(this.btnGPSData_Click);
+            // 
+            // lblPing
+            // 
+            this.lblPing.AutoSize = true;
+            this.lblPing.BackColor = System.Drawing.Color.Transparent;
+            this.lblPing.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPing.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblPing.Location = new System.Drawing.Point(558, 343);
+            this.lblPing.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPing.Name = "lblPing";
+            this.lblPing.Size = new System.Drawing.Size(35, 16);
+            this.lblPing.TabIndex = 524;
+            this.lblPing.Text = "2850";
+            this.lblPing.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPingMachine
+            // 
+            this.lblPingMachine.AutoSize = true;
+            this.lblPingMachine.BackColor = System.Drawing.Color.Transparent;
+            this.lblPingMachine.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPingMachine.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblPingMachine.Location = new System.Drawing.Point(558, 368);
+            this.lblPingMachine.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPingMachine.Name = "lblPingMachine";
+            this.lblPingMachine.Size = new System.Drawing.Size(35, 16);
+            this.lblPingMachine.TabIndex = 525;
+            this.lblPingMachine.Text = "2850";
+            this.lblPingMachine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label11.Location = new System.Drawing.Point(495, 368);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(65, 16);
+            this.label11.TabIndex = 526;
+            this.label11.Text = "Tool Ping:";
             // 
             // FormLoop
             // 
@@ -1075,10 +1087,11 @@ namespace AgIO
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(734, 475);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.lblPingMachine);
+            this.Controls.Add(this.lblPing);
             this.Controls.Add(this.btnGPS_Out);
-            this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.lblSkipCounter);
             this.Controls.Add(this.lblCount);
             this.Controls.Add(this.lblStationID);
             this.Controls.Add(this.label13);
@@ -1204,7 +1217,6 @@ namespace AgIO
         private System.Windows.Forms.Label lblStationID;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ToolStripMenuItem serialPassThroughToolStripMenuItem;
-        private System.Windows.Forms.Label lblSkipCounter;
         private System.Windows.Forms.Label lblCount;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblToGPS;
@@ -1214,10 +1226,12 @@ namespace AgIO
         public System.Windows.Forms.Button btnMachine;
         public System.Windows.Forms.Button btnSteer;
         private System.Windows.Forms.ToolStripMenuItem toolStripEthernet;
-        private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.ToolStripMenuItem toolStripSerialMonitor;
         private System.Windows.Forms.ToolStripMenuItem toolStripUDPMonitor;
         private System.Windows.Forms.Button btnGPS_Out;
+        private System.Windows.Forms.Label lblPing;
+        private System.Windows.Forms.Label lblPingMachine;
+        private System.Windows.Forms.Label label11;
     }
 }
 

@@ -137,7 +137,7 @@ namespace AgOpenGPS
                 btnAutoSteer.Image = Properties.Resources.AutoSteerOff;
                 //if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
                 if (sounds.isSteerSoundOn) sounds.sndAutoSteerOff.Play();
-                trk.isAutoSnapped = false;
+                //trk.isAutoSnapped = false;
             }
             else
             {
@@ -146,11 +146,11 @@ namespace AgOpenGPS
                     isBtnAutoSteerOn = true;
                     btnAutoSteer.Image = Properties.Resources.AutoSteerOn;
                     if (sounds.isSteerSoundOn) sounds.sndAutoSteerOn.Play();
-                    if (trk.isAutoSnapToPivot)
-                    {
-                        trk.SnapToPivot();
-                        trk.isAutoSnapped = true;   
-                    }
+                    //if (trk.isAutoSnapToPivot)
+                    //{
+                    //    trk.SnapToPivot();
+                    //    trk.isAutoSnapped = true;   
+                    //}
                 }
                 else
                 {
@@ -220,6 +220,8 @@ namespace AgOpenGPS
 
                 if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
                 if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
+
+                lblNumCu.Text = (trk.idx + 1).ToString() + "/" + trk.gArr.Count.ToString();
             }
 
             twoSecondCounter = 100;
@@ -256,6 +258,8 @@ namespace AgOpenGPS
 
                 if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
                 if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
+
+                lblNumCu.Text = (trk.idx + 1).ToString() + "/" + trk.gArr.Count.ToString();
             }
 
             ABLine.isABValid = false;
@@ -899,6 +903,10 @@ namespace AgOpenGPS
                 if (displayBrightness.isWmiMonitor) btnBrightnessDn.Text = (displayBrightness.GetBrightness().ToString()) + "%";
                 else btnBrightnessDn.Text = "??";
             }
+
+            if (isJobStarted) btnGrid.Enabled = true;
+            else btnGrid.Enabled = false;
+
         }
         private void btnStartAgIO_Click(object sender, EventArgs e)
         {
@@ -1070,7 +1078,10 @@ namespace AgOpenGPS
 
             Form ff = Application.OpenForms["FormGPS"];
             ff.Focus();
+
+            btnAutoSteerConfig.Focus();
         }
+
         private void btnGPSData_Click(object sender, EventArgs e)
         {            
             Form f = Application.OpenForms["FormGPSData"];
@@ -1939,18 +1950,26 @@ namespace AgOpenGPS
             camera.camPitch = -65;
             navPanelCounter = 0;
         }
-        private void btnN2D_Click(object sender, EventArgs e)
+        //private void btnN2D_Click(object sender, EventArgs e)
+        //{
+        //    camera.camFollowing = false;
+        //    camera.camPitch = 0;
+        //    navPanelCounter = 0;
+        //}
+        //private void btnN3D_Click(object sender, EventArgs e)
+        //{
+        //    camera.camPitch = -65;
+        //    camera.camFollowing = false;
+        //    navPanelCounter = 0;
+        //}
+
+        private void btnGrid_Click(object sender, EventArgs e)
         {
-            camera.camFollowing = false;
-            camera.camPitch = 0;
+            var form = new FormGrid(this);
+                form.Show(this);
             navPanelCounter = 0;
         }
-        private void btnN3D_Click(object sender, EventArgs e)
-        {
-            camera.camPitch = -65;
-            camera.camFollowing = false;
-            navPanelCounter = 0;
-        }
+
         private void btnBrightnessUp_Click(object sender, EventArgs e)
         {
             if (displayBrightness.isWmiMonitor)

@@ -1793,16 +1793,16 @@ namespace AgOpenGPS
             else if (isBtnAutoSteerOn)
             {
                 GL.Color4(0.052f, 0.970f, 0.03f, 0.97);
-                trk.isAutoSnapped = false;
-            }
-            else
-            {
-                GL.Color4(0.952f, 0.750f, 0.03f, 0.97);
                 if (trk.isAutoSnapToPivot && !trk.isAutoSnapped)
                 {
                     trk.SnapToPivot();
                     trk.isAutoSnapped = true;
                 }
+            }
+            else
+            {
+                GL.Color4(0.952f, 0.750f, 0.03f, 0.97);
+                trk.isAutoSnapped = false;
             }
 
             //we have lost connection to steer module
@@ -2268,6 +2268,10 @@ namespace AgOpenGPS
                     GL.TexCoord2(0, 1); GL.Vertex2(center, hite); //
                 }
                 GL.End();
+
+                center += 50;
+                font.DrawText(center, hite-32, "x" + gridToolSpacing.ToString(), 1);
+
             }
 
             center = oglMain.Width / -2 + 10;

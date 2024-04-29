@@ -50,7 +50,7 @@ namespace AgIO
         public bool isGPSSentencesOn = false, isSendNMEAToUDP;
 
         //timer variables
-        public double secondsSinceStart, twoSecondTimer, tenSecondTimer, threeMinuteTimer;
+        public double secondsSinceStart, twoSecondTimer, tenSecondTimer, threeMinuteTimer, pingSecondsStart;
 
         public string lastSentence;
 
@@ -455,8 +455,15 @@ namespace AgIO
 
             DoTraffic();
 
+            if (isViewAdvanced)
+            {
+                pingSecondsStart = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
+                lblPing.Text = lblPingMachine.Text = "*";
+            }
+
             //send a hello to modules
             SendUDPMessage(helloFromAgIO, epModule);
+
 
             //if (isLogNMEA)
             //{
@@ -467,8 +474,8 @@ namespace AgIO
             //    logNMEASentence.Clear();
             //}
 
-            if (focusSkipCounter < 310) lblSkipCounter.Text = focusSkipCounter.ToString();
-            else lblSkipCounter.Text = "On";
+            //if (focusSkipCounter < 310) lblSkipCounter.Text = focusSkipCounter.ToString();
+            //else lblSkipCounter.Text = "On";
         }
 
         private void TenSecondLoop()
