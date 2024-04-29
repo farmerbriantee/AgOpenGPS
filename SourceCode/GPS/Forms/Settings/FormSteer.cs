@@ -23,25 +23,11 @@ namespace AgOpenGPS
             nudMaxCounts.Controls[0].Enabled = false;
             nudPanicStopSpeed.Controls[0].Enabled = false;
 
-            nudSnapDistance.Controls[0].Enabled = false;
-            nudLineWidth.Controls[0].Enabled = false;
-            nudGuidanceLookAhead.Controls[0].Enabled = false;
-            nudMaxAngularVelocity.Controls[0].Enabled = false;
-            nudGuidanceSpeedLimit.Controls[0].Enabled = false;
-            nudMaxSteerSpeed.Controls[0].Enabled = false;
-            nudMinSteerSpeed.Controls[0].Enabled = false;
-
-            nudSnapDistance.Maximum = Math.Round(nudSnapDistance.Maximum / 2.54M);
-            nudSnapDistance.Minimum = Math.Round(nudSnapDistance.Minimum / 2.54M);
-
-            nudSnapDistance.Minimum = Math.Round(nudSnapDistance.Minimum / 2.54M);
-            nudSnapDistance.Maximum = Math.Round(nudSnapDistance.Maximum / 2.54M);
-
             this.label3.Text = gStr.gsAgressiveness;
             this.label5.Text = gStr.gsOvershootReduction;
             this.Text = gStr.gsAutoSteerConfiguration;
             this.Width = 388;
-            this.Height = 490;
+            this.Height = 480;
         }
 
         private void FormSteer_Load(object sender, EventArgs e)
@@ -378,157 +364,6 @@ namespace AgOpenGPS
             SettingsIO.ExportAll(mf.vehiclesDirectory + mf.vehicleFileName + ".XML");
         }
 
-
-        #region Alarms Tab
-
-        private void tabAlarm_Enter(object sender, EventArgs e)
-        {
-            if (mf.isMetric)
-            {
-                nudSnapDistance.DecimalPlaces = 0;
-                nudSnapDistance.Value = (int)((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn);
-                nudMaxSteerSpeed.Value = (decimal)(Properties.Settings.Default.setAS_maxSteerSpeed);
-                nudMinSteerSpeed.Value = (decimal)(Properties.Settings.Default.setAS_minSteerSpeed);
-                nudGuidanceSpeedLimit.Value = (decimal)Properties.Settings.Default.setAS_functionSpeedLimit;
-                label160.Text = label163.Text = label166.Text = "kmh";
-            }
-            else
-            {
-                nudSnapDistance.DecimalPlaces = 1;
-                nudSnapDistance.Value = (decimal)Math.Round(((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn), 1, MidpointRounding.AwayFromZero);
-                nudMaxSteerSpeed.Value = (decimal)(Properties.Settings.Default.setAS_maxSteerSpeed * 0.62137);
-                nudMinSteerSpeed.Value = (decimal)(Properties.Settings.Default.setAS_minSteerSpeed * 0.62137);
-                nudGuidanceSpeedLimit.Value = (decimal)(Properties.Settings.Default.setAS_functionSpeedLimit * 0.62137);
-                label160.Text = label163.Text = label166.Text = "mph";
-            }
-
-            nudGuidanceLookAhead.Value = (decimal)Properties.Settings.Default.setAS_guidanceLookAheadTime;
-
-            nudMaxAngularVelocity.Value = (decimal)glm.toDegrees(Properties.Settings.Default.setVehicle_maxAngularVelocity);
-
-            nudLineWidth.Value = Properties.Settings.Default.setDisplay_lineWidth;
-
-            //cboxAutoSteerAuto.Checked = Properties.Settings.Default.setAS_isAutoSteerAutoOn;
-            //if (Properties.Settings.Default.setAS_isAutoSteerAutoOn)
-            //{
-            //    cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOn;
-            //    cboxAutoSteerAuto.Text = "Remote";
-            //}
-            //else
-            //{
-            //    cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOff;
-            //    cboxAutoSteerAuto.Text = gStr.gsManual;
-            //}
-
-            //cboxConstantContour.Checked = Properties.Settings.Default.setAS_isConstantContourOn;
-            cboxSteerInReverse.Checked = Properties.Settings.Default.setAS_isSteerInReverse;
-
-            label20.Text = mf.unitsInCm;
-        }
-
-        private void tabAlarm_Leave(object sender, EventArgs e)
-        {
-            //Properties.Settings.Default.setAS_isAutoSteerAutoOn = cboxAutoSteerAuto.Checked;
-            Properties.Settings.Default.setAS_isSteerInReverse = cboxSteerInReverse.Checked;
-            Properties.Settings.Default.Save();
-        }
-
-        private void cboxAutoSteerAuto_Click(object sender, EventArgs e)
-        {
-            if (cboxAutoSteerAuto.Checked)
-            {
-                cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOn;
-                cboxAutoSteerAuto.Text = "Remote";
-                mf.ahrs.isAutoSteerAuto = true;
-            }
-            else
-            {
-                cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOff;
-                cboxAutoSteerAuto.Text = gStr.gsManual;
-                mf.ahrs.isAutoSteerAuto = false;
-            }
-        }
-
-        private void cboxSteerInReverse_Click(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.setAS_isSteerInReverse = cboxSteerInReverse.Checked;
-            mf.isSteerInReverse = cboxSteerInReverse.Checked;
-
-        }
-
-        //private void cboxConstantContour_Click(object sender, EventArgs e)
-        //{
-        //    Properties.Settings.Default.setAS_isConstantContourOn = cboxConstantContour.Checked;
-        //    mf.isConstantContourOn = cboxConstantContour.Checked;
-        //}
-
-        private void nudLineWidth_Click(object sender, EventArgs e)
-        {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
-            {
-                Properties.Settings.Default.setDisplay_lineWidth = (int)nudLineWidth.Value;
-                mf.ABLine.lineWidth = Properties.Settings.Default.setDisplay_lineWidth;
-            }
-        }
-
-        private void nudSnapDistance_Click(object sender, EventArgs e)
-        {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
-            {
-                Properties.Settings.Default.setAS_snapDistance = ((double)nudSnapDistance.Value * mf.inOrCm2Cm);
-                mf.ABLine.snapDistance = Properties.Settings.Default.setAS_snapDistance;
-            }
-        }
-        private void nudGuidanceSpeedLimit_Click(object sender, EventArgs e)
-        {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
-            {
-                Properties.Settings.Default.setAS_functionSpeedLimit = ((double)nudGuidanceSpeedLimit.Value);
-                if (!mf.isMetric) Properties.Settings.Default.setAS_functionSpeedLimit *= 1.609344;
-                mf.vehicle.functionSpeedLimit = Properties.Settings.Default.setAS_functionSpeedLimit;
-            }
-        }
-
-        private void nudMinSteerSpeed_Click(object sender, EventArgs e)
-        {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
-            {
-                Properties.Settings.Default.setAS_minSteerSpeed = ((double)nudMinSteerSpeed.Value);
-                if (!mf.isMetric) Properties.Settings.Default.setAS_minSteerSpeed *= 1.609344;
-                mf.vehicle.minSteerSpeed = Properties.Settings.Default.setAS_minSteerSpeed;
-            }
-        }
-        private void nudMaxSteerSpeed_Click(object sender, EventArgs e)
-        {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
-            {
-                Properties.Settings.Default.setAS_maxSteerSpeed = ((double)nudMaxSteerSpeed.Value);
-                if (!mf.isMetric) Properties.Settings.Default.setAS_maxSteerSpeed *= 1.609344;
-                mf.vehicle.maxSteerSpeed = Properties.Settings.Default.setAS_maxSteerSpeed;
-            }
-        }
-
-        private void nudMaxAngularVelocity_Click(object sender, EventArgs e)
-        {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
-            {
-                Properties.Settings.Default.setVehicle_maxAngularVelocity = glm.toRadians(((double)nudMaxAngularVelocity.Value));
-                mf.vehicle.maxAngularVelocity = Properties.Settings.Default.setVehicle_maxAngularVelocity;
-            }
-        }
-
-        private void nudGuidanceLookAhead_Click(object sender, EventArgs e)
-        {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
-            {
-                Properties.Settings.Default.setAS_guidanceLookAheadTime = ((double)nudGuidanceLookAhead.Value);
-                mf.guidanceLookAheadTime = Properties.Settings.Default.setAS_guidanceLookAheadTime;
-            }
-        }
-
-        #endregion
-
-
         private void btnVehicleReset_Click(object sender, EventArgs e)
         {
             DialogResult result3 = MessageBox.Show("Reset This Page to Defaults",
@@ -776,12 +611,12 @@ namespace AgOpenGPS
             if (windowSizeState++ > 0) windowSizeState = 0;
             if (windowSizeState == 1)
             {
-                this.Size = new System.Drawing.Size(1024, 720);
+                this.Size = new System.Drawing.Size(960, 720);
                 btnExpand.Image = Properties.Resources.ArrowLeft;
             }
             else if (windowSizeState == 0)
             {
-                this.Size = new System.Drawing.Size(388, 490);
+                this.Size = new System.Drawing.Size(388, 480);
                 btnExpand.Image = Properties.Resources.ArrowRight;
             }
         }
@@ -976,7 +811,7 @@ namespace AgOpenGPS
             mf.p_251.pgn[mf.p_251.set0] = Properties.Settings.Default.setArdSteer_setting0;
             mf.p_251.pgn[mf.p_251.set1] = Properties.Settings.Default.setArdSteer_setting1;
             mf.p_251.pgn[mf.p_251.maxPulse] = Properties.Settings.Default.setArdSteer_maxPulseCounts;
-            mf.p_251.pgn[mf.p_251.minSpeed] = unchecked((byte)(Properties.Settings.Default.setAS_minSteerSpeed * 10)); 
+            mf.p_251.pgn[mf.p_251.minSpeed] = unchecked((byte)(Properties.Settings.Default.setAS_minSteerSpeed * 10)); ; //0.5 kmh
 
             if (Properties.Settings.Default.setAS_isConstantContourOn)
                 mf.p_251.pgn[mf.p_251.angVel] = 1;

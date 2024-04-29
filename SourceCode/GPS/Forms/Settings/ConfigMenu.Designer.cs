@@ -183,7 +183,7 @@ namespace AgOpenGPS
         private void ClearVehicleSubBackgrounds()
         {
             btnSubVehicleType.BackColor = SystemColors.GradientInactiveCaption;
-            //btnSubAntenna.BackColor = SystemColors.GradientInactiveCaption;
+            btnSubAntenna.BackColor = SystemColors.GradientInactiveCaption;
             btnSubDimensions.BackColor = SystemColors.GradientInactiveCaption;
             btnSubGuidance.BackColor = SystemColors.GradientInactiveCaption;
         }
@@ -205,7 +205,7 @@ namespace AgOpenGPS
         {
             ClearVehicleSubBackgrounds();
             tab1.SelectedTab = tabVAntenna;
-            //btnSubAntenna.BackColor = SystemColors.GradientActiveCaption;
+            btnSubAntenna.BackColor = SystemColors.GradientActiveCaption;
         }
 
         private void btnSubGuidance_Click(object sender, EventArgs e)
