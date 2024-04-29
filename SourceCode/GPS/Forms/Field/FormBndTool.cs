@@ -390,7 +390,10 @@ namespace AgOpenGPS
             //btnCancelTouch.Visible = false;
             btnZoomIn.Visible = false;
             btnZoomOut.Visible = false;
-
+            btnMoveDn.Visible = false;
+            btnMoveUp.Visible = false;
+            btnMoveLeft.Visible = false;
+            btnMoveRight.Visible = false;
 
             //start all over
             start = end = 99999;
@@ -508,6 +511,11 @@ namespace AgOpenGPS
             btnCancelTouch.Visible = true;
             btnZoomIn.Visible = true;
             btnZoomOut.Visible = true;
+
+            btnMoveDn.Visible = false;
+            btnMoveUp.Visible = false;
+            btnMoveLeft.Visible = false;
+            btnMoveRight.Visible = false;
         }
 
         private void cboxSmooth_SelectedIndexChanged(object sender, EventArgs e)
@@ -643,15 +651,34 @@ namespace AgOpenGPS
             if (zoom > 1) zoom = 1;
         }
 
+        private void btnMoveDn_Click(object sender, EventArgs e)
+        {
+            if (zoom == 0.1)
+                sY += 0.01;
+        }
+
+        private void btnMoveUp_Click(object sender, EventArgs e)
+        {
+            if (zoom == 0.1)
+                sY -= 0.01;
+        }
+
+        private void btnMoveLeft_Click(object sender, EventArgs e)
+        {
+            if (zoom == 0.1)
+                sX += 0.01;
+        }
+
+        private void btnMoveRight_Click(object sender, EventArgs e)
+        {
+            if (zoom == 0.1)
+                sX -= 0.01;
+        }
+
         private void btnZoomIn_Click(object sender, EventArgs e)
         {
             zoom -= 0.1;
             if (zoom < 0.1) zoom = 0.1;
-        }
-
-        private void cboxIsZoom_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btnStartStop_Click(object sender, EventArgs e)
@@ -888,10 +915,6 @@ namespace AgOpenGPS
             //zoom = 1;
             //sX = 0;
             //sY = 0;
-        }
-
-        private void cboxIsZoom_Click(object sender, EventArgs e)
-        {
         }
 
         private void btnCenterOGL_Click(object sender, EventArgs e)
@@ -1219,6 +1242,24 @@ namespace AgOpenGPS
         private void timer1_Tick(object sender, EventArgs e)
         {
             oglSelf.Refresh();
+
+            if (timer1.Interval == 500)
+            {
+                if (zoom == 0.1)
+                {
+                    btnMoveDn.Visible = true;
+                    btnMoveUp.Visible = true;
+                    btnMoveLeft.Visible = true;
+                    btnMoveRight.Visible = true;
+                }
+                else
+                {
+                    btnMoveDn.Visible = false;
+                    btnMoveUp.Visible = false;
+                    btnMoveLeft.Visible = false;
+                    btnMoveRight.Visible = false;
+                }
+            }
         }
 
         private void oglSelf_Resize(object sender, EventArgs e)
