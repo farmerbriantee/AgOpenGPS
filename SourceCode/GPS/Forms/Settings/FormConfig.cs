@@ -284,5 +284,6 @@ namespace AgOpenGPS
             Close();
             //FormConfig_Load(this, e);
         }
+
     }
 }

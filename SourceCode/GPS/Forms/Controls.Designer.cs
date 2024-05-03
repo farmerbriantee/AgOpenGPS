@@ -1938,6 +1938,13 @@ namespace AgOpenGPS
             navPanelCounter = 2;
         }
 
+        private void btnN2D_Click(object sender, EventArgs e)
+        {
+            camera.camFollowing = false;
+            camera.camPitch = 0;
+            navPanelCounter = 0;
+        }
+
         private void btn2D_Click(object sender, EventArgs e)
         {
             camera.camFollowing = true;

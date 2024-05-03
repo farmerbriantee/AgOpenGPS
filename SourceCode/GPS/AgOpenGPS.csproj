@@ -959,6 +959,9 @@
   <ItemGroup>
     <Content Include="AOG.ico" />
     <Content Include="aChangeLog.txt" />
+    <None Include="btnImages\AntennaLeftOffset.png" />
+    <None Include="btnImages\AntennaRightOffset.png" />
+    <None Include="btnImages\AntennaNoOffset.png" />
     <Content Include="ConfigOMatic\RJCP.SerialPortStream.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

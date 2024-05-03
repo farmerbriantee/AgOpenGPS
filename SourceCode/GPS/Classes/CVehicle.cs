@@ -434,13 +434,13 @@ namespace AgOpenGPS
                 GL.PointSize(16);
                 GL.Begin(PrimitiveType.Points);
                 GL.Color3(0, 0, 0);
-                GL.Vertex3(0, antennaPivot, 0.1);
+                GL.Vertex3(-antennaOffset, antennaPivot, 0.1);
                 GL.End();
 
                 GL.PointSize(10);
                 GL.Begin(PrimitiveType.Points);
                 GL.Color3(0.20, 0.98, 0.98);
-                GL.Vertex3(0, antennaPivot, 0.1);
+                GL.Vertex3(-antennaOffset, antennaPivot, 0.1);
                 GL.End();
             }
 
