@@ -128,13 +128,16 @@
             this.btnOpacityUp = new System.Windows.Forms.Button();
             this.cboxIsImage = new System.Windows.Forms.CheckBox();
             this.tabVAntenna = new System.Windows.Forms.TabPage();
-            this.label20 = new System.Windows.Forms.Label();
+            this.label107 = new System.Windows.Forms.Label();
+            this.label96 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.btnAntennaOffsetZero = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.rbtnAntennaCenter = new System.Windows.Forms.RadioButton();
             this.rbtnAntennaRight = new System.Windows.Forms.RadioButton();
             this.rbtnAntennaLeft = new System.Windows.Forms.RadioButton();
             this.label55 = new System.Windows.Forms.Label();
+            this.label60 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.label100 = new System.Windows.Forms.Label();
             this.nudAntennaOffset = new AgOpenGPS.NudlessNumericUpDown();
             this.label99 = new System.Windows.Forms.Label();
@@ -2302,11 +2305,13 @@
             // tabVAntenna
             // 
             this.tabVAntenna.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tabVAntenna.Controls.Add(this.label20);
+            this.tabVAntenna.Controls.Add(this.label107);
+            this.tabVAntenna.Controls.Add(this.label96);
             this.tabVAntenna.Controls.Add(this.label21);
-            this.tabVAntenna.Controls.Add(this.btnAntennaOffsetZero);
             this.tabVAntenna.Controls.Add(this.groupBox5);
             this.tabVAntenna.Controls.Add(this.label55);
+            this.tabVAntenna.Controls.Add(this.label60);
+            this.tabVAntenna.Controls.Add(this.label20);
             this.tabVAntenna.Controls.Add(this.label100);
             this.tabVAntenna.Controls.Add(this.nudAntennaOffset);
             this.tabVAntenna.Controls.Add(this.label99);
@@ -2322,17 +2327,29 @@
             this.tabVAntenna.Enter += new System.EventHandler(this.tabVAntenna_Enter);
             this.tabVAntenna.Leave += new System.EventHandler(this.tabVAntenna_Leave);
             // 
-            // label20
+            // label107
             // 
-            this.label20.AutoSize = true;
-            this.label20.BackColor = System.Drawing.Color.Transparent;
-            this.label20.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.ForeColor = System.Drawing.Color.Black;
-            this.label20.Location = new System.Drawing.Point(545, 559);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(202, 16);
-            this.label20.TabIndex = 493;
-            this.label20.Text = "** Dual Position Antenna on Right";
+            this.label107.AutoSize = true;
+            this.label107.BackColor = System.Drawing.Color.Transparent;
+            this.label107.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label107.ForeColor = System.Drawing.Color.Black;
+            this.label107.Location = new System.Drawing.Point(154, 24);
+            this.label107.Name = "label107";
+            this.label107.Size = new System.Drawing.Size(86, 16);
+            this.label107.TabIndex = 503;
+            this.label107.Text = "Pivot Distance";
+            // 
+            // label96
+            // 
+            this.label96.AutoSize = true;
+            this.label96.BackColor = System.Drawing.Color.Transparent;
+            this.label96.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label96.ForeColor = System.Drawing.Color.Black;
+            this.label96.Location = new System.Drawing.Point(417, 263);
+            this.label96.Name = "label96";
+            this.label96.Size = new System.Drawing.Size(94, 16);
+            this.label96.TabIndex = 502;
+            this.label96.Text = "Antenna Height";
             // 
             // label21
             // 
@@ -2340,41 +2357,39 @@
             this.label21.BackColor = System.Drawing.Color.Transparent;
             this.label21.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.Black;
-            this.label21.Location = new System.Drawing.Point(627, 355);
+            this.label21.Location = new System.Drawing.Point(527, 534);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(57, 16);
-            this.label21.TabIndex = 480;
-            this.label21.Text = "Left Side";
-            // 
-            // btnAntennaOffsetZero
-            // 
-            this.btnAntennaOffsetZero.BackColor = System.Drawing.Color.Transparent;
-            this.btnAntennaOffsetZero.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnAntennaOffsetZero.FlatAppearance.BorderSize = 0;
-            this.btnAntennaOffsetZero.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
-            this.btnAntennaOffsetZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAntennaOffsetZero.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAntennaOffsetZero.ForeColor = System.Drawing.Color.Black;
-            this.btnAntennaOffsetZero.Image = global::AgOpenGPS.Properties.Resources.SteerZero;
-            this.btnAntennaOffsetZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAntennaOffsetZero.Location = new System.Drawing.Point(413, 445);
-            this.btnAntennaOffsetZero.Name = "btnAntennaOffsetZero";
-            this.btnAntennaOffsetZero.Size = new System.Drawing.Size(90, 52);
-            this.btnAntennaOffsetZero.TabIndex = 492;
-            this.btnAntennaOffsetZero.UseVisualStyleBackColor = false;
-            this.btnAntennaOffsetZero.Click += new System.EventHandler(this.btnAntennaOffsetZero_Click);
+            this.label21.Size = new System.Drawing.Size(45, 16);
+            this.label21.TabIndex = 501;
+            this.label21.Text = "Center";
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.rbtnAntennaCenter);
             this.groupBox5.Controls.Add(this.rbtnAntennaRight);
             this.groupBox5.Controls.Add(this.rbtnAntennaLeft);
             this.groupBox5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(542, 320);
+            this.groupBox5.Location = new System.Drawing.Point(342, 417);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(85, 221);
-            this.groupBox5.TabIndex = 490;
+            this.groupBox5.Size = new System.Drawing.Size(405, 114);
+            this.groupBox5.TabIndex = 500;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Offset";
+            this.groupBox5.Text = "Antenna Offset";
+            // 
+            // rbtnAntennaCenter
+            // 
+            this.rbtnAntennaCenter.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnAntennaCenter.BackColor = System.Drawing.Color.Transparent;
+            this.rbtnAntennaCenter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.rbtnAntennaCenter.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
+            this.rbtnAntennaCenter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnAntennaCenter.Image = global::AgOpenGPS.Properties.Resources.AntennaNoOffset;
+            this.rbtnAntennaCenter.Location = new System.Drawing.Point(168, 25);
+            this.rbtnAntennaCenter.Name = "rbtnAntennaCenter";
+            this.rbtnAntennaCenter.Size = new System.Drawing.Size(73, 81);
+            this.rbtnAntennaCenter.TabIndex = 480;
+            this.rbtnAntennaCenter.UseVisualStyleBackColor = false;
+            this.rbtnAntennaCenter.Click += new System.EventHandler(this.rbtnAntennaLeft_Click);
             // 
             // rbtnAntennaRight
             // 
@@ -2384,7 +2399,7 @@
             this.rbtnAntennaRight.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnAntennaRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnAntennaRight.Image = global::AgOpenGPS.Properties.Resources.AntennaRightOffset;
-            this.rbtnAntennaRight.Location = new System.Drawing.Point(5, 120);
+            this.rbtnAntennaRight.Location = new System.Drawing.Point(306, 25);
             this.rbtnAntennaRight.Name = "rbtnAntennaRight";
             this.rbtnAntennaRight.Size = new System.Drawing.Size(73, 81);
             this.rbtnAntennaRight.TabIndex = 479;
@@ -2399,7 +2414,7 @@
             this.rbtnAntennaLeft.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.rbtnAntennaLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnAntennaLeft.Image = global::AgOpenGPS.Properties.Resources.AntennaLeftOffset;
-            this.rbtnAntennaLeft.Location = new System.Drawing.Point(5, 33);
+            this.rbtnAntennaLeft.Location = new System.Drawing.Point(28, 25);
             this.rbtnAntennaLeft.Name = "rbtnAntennaLeft";
             this.rbtnAntennaLeft.Size = new System.Drawing.Size(73, 81);
             this.rbtnAntennaLeft.TabIndex = 478;
@@ -2412,11 +2427,35 @@
             this.label55.BackColor = System.Drawing.Color.Transparent;
             this.label55.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label55.ForeColor = System.Drawing.Color.Black;
-            this.label55.Location = new System.Drawing.Point(627, 503);
+            this.label55.Location = new System.Drawing.Point(391, 534);
             this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(65, 16);
-            this.label55.TabIndex = 476;
-            this.label55.Text = "Right Side";
+            this.label55.Size = new System.Drawing.Size(28, 16);
+            this.label55.TabIndex = 499;
+            this.label55.Text = "Left";
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.BackColor = System.Drawing.Color.Transparent;
+            this.label60.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label60.ForeColor = System.Drawing.Color.Black;
+            this.label60.Location = new System.Drawing.Point(669, 534);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(36, 16);
+            this.label60.TabIndex = 498;
+            this.label60.Text = "Right";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.BackColor = System.Drawing.Color.Transparent;
+            this.label20.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.Black;
+            this.label20.Location = new System.Drawing.Point(545, 565);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(202, 16);
+            this.label20.TabIndex = 493;
+            this.label20.Text = "** Dual Position Antenna on Right";
             // 
             // label100
             // 
@@ -2424,7 +2463,7 @@
             this.label100.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label100.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label100.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label100.Location = new System.Drawing.Point(438, 365);
+            this.label100.Location = new System.Drawing.Point(620, 371);
             this.label100.Name = "label100";
             this.label100.Size = new System.Drawing.Size(32, 19);
             this.label100.TabIndex = 483;
@@ -2436,7 +2475,7 @@
             this.nudAntennaOffset.BackColor = System.Drawing.Color.AliceBlue;
             this.nudAntennaOffset.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudAntennaOffset.InterceptArrowKeys = false;
-            this.nudAntennaOffset.Location = new System.Drawing.Point(384, 387);
+            this.nudAntennaOffset.Location = new System.Drawing.Point(474, 352);
             this.nudAntennaOffset.Maximum = new decimal(new int[] {
             500,
             0,
@@ -2455,7 +2494,7 @@
             this.label99.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label99.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label99.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label99.Location = new System.Drawing.Point(447, 186);
+            this.label99.Location = new System.Drawing.Point(540, 225);
             this.label99.Name = "label99";
             this.label99.Size = new System.Drawing.Size(32, 19);
             this.label99.TabIndex = 482;
@@ -9554,7 +9593,6 @@
         private System.Windows.Forms.RadioButton rbtnTrailing;
         private NudlessNumericUpDown nudAntennaHeight;
         private NudlessNumericUpDown nudAntennaPivot;
-        private NudlessNumericUpDown nudAntennaOffset;
         private System.Windows.Forms.PictureBox pboxAntenna;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rbtnHarvester;
@@ -9974,7 +10012,6 @@
         private System.Windows.Forms.Label label97;
         private System.Windows.Forms.Label label95;
         private System.Windows.Forms.Label label94;
-        private System.Windows.Forms.Label label100;
         private System.Windows.Forms.Label label99;
         private System.Windows.Forms.Label label98;
         private System.Windows.Forms.Label label112;
@@ -9997,12 +10034,17 @@
         private NudlessNumericUpDown nudDualReverseDistance;
         private System.Windows.Forms.CheckBox cboxDisplayTramControl;
         private System.Windows.Forms.Label label111;
-        private System.Windows.Forms.Button btnAntennaOffsetZero;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.RadioButton rbtnAntennaCenter;
         private System.Windows.Forms.RadioButton rbtnAntennaRight;
         private System.Windows.Forms.RadioButton rbtnAntennaLeft;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label55;
-        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label60;
+        private System.Windows.Forms.Label label100;
+        private NudlessNumericUpDown nudAntennaOffset;
+        private System.Windows.Forms.Label label107;
+        private System.Windows.Forms.Label label96;
     }
 }
