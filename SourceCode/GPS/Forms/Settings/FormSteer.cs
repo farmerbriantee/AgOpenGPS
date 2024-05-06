@@ -433,20 +433,22 @@ namespace AgOpenGPS
             Properties.Settings.Default.Save();
         }
 
+
+        //no longer used
         private void cboxAutoSteerAuto_Click(object sender, EventArgs e)
         {
-            if (cboxAutoSteerAuto.Checked)
-            {
-                cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOn;
-                cboxAutoSteerAuto.Text = "Remote";
-                mf.ahrs.isAutoSteerAuto = true;
-            }
-            else
-            {
-                cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOff;
-                cboxAutoSteerAuto.Text = gStr.gsManual;
-                mf.ahrs.isAutoSteerAuto = false;
-            }
+            //if (cboxAutoSteerAuto.Checked)
+            //{
+            //    cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOn;
+            //    cboxAutoSteerAuto.Text = "Remote";
+            //    mf.ahrs.isAutoSteerAuto = true;
+            //}
+            //else
+            //{
+            //    cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOff;
+            //    cboxAutoSteerAuto.Text = gStr.gsManual;
+            //    mf.ahrs.isAutoSteerAuto = false;
+            //}
         }
 
         private void cboxSteerInReverse_Click(object sender, EventArgs e)
