@@ -30,7 +30,8 @@
 
             fusionWeight = Properties.Settings.Default.setIMU_fusionWeight2;
 
-            isAutoSteerAuto = Properties.Settings.Default.setAS_isAutoSteerAutoOn;
+            //isAutoSteerAuto = Properties.Settings.Default.setAS_isAutoSteerAutoOn;
+            isAutoSteerAuto = true;
 
             forwardComp = Properties.Settings.Default.setGPS_forwardComp;
 
