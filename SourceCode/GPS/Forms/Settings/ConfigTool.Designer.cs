@@ -539,6 +539,8 @@ namespace AgOpenGPS
 
                 //enable disable manual buttons
                 mf.LineUpIndividualSectionBtns();
+
+                nudDefaultSectionWidth.DecimalPlaces = 0;
             }
             else
             {
@@ -546,6 +548,8 @@ namespace AgOpenGPS
                 mf.AllZonesAndButtonsToState(btnStates.Off);
 
                 mf.LineUpAllZoneButtons();
+
+                nudDefaultSectionWidth.DecimalPlaces = 1;
             }
 
             cboxIsUnique.Checked = !mf.tool.isSectionsNotZones;
