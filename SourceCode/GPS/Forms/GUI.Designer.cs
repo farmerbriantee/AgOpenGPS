@@ -671,7 +671,8 @@ namespace AgOpenGPS
             tool.contourWidth = (tool.width - tool.overlap) / 3.0;
 
             //load the lightbar resolution
-            lightbarCmPerPixel = 2;
+            //lightbarCmPerPixel = 2;          
+            lightbarCmPerPixel = Properties.Settings.Default.setDisplay_lightbarCmPerPixel;
 
             isStanleyUsed = Properties.Settings.Default.setVehicle_isStanleyUsed;
 
