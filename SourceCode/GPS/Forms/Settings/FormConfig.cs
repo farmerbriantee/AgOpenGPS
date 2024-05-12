@@ -112,6 +112,10 @@ namespace AgOpenGPS
             label29.Text = gStr.gsSaveAs;
             UpdateSummary();
             //label3.Text = gStr.gsCurrent;
+           
+            hSBarCmPerPixel.Value = Properties.Settings.Default.setDisplay_lightbarCmPerPixel;
+            lblightbarCmPerPixel.Text = (hSBarCmPerPixel.Value).ToString();
+
         }
 
         private void FormConfig_FormClosing(object sender, FormClosingEventArgs e)
@@ -257,6 +261,21 @@ namespace AgOpenGPS
 
             if (mf.isMetric) rbtnDisplayMetric.Checked = true;
             else rbtnDisplayImperial.Checked = true;
+
+            if (chkDisplayLightbar.Checked)
+            {
+                hSBarCmPerPixel.Visible = true;
+                pictureBox2.Visible = true;
+                lblightbarCmPerPixel.Visible = true;
+            }
+            else
+            {
+                hSBarCmPerPixel.Visible = false;
+                pictureBox2.Visible = false;
+                lblightbarCmPerPixel.Visible = false;
+            }
+
+
         }
 
         private void tabDisplay_Leave(object sender, EventArgs e)
@@ -285,5 +304,27 @@ namespace AgOpenGPS
             //FormConfig_Load(this, e);
         }
 
+        private void chkDisplayLightbar_CheckedChanged(object sender, EventArgs e)
+        {
+            //if chkDisplayLightbar hSBarCmPerPixel.visible
+            if (chkDisplayLightbar.Checked)
+            {
+                hSBarCmPerPixel.Visible = true;
+                pictureBox2.Visible = true;
+                lblightbarCmPerPixel.Visible = true;
+            }
+            else
+            {
+                hSBarCmPerPixel.Visible = false;
+                pictureBox2.Visible = false;
+                lblightbarCmPerPixel.Visible = false;
+            }
+                              
+        }
+
+        private void hSBarCmPerPixel_ValueChanged(object sender, EventArgs e)
+        {
+         lblightbarCmPerPixel.Text = (hSBarCmPerPixel.Value).ToString();
+        }
     }
 }

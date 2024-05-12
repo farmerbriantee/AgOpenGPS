@@ -493,6 +493,8 @@
             this.cboxFeatureHeadland = new System.Windows.Forms.CheckBox();
             this.cboxFeatureTram = new System.Windows.Forms.CheckBox();
             this.tabDisplay = new System.Windows.Forms.TabPage();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.lblightbarCmPerPixel = new System.Windows.Forms.Label();
             this.label79 = new System.Windows.Forms.Label();
             this.unitsGroupBox = new System.Windows.Forms.GroupBox();
             this.rbtnDisplayImperial = new System.Windows.Forms.RadioButton();
@@ -531,6 +533,7 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.hSBarCmPerPixel = new System.Windows.Forms.HScrollBar();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -643,6 +646,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.tabBtns.SuspendLayout();
             this.tabDisplay.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.unitsGroupBox.SuspendLayout();
             this.panelBottom.SuspendLayout();
             this.SuspendLayout();
@@ -2335,7 +2339,7 @@
             this.label107.ForeColor = System.Drawing.Color.Black;
             this.label107.Location = new System.Drawing.Point(154, 24);
             this.label107.Name = "label107";
-            this.label107.Size = new System.Drawing.Size(86, 16);
+            this.label107.Size = new System.Drawing.Size(87, 16);
             this.label107.TabIndex = 503;
             this.label107.Text = "Pivot Distance";
             // 
@@ -2347,7 +2351,7 @@
             this.label96.ForeColor = System.Drawing.Color.Black;
             this.label96.Location = new System.Drawing.Point(417, 263);
             this.label96.Name = "label96";
-            this.label96.Size = new System.Drawing.Size(94, 16);
+            this.label96.Size = new System.Drawing.Size(95, 16);
             this.label96.TabIndex = 502;
             this.label96.Text = "Antenna Height";
             // 
@@ -2359,7 +2363,7 @@
             this.label21.ForeColor = System.Drawing.Color.Black;
             this.label21.Location = new System.Drawing.Point(527, 534);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(45, 16);
+            this.label21.Size = new System.Drawing.Size(46, 16);
             this.label21.TabIndex = 501;
             this.label21.Text = "Center";
             // 
@@ -2429,7 +2433,7 @@
             this.label55.ForeColor = System.Drawing.Color.Black;
             this.label55.Location = new System.Drawing.Point(391, 534);
             this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(28, 16);
+            this.label55.Size = new System.Drawing.Size(29, 16);
             this.label55.TabIndex = 499;
             this.label55.Text = "Left";
             // 
@@ -2441,7 +2445,7 @@
             this.label60.ForeColor = System.Drawing.Color.Black;
             this.label60.Location = new System.Drawing.Point(669, 534);
             this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(36, 16);
+            this.label60.Size = new System.Drawing.Size(37, 16);
             this.label60.TabIndex = 498;
             this.label60.Text = "Right";
             // 
@@ -2453,7 +2457,7 @@
             this.label20.ForeColor = System.Drawing.Color.Black;
             this.label20.Location = new System.Drawing.Point(545, 565);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(202, 16);
+            this.label20.Size = new System.Drawing.Size(203, 16);
             this.label20.TabIndex = 493;
             this.label20.Text = "** Dual Position Antenna on Right";
             // 
@@ -2642,7 +2646,7 @@
             this.label27.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label27.Location = new System.Drawing.Point(68, 327);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(77, 16);
+            this.label27.Size = new System.Drawing.Size(78, 16);
             this.label27.TabIndex = 479;
             this.label27.Text = "Hitch Length";
             // 
@@ -2652,7 +2656,7 @@
             this.label53.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label53.Location = new System.Drawing.Point(755, 221);
             this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(39, 16);
+            this.label53.Size = new System.Drawing.Size(40, 16);
             this.label53.TabIndex = 476;
             this.label53.Text = "Track";
             // 
@@ -2662,7 +2666,7 @@
             this.label44.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label44.Location = new System.Drawing.Point(226, 453);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(70, 16);
+            this.label44.Size = new System.Drawing.Size(71, 16);
             this.label44.TabIndex = 475;
             this.label44.Text = "Wheelbase";
             // 
@@ -3107,7 +3111,7 @@
             this.label9.ForeColor = System.Drawing.Color.Black;
             this.label9.Location = new System.Drawing.Point(34, 256);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(51, 16);
+            this.label9.Size = new System.Drawing.Size(52, 16);
             this.label9.TabIndex = 481;
             this.label9.Text = "Overlap";
             // 
@@ -3119,7 +3123,7 @@
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(239, 256);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 16);
+            this.label3.Size = new System.Drawing.Size(30, 16);
             this.label3.TabIndex = 480;
             this.label3.Text = "Gap";
             // 
@@ -3177,7 +3181,7 @@
             this.label17.ForeColor = System.Drawing.Color.Black;
             this.label17.Location = new System.Drawing.Point(257, 256);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(65, 16);
+            this.label17.Size = new System.Drawing.Size(66, 16);
             this.label17.TabIndex = 480;
             this.label17.Text = "Tool Right";
             // 
@@ -3219,7 +3223,7 @@
             this.label65.ForeColor = System.Drawing.Color.Black;
             this.label65.Location = new System.Drawing.Point(71, 256);
             this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(57, 16);
+            this.label65.Size = new System.Drawing.Size(58, 16);
             this.label65.TabIndex = 476;
             this.label65.Text = "Tool Left";
             // 
@@ -5812,7 +5816,7 @@
             this.label78.ForeColor = System.Drawing.Color.Black;
             this.label78.Location = new System.Drawing.Point(605, 182);
             this.label78.Name = "label78";
-            this.label78.Size = new System.Drawing.Size(65, 16);
+            this.label78.Size = new System.Drawing.Size(66, 16);
             this.label78.TabIndex = 484;
             this.label78.Text = "Invert Roll";
             // 
@@ -5822,7 +5826,7 @@
             this.label77.ForeColor = System.Drawing.Color.Black;
             this.label77.Location = new System.Drawing.Point(94, 183);
             this.label77.Name = "label77";
-            this.label77.Size = new System.Drawing.Size(58, 16);
+            this.label77.Size = new System.Drawing.Size(59, 16);
             this.label77.TabIndex = 483;
             this.label77.Text = "Zero Roll";
             // 
@@ -5832,7 +5836,7 @@
             this.label76.ForeColor = System.Drawing.Color.Black;
             this.label76.Location = new System.Drawing.Point(94, 27);
             this.label76.Name = "label76";
-            this.label76.Size = new System.Drawing.Size(91, 16);
+            this.label76.Size = new System.Drawing.Size(92, 16);
             this.label76.TabIndex = 482;
             this.label76.Text = "Remove Offset";
             // 
@@ -7467,7 +7471,7 @@
             this.label151.ForeColor = System.Drawing.Color.Black;
             this.label151.Location = new System.Drawing.Point(662, 326);
             this.label151.Name = "label151";
-            this.label151.Size = new System.Drawing.Size(44, 16);
+            this.label151.Size = new System.Drawing.Size(45, 16);
             this.label151.TabIndex = 492;
             this.label151.Text = "User 4";
             // 
@@ -7479,7 +7483,7 @@
             this.label150.ForeColor = System.Drawing.Color.Black;
             this.label150.Location = new System.Drawing.Point(662, 234);
             this.label150.Name = "label150";
-            this.label150.Size = new System.Drawing.Size(44, 16);
+            this.label150.Size = new System.Drawing.Size(45, 16);
             this.label150.TabIndex = 491;
             this.label150.Text = "User 3";
             // 
@@ -7491,7 +7495,7 @@
             this.label149.ForeColor = System.Drawing.Color.Black;
             this.label149.Location = new System.Drawing.Point(662, 147);
             this.label149.Name = "label149";
-            this.label149.Size = new System.Drawing.Size(44, 16);
+            this.label149.Size = new System.Drawing.Size(45, 16);
             this.label149.TabIndex = 490;
             this.label149.Text = "User 2";
             // 
@@ -7503,7 +7507,7 @@
             this.label148.ForeColor = System.Drawing.Color.Black;
             this.label148.Location = new System.Drawing.Point(662, 56);
             this.label148.Name = "label148";
-            this.label148.Size = new System.Drawing.Size(44, 16);
+            this.label148.Size = new System.Drawing.Size(45, 16);
             this.label148.TabIndex = 489;
             this.label148.Text = "User 1";
             // 
@@ -7536,7 +7540,7 @@
             this.label147.ForeColor = System.Drawing.Color.Black;
             this.label147.Location = new System.Drawing.Point(276, 133);
             this.label147.Name = "label147";
-            this.label147.Size = new System.Drawing.Size(60, 16);
+            this.label147.Size = new System.Drawing.Size(61, 16);
             this.label147.TabIndex = 480;
             this.label147.Text = "Plant Pop";
             // 
@@ -7589,7 +7593,7 @@
             this.label74.ForeColor = System.Drawing.Color.Black;
             this.label74.Location = new System.Drawing.Point(223, 55);
             this.label74.Name = "label74";
-            this.label74.Size = new System.Drawing.Size(110, 16);
+            this.label74.Size = new System.Drawing.Size(111, 16);
             this.label74.TabIndex = 478;
             this.label74.Text = "Raise Time (secs)";
             // 
@@ -7600,7 +7604,7 @@
             this.label25.ForeColor = System.Drawing.Color.Black;
             this.label25.Location = new System.Drawing.Point(31, 43);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(45, 16);
+            this.label25.Size = new System.Drawing.Size(46, 16);
             this.label25.TabIndex = 479;
             this.label25.Text = "Enable";
             // 
@@ -7611,7 +7615,7 @@
             this.label73.ForeColor = System.Drawing.Color.Black;
             this.label73.Location = new System.Drawing.Point(223, 260);
             this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(114, 16);
+            this.label73.Size = new System.Drawing.Size(115, 16);
             this.label73.TabIndex = 477;
             this.label73.Text = "Lower Time (secs)";
             // 
@@ -7716,7 +7720,7 @@
             this.label72.ForeColor = System.Drawing.Color.Black;
             this.label72.Location = new System.Drawing.Point(314, 495);
             this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(81, 16);
+            this.label72.Size = new System.Drawing.Size(82, 16);
             this.label72.TabIndex = 476;
             this.label72.Text = "Invert Relays";
             // 
@@ -7924,7 +7928,7 @@
             this.label111.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label111.Location = new System.Drawing.Point(655, 13);
             this.label111.Name = "label111";
-            this.label111.Size = new System.Drawing.Size(53, 16);
+            this.label111.Size = new System.Drawing.Size(54, 16);
             this.label111.TabIndex = 486;
             this.label111.Text = "Display?";
             this.label111.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -7939,7 +7943,7 @@
             this.label85.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label85.Location = new System.Drawing.Point(407, 286);
             this.label85.Name = "label85";
-            this.label85.Size = new System.Drawing.Size(51, 16);
+            this.label85.Size = new System.Drawing.Size(52, 16);
             this.label85.TabIndex = 483;
             this.label85.Text = "Overide";
             this.label85.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -7965,7 +7969,7 @@
             this.label75.ForeColor = System.Drawing.Color.Black;
             this.label75.Location = new System.Drawing.Point(326, 85);
             this.label75.Name = "label75";
-            this.label75.Size = new System.Drawing.Size(75, 16);
+            this.label75.Size = new System.Drawing.Size(76, 16);
             this.label75.TabIndex = 477;
             this.label75.Text = "Tram Width";
             // 
@@ -8106,7 +8110,7 @@
             this.label91.ForeColor = System.Drawing.Color.Black;
             this.label91.Location = new System.Drawing.Point(728, 384);
             this.label91.Name = "label91";
-            this.label91.Size = new System.Drawing.Size(55, 16);
+            this.label91.Size = new System.Drawing.Size(56, 16);
             this.label91.TabIndex = 526;
             this.label91.Text = "Sections";
             // 
@@ -8157,7 +8161,7 @@
             this.label61.ForeColor = System.Drawing.Color.Black;
             this.label61.Location = new System.Drawing.Point(20, 483);
             this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(99, 16);
+            this.label61.Size = new System.Drawing.Size(100, 16);
             this.label61.TabIndex = 518;
             this.label61.Text = "AutoStart AgIO?";
             // 
@@ -8169,7 +8173,7 @@
             this.label121.ForeColor = System.Drawing.Color.Black;
             this.label121.Location = new System.Drawing.Point(732, 270);
             this.label121.Name = "label121";
-            this.label121.Size = new System.Drawing.Size(49, 16);
+            this.label121.Size = new System.Drawing.Size(50, 16);
             this.label121.TabIndex = 516;
             this.label121.Text = "Hyd Lift";
             // 
@@ -8181,7 +8185,7 @@
             this.label119.ForeColor = System.Drawing.Color.Black;
             this.label119.Location = new System.Drawing.Point(723, 40);
             this.label119.Name = "label119";
-            this.label119.Size = new System.Drawing.Size(68, 16);
+            this.label119.Size = new System.Drawing.Size(69, 16);
             this.label119.TabIndex = 514;
             this.label119.Text = "Auto Steer";
             // 
@@ -8193,7 +8197,7 @@
             this.label120.ForeColor = System.Drawing.Color.Black;
             this.label120.Location = new System.Drawing.Point(728, 156);
             this.label120.Name = "label120";
-            this.label120.Size = new System.Drawing.Size(59, 16);
+            this.label120.Size = new System.Drawing.Size(60, 16);
             this.label120.TabIndex = 513;
             this.label120.Text = "You Turn";
             // 
@@ -8218,7 +8222,7 @@
             this.label115.ForeColor = System.Drawing.Color.Black;
             this.label115.Location = new System.Drawing.Point(384, 40);
             this.label115.Name = "label115";
-            this.label115.Size = new System.Drawing.Size(47, 16);
+            this.label115.Size = new System.Drawing.Size(48, 16);
             this.label115.TabIndex = 509;
             this.label115.Text = "U-Turn";
             // 
@@ -8230,7 +8234,7 @@
             this.label114.ForeColor = System.Drawing.Color.Black;
             this.label114.Location = new System.Drawing.Point(491, 41);
             this.label114.Name = "label114";
-            this.label114.Size = new System.Drawing.Size(46, 16);
+            this.label114.Size = new System.Drawing.Size(47, 16);
             this.label114.TabIndex = 508;
             this.label114.Text = "Lateral";
             // 
@@ -8242,7 +8246,7 @@
             this.label90.ForeColor = System.Drawing.Color.Black;
             this.label90.Location = new System.Drawing.Point(181, 352);
             this.label90.Name = "label90";
-            this.label90.Size = new System.Drawing.Size(61, 16);
+            this.label90.Size = new System.Drawing.Size(62, 16);
             this.label90.TabIndex = 488;
             this.label90.Text = "Offset Fix";
             // 
@@ -8254,7 +8258,7 @@
             this.label89.ForeColor = System.Drawing.Color.Black;
             this.label89.Location = new System.Drawing.Point(181, 249);
             this.label89.Name = "label89";
-            this.label89.Size = new System.Drawing.Size(59, 16);
+            this.label89.Size = new System.Drawing.Size(60, 16);
             this.label89.TabIndex = 487;
             this.label89.Text = "WebCam";
             // 
@@ -8266,7 +8270,7 @@
             this.label88.ForeColor = System.Drawing.Color.Black;
             this.label88.Location = new System.Drawing.Point(173, 144);
             this.label88.Name = "label88";
-            this.label88.Size = new System.Drawing.Size(81, 16);
+            this.label88.Size = new System.Drawing.Size(82, 16);
             this.label88.TabIndex = 486;
             this.label88.Text = "Hide Contour";
             // 
@@ -8278,7 +8282,7 @@
             this.label87.ForeColor = System.Drawing.Color.Black;
             this.label87.Location = new System.Drawing.Point(177, 40);
             this.label87.Name = "label87";
-            this.label87.Size = new System.Drawing.Size(70, 16);
+            this.label87.Size = new System.Drawing.Size(71, 16);
             this.label87.TabIndex = 485;
             this.label87.Text = "AB Smooth";
             // 
@@ -8290,7 +8294,7 @@
             this.label86.ForeColor = System.Drawing.Color.Black;
             this.label86.Location = new System.Drawing.Point(40, 352);
             this.label86.Name = "label86";
-            this.label86.Size = new System.Drawing.Size(57, 16);
+            this.label86.Size = new System.Drawing.Size(58, 16);
             this.label86.TabIndex = 484;
             this.label86.Text = "Rec Path";
             // 
@@ -8302,7 +8306,7 @@
             this.label84.ForeColor = System.Drawing.Color.Black;
             this.label84.Location = new System.Drawing.Point(41, 248);
             this.label84.Name = "label84";
-            this.label84.Size = new System.Drawing.Size(60, 16);
+            this.label84.Size = new System.Drawing.Size(61, 16);
             this.label84.TabIndex = 482;
             this.label84.Text = "Boundary";
             // 
@@ -8314,7 +8318,7 @@
             this.label83.ForeColor = System.Drawing.Color.Black;
             this.label83.Location = new System.Drawing.Point(35, 40);
             this.label83.Name = "label83";
-            this.label83.Size = new System.Drawing.Size(71, 16);
+            this.label83.Size = new System.Drawing.Size(72, 16);
             this.label83.TabIndex = 481;
             this.label83.Text = "Tram Lines";
             // 
@@ -8326,7 +8330,7 @@
             this.label82.ForeColor = System.Drawing.Color.Black;
             this.label82.Location = new System.Drawing.Point(42, 144);
             this.label82.Name = "label82";
-            this.label82.Size = new System.Drawing.Size(60, 16);
+            this.label82.Size = new System.Drawing.Size(61, 16);
             this.label82.TabIndex = 480;
             this.label82.Text = "Headland";
             // 
@@ -8760,6 +8764,9 @@
             // tabDisplay
             // 
             this.tabDisplay.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabDisplay.Controls.Add(this.hSBarCmPerPixel);
+            this.tabDisplay.Controls.Add(this.pictureBox2);
+            this.tabDisplay.Controls.Add(this.lblightbarCmPerPixel);
             this.tabDisplay.Controls.Add(this.label79);
             this.tabDisplay.Controls.Add(this.unitsGroupBox);
             this.tabDisplay.Controls.Add(this.label15);
@@ -8794,6 +8801,28 @@
             this.tabDisplay.Enter += new System.EventHandler(this.tabDisplay_Enter);
             this.tabDisplay.Leave += new System.EventHandler(this.tabDisplay_Leave);
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Image = global::AgOpenGPS.Properties.Resources.ConV_CmPixel;
+            this.pictureBox2.Location = new System.Drawing.Point(435, 393);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(100, 50);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 535;
+            this.pictureBox2.TabStop = false;
+            // 
+            // lblightbarCmPerPixel
+            // 
+            this.lblightbarCmPerPixel.AutoSize = true;
+            this.lblightbarCmPerPixel.BackColor = System.Drawing.Color.Transparent;
+            this.lblightbarCmPerPixel.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblightbarCmPerPixel.Location = new System.Drawing.Point(243, 450);
+            this.lblightbarCmPerPixel.Name = "lblightbarCmPerPixel";
+            this.lblightbarCmPerPixel.Size = new System.Drawing.Size(49, 33);
+            this.lblightbarCmPerPixel.TabIndex = 534;
+            this.lblightbarCmPerPixel.Text = "20";
+            // 
             // label79
             // 
             this.label79.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -8802,7 +8831,7 @@
             this.label79.ForeColor = System.Drawing.Color.Black;
             this.label79.Location = new System.Drawing.Point(684, 230);
             this.label79.Name = "label79";
-            this.label79.Size = new System.Drawing.Size(58, 16);
+            this.label79.Size = new System.Drawing.Size(59, 16);
             this.label79.TabIndex = 531;
             this.label79.Text = "Elevation";
             // 
@@ -8869,7 +8898,7 @@
             this.label15.ForeColor = System.Drawing.Color.Black;
             this.label15.Location = new System.Drawing.Point(277, 106);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(81, 16);
+            this.label15.Size = new System.Drawing.Size(82, 16);
             this.label15.TabIndex = 529;
             this.label15.Text = "Svenn Arrow";
             // 
@@ -8881,7 +8910,7 @@
             this.label42.ForeColor = System.Drawing.Color.Black;
             this.label42.Location = new System.Drawing.Point(96, 227);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(66, 16);
+            this.label42.Size = new System.Drawing.Size(67, 16);
             this.label42.TabIndex = 527;
             this.label42.Text = "Brightness";
             // 
@@ -8893,7 +8922,7 @@
             this.label101.ForeColor = System.Drawing.Color.Black;
             this.label101.Location = new System.Drawing.Point(459, 230);
             this.label101.Name = "label101";
-            this.label101.Size = new System.Drawing.Size(82, 16);
+            this.label101.Size = new System.Drawing.Size(83, 16);
             this.label101.TabIndex = 525;
             this.label101.Text = "Field Texture";
             // 
@@ -8905,7 +8934,7 @@
             this.label43.ForeColor = System.Drawing.Color.Black;
             this.label43.Location = new System.Drawing.Point(93, 106);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(57, 16);
+            this.label43.Size = new System.Drawing.Size(58, 16);
             this.label43.TabIndex = 523;
             this.label43.Text = "Polygons";
             // 
@@ -8917,7 +8946,7 @@
             this.label36.ForeColor = System.Drawing.Color.Black;
             this.label36.Location = new System.Drawing.Point(684, 106);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(60, 16);
+            this.label36.Size = new System.Drawing.Size(61, 16);
             this.label36.TabIndex = 522;
             this.label36.Text = "LogNMEA";
             // 
@@ -8929,7 +8958,7 @@
             this.label33.ForeColor = System.Drawing.Color.Black;
             this.label33.Location = new System.Drawing.Point(276, 229);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(60, 16);
+            this.label33.Size = new System.Drawing.Size(61, 16);
             this.label33.TabIndex = 521;
             this.label33.Text = "Keyboard";
             // 
@@ -8941,7 +8970,7 @@
             this.label31.ForeColor = System.Drawing.Color.Black;
             this.label31.Location = new System.Drawing.Point(94, 349);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(53, 16);
+            this.label31.Size = new System.Drawing.Size(54, 16);
             this.label31.TabIndex = 520;
             this.label31.Text = "Lightbar";
             // 
@@ -8953,7 +8982,7 @@
             this.label28.ForeColor = System.Drawing.Color.Black;
             this.label28.Location = new System.Drawing.Point(272, 348);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(97, 16);
+            this.label28.Size = new System.Drawing.Size(98, 16);
             this.label28.TabIndex = 518;
             this.label28.Text = "Start Fullscreen";
             // 
@@ -8963,9 +8992,9 @@
             this.chkSpeedo.AutoSize = true;
             this.chkSpeedo.BackColor = System.Drawing.Color.Transparent;
             this.chkSpeedo.ForeColor = System.Drawing.Color.Black;
-            this.chkSpeedo.Location = new System.Drawing.Point(93, 470);
+            this.chkSpeedo.Location = new System.Drawing.Point(709, 349);
             this.chkSpeedo.Name = "chkSpeedo";
-            this.chkSpeedo.Size = new System.Drawing.Size(50, 16);
+            this.chkSpeedo.Size = new System.Drawing.Size(51, 16);
             this.chkSpeedo.TabIndex = 516;
             this.chkSpeedo.Text = "Speedo";
             // 
@@ -8977,7 +9006,7 @@
             this.chkExtraGuides.ForeColor = System.Drawing.Color.Black;
             this.chkExtraGuides.Location = new System.Drawing.Point(460, 348);
             this.chkExtraGuides.Name = "chkExtraGuides";
-            this.chkExtraGuides.Size = new System.Drawing.Size(65, 16);
+            this.chkExtraGuides.Size = new System.Drawing.Size(66, 16);
             this.chkExtraGuides.TabIndex = 519;
             this.chkExtraGuides.Text = "Guidelines";
             // 
@@ -8989,7 +9018,7 @@
             this.chkGrid.ForeColor = System.Drawing.Color.Black;
             this.chkGrid.Location = new System.Drawing.Point(459, 106);
             this.chkGrid.Name = "chkGrid";
-            this.chkGrid.Size = new System.Drawing.Size(30, 16);
+            this.chkGrid.Size = new System.Drawing.Size(31, 16);
             this.chkGrid.TabIndex = 515;
             this.chkGrid.Text = "Grid";
             // 
@@ -9095,6 +9124,7 @@
             this.chkDisplayLightbar.TabIndex = 512;
             this.chkDisplayLightbar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplayLightbar.UseVisualStyleBackColor = false;
+            this.chkDisplayLightbar.CheckedChanged += new System.EventHandler(this.chkDisplayLightbar_CheckedChanged);
             // 
             // chkDisplayKeyboard
             // 
@@ -9212,7 +9242,7 @@
             this.chkDisplaySpeedo.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDisplaySpeedo.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkDisplaySpeedo.Image = global::AgOpenGPS.Properties.Resources.ConD_Speedometer;
-            this.chkDisplaySpeedo.Location = new System.Drawing.Point(90, 397);
+            this.chkDisplaySpeedo.Location = new System.Drawing.Point(680, 275);
             this.chkDisplaySpeedo.Name = "chkDisplaySpeedo";
             this.chkDisplaySpeedo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkDisplaySpeedo.Size = new System.Drawing.Size(100, 69);
@@ -9383,6 +9413,18 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // hSBarCmPerPixel
+            // 
+            this.hSBarCmPerPixel.LargeChange = 1;
+            this.hSBarCmPerPixel.Location = new System.Drawing.Point(93, 390);
+            this.hSBarCmPerPixel.Maximum = 30;
+            this.hSBarCmPerPixel.Minimum = 2;
+            this.hSBarCmPerPixel.Name = "hSBarCmPerPixel";
+            this.hSBarCmPerPixel.Size = new System.Drawing.Size(339, 53);
+            this.hSBarCmPerPixel.TabIndex = 536;
+            this.hSBarCmPerPixel.Value = 2;
+            this.hSBarCmPerPixel.ValueChanged += new System.EventHandler(this.hSBarCmPerPixel_ValueChanged);
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -9539,6 +9581,7 @@
             this.tabBtns.PerformLayout();
             this.tabDisplay.ResumeLayout(false);
             this.tabDisplay.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.unitsGroupBox.ResumeLayout(false);
             this.panelBottom.ResumeLayout(false);
             this.panelBottom.PerformLayout();
@@ -10046,5 +10089,8 @@
         private NudlessNumericUpDown nudAntennaOffset;
         private System.Windows.Forms.Label label107;
         private System.Windows.Forms.Label label96;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label lblightbarCmPerPixel;
+        private System.Windows.Forms.HScrollBar hSBarCmPerPixel;
     }
 }
