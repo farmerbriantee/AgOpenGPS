@@ -29,6 +29,12 @@ namespace AgOpenGPS
             //    mf.buttonOrder.Add(int.Parse(words[i], CultureInfo.InvariantCulture));
             //}
             flpRight.Controls.Clear();
+
+            if (!mf.IsOnScreen(Location, Size, 1))
+            {
+                Top = 0;
+                Left = 0;
+            }
         }
 
         private void btnAutoSteer_Click(object sender, EventArgs e)

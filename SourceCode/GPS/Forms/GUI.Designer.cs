@@ -694,6 +694,12 @@ namespace AgOpenGPS
                 Size = Settings.Default.setWindow_Size;
             }
 
+            if (!IsOnScreen(Location, Size, 1))
+            {
+                Top = 0;
+                Left = 0;
+            }
+
             //night mode
             isDay = Properties.Settings.Default.setDisplay_isDayMode;
             isDay = !isDay;

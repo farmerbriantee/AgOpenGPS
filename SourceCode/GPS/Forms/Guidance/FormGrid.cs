@@ -50,6 +50,12 @@ namespace AgOpenGPS
 
             Location = Properties.Settings.Default.setWindow_gridLocation;
             FormABDraw_ResizeEnd(this, e);
+
+            if (!mf.IsOnScreen(Location, Size, 1))
+            {
+                Top = 0;
+                Left = 0;
+            }
         }
 
         private void FormABDraw_FormClosing(object sender, FormClosingEventArgs e)

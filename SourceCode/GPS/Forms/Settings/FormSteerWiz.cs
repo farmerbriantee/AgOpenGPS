@@ -211,6 +211,12 @@ namespace AgOpenGPS
                 lblhsbarSensor.Visible = false;
                 return;
             }
+
+            if (!mf.IsOnScreen(Location, Size, 1))
+            {
+                Top = 0;
+                Left = 0;
+            }
         }
 
         private void FormSteer_FormClosing(object sender, FormClosingEventArgs e)

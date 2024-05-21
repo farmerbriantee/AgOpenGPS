@@ -93,6 +93,12 @@ namespace AgOpenGPS
         private void FormSteerGraph_Load(object sender, EventArgs e)
         {
             timer1.Interval = (int)((1 / (double)mf.gpsHz) * 1000);
+
+            if (!mf.IsOnScreen(Location, Size, 1))
+            {
+                Top = 0;
+                Left = 0;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

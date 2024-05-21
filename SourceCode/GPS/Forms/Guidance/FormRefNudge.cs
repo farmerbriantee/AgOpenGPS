@@ -46,6 +46,12 @@ namespace AgOpenGPS
 
             //Location = Properties.Settings.Default.setWindow_formNudgeLocation;
             //Size = Properties.Settings.Default.setWindow_formNudgeSize;
+
+            if (!mf.IsOnScreen(Location, Size, 1))
+            {
+                Top = 0;
+                Left = 0;
+            }
         }
 
         private void FormEditTrack_FormClosing(object sender, FormClosingEventArgs e)

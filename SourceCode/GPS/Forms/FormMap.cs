@@ -63,6 +63,13 @@ namespace AgOpenGPS
 
             if (mf.worldGrid.isGeoMap) cboxDrawMap.Image = Properties.Resources.MappingOn;
             else cboxDrawMap.Image = Properties.Resources.MappingOff;
+
+            if (!mf.IsOnScreen(Location, Size, 1))
+            {
+                Top = 0;
+                Left = 0;
+            }
+
         }
 
         private void FormMap_FormClosing(object sender, FormClosingEventArgs e)

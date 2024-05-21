@@ -84,6 +84,12 @@ namespace AgOpenGPS
             {
                 MoveBuildTramLine(0);
             }
+
+            if (!mf.IsOnScreen(Location, Size, 1))
+            {
+                Top = 0;
+                Left = 0;
+            }
         }
 
         private void FormTram_FormClosing(object sender, FormClosingEventArgs e)

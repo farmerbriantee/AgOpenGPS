@@ -56,6 +56,12 @@ namespace AgOpenGPS
 
             nudHeading.Controls[0].Enabled = false;
             nudHeading.Value = 0;
+
+            if (!mf.IsOnScreen(Location, Size, 1))
+            {
+                Top = 0;
+                Left = 0;
+            }
         }
 
         private void FormQuickAB_FormClosing(object sender, FormClosingEventArgs e)

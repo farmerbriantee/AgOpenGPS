@@ -78,6 +78,13 @@ namespace AgOpenGPS
         private void Form_Keys_Load(object sender, EventArgs e)
         {
             LoadButtonText();
+
+            if (!mf.IsOnScreen(Location, Size, 1))
+            {
+                Top = 0;
+                Left = 0;
+            }
+
         }
 
         private void Form_Keys_FormClosing(object sender, FormClosingEventArgs e)

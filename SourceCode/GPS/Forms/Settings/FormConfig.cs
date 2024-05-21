@@ -112,6 +112,12 @@ namespace AgOpenGPS
             label29.Text = gStr.gsSaveAs;
             UpdateSummary();
             //label3.Text = gStr.gsCurrent;
+
+            if (!mf.IsOnScreen(Location, Size, 1))
+            {
+                Top = 0;
+                Left = 0;
+            }
         }
 
         private void FormConfig_FormClosing(object sender, FormClosingEventArgs e)

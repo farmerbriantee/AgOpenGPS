@@ -244,6 +244,12 @@ namespace AgOpenGPS
                 hsbarSensor.Visible = false;
                 lblhsbarSensor.Visible = false;
             }
+
+            if (!mf.IsOnScreen(Location, Size, 1))
+            {
+                Top = 0;
+                Left = 0;
+            }
         }
 
         private void Timer1_Tick(object sender, EventArgs e)

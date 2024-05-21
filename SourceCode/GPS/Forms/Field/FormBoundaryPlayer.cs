@@ -42,6 +42,12 @@ namespace AgOpenGPS
             mf.bnd.createBndOffset = (mf.tool.width * 0.5);
             mf.bnd.isBndBeingMade = true;
             mf.Focus();
+
+            if (!mf.IsOnScreen(Location, Size, 1))
+            {
+                Top = 0;
+                Left = 0;
+            }
         }
 
         private void FormBoundaryPlayer_FormClosing(object sender, FormClosingEventArgs e)

@@ -59,6 +59,12 @@ namespace AgOpenGPS
             this.Top = (area.Height - this.Height) / 2;
             this.Left = (area.Width - this.Width) / 2;
             FormHeadAche_ResizeEnd(this, e);
+
+            if (!mf.IsOnScreen(Location, Size, 1))
+            {
+                Top = 0;
+                Left = 0;
+            }
         }
 
         private void FormHeadLine_FormClosing(object sender, FormClosingEventArgs e)

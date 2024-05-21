@@ -39,6 +39,12 @@ namespace AgOpenGPS
             Location = Properties.Settings.Default.setWindow_formNudgeLocation;
             Size = Properties.Settings.Default.setWindow_formNudgeSize;
             UpdateMoveLabel();
+
+            if (!mf.IsOnScreen(Location, Size, 1))
+            {
+                Top = 0;
+                Left = 0;
+            }
         }
         private void FormEditTrack_MouseEnter(object sender, EventArgs e)
         {

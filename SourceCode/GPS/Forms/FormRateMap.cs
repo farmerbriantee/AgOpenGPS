@@ -68,6 +68,13 @@ namespace AgOpenGPS
             else cboxDrawMap.Image = Properties.Resources.MappingOff;
 
             cboxNumberRateChannels.Text = mf.worldGrid.numRateChannels.ToString();
+
+            if (!mf.IsOnScreen(Location, Size, 1))
+            {
+                Top = 0;
+                Left = 0;
+            }
+
         }
 
         private void FormMap_FormClosing(object sender, FormClosingEventArgs e)

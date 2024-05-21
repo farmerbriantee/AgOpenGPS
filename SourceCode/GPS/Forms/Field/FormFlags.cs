@@ -29,6 +29,12 @@ namespace AgOpenGPS
         private void FormFlags_Load(object sender, EventArgs e)
         {
             UpdateLabels();
+
+            if (!mf.IsOnScreen(Location, Size, 1))
+            {
+                Top = 0;
+                Left = 0;
+            }
         }
 
         private void btnNorth_MouseDown(object sender, MouseEventArgs e)

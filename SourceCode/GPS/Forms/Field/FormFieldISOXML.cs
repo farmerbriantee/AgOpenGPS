@@ -157,6 +157,12 @@ namespace AgOpenGPS
             {
                 Close();
             }
+
+            if (!mf.IsOnScreen(Location, Size, 1))
+            {
+                Top = 0;
+                Left = 0;
+            }
         }
 
         private void tree_AfterSelect(object sender, TreeViewEventArgs e)

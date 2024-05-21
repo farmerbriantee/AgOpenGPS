@@ -101,6 +101,12 @@ namespace AgOpenGPS
             nudHeadingLatLonPlus.Value = 0;
 
             UpdateTable();
+
+            if (!mf.IsOnScreen(Location, Size, 1))
+            {
+                Top = 0;
+                Left = 0;
+            }
         }
 
         private void FormBuildTracks_FormClosing(object sender, FormClosingEventArgs e)

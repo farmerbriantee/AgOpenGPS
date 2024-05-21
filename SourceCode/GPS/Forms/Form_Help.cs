@@ -51,6 +51,13 @@ namespace AgOpenGPS
                 LinkData = "https://www.youtube.com/@AgOpenGPS/videos"
             };
             linkLabelYouTube.Links.Add(youtube);
+
+            if (!mf.IsOnScreen(Location, Size, 1))
+            {
+                Top = 0;
+                Left = 0;
+            }
+
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
