@@ -382,16 +382,6 @@ namespace AgOpenGPS
         {
             cboxSteerInReverse.Checked = Properties.Settings.Default.setAS_isSteerInReverse;
 
-            nudcmPerPixel.Value = Properties.Settings.Default.setDisplay_lightbarCmPerPixel;
-        }
-
-        private void nudcmPerPixel_Click(object sender, EventArgs e)
-        {
-            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
-            {
-                Properties.Settings.Default.setDisplay_lightbarCmPerPixel = ((int)nudcmPerPixel.Value);
-                mf.lightbarCmPerPixel = (int)Properties.Settings.Default.setAS_guidanceLookAheadTime;
-            }
         }
 
         private void tabSettings_Leave(object sender, EventArgs e)
@@ -437,6 +427,8 @@ namespace AgOpenGPS
 
             nudLineWidth.Value = Properties.Settings.Default.setDisplay_lineWidth;
 
+            nudcmPerPixel.Value = Properties.Settings.Default.setDisplay_lightbarCmPerPixel;
+
             label20.Text = mf.unitsInCm;
         }
 
@@ -444,6 +436,15 @@ namespace AgOpenGPS
         {
             Properties.Settings.Default.Save();
         }
+        private void nudcmPerPixel_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            {
+                Properties.Settings.Default.setDisplay_lightbarCmPerPixel = ((int)nudcmPerPixel.Value);
+                mf.lightbarCmPerPixel = Properties.Settings.Default.setDisplay_lightbarCmPerPixel;
+            }
+        }
+
         private void nudLineWidth_Click(object sender, EventArgs e)
         {
             if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
