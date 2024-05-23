@@ -737,5 +737,8 @@
     <Setting Name="setWindow_gridLocation" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">20, 20</Value>
     </Setting>
+    <Setting Name="setWindow_isKioskMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

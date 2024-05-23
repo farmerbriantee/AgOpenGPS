@@ -68,6 +68,8 @@ namespace AgOpenGPS
         public bool isFlashOnOff = false, isPanFormVisible = false;
         public bool isPanelBottomHidden = false;
 
+        public bool isKioskMode = false;
+
         public int makeUTurnCounter = 0;
 
         //makes nav panel disappear after 6 seconds
@@ -421,7 +423,12 @@ namespace AgOpenGPS
 
             //metric settings
             isMetric = Settings.Default.setMenu_isMetric;
-            
+
+            //kiosk mode
+            isKioskMode = Settings.Default.setWindow_isKioskMode;
+            if (isKioskMode) kioskModeToolStrip.Checked = true;
+            else kioskModeToolStrip.Checked = false;
+
             //field menu
             boundariesToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isBoundaryOn;
             headlandToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isHeadlandOn;
@@ -587,6 +594,19 @@ namespace AgOpenGPS
                 isFullScreen = false;
             }
 
+            if (!isKioskMode)
+            {
+                if (Properties.Settings.Default.setDisplay_isStartFullScreen)
+                {
+                    this.WindowState = FormWindowState.Maximized;
+                    isFullScreen = true;
+                }
+                else
+                {
+                    isFullScreen = false;
+                }
+            }
+
             //is rtk on?
             isRTK_AlarmOn = Properties.Settings.Default.setGPS_isRTK;
             isRTK_KillAutosteer = Properties.Settings.Default.setGPS_isRTK_KillAutoSteer;
@@ -676,28 +696,40 @@ namespace AgOpenGPS
         isStanleyUsed = Properties.Settings.Default.setVehicle_isStanleyUsed;
 
             //main window first
-            if (Settings.Default.setWindow_Maximized)
+            if (!isKioskMode)
             {
-                WindowState = FormWindowState.Normal;
-                Location = Settings.Default.setWindow_Location;
-                Size = Settings.Default.setWindow_Size;
-            }
-            else if (Settings.Default.setWindow_Minimized)
-            {
-                //WindowState = FormWindowState.Minimized;
-                Location = Settings.Default.setWindow_Location;
-                Size = Settings.Default.setWindow_Size;
-            }
-            else
-            {
-                Location = Settings.Default.setWindow_Location;
-                Size = Settings.Default.setWindow_Size;
+                //main window first
+                if (Settings.Default.setWindow_Maximized)
+                {
+                    WindowState = FormWindowState.Normal;
+                    Location = Settings.Default.setWindow_Location;
+                    Size = Settings.Default.setWindow_Size;
+                }
+                else if (Settings.Default.setWindow_Minimized)
+                {
+                    //WindowState = FormWindowState.Minimized;
+                    Location = Settings.Default.setWindow_Location;
+                    Size = Settings.Default.setWindow_Size;
+                }
+                else
+                {
+                    Location = Settings.Default.setWindow_Location;
+                    Size = Settings.Default.setWindow_Size;
+                }
             }
 
             if (!IsOnScreen(Location, Size, 1))
             {
                 Top = 0;
                 Left = 0;
+            }
+
+            if (isKioskMode)
+            {
+                this.WindowState = FormWindowState.Maximized;
+                isFullScreen = true;
+                btnMaximizeMainForm.Visible = false;
+                btnMinimizeMainForm.Visible = false;
             }
 
             //night mode
