@@ -2963,5 +2963,17 @@ namespace AgOpenGPS.Properties {
                 this["setWindow_gridLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setWindow_isKioskMode {
+            get {
+                return ((bool)(this["setWindow_isKioskMode"]));
+            }
+            set {
+                this["setWindow_isKioskMode"] = value;
+            }
+        }
     }
 }

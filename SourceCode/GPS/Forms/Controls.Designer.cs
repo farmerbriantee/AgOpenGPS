@@ -1212,6 +1212,31 @@ namespace AgOpenGPS
                 form.ShowDialog(this);
             }
         }
+
+        private void kioskModeToolStrip_Click(object sender, EventArgs e)
+        {
+            isKioskMode = !isKioskMode;
+
+            if (isKioskMode)
+            {
+                kioskModeToolStrip.Checked = true;
+                this.WindowState = FormWindowState.Maximized;
+                isFullScreen = true;
+                btnMaximizeMainForm.Visible = false;
+                btnMinimizeMainForm.Visible = false;
+                Settings.Default.setWindow_isKioskMode = true;
+            }
+            else
+            {
+                kioskModeToolStrip.Checked = false;
+                btnMaximizeMainForm.Visible = true;
+                btnMinimizeMainForm.Visible = true;
+                Settings.Default.setWindow_isKioskMode = false;
+            }
+
+            Settings.Default.Save();
+        }
+
         private void resetALLToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (isJobStarted)

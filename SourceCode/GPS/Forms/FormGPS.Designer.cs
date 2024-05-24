@@ -58,6 +58,7 @@
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.setWorkingDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.kioskModeToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.colorsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.sectionColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -269,6 +270,7 @@
             this.toolStripSeparator11,
             this.setWorkingDirectoryToolStripMenuItem,
             this.toolStripSeparator10,
+            this.kioskModeToolStrip,
             this.colorsToolStripMenuItem1,
             this.sectionColorToolStripMenuItem,
             this.toolStripSeparator3,
@@ -465,6 +467,13 @@
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
             this.toolStripSeparator10.Size = new System.Drawing.Size(379, 6);
+            // 
+            // kioskModeToolStrip
+            // 
+            this.kioskModeToolStrip.Name = "kioskModeToolStrip";
+            this.kioskModeToolStrip.Size = new System.Drawing.Size(382, 50);
+            this.kioskModeToolStrip.Text = "Kiosk Mode";
+            this.kioskModeToolStrip.Click += new System.EventHandler(this.kioskModeToolStrip_Click);
             // 
             // colorsToolStripMenuItem1
             // 
@@ -1279,7 +1288,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 58F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 63F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 67F));
             this.panelSim.Controls.Add(this.btnSpeedDn, 5, 0);
             this.panelSim.Controls.Add(this.btnSimSpeedUp, 7, 0);
             this.panelSim.Controls.Add(this.btnResetSim, 0, 0);
@@ -1304,7 +1313,7 @@
             this.btnSpeedDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSpeedDn.Location = new System.Drawing.Point(404, 4);
             this.btnSpeedDn.Name = "btnSpeedDn";
-            this.btnSpeedDn.Size = new System.Drawing.Size(110, 34);
+            this.btnSpeedDn.Size = new System.Drawing.Size(108, 34);
             this.btnSpeedDn.TabIndex = 533;
             this.btnSpeedDn.UseVisualStyleBackColor = false;
             this.btnSpeedDn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSpeedDn_MouseDown);
@@ -1317,9 +1326,9 @@
             this.btnSimSpeedUp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSimSpeedUp.FlatAppearance.BorderSize = 0;
             this.btnSimSpeedUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSimSpeedUp.Location = new System.Drawing.Point(580, 4);
+            this.btnSimSpeedUp.Location = new System.Drawing.Point(578, 4);
             this.btnSimSpeedUp.Name = "btnSimSpeedUp";
-            this.btnSimSpeedUp.Size = new System.Drawing.Size(110, 34);
+            this.btnSimSpeedUp.Size = new System.Drawing.Size(108, 34);
             this.btnSimSpeedUp.TabIndex = 532;
             this.btnSimSpeedUp.UseVisualStyleBackColor = false;
             this.btnSimSpeedUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSimSpeedUp_MouseDown);
@@ -1333,7 +1342,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(521, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(519, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(52, 34);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -1350,7 +1359,7 @@
             this.btnSimReverseDirection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimReverseDirection.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimReverseDirection.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimReverseDirection.Location = new System.Drawing.Point(708, 4);
+            this.btnSimReverseDirection.Location = new System.Drawing.Point(706, 4);
             this.btnSimReverseDirection.Name = "btnSimReverseDirection";
             this.btnSimReverseDirection.Size = new System.Drawing.Size(35, 34);
             this.btnSimReverseDirection.TabIndex = 537;
@@ -3155,6 +3164,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuLanguageChinese;
         public System.Windows.Forms.Button btnGrid;
         public System.Windows.Forms.Button btnN2D;
+        private System.Windows.Forms.ToolStripMenuItem kioskModeToolStrip;
     }
 }
 
