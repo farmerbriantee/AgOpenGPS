@@ -21,7 +21,7 @@ namespace AgOpenGPS
 
         public bool isHeadingSameWay = true;
 
-        public double howManyPathsAway;
+        public double howManyPathsAway, lastHowManyPathsAway;
         public vec2 refPoint1 = new vec2(1, 1), refPoint2 = new vec2(2, 2);
 
         private int A, B, C;
@@ -174,6 +174,13 @@ namespace AgOpenGPS
                 //build current list
                 isCurveValid = true;
 
+                if (howManyPathsAway == lastHowManyPathsAway)
+                {
+                    return;
+                }
+
+                lastHowManyPathsAway = howManyPathsAway;
+
                 //build the current line
                 curList?.Clear();
 
@@ -182,6 +189,10 @@ namespace AgOpenGPS
                 distAway += (0.5 * widthMinusOverlap);
 
                 if (howManyPathsAway > -1) howManyPathsAway += 1;
+
+                double step = widthMinusOverlap * 0.48;
+                if (step > 4) step = 4;
+                if (step < 1) step = 1;
 
                 double distSqAway = (distAway * distAway) - 0.01;
 
@@ -211,7 +222,7 @@ namespace AgOpenGPS
                         {
                             double dist = ((point.easting - curList[curList.Count - 1].easting) * (point.easting - curList[curList.Count - 1].easting))
                                 + ((point.northing - curList[curList.Count - 1].northing) * (point.northing - curList[curList.Count - 1].northing));
-                            if (dist > 2)
+                            if (dist > step)
                                 curList.Add(point);
                         }
                         else curList.Add(point);
@@ -280,7 +291,6 @@ namespace AgOpenGPS
                     //curList.AddRange(arr);
                     cnt = arr.Length;
                     double distance;
-                    double spacing = 3;
 
                     //add the first point of loop - it will be p1
                     curList.Add(arr[0]);
@@ -293,9 +303,9 @@ namespace AgOpenGPS
 
                         distance = glm.Distance(arr[i + 1], arr[i + 2]);
 
-                        if (distance > spacing)
+                        if (distance > step)
                         {
-                            int loopTimes = (int)(distance / spacing + 1);
+                            int loopTimes = (int)(distance / step + 1);
                             for (int j = 1; j < loopTimes; j++)
                             {
                                 vec3 pos = new vec3(glm.Catmull(j / (double)(loopTimes), arr[i], arr[i + 1], arr[i + 2], arr[i + 3]));
