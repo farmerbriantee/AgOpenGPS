@@ -803,6 +803,7 @@ namespace AgOpenGPS
                     if ( lastIndex != trk.idx )
                     {
                         curve.isCurveValid = false;
+                        curve.lastHowManyPathsAway = 9999;
                         ABLine.isABValid = false;
                     }
                 }
@@ -812,7 +813,7 @@ namespace AgOpenGPS
                 {
                     if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
                     {
-                        if (!ABLine.isABValid || ((secondsSinceStart - ABLine.lastSecond) > 0.66
+                        if (!ABLine.isABValid || ((secondsSinceStart - ABLine.lastSecond) > 1
                             && (!isBtnAutoSteerOn || mc.steerSwitchHigh)))
                         {
                             ABLine.BuildCurrentABLineList(steerAxlePos);
@@ -822,7 +823,7 @@ namespace AgOpenGPS
                     else
                     {
                         //build new current ref line if required
-                        if (!curve.isCurveValid || ((secondsSinceStart - curve.lastSecond) > 0.66
+                        if (!curve.isCurveValid || ((secondsSinceStart - curve.lastSecond) > 1
                             && (!isBtnAutoSteerOn || mc.steerSwitchHigh)))
                             curve.BuildCurveCurrentList(steerAxlePos);
 
