@@ -345,8 +345,11 @@ namespace AgOpenGPS
 
                 case 2:
 
-                    if (nextCurve.curList.Count > 0)
-                        youTurnPhase = 3;
+                        if (nextCurve.newCurList.Count > 0)
+                        {
+                            nextCurve.curList = nextCurve.newCurList;
+                            youTurnPhase = 3;
+                        }
                     break;
 
                 case 3:
@@ -565,8 +568,11 @@ namespace AgOpenGPS
 
                 case 2:
 
-                    if (nextCurve.curList.Count > 0)
+                    if (nextCurve.newCurList.Count > 0)
+                    {
+                        nextCurve.curList = nextCurve.newCurList;
                         youTurnPhase = 3;
+                    }
                     break;
 
                 case 3:
