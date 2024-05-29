@@ -193,7 +193,7 @@ namespace AgOpenGPS
         private bool CreateCurveOmegaTurn(bool isTurnLeft, vec3 pivotPos)
         {
             //keep from making turns constantly - wait 1.5 seconds
-            if (mf.makeUTurnCounter < 4)
+            if (mf.makeUTurnCounter < 6)
             {
                 youTurnPhase = 0;
                 return true;
@@ -339,6 +339,17 @@ namespace AgOpenGPS
                     nextCurve = new CABCurve(mf);
                     nextCurve.BuildCurveCurrentList(mf.pivotAxlePos);
                     mf.guidanceLookPos = tempguidanceLookPos;
+
+                    youTurnPhase = 2;
+                    break;
+
+                case 2:
+
+                    if (nextCurve.curList.Count > 0)
+                        youTurnPhase = 3;
+                    break;
+
+                case 3:
 
                     //get the index of the last yt point
                     double dis = Double.MaxValue;
@@ -549,6 +560,16 @@ namespace AgOpenGPS
                     nextCurve.BuildCurveCurrentList(mf.pivotAxlePos);
                     mf.guidanceLookPos = tempguidanceLookPos;
 
+                    youTurnPhase = 2;
+                    break;
+
+                case 2:
+
+                    if (nextCurve.curList.Count > 0)
+                        youTurnPhase = 3;
+                    break;
+
+                case 3:
 
                     //going with or against boundary?
                     bool isTurnLineSameWay = true;
@@ -622,7 +643,7 @@ namespace AgOpenGPS
                                 FailCreate();
                                 return false;
                             }
-                            youTurnPhase = 2;
+                            youTurnPhase = 4;
                             return true;
                         }
 
@@ -641,7 +662,7 @@ namespace AgOpenGPS
                     }
                     return false;
 
-                case 2:
+                case 4:
                     //Bind the two turns together
                     int cnt1 = ytList.Count;
                     int cnt2 = ytList2.Count;
