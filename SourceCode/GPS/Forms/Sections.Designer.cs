@@ -329,7 +329,7 @@ namespace AgOpenGPS
 
             int top = 130;
 
-            int buttonMaxWidth = 400, buttonHeight = (int)(25 * (double)(Height) / 600);
+            int buttonMaxWidth = 400, buttonHeight = 25;
 
             if ((Height - oglMain.Height) < 80) //max size - buttons hid
             {
@@ -511,7 +511,7 @@ namespace AgOpenGPS
 
             int top = 130;
 
-            int buttonMaxWidth = 400, buttonHeight = (int)(25 * (double)(Height) / 600);
+            int buttonMaxWidth = 400, buttonHeight = 30;
 
 
             if ((Height - oglMain.Height) < 80) //max size - buttons hid
