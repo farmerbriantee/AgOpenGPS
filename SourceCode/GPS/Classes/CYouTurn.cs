@@ -5,7 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO.Compression;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
@@ -2528,8 +2527,6 @@ namespace AgOpenGPS
                     if (!isGoingStraightThrough)
                         mf.curve.isLateralTriggered = true;
                     mf.curve.isCurveValid = false;
-                    mf.curve.lastHowManyPathsAway = 9999;
-
                 }
             }
         }
@@ -2631,7 +2628,6 @@ namespace AgOpenGPS
 
             mf.ABLine.isABValid = false;
             mf.curve.isCurveValid = false;
-            mf.curve.lastHowManyPathsAway = 9999;
         }
 
         //build the points and path of youturn to be scaled and transformed
@@ -2728,7 +2724,6 @@ namespace AgOpenGPS
 
             mf.ABLine.isABValid = false;
             mf.curve.isCurveValid = false;
-            mf.curve.lastHowManyPathsAway = 9999;
         }
 
         public int onA;

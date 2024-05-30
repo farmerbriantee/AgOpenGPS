@@ -224,7 +224,6 @@ namespace AgOpenGPS
         public void NudgeRefCurve(double distAway)
         {
             mf.curve.isCurveValid = false;
-            mf.curve.lastHowManyPathsAway = 9999;
             mf.curve.lastSecond = 0;
 
             List<vec3> curList = new List<vec3>();

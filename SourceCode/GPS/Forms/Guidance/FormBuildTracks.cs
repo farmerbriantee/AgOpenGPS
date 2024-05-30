@@ -145,7 +145,6 @@ namespace AgOpenGPS
 
             mf.curve.isCurveValid = false;
             mf.ABLine.isABValid = false;
-            mf.curve.lastHowManyPathsAway = 9999;
 
             mf.twoSecondCounter = 100;
 
@@ -157,7 +156,6 @@ namespace AgOpenGPS
             isClosing = true;
             //reset to generate new reference
             mf.curve.isCurveValid = false;
-            mf.curve.lastHowManyPathsAway = 9999;
             mf.ABLine.isABValid = false;
             mf.curve.desList?.Clear();
 
