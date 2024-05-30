@@ -140,7 +140,6 @@ namespace AgOpenGPS
                 {
                     mf.curve.isCurveValid = false;
                     mf.curve.lastSecond = 0;
-                    mf.curve.lastHowManyPathsAway = 9999;
                     gArr[idx].nudgeDistance += mf.curve.isHeadingSameWay ? dist : -dist;
 
                 }
@@ -163,7 +162,6 @@ namespace AgOpenGPS
                 {
                     mf.curve.isCurveValid = false;
                     mf.curve.lastSecond = 0;
-                    mf.curve.lastHowManyPathsAway = 9999;
                 }
 
                 gArr[idx].nudgeDistance = 0;
@@ -204,7 +202,6 @@ namespace AgOpenGPS
                 {
                     mf.curve.isCurveValid = false;
                     mf.curve.lastSecond = 0;
-                    mf.curve.lastHowManyPathsAway = 9999;
                     NudgeRefCurve( mf.curve.isHeadingSameWay ? dist : -dist);
                 }
             }
