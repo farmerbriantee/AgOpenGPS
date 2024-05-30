@@ -301,9 +301,9 @@ namespace AgOpenGPS
             //draw the sections
             GL.LineWidth(2);
 
-            double hite = mf.camera.camSetDistance / -200;
-            if (hite > 0.5) hite = 0.5;
-            if (hite < 0.3) hite = 0.3;
+            double hite = mf.camera.camSetDistance / -150;
+            if (hite > 12) hite = 12;
+            if (hite < 1) hite = 1;
 
             {
                 for (int j = 0; j < numOfSections; j++)

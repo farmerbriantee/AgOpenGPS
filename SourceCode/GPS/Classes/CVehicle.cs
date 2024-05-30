@@ -523,47 +523,47 @@ namespace AgOpenGPS
             }
             GL.LineWidth(1);
 
-            if (mf.camera.camSetDistance < -500)
-            {
-                GL.Color4(0.5f, 0.5f, 1.2f, 0.25);
-                double theta = glm.twoPI / 20;
-                double c = Math.Cos(theta);//precalculate the sine and cosine
-                double s = Math.Sin(theta);
+            //if (mf.camera.camSetDistance < -500)
+            //{
+            //    GL.Color4(0.5f, 0.5f, 1.2f, 0.25);
+            //    double theta = glm.twoPI / 20;
+            //    double c = Math.Cos(theta);//precalculate the sine and cosine
+            //    double s = Math.Sin(theta);
 
-                double x = mf.camera.camSetDistance * -.015;//we start at angle = 0
-                double y = 0;
-                GL.LineWidth(1);
-                GL.Begin(PrimitiveType.TriangleFan);
-                GL.Vertex3(x, y, 0.0);
-                for (int ii = 0; ii < 20; ii++)
-                {
-                    //output vertex
-                    GL.Vertex3(x, y, 0.0);
+            //    double x = mf.camera.camSetDistance * -.015;//we start at angle = 0
+            //    double y = 0;
+            //    GL.LineWidth(1);
+            //    GL.Begin(PrimitiveType.TriangleFan);
+            //    GL.Vertex3(x, y, 0.0);
+            //    for (int ii = 0; ii < 20; ii++)
+            //    {
+            //        //output vertex
+            //        GL.Vertex3(x, y, 0.0);
 
-                    //apply the rotation matrix
-                    double t = x;
-                    x = (c * x) - (s * y);
-                    y = (s * t) + (c * y);
-                    // GL.Vertex3(x, y, 0.0);
-                }
-                GL.End();
-                GL.Color3(0.5f, 1.2f, 0.2f);
-                GL.LineWidth(2);
-                GL.Begin(PrimitiveType.LineLoop);
+            //        //apply the rotation matrix
+            //        double t = x;
+            //        x = (c * x) - (s * y);
+            //        y = (s * t) + (c * y);
+            //        // GL.Vertex3(x, y, 0.0);
+            //    }
+            //    GL.End();
+            //    GL.Color3(0.5f, 1.2f, 0.2f);
+            //    GL.LineWidth(2);
+            //    GL.Begin(PrimitiveType.LineLoop);
 
-                for (int ii = 0; ii < 20; ii++)
-                {
-                    //output vertex
-                    GL.Vertex3(x, y, 0.0);
+            //    for (int ii = 0; ii < 20; ii++)
+            //    {
+            //        //output vertex
+            //        GL.Vertex3(x, y, 0.0);
 
-                    //apply the rotation matrix
-                    double t = x;
-                    x = (c * x) - (s * y);
-                    y = (s * t) + (c * y);
-                    // GL.Vertex3(x, y, 0.0);
-                }
-                GL.End();
-            }
+            //        //apply the rotation matrix
+            //        double t = x;
+            //        x = (c * x) - (s * y);
+            //        y = (s * t) + (c * y);
+            //        // GL.Vertex3(x, y, 0.0);
+            //    }
+            //    GL.End();
+            //}
         }
     }
 }
