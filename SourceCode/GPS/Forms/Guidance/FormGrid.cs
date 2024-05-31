@@ -61,6 +61,7 @@ namespace AgOpenGPS
         private void FormABDraw_FormClosing(object sender, FormClosingEventArgs e)
         {
             mf.curve.isCurveValid = false;
+            mf.curve.lastHowManyPathsAway = 98888;
             mf.ABLine.isABValid = false;
 
             mf.twoSecondCounter = 100;

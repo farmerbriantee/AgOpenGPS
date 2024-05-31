@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Emit;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -40,6 +41,11 @@ namespace AgOpenGPS
 
         //the list of points of curve to drive on
         public List<vec3> curList = new List<vec3>();
+
+        bool isReady = false, isBusyWorking = false;
+
+        //the list of points of curve new list from async
+        public List<vec3> newCurList = new List<vec3>();
 
         //the current curve reference line.
         //public CTrk refCurve = new CTrk();
@@ -170,240 +176,275 @@ namespace AgOpenGPS
 
                 if (RefDist < 0) howManyPathsAway = (int)(RefDist - 0.5);
                 else howManyPathsAway = (int)(RefDist + 0.5);
-
-                //build current list
-                isCurveValid = true;
-
-                if (howManyPathsAway == lastHowManyPathsAway)
+                
+                if (mf.trk.gArr[mf.trk.idx].mode != (int)TrackMode.bndCurve)
                 {
-                    return;
-                }
 
-                lastHowManyPathsAway = howManyPathsAway;
+                    //build current list
+                    isCurveValid = true;
 
-                //build the current line
-                curList?.Clear();
-
-                double distAway = widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset) + mf.trk.gArr[idx].nudgeDistance;
-
-                distAway += (0.5 * widthMinusOverlap);
-
-                if (howManyPathsAway > -1) howManyPathsAway += 1;
-
-                double step = widthMinusOverlap * 0.48;
-                if (step > 4) step = 4;
-                if (step < 1) step = 1;
-
-                double distSqAway = (distAway * distAway) - 0.01;
-
-                vec3 point;
-                for (int i = 0; i < refCount; i++)
-                {
-                    point = new vec3(
-                    mf.trk.gArr[idx].curvePts[i].easting + (Math.Sin(glm.PIBy2 + mf.trk.gArr[idx].curvePts[i].heading) * distAway),
-                    mf.trk.gArr[idx].curvePts[i].northing + (Math.Cos(glm.PIBy2 + mf.trk.gArr[idx].curvePts[i].heading) * distAway),
-                    mf.trk.gArr[idx].curvePts[i].heading);
-                    bool Add = true;
-
-                    for (int t = 0; t < refCount; t++)
+                    if (howManyPathsAway == lastHowManyPathsAway)
                     {
-                        double dist = ((point.easting - mf.trk.gArr[idx].curvePts[t].easting) * (point.easting - mf.trk.gArr[idx].curvePts[t].easting))
-                            + ((point.northing - mf.trk.gArr[idx].curvePts[t].northing) * (point.northing - mf.trk.gArr[idx].curvePts[t].northing));
-                        if (dist < distSqAway)
-                        {
-                            Add = false;
-                            break;
-                        }
+                        return;
                     }
 
-                    if (Add)
+                    lastHowManyPathsAway = howManyPathsAway;
+
+                    //build the current line
+                    curList?.Clear();
+
+                    double distAway = widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset) + mf.trk.gArr[idx].nudgeDistance;
+
+                    distAway += (0.5 * widthMinusOverlap);
+
+                    if (howManyPathsAway > -1) howManyPathsAway += 1;
+
+                    double step = widthMinusOverlap * 0.48;
+                    if (step > 4) step = 4;
+                    if (step < 1) step = 1;
+
+                    double distSqAway = (distAway * distAway) - 0.01;
+
+                    vec3 point;
+                    for (int i = 0; i < refCount; i++)
                     {
-                        if (curList.Count > 0)
+                        point = new vec3(
+                        mf.trk.gArr[idx].curvePts[i].easting + (Math.Sin(glm.PIBy2 + mf.trk.gArr[idx].curvePts[i].heading) * distAway),
+                        mf.trk.gArr[idx].curvePts[i].northing + (Math.Cos(glm.PIBy2 + mf.trk.gArr[idx].curvePts[i].heading) * distAway),
+                        mf.trk.gArr[idx].curvePts[i].heading);
+                        bool Add = true;
+
+                        for (int t = 0; t < refCount; t++)
                         {
-                            double dist = ((point.easting - curList[curList.Count - 1].easting) * (point.easting - curList[curList.Count - 1].easting))
-                                + ((point.northing - curList[curList.Count - 1].northing) * (point.northing - curList[curList.Count - 1].northing));
-                            if (dist > step)
-                                curList.Add(point);
-                        }
-                        else curList.Add(point);
-                    }
-                }
-
-                int cnt = curList.Count;
-                if (cnt > 6)
-                {
-                    vec3[] arr = new vec3[cnt];
-                    curList.CopyTo(arr);
-
-                    //for (int i = 1; i < (curList.Count - 1); i++)
-                    //{
-                    //    arr[i].easting = (curList[i - 1].easting + curList[i].easting + curList[i + 1].easting) / 3;
-                    //    arr[i].northing = (curList[i - 1].northing + curList[i].northing + curList[i + 1].northing) / 3;
-                    //}
-                    curList.Clear();
-
-                    for (int i = 0; i < (arr.Length - 1); i++)
-                    {
-                        arr[i].heading = Math.Atan2(arr[i + 1].easting - arr[i].easting, arr[i + 1].northing - arr[i].northing);
-                        if (arr[i].heading < 0) arr[i].heading += glm.twoPI;
-                        if (arr[i].heading >= glm.twoPI) arr[i].heading -= glm.twoPI;
-                    }
-
-                    arr[arr.Length - 1].heading = arr[arr.Length - 2].heading;
-
-                    //if (mf.tool.isToolTrailing)
-                    //{
-                    //    //depending on hitch is different profile of draft
-                    //    double hitch;
-                    //    if (mf.tool.isToolTBT && mf.tool.tankTrailingHitchLength < 0)
-                    //    {
-                    //        hitch = mf.tool.tankTrailingHitchLength * 0.65;
-                    //        hitch += mf.tool.trailingHitchLength * 0.5;
-                    //    }
-                    //    else hitch = mf.tool.trailingHitchLength * 1.0;// - mf.vehicle.wheelbase;
-
-                    //    //move the line forward based on hitch length ratio
-                    //    for (int i = 0; i < arr.Length; i++)
-                    //    {
-                    //        arr[i].easting -= Math.Sin(arr[i].heading) * (hitch);
-                    //        arr[i].northing -= Math.Cos(arr[i].heading) * (hitch);
-                    //    }
-
-                    //    ////average the points over 3, center weighted
-                    //    //for (int i = 1; i < arr.Length - 2; i++)
-                    //    //{
-                    //    //    arr2[i].easting = (arr[i - 1].easting + arr[i].easting + arr[i + 1].easting) / 3;
-                    //    //    arr2[i].northing = (arr[i - 1].northing + arr[i].northing + arr[i + 1].northing) / 3;
-                    //    //}
-
-                    //    //recalculate the heading
-                    //    for (int i = 0; i < (arr.Length - 1); i++)
-                    //    {
-                    //        arr[i].heading = Math.Atan2(arr[i + 1].easting - arr[i].easting, arr[i + 1].northing - arr[i].northing);
-                    //        if (arr[i].heading < 0) arr[i].heading += glm.twoPI;
-                    //        if (arr[i].heading >= glm.twoPI) arr[i].heading -= glm.twoPI;
-                    //    }
-
-                    //    arr[arr.Length - 1].heading = arr[arr.Length - 2].heading;
-                    //}
-
-                    //replace the array
-                    //curList.AddRange(arr);
-                    cnt = arr.Length;
-                    double distance;
-
-                    //add the first point of loop - it will be p1
-                    curList.Add(arr[0]);
-                    //curList.Add(arr[1]);
-
-                    for (int i = 0; i < cnt - 3; i++)
-                    {
-                        // add p1
-                        curList.Add(arr[i + 1]);
-
-                        distance = glm.Distance(arr[i + 1], arr[i + 2]);
-
-                        if (distance > step)
-                        {
-                            int loopTimes = (int)(distance / step + 1);
-                            for (int j = 1; j < loopTimes; j++)
+                            double dist = ((point.easting - mf.trk.gArr[idx].curvePts[t].easting) * (point.easting - mf.trk.gArr[idx].curvePts[t].easting))
+                                + ((point.northing - mf.trk.gArr[idx].curvePts[t].northing) * (point.northing - mf.trk.gArr[idx].curvePts[t].northing));
+                            if (dist < distSqAway)
                             {
-                                vec3 pos = new vec3(glm.Catmull(j / (double)(loopTimes), arr[i], arr[i + 1], arr[i + 2], arr[i + 3]));
-                                curList.Add(pos);
-                            }
-                        }
-                    }
-
-                    curList.Add(arr[cnt - 2]);
-                    curList.Add(arr[cnt - 1]);
-
-                    //to calc heading based on next and previous points to give an average heading.
-                    cnt = curList.Count;
-                    arr = new vec3[cnt];
-                    cnt--;
-                    curList.CopyTo(arr);
-                    curList.Clear();
-
-                    curList.Add(new vec3(arr[0]));
-
-                    //middle points
-                    for (int i = 1; i < cnt; i++)
-                    {
-                        vec3 pt3 = new vec3(arr[i]);
-                        pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
-                        if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                        curList.Add(pt3);
-                    }
-
-                    int k = arr.Length - 1;
-                    vec3 pt33 = new vec3(arr[k]);
-                    pt33.heading = Math.Atan2(arr[k].easting - arr[k - 1].easting, arr[k].northing - arr[k - 1].northing);
-                    if (pt33.heading < 0) pt33.heading += glm.twoPI;
-                    curList.Add(pt33);
-
-                    if (mf.trk.gArr == null || mf.trk.gArr.Count == 0 || idx == -1) return;
-
-                    if (mf.bnd.bndList.Count > 0 && !(mf.trk.gArr[idx].mode == (int)TrackMode.bndCurve))
-                    {
-                        int ptCnt = curList.Count - 1;
-
-                        bool isAdding = false;
-                        //end
-                        while (mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(curList[curList.Count - 1]))
-                        {
-                            isAdding = true;
-                            for (int i = 1; i < 10; i++)
-                            {
-                                vec3 pt = new vec3(curList[ptCnt]);
-                                pt.easting += (Math.Sin(pt.heading) * i * 2);
-                                pt.northing += (Math.Cos(pt.heading) * i * 2);
-                                curList.Add(pt);
-                            }
-                            ptCnt = curList.Count - 1;
-                        }
-
-                        if (isAdding)
-                        {
-                            vec3 pt = new vec3(curList[curList.Count - 1]);
-                            for (int i = 1; i < 5; i++)
-                            {
-                                pt.easting += (Math.Sin(pt.heading) * 2);
-                                pt.northing += (Math.Cos(pt.heading) * 2);
-                                curList.Add(pt);
+                                Add = false;
+                                break;
                             }
                         }
 
-                        isAdding = false;
-
-                        //and the beginning
-                        pt33 = new vec3(curList[0]);
-
-                        while (mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(curList[0]))
+                        if (Add)
                         {
-                            isAdding = true;
+                            if (curList.Count > 0)
+                            {
+                                double dist = ((point.easting - curList[curList.Count - 1].easting) * (point.easting - curList[curList.Count - 1].easting))
+                                    + ((point.northing - curList[curList.Count - 1].northing) * (point.northing - curList[curList.Count - 1].northing));
+                                if (dist > step)
+                                    curList.Add(point);
+                            }
+                            else curList.Add(point);
+                        }
+                    }
+
+                    int cnt = curList.Count;
+                    if (cnt > 6)
+                    {
+                        vec3[] arr = new vec3[cnt];
+                        curList.CopyTo(arr);
+
+                        //for (int i = 1; i < (curList.Count - 1); i++)
+                        //{
+                        //    arr[i].easting = (curList[i - 1].easting + curList[i].easting + curList[i + 1].easting) / 3;
+                        //    arr[i].northing = (curList[i - 1].northing + curList[i].northing + curList[i + 1].northing) / 3;
+                        //}
+                        curList.Clear();
+
+                        for (int i = 0; i < (arr.Length - 1); i++)
+                        {
+                            arr[i].heading = Math.Atan2(arr[i + 1].easting - arr[i].easting, arr[i + 1].northing - arr[i].northing);
+                            if (arr[i].heading < 0) arr[i].heading += glm.twoPI;
+                            if (arr[i].heading >= glm.twoPI) arr[i].heading -= glm.twoPI;
+                        }
+
+                        arr[arr.Length - 1].heading = arr[arr.Length - 2].heading;
+
+                        //if (mf.tool.isToolTrailing)
+                        //{
+                        //    //depending on hitch is different profile of draft
+                        //    double hitch;
+                        //    if (mf.tool.isToolTBT && mf.tool.tankTrailingHitchLength < 0)
+                        //    {
+                        //        hitch = mf.tool.tankTrailingHitchLength * 0.65;
+                        //        hitch += mf.tool.trailingHitchLength * 0.5;
+                        //    }
+                        //    else hitch = mf.tool.trailingHitchLength * 1.0;// - mf.vehicle.wheelbase;
+
+                        //    //move the line forward based on hitch length ratio
+                        //    for (int i = 0; i < arr.Length; i++)
+                        //    {
+                        //        arr[i].easting -= Math.Sin(arr[i].heading) * (hitch);
+                        //        arr[i].northing -= Math.Cos(arr[i].heading) * (hitch);
+                        //    }
+
+                        //    ////average the points over 3, center weighted
+                        //    //for (int i = 1; i < arr.Length - 2; i++)
+                        //    //{
+                        //    //    arr2[i].easting = (arr[i - 1].easting + arr[i].easting + arr[i + 1].easting) / 3;
+                        //    //    arr2[i].northing = (arr[i - 1].northing + arr[i].northing + arr[i + 1].northing) / 3;
+                        //    //}
+
+                        //    //recalculate the heading
+                        //    for (int i = 0; i < (arr.Length - 1); i++)
+                        //    {
+                        //        arr[i].heading = Math.Atan2(arr[i + 1].easting - arr[i].easting, arr[i + 1].northing - arr[i].northing);
+                        //        if (arr[i].heading < 0) arr[i].heading += glm.twoPI;
+                        //        if (arr[i].heading >= glm.twoPI) arr[i].heading -= glm.twoPI;
+                        //    }
+
+                        //    arr[arr.Length - 1].heading = arr[arr.Length - 2].heading;
+                        //}
+
+                        //replace the array
+                        //curList.AddRange(arr);
+                        cnt = arr.Length;
+                        double distance;
+
+                        //add the first point of loop - it will be p1
+                        curList.Add(arr[0]);
+                        //curList.Add(arr[1]);
+
+                        for (int i = 0; i < cnt - 3; i++)
+                        {
+                            // add p1
+                            curList.Add(arr[i + 1]);
+
+                            distance = glm.Distance(arr[i + 1], arr[i + 2]);
+
+                            if (distance > step)
+                            {
+                                int loopTimes = (int)(distance / step + 1);
+                                for (int j = 1; j < loopTimes; j++)
+                                {
+                                    vec3 pos = new vec3(glm.Catmull(j / (double)(loopTimes), arr[i], arr[i + 1], arr[i + 2], arr[i + 3]));
+                                    curList.Add(pos);
+                                }
+                            }
+                        }
+
+                        curList.Add(arr[cnt - 2]);
+                        curList.Add(arr[cnt - 1]);
+
+                        //to calc heading based on next and previous points to give an average heading.
+                        cnt = curList.Count;
+                        arr = new vec3[cnt];
+                        cnt--;
+                        curList.CopyTo(arr);
+                        curList.Clear();
+
+                        curList.Add(new vec3(arr[0]));
+
+                        //middle points
+                        for (int i = 1; i < cnt; i++)
+                        {
+                            vec3 pt3 = new vec3(arr[i]);
+                            pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
+                            if (pt3.heading < 0) pt3.heading += glm.twoPI;
+                            curList.Add(pt3);
+                        }
+
+                        int k = arr.Length - 1;
+                        vec3 pt33 = new vec3(arr[k]);
+                        pt33.heading = Math.Atan2(arr[k].easting - arr[k - 1].easting, arr[k].northing - arr[k - 1].northing);
+                        if (pt33.heading < 0) pt33.heading += glm.twoPI;
+                        curList.Add(pt33);
+
+                        if (mf.trk.gArr == null || mf.trk.gArr.Count == 0 || idx == -1) return;
+
+                        if (mf.bnd.bndList.Count > 0 && !(mf.trk.gArr[idx].mode == (int)TrackMode.bndCurve))
+                        {
+                            int ptCnt = curList.Count - 1;
+
+                            bool isAdding = false;
+                            //end
+                            while (mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(curList[curList.Count - 1]))
+                            {
+                                isAdding = true;
+                                for (int i = 1; i < 10; i++)
+                                {
+                                    vec3 pt = new vec3(curList[ptCnt]);
+                                    pt.easting += (Math.Sin(pt.heading) * i * 2);
+                                    pt.northing += (Math.Cos(pt.heading) * i * 2);
+                                    curList.Add(pt);
+                                }
+                                ptCnt = curList.Count - 1;
+                            }
+
+                            if (isAdding)
+                            {
+                                vec3 pt = new vec3(curList[curList.Count - 1]);
+                                for (int i = 1; i < 5; i++)
+                                {
+                                    pt.easting += (Math.Sin(pt.heading) * 2);
+                                    pt.northing += (Math.Cos(pt.heading) * 2);
+                                    curList.Add(pt);
+                                }
+                            }
+
+                            isAdding = false;
+
+                            //and the beginning
                             pt33 = new vec3(curList[0]);
 
-                            for (int i = 1; i < 10; i++)
+                            while (mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(curList[0]))
                             {
-                                vec3 pt = new vec3(pt33);
-                                pt.easting -= (Math.Sin(pt.heading) * i * 2);
-                                pt.northing -= (Math.Cos(pt.heading) * i * 2);
-                                curList.Insert(0, pt);
-                            }
-                        }
+                                isAdding = true;
+                                pt33 = new vec3(curList[0]);
 
-                        if (isAdding)
-                        {
-                            vec3 pt = new vec3(curList[0]);
-                            for (int i = 1; i < 5; i++)
+                                for (int i = 1; i < 10; i++)
+                                {
+                                    vec3 pt = new vec3(pt33);
+                                    pt.easting -= (Math.Sin(pt.heading) * i * 2);
+                                    pt.northing -= (Math.Cos(pt.heading) * i * 2);
+                                    curList.Insert(0, pt);
+                                }
+                            }
+
+                            if (isAdding)
                             {
-                                pt.easting -= (Math.Sin(pt.heading) * 2);
-                                pt.northing -= (Math.Cos(pt.heading) * 2);
-                                curList.Insert(0, pt);
+                                vec3 pt = new vec3(curList[0]);
+                                for (int i = 1; i < 5; i++)
+                                {
+                                    pt.easting -= (Math.Sin(pt.heading) * 2);
+                                    pt.northing -= (Math.Cos(pt.heading) * 2);
+                                    curList.Insert(0, pt);
+                                }
                             }
-                        }
 
+                        }
                     }
+                }
+                else
+                {
+                    //is boundary curve - use task
+                    if (isReady)
+                    {
+                        curList = new List<vec3>(newCurList);
+                        isReady = false;
+                    }
+
+                    //build current list
+                    isCurveValid = true;
+
+                    if (howManyPathsAway == lastHowManyPathsAway)
+                    {
+                        return;
+                    }
+
+                    lastHowManyPathsAway = howManyPathsAway;
+
+                    //build the current line
+                    //curList?.Clear();
+
+                    double distAway = (mf.tool.width - mf.tool.overlap) * howManyPathsAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset) + mf.trk.gArr[idx].nudgeDistance;
+
+                    if (howManyPathsAway > -1) howManyPathsAway += 1;
+
+                    distAway += (0.5 * (mf.tool.width - mf.tool.overlap));
+
+                    if (!isBusyWorking) _ = BuildNewCurveAsync(distAway, refCount, mf.trk.gArr[idx]);
+
                 }
             }
             else //pivot guide list
@@ -412,7 +453,7 @@ namespace AgOpenGPS
                 refPoint1 = mf.trk.gArr[idx].ptA;
 
                 //cross product
-                isHeadingSameWay = ((mf.pivotAxlePos.easting - refPoint1.easting) * (mf.steerAxlePos.northing - refPoint1.northing) 
+                isHeadingSameWay = ((mf.pivotAxlePos.easting - refPoint1.easting) * (mf.steerAxlePos.northing - refPoint1.northing)
                     - (mf.pivotAxlePos.northing - refPoint1.northing) * (mf.steerAxlePos.easting - refPoint1.easting)) < 0;
 
                 //how far are we away from the reference line at 90 degrees - 2D cross product and distance
@@ -420,8 +461,8 @@ namespace AgOpenGPS
 
                 distanceFromRefLine -= (0.5 * widthMinusOverlap);
 
-                double RefDist = (distanceFromRefLine 
-                    + (isHeadingSameWay ? mf.tool.offset : -mf.tool.offset) 
+                double RefDist = (distanceFromRefLine
+                    + (isHeadingSameWay ? mf.tool.offset : -mf.tool.offset)
                     + mf.trk.gArr[idx].nudgeDistance) / widthMinusOverlap;
 
                 if (RefDist < 0) howManyPathsAway = (int)(RefDist - 0.5);
@@ -433,7 +474,7 @@ namespace AgOpenGPS
                 //build the current line
                 curList?.Clear();
 
-                double distAway = widthMinusOverlap * howManyPathsAway 
+                double distAway = widthMinusOverlap * howManyPathsAway
                     + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset) - mf.trk.gArr[idx].nudgeDistance;
 
                 distAway += (0.5 * widthMinusOverlap);
@@ -444,7 +485,7 @@ namespace AgOpenGPS
 
                 //distAway += mf.trk.gArr[idx].nudgeDistance;
 
-                vec3 currentPos = new vec3(refPoint1.easting-distAway, refPoint1.northing, 0);
+                vec3 currentPos = new vec3(refPoint1.easting - distAway, refPoint1.northing, 0);
 
                 while (currentPos.heading < glm.twoPI)
                 {
@@ -476,6 +517,208 @@ namespace AgOpenGPS
             }
 
             lastSecond = mf.secondsSinceStart;
+        }
+
+        public async Task BuildNewCurveAsync(double distAway, int refCount, CTrk track)
+        {
+            await Task.Run(() =>
+            {
+                isBusyWorking = true;
+                isReady = false;
+
+                newCurList?.Clear();
+
+                double step = (mf.tool.width - mf.tool.overlap) * 0.48;
+                if (step > 4) step = 4;
+                if (step < 1) step = 1;
+
+                double distSqAway = (distAway * distAway) - 0.01;
+
+                vec3 point;
+
+                try
+                {
+
+                    for (int i = 0; i < refCount; i++)
+                    {
+                        point = new vec3(
+                        track.curvePts[i].easting + (Math.Sin(glm.PIBy2 + track.curvePts[i].heading) * distAway),
+                        track.curvePts[i].northing + (Math.Cos(glm.PIBy2 + track.curvePts[i].heading) * distAway),
+                        track.curvePts[i].heading);
+                        bool Add = true;
+
+                        for (int t = 0; t < refCount; t++)
+                        {
+                            double dist = ((point.easting - track.curvePts[t].easting) * (point.easting - track.curvePts[t].easting))
+                                + ((point.northing - track.curvePts[t].northing) * (point.northing - track.curvePts[t].northing));
+                            if (dist < distSqAway)
+                            {
+                                Add = false;
+                                break;
+                            }
+                        }
+
+                        if (Add)
+                        {
+                            if (newCurList.Count > 0)
+                            {
+                                double dist = ((point.easting - newCurList[newCurList.Count - 1].easting) * (point.easting - newCurList[newCurList.Count - 1].easting))
+                                    + ((point.northing - newCurList[newCurList.Count - 1].northing) * (point.northing - newCurList[newCurList.Count - 1].northing));
+                                if (dist > step)
+                                    newCurList.Add(point);
+                            }
+                            else newCurList.Add(point);
+                        }
+                    }
+
+                    int cnt = newCurList.Count;
+                    if (cnt > 6)
+                    {
+                        vec3[] arr = new vec3[cnt];
+                        newCurList.CopyTo(arr);
+
+                        newCurList.Clear();
+
+                        for (int i = 0; i < (arr.Length - 1); i++)
+                        {
+                            arr[i].heading = Math.Atan2(arr[i + 1].easting - arr[i].easting, arr[i + 1].northing - arr[i].northing);
+                            if (arr[i].heading < 0) arr[i].heading += glm.twoPI;
+                            if (arr[i].heading >= glm.twoPI) arr[i].heading -= glm.twoPI;
+                        }
+
+                        arr[arr.Length - 1].heading = arr[arr.Length - 2].heading;
+
+                        cnt = arr.Length;
+                        double distance;
+
+                        //add the first point of loop - it will be p1
+                        newCurList.Add(arr[0]);
+                        //newCurList.Add(arr[1]);
+
+                        for (int i = 0; i < cnt - 3; i++)
+                        {
+                            // add p1
+                            newCurList.Add(arr[i + 1]);
+
+                            distance = glm.Distance(arr[i + 1], arr[i + 2]);
+
+                            if (distance > step)
+                            {
+                                int loopTimes = (int)(distance / step + 1);
+                                for (int j = 1; j < loopTimes; j++)
+                                {
+                                    vec3 pos = new vec3(glm.Catmull(j / (double)(loopTimes), arr[i], arr[i + 1], arr[i + 2], arr[i + 3]));
+                                    newCurList.Add(pos);
+                                }
+                            }
+                        }
+
+                        newCurList.Add(arr[cnt - 2]);
+                        newCurList.Add(arr[cnt - 1]);
+
+                        //to calc heading based on next and previous points to give an average heading.
+                        cnt = newCurList.Count;
+                        arr = new vec3[cnt];
+                        cnt--;
+                        newCurList.CopyTo(arr);
+                        newCurList.Clear();
+
+                        newCurList.Add(new vec3(arr[0]));
+
+                        //middle points
+                        for (int i = 1; i < cnt; i++)
+                        {
+                            vec3 pt3 = new vec3(arr[i]);
+                            pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
+                            if (pt3.heading < 0) pt3.heading += glm.twoPI;
+                            newCurList.Add(pt3);
+                        }
+
+                        int k = arr.Length - 1;
+                        vec3 pt33 = new vec3(arr[k]);
+                        pt33.heading = Math.Atan2(arr[k].easting - arr[k - 1].easting, arr[k].northing - arr[k - 1].northing);
+                        if (pt33.heading < 0) pt33.heading += glm.twoPI;
+                        newCurList.Add(pt33);
+
+                        if (track == null || track.curvePts.Count == 0)
+                        {
+                            isReady = false;
+                            isBusyWorking = false;
+                            return;
+                        }
+
+                        if (mf.bnd.bndList.Count > 0 && !(track.mode == (int)TrackMode.bndCurve))
+                        {
+                            int ptCnt = newCurList.Count - 1;
+
+                            bool isAdding = false;
+                            //end
+                            while (mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(newCurList[newCurList.Count - 1]))
+                            {
+                                isAdding = true;
+                                for (int i = 1; i < 10; i++)
+                                {
+                                    vec3 pt = new vec3(newCurList[ptCnt]);
+                                    pt.easting += (Math.Sin(pt.heading) * i * 2);
+                                    pt.northing += (Math.Cos(pt.heading) * i * 2);
+                                    newCurList.Add(pt);
+                                }
+                                ptCnt = newCurList.Count - 1;
+                            }
+
+                            if (isAdding)
+                            {
+                                vec3 pt = new vec3(newCurList[newCurList.Count - 1]);
+                                for (int i = 1; i < 5; i++)
+                                {
+                                    pt.easting += (Math.Sin(pt.heading) * 2);
+                                    pt.northing += (Math.Cos(pt.heading) * 2);
+                                    newCurList.Add(pt);
+                                }
+                            }
+
+                            isAdding = false;
+
+                            //and the beginning
+                            pt33 = new vec3(newCurList[0]);
+
+                            while (mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(newCurList[0]))
+                            {
+                                isAdding = true;
+                                pt33 = new vec3(newCurList[0]);
+
+                                for (int i = 1; i < 10; i++)
+                                {
+                                    vec3 pt = new vec3(pt33);
+                                    pt.easting -= (Math.Sin(pt.heading) * i * 2);
+                                    pt.northing -= (Math.Cos(pt.heading) * i * 2);
+                                    newCurList.Insert(0, pt);
+                                }
+                            }
+
+                            if (isAdding)
+                            {
+                                vec3 pt = new vec3(newCurList[0]);
+                                for (int i = 1; i < 5; i++)
+                                {
+                                    pt.easting -= (Math.Sin(pt.heading) * 2);
+                                    pt.northing -= (Math.Cos(pt.heading) * 2);
+                                    newCurList.Insert(0, pt);
+                                }
+                            }
+                        }
+
+                        isReady = true;
+                    }
+
+                }
+                catch (Exception)
+                {
+                    //throw;
+                }
+
+                isBusyWorking = false;
+            });
         }
 
         public void GetCurrentCurveLine(vec3 pivot, vec3 steer)

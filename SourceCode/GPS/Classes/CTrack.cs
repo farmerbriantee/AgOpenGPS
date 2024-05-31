@@ -139,6 +139,7 @@ namespace AgOpenGPS
                 else
                 {
                     mf.curve.isCurveValid = false;
+                    mf.curve.lastHowManyPathsAway = 98888;
                     mf.curve.lastSecond = 0;
                     gArr[idx].nudgeDistance += mf.curve.isHeadingSameWay ? dist : -dist;
 
@@ -161,6 +162,7 @@ namespace AgOpenGPS
                 else
                 {
                     mf.curve.isCurveValid = false;
+                    mf.curve.lastHowManyPathsAway = 98888;
                     mf.curve.lastSecond = 0;
                 }
 
@@ -201,6 +203,7 @@ namespace AgOpenGPS
                 else
                 {
                     mf.curve.isCurveValid = false;
+                    mf.curve.lastHowManyPathsAway = 98888;
                     mf.curve.lastSecond = 0;
                     NudgeRefCurve( mf.curve.isHeadingSameWay ? dist : -dist);
                 }
@@ -221,6 +224,7 @@ namespace AgOpenGPS
         public void NudgeRefCurve(double distAway)
         {
             mf.curve.isCurveValid = false;
+            mf.curve.lastHowManyPathsAway = 98888;
             mf.curve.lastSecond = 0;
 
             List<vec3> curList = new List<vec3>();
