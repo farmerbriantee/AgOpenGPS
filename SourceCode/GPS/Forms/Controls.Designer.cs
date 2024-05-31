@@ -172,7 +172,7 @@ namespace AgOpenGPS
 
             yt.turnTooCloseTrigger = false;
 
-            if (!yt.isYouTurnBtnOn)
+            if (!yt.isYouTurnBtnOn && (trk.gArr[trk.idx].mode == (int)TrackMode.AB || trk.gArr[trk.idx].mode == (int)TrackMode.Curve))
             {
                 //new direction so reset where to put turn diagnostic
                 yt.ResetCreatedYouTurn();
