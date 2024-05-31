@@ -127,6 +127,7 @@ namespace AgOpenGPS
 
             mf.ABLine.isABValid = false;
             mf.curve.isCurveValid = false;
+            mf.curve.lastHowManyPathsAway = 98888;
 
             //mf.FileSaveTracks();
             Close();

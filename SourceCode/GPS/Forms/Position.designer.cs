@@ -803,6 +803,7 @@ namespace AgOpenGPS
                     if ( lastIndex != trk.idx )
                     {
                         curve.isCurveValid = false;
+                        curve.lastHowManyPathsAway = 98888;
                         ABLine.isABValid = false;
                     }
                 }
