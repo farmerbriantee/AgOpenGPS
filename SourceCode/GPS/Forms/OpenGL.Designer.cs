@@ -164,6 +164,18 @@ namespace AgOpenGPS
                                     }
                                     else { for (int i = 1; i < count2; i++) GL.Vertex3(triList[i].easting, triList[i].northing, 0); }
                                     GL.End();
+
+                                    if (triList.Count > 15)
+                                    {
+                                        GL.Color4((byte)(255 - triList[0].easting), (byte)(255 - triList[0].northing), (byte)(255 - triList[0].heading), (byte)150);
+                                        //GL.LineWidth(3.0f);
+                                        GL.Begin(PrimitiveType.LineStrip);
+                                        GL.Vertex3((triList[1].easting + triList[2].easting) / 2, (triList[1].northing + triList[2].northing) / 2, 0);
+                                        GL.Vertex3((triList[4].easting + triList[5].easting) / 2, (triList[4].northing + triList[5].northing) / 2, 0);
+                                        GL.Vertex3(triList[2].easting, triList[2].northing, 0);
+                                        GL.End();
+                                    }
+
                                 }
                             }
                         }
