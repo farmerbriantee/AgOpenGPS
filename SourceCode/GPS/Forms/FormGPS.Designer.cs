@@ -324,7 +324,7 @@
             // menuLanguageDanish
             // 
             this.menuLanguageDanish.Name = "menuLanguageDanish";
-            this.menuLanguageDanish.Size = new System.Drawing.Size(464, 50);
+            this.menuLanguageDanish.Size = new System.Drawing.Size(485, 50);
             this.menuLanguageDanish.Text = "Dansk (Denmark)";
             this.menuLanguageDanish.Click += new System.EventHandler(this.menuLanguageDanish_Click);
             // 
@@ -332,7 +332,7 @@
             // 
             this.menuLanguageDeutsch.CheckOnClick = true;
             this.menuLanguageDeutsch.Name = "menuLanguageDeutsch";
-            this.menuLanguageDeutsch.Size = new System.Drawing.Size(464, 50);
+            this.menuLanguageDeutsch.Size = new System.Drawing.Size(485, 50);
             this.menuLanguageDeutsch.Text = "Deutsch (Germany)";
             this.menuLanguageDeutsch.Click += new System.EventHandler(this.menuLanguageDeutsch_Click);
             // 
@@ -340,7 +340,7 @@
             // 
             this.menuLanguageEnglish.CheckOnClick = true;
             this.menuLanguageEnglish.Name = "menuLanguageEnglish";
-            this.menuLanguageEnglish.Size = new System.Drawing.Size(464, 50);
+            this.menuLanguageEnglish.Size = new System.Drawing.Size(485, 50);
             this.menuLanguageEnglish.Text = "English (Canada)";
             this.menuLanguageEnglish.Click += new System.EventHandler(this.menuLanguageEnglish_Click);
             // 
@@ -348,7 +348,7 @@
             // 
             this.menuLanguageSpanish.CheckOnClick = true;
             this.menuLanguageSpanish.Name = "menuLanguageSpanish";
-            this.menuLanguageSpanish.Size = new System.Drawing.Size(464, 50);
+            this.menuLanguageSpanish.Size = new System.Drawing.Size(485, 50);
             this.menuLanguageSpanish.Text = "Español (Spanish)";
             this.menuLanguageSpanish.Click += new System.EventHandler(this.menuLanguageSpanish_Click);
             // 
@@ -356,35 +356,35 @@
             // 
             this.menuLanguageFrench.CheckOnClick = true;
             this.menuLanguageFrench.Name = "menuLanguageFrench";
-            this.menuLanguageFrench.Size = new System.Drawing.Size(464, 50);
+            this.menuLanguageFrench.Size = new System.Drawing.Size(485, 50);
             this.menuLanguageFrench.Text = "Français (France)";
             this.menuLanguageFrench.Click += new System.EventHandler(this.menuLanguageFrench_Click);
             // 
             // menuLanguageItalian
             // 
             this.menuLanguageItalian.Name = "menuLanguageItalian";
-            this.menuLanguageItalian.Size = new System.Drawing.Size(464, 50);
+            this.menuLanguageItalian.Size = new System.Drawing.Size(485, 50);
             this.menuLanguageItalian.Text = "Italiano (Italy)";
             this.menuLanguageItalian.Click += new System.EventHandler(this.menuLanguageItalian_Click);
             // 
             // menuLanguageLatvian
             // 
             this.menuLanguageLatvian.Name = "menuLanguageLatvian";
-            this.menuLanguageLatvian.Size = new System.Drawing.Size(464, 50);
+            this.menuLanguageLatvian.Size = new System.Drawing.Size(485, 50);
             this.menuLanguageLatvian.Text = "Latviski (Latvia)";
             this.menuLanguageLatvian.Click += new System.EventHandler(this.latvianToolStripMenuItem_Click);
             // 
             // menuLanguageLithuanian
             // 
             this.menuLanguageLithuanian.Name = "menuLanguageLithuanian";
-            this.menuLanguageLithuanian.Size = new System.Drawing.Size(464, 50);
+            this.menuLanguageLithuanian.Size = new System.Drawing.Size(485, 50);
             this.menuLanguageLithuanian.Text = "Lietuvių (Lithuania)";
             this.menuLanguageLithuanian.Click += new System.EventHandler(this.lithuanianToolStripMenuItem_Click);
             // 
             // menuLanguageHungarian
             // 
             this.menuLanguageHungarian.Name = "menuLanguageHungarian";
-            this.menuLanguageHungarian.Size = new System.Drawing.Size(464, 50);
+            this.menuLanguageHungarian.Size = new System.Drawing.Size(485, 50);
             this.menuLanguageHungarian.Text = "Magyar (Hungary)";
             this.menuLanguageHungarian.Click += new System.EventHandler(this.menuLanguageHungarian_Click);
             // 
@@ -392,71 +392,71 @@
             // 
             this.menuLanguageDutch.CheckOnClick = true;
             this.menuLanguageDutch.Name = "menuLanguageDutch";
-            this.menuLanguageDutch.Size = new System.Drawing.Size(464, 50);
+            this.menuLanguageDutch.Size = new System.Drawing.Size(485, 50);
             this.menuLanguageDutch.Text = "Nederlands (Holland)";
             this.menuLanguageDutch.Click += new System.EventHandler(this.menuLanguageDutch_Click);
             // 
             // menuLanguagePolish
             // 
             this.menuLanguagePolish.Name = "menuLanguagePolish";
-            this.menuLanguagePolish.Size = new System.Drawing.Size(464, 50);
+            this.menuLanguagePolish.Size = new System.Drawing.Size(485, 50);
             this.menuLanguagePolish.Text = "Polski (Poland)";
             this.menuLanguagePolish.Click += new System.EventHandler(this.menuLanguagesPolski_Click);
             // 
             // menuLanguagePortugese
             // 
             this.menuLanguagePortugese.Name = "menuLanguagePortugese";
-            this.menuLanguagePortugese.Size = new System.Drawing.Size(464, 50);
-            this.menuLanguagePortugese.Text = "Português (Portugese)";
+            this.menuLanguagePortugese.Size = new System.Drawing.Size(485, 50);
+            this.menuLanguagePortugese.Text = "Português (Portuguese)";
             this.menuLanguagePortugese.Click += new System.EventHandler(this.menuLanguagesPortugese_Click);
             // 
             // menuLanguageRussian
             // 
             this.menuLanguageRussian.CheckOnClick = true;
             this.menuLanguageRussian.Name = "menuLanguageRussian";
-            this.menuLanguageRussian.Size = new System.Drawing.Size(464, 50);
+            this.menuLanguageRussian.Size = new System.Drawing.Size(485, 50);
             this.menuLanguageRussian.Text = "русский (Russia)";
             this.menuLanguageRussian.Click += new System.EventHandler(this.menuLanguageRussian_Click);
             // 
             // menuLanguageFinnish
             // 
             this.menuLanguageFinnish.Name = "menuLanguageFinnish";
-            this.menuLanguageFinnish.Size = new System.Drawing.Size(464, 50);
+            this.menuLanguageFinnish.Size = new System.Drawing.Size(485, 50);
             this.menuLanguageFinnish.Text = "Suomalainen (Finland)";
             this.menuLanguageFinnish.Click += new System.EventHandler(this.finnishToolStripMenuItem_Click);
             // 
             // menuLanguageSlovak
             // 
             this.menuLanguageSlovak.Name = "menuLanguageSlovak";
-            this.menuLanguageSlovak.Size = new System.Drawing.Size(464, 50);
+            this.menuLanguageSlovak.Size = new System.Drawing.Size(485, 50);
             this.menuLanguageSlovak.Text = "Slovenčina (Slovakia)";
             this.menuLanguageSlovak.Click += new System.EventHandler(this.menuLanguageSlovak_Click);
             // 
             // menuLanguageUkranian
             // 
             this.menuLanguageUkranian.Name = "menuLanguageUkranian";
-            this.menuLanguageUkranian.Size = new System.Drawing.Size(464, 50);
+            this.menuLanguageUkranian.Size = new System.Drawing.Size(485, 50);
             this.menuLanguageUkranian.Text = "Yкраїнська (Ukraine)";
             this.menuLanguageUkranian.Click += new System.EventHandler(this.menuLanguageUkranian_Click);
             // 
             // menuLanguageTurkish
             // 
             this.menuLanguageTurkish.Name = "menuLanguageTurkish";
-            this.menuLanguageTurkish.Size = new System.Drawing.Size(464, 50);
+            this.menuLanguageTurkish.Size = new System.Drawing.Size(485, 50);
             this.menuLanguageTurkish.Text = "Türkçe (Turkey)";
             this.menuLanguageTurkish.Click += new System.EventHandler(this.menuLanguageTurkish_Click);
             // 
             // menuLanguageChinese
             // 
             this.menuLanguageChinese.Name = "menuLanguageChinese";
-            this.menuLanguageChinese.Size = new System.Drawing.Size(464, 50);
+            this.menuLanguageChinese.Size = new System.Drawing.Size(485, 50);
             this.menuLanguageChinese.Text = "中国人 (Chinese)";
             this.menuLanguageChinese.Click += new System.EventHandler(this.menuLanguageChinese_Click);
             // 
             // menuLanguageTest
             // 
             this.menuLanguageTest.Name = "menuLanguageTest";
-            this.menuLanguageTest.Size = new System.Drawing.Size(464, 50);
+            this.menuLanguageTest.Size = new System.Drawing.Size(485, 50);
             this.menuLanguageTest.Text = "Test";
             this.menuLanguageTest.Click += new System.EventHandler(this.menuLanguageTest_Click);
             // 
@@ -1297,7 +1297,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 58F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 71F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 73F));
             this.panelSim.Controls.Add(this.btnSpeedDn, 5, 0);
             this.panelSim.Controls.Add(this.btnSimSpeedUp, 7, 0);
             this.panelSim.Controls.Add(this.btnResetSim, 0, 0);
@@ -1322,7 +1322,7 @@
             this.btnSpeedDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSpeedDn.Location = new System.Drawing.Point(404, 4);
             this.btnSpeedDn.Name = "btnSpeedDn";
-            this.btnSpeedDn.Size = new System.Drawing.Size(106, 34);
+            this.btnSpeedDn.Size = new System.Drawing.Size(105, 34);
             this.btnSpeedDn.TabIndex = 533;
             this.btnSpeedDn.UseVisualStyleBackColor = false;
             this.btnSpeedDn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSpeedDn_MouseDown);
@@ -1335,9 +1335,9 @@
             this.btnSimSpeedUp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSimSpeedUp.FlatAppearance.BorderSize = 0;
             this.btnSimSpeedUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSimSpeedUp.Location = new System.Drawing.Point(576, 4);
+            this.btnSimSpeedUp.Location = new System.Drawing.Point(575, 4);
             this.btnSimSpeedUp.Name = "btnSimSpeedUp";
-            this.btnSimSpeedUp.Size = new System.Drawing.Size(106, 34);
+            this.btnSimSpeedUp.Size = new System.Drawing.Size(105, 34);
             this.btnSimSpeedUp.TabIndex = 532;
             this.btnSimSpeedUp.UseVisualStyleBackColor = false;
             this.btnSimSpeedUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSimSpeedUp_MouseDown);
@@ -1351,7 +1351,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(517, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(516, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(52, 34);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -1368,7 +1368,7 @@
             this.btnSimReverseDirection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimReverseDirection.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimReverseDirection.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimReverseDirection.Location = new System.Drawing.Point(704, 4);
+            this.btnSimReverseDirection.Location = new System.Drawing.Point(703, 4);
             this.btnSimReverseDirection.Name = "btnSimReverseDirection";
             this.btnSimReverseDirection.Size = new System.Drawing.Size(35, 34);
             this.btnSimReverseDirection.TabIndex = 537;

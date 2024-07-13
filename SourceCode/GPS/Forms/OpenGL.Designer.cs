@@ -167,7 +167,7 @@ namespace AgOpenGPS
 
                                     if (triList.Count > 15)
                                     {
-                                        GL.Color4((byte)(255 - triList[0].easting), (byte)(255 - triList[0].northing), (byte)(255 - triList[0].heading), (byte)150);
+                                        GL.Color4((byte)(255 - triList[0].easting), (byte)(255 - triList[0].northing), (byte)(255 - triList[0].heading), (byte)200);
                                         //GL.LineWidth(3.0f);
                                         GL.Begin(PrimitiveType.LineStrip);
                                         GL.Vertex3((triList[1].easting + triList[2].easting) / 2, (triList[1].northing + triList[2].northing) / 2, 0);
