@@ -176,7 +176,7 @@ namespace AgOpenGPS
 
                 if (RefDist < 0) howManyPathsAway = (int)(RefDist - 0.5);
                 else howManyPathsAway = (int)(RefDist + 0.5);
-                
+
                 if (mf.trk.gArr[mf.trk.idx].mode != (int)TrackMode.bndCurve)
                 {
 
@@ -481,23 +481,18 @@ namespace AgOpenGPS
 
                 if (howManyPathsAway > -1) howManyPathsAway += 1;
 
-                double pointSpacing = distAway * 0.05;
+                //max 2 cm offset from correct circle or limit to 500 points
+                double Angle = glm.twoPI / Math.Min(Math.Max(Math.Ceiling(glm.twoPI / (2 * Math.Acos(1 - (0.02 / distAway)))), 50), 500);//limit between 50 and 500 points
 
-                //distAway += mf.trk.gArr[idx].nudgeDistance;
+                vec3 centerPos = new vec3(refPoint1.easting, refPoint1.northing, 0);
+                double rotation = 0;
 
-                vec3 currentPos = new vec3(refPoint1.easting - distAway, refPoint1.northing, 0);
-
-                while (currentPos.heading < glm.twoPI)
+                while (rotation < glm.twoPI)
                 {
-                    //Update the position of the car
-                    currentPos.easting += pointSpacing * Math.Sin(currentPos.heading);
-                    currentPos.northing += pointSpacing * Math.Cos(currentPos.heading);
-
                     //Update the heading
-                    currentPos.heading += (pointSpacing / distAway);
-
+                    rotation += Angle;
                     //Add the new coordinate to the path
-                    curList.Add(currentPos);
+                    curList.Add(new vec3(centerPos.easting + distAway * Math.Sin(rotation), centerPos.northing + distAway * Math.Cos(rotation), 0));
                 }
 
                 vec3[] arr = new vec3[curList.Count];
@@ -1130,9 +1125,13 @@ namespace AgOpenGPS
                 {
                     GL.LineWidth(mf.ABLine.lineWidth);
                     GL.Color3(0.95f, 0.2f, 0.95f);
+                    GL.PointSize(15.0f);
 
-                    GL.Begin(PrimitiveType.LineStrip);
-                    GL.Vertex3(mf.trk.gArr[mf.trk.idx].ptA.easting, mf.trk.gArr[mf.trk.idx].ptA.northing, 0) ;
+                    GL.Begin(PrimitiveType.Points);
+                    GL.Vertex3(mf.trk.gArr[mf.trk.idx].ptA.easting, mf.trk.gArr[mf.trk.idx].ptA.northing, 0);
+                    GL.End();
+
+                    GL.Begin(PrimitiveType.LineLoop);
                     for (int h = 0; h < curList.Count; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
                     GL.End();
 
