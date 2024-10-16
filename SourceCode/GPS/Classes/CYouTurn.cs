@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO.Compression;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
@@ -124,9 +125,54 @@ namespace AgOpenGPS
             uTurnSmoothing = Properties.Settings.Default.setAS_uTurnSmoothing;
         }
 
+        //find next not worked lane after the defined lanes to skip
+        private int getNextNotWorkedLane(bool isTurnLeft, int rowSkipsWidth, bool isAB)
+        {
+            double goalLine;
+
+            if (isAB)
+            {
+
+                if ((isTurnLeft && !mf.ABLine.isHeadingSameWay) || (!isTurnLeft && mf.ABLine.isHeadingSameWay))
+                        goalLine = mf.ABLine.howManyPathsAway + rowSkipsWidth;
+                    else
+                        goalLine = mf.ABLine.howManyPathsAway - rowSkipsWidth;
+
+                while (mf.trk.gArr[mf.trk.idx].workedLines.Contains(goalLine))
+                {
+                    rowSkipsWidth++;
+                    if ((isTurnLeft && !mf.ABLine.isHeadingSameWay) || (!isTurnLeft && mf.ABLine.isHeadingSameWay))
+                        goalLine++;
+                    else
+                        goalLine--;
+                }
+            } else
+            {
+                if ((isTurnLeft && !mf.curve.isHeadingSameWay) || (!isTurnLeft && mf.curve.isHeadingSameWay))
+                        goalLine = mf.curve.howManyPathsAway + rowSkipsWidth;
+                    else
+                        goalLine = mf.curve.howManyPathsAway - rowSkipsWidth;
+
+                while (mf.trk.gArr[mf.trk.idx].workedLines.Contains(goalLine))
+                {
+                    rowSkipsWidth++;
+                    if ((isTurnLeft && !mf.curve.isHeadingSameWay) || (!isTurnLeft && mf.curve.isHeadingSameWay))
+                        goalLine++;
+                    else
+                        goalLine--;
+                }
+            }
+
+
+            return rowSkipsWidth;
+        }
+
         //Finds the point where an AB Curve crosses the turn line
         public bool BuildCurveDubinsYouTurn(bool isTurnLeft, vec3 pivotPos)
         {
+            //if next lane is an already worked lane, find the next not worked lane and use it.
+            rowSkipsWidth = getNextNotWorkedLane(isTurnLeft, Properties.Settings.Default.set_youSkipWidth, false);
+
             //TODO: is calculated many taimes after the priveous turn is complete
             //grab the vehicle widths and offsets
             double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isYouTurnRight ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0); //AAA change isYouTurnRight to isTurnLeft
@@ -157,22 +203,8 @@ namespace AgOpenGPS
 
         public bool BuildABLineDubinsYouTurn(bool isTurnLeft)
         {
-            double goalLine;
-            rowSkipsWidth = Properties.Settings.Default.set_youSkipWidth;
-
-            if ((isTurnLeft && !mf.ABLine.isHeadingSameWay) || (!isTurnLeft && mf.ABLine.isHeadingSameWay))
-                goalLine = mf.ABLine.howManyPathsAway + rowSkipsWidth;
-            else
-                goalLine = mf.ABLine.howManyPathsAway - rowSkipsWidth;
-
-            while (mf.trk.gArr[mf.trk.idx].workedLines.Contains(goalLine))
-            {
-                rowSkipsWidth++;
-                if ((isTurnLeft && !mf.ABLine.isHeadingSameWay) || (!isTurnLeft && mf.ABLine.isHeadingSameWay))
-                    goalLine++;
-                else
-                    goalLine--;
-            }
+            //if next lane is an already worked lane, find the next not worked lane and use it.
+            rowSkipsWidth = getNextNotWorkedLane(isTurnLeft, Properties.Settings.Default.set_youSkipWidth, true);
 
             if (!mf.isBtnAutoSteerOn) mf.ABLine.isHeadingSameWay
                     = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - mf.ABLine.abHeading) - Math.PI) < glm.PIBy2;
