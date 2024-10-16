@@ -166,6 +166,8 @@ namespace AgOpenGPS
         {
             lblFusion.Text = (hsbarFusion.Value).ToString()+"%";
             lblFusionIMU.Text = (100 - hsbarFusion.Value).ToString()+"%";
+
+            mf.ahrs.fusionWeight = (double)hsbarFusion.Value * 0.002;
         }
 
         //private void nudForwardComp_Click(object sender, EventArgs e)

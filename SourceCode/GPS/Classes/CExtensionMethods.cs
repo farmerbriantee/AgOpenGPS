@@ -27,6 +27,29 @@ namespace AgOpenGPS
         {
             Controls[1].Width = Width - 4;
         }
+
+        public new decimal Value
+        {
+            get
+            {
+                return base.Value;
+            }
+            set
+            {
+                if (value != base.Value)
+                {
+                    if (value < Minimum)
+                    {
+                        value = Minimum;
+                    }
+                    if (value > Maximum)
+                    {
+                        value = Maximum;
+                    }
+                    base.Value = value;
+                }
+            }
+        }
     }
 
 
