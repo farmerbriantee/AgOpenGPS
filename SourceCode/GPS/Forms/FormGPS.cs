@@ -1122,6 +1122,8 @@ namespace AgOpenGPS
 
             PanelUpdateRightAndBottom();
 
+            btnSection1Man.Text = "1";
+
             using (Bitmap bitmap = Properties.Resources.z_bingMap)
             {
                 GL.GenTextures(1, out texture[(int)FormGPS.textures.bingGrid]);
