@@ -30,6 +30,11 @@ namespace AgOpenGPS
             switch (manualBtnState)
             {
                 case btnStates.Off:
+
+                    //add current Line when it doesnt exist in the worked line list
+                    if (!this.trk.gArr[this.trk.idx].workedLines.Contains(this.ABLine.howManyPathsAway)) this.trk.gArr[this.trk.idx].workedLines.Add(this.ABLine.howManyPathsAway);
+
+
                     manualBtnState = btnStates.On;
                     btnSectionMasterManual.Image = Properties.Resources.ManualOn;
                     break;

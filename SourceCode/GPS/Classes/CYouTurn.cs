@@ -157,6 +157,23 @@ namespace AgOpenGPS
 
         public bool BuildABLineDubinsYouTurn(bool isTurnLeft)
         {
+            double goalLine;
+            rowSkipsWidth = Properties.Settings.Default.set_youSkipWidth;
+
+            if ((isTurnLeft && !mf.ABLine.isHeadingSameWay) || (!isTurnLeft && mf.ABLine.isHeadingSameWay))
+                goalLine = mf.ABLine.howManyPathsAway + rowSkipsWidth;
+            else
+                goalLine = mf.ABLine.howManyPathsAway - rowSkipsWidth;
+
+            while (mf.trk.gArr[mf.trk.idx].workedLines.Contains(goalLine))
+            {
+                rowSkipsWidth++;
+                if ((isTurnLeft && !mf.ABLine.isHeadingSameWay) || (!isTurnLeft && mf.ABLine.isHeadingSameWay))
+                    goalLine++;
+                else
+                    goalLine--;
+            }
+
             if (!mf.isBtnAutoSteerOn) mf.ABLine.isHeadingSameWay
                     = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - mf.ABLine.abHeading) - Math.PI) < glm.PIBy2;
 
