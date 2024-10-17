@@ -32,13 +32,14 @@ namespace AgOpenGPS
                 case btnStates.Off:
 
                     //add current Line when it doesnt exist in the worked line list
-                    
+
                     //is it an AB Line or a Curve?
-                    if (trk.gArr[this.trk.idx].curvePts.Count == 0)
+                    if (trk.gArr[this.trk.idx].mode == (int)TrackMode.AB)
                     {
                         //AB Line
                         if (!this.trk.gArr[this.trk.idx].workedLines.Contains(this.ABLine.howManyPathsAway)) this.trk.gArr[this.trk.idx].workedLines.Add(this.ABLine.howManyPathsAway);
-                    } else
+
+                    } else if (trk.gArr[this.trk.idx].mode == (int)TrackMode.Curve)
                     {
                         //Curve
                         if (!this.trk.gArr[this.trk.idx].workedLines.Contains(this.curve.howManyPathsAway)) this.trk.gArr[this.trk.idx].workedLines.Add(this.curve.howManyPathsAway);
