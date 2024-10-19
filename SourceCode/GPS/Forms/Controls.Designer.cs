@@ -41,7 +41,6 @@ namespace AgOpenGPS
                 EnableYouTurnButtons();
                 ABLine.isABValid = false;
                 curve.isCurveValid = false;
-                curve.lastHowManyPathsAway = 98888;
                 ct.isLocked = false;
                 guidanceLookAheadTime = Properties.Settings.Default.setAS_guidanceLookAheadTime;
                 btnContourLock.Image = Resources.ColorUnlocked;
@@ -229,7 +228,6 @@ namespace AgOpenGPS
 
             ABLine.isABValid = false;
             curve.isCurveValid = false;
-            curve.lastHowManyPathsAway = 98888;
         }
 
         private void btnCycleLinesBk_Click(object sender, EventArgs e)
@@ -266,7 +264,6 @@ namespace AgOpenGPS
 
             ABLine.isABValid = false;
             curve.isCurveValid = false;
-            curve.lastHowManyPathsAway = 98888;
 
             twoSecondCounter = 100;
         }
@@ -2133,7 +2130,6 @@ namespace AgOpenGPS
             sim.headingTrue += Math.PI;
             ABLine.isABValid = false;
             curve.isCurveValid = false;
-            curve.lastHowManyPathsAway = 98888;
             if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
         }
         private void hsbarSteerAngle_Scroll(object sender, ScrollEventArgs e)

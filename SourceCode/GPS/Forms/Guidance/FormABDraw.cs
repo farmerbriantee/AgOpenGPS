@@ -178,7 +178,6 @@ namespace AgOpenGPS
             }
 
             mf.curve.isCurveValid = false;
-            mf.curve.lastHowManyPathsAway = 98888;
             mf.ABLine.isABValid = false;
 
             mf.twoSecondCounter = 100;

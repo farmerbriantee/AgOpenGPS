@@ -1,5 +1,4 @@
-﻿using AgOpenGPS;
-using OpenTK.Graphics.OpenGL;
+﻿using OpenTK.Graphics.OpenGL;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -2500,7 +2499,6 @@ namespace AgOpenGPS
                     if (!isGoingStraightThrough)
                         mf.curve.isLateralTriggered = true;
                     mf.curve.isCurveValid = false;
-                    mf.curve.lastHowManyPathsAway = 98888;
                 }
             }
         }
@@ -2602,7 +2600,6 @@ namespace AgOpenGPS
 
             mf.ABLine.isABValid = false;
             mf.curve.isCurveValid = false;
-            mf.curve.lastHowManyPathsAway = 98888;
         }
 
         //build the points and path of youturn to be scaled and transformed
@@ -2699,7 +2696,6 @@ namespace AgOpenGPS
 
             mf.ABLine.isABValid = false;
             mf.curve.isCurveValid = false;
-            mf.curve.lastHowManyPathsAway = 98888;
         }
 
         public int onA;

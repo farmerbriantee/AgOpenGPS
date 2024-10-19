@@ -88,7 +88,6 @@ namespace AgOpenGPS
             //reset to generate new reference
             mf.ABLine.isABValid = false;
             mf.curve.isCurveValid = false;
-            mf.curve.lastHowManyPathsAway = 98888;
 
             if (mf.isBtnAutoSteerOn) mf.btnAutoSteer.PerformClick();
 
@@ -135,7 +134,6 @@ namespace AgOpenGPS
             //reset to generate new reference
             mf.ABLine.isABValid = false;
             mf.curve.isCurveValid = false;
-            mf.curve.lastHowManyPathsAway = 98888;
 
             if (mf.isBtnAutoSteerOn) mf.btnAutoSteer.PerformClick();
 

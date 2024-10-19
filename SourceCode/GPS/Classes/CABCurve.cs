@@ -179,14 +179,13 @@ namespace AgOpenGPS
 
                 if (mf.trk.gArr[mf.trk.idx].mode != (int)TrackMode.bndCurve)
                 {
-
-                    //build current list
-                    isCurveValid = true;
-
-                    if (howManyPathsAway == lastHowManyPathsAway)
+                    if (isCurveValid && howManyPathsAway == lastHowManyPathsAway)
                     {
                         return;
                     }
+
+                    //build current list
+                    isCurveValid = true;
 
                     lastHowManyPathsAway = howManyPathsAway;
 
@@ -424,14 +423,13 @@ namespace AgOpenGPS
                         isReady = false;
                     }
 
-                    //build current list
-                    isCurveValid = true;
-
-                    if (howManyPathsAway == lastHowManyPathsAway)
+                    if (isCurveValid && howManyPathsAway == lastHowManyPathsAway)
                     {
                         return;
                     }
 
+                    //build current list
+                    isCurveValid = true;
                     lastHowManyPathsAway = howManyPathsAway;
 
                     //build the current line
@@ -727,7 +725,6 @@ namespace AgOpenGPS
             }
 
             double dist, dx, dz;
-            double minDistA = 1000000, minDistB = 1000000;
             //int ptCount = curList.Count;
 
             if (curList.Count > 0)
@@ -751,7 +748,8 @@ namespace AgOpenGPS
                 else// Pure Pursuit ------------------------------------------
                 {
 
-                    minDistA = double.MaxValue;
+                    double minDistA = double.MaxValue;
+                    double minDistB = double.MaxValue;
                     //close call hit
 
                     //If is a curve
