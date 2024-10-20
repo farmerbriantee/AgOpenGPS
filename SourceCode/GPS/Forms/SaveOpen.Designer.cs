@@ -686,7 +686,7 @@ namespace AgOpenGPS
                             writer.WriteLine(trk.gArr[i].nudgeDistance.ToString(CultureInfo.InvariantCulture));
 
                             //write out the mode
-                            writer.WriteLine(trk.gArr[i].mode.ToString(CultureInfo.InvariantCulture));
+                            writer.WriteLine(((int)trk.gArr[i].mode).ToString(CultureInfo.InvariantCulture));
 
                             //visible?
                             writer.WriteLine(trk.gArr[i].isVisible.ToString(CultureInfo.InvariantCulture));
