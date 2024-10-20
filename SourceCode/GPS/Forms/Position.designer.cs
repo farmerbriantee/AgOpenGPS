@@ -1001,9 +1001,9 @@ namespace AgOpenGPS
                             {
                                 if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
                                 {
-                                    yt.BuildABLineDubinsYouTurn(yt.isYouTurnRight);
+                                    yt.BuildABLineDubinsYouTurn();
                                 }
-                                else yt.BuildCurveDubinsYouTurn(yt.isYouTurnRight, pivotAxlePos);
+                                else yt.BuildCurveDubinsYouTurn();
                             }
 
                             if (yt.uTurnStyle == 0 && yt.youTurnPhase == 10)

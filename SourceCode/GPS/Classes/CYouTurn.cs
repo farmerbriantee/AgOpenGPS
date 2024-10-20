@@ -1,12 +1,6 @@
 ﻿using OpenTK.Graphics.OpenGL;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO.Compression;
-using System.Linq;
-using System.Windows.Forms;
-using System.Xml.Linq;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace AgOpenGPS
 {
@@ -20,7 +14,7 @@ namespace AgOpenGPS
         public bool isYouTurnTriggered, isGoingStraightThrough = false;
 
         /// <summary>  /// turning right or left?/// </summary>
-        public bool isYouTurnRight;
+        public bool isTurnLeft;
         private int semiCircleIndex = -1;
 
         /// <summary> /// Is the youturn button enabled? /// </summary>
@@ -71,7 +65,6 @@ namespace AgOpenGPS
 
         public int uTurnStyle = 0;
 
-        public int pt3Phase = 0;
         public vec3 kStyleNewLookPos = new vec3(0, 0, 0);
         public bool isLastFrameForward = true;
 
@@ -124,11 +117,11 @@ namespace AgOpenGPS
         }
 
         //Finds the point where an AB Curve crosses the turn line
-        public bool BuildCurveDubinsYouTurn(bool isTurnLeft, vec3 pivotPos)
+        public bool BuildCurveDubinsYouTurn()
         {
             //TODO: is calculated many taimes after the priveous turn is complete
             //grab the vehicle widths and offsets
-            double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isYouTurnRight ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0); //AAA change isYouTurnRight to isTurnLeft
+            double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isTurnLeft ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0); //AAA change isTurnLeft to isTurnLeft
             pointSpacing = youTurnRadius * 0.1;
 
             if (uTurnStyle == 0)
@@ -136,31 +129,31 @@ namespace AgOpenGPS
                 //Albin turn
                 if (turnOffset > (youTurnRadius * 2.0))
                 {
-                    return CreateCurveWideTurn(isTurnLeft, pivotPos);
+                    return CreateCurveWideTurn();
                 }
 
                 //Ohmega turn
                 else
                 {
-                    return CreateCurveOmegaTurn(isTurnLeft, pivotPos);
+                    return CreateCurveOmegaTurn();
                 }
             }
             else if (uTurnStyle == 1)
             {
-                return (KStyleTurnCurve(isTurnLeft));
+                return (KStyleTurnCurve());
             }
 
             //prgramming error if you got here
             return false;
         }
 
-        public bool BuildABLineDubinsYouTurn(bool isTurnLeft)
+        public bool BuildABLineDubinsYouTurn()
         {
             if (!mf.isBtnAutoSteerOn) mf.ABLine.isHeadingSameWay
                     = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - mf.ABLine.abHeading) - Math.PI) < glm.PIBy2;
 
             double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth
-                + (isYouTurnRight ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0);
+                + (isTurnLeft ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0);
 
             pointSpacing = youTurnRadius * 0.1;
 
@@ -170,17 +163,17 @@ namespace AgOpenGPS
                 //Wide turn
                 if (turnOffset > (youTurnRadius * 2.0))
                 {
-                    return (CreateABWideTurn(isTurnLeft));
+                    return CreateABWideTurn();
                 }
                 //Small turn
                 else
                 {
-                    return (CreateABOmegaTurn(isTurnLeft));
+                    return CreateABOmegaTurn();
                 }
             }
             else if (uTurnStyle == 1)
             {
-                return (KStyleTurnAB(isTurnLeft));
+                return KStyleTurnAB();
             }
 
             //prgramming error if you got here
@@ -189,7 +182,7 @@ namespace AgOpenGPS
 
         #region CreateTurn
 
-        private bool CreateCurveOmegaTurn(bool isTurnLeft, vec3 pivotPos)
+        private bool CreateCurveOmegaTurn()
         {
             //keep from making turns constantly - wait 1.5 seconds
             if (mf.makeUTurnCounter < 4)
@@ -199,7 +192,7 @@ namespace AgOpenGPS
             }
 
             //grab the vehicle widths and offsets
-            double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isYouTurnRight ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0);
+            double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isTurnLeft ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0);
 
             switch (youTurnPhase)
             {
@@ -322,7 +315,7 @@ namespace AgOpenGPS
 
                     CTrk track = mf.trk.gArr[mf.trk.idx];
 
-                    double distAway = widthMinusOverlap * (mf.curve.howManyPathsAway + ((isYouTurnRight ^ mf.curve.isHeadingSameWay) ? rowSkipsWidth : -rowSkipsWidth)) + (mf.curve.isHeadingSameWay ? -mf.tool.offset : mf.tool.offset) + track.nudgeDistance;
+                    double distAway = widthMinusOverlap * (mf.curve.howManyPathsAway + ((isTurnLeft ^ mf.curve.isHeadingSameWay) ? rowSkipsWidth : -rowSkipsWidth)) + (mf.curve.isHeadingSameWay ? -mf.tool.offset : mf.tool.offset) + track.nudgeDistance;
 
                     distAway += (0.5 * widthMinusOverlap);
 
@@ -399,7 +392,7 @@ namespace AgOpenGPS
             return true;
         }
 
-        private bool CreateCurveWideTurn(bool isTurnLeft, vec3 pivotPos)
+        private bool CreateCurveWideTurn()
         {
             //keep from making turns constantly - wait 1.5 seconds
             if (mf.makeUTurnCounter < 4)
@@ -518,7 +511,7 @@ namespace AgOpenGPS
 
                     CTrk track = mf.trk.gArr[mf.trk.idx];
 
-                    double distAway = widthMinusOverlap * (mf.curve.howManyPathsAway + ((isYouTurnRight ^ mf.curve.isHeadingSameWay) ? rowSkipsWidth : -rowSkipsWidth)) + (mf.curve.isHeadingSameWay ? -mf.tool.offset : mf.tool.offset) + track.nudgeDistance;
+                    double distAway = widthMinusOverlap * (mf.curve.howManyPathsAway + ((isTurnLeft ^ mf.curve.isHeadingSameWay) ? rowSkipsWidth : -rowSkipsWidth)) + (mf.curve.isHeadingSameWay ? -mf.tool.offset : mf.tool.offset) + track.nudgeDistance;
 
                     distAway += (0.5 * widthMinusOverlap);
 
@@ -763,7 +756,7 @@ namespace AgOpenGPS
             return false;
         }
 
-        private bool CreateABOmegaTurn(bool isTurnLeft)
+        private bool CreateABOmegaTurn()
         {
             //keep from making turns constantly - wait 1.5 seconds
             if (mf.makeUTurnCounter < 4)
@@ -801,7 +794,7 @@ namespace AgOpenGPS
                     CDubins.turningRadius = youTurnRadius;
 
                     //grab the vehicle widths and offsets
-                    double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isYouTurnRight ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0);
+                    double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isTurnLeft ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0);
 
                     vec3 start = new vec3(inClosestTurnPt.closePt);
                     start.heading = head;
@@ -878,7 +871,7 @@ namespace AgOpenGPS
 
         }
 
-        private bool CreateABWideTurn(bool isTurnLeft)
+        private bool CreateABWideTurn()
         {
             //keep from making turns constantly - wait 1.5 seconds
             if (mf.makeUTurnCounter < 4)
@@ -956,7 +949,7 @@ namespace AgOpenGPS
 
                 case 1:
                     //we move the turnline crossing point perpenicualar out from the ABline
-                    double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isYouTurnRight ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0);
+                    double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isTurnLeft ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0);
                     vec2 tempguidanceLookPos = new vec2(mf.guidanceLookPos.easting, mf.guidanceLookPos.northing);
 
                     if (!isTurnLeft)
@@ -1191,10 +1184,10 @@ namespace AgOpenGPS
 
 
         #region KStyle turns
-        public bool KStyleTurnCurve(bool isTurnLeft)
+        public bool KStyleTurnCurve()
         {
             //grab the vehicle widths and offsets
-            double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isYouTurnRight ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0);
+            double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isTurnLeft ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0);
             double pointSpacing = youTurnRadius * 0.1;
 
             isHeadingSameWay = mf.curve.isHeadingSameWay;
@@ -1405,7 +1398,7 @@ namespace AgOpenGPS
             return true;
         }
 
-        public bool KStyleTurnAB(bool isTurnLeft)
+        public bool KStyleTurnAB()
         {
             double pointSpacing = youTurnRadius * 0.1;
 
@@ -1495,7 +1488,7 @@ namespace AgOpenGPS
 
 
                 //grab the vehicle widths and offsets
-                double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isYouTurnRight ? -mf.tool.offset : mf.tool.offset);
+                double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isTurnLeft ? -mf.tool.offset : mf.tool.offset);
 
                 //now we go the other way to turn round
                 head = ytList[0].heading;
@@ -2433,13 +2426,13 @@ namespace AgOpenGPS
             isYouTurnTriggered = true;
 
             if (isGoingStraightThrough)
-                isYouTurnRight = !isYouTurnRight;
+                isTurnLeft = !isTurnLeft;
 
             if (alternateSkips && rowSkipsWidth2 > 1)
             {
                 if (--turnSkips == 0)
                 {
-                    isYouTurnRight = !isYouTurnRight;
+                    isTurnLeft = !isTurnLeft;
                     turnSkips = rowSkipsWidth2 * 2 - 1;
                 }
                 else if (previousBigSkip = !previousBigSkip)
@@ -2447,7 +2440,7 @@ namespace AgOpenGPS
                 else
                     rowSkipsWidth = rowSkipsWidth2;
             }
-            else isYouTurnRight = !isYouTurnRight;
+            else isTurnLeft = !isTurnLeft;
 
             if (uTurnStyle == 0)
             {
@@ -2458,8 +2451,6 @@ namespace AgOpenGPS
             {
                 mf.guidanceLookPos.easting = kStyleNewLookPos.easting;
                 mf.guidanceLookPos.northing = kStyleNewLookPos.northing;
-
-                pt3Phase = 0;
             }
 
             if (mf.trk.idx > -1 && mf.trk.gArr.Count > 0)
@@ -2512,7 +2503,6 @@ namespace AgOpenGPS
         {
             youTurnPhase = 0;
             ytList?.Clear();
-            pt3Phase = 0;
             mf.makeUTurnCounter = 0;
             mf.p_239.pgn[mf.p_239.uturn] = 0;
             isOutSameCurve = false;
@@ -2745,7 +2735,7 @@ namespace AgOpenGPS
                         return false;
                     }
 
-                    if (uTurnStyle == 1 && pt3Phase == 0 && mf.isReverse)
+                    if (uTurnStyle == 1 && mf.isReverse)
                     {
                         CompleteYouTurn();
                         return true;
@@ -2831,7 +2821,7 @@ namespace AgOpenGPS
                     onA = A;
                     double distancePiv = glm.Distance(ytList[A], pivot);
 
-                    if (distancePiv > 2 || (B >= ptCount - 1))
+                    if ((A > 0 && distancePiv > 2) || (B >= ptCount - 1))
                     {
                         CompleteYouTurn();
                         return false;
@@ -2893,7 +2883,7 @@ namespace AgOpenGPS
                             return false;
                         }
 
-                        if (uTurnStyle == 1 && pt3Phase == 0 && mf.isReverse)
+                        if (uTurnStyle == 1 && mf.isReverse)
                         {
                             CompleteYouTurn();
                             return true;
