@@ -1014,10 +1014,10 @@ namespace AgOpenGPS
                                 if (sounds.isTurnSoundOn) sounds.sndUTurnTooClose.Play();
                             }
                         }
-                        else //wait to trigger the actual turn since its made and waiting
+                        else if (yt.ytList.Count > 5)//wait to trigger the actual turn since its made and waiting
                         {
                             //distance from current pivot to first point of youturn pattern
-                            if (yt.ytList.Count > 5) distancePivotToTurnLine = glm.Distance(yt.ytList[2], pivotAxlePos);
+                            distancePivotToTurnLine = glm.Distance(yt.ytList[2], pivotAxlePos);
 
                             if ((distancePivotToTurnLine <= 20.0) && (distancePivotToTurnLine >= 18.0) && !yt.isYouTurnTriggered)
 

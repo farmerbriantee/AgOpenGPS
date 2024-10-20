@@ -155,7 +155,7 @@ namespace AgOpenGPS
                         - (mf.pivotAxlePos.northing - track.ptA.northing) * (mf.steerAxlePos.easting - track.ptA.easting)) < 0;
 
                     //pivot circle center
-                    distanceFromRefLine = glm.Distance(mf.guidanceLookPos, track.ptA);
+                    distanceFromRefLine = -glm.Distance(mf.guidanceLookPos, track.ptA);
                 }
 
                 distanceFromRefLine -= (0.5 * widthMinusOverlap);
@@ -218,7 +218,7 @@ namespace AgOpenGPS
                 else if (track.mode == TrackMode.waterPivot)
                 {
                     //max 2 cm offset from correct circle or limit to 500 points
-                    double Angle = glm.twoPI / Math.Min(Math.Max(Math.Ceiling(glm.twoPI / (2 * Math.Acos(1 - (0.02 / distAway)))), 50), 500);//limit between 50 and 500 points
+                    double Angle = glm.twoPI / Math.Min(Math.Max(Math.Ceiling(glm.twoPI / (2 * Math.Acos(1 - (0.02 / Math.Abs(distAway))))), 50), 500);//limit between 50 and 500 points
 
                     vec3 centerPos = new vec3(track.ptA.easting, track.ptA.northing, 0);
                     double rotation = 0;
@@ -831,71 +831,51 @@ namespace AgOpenGPS
                     for (int h = 0; h < smooList.Count; h++) GL.Vertex3(smooList[h].easting, smooList[h].northing, 0);
                     GL.End();
                 }
-                else //normal. Smoothing window is not open.
-                {
-                    if (curList.Count > 0)
-                    {
-                        GL.LineWidth(mf.ABLine.lineWidth);
-                        GL.Color3(0.95f, 0.2f, 0.95f);
-
-                        //ablines and curves are a line - the rest a loop
-                        if (mf.trk.gArr[mf.trk.idx].mode <= TrackMode.Curve)
-                        {
-                            GL.Begin(PrimitiveType.LineStrip);
-                        }
-                        else
-                        {
-                            GL.Begin(PrimitiveType.LineLoop);
-                        }
-                        for (int h = 0; h < curList.Count; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
-                        GL.End();
-
-                        if (!mf.isStanleyUsed && mf.camera.camSetDistance > -200)
-                        {
-                            //Draw lookahead Point
-                            GL.PointSize(4.0f);
-                            GL.Begin(PrimitiveType.Points);
-                            GL.Color3(1.0f, 0.95f, 0.195f);
-                            GL.Vertex3(goalPointCu.easting, goalPointCu.northing, 0.0);
-                            GL.End();
-                        }
-                        mf.yt.DrawYouTurn();
-
-                        GL.PointSize(3.0f);
-                        GL.Begin(PrimitiveType.Points);
-                        GL.Color3(0.920f, 0.6f, 0.950f);
-                        for (int h = 0; h < curList.Count; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
-                        GL.End();
-                        GL.PointSize(1.0f);
-                    }
-                }
             }
-
-            else
+            if (!isSmoothWindowOpen) //normal. Smoothing window is not open.
             {
                 if (curList.Count > 0)
                 {
                     GL.LineWidth(mf.ABLine.lineWidth);
                     GL.Color3(0.95f, 0.2f, 0.95f);
-                    GL.PointSize(15.0f);
 
-                    GL.Begin(PrimitiveType.Points);
-                    GL.Vertex3(mf.trk.gArr[mf.trk.idx].ptA.easting, mf.trk.gArr[mf.trk.idx].ptA.northing, 0);
-                    GL.End();
+                    //ablines and curves are a line - the rest a loop
+                    if (mf.trk.gArr[mf.trk.idx].mode <= TrackMode.Curve)
+                    {
+                        GL.Begin(PrimitiveType.LineStrip);
+                    }
+                    else
+                    {
+                        if (mf.trk.gArr[mf.trk.idx].mode == TrackMode.waterPivot)
+                        {
+                            GL.PointSize(15.0f);
+                            GL.Begin(PrimitiveType.Points);
+                            GL.Vertex3(mf.trk.gArr[mf.trk.idx].ptA.easting, mf.trk.gArr[mf.trk.idx].ptA.northing, 0);
+                            GL.End();
+                        }
 
-                    GL.Begin(PrimitiveType.LineLoop);
+                        GL.Begin(PrimitiveType.LineLoop);
+                    }
                     for (int h = 0; h < curList.Count; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
                     GL.End();
 
                     if (!mf.isStanleyUsed && mf.camera.camSetDistance > -200)
                     {
                         //Draw lookahead Point
-                        GL.PointSize(8.0f);
+                        GL.PointSize(4.0f);
                         GL.Begin(PrimitiveType.Points);
                         GL.Color3(1.0f, 0.95f, 0.195f);
                         GL.Vertex3(goalPointCu.easting, goalPointCu.northing, 0.0);
                         GL.End();
                     }
+                    mf.yt.DrawYouTurn();
+
+                    GL.PointSize(3.0f);
+                    GL.Begin(PrimitiveType.Points);
+                    GL.Color3(0.920f, 0.6f, 0.950f);
+                    for (int h = 0; h < curList.Count; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
+                    GL.End();
+                    GL.PointSize(1.0f);
                 }
             }
             GL.PointSize(1.0f);
