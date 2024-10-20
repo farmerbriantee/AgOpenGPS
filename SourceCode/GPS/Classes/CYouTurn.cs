@@ -20,7 +20,7 @@ namespace AgOpenGPS
         /// <summary> /// Is the youturn button enabled? /// </summary>
         public bool isYouTurnBtnOn;
 
-        public double boundaryAngleOffPerpendicular, youTurnRadius;
+        public double youTurnRadius;
 
         public int rowSkipsWidth = 1, uTurnSmoothing;
 
@@ -31,18 +31,14 @@ namespace AgOpenGPS
         public int youTurnStartOffset;
 
         //guidance values
-        public double distanceFromCurrentLine, uturnDistanceFromBoundary, dxAB, dyAB;
+        public double distanceFromCurrentLine, uturnDistanceFromBoundary;
 
         public double distanceFromCurrentLineSteer, distanceFromCurrentLinePivot;
         public double steerAngleGu, rEastSteer, rNorthSteer, rEastPivot, rNorthPivot;
-        public double pivotCurvatureOffset, lastCurveDistance = 10000;
 
         private int A, B;
         private bool isHeadingSameWay = true;
         public bool isTurnCreationTooClose = false, isTurnCreationNotCrossingError = false, turnTooCloseTrigger = false;
-
-        //pure pursuit values
-        public vec3 pivot = new vec3(0, 0, 0);
 
         public vec2 goalPointYT = new vec2(0, 0);
         public vec2 radiusPointYT = new vec2(0, 0);
@@ -54,27 +50,17 @@ namespace AgOpenGPS
 
         //next curve or line to build out turn and point over
         public List<vec3> nextCurve = new List<vec3>();
-        public CABLine nextLine;
-        public vec3 nextLookPos = new vec3(0, 0, 0);
 
         //if we continue on the same line or change to the next one after the uTurn
         public bool isOutSameCurve;
 
-        //for 3Pt turns - second turn
-        public List<vec3> pt3ListSecondLine = new List<vec3>();
-
         public int uTurnStyle = 0;
-
-        public vec3 kStyleNewLookPos = new vec3(0, 0, 0);
-        public bool isLastFrameForward = true;
 
         //is UTurn pattern in or out of bounds
         public bool isOutOfBounds = false;
 
         //sequence of operations of finding the next turn 0 to 3
         public int youTurnPhase;
-
-        public double crossingheading = 0;
 
         // Returns 1 if the lines intersect, otherwis
         public double iE = 0, iN = 0;
@@ -121,7 +107,7 @@ namespace AgOpenGPS
         {
             //TODO: is calculated many taimes after the priveous turn is complete
             //grab the vehicle widths and offsets
-            double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isTurnLeft ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0); //AAA change isTurnLeft to isTurnLeft
+            double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isTurnLeft ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0);
             pointSpacing = youTurnRadius * 0.1;
 
             if (uTurnStyle == 0)
@@ -149,9 +135,6 @@ namespace AgOpenGPS
 
         public bool BuildABLineDubinsYouTurn()
         {
-            if (!mf.isBtnAutoSteerOn) mf.ABLine.isHeadingSameWay
-                    = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - mf.ABLine.abHeading) - Math.PI) < glm.PIBy2;
-
             double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth
                 + (isTurnLeft ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0);
 
@@ -308,8 +291,6 @@ namespace AgOpenGPS
                     break;
 
                 case 1:
-                    //build the next line to add sequencelines
-
                     //build the next line to add sequencelines
                     double widthMinusOverlap = mf.tool.width - mf.tool.overlap;
 
@@ -880,9 +861,6 @@ namespace AgOpenGPS
                 return true;
             }
 
-            if (!mf.isBtnAutoSteerOn) mf.ABLine.isHeadingSameWay
-                    = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - mf.ABLine.abHeading) - Math.PI) < glm.PIBy2;
-
             double head = mf.ABLine.abHeading;
             if (!mf.ABLine.isHeadingSameWay) head += Math.PI;
             if (head >= glm.twoPI) head -= glm.twoPI;
@@ -948,32 +926,23 @@ namespace AgOpenGPS
                     return true;
 
                 case 1:
-                    //we move the turnline crossing point perpenicualar out from the ABline
-                    double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isTurnLeft ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0);
-                    vec2 tempguidanceLookPos = new vec2(mf.guidanceLookPos.easting, mf.guidanceLookPos.northing);
+                    //build the next line to add sequencelines
+                    double widthMinusOverlap = mf.tool.width - mf.tool.overlap;
 
-                    if (!isTurnLeft)
-                    {
-                        //creates an imaginary curveline
-                        mf.guidanceLookPos.easting += (Math.Cos(head) * turnOffset);
-                        mf.guidanceLookPos.northing -= (Math.Sin(head) * turnOffset);
-                    }
-                    else
-                    {
-                        mf.guidanceLookPos.easting -= (Math.Cos(head) * turnOffset);
-                        mf.guidanceLookPos.northing += (Math.Sin(head) * turnOffset);
-                    }
+                    CTrk track = mf.trk.gArr[mf.trk.idx];
 
-                    nextLine = new CABLine(mf);
-                    nextLine.BuildCurrentABLineList(mf.pivotAxlePos);
-                    mf.guidanceLookPos = tempguidanceLookPos;
+                    double distAway = widthMinusOverlap * (mf.ABLine.howManyPathsAway + ((isTurnLeft ^ mf.ABLine.isHeadingSameWay) ? rowSkipsWidth : -rowSkipsWidth)) + (mf.ABLine.isHeadingSameWay ? -mf.tool.offset : mf.tool.offset) + track.nudgeDistance;
+
+                    distAway += (0.5 * widthMinusOverlap);
+
+                    nextCurve = mf.curve.BuildNewOffsetList(distAway, track);
 
                     //going with or against boundary?
                     bool isTurnLineSameWay = true;
                     double headingDifference = Math.Abs(startOfTurnPt.closePt.heading - ytList[ytList.Count - 1].heading);
                     if (headingDifference > glm.PIBy2 && headingDifference < 3 * glm.PIBy2) isTurnLineSameWay = false;
 
-                    if (!FindABOutTurnPoint(mf.ABLine, ref nextLine, inClosestTurnPt, isTurnLineSameWay))
+                    if (!FindABOutTurnPoint(mf.ABLine, ref nextCurve, inClosestTurnPt, isTurnLineSameWay))
                     {
                         //error
                         FailCreate();
@@ -1314,7 +1283,6 @@ namespace AgOpenGPS
             curveIndex -= count;
 
             //point used to set next guidance line
-            kStyleNewLookPos = new vec3(ytList[0]);
 
             //now we go the other way to turn round
             head = ytList[0].heading;
@@ -1322,21 +1290,8 @@ namespace AgOpenGPS
             if (head < -Math.PI) head += glm.twoPI;
             if (head > Math.PI) head -= glm.twoPI;
 
-            if (isTurnLeft)
-            {
-                kStyleNewLookPos.easting += (Math.Cos(-head) * turnOffset);
-                kStyleNewLookPos.northing += (Math.Sin(-head) * turnOffset);
-            }
-            else
-            {
-                kStyleNewLookPos.easting -= (Math.Cos(-head) * turnOffset);
-                kStyleNewLookPos.northing -= (Math.Sin(-head) * turnOffset);
-            }
-
             if (head >= glm.twoPI) head -= glm.twoPI;
             else if (head < 0) head += glm.twoPI;
-
-            kStyleNewLookPos.heading = head;
 
             //add the tail to first turn
             head = ytList[ytList.Count - 1].heading;
@@ -1483,34 +1438,8 @@ namespace AgOpenGPS
                     return false;
                 }
 
-                //point used to set next guidance line
-                kStyleNewLookPos = new vec3(ytList[0]);
-
-
                 //grab the vehicle widths and offsets
                 double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isTurnLeft ? -mf.tool.offset : mf.tool.offset);
-
-                //now we go the other way to turn round
-                head = ytList[0].heading;
-                head -= Math.PI;
-                if (head < -Math.PI) head += glm.twoPI;
-                if (head > Math.PI) head -= glm.twoPI;
-
-                if (isTurnLeft)
-                {
-                    kStyleNewLookPos.easting += (Math.Cos(-head) * turnOffset);
-                    kStyleNewLookPos.northing += (Math.Sin(-head) * turnOffset);
-                }
-                else
-                {
-                    kStyleNewLookPos.easting -= (Math.Cos(-head) * turnOffset);
-                    kStyleNewLookPos.northing -= (Math.Sin(-head) * turnOffset);
-                }
-
-                if (head >= glm.twoPI) head -= glm.twoPI;
-                else if (head < 0) head += glm.twoPI;
-
-                kStyleNewLookPos.heading = head;
 
                 //add the tail to first turn
                 int count = ytList.Count;
@@ -1770,7 +1699,6 @@ namespace AgOpenGPS
                     double hed = Math.Atan2(mf.bnd.bndList[turnNum].turnLine[i + 1].easting - mf.bnd.bndList[turnNum].turnLine[i].easting,
                         mf.bnd.bndList[turnNum].turnLine[i + 1].northing - mf.bnd.bndList[turnNum].turnLine[i].northing);
                     if (hed < 0) hed += glm.twoPI;
-                    crossingheading = hed;
                     closestTurnPt.closePt.heading = hed;
                     closestTurnPt.turnLineIndex = i;
 
@@ -1874,7 +1802,7 @@ namespace AgOpenGPS
             return false;
         }
 
-        public bool FindABOutTurnPoint(CABLine thisCurve, ref CABLine nextCurve, CClose inPt, bool isTurnLineSameWay)
+        public bool FindABOutTurnPoint(CABLine thisCurve, ref List<vec3> nextCurve, CClose inPt, bool isTurnLineSameWay)
         {
             int a = isTurnLineSameWay ? 1 : -1;
 
@@ -1890,29 +1818,31 @@ namespace AgOpenGPS
                 if (turnLineIndex < 0) turnLineIndex = mf.bnd.bndList[turnLineNum].turnLine.Count - 2;
                 if (turnLineIndex > mf.bnd.bndList[turnLineNum].turnLine.Count - 2) turnLineIndex = 0;
 
-
-                int res = GetLineIntersection(
-                                mf.bnd.bndList[turnLineNum].turnLine[turnLineIndex].easting,
-                                mf.bnd.bndList[turnLineNum].turnLine[turnLineIndex].northing,
-                                mf.bnd.bndList[turnLineNum].turnLine[turnLineIndex + 1].easting,
-                                mf.bnd.bndList[turnLineNum].turnLine[turnLineIndex + 1].northing,
-
-                                nextCurve.currentLinePtA.easting,
-                                nextCurve.currentLinePtA.northing,
-                                nextCurve.currentLinePtB.easting,
-                                nextCurve.currentLinePtB.northing,
-                                 ref iE, ref iN);
-                if (res == 1)
+                if (nextCurve.Count > 1)
                 {
-                    closestTurnPt = new CClose();
-                    closestTurnPt.closePt.easting = iE;
-                    closestTurnPt.closePt.northing = iN;
-                    closestTurnPt.closePt.heading = nextCurve.abHeading;
-                    closestTurnPt.turnLineIndex = turnLineIndex;
-                    closestTurnPt.curveIndex = -1;
-                    closestTurnPt.turnLineHeading = mf.bnd.bndList[turnLineNum].turnLine[turnLineIndex].heading;
-                    closestTurnPt.turnLineNum = turnLineNum;
-                    return true;
+                    int res = GetLineIntersection(
+                                    mf.bnd.bndList[turnLineNum].turnLine[turnLineIndex].easting,
+                                    mf.bnd.bndList[turnLineNum].turnLine[turnLineIndex].northing,
+                                    mf.bnd.bndList[turnLineNum].turnLine[turnLineIndex + 1].easting,
+                                    mf.bnd.bndList[turnLineNum].turnLine[turnLineIndex + 1].northing,
+
+                                    nextCurve[0].easting,
+                                    nextCurve[0].northing,
+                                    nextCurve[1].easting,
+                                    nextCurve[1].northing,
+                                     ref iE, ref iN);
+                    if (res == 1)
+                    {
+                        closestTurnPt = new CClose();
+                        closestTurnPt.closePt.easting = iE;
+                        closestTurnPt.closePt.northing = iN;
+                        closestTurnPt.closePt.heading = thisCurve.abHeading;
+                        closestTurnPt.turnLineIndex = turnLineIndex;
+                        closestTurnPt.curveIndex = -1;
+                        closestTurnPt.turnLineHeading = mf.bnd.bndList[turnLineNum].turnLine[turnLineIndex].heading;
+                        closestTurnPt.turnLineNum = turnLineNum;
+                        return true;
+                    }
                 }
 
 
@@ -1957,7 +1887,6 @@ namespace AgOpenGPS
                         closestTurnPt.turnLineHeading = mf.bnd.bndList[turnLineNum].turnLine[turnLineIndex].heading;
                         closestTurnPt.turnLineNum = turnLineNum;
                         isOutSameCurve = true;
-                        nextCurve = thisCurve;
                         return true;
                     }
                 }
@@ -2425,48 +2354,27 @@ namespace AgOpenGPS
             //trigger pulled
             isYouTurnTriggered = true;
 
-            if (isGoingStraightThrough)
-                isTurnLeft = !isTurnLeft;
+            if (!isGoingStraightThrough)
+            {
+                mf.curve.howManyPathsAway += (isTurnLeft ^ mf.curve.isHeadingSameWay) ? rowSkipsWidth : -rowSkipsWidth;
+                mf.curve.isHeadingSameWay = !mf.curve.isHeadingSameWay;
 
-            if (alternateSkips && rowSkipsWidth2 > 1)
-            {
-                if (--turnSkips == 0)
-                {
-                    isTurnLeft = !isTurnLeft;
-                    turnSkips = rowSkipsWidth2 * 2 - 1;
-                }
-                else if (previousBigSkip = !previousBigSkip)
-                    rowSkipsWidth = rowSkipsWidth2 - 1;
-                else
-                    rowSkipsWidth = rowSkipsWidth2;
-            }
-            else isTurnLeft = !isTurnLeft;
+                mf.ABLine.howManyPathsAway += (isTurnLeft ^ mf.ABLine.isHeadingSameWay) ? rowSkipsWidth : -rowSkipsWidth;
+                mf.ABLine.isHeadingSameWay = !mf.ABLine.isHeadingSameWay;
 
-            if (uTurnStyle == 0)
-            {
-                mf.guidanceLookPos.easting = ytList[ytList.Count - 1].easting;
-                mf.guidanceLookPos.northing = ytList[ytList.Count - 1].northing;
-            }
-            else if (uTurnStyle == 1)
-            {
-                mf.guidanceLookPos.easting = kStyleNewLookPos.easting;
-                mf.guidanceLookPos.northing = kStyleNewLookPos.northing;
-            }
-
-            if (mf.trk.idx > -1 && mf.trk.gArr.Count > 0)
-            {
-                if (mf.trk.gArr[mf.trk.idx].mode == (int)TrackMode.AB)
+                if (alternateSkips && rowSkipsWidth2 > 1)
                 {
-                    if (!isGoingStraightThrough)
-                        mf.ABLine.isLateralTriggered = true;
-                    mf.ABLine.isABValid = false;
+                    if (--turnSkips == 0)
+                    {
+                        isTurnLeft = !isTurnLeft;
+                        turnSkips = rowSkipsWidth2 * 2 - 1;
+                    }
+                    else if (previousBigSkip = !previousBigSkip)
+                        rowSkipsWidth = rowSkipsWidth2 - 1;
+                    else
+                        rowSkipsWidth = rowSkipsWidth2;
                 }
-                else
-                {
-                    if (!isGoingStraightThrough)
-                        mf.curve.isLateralTriggered = true;
-                    mf.curve.isCurveValid = false;
-                }
+                else isTurnLeft = !isTurnLeft;
             }
         }
 
@@ -2520,59 +2428,35 @@ namespace AgOpenGPS
 
         public void BuildManualYouLateral(bool isTurnLeft)
         {
-            double head;
             //point on AB line closest to pivot axle point from ABLine PurePursuit
             if (mf.trk.idx > -1 && mf.trk.gArr.Count > 0)
             {
                 if (mf.trk.gArr[mf.trk.idx].mode == (int)TrackMode.AB)
                 {
-                    rEastYT = mf.ABLine.rEastAB;
-                    rNorthYT = mf.ABLine.rNorthAB;
                     isHeadingSameWay = mf.ABLine.isHeadingSameWay;
-                    head = mf.ABLine.abHeading;
-                    mf.ABLine.isLateralTriggered = true;
                 }
                 else
                 {
-                    rEastYT = mf.curve.rEastCu;
-                    rNorthYT = mf.curve.rNorthCu;
                     isHeadingSameWay = mf.curve.isHeadingSameWay;
-                    head = mf.curve.manualUturnHeading;
-                    mf.curve.isLateralTriggered = true;
                 }
+                if (isHeadingSameWay == isTurnLeft)
+                {
+                    mf.curve.howManyPathsAway += 1;
+                    mf.ABLine.howManyPathsAway += 1;
+                }
+                else
+                {
+                    mf.curve.howManyPathsAway -= 1;
+                    mf.ABLine.howManyPathsAway -= 1;
+                }
+                return;
             }
             else return;
-
-            //grab the vehicle widths and offsets
-            double turnOffset = (mf.tool.width - mf.tool.overlap); //remove rowSkips
-
-            //if its straight across it makes 2 loops instead so goal is a little lower then start
-            if (!mf.isStanleyUsed &&!isHeadingSameWay) head += Math.PI;
-
-            //move the start forward 2 meters, this point is critical to formation of uturn
-            rEastYT += (Math.Sin(head) * 2);
-            rNorthYT += (Math.Cos(head) * 2);
-
-            if (isTurnLeft)
-            {
-                mf.guidanceLookPos.easting = rEastYT + (Math.Cos(-head) * turnOffset);
-                mf.guidanceLookPos.northing = rNorthYT + (Math.Sin(-head) * turnOffset);
-            }
-            else
-            {
-                mf.guidanceLookPos.easting = rEastYT - (Math.Cos(-head) * turnOffset);
-                mf.guidanceLookPos.northing = rNorthYT - (Math.Sin(-head) * turnOffset);
-            }
-
-            mf.ABLine.isABValid = false;
-            mf.curve.isCurveValid = false;
         }
 
         //build the points and path of youturn to be scaled and transformed
-        public void BuildManualYouTurn(bool isTurnLeft, bool isTurnButtonTriggered)
+        public void BuildManualYouTurn(bool isTurnRight, bool isTurnButtonTriggered)
         {
-            isYouTurnTriggered = true;
-
             double head;
             //point on AB line closest to pivot axle point from ABLine PurePursuit
             if (mf.trk.idx > -1 && mf.trk.gArr.Count > 0)
@@ -2583,7 +2467,6 @@ namespace AgOpenGPS
                     rNorthYT = mf.ABLine.rNorthAB;
                     isHeadingSameWay = mf.ABLine.isHeadingSameWay;
                     head = mf.ABLine.abHeading;
-                    mf.ABLine.isLateralTriggered = true;
                 }
 
                 else
@@ -2592,13 +2475,12 @@ namespace AgOpenGPS
                     rNorthYT = mf.curve.rNorthCu;
                     isHeadingSameWay = mf.curve.isHeadingSameWay;
                     head = mf.curve.manualUturnHeading;
-                    mf.curve.isLateralTriggered = true;
                 }
             }
             else return;
 
             //grab the vehicle widths and offsets
-            double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isTurnLeft ? mf.tool.offset * 2.0 : -mf.tool.offset * 2.0);
+            double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isTurnRight ? mf.tool.offset * 2.0 : -mf.tool.offset * 2.0);
 
             CDubins dubYouTurnPath = new CDubins();
             CDubins.turningRadius = youTurnRadius;
@@ -2623,7 +2505,7 @@ namespace AgOpenGPS
             goal.heading = head;
             if (isTurnButtonTriggered)
             {
-                if (isTurnLeft)
+                if (isTurnRight)
                 {
                     goal.easting = rEastYT - (Math.Cos(-head) * turnOffset);
                     goal.northing = rNorthYT - (Math.Sin(-head) * turnOffset);
@@ -2638,30 +2520,8 @@ namespace AgOpenGPS
             //generate the turn points
             ytList = dubYouTurnPath.GenerateDubins(start, goal);
 
-            mf.guidanceLookPos.easting = ytList[ytList.Count - 1].easting;
-            mf.guidanceLookPos.northing = ytList[ytList.Count - 1].northing;
-
-            //vec3 pt;
-            //for (double a = 0; a < 2; a += 0.2)
-            //{
-            //    pt.easting = ytList[0].easting + (Math.Sin(head) * a);
-            //    pt.northing = ytList[0].northing + (Math.Cos(head) * a);
-            //    pt.heading = ytList[0].heading;
-            //    ytList.Insert(0, pt);
-            //}
-
-            //int count = ytList.Count;
-
-            //for (double i = 0.2; i <= 7; i += 0.2)
-            //{
-            //    pt.easting = ytList[count - 1].easting + (Math.Sin(head) * i);
-            //    pt.northing = ytList[count - 1].northing + (Math.Cos(head) * i);
-            //    pt.heading = head;
-            //    ytList.Add(pt);
-            //}
-
-            mf.ABLine.isABValid = false;
-            mf.curve.isCurveValid = false;
+            isTurnLeft = !isTurnRight;
+            YouTurnTrigger();
         }
 
         public int onA;
@@ -2677,7 +2537,7 @@ namespace AgOpenGPS
             {
                 if (mf.isStanleyUsed)
                 {
-                    pivot = mf.steerAxlePos;
+                    vec3 pivot = mf.steerAxlePos;
 
                     //find the closest 2 points to current fix
                     for (int t = 0; t < ptCount; t++)
@@ -2791,7 +2651,7 @@ namespace AgOpenGPS
                 }
                 else
                 {
-                    pivot = mf.pivotAxlePos;
+                    vec3 pivot = mf.pivotAxlePos;
 
                     //find the closest 2 points to current fix
                     for (int t = 0; t < ptCount; t++)

@@ -812,17 +812,14 @@ namespace AgOpenGPS
                 {
                     if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
                     {
-                        if (!ABLine.isABValid || ((secondsSinceStart - ABLine.lastSecond) > 0.66
-                            && (!isBtnAutoSteerOn || mc.steerSwitchHigh)))
-                        {
-                            ABLine.BuildCurrentABLineList(steerAxlePos);
-                        }
+                        ABLine.BuildCurrentABLineList(pivotAxlePos);
+                        
                         ABLine.GetCurrentABLine(pivotAxlePos, steerAxlePos);
                     }
                     else
                     {
                         //build new current ref line if required
-                        curve.BuildCurveCurrentList(steerAxlePos);
+                        curve.BuildCurveCurrentList(pivotAxlePos);
 
                         curve.GetCurrentCurveLine(pivotAxlePos, steerAxlePos);
                     }
@@ -1174,12 +1171,10 @@ namespace AgOpenGPS
 
             //guidance look ahead distance based on time or tool width at least 
             
-            if (!ABLine.isLateralTriggered && !curve.isLateralTriggered)
-            {
-                double guidanceLookDist = (Math.Max(tool.width * 0.5, avgSpeed * 0.277777 * guidanceLookAheadTime));
-                guidanceLookPos.easting = pivotAxlePos.easting + (Math.Sin(fixHeading) * guidanceLookDist);
-                guidanceLookPos.northing = pivotAxlePos.northing + (Math.Cos(fixHeading) * guidanceLookDist);
-            }
+            double guidanceLookDist = (Math.Max(tool.width * 0.5, avgSpeed * 0.277777 * guidanceLookAheadTime));
+            guidanceLookPos.easting = pivotAxlePos.easting + (Math.Sin(fixHeading) * guidanceLookDist);
+            guidanceLookPos.northing = pivotAxlePos.northing + (Math.Cos(fixHeading) * guidanceLookDist);
+            
 
             //determine where the rigid vehicle hitch ends
             hitchPos.easting = pn.fix.easting + (Math.Sin(fixHeading) * (tool.hitchLength - vehicle.antennaPivot));

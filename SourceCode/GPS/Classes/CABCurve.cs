@@ -40,7 +40,7 @@ namespace AgOpenGPS
 
         bool isBusyWorking = false;
 
-        public bool isCurveValid, isLateralTriggered;
+        public bool isCurveValid;
 
         public double lastSecond = 0;
 
@@ -130,18 +130,6 @@ namespace AgOpenGPS
                     //same way as line creation or not
                     isHeadingSameWay = Math.PI - Math.Abs(Math.Abs(pivot.heading - track.curvePts[rA].heading) - Math.PI) < glm.PIBy2;
 
-
-
-
-
-                    //reset the line over jump
-                    isLateralTriggered = false;
-                    if (mf.yt.isYouTurnTriggered && !mf.yt.isGoingStraightThrough) isHeadingSameWay = !isHeadingSameWay;
-                    
-
-
-
-
                     //which side of the closest point are we on is next
                     //calculate endpoints of reference line based on closest point
                     refPoint1.easting = track.curvePts[rA].easting - (Math.Sin(track.curvePts[rA].heading) * 300.0);
@@ -172,7 +160,7 @@ namespace AgOpenGPS
 
                 distanceFromRefLine -= (0.5 * widthMinusOverlap);
 
-                double RefDist = (distanceFromRefLine + (isHeadingSameWay ? mf.tool.offset : -mf.tool.offset) + track.nudgeDistance) / widthMinusOverlap;
+                double RefDist = (distanceFromRefLine + (isHeadingSameWay ? mf.tool.offset : -mf.tool.offset) - track.nudgeDistance) / widthMinusOverlap;
 
                 if (RefDist < 0) howManyPathsAway = (int)(RefDist - 0.5);
                 else howManyPathsAway = (int)(RefDist + 0.5);
@@ -204,7 +192,30 @@ namespace AgOpenGPS
 
             try
             {
-                if (track.mode == (int)TrackMode.waterPivot)
+                if (track.mode == (int)TrackMode.AB)
+                {
+                    //move the curline as well. 
+                    vec2 nudgePtA = new vec2(track.ptA);
+                    vec2 nudgePtB = new vec2(track.ptB);
+
+                    //depending which way you are going, the offset can be either side
+                    vec2 point1 = new vec2((Math.Cos(-track.heading) * distAway) + nudgePtA.easting,
+                    (Math.Sin(-track.heading) * distAway) + nudgePtA.northing);
+
+                    vec2 point2 = new vec2((Math.Cos(-track.heading) * distAway) + nudgePtB.easting,
+                    (Math.Sin(-track.heading) * distAway) + nudgePtB.northing);
+
+                    //create the new line extent points for current ABLine based on original heading of AB line
+                    double easting1 = point1.easting - (Math.Sin(track.heading) * mf.ABLine.abLength);
+                    double northing1 = point1.northing - (Math.Cos(track.heading) * mf.ABLine.abLength);
+
+                    newCurList.Add(new vec3(easting1, northing1, track.heading));
+
+                    double easting2 = point2.easting + (Math.Sin(track.heading) * mf.ABLine.abLength);
+                    double northing2 = point2.northing + (Math.Cos(track.heading) * mf.ABLine.abLength);
+                    newCurList.Add(new vec3(easting2, northing2, track.heading));
+                }
+                else if (track.mode == (int)TrackMode.waterPivot)
                 {
                     //max 2 cm offset from correct circle or limit to 500 points
                     double Angle = glm.twoPI / Math.Min(Math.Max(Math.Ceiling(glm.twoPI / (2 * Math.Acos(1 - (0.02 / distAway)))), 50), 500);//limit between 50 and 500 points
