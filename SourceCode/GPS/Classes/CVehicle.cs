@@ -517,7 +517,7 @@ namespace AgOpenGPS
                     else dire = "}";
 
                     GL.Color4(1.269, 1.25, 1.2510, 0.87);
-                    if (mf.curve.howManyPathsAway > 0) mf.font.DrawTextVehicle(2, wheelbase + 1, dire + mf.curve.howManyPathsAway.ToString() + "R " + offs, 1);
+                    if (mf.curve.howManyPathsAway > -1) mf.font.DrawTextVehicle(2, wheelbase + 1, dire + (mf.curve.howManyPathsAway + 1).ToString() + "R " + offs, 1);
                     else mf.font.DrawTextVehicle(2, wheelbase + 1, dire + (-mf.curve.howManyPathsAway).ToString() + "L " + offs, 1);
                 }
             }

@@ -822,9 +822,7 @@ namespace AgOpenGPS
                     else
                     {
                         //build new current ref line if required
-                        if (!curve.isCurveValid || ((secondsSinceStart - curve.lastSecond) > 0.66
-                            && (!isBtnAutoSteerOn || mc.steerSwitchHigh)))
-                            curve.BuildCurveCurrentList(steerAxlePos);
+                        curve.BuildCurveCurrentList(steerAxlePos);
 
                         curve.GetCurrentCurveLine(pivotAxlePos, steerAxlePos);
                     }
