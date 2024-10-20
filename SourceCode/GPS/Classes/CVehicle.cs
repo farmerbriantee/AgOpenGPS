@@ -500,7 +500,7 @@ namespace AgOpenGPS
                     offs = ((int)(mf.trk.gArr[mf.trk.idx].nudgeDistance*mf.m2InchOrCm)).ToString() + mf.unitsInCmNS;
                 string dire;
 
-                if (mf.trk.gArr[mf.trk.idx].mode == (int)TrackMode.AB )
+                if (mf.trk.gArr[mf.trk.idx].mode == TrackMode.AB)
                 {
                     if (mf.ABLine.isHeadingSameWay) dire = "{";
                     else dire = "}";

@@ -810,7 +810,7 @@ namespace AgOpenGPS
                 //like normal
                 if (trk.gArr.Count > 0 && trk.idx > -1)
                 {
-                    if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
+                    if (trk.gArr[trk.idx].mode == TrackMode.AB)
                     {
                         ABLine.BuildCurrentABLineList(pivotAxlePos);
                         
@@ -996,7 +996,7 @@ namespace AgOpenGPS
                             }
                             else
                             {
-                                if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
+                                if (trk.gArr[trk.idx].mode == TrackMode.AB)
                                 {
                                     yt.BuildABLineDubinsYouTurn();
                                 }

@@ -160,7 +160,7 @@ namespace AgOpenGPS
 
         private void btnSwapAB_Click(object sender, EventArgs e)
         {
-            if (mf.trk.gArr[mf.trk.idx].mode == (int)TrackMode.AB)
+            if (mf.trk.gArr[mf.trk.idx].mode == TrackMode.AB)
             {
                 vec2 bob = mf.trk.gArr[mf.trk.idx].ptA;
                 mf.trk.gArr[mf.trk.idx].ptA = mf.trk.gArr[mf.trk.idx].ptB;

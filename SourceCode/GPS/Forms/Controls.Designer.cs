@@ -599,7 +599,7 @@ namespace AgOpenGPS
                 return;
             }
 
-            Form form99 = new FormTram(this, trk.gArr[trk.idx].mode != (int)TrackMode.AB);
+            Form form99 = new FormTram(this, trk.gArr[trk.idx].mode != TrackMode.AB);
             form99.Show(this);
 
         }

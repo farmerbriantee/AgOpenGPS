@@ -570,7 +570,7 @@ namespace AgOpenGPS
                                     int idx = mf.trk.gArr.Count - 1;
 
                                     mf.trk.gArr[idx].heading = mf.ABLine.desHeading;
-                                    mf.trk.gArr[idx].mode = (int)TrackMode.AB;
+                                    mf.trk.gArr[idx].mode = TrackMode.AB;
 
                                     ////calculate the new points for the reference line and points
                                     mf.trk.gArr[idx].ptA = new vec2(mf.ABLine.desPtA);
@@ -656,7 +656,7 @@ namespace AgOpenGPS
                                                 mf.trk.gArr[idx].name = mf.curve.desName;
                                             }
 
-                                            mf.trk.gArr[idx].mode = (int)TrackMode.Curve;
+                                            mf.trk.gArr[idx].mode = TrackMode.Curve;
 
                                             //write out the Curve Points
                                             foreach (vec3 item in mf.curve.desList)
@@ -725,7 +725,7 @@ namespace AgOpenGPS
                             int idx = mf.trk.gArr.Count - 1;
 
                             mf.trk.gArr[idx].heading = mf.ABLine.desHeading;
-                            mf.trk.gArr[idx].mode = (int)TrackMode.AB;
+                            mf.trk.gArr[idx].mode = TrackMode.AB;
 
                             ////calculate the new points for the reference line and points
                             mf.trk.gArr[idx].ptA = new vec2(mf.ABLine.desPtA);
@@ -803,7 +803,7 @@ namespace AgOpenGPS
                                             + "\u00B0" 
                                             + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
-                                    mf.trk.gArr[idx].mode = (int)TrackMode.Curve;
+                                    mf.trk.gArr[idx].mode = TrackMode.Curve;
 
                                     //write out the Curve Points
                                     foreach (vec3 item in mf.curve.desList)

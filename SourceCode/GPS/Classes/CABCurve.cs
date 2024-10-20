@@ -74,7 +74,7 @@ namespace AgOpenGPS
             if (!isCurveValid || ((mf.secondsSinceStart - lastSecond) > 0.66 && (!mf.isBtnAutoSteerOn || mf.mc.steerSwitchHigh)))
             {
                 lastSecond = mf.secondsSinceStart;
-                if (track.mode != (int)TrackMode.waterPivot)
+                if (track.mode != TrackMode.waterPivot)
                 {
                     int refCount = track.curvePts.Count;
                     if (refCount < 2)
@@ -192,7 +192,7 @@ namespace AgOpenGPS
 
             try
             {
-                if (track.mode == (int)TrackMode.AB)
+                if (track.mode == TrackMode.AB)
                 {
                     //move the curline as well. 
                     vec2 nudgePtA = new vec2(track.ptA);
@@ -215,7 +215,7 @@ namespace AgOpenGPS
                     double northing2 = point2.northing + (Math.Cos(track.heading) * mf.ABLine.abLength);
                     newCurList.Add(new vec3(easting2, northing2, track.heading));
                 }
-                else if (track.mode == (int)TrackMode.waterPivot)
+                else if (track.mode == TrackMode.waterPivot)
                 {
                     //max 2 cm offset from correct circle or limit to 500 points
                     double Angle = glm.twoPI / Math.Min(Math.Max(Math.Ceiling(glm.twoPI / (2 * Math.Acos(1 - (0.02 / distAway)))), 50), 500);//limit between 50 and 500 points
@@ -397,7 +397,7 @@ namespace AgOpenGPS
                         if (pt33.heading < 0) pt33.heading += glm.twoPI;
                         newCurList.Add(pt33);
 
-                        if (mf.bnd.bndList.Count > 0 && !(track.mode == (int)TrackMode.bndCurve))
+                        if (mf.bnd.bndList.Count > 0 && !(track.mode == TrackMode.bndCurve))
                         {
                             int ptCnt = newCurList.Count - 1;
 
@@ -472,7 +472,7 @@ namespace AgOpenGPS
         {
             if (mf.trk.gArr[mf.trk.idx].curvePts == null || mf.trk.gArr[mf.trk.idx].curvePts.Count < 5)
             {
-                if (mf.trk.gArr[mf.trk.idx].mode != (int)TrackMode.waterPivot)
+                if (mf.trk.gArr[mf.trk.idx].mode != TrackMode.waterPivot)
                 {
                     return;
                 }
@@ -507,7 +507,7 @@ namespace AgOpenGPS
                     //close call hit
 
                     //If is a curve
-                    if (mf.trk.gArr[mf.trk.idx].mode <= (int)TrackMode.Curve)
+                    if (mf.trk.gArr[mf.trk.idx].mode <= TrackMode.Curve)
                     {
                         minDistA = minDistB = double.MaxValue;
                         //close call hit
@@ -696,7 +696,7 @@ namespace AgOpenGPS
                         if (i > curList.Count - 1) i = 0;
                     }
 
-                    if (mf.trk.gArr[mf.trk.idx].mode <= (int)TrackMode.Curve)
+                    if (mf.trk.gArr[mf.trk.idx].mode <= TrackMode.Curve)
                     {
                         if (mf.isBtnAutoSteerOn && !mf.isReverse)
                         {
@@ -798,7 +798,7 @@ namespace AgOpenGPS
 
             int ptCount = mf.trk.gArr[mf.trk.idx].curvePts.Count;
 
-            if (mf.trk.gArr[mf.trk.idx].mode != (int)TrackMode.waterPivot)
+            if (mf.trk.gArr[mf.trk.idx].mode != TrackMode.waterPivot)
             {
                 if (mf.trk.gArr[mf.trk.idx].curvePts == null || mf.trk.gArr[mf.trk.idx].curvePts.Count == 0) return;
 
@@ -839,7 +839,7 @@ namespace AgOpenGPS
                         GL.Color3(0.95f, 0.2f, 0.95f);
 
                         //ablines and curves are a line - the rest a loop
-                        if (mf.trk.gArr[mf.trk.idx].mode <= (int)TrackMode.Curve)
+                        if (mf.trk.gArr[mf.trk.idx].mode <= TrackMode.Curve)
                         {
                             GL.Begin(PrimitiveType.LineStrip);
                         }

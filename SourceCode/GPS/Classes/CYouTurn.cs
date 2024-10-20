@@ -2431,7 +2431,7 @@ namespace AgOpenGPS
             //point on AB line closest to pivot axle point from ABLine PurePursuit
             if (mf.trk.idx > -1 && mf.trk.gArr.Count > 0)
             {
-                if (mf.trk.gArr[mf.trk.idx].mode == (int)TrackMode.AB)
+                if (mf.trk.gArr[mf.trk.idx].mode == TrackMode.AB)
                 {
                     isHeadingSameWay = mf.ABLine.isHeadingSameWay;
                 }
@@ -2461,7 +2461,7 @@ namespace AgOpenGPS
             //point on AB line closest to pivot axle point from ABLine PurePursuit
             if (mf.trk.idx > -1 && mf.trk.gArr.Count > 0)
             {
-                if (mf.trk.gArr[mf.trk.idx].mode == (int)TrackMode.AB)
+                if (mf.trk.gArr[mf.trk.idx].mode == TrackMode.AB)
                 {
                     rEastYT = mf.ABLine.rEastAB;
                     rNorthYT = mf.ABLine.rNorthAB;

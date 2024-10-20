@@ -255,7 +255,7 @@ namespace AgOpenGPS
                         //when switching lines, draw the ghost
                         if (trk.idx > -1)
                         {
-                            if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
+                            if (trk.gArr[trk.idx].mode == TrackMode.AB)
                                 ABLine.DrawABLines();
                             else
                                 curve.DrawCurve();
@@ -327,7 +327,7 @@ namespace AgOpenGPS
                     {
                         if (trk.idx > -1)
                         {
-                            if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
+                            if (trk.gArr[trk.idx].mode == TrackMode.AB)
                             {
                                 GL.PointSize(8);
                                 GL.Begin(PrimitiveType.Points);
