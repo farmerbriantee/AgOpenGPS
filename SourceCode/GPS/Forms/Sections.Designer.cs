@@ -17,6 +17,25 @@ namespace AgOpenGPS
         public btnStates manualBtnState = btnStates.Off;
         public btnStates autoBtnState = btnStates.Off;
         
+        private void markAsWorkedLine()
+        {
+            //is it an AB Line or a Curve?
+            if (trk.gArr[this.trk.idx].mode == (int)TrackMode.AB)
+            {
+                //AB Line
+                if (!this.trk.gArr[this.trk.idx].workedLines.Contains(this.ABLine.howManyPathsAway))
+                    this.trk.gArr[this.trk.idx].workedLines.Add(this.ABLine.howManyPathsAway);
+
+            }
+            else if (trk.gArr[this.trk.idx].mode == (int)TrackMode.Curve)
+            {
+                //Curve
+                if (!this.trk.gArr[this.trk.idx].workedLines.Contains(this.curve.howManyPathsAway))
+                    this.trk.gArr[this.trk.idx].workedLines.Add(this.curve.howManyPathsAway);
+
+            }
+        }
+        
         //Section Manual and Auto buttons on right side
         private void btnSectionMasterManual_Click(object sender, EventArgs e)
         {
@@ -31,23 +50,12 @@ namespace AgOpenGPS
             {
                 case btnStates.Off:
 
-                    //add current Line when it doesnt exist in the worked line list
-
-                    //is it an AB Line or a Curve?
-                    if (trk.gArr[this.trk.idx].mode == (int)TrackMode.AB)
-                    {
-                        //AB Line
-                        if (!this.trk.gArr[this.trk.idx].workedLines.Contains(this.ABLine.howManyPathsAway)) this.trk.gArr[this.trk.idx].workedLines.Add(this.ABLine.howManyPathsAway);
-
-                    } else if (trk.gArr[this.trk.idx].mode == (int)TrackMode.Curve)
-                    {
-                        //Curve
-                        if (!this.trk.gArr[this.trk.idx].workedLines.Contains(this.curve.howManyPathsAway)) this.trk.gArr[this.trk.idx].workedLines.Add(this.curve.howManyPathsAway);
-                    }
-
-
                     manualBtnState = btnStates.On;
                     btnSectionMasterManual.Image = Properties.Resources.ManualOn;
+                    
+                    //add current Line when it doesnt exist in the worked line list
+                    markAsWorkedLine();
+
                     break;
 
                 case btnStates.On:
@@ -76,6 +84,10 @@ namespace AgOpenGPS
                     autoBtnState = btnStates.Auto;
                     btnSectionMasterAuto.Image = Properties.Resources.SectionMasterOn;
                     if (sounds.isSectionsSoundOn)sounds.sndSectionOn.Play();
+                    
+                    //add current Line when it doesnt exist in the worked line list
+                    markAsWorkedLine();
+                    
                     break;
 
                 case btnStates.Auto:
