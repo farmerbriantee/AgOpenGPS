@@ -1885,6 +1885,11 @@ namespace AgOpenGPS
                         }
                         patchSaveList?.Clear();
 
+                        //delete all worked Lanes too
+                        foreach (CTrk trkitm in trk.gArr ) {
+                            trkitm.workedLanes.Clear();
+                        }
+
                         FileCreateContour();
                         FileCreateSections();
 

@@ -17,7 +17,7 @@ namespace AgOpenGPS
         public btnStates manualBtnState = btnStates.Off;
         public btnStates autoBtnState = btnStates.Off;
         
-        private void markAsWorkedLine()
+        private void markAsWorkedLane()
         {
             //is it an AB Line or a Curve?
             if (trk.gArr[this.trk.idx].mode == (int)TrackMode.AB)
@@ -54,7 +54,7 @@ namespace AgOpenGPS
                     btnSectionMasterManual.Image = Properties.Resources.ManualOn;
                     
                     //add current Line when it doesnt exist in the worked line list
-                    markAsWorkedLine();
+                    markAsWorkedLane();
 
                     break;
 
@@ -86,7 +86,7 @@ namespace AgOpenGPS
                     if (sounds.isSectionsSoundOn)sounds.sndSectionOn.Play();
                     
                     //add current Line when it doesnt exist in the worked line list
-                    markAsWorkedLine();
+                    markAsWorkedLane();
                     
                     break;
 
