@@ -33,6 +33,9 @@ namespace AgOpenGPS
         public int rowSkipsWidth = 1, uTurnSmoothing;
 
         public bool alternateSkips = false, previousBigSkip = true;
+
+        //skip mode: 0 = normal; 1 = alternative; 2 = workedLanes
+        public int skip_mode = 0;
         public int rowSkipsWidth2 = 3, turnSkips = 2;
 
         /// <summary>  /// distance from headland as offset where to start turn shape /// </summary>
@@ -138,7 +141,7 @@ namespace AgOpenGPS
                     else
                         goalLine = mf.ABLine.howManyPathsAway - rowSkipsWidth;
 
-                while (mf.trk.gArr[mf.trk.idx].workedLines.Contains(goalLine))
+                while (mf.trk.gArr[mf.trk.idx].workedLanes.Contains(goalLine))
                 {
                     rowSkipsWidth++;
                     if ((isTurnLeft && !mf.ABLine.isHeadingSameWay) || (!isTurnLeft && mf.ABLine.isHeadingSameWay))
@@ -153,7 +156,7 @@ namespace AgOpenGPS
                     else
                         goalLine = mf.curve.howManyPathsAway - rowSkipsWidth;
 
-                while (mf.trk.gArr[mf.trk.idx].workedLines.Contains(goalLine))
+                while (mf.trk.gArr[mf.trk.idx].workedLanes.Contains(goalLine))
                 {
                     rowSkipsWidth++;
                     if ((isTurnLeft && !mf.curve.isHeadingSameWay) || (!isTurnLeft && mf.curve.isHeadingSameWay))
@@ -170,8 +173,9 @@ namespace AgOpenGPS
         //Finds the point where an AB Curve crosses the turn line
         public bool BuildCurveDubinsYouTurn(bool isTurnLeft, vec3 pivotPos)
         {
-            //if next lane is an already worked lane, find the next not worked lane and use it.
-            rowSkipsWidth = getNextNotWorkedLane(isTurnLeft, Properties.Settings.Default.set_youSkipWidth, false);
+            //if mode is skip workedLanes -> next lane is an already worked lane, find the next not worked lane and use it.
+            if (skip_mode == 2)
+                rowSkipsWidth = getNextNotWorkedLane(isTurnLeft, Properties.Settings.Default.set_youSkipWidth, false);
 
             //TODO: is calculated many taimes after the priveous turn is complete
             //grab the vehicle widths and offsets
@@ -203,8 +207,9 @@ namespace AgOpenGPS
 
         public bool BuildABLineDubinsYouTurn(bool isTurnLeft)
         {
-            //if next lane is an already worked lane, find the next not worked lane and use it.
-            rowSkipsWidth = getNextNotWorkedLane(isTurnLeft, Properties.Settings.Default.set_youSkipWidth, true);
+            //if mode is skip workedLanes -> next lane is an already worked lane, find the next not worked lane and use it.
+            if (skip_mode == 2)
+                rowSkipsWidth = getNextNotWorkedLane(isTurnLeft, Properties.Settings.Default.set_youSkipWidth, true);
 
             if (!mf.isBtnAutoSteerOn) mf.ABLine.isHeadingSameWay
                     = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - mf.ABLine.abHeading) - Math.PI) < glm.PIBy2;

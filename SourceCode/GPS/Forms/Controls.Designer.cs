@@ -1683,24 +1683,51 @@ namespace AgOpenGPS
         }
         private void btnYouSkipEnable_Click(object sender, EventArgs e)
         {
-            yt.alternateSkips = !yt.alternateSkips;
-            if (yt.alternateSkips)
+            
+            yt.skip_mode++;
+            if (yt.skip_mode > 2) yt.skip_mode = 0;
+
+            yt.rowSkipsWidth = Properties.Settings.Default.set_youSkipWidth;
+
+            switch (yt.skip_mode)
             {
-                btnYouSkipEnable.Image = Resources.YouSkipOn;
-                //make sure at least 1
-                if (yt.rowSkipsWidth < 2)
-                {
-                    yt.rowSkipsWidth = 2;
-                    cboxpRowWidth.Text = "1";
-                }
-                yt.Set_Alternate_skips();
-                yt.ResetCreatedYouTurn();
-                if (!yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
+                case 0: //normal
+                    btnYouSkipEnable.Image = Resources.YouSkipOff;
+                    yt.alternateSkips = !yt.alternateSkips;
+
+                    break;
+                case 1: //alternative
+                    btnYouSkipEnable.Image = Resources.YouSkipOn;
+                    yt.alternateSkips = !yt.alternateSkips;
+
+                    //make sure at least 1
+                    if (yt.rowSkipsWidth < 2)
+                    {
+                        yt.rowSkipsWidth = 2;
+                        cboxpRowWidth.Text = "1";
+                    }
+                    yt.Set_Alternate_skips();
+
+                    break;
+                case 2: //workedLanes
+
+                    btnYouSkipEnable.Image = Resources.YouSkipWL;
+
+                    //make sure at least 1
+                    if (yt.rowSkipsWidth < 2)
+                    {
+                        yt.rowSkipsWidth = 2;
+                        cboxpRowWidth.Text = "1";
+                    }
+
+                    break;
+
+                default:
+                    break;
             }
-            else
-            {
-                btnYouSkipEnable.Image = Resources.YouSkipOff;
-            }
+            
+            yt.ResetCreatedYouTurn();
+
         }
         private void cboxpRowWidth_SelectedIndexChanged(object sender, EventArgs e)
         {

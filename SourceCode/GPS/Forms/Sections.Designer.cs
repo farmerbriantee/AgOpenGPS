@@ -23,15 +23,15 @@ namespace AgOpenGPS
             if (trk.gArr[this.trk.idx].mode == (int)TrackMode.AB)
             {
                 //AB Line
-                if (!this.trk.gArr[this.trk.idx].workedLines.Contains(this.ABLine.howManyPathsAway))
-                    this.trk.gArr[this.trk.idx].workedLines.Add(this.ABLine.howManyPathsAway);
+                if (!this.trk.gArr[this.trk.idx].workedLanes.Contains(this.ABLine.howManyPathsAway))
+                    this.trk.gArr[this.trk.idx].workedLanes.Add(this.ABLine.howManyPathsAway);
 
             }
             else if (trk.gArr[this.trk.idx].mode == (int)TrackMode.Curve)
             {
                 //Curve
-                if (!this.trk.gArr[this.trk.idx].workedLines.Contains(this.curve.howManyPathsAway))
-                    this.trk.gArr[this.trk.idx].workedLines.Add(this.curve.howManyPathsAway);
+                if (!this.trk.gArr[this.trk.idx].workedLanes.Contains(this.curve.howManyPathsAway))
+                    this.trk.gArr[this.trk.idx].workedLanes.Add(this.curve.howManyPathsAway);
 
             }
         }
