@@ -1693,12 +1693,10 @@ namespace AgOpenGPS
             {
                 case (int) SkipMode.Normal: 
                     btnYouSkipEnable.Image = Resources.YouSkipOff;
-                    yt.alternateSkips = !yt.alternateSkips;
 
                     break;
                 case (int) SkipMode.Alternative: 
                     btnYouSkipEnable.Image = Resources.YouSkipOn;
-                    yt.alternateSkips = !yt.alternateSkips;
 
                     //make sure at least 1
                     if (yt.rowSkipsWidth < 2)

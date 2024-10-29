@@ -20,7 +20,7 @@ namespace AgOpenGPS
 
         public int idx, autoTrack3SecTimer;
 
-        public bool isLine, isAutoTrack = false, isAutoSnapToPivot = false, isAutoSnapped;
+        public bool isAutoTrack = false, isAutoSnapToPivot = false, isAutoSnapped;
 
         public CTrack(FormGPS _f)
         {

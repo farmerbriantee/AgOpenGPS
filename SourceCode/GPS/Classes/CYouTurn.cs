@@ -2514,7 +2514,7 @@ namespace AgOpenGPS
             if (isGoingStraightThrough)
                 isYouTurnRight = !isYouTurnRight;
 
-            if (alternateSkips && rowSkipsWidth2 > 1)
+            if ( (skip_mode == (int) SkipMode.Alternative) && (rowSkipsWidth2 > 1) )
             {
                 if (--turnSkips == 0)
                 {
