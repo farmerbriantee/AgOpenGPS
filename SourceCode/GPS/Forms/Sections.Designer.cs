@@ -17,21 +17,21 @@ namespace AgOpenGPS
         public btnStates manualBtnState = btnStates.Off;
         public btnStates autoBtnState = btnStates.Off;
         
-        private void markAsWorkedLane()
+        private void markAsWorkedTrack()
         {
             //is it an AB Line or a Curve?
             if (trk.gArr[this.trk.idx].mode == (int)TrackMode.AB)
             {
                 //AB Line
-                if (!this.trk.gArr[this.trk.idx].workedLanes.Contains(this.ABLine.howManyPathsAway))
-                    this.trk.gArr[this.trk.idx].workedLanes.Add(this.ABLine.howManyPathsAway);
+                if (!this.trk.gArr[this.trk.idx].workedTracks.Contains(this.ABLine.howManyPathsAway))
+                    this.trk.gArr[this.trk.idx].workedTracks.Add(this.ABLine.howManyPathsAway);
 
             }
             else if (trk.gArr[this.trk.idx].mode == (int)TrackMode.Curve)
             {
                 //Curve
-                if (!this.trk.gArr[this.trk.idx].workedLanes.Contains(this.curve.howManyPathsAway))
-                    this.trk.gArr[this.trk.idx].workedLanes.Add(this.curve.howManyPathsAway);
+                if (!this.trk.gArr[this.trk.idx].workedTracks.Contains(this.curve.howManyPathsAway))
+                    this.trk.gArr[this.trk.idx].workedTracks.Add(this.curve.howManyPathsAway);
 
             }
         }
@@ -54,7 +54,7 @@ namespace AgOpenGPS
                     btnSectionMasterManual.Image = Properties.Resources.ManualOn;
                     
                     //add current Line when it doesnt exist in the worked line list
-                    markAsWorkedLane();
+                    markAsWorkedTrack();
 
                     break;
 
@@ -86,7 +86,7 @@ namespace AgOpenGPS
                     if (sounds.isSectionsSoundOn)sounds.sndSectionOn.Play();
                     
                     //add current Line when it doesnt exist in the worked line list
-                    markAsWorkedLane();
+                    markAsWorkedTrack();
                     
                     break;
 

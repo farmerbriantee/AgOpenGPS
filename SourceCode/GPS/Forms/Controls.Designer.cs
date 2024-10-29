@@ -1691,12 +1691,12 @@ namespace AgOpenGPS
 
             switch (yt.skip_mode)
             {
-                case 0: //normal
+                case (int) SkipMode.Normal: 
                     btnYouSkipEnable.Image = Resources.YouSkipOff;
                     yt.alternateSkips = !yt.alternateSkips;
 
                     break;
-                case 1: //alternative
+                case (int) SkipMode.Alternative: 
                     btnYouSkipEnable.Image = Resources.YouSkipOn;
                     yt.alternateSkips = !yt.alternateSkips;
 
@@ -1709,7 +1709,7 @@ namespace AgOpenGPS
                     yt.Set_Alternate_skips();
 
                     break;
-                case 2: //workedLanes
+                case (int) SkipMode.workedTracks: 
 
                     btnYouSkipEnable.Image = Resources.YouSkipWL;
 
@@ -1887,7 +1887,7 @@ namespace AgOpenGPS
 
                         //delete all worked Lanes too
                         foreach (CTrk trkitm in trk.gArr ) {
-                            trkitm.workedLanes.Clear();
+                            trkitm.workedTracks.Clear();
                         }
 
                         FileCreateContour();

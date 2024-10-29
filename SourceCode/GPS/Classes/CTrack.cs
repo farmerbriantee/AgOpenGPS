@@ -341,7 +341,7 @@ namespace AgOpenGPS
         public vec2 endPtB;
         public int mode;
         public double nudgeDistance;
-        public List<double> workedLanes = new List<double>();
+        public List<double> workedTracks = new List<double>();
 
         public CTrk()
         {
