@@ -1709,7 +1709,7 @@ namespace AgOpenGPS
                     break;
                 case (int) SkipMode.workedTracks: 
 
-                    btnYouSkipEnable.Image = Resources.YouSkipWL;
+                    btnYouSkipEnable.Image = Resources.YouSkipWT;
 
                     //make sure at least 1
                     if (yt.rowSkipsWidth < 2)
