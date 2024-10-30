@@ -12,7 +12,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace AgOpenGPS
 {
-    public enum SkipMode { Normal, Alternative, workedTracks };
+    public enum SkipMode { Normal, Alternative, ignoreWorkedTracks };
     public class CYouTurn
     {
         #region Fields
@@ -174,7 +174,7 @@ namespace AgOpenGPS
         public bool BuildCurveDubinsYouTurn(bool isTurnLeft, vec3 pivotPos)
         {
             //if mode is skip workedTracks -> next lane is an already worked lane, find the next not worked lane and use it.
-            if (skip_mode == SkipMode.workedTracks)
+            if (skip_mode == SkipMode.ignoreWorkedTracks)
                 rowSkipsWidth = getNextNotWorkedLane(isTurnLeft, Properties.Settings.Default.set_youSkipWidth, false);
 
             //TODO: is calculated many taimes after the priveous turn is complete
@@ -208,7 +208,7 @@ namespace AgOpenGPS
         public bool BuildABLineDubinsYouTurn(bool isTurnLeft)
         {
             //if mode is skip workedTracks -> next lane is an already worked lane, find the next not worked lane and use it.
-            if (skip_mode == SkipMode.workedTracks)
+            if (skip_mode == SkipMode.ignoreWorkedTracks)
                 rowSkipsWidth = getNextNotWorkedLane(isTurnLeft, Properties.Settings.Default.set_youSkipWidth, true);
 
             if (!mf.isBtnAutoSteerOn) mf.ABLine.isHeadingSameWay
