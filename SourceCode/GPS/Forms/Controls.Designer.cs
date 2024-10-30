@@ -1685,17 +1685,17 @@ namespace AgOpenGPS
         {
             
             yt.skip_mode++;
-            if (yt.skip_mode > 2) yt.skip_mode = 0;
+            if ((int) yt.skip_mode > 2) yt.skip_mode = SkipMode.Normal;
 
             yt.rowSkipsWidth = Properties.Settings.Default.set_youSkipWidth;
 
             switch (yt.skip_mode)
             {
-                case (int) SkipMode.Normal: 
+                case SkipMode.Normal: 
                     btnYouSkipEnable.Image = Resources.YouSkipOff;
 
                     break;
-                case (int) SkipMode.Alternative: 
+                case SkipMode.Alternative: 
                     btnYouSkipEnable.Image = Resources.YouSkipOn;
 
                     //make sure at least 1
@@ -1707,7 +1707,7 @@ namespace AgOpenGPS
                     yt.Set_Alternate_skips();
 
                     break;
-                case (int) SkipMode.workedTracks: 
+                case SkipMode.workedTracks: 
 
                     btnYouSkipEnable.Image = Resources.YouSkipWT;
 

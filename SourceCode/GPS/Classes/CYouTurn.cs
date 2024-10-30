@@ -12,7 +12,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace AgOpenGPS
 {
-    public enum SkipMode { Normal = 0, Alternative = 1, workedTracks = 2 };
+    public enum SkipMode { Normal, Alternative, workedTracks };
     public class CYouTurn
     {
         #region Fields
@@ -35,7 +35,7 @@ namespace AgOpenGPS
 
         public bool alternateSkips = false, previousBigSkip = true;
 
-        public int skip_mode = (int) SkipMode.Normal;
+        public SkipMode skip_mode = SkipMode.Normal;
         public int rowSkipsWidth2 = 3, turnSkips = 2;
 
         /// <summary>  /// distance from headland as offset where to start turn shape /// </summary>
@@ -174,7 +174,7 @@ namespace AgOpenGPS
         public bool BuildCurveDubinsYouTurn(bool isTurnLeft, vec3 pivotPos)
         {
             //if mode is skip workedTracks -> next lane is an already worked lane, find the next not worked lane and use it.
-            if (skip_mode == (int) SkipMode.workedTracks)
+            if (skip_mode == SkipMode.workedTracks)
                 rowSkipsWidth = getNextNotWorkedLane(isTurnLeft, Properties.Settings.Default.set_youSkipWidth, false);
 
             //TODO: is calculated many taimes after the priveous turn is complete
@@ -208,7 +208,7 @@ namespace AgOpenGPS
         public bool BuildABLineDubinsYouTurn(bool isTurnLeft)
         {
             //if mode is skip workedTracks -> next lane is an already worked lane, find the next not worked lane and use it.
-            if (skip_mode == (int)SkipMode.workedTracks)
+            if (skip_mode == SkipMode.workedTracks)
                 rowSkipsWidth = getNextNotWorkedLane(isTurnLeft, Properties.Settings.Default.set_youSkipWidth, true);
 
             if (!mf.isBtnAutoSteerOn) mf.ABLine.isHeadingSameWay
@@ -2514,7 +2514,7 @@ namespace AgOpenGPS
             if (isGoingStraightThrough)
                 isYouTurnRight = !isYouTurnRight;
 
-            if ( (skip_mode == (int) SkipMode.Alternative) && (rowSkipsWidth2 > 1) )
+            if ( (skip_mode == SkipMode.Alternative) && (rowSkipsWidth2 > 1) )
             {
                 if (--turnSkips == 0)
                 {
