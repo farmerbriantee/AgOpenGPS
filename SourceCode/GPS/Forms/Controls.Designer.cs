@@ -1707,7 +1707,7 @@ namespace AgOpenGPS
                     yt.Set_Alternate_skips();
 
                     break;
-                case SkipMode.ignoreWorkedTracks: 
+                case SkipMode.considerWorkedTracks: 
 
                     btnYouSkipEnable.Image = Resources.YouSkipWT;
 
