@@ -448,6 +448,7 @@ namespace AgOpenGPS
 
             //OGL control
             isUTurnOn = Properties.Settings.Default.setFeatures.isUTurnOn;
+            btnYouSkipEnable.Image = Resources.YouSkipOff;
             isLateralOn = Properties.Settings.Default.setFeatures.isLateralOn;
             isNudgeOn = Properties.Settings.Default.setFeatures.isABLineOn;
 
