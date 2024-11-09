@@ -61,7 +61,6 @@ namespace AgOpenGPS
         private void FormABDraw_FormClosing(object sender, FormClosingEventArgs e)
         {
             mf.curve.isCurveValid = false;
-            mf.curve.lastHowManyPathsAway = 98888;
             mf.ABLine.isABValid = false;
 
             mf.twoSecondCounter = 100;
@@ -267,7 +266,7 @@ namespace AgOpenGPS
             //for (int i = 0; i < gTemp.Count; i++)
             //{
             //    //AB Lines
-            //    if (gTemp[i].mode == (int)TrackMode.AB)
+            //    if (gTemp[i].mode == TrackMode.AB)
             //    {
             //        GL.Enable(EnableCap.LineStipple);
             //        GL.LineWidth(4);
@@ -306,12 +305,12 @@ namespace AgOpenGPS
 
             //    }
 
-            //    else if (gTemp[i].mode == (int)TrackMode.Curve || gTemp[i].mode == (int)TrackMode.bndCurve)
+            //    else if (gTemp[i].mode == TrackMode.Curve || gTemp[i].mode == TrackMode.bndCurve)
             //    {
             //        GL.Enable(EnableCap.LineStipple);
             //        GL.LineWidth(5);
 
-            //        if (gTemp[i].mode == (int)TrackMode.bndCurve) GL.LineStipple(1, 0x0007);
+            //        if (gTemp[i].mode == TrackMode.bndCurve) GL.LineStipple(1, 0x0007);
             //        else GL.LineStipple(1, 0x0707);
 
 
@@ -322,7 +321,7 @@ namespace AgOpenGPS
             //        }
 
             //        GL.Color3(0.30f, 0.97f, 0.30f);
-            //        if (gTemp[i].mode == (int)TrackMode.bndCurve) GL.Color3(0.70f, 0.5f, 0.2f);
+            //        if (gTemp[i].mode == TrackMode.bndCurve) GL.Color3(0.70f, 0.5f, 0.2f);
             //        GL.Begin(PrimitiveType.LineStrip);
             //        foreach (vec3 pts in gTemp[i].curvePts)
             //        {

@@ -255,7 +255,7 @@ namespace AgOpenGPS
                         //when switching lines, draw the ghost
                         if (trk.idx > -1)
                         {
-                            if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
+                            if (trk.gArr[trk.idx].mode == TrackMode.AB)
                                 ABLine.DrawABLines();
                             else
                                 curve.DrawCurve();
@@ -327,7 +327,7 @@ namespace AgOpenGPS
                     {
                         if (trk.idx > -1)
                         {
-                            if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
+                            if (trk.gArr[trk.idx].mode == TrackMode.AB)
                             {
                                 GL.PointSize(8);
                                 GL.Begin(PrimitiveType.Points);
@@ -1713,7 +1713,7 @@ namespace AgOpenGPS
 
             int two3 = oglMain.Width / 5;
             GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
-            if (!yt.isYouTurnRight)
+            if (!yt.isTurnLeft)
             {
                 GL.TexCoord2(0, 0); GL.Vertex2(-62 + two3, 40); // 
                 GL.TexCoord2(1, 0); GL.Vertex2(62 + two3, 40); // 

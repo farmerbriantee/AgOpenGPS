@@ -16,7 +16,8 @@ namespace AgOpenGPS
 
         private bool isA = true;
         private int start = 99999, end = 99999;
-        private int bndSelect = 0, mode;
+        private int bndSelect = 0;
+        TrackMode mode = TrackMode.None;
         public List<vec3> sliceArr = new List<vec3>();
         public List<vec3> backupList = new List<vec3>();
 
@@ -317,7 +318,7 @@ namespace AgOpenGPS
                             sliceArr.Insert(0, pt);
                         }
 
-                        mode = (int)TrackMode.Curve;
+                        mode = TrackMode.Curve;
                     }
                     else
                     {
@@ -392,7 +393,7 @@ namespace AgOpenGPS
                         sliceArr.Insert(0, pt);
                     }
 
-                    mode = (int)TrackMode.AB;
+                    mode = TrackMode.AB;
 
                     start = 99999; end = 99999;
                 }
@@ -485,7 +486,7 @@ namespace AgOpenGPS
                 //GL.LineStipple(1, 0x7070);
                 GL.PointSize(8);
 
-                if (mode == (int)TrackMode.AB)
+                if (mode == TrackMode.AB)
                 {
                     GL.Color3(0.95f, 0.09f, 0.0f);
                 }

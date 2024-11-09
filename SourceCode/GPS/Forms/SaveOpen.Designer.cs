@@ -686,7 +686,7 @@ namespace AgOpenGPS
                             writer.WriteLine(trk.gArr[i].nudgeDistance.ToString(CultureInfo.InvariantCulture));
 
                             //write out the mode
-                            writer.WriteLine(trk.gArr[i].mode.ToString(CultureInfo.InvariantCulture));
+                            writer.WriteLine(((int)trk.gArr[i].mode).ToString(CultureInfo.InvariantCulture));
 
                             //visible?
                             writer.WriteLine(trk.gArr[i].isVisible.ToString(CultureInfo.InvariantCulture));
@@ -792,7 +792,7 @@ namespace AgOpenGPS
                             trk.gArr[trk.idx].nudgeDistance = double.Parse(line, CultureInfo.InvariantCulture);
 
                             line = reader.ReadLine();
-                            trk.gArr[trk.idx].mode = int.Parse(line, CultureInfo.InvariantCulture);
+                            trk.gArr[trk.idx].mode = (TrackMode)int.Parse(line, CultureInfo.InvariantCulture);
 
                             line = reader.ReadLine();
                             trk.gArr[trk.idx].isVisible = bool.Parse(line);
@@ -850,7 +850,7 @@ namespace AgOpenGPS
 
                         for (int i = 0; i < cnt; i++)
                         {
-                            if (trk.gArr[i].mode != (int)TrackMode.Curve) continue;
+                            if (trk.gArr[i].mode != TrackMode.Curve) continue;
 
                             //write out the Name
                             writer.WriteLine(trk.gArr[i].name);
@@ -933,7 +933,7 @@ namespace AgOpenGPS
                             if (nam.Length > 4 && nam.Substring(0, 5) == "Bound")
                             {
                                 trk.gArr[trk.gArr.Count - 1].name = nam;
-                                trk.gArr[trk.gArr.Count - 1].mode = (int)TrackMode.bndCurve;
+                                trk.gArr[trk.gArr.Count - 1].mode = TrackMode.bndCurve;
                             }
                             else
                             {
@@ -942,7 +942,7 @@ namespace AgOpenGPS
                                 else
                                     trk.gArr[trk.gArr.Count - 1].name = nam;
 
-                                trk.gArr[trk.gArr.Count - 1].mode = (int)TrackMode.Curve;
+                                trk.gArr[trk.gArr.Count - 1].mode = TrackMode.Curve;
                             }
 
                             // get the average heading
@@ -1011,7 +1011,7 @@ namespace AgOpenGPS
                 {
                     foreach (var item in trk.gArr)
                     {
-                        if (item.mode == 2)
+                        if (item.mode == TrackMode.AB)
                         {
                             //make it culture invariant
                             string line = item.name
@@ -1073,7 +1073,7 @@ namespace AgOpenGPS
                             else
                                 trk.gArr[i].name = words[0];
 
-                            trk.gArr[i].mode = (int)TrackMode.AB;
+                            trk.gArr[i].mode = TrackMode.AB;
 
 
                             trk.gArr[i].heading = glm.toRadians(double.Parse(words[1], CultureInfo.InvariantCulture));

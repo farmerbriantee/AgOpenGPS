@@ -500,14 +500,14 @@ namespace AgOpenGPS
                     offs = ((int)(mf.trk.gArr[mf.trk.idx].nudgeDistance*mf.m2InchOrCm)).ToString() + mf.unitsInCmNS;
                 string dire;
 
-                if (mf.trk.gArr[mf.trk.idx].mode == (int)TrackMode.AB )
+                if (mf.trk.gArr[mf.trk.idx].mode == TrackMode.AB)
                 {
                     if (mf.ABLine.isHeadingSameWay) dire = "{";
                     else dire = "}";
                     GL.Color4(1.26, 1.25, 1.2510, 0.87);
 
-                    if (mf.ABLine.howManyPathsAway > 0)
-                        mf.font.DrawTextVehicle(2, wheelbase + 1,dire + mf.ABLine.howManyPathsAway.ToString() + "R " + offs, 1);
+                    if (mf.ABLine.howManyPathsAway > -1)
+                        mf.font.DrawTextVehicle(2, wheelbase + 1,dire + (mf.ABLine.howManyPathsAway + 1).ToString() + "R " + offs, 1);
                     else
                         mf.font.DrawTextVehicle(2, wheelbase + 1, dire + (-mf.ABLine.howManyPathsAway).ToString() + "L " + offs, 1);
                 }
@@ -517,7 +517,7 @@ namespace AgOpenGPS
                     else dire = "}";
 
                     GL.Color4(1.269, 1.25, 1.2510, 0.87);
-                    if (mf.curve.howManyPathsAway > 0) mf.font.DrawTextVehicle(2, wheelbase + 1, dire + mf.curve.howManyPathsAway.ToString() + "R " + offs, 1);
+                    if (mf.curve.howManyPathsAway > -1) mf.font.DrawTextVehicle(2, wheelbase + 1, dire + (mf.curve.howManyPathsAway + 1).ToString() + "R " + offs, 1);
                     else mf.font.DrawTextVehicle(2, wheelbase + 1, dire + (-mf.curve.howManyPathsAway).ToString() + "L " + offs, 1);
                 }
             }

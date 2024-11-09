@@ -124,9 +124,6 @@ namespace AgOpenGPS
             double dy = curPtB.northing - curPtA.northing;
             if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dy) < Double.Epsilon) return;
 
-            //save a copy of dx,dy in youTurn
-            mf.yt.dxAB = dx; mf.yt.dyAB = dy;
-
             //how far from current AB Line is fix
             distanceFromCurrentLinePivot = ((dy * pivot.easting) - (dx * pivot.northing) + (curPtB.easting
                         * curPtA.northing) - (curPtB.northing * curPtA.easting))

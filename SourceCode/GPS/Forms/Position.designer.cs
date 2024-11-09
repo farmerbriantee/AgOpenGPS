@@ -803,7 +803,6 @@ namespace AgOpenGPS
                     if ( lastIndex != trk.idx )
                     {
                         curve.isCurveValid = false;
-                        curve.lastHowManyPathsAway = 98888;
                         ABLine.isABValid = false;
                     }
                 }
@@ -811,21 +810,16 @@ namespace AgOpenGPS
                 //like normal
                 if (trk.gArr.Count > 0 && trk.idx > -1)
                 {
-                    if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
+                    if (trk.gArr[trk.idx].mode == TrackMode.AB)
                     {
-                        if (!ABLine.isABValid || ((secondsSinceStart - ABLine.lastSecond) > 0.66
-                            && (!isBtnAutoSteerOn || mc.steerSwitchHigh)))
-                        {
-                            ABLine.BuildCurrentABLineList(steerAxlePos);
-                        }
+                        ABLine.BuildCurrentABLineList(pivotAxlePos);
+                        
                         ABLine.GetCurrentABLine(pivotAxlePos, steerAxlePos);
                     }
                     else
                     {
                         //build new current ref line if required
-                        if (!curve.isCurveValid || ((secondsSinceStart - curve.lastSecond) > 0.66
-                            && (!isBtnAutoSteerOn || mc.steerSwitchHigh)))
-                            curve.BuildCurveCurrentList(steerAxlePos);
+                        curve.BuildCurveCurrentList(pivotAxlePos);
 
                         curve.GetCurrentCurveLine(pivotAxlePos, steerAxlePos);
                     }
@@ -1002,11 +996,11 @@ namespace AgOpenGPS
                             }
                             else
                             {
-                                if (trk.gArr[trk.idx].mode == (int)TrackMode.AB)
+                                if (trk.gArr[trk.idx].mode == TrackMode.AB)
                                 {
-                                    yt.BuildABLineDubinsYouTurn(yt.isYouTurnRight);
+                                    yt.BuildABLineDubinsYouTurn();
                                 }
-                                else yt.BuildCurveDubinsYouTurn(yt.isYouTurnRight, pivotAxlePos);
+                                else yt.BuildCurveDubinsYouTurn();
                             }
 
                             if (yt.uTurnStyle == 0 && yt.youTurnPhase == 10)
@@ -1020,10 +1014,10 @@ namespace AgOpenGPS
                                 if (sounds.isTurnSoundOn) sounds.sndUTurnTooClose.Play();
                             }
                         }
-                        else //wait to trigger the actual turn since its made and waiting
+                        else if (yt.ytList.Count > 5)//wait to trigger the actual turn since its made and waiting
                         {
                             //distance from current pivot to first point of youturn pattern
-                            if (yt.ytList.Count > 5) distancePivotToTurnLine = glm.Distance(yt.ytList[2], pivotAxlePos);
+                            distancePivotToTurnLine = glm.Distance(yt.ytList[2], pivotAxlePos);
 
                             if ((distancePivotToTurnLine <= 20.0) && (distancePivotToTurnLine >= 18.0) && !yt.isYouTurnTriggered)
 
@@ -1177,12 +1171,10 @@ namespace AgOpenGPS
 
             //guidance look ahead distance based on time or tool width at least 
             
-            if (!ABLine.isLateralTriggered && !curve.isLateralTriggered)
-            {
-                double guidanceLookDist = (Math.Max(tool.width * 0.5, avgSpeed * 0.277777 * guidanceLookAheadTime));
-                guidanceLookPos.easting = pivotAxlePos.easting + (Math.Sin(fixHeading) * guidanceLookDist);
-                guidanceLookPos.northing = pivotAxlePos.northing + (Math.Cos(fixHeading) * guidanceLookDist);
-            }
+            double guidanceLookDist = (Math.Max(tool.width * 0.5, avgSpeed * 0.277777 * guidanceLookAheadTime));
+            guidanceLookPos.easting = pivotAxlePos.easting + (Math.Sin(fixHeading) * guidanceLookDist);
+            guidanceLookPos.northing = pivotAxlePos.northing + (Math.Cos(fixHeading) * guidanceLookDist);
+            
 
             //determine where the rigid vehicle hitch ends
             hitchPos.easting = pn.fix.easting + (Math.Sin(fixHeading) * (tool.hitchLength - vehicle.antennaPivot));

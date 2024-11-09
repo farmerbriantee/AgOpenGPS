@@ -144,7 +144,6 @@ namespace AgOpenGPS
             mf.trk.idx = originalLine;
 
             mf.curve.isCurveValid = false;
-            mf.curve.lastHowManyPathsAway = 98888;
             mf.ABLine.isABValid = false;
 
             mf.twoSecondCounter = 100;
@@ -157,7 +156,6 @@ namespace AgOpenGPS
             isClosing = true;
             //reset to generate new reference
             mf.curve.isCurveValid = false;
-            mf.curve.lastHowManyPathsAway = 98888;
             mf.ABLine.isABValid = false;
             mf.curve.desList?.Clear();
 
@@ -249,9 +247,9 @@ namespace AgOpenGPS
                     FlatStyle = FlatStyle.Flat,
             };
 
-                if (mf.trk.gArr[i].mode == (int)TrackMode.AB)
+                if (mf.trk.gArr[i].mode == TrackMode.AB)
                     b.Image = Properties.Resources.TrackLine;
-                else if (mf.trk.gArr[i].mode == (int)TrackMode.waterPivot)
+                else if (mf.trk.gArr[i].mode == TrackMode.waterPivot)
                     b.Image = Properties.Resources.TrackPivot;
                 else
                     b.Image = Properties.Resources.TrackCurve;
@@ -401,7 +399,7 @@ namespace AgOpenGPS
             {
                 idx = selectedItem;
 
-                if (mf.trk.gArr[idx].mode == (int)TrackMode.AB)
+                if (mf.trk.gArr[idx].mode == TrackMode.AB)
                 {
                     vec2 bob = mf.trk.gArr[idx].ptA;
                     mf.trk.gArr[idx].ptA = mf.trk.gArr[idx].ptB;
@@ -640,7 +638,7 @@ namespace AgOpenGPS
                     new vec2(mf.curve.desList[mf.curve.desList.Count - 1].easting,
                     mf.curve.desList[mf.curve.desList.Count - 1].northing);
 
-                mf.trk.gArr[idx].mode = (int)TrackMode.Curve;
+                mf.trk.gArr[idx].mode = TrackMode.Curve;
 
                 //calculate average heading of line
                 double x = 0, y = 0;
@@ -779,7 +777,7 @@ namespace AgOpenGPS
             mf.trk.gArr[idx].ptA = new vec2(mf.ABLine.desPtA);
             mf.trk.gArr[idx].ptB = new vec2(mf.ABLine.desPtB);
 
-            mf.trk.gArr[idx].mode = (int)TrackMode.AB;
+            mf.trk.gArr[idx].mode = TrackMode.AB;
 
             mf.trk.gArr[idx].heading = mf.ABLine.desHeading;
 
@@ -871,7 +869,7 @@ namespace AgOpenGPS
             mf.trk.gArr[idx].ptA = new vec2(mf.ABLine.desPtA);
             mf.trk.gArr[idx].ptB = new vec2(mf.ABLine.desPtB);
 
-            mf.trk.gArr[idx].mode = (int)TrackMode.AB;
+            mf.trk.gArr[idx].mode = TrackMode.AB;
 
             mf.trk.gArr[idx].heading = mf.ABLine.desHeading;
 
@@ -1001,7 +999,7 @@ namespace AgOpenGPS
                         idx = mf.trk.gArr.Count - 1;
 
                         mf.trk.gArr[idx].heading = mf.ABLine.desHeading;
-                        mf.trk.gArr[idx].mode = (int)TrackMode.AB;
+                        mf.trk.gArr[idx].mode = TrackMode.AB;
 
                         mf.trk.gArr[idx].ptA = new vec2(mf.ABLine.desPtA);
                         mf.trk.gArr[idx].ptB = new vec2(mf.ABLine.desPtB);
@@ -1028,7 +1026,7 @@ namespace AgOpenGPS
                             new vec2(mf.curve.desList[mf.curve.desList.Count - 1].easting,
                             mf.curve.desList[mf.curve.desList.Count - 1].northing);
 
-                        mf.trk.gArr[idx].mode = (int)TrackMode.Curve;
+                        mf.trk.gArr[idx].mode = TrackMode.Curve;
 
                         //calculate average heading of line
                         double x = 0, y = 0;
@@ -1125,7 +1123,7 @@ namespace AgOpenGPS
             mf.trk.gArr[idx].ptA = new vec2(mf.ABLine.desPtA);
             mf.trk.gArr[idx].ptB = new vec2(mf.ABLine.desPtB);
 
-            mf.trk.gArr[idx].mode = (int)TrackMode.AB;
+            mf.trk.gArr[idx].mode = TrackMode.AB;
 
             mf.trk.gArr[idx].heading = mf.ABLine.desHeading;
 
@@ -1203,7 +1201,7 @@ namespace AgOpenGPS
             mf.trk.gArr[idx].ptA = new vec2(mf.ABLine.desPtA);
             mf.trk.gArr[idx].ptB = new vec2(mf.ABLine.desPtB);
 
-            mf.trk.gArr[idx].mode = (int)TrackMode.AB;
+            mf.trk.gArr[idx].mode = TrackMode.AB;
 
             mf.trk.gArr[idx].heading = mf.ABLine.desHeading;
 
@@ -1256,7 +1254,7 @@ namespace AgOpenGPS
 
             mf.trk.gArr[idx].ptA.easting = east;
             mf.trk.gArr[idx].ptA.northing = nort;
-            mf.trk.gArr[idx].mode = (int)TrackMode.waterPivot;
+            mf.trk.gArr[idx].mode = TrackMode.waterPivot;
 
             mf.ABLine.desName = "Piv";
             textBox1.Text = mf.ABLine.desName;

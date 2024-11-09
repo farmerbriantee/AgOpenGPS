@@ -608,7 +608,6 @@ namespace AgOpenGPS
                 sim.headingTrue += Math.PI;
                 ABLine.isABValid = false;
                 curve.isCurveValid = false;
-                curve.lastHowManyPathsAway = 98888;
                 if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
             }
 

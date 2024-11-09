@@ -59,7 +59,7 @@ namespace AgOpenGPS
             bool[] isAlignedArr = new bool[gArr.Count];
             for (int i = 0; i < gArr.Count; i++)
             {
-                if (gArr[i].mode == (int)TrackMode.Curve) isAlignedArr[i] = true;
+                if (gArr[i].mode == TrackMode.Curve) isAlignedArr[i] = true;
                 else
                 {
                     double diff = Math.PI - Math.Abs(Math.Abs(pivot.heading - gArr[i].heading) - Math.PI);
@@ -80,7 +80,7 @@ namespace AgOpenGPS
                 if (!isAlignedArr[i]) continue;
                 if (!gArr[i].isVisible) continue;
 
-                if (gArr[i].mode == (int)TrackMode.AB)
+                if (gArr[i].mode == TrackMode.AB)
                 {
                     double abHeading = mf.trk.gArr[i].heading;
 
@@ -130,17 +130,14 @@ namespace AgOpenGPS
         {
             if (idx > -1)
             {
-                if (gArr[idx].mode == (int)TrackMode.AB)
+                if (gArr[idx].mode == TrackMode.AB)
                 {
                     mf.ABLine.isABValid = false;
-                    mf.ABLine.lastSecond = 0;
                     gArr[idx].nudgeDistance += mf.ABLine.isHeadingSameWay ? dist : -dist;
                 }
                 else
                 {
                     mf.curve.isCurveValid = false;
-                    mf.curve.lastHowManyPathsAway = 98888;
-                    mf.curve.lastSecond = 0;
                     gArr[idx].nudgeDistance += mf.curve.isHeadingSameWay ? dist : -dist;
 
                 }
@@ -154,16 +151,13 @@ namespace AgOpenGPS
         {
             if (idx > -1 && gArr.Count > 0)
             {
-                if (gArr[idx].mode == (int)TrackMode.AB)
+                if (gArr[idx].mode == TrackMode.AB)
                 {
                     mf.ABLine.isABValid = false;
-                    mf.ABLine.lastSecond = 0;
                 }
                 else
                 {
                     mf.curve.isCurveValid = false;
-                    mf.curve.lastHowManyPathsAway = 98888;
-                    mf.curve.lastSecond = 0;
                 }
 
                 gArr[idx].nudgeDistance = 0;
@@ -172,39 +166,24 @@ namespace AgOpenGPS
 
         public void SnapToPivot()
         {
-            //if (isBtnGuidanceOn)
-
             if (idx > -1)
             {
-                if (gArr[idx].mode == (int)(TrackMode.AB))
-                {
-                    NudgeTrack(mf.ABLine.distanceFromCurrentLinePivot);
-
-                }
-                else
-                {
-                    NudgeTrack(mf.curve.distanceFromCurrentLinePivot);
-                }
-
+                NudgeTrack(gArr[idx].mode == TrackMode.AB ? mf.ABLine.distanceFromCurrentLinePivot : mf.curve.distanceFromCurrentLinePivot);
             }
         }
 
         public void NudgeRefTrack(double dist)
         {
-
             if (idx > -1)
             {
-                if (gArr[idx].mode == (int)TrackMode.AB)
+                if (gArr[idx].mode == TrackMode.AB)
                 {
                     mf.ABLine.isABValid = false;
-                    mf.ABLine.lastSecond = 0;
                     NudgeRefABLine( mf.ABLine.isHeadingSameWay ? dist : -dist);
                 }
                 else
                 {
                     mf.curve.isCurveValid = false;
-                    mf.curve.lastHowManyPathsAway = 98888;
-                    mf.curve.lastSecond = 0;
                     NudgeRefCurve( mf.curve.isHeadingSameWay ? dist : -dist);
                 }
             }
@@ -224,8 +203,6 @@ namespace AgOpenGPS
         public void NudgeRefCurve(double distAway)
         {
             mf.curve.isCurveValid = false;
-            mf.curve.lastHowManyPathsAway = 98888;
-            mf.curve.lastSecond = 0;
 
             List<vec3> curList = new List<vec3>();
 
@@ -339,7 +316,7 @@ namespace AgOpenGPS
         public vec2 ptB;
         public vec2 endPtA;
         public vec2 endPtB;
-        public int mode;
+        public TrackMode mode;
         public double nudgeDistance;
 
         public CTrk()
@@ -352,7 +329,7 @@ namespace AgOpenGPS
             ptB = new vec2();
             endPtA = new vec2();
             endPtB = new vec2();
-            mode = 0;
+            mode = TrackMode.None;
             nudgeDistance = 0;
         }
 

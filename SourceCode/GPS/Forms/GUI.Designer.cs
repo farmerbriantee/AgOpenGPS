@@ -1434,7 +1434,7 @@ namespace AgOpenGPS
         {
             if (!yt.isYouTurnTriggered)
             {
-                yt.isYouTurnRight = !yt.isYouTurnRight;
+                yt.isTurnLeft = !yt.isTurnLeft;
                 yt.ResetCreatedYouTurn();
             }
             else if (yt.isYouTurnBtnOn)
