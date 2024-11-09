@@ -185,7 +185,6 @@ namespace AgOpenGPS
 
                     if (howManyPathsAway == lastHowManyPathsAway)
                     {
-                        if (howManyPathsAway > -1) howManyPathsAway += 1;
                         return;
                     }
 
@@ -430,7 +429,6 @@ namespace AgOpenGPS
 
                     if (howManyPathsAway == lastHowManyPathsAway)
                     {
-                        if (howManyPathsAway > -1) howManyPathsAway += 1;
                         return;
                     }
 
