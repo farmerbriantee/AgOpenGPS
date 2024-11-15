@@ -578,6 +578,7 @@ namespace AgOpenGPS
             bool closing = true;
             choice = SaveOrNot(closing);
 
+            //simple cancel return to AOG
             if (choice == 1)
             {
                 e.Cancel = true;
@@ -592,14 +593,7 @@ namespace AgOpenGPS
                 if (manualBtnState == btnStates.On)
                     btnSectionMasterManual.PerformClick();
 
-                //Save, return, cancel save
-                if (isJobStarted)
-                {
-                    if (choice == 0 || choice == 2)
-                    {
-                        FileSaveEverythingBeforeClosingField();
-                    }
-                }
+                FileSaveEverythingBeforeClosingField();
             }
 
             SaveFormGPSWindowSettings();
@@ -635,14 +629,13 @@ namespace AgOpenGPS
             {
                 DialogResult result = form.ShowDialog(this);
 
-                if (result == DialogResult.OK) return 0;      //Save and Exit
-                if (result == DialogResult.Ignore) return 1;   //Ignore
-                if (result == DialogResult.Yes) return 2;   //Ignore
+                if (result == DialogResult.OK) return 0;      //Exit to windows
+                if (result == DialogResult.Ignore) return 1;   //Ignore & return
+                if (result == DialogResult.Yes) return 2;   //Shutdown computer
 
-                return 3;  // oops something is really busted
+                return 1;  // oops something is really busted
             }
         }
-
         private void FormGPS_ResizeEnd(object sender, EventArgs e)
         {
             PanelsAndOGLSize();
