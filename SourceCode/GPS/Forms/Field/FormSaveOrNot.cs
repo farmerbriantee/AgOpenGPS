@@ -7,20 +7,14 @@ namespace AgOpenGPS
     {
         //class variables
 
+        int count = 4;
+
         public FormSaveOrNot(bool closing)
         {
             InitializeComponent();
-
-            if (closing)
-            {
-                btnOk.Image = Properties.Resources.ExitAOG;
-            }
-            else
-            {
-                label3.Text = "Close";
-            }
         }
 
+        //exit to windows
         private void btnOk_Click(object sender, EventArgs e)
         {
             //back to FormGPS
@@ -28,16 +22,31 @@ namespace AgOpenGPS
             Close();
         }
 
+        //just cancel and return to aog
         private void btnReturn_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Ignore;
             Close();
         }
 
-        private void btnOpenField_Click(object sender, EventArgs e)
+        //turn off computer
+        private void btnShutDown_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Yes;
             Close();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            count--;
+            label1.Text = count.ToString();
+            if (count < 0)
+            {
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+
+
         }
     }
 }

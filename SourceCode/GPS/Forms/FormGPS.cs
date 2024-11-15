@@ -541,6 +541,8 @@ namespace AgOpenGPS
 
         private void FormGPS_FormClosing(object sender, FormClosingEventArgs e)
         {
+            int choice = 0;
+
             Form f = Application.OpenForms["FormGPSData"];
 
             if (f != null)
@@ -566,10 +568,18 @@ namespace AgOpenGPS
                 f.Close();
             }
 
-
             if (this.OwnedForms.Any())
             {
                 TimedMessageBox(2000, gStr.gsWindowsStillOpen, gStr.gsCloseAllWindowsFirst);
+                e.Cancel = true;
+                return;
+            }
+
+            bool closing = true;
+            choice = SaveOrNot(closing);
+
+            if (choice == 1)
+            {
                 e.Cancel = true;
                 return;
             }
@@ -582,24 +592,10 @@ namespace AgOpenGPS
                 if (manualBtnState == btnStates.On)
                     btnSectionMasterManual.PerformClick();
 
-                bool closing = true;
-                int choice = SaveOrNot(closing);
-
-                if (choice == 1)
-                {
-                    e.Cancel = true;
-                    return;
-                }
-
                 //Save, return, cancel save
                 if (isJobStarted)
                 {
-                    if (choice == 3)
-                    {
-                        e.Cancel = true;
-                        return;
-                    }
-                    else if (choice == 0)
+                    if (choice == 0 || choice == 2)
                     {
                         FileSaveEverythingBeforeClosingField();
                     }
@@ -608,22 +604,27 @@ namespace AgOpenGPS
 
             SaveFormGPSWindowSettings();
             FileUpdateAllFieldsKML();
+            //save current vehicle
+            SettingsIO.ExportAll(vehiclesDirectory + vehicleFileName + ".XML");
+
+            if (displayBrightness.isWmiMonitor)
+                displayBrightness.SetBrightness(Settings.Default.setDisplay_brightnessSystem);
+
+            if (choice == 2)
+            {
+                Process.Start("shutdown", "/s /t 0");
+            }
 
             if (loopBackSocket != null)
             {
                 try
                 {
                     loopBackSocket.Shutdown(SocketShutdown.Both);
+                    loopBackSocket.Close();
                 }
                 catch { }
-                finally { loopBackSocket.Close(); }
+                finally { }
             }
-
-            //save current vehicle
-            SettingsIO.ExportAll(vehiclesDirectory + vehicleFileName + ".XML");
-
-            if (displayBrightness.isWmiMonitor)
-                displayBrightness.SetBrightness(Settings.Default.setDisplay_brightnessSystem);
         }
 
         public int SaveOrNot(bool closing)
