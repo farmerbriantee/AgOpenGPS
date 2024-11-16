@@ -1285,7 +1285,7 @@ namespace AgOpenGPS
             }
 
             //finally fixed distance for making a curve line
-            if (!curve.isMakingCurve) sectionTriggerStepDistance = sectionTriggerStepDistance + 0.5;
+            if (!curve.isRecordingCurve) sectionTriggerStepDistance = sectionTriggerStepDistance + 0.5;
             //if (ct.isContourBtnOn) sectionTriggerStepDistance *=0.5;
 
             //precalc the sin and cos of heading * -1
@@ -1501,7 +1501,7 @@ namespace AgOpenGPS
                 recPath.recList.Add(new CRecPathPt(pivotAxlePos.easting, pivotAxlePos.northing, pivotAxlePos.heading, speed, autoBtn));
             }
 
-            if (curve.isMakingCurve)
+            if (curve.isRecordingCurve)
             {
                 curve.desList.Add(new vec3(pivotAxlePos.easting, pivotAxlePos.northing, pivotAxlePos.heading));
             }
