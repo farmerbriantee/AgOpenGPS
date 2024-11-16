@@ -42,7 +42,7 @@ namespace AgOpenGPS
             label1.Text = count.ToString();
             if (count < 0)
             {
-                DialogResult = DialogResult.Ignore;
+                DialogResult = DialogResult.OK;
                 Close();
             }
 
