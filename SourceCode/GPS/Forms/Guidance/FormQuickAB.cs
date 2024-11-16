@@ -223,7 +223,6 @@ namespace AgOpenGPS
                 btnPausePlay.Image = Properties.Resources.BoundaryRecord;
                 //btnPausePlay.Text = gStr.gsRecord;
                 btnACurve.Enabled = true;
-                btnBCurve.Enabled = mf.curve.desList.Count > 3;
             }
             else
             {
@@ -231,8 +230,9 @@ namespace AgOpenGPS
                 btnPausePlay.Image = Properties.Resources.boundaryPause;
                 //btnPausePlay.Text = gStr.gsPause;
                 btnACurve.Enabled = false;
-                btnBCurve.Enabled = true;
             }
+
+            btnBCurve.Enabled = mf.curve.desList.Count > 3;
         }
 
         #endregion
