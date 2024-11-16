@@ -11,7 +11,7 @@ namespace AgOpenGPS
         private readonly FormGPS mf;
 
         //flag for starting stop adding points
-        public bool isBtnTrackOn, isMakingCurve;
+        public bool isBtnTrackOn, isMakingCurve, isRecordingCurve;
 
         public double distanceFromCurrentLinePivot;
         public double distanceFromRefLine;
@@ -781,19 +781,21 @@ namespace AgOpenGPS
                 GL.Begin(PrimitiveType.LineStrip);
                 for (int h = 0; h < desList.Count; h++) GL.Vertex3(desList[h].easting, desList[h].northing, 0);
                 GL.End();
+
+                GL.Enable(EnableCap.LineStipple);
+                GL.LineStipple(1, 0x0F00);
+                GL.Begin(PrimitiveType.Lines);
+                GL.Color3(0.99f, 0.99f, 0.0);
+                GL.Vertex3(desList[desList.Count - 1].easting, desList[desList.Count - 1].northing, 0);
+                GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0);
+                GL.End();
+
+                GL.Disable(EnableCap.LineStipple);
             }
         }
 
         public void DrawCurve()
         {
-            if (desList.Count > 0)
-            {
-                GL.Color3(0.95f, 0.42f, 0.750f);
-                GL.Begin(PrimitiveType.LineStrip);
-                for (int h = 0; h < desList.Count; h++) GL.Vertex3(desList[h].easting, desList[h].northing, 0);
-                GL.End();
-            }
-
             if (mf.trk.idx == -1) return;
 
             int ptCount = mf.trk.gArr[mf.trk.idx].curvePts.Count;
