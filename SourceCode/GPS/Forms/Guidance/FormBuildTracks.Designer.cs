@@ -95,6 +95,7 @@
             this.nudHeading = new AgOpenGPS.NudlessNumericUpDown();
             this.btnAPlus = new System.Windows.Forms.Button();
             this.panelLatLonPlus = new System.Windows.Forms.Panel();
+            this.btnFillLatLonPlus = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -104,6 +105,8 @@
             this.btnEnter_LatLonPlus = new System.Windows.Forms.Button();
             this.nudHeadingLatLonPlus = new AgOpenGPS.NudlessNumericUpDown();
             this.panelLatLonLatLon = new System.Windows.Forms.Panel();
+            this.btnFillLatLonLatLonB = new System.Windows.Forms.Button();
+            this.btnFillLatLonLatLonA = new System.Windows.Forms.Button();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -117,16 +120,14 @@
             this.btnCancelLatLonLatLon = new System.Windows.Forms.Button();
             this.btnEnter_LatLonLatLon = new System.Windows.Forms.Button();
             this.panelPivot = new System.Windows.Forms.Panel();
+            this.btnFillLAtLonPivot = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.nudLatitudePivot = new AgOpenGPS.NudlessNumericUpDown();
             this.nudLongitudePivot = new AgOpenGPS.NudlessNumericUpDown();
             this.btnCancel_Pivot = new System.Windows.Forms.Button();
             this.btnEnter_Pivot = new System.Windows.Forms.Button();
-            this.btnFillLatLonPlus = new System.Windows.Forms.Button();
-            this.btnFillLatLonLatLonA = new System.Windows.Forms.Button();
-            this.btnFillLatLonLatLonB = new System.Windows.Forms.Button();
-            this.btnFillLAtLonPivot = new System.Windows.Forms.Button();
+            this.label21 = new System.Windows.Forms.Label();
             this.panelName.SuspendLayout();
             this.panelMain.SuspendLayout();
             this.panelCurve.SuspendLayout();
@@ -467,6 +468,7 @@
             // panelCurve
             // 
             this.panelCurve.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelCurve.Controls.Add(this.label21);
             this.panelCurve.Controls.Add(this.btnRefSideCurve);
             this.panelCurve.Controls.Add(this.btnCancel_Curve);
             this.panelCurve.Controls.Add(this.btnACurve);
@@ -506,7 +508,7 @@
             this.btnCancel_Curve.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel_Curve.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel_Curve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel_Curve.Location = new System.Drawing.Point(151, 233);
+            this.btnCancel_Curve.Location = new System.Drawing.Point(7, 233);
             this.btnCancel_Curve.Name = "btnCancel_Curve";
             this.btnCancel_Curve.Size = new System.Drawing.Size(88, 70);
             this.btnCancel_Curve.TabIndex = 423;
@@ -522,9 +524,9 @@
             this.btnACurve.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnACurve.Image = global::AgOpenGPS.Properties.Resources.LetterABlue;
             this.btnACurve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnACurve.Location = new System.Drawing.Point(25, 97);
+            this.btnACurve.Location = new System.Drawing.Point(7, 97);
             this.btnACurve.Name = "btnACurve";
-            this.btnACurve.Size = new System.Drawing.Size(70, 70);
+            this.btnACurve.Size = new System.Drawing.Size(88, 70);
             this.btnACurve.TabIndex = 63;
             this.btnACurve.UseVisualStyleBackColor = false;
             this.btnACurve.Click += new System.EventHandler(this.btnACurve_Click);
@@ -537,11 +539,11 @@
             this.btnBCurve.FlatAppearance.BorderSize = 0;
             this.btnBCurve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBCurve.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnBCurve.Image = global::AgOpenGPS.Properties.Resources.LetterBBlue;
+            this.btnBCurve.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnBCurve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBCurve.Location = new System.Drawing.Point(151, 97);
+            this.btnBCurve.Location = new System.Drawing.Point(146, 233);
             this.btnBCurve.Name = "btnBCurve";
-            this.btnBCurve.Size = new System.Drawing.Size(70, 70);
+            this.btnBCurve.Size = new System.Drawing.Size(88, 70);
             this.btnBCurve.TabIndex = 64;
             this.btnBCurve.UseVisualStyleBackColor = false;
             this.btnBCurve.Click += new System.EventHandler(this.btnBCurve_Click);
@@ -556,7 +558,7 @@
             this.btnPausePlay.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPausePlay.Image = global::AgOpenGPS.Properties.Resources.boundaryPause;
             this.btnPausePlay.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPausePlay.Location = new System.Drawing.Point(25, 233);
+            this.btnPausePlay.Location = new System.Drawing.Point(146, 97);
             this.btnPausePlay.Name = "btnPausePlay";
             this.btnPausePlay.Size = new System.Drawing.Size(88, 70);
             this.btnPausePlay.TabIndex = 140;
@@ -769,9 +771,9 @@
             this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(491, 406);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(59, 16);
+            this.label6.Size = new System.Drawing.Size(40, 16);
             this.label6.TabIndex = 448;
-            this.label6.Text = "AB Curve";
+            this.label6.Text = "Curve";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label10
@@ -1149,6 +1151,11 @@
             this.nudHeading.Size = new System.Drawing.Size(195, 46);
             this.nudHeading.TabIndex = 413;
             this.nudHeading.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudHeading.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.nudHeading.Click += new System.EventHandler(this.nudHeading_Click);
             // 
             // btnAPlus
@@ -1183,6 +1190,22 @@
             this.panelLatLonPlus.Name = "panelLatLonPlus";
             this.panelLatLonPlus.Size = new System.Drawing.Size(341, 425);
             this.panelLatLonPlus.TabIndex = 449;
+            // 
+            // btnFillLatLonPlus
+            // 
+            this.btnFillLatLonPlus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFillLatLonPlus.BackColor = System.Drawing.Color.Transparent;
+            this.btnFillLatLonPlus.FlatAppearance.BorderSize = 0;
+            this.btnFillLatLonPlus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFillLatLonPlus.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnFillLatLonPlus.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementAntenna;
+            this.btnFillLatLonPlus.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnFillLatLonPlus.Location = new System.Drawing.Point(6, 97);
+            this.btnFillLatLonPlus.Name = "btnFillLatLonPlus";
+            this.btnFillLatLonPlus.Size = new System.Drawing.Size(60, 49);
+            this.btnFillLatLonPlus.TabIndex = 448;
+            this.btnFillLatLonPlus.UseVisualStyleBackColor = false;
+            this.btnFillLatLonPlus.Click += new System.EventHandler(this.btnFillLatLonPlus_Click);
             // 
             // label17
             // 
@@ -1244,6 +1267,11 @@
             this.nudLatitudePlus.Size = new System.Drawing.Size(228, 43);
             this.nudLatitudePlus.TabIndex = 451;
             this.nudLatitudePlus.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudLatitudePlus.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.nudLatitudePlus.Click += new System.EventHandler(this.nudLatitudePlus_Click);
             // 
             // nudLongitudePlus
@@ -1357,6 +1385,38 @@
             this.panelLatLonLatLon.Size = new System.Drawing.Size(341, 425);
             this.panelLatLonLatLon.TabIndex = 450;
             // 
+            // btnFillLatLonLatLonB
+            // 
+            this.btnFillLatLonLatLonB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFillLatLonLatLonB.BackColor = System.Drawing.Color.Transparent;
+            this.btnFillLatLonLatLonB.FlatAppearance.BorderSize = 0;
+            this.btnFillLatLonLatLonB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFillLatLonLatLonB.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnFillLatLonLatLonB.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementAntenna;
+            this.btnFillLatLonLatLonB.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnFillLatLonLatLonB.Location = new System.Drawing.Point(6, 232);
+            this.btnFillLatLonLatLonB.Name = "btnFillLatLonLatLonB";
+            this.btnFillLatLonLatLonB.Size = new System.Drawing.Size(60, 49);
+            this.btnFillLatLonLatLonB.TabIndex = 460;
+            this.btnFillLatLonLatLonB.UseVisualStyleBackColor = false;
+            this.btnFillLatLonLatLonB.Click += new System.EventHandler(this.btnFillLatLonLatLonB_Click);
+            // 
+            // btnFillLatLonLatLonA
+            // 
+            this.btnFillLatLonLatLonA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFillLatLonLatLonA.BackColor = System.Drawing.Color.Transparent;
+            this.btnFillLatLonLatLonA.FlatAppearance.BorderSize = 0;
+            this.btnFillLatLonLatLonA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFillLatLonLatLonA.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnFillLatLonLatLonA.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementAntenna;
+            this.btnFillLatLonLatLonA.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnFillLatLonLatLonA.Location = new System.Drawing.Point(6, 66);
+            this.btnFillLatLonLatLonA.Name = "btnFillLatLonLatLonA";
+            this.btnFillLatLonLatLonA.Size = new System.Drawing.Size(60, 49);
+            this.btnFillLatLonLatLonA.TabIndex = 455;
+            this.btnFillLatLonLatLonA.UseVisualStyleBackColor = false;
+            this.btnFillLatLonLatLonA.Click += new System.EventHandler(this.btnFillLatLonLatLonA_Click);
+            // 
             // label24
             // 
             this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1430,6 +1490,11 @@
             this.nudLatitudeB.Size = new System.Drawing.Size(228, 43);
             this.nudLatitudeB.TabIndex = 455;
             this.nudLatitudeB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudLatitudeB.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.nudLatitudeB.Click += new System.EventHandler(this.nudLatitudeB_Click);
             // 
             // nudLongitudeB
@@ -1507,6 +1572,11 @@
             this.nudLatitudeA.Size = new System.Drawing.Size(228, 43);
             this.nudLatitudeA.TabIndex = 451;
             this.nudLatitudeA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudLatitudeA.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.nudLatitudeA.Click += new System.EventHandler(this.nudLatitudeA_Click);
             // 
             // nudLongitudeA
@@ -1588,6 +1658,22 @@
             this.panelPivot.Size = new System.Drawing.Size(341, 308);
             this.panelPivot.TabIndex = 455;
             // 
+            // btnFillLAtLonPivot
+            // 
+            this.btnFillLAtLonPivot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFillLAtLonPivot.BackColor = System.Drawing.Color.Transparent;
+            this.btnFillLAtLonPivot.FlatAppearance.BorderSize = 0;
+            this.btnFillLAtLonPivot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFillLAtLonPivot.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnFillLAtLonPivot.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementAntenna;
+            this.btnFillLAtLonPivot.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnFillLAtLonPivot.Location = new System.Drawing.Point(13, 95);
+            this.btnFillLAtLonPivot.Name = "btnFillLAtLonPivot";
+            this.btnFillLAtLonPivot.Size = new System.Drawing.Size(60, 49);
+            this.btnFillLAtLonPivot.TabIndex = 461;
+            this.btnFillLAtLonPivot.UseVisualStyleBackColor = false;
+            this.btnFillLAtLonPivot.Click += new System.EventHandler(this.btnFillLAtLonPivot_Click);
+            // 
             // label25
             // 
             this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1635,6 +1721,11 @@
             this.nudLatitudePivot.Size = new System.Drawing.Size(228, 43);
             this.nudLatitudePivot.TabIndex = 451;
             this.nudLatitudePivot.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudLatitudePivot.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.nudLatitudePivot.Click += new System.EventHandler(this.nudLatitudePivot_Click);
             // 
             // nudLongitudePivot
@@ -1701,69 +1792,18 @@
             this.btnEnter_Pivot.UseVisualStyleBackColor = false;
             this.btnEnter_Pivot.Click += new System.EventHandler(this.btnEnter_Pivot_Click);
             // 
-            // btnFillLatLonPlus
+            // label21
             // 
-            this.btnFillLatLonPlus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFillLatLonPlus.BackColor = System.Drawing.Color.Transparent;
-            this.btnFillLatLonPlus.FlatAppearance.BorderSize = 0;
-            this.btnFillLatLonPlus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFillLatLonPlus.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnFillLatLonPlus.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementAntenna;
-            this.btnFillLatLonPlus.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnFillLatLonPlus.Location = new System.Drawing.Point(6, 97);
-            this.btnFillLatLonPlus.Name = "btnFillLatLonPlus";
-            this.btnFillLatLonPlus.Size = new System.Drawing.Size(60, 49);
-            this.btnFillLatLonPlus.TabIndex = 448;
-            this.btnFillLatLonPlus.UseVisualStyleBackColor = false;
-            this.btnFillLatLonPlus.Click += new System.EventHandler(this.btnFillLatLonPlus_Click);
-            // 
-            // btnFillLatLonLatLonA
-            // 
-            this.btnFillLatLonLatLonA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFillLatLonLatLonA.BackColor = System.Drawing.Color.Transparent;
-            this.btnFillLatLonLatLonA.FlatAppearance.BorderSize = 0;
-            this.btnFillLatLonLatLonA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFillLatLonLatLonA.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnFillLatLonLatLonA.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementAntenna;
-            this.btnFillLatLonLatLonA.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnFillLatLonLatLonA.Location = new System.Drawing.Point(6, 66);
-            this.btnFillLatLonLatLonA.Name = "btnFillLatLonLatLonA";
-            this.btnFillLatLonLatLonA.Size = new System.Drawing.Size(60, 49);
-            this.btnFillLatLonLatLonA.TabIndex = 455;
-            this.btnFillLatLonLatLonA.UseVisualStyleBackColor = false;
-            this.btnFillLatLonLatLonA.Click += new System.EventHandler(this.btnFillLatLonLatLonA_Click);
-            // 
-            // btnFillLatLonLatLonB
-            // 
-            this.btnFillLatLonLatLonB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFillLatLonLatLonB.BackColor = System.Drawing.Color.Transparent;
-            this.btnFillLatLonLatLonB.FlatAppearance.BorderSize = 0;
-            this.btnFillLatLonLatLonB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFillLatLonLatLonB.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnFillLatLonLatLonB.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementAntenna;
-            this.btnFillLatLonLatLonB.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnFillLatLonLatLonB.Location = new System.Drawing.Point(6, 232);
-            this.btnFillLatLonLatLonB.Name = "btnFillLatLonLatLonB";
-            this.btnFillLatLonLatLonB.Size = new System.Drawing.Size(60, 49);
-            this.btnFillLatLonLatLonB.TabIndex = 460;
-            this.btnFillLatLonLatLonB.UseVisualStyleBackColor = false;
-            this.btnFillLatLonLatLonB.Click += new System.EventHandler(this.btnFillLatLonLatLonB_Click);
-            // 
-            // btnFillLAtLonPivot
-            // 
-            this.btnFillLAtLonPivot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFillLAtLonPivot.BackColor = System.Drawing.Color.Transparent;
-            this.btnFillLAtLonPivot.FlatAppearance.BorderSize = 0;
-            this.btnFillLAtLonPivot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFillLAtLonPivot.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnFillLAtLonPivot.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementAntenna;
-            this.btnFillLAtLonPivot.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnFillLAtLonPivot.Location = new System.Drawing.Point(13, 95);
-            this.btnFillLAtLonPivot.Name = "btnFillLAtLonPivot";
-            this.btnFillLAtLonPivot.Size = new System.Drawing.Size(60, 49);
-            this.btnFillLAtLonPivot.TabIndex = 461;
-            this.btnFillLAtLonPivot.UseVisualStyleBackColor = false;
-            this.btnFillLAtLonPivot.Click += new System.EventHandler(this.btnFillLAtLonPivot_Click);
+            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.Color.Black;
+            this.label21.Location = new System.Drawing.Point(4, 4);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(40, 16);
+            this.label21.TabIndex = 449;
+            this.label21.Text = "Curve";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormBuildTracks
             // 
@@ -1928,5 +1968,6 @@
         private System.Windows.Forms.Button btnFillLatLonLatLonB;
         private System.Windows.Forms.Button btnFillLatLonLatLonA;
         private System.Windows.Forms.Button btnFillLAtLonPivot;
+        private System.Windows.Forms.Label label21;
     }
 }
