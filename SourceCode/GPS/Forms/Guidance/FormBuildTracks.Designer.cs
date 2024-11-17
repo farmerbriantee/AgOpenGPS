@@ -769,7 +769,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(491, 406);
+            this.label6.Location = new System.Drawing.Point(499, 406);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(40, 16);
             this.label6.TabIndex = 448;
@@ -1030,10 +1030,10 @@
             this.btnALine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnALine.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnALine.Image = global::AgOpenGPS.Properties.Resources.LetterABlue;
-            this.btnALine.Location = new System.Drawing.Point(13, 103);
+            this.btnALine.Location = new System.Drawing.Point(4, 110);
             this.btnALine.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnALine.Name = "btnALine";
-            this.btnALine.Size = new System.Drawing.Size(80, 78);
+            this.btnALine.Size = new System.Drawing.Size(88, 70);
             this.btnALine.TabIndex = 57;
             this.btnALine.UseVisualStyleBackColor = true;
             this.btnALine.Click += new System.EventHandler(this.btnALine_Click);
@@ -1046,10 +1046,10 @@
             this.btnBLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBLine.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnBLine.Image = global::AgOpenGPS.Properties.Resources.LetterBBlue;
-            this.btnBLine.Location = new System.Drawing.Point(156, 103);
+            this.btnBLine.Location = new System.Drawing.Point(147, 110);
             this.btnBLine.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnBLine.Name = "btnBLine";
-            this.btnBLine.Size = new System.Drawing.Size(80, 78);
+            this.btnBLine.Size = new System.Drawing.Size(88, 70);
             this.btnBLine.TabIndex = 58;
             this.btnBLine.UseVisualStyleBackColor = true;
             this.btnBLine.Click += new System.EventHandler(this.btnBLine_Click);
@@ -1077,7 +1077,7 @@
             this.btnRefSideAPlus.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnRefSideAPlus.Image = global::AgOpenGPS.Properties.Resources.BoundaryRight;
             this.btnRefSideAPlus.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRefSideAPlus.Location = new System.Drawing.Point(26, 62);
+            this.btnRefSideAPlus.Location = new System.Drawing.Point(26, 47);
             this.btnRefSideAPlus.Name = "btnRefSideAPlus";
             this.btnRefSideAPlus.Size = new System.Drawing.Size(70, 60);
             this.btnRefSideAPlus.TabIndex = 448;
@@ -1139,7 +1139,7 @@
             this.nudHeading.DecimalPlaces = 4;
             this.nudHeading.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudHeading.InterceptArrowKeys = false;
-            this.nudHeading.Location = new System.Drawing.Point(25, 174);
+            this.nudHeading.Location = new System.Drawing.Point(25, 159);
             this.nudHeading.Maximum = new decimal(new int[] {
             360,
             0,
@@ -1166,7 +1166,7 @@
             this.btnAPlus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAPlus.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnAPlus.Image = global::AgOpenGPS.Properties.Resources.LetterABlue;
-            this.btnAPlus.Location = new System.Drawing.Point(140, 53);
+            this.btnAPlus.Location = new System.Drawing.Point(140, 38);
             this.btnAPlus.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnAPlus.Name = "btnAPlus";
             this.btnAPlus.Size = new System.Drawing.Size(80, 78);
