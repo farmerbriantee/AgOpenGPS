@@ -302,6 +302,7 @@ namespace AgOpenGPS
             cboxSectionsSound.Checked = Properties.Settings.Default.setSound_isSectionsOn;
 
             cboxAutoStartAgIO.Checked = Properties.Settings.Default.setDisplay_isAutoStartAgIO;
+            cboxAutoOffAgIO.Checked = Properties.Settings.Default.setDisplay_isAutoOffAgIO;
         }
 
         private void tabBtns_Leave(object sender, EventArgs e)
@@ -333,6 +334,8 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.setDisplay_isAutoStartAgIO = cboxAutoStartAgIO.Checked;
             mf.isAutoStartAgIO = cboxAutoStartAgIO.Checked;
+
+            Properties.Settings.Default.setDisplay_isAutoOffAgIO = cboxAutoOffAgIO.Checked;
 
             Properties.Settings.Default.Save();
         }

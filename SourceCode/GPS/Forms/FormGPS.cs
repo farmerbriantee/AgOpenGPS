@@ -364,7 +364,7 @@ namespace AgOpenGPS
             oglMain.Left = 75;
             oglMain.Width = this.Width - statusStripLeft.Width - 84;
 
-            panelSim.Left = Width/2 -330;
+            panelSim.Left = Width / 2 - 330;
             panelSim.Width = 700;
             panelSim.Top = Height - 60;
 
@@ -619,6 +619,15 @@ namespace AgOpenGPS
                 catch { }
                 finally { }
             }
+
+            if (Properties.Settings.Default.setDisplay_isAutoOffAgIO)
+            {
+                Process[] processName = Process.GetProcessesByName("AgIO");
+                if (processName.Length != 0)
+                {
+                    processName[0].CloseMainWindow();
+                }
+            }
         }
 
         public int SaveOrNot(bool closing)
@@ -723,12 +732,12 @@ namespace AgOpenGPS
             Lift, SteerPointer,
             SteerDot, Tractor, QuestionMark,
             FrontWheels, FourWDFront, FourWDRear,
-            Harvester, 
-            Lateral, bingGrid, 
-            NoGPS, ZoomIn48, ZoomOut48, 
-            Pan, MenuHideShow, 
+            Harvester,
+            Lateral, bingGrid,
+            NoGPS, ZoomIn48, ZoomOut48,
+            Pan, MenuHideShow,
             ToolWheels, Tire, TramDot,
-            RateMap1, RateMap2, RateMap3, 
+            RateMap1, RateMap2, RateMap3,
             YouTurnU, YouTurnH
         }
 
@@ -743,13 +752,13 @@ namespace AgOpenGPS
                 Resources.z_Compass,Resources.z_Speedo,Resources.z_SpeedoNeedle,
                 Resources.z_Lift,Resources.z_SteerPointer,
                 Resources.z_SteerDot,GetTractorBrand(Settings.Default.setBrand_TBrand),Resources.z_QuestionMark,
-                Resources.z_FrontWheels,Get4WDBrandFront(Settings.Default.setBrand_WDBrand), 
+                Resources.z_FrontWheels,Get4WDBrandFront(Settings.Default.setBrand_WDBrand),
                 Get4WDBrandRear(Settings.Default.setBrand_WDBrand),
-                GetHarvesterBrand(Settings.Default.setBrand_HBrand), 
-                Resources.z_LateralManual, Resources.z_bingMap, 
-                Resources.z_NoGPS, Resources.ZoomIn48, Resources.ZoomOut48, 
+                GetHarvesterBrand(Settings.Default.setBrand_HBrand),
+                Resources.z_LateralManual, Resources.z_bingMap,
+                Resources.z_NoGPS, Resources.ZoomIn48, Resources.ZoomOut48,
                 Resources.Pan, Resources.MenuHideShow,
-                Resources.z_Tool, Resources.z_Tire, Resources.z_TramOnOff, 
+                Resources.z_Tool, Resources.z_Tire, Resources.z_TramOnOff,
                 Resources.z_RateMap1, Resources.z_RateMap2, Resources.z_RateMap3,
                 Resources.YouTurnU, Resources.YouTurnH
             };
@@ -1053,7 +1062,7 @@ namespace AgOpenGPS
 
             //curve line
             curve.ResetCurveLine();
-            
+
             //tracks
             trk.gArr?.Clear();
             trk.idx = -1;
@@ -1104,7 +1113,7 @@ namespace AgOpenGPS
             recPath.recList?.Clear();
             recPath.shortestDubinsList?.Clear();
             recPath.shuttleDubinsList?.Clear();
-            
+
             isPanelBottomHidden = false;
 
             PanelsAndOGLSize();

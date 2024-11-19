@@ -55,6 +55,8 @@ namespace AgOpenGPS
             label50.Text = Properties.Settings.Default.setAS_snapDistance.ToString();
             label52.Text = Properties.Settings.Default.setAS_snapDistanceRef.ToString();
             label56.Text = Properties.Settings.Default.setDisplay_isAutoStartAgIO.ToString();
+            label58.Text = Properties.Settings.Default.setDisplay_isAutoOffAgIO.ToString();
+
             label60.Text = Properties.Settings.Default.setF_culture;
             label62.Text = Properties.Settings.Default.setF_CurrentDir;
             label64.Text = Properties.Settings.Default.setF_isRemoteWorkSystemOn.ToString();

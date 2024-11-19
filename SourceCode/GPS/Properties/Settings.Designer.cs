@@ -2975,5 +2975,17 @@ namespace AgOpenGPS.Properties {
                 this["setWindow_isKioskMode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setDisplay_isAutoOffAgIO {
+            get {
+                return ((bool)(this["setDisplay_isAutoOffAgIO"]));
+            }
+            set {
+                this["setDisplay_isAutoOffAgIO"] = value;
+            }
+        }
     }
 }
