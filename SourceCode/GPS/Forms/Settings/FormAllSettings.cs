@@ -50,7 +50,6 @@ namespace AgOpenGPS
             label38.Text = Properties.Settings.Default.setVehicle_antennaPivot.ToString();
             label40.Text = Properties.Settings.Default.setVehicle_antennaHeight.ToString();
             label42.Text = Properties.Settings.Default.setVehicle_antennaOffset.ToString();
-            label44.Text = Properties.Settings.Default.setIMU_invertRoll.ToString();
             label46.Text = Properties.Settings.Default.setIMU_rollZero.ToString();
             label48.Text = Properties.Settings.Default.purePursuitIntegralGainAB.ToString();
             label50.Text = Properties.Settings.Default.setAS_snapDistance.ToString();
