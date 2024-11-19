@@ -247,6 +247,12 @@
     <Compile Include="Forms\Field\FormFieldExisting.Designer.cs">
       <DependentUpon>FormFieldExisting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Settings\FormAllSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings\FormAllSettings.Designer.cs">
+      <DependentUpon>FormAllSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Settings\FormButtonsRightPanel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -700,6 +706,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Field\FormFieldExisting.resx">
       <DependentUpon>FormFieldExisting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings\FormAllSettings.resx">
+      <DependentUpon>FormAllSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\FormButtonsRightPanel.resx">
       <DependentUpon>FormButtonsRightPanel.cs</DependentUpon>
