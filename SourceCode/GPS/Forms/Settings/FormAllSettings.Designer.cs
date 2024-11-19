@@ -72,13 +72,6 @@
             this.label46 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
-            this.btnScreenShot = new System.Windows.Forms.Button();
-            this.label49 = new System.Windows.Forms.Label();
-            this.label50 = new System.Windows.Forms.Label();
-            this.label51 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
-            this.label55 = new System.Windows.Forms.Label();
-            this.label56 = new System.Windows.Forms.Label();
             this.label57 = new System.Windows.Forms.Label();
             this.label58 = new System.Windows.Forms.Label();
             this.label59 = new System.Windows.Forms.Label();
@@ -111,8 +104,6 @@
             this.label88 = new System.Windows.Forms.Label();
             this.label91 = new System.Windows.Forms.Label();
             this.label92 = new System.Windows.Forms.Label();
-            this.label93 = new System.Windows.Forms.Label();
-            this.label94 = new System.Windows.Forms.Label();
             this.label95 = new System.Windows.Forms.Label();
             this.label96 = new System.Windows.Forms.Label();
             this.label97 = new System.Windows.Forms.Label();
@@ -208,8 +199,6 @@
             this.label183 = new System.Windows.Forms.Label();
             this.label184 = new System.Windows.Forms.Label();
             this.label185 = new System.Windows.Forms.Label();
-            this.label186 = new System.Windows.Forms.Label();
-            this.label187 = new System.Windows.Forms.Label();
             this.label188 = new System.Windows.Forms.Label();
             this.label190 = new System.Windows.Forms.Label();
             this.label191 = new System.Windows.Forms.Label();
@@ -225,7 +214,6 @@
             this.label202 = new System.Windows.Forms.Label();
             this.label203 = new System.Windows.Forms.Label();
             this.label204 = new System.Windows.Forms.Label();
-            this.label205 = new System.Windows.Forms.Label();
             this.label206 = new System.Windows.Forms.Label();
             this.label208 = new System.Windows.Forms.Label();
             this.label210 = new System.Windows.Forms.Label();
@@ -259,7 +247,6 @@
             this.label238 = new System.Windows.Forms.Label();
             this.label239 = new System.Windows.Forms.Label();
             this.label189 = new System.Windows.Forms.Label();
-            this.label240 = new System.Windows.Forms.Label();
             this.label209 = new System.Windows.Forms.Label();
             this.lblAngularVelocity = new System.Windows.Forms.Label();
             this.label241 = new System.Windows.Forms.Label();
@@ -291,6 +278,19 @@
             this.label251 = new System.Windows.Forms.Label();
             this.label252 = new System.Windows.Forms.Label();
             this.label254 = new System.Windows.Forms.Label();
+            this.label50 = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
+            this.label94 = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label93 = new System.Windows.Forms.Label();
+            this.label187 = new System.Windows.Forms.Label();
+            this.label186 = new System.Windows.Forms.Label();
+            this.label205 = new System.Windows.Forms.Label();
+            this.label240 = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label51 = new System.Windows.Forms.Label();
+            this.btnScreenShot = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label3
@@ -799,7 +799,7 @@
             this.label45.BackColor = System.Drawing.Color.Transparent;
             this.label45.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label45.ForeColor = System.Drawing.Color.DimGray;
-            this.label45.Location = new System.Drawing.Point(125, 588);
+            this.label45.Location = new System.Drawing.Point(125, 577);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(92, 22);
             this.label45.TabIndex = 640;
@@ -811,7 +811,7 @@
             this.label46.BackColor = System.Drawing.Color.Transparent;
             this.label46.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label46.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label46.Location = new System.Drawing.Point(62, 588);
+            this.label46.Location = new System.Drawing.Point(62, 577);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(62, 22);
             this.label46.TabIndex = 639;
@@ -842,98 +842,6 @@
             this.label48.TabIndex = 641;
             this.label48.Text = "0";
             this.label48.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // btnScreenShot
-            // 
-            this.btnScreenShot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnScreenShot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnScreenShot.FlatAppearance.BorderSize = 0;
-            this.btnScreenShot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnScreenShot.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnScreenShot.Image = global::AgOpenGPS.Properties.Resources.FileNew;
-            this.btnScreenShot.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnScreenShot.Location = new System.Drawing.Point(1085, 538);
-            this.btnScreenShot.Name = "btnScreenShot";
-            this.btnScreenShot.Size = new System.Drawing.Size(66, 65);
-            this.btnScreenShot.TabIndex = 643;
-            this.btnScreenShot.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnScreenShot.UseVisualStyleBackColor = true;
-            this.btnScreenShot.Click += new System.EventHandler(this.btnScreenShot_Click);
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.BackColor = System.Drawing.Color.Transparent;
-            this.label49.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.ForeColor = System.Drawing.Color.DimGray;
-            this.label49.Location = new System.Drawing.Point(466, 596);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(144, 22);
-            this.label49.TabIndex = 645;
-            this.label49.Text = "Snap Distance";
-            this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label50
-            // 
-            this.label50.BackColor = System.Drawing.Color.Transparent;
-            this.label50.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label50.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label50.Location = new System.Drawing.Point(410, 596);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(62, 22);
-            this.label50.TabIndex = 644;
-            this.label50.Text = "20";
-            this.label50.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.BackColor = System.Drawing.Color.Transparent;
-            this.label51.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label51.ForeColor = System.Drawing.Color.DimGray;
-            this.label51.Location = new System.Drawing.Point(466, 618);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(179, 22);
-            this.label51.TabIndex = 647;
-            this.label51.Text = "Ref Snap Distance";
-            this.label51.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label52
-            // 
-            this.label52.BackColor = System.Drawing.Color.Transparent;
-            this.label52.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label52.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label52.Location = new System.Drawing.Point(410, 618);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(62, 22);
-            this.label52.TabIndex = 646;
-            this.label52.Text = "5";
-            this.label52.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.BackColor = System.Drawing.Color.Transparent;
-            this.label55.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label55.ForeColor = System.Drawing.Color.DimGray;
-            this.label55.Location = new System.Drawing.Point(466, 571);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(163, 22);
-            this.label55.TabIndex = 651;
-            this.label55.Text = "Auto Start AgIO?";
-            this.label55.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label56
-            // 
-            this.label56.BackColor = System.Drawing.Color.Transparent;
-            this.label56.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label56.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label56.Location = new System.Drawing.Point(403, 571);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(62, 22);
-            this.label56.TabIndex = 650;
-            this.label56.Text = "True";
-            this.label56.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label57
             // 
@@ -1335,31 +1243,6 @@
             this.label92.Text = "False";
             this.label92.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label93
-            // 
-            this.label93.AutoSize = true;
-            this.label93.BackColor = System.Drawing.Color.Transparent;
-            this.label93.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label93.ForeColor = System.Drawing.Color.DimGray;
-            this.label93.Location = new System.Drawing.Point(466, 548);
-            this.label93.Name = "label93";
-            this.label93.Size = new System.Drawing.Size(192, 22);
-            this.label93.TabIndex = 689;
-            this.label93.Text = "RTK Kill AutoSteer?";
-            this.label93.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label94
-            // 
-            this.label94.BackColor = System.Drawing.Color.Transparent;
-            this.label94.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label94.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label94.Location = new System.Drawing.Point(403, 548);
-            this.label94.Name = "label94";
-            this.label94.Size = new System.Drawing.Size(62, 22);
-            this.label94.TabIndex = 688;
-            this.label94.Text = "False";
-            this.label94.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // label95
             // 
             this.label95.AutoSize = true;
@@ -1441,7 +1324,7 @@
             this.label101.BackColor = System.Drawing.Color.Transparent;
             this.label101.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label101.ForeColor = System.Drawing.Color.DimGray;
-            this.label101.Location = new System.Drawing.Point(125, 612);
+            this.label101.Location = new System.Drawing.Point(125, 601);
             this.label101.Name = "label101";
             this.label101.Size = new System.Drawing.Size(115, 22);
             this.label101.TabIndex = 697;
@@ -1453,7 +1336,7 @@
             this.label102.BackColor = System.Drawing.Color.Transparent;
             this.label102.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label102.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label102.Location = new System.Drawing.Point(64, 612);
+            this.label102.Location = new System.Drawing.Point(64, 601);
             this.label102.Name = "label102";
             this.label102.Size = new System.Drawing.Size(62, 22);
             this.label102.TabIndex = 696;
@@ -1516,7 +1399,7 @@
             this.label107.BackColor = System.Drawing.Color.Transparent;
             this.label107.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label107.ForeColor = System.Drawing.Color.DimGray;
-            this.label107.Location = new System.Drawing.Point(125, 634);
+            this.label107.Location = new System.Drawing.Point(125, 623);
             this.label107.Name = "label107";
             this.label107.Size = new System.Drawing.Size(97, 22);
             this.label107.TabIndex = 703;
@@ -1528,7 +1411,7 @@
             this.label108.BackColor = System.Drawing.Color.Transparent;
             this.label108.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label108.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label108.Location = new System.Drawing.Point(64, 634);
+            this.label108.Location = new System.Drawing.Point(64, 623);
             this.label108.Name = "label108";
             this.label108.Size = new System.Drawing.Size(62, 22);
             this.label108.TabIndex = 702;
@@ -1616,7 +1499,7 @@
             this.label115.BackColor = System.Drawing.Color.Transparent;
             this.label115.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label115.ForeColor = System.Drawing.Color.DimGray;
-            this.label115.Location = new System.Drawing.Point(125, 264);
+            this.label115.Location = new System.Drawing.Point(125, 259);
             this.label115.Name = "label115";
             this.label115.Size = new System.Drawing.Size(118, 22);
             this.label115.TabIndex = 711;
@@ -1628,7 +1511,7 @@
             this.label116.BackColor = System.Drawing.Color.Transparent;
             this.label116.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label116.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label116.Location = new System.Drawing.Point(65, 264);
+            this.label116.Location = new System.Drawing.Point(65, 259);
             this.label116.Name = "label116";
             this.label116.Size = new System.Drawing.Size(62, 22);
             this.label116.TabIndex = 710;
@@ -1641,7 +1524,7 @@
             this.label117.BackColor = System.Drawing.Color.Transparent;
             this.label117.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label117.ForeColor = System.Drawing.Color.DimGray;
-            this.label117.Location = new System.Drawing.Point(125, 286);
+            this.label117.Location = new System.Drawing.Point(125, 281);
             this.label117.Name = "label117";
             this.label117.Size = new System.Drawing.Size(167, 22);
             this.label117.TabIndex = 713;
@@ -1653,7 +1536,7 @@
             this.label118.BackColor = System.Drawing.Color.Transparent;
             this.label118.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label118.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label118.Location = new System.Drawing.Point(65, 286);
+            this.label118.Location = new System.Drawing.Point(65, 281);
             this.label118.Name = "label118";
             this.label118.Size = new System.Drawing.Size(62, 22);
             this.label118.TabIndex = 712;
@@ -1666,7 +1549,7 @@
             this.label119.BackColor = System.Drawing.Color.Transparent;
             this.label119.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label119.ForeColor = System.Drawing.Color.DimGray;
-            this.label119.Location = new System.Drawing.Point(125, 308);
+            this.label119.Location = new System.Drawing.Point(125, 303);
             this.label119.Name = "label119";
             this.label119.Size = new System.Drawing.Size(108, 22);
             this.label119.TabIndex = 715;
@@ -1678,7 +1561,7 @@
             this.label120.BackColor = System.Drawing.Color.Transparent;
             this.label120.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label120.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label120.Location = new System.Drawing.Point(65, 308);
+            this.label120.Location = new System.Drawing.Point(65, 303);
             this.label120.Name = "label120";
             this.label120.Size = new System.Drawing.Size(62, 22);
             this.label120.TabIndex = 714;
@@ -1691,7 +1574,7 @@
             this.label121.BackColor = System.Drawing.Color.Transparent;
             this.label121.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label121.ForeColor = System.Drawing.Color.DimGray;
-            this.label121.Location = new System.Drawing.Point(125, 330);
+            this.label121.Location = new System.Drawing.Point(125, 325);
             this.label121.Name = "label121";
             this.label121.Size = new System.Drawing.Size(138, 22);
             this.label121.TabIndex = 717;
@@ -1703,7 +1586,7 @@
             this.label122.BackColor = System.Drawing.Color.Transparent;
             this.label122.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label122.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label122.Location = new System.Drawing.Point(65, 330);
+            this.label122.Location = new System.Drawing.Point(65, 325);
             this.label122.Name = "label122";
             this.label122.Size = new System.Drawing.Size(62, 22);
             this.label122.TabIndex = 716;
@@ -1716,7 +1599,7 @@
             this.label123.BackColor = System.Drawing.Color.Transparent;
             this.label123.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label123.ForeColor = System.Drawing.Color.DimGray;
-            this.label123.Location = new System.Drawing.Point(125, 352);
+            this.label123.Location = new System.Drawing.Point(125, 347);
             this.label123.Name = "label123";
             this.label123.Size = new System.Drawing.Size(202, 22);
             this.label123.TabIndex = 719;
@@ -1728,7 +1611,7 @@
             this.label124.BackColor = System.Drawing.Color.Transparent;
             this.label124.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label124.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label124.Location = new System.Drawing.Point(65, 352);
+            this.label124.Location = new System.Drawing.Point(65, 347);
             this.label124.Name = "label124";
             this.label124.Size = new System.Drawing.Size(62, 22);
             this.label124.TabIndex = 718;
@@ -1741,7 +1624,7 @@
             this.label125.BackColor = System.Drawing.Color.Transparent;
             this.label125.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label125.ForeColor = System.Drawing.Color.DimGray;
-            this.label125.Location = new System.Drawing.Point(125, 374);
+            this.label125.Location = new System.Drawing.Point(125, 369);
             this.label125.Name = "label125";
             this.label125.Size = new System.Drawing.Size(202, 22);
             this.label125.TabIndex = 721;
@@ -1753,7 +1636,7 @@
             this.label126.BackColor = System.Drawing.Color.Transparent;
             this.label126.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label126.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label126.Location = new System.Drawing.Point(65, 374);
+            this.label126.Location = new System.Drawing.Point(65, 369);
             this.label126.Name = "label126";
             this.label126.Size = new System.Drawing.Size(62, 22);
             this.label126.TabIndex = 720;
@@ -1791,7 +1674,7 @@
             this.label129.BackColor = System.Drawing.Color.Transparent;
             this.label129.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label129.ForeColor = System.Drawing.Color.DimGray;
-            this.label129.Location = new System.Drawing.Point(125, 396);
+            this.label129.Location = new System.Drawing.Point(125, 391);
             this.label129.Name = "label129";
             this.label129.Size = new System.Drawing.Size(173, 22);
             this.label129.TabIndex = 725;
@@ -1803,7 +1686,7 @@
             this.label130.BackColor = System.Drawing.Color.Transparent;
             this.label130.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label130.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label130.Location = new System.Drawing.Point(65, 396);
+            this.label130.Location = new System.Drawing.Point(65, 391);
             this.label130.Name = "label130";
             this.label130.Size = new System.Drawing.Size(62, 22);
             this.label130.TabIndex = 724;
@@ -1991,7 +1874,7 @@
             this.label145.BackColor = System.Drawing.Color.Transparent;
             this.label145.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label145.ForeColor = System.Drawing.Color.DimGray;
-            this.label145.Location = new System.Drawing.Point(125, 418);
+            this.label145.Location = new System.Drawing.Point(125, 413);
             this.label145.Name = "label145";
             this.label145.Size = new System.Drawing.Size(178, 22);
             this.label145.TabIndex = 741;
@@ -2003,7 +1886,7 @@
             this.label146.BackColor = System.Drawing.Color.Transparent;
             this.label146.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label146.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label146.Location = new System.Drawing.Point(65, 418);
+            this.label146.Location = new System.Drawing.Point(65, 413);
             this.label146.Name = "label146";
             this.label146.Size = new System.Drawing.Size(62, 22);
             this.label146.TabIndex = 740;
@@ -2016,7 +1899,7 @@
             this.label147.BackColor = System.Drawing.Color.Transparent;
             this.label147.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label147.ForeColor = System.Drawing.Color.DimGray;
-            this.label147.Location = new System.Drawing.Point(125, 440);
+            this.label147.Location = new System.Drawing.Point(125, 435);
             this.label147.Name = "label147";
             this.label147.Size = new System.Drawing.Size(176, 22);
             this.label147.TabIndex = 743;
@@ -2028,7 +1911,7 @@
             this.label148.BackColor = System.Drawing.Color.Transparent;
             this.label148.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label148.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label148.Location = new System.Drawing.Point(65, 440);
+            this.label148.Location = new System.Drawing.Point(65, 435);
             this.label148.Name = "label148";
             this.label148.Size = new System.Drawing.Size(62, 22);
             this.label148.TabIndex = 742;
@@ -2041,7 +1924,7 @@
             this.label149.BackColor = System.Drawing.Color.Transparent;
             this.label149.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label149.ForeColor = System.Drawing.Color.DimGray;
-            this.label149.Location = new System.Drawing.Point(125, 462);
+            this.label149.Location = new System.Drawing.Point(125, 457);
             this.label149.Name = "label149";
             this.label149.Size = new System.Drawing.Size(176, 22);
             this.label149.TabIndex = 745;
@@ -2053,7 +1936,7 @@
             this.label150.BackColor = System.Drawing.Color.Transparent;
             this.label150.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label150.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label150.Location = new System.Drawing.Point(65, 462);
+            this.label150.Location = new System.Drawing.Point(65, 457);
             this.label150.Name = "label150";
             this.label150.Size = new System.Drawing.Size(62, 22);
             this.label150.TabIndex = 744;
@@ -2066,7 +1949,7 @@
             this.label151.BackColor = System.Drawing.Color.Transparent;
             this.label151.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label151.ForeColor = System.Drawing.Color.DimGray;
-            this.label151.Location = new System.Drawing.Point(125, 484);
+            this.label151.Location = new System.Drawing.Point(125, 479);
             this.label151.Name = "label151";
             this.label151.Size = new System.Drawing.Size(140, 22);
             this.label151.TabIndex = 747;
@@ -2078,7 +1961,7 @@
             this.label152.BackColor = System.Drawing.Color.Transparent;
             this.label152.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label152.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label152.Location = new System.Drawing.Point(65, 484);
+            this.label152.Location = new System.Drawing.Point(65, 479);
             this.label152.Name = "label152";
             this.label152.Size = new System.Drawing.Size(62, 22);
             this.label152.TabIndex = 746;
@@ -2091,7 +1974,7 @@
             this.label153.BackColor = System.Drawing.Color.Transparent;
             this.label153.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label153.ForeColor = System.Drawing.Color.DimGray;
-            this.label153.Location = new System.Drawing.Point(125, 508);
+            this.label153.Location = new System.Drawing.Point(125, 503);
             this.label153.Name = "label153";
             this.label153.Size = new System.Drawing.Size(111, 22);
             this.label153.TabIndex = 749;
@@ -2103,7 +1986,7 @@
             this.label154.BackColor = System.Drawing.Color.Transparent;
             this.label154.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label154.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label154.Location = new System.Drawing.Point(65, 508);
+            this.label154.Location = new System.Drawing.Point(65, 503);
             this.label154.Name = "label154";
             this.label154.Size = new System.Drawing.Size(62, 22);
             this.label154.TabIndex = 748;
@@ -2116,7 +1999,7 @@
             this.label155.BackColor = System.Drawing.Color.Transparent;
             this.label155.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label155.ForeColor = System.Drawing.Color.DimGray;
-            this.label155.Location = new System.Drawing.Point(125, 530);
+            this.label155.Location = new System.Drawing.Point(125, 525);
             this.label155.Name = "label155";
             this.label155.Size = new System.Drawing.Size(129, 22);
             this.label155.TabIndex = 751;
@@ -2128,7 +2011,7 @@
             this.label156.BackColor = System.Drawing.Color.Transparent;
             this.label156.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label156.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label156.Location = new System.Drawing.Point(65, 530);
+            this.label156.Location = new System.Drawing.Point(65, 525);
             this.label156.Name = "label156";
             this.label156.Size = new System.Drawing.Size(62, 22);
             this.label156.TabIndex = 750;
@@ -2141,7 +2024,7 @@
             this.label157.BackColor = System.Drawing.Color.Transparent;
             this.label157.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label157.ForeColor = System.Drawing.Color.DimGray;
-            this.label157.Location = new System.Drawing.Point(125, 552);
+            this.label157.Location = new System.Drawing.Point(125, 547);
             this.label157.Name = "label157";
             this.label157.Size = new System.Drawing.Size(108, 22);
             this.label157.TabIndex = 753;
@@ -2153,7 +2036,7 @@
             this.label158.BackColor = System.Drawing.Color.Transparent;
             this.label158.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label158.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label158.Location = new System.Drawing.Point(65, 552);
+            this.label158.Location = new System.Drawing.Point(65, 547);
             this.label158.Name = "label158";
             this.label158.Size = new System.Drawing.Size(62, 22);
             this.label158.TabIndex = 752;
@@ -2337,7 +2220,7 @@
             this.label169.BackColor = System.Drawing.Color.Transparent;
             this.label169.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label169.ForeColor = System.Drawing.Color.DimGray;
-            this.label169.Location = new System.Drawing.Point(-1, 552);
+            this.label169.Location = new System.Drawing.Point(-1, 547);
             this.label169.Name = "label169";
             this.label169.Size = new System.Drawing.Size(62, 22);
             this.label169.TabIndex = 785;
@@ -2349,7 +2232,7 @@
             this.label170.BackColor = System.Drawing.Color.Transparent;
             this.label170.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label170.ForeColor = System.Drawing.Color.DimGray;
-            this.label170.Location = new System.Drawing.Point(-1, 530);
+            this.label170.Location = new System.Drawing.Point(-1, 525);
             this.label170.Name = "label170";
             this.label170.Size = new System.Drawing.Size(62, 22);
             this.label170.TabIndex = 784;
@@ -2361,7 +2244,7 @@
             this.label171.BackColor = System.Drawing.Color.Transparent;
             this.label171.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label171.ForeColor = System.Drawing.Color.DimGray;
-            this.label171.Location = new System.Drawing.Point(-1, 508);
+            this.label171.Location = new System.Drawing.Point(-1, 503);
             this.label171.Name = "label171";
             this.label171.Size = new System.Drawing.Size(62, 22);
             this.label171.TabIndex = 783;
@@ -2373,7 +2256,7 @@
             this.label172.BackColor = System.Drawing.Color.Transparent;
             this.label172.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label172.ForeColor = System.Drawing.Color.DimGray;
-            this.label172.Location = new System.Drawing.Point(-1, 484);
+            this.label172.Location = new System.Drawing.Point(-1, 479);
             this.label172.Name = "label172";
             this.label172.Size = new System.Drawing.Size(62, 22);
             this.label172.TabIndex = 782;
@@ -2385,7 +2268,7 @@
             this.label173.BackColor = System.Drawing.Color.Transparent;
             this.label173.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label173.ForeColor = System.Drawing.Color.DimGray;
-            this.label173.Location = new System.Drawing.Point(-1, 462);
+            this.label173.Location = new System.Drawing.Point(-1, 457);
             this.label173.Name = "label173";
             this.label173.Size = new System.Drawing.Size(62, 22);
             this.label173.TabIndex = 781;
@@ -2397,7 +2280,7 @@
             this.label174.BackColor = System.Drawing.Color.Transparent;
             this.label174.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label174.ForeColor = System.Drawing.Color.DimGray;
-            this.label174.Location = new System.Drawing.Point(-1, 440);
+            this.label174.Location = new System.Drawing.Point(-1, 435);
             this.label174.Name = "label174";
             this.label174.Size = new System.Drawing.Size(62, 22);
             this.label174.TabIndex = 780;
@@ -2409,7 +2292,7 @@
             this.label175.BackColor = System.Drawing.Color.Transparent;
             this.label175.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label175.ForeColor = System.Drawing.Color.DimGray;
-            this.label175.Location = new System.Drawing.Point(-1, 418);
+            this.label175.Location = new System.Drawing.Point(-1, 413);
             this.label175.Name = "label175";
             this.label175.Size = new System.Drawing.Size(62, 22);
             this.label175.TabIndex = 779;
@@ -2421,7 +2304,7 @@
             this.label176.BackColor = System.Drawing.Color.Transparent;
             this.label176.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label176.ForeColor = System.Drawing.Color.DimGray;
-            this.label176.Location = new System.Drawing.Point(-1, 396);
+            this.label176.Location = new System.Drawing.Point(-1, 391);
             this.label176.Name = "label176";
             this.label176.Size = new System.Drawing.Size(62, 22);
             this.label176.TabIndex = 778;
@@ -2433,7 +2316,7 @@
             this.label177.BackColor = System.Drawing.Color.Transparent;
             this.label177.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label177.ForeColor = System.Drawing.Color.DimGray;
-            this.label177.Location = new System.Drawing.Point(-1, 374);
+            this.label177.Location = new System.Drawing.Point(-1, 369);
             this.label177.Name = "label177";
             this.label177.Size = new System.Drawing.Size(62, 22);
             this.label177.TabIndex = 777;
@@ -2445,7 +2328,7 @@
             this.label178.BackColor = System.Drawing.Color.Transparent;
             this.label178.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label178.ForeColor = System.Drawing.Color.DimGray;
-            this.label178.Location = new System.Drawing.Point(-1, 352);
+            this.label178.Location = new System.Drawing.Point(-1, 347);
             this.label178.Name = "label178";
             this.label178.Size = new System.Drawing.Size(62, 22);
             this.label178.TabIndex = 776;
@@ -2457,7 +2340,7 @@
             this.label179.BackColor = System.Drawing.Color.Transparent;
             this.label179.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label179.ForeColor = System.Drawing.Color.DimGray;
-            this.label179.Location = new System.Drawing.Point(-1, 330);
+            this.label179.Location = new System.Drawing.Point(-1, 325);
             this.label179.Name = "label179";
             this.label179.Size = new System.Drawing.Size(62, 22);
             this.label179.TabIndex = 775;
@@ -2469,7 +2352,7 @@
             this.label180.BackColor = System.Drawing.Color.Transparent;
             this.label180.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label180.ForeColor = System.Drawing.Color.DimGray;
-            this.label180.Location = new System.Drawing.Point(-1, 310);
+            this.label180.Location = new System.Drawing.Point(-1, 305);
             this.label180.Name = "label180";
             this.label180.Size = new System.Drawing.Size(62, 22);
             this.label180.TabIndex = 774;
@@ -2481,7 +2364,7 @@
             this.label181.BackColor = System.Drawing.Color.Transparent;
             this.label181.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label181.ForeColor = System.Drawing.Color.DimGray;
-            this.label181.Location = new System.Drawing.Point(-1, 286);
+            this.label181.Location = new System.Drawing.Point(-1, 281);
             this.label181.Name = "label181";
             this.label181.Size = new System.Drawing.Size(62, 22);
             this.label181.TabIndex = 773;
@@ -2493,7 +2376,7 @@
             this.label182.BackColor = System.Drawing.Color.Transparent;
             this.label182.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label182.ForeColor = System.Drawing.Color.DimGray;
-            this.label182.Location = new System.Drawing.Point(-1, 264);
+            this.label182.Location = new System.Drawing.Point(-1, 259);
             this.label182.Name = "label182";
             this.label182.Size = new System.Drawing.Size(62, 22);
             this.label182.TabIndex = 772;
@@ -2505,7 +2388,7 @@
             this.label183.BackColor = System.Drawing.Color.Transparent;
             this.label183.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label183.ForeColor = System.Drawing.Color.DimGray;
-            this.label183.Location = new System.Drawing.Point(-2, 634);
+            this.label183.Location = new System.Drawing.Point(-2, 623);
             this.label183.Name = "label183";
             this.label183.Size = new System.Drawing.Size(62, 22);
             this.label183.TabIndex = 788;
@@ -2517,7 +2400,7 @@
             this.label184.BackColor = System.Drawing.Color.Transparent;
             this.label184.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label184.ForeColor = System.Drawing.Color.DimGray;
-            this.label184.Location = new System.Drawing.Point(-2, 612);
+            this.label184.Location = new System.Drawing.Point(-2, 601);
             this.label184.Name = "label184";
             this.label184.Size = new System.Drawing.Size(62, 22);
             this.label184.TabIndex = 787;
@@ -2535,30 +2418,6 @@
             this.label185.TabIndex = 786;
             this.label185.Text = "0.06";
             this.label185.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label186
-            // 
-            this.label186.BackColor = System.Drawing.Color.Transparent;
-            this.label186.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label186.ForeColor = System.Drawing.Color.DimGray;
-            this.label186.Location = new System.Drawing.Point(347, 618);
-            this.label186.Name = "label186";
-            this.label186.Size = new System.Drawing.Size(62, 22);
-            this.label186.TabIndex = 790;
-            this.label186.Text = "5";
-            this.label186.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label187
-            // 
-            this.label187.BackColor = System.Drawing.Color.Transparent;
-            this.label187.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label187.ForeColor = System.Drawing.Color.DimGray;
-            this.label187.Location = new System.Drawing.Point(347, 596);
-            this.label187.Name = "label187";
-            this.label187.Size = new System.Drawing.Size(62, 22);
-            this.label187.TabIndex = 789;
-            this.label187.Text = "20";
-            this.label187.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label188
             // 
@@ -2649,7 +2508,7 @@
             this.label196.BackColor = System.Drawing.Color.Transparent;
             this.label196.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label196.ForeColor = System.Drawing.Color.DimGray;
-            this.label196.Location = new System.Drawing.Point(-1, 588);
+            this.label196.Location = new System.Drawing.Point(-1, 577);
             this.label196.Name = "label196";
             this.label196.Size = new System.Drawing.Size(62, 22);
             this.label196.TabIndex = 797;
@@ -2739,18 +2598,6 @@
             this.label204.TabIndex = 815;
             this.label204.Text = "0.05";
             this.label204.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label205
-            // 
-            this.label205.BackColor = System.Drawing.Color.Transparent;
-            this.label205.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label205.ForeColor = System.Drawing.Color.DimGray;
-            this.label205.Location = new System.Drawing.Point(341, 548);
-            this.label205.Name = "label205";
-            this.label205.Size = new System.Drawing.Size(62, 22);
-            this.label205.TabIndex = 814;
-            this.label205.Text = "False";
-            this.label205.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label206
             // 
@@ -3139,26 +2986,14 @@
             // label189
             // 
             this.label189.BackColor = System.Drawing.Color.Transparent;
-            this.label189.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label189.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label189.ForeColor = System.Drawing.Color.Black;
-            this.label189.Location = new System.Drawing.Point(1001, 600);
+            this.label189.Location = new System.Drawing.Point(1038, 588);
             this.label189.Name = "label189";
-            this.label189.Size = new System.Drawing.Size(166, 50);
+            this.label189.Size = new System.Drawing.Size(131, 50);
             this.label189.TabIndex = 843;
             this.label189.Text = "Create AllSettings.JPG";
             this.label189.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label240
-            // 
-            this.label240.BackColor = System.Drawing.Color.Transparent;
-            this.label240.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label240.ForeColor = System.Drawing.Color.DimGray;
-            this.label240.Location = new System.Drawing.Point(341, 569);
-            this.label240.Name = "label240";
-            this.label240.Size = new System.Drawing.Size(62, 22);
-            this.label240.TabIndex = 814;
-            this.label240.Text = "True";
-            this.label240.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label209
             // 
@@ -3527,6 +3362,171 @@
             this.label254.Text = "Fix Status";
             this.label254.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // label50
+            // 
+            this.label50.BackColor = System.Drawing.Color.Transparent;
+            this.label50.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label50.ForeColor = System.Drawing.Color.MediumBlue;
+            this.label50.Location = new System.Drawing.Point(410, 596);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(62, 22);
+            this.label50.TabIndex = 644;
+            this.label50.Text = "20";
+            this.label50.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label52
+            // 
+            this.label52.BackColor = System.Drawing.Color.Transparent;
+            this.label52.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label52.ForeColor = System.Drawing.Color.MediumBlue;
+            this.label52.Location = new System.Drawing.Point(410, 618);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(62, 22);
+            this.label52.TabIndex = 646;
+            this.label52.Text = "5";
+            this.label52.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label56
+            // 
+            this.label56.BackColor = System.Drawing.Color.Transparent;
+            this.label56.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label56.ForeColor = System.Drawing.Color.MediumBlue;
+            this.label56.Location = new System.Drawing.Point(403, 571);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(62, 22);
+            this.label56.TabIndex = 650;
+            this.label56.Text = "True";
+            this.label56.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label94
+            // 
+            this.label94.BackColor = System.Drawing.Color.Transparent;
+            this.label94.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label94.ForeColor = System.Drawing.Color.MediumBlue;
+            this.label94.Location = new System.Drawing.Point(403, 548);
+            this.label94.Name = "label94";
+            this.label94.Size = new System.Drawing.Size(62, 22);
+            this.label94.TabIndex = 688;
+            this.label94.Text = "False";
+            this.label94.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.BackColor = System.Drawing.Color.Transparent;
+            this.label55.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label55.ForeColor = System.Drawing.Color.DimGray;
+            this.label55.Location = new System.Drawing.Point(466, 571);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(163, 22);
+            this.label55.TabIndex = 651;
+            this.label55.Text = "Auto Start AgIO?";
+            this.label55.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label93
+            // 
+            this.label93.AutoSize = true;
+            this.label93.BackColor = System.Drawing.Color.Transparent;
+            this.label93.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label93.ForeColor = System.Drawing.Color.DimGray;
+            this.label93.Location = new System.Drawing.Point(466, 548);
+            this.label93.Name = "label93";
+            this.label93.Size = new System.Drawing.Size(192, 22);
+            this.label93.TabIndex = 689;
+            this.label93.Text = "RTK Kill AutoSteer?";
+            this.label93.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label187
+            // 
+            this.label187.BackColor = System.Drawing.Color.Transparent;
+            this.label187.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label187.ForeColor = System.Drawing.Color.DimGray;
+            this.label187.Location = new System.Drawing.Point(347, 596);
+            this.label187.Name = "label187";
+            this.label187.Size = new System.Drawing.Size(62, 22);
+            this.label187.TabIndex = 789;
+            this.label187.Text = "20";
+            this.label187.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label186
+            // 
+            this.label186.BackColor = System.Drawing.Color.Transparent;
+            this.label186.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label186.ForeColor = System.Drawing.Color.DimGray;
+            this.label186.Location = new System.Drawing.Point(347, 618);
+            this.label186.Name = "label186";
+            this.label186.Size = new System.Drawing.Size(62, 22);
+            this.label186.TabIndex = 790;
+            this.label186.Text = "5";
+            this.label186.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label205
+            // 
+            this.label205.BackColor = System.Drawing.Color.Transparent;
+            this.label205.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label205.ForeColor = System.Drawing.Color.DimGray;
+            this.label205.Location = new System.Drawing.Point(341, 548);
+            this.label205.Name = "label205";
+            this.label205.Size = new System.Drawing.Size(62, 22);
+            this.label205.TabIndex = 814;
+            this.label205.Text = "False";
+            this.label205.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label240
+            // 
+            this.label240.BackColor = System.Drawing.Color.Transparent;
+            this.label240.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label240.ForeColor = System.Drawing.Color.DimGray;
+            this.label240.Location = new System.Drawing.Point(341, 569);
+            this.label240.Name = "label240";
+            this.label240.Size = new System.Drawing.Size(62, 22);
+            this.label240.TabIndex = 814;
+            this.label240.Text = "True";
+            this.label240.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.BackColor = System.Drawing.Color.Transparent;
+            this.label49.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label49.ForeColor = System.Drawing.Color.DimGray;
+            this.label49.Location = new System.Drawing.Point(466, 596);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(144, 22);
+            this.label49.TabIndex = 645;
+            this.label49.Text = "Snap Distance";
+            this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.BackColor = System.Drawing.Color.Transparent;
+            this.label51.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label51.ForeColor = System.Drawing.Color.DimGray;
+            this.label51.Location = new System.Drawing.Point(466, 618);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(179, 22);
+            this.label51.TabIndex = 647;
+            this.label51.Text = "Ref Snap Distance";
+            this.label51.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnScreenShot
+            // 
+            this.btnScreenShot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnScreenShot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnScreenShot.FlatAppearance.BorderSize = 0;
+            this.btnScreenShot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnScreenShot.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnScreenShot.Image = global::AgOpenGPS.Properties.Resources.ScreenShot;
+            this.btnScreenShot.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnScreenShot.Location = new System.Drawing.Point(1096, 513);
+            this.btnScreenShot.Name = "btnScreenShot";
+            this.btnScreenShot.Size = new System.Drawing.Size(76, 77);
+            this.btnScreenShot.TabIndex = 643;
+            this.btnScreenShot.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnScreenShot.UseVisualStyleBackColor = true;
+            this.btnScreenShot.Click += new System.EventHandler(this.btnScreenShot_Click);
+            // 
             // FormAllSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -3534,7 +3534,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1197, 670);
+            this.ClientSize = new System.Drawing.Size(1197, 663);
             this.Controls.Add(this.label157);
             this.Controls.Add(this.label155);
             this.Controls.Add(this.label153);
@@ -3589,7 +3589,6 @@
             this.Controls.Add(this.lblAltitude);
             this.Controls.Add(this.lblSatsTracked);
             this.Controls.Add(this.label250);
-            this.Controls.Add(this.label189);
             this.Controls.Add(this.label214);
             this.Controls.Add(this.label215);
             this.Controls.Add(this.label216);
@@ -3798,6 +3797,7 @@
             this.Controls.Add(this.btnScreenShot);
             this.Controls.Add(this.label251);
             this.Controls.Add(this.label252);
+            this.Controls.Add(this.label189);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.ForeColor = System.Drawing.Color.DimGray;
@@ -3861,12 +3861,6 @@
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.Button btnScreenShot;
-        private System.Windows.Forms.Label label49;
-        private System.Windows.Forms.Label label50;
-        private System.Windows.Forms.Label label51;
-        private System.Windows.Forms.Label label52;
-        private System.Windows.Forms.Label label55;
-        private System.Windows.Forms.Label label56;
         private System.Windows.Forms.Label label57;
         private System.Windows.Forms.Label label58;
         private System.Windows.Forms.Label label59;
@@ -3899,8 +3893,6 @@
         private System.Windows.Forms.Label label88;
         private System.Windows.Forms.Label label91;
         private System.Windows.Forms.Label label92;
-        private System.Windows.Forms.Label label93;
-        private System.Windows.Forms.Label label94;
         private System.Windows.Forms.Label label95;
         private System.Windows.Forms.Label label96;
         private System.Windows.Forms.Label label97;
@@ -3996,8 +3988,6 @@
         private System.Windows.Forms.Label label183;
         private System.Windows.Forms.Label label184;
         private System.Windows.Forms.Label label185;
-        private System.Windows.Forms.Label label186;
-        private System.Windows.Forms.Label label187;
         private System.Windows.Forms.Label label188;
         private System.Windows.Forms.Label label190;
         private System.Windows.Forms.Label label191;
@@ -4013,7 +4003,6 @@
         private System.Windows.Forms.Label label202;
         private System.Windows.Forms.Label label203;
         private System.Windows.Forms.Label label204;
-        private System.Windows.Forms.Label label205;
         private System.Windows.Forms.Label label206;
         private System.Windows.Forms.Label label208;
         private System.Windows.Forms.Label label210;
@@ -4047,7 +4036,6 @@
         private System.Windows.Forms.Label label238;
         private System.Windows.Forms.Label label239;
         private System.Windows.Forms.Label label189;
-        private System.Windows.Forms.Label label240;
         private System.Windows.Forms.Label label209;
         private System.Windows.Forms.Label lblAngularVelocity;
         private System.Windows.Forms.Label label241;
@@ -4079,5 +4067,17 @@
         private System.Windows.Forms.Label label251;
         private System.Windows.Forms.Label label252;
         private System.Windows.Forms.Label label254;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.Label label94;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.Label label93;
+        private System.Windows.Forms.Label label187;
+        private System.Windows.Forms.Label label186;
+        private System.Windows.Forms.Label label205;
+        private System.Windows.Forms.Label label240;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Label label51;
     }
 }
