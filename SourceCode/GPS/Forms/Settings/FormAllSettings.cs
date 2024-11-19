@@ -157,8 +157,9 @@ namespace AgOpenGPS
                 using (Graphics g = Graphics.FromImage(bitmap))
                 {
                     g.CopyFromScreen(new Point(bounds.Left, bounds.Top), Point.Empty, bounds.Size);
+                    Clipboard.SetImage(bitmap);
                 }
-                bitmap.Save(mf.baseDirectory+"//AllSettings.jpg", ImageFormat.Jpeg);
+                bitmap.Save(mf.baseDirectory+"//AllSet.PNG", ImageFormat.Png);
             }
 
             System.Diagnostics.Process.Start("explorer.exe", mf.baseDirectory);
