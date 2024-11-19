@@ -160,7 +160,22 @@ namespace AgOpenGPS
                     g.CopyFromScreen(new Point(bounds.Left, bounds.Top), Point.Empty, bounds.Size);
                     Clipboard.SetImage(bitmap);
                 }
-                bitmap.Save(mf.baseDirectory+"//AllSet.PNG", ImageFormat.Png);
+            }
+
+            mf.TimedMessageBox(2000, "Captured", "Copied to Clipboard, Paste (CTRL-V) in Telegram");
+        }
+
+        private void btnCreatePNG_Click(object sender, EventArgs e)
+        {
+            Rectangle bounds = this.Bounds;
+            using (Bitmap bitmap = new Bitmap(bounds.Width, bounds.Height))
+            {
+                using (Graphics g = Graphics.FromImage(bitmap))
+                {
+                    g.CopyFromScreen(new Point(bounds.Left, bounds.Top), Point.Empty, bounds.Size);
+                    Clipboard.SetImage(bitmap);
+                }
+                bitmap.Save(mf.baseDirectory + "//AllSet.PNG", ImageFormat.Png);
             }
 
             System.Diagnostics.Process.Start("explorer.exe", mf.baseDirectory);

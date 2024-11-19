@@ -291,6 +291,8 @@
             this.label43 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
             this.label58 = new System.Windows.Forms.Label();
+            this.btnCreatePNG = new System.Windows.Forms.Button();
+            this.label57 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label3
@@ -3087,12 +3089,12 @@
             this.label189.BackColor = System.Drawing.Color.Transparent;
             this.label189.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label189.ForeColor = System.Drawing.Color.Black;
-            this.label189.Location = new System.Drawing.Point(1022, 538);
+            this.label189.Location = new System.Drawing.Point(1095, 547);
             this.label189.Name = "label189";
-            this.label189.Size = new System.Drawing.Size(152, 44);
+            this.label189.Size = new System.Drawing.Size(88, 44);
             this.label189.TabIndex = 843;
-            this.label189.Text = "Copy to Clipboard\r\nCreate AllSet.Png";
-            this.label189.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label189.Text = "Copy to Clipboard";
+            this.label189.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // label240
             // 
@@ -3497,9 +3499,9 @@
             this.btnScreenShot.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnScreenShot.Image = global::AgOpenGPS.Properties.Resources.ScreenShot;
             this.btnScreenShot.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnScreenShot.Location = new System.Drawing.Point(1068, 580);
+            this.btnScreenShot.Location = new System.Drawing.Point(1101, 594);
             this.btnScreenShot.Name = "btnScreenShot";
-            this.btnScreenShot.Size = new System.Drawing.Size(88, 86);
+            this.btnScreenShot.Size = new System.Drawing.Size(80, 72);
             this.btnScreenShot.TabIndex = 643;
             this.btnScreenShot.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnScreenShot.UseVisualStyleBackColor = true;
@@ -3542,6 +3544,34 @@
             this.label58.Text = "True";
             this.label58.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // btnCreatePNG
+            // 
+            this.btnCreatePNG.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCreatePNG.FlatAppearance.BorderSize = 0;
+            this.btnCreatePNG.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreatePNG.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnCreatePNG.Image = global::AgOpenGPS.Properties.Resources.FileNew;
+            this.btnCreatePNG.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnCreatePNG.Location = new System.Drawing.Point(999, 594);
+            this.btnCreatePNG.Name = "btnCreatePNG";
+            this.btnCreatePNG.Size = new System.Drawing.Size(80, 72);
+            this.btnCreatePNG.TabIndex = 878;
+            this.btnCreatePNG.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnCreatePNG.UseVisualStyleBackColor = true;
+            this.btnCreatePNG.Click += new System.EventHandler(this.btnCreatePNG_Click);
+            // 
+            // label57
+            // 
+            this.label57.BackColor = System.Drawing.Color.Transparent;
+            this.label57.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label57.ForeColor = System.Drawing.Color.Black;
+            this.label57.Location = new System.Drawing.Point(993, 547);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(96, 44);
+            this.label57.TabIndex = 879;
+            this.label57.Text = "Create AllSet.PNG";
+            this.label57.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
             // FormAllSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -3550,6 +3580,8 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1188, 671);
+            this.Controls.Add(this.label57);
+            this.Controls.Add(this.btnCreatePNG);
             this.Controls.Add(this.label43);
             this.Controls.Add(this.label44);
             this.Controls.Add(this.label58);
@@ -4094,5 +4126,7 @@
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Label label58;
+        private System.Windows.Forms.Button btnCreatePNG;
+        private System.Windows.Forms.Label label57;
     }
 }
