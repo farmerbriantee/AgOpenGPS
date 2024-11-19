@@ -517,7 +517,7 @@
     <value>Vue du champ</value>
   </data>
   <data name="gsTramLines" xml:space="preserve">
-    <value>Lignes de grandes largeurs</value>
+    <value>Lignes de jalons</value>
   </data>
   <data name="gsTurnABCurveOn" xml:space="preserve">
     <value>Activer Ligne AB</value>
