@@ -606,6 +606,12 @@ namespace AgOpenGPS
 
             if (choice == 2)
             {
+                Process[] processName = Process.GetProcessesByName("AgIO");
+                if (processName.Length != 0)
+                {
+                    processName[0].CloseMainWindow();
+                }
+
                 Process.Start("shutdown", "/s /t 0");
             }
 
