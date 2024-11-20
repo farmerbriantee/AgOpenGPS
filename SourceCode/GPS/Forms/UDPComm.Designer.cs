@@ -879,7 +879,7 @@ namespace AgOpenGPS
         //        //        bool bResult = SetGestureConfig(
         //        //            Handle, // window for which configuration is specified
         //        //            0,      // reserved, must be 0
-        //        //            1,      // count of GESTURECONFIG structures
+        //        //            1,      // countExit of GESTURECONFIG structures
         //        //            ref gc, // array of GESTURECONFIG structures, dwIDs
         //        //                    // will be processed in the order specified
         //        //                    // and repeated occurances will overwrite

@@ -2474,7 +2474,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool setDisplay_isBrightnessOn {
             get {
                 return ((bool)(this["setDisplay_isBrightnessOn"]));
@@ -2985,6 +2985,18 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setDisplay_isAutoOffAgIO"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setWindow_isShutdownComputer {
+            get {
+                return ((bool)(this["setWindow_isShutdownComputer"]));
+            }
+            set {
+                this["setWindow_isShutdownComputer"] = value;
             }
         }
     }

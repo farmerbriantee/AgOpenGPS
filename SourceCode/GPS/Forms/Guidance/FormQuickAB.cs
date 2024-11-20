@@ -462,7 +462,7 @@ namespace AgOpenGPS
 
         public void SmoothAB(int smPts)
         {
-            //count the reference list of original curve
+            //countExit the reference list of original curve
             int cnt = mf.curve.desList.Count;
 
             //the temp array

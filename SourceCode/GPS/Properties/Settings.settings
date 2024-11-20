@@ -615,7 +615,7 @@
       <Value Profile="(Default)">0.5</Value>
     </Setting>
     <Setting Name="setDisplay_isBrightnessOn" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setKey_hotkeys" Type="System.String" Scope="User">
       <Value Profile="(Default)">ACFGMNPTYVW12345678</Value>
@@ -742,6 +742,9 @@
     </Setting>
     <Setting Name="setDisplay_isAutoOffAgIO" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setWindow_isShutdownComputer" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

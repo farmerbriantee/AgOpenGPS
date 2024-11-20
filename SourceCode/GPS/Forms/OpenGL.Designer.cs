@@ -1119,7 +1119,7 @@ namespace AgOpenGPS
                         sectionOnOffZones++;
                     }
 
-                    //count current patch strips being made
+                    //countExit current patch strips being made
                     for (int j = 0; j < triStrip.Count; j++)
                     {
                         if (triStrip[j].isDrawing) patchingZones++;

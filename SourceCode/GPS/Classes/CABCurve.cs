@@ -1023,7 +1023,7 @@ namespace AgOpenGPS
         //for calculating for display the averaged new line
         public void SmoothAB(int smPts)
         {
-            //count the reference list of original curve
+            //countExit the reference list of original curve
             int cnt = mf.trk.gArr[mf.trk.idx].curvePts.Count;
 
             //just go back if not very long

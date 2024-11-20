@@ -370,7 +370,7 @@ namespace AgOpenGPS
         }
 
         private void btnMakeBoundaryCurve_Click(object sender, EventArgs e)
-        {            //count the points from the boundary
+        {            //countExit the points from the boundary
             for (int q = 0; q < mf.bnd.bndList.Count; q++)
             {
                 vec3 pt3;

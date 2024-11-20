@@ -3550,7 +3550,7 @@
             this.btnCreatePNG.FlatAppearance.BorderSize = 0;
             this.btnCreatePNG.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCreatePNG.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnCreatePNG.Image = global::AgOpenGPS.Properties.Resources.FileNew;
+            this.btnCreatePNG.Image = global::AgOpenGPS.Properties.Resources.Screen2PNG;
             this.btnCreatePNG.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnCreatePNG.Location = new System.Drawing.Point(999, 594);
             this.btnCreatePNG.Name = "btnCreatePNG";

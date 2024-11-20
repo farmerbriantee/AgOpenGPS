@@ -111,7 +111,7 @@ namespace AgOpenGPS
 
         private void CreateBndInnerTramTrack()
         {
-            //count the points from the boundary
+            //countExit the points from the boundary
             int ptCount = mf.bnd.bndList[0].fenceLine.Count;
             tramBndInnerArr?.Clear();
 
@@ -159,7 +159,7 @@ namespace AgOpenGPS
 
         public void CreateBndOuterTramTrack()
         {
-            //count the points from the boundary
+            //countExit the points from the boundary
             int ptCount = mf.bnd.bndList[0].fenceLine.Count;
             tramBndOuterArr?.Clear();
 

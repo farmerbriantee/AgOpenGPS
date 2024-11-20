@@ -16,6 +16,7 @@ using System.Media;
 using System.Net.Sockets;
 using System.Reflection;
 using System.Resources;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -349,9 +350,63 @@ namespace AgOpenGPS
             shape = new ShapeFile(this);
         }
 
+        //Enumeration to interpret ACLineStatus in a right manner
+        public enum ACLineStatus : byte
+        {
+            Offline = 0,
+            Online = 1,
+            Unknown = 255
+        }
+
+        //A structure to access returned data properly and a method to reach pursued goal
+        [StructLayout(LayoutKind.Sequential)]
+        public class PowerState
+        {
+            //The only parameter we are interested in, so it's the only parameter interpreted
+            //Make sure to keep all the other parameters with relevant types in this class, otherwise you can face bugs
+            private ACLineStatus ACLineStatus;
+            private byte BatteryFlag;
+            private byte Reserved1;
+            private int BatteryLifeTime;
+            private int BatteryFullLifeTime;
+
+            //Win32 api function import
+            [DllImport("Kernel32", EntryPoint = "GetSystemPowerStatus")]
+            private static extern bool GetSystemPowerStatusByRef(PowerState ps);
+
+            //The method we use to get the current status of AC Power Source connection
+            public static ACLineStatus GetPowerLineStatus()
+            {
+                PowerState ps = new PowerState();
+
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) && GetSystemPowerStatusByRef(ps))
+                    return ps.ACLineStatus;
+
+                return ACLineStatus.Unknown;
+            }
+        }
+
+        //The method assigned to the PowerModeChanged event call
+        private void SystemEvents_PowerModeChanged(object sender, Microsoft.Win32.PowerModeChangedEventArgs e)
+        {
+            //We are interested only in StatusChange cases, you may find other cases in a link below
+            if (e.Mode.HasFlag(Microsoft.Win32.PowerModes.StatusChange))
+            {
+                //We use our custom PowerState.GetPowerLineStatus static method to define if Laptop is connected to AC
+                //The return values are mentioned in a enumeration below
+                //Log method is a placeholder method, you'd like to switch it to your own
+                string bob = (PowerState.GetPowerLineStatus().ToString());
+                Close();
+            }
+        }
+
+
         private void FormGPS_Load(object sender, EventArgs e)
         {
             this.MouseWheel += ZoomByMouseWheel;
+
+            //The way we subscribe to the System Event to check when Power Mode has changed.
+            Microsoft.Win32.SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
 
             //start udp server is required
             StartLoopbackServer();

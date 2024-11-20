@@ -1262,7 +1262,7 @@ namespace AgOpenGPS
 
             #endregion
 
-            //used to increase triangle count when going around corners, less on straight
+            //used to increase triangle countExit when going around corners, less on straight
             //pick the slow moving side edge of tool
             double distance = tool.width * 0.5;
             if (distance > 5) distance = 5;
