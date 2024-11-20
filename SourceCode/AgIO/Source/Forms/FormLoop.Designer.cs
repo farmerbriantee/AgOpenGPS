@@ -91,7 +91,6 @@ namespace AgIO
             this.btnSteer = new System.Windows.Forms.Button();
             this.btnMachine = new System.Windows.Forms.Button();
             this.btnGPS = new System.Windows.Forms.Button();
-            this.btnWindowsShutDown = new System.Windows.Forms.Button();
             this.btnSlide = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnExit = new System.Windows.Forms.Button();
@@ -293,7 +292,7 @@ namespace AgIO
             this.toolStripMenuItem1.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripMenuItem1.Image = global::AgIO.Properties.Resources.VehFileSave;
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(296, 70);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(297, 70);
             this.toolStripMenuItem1.Text = "Save";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
@@ -302,7 +301,7 @@ namespace AgIO
             this.toolStripMenuItem2.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripMenuItem2.Image = global::AgIO.Properties.Resources.VehFileLoad;
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(296, 70);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(297, 70);
             this.toolStripMenuItem2.Text = "Load";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
@@ -311,7 +310,7 @@ namespace AgIO
             this.toolStripUDPMonitor.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripUDPMonitor.Image = global::AgIO.Properties.Resources.ScanNetwork;
             this.toolStripUDPMonitor.Name = "toolStripUDPMonitor";
-            this.toolStripUDPMonitor.Size = new System.Drawing.Size(296, 70);
+            this.toolStripUDPMonitor.Size = new System.Drawing.Size(297, 70);
             this.toolStripUDPMonitor.Text = "UDP Monitor";
             this.toolStripUDPMonitor.Click += new System.EventHandler(this.toolStripUDPMonitor_Click);
             // 
@@ -320,7 +319,7 @@ namespace AgIO
             this.toolStripSerialMonitor.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripSerialMonitor.Image = global::AgIO.Properties.Resources.SerialMonitor;
             this.toolStripSerialMonitor.Name = "toolStripSerialMonitor";
-            this.toolStripSerialMonitor.Size = new System.Drawing.Size(296, 70);
+            this.toolStripSerialMonitor.Size = new System.Drawing.Size(297, 70);
             this.toolStripSerialMonitor.Text = "Serial Monitor";
             this.toolStripSerialMonitor.Click += new System.EventHandler(this.toolStripSerialMonitor_Click);
             // 
@@ -329,7 +328,7 @@ namespace AgIO
             this.toolStripEthernet.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripEthernet.Image = global::AgIO.Properties.Resources.EthernetSetup;
             this.toolStripEthernet.Name = "toolStripEthernet";
-            this.toolStripEthernet.Size = new System.Drawing.Size(296, 70);
+            this.toolStripEthernet.Size = new System.Drawing.Size(297, 70);
             this.toolStripEthernet.Text = "Linux Users";
             this.toolStripEthernet.Click += new System.EventHandler(this.toolStripEthernet_Click);
             // 
@@ -338,7 +337,7 @@ namespace AgIO
             this.deviceManagerToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deviceManagerToolStripMenuItem.Image = global::AgIO.Properties.Resources.DeviceManager;
             this.deviceManagerToolStripMenuItem.Name = "deviceManagerToolStripMenuItem";
-            this.deviceManagerToolStripMenuItem.Size = new System.Drawing.Size(296, 70);
+            this.deviceManagerToolStripMenuItem.Size = new System.Drawing.Size(297, 70);
             this.deviceManagerToolStripMenuItem.Text = "Device Manager";
             this.deviceManagerToolStripMenuItem.Click += new System.EventHandler(this.deviceManagerToolStripMenuItem_Click);
             // 
@@ -363,7 +362,7 @@ namespace AgIO
             this.saveToolStrip.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveToolStrip.Image = global::AgIO.Properties.Resources.NTRIP_Client;
             this.saveToolStrip.Name = "saveToolStrip";
-            this.saveToolStrip.Size = new System.Drawing.Size(285, 70);
+            this.saveToolStrip.Size = new System.Drawing.Size(286, 70);
             this.saveToolStrip.Text = "Client NTRIP";
             this.saveToolStrip.Click += new System.EventHandler(this.btnNTRIP_Click);
             // 
@@ -372,7 +371,7 @@ namespace AgIO
             this.loadToolStrip.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loadToolStrip.Image = global::AgIO.Properties.Resources.RadioSettings;
             this.loadToolStrip.Name = "loadToolStrip";
-            this.loadToolStrip.Size = new System.Drawing.Size(285, 70);
+            this.loadToolStrip.Size = new System.Drawing.Size(286, 70);
             this.loadToolStrip.Text = "Radio NTRIP";
             this.loadToolStrip.Click += new System.EventHandler(this.btnRadio_Click_1);
             // 
@@ -381,7 +380,7 @@ namespace AgIO
             this.serialPassThroughToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.serialPassThroughToolStripMenuItem.Image = global::AgIO.Properties.Resources.NTRIP_Serial;
             this.serialPassThroughToolStripMenuItem.Name = "serialPassThroughToolStripMenuItem";
-            this.serialPassThroughToolStripMenuItem.Size = new System.Drawing.Size(285, 70);
+            this.serialPassThroughToolStripMenuItem.Size = new System.Drawing.Size(286, 70);
             this.serialPassThroughToolStripMenuItem.Text = "Serial NTRIP";
             this.serialPassThroughToolStripMenuItem.Click += new System.EventHandler(this.serialPassThroughToolStripMenuItem_Click);
             // 
@@ -912,25 +911,6 @@ namespace AgIO
             this.btnGPS.UseVisualStyleBackColor = false;
             this.btnGPS.Click += new System.EventHandler(this.btnBringUpCommSettings_Click);
             // 
-            // btnWindowsShutDown
-            // 
-            this.btnWindowsShutDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnWindowsShutDown.BackColor = System.Drawing.Color.Transparent;
-            this.btnWindowsShutDown.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnWindowsShutDown.FlatAppearance.BorderSize = 0;
-            this.btnWindowsShutDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnWindowsShutDown.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWindowsShutDown.ForeColor = System.Drawing.Color.White;
-            this.btnWindowsShutDown.Image = global::AgIO.Properties.Resources.WindowsShutDown;
-            this.btnWindowsShutDown.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnWindowsShutDown.Location = new System.Drawing.Point(664, 415);
-            this.btnWindowsShutDown.Margin = new System.Windows.Forms.Padding(4);
-            this.btnWindowsShutDown.Name = "btnWindowsShutDown";
-            this.btnWindowsShutDown.Size = new System.Drawing.Size(63, 58);
-            this.btnWindowsShutDown.TabIndex = 486;
-            this.btnWindowsShutDown.UseVisualStyleBackColor = false;
-            this.btnWindowsShutDown.Click += new System.EventHandler(this.btnWindowsShutDown_Click);
-            // 
             // btnSlide
             // 
             this.btnSlide.BackColor = System.Drawing.Color.Transparent;
@@ -971,7 +951,7 @@ namespace AgIO
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Image = global::AgIO.Properties.Resources.SwitchOff;
+            this.btnExit.Image = global::AgIO.Properties.Resources.WindowClose;
             this.btnExit.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnExit.Location = new System.Drawing.Point(3, 415);
             this.btnExit.Margin = new System.Windows.Forms.Padding(4);
@@ -1114,7 +1094,6 @@ namespace AgIO
             this.Controls.Add(this.btnMachine);
             this.Controls.Add(this.btnGPS);
             this.Controls.Add(this.lblMessagesFound);
-            this.Controls.Add(this.btnWindowsShutDown);
             this.Controls.Add(this.lblWorkSwitchStatus);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.lblSwitchStatus);
@@ -1203,7 +1182,6 @@ namespace AgIO
         private System.Windows.Forms.Label lblSwitchStatus;
         private System.Windows.Forms.Label lblWorkSwitchStatus;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button btnWindowsShutDown;
         private System.Windows.Forms.Label lblMessagesFound;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox cboxIsMachineModule;

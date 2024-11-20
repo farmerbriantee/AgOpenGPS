@@ -332,6 +332,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgIO_ico.ico" />
+    <None Include="btnImages\WindowClose.png" />
     <None Include="btnImages\GPS_Out.png" />
     <None Include="Resources\TF012.WAV" />
     <None Include="btnImages\SerialMonitor.png" />
