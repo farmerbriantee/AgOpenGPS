@@ -400,7 +400,6 @@ namespace AgOpenGPS
             }
         }
 
-
         private void FormGPS_Load(object sender, EventArgs e)
         {
             this.MouseWheel += ZoomByMouseWheel;
