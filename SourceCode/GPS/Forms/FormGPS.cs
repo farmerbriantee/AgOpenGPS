@@ -307,6 +307,14 @@ namespace AgOpenGPS
                 if (bob == "Charging")
                 {
                     btnChargeStatus.BackColor = Color.YellowGreen;
+
+                    Form f = Application.OpenForms["FormSaveOrNot"];
+
+                    if (f != null)
+                    {
+                        f.Focus();
+                        f.Close();
+                    }
                 }
                 else
                 {
