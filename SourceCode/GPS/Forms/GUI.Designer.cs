@@ -767,6 +767,16 @@ namespace AgOpenGPS
             SetZoom();
 
             lblGuidanceLine.BringToFront();
+
+            if ((int) PowerState.GetPowerLineStatus() == 1)
+            {
+                btnChargeStatus.BackColor = Color.YellowGreen;
+            }
+            else
+            {
+                btnChargeStatus.BackColor = Color.LightCoral;
+            }
+
         }
 
         public void PanelUpdateRightAndBottom()

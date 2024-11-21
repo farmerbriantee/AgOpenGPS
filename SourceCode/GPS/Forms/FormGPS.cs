@@ -304,6 +304,16 @@ namespace AgOpenGPS
 
                 TimedMessageBox(2000, "Charging Status", "AC Adapter is: " + bob);
 
+                if (bob == "Charging")
+                {
+                    btnChargeStatus.BackColor = Color.YellowGreen;
+                }
+                else
+                {
+                    btnChargeStatus.BackColor = Color.LightCoral;
+                }
+
+
                 if (Properties.Settings.Default.setDisplay_isShutdownWhenNoPower && bob == "Disconnected")
                 {
                     Close();
@@ -717,6 +727,7 @@ namespace AgOpenGPS
                 return 1;  // oops something is really busted
             }
         }
+
         private void FormGPS_ResizeEnd(object sender, EventArgs e)
         {
             PanelsAndOGLSize();
@@ -762,7 +773,6 @@ namespace AgOpenGPS
             }
             return PixelsVisible >= (Rec.Width * Rec.Height) * MinPercentOnScreen;
         }
-
 
         private void FormGPS_Move(object sender, EventArgs e)
         {
