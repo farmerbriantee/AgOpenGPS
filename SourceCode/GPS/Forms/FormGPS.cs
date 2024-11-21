@@ -544,14 +544,14 @@ namespace AgOpenGPS
 
             ControlExtension.Draggable(panelDrag, true);
 
-            setWorkingDirectoryToolStripMenuItem.Text = gStr.gsDirectories;
+            toolStripWorkingDirectories.Text = gStr.gsDirectories;
             enterSimCoordsToolStripMenuItem.Text = gStr.gsEnterSimCoords;
             aboutToolStripMenuItem.Text = gStr.gsAbout;
             menustripLanguage.Text = gStr.gsLanguage;
 
             simulatorOnToolStripMenuItem.Text = gStr.gsSimulatorOn;
             resetALLToolStripMenuItem.Text = gStr.gsResetAll;
-            colorsToolStripMenuItem1.Text = gStr.gsColors;
+            toolStripColors.Text = gStr.gsColors;
             resetEverythingToolStripMenuItem.Text = gStr.gsResetAllForSure;
             steerChartStripMenu.Text = gStr.gsCharts;
 
