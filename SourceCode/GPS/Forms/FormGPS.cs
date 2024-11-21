@@ -353,8 +353,8 @@ namespace AgOpenGPS
         //Enumeration to interpret ACLineStatus in a right manner
         public enum ACLineStatus : byte
         {
-            Offline = 0,
-            Online = 1,
+            Disconnected = 0,
+            Charging = 1,
             Unknown = 255
         }
 
@@ -389,14 +389,17 @@ namespace AgOpenGPS
         //The method assigned to the PowerModeChanged event call
         private void SystemEvents_PowerModeChanged(object sender, Microsoft.Win32.PowerModeChangedEventArgs e)
         {
-            //We are interested only in StatusChange cases, you may find other cases in a link below
+            //We are interested only in StatusChange cases
             if (e.Mode.HasFlag(Microsoft.Win32.PowerModes.StatusChange))
             {
-                //We use our custom PowerState.GetPowerLineStatus static method to define if Laptop is connected to AC
-                //The return values are mentioned in a enumeration below
-                //Log method is a placeholder method, you'd like to switch it to your own
-                string bob = (PowerState.GetPowerLineStatus().ToString());
-                Close();
+                string bob = PowerState.GetPowerLineStatus().ToString();
+
+                TimedMessageBox(2000, "Charging Status", "AC Adapter is: " + bob);
+
+                if (Properties.Settings.Default.setDisplay_isShutdownWhenNoPower && bob == "Disconnected")
+                {
+                        Close();
+                }
             }
         }
 

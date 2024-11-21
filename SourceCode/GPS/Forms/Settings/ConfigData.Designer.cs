@@ -303,6 +303,7 @@ namespace AgOpenGPS
 
             cboxAutoStartAgIO.Checked = Properties.Settings.Default.setDisplay_isAutoStartAgIO;
             cboxAutoOffAgIO.Checked = Properties.Settings.Default.setDisplay_isAutoOffAgIO;
+            cboxShutdownWhenNoPower.Checked = Properties.Settings.Default.setDisplay_isShutdownWhenNoPower;
         }
 
         private void tabBtns_Leave(object sender, EventArgs e)
@@ -336,6 +337,8 @@ namespace AgOpenGPS
             mf.isAutoStartAgIO = cboxAutoStartAgIO.Checked;
 
             Properties.Settings.Default.setDisplay_isAutoOffAgIO = cboxAutoOffAgIO.Checked;
+
+            Properties.Settings.Default.setDisplay_isShutdownWhenNoPower = cboxShutdownWhenNoPower.Checked;
 
             Properties.Settings.Default.Save();
         }
