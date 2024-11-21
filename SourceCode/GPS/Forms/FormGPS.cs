@@ -17,6 +17,7 @@ using System.Net.Sockets;
 using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -257,6 +258,59 @@ namespace AgOpenGPS
 
         #endregion // Class Props and instances
 
+        //Enumeration to interpret ACLineStatus in a right manner
+        public enum ACLineStatus : byte
+        {
+            Disconnected = 0,
+            Charging = 1,
+            Unknown = 255
+        }
+
+        //A structure to access returned data properly and a method to reach pursued goal
+        [StructLayout(LayoutKind.Sequential)]
+        public class PowerState
+        {
+            //The only parameter we are interested in, so it's the only parameter interpreted
+            //Make sure to keep all the other parameters with relevant types in this class, otherwise you can face bugs
+            private ACLineStatus ACLineStatus;
+            private byte BatteryFlag;
+            private byte Reserved1;
+            private int BatteryLifeTime;
+            private int BatteryFullLifeTime;
+
+            //Win32 api function import
+            [DllImport("Kernel32", EntryPoint = "GetSystemPowerStatus")]
+            private static extern bool GetSystemPowerStatusByRef(PowerState ps);
+
+            //The method we use to get the current status of AC Power Source connection
+            public static ACLineStatus GetPowerLineStatus()
+            {
+                PowerState ps = new PowerState();
+
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) && GetSystemPowerStatusByRef(ps))
+                    return ps.ACLineStatus;
+
+                return ACLineStatus.Unknown;
+            }
+        }
+
+        //The method assigned to the PowerModeChanged event call
+        private void SystemEvents_PowerModeChanged(object sender, Microsoft.Win32.PowerModeChangedEventArgs e)
+        {
+            //We are interested only in StatusChange cases
+            if (e.Mode.HasFlag(Microsoft.Win32.PowerModes.StatusChange))
+            {
+                string bob = PowerState.GetPowerLineStatus().ToString();
+
+                TimedMessageBox(2000, "Charging Status", "AC Adapter is: " + bob);
+
+                if (Properties.Settings.Default.setDisplay_isShutdownWhenNoPower && bob == "Disconnected")
+                {
+                    Close();
+                }
+            }
+        }
+
         public FormGPS()
         {
             //winform initialization
@@ -348,59 +402,6 @@ namespace AgOpenGPS
 
             //shape file object
             shape = new ShapeFile(this);
-        }
-
-        //Enumeration to interpret ACLineStatus in a right manner
-        public enum ACLineStatus : byte
-        {
-            Disconnected = 0,
-            Charging = 1,
-            Unknown = 255
-        }
-
-        //A structure to access returned data properly and a method to reach pursued goal
-        [StructLayout(LayoutKind.Sequential)]
-        public class PowerState
-        {
-            //The only parameter we are interested in, so it's the only parameter interpreted
-            //Make sure to keep all the other parameters with relevant types in this class, otherwise you can face bugs
-            private ACLineStatus ACLineStatus;
-            private byte BatteryFlag;
-            private byte Reserved1;
-            private int BatteryLifeTime;
-            private int BatteryFullLifeTime;
-
-            //Win32 api function import
-            [DllImport("Kernel32", EntryPoint = "GetSystemPowerStatus")]
-            private static extern bool GetSystemPowerStatusByRef(PowerState ps);
-
-            //The method we use to get the current status of AC Power Source connection
-            public static ACLineStatus GetPowerLineStatus()
-            {
-                PowerState ps = new PowerState();
-
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) && GetSystemPowerStatusByRef(ps))
-                    return ps.ACLineStatus;
-
-                return ACLineStatus.Unknown;
-            }
-        }
-
-        //The method assigned to the PowerModeChanged event call
-        private void SystemEvents_PowerModeChanged(object sender, Microsoft.Win32.PowerModeChangedEventArgs e)
-        {
-            //We are interested only in StatusChange cases
-            if (e.Mode.HasFlag(Microsoft.Win32.PowerModes.StatusChange))
-            {
-                string bob = PowerState.GetPowerLineStatus().ToString();
-
-                TimedMessageBox(2000, "Charging Status", "AC Adapter is: " + bob);
-
-                if (Properties.Settings.Default.setDisplay_isShutdownWhenNoPower && bob == "Disconnected")
-                {
-                        Close();
-                }
-            }
         }
 
         private void FormGPS_Load(object sender, EventArgs e)
@@ -621,6 +622,14 @@ namespace AgOpenGPS
             if (f != null)
             {
                 isPanFormVisible = false;
+                f.Focus();
+                f.Close();
+            }
+
+            f = Application.OpenForms["FormTimedMessage"];
+
+            if (f != null)
+            {
                 f.Focus();
                 f.Close();
             }
