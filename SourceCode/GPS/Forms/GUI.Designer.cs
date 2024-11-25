@@ -76,6 +76,7 @@ namespace AgOpenGPS
         private int navPanelCounter = 0, trackMethodPanelCounter = 0;
         public uint sentenceCounter = 0;
         public int guideLineCounter = 0;
+        public int hardwareLineCounter = 0;
 
         private int currentFieldTextCounter = 0;
 
@@ -768,6 +769,7 @@ namespace AgOpenGPS
             SetZoom();
 
             lblGuidanceLine.BringToFront();
+            lblHardwareMessage.BringToFront();
 
             if ((int) PowerState.GetPowerLineStatus() == 1)
             {

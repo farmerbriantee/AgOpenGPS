@@ -417,6 +417,9 @@ namespace AgOpenGPS
 
                     if (trk.idx >-1) DrawGuidanceLineText();
 
+                    //if hardware messages
+                    DrawHardwareMessageText(); 
+
                     //just in case
                     GL.Disable(EnableCap.LineStipple);
 
@@ -2440,14 +2443,31 @@ namespace AgOpenGPS
         {
             if (guideLineCounter > 0)
             {
-                if (trk.gArr.Count > 0 && trk.idx > -1)
-                    lblGuidanceLine.Text = trk.gArr[trk.idx].name;
-                else lblGuidanceLine.Text = gStr.gsNoGuidanceLines;
+                if (guideLineCounter == 20)
+                {
+                    if (trk.gArr.Count > 0)
+                        lblGuidanceLine.Text = trk.gArr[trk.idx].name;
+                    else
+                        lblGuidanceLine.Text = gStr.gsNoGuidanceLines;
+                }
                 guideLineCounter--;
 
                 if (guideLineCounter == 0)
                 {
                     lblGuidanceLine.Visible = false;
+                }
+            }
+        }
+
+        private void DrawHardwareMessageText()
+        {
+            if (hardwareLineCounter > 0)
+            {
+                hardwareLineCounter--;
+
+                if (hardwareLineCounter == 0)
+                {
+                    lblHardwareMessage.Visible = false;
                 }
             }
         }

@@ -2109,6 +2109,10 @@ namespace AgOpenGPS
                 Process.Start(fieldsDirectory + currentFieldDirectory + "\\Flag.KML");
             }
         }
+        private void lblHardwareMessage_Click(object sender, EventArgs e)
+        {
+            hardwareLineCounter = 1;
+        }
 
         #endregion
 

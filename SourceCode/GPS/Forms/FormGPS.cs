@@ -999,6 +999,7 @@ namespace AgOpenGPS
             SetZoom();
             fileSaveCounter = 25;
             lblGuidanceLine.Visible = false;
+            lblHardwareMessage.Visible = false;
             btnAutoTrack.Image = Resources.AutoTrackOff;
             trk.isAutoTrack = false;
         }
@@ -1033,8 +1034,10 @@ namespace AgOpenGPS
             vehicle.isHydLiftOn = false;
             btnHydLift.Image = Properties.Resources.HydraulicLiftOff;
             btnHydLift.Visible = false;
+            lblHardwareMessage.Visible = false;
 
             lblGuidanceLine.Visible = false;
+            lblHardwareMessage.Visible = false;
 
             //zoom gone
             oglZoom.SendToBack();

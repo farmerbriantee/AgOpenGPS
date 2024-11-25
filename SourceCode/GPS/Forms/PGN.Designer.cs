@@ -490,7 +490,7 @@ namespace AgOpenGPS
         public CPGN_E4 p_228 = new CPGN_E4();
 
         /// <summary>
-        /// Section Symmetric PGN - 235 - EB
+        /// Section Symmetric PGN - 229 - EB
         /// </summary>
         public CPGN_E5 p_229 = new CPGN_E5();
 

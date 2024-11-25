@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Globalization;
 using System.Diagnostics;
+using System.Xml.Linq;
 
 namespace AgOpenGPS
 {
@@ -249,10 +250,20 @@ namespace AgOpenGPS
                         }
 
                     case 250:
-                        {                            
+                        {
                             if (data.Length != 14)
                                 break;
                             mc.sensorData = data[5];
+                            break;
+                        }
+
+                    case 221: // DD
+                        {                    
+                            //{ 0x80, 0x81, 0x7f, 221, number bytes, seconds to display, , mystery byte, 98,99,100,101, CRC };
+                            if (data.Length < 8 ) break;
+                            hardwareLineCounter = data[5] * 10;
+                            lblHardwareMessage.Text = System.Text.Encoding.UTF8.GetString(data, 7, data[4]-1);
+                            lblHardwareMessage.Visible = true;
                             break;
                         }
 
