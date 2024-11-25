@@ -292,7 +292,7 @@ namespace AgOpenGPS
             {
                 string bob = PowerState.GetPowerLineStatus().ToString();
 
-                TimedMessageBox(2000, "Charging Status", "AC Adapter is: " + bob);
+                //TimedMessageBox(2000, "Charging Status", "AC Adapter is: " + bob);
 
                 if (bob == "Charging")
                 {
