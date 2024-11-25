@@ -304,6 +304,7 @@ namespace AgOpenGPS
             cboxAutoStartAgIO.Checked = Properties.Settings.Default.setDisplay_isAutoStartAgIO;
             cboxAutoOffAgIO.Checked = Properties.Settings.Default.setDisplay_isAutoOffAgIO;
             cboxShutdownWhenNoPower.Checked = Properties.Settings.Default.setDisplay_isShutdownWhenNoPower;
+            cboxHardwareMessages.Checked = Properties.Settings.Default.setDisplay_isHardwareMessages;
         }
 
         private void tabBtns_Leave(object sender, EventArgs e)
@@ -340,6 +341,8 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.setDisplay_isShutdownWhenNoPower = cboxShutdownWhenNoPower.Checked;
 
+            Properties.Settings.Default.setDisplay_isHardwareMessages = cboxHardwareMessages.Checked;
+
             Properties.Settings.Default.Save();
         }
 
@@ -350,7 +353,6 @@ namespace AgOpenGPS
                 form.ShowDialog(mf);
             }
         }
-
 
         #endregion
     }

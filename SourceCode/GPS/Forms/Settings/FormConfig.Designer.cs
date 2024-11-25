@@ -330,6 +330,8 @@
             this.label75 = new System.Windows.Forms.Label();
             this.nudTramWidth = new AgOpenGPS.NudlessNumericUpDown();
             this.tabBtns = new System.Windows.Forms.TabPage();
+            this.label110 = new System.Windows.Forms.Label();
+            this.label109 = new System.Windows.Forms.Label();
             this.label108 = new System.Windows.Forms.Label();
             this.label91 = new System.Windows.Forms.Label();
             this.label62 = new System.Windows.Forms.Label();
@@ -378,7 +380,6 @@
             this.lblFeetMeters = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label109 = new System.Windows.Forms.Label();
             this.btnVehicleLoad = new System.Windows.Forms.Button();
             this.btnVehicleDelete = new System.Windows.Forms.Button();
             this.btnVehicleSave = new System.Windows.Forms.Button();
@@ -479,6 +480,7 @@
             this.cboxDisplayTramControl = new System.Windows.Forms.CheckBox();
             this.chkBoxOverrideTramControlPos = new System.Windows.Forms.CheckBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.cboxHardwareMessages = new System.Windows.Forms.CheckBox();
             this.cboxShutdownWhenNoPower = new System.Windows.Forms.CheckBox();
             this.cboxAutoOffAgIO = new System.Windows.Forms.CheckBox();
             this.cboxSectionsSound = new System.Windows.Forms.CheckBox();
@@ -6047,6 +6049,8 @@
             // tabBtns
             // 
             this.tabBtns.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabBtns.Controls.Add(this.label110);
+            this.tabBtns.Controls.Add(this.cboxHardwareMessages);
             this.tabBtns.Controls.Add(this.label109);
             this.tabBtns.Controls.Add(this.cboxShutdownWhenNoPower);
             this.tabBtns.Controls.Add(this.label108);
@@ -6099,13 +6103,37 @@
             this.tabBtns.Enter += new System.EventHandler(this.tabBtns_Enter);
             this.tabBtns.Leave += new System.EventHandler(this.tabBtns_Leave);
             // 
+            // label110
+            // 
+            this.label110.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label110.AutoSize = true;
+            this.label110.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label110.ForeColor = System.Drawing.Color.Black;
+            this.label110.Location = new System.Drawing.Point(560, 476);
+            this.label110.Name = "label110";
+            this.label110.Size = new System.Drawing.Size(123, 16);
+            this.label110.TabIndex = 533;
+            this.label110.Text = "Hardware Messages";
+            // 
+            // label109
+            // 
+            this.label109.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label109.AutoSize = true;
+            this.label109.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label109.ForeColor = System.Drawing.Color.Black;
+            this.label109.Location = new System.Drawing.Point(30, 476);
+            this.label109.Name = "label109";
+            this.label109.Size = new System.Drawing.Size(133, 16);
+            this.label109.TabIndex = 531;
+            this.label109.Text = "Power Loss Shutdown";
+            // 
             // label108
             // 
             this.label108.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label108.AutoSize = true;
             this.label108.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label108.ForeColor = System.Drawing.Color.Black;
-            this.label108.Location = new System.Drawing.Point(497, 476);
+            this.label108.Location = new System.Drawing.Point(393, 476);
             this.label108.Name = "label108";
             this.label108.Size = new System.Drawing.Size(92, 16);
             this.label108.TabIndex = 529;
@@ -6155,7 +6183,7 @@
             this.label92.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label92.ForeColor = System.Drawing.Color.Black;
             this.label92.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label92.Location = new System.Drawing.Point(368, 324);
+            this.label92.Location = new System.Drawing.Point(368, 316);
             this.label92.Name = "label92";
             this.label92.Size = new System.Drawing.Size(190, 25);
             this.label92.TabIndex = 521;
@@ -6168,7 +6196,7 @@
             this.label61.AutoSize = true;
             this.label61.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label61.ForeColor = System.Drawing.Color.Black;
-            this.label61.Location = new System.Drawing.Point(338, 476);
+            this.label61.Location = new System.Drawing.Point(234, 476);
             this.label61.Name = "label61";
             this.label61.Size = new System.Drawing.Size(103, 16);
             this.label61.TabIndex = 518;
@@ -6390,7 +6418,7 @@
             this.label93.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label93.ForeColor = System.Drawing.Color.Black;
             this.label93.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label93.Location = new System.Drawing.Point(515, 385);
+            this.label93.Location = new System.Drawing.Point(515, 377);
             this.label93.Name = "label93";
             this.label93.Size = new System.Drawing.Size(43, 29);
             this.label93.TabIndex = 455;
@@ -6717,18 +6745,6 @@
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // label109
-            // 
-            this.label109.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label109.AutoSize = true;
-            this.label109.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label109.ForeColor = System.Drawing.Color.Black;
-            this.label109.Location = new System.Drawing.Point(30, 476);
-            this.label109.Name = "label109";
-            this.label109.Size = new System.Drawing.Size(133, 16);
-            this.label109.TabIndex = 531;
-            this.label109.Text = "Power Loss Shutdown";
             // 
             // btnVehicleLoad
             // 
@@ -8299,6 +8315,25 @@
             this.pictureBox8.TabIndex = 119;
             this.pictureBox8.TabStop = false;
             // 
+            // cboxHardwareMessages
+            // 
+            this.cboxHardwareMessages.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cboxHardwareMessages.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxHardwareMessages.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cboxHardwareMessages.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.cboxHardwareMessages.FlatAppearance.BorderSize = 2;
+            this.cboxHardwareMessages.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
+            this.cboxHardwareMessages.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxHardwareMessages.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxHardwareMessages.ForeColor = System.Drawing.Color.Red;
+            this.cboxHardwareMessages.Image = global::AgOpenGPS.Properties.Resources.HardwareMessage;
+            this.cboxHardwareMessages.Location = new System.Drawing.Point(561, 495);
+            this.cboxHardwareMessages.Name = "cboxHardwareMessages";
+            this.cboxHardwareMessages.Size = new System.Drawing.Size(123, 77);
+            this.cboxHardwareMessages.TabIndex = 532;
+            this.cboxHardwareMessages.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cboxHardwareMessages.UseVisualStyleBackColor = false;
+            // 
             // cboxShutdownWhenNoPower
             // 
             this.cboxShutdownWhenNoPower.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -8312,7 +8347,7 @@
             this.cboxShutdownWhenNoPower.ForeColor = System.Drawing.Color.Red;
             this.cboxShutdownWhenNoPower.Image = global::AgOpenGPS.Properties.Resources.ChargingNo;
             this.cboxShutdownWhenNoPower.Location = new System.Drawing.Point(38, 495);
-            this.cboxShutdownWhenNoPower.Name = "cboxShutdownNotCharging";
+            this.cboxShutdownWhenNoPower.Name = "cboxShutdownWhenNoPower";
             this.cboxShutdownWhenNoPower.Size = new System.Drawing.Size(114, 77);
             this.cboxShutdownWhenNoPower.TabIndex = 530;
             this.cboxShutdownWhenNoPower.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -8333,7 +8368,7 @@
             this.cboxAutoOffAgIO.ForeColor = System.Drawing.Color.Red;
             this.cboxAutoOffAgIO.Image = global::AgOpenGPS.Properties.Resources.AgIO;
             this.cboxAutoOffAgIO.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cboxAutoOffAgIO.Location = new System.Drawing.Point(476, 497);
+            this.cboxAutoOffAgIO.Location = new System.Drawing.Point(372, 495);
             this.cboxAutoOffAgIO.Margin = new System.Windows.Forms.Padding(0);
             this.cboxAutoOffAgIO.Name = "cboxAutoOffAgIO";
             this.cboxAutoOffAgIO.Size = new System.Drawing.Size(129, 77);
@@ -8398,7 +8433,7 @@
             this.btnRightMenuOrder.ForeColor = System.Drawing.Color.Black;
             this.btnRightMenuOrder.Image = global::AgOpenGPS.Properties.Resources.Con_RightMenuEdit;
             this.btnRightMenuOrder.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRightMenuOrder.Location = new System.Drawing.Point(415, 352);
+            this.btnRightMenuOrder.Location = new System.Drawing.Point(415, 344);
             this.btnRightMenuOrder.Name = "btnRightMenuOrder";
             this.btnRightMenuOrder.Size = new System.Drawing.Size(99, 95);
             this.btnRightMenuOrder.TabIndex = 520;
@@ -8420,7 +8455,7 @@
             this.cboxAutoStartAgIO.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxAutoStartAgIO.Image = global::AgOpenGPS.Properties.Resources.AgIO;
             this.cboxAutoStartAgIO.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cboxAutoStartAgIO.Location = new System.Drawing.Point(323, 495);
+            this.cboxAutoStartAgIO.Location = new System.Drawing.Point(219, 495);
             this.cboxAutoStartAgIO.Name = "cboxAutoStartAgIO";
             this.cboxAutoStartAgIO.Size = new System.Drawing.Size(129, 77);
             this.cboxAutoStartAgIO.TabIndex = 517;
@@ -10136,5 +10171,7 @@
         private System.Windows.Forms.CheckBox cboxAutoOffAgIO;
         private System.Windows.Forms.Label label109;
         private System.Windows.Forms.CheckBox cboxShutdownWhenNoPower;
+        private System.Windows.Forms.Label label110;
+        private System.Windows.Forms.CheckBox cboxHardwareMessages;
     }
 }

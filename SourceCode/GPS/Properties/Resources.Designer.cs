@@ -1982,6 +1982,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap HardwareMessage {
+            get {
+                object obj = ResourceManager.GetObject("HardwareMessage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Headache {
             get {
                 object obj = ResourceManager.GetObject("Headache", resourceCulture);

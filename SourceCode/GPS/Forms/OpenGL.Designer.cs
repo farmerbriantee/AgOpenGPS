@@ -415,10 +415,11 @@ namespace AgOpenGPS
 
                     if (pn.age > pn.ageAlarm) DrawAge();
 
-                    if (trk.idx >-1) DrawGuidanceLineText();
+                    //at least one track
+                    if (guideLineCounter > 0) DrawGuidanceLineText();
 
                     //if hardware messages
-                    DrawHardwareMessageText(); 
+                    if (isHardwareMessages) DrawHardwareMessageText(); 
 
                     //just in case
                     GL.Disable(EnableCap.LineStipple);
@@ -2443,13 +2444,6 @@ namespace AgOpenGPS
         {
             if (guideLineCounter > 0)
             {
-                if (guideLineCounter == 20)
-                {
-                    if (trk.gArr.Count > 0)
-                        lblGuidanceLine.Text = trk.gArr[trk.idx].name;
-                    else
-                        lblGuidanceLine.Text = gStr.gsNoGuidanceLines;
-                }
                 guideLineCounter--;
 
                 if (guideLineCounter == 0)

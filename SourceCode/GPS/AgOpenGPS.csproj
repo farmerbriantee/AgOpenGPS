@@ -977,6 +977,7 @@
     <None Include="btnImages\ChargingNo.png" />
     <None Include="btnImages\ChargeIndicator.png" />
     <None Include="Resources\ChargeIndicator.png" />
+    <None Include="btnImages\HardwareMessage.png" />
     <Content Include="Resources\TF012.WAV" />
     <None Include="Resources\SectionOn.wav" />
     <None Include="Resources\SectionOff.wav" />

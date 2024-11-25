@@ -77,6 +77,7 @@ namespace AgOpenGPS
         public uint sentenceCounter = 0;
         public int guideLineCounter = 0;
         public int hardwareLineCounter = 0;
+        public bool isHardwareMessages = false;
 
         private int currentFieldTextCounter = 0;
 
@@ -770,6 +771,7 @@ namespace AgOpenGPS
 
             lblGuidanceLine.BringToFront();
             lblHardwareMessage.BringToFront();
+            isHardwareMessages = Properties.Settings.Default.setDisplay_isHardwareMessages;
 
             if ((int) PowerState.GetPowerLineStatus() == 1)
             {
