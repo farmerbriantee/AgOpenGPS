@@ -126,7 +126,10 @@ namespace AgOpenGPS
             isClosing = true;
             mf.curve.desList?.Clear();
 
-            if (mf.isBtnAutoSteerOn) mf.btnAutoSteer.PerformClick();
+            if (mf.isBtnAutoSteerOn)
+            {
+                mf.btnAutoSteer.PerformClick();
+            }
             if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
 
             mf.trk.gArr.Clear();
@@ -192,7 +195,10 @@ namespace AgOpenGPS
                 {
                     idx = -1;
                     mf.DisableYouTurnButtons();
-                    if (mf.isBtnAutoSteerOn) mf.btnAutoSteer.PerformClick();
+                    if (mf.isBtnAutoSteerOn)
+                    {
+                        mf.btnAutoSteer.PerformClick();
+                    }
                     Close();
                 }
             }

@@ -382,38 +382,36 @@ namespace AgOpenGPS
             GL.End();
             GL.Disable(EnableCap.LineStipple);
 
-            if (!mf.worldGrid.isRateMap)
+            double widthMinusOverlap = mf.tool.width - mf.tool.overlap;
+            double shadowOffset = isHeadingSameWay ? mf.tool.offset : -mf.tool.offset;
+            double sinHR = Math.Sin(abHeading + glm.PIBy2) * (widthMinusOverlap * 0.5 + shadowOffset);
+            double cosHR = Math.Cos(abHeading + glm.PIBy2) * (widthMinusOverlap * 0.5 + shadowOffset);
+            double sinHL = Math.Sin(abHeading + glm.PIBy2) * (widthMinusOverlap * 0.5 - shadowOffset);
+            double cosHL = Math.Cos(abHeading + glm.PIBy2) * (widthMinusOverlap * 0.5 - shadowOffset);
+
+            //shadow
+            GL.Color4(0.5, 0.5, 0.5, 0.3);
+            GL.Begin(PrimitiveType.TriangleFan);
             {
-                double widthMinusOverlap = mf.tool.width - mf.tool.overlap;
-                double shadowOffset = isHeadingSameWay ? mf.tool.offset : -mf.tool.offset;
-                double sinHR = Math.Sin(abHeading + glm.PIBy2) * (widthMinusOverlap * 0.5 + shadowOffset);
-                double cosHR = Math.Cos(abHeading + glm.PIBy2) * (widthMinusOverlap * 0.5 + shadowOffset);
-                double sinHL = Math.Sin(abHeading + glm.PIBy2) * (widthMinusOverlap * 0.5 - shadowOffset);
-                double cosHL = Math.Cos(abHeading + glm.PIBy2) * (widthMinusOverlap * 0.5 - shadowOffset);
-
-                //shadow
-                GL.Color4(0.5, 0.5, 0.5, 0.3);
-                GL.Begin(PrimitiveType.TriangleFan);
-                {
-                    GL.Vertex3(currentLinePtA.easting - sinHL, currentLinePtA.northing - cosHL, 0);
-                    GL.Vertex3(currentLinePtA.easting + sinHR, currentLinePtA.northing + cosHR, 0);
-                    GL.Vertex3(currentLinePtB.easting + sinHR, currentLinePtB.northing + cosHR, 0);
-                    GL.Vertex3(currentLinePtB.easting - sinHL, currentLinePtB.northing - cosHR, 0);
-                }
-                GL.End();
-
-                //shadow lines
-                GL.Color4(0.55, 0.55, 0.55, 0.3);
-                GL.LineWidth(1);
-                GL.Begin(PrimitiveType.LineLoop);
-                {
-                    GL.Vertex3(currentLinePtA.easting - sinHL, currentLinePtA.northing - cosHL, 0);
-                    GL.Vertex3(currentLinePtA.easting + sinHR, currentLinePtA.northing + cosHR, 0);
-                    GL.Vertex3(currentLinePtB.easting + sinHR, currentLinePtB.northing + cosHR, 0);
-                    GL.Vertex3(currentLinePtB.easting - sinHL, currentLinePtB.northing - cosHR, 0);
-                }
-                GL.End();
+                GL.Vertex3(currentLinePtA.easting - sinHL, currentLinePtA.northing - cosHL, 0);
+                GL.Vertex3(currentLinePtA.easting + sinHR, currentLinePtA.northing + cosHR, 0);
+                GL.Vertex3(currentLinePtB.easting + sinHR, currentLinePtB.northing + cosHR, 0);
+                GL.Vertex3(currentLinePtB.easting - sinHL, currentLinePtB.northing - cosHR, 0);
             }
+            GL.End();
+
+            //shadow lines
+            GL.Color4(0.55, 0.55, 0.55, 0.3);
+            GL.LineWidth(1);
+            GL.Begin(PrimitiveType.LineLoop);
+            {
+                GL.Vertex3(currentLinePtA.easting - sinHL, currentLinePtA.northing - cosHL, 0);
+                GL.Vertex3(currentLinePtA.easting + sinHR, currentLinePtA.northing + cosHR, 0);
+                GL.Vertex3(currentLinePtB.easting + sinHR, currentLinePtB.northing + cosHR, 0);
+                GL.Vertex3(currentLinePtB.easting - sinHL, currentLinePtB.northing - cosHR, 0);
+            }
+            GL.End();
+
 
             //draw current AB Line
             GL.LineWidth(lineWidth);

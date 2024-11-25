@@ -1148,7 +1148,10 @@ namespace AgOpenGPS
 
             if ((avgSpeed - previousSpeed  ) < -vehicle.panicStopSpeed && vehicle.panicStopSpeed != 0)
             {
-                if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
+                if (isBtnAutoSteerOn)
+                {
+                   btnAutoSteer.PerformClick();
+                }
             }
 
             previousSpeed = avgSpeed;   

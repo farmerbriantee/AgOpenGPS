@@ -387,7 +387,7 @@ namespace AgIO
 
                     //Build authorization string
                     string str = "GET /" + mount + " HTTP/" + htt + "\r\n";
-                    str += "User-Agent: NTRIP AgOpenGPSClient/20221020\r\n";
+                    str += "User-Agent: NTRIP AgOpenGPSClient/6.4\r\n";
                     str += "Authorization: Basic " + auth + "\r\n"; //This line can be removed if no authorization is needed
                                                                     //str += GGASentence; //this line can be removed if no position feedback is needed
                     str += "Accept: */*\r\nConnection: close\r\n";

@@ -141,6 +141,9 @@
   <data name="gsArea" xml:space="preserve">
     <value>Fläche</value>
   </data>
+  <data name="gsAutoSteer" xml:space="preserve">
+    <value>Lenkungseinstellungen</value>
+  </data>
   <data name="gsAutoSteerConfiguration" xml:space="preserve">
     <value>Lenkungseinstellungen</value>
   </data>
@@ -191,6 +194,9 @@
   </data>
   <data name="gsCompletelyDeleteBoundary" xml:space="preserve">
     <value>Ganze Schlaggrenze löschen</value>
+  </data>
+  <data name="gsConfiguration" xml:space="preserve">
+    <value>Konfiguration</value>
   </data>
   <data name="gsContourFileIsCorrupt" xml:space="preserve">
     <value>Kontur Datei fehlerhaft</value>

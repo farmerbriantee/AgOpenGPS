@@ -450,7 +450,10 @@ namespace AgOpenGPS
 
             mf.FileSaveTracks();
 
-            if (mf.isBtnAutoSteerOn) mf.btnAutoSteer.PerformClick();
+            if (mf.isBtnAutoSteerOn)
+            {
+                mf.btnAutoSteer.PerformClick();
+            }
             if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
 
             mf.ABLine.isMakingABLine = false;

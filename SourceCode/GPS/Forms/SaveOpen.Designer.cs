@@ -1757,8 +1757,7 @@ namespace AgOpenGPS
                 }
             }
 
-            worldGrid.isGeoMap = worldGrid.isRateMap = false;
-            worldGrid.numRateChannels = 0;
+            worldGrid.isGeoMap = false;
 
             //Back Image
             fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\BackPic.txt";
@@ -1803,107 +1802,6 @@ namespace AgOpenGPS
                         else
                         {
                             worldGrid.isGeoMap = false;
-                        }
-                    }
-                }
-            }
-
-            //is there rateChannels?
-            if (!worldGrid.isGeoMap)
-            {
-                fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\RateMap.txt";
-                if (File.Exists(fileAndDirectory))
-                {
-                    using (StreamReader reader = new StreamReader(fileAndDirectory))
-                    {
-                        try
-                        {
-                            //read header
-                            line = reader.ReadLine();
-
-                            line = reader.ReadLine();
-                            worldGrid.isRateMap = bool.Parse(line);
-
-                            line = reader.ReadLine();
-                            worldGrid.eastingMaxRate = double.Parse(line, CultureInfo.InvariantCulture);
-                            line = reader.ReadLine();
-                            worldGrid.eastingMinRate = double.Parse(line, CultureInfo.InvariantCulture);
-                            line = reader.ReadLine();
-                            worldGrid.northingMaxRate = double.Parse(line, CultureInfo.InvariantCulture);
-                            line = reader.ReadLine();
-                            worldGrid.northingMinRate = double.Parse(line, CultureInfo.InvariantCulture);
-                            line = reader.ReadLine();
-                            worldGrid.numRateChannels = int.Parse(line, CultureInfo.InvariantCulture);
-                        }
-                        catch (Exception)
-                        {
-                            worldGrid.isRateMap = false;
-                        }
-
-                        bool isFileMissing = false;
-
-                        if (worldGrid.isRateMap)
-                        {
-                            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\rateMap1.png";
-                            if (File.Exists(fileAndDirectory))
-                            {
-                                var bitmap = new Bitmap(Image.FromFile(fileAndDirectory));
-
-                                GL.BindTexture(TextureTarget.Texture2D, texture[(int)textures.RateMap1]);
-                                BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                                GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
-                                bitmap.UnlockBits(bitmapData);
-                            }
-                            else
-                            {
-                                isFileMissing = true;
-                            }
-
-                            if (worldGrid.numRateChannels > 1)
-                            {
-                                fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\rateMap2.png";
-                                if (File.Exists(fileAndDirectory))
-                                {
-                                    var bitmap = new Bitmap(Image.FromFile(fileAndDirectory));
-
-                                    GL.BindTexture(TextureTarget.Texture2D, texture[(int)textures.RateMap2]);
-                                    BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                                    GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
-                                    bitmap.UnlockBits(bitmapData);
-                                }
-                                else
-                                {
-                                    isFileMissing = true;
-                                }
-                            }
-
-                            if (worldGrid.numRateChannels > 2)
-                            {
-
-                                fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\rateMap3.png";
-                                if (File.Exists(fileAndDirectory))
-                                {
-                                    var bitmap = new Bitmap(Image.FromFile(fileAndDirectory));
-
-                                    GL.BindTexture(TextureTarget.Texture2D, texture[(int)textures.RateMap3]);
-                                    BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                                    GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
-                                    bitmap.UnlockBits(bitmapData);
-                                }
-                                else
-                                {
-                                    isFileMissing = true;
-                                }
-                            }
-
-                            if (isFileMissing)
-                            {
-                                YesMessageBox("Missing one of the 3 rate images, " +
-                                " There should be MapRate1, MapRate2, MapRate3, " +
-                                " VR is turned off") ;
-
-                                worldGrid.isRateMap = false;
-                            }
                         }
                     }
                 }
@@ -2285,42 +2183,6 @@ namespace AgOpenGPS
                     writer.WriteLine(-300);
                     writer.WriteLine(300);
                     writer.WriteLine(-300);
-                }
-            }
-        }
-
-        public void FileSaveRateMap()
-        {
-            //get the directory and make sure it exists, create if not
-            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
-
-            string directoryName = Path.GetDirectoryName(dirField);
-            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-            { Directory.CreateDirectory(directoryName); }
-
-            //write out the file
-            using (StreamWriter writer = new StreamWriter(dirField + "RateMap.Txt"))
-            {
-                writer.WriteLine("$RateMap");
-                //outer track of outer boundary tram
-                if (worldGrid.isRateMap)
-                {
-                    writer.WriteLine(true);
-                    writer.WriteLine(worldGrid.eastingMaxRate.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine(worldGrid.eastingMinRate.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine(worldGrid.northingMaxRate.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine(worldGrid.northingMinRate.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine(worldGrid.numRateChannels.ToString(CultureInfo.InvariantCulture));
-
-                }
-                else
-                {
-                    writer.WriteLine(false);
-                    writer.WriteLine(300);
-                    writer.WriteLine(-300);
-                    writer.WriteLine(300);
-                    writer.WriteLine(-300);
-                    writer.WriteLine(0);
                 }
             }
         }

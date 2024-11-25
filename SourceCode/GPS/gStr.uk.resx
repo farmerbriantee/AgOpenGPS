@@ -141,6 +141,12 @@
   <data name="gsArea" xml:space="preserve">
     <value>Площа</value>
   </data>
+  <data name="gsAutoSteer" xml:space="preserve">
+    <value>Налаштування автопілота</value>
+  </data>
+  <data name="gsConfiguration" xml:space="preserve">
+    <value>Налаштування</value>
+  </data>
   <data name="gsAutoSteerConfiguration" xml:space="preserve">
     <value>Налаштування автопілота</value>
   </data>

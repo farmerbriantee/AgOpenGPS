@@ -9,8 +9,6 @@ namespace AgOpenGPS
 
         public List<CBoundaryList> bndList = new List<CBoundaryList>();
 
-        public List<RatePolyline> shpList = new List<RatePolyline>();
-
         //constructor
         public CBoundary(FormGPS _f)
         {

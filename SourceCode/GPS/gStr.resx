@@ -141,6 +141,9 @@
   <data name="gsArea" xml:space="preserve">
     <value>Area</value>
   </data>
+  <data name="gsAutoSteer" xml:space="preserve">
+    <value>Auto Steer</value>
+  </data>
   <data name="gsAutoSteerConfiguration" xml:space="preserve">
     <value>Auto Steer Configuration</value>
   </data>
@@ -191,6 +194,9 @@
   </data>
   <data name="gsCompletelyDeleteBoundary" xml:space="preserve">
     <value>Completely Delete Boundary</value>
+  </data>
+  <data name="gsConfiguration" xml:space="preserve">
+    <value>Configuration</value>
   </data>
   <data name="gsContourFileIsCorrupt" xml:space="preserve">
     <value>Contour File Corrupt</value>

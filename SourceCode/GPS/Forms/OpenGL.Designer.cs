@@ -403,7 +403,11 @@ namespace AgOpenGPS
                             if (!sounds.isRTKAlarming) sounds.sndRTKAlarm.Play();
                             sounds.isRTKAlarming = true;
                             DrawLostRTK();
-                            if (isRTK_KillAutosteer && isBtnAutoSteerOn) btnAutoSteer.PerformClick();
+                            if (isRTK_KillAutosteer && isBtnAutoSteerOn)
+                                {
+                                    btnAutoSteer.PerformClick();
+                                }
+                            btnAutoSteer.PerformClick();
                         }
                         else
                             sounds.isRTKAlarming = false;
@@ -1209,119 +1213,6 @@ namespace AgOpenGPS
 
             //send the byte out to section machines
             BuildMachineByte();
-
-            if (worldGrid.isRateTrigger && worldGrid.isRateMap)
-            {
-                worldGrid.isRateTrigger = false;
-
-                oglBack.MakeCurrent();
-
-                GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
-                GL.LoadIdentity();                  // Reset The View
-
-                //back the camera up
-                GL.Translate(0, 0, -500);
-
-                //rotate camera so heading matched fix heading in the world
-                GL.Rotate(glm.toDegrees(toolPos.heading), 0, 0, 1);
-
-                GL.Translate(-toolPos.easting - Math.Sin(toolPos.heading) * 15,
-                    -toolPos.northing - Math.Cos(toolPos.heading) * 15,
-                    0);
-
-                GL.Disable(EnableCap.CullFace);
-                GL.CullFace(CullFaceMode.Front);
-
-                //first channel
-                if (worldGrid.numRateChannels > 0)
-                {
-                    GL.Enable(EnableCap.Texture2D);
-
-                    GL.BindTexture(TextureTarget.Texture2D, texture[(int)textures.RateMap1]);
-                    GL.Begin(PrimitiveType.TriangleStrip);
-                    GL.Color3(1.0f, 1.0f, 1.0f);
-                    GL.TexCoord2(0, 0);
-                    GL.Vertex3(worldGrid.eastingMinRate, worldGrid.northingMaxRate, 0.10);
-                    GL.TexCoord2(1, 0.0);
-                    GL.Vertex3(worldGrid.eastingMaxRate, worldGrid.northingMaxRate, 0.10);
-                    GL.TexCoord2(0.0, 1);
-                    GL.Vertex3(worldGrid.eastingMinRate, worldGrid.northingMinRate, 0.10);
-                    GL.TexCoord2(1, 1);
-                    GL.Vertex3(worldGrid.eastingMaxRate, worldGrid.northingMinRate, 0.0);
-                    GL.End();
-
-                    GL.Flush();
-
-                    //read the whole block of pixels up to max lookahead, one read only
-                    GL.ReadPixels(250, 1, 1, 1, OpenTK.Graphics.OpenGL.PixelFormat.Red, PixelType.UnsignedByte, rateRed);
-                }
-
-                ////second channel
-                //if (worldGrid.numRateChannels > 1)
-                //{
-                //    GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
-
-                //    GL.BindTexture(TextureTarget.Texture2D, texture[(int)textures.RateMap2]);
-                //    GL.Begin(PrimitiveType.TriangleStrip);
-                //    GL.Color3(1.0f, 1.0f, 1.0f);
-                //    GL.TexCoord2(0, 0);
-                //    GL.Vertex3(worldGrid.eastingMinRate, worldGrid.northingMaxRate, 0.10);
-                //    GL.TexCoord2(1, 0.0);
-                //    GL.Vertex3(worldGrid.eastingMaxRate, worldGrid.northingMaxRate, 0.10);
-                //    GL.TexCoord2(0.0, 1);
-                //    GL.Vertex3(worldGrid.eastingMinRate, worldGrid.northingMinRate, 0.10);
-                //    GL.TexCoord2(1, 1);
-                //    GL.Vertex3(worldGrid.eastingMaxRate, worldGrid.northingMinRate, 0.0);
-                //    GL.End();
-
-                //    GL.Flush();
-
-                //    //read the whole block of pixels up to max lookahead, one read only
-                //    GL.ReadPixels(250, 1, 1, 1, OpenTK.Graphics.OpenGL.PixelFormat.Green, PixelType.UnsignedByte, rateGrn);
-                //}
-
-                ////3rd channel
-                //if (worldGrid.numRateChannels > 2)
-                //{
-                //    GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
-
-                //    GL.BindTexture(TextureTarget.Texture2D, texture[(int)textures.RateMap3]);
-                //    GL.Begin(PrimitiveType.TriangleStrip);
-                //    GL.Color3(1.0f, 1.0f, 1.0f);
-                //    GL.TexCoord2(0, 0);
-                //    GL.Vertex3(worldGrid.eastingMinRate, worldGrid.northingMaxRate, 0.10);
-                //    GL.TexCoord2(1, 0.0);
-                //    GL.Vertex3(worldGrid.eastingMaxRate, worldGrid.northingMaxRate, 0.10);
-                //    GL.TexCoord2(0.0, 1);
-                //    GL.Vertex3(worldGrid.eastingMinRate, worldGrid.northingMinRate, 0.10);
-                //    GL.TexCoord2(1, 1);
-                //    GL.Vertex3(worldGrid.eastingMaxRate, worldGrid.northingMinRate, 0.0);
-                //    GL.End();
-
-
-                //    GL.Flush();
-
-                //    //read the whole block of pixels up to max lookahead, one read only
-                //    GL.ReadPixels(250, 1, 1, 1, OpenTK.Graphics.OpenGL.PixelFormat.Blue, PixelType.UnsignedByte, rateBlu);
-                //}
-
-                GL.Disable(EnableCap.Texture2D);
-
-                byte per = (byte)(Math.Round(((double)(rateRed[0]) / 2.55), MidpointRounding.AwayFromZero));
-                //lblRed.Text = per.ToString() + "%";
-                btnSection1Man.Text = per.ToString() + "%";
-                //CExtensionMethods.SetProgressNoAnimation(pbarRate, per);
-
-                //lblGrn.Text = rateGrn[0].ToString();
-                //lblBlu.Text = rateBlu[0].ToString();
-
-                //Red, Green, Blu
-                p_228.pgn[p_228.rate0] = per; 
-                p_228.pgn[p_228.rate1] = (byte)rateGrn[0];
-                p_228.pgn[p_228.rate2] = (byte)rateBlu[0];
-
-                SendPgnToLoop(p_228.pgn);
-            }
 
             ////Paint to context for troubleshooting
             //oglBack.MakeCurrent();

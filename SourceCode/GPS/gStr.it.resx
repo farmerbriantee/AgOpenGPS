@@ -141,6 +141,12 @@
   <data name="gsArea" xml:space="preserve">
     <value>Area</value>
   </data>
+  <data name="gsAutoSteer" xml:space="preserve">
+    <value>Autoguida</value>
+  </data>
+  <data name="gsConfiguration" xml:space="preserve">
+    <value>Configurazione </value>
+  </data>
   <data name="gsAutoSteerConfiguration" xml:space="preserve">
     <value>Configurazione Autoguida</value>
   </data>

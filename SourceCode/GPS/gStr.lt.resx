@@ -141,6 +141,12 @@
   <data name="gsArea" xml:space="preserve">
     <value>Plotas</value>
   </data>
+  <data name="gsAutoSteer" xml:space="preserve">
+    <value>Automatinio vairavimo</value>
+  </data>
+  <data name="gsConfiguration" xml:space="preserve">
+    <value>Konfigūracija</value>
+  </data>
   <data name="gsAutoSteerConfiguration" xml:space="preserve">
     <value>Automatinio vairavimo konfigūracija</value>
   </data>

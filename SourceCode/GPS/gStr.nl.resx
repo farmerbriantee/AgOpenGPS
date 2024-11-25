@@ -141,6 +141,12 @@
   <data name="gsArea" xml:space="preserve">
     <value>Oppervlakte</value>
   </data>
+  <data name="gsAutoSteer" xml:space="preserve">
+    <value>Autostuur</value>
+  </data>
+  <data name="gsConfiguration" xml:space="preserve">
+    <value>Configuratie</value>
+  </data>
   <data name="gsAutoSteerConfiguration" xml:space="preserve">
     <value>Autostuur Configuratie</value>
   </data>

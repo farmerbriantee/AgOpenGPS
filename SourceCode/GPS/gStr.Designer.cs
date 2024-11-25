@@ -133,6 +133,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Auto Steer.
+        /// </summary>
+        public static string gsAutoSteer {
+            get {
+                return ResourceManager.GetString("gsAutoSteer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Auto Steer Configuration.
         /// </summary>
         public static string gsAutoSteerConfiguration {
@@ -282,6 +291,15 @@ namespace AgOpenGPS {
         public static string gsCompletelyDeleteBoundary {
             get {
                 return ResourceManager.GetString("gsCompletelyDeleteBoundary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configuration.
+        /// </summary>
+        public static string gsConfiguration {
+            get {
+                return ResourceManager.GetString("gsConfiguration", resourceCulture);
             }
         }
         

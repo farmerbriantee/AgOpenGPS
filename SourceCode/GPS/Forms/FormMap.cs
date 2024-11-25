@@ -48,7 +48,7 @@ namespace AgOpenGPS
 
             mapControl.Invalidate();
 
-            if (mf.worldGrid.isGeoMap || mf.worldGrid.isRateMap)
+            if (mf.worldGrid.isGeoMap)
             {
                 cboxDrawMap.Checked = true;
                 btnGray.Visible = true;
@@ -352,7 +352,6 @@ namespace AgOpenGPS
                 mf.FileSaveBackPic();
 
                 mf.worldGrid.isGeoMap = false;
-                mf.worldGrid.isRateMap = false;
                 btnGray.Visible = false;
                 btnBuildFieldBackground.Visible = false;
             }
@@ -380,8 +379,6 @@ namespace AgOpenGPS
             catch { }
 
             mf.worldGrid.isGeoMap = false;
-            mf.worldGrid.isRateMap = false;
-
             bingLine.Clear();
             mapControl.Markers.Clear();
             mapControl.Invalidate();
@@ -481,15 +478,13 @@ namespace AgOpenGPS
             }
 
             mf.FileSaveBackPic();
-            mf.FileSaveRateMap();
         }
 
         private void btnBuildFieldBackground_Click(object sender, EventArgs e)
         {
-            if (mf.worldGrid.isGeoMap || mf.worldGrid.isRateMap)
+            if (mf.worldGrid.isGeoMap)
             {
                 mf.worldGrid.isGeoMap = false;
-                mf.worldGrid.isRateMap = false;
                 ResetMapGrid();
             }
             SaveBackgroundImage();

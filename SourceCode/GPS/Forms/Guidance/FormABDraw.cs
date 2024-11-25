@@ -108,7 +108,10 @@ namespace AgOpenGPS
                     mf.trk.idx = -1;
                     mf.trk.gArr.Clear();
                     mf.FileSaveTracks();
-                    if (mf.isBtnAutoSteerOn) mf.btnAutoSteer.PerformClick();
+                    if (mf.isBtnAutoSteerOn)
+                    {
+                       mf. btnAutoSteer.PerformClick();
+                    }
                     if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
                 }
                 else
@@ -161,7 +164,10 @@ namespace AgOpenGPS
 
                             if (mf.trk.idx != originalLine)
                             {
-                                if (mf.isBtnAutoSteerOn) mf.btnAutoSteer.PerformClick();
+                                if (mf.isBtnAutoSteerOn)
+                                {
+                                    mf.btnAutoSteer.PerformClick();
+                                }
                                 if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
                             }
                         }

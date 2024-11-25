@@ -141,6 +141,9 @@
   <data name="gsArea" xml:space="preserve">
     <value>Zone</value>
   </data>
+  <data name="gsAutoSteer" xml:space="preserve">
+    <value>l'autoguidage</value>
+  </data>
   <data name="gsAutoSteerConfiguration" xml:space="preserve">
     <value>Configuration de l'autoguidage</value>
   </data>

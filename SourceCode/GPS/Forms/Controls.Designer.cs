@@ -44,10 +44,14 @@ namespace AgOpenGPS
                 ct.isLocked = false;
                 guidanceLookAheadTime = Properties.Settings.Default.setAS_guidanceLookAheadTime;
                 btnContourLock.Image = Resources.ColorUnlocked;
-                if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
+                if (isBtnAutoSteerOn)
+                {
+                    btnAutoSteer.PerformClick();
+                }
+
             }
 
-            PanelUpdateRightAndBottom();
+                PanelUpdateRightAndBottom();
         }                
         private void btnContourLock_Click(object sender, EventArgs e)
         {
@@ -137,6 +141,7 @@ namespace AgOpenGPS
                 btnAutoSteer.Image = Properties.Resources.AutoSteerOff;
                 //if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
                 if (sounds.isSteerSoundOn) sounds.sndAutoSteerOff.Play();
+                if (!isBtnAutoSteerOn) TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsGuidanceStopped);
                 //trk.isAutoSnapped = false;
             }
             else
@@ -218,7 +223,11 @@ namespace AgOpenGPS
                     }
                 }
 
-                if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
+                if (isBtnAutoSteerOn)
+                {
+                    btnAutoSteer.PerformClick();
+                }
+
                 if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
 
                 lblNumCu.Text = (trk.idx + 1).ToString() + "/" + trk.gArr.Count.ToString();
@@ -257,7 +266,10 @@ namespace AgOpenGPS
                 }
 
                 if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
-                if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
+                if (isBtnAutoSteerOn)
+                {
+                    btnAutoSteer.PerformClick();
+                }
 
                 lblNumCu.Text = (trk.idx + 1).ToString() + "/" + trk.gArr.Count.ToString();
             }
@@ -681,7 +693,10 @@ namespace AgOpenGPS
             //btnContourPriority.Enabled = true;
 
             if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
-            if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
+            if (isBtnAutoSteerOn)
+            {
+                btnAutoSteer.PerformClick();
+            }
 
             DisableYouTurnButtons();
 
@@ -1951,15 +1966,6 @@ namespace AgOpenGPS
             formC.Show(this);
         }
 
-        private void appMapToolStripMenu_Click(object sender, EventArgs e)
-        {
-            using (var form = new FormRateMap(this))
-            {
-                form.ShowDialog(this);
-            }
-            PanelUpdateRightAndBottom();
-        }
-
         #endregion
 
         #region Nav Panel
@@ -2138,7 +2144,10 @@ namespace AgOpenGPS
             sim.headingTrue += Math.PI;
             ABLine.isABValid = false;
             curve.isCurveValid = false;
-            if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
+            if (isBtnAutoSteerOn)
+            {
+                btnAutoSteer.PerformClick();
+            }
         }
         private void hsbarSteerAngle_Scroll(object sender, ScrollEventArgs e)
         {

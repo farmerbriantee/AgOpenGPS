@@ -367,9 +367,6 @@ namespace AgOpenGPS
 
                 isFlashOnOff = !isFlashOnOff;
 
-                //the ratemap trigger
-                worldGrid.isRateTrigger = true;
-
                 //the main formgps window
                 if (isMetric)  //metric or imperial
                 {
@@ -386,7 +383,11 @@ namespace AgOpenGPS
 
                 //Make sure it is off when it should
                 if ((!ct.isContourBtnOn && trk.idx == -1 && isBtnAutoSteerOn)
-                    ) btnAutoSteer.PerformClick();
+                    ) 
+                {
+                    btnAutoSteer.PerformClick();
+                }
+
 
                 //the main formgps window
                 if (isMetric)  //metric or imperial
@@ -804,7 +805,10 @@ namespace AgOpenGPS
                     btnAutoSteer.Enabled = true;
                 else
                 {
-                    if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
+                    if (isBtnAutoSteerOn)
+                    {
+                        btnAutoSteer.PerformClick();
+                    }
                     btnAutoSteer.Enabled = false;
                 }
 
@@ -840,22 +844,6 @@ namespace AgOpenGPS
                 }
 
                 PanelSizeRightAndBottom();
-            }
-
-            if (worldGrid.isRateMap)
-            {
-                //lblRed.Visible = lblGrn.Visible = lblBlu.Visible = false;
-                //if (worldGrid.numRateChannels > 0) lblRed.Visible = true;
-                //if (worldGrid.numRateChannels > 1) lblGrn.Visible = true;
-                //if (worldGrid.numRateChannels > 2) lblBlu.Visible = true;
-                //lblRed.Visible = true;
-                //pbarRate.Visible = true;
-            }
-            else
-            {
-                //lblRed.Visible = lblGrn.Visible = lblBlu.Visible = false;
-                //lblRed.Visible = false;
-                //pbarRate.Visible = false;
             }
         }
 

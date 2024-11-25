@@ -236,16 +236,6 @@ namespace AgOpenGPS
         /// </summary>
         public CFont font;
 
-        public ShapeFile shape;
-        /// <summary>
-        /// The new brightness code
-        /// </summary>
-
-        private void panelRight_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         /// <summary>
         /// The new steer algorithms
         /// </summary>
@@ -417,9 +407,6 @@ namespace AgOpenGPS
 
             //brightness object class
             displayBrightness = new CWindowsSettingsBrightnessController(Properties.Settings.Default.setDisplay_isBrightnessOn);
-
-            //shape file object
-            shape = new ShapeFile(this);
         }
 
         private void FormGPS_Load(object sender, EventArgs e)
@@ -562,14 +549,19 @@ namespace AgOpenGPS
 
             ControlExtension.Draggable(panelDrag, true);
 
-            toolStripWorkingDirectories.Text = gStr.gsDirectories;
             enterSimCoordsToolStripMenuItem.Text = gStr.gsEnterSimCoords;
             aboutToolStripMenuItem.Text = gStr.gsAbout;
             menustripLanguage.Text = gStr.gsLanguage;
 
             simulatorOnToolStripMenuItem.Text = gStr.gsSimulatorOn;
             resetALLToolStripMenuItem.Text = gStr.gsResetAll;
+
             toolStripColors.Text = gStr.gsColors;
+            toolStripSectionColors.Text = "Section " + gStr.gsColors;
+            toolStripConfig.Text = gStr.gsConfiguration;
+            toolStripSteerSettings.Text = gStr.gsAutoSteer;
+            toolStripWorkingDirectories.Text = gStr.gsDirectories;
+           
             resetEverythingToolStripMenuItem.Text = gStr.gsResetAllForSure;
             steerChartStripMenu.Text = gStr.gsCharts;
 
@@ -827,7 +819,6 @@ namespace AgOpenGPS
             NoGPS, ZoomIn48, ZoomOut48,
             Pan, MenuHideShow,
             ToolWheels, Tire, TramDot,
-            RateMap1, RateMap2, RateMap3,
             YouTurnU, YouTurnH
         }
 
@@ -849,7 +840,6 @@ namespace AgOpenGPS
                 Resources.z_NoGPS, Resources.ZoomIn48, Resources.ZoomOut48,
                 Resources.Pan, Resources.MenuHideShow,
                 Resources.z_Tool, Resources.z_Tire, Resources.z_TramOnOff,
-                Resources.z_RateMap1, Resources.z_RateMap2, Resources.z_RateMap3,
                 Resources.YouTurnU, Resources.YouTurnH
             };
 
@@ -1051,7 +1041,6 @@ namespace AgOpenGPS
 
             //clean all the lines
             bnd.bndList.Clear();
-            bnd.shpList.Clear();
 
             panelRight.Enabled = false;
             FieldMenuButtonEnableDisable(false);
@@ -1209,7 +1198,6 @@ namespace AgOpenGPS
             PanelsAndOGLSize();
             SetZoom();
             worldGrid.isGeoMap = false;
-            worldGrid.isRateMap = false;
 
             panelSim.Top = Height - 60;
 
@@ -1235,7 +1223,6 @@ namespace AgOpenGPS
             deleteContourPathsToolStripMenuItem.Enabled = isOn;
             boundaryToolToolStripMenu.Enabled = isOn;
             offsetFixToolStrip.Enabled = isOn;
-            appMapToolStripMenu.Enabled = isOn;
 
             boundariesToolStripMenuItem.Enabled = isOn;
             headlandToolStripMenuItem.Enabled = isOn;
