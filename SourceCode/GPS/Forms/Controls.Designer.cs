@@ -927,19 +927,19 @@ namespace AgOpenGPS
         }
         private void btnStartAgIO_Click(object sender, EventArgs e)
         {
-            byte[] data = { 0x80, 0x81, 0x7f, 0xDD, 6, 4, 0, 98,99,100,101, 0xCC };
+            //byte[] data = { 0x80, 0x81, 0x7f, 0xDD, 6, 4, 0, 98,99,100,101, 0xCC };
 
-            if (isHardwareMessages)
-            {
-                lblHardwareMessage.Text = System.Text.Encoding.UTF8.GetString(data, 7, data[4] - 2);
-                lblHardwareMessage.Visible = true;
-                hardwareLineCounter = data[5] * 10;
-            }
-            else
-            {
-                lblHardwareMessage.Visible = false;
-                hardwareLineCounter = 0;
-            }
+            //if (isHardwareMessages)
+            //{
+            //    lblHardwareMessage.Text = System.Text.Encoding.UTF8.GetString(data, 7, data[4] - 2);
+            //    lblHardwareMessage.Visible = true;
+            //    hardwareLineCounter = data[5] * 10;
+            //}
+            //else
+            //{
+            //    lblHardwareMessage.Visible = false;
+            //    hardwareLineCounter = 0;
+            //}
 
             Process[] processName = Process.GetProcessesByName("AgIO");
             if (processName.Length == 0)
