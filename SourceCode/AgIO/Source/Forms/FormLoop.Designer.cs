@@ -365,8 +365,8 @@ namespace AgIO
             this.saveToolStrip.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveToolStrip.Image = global::AgIO.Properties.Resources.NTRIP_Client;
             this.saveToolStrip.Name = "saveToolStrip";
-            this.saveToolStrip.Size = new System.Drawing.Size(285, 70);
-            this.saveToolStrip.Text = "Client NTRIP";
+            this.saveToolStrip.Size = new System.Drawing.Size(338, 70);
+            this.saveToolStrip.Text = "NTRIP";
             this.saveToolStrip.Click += new System.EventHandler(this.btnNTRIP_Click);
             // 
             // loadToolStrip
@@ -374,8 +374,8 @@ namespace AgIO
             this.loadToolStrip.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loadToolStrip.Image = global::AgIO.Properties.Resources.RadioSettings;
             this.loadToolStrip.Name = "loadToolStrip";
-            this.loadToolStrip.Size = new System.Drawing.Size(285, 70);
-            this.loadToolStrip.Text = "Radio NTRIP";
+            this.loadToolStrip.Size = new System.Drawing.Size(338, 70);
+            this.loadToolStrip.Text = "Radio (Not XBee)";
             this.loadToolStrip.Click += new System.EventHandler(this.btnRadio_Click_1);
             // 
             // serialPassThroughToolStripMenuItem
@@ -383,8 +383,8 @@ namespace AgIO
             this.serialPassThroughToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.serialPassThroughToolStripMenuItem.Image = global::AgIO.Properties.Resources.NTRIP_Serial;
             this.serialPassThroughToolStripMenuItem.Name = "serialPassThroughToolStripMenuItem";
-            this.serialPassThroughToolStripMenuItem.Size = new System.Drawing.Size(285, 70);
-            this.serialPassThroughToolStripMenuItem.Text = "Serial NTRIP";
+            this.serialPassThroughToolStripMenuItem.Size = new System.Drawing.Size(338, 70);
+            this.serialPassThroughToolStripMenuItem.Text = "Serial Port";
             this.serialPassThroughToolStripMenuItem.Click += new System.EventHandler(this.serialPassThroughToolStripMenuItem_Click);
             // 
             // lblSteerAngle
@@ -629,7 +629,7 @@ namespace AgIO
             this.lbl1To8.BackColor = System.Drawing.Color.Transparent;
             this.lbl1To8.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl1To8.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl1To8.Location = new System.Drawing.Point(486, 273);
+            this.lbl1To8.Location = new System.Drawing.Point(486, 262);
             this.lbl1To8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl1To8.Name = "lbl1To8";
             this.lbl1To8.Size = new System.Drawing.Size(106, 23);
@@ -642,7 +642,7 @@ namespace AgIO
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label10.Location = new System.Drawing.Point(486, 253);
+            this.label10.Location = new System.Drawing.Point(486, 242);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(106, 19);
@@ -655,7 +655,7 @@ namespace AgIO
             this.lbl9To16.BackColor = System.Drawing.Color.Transparent;
             this.lbl9To16.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl9To16.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl9To16.Location = new System.Drawing.Point(486, 325);
+            this.lbl9To16.Location = new System.Drawing.Point(486, 314);
             this.lbl9To16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl9To16.Name = "lbl9To16";
             this.lbl9To16.Size = new System.Drawing.Size(106, 23);
@@ -668,7 +668,7 @@ namespace AgIO
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label12.Location = new System.Drawing.Point(486, 304);
+            this.label12.Location = new System.Drawing.Point(486, 293);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(105, 19);
@@ -721,7 +721,7 @@ namespace AgIO
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label7.Location = new System.Drawing.Point(489, 360);
+            this.label7.Location = new System.Drawing.Point(489, 349);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(71, 16);
@@ -748,7 +748,7 @@ namespace AgIO
             this.lblPing.BackColor = System.Drawing.Color.Transparent;
             this.lblPing.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPing.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblPing.Location = new System.Drawing.Point(558, 360);
+            this.lblPing.Location = new System.Drawing.Point(558, 349);
             this.lblPing.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPing.Name = "lblPing";
             this.lblPing.Size = new System.Drawing.Size(35, 16);
@@ -762,7 +762,7 @@ namespace AgIO
             this.lblPingMachine.BackColor = System.Drawing.Color.Transparent;
             this.lblPingMachine.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPingMachine.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblPingMachine.Location = new System.Drawing.Point(558, 385);
+            this.lblPingMachine.Location = new System.Drawing.Point(558, 374);
             this.lblPingMachine.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPingMachine.Name = "lblPingMachine";
             this.lblPingMachine.Size = new System.Drawing.Size(35, 16);
@@ -776,7 +776,7 @@ namespace AgIO
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label11.Location = new System.Drawing.Point(495, 385);
+            this.label11.Location = new System.Drawing.Point(495, 374);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(65, 16);
