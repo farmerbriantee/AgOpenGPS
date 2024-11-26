@@ -19,20 +19,88 @@ namespace AgIO
             form.ShowDialog(this);
         }
 
+        private void cboxAutoRunGPS_Out_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.setDisplay_isAutoRunGPS_Out = cboxAutoRunGPS_Out.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void btnGPS_Out_Click(object sender, EventArgs e)
+        {
+            StartGPS_Out();
+        }
+
+        private void btnSlide_Click(object sender, EventArgs e)
+        {
+            if (this.Width < 600)
+            {
+                this.Width = 750;
+                isViewAdvanced = true;
+                btnSlide.BackgroundImage = Properties.Resources.ArrowGrnLeft;
+                sbRTCM.Clear();
+                lblMessages.Text = "Reading...";
+                threeMinuteTimer = secondsSinceStart;
+                lblMessagesFound.Text = "-";
+                aList.Clear();
+                rList.Clear();
+            }
+            else
+            {
+                this.Width = 428;
+                isViewAdvanced = false;
+                btnSlide.BackgroundImage = Properties.Resources.ArrowGrnRight;
+                aList.Clear();
+                rList.Clear();
+                lblMessages.Text = "Reading...";
+                lblMessagesFound.Text = "-";
+                aList.Clear();
+                rList.Clear();
+            }
+        }
+
+        private void btnStartStopNtrip_Click(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.setNTRIP_isOn || Properties.Settings.Default.setRadio_isOn)
+            {
+                if (isNTRIP_RequiredOn || isRadio_RequiredOn)
+                {
+                    ShutDownNTRIP();
+                    lblWatch.Text = "Stopped";
+                    btnStartStopNtrip.Text = "OffLine";
+                    isNTRIP_RequiredOn = false;
+                    isRadio_RequiredOn = false;
+                    lblNTRIP_IP.Text = "--";
+                    lblMount.Text = "--";
+                }
+                else
+                {
+                    isNTRIP_RequiredOn = Properties.Settings.Default.setNTRIP_isOn;
+                    isRadio_RequiredOn = Properties.Settings.Default.setRadio_isOn;
+                    lblWatch.Text = "Waiting";
+                    lblNTRIP_IP.Text = "--";
+                    lblMount.Text= "--";
+                }
+            }
+            else
+            {
+                TimedMessageBox(2000, "Turn on NTRIP", "NTRIP Client Not Set Up");
+            }
+        }
+
         private void toolStripUDPMonitor_Click(object sender, EventArgs e)
         {
             ShowUDPMonitor();
+        }
+
+        private void toolStripSerialMonitor_Click(object sender, EventArgs e)
+        {
+            ShowSerialMonitor();
         }
 
         private void ShowUDPMonitor()
         {
             var form = new FormUDPMonitor(this);
             form.Show(this);
-        }
-
-        private void toolStripSerialMonitor_Click(object sender, EventArgs e)
-        {
-            ShowSerialMonitor();
         }
 
         public void ShowSerialMonitor()
@@ -123,38 +191,6 @@ namespace AgIO
             }
         }
 
-        private void btnGPS_Out_Click(object sender, EventArgs e)
-        {
-            Process[] processName = Process.GetProcessesByName("GPS_Out");
-            if (processName.Length == 0)
-            {
-                //Start application here
-                DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
-                string strPath = di.ToString();
-                strPath += "\\GPS_Out.exe";
-
-                try
-                {
-                    ProcessStartInfo processInfo = new ProcessStartInfo();
-                    processInfo.FileName = strPath;
-                    processInfo.WorkingDirectory = Path.GetDirectoryName(strPath);
-                    Process proc = Process.Start(processInfo);
-                }
-                catch
-                {
-                    TimedMessageBox(2000, "No File Found", "Can't Find GPS_Out");
-                }
-            }
-            else
-            {
-                //Set foreground window
-                ShowWindow(processName[0].MainWindowHandle, 9);
-                SetForegroundWindow(processName[0].MainWindowHandle);
-            }
-
-
-        }
-
         private void StartAOG()
         {
             Process[] processName = Process.GetProcessesByName("AgOpenGPS");
@@ -185,32 +221,33 @@ namespace AgIO
             }
         }
 
-        private void btnStartStopNtrip_Click(object sender, EventArgs e)
+        private void StartGPS_Out()
         {
-            if (Properties.Settings.Default.setNTRIP_isOn || Properties.Settings.Default.setRadio_isOn)
+            Process[] processName = Process.GetProcessesByName("GPS_Out");
+            if (processName.Length == 0)
             {
-                if (isNTRIP_RequiredOn || isRadio_RequiredOn)
+                //Start application here
+                DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
+                string strPath = di.ToString();
+                strPath += "\\GPS_Out.exe";
+
+                try
                 {
-                    ShutDownNTRIP();
-                    lblWatch.Text = "Stopped";
-                    btnStartStopNtrip.Text = "OffLine";
-                    isNTRIP_RequiredOn = false;
-                    isRadio_RequiredOn = false;
-                    lblNTRIP_IP.Text = "--";
-                    lblMount.Text = "--";
+                    ProcessStartInfo processInfo = new ProcessStartInfo();
+                    processInfo.FileName = strPath;
+                    processInfo.WorkingDirectory = Path.GetDirectoryName(strPath);
+                    Process proc = Process.Start(processInfo);
                 }
-                else
+                catch
                 {
-                    isNTRIP_RequiredOn = Properties.Settings.Default.setNTRIP_isOn;
-                    isRadio_RequiredOn = Properties.Settings.Default.setRadio_isOn;
-                    lblWatch.Text = "Waiting";
-                    lblNTRIP_IP.Text = "--";
-                    lblMount.Text= "--";
+                    TimedMessageBox(2000, "No File Found", "Can't Find GPS_Out");
                 }
             }
             else
             {
-                TimedMessageBox(2000, "Turn on NTRIP", "NTRIP Client Not Set Up");
+                //Set foreground window
+                ShowWindow(processName[0].MainWindowHandle, 9);
+                SetForegroundWindow(processName[0].MainWindowHandle);
             }
         }
 

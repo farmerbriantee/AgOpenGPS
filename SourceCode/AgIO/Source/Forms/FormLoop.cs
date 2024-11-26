@@ -266,6 +266,10 @@ namespace AgIO
                     return;
                 }
             }
+
+            //run gps_out or not
+            cboxAutoRunGPS_Out.Checked = Properties.Settings.Default.setDisplay_isAutoRunGPS_Out;
+            if (Properties.Settings.Default.setDisplay_isAutoRunGPS_Out) StartGPS_Out();
         }
 
         public void SetModulesOnOff()
@@ -342,6 +346,12 @@ namespace AgIO
                     UDPSocket.Shutdown(SocketShutdown.Both);
                 }
                 finally { UDPSocket.Close(); }
+            }
+
+            Process[] processName = Process.GetProcessesByName("GPS_Out");
+            if (processName.Length != 0)
+            {
+                processName[0].CloseMainWindow();
             }
         }
 
@@ -430,7 +440,6 @@ namespace AgIO
                     sbRTCM.Append(".");
                     lblMessages.Text = sbRTCM.ToString();
                 }
-                btnResetTimer.Text = ((int)(180 - (secondsSinceStart - threeMinuteTimer))).ToString();
             }
 
             if (focusSkipCounter != 0)
@@ -587,34 +596,6 @@ namespace AgIO
                 }
 
                 #endregion Serial update
-            }
-        }
-
-        private void btnSlide_Click(object sender, EventArgs e)
-        {
-            if (this.Width < 600)
-            {
-                this.Width = 750;
-                isViewAdvanced = true;
-                btnSlide.BackgroundImage = Properties.Resources.ArrowGrnLeft;
-                sbRTCM.Clear();
-                lblMessages.Text = "Reading...";
-                threeMinuteTimer = secondsSinceStart;
-                lblMessagesFound.Text = "-";
-                aList.Clear();
-                rList.Clear();
-            }
-            else
-            {
-                this.Width = 428;
-                isViewAdvanced = false;
-                btnSlide.BackgroundImage = Properties.Resources.ArrowGrnRight;
-                aList.Clear();
-                rList.Clear();
-                lblMessages.Text = "Reading...";
-                lblMessagesFound.Text = "-";
-                aList.Clear();
-                rList.Clear();
             }
         }
 
@@ -812,6 +793,7 @@ namespace AgIO
                 }
             }
         }
+
 
         private void lblIP_Click(object sender, EventArgs e)
         {

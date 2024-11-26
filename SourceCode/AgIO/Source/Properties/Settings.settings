@@ -185,8 +185,8 @@
     <Setting Name="eth_loopFour" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">255</Value>
     </Setting>
-    <Setting Name="Setting" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="setDisplay_isAutoRunGPS_Out" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>
