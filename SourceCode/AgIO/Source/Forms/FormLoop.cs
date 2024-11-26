@@ -363,7 +363,7 @@ namespace AgIO
                 pictureBox1.Dispose();
                 oneSecondLoopTimer.Interval = 1000;
                 this.Width = 428;
-                this.Height = 500;
+                this.Height = 525;
                 return;
             }
 
@@ -764,11 +764,6 @@ namespace AgIO
             sbRTCM.Append("Reset..");
         }
 
-        private void btnResetTimer_Click(object sender, EventArgs e)
-        {
-            threeMinuteTimer = secondsSinceStart;
-        }
-
         private void serialPassThroughToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (isRadio_RequiredOn)
@@ -794,6 +789,10 @@ namespace AgIO
             }
         }
 
+        private void btnMinimizeMainForm_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
 
         private void lblIP_Click(object sender, EventArgs e)
         {

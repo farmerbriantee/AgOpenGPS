@@ -563,6 +563,16 @@ namespace AgIO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap WindowMinimize {
+            get {
+                object obj = ResourceManager.GetObject("WindowMinimize", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap WindowsShutDown {
             get {
                 object obj = ResourceManager.GetObject("WindowsShutDown", resourceCulture);
