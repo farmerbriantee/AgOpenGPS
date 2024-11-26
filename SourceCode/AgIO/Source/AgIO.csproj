@@ -332,6 +332,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgIO_ico.ico" />
+    <None Include="btnImages\EthernetOff.png" />
     <None Include="btnImages\WindowMinimize.png" />
     <None Include="btnImages\WindowClose.png" />
     <None Include="btnImages\GPS_Out.png" />

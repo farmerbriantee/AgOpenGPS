@@ -273,6 +273,16 @@ namespace AgIO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap EthernetOff {
+            get {
+                object obj = ResourceManager.GetObject("EthernetOff", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap EthernetSetup {
             get {
                 object obj = ResourceManager.GetObject("EthernetSetup", resourceCulture);

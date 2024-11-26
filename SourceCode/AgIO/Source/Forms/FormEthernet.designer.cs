@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnSerialCancel = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.cboxIsSendNMEAToUDP = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -40,28 +39,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.nudFourthIP = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnSerialCancel = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudThirdIP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSecndIP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudFirstIP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudFourthIP)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnSerialCancel
-            // 
-            this.btnSerialCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSerialCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSerialCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSerialCancel.FlatAppearance.BorderSize = 0;
-            this.btnSerialCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSerialCancel.Image = global::AgIO.Properties.Resources.OK64;
-            this.btnSerialCancel.Location = new System.Drawing.Point(668, 141);
-            this.btnSerialCancel.Name = "btnSerialCancel";
-            this.btnSerialCancel.Size = new System.Drawing.Size(92, 79);
-            this.btnSerialCancel.TabIndex = 71;
-            this.btnSerialCancel.UseVisualStyleBackColor = true;
-            this.btnSerialCancel.Click += new System.EventHandler(this.btnSerialCancel_Click);
             // 
             // label13
             // 
@@ -107,8 +91,6 @@
             this.cboxIsUDPOn.Appearance = System.Windows.Forms.Appearance.Button;
             this.cboxIsUDPOn.BackColor = System.Drawing.Color.LightSalmon;
             this.cboxIsUDPOn.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cboxIsUDPOn.Checked = true;
-            this.cboxIsUDPOn.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxIsUDPOn.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
             this.cboxIsUDPOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxIsUDPOn.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -116,9 +98,10 @@
             this.cboxIsUDPOn.Name = "cboxIsUDPOn";
             this.cboxIsUDPOn.Size = new System.Drawing.Size(159, 50);
             this.cboxIsUDPOn.TabIndex = 92;
-            this.cboxIsUDPOn.Text = "UDP On";
+            this.cboxIsUDPOn.Text = "UDP Off";
             this.cboxIsUDPOn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxIsUDPOn.UseVisualStyleBackColor = false;
+            this.cboxIsUDPOn.Click += new System.EventHandler(this.cboxIsUDPOn_Click);
             // 
             // nudThirdIP
             // 
@@ -240,6 +223,22 @@
             this.label1.TabIndex = 531;
             this.label1.Text = ".";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnSerialCancel
+            // 
+            this.btnSerialCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSerialCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSerialCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnSerialCancel.FlatAppearance.BorderSize = 0;
+            this.btnSerialCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSerialCancel.Image = global::AgIO.Properties.Resources.OK64;
+            this.btnSerialCancel.Location = new System.Drawing.Point(668, 141);
+            this.btnSerialCancel.Name = "btnSerialCancel";
+            this.btnSerialCancel.Size = new System.Drawing.Size(92, 79);
+            this.btnSerialCancel.TabIndex = 71;
+            this.btnSerialCancel.UseVisualStyleBackColor = true;
+            this.btnSerialCancel.Click += new System.EventHandler(this.btnSerialCancel_Click);
             // 
             // FormEthernet
             // 

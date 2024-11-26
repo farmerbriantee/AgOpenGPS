@@ -59,11 +59,11 @@ namespace AgIO
                 mf.ipAutoSet[0] = 99;
                 mf.ipAutoSet[1] = 99;
                 mf.ipAutoSet[2] = 99;
-                btnAutoSet.Enabled = false;
+                //btnAutoSet.Enabled = false;
             }
             else
             {
-                btnAutoSet.Enabled = true;
+                //btnAutoSet.Enabled = true;
             }
 
             if (mf.scanReply.isNewSteer)
@@ -339,6 +339,22 @@ namespace AgIO
         private void btnSerialMonitor_Click(object sender, EventArgs e)
         {
             mf.ShowSerialMonitor();
+        }
+
+        private void btnUDPOff_Click(object sender, EventArgs e)
+        {
+
+            Properties.Settings.Default.setUDP_isOn = false;
+            Properties.Settings.Default.setUDP_isSendNMEAToUDP = false;
+
+            Properties.Settings.Default.Save();
+
+            mf.YesMessageBox("AgIO will Restart to Disable UDP Networking Features");
+
+            Application.Restart();
+            Environment.Exit(0);
+            Close();
+
         }
 
         ////get the ipv4 address only

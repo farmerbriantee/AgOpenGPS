@@ -213,7 +213,7 @@ namespace AgIO
             pictureBox1.Height = 500;
             pictureBox1.Left = 0;
             pictureBox1.Top = 0;
-            //pictureBox1.Dock = DockStyle.Fill;
+            //pictureBox1.Dock = DockStyle.Fill;:
 
             //On or off the module rows
             SetModulesOnOff();
@@ -270,6 +270,12 @@ namespace AgIO
             //run gps_out or not
             cboxAutoRunGPS_Out.Checked = Properties.Settings.Default.setDisplay_isAutoRunGPS_Out;
             if (Properties.Settings.Default.setDisplay_isAutoRunGPS_Out) StartGPS_Out();
+
+            this.Text = "UDP: " + (Properties.Settings.Default.setUDP_isOn ? "On - " : "Off - ") +
+                "Ntrip: " + (Properties.Settings.Default.setNTRIP_isOn ? "On - " : "Off - ") +
+                "Radio: " + (Properties.Settings.Default.setRadio_isOn ? "On - " : "Off - ") +
+                "SendTo: " + (Properties.Settings.Default.setNTRIP_sendToUDP ? "UDP " : " ") +
+                (Properties.Settings.Default.setNTRIP_sendToSerial ? "Serial " : " ");
         }
 
         public void SetModulesOnOff()
