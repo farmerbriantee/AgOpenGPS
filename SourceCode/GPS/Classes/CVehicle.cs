@@ -428,21 +428,21 @@ namespace AgOpenGPS
                 GL.End();
             }
 
-            if (mf.camera.camSetDistance > -75 && mf.isFirstHeadingSet)
-            {
-                //draw the bright antenna dot
-                GL.PointSize(16);
-                GL.Begin(PrimitiveType.Points);
-                GL.Color3(0, 0, 0);
-                GL.Vertex3(-antennaOffset, antennaPivot, 0.1);
-                GL.End();
+            //if (mf.camera.camSetDistance > -75 && mf.isFirstHeadingSet)
+            //{
+            //    //draw the bright antenna dot
+            //    GL.PointSize(16);
+            //    GL.Begin(PrimitiveType.Points);
+            //    GL.Color3(0, 0, 0);
+            //    GL.Vertex3(-antennaOffset, antennaPivot, 0.1);
+            //    GL.End();
 
-                GL.PointSize(10);
-                GL.Begin(PrimitiveType.Points);
-                GL.Color3(0.20, 0.98, 0.98);
-                GL.Vertex3(-antennaOffset, antennaPivot, 0.1);
-                GL.End();
-            }
+            //    GL.PointSize(10);
+            //    GL.Begin(PrimitiveType.Points);
+            //    GL.Color3(0.20, 0.98, 0.98);
+            //    GL.Vertex3(-antennaOffset, antennaPivot, 0.1);
+            //    GL.End();
+            //}
 
             if (mf.bnd.isBndBeingMade)
             {

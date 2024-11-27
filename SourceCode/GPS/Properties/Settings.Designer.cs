@@ -3023,5 +3023,17 @@ namespace AgOpenGPS.Properties {
                 this["setDisplay_isHardwareMessages"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public int setGPS_jumpFixAlarmDistance {
+            get {
+                return ((int)(this["setGPS_jumpFixAlarmDistance"]));
+            }
+            set {
+                this["setGPS_jumpFixAlarmDistance"] = value;
+            }
+        }
     }
 }

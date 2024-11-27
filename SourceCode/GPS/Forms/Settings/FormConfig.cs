@@ -89,6 +89,8 @@ namespace AgOpenGPS
             nudOffset.Controls[0].Enabled = false;
 
             nudTrailingToolToPivotLength.Controls[0].Enabled = false;
+
+            nudFixJumpDistance.Controls[0].Enabled = false;
         }
 
         private void FormConfig_Load(object sender, EventArgs e)

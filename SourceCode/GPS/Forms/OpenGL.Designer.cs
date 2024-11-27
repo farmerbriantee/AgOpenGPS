@@ -403,14 +403,11 @@ namespace AgOpenGPS
                             if (!sounds.isRTKAlarming) sounds.sndRTKAlarm.Play();
                             sounds.isRTKAlarming = true;
                             DrawLostRTK();
-                            if (isRTK_KillAutosteer && isBtnAutoSteerOn)
-                                {
-                                    btnAutoSteer.PerformClick();
-                                }
-                            btnAutoSteer.PerformClick();
                         }
                         else
+                        {
                             sounds.isRTKAlarming = false;
+                        }
                     }
 
                     if (pn.age > pn.ageAlarm) DrawAge();
@@ -2120,6 +2117,7 @@ namespace AgOpenGPS
 
         string strHeading = "-0-";
         int lenth = 4;
+
         private void DrawCompassText()
         {
             GL.Enable(EnableCap.Texture2D);
@@ -2431,7 +2429,7 @@ namespace AgOpenGPS
         private void DrawLostRTK()
         {
             GL.Color3(0.9752f, 0.752f, 0.40f);
-            font.DrawText(-oglMain.Width / 6, 125, "LOST RTK", 2.0);
+            font.DrawText(-oglMain.Width / 4, 125, "RTK Fix Lost", 1.0);
         }
 
         private void DrawAge()

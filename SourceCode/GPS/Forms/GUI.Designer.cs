@@ -415,6 +415,8 @@ namespace AgOpenGPS
 
                 btnAutoSteerConfig.Text = SetSteerAngle + "\r\n" + ActualSteerAngle;
 
+                lblFixDistanceOffLine.Text = jumpDistance.ToString("N1");
+
                 secondsSinceStart = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
             }
 
@@ -781,6 +783,8 @@ namespace AgOpenGPS
             {
                 btnChargeStatus.BackColor = Color.LightCoral;
             }
+
+            jumpDistanceAlarm = Settings.Default.setGPS_jumpFixAlarmDistance;
 
         }
 

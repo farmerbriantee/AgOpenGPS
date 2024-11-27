@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Text;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace AgOpenGPS
 {
@@ -113,6 +114,10 @@ namespace AgOpenGPS
 
         public int minSteerSpeedTimer = 0;
 
+        public vec2 jumpFix = new vec2(0, 0);
+        public double jumpDistance = 0;
+        public double jumpDistanceAlarm = 20;
+
         public void UpdateFixPosition()
         {
             //swFrame.Stop();
@@ -141,9 +146,11 @@ namespace AgOpenGPS
             pn.speed = pn.vtgSpeed;
             pn.AverageTheSpeed();
 
+
+
             #region Heading
             switch (headingFromSource)
-            {               
+            {
                 //calculate current heading only when moving, otherwise use last
                 case "Fix":
                     {
@@ -153,6 +160,7 @@ namespace AgOpenGPS
                         if ((fd.distanceUser += distanceCurrentStepFixDisplay) > 999) fd.distanceUser = 0;
                         distanceCurrentStepFixDisplay *= 100;
 
+                        jumpFix = prevDistFix;
                         prevDistFix = pn.fix;
 
                         if (Math.Abs(avgSpeed) < 1.5 && !isFirstHeadingSet)
@@ -667,6 +675,7 @@ namespace AgOpenGPS
                         TheRest();
 
                         //most recent fixes are now the prev ones
+                        jumpFix = prevFix;
                         prevFix.easting = pn.fix.easting; prevFix.northing = pn.fix.northing;
 
                         break;
@@ -678,6 +687,16 @@ namespace AgOpenGPS
                         //use Dual Antenna heading for camera and tractor graphic
                         fixHeading = glm.toRadians(pn.headingTrueDual);
                         gpsHeading = fixHeading;
+
+                        //grab the most current fix and save the distance from the last fix
+                        distanceCurrentStepFix = glm.Distance(pn.fix, prevDistFix);
+
+                        //userDistance can be reset
+                        if ((fd.distanceUser += distanceCurrentStepFix) > 999) fd.distanceUser = 0;
+                        distanceCurrentStepFixDisplay = distanceCurrentStepFix * 100;
+
+                        jumpFix = prevDistFix;
+                        prevDistFix = pn.fix;
 
                         uncorrectedEastingGraph = pn.fix.easting;
 
@@ -698,14 +717,6 @@ namespace AgOpenGPS
                             pn.fix.northing = (Math.Sin(-gpsHeading) * rollCorrectionDistance) + pn.fix.northing;
                         }
 
-                        //grab the most current fix and save the distance from the last fix
-                        distanceCurrentStepFix = glm.Distance(pn.fix, prevDistFix);
-
-                        //userDistance can be reset
-                        if ((fd.distanceUser += distanceCurrentStepFix) > 999) fd.distanceUser = 0;
-
-                        distanceCurrentStepFixDisplay = distanceCurrentStepFix * 100;
-                        prevDistFix = pn.fix;
 
                         if (glm.Distance(lastReverseFix, pn.fix) > dualReverseDetectionDistance)
                         {
@@ -724,7 +735,7 @@ namespace AgOpenGPS
 
                             //save for next meter check
                             lastReverseFix = pn.fix;
-                        }                        
+                        }
 
                         double camDelta = fixHeading - smoothCamHeading;
 
@@ -757,8 +768,30 @@ namespace AgOpenGPS
                     break;
             }
 
-            if (fixHeading >= glm.twoPI) 
-                fixHeading-= glm.twoPI;
+            vec2 ptA = new vec2(jumpFix.easting - (Math.Sin(gpsHeading) * 10), jumpFix.northing - (Math.Cos(gpsHeading) * 10));
+            vec2 ptB = new vec2(jumpFix.easting + (Math.Sin(gpsHeading) * 10), jumpFix.northing + (Math.Cos(gpsHeading) * 10));
+
+            double dx = ptB.easting - ptA.easting;
+            //z2-z1
+            double dy = ptB.northing - ptA.northing;
+
+            //how far from current AB Line is fix
+            jumpDistance = ((dy * prevDistFix.easting) - (dx * prevDistFix.northing) + (ptB.easting
+                        * ptA.northing) - (ptB.northing * ptA.easting))
+                        / Math.Sqrt((dy * dy) + (dx * dx));
+
+            jumpDistance = Math.Abs(jumpDistance) * 100;
+
+            if (jumpDistance > 200) jumpDistance = 0;
+
+            if (jumpDistanceAlarm > 0)
+            {
+                if (jumpDistance > jumpDistanceAlarm)
+                {
+                    if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
+                }
+            }
+
 
             #endregion
 
@@ -796,7 +829,7 @@ namespace AgOpenGPS
                     trk.autoTrack3SecTimer = 0;
                     int lastIndex = trk.idx;
                     trk.idx = trk.FindClosestRefTrack(steerAxlePos);
-                    if ( lastIndex != trk.idx )
+                    if (lastIndex != trk.idx)
                     {
                         curve.isCurveValid = false;
                         ABLine.isABValid = false;
@@ -809,7 +842,7 @@ namespace AgOpenGPS
                     if (trk.gArr[trk.idx].mode == TrackMode.AB)
                     {
                         ABLine.BuildCurrentABLineList(pivotAxlePos);
-                        
+
                         ABLine.GetCurrentABLine(pivotAxlePos, steerAxlePos);
                     }
                     else
@@ -901,7 +934,7 @@ namespace AgOpenGPS
 
                 setAngVel = 0.277777 * avgSpeed * tanSteerAngle / vehicle.wheelbase;
                 actAngVel = glm.toDegrees(0.277777 * avgSpeed * tanActSteerAngle / vehicle.wheelbase);
-               
+
 
                 isMaxAngularVelocity = false;
                 //greater then settings rads/sec limit steer angle
@@ -1074,6 +1107,8 @@ namespace AgOpenGPS
 
             #endregion
 
+
+
             //update main window
             oglMain.MakeCurrent();
             oglMain.Refresh();
@@ -1081,7 +1116,7 @@ namespace AgOpenGPS
             //end of UppdateFixPosition
 
             //stop the timer and calc how long it took to do calcs and draw
-            frameTimeRough = (double)(swFrame.ElapsedTicks*1000) / (double)System.Diagnostics.Stopwatch.Frequency;
+            frameTimeRough = (double)(swFrame.ElapsedTicks * 1000) / (double)System.Diagnostics.Stopwatch.Frequency;
 
             if (frameTimeRough > 80) frameTimeRough = 80;
             frameTime = frameTime * 0.90 + frameTimeRough * 0.1;

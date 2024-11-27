@@ -33,7 +33,8 @@ namespace AgOpenGPS
             lblFusionIMU.Text = (100 - hsbarFusion.Value).ToString();
 
             cboxIsRTK.Checked = Properties.Settings.Default.setGPS_isRTK;
-            cboxIsRTK_KillAutoSteer.Checked = Properties.Settings.Default.setGPS_isRTK_KillAutoSteer;
+
+            nudFixJumpDistance.Value = Properties.Settings.Default.setGPS_jumpFixAlarmDistance;
 
             cboxIsReverseOn.Checked = Properties.Settings.Default.setIMU_isReverseOn;
 
@@ -79,7 +80,6 @@ namespace AgOpenGPS
             mf.ahrs.fusionWeight = (double)hsbarFusion.Value * 0.002;
 
             Properties.Settings.Default.setGPS_isRTK = mf.isRTK_AlarmOn = cboxIsRTK.Checked;
-            Properties.Settings.Default.setGPS_isRTK_KillAutoSteer = mf.isRTK_KillAutosteer = cboxIsRTK_KillAutoSteer.Checked;
 
             Properties.Settings.Default.setIMU_isReverseOn = mf.ahrs.isReverseOn = cboxIsReverseOn.Checked;
 
@@ -115,6 +115,14 @@ namespace AgOpenGPS
             }
         }
 
+        private void nudFixJumpDistance_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NudlessNumericUpDown)sender, this))
+            {
+                Properties.Settings.Default.setGPS_jumpFixAlarmDistance = ((int)nudFixJumpDistance.Value);
+                mf.jumpDistanceAlarm = Properties.Settings.Default.setGPS_dualHeadingOffset;
+            }
+        }
 
         private void nudDualHeadingOffset_Click(object sender, EventArgs e)
         {
