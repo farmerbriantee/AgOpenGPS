@@ -151,11 +151,14 @@ namespace AgOpenGPS
                     isBtnAutoSteerOn = true;
                     btnAutoSteer.Image = Properties.Resources.AutoSteerOn;
                     if (sounds.isSteerSoundOn) sounds.sndAutoSteerOn.Play();
-                    //if (trk.isAutoSnapToPivot)
-                    //{
-                    //    trk.SnapToPivot();
-                    //    trk.isAutoSnapped = true;   
-                    //}
+
+                    //redraw uturn if btn enabled.
+                    if (yt.isYouTurnBtnOn)
+                    {
+                        yt.ResetYouTurn();
+                        //new direction so reset where to put turn diagnostic
+                        yt.ResetCreatedYouTurn();
+                    }
                 }
                 else
                 {
