@@ -156,8 +156,6 @@ namespace AgOpenGPS
                     if (yt.isYouTurnBtnOn)
                     {
                         yt.ResetYouTurn();
-                        //new direction so reset where to put turn diagnostic
-                        yt.ResetCreatedYouTurn();
                     }
                 }
                 else
