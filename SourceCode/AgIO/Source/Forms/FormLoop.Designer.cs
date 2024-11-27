@@ -376,7 +376,7 @@ namespace AgIO
             this.loadToolStrip.Name = "loadToolStrip";
             this.loadToolStrip.Size = new System.Drawing.Size(338, 70);
             this.loadToolStrip.Text = "Radio (Not XBee)";
-            this.loadToolStrip.Click += new System.EventHandler(this.btnRadio_Click_1);
+            this.loadToolStrip.Click += new System.EventHandler(this.btnRadio_Click);
             // 
             // serialPassThroughToolStripMenuItem
             // 
