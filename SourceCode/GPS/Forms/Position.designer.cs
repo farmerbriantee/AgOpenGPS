@@ -159,8 +159,6 @@ namespace AgOpenGPS
                         distanceCurrentStepFixDisplay = glm.Distance(prevDistFix, pn.fix);
                         if ((fd.distanceUser += distanceCurrentStepFixDisplay) > 999) fd.distanceUser = 0;
                         distanceCurrentStepFixDisplay *= 100;
-
-                        jumpFix = prevDistFix;
                         prevDistFix = pn.fix;
 
                         if (Math.Abs(avgSpeed) < 1.5 && !isFirstHeadingSet)
@@ -319,7 +317,8 @@ namespace AgOpenGPS
                                 goto byPass;
                             }
 
-                            //userDistance can be reset
+                            //save a copy of previous for jump test
+                            jumpFix.easting = stepFixPts[0].easting; jumpFix.northing = stepFixPts[0].northing;
 
                             double minFixHeadingDistSquared = minHeadingStepDist * minHeadingStepDist;
                             fixToFixHeadingDistance = 0;
@@ -434,6 +433,9 @@ namespace AgOpenGPS
 
                             if (distanceCurrentStepFix < (gpsMinimumStepDistance))
                                 goto byPass;
+
+                            //save a copy of previous for jump test
+                            jumpFix.easting = stepFixPts[0].easting; jumpFix.northing = stepFixPts[0].northing;
 
                             double minFixHeadingDistSquared = minHeadingStepDist * minHeadingStepDist;
                             fixToFixHeadingDistance = 0;
@@ -676,7 +678,7 @@ namespace AgOpenGPS
 
                         //most recent fixes are now the prev ones
                         jumpFix = prevFix;
-                        prevFix.easting = pn.fix.easting; prevFix.northing = pn.fix.northing;
+                        prevFix = pn.fix;
 
                         break;
                     }
@@ -687,16 +689,6 @@ namespace AgOpenGPS
                         //use Dual Antenna heading for camera and tractor graphic
                         fixHeading = glm.toRadians(pn.headingTrueDual);
                         gpsHeading = fixHeading;
-
-                        //grab the most current fix and save the distance from the last fix
-                        distanceCurrentStepFix = glm.Distance(pn.fix, prevDistFix);
-
-                        //userDistance can be reset
-                        if ((fd.distanceUser += distanceCurrentStepFix) > 999) fd.distanceUser = 0;
-                        distanceCurrentStepFixDisplay = distanceCurrentStepFix * 100;
-
-                        jumpFix = prevDistFix;
-                        prevDistFix = pn.fix;
 
                         uncorrectedEastingGraph = pn.fix.easting;
 
@@ -717,6 +709,15 @@ namespace AgOpenGPS
                             pn.fix.northing = (Math.Sin(-gpsHeading) * rollCorrectionDistance) + pn.fix.northing;
                         }
 
+                        //grab the most current fix and save the distance from the last fix
+                        distanceCurrentStepFix = glm.Distance(pn.fix, prevDistFix);
+
+                        //userDistance can be reset
+                        if ((fd.distanceUser += distanceCurrentStepFix) > 999) fd.distanceUser = 0;
+                        distanceCurrentStepFixDisplay = distanceCurrentStepFix * 100;
+
+                        jumpFix = prevDistFix;
+                        prevDistFix = pn.fix;
 
                         if (glm.Distance(lastReverseFix, pn.fix) > dualReverseDetectionDistance)
                         {
@@ -768,6 +769,9 @@ namespace AgOpenGPS
                     break;
             }
 
+            if (fixHeading >= glm.twoPI)
+                fixHeading -= glm.twoPI;
+
             vec2 ptA = new vec2(jumpFix.easting - (Math.Sin(gpsHeading) * 10), jumpFix.northing - (Math.Cos(gpsHeading) * 10));
             vec2 ptB = new vec2(jumpFix.easting + (Math.Sin(gpsHeading) * 10), jumpFix.northing + (Math.Cos(gpsHeading) * 10));
 
@@ -776,9 +780,9 @@ namespace AgOpenGPS
             double dy = ptB.northing - ptA.northing;
 
             //how far from current AB Line is fix
-            jumpDistance = ((dy * prevDistFix.easting) - (dx * prevDistFix.northing) + (ptB.easting
-                        * ptA.northing) - (ptB.northing * ptA.easting))
-                        / Math.Sqrt((dy * dy) + (dx * dx));
+            jumpDistance = ((dy * prevDistFix.easting) - (dx * prevDistFix.northing) 
+                            + (ptB.easting * ptA.northing) - (ptB.northing * ptA.easting))
+                            / Math.Sqrt((dy * dy) + (dx * dx));
 
             jumpDistance = Math.Abs(jumpDistance) * 100;
 
@@ -791,7 +795,6 @@ namespace AgOpenGPS
                     if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
                 }
             }
-
 
             #endregion
 
