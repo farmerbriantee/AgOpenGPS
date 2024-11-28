@@ -33,6 +33,7 @@ namespace AgOpenGPS
             lblFusionIMU.Text = (100 - hsbarFusion.Value).ToString();
 
             cboxIsRTK.Checked = Properties.Settings.Default.setGPS_isRTK;
+            cboxIsRTK_KillAutoSteer.Checked = Properties.Settings.Default.setGPS_isRTK_KillAutoSteer;
 
             nudFixJumpDistance.Value = Properties.Settings.Default.setGPS_jumpFixAlarmDistance;
 
@@ -82,6 +83,7 @@ namespace AgOpenGPS
             Properties.Settings.Default.setGPS_isRTK = mf.isRTK_AlarmOn = cboxIsRTK.Checked;
 
             Properties.Settings.Default.setIMU_isReverseOn = mf.ahrs.isReverseOn = cboxIsReverseOn.Checked;
+            Properties.Settings.Default.setGPS_isRTK_KillAutoSteer = mf.isRTK_KillAutosteer = cboxIsRTK_KillAutoSteer.Checked;
 
             if (cboxMinGPSStep.Checked)
             {
@@ -93,7 +95,6 @@ namespace AgOpenGPS
                 Properties.Settings.Default.setF_minHeadingStepDistance = 0.5;
                 Properties.Settings.Default.setGPS_minimumStepLimit = 0.05;
             }
-
 
             Properties.Settings.Default.Save();
         }
