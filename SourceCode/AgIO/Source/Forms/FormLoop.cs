@@ -369,7 +369,7 @@ namespace AgIO
                 pictureBox1.Dispose();
                 oneSecondLoopTimer.Interval = 1000;
                 this.Width = 428;
-                this.Height = 525;
+                this.Height = 530;
                 return;
             }
 

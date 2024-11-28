@@ -26,7 +26,7 @@ namespace AgOpenGPS
             this.Text = "Name *****";
         }
 
-        private void FormNozVolumeSet_Load(object sender, EventArgs e)
+        private void LoadLabels()
         {
             label4.Text = Properties.Settings.Default.setVehicle_maxSteerAngle.ToString();
             label6.Text = Properties.Settings.Default.setAS_countsPerDegree.ToString();
@@ -165,6 +165,11 @@ namespace AgOpenGPS
             bm.Save(mf.baseDirectory + "//AllSet.PNG", ImageFormat.Png);
             System.Diagnostics.Process.Start("explorer.exe", mf.baseDirectory);
             Close();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            LoadLabels();
         }
     }
 }
