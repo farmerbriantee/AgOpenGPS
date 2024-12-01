@@ -146,8 +146,6 @@ namespace AgOpenGPS
             pn.speed = pn.vtgSpeed;
             pn.AverageTheSpeed();
 
-
-
             #region Heading
             switch (headingFromSource)
             {
@@ -780,13 +778,13 @@ namespace AgOpenGPS
             double dy = ptB.northing - ptA.northing;
 
             //how far from current AB Line is fix
-            jumpDistance = ((dy * prevDistFix.easting) - (dx * prevDistFix.northing) 
+            jumpDistance = ((dy * pn.fix.easting) - (dx * pn.fix.northing) 
                             + (ptB.easting * ptA.northing) - (ptB.northing * ptA.easting))
                             / Math.Sqrt((dy * dy) + (dx * dx));
 
             jumpDistance = Math.Abs(jumpDistance) * 100;
 
-            if (timerSim.Enabled || jumpDistance > 200) jumpDistance = 0;
+            if (jumpDistance > 200) jumpDistance = 0;
 
             if (jumpDistanceAlarm > 0)
             {
@@ -1585,8 +1583,7 @@ namespace AgOpenGPS
                 isFirstFixPositionSet = true;
 
                 //most recent fixes
-                prevFix.easting =  pn.fix.easting;
-                prevFix.northing = pn.fix.northing;
+                prevFix = pn.fix;
 
                 //run once and return
                 isFirstFixPositionSet = true;
