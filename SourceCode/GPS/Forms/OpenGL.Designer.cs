@@ -3,6 +3,7 @@ using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using System.Windows.Forms;
 using System.Text;
+using System.Drawing;
 
 namespace AgOpenGPS
 {
@@ -428,7 +429,37 @@ namespace AgOpenGPS
                     //just in case
                     GL.Disable(EnableCap.LineStipple);
 
-                    GL.Flush();//finish openGL commands
+                    GL.LineWidth(4);
+                    GL.Color3(0.0, 0.4, 0.0);
+
+                    if (mc.isOutOfBounds)
+                    {
+                        GL.Color3(1.0, 0.6, 0.3);
+                        GL.LineWidth(16);
+                    }
+                    if ((isRTK_AlarmOn && sounds.isRTKAlarming) || (yt.isYouTurnBtnOn && yt.turnTooCloseTrigger))
+                    {
+                        if (isFlashOnOff)
+                        {
+                            GL.Color3(1.0, 0.25, 0.25);
+                            GL.LineWidth(16);
+                        }
+                        else
+                        {
+                            GL.Color3(0.0, 0.0, 0.6);
+                            GL.LineWidth(16);
+                        }
+                    }
+
+                    GL.Begin(PrimitiveType.LineLoop);
+                    
+                    GL.Vertex3(-oglMain.Width/2, 0, 0);
+                    GL.Vertex3(oglMain.Width / 2, 0, 0);
+                    GL.Vertex3(oglMain.Width / 2, oglMain.Height, 0);
+                    GL.Vertex3(-oglMain.Width / 2, oglMain.Height, 0);
+
+                    GL.End();
+
                     GL.PopMatrix();//  Pop the modelview.
 
                     ////-------------------------------------------------ORTHO END---------------------------------------

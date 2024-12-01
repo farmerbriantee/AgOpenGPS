@@ -786,7 +786,7 @@ namespace AgOpenGPS
 
             jumpDistance = Math.Abs(jumpDistance) * 100;
 
-            if (jumpDistance > 200) jumpDistance = 0;
+            if (timerSim.Enabled || jumpDistance > 200) jumpDistance = 0;
 
             if (jumpDistanceAlarm > 0)
             {

@@ -662,7 +662,7 @@
             // FormGPSData
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(541, 357);
             this.Controls.Add(this.tboxKSXT);
             this.Controls.Add(this.label13);

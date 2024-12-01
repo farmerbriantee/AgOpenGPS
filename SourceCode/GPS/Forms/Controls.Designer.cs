@@ -268,7 +268,6 @@ namespace AgOpenGPS
                     }
                 }
 
-                if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
                 if (isBtnAutoSteerOn)
                 {
                     btnAutoSteer.PerformClick();
