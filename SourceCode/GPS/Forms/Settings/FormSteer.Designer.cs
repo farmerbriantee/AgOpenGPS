@@ -458,7 +458,7 @@
             this.tabControl1.ImageList = this.imageList1;
             this.tabControl1.ItemSize = new System.Drawing.Size(105, 48);
             this.tabControl1.Location = new System.Drawing.Point(3, 5);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -677,9 +677,9 @@
             this.tabStan.Controls.Add(this.hsbarStanleyGain);
             this.tabStan.Controls.Add(this.hsbarHeadingErrorGain);
             this.tabStan.ImageIndex = 2;
-            this.tabStan.Location = new System.Drawing.Point(4, 52);
+            this.tabStan.Location = new System.Drawing.Point(4, 103);
             this.tabStan.Name = "tabStan";
-            this.tabStan.Size = new System.Drawing.Size(360, 346);
+            this.tabStan.Size = new System.Drawing.Size(360, 295);
             this.tabStan.TabIndex = 15;
             // 
             // lblIntegralPercent
@@ -811,9 +811,9 @@
             this.tabGain.Controls.Add(this.lblMinPWM);
             this.tabGain.Controls.Add(this.hsbarHighSteerPWM);
             this.tabGain.ImageIndex = 1;
-            this.tabGain.Location = new System.Drawing.Point(4, 52);
+            this.tabGain.Location = new System.Drawing.Point(4, 103);
             this.tabGain.Name = "tabGain";
-            this.tabGain.Size = new System.Drawing.Size(360, 346);
+            this.tabGain.Size = new System.Drawing.Size(360, 295);
             this.tabGain.TabIndex = 13;
             // 
             // label6
@@ -868,6 +868,7 @@
             // 
             this.hsbarMinPWM.LargeChange = 1;
             this.hsbarMinPWM.Location = new System.Drawing.Point(68, 269);
+            this.hsbarMinPWM.Maximum = 200;
             this.hsbarMinPWM.Name = "hsbarMinPWM";
             this.hsbarMinPWM.Size = new System.Drawing.Size(202, 30);
             this.hsbarMinPWM.TabIndex = 284;
@@ -957,9 +958,9 @@
             this.tabSteer.Controls.Add(this.hsbarWasOffset);
             this.tabSteer.Controls.Add(this.lblSteerAngleSensorZero);
             this.tabSteer.ImageIndex = 0;
-            this.tabSteer.Location = new System.Drawing.Point(4, 52);
+            this.tabSteer.Location = new System.Drawing.Point(4, 103);
             this.tabSteer.Name = "tabSteer";
-            this.tabSteer.Size = new System.Drawing.Size(360, 346);
+            this.tabSteer.Size = new System.Drawing.Size(360, 295);
             this.tabSteer.TabIndex = 5;
             this.tabSteer.Text = "Fix ";
             // 
@@ -979,7 +980,7 @@
             this.lblAV_Set.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAV_Set.AutoSize = true;
             this.lblAV_Set.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAV_Set.Location = new System.Drawing.Point(255, 18);
+            this.lblAV_Set.Location = new System.Drawing.Point(231, 18);
             this.lblAV_Set.Name = "lblAV_Set";
             this.lblAV_Set.Size = new System.Drawing.Size(51, 19);
             this.lblAV_Set.TabIndex = 529;
@@ -991,7 +992,7 @@
             this.lblAV_Act.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAV_Act.AutoSize = true;
             this.lblAV_Act.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAV_Act.Location = new System.Drawing.Point(255, 42);
+            this.lblAV_Act.Location = new System.Drawing.Point(231, 42);
             this.lblAV_Act.Name = "lblAV_Act";
             this.lblAV_Act.Size = new System.Drawing.Size(54, 19);
             this.lblAV_Act.TabIndex = 528;
@@ -1014,7 +1015,7 @@
             this.label36.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(211, 44);
+            this.label36.Location = new System.Drawing.Point(187, 44);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(50, 16);
             this.label36.TabIndex = 530;
@@ -1038,7 +1039,7 @@
             this.label38.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(210, 20);
+            this.label38.Location = new System.Drawing.Point(186, 20);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(51, 16);
             this.label38.TabIndex = 531;
@@ -1117,7 +1118,7 @@
             this.lblActualSteerAngleUpper.BackColor = System.Drawing.Color.Transparent;
             this.lblActualSteerAngleUpper.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblActualSteerAngleUpper.ForeColor = System.Drawing.Color.Black;
-            this.lblActualSteerAngleUpper.Location = new System.Drawing.Point(-80, 16);
+            this.lblActualSteerAngleUpper.Location = new System.Drawing.Point(-104, 16);
             this.lblActualSteerAngleUpper.Name = "lblActualSteerAngleUpper";
             this.lblActualSteerAngleUpper.Size = new System.Drawing.Size(39, 19);
             this.lblActualSteerAngleUpper.TabIndex = 324;
@@ -1913,7 +1914,7 @@
             this.tabSensors.ImageIndex = 0;
             this.tabSensors.Location = new System.Drawing.Point(4, 68);
             this.tabSensors.Name = "tabSensors";
-            this.tabSensors.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabSensors.Padding = new System.Windows.Forms.Padding(3);
             this.tabSensors.Size = new System.Drawing.Size(623, 495);
             this.tabSensors.TabIndex = 0;
             // 
@@ -1963,7 +1964,7 @@
             this.tabConfig.ImageIndex = 1;
             this.tabConfig.Location = new System.Drawing.Point(4, 68);
             this.tabConfig.Name = "tabConfig";
-            this.tabConfig.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabConfig.Padding = new System.Windows.Forms.Padding(3);
             this.tabConfig.Size = new System.Drawing.Size(623, 495);
             this.tabConfig.TabIndex = 1;
             // 
@@ -1988,7 +1989,7 @@
             this.tabSettings.ImageIndex = 2;
             this.tabSettings.Location = new System.Drawing.Point(4, 68);
             this.tabSettings.Name = "tabSettings";
-            this.tabSettings.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabSettings.Padding = new System.Windows.Forms.Padding(3);
             this.tabSettings.Size = new System.Drawing.Size(623, 495);
             this.tabSettings.TabIndex = 2;
             this.tabSettings.Enter += new System.EventHandler(this.tabSettings_Enter);
@@ -2686,7 +2687,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1006, 673);
+            this.ClientSize = new System.Drawing.Size(1004, 673);
             this.Controls.Add(this.label35);
             this.Controls.Add(this.btnSteerWizard);
             this.Controls.Add(this.tabSteerSettings);
