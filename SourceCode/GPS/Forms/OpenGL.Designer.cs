@@ -429,13 +429,13 @@ namespace AgOpenGPS
                     //just in case
                     GL.Disable(EnableCap.LineStipple);
 
-                    GL.LineWidth(4);
-                    GL.Color3(0.0, 0.4, 0.0);
+                    GL.LineWidth(8);
+                    GL.Color3(0.30, 0.3, 0.30);
 
                     if (mc.isOutOfBounds)
                     {
-                        GL.Color3(1.0, 0.6, 0.3);
-                        GL.LineWidth(16);
+                        GL.Color3(1.0, 0.66, 0.33);
+                        GL.LineWidth(8);
                     }
                     if ((isRTK_AlarmOn && sounds.isRTKAlarming) || (yt.isYouTurnBtnOn && yt.turnTooCloseTrigger))
                     {
@@ -446,7 +446,7 @@ namespace AgOpenGPS
                         }
                         else
                         {
-                            GL.Color3(0.0, 0.0, 0.6);
+                            GL.Color3(0.8, 0.250, 0.25);
                             GL.LineWidth(16);
                         }
                     }
