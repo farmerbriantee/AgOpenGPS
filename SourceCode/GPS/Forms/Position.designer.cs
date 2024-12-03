@@ -952,9 +952,6 @@ namespace AgOpenGPS
 
                 setAngVel = glm.toDegrees(setAngVel);
 
-                p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(guidanceLineSteerAngle >> 8));
-                p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(guidanceLineSteerAngle));
-
                 if (isChangingDirection && ahrs.imuHeading == 99999)
                     p_254.pgn[p_254.status] = 0;
 
@@ -963,6 +960,20 @@ namespace AgOpenGPS
                 {
                     if (isReverse) p_254.pgn[p_254.status] = 0;
                 }
+                
+                vehicle.isInDeadZone = false;
+
+                if (p_254.pgn[p_254.status] == 1 && !isReverse)
+                {
+                    if (Math.Abs(guidanceLineDistanceOff) < vehicle.deadZoneDistance
+                                && Math.Abs(guidanceLineSteerAngle) < vehicle.deadZoneHeading)
+                    {
+                        vehicle.isInDeadZone = true;
+                        guidanceLineSteerAngle = 0;
+                    }
+                }
+                p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(guidanceLineSteerAngle >> 8));
+                p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(guidanceLineSteerAngle));
             }
 
             else //Drive button is on

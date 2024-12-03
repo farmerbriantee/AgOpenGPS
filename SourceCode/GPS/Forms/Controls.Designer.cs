@@ -2154,10 +2154,22 @@ namespace AgOpenGPS
             else sim.stepDistance *= 0.8;
             if (sim.stepDistance < -0.5) sim.stepDistance = -0.5;
         }
+
+
         private void timerSim_Tick(object sender, EventArgs e)
         {
+            vehicle.isInDeadZone = false;
             if (recPath.isDrivingRecordedPath || isBtnAutoSteerOn && (guidanceLineDistanceOff != 32000))
+            {
+                if (Math.Abs(guidanceLineDistanceOff) < vehicle.deadZoneDistance
+                    && Math.Abs(guidanceLineSteerAngle) < vehicle.deadZoneHeading)
+                {
+                    vehicle.isInDeadZone = true;
+                    guidanceLineSteerAngle = 0;
+                }
+
                 sim.DoSimTick(guidanceLineSteerAngle * 0.01);
+            }
             else sim.DoSimTick(sim.steerAngleScrollBar);
         }
         private void btnSimReverseDirection_Click(object sender, EventArgs e)

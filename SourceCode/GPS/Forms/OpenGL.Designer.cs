@@ -2127,6 +2127,22 @@ namespace AgOpenGPS
                 int center = -(int)(((double)(hede.Length) * 0.5) * 22);
                 font.DrawText(center, 2, hede, 1.5);
 
+                if (vehicle.isInDeadZone)
+                {
+                    GL.Color3(0,0,0);
+                    GL.LineWidth(8);
+                    GL.Begin(PrimitiveType.Lines);
+                    GL.Vertex3(center - 25, 80, 0);
+                    GL.Vertex3(center + 50, 80, 0);
+                    GL.End();
+                    GL.Color3(0.930f, 0.972f, 0.932f);
+                    GL.LineWidth(4);
+                    GL.Begin(PrimitiveType.Lines);
+                    GL.Vertex3(center - 22, 80, 0);
+                    GL.Vertex3(center + 47, 80, 0);
+                    GL.End();
+                }
+
                 if (longAvgPivDistance < 150)
                 {
                     hede = (Math.Abs(longAvgPivDistance * (isMetric ? 0.1 : 0.03937))).ToString("N1");

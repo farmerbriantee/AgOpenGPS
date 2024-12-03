@@ -139,6 +139,9 @@ namespace AgOpenGPS
 
             nudPanicStopSpeed.Value = (decimal)mf.vehicle.panicStopSpeed;
 
+            nudDeadZoneDistance.Value = (decimal)((double)(Properties.Settings.Default.setAS_deadZoneDistance)/10);
+            nudDeadZoneHeading.Value = (decimal)((double)(Properties.Settings.Default.setAS_deadZoneHeading)/100);
+
             //Stanley guidance
 
             if (mf.isStanleyUsed)
@@ -370,6 +373,8 @@ namespace AgOpenGPS
             Properties.Settings.Default.setAS_minSteerPWM = mf.p_252.pgn[mf.p_252.minPWM] = unchecked((byte)hsbarMinPWM.Value);
 
             Properties.Settings.Default.setVehicle_panicStopSpeed = mf.vehicle.panicStopSpeed;
+            Properties.Settings.Default.setAS_deadZoneDistance = mf.vehicle.deadZoneDistance;
+            Properties.Settings.Default.setAS_deadZoneHeading = mf.vehicle.deadZoneHeading;
 
             Properties.Settings.Default.setAS_ModeXTE = mf.vehicle.modeXTE;
             Properties.Settings.Default.setAS_ModeTime = mf.vehicle.modeTime;
@@ -787,6 +792,18 @@ namespace AgOpenGPS
         {
             mf.KeypadToNUD((NudlessNumericUpDown)sender, this);
             mf.vehicle.panicStopSpeed = (double)nudPanicStopSpeed.Value;
+        }
+
+        private void nudDeadZoneDistance_Click(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NudlessNumericUpDown)sender, this);
+            mf.vehicle.deadZoneDistance = (int)(nudDeadZoneDistance.Value*10);
+        }
+
+        private void nudDeadZoneHeading_Click(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NudlessNumericUpDown)sender, this);
+            mf.vehicle.deadZoneHeading = (int)(nudDeadZoneHeading.Value*100);
         }
 
         private void EnableAlert_Click(object sender, EventArgs e)
