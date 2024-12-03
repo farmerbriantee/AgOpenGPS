@@ -963,17 +963,17 @@ namespace AgOpenGPS
                 
                 vehicle.isInDeadZone = false;
 
-                if (p_254.pgn[p_254.status] == 1 && !isReverse)
+                if (p_254.pgn[p_254.status] == 1 && !isReverse
+                    && Math.Abs(guidanceLineDistanceOff) < vehicle.deadZoneDistance
+                            && Math.Abs(guidanceLineSteerAngle) < vehicle.deadZoneHeading)
                 {
-                    if (Math.Abs(guidanceLineDistanceOff) < vehicle.deadZoneDistance
-                                && Math.Abs(guidanceLineSteerAngle) < vehicle.deadZoneHeading)
-                    {
-                        vehicle.isInDeadZone = true;
-                        guidanceLineSteerAngle = 0;
-                    }
+                    vehicle.isInDeadZone = true;
                 }
-                p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(guidanceLineSteerAngle >> 8));
-                p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(guidanceLineSteerAngle));
+                else
+                {
+                    p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(guidanceLineSteerAngle >> 8));
+                    p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(guidanceLineSteerAngle));
+                }
             }
 
             else //Drive button is on
