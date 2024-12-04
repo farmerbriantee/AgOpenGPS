@@ -409,6 +409,11 @@ namespace AgOpenGPS
             displayBrightness = new CWindowsSettingsBrightnessController(Properties.Settings.Default.setDisplay_isBrightnessOn);
         }
 
+        private void lblJumpDistanceMax_Click(object sender, EventArgs e)
+        {
+            jumpDistanceMax = 0;
+        }
+
         private void FormGPS_Load(object sender, EventArgs e)
         {
             this.MouseWheel += ZoomByMouseWheel;

@@ -115,8 +115,9 @@ namespace AgOpenGPS
         public int minSteerSpeedTimer = 0;
 
         public vec2 jumpFix = new vec2(0, 0);
-        public double jumpDistance = 0;
+        public double jumpDistance = 0, jumpDistanceMax;
         public double jumpDistanceAlarm = 20;
+        public int jumpCounter = 0;
 
         public void UpdateFixPosition()
         {
@@ -155,7 +156,7 @@ namespace AgOpenGPS
                         #region Start
 
                         distanceCurrentStepFixDisplay = glm.Distance(prevDistFix, pn.fix);
-                        if ((fd.distanceUser += distanceCurrentStepFixDisplay) > 999) fd.distanceUser = 0;
+                        if ((fd.distanceUser += distanceCurrentStepFixDisplay) > 9999) fd.distanceUser = 0;
                         distanceCurrentStepFixDisplay *= 100;
                         prevDistFix = pn.fix;
 
@@ -783,6 +784,14 @@ namespace AgOpenGPS
                             / Math.Sqrt((dy * dy) + (dx * dx));
 
             jumpDistance = Math.Abs(jumpDistance) * 100;
+
+            if (jumpDistance > jumpDistanceMax) jumpDistanceMax = jumpDistance;
+
+            if (jumpCounter++ > 200)
+            {
+                jumpDistanceMax = jumpCounter = 0;
+                lblJumpDistanceMax.Text = "*";
+            }
 
             if (jumpDistance > 200) jumpDistance = 0;
 

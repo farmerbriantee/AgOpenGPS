@@ -283,7 +283,6 @@ namespace AgOpenGPS
 
                 //fix
                 if (timerSim.Enabled && pn.fixQuality++ > 5) pn.fixQuality = 2;
-
             }
 
             /////////////////////////////////////////////////////////   2 second  ////////////////////////////////////////
@@ -360,6 +359,8 @@ namespace AgOpenGPS
                 {
                     if (trackMethodPanelCounter-- < 1) flp1.Visible = false;
                 }
+
+                lblJumpDistanceMax.Text = jumpDistanceMax.ToString("N1");
             }
 
             //every half of a second update all status  ////////////////    0.5  0.5   0.5    0.5    /////////////////
@@ -404,7 +405,6 @@ namespace AgOpenGPS
                     lblSpeed.Text = SpeedMPH;
                     //btnContour.Text = InchXTE; //cross track error
                 }
-
             } //end every 1/2 second
 
             //every fourth second update  ///////////////////////////   Fourth  ////////////////////////////
@@ -415,8 +415,6 @@ namespace AgOpenGPS
                 makeUTurnCounter++;
 
                 btnAutoSteerConfig.Text = SetSteerAngle + "\r\n" + ActualSteerAngle;
-
-                lblFixDistanceOffLine.Text = jumpDistance.ToString("N1");
 
                 secondsSinceStart = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
             }
@@ -962,8 +960,6 @@ namespace AgOpenGPS
 
             }
 
-            //flp1.Top = this.Height - 230;
-            //flp1.Left = this.Width - 120 - flp1.Width;
             btnFlag.Text = isStanleyUsed ? "S" : "P";
         }
 
