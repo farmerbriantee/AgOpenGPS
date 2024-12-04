@@ -155,14 +155,11 @@
             this.btnStanleyPure = new System.Windows.Forms.Button();
             this.tabSteerSettings = new System.Windows.Forms.TabControl();
             this.tabSensors = new System.Windows.Forms.TabPage();
-            this.nudMaxCounts = new AgOpenGPS.NudlessNumericUpDown();
             this.tabConfig = new System.Windows.Forms.TabPage();
             this.tabSettings = new System.Windows.Forms.TabPage();
             this.label51 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
-            this.nudDeadZoneHeading = new AgOpenGPS.NudlessNumericUpDown();
             this.label47 = new System.Windows.Forms.Label();
-            this.nudDeadZoneDistance = new AgOpenGPS.NudlessNumericUpDown();
             this.label156 = new System.Windows.Forms.Label();
             this.cboxSteerInReverse = new System.Windows.Forms.CheckBox();
             this.label41 = new System.Windows.Forms.Label();
@@ -170,12 +167,10 @@
             this.hsbarUTurnCompensation = new System.Windows.Forms.HScrollBar();
             this.lblUTurnCompensation = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
-            this.nudPanicStopSpeed = new AgOpenGPS.NudlessNumericUpDown();
             this.tabAlarm = new System.Windows.Forms.TabPage();
             this.label45 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.nudcmPerPixel = new AgOpenGPS.NudlessNumericUpDown();
             this.label110 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
@@ -197,6 +192,14 @@
             this.pictureBox16 = new System.Windows.Forms.PictureBox();
             this.pictureBox15 = new System.Windows.Forms.PictureBox();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
+            this.btnSteerWizard = new System.Windows.Forms.Button();
+            this.label35 = new System.Windows.Forms.Label();
+            this.nudMaxCounts = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudDeadZoneHeading = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudDeadZoneDistance = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudPanicStopSpeed = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudcmPerPixel = new AgOpenGPS.NudlessNumericUpDown();
             this.nudLineWidth = new AgOpenGPS.NudlessNumericUpDown();
             this.nudSnapDistance = new AgOpenGPS.NudlessNumericUpDown();
             this.nudGuidanceLookAhead = new AgOpenGPS.NudlessNumericUpDown();
@@ -204,9 +207,6 @@
             this.nudMaxSteerSpeed = new AgOpenGPS.NudlessNumericUpDown();
             this.nudMaxAngularVelocity = new AgOpenGPS.NudlessNumericUpDown();
             this.nudGuidanceSpeedLimit = new AgOpenGPS.NudlessNumericUpDown();
-            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
-            this.btnSteerWizard = new System.Windows.Forms.Button();
-            this.label35 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabInt.SuspendLayout();
             this.tabStan.SuspendLayout();
@@ -217,15 +217,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pboxSendSteer)).BeginInit();
             this.tabSteerSettings.SuspendLayout();
             this.tabSensors.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMaxCounts)).BeginInit();
             this.tabConfig.SuspendLayout();
             this.tabSettings.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudDeadZoneHeading)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudDeadZoneDistance)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudPanicStopSpeed)).BeginInit();
             this.tabAlarm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudcmPerPixel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
@@ -233,6 +228,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxCounts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDeadZoneHeading)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDeadZoneDistance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPanicStopSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudcmPerPixel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLineWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudGuidanceLookAhead)).BeginInit();
@@ -969,7 +969,6 @@
             this.tabSteer.Name = "tabSteer";
             this.tabSteer.Size = new System.Drawing.Size(360, 295);
             this.tabSteer.TabIndex = 5;
-            this.tabSteer.Text = "Fix ";
             // 
             // label23
             // 
@@ -987,7 +986,7 @@
             this.lblAV_Set.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAV_Set.AutoSize = true;
             this.lblAV_Set.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAV_Set.Location = new System.Drawing.Point(163, 18);
+            this.lblAV_Set.Location = new System.Drawing.Point(50, 18);
             this.lblAV_Set.Name = "lblAV_Set";
             this.lblAV_Set.Size = new System.Drawing.Size(51, 19);
             this.lblAV_Set.TabIndex = 529;
@@ -999,7 +998,7 @@
             this.lblAV_Act.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAV_Act.AutoSize = true;
             this.lblAV_Act.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAV_Act.Location = new System.Drawing.Point(163, 42);
+            this.lblAV_Act.Location = new System.Drawing.Point(50, 42);
             this.lblAV_Act.Name = "lblAV_Act";
             this.lblAV_Act.Size = new System.Drawing.Size(54, 19);
             this.lblAV_Act.TabIndex = 528;
@@ -1022,7 +1021,7 @@
             this.label36.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(119, 44);
+            this.label36.Location = new System.Drawing.Point(6, 44);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(50, 16);
             this.label36.TabIndex = 530;
@@ -1046,7 +1045,7 @@
             this.label38.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(118, 20);
+            this.label38.Location = new System.Drawing.Point(5, 20);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(51, 16);
             this.label38.TabIndex = 531;
@@ -1125,7 +1124,7 @@
             this.lblActualSteerAngleUpper.BackColor = System.Drawing.Color.Transparent;
             this.lblActualSteerAngleUpper.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblActualSteerAngleUpper.ForeColor = System.Drawing.Color.Black;
-            this.lblActualSteerAngleUpper.Location = new System.Drawing.Point(-172, 16);
+            this.lblActualSteerAngleUpper.Location = new System.Drawing.Point(-189, 16);
             this.lblActualSteerAngleUpper.Name = "lblActualSteerAngleUpper";
             this.lblActualSteerAngleUpper.Size = new System.Drawing.Size(39, 19);
             this.lblActualSteerAngleUpper.TabIndex = 324;
@@ -1925,29 +1924,6 @@
             this.tabSensors.Size = new System.Drawing.Size(623, 495);
             this.tabSensors.TabIndex = 0;
             // 
-            // nudMaxCounts
-            // 
-            this.nudMaxCounts.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudMaxCounts.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudMaxCounts.InterceptArrowKeys = false;
-            this.nudMaxCounts.Location = new System.Drawing.Point(21, 245);
-            this.nudMaxCounts.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.nudMaxCounts.Name = "nudMaxCounts";
-            this.nudMaxCounts.ReadOnly = true;
-            this.nudMaxCounts.Size = new System.Drawing.Size(107, 52);
-            this.nudMaxCounts.TabIndex = 493;
-            this.nudMaxCounts.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudMaxCounts.Value = new decimal(new int[] {
-            15,
-            0,
-            0,
-            0});
-            this.nudMaxCounts.Click += new System.EventHandler(this.nudMaxCounts_Click);
-            // 
             // tabConfig
             // 
             this.tabConfig.BackColor = System.Drawing.Color.LightGray;
@@ -1980,9 +1956,7 @@
             this.tabSettings.BackColor = System.Drawing.Color.LightGray;
             this.tabSettings.Controls.Add(this.label51);
             this.tabSettings.Controls.Add(this.label49);
-            this.tabSettings.Controls.Add(this.nudDeadZoneHeading);
             this.tabSettings.Controls.Add(this.label47);
-            this.tabSettings.Controls.Add(this.nudDeadZoneDistance);
             this.tabSettings.Controls.Add(this.label156);
             this.tabSettings.Controls.Add(this.cboxSteerInReverse);
             this.tabSettings.Controls.Add(this.label41);
@@ -1997,6 +1971,8 @@
             this.tabSettings.Controls.Add(this.btnStanleyPure);
             this.tabSettings.Controls.Add(this.label16);
             this.tabSettings.Controls.Add(this.label31);
+            this.tabSettings.Controls.Add(this.nudDeadZoneHeading);
+            this.tabSettings.Controls.Add(this.nudDeadZoneDistance);
             this.tabSettings.Controls.Add(this.nudPanicStopSpeed);
             this.tabSettings.ImageIndex = 2;
             this.tabSettings.Location = new System.Drawing.Point(4, 68);
@@ -2031,35 +2007,6 @@
             this.label49.Text = "Heading (Degree)";
             this.label49.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
-            // nudDeadZoneHeading
-            // 
-            this.nudDeadZoneHeading.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudDeadZoneHeading.DecimalPlaces = 1;
-            this.nudDeadZoneHeading.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudDeadZoneHeading.InterceptArrowKeys = false;
-            this.nudDeadZoneHeading.Location = new System.Drawing.Point(412, 405);
-            this.nudDeadZoneHeading.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.nudDeadZoneHeading.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nudDeadZoneHeading.Name = "nudDeadZoneHeading";
-            this.nudDeadZoneHeading.ReadOnly = true;
-            this.nudDeadZoneHeading.Size = new System.Drawing.Size(107, 52);
-            this.nudDeadZoneHeading.TabIndex = 538;
-            this.nudDeadZoneHeading.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudDeadZoneHeading.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudDeadZoneHeading.Click += new System.EventHandler(this.nudDeadZoneHeading_Click);
-            // 
             // label47
             // 
             this.label47.BackColor = System.Drawing.Color.Transparent;
@@ -2072,35 +2019,6 @@
             this.label47.TabIndex = 536;
             this.label47.Text = "Distance (cm)";
             this.label47.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // nudDeadZoneDistance
-            // 
-            this.nudDeadZoneDistance.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudDeadZoneDistance.DecimalPlaces = 1;
-            this.nudDeadZoneDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudDeadZoneDistance.InterceptArrowKeys = false;
-            this.nudDeadZoneDistance.Location = new System.Drawing.Point(219, 405);
-            this.nudDeadZoneDistance.Maximum = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
-            this.nudDeadZoneDistance.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nudDeadZoneDistance.Name = "nudDeadZoneDistance";
-            this.nudDeadZoneDistance.ReadOnly = true;
-            this.nudDeadZoneDistance.Size = new System.Drawing.Size(107, 52);
-            this.nudDeadZoneDistance.TabIndex = 535;
-            this.nudDeadZoneDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudDeadZoneDistance.Value = new decimal(new int[] {
-            4,
-            0,
-            0,
-            0});
-            this.nudDeadZoneDistance.Click += new System.EventHandler(this.nudDeadZoneDistance_Click);
             // 
             // label156
             // 
@@ -2196,36 +2114,12 @@
             this.label40.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label40.UseCompatibleTextRendering = true;
             // 
-            // nudPanicStopSpeed
-            // 
-            this.nudPanicStopSpeed.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudPanicStopSpeed.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudPanicStopSpeed.InterceptArrowKeys = false;
-            this.nudPanicStopSpeed.Location = new System.Drawing.Point(457, 269);
-            this.nudPanicStopSpeed.Maximum = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.nudPanicStopSpeed.Name = "nudPanicStopSpeed";
-            this.nudPanicStopSpeed.ReadOnly = true;
-            this.nudPanicStopSpeed.Size = new System.Drawing.Size(107, 52);
-            this.nudPanicStopSpeed.TabIndex = 519;
-            this.nudPanicStopSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudPanicStopSpeed.Value = new decimal(new int[] {
-            15,
-            0,
-            0,
-            0});
-            this.nudPanicStopSpeed.Click += new System.EventHandler(this.nudPanicStopSpeed_Click);
-            // 
             // tabAlarm
             // 
             this.tabAlarm.BackColor = System.Drawing.Color.Gainsboro;
             this.tabAlarm.Controls.Add(this.label45);
             this.tabAlarm.Controls.Add(this.label46);
             this.tabAlarm.Controls.Add(this.pictureBox1);
-            this.tabAlarm.Controls.Add(this.nudcmPerPixel);
             this.tabAlarm.Controls.Add(this.label110);
             this.tabAlarm.Controls.Add(this.label44);
             this.tabAlarm.Controls.Add(this.pictureBox5);
@@ -2247,6 +2141,7 @@
             this.tabAlarm.Controls.Add(this.pictureBox16);
             this.tabAlarm.Controls.Add(this.pictureBox15);
             this.tabAlarm.Controls.Add(this.pictureBox10);
+            this.tabAlarm.Controls.Add(this.nudcmPerPixel);
             this.tabAlarm.Controls.Add(this.nudLineWidth);
             this.tabAlarm.Controls.Add(this.nudSnapDistance);
             this.tabAlarm.Controls.Add(this.nudGuidanceLookAhead);
@@ -2297,29 +2192,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(118, 75);
             this.pictureBox1.TabIndex = 525;
             this.pictureBox1.TabStop = false;
-            // 
-            // nudcmPerPixel
-            // 
-            this.nudcmPerPixel.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudcmPerPixel.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudcmPerPixel.InterceptArrowKeys = false;
-            this.nudcmPerPixel.Location = new System.Drawing.Point(470, 191);
-            this.nudcmPerPixel.Minimum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.nudcmPerPixel.Name = "nudcmPerPixel";
-            this.nudcmPerPixel.ReadOnly = true;
-            this.nudcmPerPixel.Size = new System.Drawing.Size(110, 52);
-            this.nudcmPerPixel.TabIndex = 524;
-            this.nudcmPerPixel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudcmPerPixel.Value = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.nudcmPerPixel.Click += new System.EventHandler(this.nudcmPerPixel_Click);
             // 
             // label110
             // 
@@ -2572,6 +2444,171 @@
             this.pictureBox10.TabIndex = 493;
             this.pictureBox10.TabStop = false;
             // 
+            // imageList2
+            // 
+            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
+            this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList2.Images.SetKeyName(0, "Sensors.png");
+            this.imageList2.Images.SetKeyName(1, "ConS_Pins.png");
+            this.imageList2.Images.SetKeyName(2, "ConS_VehicleConfig.png");
+            this.imageList2.Images.SetKeyName(3, "ConS_ModulesSteer.png");
+            // 
+            // btnSteerWizard
+            // 
+            this.btnSteerWizard.BackColor = System.Drawing.Color.Transparent;
+            this.btnSteerWizard.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnSteerWizard.FlatAppearance.BorderSize = 0;
+            this.btnSteerWizard.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.btnSteerWizard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSteerWizard.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.btnSteerWizard.Image = global::AgOpenGPS.Properties.Resources.WizardWand;
+            this.btnSteerWizard.Location = new System.Drawing.Point(394, 602);
+            this.btnSteerWizard.Name = "btnSteerWizard";
+            this.btnSteerWizard.Size = new System.Drawing.Size(75, 69);
+            this.btnSteerWizard.TabIndex = 529;
+            this.btnSteerWizard.UseVisualStyleBackColor = false;
+            this.btnSteerWizard.Click += new System.EventHandler(this.btnSteerWizard_Click);
+            // 
+            // label35
+            // 
+            this.label35.BackColor = System.Drawing.Color.Transparent;
+            this.label35.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.ForeColor = System.Drawing.Color.Black;
+            this.label35.Location = new System.Drawing.Point(382, 573);
+            this.label35.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(100, 23);
+            this.label35.TabIndex = 530;
+            this.label35.Text = "Wizard";
+            this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // nudMaxCounts
+            // 
+            this.nudMaxCounts.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudMaxCounts.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudMaxCounts.InterceptArrowKeys = false;
+            this.nudMaxCounts.Location = new System.Drawing.Point(21, 245);
+            this.nudMaxCounts.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nudMaxCounts.Name = "nudMaxCounts";
+            this.nudMaxCounts.ReadOnly = true;
+            this.nudMaxCounts.Size = new System.Drawing.Size(107, 52);
+            this.nudMaxCounts.TabIndex = 493;
+            this.nudMaxCounts.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudMaxCounts.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            this.nudMaxCounts.Click += new System.EventHandler(this.nudMaxCounts_Click);
+            // 
+            // nudDeadZoneHeading
+            // 
+            this.nudDeadZoneHeading.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudDeadZoneHeading.DecimalPlaces = 1;
+            this.nudDeadZoneHeading.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudDeadZoneHeading.InterceptArrowKeys = false;
+            this.nudDeadZoneHeading.Location = new System.Drawing.Point(412, 405);
+            this.nudDeadZoneHeading.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nudDeadZoneHeading.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nudDeadZoneHeading.Name = "nudDeadZoneHeading";
+            this.nudDeadZoneHeading.ReadOnly = true;
+            this.nudDeadZoneHeading.Size = new System.Drawing.Size(107, 52);
+            this.nudDeadZoneHeading.TabIndex = 538;
+            this.nudDeadZoneHeading.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudDeadZoneHeading.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudDeadZoneHeading.Click += new System.EventHandler(this.nudDeadZoneHeading_Click);
+            // 
+            // nudDeadZoneDistance
+            // 
+            this.nudDeadZoneDistance.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudDeadZoneDistance.DecimalPlaces = 1;
+            this.nudDeadZoneDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudDeadZoneDistance.InterceptArrowKeys = false;
+            this.nudDeadZoneDistance.Location = new System.Drawing.Point(219, 405);
+            this.nudDeadZoneDistance.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.nudDeadZoneDistance.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nudDeadZoneDistance.Name = "nudDeadZoneDistance";
+            this.nudDeadZoneDistance.ReadOnly = true;
+            this.nudDeadZoneDistance.Size = new System.Drawing.Size(107, 52);
+            this.nudDeadZoneDistance.TabIndex = 535;
+            this.nudDeadZoneDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudDeadZoneDistance.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.nudDeadZoneDistance.Click += new System.EventHandler(this.nudDeadZoneDistance_Click);
+            // 
+            // nudPanicStopSpeed
+            // 
+            this.nudPanicStopSpeed.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudPanicStopSpeed.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudPanicStopSpeed.InterceptArrowKeys = false;
+            this.nudPanicStopSpeed.Location = new System.Drawing.Point(457, 269);
+            this.nudPanicStopSpeed.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.nudPanicStopSpeed.Name = "nudPanicStopSpeed";
+            this.nudPanicStopSpeed.ReadOnly = true;
+            this.nudPanicStopSpeed.Size = new System.Drawing.Size(107, 52);
+            this.nudPanicStopSpeed.TabIndex = 519;
+            this.nudPanicStopSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudPanicStopSpeed.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            this.nudPanicStopSpeed.Click += new System.EventHandler(this.nudPanicStopSpeed_Click);
+            // 
+            // nudcmPerPixel
+            // 
+            this.nudcmPerPixel.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudcmPerPixel.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudcmPerPixel.InterceptArrowKeys = false;
+            this.nudcmPerPixel.Location = new System.Drawing.Point(470, 191);
+            this.nudcmPerPixel.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.nudcmPerPixel.Name = "nudcmPerPixel";
+            this.nudcmPerPixel.ReadOnly = true;
+            this.nudcmPerPixel.Size = new System.Drawing.Size(110, 52);
+            this.nudcmPerPixel.TabIndex = 524;
+            this.nudcmPerPixel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudcmPerPixel.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.nudcmPerPixel.Click += new System.EventHandler(this.nudcmPerPixel_Click);
+            // 
             // nudLineWidth
             // 
             this.nudLineWidth.BackColor = System.Drawing.Color.AliceBlue;
@@ -2750,44 +2787,6 @@
             0});
             this.nudGuidanceSpeedLimit.Click += new System.EventHandler(this.nudGuidanceSpeedLimit_Click);
             // 
-            // imageList2
-            // 
-            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
-            this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList2.Images.SetKeyName(0, "Sensors.png");
-            this.imageList2.Images.SetKeyName(1, "ConS_Pins.png");
-            this.imageList2.Images.SetKeyName(2, "ConS_VehicleConfig.png");
-            this.imageList2.Images.SetKeyName(3, "ConS_ModulesSteer.png");
-            // 
-            // btnSteerWizard
-            // 
-            this.btnSteerWizard.BackColor = System.Drawing.Color.Transparent;
-            this.btnSteerWizard.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnSteerWizard.FlatAppearance.BorderSize = 0;
-            this.btnSteerWizard.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
-            this.btnSteerWizard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSteerWizard.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.btnSteerWizard.Image = global::AgOpenGPS.Properties.Resources.WizardWand;
-            this.btnSteerWizard.Location = new System.Drawing.Point(394, 602);
-            this.btnSteerWizard.Name = "btnSteerWizard";
-            this.btnSteerWizard.Size = new System.Drawing.Size(75, 69);
-            this.btnSteerWizard.TabIndex = 529;
-            this.btnSteerWizard.UseVisualStyleBackColor = false;
-            this.btnSteerWizard.Click += new System.EventHandler(this.btnSteerWizard_Click);
-            // 
-            // label35
-            // 
-            this.label35.BackColor = System.Drawing.Color.Transparent;
-            this.label35.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.ForeColor = System.Drawing.Color.Black;
-            this.label35.Location = new System.Drawing.Point(382, 573);
-            this.label35.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(100, 23);
-            this.label35.TabIndex = 530;
-            this.label35.Text = "Wizard";
-            this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // FormSteer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -2831,18 +2830,13 @@
             this.tabSteerSettings.ResumeLayout(false);
             this.tabSensors.ResumeLayout(false);
             this.tabSensors.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMaxCounts)).EndInit();
             this.tabConfig.ResumeLayout(false);
             this.tabConfig.PerformLayout();
             this.tabSettings.ResumeLayout(false);
             this.tabSettings.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudDeadZoneHeading)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudDeadZoneDistance)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudPanicStopSpeed)).EndInit();
             this.tabAlarm.ResumeLayout(false);
             this.tabAlarm.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudcmPerPixel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
@@ -2850,6 +2844,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxCounts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDeadZoneHeading)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDeadZoneDistance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPanicStopSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudcmPerPixel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLineWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudGuidanceLookAhead)).EndInit();
