@@ -977,6 +977,7 @@ namespace AgOpenGPS
                             && Math.Abs(guidanceLineSteerAngle) < vehicle.deadZoneHeading)
                 {
                     vehicle.isInDeadZone = true;
+                    p_254.pgn[p_254.status] = 0;
                 }
                 else
                 {
