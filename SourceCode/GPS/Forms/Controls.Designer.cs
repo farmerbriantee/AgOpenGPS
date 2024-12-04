@@ -104,15 +104,16 @@ namespace AgOpenGPS
                         tracksVisible++;
                     }
                 }
-                
+
+                int btnCount = 0;
                 //nudge closest
                 flp1.Controls[0].Visible = tracksVisible > 0;
 
                 //always these 3 - Build and if a bnd then ABDraw
                 flp1.Controls[1].Visible = isBnd;
+
                 flp1.Controls[2].Visible = true;
                 flp1.Controls[3].Visible = true;
-
 
                 //auto snap to pivot
                 flp1.Controls[4].Visible = tracksVisible > 0;
@@ -123,8 +124,13 @@ namespace AgOpenGPS
                 //ref nudge
                 flp1.Controls[6].Visible = tracksVisible > 0;
 
+                for (int i = 0; i < flp1.Controls.Count; i++)
+                {
+                    if (flp1.Controls[i].Visible) btnCount++;
+                }
+
                 //position of panel
-                flp1.Top = this.Height -260;
+                flp1.Top = this.Height - 120 - (btnCount*72);
                 flp1.Left = this.Width - 120 - flp1.Width;
                 trackMethodPanelCounter = 4;
             }

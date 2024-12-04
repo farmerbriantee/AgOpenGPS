@@ -962,8 +962,8 @@ namespace AgOpenGPS
 
             }
 
-            flp1.Top = this.Height - 230;
-            flp1.Left = this.Width - 120 - flp1.Width;
+            //flp1.Top = this.Height - 230;
+            //flp1.Left = this.Width - 120 - flp1.Width;
             btnFlag.Text = isStanleyUsed ? "S" : "P";
         }
 
