@@ -10,6 +10,7 @@ using System.IO;
 using System.Media;
 using System.Reflection;
 using System.Collections.Generic;
+using AgOpenGPS.Culture;
 
 namespace AgOpenGPS
 {

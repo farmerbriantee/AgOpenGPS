@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgOpenGPS.Culture;
+using System;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 

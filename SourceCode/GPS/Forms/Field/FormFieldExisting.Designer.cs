@@ -317,7 +317,7 @@
             this.btnSort.Name = "btnSort";
             this.btnSort.Size = new System.Drawing.Size(147, 63);
             this.btnSort.TabIndex = 273;
-            this.btnSort.Text = global::AgOpenGPS.gStr.gsSort;
+            this.btnSort.Text = "Sort";
             this.btnSort.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSort.UseVisualStyleBackColor = false;
             this.btnSort.Click += new System.EventHandler(this.btnSort_Click);

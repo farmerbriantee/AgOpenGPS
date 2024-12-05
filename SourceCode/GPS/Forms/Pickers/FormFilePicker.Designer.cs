@@ -95,7 +95,7 @@
             this.btnByDistance.Name = "btnByDistance";
             this.btnByDistance.Size = new System.Drawing.Size(147, 63);
             this.btnByDistance.TabIndex = 93;
-            this.btnByDistance.Text = global::AgOpenGPS.gStr.gsSort;
+            this.btnByDistance.Text = "Sort";
             this.btnByDistance.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnByDistance.UseVisualStyleBackColor = false;
             this.btnByDistance.Click += new System.EventHandler(this.btnByDistance_Click);
@@ -112,7 +112,7 @@
             this.btnOpenExistingLv.Name = "btnOpenExistingLv";
             this.btnOpenExistingLv.Size = new System.Drawing.Size(261, 63);
             this.btnOpenExistingLv.TabIndex = 92;
-            this.btnOpenExistingLv.Text = global::AgOpenGPS.gStr.gsUseSelected;
+            this.btnOpenExistingLv.Text = "Use Selected";
             this.btnOpenExistingLv.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnOpenExistingLv.UseVisualStyleBackColor = false;
             this.btnOpenExistingLv.Click += new System.EventHandler(this.btnOpenExistingLv_Click);

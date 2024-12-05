@@ -1,6 +1,7 @@
 ﻿//Please, if you use this, share the improvements
 
 using AgOpenGPS;
+using AgOpenGPS.Culture;
 using AgOpenGPS.Properties;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;

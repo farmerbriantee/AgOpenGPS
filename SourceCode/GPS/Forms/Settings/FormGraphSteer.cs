@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgOpenGPS.Culture;
+using System;
 using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;

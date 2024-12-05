@@ -1,4 +1,5 @@
-﻿using AgOpenGPS.Properties;
+﻿using AgOpenGPS.Culture;
+using AgOpenGPS.Properties;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;

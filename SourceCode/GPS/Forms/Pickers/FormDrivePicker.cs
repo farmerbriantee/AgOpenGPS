@@ -25,6 +25,7 @@ namespace AgOpenGPS
 
         private void FormFilePicker_Load(object sender, EventArgs e)
         {
+            btnOpenExistingLv.Text = Culture.gStr.gsUseSelected;
         }
 
         private void btnOpenExistingLv_Click(object sender, EventArgs e)
