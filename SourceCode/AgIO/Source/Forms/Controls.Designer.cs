@@ -286,7 +286,7 @@ namespace AgIO
 
         #endregion
 
-        private void ShowUDPMonitor()
+        public void ShowUDPMonitor()
         {
             var form = new FormUDPMonitor(this);
             form.Show(this);

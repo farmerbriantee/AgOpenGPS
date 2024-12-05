@@ -329,7 +329,7 @@ namespace AgIO
 
         private void btnSerialMonitor_Click(object sender, EventArgs e)
         {
-            mf.ShowSerialMonitor();
+            mf.ShowUDPMonitor();
         }
 
         private void btnUDPOff_Click(object sender, EventArgs e)

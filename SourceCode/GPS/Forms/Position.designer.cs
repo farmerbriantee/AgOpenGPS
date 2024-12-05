@@ -45,6 +45,7 @@ namespace AgOpenGPS
 
         //history
         public vec2 prevFix = new vec2(0, 0);
+        public vec2 prevJumpFix = new vec2(0, 0);
         public vec2 prevDistFix = new vec2(0, 0);
         public vec2 lastReverseFix = new vec2(0, 0);
 
@@ -156,7 +157,6 @@ namespace AgOpenGPS
                         #region Start
 
                         distanceCurrentStepFixDisplay = glm.Distance(prevDistFix, pn.fix);
-                        if ((fd.distanceUser += distanceCurrentStepFixDisplay) > 9999) fd.distanceUser = 0;
                         distanceCurrentStepFixDisplay *= 100;
                         prevDistFix = pn.fix;
 
@@ -305,40 +305,44 @@ namespace AgOpenGPS
 
                         #region Fix Heading
 
+                        //how far since last fix
+                        distanceCurrentStepFix = glm.Distance(stepFixPts[0], pn.fix);
+
+                        if (distanceCurrentStepFix < gpsMinimumStepDistance)
+                        {
+                            goto byPass;
+                        }
+
+                        //save a copy of previous for jump test
+                        jumpFix.easting = stepFixPts[0].easting; jumpFix.northing = stepFixPts[0].northing;
+                        
+                        if ((fd.distanceUser += distanceCurrentStepFix) > 9999) fd.distanceUser = 0;
+
+                        double minFixHeadingDistSquared = minHeadingStepDist * minHeadingStepDist;
+                        fixToFixHeadingDistance = 0;
+
+                        for (int i = 0; i < totalFixSteps; i++)
+                        {
+                            fixToFixHeadingDistance = glm.DistanceSquared(stepFixPts[i], pn.fix);
+                            currentStepFix = i;
+
+                            if (fixToFixHeadingDistance > minFixHeadingDistSquared)
+                            {
+                                break;
+                            }
+                        }
+
+                        if (fixToFixHeadingDistance < minFixHeadingDistSquared * 0.5)
+                            goto byPass;
+
+                        double newGPSHeading = Math.Atan2(pn.fix.easting - stepFixPts[currentStepFix].easting,
+                                                pn.fix.northing - stepFixPts[currentStepFix].northing);
+                        if (newGPSHeading < 0) newGPSHeading += glm.twoPI;
+
+
                         //imu on board
                         if (ahrs.imuHeading != 99999)
                         {
-                            //how far since last fix
-                            distanceCurrentStepFix = glm.Distance(stepFixPts[0], pn.fix);
-
-                            if (distanceCurrentStepFix < gpsMinimumStepDistance)
-                            {
-                                goto byPass;
-                            }
-
-                            //save a copy of previous for jump test
-                            jumpFix.easting = stepFixPts[0].easting; jumpFix.northing = stepFixPts[0].northing;
-
-                            double minFixHeadingDistSquared = minHeadingStepDist * minHeadingStepDist;
-                            fixToFixHeadingDistance = 0;
-
-                            for (int i = 0; i < totalFixSteps; i++)
-                            {
-                                fixToFixHeadingDistance = glm.DistanceSquared(stepFixPts[i], pn.fix);
-                                currentStepFix = i;
-
-                                if (fixToFixHeadingDistance > minFixHeadingDistSquared)
-                                {
-                                    break;
-                                }
-                            }
-
-                            if (fixToFixHeadingDistance < (minFixHeadingDistSquared * 0.5))
-                                goto byPass;
-
-                            double newGPSHeading = Math.Atan2(pn.fix.easting - stepFixPts[currentStepFix].easting,
-                                                    pn.fix.northing - stepFixPts[currentStepFix].northing);
-                            if (newGPSHeading < 0) newGPSHeading += glm.twoPI;
 
                             if (ahrs.isReverseOn)
                             {
@@ -427,36 +431,6 @@ namespace AgOpenGPS
                         }
                         else
                         {
-                            //how far since last fix
-                            distanceCurrentStepFix = glm.Distance(stepFixPts[0], pn.fix);
-
-                            if (distanceCurrentStepFix < (gpsMinimumStepDistance))
-                                goto byPass;
-
-                            //save a copy of previous for jump test
-                            jumpFix.easting = stepFixPts[0].easting; jumpFix.northing = stepFixPts[0].northing;
-
-                            double minFixHeadingDistSquared = minHeadingStepDist * minHeadingStepDist;
-                            fixToFixHeadingDistance = 0;
-
-                            for (int i = 0; i < totalFixSteps; i++)
-                            {
-                                fixToFixHeadingDistance = glm.DistanceSquared(stepFixPts[i], pn.fix);
-                                currentStepFix = i;
-
-                                if (fixToFixHeadingDistance > minFixHeadingDistSquared)
-                                {
-                                    break;
-                                }
-                            }
-
-                            if (fixToFixHeadingDistance < minFixHeadingDistSquared * 0.5)
-                                goto byPass;
-
-                            double newGPSHeading = Math.Atan2(pn.fix.easting - stepFixPts[currentStepFix].easting,
-                                                    pn.fix.northing - stepFixPts[currentStepFix].northing);
-                            if (newGPSHeading < 0) newGPSHeading += glm.twoPI;
-
                             if (ahrs.isReverseOn)
                             {
 
@@ -500,7 +474,6 @@ namespace AgOpenGPS
                                 if (newGPSHeading < 0) newGPSHeading += glm.twoPI;
                                 else if (newGPSHeading >= glm.twoPI) newGPSHeading -= glm.twoPI;
                             }
-
                             else
                             {
                                 isReverse = false;
@@ -710,13 +683,20 @@ namespace AgOpenGPS
 
                         //grab the most current fix and save the distance from the last fix
                         distanceCurrentStepFix = glm.Distance(pn.fix, prevDistFix);
+                        jumpFix = prevDistFix;
+                        prevDistFix  = pn.fix;
 
                         //userDistance can be reset
-                        if ((fd.distanceUser += distanceCurrentStepFix) > 999) fd.distanceUser = 0;
                         distanceCurrentStepFixDisplay = distanceCurrentStepFix * 100;
 
-                        jumpFix = prevDistFix;
-                        prevDistFix = pn.fix;
+                        distanceCurrentStepFix = glm.Distance(prevFix, pn.fix);
+
+                        if (distanceCurrentStepFix > 0.1)
+                        {
+                            if ((fd.distanceUser += distanceCurrentStepFix) > 9999) fd.distanceUser = 0;
+                            prevFix = pn.fix;
+                        }
+
 
                         if (glm.Distance(lastReverseFix, pn.fix) > dualReverseDetectionDistance)
                         {
