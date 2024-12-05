@@ -430,7 +430,7 @@ namespace AgOpenGPS
                     GL.Disable(EnableCap.LineStipple);
 
                     GL.LineWidth(8);
-                    GL.Color3(0.30, 0.3, 0.30);
+                    GL.Color3(0,0,0);
 
                     if (mc.isOutOfBounds)
                     {
