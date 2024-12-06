@@ -24,7 +24,7 @@ namespace AgIO
             cboxIsUDPOn.Checked = Properties.Settings.Default.setUDP_isOn;
             cboxIsUDPOn.Text = cboxIsUDPOn.Checked ? "UDP On" : "UDP Off";
 
-            cboxIsSendNMEAToUDP.Checked = Properties.Settings.Default.setUDP_isSendNMEAToUDP;
+            //cboxIsSendNMEAToUDP.Checked = Properties.Settings.Default.setUDP_isSendNMEAToUDP;
 
             //nudSub1.Value = Properties.Settings.Default.etIP_SubnetOne;
             //nudSub2.Value = Properties.Settings.Default.etIP_SubnetTwo;
@@ -55,7 +55,7 @@ namespace AgIO
             Properties.Settings.Default.eth_loopFour = (byte)nudFourthIP.Value;
 
             Properties.Settings.Default.setUDP_isOn = cboxIsUDPOn.Checked;
-            Properties.Settings.Default.setUDP_isSendNMEAToUDP = cboxIsSendNMEAToUDP.Checked;
+            //Properties.Settings.Default.setUDP_isSendNMEAToUDP = cboxIsSendNMEAToUDP.Checked;
 
             Properties.Settings.Default.Save();
 
@@ -68,7 +68,7 @@ namespace AgIO
 
         private void cboxIsUDPOn_Click(object sender, EventArgs e)
         {
-            cboxIsUDPOn.Text = cboxIsUDPOn.Checked ? "UDP On" : "UDP Off";
+            cboxIsUDPOn.Text = cboxIsUDPOn.Checked ? "UDP Is On" : "UDP Is Off";
         }
 
         ////get the ipv4 address only

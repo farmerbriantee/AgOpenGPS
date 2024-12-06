@@ -1714,9 +1714,9 @@ namespace AgOpenGPS
 
         private void DrawSteerCircle()
         {
-            int sizer = 60;
-            int center = oglMain.Width / 2 - 60;
-            int bottomSide = oglMain.Height - 30;
+            int sizer = oglMain.Width/15;
+            int center = oglMain.Width / 2 - sizer;
+            int bottomSide = oglMain.Height - sizer/2;
 
             //draw the clock
             GL.Color4(0.9752f, 0.80f, 0.3f, 0.98);
@@ -1768,7 +1768,7 @@ namespace AgOpenGPS
             if ((ahrs.imuRoll != 88888))
             {
                 string head = Math.Round(ahrs.imuRoll, 1).ToString();
-                font.DrawText((int)(((head.Length) * -7)), -30, head, 0.8);
+                font.DrawText((int)(((head.Length) * -9)), -45, head, 1.2);
             }
 
             GL.PopMatrix();
@@ -2229,7 +2229,7 @@ namespace AgOpenGPS
                 GL.End();
 
                 center += 50;
-                font.DrawText(center, hite-32, "x" + gridToolSpacing.ToString(), 1);
+                font.DrawText(center - 56, hite-72, "x" + gridToolSpacing.ToString(), 1);
 
             }
 

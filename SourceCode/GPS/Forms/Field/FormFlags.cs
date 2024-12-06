@@ -17,6 +17,10 @@ namespace AgOpenGPS
 
         private void UpdateLabels()
         {
+            if (mf.flagNumberPicked > mf.flagPts.Count)
+            {
+                mf.flagNumberPicked = mf.flagPts.Count-1;
+            }
             lblLatStart.Text = mf.flagPts[mf.flagNumberPicked - 1].latitude.ToString();
             lblLonStart.Text = mf.flagPts[mf.flagNumberPicked - 1].longitude.ToString();
             lblEasting.Text = mf.flagPts[mf.flagNumberPicked - 1].easting.ToString("N2");

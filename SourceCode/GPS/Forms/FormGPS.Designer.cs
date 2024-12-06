@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormGPS));
-            this.contextMenuStripOpenGL = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStripOpenGL = new System.Windows.Forms.ContextMenuStrip();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.googleEarthOpenGLContextMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -65,8 +64,8 @@
             this.resetEverythingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tmrWatchdog = new System.Windows.Forms.Timer(this.components);
-            this.contextMenuStripFlag = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tmrWatchdog = new System.Windows.Forms.Timer();
+            this.contextMenuStripFlag = new System.Windows.Forms.ContextMenuStrip();
             this.toolStripMenuItemFlagRed = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuFlagGrn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuFlagYel = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,7 +81,7 @@
             this.btnSwapABRecordedPath = new System.Windows.Forms.Button();
             this.btnResetSim = new System.Windows.Forms.Button();
             this.btnResetSteerAngle = new System.Windows.Forms.Button();
-            this.timerSim = new System.Windows.Forms.Timer(this.components);
+            this.timerSim = new System.Windows.Forms.Timer();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.hsbarSteerAngle = new System.Windows.Forms.HScrollBar();
             this.btnSection8Man = new System.Windows.Forms.Button();
@@ -1148,7 +1147,7 @@
             this.steerWizardMenuItem.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOn;
             this.steerWizardMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.steerWizardMenuItem.Name = "steerWizardMenuItem";
-            this.steerWizardMenuItem.Size = new System.Drawing.Size(301, 44);
+            this.steerWizardMenuItem.Size = new System.Drawing.Size(345, 66);
             this.steerWizardMenuItem.Text = "Steer Wizard";
             this.steerWizardMenuItem.Click += new System.EventHandler(this.steerWizardMenuItem_Click);
             // 
@@ -1250,7 +1249,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.panelSim.Controls.Add(this.btnSpeedDn, 5, 0);
             this.panelSim.Controls.Add(this.btnSimSpeedUp, 7, 0);
             this.panelSim.Controls.Add(this.btnResetSim, 0, 0);
@@ -1275,7 +1274,7 @@
             this.btnSpeedDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSpeedDn.Location = new System.Drawing.Point(404, 4);
             this.btnSpeedDn.Name = "btnSpeedDn";
-            this.btnSpeedDn.Size = new System.Drawing.Size(112, 34);
+            this.btnSpeedDn.Size = new System.Drawing.Size(107, 34);
             this.btnSpeedDn.TabIndex = 533;
             this.btnSpeedDn.UseVisualStyleBackColor = false;
             this.btnSpeedDn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSpeedDn_MouseDown);
@@ -1288,9 +1287,9 @@
             this.btnSimSpeedUp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSimSpeedUp.FlatAppearance.BorderSize = 0;
             this.btnSimSpeedUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSimSpeedUp.Location = new System.Drawing.Point(599, 4);
+            this.btnSimSpeedUp.Location = new System.Drawing.Point(594, 4);
             this.btnSimSpeedUp.Name = "btnSimSpeedUp";
-            this.btnSimSpeedUp.Size = new System.Drawing.Size(112, 34);
+            this.btnSimSpeedUp.Size = new System.Drawing.Size(107, 34);
             this.btnSimSpeedUp.TabIndex = 532;
             this.btnSimSpeedUp.UseVisualStyleBackColor = false;
             this.btnSimSpeedUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSimSpeedUp_MouseDown);
@@ -1304,7 +1303,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(523, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(518, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(69, 34);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -1321,7 +1320,7 @@
             this.btnSimReverseDirection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimReverseDirection.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimReverseDirection.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimReverseDirection.Location = new System.Drawing.Point(719, 4);
+            this.btnSimReverseDirection.Location = new System.Drawing.Point(714, 4);
             this.btnSimReverseDirection.Name = "btnSimReverseDirection";
             this.btnSimReverseDirection.Size = new System.Drawing.Size(35, 34);
             this.btnSimReverseDirection.TabIndex = 537;

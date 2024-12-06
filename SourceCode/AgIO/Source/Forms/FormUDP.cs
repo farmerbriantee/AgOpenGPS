@@ -59,11 +59,11 @@ namespace AgIO
                 mf.ipAutoSet[0] = 99;
                 mf.ipAutoSet[1] = 99;
                 mf.ipAutoSet[2] = 99;
-                //btnAutoSet.Enabled = false;
+                btnAutoSet.Enabled = false;
             }
             else
             {
-                //btnAutoSet.Enabled = true;
+                btnAutoSet.Enabled = true;
             }
 
             if (mf.scanReply.isNewSteer)

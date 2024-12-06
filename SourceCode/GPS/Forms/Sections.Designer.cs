@@ -327,13 +327,13 @@ namespace AgOpenGPS
 
             int oglCenter = isPanelBottomHidden ? oglCenter = oglMain.Width / 2 + 30 : statusStripLeft.Width + oglMain.Width / 2;
 
-            int top = 130;
+            int top = 140;
 
-            int buttonMaxWidth = 400, buttonHeight = 25;
+            int buttonMaxWidth = 360, buttonHeight = 35;
 
             if ((Height - oglMain.Height) < 80) //max size - buttons hid
             {
-                top = Height - 70;
+                top = Height - 85;
                 if (panelSim.Visible == true)
                 {
                     top = Height - 120;
@@ -342,10 +342,10 @@ namespace AgOpenGPS
             }
             else //buttons exposed
             {
-                top = Height - 120;
+                top = Height - 135;
                 if (panelSim.Visible == true)
                 {
-                    top = Height - 170;
+                    top = Height - 185;
                     panelSim.Top = Height - 128;
                 }
             }

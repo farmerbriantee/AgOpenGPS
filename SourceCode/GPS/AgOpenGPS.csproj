@@ -962,6 +962,13 @@
   <ItemGroup>
     <Content Include="AOG.ico" />
     <Content Include="aChangeLog.txt" />
+    <None Include="btnImages\SimUDP.png" />
+    <Content Include="ModSim.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UDP_SimTool.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="btnImages\AntennaLeftOffset.png" />
     <None Include="btnImages\AntennaRightOffset.png" />
     <None Include="btnImages\AntennaNoOffset.png" />

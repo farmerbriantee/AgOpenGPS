@@ -261,6 +261,37 @@ namespace AgIO
             }
         }
 
+        private void modSimToolStrip_Click(object sender, EventArgs e)
+        {
+            Process[] processName = Process.GetProcessesByName("ModSim");
+            if (processName.Length == 0)
+            {
+                //Start application here
+                DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
+                string strPath = di.ToString();
+                strPath += "\\ModSim.exe";
+
+                try
+                {
+                    ProcessStartInfo processInfo = new ProcessStartInfo();
+                    processInfo.FileName = strPath;
+                    processInfo.WorkingDirectory = Path.GetDirectoryName(strPath);
+                    Process proc = Process.Start(processInfo);
+                }
+                catch
+                {
+                    TimedMessageBox(2000, "No File Found", "Can't Find Simulator");
+                }
+            }
+            else
+            {
+                //Set foreground window
+                ShowWindow(processName[0].MainWindowHandle, 9);
+                SetForegroundWindow(processName[0].MainWindowHandle);
+            }
+
+        }
+
         private void toolStripEthernet_Click(object sender, EventArgs e)
         {
             SettingsEthernet();

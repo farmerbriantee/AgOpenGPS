@@ -331,7 +331,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel1.Controls.Add(this.lblBtnIMU, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblBtnGPS, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.label18, 0, 0);
@@ -360,9 +360,9 @@
             this.lblBtnIMU.BackColor = System.Drawing.Color.Transparent;
             this.lblBtnIMU.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblBtnIMU.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBtnIMU.Location = new System.Drawing.Point(311, 1);
+            this.lblBtnIMU.Location = new System.Drawing.Point(310, 1);
             this.lblBtnIMU.Name = "lblBtnIMU";
-            this.lblBtnIMU.Size = new System.Drawing.Size(26, 43);
+            this.lblBtnIMU.Size = new System.Drawing.Size(27, 43);
             this.lblBtnIMU.TabIndex = 533;
             this.lblBtnIMU.Text = "-";
             this.lblBtnIMU.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -373,9 +373,9 @@
             this.lblBtnGPS.BackColor = System.Drawing.Color.Transparent;
             this.lblBtnGPS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblBtnGPS.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBtnGPS.Location = new System.Drawing.Point(311, 89);
+            this.lblBtnGPS.Location = new System.Drawing.Point(310, 89);
             this.lblBtnGPS.Name = "lblBtnGPS";
-            this.lblBtnGPS.Size = new System.Drawing.Size(26, 43);
+            this.lblBtnGPS.Size = new System.Drawing.Size(27, 43);
             this.lblBtnGPS.TabIndex = 532;
             this.lblBtnGPS.Text = "-";
             this.lblBtnGPS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -401,7 +401,7 @@
             this.lblIMU_IP.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIMU_IP.Location = new System.Drawing.Point(100, 1);
             this.lblIMU_IP.Name = "lblIMU_IP";
-            this.lblIMU_IP.Size = new System.Drawing.Size(204, 43);
+            this.lblIMU_IP.Size = new System.Drawing.Size(203, 43);
             this.lblIMU_IP.TabIndex = 526;
             this.lblIMU_IP.Text = "..";
             this.lblIMU_IP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -412,9 +412,9 @@
             this.lblBtnMachine.BackColor = System.Drawing.Color.Transparent;
             this.lblBtnMachine.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblBtnMachine.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBtnMachine.Location = new System.Drawing.Point(311, 133);
+            this.lblBtnMachine.Location = new System.Drawing.Point(310, 133);
             this.lblBtnMachine.Name = "lblBtnMachine";
-            this.lblBtnMachine.Size = new System.Drawing.Size(26, 43);
+            this.lblBtnMachine.Size = new System.Drawing.Size(27, 43);
             this.lblBtnMachine.TabIndex = 531;
             this.lblBtnMachine.Text = "-";
             this.lblBtnMachine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -440,7 +440,7 @@
             this.lblGPSIP.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGPSIP.Location = new System.Drawing.Point(100, 89);
             this.lblGPSIP.Name = "lblGPSIP";
-            this.lblGPSIP.Size = new System.Drawing.Size(204, 43);
+            this.lblGPSIP.Size = new System.Drawing.Size(203, 43);
             this.lblGPSIP.TabIndex = 530;
             this.lblGPSIP.Text = "..";
             this.lblGPSIP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -453,7 +453,7 @@
             this.lblSteerIP.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSteerIP.Location = new System.Drawing.Point(100, 45);
             this.lblSteerIP.Name = "lblSteerIP";
-            this.lblSteerIP.Size = new System.Drawing.Size(204, 43);
+            this.lblSteerIP.Size = new System.Drawing.Size(203, 43);
             this.lblSteerIP.TabIndex = 526;
             this.lblSteerIP.Text = "..";
             this.lblSteerIP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -464,9 +464,9 @@
             this.lblBtnSteer.BackColor = System.Drawing.Color.Transparent;
             this.lblBtnSteer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblBtnSteer.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBtnSteer.Location = new System.Drawing.Point(311, 45);
+            this.lblBtnSteer.Location = new System.Drawing.Point(310, 45);
             this.lblBtnSteer.Name = "lblBtnSteer";
-            this.lblBtnSteer.Size = new System.Drawing.Size(26, 43);
+            this.lblBtnSteer.Size = new System.Drawing.Size(27, 43);
             this.lblBtnSteer.TabIndex = 521;
             this.lblBtnSteer.Text = "-";
             this.lblBtnSteer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -492,7 +492,7 @@
             this.lblMachineIP.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMachineIP.Location = new System.Drawing.Point(100, 133);
             this.lblMachineIP.Name = "lblMachineIP";
-            this.lblMachineIP.Size = new System.Drawing.Size(204, 43);
+            this.lblMachineIP.Size = new System.Drawing.Size(203, 43);
             this.lblMachineIP.TabIndex = 528;
             this.lblMachineIP.Text = "..";
             this.lblMachineIP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -516,9 +516,9 @@
             this.lblNewSubnet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblNewSubnet.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNewSubnet.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblNewSubnet.Location = new System.Drawing.Point(404, 227);
+            this.lblNewSubnet.Location = new System.Drawing.Point(404, 223);
             this.lblNewSubnet.Name = "lblNewSubnet";
-            this.lblNewSubnet.Size = new System.Drawing.Size(244, 35);
+            this.lblNewSubnet.Size = new System.Drawing.Size(244, 45);
             this.lblNewSubnet.TabIndex = 520;
             this.lblNewSubnet.Text = "192 . 168 . 123";
             this.lblNewSubnet.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -541,7 +541,7 @@
             this.btnSerialMonitor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSerialMonitor.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialMonitor.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnSerialMonitor.Image = global::AgIO.Properties.Resources.SerialMonitor;
+            this.btnSerialMonitor.Image = global::AgIO.Properties.Resources.ScanNetwork;
             this.btnSerialMonitor.Location = new System.Drawing.Point(756, 207);
             this.btnSerialMonitor.Name = "btnSerialMonitor";
             this.btnSerialMonitor.Size = new System.Drawing.Size(76, 65);
@@ -626,6 +626,7 @@
             // 
             // btnAutoSet
             // 
+            this.btnAutoSet.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnAutoSet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnAutoSet.Enabled = false;
             this.btnAutoSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -638,7 +639,7 @@
             this.btnAutoSet.TabIndex = 524;
             this.btnAutoSet.Text = "Auto Fill New Subnet";
             this.btnAutoSet.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAutoSet.UseVisualStyleBackColor = true;
+            this.btnAutoSet.UseVisualStyleBackColor = false;
             this.btnAutoSet.Click += new System.EventHandler(this.btnAutoSet_Click);
             // 
             // label5
@@ -670,9 +671,9 @@
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(861, 584);
             this.ControlBox = false;
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label10);
             this.Controls.Add(this.btnAutoSet);
             this.Controls.Add(this.btnSerialMonitor);
             this.Controls.Add(this.btnNetworkCPL);
