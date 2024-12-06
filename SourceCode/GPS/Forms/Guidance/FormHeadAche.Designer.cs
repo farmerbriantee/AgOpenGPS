@@ -252,17 +252,20 @@
             this.btnBndLoop.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnBndLoop.BackColor = System.Drawing.Color.Transparent;
             this.btnBndLoop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.tlp1.SetColumnSpan(this.btnBndLoop, 2);
+            this.tlp1.SetColumnSpan(this.btnBndLoop, 3);
             this.btnBndLoop.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnBndLoop.FlatAppearance.BorderSize = 0;
             this.btnBndLoop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBndLoop.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnBndLoop.Image = global::AgOpenGPS.Properties.Resources.HeadlandBuild;
+            this.btnBndLoop.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnBndLoop.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBndLoop.Location = new System.Drawing.Point(216, 409);
+            this.btnBndLoop.Location = new System.Drawing.Point(31, 393);
             this.btnBndLoop.Name = "btnBndLoop";
-            this.btnBndLoop.Size = new System.Drawing.Size(63, 70);
+            this.btnBndLoop.Size = new System.Drawing.Size(85, 103);
             this.btnBndLoop.TabIndex = 504;
+            this.btnBndLoop.Text = "Build";
+            this.btnBndLoop.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnBndLoop.UseVisualStyleBackColor = false;
             this.btnBndLoop.Click += new System.EventHandler(this.btnBndLoop_Click);
             // 
@@ -271,17 +274,20 @@
             this.btnDeleteHeadland.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnDeleteHeadland.BackColor = System.Drawing.Color.Transparent;
             this.btnDeleteHeadland.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.tlp1.SetColumnSpan(this.btnDeleteHeadland, 2);
+            this.tlp1.SetColumnSpan(this.btnDeleteHeadland, 3);
             this.btnDeleteHeadland.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnDeleteHeadland.FlatAppearance.BorderSize = 0;
             this.btnDeleteHeadland.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteHeadland.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnDeleteHeadland.Image = global::AgOpenGPS.Properties.Resources.HeadlandReset;
+            this.btnDeleteHeadland.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnDeleteHeadland.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDeleteHeadland.Location = new System.Drawing.Point(17, 523);
+            this.btnDeleteHeadland.Location = new System.Drawing.Point(177, 393);
             this.btnDeleteHeadland.Name = "btnDeleteHeadland";
-            this.btnDeleteHeadland.Size = new System.Drawing.Size(63, 67);
+            this.btnDeleteHeadland.Size = new System.Drawing.Size(92, 103);
             this.btnDeleteHeadland.TabIndex = 465;
+            this.btnDeleteHeadland.Text = "Reset";
+            this.btnDeleteHeadland.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDeleteHeadland.UseVisualStyleBackColor = false;
             this.btnDeleteHeadland.Click += new System.EventHandler(this.btnDeleteHeadland_Click);
             // 
@@ -413,19 +419,21 @@
             this.cboxIsZoom.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cboxIsZoom.Appearance = System.Windows.Forms.Appearance.Button;
             this.cboxIsZoom.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tlp1.SetColumnSpan(this.cboxIsZoom, 3);
+            this.tlp1.SetColumnSpan(this.cboxIsZoom, 2);
             this.cboxIsZoom.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.cboxIsZoom.FlatAppearance.BorderSize = 0;
             this.cboxIsZoom.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(255)))), ((int)(((byte)(160)))));
             this.cboxIsZoom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxIsZoom.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxIsZoom.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.cboxIsZoom.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxIsZoom.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.cboxIsZoom.Image = global::AgOpenGPS.Properties.Resources.ZoomOGL;
-            this.cboxIsZoom.Location = new System.Drawing.Point(13, 413);
+            this.cboxIsZoom.Location = new System.Drawing.Point(3, 505);
             this.cboxIsZoom.Name = "cboxIsZoom";
             this.cboxIsZoom.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cboxIsZoom.Size = new System.Drawing.Size(121, 63);
+            this.cboxIsZoom.Size = new System.Drawing.Size(92, 104);
             this.cboxIsZoom.TabIndex = 564;
-            this.cboxIsZoom.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cboxIsZoom.Text = "Zoom";
+            this.cboxIsZoom.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.cboxIsZoom.UseVisualStyleBackColor = false;
             this.cboxIsZoom.CheckedChanged += new System.EventHandler(this.cboxIsZoom_CheckedChanged);
             // 
@@ -439,6 +447,7 @@
             this.tlp1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66666F));
             this.tlp1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66666F));
             this.tlp1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66666F));
+            this.tlp1.Controls.Add(this.cboxIsZoom, 0, 6);
             this.tlp1.Controls.Add(this.btnCancelTouch, 4, 1);
             this.tlp1.Controls.Add(this.btnALength, 0, 1);
             this.tlp1.Controls.Add(this.btnBLength, 0, 0);
@@ -448,16 +457,15 @@
             this.tlp1.Controls.Add(this.btnAShrink, 2, 1);
             this.tlp1.Controls.Add(this.cboxToolWidths, 4, 3);
             this.tlp1.Controls.Add(this.btnExit, 4, 7);
-            this.tlp1.Controls.Add(this.btnBndLoop, 4, 5);
-            this.tlp1.Controls.Add(this.cboxIsZoom, 0, 5);
             this.tlp1.Controls.Add(this.cboxIsSectionControlled, 4, 0);
             this.tlp1.Controls.Add(this.btnHeadlandOff, 0, 7);
             this.tlp1.Controls.Add(this.nudSetDistance, 0, 3);
             this.tlp1.Controls.Add(this.btnDeleteCurve, 2, 7);
-            this.tlp1.Controls.Add(this.btnDeleteHeadland, 0, 6);
             this.tlp1.Controls.Add(this.lblToolWidth, 0, 4);
             this.tlp1.Controls.Add(this.btnCycleBackward, 2, 6);
             this.tlp1.Controls.Add(this.btnCycleForward, 4, 6);
+            this.tlp1.Controls.Add(this.btnBndLoop, 0, 5);
+            this.tlp1.Controls.Add(this.btnDeleteHeadland, 3, 5);
             this.tlp1.Location = new System.Drawing.Point(701, 3);
             this.tlp1.Name = "tlp1";
             this.tlp1.RowCount = 8;
@@ -469,6 +477,7 @@
             this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.57143F));
             this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.57143F));
             this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.85714F));
+            this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlp1.Size = new System.Drawing.Size(299, 700);
             this.tlp1.TabIndex = 565;
             // 
@@ -509,6 +518,11 @@
             this.nudSetDistance.Size = new System.Drawing.Size(161, 52);
             this.nudSetDistance.TabIndex = 464;
             this.nudSetDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudSetDistance.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.nudSetDistance.Click += new System.EventHandler(this.nudSetDistance_Click);
             // 
             // FormHeadAche
@@ -516,7 +530,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1006, 703);
+            this.ClientSize = new System.Drawing.Size(1006, 726);
             this.ControlBox = false;
             this.Controls.Add(this.tlp1);
             this.Controls.Add(this.oglSelf);

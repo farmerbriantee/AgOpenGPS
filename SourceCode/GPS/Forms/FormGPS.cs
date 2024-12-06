@@ -575,7 +575,7 @@ namespace AgOpenGPS
             SmoothABtoolStripMenu.Text = gStr.gsSmoothABCurve;
             boundariesToolStripMenuItem.Text = gStr.gsBoundary;
             headlandToolStripMenuItem.Text = gStr.gsHeadland;
-            headlandBuildToolStripMenuItem.Text = gStr.gsHeadland + " (2)";
+            headlandBuildToolStripMenuItem.Text = gStr.gsHeadland + " Builder";
             deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
             deleteAppliedToolStripMenuItem.Text = gStr.gsDeleteAppliedArea;
             tramLinesMenuField.Text = gStr.gsTramLines;

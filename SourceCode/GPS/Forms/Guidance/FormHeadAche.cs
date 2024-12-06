@@ -37,6 +37,8 @@ namespace AgOpenGPS
 
         private void FormHeadLine_Load(object sender, EventArgs e)
         {
+            this.Text = "1: Set distance, 2: Tap Build, 3: Create Clip Lines";
+
             mf.hdl.idx = -1;
 
             mf.FileLoadHeadLines();
