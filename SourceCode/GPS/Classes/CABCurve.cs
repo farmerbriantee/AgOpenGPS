@@ -705,7 +705,6 @@ namespace AgOpenGPS
                             {
                                 if (glm.Distance(goalPointCu, curList[(curList.Count - 1)]) < 0.5)
                                 {
-                                    mf.TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsPastEndOfCurve);
                                     mf.btnAutoSteer.PerformClick();
                                 }
                             }
@@ -714,7 +713,6 @@ namespace AgOpenGPS
                                 if (glm.Distance(goalPointCu, curList[0]) < 0.5)
                                 {
                                     mf.btnAutoSteer.PerformClick();
-                                    mf.TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsPastEndOfCurve);
                                 }
                             }
                         }

@@ -148,7 +148,7 @@ namespace AgOpenGPS
                 btnAutoSteer.Image = Properties.Resources.AutoSteerOff;
                 //if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
                 if (sounds.isSteerSoundOn) sounds.sndAutoSteerOff.Play();
-                if (!isBtnAutoSteerOn) TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsGuidanceStopped);
+                if (!isBtnAutoSteerOn) TimedMessageBox(3000, gStr.gsGuidanceStopped, gStr.gsGuidanceStopped);
                 //trk.isAutoSnapped = false;
             }
             else
