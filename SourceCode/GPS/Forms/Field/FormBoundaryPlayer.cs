@@ -104,7 +104,7 @@ namespace AgOpenGPS
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            DialogResult result3 = MessageBox.Show("Done?", gStr.gsBoundaryMenu,
+            DialogResult result3 = MessageBox.Show("Done?", gStr.gsBoundary,
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question,
                 MessageBoxDefaultButton.Button2);
