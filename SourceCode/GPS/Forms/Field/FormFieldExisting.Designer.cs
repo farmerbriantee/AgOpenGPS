@@ -72,7 +72,7 @@
             // 
             // tboxFieldName
             // 
-            this.tboxFieldName.BackColor = System.Drawing.Color.AliceBlue;
+            this.tboxFieldName.BackColor = System.Drawing.Color.White;
             this.tboxFieldName.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tboxFieldName.Location = new System.Drawing.Point(6, 486);
             this.tboxFieldName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -427,7 +427,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(1004, 670);
             this.ControlBox = false;
             this.Controls.Add(this.lblTemplateChosen);

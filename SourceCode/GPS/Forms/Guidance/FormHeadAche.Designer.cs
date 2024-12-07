@@ -147,7 +147,7 @@
             "8",
             "9",
             "10"});
-            this.cboxToolWidths.Location = new System.Drawing.Point(202, 298);
+            this.cboxToolWidths.Location = new System.Drawing.Point(202, 297);
             this.cboxToolWidths.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxToolWidths.Name = "cboxToolWidths";
             this.cboxToolWidths.Size = new System.Drawing.Size(90, 53);
@@ -160,7 +160,7 @@
             this.tlp1.SetColumnSpan(this.lblToolWidth, 6);
             this.lblToolWidth.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblToolWidth.ForeColor = System.Drawing.Color.Black;
-            this.lblToolWidth.Location = new System.Drawing.Point(3, 359);
+            this.lblToolWidth.Location = new System.Drawing.Point(3, 358);
             this.lblToolWidth.Name = "lblToolWidth";
             this.lblToolWidth.Size = new System.Drawing.Size(293, 26);
             this.lblToolWidth.TabIndex = 511;
@@ -221,7 +221,7 @@
             this.btnHeadlandOff.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnHeadlandOff.Image = global::AgOpenGPS.Properties.Resources.SwitchOff;
             this.btnHeadlandOff.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnHeadlandOff.Location = new System.Drawing.Point(17, 622);
+            this.btnHeadlandOff.Location = new System.Drawing.Point(17, 621);
             this.btnHeadlandOff.Name = "btnHeadlandOff";
             this.btnHeadlandOff.Size = new System.Drawing.Size(63, 70);
             this.btnHeadlandOff.TabIndex = 519;
@@ -240,7 +240,7 @@
             this.btnCycleBackward.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCycleBackward.Image = global::AgOpenGPS.Properties.Resources.ABLineCycleBk;
             this.btnCycleBackward.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCycleBackward.Location = new System.Drawing.Point(115, 523);
+            this.btnCycleBackward.Location = new System.Drawing.Point(115, 522);
             this.btnCycleBackward.Name = "btnCycleBackward";
             this.btnCycleBackward.Size = new System.Drawing.Size(63, 68);
             this.btnCycleBackward.TabIndex = 507;
@@ -260,7 +260,7 @@
             this.btnBndLoop.Image = global::AgOpenGPS.Properties.Resources.HeadlandBuild;
             this.btnBndLoop.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnBndLoop.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBndLoop.Location = new System.Drawing.Point(31, 393);
+            this.btnBndLoop.Location = new System.Drawing.Point(31, 392);
             this.btnBndLoop.Name = "btnBndLoop";
             this.btnBndLoop.Size = new System.Drawing.Size(85, 103);
             this.btnBndLoop.TabIndex = 504;
@@ -282,7 +282,7 @@
             this.btnDeleteHeadland.Image = global::AgOpenGPS.Properties.Resources.HeadlandReset;
             this.btnDeleteHeadland.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnDeleteHeadland.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDeleteHeadland.Location = new System.Drawing.Point(177, 393);
+            this.btnDeleteHeadland.Location = new System.Drawing.Point(177, 392);
             this.btnDeleteHeadland.Name = "btnDeleteHeadland";
             this.btnDeleteHeadland.Size = new System.Drawing.Size(92, 103);
             this.btnDeleteHeadland.TabIndex = 465;
@@ -327,7 +327,7 @@
             this.btnCycleForward.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCycleForward.Image = global::AgOpenGPS.Properties.Resources.ABLineCycle;
             this.btnCycleForward.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCycleForward.Location = new System.Drawing.Point(216, 523);
+            this.btnCycleForward.Location = new System.Drawing.Point(216, 522);
             this.btnCycleForward.Name = "btnCycleForward";
             this.btnCycleForward.Size = new System.Drawing.Size(63, 68);
             this.btnCycleForward.TabIndex = 5;
@@ -388,7 +388,7 @@
             this.btnDeleteCurve.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnDeleteCurve.Image = global::AgOpenGPS.Properties.Resources.Trash;
             this.btnDeleteCurve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDeleteCurve.Location = new System.Drawing.Point(118, 632);
+            this.btnDeleteCurve.Location = new System.Drawing.Point(118, 630);
             this.btnDeleteCurve.Name = "btnDeleteCurve";
             this.btnDeleteCurve.Size = new System.Drawing.Size(57, 51);
             this.btnDeleteCurve.TabIndex = 6;
@@ -407,7 +407,7 @@
             this.btnExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnExit.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExit.Location = new System.Drawing.Point(216, 622);
+            this.btnExit.Location = new System.Drawing.Point(216, 621);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(63, 70);
             this.btnExit.TabIndex = 0;
@@ -427,7 +427,7 @@
             this.cboxIsZoom.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxIsZoom.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.cboxIsZoom.Image = global::AgOpenGPS.Properties.Resources.ZoomOGL;
-            this.cboxIsZoom.Location = new System.Drawing.Point(3, 505);
+            this.cboxIsZoom.Location = new System.Drawing.Point(3, 504);
             this.cboxIsZoom.Name = "cboxIsZoom";
             this.cboxIsZoom.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cboxIsZoom.Size = new System.Drawing.Size(92, 104);
@@ -478,7 +478,7 @@
             this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.57143F));
             this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.85714F));
             this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlp1.Size = new System.Drawing.Size(299, 700);
+            this.tlp1.Size = new System.Drawing.Size(299, 698);
             this.tlp1.TabIndex = 565;
             // 
             // btnCancelTouch
@@ -507,7 +507,7 @@
             this.tlp1.SetColumnSpan(this.nudSetDistance, 4);
             this.nudSetDistance.DecimalPlaces = 1;
             this.nudSetDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSetDistance.Location = new System.Drawing.Point(17, 299);
+            this.nudSetDistance.Location = new System.Drawing.Point(17, 298);
             this.nudSetDistance.Maximum = new decimal(new int[] {
             200,
             0,
@@ -530,7 +530,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1006, 726);
+            this.ClientSize = new System.Drawing.Size(1006, 709);
             this.ControlBox = false;
             this.Controls.Add(this.tlp1);
             this.Controls.Add(this.oglSelf);

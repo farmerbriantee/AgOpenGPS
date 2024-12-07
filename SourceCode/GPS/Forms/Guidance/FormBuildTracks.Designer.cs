@@ -50,6 +50,7 @@
             this.btnNewTrack = new System.Windows.Forms.Button();
             this.btnListUse = new System.Windows.Forms.Button();
             this.panelCurve = new System.Windows.Forms.Panel();
+            this.label21 = new System.Windows.Forms.Label();
             this.btnRefSideCurve = new System.Windows.Forms.Button();
             this.btnCancel_Curve = new System.Windows.Forms.Button();
             this.btnACurve = new System.Windows.Forms.Button();
@@ -127,7 +128,6 @@
             this.nudLongitudePivot = new AgOpenGPS.NudlessNumericUpDown();
             this.btnCancel_Pivot = new System.Windows.Forms.Button();
             this.btnEnter_Pivot = new System.Windows.Forms.Button();
-            this.label21 = new System.Windows.Forms.Label();
             this.panelName.SuspendLayout();
             this.panelMain.SuspendLayout();
             this.panelCurve.SuspendLayout();
@@ -179,7 +179,7 @@
             // 
             // panelName
             // 
-            this.panelName.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelName.BackColor = System.Drawing.Color.White;
             this.panelName.Controls.Add(this.label11);
             this.panelName.Controls.Add(this.label1);
             this.panelName.Controls.Add(this.btnAddTime);
@@ -241,7 +241,7 @@
             this.btnAdd.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdd.Location = new System.Drawing.Point(141, 233);
+            this.btnAdd.Location = new System.Drawing.Point(141, 235);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(88, 70);
             this.btnAdd.TabIndex = 150;
@@ -259,7 +259,7 @@
             this.btnCancel_Name.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel_Name.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel_Name.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel_Name.Location = new System.Drawing.Point(5, 233);
+            this.btnCancel_Name.Location = new System.Drawing.Point(5, 235);
             this.btnCancel_Name.Name = "btnCancel_Name";
             this.btnCancel_Name.Size = new System.Drawing.Size(88, 70);
             this.btnCancel_Name.TabIndex = 423;
@@ -268,7 +268,8 @@
             // 
             // textBox1
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.textBox1.BackColor = System.Drawing.Color.LightCyan;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.CausesValidation = false;
             this.textBox1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(17, 37);
@@ -379,6 +380,7 @@
             // flp
             // 
             this.flp.AutoScroll = true;
+            this.flp.BackColor = System.Drawing.Color.White;
             this.flp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flp.Location = new System.Drawing.Point(88, 8);
             this.flp.Name = "flp";
@@ -467,7 +469,7 @@
             // 
             // panelCurve
             // 
-            this.panelCurve.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelCurve.BackColor = System.Drawing.Color.White;
             this.panelCurve.Controls.Add(this.label21);
             this.panelCurve.Controls.Add(this.btnRefSideCurve);
             this.panelCurve.Controls.Add(this.btnCancel_Curve);
@@ -480,6 +482,19 @@
             this.panelCurve.Name = "panelCurve";
             this.panelCurve.Size = new System.Drawing.Size(241, 310);
             this.panelCurve.TabIndex = 436;
+            // 
+            // label21
+            // 
+            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.Color.Black;
+            this.label21.Location = new System.Drawing.Point(4, 4);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(40, 16);
+            this.label21.TabIndex = 449;
+            this.label21.Text = "Curve";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnRefSideCurve
             // 
@@ -508,7 +523,7 @@
             this.btnCancel_Curve.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel_Curve.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel_Curve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel_Curve.Location = new System.Drawing.Point(7, 233);
+            this.btnCancel_Curve.Location = new System.Drawing.Point(7, 235);
             this.btnCancel_Curve.Name = "btnCancel_Curve";
             this.btnCancel_Curve.Size = new System.Drawing.Size(88, 70);
             this.btnCancel_Curve.TabIndex = 423;
@@ -541,7 +556,7 @@
             this.btnBCurve.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnBCurve.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnBCurve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBCurve.Location = new System.Drawing.Point(146, 233);
+            this.btnBCurve.Location = new System.Drawing.Point(146, 235);
             this.btnBCurve.Name = "btnBCurve";
             this.btnBCurve.Size = new System.Drawing.Size(88, 70);
             this.btnBCurve.TabIndex = 64;
@@ -568,7 +583,7 @@
             // 
             // panelEditName
             // 
-            this.panelEditName.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelEditName.BackColor = System.Drawing.Color.White;
             this.panelEditName.Controls.Add(this.label8);
             this.panelEditName.Controls.Add(this.label3);
             this.panelEditName.Controls.Add(this.btnAddTimeEdit);
@@ -630,7 +645,7 @@
             this.btnSaveEditName.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveEditName.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnSaveEditName.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSaveEditName.Location = new System.Drawing.Point(141, 233);
+            this.btnSaveEditName.Location = new System.Drawing.Point(141, 235);
             this.btnSaveEditName.Name = "btnSaveEditName";
             this.btnSaveEditName.Size = new System.Drawing.Size(88, 70);
             this.btnSaveEditName.TabIndex = 150;
@@ -648,7 +663,7 @@
             this.btnCancel_EditName.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel_EditName.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel_EditName.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel_EditName.Location = new System.Drawing.Point(5, 233);
+            this.btnCancel_EditName.Location = new System.Drawing.Point(5, 235);
             this.btnCancel_EditName.Name = "btnCancel_EditName";
             this.btnCancel_EditName.Size = new System.Drawing.Size(88, 70);
             this.btnCancel_EditName.TabIndex = 423;
@@ -657,7 +672,8 @@
             // 
             // textBox2
             // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.textBox2.BackColor = System.Drawing.Color.LightCyan;
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.CausesValidation = false;
             this.textBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBox2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -673,7 +689,7 @@
             // 
             // panelKML
             // 
-            this.panelKML.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelKML.BackColor = System.Drawing.Color.White;
             this.panelKML.Controls.Add(this.btnCancel_KML);
             this.panelKML.Location = new System.Drawing.Point(740, 434);
             this.panelKML.Name = "panelKML";
@@ -690,7 +706,7 @@
             this.btnCancel_KML.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel_KML.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel_KML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel_KML.Location = new System.Drawing.Point(5, 233);
+            this.btnCancel_KML.Location = new System.Drawing.Point(5, 235);
             this.btnCancel_KML.Name = "btnCancel_KML";
             this.btnCancel_KML.Size = new System.Drawing.Size(88, 70);
             this.btnCancel_KML.TabIndex = 423;
@@ -699,7 +715,7 @@
             // 
             // panelChoose
             // 
-            this.panelChoose.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelChoose.BackColor = System.Drawing.Color.Gainsboro;
             this.panelChoose.Controls.Add(this.label14);
             this.panelChoose.Controls.Add(this.btnLatLonPivot);
             this.panelChoose.Controls.Add(this.label9);
@@ -735,7 +751,7 @@
             // 
             // btnLatLonPivot
             // 
-            this.btnLatLonPivot.BackColor = System.Drawing.Color.Transparent;
+            this.btnLatLonPivot.BackColor = System.Drawing.Color.White;
             this.btnLatLonPivot.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnLatLonPivot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLatLonPivot.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -832,7 +848,7 @@
             // 
             // btnzLatLonPlusHeading
             // 
-            this.btnzLatLonPlusHeading.BackColor = System.Drawing.Color.Transparent;
+            this.btnzLatLonPlusHeading.BackColor = System.Drawing.Color.White;
             this.btnzLatLonPlusHeading.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnzLatLonPlusHeading.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnzLatLonPlusHeading.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -856,7 +872,7 @@
             this.btnCancelChoose.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancelChoose.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancelChoose.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancelChoose.Location = new System.Drawing.Point(5, 327);
+            this.btnCancelChoose.Location = new System.Drawing.Point(5, 338);
             this.btnCancelChoose.Name = "btnCancelChoose";
             this.btnCancelChoose.Size = new System.Drawing.Size(90, 80);
             this.btnCancelChoose.TabIndex = 423;
@@ -865,7 +881,7 @@
             // 
             // btnzLatLon
             // 
-            this.btnzLatLon.BackColor = System.Drawing.Color.Transparent;
+            this.btnzLatLon.BackColor = System.Drawing.Color.White;
             this.btnzLatLon.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnzLatLon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnzLatLon.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -881,7 +897,7 @@
             // 
             // btnLoadABFromKML
             // 
-            this.btnLoadABFromKML.BackColor = System.Drawing.Color.Transparent;
+            this.btnLoadABFromKML.BackColor = System.Drawing.Color.White;
             this.btnLoadABFromKML.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnLoadABFromKML.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLoadABFromKML.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -897,7 +913,7 @@
             // 
             // btnzAPlus
             // 
-            this.btnzAPlus.BackColor = System.Drawing.Color.Transparent;
+            this.btnzAPlus.BackColor = System.Drawing.Color.White;
             this.btnzAPlus.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnzAPlus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnzAPlus.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -913,7 +929,7 @@
             // 
             // btnzABLine
             // 
-            this.btnzABLine.BackColor = System.Drawing.Color.Transparent;
+            this.btnzABLine.BackColor = System.Drawing.Color.White;
             this.btnzABLine.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnzABLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnzABLine.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -929,7 +945,7 @@
             // 
             // btnzABCurve
             // 
-            this.btnzABCurve.BackColor = System.Drawing.Color.Transparent;
+            this.btnzABCurve.BackColor = System.Drawing.Color.White;
             this.btnzABCurve.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnzABCurve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnzABCurve.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -945,7 +961,7 @@
             // 
             // panelABLine
             // 
-            this.panelABLine.BackColor = System.Drawing.Color.Transparent;
+            this.panelABLine.BackColor = System.Drawing.Color.White;
             this.panelABLine.Controls.Add(this.btnRefSideAB);
             this.panelABLine.Controls.Add(this.label12);
             this.panelABLine.Controls.Add(this.btnCancel_ABLine);
@@ -996,7 +1012,7 @@
             this.btnCancel_ABLine.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel_ABLine.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel_ABLine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel_ABLine.Location = new System.Drawing.Point(8, 233);
+            this.btnCancel_ABLine.Location = new System.Drawing.Point(8, 235);
             this.btnCancel_ABLine.Name = "btnCancel_ABLine";
             this.btnCancel_ABLine.Size = new System.Drawing.Size(88, 70);
             this.btnCancel_ABLine.TabIndex = 428;
@@ -1014,7 +1030,7 @@
             this.btnEnter_AB.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnEnter_AB.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEnter_AB.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEnter_AB.Location = new System.Drawing.Point(142, 233);
+            this.btnEnter_AB.Location = new System.Drawing.Point(142, 235);
             this.btnEnter_AB.Name = "btnEnter_AB";
             this.btnEnter_AB.Size = new System.Drawing.Size(88, 70);
             this.btnEnter_AB.TabIndex = 427;
@@ -1056,7 +1072,7 @@
             // 
             // panelAPlus
             // 
-            this.panelAPlus.BackColor = System.Drawing.Color.Transparent;
+            this.panelAPlus.BackColor = System.Drawing.Color.White;
             this.panelAPlus.Controls.Add(this.btnRefSideAPlus);
             this.panelAPlus.Controls.Add(this.label13);
             this.panelAPlus.Controls.Add(this.btnCancel_APlus);
@@ -1077,7 +1093,7 @@
             this.btnRefSideAPlus.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnRefSideAPlus.Image = global::AgOpenGPS.Properties.Resources.BoundaryRight;
             this.btnRefSideAPlus.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRefSideAPlus.Location = new System.Drawing.Point(26, 47);
+            this.btnRefSideAPlus.Location = new System.Drawing.Point(26, 35);
             this.btnRefSideAPlus.Name = "btnRefSideAPlus";
             this.btnRefSideAPlus.Size = new System.Drawing.Size(70, 60);
             this.btnRefSideAPlus.TabIndex = 448;
@@ -1107,7 +1123,7 @@
             this.btnCancel_APlus.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel_APlus.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel_APlus.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel_APlus.Location = new System.Drawing.Point(8, 238);
+            this.btnCancel_APlus.Location = new System.Drawing.Point(8, 235);
             this.btnCancel_APlus.Name = "btnCancel_APlus";
             this.btnCancel_APlus.Size = new System.Drawing.Size(88, 70);
             this.btnCancel_APlus.TabIndex = 428;
@@ -1125,7 +1141,7 @@
             this.btnEnter_APlus.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnEnter_APlus.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEnter_APlus.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEnter_APlus.Location = new System.Drawing.Point(142, 238);
+            this.btnEnter_APlus.Location = new System.Drawing.Point(142, 235);
             this.btnEnter_APlus.Name = "btnEnter_APlus";
             this.btnEnter_APlus.Size = new System.Drawing.Size(88, 70);
             this.btnEnter_APlus.TabIndex = 427;
@@ -1135,11 +1151,11 @@
             // 
             // nudHeading
             // 
-            this.nudHeading.BackColor = System.Drawing.Color.LightBlue;
+            this.nudHeading.BackColor = System.Drawing.Color.LightCyan;
             this.nudHeading.DecimalPlaces = 4;
-            this.nudHeading.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudHeading.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudHeading.InterceptArrowKeys = false;
-            this.nudHeading.Location = new System.Drawing.Point(25, 159);
+            this.nudHeading.Location = new System.Drawing.Point(9, 146);
             this.nudHeading.Maximum = new decimal(new int[] {
             360,
             0,
@@ -1148,7 +1164,7 @@
             this.nudHeading.Name = "nudHeading";
             this.nudHeading.ReadOnly = true;
             this.nudHeading.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.nudHeading.Size = new System.Drawing.Size(195, 46);
+            this.nudHeading.Size = new System.Drawing.Size(221, 52);
             this.nudHeading.TabIndex = 413;
             this.nudHeading.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudHeading.Value = new decimal(new int[] {
@@ -1166,7 +1182,7 @@
             this.btnAPlus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAPlus.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnAPlus.Image = global::AgOpenGPS.Properties.Resources.LetterABlue;
-            this.btnAPlus.Location = new System.Drawing.Point(140, 38);
+            this.btnAPlus.Location = new System.Drawing.Point(140, 26);
             this.btnAPlus.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnAPlus.Name = "btnAPlus";
             this.btnAPlus.Size = new System.Drawing.Size(80, 78);
@@ -1176,7 +1192,7 @@
             // 
             // panelLatLonPlus
             // 
-            this.panelLatLonPlus.BackColor = System.Drawing.Color.Transparent;
+            this.panelLatLonPlus.BackColor = System.Drawing.Color.Gainsboro;
             this.panelLatLonPlus.Controls.Add(this.btnFillLatLonPlus);
             this.panelLatLonPlus.Controls.Add(this.label17);
             this.panelLatLonPlus.Controls.Add(this.label16);
@@ -1211,11 +1227,11 @@
             // 
             this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.Black;
-            this.label17.Location = new System.Drawing.Point(90, 231);
+            this.label17.Location = new System.Drawing.Point(90, 230);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(53, 16);
+            this.label17.Size = new System.Drawing.Size(60, 18);
             this.label17.TabIndex = 454;
             this.label17.Text = "Heading";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1224,11 +1240,11 @@
             // 
             this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(90, 119);
+            this.label16.Location = new System.Drawing.Point(90, 118);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(118, 16);
+            this.label16.Size = new System.Drawing.Size(137, 18);
             this.label16.TabIndex = 453;
             this.label16.Text = "Longitude ( +- 180)";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1237,11 +1253,11 @@
             // 
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(90, 39);
+            this.label15.Location = new System.Drawing.Point(90, 38);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(101, 16);
+            this.label15.Size = new System.Drawing.Size(118, 18);
             this.label15.TabIndex = 452;
             this.label15.Text = "Lattitude (+- 90)";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1312,7 +1328,7 @@
             this.btnCancel_LatLonPlus.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel_LatLonPlus.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel_LatLonPlus.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel_LatLonPlus.Location = new System.Drawing.Point(13, 338);
+            this.btnCancel_LatLonPlus.Location = new System.Drawing.Point(13, 358);
             this.btnCancel_LatLonPlus.Name = "btnCancel_LatLonPlus";
             this.btnCancel_LatLonPlus.Size = new System.Drawing.Size(63, 60);
             this.btnCancel_LatLonPlus.TabIndex = 428;
@@ -1330,7 +1346,7 @@
             this.btnEnter_LatLonPlus.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnEnter_LatLonPlus.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEnter_LatLonPlus.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEnter_LatLonPlus.Location = new System.Drawing.Point(239, 338);
+            this.btnEnter_LatLonPlus.Location = new System.Drawing.Point(239, 358);
             this.btnEnter_LatLonPlus.Name = "btnEnter_LatLonPlus";
             this.btnEnter_LatLonPlus.Size = new System.Drawing.Size(88, 60);
             this.btnEnter_LatLonPlus.TabIndex = 427;
@@ -1365,7 +1381,7 @@
             // 
             // panelLatLonLatLon
             // 
-            this.panelLatLonLatLon.BackColor = System.Drawing.Color.Transparent;
+            this.panelLatLonLatLon.BackColor = System.Drawing.Color.Gainsboro;
             this.panelLatLonLatLon.Controls.Add(this.btnFillLatLonLatLonB);
             this.panelLatLonLatLon.Controls.Add(this.btnFillLatLonLatLonA);
             this.panelLatLonLatLon.Controls.Add(this.label24);
@@ -1447,11 +1463,11 @@
             // 
             this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.Black;
-            this.label18.Location = new System.Drawing.Point(81, 254);
+            this.label18.Location = new System.Drawing.Point(81, 253);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(118, 16);
+            this.label18.Size = new System.Drawing.Size(137, 18);
             this.label18.TabIndex = 457;
             this.label18.Text = "Longitude ( +- 180)";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1460,11 +1476,11 @@
             // 
             this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.Black;
-            this.label22.Location = new System.Drawing.Point(81, 175);
+            this.label22.Location = new System.Drawing.Point(81, 174);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(101, 16);
+            this.label22.Size = new System.Drawing.Size(118, 18);
             this.label22.TabIndex = 456;
             this.label22.Text = "Lattitude (+- 90)";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1529,11 +1545,11 @@
             // 
             this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.Black;
-            this.label19.Location = new System.Drawing.Point(81, 88);
+            this.label19.Location = new System.Drawing.Point(81, 87);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(118, 16);
+            this.label19.Size = new System.Drawing.Size(137, 18);
             this.label19.TabIndex = 453;
             this.label19.Text = "Longitude ( +- 180)";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1542,11 +1558,11 @@
             // 
             this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.Black;
-            this.label20.Location = new System.Drawing.Point(81, 8);
+            this.label20.Location = new System.Drawing.Point(81, 7);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(101, 16);
+            this.label20.Size = new System.Drawing.Size(118, 18);
             this.label20.TabIndex = 452;
             this.label20.Text = "Lattitude (+- 90)";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1617,7 +1633,7 @@
             this.btnCancelLatLonLatLon.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancelLatLonLatLon.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancelLatLonLatLon.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancelLatLonLatLon.Location = new System.Drawing.Point(13, 338);
+            this.btnCancelLatLonLatLon.Location = new System.Drawing.Point(13, 358);
             this.btnCancelLatLonLatLon.Name = "btnCancelLatLonLatLon";
             this.btnCancelLatLonLatLon.Size = new System.Drawing.Size(63, 60);
             this.btnCancelLatLonLatLon.TabIndex = 428;
@@ -1635,7 +1651,7 @@
             this.btnEnter_LatLonLatLon.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnEnter_LatLonLatLon.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEnter_LatLonLatLon.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEnter_LatLonLatLon.Location = new System.Drawing.Point(235, 338);
+            this.btnEnter_LatLonLatLon.Location = new System.Drawing.Point(235, 358);
             this.btnEnter_LatLonLatLon.Name = "btnEnter_LatLonLatLon";
             this.btnEnter_LatLonLatLon.Size = new System.Drawing.Size(88, 60);
             this.btnEnter_LatLonLatLon.TabIndex = 427;
@@ -1645,7 +1661,7 @@
             // 
             // panelPivot
             // 
-            this.panelPivot.BackColor = System.Drawing.Color.Transparent;
+            this.panelPivot.BackColor = System.Drawing.Color.Gainsboro;
             this.panelPivot.Controls.Add(this.btnFillLAtLonPivot);
             this.panelPivot.Controls.Add(this.label25);
             this.panelPivot.Controls.Add(this.label26);
@@ -1667,7 +1683,7 @@
             this.btnFillLAtLonPivot.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnFillLAtLonPivot.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementAntenna;
             this.btnFillLAtLonPivot.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnFillLAtLonPivot.Location = new System.Drawing.Point(13, 95);
+            this.btnFillLAtLonPivot.Location = new System.Drawing.Point(6, 95);
             this.btnFillLAtLonPivot.Name = "btnFillLAtLonPivot";
             this.btnFillLAtLonPivot.Size = new System.Drawing.Size(60, 49);
             this.btnFillLAtLonPivot.TabIndex = 461;
@@ -1678,11 +1694,11 @@
             // 
             this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.Color.Black;
-            this.label25.Location = new System.Drawing.Point(101, 119);
+            this.label25.Location = new System.Drawing.Point(101, 118);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(118, 16);
+            this.label25.Size = new System.Drawing.Size(137, 18);
             this.label25.TabIndex = 453;
             this.label25.Text = "Longitude ( +- 180)";
             this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1691,11 +1707,11 @@
             // 
             this.label26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.ForeColor = System.Drawing.Color.Black;
-            this.label26.Location = new System.Drawing.Point(101, 39);
+            this.label26.Location = new System.Drawing.Point(101, 38);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(101, 16);
+            this.label26.Size = new System.Drawing.Size(118, 18);
             this.label26.TabIndex = 452;
             this.label26.Text = "Lattitude (+- 90)";
             this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1704,8 +1720,8 @@
             // 
             this.nudLatitudePivot.BackColor = System.Drawing.Color.AliceBlue;
             this.nudLatitudePivot.DecimalPlaces = 7;
-            this.nudLatitudePivot.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudLatitudePivot.Location = new System.Drawing.Point(97, 58);
+            this.nudLatitudePivot.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudLatitudePivot.Location = new System.Drawing.Point(72, 58);
             this.nudLatitudePivot.Maximum = new decimal(new int[] {
             90,
             0,
@@ -1718,7 +1734,7 @@
             -2147483648});
             this.nudLatitudePivot.Name = "nudLatitudePivot";
             this.nudLatitudePivot.ReadOnly = true;
-            this.nudLatitudePivot.Size = new System.Drawing.Size(228, 43);
+            this.nudLatitudePivot.Size = new System.Drawing.Size(253, 46);
             this.nudLatitudePivot.TabIndex = 451;
             this.nudLatitudePivot.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudLatitudePivot.Value = new decimal(new int[] {
@@ -1732,8 +1748,8 @@
             // 
             this.nudLongitudePivot.BackColor = System.Drawing.Color.AliceBlue;
             this.nudLongitudePivot.DecimalPlaces = 7;
-            this.nudLongitudePivot.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudLongitudePivot.Location = new System.Drawing.Point(97, 138);
+            this.nudLongitudePivot.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudLongitudePivot.Location = new System.Drawing.Point(72, 138);
             this.nudLongitudePivot.Maximum = new decimal(new int[] {
             180,
             0,
@@ -1746,7 +1762,7 @@
             -2147483648});
             this.nudLongitudePivot.Name = "nudLongitudePivot";
             this.nudLongitudePivot.ReadOnly = true;
-            this.nudLongitudePivot.Size = new System.Drawing.Size(228, 43);
+            this.nudLongitudePivot.Size = new System.Drawing.Size(253, 46);
             this.nudLongitudePivot.TabIndex = 450;
             this.nudLongitudePivot.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudLongitudePivot.Value = new decimal(new int[] {
@@ -1766,7 +1782,7 @@
             this.btnCancel_Pivot.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel_Pivot.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel_Pivot.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel_Pivot.Location = new System.Drawing.Point(10, 241);
+            this.btnCancel_Pivot.Location = new System.Drawing.Point(10, 245);
             this.btnCancel_Pivot.Name = "btnCancel_Pivot";
             this.btnCancel_Pivot.Size = new System.Drawing.Size(63, 60);
             this.btnCancel_Pivot.TabIndex = 428;
@@ -1784,26 +1800,13 @@
             this.btnEnter_Pivot.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnEnter_Pivot.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEnter_Pivot.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEnter_Pivot.Location = new System.Drawing.Point(236, 241);
+            this.btnEnter_Pivot.Location = new System.Drawing.Point(236, 245);
             this.btnEnter_Pivot.Name = "btnEnter_Pivot";
             this.btnEnter_Pivot.Size = new System.Drawing.Size(88, 60);
             this.btnEnter_Pivot.TabIndex = 427;
             this.btnEnter_Pivot.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnEnter_Pivot.UseVisualStyleBackColor = false;
             this.btnEnter_Pivot.Click += new System.EventHandler(this.btnEnter_Pivot_Click);
-            // 
-            // label21
-            // 
-            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.ForeColor = System.Drawing.Color.Black;
-            this.label21.Location = new System.Drawing.Point(4, 4);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(40, 16);
-            this.label21.TabIndex = 449;
-            this.label21.Text = "Curve";
-            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormBuildTracks
             // 

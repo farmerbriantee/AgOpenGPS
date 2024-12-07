@@ -169,7 +169,8 @@
             // 
             // textBox1
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.textBox1.BackColor = System.Drawing.Color.LightCyan;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.CausesValidation = false;
             this.textBox1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(17, 37);
@@ -298,7 +299,7 @@
             // 
             // panelChoose
             // 
-            this.panelChoose.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelChoose.BackColor = System.Drawing.Color.Gainsboro;
             this.panelChoose.Controls.Add(this.btnCancelChoose);
             this.panelChoose.Controls.Add(this.btnzAPlus);
             this.panelChoose.Controls.Add(this.btnzABLine);
@@ -327,7 +328,7 @@
             // 
             // btnzAPlus
             // 
-            this.btnzAPlus.BackColor = System.Drawing.Color.Transparent;
+            this.btnzAPlus.BackColor = System.Drawing.Color.White;
             this.btnzAPlus.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnzAPlus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnzAPlus.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -343,7 +344,7 @@
             // 
             // btnzABLine
             // 
-            this.btnzABLine.BackColor = System.Drawing.Color.Transparent;
+            this.btnzABLine.BackColor = System.Drawing.Color.White;
             this.btnzABLine.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnzABLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnzABLine.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -359,7 +360,7 @@
             // 
             // btnzABCurve
             // 
-            this.btnzABCurve.BackColor = System.Drawing.Color.Transparent;
+            this.btnzABCurve.BackColor = System.Drawing.Color.White;
             this.btnzABCurve.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnzABCurve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnzABCurve.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -565,7 +566,7 @@
             // 
             // nudHeading
             // 
-            this.nudHeading.BackColor = System.Drawing.Color.LightBlue;
+            this.nudHeading.BackColor = System.Drawing.Color.LightCyan;
             this.nudHeading.DecimalPlaces = 4;
             this.nudHeading.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudHeading.InterceptArrowKeys = false;

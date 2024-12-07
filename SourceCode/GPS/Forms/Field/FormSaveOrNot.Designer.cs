@@ -32,6 +32,8 @@
             this.lblQuestion = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblExitCtr = new System.Windows.Forms.Label();
+            this.lblExit = new System.Windows.Forms.Label();
             this.lblShutCtr = new System.Windows.Forms.Label();
             this.lblShut = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -41,8 +43,6 @@
             this.btnOk = new System.Windows.Forms.Button();
             this.btnReturn = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.lblExitCtr = new System.Windows.Forms.Label();
-            this.lblExit = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,6 +84,28 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(767, 242);
             this.panel1.TabIndex = 260;
+            // 
+            // lblExitCtr
+            // 
+            this.lblExitCtr.AutoSize = true;
+            this.lblExitCtr.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExitCtr.ForeColor = System.Drawing.Color.Black;
+            this.lblExitCtr.Location = new System.Drawing.Point(642, 175);
+            this.lblExitCtr.Name = "lblExitCtr";
+            this.lblExitCtr.Size = new System.Drawing.Size(56, 58);
+            this.lblExitCtr.TabIndex = 268;
+            this.lblExitCtr.Text = "3";
+            // 
+            // lblExit
+            // 
+            this.lblExit.AutoSize = true;
+            this.lblExit.BackColor = System.Drawing.Color.Transparent;
+            this.lblExit.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExit.Location = new System.Drawing.Point(569, 145);
+            this.lblExit.Name = "lblExit";
+            this.lblExit.Size = new System.Drawing.Size(196, 25);
+            this.lblExit.TabIndex = 269;
+            this.lblExit.Text = "Exit To Windows:";
             // 
             // lblShutCtr
             // 
@@ -163,9 +185,9 @@
             this.btnOk.FlatAppearance.BorderSize = 0;
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOk.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.btnOk.Location = new System.Drawing.Point(628, 52);
+            this.btnOk.Location = new System.Drawing.Point(630, 52);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(79, 79);
+            this.btnOk.Size = new System.Drawing.Size(90, 79);
             this.btnOk.TabIndex = 0;
             this.btnOk.UseVisualStyleBackColor = false;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
@@ -178,9 +200,9 @@
             this.btnReturn.FlatAppearance.BorderSize = 0;
             this.btnReturn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReturn.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.btnReturn.Location = new System.Drawing.Point(347, 52);
+            this.btnReturn.Location = new System.Drawing.Point(337, 43);
             this.btnReturn.Name = "btnReturn";
-            this.btnReturn.Size = new System.Drawing.Size(79, 79);
+            this.btnReturn.Size = new System.Drawing.Size(101, 96);
             this.btnReturn.TabIndex = 5;
             this.btnReturn.UseVisualStyleBackColor = false;
             this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
@@ -190,28 +212,6 @@
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // lblExitCtr
-            // 
-            this.lblExitCtr.AutoSize = true;
-            this.lblExitCtr.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExitCtr.ForeColor = System.Drawing.Color.Black;
-            this.lblExitCtr.Location = new System.Drawing.Point(642, 175);
-            this.lblExitCtr.Name = "lblExitCtr";
-            this.lblExitCtr.Size = new System.Drawing.Size(56, 58);
-            this.lblExitCtr.TabIndex = 268;
-            this.lblExitCtr.Text = "3";
-            // 
-            // lblExit
-            // 
-            this.lblExit.AutoSize = true;
-            this.lblExit.BackColor = System.Drawing.Color.Transparent;
-            this.lblExit.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExit.Location = new System.Drawing.Point(569, 145);
-            this.lblExit.Name = "lblExit";
-            this.lblExit.Size = new System.Drawing.Size(196, 25);
-            this.lblExit.TabIndex = 269;
-            this.lblExit.Text = "Exit To Windows:";
             // 
             // FormSaveOrNot
             // 

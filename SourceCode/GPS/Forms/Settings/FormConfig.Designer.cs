@@ -301,6 +301,7 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tabDHeading = new System.Windows.Forms.TabPage();
+            this.label156 = new System.Windows.Forms.Label();
             this.cboxIsRTK_KillAutoSteer = new System.Windows.Forms.CheckBox();
             this.label118 = new System.Windows.Forms.Label();
             this.label113 = new System.Windows.Forms.Label();
@@ -539,7 +540,6 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label156 = new System.Windows.Forms.Label();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -5354,6 +5354,20 @@
             this.tabDHeading.Enter += new System.EventHandler(this.tabDHeading_Enter);
             this.tabDHeading.Leave += new System.EventHandler(this.tabDHeading_Leave);
             // 
+            // label156
+            // 
+            this.label156.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label156.BackColor = System.Drawing.Color.Transparent;
+            this.label156.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.label156.ForeColor = System.Drawing.Color.Black;
+            this.label156.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label156.Location = new System.Drawing.Point(10, 453);
+            this.label156.Name = "label156";
+            this.label156.Size = new System.Drawing.Size(142, 53);
+            this.label156.TabIndex = 478;
+            this.label156.Text = "Alarm Stops Autosteer";
+            this.label156.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // cboxIsRTK_KillAutoSteer
             // 
             this.cboxIsRTK_KillAutoSteer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -5737,9 +5751,9 @@
             this.headingGroupBox.Controls.Add(this.rbtnHeadingFix);
             this.headingGroupBox.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.headingGroupBox.ForeColor = System.Drawing.Color.Black;
-            this.headingGroupBox.Location = new System.Drawing.Point(219, -26);
+            this.headingGroupBox.Location = new System.Drawing.Point(63, -26);
             this.headingGroupBox.Name = "headingGroupBox";
-            this.headingGroupBox.Size = new System.Drawing.Size(348, 132);
+            this.headingGroupBox.Size = new System.Drawing.Size(515, 132);
             this.headingGroupBox.TabIndex = 85;
             this.headingGroupBox.TabStop = false;
             this.headingGroupBox.Text = "Antenna Type";
@@ -5753,7 +5767,7 @@
             this.rbtnHeadingHDT.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnHeadingHDT.ForeColor = System.Drawing.Color.Black;
             this.rbtnHeadingHDT.Image = global::AgOpenGPS.Properties.Resources.Con_SourcesGPSDual;
-            this.rbtnHeadingHDT.Location = new System.Drawing.Point(19, 42);
+            this.rbtnHeadingHDT.Location = new System.Drawing.Point(6, 44);
             this.rbtnHeadingHDT.Name = "rbtnHeadingHDT";
             this.rbtnHeadingHDT.Size = new System.Drawing.Size(117, 82);
             this.rbtnHeadingHDT.TabIndex = 2;
@@ -5771,7 +5785,7 @@
             this.rbtnHeadingFix.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnHeadingFix.ForeColor = System.Drawing.Color.Black;
             this.rbtnHeadingFix.Image = global::AgOpenGPS.Properties.Resources.Con_SourcesGPSSingle;
-            this.rbtnHeadingFix.Location = new System.Drawing.Point(214, 42);
+            this.rbtnHeadingFix.Location = new System.Drawing.Point(387, 44);
             this.rbtnHeadingFix.Name = "rbtnHeadingFix";
             this.rbtnHeadingFix.Size = new System.Drawing.Size(117, 82);
             this.rbtnHeadingFix.TabIndex = 0;
@@ -5860,6 +5874,7 @@
             // pictureBox9
             // 
             this.pictureBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pictureBox9.BackColor = System.Drawing.Color.White;
             this.pictureBox9.BackgroundImage = global::AgOpenGPS.Properties.Resources.ConD_RollHelper;
             this.pictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox9.Location = new System.Drawing.Point(577, 343);
@@ -5976,7 +5991,7 @@
             // 
             // btnResetIMU
             // 
-            this.btnResetIMU.BackColor = System.Drawing.Color.Transparent;
+            this.btnResetIMU.BackColor = System.Drawing.Color.White;
             this.btnResetIMU.BackgroundImage = global::AgOpenGPS.Properties.Resources.ConDa_ResetIMU;
             this.btnResetIMU.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnResetIMU.FlatAppearance.BorderColor = System.Drawing.Color.Black;
@@ -5994,7 +6009,7 @@
             // 
             // btnZeroRoll
             // 
-            this.btnZeroRoll.BackColor = System.Drawing.Color.Transparent;
+            this.btnZeroRoll.BackColor = System.Drawing.Color.White;
             this.btnZeroRoll.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnZeroRoll.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
             this.btnZeroRoll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -6011,7 +6026,7 @@
             // 
             // btnRemoveZeroOffset
             // 
-            this.btnRemoveZeroOffset.BackColor = System.Drawing.Color.Transparent;
+            this.btnRemoveZeroOffset.BackColor = System.Drawing.Color.White;
             this.btnRemoveZeroOffset.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnRemoveZeroOffset.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
             this.btnRemoveZeroOffset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -6029,7 +6044,7 @@
             // cboxDataInvertRoll
             // 
             this.cboxDataInvertRoll.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxDataInvertRoll.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cboxDataInvertRoll.BackColor = System.Drawing.Color.White;
             this.cboxDataInvertRoll.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxDataInvertRoll.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
             this.cboxDataInvertRoll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -6145,7 +6160,7 @@
             // 
             // nudYouTurnRadius
             // 
-            this.nudYouTurnRadius.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.nudYouTurnRadius.BackColor = System.Drawing.Color.White;
             this.nudYouTurnRadius.DecimalPlaces = 2;
             this.nudYouTurnRadius.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudYouTurnRadius.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -6175,7 +6190,7 @@
             // 
             // nudTurnDistanceFromBoundary
             // 
-            this.nudTurnDistanceFromBoundary.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.nudTurnDistanceFromBoundary.BackColor = System.Drawing.Color.White;
             this.nudTurnDistanceFromBoundary.DecimalPlaces = 2;
             this.nudTurnDistanceFromBoundary.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudTurnDistanceFromBoundary.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -6313,7 +6328,7 @@
             // 
             // tabRelay
             // 
-            this.tabRelay.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabRelay.BackColor = System.Drawing.Color.Gainsboro;
             this.tabRelay.Controls.Add(this.cboxPin23);
             this.tabRelay.Controls.Add(this.cboxPin22);
             this.tabRelay.Controls.Add(this.cboxPin21);
@@ -6521,7 +6536,7 @@
             // 
             this.label143.BackColor = System.Drawing.Color.Transparent;
             this.label143.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label143.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label143.ForeColor = System.Drawing.Color.Black;
             this.label143.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label143.Location = new System.Drawing.Point(22, 364);
             this.label143.Name = "label143";
@@ -6534,7 +6549,7 @@
             // 
             this.label144.BackColor = System.Drawing.Color.Transparent;
             this.label144.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label144.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label144.ForeColor = System.Drawing.Color.Black;
             this.label144.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label144.Location = new System.Drawing.Point(193, 364);
             this.label144.Name = "label144";
@@ -6547,7 +6562,7 @@
             // 
             this.label145.BackColor = System.Drawing.Color.Transparent;
             this.label145.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label145.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label145.ForeColor = System.Drawing.Color.Black;
             this.label145.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label145.Location = new System.Drawing.Point(366, 364);
             this.label145.Name = "label145";
@@ -6560,7 +6575,7 @@
             // 
             this.label146.BackColor = System.Drawing.Color.Transparent;
             this.label146.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label146.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label146.ForeColor = System.Drawing.Color.Black;
             this.label146.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label146.Location = new System.Drawing.Point(541, 364);
             this.label146.Name = "label146";
@@ -7154,7 +7169,7 @@
             // 
             this.label138.BackColor = System.Drawing.Color.Transparent;
             this.label138.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label138.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label138.ForeColor = System.Drawing.Color.Black;
             this.label138.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label138.Location = new System.Drawing.Point(713, 269);
             this.label138.Name = "label138";
@@ -7167,7 +7182,7 @@
             // 
             this.label139.BackColor = System.Drawing.Color.Transparent;
             this.label139.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label139.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label139.ForeColor = System.Drawing.Color.Black;
             this.label139.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label139.Location = new System.Drawing.Point(22, 269);
             this.label139.Name = "label139";
@@ -7180,7 +7195,7 @@
             // 
             this.label140.BackColor = System.Drawing.Color.Transparent;
             this.label140.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label140.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label140.ForeColor = System.Drawing.Color.Black;
             this.label140.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label140.Location = new System.Drawing.Point(193, 269);
             this.label140.Name = "label140";
@@ -7193,7 +7208,7 @@
             // 
             this.label141.BackColor = System.Drawing.Color.Transparent;
             this.label141.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label141.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label141.ForeColor = System.Drawing.Color.Black;
             this.label141.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label141.Location = new System.Drawing.Point(366, 269);
             this.label141.Name = "label141";
@@ -7206,7 +7221,7 @@
             // 
             this.label142.BackColor = System.Drawing.Color.Transparent;
             this.label142.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label142.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label142.ForeColor = System.Drawing.Color.Black;
             this.label142.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label142.Location = new System.Drawing.Point(541, 269);
             this.label142.Name = "label142";
@@ -7219,7 +7234,7 @@
             // 
             this.label133.BackColor = System.Drawing.Color.Transparent;
             this.label133.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label133.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label133.ForeColor = System.Drawing.Color.Black;
             this.label133.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label133.Location = new System.Drawing.Point(713, 177);
             this.label133.Name = "label133";
@@ -7232,7 +7247,7 @@
             // 
             this.label134.BackColor = System.Drawing.Color.Transparent;
             this.label134.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label134.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label134.ForeColor = System.Drawing.Color.Black;
             this.label134.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label134.Location = new System.Drawing.Point(22, 177);
             this.label134.Name = "label134";
@@ -7245,7 +7260,7 @@
             // 
             this.label135.BackColor = System.Drawing.Color.Transparent;
             this.label135.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label135.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label135.ForeColor = System.Drawing.Color.Black;
             this.label135.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label135.Location = new System.Drawing.Point(193, 177);
             this.label135.Name = "label135";
@@ -7258,7 +7273,7 @@
             // 
             this.label136.BackColor = System.Drawing.Color.Transparent;
             this.label136.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label136.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label136.ForeColor = System.Drawing.Color.Black;
             this.label136.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label136.Location = new System.Drawing.Point(366, 177);
             this.label136.Name = "label136";
@@ -7271,7 +7286,7 @@
             // 
             this.label137.BackColor = System.Drawing.Color.Transparent;
             this.label137.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label137.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label137.ForeColor = System.Drawing.Color.Black;
             this.label137.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label137.Location = new System.Drawing.Point(541, 177);
             this.label137.Name = "label137";
@@ -7284,7 +7299,7 @@
             // 
             this.label132.BackColor = System.Drawing.Color.Transparent;
             this.label132.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label132.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label132.ForeColor = System.Drawing.Color.Black;
             this.label132.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label132.Location = new System.Drawing.Point(713, 85);
             this.label132.Name = "label132";
@@ -7297,7 +7312,7 @@
             // 
             this.label131.BackColor = System.Drawing.Color.Transparent;
             this.label131.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label131.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label131.ForeColor = System.Drawing.Color.Black;
             this.label131.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label131.Location = new System.Drawing.Point(193, -6);
             this.label131.Name = "label131";
@@ -7310,7 +7325,7 @@
             // 
             this.label130.BackColor = System.Drawing.Color.Transparent;
             this.label130.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label130.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label130.ForeColor = System.Drawing.Color.Black;
             this.label130.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label130.Location = new System.Drawing.Point(366, -6);
             this.label130.Name = "label130";
@@ -7323,7 +7338,7 @@
             // 
             this.label129.BackColor = System.Drawing.Color.Transparent;
             this.label129.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label129.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label129.ForeColor = System.Drawing.Color.Black;
             this.label129.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label129.Location = new System.Drawing.Point(541, -6);
             this.label129.Name = "label129";
@@ -7336,7 +7351,7 @@
             // 
             this.label128.BackColor = System.Drawing.Color.Transparent;
             this.label128.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label128.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label128.ForeColor = System.Drawing.Color.Black;
             this.label128.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label128.Location = new System.Drawing.Point(713, -6);
             this.label128.Name = "label128";
@@ -7349,7 +7364,7 @@
             // 
             this.label127.BackColor = System.Drawing.Color.Transparent;
             this.label127.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label127.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label127.ForeColor = System.Drawing.Color.Black;
             this.label127.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label127.Location = new System.Drawing.Point(22, 85);
             this.label127.Name = "label127";
@@ -7362,7 +7377,7 @@
             // 
             this.label126.BackColor = System.Drawing.Color.Transparent;
             this.label126.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label126.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label126.ForeColor = System.Drawing.Color.Black;
             this.label126.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label126.Location = new System.Drawing.Point(193, 85);
             this.label126.Name = "label126";
@@ -7375,7 +7390,7 @@
             // 
             this.label125.BackColor = System.Drawing.Color.Transparent;
             this.label125.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label125.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label125.ForeColor = System.Drawing.Color.Black;
             this.label125.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label125.Location = new System.Drawing.Point(366, 85);
             this.label125.Name = "label125";
@@ -7388,7 +7403,7 @@
             // 
             this.label124.BackColor = System.Drawing.Color.Transparent;
             this.label124.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label124.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label124.ForeColor = System.Drawing.Color.Black;
             this.label124.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label124.Location = new System.Drawing.Point(541, 85);
             this.label124.Name = "label124";
@@ -7429,7 +7444,7 @@
             // 
             this.label123.BackColor = System.Drawing.Color.Transparent;
             this.label123.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label123.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label123.ForeColor = System.Drawing.Color.Black;
             this.label123.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label123.Location = new System.Drawing.Point(22, -6);
             this.label123.Name = "label123";
@@ -7497,7 +7512,7 @@
             // 
             // tabAMachine
             // 
-            this.tabAMachine.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabAMachine.BackColor = System.Drawing.Color.Gainsboro;
             this.tabAMachine.Controls.Add(this.label151);
             this.tabAMachine.Controls.Add(this.label150);
             this.tabAMachine.Controls.Add(this.label149);
@@ -7604,7 +7619,7 @@
             // 
             // nudHydLiftLookAhead
             // 
-            this.nudHydLiftLookAhead.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudHydLiftLookAhead.BackColor = System.Drawing.Color.White;
             this.nudHydLiftLookAhead.DecimalPlaces = 1;
             this.nudHydLiftLookAhead.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudHydLiftLookAhead.InterceptArrowKeys = false;
@@ -7707,7 +7722,7 @@
             // 
             // nudLowerTime
             // 
-            this.nudLowerTime.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudLowerTime.BackColor = System.Drawing.Color.White;
             this.nudLowerTime.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudLowerTime.InterceptArrowKeys = false;
             this.nudLowerTime.Location = new System.Drawing.Point(226, 279);
@@ -7745,7 +7760,7 @@
             // 
             // nudRaiseTime
             // 
-            this.nudRaiseTime.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudRaiseTime.BackColor = System.Drawing.Color.White;
             this.nudRaiseTime.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudRaiseTime.InterceptArrowKeys = false;
             this.nudRaiseTime.Location = new System.Drawing.Point(226, 75);
@@ -7814,7 +7829,7 @@
             // nudUser4
             // 
             this.nudUser4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.nudUser4.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudUser4.BackColor = System.Drawing.Color.White;
             this.nudUser4.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudUser4.InterceptArrowKeys = false;
             this.nudUser4.Location = new System.Drawing.Point(659, 342);
@@ -7838,7 +7853,7 @@
             // nudUser3
             // 
             this.nudUser3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.nudUser3.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudUser3.BackColor = System.Drawing.Color.White;
             this.nudUser3.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudUser3.InterceptArrowKeys = false;
             this.nudUser3.Location = new System.Drawing.Point(659, 253);
@@ -7862,7 +7877,7 @@
             // nudUser2
             // 
             this.nudUser2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.nudUser2.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudUser2.BackColor = System.Drawing.Color.White;
             this.nudUser2.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudUser2.InterceptArrowKeys = false;
             this.nudUser2.Location = new System.Drawing.Point(659, 164);
@@ -7886,7 +7901,7 @@
             // nudUser1
             // 
             this.nudUser1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.nudUser1.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudUser1.BackColor = System.Drawing.Color.White;
             this.nudUser1.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudUser1.InterceptArrowKeys = false;
             this.nudUser1.Location = new System.Drawing.Point(659, 75);
@@ -7944,7 +7959,7 @@
             // btnSendMachinePGN
             // 
             this.btnSendMachinePGN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSendMachinePGN.BackColor = System.Drawing.Color.Transparent;
+            this.btnSendMachinePGN.BackColor = System.Drawing.Color.White;
             this.btnSendMachinePGN.FlatAppearance.BorderSize = 0;
             this.btnSendMachinePGN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSendMachinePGN.Image = global::AgOpenGPS.Properties.Resources.ToolAcceptChange;
@@ -7958,7 +7973,7 @@
             // 
             // tabTram
             // 
-            this.tabTram.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabTram.BackColor = System.Drawing.Color.Gainsboro;
             this.tabTram.Controls.Add(this.label111);
             this.tabTram.Controls.Add(this.label85);
             this.tabTram.Controls.Add(this.lblTramWidthUnits);
@@ -8926,7 +8941,7 @@
             // 
             // tabDisplay
             // 
-            this.tabDisplay.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabDisplay.BackColor = System.Drawing.Color.Gainsboro;
             this.tabDisplay.Controls.Add(this.label79);
             this.tabDisplay.Controls.Add(this.unitsGroupBox);
             this.tabDisplay.Controls.Add(this.label15);
@@ -9549,20 +9564,6 @@
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // label156
-            // 
-            this.label156.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label156.BackColor = System.Drawing.Color.Transparent;
-            this.label156.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.label156.ForeColor = System.Drawing.Color.Black;
-            this.label156.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label156.Location = new System.Drawing.Point(10, 453);
-            this.label156.Name = "label156";
-            this.label156.Size = new System.Drawing.Size(142, 53);
-            this.label156.TabIndex = 478;
-            this.label156.Text = "Alarm Stops Autosteer";
-            this.label156.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormConfig
             // 

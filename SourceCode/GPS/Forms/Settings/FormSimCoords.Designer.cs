@@ -30,8 +30,8 @@
         {
             this.btnCancel = new System.Windows.Forms.Button();
             this.bntOK = new System.Windows.Forms.Button();
-            this.nudLongitude = new NudlessNumericUpDown();
-            this.nudLatitude = new NudlessNumericUpDown();
+            this.nudLongitude = new AgOpenGPS.NudlessNumericUpDown();
+            this.nudLatitude = new AgOpenGPS.NudlessNumericUpDown();
             this.label18 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -82,10 +82,10 @@
             // 
             // nudLongitude
             // 
-            this.nudLongitude.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudLongitude.BackColor = System.Drawing.Color.White;
             this.nudLongitude.DecimalPlaces = 7;
             this.nudLongitude.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudLongitude.Location = new System.Drawing.Point(325, 483);
+            this.nudLongitude.Location = new System.Drawing.Point(340, 483);
             this.nudLongitude.Maximum = new decimal(new int[] {
             180,
             0,
@@ -109,7 +109,7 @@
             // 
             // nudLatitude
             // 
-            this.nudLatitude.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudLatitude.BackColor = System.Drawing.Color.White;
             this.nudLatitude.DecimalPlaces = 7;
             this.nudLatitude.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudLatitude.Location = new System.Drawing.Point(29, 483);
@@ -149,7 +149,7 @@
             // 
             this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(334, 430);
+            this.label1.Location = new System.Drawing.Point(349, 430);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(269, 25);
             this.label1.TabIndex = 179;
@@ -172,7 +172,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(387, 455);
+            this.label9.Location = new System.Drawing.Point(402, 455);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(163, 25);
             this.label9.TabIndex = 196;
@@ -204,6 +204,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Gainsboro;
             this.BackgroundImage = global::AgOpenGPS.Properties.Resources.LatLon;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(931, 551);

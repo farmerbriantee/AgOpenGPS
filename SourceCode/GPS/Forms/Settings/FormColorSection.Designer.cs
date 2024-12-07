@@ -335,6 +335,7 @@
             // chkUse
             // 
             this.chkUse.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkUse.BackColor = System.Drawing.Color.White;
             this.chkUse.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
             this.chkUse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkUse.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -346,7 +347,7 @@
             this.chkUse.TabIndex = 258;
             this.chkUse.Text = "Edit Color";
             this.chkUse.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.chkUse.UseVisualStyleBackColor = true;
+            this.chkUse.UseVisualStyleBackColor = false;
             this.chkUse.CheckedChanged += new System.EventHandler(this.chkUse_CheckedChanged);
             // 
             // cb01
@@ -685,7 +686,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.Gainsboro;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(883, 566);
             this.ControlBox = false;
