@@ -1985,7 +1985,6 @@ namespace AgOpenGPS
 
             err *= -5;
 
-            double down = 25;
             GL.LineWidth(1);
             //GL.Translate(0, 0, 0.01);
             //offlineDistance *= -1;
@@ -1995,52 +1994,26 @@ namespace AgOpenGPS
             if (dotDistance < -limit) dotDistance = -limit;
             if (dotDistance > limit) dotDistance = limit;
 
-            //if (dotDistance < -10) dotDistance -= 30;
-            //if (dotDistance > 10) dotDistance += 30;
-
-            // dot background
-            //GL.PointSize(8.0f);
-            //GL.Color3(0.00f, 0.0f, 0.0f);
-            //GL.Begin(PrimitiveType.Lines);
-            //for (int i = -8; i < -1; i++) GL.Vertex2((i * 32), down);
-            //for (int i = 2; i < 9; i++) GL.Vertex2((i * 32), down);
-            //GL.End();
-
-            //GL.PointSize(4.0f);
-            //GL.Translate(0, 0, 0.01);
-
-            ////red left side
-            //GL.Color3(0.750f, 0.0f, 0.0f);
-            //GL.Begin(PrimitiveType.Points);
-            //for (int i = -8; i < 0; i++) GL.Vertex2((i * 32), down);
-
-            ////green right side
-            //GL.Color3(0.0f, 0.750f, 0.0f);
-            //for (int i = 1; i < 9; i++) GL.Vertex2((i * 32), down);
-            //GL.End();
-
             //Are you on the right side of line? So its green.
-            if ((err) < 0.0)
-            {
-                int dots = (dotDistance * -1 / 2) + 1;
+            int spacing = oglMain.Width/60;
+            int offset = oglMain.Width / 100;
+            double down = 65;
 
-                //GL.PointSize(24.0f);
-                //GL.Color3(0.0f, 0.0f, 0.0f);
-                //GL.Begin(PrimitiveType.Lines);
-                //for (int i = 1; i < dots + 1; i++) GL.Vertex2((i * 32), down);
-                //GL.End();
+            if ((err) > 0.0)
+            {
+                int dots = (dotDistance / 2) + 1;
 
                 GL.PointSize(16.0f);
 
                 GL.LineWidth(4);
-                GL.Color3(0.0f, 0.980f, 0.0f);
+                GL.Color3(0.990f, 0.980f, 0.0f);
                 GL.Begin(PrimitiveType.Lines);
                 for (int i = 1; i < dots; i++)
                 {
-                    GL.Vertex2((i * 16 ), down-10);
-                    GL.Vertex2((i * 16 -10), down);
-                    GL.Vertex2((i * 16 -10), down);
-                    GL.Vertex2((i * 16 ), down+10);
+                    GL.Vertex2((i * spacing ), down-offset);
+                    GL.Vertex2((i * spacing + offset), down);
+                    GL.Vertex2((i * spacing + offset), down);
+                    GL.Vertex2((i * spacing ), down+offset);
                 }
                 GL.End();
                 //return;
@@ -2048,60 +2021,24 @@ namespace AgOpenGPS
 
             else //red side
             {
-                int dots = (int)(dotDistance / lightbarCmPerPixel) + 1;
+                int dots = (int)(dotDistance * -1 / 2) + 1;
 
-                GL.PointSize(24.0f);
-                GL.Color3(0.0f, 0.0f, 0.0f);
-                GL.Begin(PrimitiveType.Points);
-                for (int i = 1; i < dots + 1; i++) GL.Vertex2((i * -32), down);
+                GL.LineWidth(4);
+                GL.Color3(0.990f, 0.980f, 0.0f);
+                GL.Begin(PrimitiveType.Lines);
+                for (int i = 1; i < dots; i++)
+                {
+                    GL.Vertex2((i * -spacing), down - offset);
+                    GL.Vertex2((i * -spacing - offset), down);
+                    GL.Vertex2((i * -spacing - offset), down);
+                    GL.Vertex2((i * -spacing), down + offset);
+                }
                 GL.End();
-
-                GL.PointSize(16.0f);
-                GL.Color3(0.980f, 0.30f, 0.0f);
-                GL.Begin(PrimitiveType.Points);
-                for (int i = 0; i < dots; i++) GL.Vertex2((i * -32 - 32), down);
-                GL.End();
-                //return;
             }
-
-            ////yellow center dot
-            //if (dotDistance >= -lightbarCmPerPixel && dotDistance <= lightbarCmPerPixel)
-            //{
-            //    GL.PointSize(16.0f);
-            //    GL.Color3(0.0f, 0.0f, 0.0f);
-            //    GL.Begin(PrimitiveType.Points);
-            //    GL.Vertex2(0, down);
-            //    //GL.Vertex(0, down + 50);
-            //    GL.End();
-
-            //    GL.PointSize(12.0f);
-            //    GL.Color3(0.980f, 0.98f, 0.0f);
-            //    GL.Begin(PrimitiveType.Points);
-            //    GL.Vertex2(0, down);
-            //    //GL.Vertex(0, down + 50);
-            //    GL.End();
-            //}
-
-            //else
-            //{
-
-            //    GL.PointSize(12.0f);
-            //    GL.Color3(0.0f, 0.0f, 0.0f);
-            //    GL.Begin(PrimitiveType.Points);
-            //    GL.Vertex2(0, down);
-            //    //GL.Vertex(0, down + 50);
-            //    GL.End();
-
-            //    GL.PointSize(8.0f);
-            //    GL.Color3(0.980f, 0.98f, 0.0f);
-            //    GL.Begin(PrimitiveType.Points);
-            //    GL.Vertex2(0, down);
-            //    //GL.Vertex(0, down + 50);
-            //    GL.End();
-            //}
         }
 
         private double avgPivDistance, lightbarDistance, longAvgPivDistance;
+
         private void DrawLightBarText()
         {
             GL.Disable(EnableCap.DepthTest);
@@ -2137,7 +2074,7 @@ namespace AgOpenGPS
                 }
 
                 int center = -(int)(((double)(hede.Length) * 0.5) * 22);
-                font.DrawText(center, 30, hede, 1.5);
+                font.DrawText(center, 5, hede, 1.5);
 
                 if (vehicle.isInDeadZone)
                 {
