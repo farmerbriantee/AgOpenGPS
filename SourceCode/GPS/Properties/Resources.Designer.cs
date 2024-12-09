@@ -3814,6 +3814,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap z_crossTrackBkgnd {
+            get {
+                object obj = ResourceManager.GetObject("z_crossTrackBkgnd", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap z_Floor {
             get {
                 object obj = ResourceManager.GetObject("z_Floor", resourceCulture);

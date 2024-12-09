@@ -825,7 +825,7 @@ namespace AgOpenGPS
             NoGPS, ZoomIn48, ZoomOut48,
             Pan, MenuHideShow,
             ToolWheels, Tire, TramDot,
-            YouTurnU, YouTurnH
+            YouTurnU, YouTurnH, CrossTrackBkgrnd
         }
 
         public void LoadGLTextures()
@@ -846,7 +846,7 @@ namespace AgOpenGPS
                 Resources.z_NoGPS, Resources.ZoomIn48, Resources.ZoomOut48,
                 Resources.Pan, Resources.MenuHideShow,
                 Resources.z_Tool, Resources.z_Tire, Resources.z_TramOnOff,
-                Resources.YouTurnU, Resources.YouTurnH
+                Resources.YouTurnU, Resources.YouTurnH, Resources.z_crossTrackBkgnd
             };
 
             texture = new uint[oglTextures.Length];

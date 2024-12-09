@@ -963,6 +963,7 @@
     <Content Include="AOG.ico" />
     <Content Include="aChangeLog.txt" />
     <None Include="btnImages\SimUDP.png" />
+    <None Include="btnImages\Images\z_crossTrackBkgnd.png" />
     <Content Include="ModSim.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
