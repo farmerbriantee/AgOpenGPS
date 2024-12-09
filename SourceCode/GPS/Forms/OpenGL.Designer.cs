@@ -1986,22 +1986,24 @@ namespace AgOpenGPS
             int spacing = oglMain.Width / 40;
             int offset = oglMain.Width / 80;
             if (offset > 15) offset = 14;
-            double down = 26;
+            int down = 27;
+            //int down = oglMain.Height / 2 - 60;
+            //if (isBtnAutoSteerOn) down = 27;
 
             double errLine = err;
-            if (errLine > 16) errLine = 16;
-            if (errLine < -16) errLine = -16;
+            if (errLine > 15) errLine = 15;
+            if (errLine < -15) errLine = -15;
             errLine *= spacing;
 
             GL.Color3(0.0f, 0.7530f, 0.0f);
-            GL.LineWidth(8);
+            GL.LineWidth(12);
             GL.Begin(PrimitiveType.Lines);
             GL.Vertex2(0, down);
             GL.Vertex2(errLine, down);
             GL.End();
 
             GL.Color3(0.90f, 0.9530f, 0.0f);
-            GL.LineWidth(4);
+            GL.LineWidth(8);
             GL.Begin(PrimitiveType.Lines);
             GL.Vertex2(0, down);
             GL.Vertex2(errLine, down);
@@ -2118,16 +2120,15 @@ namespace AgOpenGPS
                 GL.Color3(0, 0, 0);
                 GL.LineWidth(12);
                 GL.Begin(PrimitiveType.Lines);
-                GL.Vertex3(centr, 7, 0);
-                GL.Vertex3(centr, 43, 0);
+                GL.Vertex3(centr-2, 7, 0);
+                GL.Vertex3(centr-2, 43, 0);
                 GL.End();
-                if (vehicle.isInDeadZone) GL.Color3(0.30f, 0.972f, 0.32f);
-                else GL.Color3(0.930f, 0.972f, 0.932f);
 
+                GL.Color3(0.930f, 0.972f, 0.932f);
                 GL.LineWidth(8);
                 GL.Begin(PrimitiveType.Lines);
-                GL.Vertex3(centr, 7, 0);
-                GL.Vertex3(centr, 43, 0);
+                GL.Vertex3(centr-2, 7, 0);
+                GL.Vertex3(centr-2, 43, 0);
                 GL.End();
 
                 if (longAvgPivDistance < 150)
