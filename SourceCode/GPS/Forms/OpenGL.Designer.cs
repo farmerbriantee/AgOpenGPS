@@ -1979,48 +1979,6 @@ namespace AgOpenGPS
             }
         }
 
-        private void DrawLightBar(double Width, double Height, double offlineDistance)
-        {
-            double err = (mc.actualSteerAngleDegrees - (double)(guidanceLineSteerAngle) * 0.01);
-
-            int spacing = oglMain.Width / 40;
-            if (spacing < 28) spacing = 28;
-            int offset = 14;
-            int down = 20;
-            int pointy = 16;
-            //int down = oglMain.Height / 2 - 60;
-            //if (isBtnAutoSteerOn) down = 27;
-
-            double errLine = -err;
-            if (errLine > 9) errLine = 9;
-            if (errLine < -9) errLine = -9;
-            errLine *= spacing;
-
-            GL.Color3(0.90f, 0.6530f, 0.40f);
-            GL.LineWidth(8);
-            GL.Begin(PrimitiveType.Lines);
-            GL.Vertex2(0, down);
-            GL.Vertex2(errLine, down);
-            GL.End();
-
-            if (Math.Abs(err) > 0.35)
-            {
-                if ((err) > 0.0)
-                {
-                    spacing *= -1;
-                    offset *= -1;
-                    pointy *= -1;
-                }
-
-                GL.Color3(0, 0.99, 0);
-                GL.Begin(PrimitiveType.TriangleStrip);
-                GL.Vertex2((errLine), down - offset);
-                GL.Vertex2((errLine + offset + pointy), down);
-                GL.Vertex2((errLine), down + offset);
-                GL.End();
-            }
-        }
-
         private double avgPivDistance, lightbarDistance, longAvgPivDistance;
 
         private void DrawLightBarText()
@@ -2058,7 +2016,68 @@ namespace AgOpenGPS
                 double avgPivotDistance = avgPivDistance * (isMetric ? 0.1 : 0.03937);
                 string hede = ">-<";
 
-                DrawLightBar(oglMain.Width, oglMain.Height, avgPivotDistance);
+                double err = (mc.actualSteerAngleDegrees - (double)(guidanceLineSteerAngle) * 0.01);
+
+                int spacing = oglMain.Width / 40;
+                if (spacing < 28) spacing = 28;
+                int offset = 14;
+                int down = 20;
+                int pointy = 16;
+                //int down = oglMain.Height / 2 - 60;
+                //if (isBtnAutoSteerOn) down = 27;
+
+                double errLine = -err;
+                if (errLine > 9) errLine = 9;
+                if (errLine < -9) errLine = -9;
+                errLine *= spacing;
+
+                GL.Color3(0,0,0);
+                GL.LineWidth(12);
+                GL.Begin(PrimitiveType.Lines);
+                GL.Vertex2(0, down);
+                GL.Vertex2(errLine, down);
+                GL.End();
+                GL.Color3(0.90f, 0.86530f, 0.40f);
+                GL.LineWidth(8);
+                GL.Begin(PrimitiveType.Lines);
+                GL.Vertex2(0, down);
+                GL.Vertex2(errLine, down);
+                GL.End();
+
+                if (Math.Abs(err) > 0.15)
+                {
+                    if ((err) > 0.0)
+                    {
+                        spacing *= -1;
+                        offset *= -1;
+                        pointy *= -1;
+                    }
+
+                    GL.Color3(0, 0.99, 0);
+                    GL.Begin(PrimitiveType.TriangleStrip);
+                    GL.Vertex2((errLine), down - offset);
+                    GL.Vertex2((errLine + offset + pointy), down);
+                    GL.Vertex2((errLine), down + offset);
+                    GL.End();
+                    GL.Begin(PrimitiveType.TriangleStrip);
+                    GL.Vertex2((0), down - offset);
+                    GL.Vertex2((0 + offset + pointy), down);
+                    GL.Vertex2((0), down + offset);
+                    GL.End();
+
+                    GL.LineWidth(2);
+                    GL.Color3(0, 0, 0);
+                    GL.Begin(PrimitiveType.LineStrip);
+                    GL.Vertex2((errLine), down - offset);
+                    GL.Vertex2((errLine + offset + pointy), down);
+                    GL.Vertex2((errLine), down + offset);
+                    GL.End();
+                    GL.Begin(PrimitiveType.LineStrip);
+                    GL.Vertex2((0), down - offset);
+                    GL.Vertex2((0 + offset + pointy), down);
+                    GL.Vertex2((0), down + offset);
+                    GL.End();
+                }
 
                 GL.Color3(0, 0, 0);
                 int center = 0;
@@ -2100,15 +2119,6 @@ namespace AgOpenGPS
                 GL.Vertex3(centr-2, 7, 0);
                 GL.Vertex3(centr-2, 32, 0);
                 GL.End();
-
-                //if (longAvgPivDistance < 150)
-                //{
-                //    hede = (Math.Abs(longAvgPivDistance * (isMetric ? 0.1 : 0.03937))).ToString("N1");
-
-                //    GL.Color3(0.950f, 0.952f, 0.3f);
-                //    center = -(int)(((double)(hede.Length) * 0.5) * 16);
-                //    font.DrawText(center, 90, hede, 1);
-                //}
             }
         }
 
