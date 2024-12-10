@@ -1356,13 +1356,15 @@ namespace AgOpenGPS
                     }
 
                     //tram override
-                    if (tool.isDisplayTramControl && (point.Y > 68 && point.Y < 120))
+                    int bottomSide = oglMain.Height / 5 + 25;
+
+                    if (tool.isDisplayTramControl && (point.Y > (bottomSide-50) && point.Y < bottomSide))
                     {
-                        if (point.X > centerX - 100 && point.X < centerX - 40)
+                        if (point.X > centerX - 100 && point.X < centerX - 20)
                         {
                             tram.isLeftManualOn = !tram.isLeftManualOn;
                         }
-                        if (point.X > centerX + 40 && point.X < centerX + 100)
+                        if (point.X > centerX + 20 && point.X < centerX + 100)
                         {
                             tram.isRightManualOn = !tram.isRightManualOn;
                         }
