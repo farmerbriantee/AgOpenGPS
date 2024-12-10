@@ -376,7 +376,7 @@ namespace AgOpenGPS
                     //LightBar if AB Line is set and turned on or contour
                     if (isLightbarOn)
                     {
-                        DrawLightBarText();
+                        DrawSteerBarText();
                     }
 
                     if (bnd.bndList.Count > 0 && yt.isYouTurnBtnOn) DrawUTurnBtn();
@@ -1981,7 +1981,7 @@ namespace AgOpenGPS
 
         private double avgPivDistance, lightbarDistance, longAvgPivDistance;
 
-        private void DrawLightBarText()
+        private void DrawSteerBarText()
         {
             GL.Disable(EnableCap.DepthTest);
 
@@ -2020,13 +2020,13 @@ namespace AgOpenGPS
 
                 int spacing = oglMain.Width / 40;
                 if (spacing < 28) spacing = 28;
-                int offset = 14;
-                int down = 20;
+                int offset = (int)((double)oglMain.Height / 40); 
+                int down = (int)((double)oglMain.Height/35);
                 int pointy = 16;
                 //int down = oglMain.Height / 2 - 60;
                 //if (isBtnAutoSteerOn) down = 27;
 
-                double errLine = -err;
+                double errLine = err;
                 if (errLine > 9) errLine = 9;
                 if (errLine < -9) errLine = -9;
                 errLine *= spacing;
@@ -2037,14 +2037,14 @@ namespace AgOpenGPS
                 GL.Vertex2(0, down);
                 GL.Vertex2(errLine, down);
                 GL.End();
-                GL.Color3(0.90f, 0.86530f, 0.40f);
+                GL.Color3(0.950f, 0.986530f, 0.40f);
                 GL.LineWidth(8);
                 GL.Begin(PrimitiveType.Lines);
                 GL.Vertex2(0, down);
                 GL.Vertex2(errLine, down);
                 GL.End();
 
-                if (Math.Abs(err) > 0.15)
+                if (Math.Abs(err) > 0.1)
                 {
                     if ((err) > 0.0)
                     {
@@ -2059,6 +2059,8 @@ namespace AgOpenGPS
                     GL.Vertex2((errLine + offset + pointy), down);
                     GL.Vertex2((errLine), down + offset);
                     GL.End();
+                    GL.Color3(0, 0.79, 0);
+
                     GL.Begin(PrimitiveType.TriangleStrip);
                     GL.Vertex2((0), down - offset);
                     GL.Vertex2((0 + offset + pointy), down);
@@ -2105,20 +2107,20 @@ namespace AgOpenGPS
 
                 font.DrawText(center, 32, hede, 1.5);
 
-                int centr = 0;
-                GL.Color3(0, 0, 0);
-                GL.LineWidth(8);
-                GL.Begin(PrimitiveType.Lines);
-                GL.Vertex3(centr-2, 5, 0);
-                GL.Vertex3(centr-2, 34, 0);
-                GL.End();
+                //int centr = 0;
+                //GL.Color3(0, 0, 0);
+                //GL.LineWidth(6);
+                //GL.Begin(PrimitiveType.Lines);
+                //GL.Vertex3(centr-2, 5, 0);
+                //GL.Vertex3(centr-2, 34, 0);
+                //GL.End();
 
-                GL.Color3(0.930f, 0.972f, 0.932f);
-                GL.LineWidth(4);
-                GL.Begin(PrimitiveType.Lines);
-                GL.Vertex3(centr-2, 7, 0);
-                GL.Vertex3(centr-2, 32, 0);
-                GL.End();
+                //GL.Color3(0.930f, 0.972f, 0.932f);
+                //GL.LineWidth(4);
+                //GL.Begin(PrimitiveType.Lines);
+                //GL.Vertex3(centr-2, 7, 0);
+                //GL.Vertex3(centr-2, 32, 0);
+                //GL.End();
             }
         }
 
