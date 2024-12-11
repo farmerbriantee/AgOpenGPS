@@ -1595,17 +1595,17 @@ namespace AgOpenGPS
                 bnd.isHeadlandOn = true;
                 btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
                 btnHeadlandOnOff.Visible = true;
-                btnHydLift.Visible = true;
                 btnHydLift.Image = Properties.Resources.HydraulicLiftOff;
-
             }
             else
             {
                 bnd.isHeadlandOn = false;
                 btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
                 btnHeadlandOnOff.Visible = false;
-                btnHydLift.Visible = false;
             }
+
+            int sett = Properties.Settings.Default.setArdMac_setting0;
+            btnHydLift.Visible = (((sett & 2) == 2) && bnd.isHeadlandOn); 
 
             //trams ---------------------------------------------------------------------------------
             fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Tram.txt";

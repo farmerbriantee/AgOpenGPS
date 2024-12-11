@@ -830,7 +830,10 @@ namespace AgOpenGPS
 
                 btnTramDisplayMode.Visible = istram;
                 btnHeadlandOnOff.Visible = isHdl;
-                btnHydLift.Visible = isHdl;
+
+                int sett = Properties.Settings.Default.setArdMac_setting0;
+                btnHydLift.Visible = (((sett & 2) == 2) && isHdl);
+
                 cboxIsSectionControlled.Visible = isHdl;
 
                 //btnResetToolHeading.Visible = this.Width > 1190;

@@ -396,6 +396,17 @@ namespace AgOpenGPS
 
             //save current vehicle
             SettingsIO.ExportAll(mf.vehiclesDirectory + mf.vehicleFileName + ".XML");
+
+            if (mf.isBtnAutoSteerOn)
+            {
+                mf.vehicle.goalPointLookAhead = Properties.Settings.Default.setVehicle_goalPointLookAhead;
+                mf.vehicle.goalPointLookAheadHold = Properties.Settings.Default.setVehicle_goalPointLookAheadHold;
+            }
+            else
+            {
+                mf.vehicle.goalPointLookAhead = 6;
+                mf.vehicle.goalPointLookAheadHold = 7;
+            }
         }
 
         private void tabSettings_Enter(object sender, EventArgs e)

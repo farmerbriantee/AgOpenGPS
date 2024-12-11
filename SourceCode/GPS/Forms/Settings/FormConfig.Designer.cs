@@ -7706,7 +7706,7 @@
             this.cboxIsHydOn.TabIndex = 0;
             this.cboxIsHydOn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxIsHydOn.UseVisualStyleBackColor = false;
-            this.cboxIsHydOn.CheckStateChanged += new System.EventHandler(this.cboxIsHydOn_CheckStateChanged);
+            this.cboxIsHydOn.CheckedChanged += new System.EventHandler(this.cboxIsHydOn_Click);
             // 
             // pictureBox6
             // 

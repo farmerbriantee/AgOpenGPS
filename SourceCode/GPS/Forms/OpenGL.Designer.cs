@@ -374,13 +374,13 @@ namespace AgOpenGPS
                     GL.LoadIdentity();
 
                     //LightBar if AB Line is set and turned on or contour
-                    if (isLightbarOn && !isLightBarNotSteerBar)
+                    if (isLightBarNotSteerBar)
                     {
-                        DrawSteerBarText(); 
+                        DrawLightBarText();
                     }
                     else
                     {
-                        DrawLightBarText();
+                        if (isLightbarOn) DrawSteerBarText(); 
                     }
 
                     if (bnd.bndList.Count > 0 && yt.isYouTurnBtnOn) DrawUTurnBtn();
