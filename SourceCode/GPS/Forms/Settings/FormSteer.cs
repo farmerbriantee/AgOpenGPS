@@ -1,6 +1,7 @@
 ﻿using AgOpenGPS.Culture;
 using AgOpenGPS.Properties;
 using System;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -47,6 +48,10 @@ namespace AgOpenGPS
 
         private void FormSteer_Load(object sender, EventArgs e)
         {
+            chkDisplayLightbar.Checked = mf.isLightbarOn;
+            if (chkDisplayLightbar.Checked) { chkDisplayLightbar.Image = Resources.SwitchOn; }
+            else { chkDisplayLightbar.Image = Resources.SwitchOff; }
+
             if (mf.isStanleyUsed) tabControl1.TabPages.Remove(tabInt);
             else tabControl1.TabPages.Remove(tabStan);
 
@@ -1014,6 +1019,16 @@ namespace AgOpenGPS
             Properties.Settings.Default.setMenu_isLightbarNotSteerBar = mf.isLightBarNotSteerBar;
             Properties.Settings.Default.Save();
         }
+        private void chkDisplayLightbar_Click(object sender, EventArgs e)
+        {
+            if (chkDisplayLightbar.Checked) { chkDisplayLightbar.Image = Resources.SwitchOn; }
+            else { chkDisplayLightbar.Image = Resources.SwitchOff; }
+
+            Properties.Settings.Default.setMenu_isLightbarOn = chkDisplayLightbar.Checked;
+            Properties.Settings.Default.Save();
+            mf.isLightbarOn = chkDisplayLightbar.Checked;
+        }
+
 
         #endregion
 

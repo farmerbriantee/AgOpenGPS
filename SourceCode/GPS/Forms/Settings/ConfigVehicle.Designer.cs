@@ -450,7 +450,6 @@ namespace AgOpenGPS
 
             mf.isLogNMEA = chkDisplayLogNMEA.Checked;
             mf.isDrawPolygons = chkDisplayPolygons.Checked;
-            mf.isLightbarOn = chkDisplayLightbar.Checked;
             mf.isKeyboardOn = chkDisplayKeyboard.Checked;
 
             mf.isBrightnessOn = chkDisplayBrightness.Checked;

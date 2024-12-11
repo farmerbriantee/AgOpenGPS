@@ -374,16 +374,13 @@ namespace AgOpenGPS
                     GL.LoadIdentity();
 
                     //LightBar if AB Line is set and turned on or contour
-                    if (isLightbarOn)
+                    if (isLightbarOn && !isLightBarNotSteerBar)
                     {
-                        if (isLightBarNotSteerBar)
-                        {
-                            DrawLightBarText();
-                        }
-                        else
-                        {
-                            DrawSteerBarText();
-                        }
+                        DrawSteerBarText(); 
+                    }
+                    else
+                    {
+                        DrawLightBarText();
                     }
 
                     if (bnd.bndList.Count > 0 && yt.isYouTurnBtnOn) DrawUTurnBtn();
@@ -2073,6 +2070,26 @@ namespace AgOpenGPS
             {
 
                 //if (guidanceLineDistanceOff != 32000 && guidanceLineDistanceOff != 32020)
+                GL.Enable(EnableCap.Texture2D);
+                GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.CrossTrackBkgrnd]);        // Select Our Texture
+
+                if (Math.Abs(avgPivDistance) < 50) GL.Color4(0.2f, 0.992570f, 0.20f, 1);
+                else GL.Color4(0.952f, 0.750f, 0.350f, 1);
+
+
+                GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
+
+                //int wide = (int)((double)oglMain.Width / 12);
+                //if (wide < 75) wide = 75;
+                int wide = 50;
+
+                GL.TexCoord2(0, 1); GL.Vertex2(-wide, 50); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(wide, 50); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(wide, 2); // 
+                GL.TexCoord2(0, 0); GL.Vertex2(-wide, 2); //
+
+                GL.End();
+                GL.Disable(EnableCap.Texture2D);
 
                 // in millimeters
                 avgPivDistance = avgPivDistance * 0.5 + lightbarDistance * 0.5;
@@ -2084,16 +2101,17 @@ namespace AgOpenGPS
 
                 string hede;
 
-                DrawLightBar(oglMain.Width, oglMain.Height, avgPivotDistance);
+                if (isLightbarOn) DrawLightBar(oglMain.Width, oglMain.Height, avgPivotDistance);
 
+                GL.Color4(0.0,0.0,0.0, 1.0);
                 if (avgPivotDistance > 0.0)
                 {
-                    GL.Color3(0.9752f, 0.50f, 0.3f);
+                    //GL.Color3(0.9752f, 0.50f, 0.3f);
                     hede = (Math.Abs(avgPivotDistance)).ToString("N0");
                 }
                 else
                 {
-                    GL.Color3(0.50f, 0.952f, 0.3f);
+                    //GL.Color3(0.50f, 0.952f, 0.3f);
                     hede = (Math.Abs(avgPivotDistance)).ToString("N0");
                 }
 

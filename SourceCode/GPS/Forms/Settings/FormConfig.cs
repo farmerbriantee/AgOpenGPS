@@ -260,7 +260,6 @@ namespace AgOpenGPS
             chkDisplayExtraGuides.Checked = mf.isSideGuideLines;
             chkDisplayLogNMEA.Checked = mf.isLogNMEA;
             chkDisplayPolygons.Checked = mf.isDrawPolygons;
-            chkDisplayLightbar.Checked = mf.isLightbarOn;
             chkDisplayKeyboard.Checked = mf.isKeyboardOn;
             chkDisplayLogElevation.Checked = mf.isLogElevation;
 
