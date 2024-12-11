@@ -91,10 +91,10 @@ namespace AgOpenGPS
             isInFreeDriveMode = false;
 
             //how far from line before it becomes Hold
-            modeXTE = Properties.Settings.Default.setAS_ModeXTE;
+            modeXTE = 0.2;
 
             //how long before hold is activated
-            modeTime = Properties.Settings.Default.setAS_ModeTime;
+            modeTime = 1;
 
             functionSpeedLimit = Properties.Settings.Default.setAS_functionSpeedLimit;
             maxSteerSpeed = Properties.Settings.Default.setAS_maxSteerSpeed;

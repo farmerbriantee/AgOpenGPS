@@ -8,7 +8,7 @@ namespace AgOpenGPS
         //class variables
 
         int countExit = 4;
-        int countShutdown = 10;
+        int countShutdown = 5;
 
         public FormSaveOrNot(bool closing)
         {

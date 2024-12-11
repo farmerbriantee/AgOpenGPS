@@ -57,6 +57,8 @@ namespace AgOpenGPS
         public bool isLogElevation = false;
         public bool isKeyboardOn = true, isAutoStartAgIO = true, isSvennArrowOn = true, isTermsAccepted = false;
 
+        public bool isLightBarNotSteerBar = false;
+
         public bool isUTurnOn = true, isLateralOn = true, isNudgeOn = true;
 
         public int[] customColorsList = new int[16];
@@ -577,7 +579,7 @@ namespace AgOpenGPS
             vehicleColor = Settings.Default.setDisplay_colorVehicle.CheckColorFor255();
 
             isLightbarOn = Settings.Default.setMenu_isLightbarOn;
-
+            isLightBarNotSteerBar = Settings.Default.setMenu_isLightbarNotSteerBar;
             //set up grid and lightbar
 
             isKeyboardOn = Settings.Default.setDisplay_isKeyboardOn;

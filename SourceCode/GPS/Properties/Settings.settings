@@ -761,5 +761,8 @@
     <Setting Name="setAS_deadZoneHeading" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">10</Value>
     </Setting>
+    <Setting Name="setMenu_isLightbarNotSteerBar" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -254,6 +254,9 @@ namespace AgOpenGPS
                 Top = 0;
                 Left = 0;
             }
+
+            if (mf.isLightBarNotSteerBar) rbtnLightBar.Checked = true;
+            else rbtnSteerBar.Checked = true;
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
@@ -996,6 +999,20 @@ namespace AgOpenGPS
         {
             pboxSendSteer.Visible = true;
             lblhsbarSensor.Text = ((int)((double)hsbarSensor.Value * 0.3921568627)).ToString() + "%";
+        }
+
+        private void rbtnLightBar_Click(object sender, EventArgs e)
+        {
+            mf.isLightBarNotSteerBar = true;
+            Properties.Settings.Default.setMenu_isLightbarNotSteerBar = mf.isLightBarNotSteerBar;
+            Properties.Settings.Default.Save();
+        }
+
+        private void rbtnSteerBar_Click(object sender, EventArgs e)
+        {
+            mf.isLightBarNotSteerBar = false;
+            Properties.Settings.Default.setMenu_isLightbarNotSteerBar = mf.isLightBarNotSteerBar;
+            Properties.Settings.Default.Save();
         }
 
         #endregion

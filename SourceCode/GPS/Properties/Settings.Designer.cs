@@ -3059,5 +3059,17 @@ namespace AgOpenGPS.Properties {
                 this["setAS_deadZoneHeading"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setMenu_isLightbarNotSteerBar {
+            get {
+                return ((bool)(this["setMenu_isLightbarNotSteerBar"]));
+            }
+            set {
+                this["setMenu_isLightbarNotSteerBar"] = value;
+            }
+        }
     }
 }
