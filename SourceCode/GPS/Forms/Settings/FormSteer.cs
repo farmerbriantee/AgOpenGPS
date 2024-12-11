@@ -770,7 +770,6 @@ namespace AgOpenGPS
             mf.vehicle.goalPointLookAheadHold = hsbarHoldLookAhead.Value * 0.1;
             lblHoldLookAhead.Text = mf.vehicle.goalPointLookAheadHold.ToString();
             mf.vehicle.goalPointLookAhead = mf.vehicle.goalPointLookAheadHold * 0.75;
-
         }
 
         private void hsbarLookAheadMult_ValueChanged(object sender, EventArgs e)
