@@ -175,8 +175,8 @@ namespace AgOpenGPS
             }
             if (isBtnAutoSteerOn)
             {
-                vehicle.goalPointLookAhead = Properties.Settings.Default.setVehicle_goalPointLookAhead;
                 vehicle.goalPointLookAheadHold = Properties.Settings.Default.setVehicle_goalPointLookAheadHold;
+                vehicle.goalPointLookAhead = vehicle.goalPointLookAheadHold * 0.75;
             }
             else
             {
@@ -185,8 +185,8 @@ namespace AgOpenGPS
 
                 if (fcs == null && fc == null)
                 {
-                    vehicle.goalPointLookAhead = 6;
                     vehicle.goalPointLookAheadHold = 7;
+                    vehicle.goalPointLookAhead = 6;
                 }
             }
         }

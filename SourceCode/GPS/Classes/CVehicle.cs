@@ -63,8 +63,9 @@ namespace AgOpenGPS
 
             slowSpeedCutoff = Properties.Settings.Default.setVehicle_slowSpeedCutoff;
 
-            goalPointLookAhead = Properties.Settings.Default.setVehicle_goalPointLookAhead;
             goalPointLookAheadHold = Properties.Settings.Default.setVehicle_goalPointLookAheadHold;
+            goalPointLookAhead = goalPointLookAheadHold * 0.75;
+
             goalPointLookAheadMult = Properties.Settings.Default.setVehicle_goalPointLookAheadMult;
 
             stanleyDistanceErrorGain = Properties.Settings.Default.stanleyDistanceErrorGain;
