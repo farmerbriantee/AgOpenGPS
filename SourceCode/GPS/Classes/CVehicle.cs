@@ -112,14 +112,16 @@ namespace AgOpenGPS
             double xTE = Math.Abs(modeActualXTE);
 
             //how far should goal point be away  - speed * seconds * kmph -> m/s then limit min value
-            double goalPointDistance = mf.avgSpeed * goalPointLookAhead * 0.05 * goalPointLookAheadMult;
+            //double goalPointDistance = mf.avgSpeed * goalPointLookAhead * 0.05 * goalPointLookAheadMult;
+            double goalPointDistance = mf.avgSpeed * goalPointLookAhead * 0.07; //0.05 * 1.4
             goalPointDistance += goalPointLookAhead;
 
             if (xTE < (modeXTE))
             {
                 if (modeTimeCounter > modeTime * 10)
                 {
-                    goalPointDistance = mf.avgSpeed * goalPointLookAheadHold * 0.05 * goalPointLookAheadMult;
+                    //goalPointDistance = mf.avgSpeed * goalPointLookAheadHold * 0.05 * goalPointLookAheadMult;
+                    goalPointDistance = mf.avgSpeed * goalPointLookAheadHold * 0.07; //0.05 * 1.4
                     goalPointDistance += goalPointLookAheadHold;
                 }
                 else
