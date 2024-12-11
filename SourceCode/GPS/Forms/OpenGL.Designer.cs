@@ -2117,7 +2117,7 @@ namespace AgOpenGPS
                 int bottom = 73 + (int)((double)(oglMain.Height - 600) / 9);
 
                 double textSize = (100 + (double)(oglMain.Height - 600)) * 0.0012;
-                int pointy = 30;
+                int pointy = 24;
                 
                 double alphaBar = 1.0;
                 if (isBtnAutoSteerOn) alphaBar = 0.3;
@@ -2137,7 +2137,7 @@ namespace AgOpenGPS
 
 
                 GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
-                {
+                
                     int wide = (int)((double)oglMain.Width / 12);
                     if (wide < 75) wide = 75;
 
@@ -2145,13 +2145,15 @@ namespace AgOpenGPS
                     GL.TexCoord2(1, 1); GL.Vertex2( wide, bottom); // 
                     GL.TexCoord2(1, 0); GL.Vertex2( wide, down*2); // 
                     GL.TexCoord2(0, 0); GL.Vertex2(-wide, down*2); //
-                }
+                
                 GL.End();
                 GL.Disable(EnableCap.Texture2D);
-
+                
                 // in millimeters
                 double avgPivotDistance = avgPivDistance * (isMetric ? 0.1 : 0.03937);
                 double err = (mc.actualSteerAngleDegrees - (double)(guidanceLineSteerAngle) * 0.01);
+
+                if (isBtnAutoSteerOn && Math.Abs(err) < 0.5) err = 0;
 
                 double errLine = err;
                 if (errLine > 9) errLine = 9;
@@ -2171,7 +2173,6 @@ namespace AgOpenGPS
                 GL.Vertex2(errLine, down);
                 GL.End();
 
-                if (isBtnAutoSteerOn && Math.Abs(err) < 0.3) err = 0;
 
                 if (err != 0)
                 {
