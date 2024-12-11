@@ -109,7 +109,7 @@ namespace AgOpenGPS
             {
                 if (!isPauseFieldTextCounter)
                 {
-                    if (++currentFieldTextCounter > 4) currentFieldTextCounter = 0;
+                    if (++currentFieldTextCounter > 3) currentFieldTextCounter = 0;
                 }
 
                 //reset the counter
@@ -181,11 +181,6 @@ namespace AgOpenGPS
                             break;
 
                         case 1:
-
-                            lblCurrentField.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss");
-                            break;
-
-                        case 2:
                             if (bnd.bndList.Count > 0)
                             {
                                 if (isMetric)
@@ -227,14 +222,14 @@ namespace AgOpenGPS
                             }
                             break;
 
-                        case 3:
+                        case 2:
                             if (trk.idx > -1)
                                 lblCurrentField.Text = "Line: " + trk.gArr[trk.idx].name;
                             else
                                 lblCurrentField.Text = "Line: " + gStr.gsNoGuidanceLines;
                             break;
 
-                        case 4:
+                        case 3:
                             lblCurrentField.Text = "";
                             break;
 
