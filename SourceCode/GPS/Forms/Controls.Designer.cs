@@ -150,10 +150,6 @@ namespace AgOpenGPS
                 if (sounds.isSteerSoundOn) sounds.sndAutoSteerOff.Play();
                 if (!isBtnAutoSteerOn) TimedMessageBox(3000, gStr.gsGuidanceStopped, gStr.gsGuidanceStopped);
 
-                vehicle.goalPointLookAhead = 6;
-                vehicle.goalPointLookAheadHold = 7;
-
-                //trk.isAutoSnapped = false;
             }
             else
             {
@@ -175,9 +171,23 @@ namespace AgOpenGPS
                     form.Show(this);
                 }
 
+
+            }
+            if (isBtnAutoSteerOn)
+            {
                 vehicle.goalPointLookAhead = Properties.Settings.Default.setVehicle_goalPointLookAhead;
                 vehicle.goalPointLookAheadHold = Properties.Settings.Default.setVehicle_goalPointLookAheadHold;
+            }
+            else
+            {
+                Form fcs = Application.OpenForms["FormSteer"];
+                Form fc = Application.OpenForms["FormSteerWiz"];
 
+                if (fcs == null && fc == null)
+                {
+                    vehicle.goalPointLookAhead = 6;
+                    vehicle.goalPointLookAheadHold = 7;
+                }
             }
         }
         private void btnAutoYouTurn_Click(object sender, EventArgs e)
@@ -1188,7 +1198,6 @@ namespace AgOpenGPS
             {
                 fourSecondCounter = 4;
             }
-
         }
 
         #endregion

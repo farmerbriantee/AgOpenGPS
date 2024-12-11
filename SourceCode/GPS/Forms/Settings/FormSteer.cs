@@ -48,6 +48,9 @@ namespace AgOpenGPS
 
         private void FormSteer_Load(object sender, EventArgs e)
         {
+            mf.vehicle.goalPointLookAhead = Properties.Settings.Default.setVehicle_goalPointLookAhead;
+            mf.vehicle.goalPointLookAheadHold = Properties.Settings.Default.setVehicle_goalPointLookAheadHold;
+
             chkDisplayLightbar.Checked = mf.isLightbarOn;
             if (chkDisplayLightbar.Checked) { chkDisplayLightbar.Image = Resources.SwitchOn; }
             else { chkDisplayLightbar.Image = Resources.SwitchOff; }
