@@ -1220,7 +1220,7 @@ namespace AgOpenGPS
                     if (isBtnAutoSteerOn || yt.isYouTurnBtnOn)
                     {
                         //uturn and swap uturn direction
-                        if (point.Y < 90 && point.Y > 30 && (trk.idx > -1))
+                        if (point.Y < 150 && point.Y > 90 && (trk.idx > -1))
                         {
 
                             int middle = oglMain.Width / 2 + oglMain.Width / 5;
@@ -1250,7 +1250,7 @@ namespace AgOpenGPS
                             {
                                 //manual uturn triggering
                                 middle = oglMain.Width / 2 - oglMain.Width / 4;
-                                if (point.X > middle - 140 && point.X < middle && isUTurnOn)
+                                if (point.X > middle - 100 && point.X < middle && isUTurnOn)
                                 {
                                     if (yt.isYouTurnTriggered)
                                     {
@@ -1271,7 +1271,7 @@ namespace AgOpenGPS
                                     }
                                 }
 
-                                if (point.X > middle && point.X < middle + 140 && isUTurnOn)
+                                if (point.X > middle && point.X < middle + 100 && isUTurnOn)
                                 {
                                     if (yt.isYouTurnTriggered)
                                     {
@@ -1296,10 +1296,10 @@ namespace AgOpenGPS
                         }
 
                         //lateral
-                        if (point.Y < 150 && point.Y > 90 && (trk.idx > -1))
+                        if (point.Y < 240 && point.Y > 170 && (trk.idx > -1))
                         {
                             int middle = oglMain.Width / 2 - oglMain.Width / 4;
-                            if (point.X > middle - 160 && point.X < middle && isLateralOn)
+                            if (point.X > middle - 100 && point.X < middle && isLateralOn)
                             {
                                 if (vehicle.functionSpeedLimit > avgSpeed)
                                 {
@@ -1314,7 +1314,7 @@ namespace AgOpenGPS
                                 return;
                             }
 
-                            if (point.X > middle && point.X < middle + 160 && isLateralOn)
+                            if (point.X > middle && point.X < middle + 100 && isLateralOn)
                             {
                                 if (vehicle.functionSpeedLimit > avgSpeed)
                                 {
