@@ -112,6 +112,14 @@ namespace AgOpenGPS
                     if (++currentFieldTextCounter > 3) currentFieldTextCounter = 0;
                 }
 
+                if ((isBtnAutoSteerOn || manualBtnState == btnStates.On || autoBtnState == btnStates.Auto))
+                {
+                    if (this.WindowState == FormWindowState.Minimized)
+                    {
+                        this.WindowState = FormWindowState.Normal;
+                    }
+                }
+
                 //reset the counter
                 fourSecondCounter = 0;
 
