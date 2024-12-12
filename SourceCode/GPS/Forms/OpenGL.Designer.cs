@@ -2141,14 +2141,14 @@ namespace AgOpenGPS
             if (ct.isContourBtnOn || trk.idx > -1 || recPath.isDrivingRecordedPath)
             {
                 //GL.PushMatrix();
-                int spacing = oglMain.Width / 40;
+                int spacing = oglMain.Width / 50;
                 if (spacing < 28) spacing = 28;
                 int offset = (int)((double)oglMain.Height / 40);
                 int line = 12;
                 int line2 = 8;
 
-                int down = (int)((double)oglMain.Height/38);
-                int bottom = 67 + (int)((double)(oglMain.Height - 600) / 10.5);
+                //int down = (int)((double)oglMain.Height/38);
+                int down = 55 + (int)((double)(oglMain.Height - 600) / 17);
 
                 double textSize = (100 + (double)(oglMain.Height - 600)) * 0.0012;
                 int pointy = 24;
@@ -2263,7 +2263,7 @@ namespace AgOpenGPS
                 }
 
 
-                int wide = (int)((double)oglMain.Width / 15);
+                int wide = (int)((double)oglMain.Width / 12);
                 if (wide < 65) wide = 65;
 
                 if (hede.Length > 5) 
@@ -2277,10 +2277,10 @@ namespace AgOpenGPS
                 else GL.Color4(0.952f, 0.750f, 0.350f, 1);
 
                 GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
-                GL.TexCoord2(0, 1); GL.Vertex2(-wide, bottom); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(wide, bottom); // 
-                GL.TexCoord2(1, 0); GL.Vertex2(wide, down * 2); // 
-                GL.TexCoord2(0, 0); GL.Vertex2(-wide, down * 2); //
+                GL.TexCoord2(0, 1); GL.Vertex2(-wide, 3); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(wide, 3); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(wide, 35*(1+textSize)); // 
+                GL.TexCoord2(0, 0); GL.Vertex2(-wide, 35 * (1 + textSize)); //
                 GL.End();
 
                 GL.Disable(EnableCap.Texture2D);
@@ -2289,7 +2289,7 @@ namespace AgOpenGPS
                 if (Math.Abs(avgPivDistance) < 50) GL.Color4(0.12f, 0.12770f, 0.120f, 1);
                 else GL.Color4(0.15752f, 0.1570f, 0.130f, 1);
 
-                font.DrawText(center, down*2, hede, 1.0+textSize);
+                font.DrawText(center, 2, hede, 1.0+textSize);
 
                 if (longAvgPivDistance < 150)
                 {
