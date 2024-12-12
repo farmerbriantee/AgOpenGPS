@@ -2144,7 +2144,9 @@ namespace AgOpenGPS
                 int spacing = oglMain.Width / 40;
                 if (spacing < 28) spacing = 28;
                 int offset = (int)((double)oglMain.Height / 40);
-                
+                int line = 12;
+                int line2 = 8;
+
                 int down = (int)((double)oglMain.Height/38);
                 int bottom = 67 + (int)((double)(oglMain.Height - 600) / 10.5);
 
@@ -2152,7 +2154,7 @@ namespace AgOpenGPS
                 int pointy = 24;
                 
                 double alphaBar = 1.0;
-                if (isBtnAutoSteerOn) alphaBar = 0.4;
+                if (isBtnAutoSteerOn) alphaBar = 0.5;
 
                 avgPivDistance = avgPivDistance * 0.8 + lightbarDistance * 0.2;
 
@@ -2165,29 +2167,42 @@ namespace AgOpenGPS
                 double avgPivotDistance = avgPivDistance * (isMetric ? 0.1 : 0.03937);
                 double err = (mc.actualSteerAngleDegrees - (double)(guidanceLineSteerAngle) * 0.01);
 
-                if (isBtnAutoSteerOn && Math.Abs(err) < 0.5) err = 0;
+                if (isBtnAutoSteerOn)
+                {
+                    if (Math.Abs(err) < 0.5) err = 0;
+                    offset = (int)((double)oglMain.Height / 60);
+                    line /= 2;
+                    line2 /= 2;
+                }
+                else
+                {
+                    if (Math.Abs(err) < 0.2) err = 0;
+                }
 
                 double errLine = err;
                 if (errLine > 9) errLine = 9;
                 if (errLine < -9) errLine = -9;
                 errLine *= spacing;
 
-                GL.Color4(0,0,0, alphaBar);
-                GL.LineWidth(12);
-                GL.Begin(PrimitiveType.Lines);
-                GL.Vertex2(0, down);
-                GL.Vertex2(errLine, down);
-                GL.End();
-                GL.Color4(0.950f, 0.986530f, 0.40f, alphaBar);
-                GL.LineWidth(8);
-                GL.Begin(PrimitiveType.Lines);
-                GL.Vertex2(0, down);
-                GL.Vertex2(errLine, down);
-                GL.End();
-
+                if (errLine > 0) errLine += 35;
+                else errLine -= 35;
 
                 if (err != 0)
                 {
+                    GL.Color4(0, 0, 0, alphaBar);
+                    GL.LineWidth(line);
+                    GL.Begin(PrimitiveType.Lines);
+                    GL.Vertex2(0, down);
+                    GL.Vertex2(errLine, down);
+                    GL.End();
+                    GL.Color4(0.950f, 0.986530f, 0.40f, alphaBar);
+                    GL.LineWidth(line2);
+                    GL.Begin(PrimitiveType.Lines);
+                    GL.Vertex2(0, down);
+                    GL.Vertex2(errLine, down);
+                    GL.End();
+
+
                     if ((err) > 0.0)
                     {
                         spacing *= -1;
@@ -2201,6 +2216,7 @@ namespace AgOpenGPS
                     GL.Vertex2((errLine + offset + pointy), down);
                     GL.Vertex2((errLine), down + offset);
                     GL.End();
+
                     GL.Color4(0.79, 0.79, 0, alphaBar);
 
                     GL.Begin(PrimitiveType.TriangleStrip);
@@ -2211,17 +2227,19 @@ namespace AgOpenGPS
 
                     GL.LineWidth(3);
                     GL.Color4(0, 0, 0, alphaBar);
+
                     GL.Begin(PrimitiveType.LineLoop);
                     GL.Vertex2((errLine), down - offset);
                     GL.Vertex2((errLine + offset + pointy), down);
                     GL.Vertex2((errLine), down + offset);
                     GL.End();
+
                     GL.Begin(PrimitiveType.LineLoop);
                     GL.Vertex2((0), down - offset);
                     GL.Vertex2((0 + offset + pointy), down);
                     GL.Vertex2((0), down + offset);
                     GL.End();
-                }                
+                }               
 
                 int center = 0;
                 string hede = "> 0 <";
@@ -2279,7 +2297,7 @@ namespace AgOpenGPS
 
                     GL.Color3(0.950f, 0.952f, 0.3f);
                     center = -(int)(((double)(hede.Length) * 0.5) * 16);
-                    font.DrawText(center, down*4-5, hede, 1);
+                    font.DrawText(center, down*4-2, hede, 1);
                 }
             }
         }

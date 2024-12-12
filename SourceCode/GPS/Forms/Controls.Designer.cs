@@ -148,8 +148,7 @@ namespace AgOpenGPS
                 btnAutoSteer.Image = Properties.Resources.AutoSteerOff;
                 //if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
                 if (sounds.isSteerSoundOn) sounds.sndAutoSteerOff.Play();
-                if (!isBtnAutoSteerOn) TimedMessageBox(3000, gStr.gsGuidanceStopped, gStr.gsGuidanceStopped);
-
+                if (!isBtnAutoSteerOn) TimedMessageBox(1000, gStr.gsGuidanceStopped, gStr.gsGuidanceStopped);
             }
             else
             {
@@ -170,8 +169,6 @@ namespace AgOpenGPS
                     var form = new FormTimedMessage(2000, (gStr.gsNoGuidanceLines), (gStr.gsTurnOnContourOrMakeABLine));
                     form.Show(this);
                 }
-
-
             }
             if (isBtnAutoSteerOn)
             {
