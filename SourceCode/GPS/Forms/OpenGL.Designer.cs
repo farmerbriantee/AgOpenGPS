@@ -359,19 +359,19 @@ namespace AgOpenGPS
                     }
                     GL.PopMatrix();
 
-                    if (camera.camSetDistance > -150)
+                    if (camera.camSetDistance > -250)
                     {
                         if (trk.idx > -1)
                         {
                             if (trk.gArr[trk.idx].mode == TrackMode.AB)
                             {
-                                GL.PointSize(8);
+                                GL.PointSize(12);
                                 GL.Begin(PrimitiveType.Points);
                                 GL.Color3(0, 0, 0);
                                 GL.Vertex3(ABLine.goalPointAB.easting, ABLine.goalPointAB.northing, 0.0);
                                 GL.End();
 
-                                GL.PointSize(5);
+                                GL.PointSize(6);
                                 GL.Begin(PrimitiveType.Points);
                                 GL.Color3(0.98, 0.98, 0.098);
                                 GL.Vertex3(ABLine.goalPointAB.easting, ABLine.goalPointAB.northing, 0.0);
@@ -379,13 +379,13 @@ namespace AgOpenGPS
                             }
                             else
                             {
-                                GL.PointSize(8);
+                                GL.PointSize(12);
                                 GL.Begin(PrimitiveType.Points);
                                 GL.Color3(0, 0, 0);
                                 GL.Vertex3(curve.goalPointCu.easting, curve.goalPointCu.northing, 0.0);
                                 GL.End();
 
-                                GL.PointSize(5);
+                                GL.PointSize(6);
                                 GL.Begin(PrimitiveType.Points);
                                 GL.Color3(0.98, 0.98, 0.098);
                                 GL.Vertex3(curve.goalPointCu.easting, curve.goalPointCu.northing, 0.0);
@@ -2025,7 +2025,7 @@ namespace AgOpenGPS
             }
         }
 
-        private double avgPivDistance, lightbarDistance, longAvgPivDistance;
+        public double avgPivDistance, lightbarDistance, longAvgPivDistance;
 
         private void DrawLightBar(double Width, double Height, double offlineDistance)
         {
