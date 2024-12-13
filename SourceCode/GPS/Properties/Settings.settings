@@ -615,7 +615,7 @@
       <Value Profile="(Default)">0.5</Value>
     </Setting>
     <Setting Name="setDisplay_isBrightnessOn" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setKey_hotkeys" Type="System.String" Scope="User">
       <Value Profile="(Default)">ACFGMNPTYVW12345678</Value>
@@ -738,6 +738,33 @@
       <Value Profile="(Default)">20, 20</Value>
     </Setting>
     <Setting Name="setWindow_isKioskMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setDisplay_isAutoOffAgIO" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setWindow_isShutdownComputer" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setDisplay_isShutdownWhenNoPower" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setDisplay_isHardwareMessages" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setGPS_jumpFixAlarmDistance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="setAS_deadZoneDistance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="setAS_deadZoneHeading" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="setMenu_isLightbarNotSteerBar" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setTool_isDirectionMarkers" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>

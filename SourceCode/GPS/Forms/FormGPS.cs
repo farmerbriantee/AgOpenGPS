@@ -1,6 +1,7 @@
 ﻿//Please, if you use this, share the improvements
 
 using AgOpenGPS;
+using AgOpenGPS.Culture;
 using AgOpenGPS.Properties;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
@@ -16,6 +17,8 @@ using System.Media;
 using System.Net.Sockets;
 using System.Reflection;
 using System.Resources;
+using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -234,16 +237,6 @@ namespace AgOpenGPS
         /// </summary>
         public CFont font;
 
-        public ShapeFile shape;
-        /// <summary>
-        /// The new brightness code
-        /// </summary>
-
-        private void panelRight_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         /// <summary>
         /// The new steer algorithms
         /// </summary>
@@ -255,6 +248,77 @@ namespace AgOpenGPS
         public CWindowsSettingsBrightnessController displayBrightness;
 
         #endregion // Class Props and instances
+
+        //Enumeration to interpret ACLineStatus in a right manner
+        public enum ACLineStatus : byte
+        {
+            Disconnected = 0,
+            Charging = 1,
+            Unknown = 255
+        }
+
+        //A structure to access returned data properly and a method to reach pursued goal
+        [StructLayout(LayoutKind.Sequential)]
+        public class PowerState
+        {
+            //The only parameter we are interested in, so it's the only parameter interpreted
+            //Make sure to keep all the other parameters with relevant types in this class, otherwise you can face bugs
+            private ACLineStatus ACLineStatus;
+            private byte BatteryFlag;
+            private byte Reserved1;
+            private int BatteryLifeTime;
+            private int BatteryFullLifeTime;
+
+            //Win32 api function import
+            [DllImport("Kernel32", EntryPoint = "GetSystemPowerStatus")]
+            private static extern bool GetSystemPowerStatusByRef(PowerState ps);
+
+            //The method we use to get the current status of AC Power Source connection
+            public static ACLineStatus GetPowerLineStatus()
+            {
+                PowerState ps = new PowerState();
+
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) && GetSystemPowerStatusByRef(ps))
+                    return ps.ACLineStatus;
+
+                return ACLineStatus.Unknown;
+            }
+        }
+
+        //The method assigned to the PowerModeChanged event call
+        private void SystemEvents_PowerModeChanged(object sender, Microsoft.Win32.PowerModeChangedEventArgs e)
+        {
+            //We are interested only in StatusChange cases
+            if (e.Mode.HasFlag(Microsoft.Win32.PowerModes.StatusChange))
+            {
+                string bob = PowerState.GetPowerLineStatus().ToString();
+
+                //TimedMessageBox(2000, "Charging Status", "AC Adapter is: " + bob);
+
+                if (bob == "Charging")
+                {
+                    btnChargeStatus.BackColor = Color.YellowGreen;
+
+                    Form f = Application.OpenForms["FormSaveOrNot"];
+
+                    if (f != null)
+                    {
+                        f.Focus();
+                        f.Close();
+                    }
+                }
+                else
+                {
+                    btnChargeStatus.BackColor = Color.LightCoral;
+                }
+
+
+                if (Properties.Settings.Default.setDisplay_isShutdownWhenNoPower && bob == "Disconnected")
+                {
+                    Close();
+                }
+            }
+        }
 
         public FormGPS()
         {
@@ -344,14 +408,19 @@ namespace AgOpenGPS
 
             //brightness object class
             displayBrightness = new CWindowsSettingsBrightnessController(Properties.Settings.Default.setDisplay_isBrightnessOn);
+        }
 
-            //shape file object
-            shape = new ShapeFile(this);
+        private void lblJumpDistanceMax_Click(object sender, EventArgs e)
+        {
+            jumpDistanceMax = 0;
         }
 
         private void FormGPS_Load(object sender, EventArgs e)
         {
             this.MouseWheel += ZoomByMouseWheel;
+
+            //The way we subscribe to the System Event to check when Power Mode has changed.
+            Microsoft.Win32.SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
 
             //start udp server is required
             StartLoopbackServer();
@@ -364,7 +433,7 @@ namespace AgOpenGPS
             oglMain.Left = 75;
             oglMain.Width = this.Width - statusStripLeft.Width - 84;
 
-            panelSim.Left = Width/2 -330;
+            panelSim.Left = Width / 2 - 330;
             panelSim.Width = 700;
             panelSim.Top = Height - 60;
 
@@ -486,14 +555,19 @@ namespace AgOpenGPS
 
             ControlExtension.Draggable(panelDrag, true);
 
-            setWorkingDirectoryToolStripMenuItem.Text = gStr.gsDirectories;
             enterSimCoordsToolStripMenuItem.Text = gStr.gsEnterSimCoords;
             aboutToolStripMenuItem.Text = gStr.gsAbout;
             menustripLanguage.Text = gStr.gsLanguage;
 
             simulatorOnToolStripMenuItem.Text = gStr.gsSimulatorOn;
             resetALLToolStripMenuItem.Text = gStr.gsResetAll;
-            colorsToolStripMenuItem1.Text = gStr.gsColors;
+
+            toolStripColors.Text = gStr.gsColors;
+            toolStripSectionColors.Text = "Section " + gStr.gsColors;
+            toolStripConfig.Text = gStr.gsConfiguration;
+            toolStripSteerSettings.Text = gStr.gsAutoSteer;
+            toolStripWorkingDirectories.Text = gStr.gsDirectories;
+           
             resetEverythingToolStripMenuItem.Text = gStr.gsResetAllForSure;
             steerChartStripMenu.Text = gStr.gsCharts;
 
@@ -501,7 +575,7 @@ namespace AgOpenGPS
             SmoothABtoolStripMenu.Text = gStr.gsSmoothABCurve;
             boundariesToolStripMenuItem.Text = gStr.gsBoundary;
             headlandToolStripMenuItem.Text = gStr.gsHeadland;
-            headlandBuildToolStripMenuItem.Text = gStr.gsHeadland + " (2)";
+            headlandBuildToolStripMenuItem.Text = gStr.gsHeadland + " Builder";
             deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
             deleteAppliedToolStripMenuItem.Text = gStr.gsDeleteAppliedArea;
             tramLinesMenuField.Text = gStr.gsTramLines;
@@ -541,6 +615,8 @@ namespace AgOpenGPS
 
         private void FormGPS_FormClosing(object sender, FormClosingEventArgs e)
         {
+            int choice = 0;
+
             Form f = Application.OpenForms["FormGPSData"];
 
             if (f != null)
@@ -566,10 +642,27 @@ namespace AgOpenGPS
                 f.Close();
             }
 
+            f = Application.OpenForms["FormTimedMessage"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+            }
 
             if (this.OwnedForms.Any())
             {
                 TimedMessageBox(2000, gStr.gsWindowsStillOpen, gStr.gsCloseAllWindowsFirst);
+                e.Cancel = true;
+                return;
+            }
+
+            bool closing = true;
+            choice = SaveOrNot(closing);
+
+            //simple cancel return to AOG
+            if (choice == 1)
+            {
                 e.Cancel = true;
                 return;
             }
@@ -582,48 +675,47 @@ namespace AgOpenGPS
                 if (manualBtnState == btnStates.On)
                     btnSectionMasterManual.PerformClick();
 
-                bool closing = true;
-                int choice = SaveOrNot(closing);
-
-                if (choice == 1)
-                {
-                    e.Cancel = true;
-                    return;
-                }
-
-                //Save, return, cancel save
-                if (isJobStarted)
-                {
-                    if (choice == 3)
-                    {
-                        e.Cancel = true;
-                        return;
-                    }
-                    else if (choice == 0)
-                    {
-                        FileSaveEverythingBeforeClosingField();
-                    }
-                }
+                FileSaveEverythingBeforeClosingField();
             }
 
             SaveFormGPSWindowSettings();
             FileUpdateAllFieldsKML();
+            //save current vehicle
+            SettingsIO.ExportAll(vehiclesDirectory + vehicleFileName + ".XML");
+
+            if (displayBrightness.isWmiMonitor)
+                displayBrightness.SetBrightness(Settings.Default.setDisplay_brightnessSystem);
+
+            if (choice == 2)
+            {
+                Process[] processName = Process.GetProcessesByName("AgIO");
+                if (processName.Length != 0)
+                {
+                    processName[0].CloseMainWindow();
+                }
+
+                Process.Start("shutdown", "/s /t 0");
+            }
 
             if (loopBackSocket != null)
             {
                 try
                 {
                     loopBackSocket.Shutdown(SocketShutdown.Both);
+                    loopBackSocket.Close();
                 }
                 catch { }
-                finally { loopBackSocket.Close(); }
+                finally { }
             }
 
-            //save current vehicle
-            SettingsIO.ExportAll(vehiclesDirectory + vehicleFileName + ".XML");
-
-            if (displayBrightness.isWmiMonitor)
-                displayBrightness.SetBrightness(Settings.Default.setDisplay_brightnessSystem);
+            if (Properties.Settings.Default.setDisplay_isAutoOffAgIO)
+            {
+                Process[] processName = Process.GetProcessesByName("AgIO");
+                if (processName.Length != 0)
+                {
+                    processName[0].CloseMainWindow();
+                }
+            }
         }
 
         public int SaveOrNot(bool closing)
@@ -634,11 +726,11 @@ namespace AgOpenGPS
             {
                 DialogResult result = form.ShowDialog(this);
 
-                if (result == DialogResult.OK) return 0;      //Save and Exit
-                if (result == DialogResult.Ignore) return 1;   //Ignore
-                if (result == DialogResult.Yes) return 2;   //Ignore
+                if (result == DialogResult.OK) return 0;      //Exit to windows
+                if (result == DialogResult.Ignore) return 1;   //Ignore & return
+                if (result == DialogResult.Yes) return 2;   //Shutdown computer
 
-                return 3;  // oops something is really busted
+                return 1;  // oops something is really busted
             }
         }
 
@@ -688,7 +780,6 @@ namespace AgOpenGPS
             return PixelsVisible >= (Rec.Width * Rec.Height) * MinPercentOnScreen;
         }
 
-
         private void FormGPS_Move(object sender, EventArgs e)
         {
             Form f = Application.OpenForms["FormGPSData"];
@@ -729,13 +820,12 @@ namespace AgOpenGPS
             Lift, SteerPointer,
             SteerDot, Tractor, QuestionMark,
             FrontWheels, FourWDFront, FourWDRear,
-            Harvester, 
-            Lateral, bingGrid, 
-            NoGPS, ZoomIn48, ZoomOut48, 
-            Pan, MenuHideShow, 
+            Harvester,
+            Lateral, bingGrid,
+            NoGPS, ZoomIn48, ZoomOut48,
+            Pan, MenuHideShow,
             ToolWheels, Tire, TramDot,
-            RateMap1, RateMap2, RateMap3, 
-            YouTurnU, YouTurnH
+            YouTurnU, YouTurnH, CrossTrackBkgrnd
         }
 
         public void LoadGLTextures()
@@ -749,15 +839,14 @@ namespace AgOpenGPS
                 Resources.z_Compass,Resources.z_Speedo,Resources.z_SpeedoNeedle,
                 Resources.z_Lift,Resources.z_SteerPointer,
                 Resources.z_SteerDot,GetTractorBrand(Settings.Default.setBrand_TBrand),Resources.z_QuestionMark,
-                Resources.z_FrontWheels,Get4WDBrandFront(Settings.Default.setBrand_WDBrand), 
+                Resources.z_FrontWheels,Get4WDBrandFront(Settings.Default.setBrand_WDBrand),
                 Get4WDBrandRear(Settings.Default.setBrand_WDBrand),
-                GetHarvesterBrand(Settings.Default.setBrand_HBrand), 
-                Resources.z_LateralManual, Resources.z_bingMap, 
-                Resources.z_NoGPS, Resources.ZoomIn48, Resources.ZoomOut48, 
+                GetHarvesterBrand(Settings.Default.setBrand_HBrand),
+                Resources.z_LateralManual, Resources.z_bingMap,
+                Resources.z_NoGPS, Resources.ZoomIn48, Resources.ZoomOut48,
                 Resources.Pan, Resources.MenuHideShow,
-                Resources.z_Tool, Resources.z_Tire, Resources.z_TramOnOff, 
-                Resources.z_RateMap1, Resources.z_RateMap2, Resources.z_RateMap3,
-                Resources.YouTurnU, Resources.YouTurnH
+                Resources.z_Tool, Resources.z_Tire, Resources.z_TramOnOff,
+                Resources.YouTurnU, Resources.YouTurnH, Resources.z_crossTrackBkgnd
             };
 
             texture = new uint[oglTextures.Length];
@@ -916,6 +1005,7 @@ namespace AgOpenGPS
             SetZoom();
             fileSaveCounter = 25;
             lblGuidanceLine.Visible = false;
+            lblHardwareMessage.Visible = false;
             btnAutoTrack.Image = Resources.AutoTrackOff;
             trk.isAutoTrack = false;
         }
@@ -950,15 +1040,16 @@ namespace AgOpenGPS
             vehicle.isHydLiftOn = false;
             btnHydLift.Image = Properties.Resources.HydraulicLiftOff;
             btnHydLift.Visible = false;
+            lblHardwareMessage.Visible = false;
 
             lblGuidanceLine.Visible = false;
+            lblHardwareMessage.Visible = false;
 
             //zoom gone
             oglZoom.SendToBack();
 
             //clean all the lines
             bnd.bndList.Clear();
-            bnd.shpList.Clear();
 
             panelRight.Enabled = false;
             FieldMenuButtonEnableDisable(false);
@@ -1059,7 +1150,7 @@ namespace AgOpenGPS
 
             //curve line
             curve.ResetCurveLine();
-            
+
             //tracks
             trk.gArr?.Clear();
             trk.idx = -1;
@@ -1110,13 +1201,12 @@ namespace AgOpenGPS
             recPath.recList?.Clear();
             recPath.shortestDubinsList?.Clear();
             recPath.shuttleDubinsList?.Clear();
-            
+
             isPanelBottomHidden = false;
 
             PanelsAndOGLSize();
             SetZoom();
             worldGrid.isGeoMap = false;
-            worldGrid.isRateMap = false;
 
             panelSim.Top = Height - 60;
 
@@ -1142,7 +1232,6 @@ namespace AgOpenGPS
             deleteContourPathsToolStripMenuItem.Enabled = isOn;
             boundaryToolToolStripMenu.Enabled = isOn;
             offsetFixToolStrip.Enabled = isOn;
-            appMapToolStripMenu.Enabled = isOn;
 
             boundariesToolStripMenuItem.Enabled = isOn;
             headlandToolStripMenuItem.Enabled = isOn;

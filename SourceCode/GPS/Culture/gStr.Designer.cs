@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AgOpenGPS {
+namespace AgOpenGPS.Culture {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace AgOpenGPS {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AgOpenGPS.gStr", typeof(gStr).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AgOpenGPS.Culture.gStr", typeof(gStr).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -129,6 +129,15 @@ namespace AgOpenGPS {
         public static string gsAreYouSure {
             get {
                 return ResourceManager.GetString("gsAreYouSure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Steer.
+        /// </summary>
+        public static string gsAutoSteer {
+            get {
+                return ResourceManager.GetString("gsAutoSteer", resourceCulture);
             }
         }
         
@@ -282,6 +291,15 @@ namespace AgOpenGPS {
         public static string gsCompletelyDeleteBoundary {
             get {
                 return ResourceManager.GetString("gsCompletelyDeleteBoundary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configuration.
+        /// </summary>
+        public static string gsConfiguration {
+            get {
+                return ResourceManager.GetString("gsConfiguration", resourceCulture);
             }
         }
         

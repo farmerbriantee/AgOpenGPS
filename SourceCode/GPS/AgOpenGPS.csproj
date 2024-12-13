@@ -38,7 +38,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\AgOpenGPS_v63\</OutputPath>
+    <OutputPath>..\..\AgOpenGPS_v64\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -49,7 +49,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\AgOpenGPS_v63\</OutputPath>
+    <OutputPath>..\..\AgOpenGPS_v64\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -137,7 +137,6 @@
     <Compile Include="Classes\CRecordedPath.cs" />
     <Compile Include="Classes\CPatches.cs" />
     <Compile Include="Classes\CSettings.cs" />
-    <Compile Include="Classes\CShapeFile.cs" />
     <Compile Include="Classes\CSound.cs" />
     <Compile Include="Classes\CFieldData.cs" />
     <Compile Include="Classes\CBoundaryList.cs" />
@@ -180,12 +179,6 @@
     </Compile>
     <Compile Include="Forms\Field\FormBndTool.Designer.cs">
       <DependentUpon>FormBndTool.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormRateMap.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormRateMap.Designer.cs">
-      <DependentUpon>FormRateMap.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormPan.cs">
       <SubType>Form</SubType>
@@ -246,6 +239,12 @@
     </Compile>
     <Compile Include="Forms\Field\FormFieldExisting.Designer.cs">
       <DependentUpon>FormFieldExisting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Settings\FormAllSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings\FormAllSettings.Designer.cs">
+      <DependentUpon>FormAllSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Settings\FormButtonsRightPanel.cs">
       <SubType>Form</SubType>
@@ -514,77 +513,82 @@
       <DependentUpon>FormSteerWiz.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="gStr.da.Designer.cs">
+    <Compile Include="Culture\gStr.da.Designer.cs">
       <DependentUpon>gStr.da.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="gStr.fi.Designer.cs">
+    <Compile Include="Culture\gStr.fi.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.fi.resx</DependentUpon>
     </Compile>
-    <Compile Include="gStr.hu.Designer.cs">
+    <Compile Include="Culture\gStr.hu.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.hu.resx</DependentUpon>
     </Compile>
-    <Compile Include="gStr.lt.Designer.cs">
+    <Compile Include="Culture\gStr.lt.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.lt.resx</DependentUpon>
     </Compile>
-    <Compile Include="gStr.lv.Designer.cs">
+    <Compile Include="Culture\gStr.lv.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.lv.resx</DependentUpon>
     </Compile>
-    <Compile Include="gStr.no.Designer.cs">
+    <Compile Include="Culture\gStr.no.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.no.resx</DependentUpon>
     </Compile>
-    <Compile Include="gStr.tr.Designer.cs">
+    <Compile Include="Culture\gStr.pt.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gStr.pt.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Culture\gStr.tr.Designer.cs">
       <DependentUpon>gStr.tr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="gStr.sk.Designer.cs">
+    <Compile Include="Culture\gStr.sk.Designer.cs">
       <DependentUpon>gStr.sk.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="gStr.af.Designer.cs">
+    <Compile Include="Culture\gStr.af.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.af.resx</DependentUpon>
     </Compile>
-    <Compile Include="gStr.de.Designer.cs">
+    <Compile Include="Culture\gStr.de.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.de.resx</DependentUpon>
     </Compile>
-    <Compile Include="gStr.Designer.cs">
+    <Compile Include="Culture\gStr.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.resx</DependentUpon>
     </Compile>
-    <Compile Include="gStr.es.Designer.cs">
+    <Compile Include="Culture\gStr.es.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.es.resx</DependentUpon>
     </Compile>
-    <Compile Include="gStr.fr.Designer.cs">
+    <Compile Include="Culture\gStr.fr.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.fr.resx</DependentUpon>
     </Compile>
-    <Compile Include="gStr.it.Designer.cs">
+    <Compile Include="Culture\gStr.it.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.it.resx</DependentUpon>
     </Compile>
-    <Compile Include="gStr.nl.Designer.cs">
+    <Compile Include="Culture\gStr.nl.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.nl.resx</DependentUpon>
@@ -622,22 +626,22 @@
     <Compile Include="Forms\FormGPS.Designer.cs">
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
-    <Compile Include="gStr.pl.Designer.cs">
+    <Compile Include="Culture\gStr.pl.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.pl.resx</DependentUpon>
     </Compile>
-    <Compile Include="gStr.ru.Designer.cs">
+    <Compile Include="Culture\gStr.ru.Designer.cs">
       <DependentUpon>gStr.ru.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="gStr.uk.Designer.cs">
+    <Compile Include="Culture\gStr.uk.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.uk.resx</DependentUpon>
     </Compile>
-    <Compile Include="gStr.zh-CHS.Designer.cs">
+    <Compile Include="Culture\gStr.zh-CHS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.zh-CHS.resx</DependentUpon>
@@ -660,9 +664,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Field\FormBndTool.resx">
       <DependentUpon>FormBndTool.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormRateMap.resx">
-      <DependentUpon>FormRateMap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormPan.resx">
       <DependentUpon>FormPan.cs</DependentUpon>
@@ -695,6 +696,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Field\FormFieldExisting.resx">
       <DependentUpon>FormFieldExisting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings\FormAllSettings.resx">
+      <DependentUpon>FormAllSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\FormButtonsRightPanel.resx">
       <DependentUpon>FormButtonsRightPanel.cs</DependentUpon>
@@ -757,6 +761,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Guidance\FormABDraw.resx">
       <DependentUpon>FormABDraw.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Field\FormFlags.resx">
       <DependentUpon>FormFlags.cs</DependentUpon>
@@ -824,88 +829,91 @@
     <EmbeddedResource Include="Forms\Settings\FormSteerWiz.resx">
       <DependentUpon>FormSteerWiz.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.da.resx">
+    <EmbeddedResource Include="Culture\gStr.da.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.da.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.fi.resx">
+    <EmbeddedResource Include="Culture\gStr.fi.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.fi.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.hu.resx">
+    <EmbeddedResource Include="Culture\gStr.hu.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.hu.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.lt.resx">
+    <EmbeddedResource Include="Culture\gStr.lt.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.lt.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.lv.resx">
+    <EmbeddedResource Include="Culture\gStr.lv.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.lv.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.no.resx">
+    <EmbeddedResource Include="Culture\gStr.no.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.no.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.pt.resx" />
-    <EmbeddedResource Include="gStr.tr.resx">
+    <EmbeddedResource Include="Culture\gStr.pt.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.pt.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Culture\gStr.tr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.tr.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.sk.resx">
+    <EmbeddedResource Include="Culture\gStr.sk.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.sk.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.af.resx">
+    <EmbeddedResource Include="Culture\gStr.af.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.af.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.de.resx">
+    <EmbeddedResource Include="Culture\gStr.de.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.de.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.es.resx">
+    <EmbeddedResource Include="Culture\gStr.es.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.es.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.fr.resx">
+    <EmbeddedResource Include="Culture\gStr.fr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.fr.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.it.resx">
+    <EmbeddedResource Include="Culture\gStr.it.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.it.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.nl.resx">
+    <EmbeddedResource Include="Culture\gStr.nl.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.nl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.pl.resx">
+    <EmbeddedResource Include="Culture\gStr.pl.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.pl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.resx">
+    <EmbeddedResource Include="Culture\gStr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.ru.resx">
+    <EmbeddedResource Include="Culture\gStr.ru.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.ru.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.uk.resx">
+    <EmbeddedResource Include="Culture\gStr.uk.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.uk.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.zh-CHS.resx">
+    <EmbeddedResource Include="Culture\gStr.zh-CHS.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.zh-CHS.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -954,6 +962,16 @@
   <ItemGroup>
     <Content Include="AOG.ico" />
     <Content Include="aChangeLog.txt" />
+    <None Include="btnImages\SimUDP.png" />
+    <None Include="btnImages\Images\z_crossTrackBkgnd.png" />
+    <None Include="btnImages\Config\ConD_SteerBarBar.png" />
+    <None Include="btnImages\Config\ConD_DirectionMarker.png" />
+    <Content Include="ModSim.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UDP_SimTool.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="btnImages\AntennaLeftOffset.png" />
     <None Include="btnImages\AntennaRightOffset.png" />
     <None Include="btnImages\AntennaNoOffset.png" />
@@ -965,6 +983,12 @@
     <None Include="btnImages\Config\ConD_LogElevation.png" />
     <None Include="btnImages\Config\ConT_TramOverrideDisplay.png" />
     <None Include="btnImages\GridRotate.png" />
+    <None Include="btnImages\ScreenShot.png" />
+    <None Include="btnImages\Screen2PNG.png" />
+    <None Include="btnImages\ChargingNo.png" />
+    <None Include="btnImages\ChargeIndicator.png" />
+    <None Include="Resources\ChargeIndicator.png" />
+    <None Include="btnImages\HardwareMessage.png" />
     <Content Include="Resources\TF012.WAV" />
     <None Include="Resources\SectionOn.wav" />
     <None Include="Resources\SectionOff.wav" />

@@ -662,7 +662,7 @@ namespace AgOpenGPS
                             }
                         }
 
-                        //count up - start with B which is next A
+                        //countExit up - start with B which is next A
                         if (isFirstTurnLineSameWay)
                         {
                             for (int i = 0; i < loops; i++)
@@ -676,7 +676,7 @@ namespace AgOpenGPS
                                 ytList.Add(tPoint);
                             }
                         }
-                        else //count down = start with A
+                        else //countExit down = start with A
                         {
                             for (int i = 0; i < loops; i++)
                             {
@@ -1071,7 +1071,7 @@ namespace AgOpenGPS
                             }
                         }
 
-                        //count up - start with B which is next A
+                        //countExit up - start with B which is next A
                         if (isFirstTurnLineSameWay)
                         {
                             for (int i = 0; i < loops; i++)
@@ -1085,7 +1085,7 @@ namespace AgOpenGPS
                                 ytList.Add(tPoint);
                             }
                         }
-                        else //count down = start with A
+                        else //countExit down = start with A
                         {
                             for (int i = 0; i < loops; i++)
                             {
@@ -2275,7 +2275,7 @@ namespace AgOpenGPS
 
         public void SmoothYouTurn(int smPts)
         {
-            //count the reference list of original curve
+            //countExit the reference list of original curve
             int cnt = ytList.Count;
 
             //the temp array

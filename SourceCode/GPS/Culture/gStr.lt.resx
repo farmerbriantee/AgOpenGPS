@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,381 +118,429 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="gsABCurve" xml:space="preserve">
-    <value>AB Kurve</value>
+    <value>AB kreivė</value>
   </data>
   <data name="gsABline" xml:space="preserve">
-    <value>AB Linje</value>
+    <value>AB linija</value>
   </data>
   <data name="gsAbout" xml:space="preserve">
-    <value>Om…</value>
+    <value>Apie...</value>
   </data>
   <data name="gsActionHasBeenCancelled" xml:space="preserve">
-    <value>Handling Afbrudt</value>
+    <value>Veiksmas atšauktas</value>
   </data>
   <data name="gsActual" xml:space="preserve">
-    <value>Aktuel</value>
+    <value>Faktinis</value>
   </data>
   <data name="gsAgressiveness" xml:space="preserve">
-    <value>Aggressivitet</value>
+    <value>Agresyvumas</value>
   </data>
   <data name="gsAreYouSure" xml:space="preserve">
-    <value>Er Du Sikker ?</value>
+    <value>Ar tikrai?</value>
   </data>
   <data name="gsArea" xml:space="preserve">
-    <value>Areal</value>
+    <value>Plotas</value>
+  </data>
+  <data name="gsAutoSteer" xml:space="preserve">
+    <value>Automatinio vairavimo</value>
+  </data>
+  <data name="gsConfiguration" xml:space="preserve">
+    <value>Konfigūracija</value>
   </data>
   <data name="gsAutoSteerConfiguration" xml:space="preserve">
-    <value>Autostyrins Indstillinger</value>
+    <value>Automatinio vairavimo konfigūracija</value>
   </data>
   <data name="gsAutoSteerPort" xml:space="preserve">
-    <value>Autostyrrings Port</value>
+    <value>Automatinio vairavimo prievadas</value>
   </data>
   <data name="gsBasedOnField" xml:space="preserve">
-    <value>Baseret På Mark</value>
+    <value>Remiantis lauku:</value>
   </data>
   <data name="gsBoundary" xml:space="preserve">
-    <value>Kant</value>
+    <value>Riba</value>
   </data>
   <data name="gsBoundaryLineFilesAreCorrupt" xml:space="preserve">
-    <value>Fejl I KantlInjens Fil</value>
+    <value>Ribinių linijų failas sugadintas</value>
+  </data>
+  <data name="gsBoundaryMenu" xml:space="preserve">
+    <value>Ribinis kontūras</value>
   </data>
   <data name="gsButFieldIsLoaded" xml:space="preserve">
-    <value>Men Mark Er Indlæst</value>
+    <value>Laukas užkrautas</value>
   </data>
   <data name="gsCentimeters" xml:space="preserve">
-    <value>cm</value>
+    <value>Centimetras</value>
   </data>
   <data name="gsCharts" xml:space="preserve">
-    <value>Grafik</value>
+    <value>Diagramos</value>
   </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
-    <value>Vælg Anden Mark</value>
+    <value>Pasirinkite kitą lauką</value>
   </data>
   <data name="gsChooseADifferentName" xml:space="preserve">
-    <value>Vælg Andet Navn</value>
+    <value>Pasirinkite kitą pavadinimą</value>
   </data>
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
-    <value>Vælg Eller Opret En Anden</value>
+    <value>Pasirinkite arba sukurkite kitą</value>
   </data>
   <data name="gsClose" xml:space="preserve">
-    <value>Lukke</value>
-  </data>
-  <data name="gsCloseAllWindowsFirst" xml:space="preserve">
-    <value>Luk alle vinduer først</value>
+    <value>Baigti</value>
   </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
-    <value>Luk Mark Først</value>
+    <value>Pirmiausia uždaryti lauką</value>
   </data>
   <data name="gsColors" xml:space="preserve">
-    <value>Farver</value>
+    <value>Spalvos</value>
   </data>
   <data name="gsCompletelyDeleteBoundary" xml:space="preserve">
-    <value>Slet Kant Fuldstændig</value>
+    <value>Visiškai ištrinkite ribą</value>
   </data>
   <data name="gsContourFileIsCorrupt" xml:space="preserve">
-    <value>Fejl i Fil Forager Spor</value>
+    <value>Sugadintas kontūro failas</value>
   </data>
   <data name="gsContourOn" xml:space="preserve">
-    <value>Forager Spor Til</value>
+    <value>Kontūras įjungtas</value>
   </data>
   <data name="gsCouldntGenerateValidPath" xml:space="preserve">
-    <value>Ingen Valid Sti</value>
+    <value>Nėra galiojančio kelio</value>
   </data>
   <data name="gsCreateABoundaryFirst" xml:space="preserve">
-    <value>Lav En Kant Først</value>
+    <value>Pirmiausia sukurkite ribą</value>
   </data>
   <data name="gsCreateNewField" xml:space="preserve">
-    <value>Opret Ny Mark</value>
+    <value>Kurti naują lauką</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Strøm</value>
+    <value>Srovė</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
-    <value>Fejl i Kurve Fil</value>
+    <value>Kreivės linijos failas sugadintas</value>
   </data>
   <data name="gsCurveNotOn" xml:space="preserve">
-    <value>Ingen Kurve Valgt</value>
+    <value>Kreivė neįjungta</value>
   </data>
   <data name="gsDeleteAllContoursAndSections" xml:space="preserve">
-    <value>Slet Alle Sektioner Og Spor</value>
+    <value>Ištrinkite visas sekcijas ir kontūrus</value>
   </data>
   <data name="gsDeleteAppliedArea" xml:space="preserve">
-    <value>Slet Bearbejdet Areal</value>
+    <value>Ištrinti taikomą plotą</value>
   </data>
   <data name="gsDeleteContourPaths" xml:space="preserve">
-    <value>Slet Spor</value>
+    <value>Ištrinkite kontūro kelius</value>
   </data>
   <data name="gsDeleteForSure" xml:space="preserve">
-    <value>Slet, Er Du Sikker?</value>
+    <value>Ar tikrai ištrinti?</value>
   </data>
   <data name="gsDirectories" xml:space="preserve">
-    <value>Bibliotek</value>
+    <value>Katalogas</value>
   </data>
   <data name="gsDirectoryExists" xml:space="preserve">
-    <value>Bibliotek Ekststerer Allerede</value>
+    <value>Katalogas egzistuoja</value>
+  </data>
+  <data name="gsDistance" xml:space="preserve">
+    <value>Nuotolis</value>
+  </data>
+  <data name="gsDriveIn" xml:space="preserve">
+    <value>Įvažiuokite</value>
   </data>
   <data name="gsDriveThru" xml:space="preserve">
-    <value>Kør Igennem</value>
+    <value> Važiuoti pro</value>
   </data>
   <data name="gsDriving" xml:space="preserve">
-    <value>Kør</value>
+    <value>Vairavimas</value>
   </data>
   <data name="gsEast" xml:space="preserve">
-    <value>Øst</value>
+    <value>Į rytus</value>
   </data>
   <data name="gsEditABCurve" xml:space="preserve">
-    <value>Ændre AB Kurve</value>
+    <value>Redaguoti AB kreivę</value>
   </data>
   <data name="gsEditABLine" xml:space="preserve">
-    <value>Ændre AB Linje</value>
+    <value>Redaguoti AB liniją</value>
+  </data>
+  <data name="gsEditFieldName" xml:space="preserve">
+    <value>Redaguoti lauko pavadinimą</value>
   </data>
   <data name="gsEncoderCounts" xml:space="preserve">
-    <value>Føler Impulser</value>
+    <value>Skaičiavimas</value>
   </data>
   <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
-    <value>Indtast Koordinater Til Sim</value>
+    <value>Įveskite simuliatoriaus koordinates</value>
   </data>
   <data name="gsEnterFieldName" xml:space="preserve">
-    <value>Opret Mark Navn</value>
+    <value>Įveskite lauko pavadinimą</value>
   </data>
   <data name="gsEnterSimCoords" xml:space="preserve">
-    <value>Indtast Sim Koordinater</value>
+    <value>Įveskite simuliatoriaus koordinates</value>
   </data>
   <data name="gsError" xml:space="preserve">
-    <value>FEJL</value>
+    <value>Klaida</value>
   </data>
   <data name="gsErrorreadingKML" xml:space="preserve">
-    <value>Fejl Indlæsning KML</value>
+    <value>Klaida skaitant KML</value>
+  </data>
+  <data name="gsField" xml:space="preserve">
+    <value>Laukas</value>
   </data>
   <data name="gsFieldFileIsCorrupt" xml:space="preserve">
-    <value>Fejl I Mark Fil</value>
+    <value>Lauko failas sugadintas</value>
   </data>
   <data name="gsFieldIsOpen" xml:space="preserve">
-    <value>Mark Er Åbnet</value>
+    <value>Laukas atidarytas</value>
   </data>
   <data name="gsFieldNotOpen" xml:space="preserve">
-    <value>Mark Ikke Åbnet</value>
+    <value>Laukas neatidarytas</value>
   </data>
   <data name="gsFileError" xml:space="preserve">
-    <value>Fejl I  Fil</value>
+    <value>Failo klaida</value>
   </data>
   <data name="gsFlagByLatLon" xml:space="preserve">
-    <value>Flag af Lat Lon</value>
+    <value>Lat Lon vėliava</value>
   </data>
   <data name="gsFlagFileIsCorrupt" xml:space="preserve">
-    <value>Fejl I Afmærkningsfil</value>
+    <value>Vėliavėlės failas sugadintas</value>
   </data>
   <data name="gsForNow" xml:space="preserve">
-    <value>For Nu</value>
+    <value>Kol kas</value>
+  </data>
+  <data name="gsFromExisting" xml:space="preserve">
+    <value>Iš esamų</value>
+  </data>
+  <data name="gsFromKml" xml:space="preserve">
+    <value>Iš KML</value>
+  </data>
+  <data name="gsHeadingChart" xml:space="preserve">
+    <value>Važiavimo krypties diagrama</value>
   </data>
   <data name="gsHeadland" xml:space="preserve">
-    <value>Forager</value>
+    <value>Užribis</value>
   </data>
   <data name="gsHeadlandForm" xml:space="preserve">
-    <value>Opret og Ændre Forager</value>
+    <value>Užribio kūrimas ir redagavimas</value>
+  </data>
+  <data name="gsHelp" xml:space="preserve">
+    <value>Pagalba</value>
   </data>
   <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
-    <value>Forkert retning? Tryk på Køretøj</value>
+    <value>Jei neteisinga kryptis, palieskite transporto priemonė</value>
   </data>
   <data name="gsInches" xml:space="preserve">
-    <value>Tommer</value>
+    <value>Colis</value>
   </data>
   <data name="gsInner" xml:space="preserve">
-    <value>Inderste</value>
+    <value>Vidinis</value>
   </data>
   <data name="gsKMH" xml:space="preserve">
-    <value>km/t</value>
+    <value>km/h</value>
   </data>
   <data name="gsLanguage" xml:space="preserve">
-    <value>Sprog</value>
+    <value>Kalba</value>
   </data>
   <data name="gsMPH" xml:space="preserve">
-    <value>mph</value>
+    <value>Mph</value>
   </data>
   <data name="gsMachinePort" xml:space="preserve">
-    <value>Maskin Port</value>
+    <value>Mašinos prievadas</value>
   </data>
   <data name="gsMakeBoundaryContours" xml:space="preserve">
-    <value>Lav Kant Spor</value>
+    <value>Padarykite ribos kontūrus</value>
   </data>
   <data name="gsManual" xml:space="preserve">
-    <value>Manuel</value>
+    <value>Vadovas</value>
   </data>
   <data name="gsMeters" xml:space="preserve">
-    <value>Meter</value>
+    <value>Metrai</value>
   </data>
   <data name="gsMissingABLinesFile" xml:space="preserve">
-    <value>Mangler AB Linie Fil</value>
+    <value>Trūksta AB eilučių failo</value>
   </data>
   <data name="gsMissingBoundaryFile" xml:space="preserve">
-    <value>Mangler Kant Fil</value>
+    <value>Trūkstamas ribinis failas</value>
   </data>
   <data name="gsMissingContourFile" xml:space="preserve">
-    <value>Mangler Spor Fil</value>
+    <value>Trūksta kontūro failo</value>
   </data>
   <data name="gsMissingFlagsFile" xml:space="preserve">
-    <value>Mangler Afmærknings Fil</value>
+    <value>Trūksta vėliavėlės failo</value>
   </data>
   <data name="gsMissingSectionFile" xml:space="preserve">
-    <value>Mangler Sektions Fil</value>
+    <value>Trūkstamas sekcijos failas</value>
   </data>
   <data name="gsN_East" xml:space="preserve">
-    <value>Nord Øst</value>
+    <value>Šiaurės rytai</value>
   </data>
   <data name="gsN_West" xml:space="preserve">
-    <value>Nord Vest</value>
+    <value>Šiaurės vakarai</value>
   </data>
   <data name="gsNew" xml:space="preserve">
-    <value>Ny</value>
+    <value>Naujas</value>
   </data>
   <data name="gsNoABLineActive" xml:space="preserve">
-    <value>Ingen Aktiv AB Linie</value>
+    <value>Nėra aktyvios AB linijos</value>
   </data>
   <data name="gsNoBoundary" xml:space="preserve">
-    <value>Ingen Kant</value>
+    <value>Nėra ribų</value>
   </data>
   <data name="gsNoFieldsFound" xml:space="preserve">
-    <value>Ingen Mark Fundet</value>
+    <value>Nerasta laukų</value>
   </data>
   <data name="gsNoGuidanceLines" xml:space="preserve">
-    <value>Ingen Styrelinje</value>
+    <value>Nėra navigacinės linijos</value>
+  </data>
+  <data name="gsNoSettingsWithIMU" xml:space="preserve">
+    <value>Nėra nustatymų su IMU</value>
   </data>
   <data name="gsNone" xml:space="preserve">
-    <value>Ingen</value>
+    <value>Joks</value>
   </data>
   <data name="gsNoneUsed" xml:space="preserve">
-    <value>Ingen Brugt</value>
+    <value>Nenaudota</value>
   </data>
   <data name="gsNorth" xml:space="preserve">
-    <value>Nord</value>
+    <value>Šiaurė</value>
   </data>
   <data name="gsNothingDeleted" xml:space="preserve">
-    <value>Intet Slettet</value>
+    <value>Niekas neištrinta</value>
   </data>
   <data name="gsOffset" xml:space="preserve">
-    <value>Offset</value>
+    <value>Poslinkis</value>
   </data>
   <data name="gsOffsetFix" xml:space="preserve">
-    <value>Offset Fix</value>
+    <value>Poslinkio pataisymas</value>
   </data>
   <data name="gsOpen" xml:space="preserve">
-    <value>Åben</value>
+    <value>Atidaryta</value>
   </data>
   <data name="gsOuter" xml:space="preserve">
-    <value>Ydre</value>
+    <value>Išorinis</value>
   </data>
   <data name="gsOvershootReduction" xml:space="preserve">
-    <value>Overstyrings Reduction</value>
+    <value>Vairo persukimo sumažinimas</value>
   </data>
   <data name="gsPass" xml:space="preserve">
-    <value>Træk #</value>
+    <value>Praleisti</value>
   </data>
   <data name="gsPasses" xml:space="preserve">
-    <value>Træk</value>
+    <value>Praleidimai</value>
   </data>
   <data name="gsPause" xml:space="preserve">
-    <value>Pause</value>
+    <value>Pauzė</value>
   </data>
   <data name="gsPleaseEnterABLine" xml:space="preserve">
-    <value>Vælg AB Linie</value>
+    <value>Prašome įvesti į AB liniją</value>
   </data>
   <data name="gsPressureSensorValueLabel" xml:space="preserve">
-    <value>Tryk (bar)</value>
+    <value>Slėgis (barais)</value>
   </data>
   <data name="gsProblemMakingPath" xml:space="preserve">
-    <value>Kan Ikke Oprette Sti</value>
+    <value>Problema kuriant kelią</value>
   </data>
   <data name="gsProgramWillExitPleaseRestart" xml:space="preserve">
-    <value>Program Afsluttes, Venligst Genstart</value>
+    <value>Programa išsijungs, prašome paleisti iš naujo</value>
   </data>
   <data name="gsReallyResetEverything" xml:space="preserve">
-    <value>Helt Sikkert Nulstille Alt</value>
+    <value>Nustatyti iš naujo</value>
   </data>
   <data name="gsRecord" xml:space="preserve">
-    <value>Record</value>
+    <value>Įrašas</value>
   </data>
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
-    <value> Fejl I Optaget Fil/Sti</value>
+    <value>Sugadintas įrašyto kelio failas</value>
+  </data>
+  <data name="gsRecordedPathMenu" xml:space="preserve">
+    <value>Įrašytas kelias</value>
   </data>
   <data name="gsResetAll" xml:space="preserve">
-    <value>Nulstil Alt</value>
+    <value>Iš naujo nustatyti viską</value>
   </data>
   <data name="gsResetAllForSure" xml:space="preserve">
-    <value>Nulstil Alt, Er Du Sikker?</value>
+    <value>Ar tikrai iš naujo nustatyti viską?</value>
   </data>
   <data name="gsResume" xml:space="preserve">
-    <value>Genoptag</value>
+    <value>Atnaujinti</value>
   </data>
   <data name="gsS_East" xml:space="preserve">
-    <value>SydØst</value>
+    <value>Pietryčiai</value>
   </data>
   <data name="gsS_West" xml:space="preserve">
-    <value>SydVest</value>
+    <value>Pietvakariai</value>
   </data>
   <data name="gsSaveAndReturn" xml:space="preserve">
-    <value>Gem Og Vend Tilbage</value>
+    <value>Išsaugoti ir grįžti</value>
   </data>
   <data name="gsSaveAs" xml:space="preserve">
-    <value>Gem Som</value>
+    <value>Įrašyti kaip</value>
   </data>
   <data name="gsSentToMachineModule" xml:space="preserve">
-    <value>Send Til Maskinmodul</value>
+    <value>Išsiųsta į mašinos modulį</value>
   </data>
   <data name="gsSetPoint" xml:space="preserve">
-    <value>Setpunkt</value>
+    <value>Nustatytas taškas</value>
   </data>
   <data name="gsShiftGPSPosition" xml:space="preserve">
-    <value>Skift GPS Position cm</value>
+    <value>Perjungti GPS padėtį (cm)</value>
   </data>
   <data name="gsSimulatorOn" xml:space="preserve">
-    <value>Simulator Tændt</value>
+    <value>Simuliatorius įjungtas</value>
+  </data>
+  <data name="gsSlowDownBelow" xml:space="preserve">
+    <value>Sulėtinkite tempą </value>
   </data>
   <data name="gsSmoothABCurve" xml:space="preserve">
-    <value>Udglat Ab Kurve</value>
+    <value>Lygi AB kreivė</value>
   </data>
   <data name="gsSort" xml:space="preserve">
-    <value>Vælg</value>
+    <value>Rikiuoti</value>
   </data>
   <data name="gsSouth" xml:space="preserve">
-    <value>Syd</value>
+    <value>Pietūs</value>
   </data>
   <data name="gsSpacing" xml:space="preserve">
-    <value>Afstand (cm)</value>
+    <value>Tarpai (cm)</value>
   </data>
   <data name="gsStartDeleteABoundary" xml:space="preserve">
-    <value>Start Eller Slet Kant</value>
+    <value>Ribos paleidimas arba naikinimas</value>
   </data>
   <data name="gsStartNewField" xml:space="preserve">
-    <value>Start Ny Mark</value>
+    <value>Pradėti naują lauką</value>
+  </data>
+  <data name="gsSteerWizard" xml:space="preserve">
+    <value>Vairavimo vedlys</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
-    <value>Stop Record Pause Af Kant</value>
+    <value>Sustabdyti ribų pristabdymo įrašus</value>
   </data>
   <data name="gsToFile" xml:space="preserve">
-    <value>Gem  fil</value>
+    <value>Į failą</value>
+  </data>
+  <data name="gsTooFast" xml:space="preserve">
+    <value>Per greitai</value>
   </data>
   <data name="gsTopFieldView" xml:space="preserve">
-    <value>Mark Oversigt</value>
+    <value>Lauko apžvalga</value>
   </data>
   <data name="gsTramLines" xml:space="preserve">
-    <value>Plejespor</value>
+    <value>Technologinės vėžės</value>
   </data>
   <data name="gsTurnABCurveOn" xml:space="preserve">
-    <value>Tænd AB Kurve</value>
+    <value>Įjunkite AB kreivę</value>
   </data>
   <data name="gsTurnOnContourOrMakeABLine" xml:space="preserve">
-    <value>Tænd AB Linje</value>
+    <value>Įjunkite AB linijos kontūrą</value>
   </data>
   <data name="gsUseSelected" xml:space="preserve">
-    <value>Brug Valgte</value>
+    <value>Naudoti pasirinktą</value>
   </data>
   <data name="gsWebCam" xml:space="preserve">
     <value>Kamera</value>
   </data>
   <data name="gsWest" xml:space="preserve">
-    <value>Vest</value>
+    <value>Vakarai</value>
   </data>
-  <data name="gsWindowsStillOpen" xml:space="preserve">
-    <value>Windows stadig åben</value>
+  <data name="gsWizards" xml:space="preserve">
+    <value>Vedliai</value>
+  </data>
+  <data name="gsXTEChart" xml:space="preserve">
+    <value>Diagrama: nuokrypis nuo linijos (XTE)</value>
   </data>
 </root>

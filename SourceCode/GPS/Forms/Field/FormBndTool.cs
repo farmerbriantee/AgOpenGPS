@@ -1,4 +1,5 @@
-﻿using OpenTK;
+﻿using AgOpenGPS.Culture;
+using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using System;
 using System.Collections;

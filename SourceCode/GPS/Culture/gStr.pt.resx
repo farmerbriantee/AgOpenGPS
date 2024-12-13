@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,438 +118,447 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="gsABCurve" xml:space="preserve">
-    <value>zAB Kurve</value>
+    <value>Curva AB</value>
   </data>
   <data name="gsABline" xml:space="preserve">
-    <value>zAB Line</value>
+    <value>Linha AB</value>
   </data>
   <data name="gsAbout" xml:space="preserve">
-    <value>zAbout...</value>
+    <value>Sobre...</value>
   </data>
   <data name="gsActionHasBeenCancelled" xml:space="preserve">
-    <value>zAction Has Been Cancelled</value>
+    <value>A ação foi cancelada</value>
   </data>
   <data name="gsActual" xml:space="preserve">
-    <value>zActual</value>
+    <value>Real</value>
   </data>
   <data name="gsAgressiveness" xml:space="preserve">
-    <value>zAgressiveness</value>
+    <value>Agressividade</value>
   </data>
   <data name="gsAreYouSure" xml:space="preserve">
-    <value>zAre you sure ?</value>
+    <value>Tem certeza ?</value>
   </data>
   <data name="gsArea" xml:space="preserve">
-    <value>zArea</value>
+    <value>Área</value>
+  </data>
+  <data name="gsAutoSteer" xml:space="preserve">
+    <value>Direção Automática</value>
+  </data>
+  <data name="gsConfiguration" xml:space="preserve">
+    <value>Configuração </value>
   </data>
   <data name="gsAutoSteerConfiguration" xml:space="preserve">
-    <value>zAuto Steer Configuration</value>
+    <value>Configuração de direção automática</value>
   </data>
   <data name="gsAutoSteerPort" xml:space="preserve">
-    <value>zAutoSteer Port</value>
+    <value>Porta AutoSteer</value>
   </data>
   <data name="gsBasedOnField" xml:space="preserve">
-    <value>zBased on Field:</value>
+    <value>Com base no campo:</value>
   </data>
   <data name="gsBoundary" xml:space="preserve">
-    <value>zBoundary</value>
+    <value>Limite</value>
   </data>
   <data name="gsBoundaryLineFilesAreCorrupt" xml:space="preserve">
-    <value>zBoundary Lines File Corrupt</value>
+    <value>Arquivo de linhas de limite corrompido</value>
   </data>
   <data name="gsBoundaryMenu" xml:space="preserve">
-    <value>zBoundaryMenu</value>
+    <value>Contorno de limite</value>
   </data>
   <data name="gsButFieldIsLoaded" xml:space="preserve">
-    <value>zBut Field Is Loaded</value>
+    <value>Mas o campo está carregado</value>
   </data>
   <data name="gsCentimeters" xml:space="preserve">
-    <value>zCentimeter</value>
+    <value>Centímetro</value>
   </data>
   <data name="gsCharts" xml:space="preserve">
-    <value>zCharts</value>
+    <value>Gráficos</value>
   </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
-    <value>zChoose a different field</value>
+    <value>Escolha um campo diferente</value>
   </data>
   <data name="gsChooseADifferentName" xml:space="preserve">
-    <value>zChoose a different name</value>
+    <value>Escolha um nome diferente</value>
   </data>
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
-    <value>zChoose or Build a Different one</value>
+    <value>Escolha ou construa um diferente</value>
   </data>
   <data name="gsClose" xml:space="preserve">
-    <value>ZClose</value>
+    <value>Fechar</value>
   </data>
   <data name="gsCloseAllWindowsFirst" xml:space="preserve">
-    <value>zClose All Windows First</value>
+    <value>Feche todas as janelas primeiro</value>
   </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
-    <value>zClose Field First</value>
+    <value>Fechar campo primeiro</value>
   </data>
   <data name="gsColors" xml:space="preserve">
-    <value>zColors</value>
+    <value>Cores</value>
   </data>
   <data name="gsCompletelyDeleteBoundary" xml:space="preserve">
-    <value>zCompletely Delete Boundary</value>
+    <value>Excluir completamente o limite</value>
   </data>
   <data name="gsContourFileIsCorrupt" xml:space="preserve">
-    <value>zContour File Corrupt</value>
+    <value>Arquivo de contorno corrompido</value>
   </data>
   <data name="gsContourOn" xml:space="preserve">
-    <value>zContour On</value>
+    <value>Contorno ativado</value>
   </data>
   <data name="gsCouldntGenerateValidPath" xml:space="preserve">
-    <value>zNo Valid Path</value>
+    <value>Nenhum caminho válido</value>
   </data>
   <data name="gsCreateABoundaryFirst" xml:space="preserve">
-    <value>zCreate A Boundary First</value>
+    <value>Crie um limite primeiro</value>
   </data>
   <data name="gsCreateNewField" xml:space="preserve">
-    <value>zCreate New Field</value>
+    <value>Criar novo campo</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>zCurrent</value>
+    <value>Atual</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
-    <value>zCurve Line File Corrupt</value>
+    <value>Arquivo de linha curva corrompido</value>
   </data>
   <data name="gsCurveNotOn" xml:space="preserve">
-    <value>zCurve Not ON</value>
+    <value>Curva não ativada</value>
   </data>
   <data name="gsDeleteAllContoursAndSections" xml:space="preserve">
-    <value>zDelete All Sections And Contours</value>
+    <value>Exclua todas as seções e contornos</value>
   </data>
   <data name="gsDeleteAppliedArea" xml:space="preserve">
-    <value>zDelete Applied Area</value>
+    <value>Excluir área aplicada</value>
   </data>
   <data name="gsDeleteBoundaryMapping" xml:space="preserve">
-    <value>zThis action will delete all the boundaries. Do you want to continue?</value>
+    <value>Esta ação excluirá todos os limites. Você deseja continuar?</value>
   </data>
   <data name="gsDeleteContourPaths" xml:space="preserve">
-    <value>zDelete Contour Paths</value>
+    <value>Excluir caminhos de contorno</value>
   </data>
   <data name="gsDeleteForSure" xml:space="preserve">
-    <value>zDelete For Sure?</value>
+    <value>Excluir com certeza?</value>
   </data>
   <data name="gsDirectories" xml:space="preserve">
-    <value>zDirectories</value>
+    <value>Diretórios</value>
   </data>
   <data name="gsDirectoryExists" xml:space="preserve">
-    <value>zDirectory Exists</value>
+    <value>O diretório existe</value>
   </data>
   <data name="gsDistance" xml:space="preserve">
-    <value>zDistance</value>
+    <value>Distância</value>
   </data>
   <data name="gsDriveIn" xml:space="preserve">
-    <value>zDriveIn</value>
+    <value>Dirija</value>
   </data>
   <data name="gsDriveThru" xml:space="preserve">
-    <value>zDrive Thru</value>
+    <value>Dirigir atravéz</value>
   </data>
   <data name="gsDriving" xml:space="preserve">
-    <value>zDriving</value>
+    <value>Dirigindo</value>
   </data>
   <data name="gsEast" xml:space="preserve">
-    <value>zEast</value>
+    <value>Leste</value>
   </data>
   <data name="gsEditABCurve" xml:space="preserve">
-    <value>zEdit AB Curve</value>
+    <value>Editar curva AB</value>
   </data>
   <data name="gsEditABLine" xml:space="preserve">
-    <value>zEdit AB Line</value>
+    <value>Editar linha AB</value>
   </data>
   <data name="gsEditFieldName" xml:space="preserve">
-    <value>zEdit Field Name</value>
+    <value>Editar nome do campo</value>
   </data>
   <data name="gsEncoderCounts" xml:space="preserve">
-    <value>zCounts</value>
+    <value>Conta</value>
   </data>
   <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
-    <value>zEnter Coordinates For Simulator</value>
+    <value>Insira as coordenadas para o simulador</value>
   </data>
   <data name="gsEnterFieldName" xml:space="preserve">
-    <value>zEnter Field Name</value>
+    <value>Insira o nome do campo</value>
   </data>
   <data name="gsEnterSimCoords" xml:space="preserve">
-    <value>zEnter Sim Coords</value>
+    <value>Insira as coordenadas do Sim</value>
   </data>
   <data name="gsError" xml:space="preserve">
-    <value>zError</value>
+    <value>Erro</value>
   </data>
   <data name="gsErrorreadingKML" xml:space="preserve">
-    <value>zError reading KML</value>
+    <value>Erro ao ler KML</value>
   </data>
   <data name="gsField" xml:space="preserve">
-    <value>zField</value>
+    <value>Campo</value>
   </data>
   <data name="gsFieldFileIsCorrupt" xml:space="preserve">
-    <value>zField File is Corrupt</value>
+    <value>O arquivo de campo está corrompido</value>
   </data>
   <data name="gsFieldIsOpen" xml:space="preserve">
-    <value>zField Is Open</value>
+    <value>O campo está aberto</value>
   </data>
   <data name="gsFieldNotOpen" xml:space="preserve">
-    <value>zField Not Open</value>
+    <value>Campo não aberto</value>
   </data>
   <data name="gsFileError" xml:space="preserve">
-    <value>zFile Error</value>
+    <value>Erro de arquivo</value>
   </data>
   <data name="gsFlagByLatLon" xml:space="preserve">
-    <value>Flag By Lat Lon</value>
+    <value>Bandeira por Lat Lon</value>
   </data>
   <data name="gsFlagFileIsCorrupt" xml:space="preserve">
-    <value>zFlag File Corrupt</value>
+    <value>Sinalizar arquivo corrompido</value>
   </data>
   <data name="gsForNow" xml:space="preserve">
-    <value>zFor Now</value>
+    <value>Por agora</value>
   </data>
   <data name="gsFromExisting" xml:space="preserve">
-    <value>zFrom Existing</value>
+    <value>Do Existente</value>
   </data>
   <data name="gsFromKml" xml:space="preserve">
-    <value>zFrom KML</value>
+    <value>Do KML</value>
   </data>
   <data name="gsGuidanceStopped" xml:space="preserve">
-    <value>zGuidance Stopped</value>
+    <value>Orientação interrompida</value>
   </data>
   <data name="gsHeadingChart" xml:space="preserve">
-    <value>zHeading Chart</value>
+    <value>Gráfico de títulos</value>
   </data>
   <data name="gsHeadland" xml:space="preserve">
-    <value>zHeadland</value>
+    <value>Promontório</value>
   </data>
   <data name="gsHeadlandForm" xml:space="preserve">
-    <value>zCreate and Edit Headland</value>
+    <value>Criar e editar cabeceira</value>
   </data>
   <data name="gsHelp" xml:space="preserve">
-    <value>zHelp</value>
+    <value>Ajuda</value>
   </data>
   <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
-    <value>zWrong Direction? Tap Vehicle</value>
+    <value>Se a direção errada, toque no veículo</value>
   </data>
   <data name="gsInches" xml:space="preserve">
-    <value>zInch</value>
+    <value>Polegada</value>
   </data>
   <data name="gsInner" xml:space="preserve">
-    <value>zInner</value>
+    <value>Interno</value>
   </data>
   <data name="gsKMH" xml:space="preserve">
-    <value>zkmh</value>
+    <value>km/h</value>
   </data>
   <data name="gsLanguage" xml:space="preserve">
-    <value>zLanguage</value>
+    <value>Linguagem</value>
   </data>
   <data name="gsMPH" xml:space="preserve">
-    <value>zmph</value>
+    <value>km/h</value>
   </data>
   <data name="gsMachinePort" xml:space="preserve">
-    <value>zMachine Port</value>
+    <value>Porta da máquina</value>
   </data>
   <data name="gsMakeBoundaryContours" xml:space="preserve">
-    <value>zMake Boundary Contours</value>
+    <value>Faça contornos de limite</value>
   </data>
   <data name="gsManual" xml:space="preserve">
-    <value>zManual</value>
+    <value>Manual</value>
   </data>
   <data name="gsMeters" xml:space="preserve">
-    <value>zMeters</value>
+    <value>Metros</value>
   </data>
   <data name="gsMissingABLinesFile" xml:space="preserve">
-    <value>zMissing ABLInes File</value>
+    <value>Arquivo ABLInes ausente</value>
   </data>
   <data name="gsMissingBoundaryFile" xml:space="preserve">
-    <value>zMissing Boundary File</value>
+    <value>Arquivo de limite ausente</value>
   </data>
   <data name="gsMissingContourFile" xml:space="preserve">
-    <value>zMissing Contour File</value>
+    <value>Arquivo de contorno ausente</value>
   </data>
   <data name="gsMissingFlagsFile" xml:space="preserve">
-    <value>zMissing Flag File</value>
+    <value>Arquivo de sinalização ausente</value>
   </data>
   <data name="gsMissingSectionFile" xml:space="preserve">
-    <value>zMissing Section File</value>
+    <value>Arquivo de seção ausente</value>
   </data>
   <data name="gsN_East" xml:space="preserve">
-    <value>zNEast</value>
+    <value>Nordeste</value>
   </data>
   <data name="gsN_West" xml:space="preserve">
-    <value>NWest</value>
+    <value>Noroeste</value>
   </data>
   <data name="gsNew" xml:space="preserve">
-    <value>zNew</value>
+    <value>Novo</value>
   </data>
   <data name="gsNoABLineActive" xml:space="preserve">
-    <value>zNo ABLine Active</value>
+    <value>Sem ABLine ativo</value>
   </data>
   <data name="gsNoBoundary" xml:space="preserve">
-    <value>zNo Boundary</value>
+    <value>Sem limite</value>
   </data>
   <data name="gsNoFieldsFound" xml:space="preserve">
-    <value>zNo Fields Found</value>
+    <value>Nenhum campo encontrado</value>
   </data>
   <data name="gsNoGuidanceLines" xml:space="preserve">
-    <value>zNo Guidance Lines</value>
+    <value>Sem linhas de orientação</value>
   </data>
   <data name="gsNoSettingsWithIMU" xml:space="preserve">
-    <value>zNo Settings With IMU</value>
+    <value>Sem configurações com IMU</value>
   </data>
   <data name="gsNone" xml:space="preserve">
-    <value>zNone</value>
+    <value>Nenhum</value>
   </data>
   <data name="gsNoneUsed" xml:space="preserve">
-    <value>zNone Used</value>
+    <value>Nenhum usado</value>
   </data>
   <data name="gsNorth" xml:space="preserve">
-    <value>zNorth</value>
+    <value>Norte</value>
   </data>
   <data name="gsNothingDeleted" xml:space="preserve">
-    <value>zNothing Deleted</value>
+    <value>Nada excluído</value>
   </data>
   <data name="gsOffset" xml:space="preserve">
-    <value>zOffset</value>
+    <value>Desvio</value>
   </data>
   <data name="gsOffsetFix" xml:space="preserve">
-    <value>zOffset Fix</value>
+    <value>Correção de deslocamento</value>
   </data>
   <data name="gsOpen" xml:space="preserve">
-    <value>zOpen</value>
+    <value>Abrir</value>
   </data>
   <data name="gsOuter" xml:space="preserve">
-    <value>zOuter</value>
+    <value>Exterior</value>
   </data>
   <data name="gsOvershootReduction" xml:space="preserve">
-    <value>zOvershoot Reduction</value>
+    <value>Redução de excesso</value>
   </data>
   <data name="gsPass" xml:space="preserve">
-    <value>zPass #</value>
+    <value>Passar #</value>
   </data>
   <data name="gsPasses" xml:space="preserve">
-    <value>zPasses</value>
+    <value>Passes</value>
   </data>
   <data name="gsPastEndOfCurve" xml:space="preserve">
-    <value>zPastEndOfCurve</value>
+    <value>Fim da Curva Passado</value>
   </data>
   <data name="gsPause" xml:space="preserve">
-    <value>zPause</value>
+    <value>Pausa</value>
   </data>
   <data name="gsPleaseEnterABLine" xml:space="preserve">
-    <value>zPlease Enter ABLine</value>
+    <value>Por favor insira ABLine</value>
   </data>
   <data name="gsPressureSensorValueLabel" xml:space="preserve">
-    <value>zPressure</value>
+    <value>Pressão (barra)</value>
   </data>
   <data name="gsProblemMakingPath" xml:space="preserve">
-    <value>zProblem Making Path</value>
+    <value>Caminho para criar problemas</value>
   </data>
   <data name="gsProgramWillExitPleaseRestart" xml:space="preserve">
-    <value>zProgram Will Exit Please Restart</value>
+    <value>O programa será encerrado, reinicie</value>
   </data>
   <data name="gsReallyResetEverything" xml:space="preserve">
-    <value>zReally Reset Everything</value>
+    <value>Realmente redefinir tudo</value>
   </data>
   <data name="gsRecord" xml:space="preserve">
-    <value>zRecord</value>
+    <value>Registro</value>
   </data>
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
-    <value>zRecorded Path File Corrupt</value>
+    <value>Arquivo de caminho gravado corrompido</value>
   </data>
   <data name="gsRecordedPathMenu" xml:space="preserve">
-    <value>zRecordedPath</value>
+    <value>Caminho gravado</value>
   </data>
   <data name="gsResetAll" xml:space="preserve">
-    <value>zReset All</value>
+    <value>Reiniciar tudo</value>
   </data>
   <data name="gsResetAllForSure" xml:space="preserve">
-    <value>zReset All For Sure?</value>
+    <value>Redefinir tudo com certeza?</value>
   </data>
   <data name="gsResume" xml:space="preserve">
-    <value>zResume</value>
+    <value>Retomar</value>
   </data>
   <data name="gsS_East" xml:space="preserve">
-    <value>zSE</value>
+    <value>SE</value>
   </data>
   <data name="gsS_West" xml:space="preserve">
-    <value>zSW</value>
+    <value>SO</value>
   </data>
   <data name="gsSaveAndReturn" xml:space="preserve">
-    <value>zSave and Return</value>
+    <value>Salvar e retornar</value>
   </data>
   <data name="gsSaveAs" xml:space="preserve">
-    <value>zSave As</value>
+    <value>Salvar como</value>
   </data>
   <data name="gsSentToMachineModule" xml:space="preserve">
-    <value>zSent To Machine Module</value>
+    <value>Enviado para o módulo da máquina</value>
   </data>
   <data name="gsSetPoint" xml:space="preserve">
-    <value>zSetPoint</value>
+    <value>Ponto de ajuste</value>
   </data>
   <data name="gsShiftGPSPosition" xml:space="preserve">
-    <value>zShift GPS Position (cm)</value>
+    <value>Mudar posição GPS (cm)</value>
   </data>
   <data name="gsSimulatorOn" xml:space="preserve">
-    <value>zSimulator On</value>
+    <value>Simulador ativado</value>
   </data>
   <data name="gsSlowDownBelow" xml:space="preserve">
-    <value>zSlowDownBelow</value>
+    <value>Desacelere abaixo</value>
   </data>
   <data name="gsSmoothABCurve" xml:space="preserve">
-    <value>zSmooth AB Curve</value>
+    <value>Curva AB suave</value>
   </data>
   <data name="gsSort" xml:space="preserve">
-    <value>zSort</value>
+    <value>Organizar</value>
   </data>
   <data name="gsSouth" xml:space="preserve">
-    <value>zSouth</value>
+    <value>Sul</value>
   </data>
   <data name="gsSpacing" xml:space="preserve">
-    <value>zSpacing (cm)</value>
+    <value>Espaçamento (cm)</value>
   </data>
   <data name="gsStartDeleteABoundary" xml:space="preserve">
-    <value>zStart or Delete A Boundary</value>
+    <value>Iniciar ou excluir um limite</value>
   </data>
   <data name="gsStartNewField" xml:space="preserve">
-    <value>zStart New Field</value>
+    <value>Iniciar novo campo</value>
+  </data>
+  <data name="gsSteerChart" xml:space="preserve">
+    <value>Gráficos de direção</value>
   </data>
   <data name="gsSteerWizard" xml:space="preserve">
-    <value>zSteer Wizard</value>
+    <value>Assistente de direção</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
-    <value>zStop Record Pause Boundary</value>
+    <value>Parar Limite de Pausa de Gravação</value>
   </data>
   <data name="gsToFile" xml:space="preserve">
-    <value>zTo File</value>
+    <value>Arquivar</value>
   </data>
   <data name="gsTooFast" xml:space="preserve">
-    <value>zToo Fast</value>
+    <value>Muito rápido</value>
   </data>
   <data name="gsTopFieldView" xml:space="preserve">
-    <value>zTop Field View</value>
+    <value>Visualização do campo superior</value>
   </data>
   <data name="gsTramLines" xml:space="preserve">
-    <value>zTram Lines</value>
+    <value>Linhas de bonde</value>
   </data>
   <data name="gsTurnABCurveOn" xml:space="preserve">
-    <value>zTurn AB Curve On</value>
+    <value>Ativar curva AB</value>
   </data>
   <data name="gsTurnOnContourOrMakeABLine" xml:space="preserve">
-    <value>zTurn On Contour of Make AB Line</value>
+    <value>Ativar contorno da linha Make AB</value>
   </data>
   <data name="gsUseSelected" xml:space="preserve">
-    <value>zUse Selected</value>
+    <value>Usar selecionado</value>
   </data>
   <data name="gsWebCam" xml:space="preserve">
-    <value>zWebCam</value>
+    <value>Webcam</value>
   </data>
   <data name="gsWest" xml:space="preserve">
-    <value>zWest</value>
+    <value>Oeste</value>
   </data>
   <data name="gsWindowsStillOpen" xml:space="preserve">
-    <value>zWindows Still Open</value>
+    <value>Janelas ainda abertas</value>
   </data>
   <data name="gsWizards" xml:space="preserve">
-    <value>zWizards</value>
+    <value>Feiticeiros</value>
   </data>
   <data name="gsXTEChart" xml:space="preserve">
-    <value>zXTE Chart</value>
+    <value>Gráfico XTE</value>
   </data>
 </root>

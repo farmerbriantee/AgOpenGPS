@@ -44,7 +44,7 @@ namespace AgOpenGPS
 
         public void FixTurnLine(double totalHeadWidth, double spacing)
         {
-            //count the points from the boundary
+            //countExit the points from the boundary
             int lineCount = turnLine.Count;
 
             totalHeadWidth *= totalHeadWidth;

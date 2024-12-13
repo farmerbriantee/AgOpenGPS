@@ -64,8 +64,6 @@
             this.hsbarStanleyGain = new System.Windows.Forms.HScrollBar();
             this.hsbarHeadingErrorGain = new System.Windows.Forms.HScrollBar();
             this.tabInt = new System.Windows.Forms.TabPage();
-            this.lblSideHillComp = new System.Windows.Forms.Label();
-            this.hsbarSideHillComp = new System.Windows.Forms.HScrollBar();
             this.label22 = new System.Windows.Forms.Label();
             this.lblPureIntegral = new System.Windows.Forms.Label();
             this.hsbarIntegralPurePursuit = new System.Windows.Forms.HScrollBar();
@@ -75,10 +73,8 @@
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.hsbarLookAheadMult = new System.Windows.Forms.HScrollBar();
             this.lblLookAhead = new System.Windows.Forms.Label();
             this.lblLookAheadMult = new System.Windows.Forms.Label();
-            this.hsbarLookAhead = new System.Windows.Forms.HScrollBar();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label15 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -340,6 +336,9 @@
             this.label67 = new System.Windows.Forms.Label();
             this.lblBarWasOffset = new System.Windows.Forms.Label();
             this.btnCloseAll = new System.Windows.Forms.Button();
+            this.hsbarSideHillComp = new System.Windows.Forms.HScrollBar();
+            this.lblSideHillComp = new System.Windows.Forms.Label();
+            this.hsbarLookAheadMult = new System.Windows.Forms.HScrollBar();
             this.tabControl1.SuspendLayout();
             this.tabSteer.SuspendLayout();
             this.tabStan.SuspendLayout();
@@ -814,34 +813,12 @@
             this.tabInt.Controls.Add(this.hsbarLookAheadMult);
             this.tabInt.Controls.Add(this.lblLookAhead);
             this.tabInt.Controls.Add(this.lblLookAheadMult);
-            this.tabInt.Controls.Add(this.hsbarLookAhead);
             this.tabInt.ForeColor = System.Drawing.Color.Black;
             this.tabInt.ImageIndex = 3;
             this.tabInt.Location = new System.Drawing.Point(4, 52);
             this.tabInt.Name = "tabInt";
             this.tabInt.Size = new System.Drawing.Size(348, 323);
             this.tabInt.TabIndex = 16;
-            // 
-            // lblSideHillComp
-            // 
-            this.lblSideHillComp.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSideHillComp.ForeColor = System.Drawing.Color.Black;
-            this.lblSideHillComp.Location = new System.Drawing.Point(6, 209);
-            this.lblSideHillComp.Name = "lblSideHillComp";
-            this.lblSideHillComp.Size = new System.Drawing.Size(60, 35);
-            this.lblSideHillComp.TabIndex = 353;
-            this.lblSideHillComp.Text = "888";
-            this.lblSideHillComp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // hsbarSideHillComp
-            // 
-            this.hsbarSideHillComp.LargeChange = 1;
-            this.hsbarSideHillComp.Location = new System.Drawing.Point(69, 208);
-            this.hsbarSideHillComp.Name = "hsbarSideHillComp";
-            this.hsbarSideHillComp.Size = new System.Drawing.Size(217, 30);
-            this.hsbarSideHillComp.TabIndex = 352;
-            this.hsbarSideHillComp.Value = 5;
-            this.hsbarSideHillComp.ValueChanged += new System.EventHandler(this.hsbarSideHillComp_ValueChanged);
             // 
             // label22
             // 
@@ -943,18 +920,6 @@
             this.label18.Text = "Look Ahead";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // hsbarLookAheadMult
-            // 
-            this.hsbarLookAheadMult.LargeChange = 1;
-            this.hsbarLookAheadMult.Location = new System.Drawing.Point(68, 136);
-            this.hsbarLookAheadMult.Maximum = 30;
-            this.hsbarLookAheadMult.Minimum = 5;
-            this.hsbarLookAheadMult.Name = "hsbarLookAheadMult";
-            this.hsbarLookAheadMult.Size = new System.Drawing.Size(217, 30);
-            this.hsbarLookAheadMult.TabIndex = 298;
-            this.hsbarLookAheadMult.Value = 6;
-            this.hsbarLookAheadMult.ValueChanged += new System.EventHandler(this.hsbarLookAheadMult_ValueChanged);
-            // 
             // lblLookAhead
             // 
             this.lblLookAhead.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -976,18 +941,6 @@
             this.lblLookAheadMult.TabIndex = 299;
             this.lblLookAheadMult.Text = "888";
             this.lblLookAheadMult.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // hsbarLookAhead
-            // 
-            this.hsbarLookAhead.LargeChange = 1;
-            this.hsbarLookAhead.Location = new System.Drawing.Point(68, 64);
-            this.hsbarLookAhead.Maximum = 50;
-            this.hsbarLookAhead.Minimum = 10;
-            this.hsbarLookAhead.Name = "hsbarLookAhead";
-            this.hsbarLookAhead.Size = new System.Drawing.Size(217, 30);
-            this.hsbarLookAhead.TabIndex = 289;
-            this.hsbarLookAhead.Value = 25;
-            this.hsbarLookAhead.ValueChanged += new System.EventHandler(this.hsbarLookAhead_ValueChanged);
             // 
             // imageList1
             // 
@@ -1514,7 +1467,7 @@
             this.label34.Text = "Right";
             this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // panelLatLonLatLon
+            // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel1.Controls.Add(this.label38);
@@ -4939,6 +4892,39 @@
             this.btnCloseAll.UseVisualStyleBackColor = false;
             this.btnCloseAll.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // hsbarSideHillComp
+            // 
+            this.hsbarSideHillComp.LargeChange = 1;
+            this.hsbarSideHillComp.Location = new System.Drawing.Point(69, 208);
+            this.hsbarSideHillComp.Name = "hsbarSideHillComp";
+            this.hsbarSideHillComp.Size = new System.Drawing.Size(217, 30);
+            this.hsbarSideHillComp.TabIndex = 352;
+            this.hsbarSideHillComp.Value = 5;
+            this.hsbarSideHillComp.ValueChanged += new System.EventHandler(this.hsbarSideHillComp_ValueChanged);
+            // 
+            // lblSideHillComp
+            // 
+            this.lblSideHillComp.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSideHillComp.ForeColor = System.Drawing.Color.Black;
+            this.lblSideHillComp.Location = new System.Drawing.Point(6, 209);
+            this.lblSideHillComp.Name = "lblSideHillComp";
+            this.lblSideHillComp.Size = new System.Drawing.Size(60, 35);
+            this.lblSideHillComp.TabIndex = 353;
+            this.lblSideHillComp.Text = "888";
+            this.lblSideHillComp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // hsbarLookAheadMult
+            // 
+            this.hsbarLookAheadMult.LargeChange = 1;
+            this.hsbarLookAheadMult.Location = new System.Drawing.Point(68, 136);
+            this.hsbarLookAheadMult.Maximum = 30;
+            this.hsbarLookAheadMult.Minimum = 5;
+            this.hsbarLookAheadMult.Name = "hsbarLookAheadMult";
+            this.hsbarLookAheadMult.Size = new System.Drawing.Size(217, 30);
+            this.hsbarLookAheadMult.TabIndex = 298;
+            this.hsbarLookAheadMult.Value = 6;
+            this.hsbarLookAheadMult.ValueChanged += new System.EventHandler(this.hsbarLookAheadMult_ValueChanged);
+            // 
             // FormSteerWiz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -5056,12 +5042,10 @@
         private System.Windows.Forms.Label lblProportionalGain;
         private System.Windows.Forms.HScrollBar hsbarProportionalGain;
         private System.Windows.Forms.Label lblLookAhead;
-        private System.Windows.Forms.HScrollBar hsbarLookAhead;
         private System.Windows.Forms.Label lblMinPWM;
         private System.Windows.Forms.HScrollBar hsbarMinPWM;
         private System.Windows.Forms.Label lblMaxSteerAngle;
         private System.Windows.Forms.HScrollBar hsbarMaxSteerAngle;
-        private System.Windows.Forms.HScrollBar hsbarLookAheadMult;
         private System.Windows.Forms.Label lblLookAheadMult;
         private System.Windows.Forms.HScrollBar hsbarHeadingErrorGain;
         private System.Windows.Forms.Label lblStanleyGain;
@@ -5118,8 +5102,6 @@
         private System.Windows.Forms.HScrollBar hsbarIntegralPurePursuit;
         private System.Windows.Forms.Label lblIntegralPercent;
         private System.Windows.Forms.Label lblPureIntegral;
-        private System.Windows.Forms.Label lblSideHillComp;
-        private System.Windows.Forms.HScrollBar hsbarSideHillComp;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.ProgressBar pbarSensor;
         private System.Windows.Forms.Label lblPercentFS;
@@ -5358,5 +5340,8 @@
         private System.Windows.Forms.Label label116;
         private System.Windows.Forms.Label label117;
         private System.Windows.Forms.Label label118;
+        private System.Windows.Forms.Label lblSideHillComp;
+        private System.Windows.Forms.HScrollBar hsbarSideHillComp;
+        private System.Windows.Forms.HScrollBar hsbarLookAheadMult;
     }
 }

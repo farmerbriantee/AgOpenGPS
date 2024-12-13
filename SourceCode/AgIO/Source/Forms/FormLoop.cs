@@ -213,7 +213,7 @@ namespace AgIO
             pictureBox1.Height = 500;
             pictureBox1.Left = 0;
             pictureBox1.Top = 0;
-            //pictureBox1.Dock = DockStyle.Fill;
+            //pictureBox1.Dock = DockStyle.Fill;:
 
             //On or off the module rows
             SetModulesOnOff();
@@ -266,6 +266,16 @@ namespace AgIO
                     return;
                 }
             }
+
+            //run gps_out or not
+            cboxAutoRunGPS_Out.Checked = Properties.Settings.Default.setDisplay_isAutoRunGPS_Out;
+            if (Properties.Settings.Default.setDisplay_isAutoRunGPS_Out) StartGPS_Out();
+
+            this.Text = "UDP: " + (Properties.Settings.Default.setUDP_isOn ? "On - " : "Off - ") +
+                "Ntrip: " + (Properties.Settings.Default.setNTRIP_isOn ? "On - " : "Off - ") +
+                "Radio: " + (Properties.Settings.Default.setRadio_isOn ? "On - " : "Off - ") +
+                "SendTo: " + (Properties.Settings.Default.setNTRIP_sendToUDP ? "UDP " : " ") +
+                (Properties.Settings.Default.setNTRIP_sendToSerial ? "Serial " : " ");
         }
 
         public void SetModulesOnOff()
@@ -343,6 +353,12 @@ namespace AgIO
                 }
                 finally { UDPSocket.Close(); }
             }
+
+            Process[] processName = Process.GetProcessesByName("GPS_Out");
+            if (processName.Length != 0)
+            {
+                processName[0].CloseMainWindow();
+            }
         }
 
         private void oneSecondLoopTimer_Tick(object sender, EventArgs e)
@@ -353,7 +369,7 @@ namespace AgIO
                 pictureBox1.Dispose();
                 oneSecondLoopTimer.Interval = 1000;
                 this.Width = 428;
-                this.Height = 500;
+                this.Height = 530;
                 return;
             }
 
@@ -430,7 +446,6 @@ namespace AgIO
                     sbRTCM.Append(".");
                     lblMessages.Text = sbRTCM.ToString();
                 }
-                btnResetTimer.Text = ((int)(180 - (secondsSinceStart - threeMinuteTimer))).ToString();
             }
 
             if (focusSkipCounter != 0)
@@ -590,34 +605,6 @@ namespace AgIO
             }
         }
 
-        private void btnSlide_Click(object sender, EventArgs e)
-        {
-            if (this.Width < 600)
-            {
-                this.Width = 750;
-                isViewAdvanced = true;
-                btnSlide.BackgroundImage = Properties.Resources.ArrowGrnLeft;
-                sbRTCM.Clear();
-                lblMessages.Text = "Reading...";
-                threeMinuteTimer = secondsSinceStart;
-                lblMessagesFound.Text = "-";
-                aList.Clear();
-                rList.Clear();
-            }
-            else
-            {
-                this.Width = 428;
-                isViewAdvanced = false;
-                btnSlide.BackgroundImage = Properties.Resources.ArrowGrnRight;
-                aList.Clear();
-                rList.Clear();
-                lblMessages.Text = "Reading...";
-                lblMessagesFound.Text = "-";
-                aList.Clear();
-                rList.Clear();
-            }
-        }
-
         private void ThreeMinuteLoop()
         {
             if (isViewAdvanced)
@@ -759,201 +746,5 @@ namespace AgIO
             }
         }
 
-        private void deviceManagerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start("devmgmt.msc");
-        }
-
-        private void cboxIsSteerModule_Click(object sender, EventArgs e)
-        {
-            isConnectedSteer = cboxIsSteerModule.Checked;
-            SetModulesOnOff();
-        }
-
-        private void cboxIsMachineModule_Click(object sender, EventArgs e)
-        {
-            isConnectedMachine = cboxIsMachineModule.Checked;
-            SetModulesOnOff();
-        }
-
-        private void lblMessages_Click(object sender, EventArgs e)
-        {
-            aList?.Clear();
-            sbRTCM.Clear();
-            sbRTCM.Append("Reset..");
-        }
-
-        private void btnResetTimer_Click(object sender, EventArgs e)
-        {
-            threeMinuteTimer = secondsSinceStart;
-        }
-
-        private void serialPassThroughToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (isRadio_RequiredOn)
-            {
-                TimedMessageBox(2000, "Radio NTRIP ON", "Turn it off before using Serial Pass Thru");
-                return;
-            }
-
-            if (isNTRIP_RequiredOn)
-            {
-                TimedMessageBox(2000, "Air NTRIP ON", "Turn it off before using Serial Pass Thru");
-                return;
-            }
-
-            using (var form = new FormSerialPass(this))
-            {
-                if (form.ShowDialog(this) == DialogResult.OK)
-                {
-                    ////Clicked Save
-                    //Application.Restart();
-                    //Environment.Exit(0);
-                }
-            }
-        }
-
-        private void lblIP_Click(object sender, EventArgs e)
-        {
-            lblIP.Text = "";
-            foreach (IPAddress IPA in Dns.GetHostAddresses(Dns.GetHostName()))
-            {
-                if (IPA.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    _ = IPA.ToString();
-                    lblIP.Text += IPA.ToString() + "\r\n";
-                }
-            }
-        }
-
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            //Save curent Settngs
-            using (var form = new FormCommSaver(this))
-            {
-                form.ShowDialog(this);
-            }
-        }
-
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            //Load new settings
-            using (var form = new FormCommPicker(this))
-            {
-                form.ShowDialog(this);
-                if (form.DialogResult == DialogResult.OK)
-                {
-                    Application.Restart();
-                    Environment.Exit(0);
-                }
-            }
-        }
-
-        private void btnGPSData_Click(object sender, EventArgs e)
-        {
-            Form f = Application.OpenForms["FormGPSData"];
-
-            if (f != null)
-            {
-                f.Focus();
-                f.Close();
-                isGPSSentencesOn = false;
-                return;
-            }
-
-            isGPSSentencesOn = true;
-
-            Form form = new FormGPSData(this);
-            form.Show(this);
-        }
-
-        private void toolStripEthernet_Click(object sender, EventArgs e)
-        {
-            SettingsEthernet();
-        }
-
-        private void btnHelp_Click(object sender, EventArgs e)
-        {
-            //System.Diagnostics.Process.Start(gStr.gsAgIOHelp);
-        }
-
-        private void lblNTRIPBytes_Click(object sender, EventArgs e)
-        {
-            tripBytes = 0;
-        }
-
-        private void cboxIsIMUModule_Click(object sender, EventArgs e)
-        {
-            isConnectedIMU = cboxIsIMUModule.Checked;
-            SetModulesOnOff();
-        }
-
-        private void btnBringUpCommSettings_Click(object sender, EventArgs e)
-        {
-            SettingsCommunicationGPS();
-            RescanPorts();
-        }
-
-        private void btnUDP_Click(object sender, EventArgs e)
-        {
-            if (!Settings.Default.setUDP_isOn) SettingsEthernet();
-            else SettingsUDP();
-        }
-
-        private void btnRunAOG_Click(object sender, EventArgs e)
-        {
-            StartAOG();
-        }
-
-        private void btnNTRIP_Click(object sender, EventArgs e)
-        {
-            SettingsNTRIP();
-        }
-
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void btnRadio_Click_1(object sender, EventArgs e)
-        {
-            SettingsRadio();
-        }
-
-        private void btnWindowsShutDown_Click(object sender, EventArgs e)
-        {
-            DialogResult result3 = MessageBox.Show("Shutdown Windows For Realz ?",
-                "For Sure For Sure ?",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question,
-                MessageBoxDefaultButton.Button2);
-
-            if (result3 == DialogResult.Yes)
-            {
-                Process.Start("shutdown", "/s /t 0");
-            }
-        }
-
-        private void toolStripGPSData_Click(object sender, EventArgs e)
-        {
-            Form f = Application.OpenForms["FormGPSData"];
-
-            if (f != null)
-            {
-                f.Focus();
-                f.Close();
-                isGPSSentencesOn = false;
-                return;
-            }
-
-            isGPSSentencesOn = true;
-
-            Form form = new FormGPSData(this);
-            form.Show(this);
-        }
     }
 }

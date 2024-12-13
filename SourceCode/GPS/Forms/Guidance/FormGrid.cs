@@ -150,41 +150,12 @@ namespace AgOpenGPS
             if (isA)
             {
                 start = 99999; end = 99999;
-
-                //for (int j = 0; j < mf.bnd.bndList.Count; j++)
-                //{
-                //    for (int i = 0; i < mf.bnd.bndList[j].fenceLine.Count; i++)
-                //    {
-                //        double dist = ((pint.easting - mf.bnd.bndList[j].fenceLine[i].easting) * (pint.easting - mf.bnd.bndList[j].fenceLine[i].easting))
-                //                        + ((pint.northing - mf.bnd.bndList[j].fenceLine[i].northing) * (pint.northing - mf.bnd.bndList[j].fenceLine[i].northing));
-                //        if (dist < minDistA)
-                //        {
-                //            minDistA = dist;
-                //            bndSelect = j;
-                //            start = i;
-                //        }
-                //    }
-                //}
                 start = 1;
                 pntA = new vec3(plotPt);
                 isA = false;
             }
             else
             {
-                //double minDistA = double.MaxValue;
-                //int j = bndSelect;
-
-                //for (int i = 0; i < mf.bnd.bndList[j].fenceLine.Count; i++)
-                //{
-                //    double dist = ((pint.easting - mf.bnd.bndList[j].fenceLine[i].easting) * (pint.easting - mf.bnd.bndList[j].fenceLine[i].easting))
-                //                    + ((pint.northing - mf.bnd.bndList[j].fenceLine[i].northing) * (pint.northing - mf.bnd.bndList[j].fenceLine[i].northing));
-                //    if (dist < minDistA)
-                //    {
-                //        minDistA = dist;
-                //        end = i;
-                //    }
-                //}
-
                 isA = true;
                 pntB = new vec3(plotPt);
                 end = 1;
@@ -250,105 +221,8 @@ namespace AgOpenGPS
             //draw the line building graphics
             if (start != 99999 || end != 99999) DrawABTouchPoints();
 
-            //draw the actual built lines
-            if (start == 99999 && end == 99999)
-            {
-                DrawBuiltLines();
-            }
-
             GL.Flush();
             oglSelf.SwapBuffers();
-        }
-
-        private void DrawBuiltLines()
-        {
-            GL.LineStipple(1, 0x0707);
-            //for (int i = 0; i < gTemp.Count; i++)
-            //{
-            //    //AB Lines
-            //    if (gTemp[i].mode == TrackMode.AB)
-            //    {
-            //        GL.Enable(EnableCap.LineStipple);
-            //        GL.LineWidth(4);
-
-            //        if (i == indx)
-            //        {
-            //            GL.LineWidth(8);
-            //            GL.Disable(EnableCap.LineStipple);
-            //        }
-                    
-            //        GL.Color3(1.0f, 0.20f, 0.20f);
-
-            //        GL.Begin(PrimitiveType.Lines);
-
-            //        GL.Vertex3(gTemp[i].ptA.easting - (Math.Sin(gTemp[i].heading) * mf.ABLine.abLength), gTemp[i].ptA.northing - (Math.Cos(gTemp[i].heading) * mf.ABLine.abLength), 0);
-            //        GL.Vertex3(gTemp[i].ptB.easting + (Math.Sin(gTemp[i].heading) * mf.ABLine.abLength), gTemp[i].ptB.northing + (Math.Cos(gTemp[i].heading) * mf.ABLine.abLength), 0);
-
-            //        GL.End();
-
-            //        GL.Disable(EnableCap.LineStipple);
-
-            //        //if (mf.ABLine.numABLineSelected > 0)
-            //        //{
-            //        //    GL.Color3(1.0f, 0.0f, 0.0f);
-
-            //        //    GL.LineWidth(4);
-            //        //    GL.Begin(PrimitiveType.Lines);
-
-            //        //    GL.Vertex3(gTemp[mf.ABLine.numABLineSelected - 1].ptA.easting - (Math.Sin(gTemp[mf.ABLine.numABLineSelected - 1].heading) * mf.ABLine.abLength),
-            //        //        gTemp[mf.ABLine.numABLineSelected - 1].ptA.northing - (Math.Cos(gTemp[mf.ABLine.numABLineSelected - 1].heading) * mf.ABLine.abLength), 0);
-            //        //    GL.Vertex3(gTemp[mf.ABLine.numABLineSelected - 1].ptA.easting + (Math.Sin(gTemp[mf.ABLine.numABLineSelected - 1].heading) * mf.ABLine.abLength),
-            //        //        gTemp[mf.ABLine.numABLineSelected - 1].ptA.northing + (Math.Cos(gTemp[mf.ABLine.numABLineSelected - 1].heading) * mf.ABLine.abLength), 0);
-
-            //        //    GL.End();
-            //        //}
-
-            //    }
-
-            //    else if (gTemp[i].mode == TrackMode.Curve || gTemp[i].mode == TrackMode.bndCurve)
-            //    {
-            //        GL.Enable(EnableCap.LineStipple);
-            //        GL.LineWidth(5);
-
-            //        if (gTemp[i].mode == TrackMode.bndCurve) GL.LineStipple(1, 0x0007);
-            //        else GL.LineStipple(1, 0x0707);
-
-
-            //        if (i == indx)
-            //        {
-            //            GL.LineWidth(8);
-            //            GL.Disable(EnableCap.LineStipple);
-            //        }
-
-            //        GL.Color3(0.30f, 0.97f, 0.30f);
-            //        if (gTemp[i].mode == TrackMode.bndCurve) GL.Color3(0.70f, 0.5f, 0.2f);
-            //        GL.Begin(PrimitiveType.LineStrip);
-            //        foreach (vec3 pts in gTemp[i].curvePts)
-            //        {
-            //            GL.Vertex3(pts.easting, pts.northing, 0);
-            //        }
-            //        GL.End();
-
-            //        GL.Disable(EnableCap.LineStipple);
-
-            //        if (i == indx) GL.PointSize(16);
-            //        else GL.PointSize(8);
-
-            //        GL.Color3(1.0f, 0.75f, 0.350f);
-            //        GL.Begin(PrimitiveType.Points);
-
-            //        GL.Vertex3(gTemp[i].curvePts[0].easting,
-            //                    gTemp[i].curvePts[0].northing,
-            //                    0);
-
-
-            //        GL.Color3(0.5f, 0.5f, 1.0f);
-            //        GL.Vertex3(gTemp[i].curvePts[gTemp[i].curvePts.Count - 1].easting,
-            //                    gTemp[i].curvePts[gTemp[i].curvePts.Count - 1].northing,
-            //                    0);
-            //        GL.End();
-            //    }
-            //}
         }
 
         private void DrawABTouchPoints()
@@ -376,6 +250,19 @@ namespace AgOpenGPS
         private void timer1_Tick(object sender, EventArgs e)
         {
             oglSelf.Refresh();
+        }
+
+        private void btnAlignToTrack_Click(object sender, EventArgs e)
+        {
+            if (mf.trk.idx > -1)
+            {
+                mf.worldGrid.gridRotation = Math.Atan2(
+                    mf.trk.gArr[mf.trk.idx].ptB.easting - mf.trk.gArr[mf.trk.idx].ptA.easting,
+                    mf.trk.gArr[mf.trk.idx].ptB.northing - mf.trk.gArr[mf.trk.idx].ptA.northing);
+                    if (mf.worldGrid.gridRotation < 0) mf.worldGrid.gridRotation += glm.twoPI;
+                    mf.worldGrid.gridRotation = glm.toDegrees(mf.worldGrid.gridRotation);
+            }
+            Close();
         }
 
         private void FormABDraw_ResizeEnd(object sender, EventArgs e)

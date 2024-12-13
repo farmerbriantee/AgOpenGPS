@@ -1,14 +1,8 @@
-﻿using System;
+﻿using AgOpenGPS.Culture;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
-using System.Drawing;
 using System.Globalization;
-using System.IO;
-using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
-using System.Xml;
-using static System.Windows.Forms.LinkLabel;
 
 namespace AgOpenGPS
 {
@@ -49,8 +43,6 @@ namespace AgOpenGPS
             panelAPlus.Visible = false;
 
             this.Size = new System.Drawing.Size(270, 360);
-
-            mf.curve.isMakingCurve = false;
 
             Location = Properties.Settings.Default.setWindow_QuickABLocation;
 
@@ -119,21 +111,32 @@ namespace AgOpenGPS
 
         private void btnACurve_Click(object sender, System.EventArgs e)
         {
-            lblCurveExists.Text = gStr.gsDriving;
+            if (mf.curve.isMakingCurve)
+            {
+                mf.curve.desList.Add(new vec3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, mf.pivotAxlePos.heading));
+                btnBCurve.Enabled = mf.curve.desList.Count > 3;
+            }
+            else
+            {
+                lblCurveExists.Text = gStr.gsDriving;
 
-            btnBCurve.Enabled = true;
-            btnACurve.Enabled = false;
+                btnBCurve.Enabled = true;
+                btnACurve.Enabled = false;
+                btnACurve.Image = Properties.Resources.PointAdd;
 
-            btnPausePlay.Enabled = true;
-            btnPausePlay.Visible = true;
+                btnPausePlay.Enabled = true;
+                btnPausePlay.Visible = true;
 
-            mf.curve.isMakingCurve = true;
+                mf.curve.isMakingCurve = true;
+                mf.curve.isRecordingCurve = true;
+            }
         }
 
         private void btnBCurve_Click(object sender, System.EventArgs e)
         {
             aveLineHeading = 0;
             mf.curve.isMakingCurve = false;
+            mf.curve.isRecordingCurve = false;
             panelCurve.Visible = false;
             panelName.Visible = true;
             
@@ -206,7 +209,6 @@ namespace AgOpenGPS
             }
             else
             {
-                mf.curve.isMakingCurve = false;
                 mf.curve.desList?.Clear();
                 panelCurve.Visible = false;
                 panelName.Visible = false;
@@ -216,20 +218,22 @@ namespace AgOpenGPS
 
         private void btnPausePlayCurve_Click(object sender, EventArgs e)
         {
-            if (mf.curve.isMakingCurve)
+            if (mf.curve.isRecordingCurve)
             {
-                mf.curve.isMakingCurve = false;
+                mf.curve.isRecordingCurve = false;
                 btnPausePlay.Image = Properties.Resources.BoundaryRecord;
                 //btnPausePlay.Text = gStr.gsRecord;
-                btnBCurve.Enabled = false;
+                btnACurve.Enabled = true;
             }
             else
             {
-                mf.curve.isMakingCurve = true;
+                mf.curve.isRecordingCurve = true;
                 btnPausePlay.Image = Properties.Resources.boundaryPause;
                 //btnPausePlay.Text = gStr.gsPause;
-                btnBCurve.Enabled = true;
+                btnACurve.Enabled = false;
             }
+
+            btnBCurve.Enabled = mf.curve.desList.Count > 3;
         }
 
         #endregion
@@ -419,7 +423,10 @@ namespace AgOpenGPS
         private void btnCancelCurve_Click(object sender, EventArgs e)
         {
             mf.curve.desList?.Clear();
+
             mf.ABLine.isMakingABLine = false;
+            mf.curve.isMakingCurve = false;
+            mf.curve.isRecordingCurve = false;
 
             Close();
         }
@@ -444,7 +451,10 @@ namespace AgOpenGPS
 
             mf.FileSaveTracks();
 
-            if (mf.isBtnAutoSteerOn) mf.btnAutoSteer.PerformClick();
+            if (mf.isBtnAutoSteerOn)
+            {
+                mf.btnAutoSteer.PerformClick();
+            }
             if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
 
             mf.ABLine.isMakingABLine = false;
@@ -456,7 +466,7 @@ namespace AgOpenGPS
 
         public void SmoothAB(int smPts)
         {
-            //count the reference list of original curve
+            //countExit the reference list of original curve
             int cnt = mf.curve.desList.Count;
 
             //the temp array

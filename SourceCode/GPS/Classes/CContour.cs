@@ -924,7 +924,7 @@ namespace AgOpenGPS
 
             for (int j = 0; j < mf.bnd.bndList.Count; j++)
             {
-                //count the points from the boundary
+                //countExit the points from the boundary
                 int ptCount = mf.bnd.bndList[j].fenceLine.Count;
 
                 ptList = new List<vec3>(128);

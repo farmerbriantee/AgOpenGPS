@@ -65,7 +65,7 @@
             // 
             // tboxName
             // 
-            this.tboxName.BackColor = System.Drawing.SystemColors.Control;
+            this.tboxName.BackColor = System.Drawing.Color.White;
             this.tboxName.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tboxName.Location = new System.Drawing.Point(12, 244);
             this.tboxName.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
@@ -145,6 +145,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(723, 304);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnSerialCancel);

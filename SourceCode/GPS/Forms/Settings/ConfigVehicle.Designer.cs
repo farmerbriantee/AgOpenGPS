@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AgOpenGPS.Culture;
 using AgOpenGPS.Properties;
 using OpenTK.Graphics.OpenGL;
 
@@ -449,12 +450,13 @@ namespace AgOpenGPS
 
             mf.isLogNMEA = chkDisplayLogNMEA.Checked;
             mf.isDrawPolygons = chkDisplayPolygons.Checked;
-            mf.isLightbarOn = chkDisplayLightbar.Checked;
             mf.isKeyboardOn = chkDisplayKeyboard.Checked;
 
             mf.isBrightnessOn = chkDisplayBrightness.Checked;
             mf.isSvennArrowOn = chkSvennArrow.Checked;
             mf.isLogElevation = chkDisplayLogElevation.Checked;
+
+            mf.isDirectionMarkers = chkDirectionMarkers.Checked;
 
             //mf.timeToShowMenus = (int)nudMenusOnTime.Value;
 
@@ -475,6 +477,8 @@ namespace AgOpenGPS
 
             if (rbtnDisplayMetric.Checked) { Properties.Settings.Default.setMenu_isMetric = true; mf.isMetric = true; }
             else { Properties.Settings.Default.setMenu_isMetric = false; mf.isMetric = false; }
+
+            Properties.Settings.Default.setTool_isDirectionMarkers = mf.isDirectionMarkers;
 
             Properties.Settings.Default.Save();
         }

@@ -382,38 +382,36 @@ namespace AgOpenGPS
             GL.End();
             GL.Disable(EnableCap.LineStipple);
 
-            if (!mf.worldGrid.isRateMap)
+            double widthMinusOverlap = mf.tool.width - mf.tool.overlap;
+            double shadowOffset = isHeadingSameWay ? mf.tool.offset : -mf.tool.offset;
+            double sinHR = Math.Sin(abHeading + glm.PIBy2) * (widthMinusOverlap * 0.5 + shadowOffset);
+            double cosHR = Math.Cos(abHeading + glm.PIBy2) * (widthMinusOverlap * 0.5 + shadowOffset);
+            double sinHL = Math.Sin(abHeading + glm.PIBy2) * (widthMinusOverlap * 0.5 - shadowOffset);
+            double cosHL = Math.Cos(abHeading + glm.PIBy2) * (widthMinusOverlap * 0.5 - shadowOffset);
+
+            //shadow
+            GL.Color4(0.5, 0.5, 0.5, 0.3);
+            GL.Begin(PrimitiveType.TriangleFan);
             {
-                double widthMinusOverlap = mf.tool.width - mf.tool.overlap;
-                double shadowOffset = isHeadingSameWay ? mf.tool.offset : -mf.tool.offset;
-                double sinHR = Math.Sin(abHeading + glm.PIBy2) * (widthMinusOverlap * 0.5 + shadowOffset);
-                double cosHR = Math.Cos(abHeading + glm.PIBy2) * (widthMinusOverlap * 0.5 + shadowOffset);
-                double sinHL = Math.Sin(abHeading + glm.PIBy2) * (widthMinusOverlap * 0.5 - shadowOffset);
-                double cosHL = Math.Cos(abHeading + glm.PIBy2) * (widthMinusOverlap * 0.5 - shadowOffset);
-
-                //shadow
-                GL.Color4(0.5, 0.5, 0.5, 0.3);
-                GL.Begin(PrimitiveType.TriangleFan);
-                {
-                    GL.Vertex3(currentLinePtA.easting - sinHL, currentLinePtA.northing - cosHL, 0);
-                    GL.Vertex3(currentLinePtA.easting + sinHR, currentLinePtA.northing + cosHR, 0);
-                    GL.Vertex3(currentLinePtB.easting + sinHR, currentLinePtB.northing + cosHR, 0);
-                    GL.Vertex3(currentLinePtB.easting - sinHL, currentLinePtB.northing - cosHR, 0);
-                }
-                GL.End();
-
-                //shadow lines
-                GL.Color4(0.55, 0.55, 0.55, 0.3);
-                GL.LineWidth(1);
-                GL.Begin(PrimitiveType.LineLoop);
-                {
-                    GL.Vertex3(currentLinePtA.easting - sinHL, currentLinePtA.northing - cosHL, 0);
-                    GL.Vertex3(currentLinePtA.easting + sinHR, currentLinePtA.northing + cosHR, 0);
-                    GL.Vertex3(currentLinePtB.easting + sinHR, currentLinePtB.northing + cosHR, 0);
-                    GL.Vertex3(currentLinePtB.easting - sinHL, currentLinePtB.northing - cosHR, 0);
-                }
-                GL.End();
+                GL.Vertex3(currentLinePtA.easting - sinHL, currentLinePtA.northing - cosHL, 0);
+                GL.Vertex3(currentLinePtA.easting + sinHR, currentLinePtA.northing + cosHR, 0);
+                GL.Vertex3(currentLinePtB.easting + sinHR, currentLinePtB.northing + cosHR, 0);
+                GL.Vertex3(currentLinePtB.easting - sinHL, currentLinePtB.northing - cosHR, 0);
             }
+            GL.End();
+
+            //shadow lines
+            GL.Color4(0.55, 0.55, 0.55, 0.3);
+            GL.LineWidth(1);
+            GL.Begin(PrimitiveType.LineLoop);
+            {
+                GL.Vertex3(currentLinePtA.easting - sinHL, currentLinePtA.northing - cosHL, 0);
+                GL.Vertex3(currentLinePtA.easting + sinHR, currentLinePtA.northing + cosHR, 0);
+                GL.Vertex3(currentLinePtB.easting + sinHR, currentLinePtB.northing + cosHR, 0);
+                GL.Vertex3(currentLinePtB.easting - sinHL, currentLinePtB.northing - cosHR, 0);
+            }
+            GL.End();
+
 
             //draw current AB Line
             GL.LineWidth(lineWidth);
@@ -489,29 +487,29 @@ namespace AgOpenGPS
                 GL.End();
                 GL.PointSize(1.0f);
 
-                if (ppRadiusAB < 50 && ppRadiusAB > -50)
-                {
-                    const int numSegments = 200;
-                    double theta = glm.twoPI / numSegments;
-                    double c = Math.Cos(theta);//precalculate the sine and cosine
-                    double s = Math.Sin(theta);
-                    //double x = ppRadiusAB;//we start at angle = 0
-                    double x = 0;//we start at angle = 0
-                    double y = 0;
+                //if (ppRadiusAB < 50 && ppRadiusAB > -50)
+                //{
+                //    const int numSegments = 200;
+                //    double theta = glm.twoPI / numSegments;
+                //    double c = Math.Cos(theta);//precalculate the sine and cosine
+                //    double s = Math.Sin(theta);
+                //    //double x = ppRadiusAB;//we start at angle = 0
+                //    double x = 0;//we start at angle = 0
+                //    double y = 0;
 
-                    GL.LineWidth(2);
-                    GL.Color3(0.53f, 0.530f, 0.950f);
-                    GL.Begin(PrimitiveType.Lines);
-                    for (int ii = 0; ii < numSegments - 15; ii++)
-                    {
-                        //glVertex2f(x + cx, y + cy);//output vertex
-                        GL.Vertex3(x + radiusPointAB.easting, y + radiusPointAB.northing, 0);//output vertex
-                        double t = x;//apply the rotation matrix
-                        x = (c * x) - (s * y);
-                        y = (s * t) + (c * y);
-                    }
-                    GL.End();
-                }
+                //    GL.LineWidth(2);
+                //    GL.Color3(0.53f, 0.530f, 0.950f);
+                //    GL.Begin(PrimitiveType.Lines);
+                //    for (int ii = 0; ii < numSegments - 15; ii++)
+                //    {
+                //        //glVertex2f(x + cx, y + cy);//output vertex
+                //        GL.Vertex3(x + radiusPointAB.easting, y + radiusPointAB.northing, 0);//output vertex
+                //        double t = x;//apply the rotation matrix
+                //        x = (c * x) - (s * y);
+                //        y = (s * t) + (c * y);
+                //    }
+                //    GL.End();
+                //}
             }
 
             mf.yt.DrawYouTurn();

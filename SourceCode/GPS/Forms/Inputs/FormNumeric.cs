@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgOpenGPS.Culture;
+using System;
 using System.Drawing;
 using System.Globalization;
 using System.Threading;

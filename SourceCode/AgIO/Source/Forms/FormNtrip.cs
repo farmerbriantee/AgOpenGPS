@@ -273,6 +273,7 @@ namespace AgIO
 
         private void btnGetSourceTable_Click(object sender, EventArgs e)
         {
+            btnGetSourceTable.Enabled = false;
             IPAddress casterIP = IPAddress.Parse(tboxCasterIP.Text.Trim()); //Select correct Address
             int casterPort = (int)nudCasterPort.Value; //Select correct port (usually 80)
 
@@ -325,11 +326,13 @@ namespace AgIO
             catch (SocketException)
             {
                 mf.TimedMessageBox(2000, "Socket Exception", "Invalid IP:Port");
+                btnGetSourceTable.Enabled = true;
                 return;
             }
             catch (Exception)
             {
                 mf.TimedMessageBox(2000, "Exception", "Get Source Table Error");
+                btnGetSourceTable.Enabled = true;
                 return;
             }
 
@@ -345,6 +348,9 @@ namespace AgIO
             {
                 mf.TimedMessageBox(2000, "Error", "No Source Data");
             }
+
+            btnGetSourceTable.Enabled = true;
+
 
             // Console.WriteLine(page);
             // Process.Start(syte);

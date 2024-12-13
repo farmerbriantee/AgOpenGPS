@@ -118,423 +118,444 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="gsABCurve" xml:space="preserve">
-    <value>A-B Kurve</value>
+    <value>Curva AB</value>
   </data>
   <data name="gsABline" xml:space="preserve">
-    <value>A-B Linie</value>
+    <value>Linea AB</value>
   </data>
   <data name="gsAbout" xml:space="preserve">
-    <value>Über...</value>
+    <value>Acerca de</value>
   </data>
   <data name="gsActionHasBeenCancelled" xml:space="preserve">
-    <value>Aktion abgebrochen</value>
+    <value>Acción anulada</value>
   </data>
   <data name="gsActual" xml:space="preserve">
-    <value>Aktuell</value>
+    <value>Actual</value>
   </data>
   <data name="gsAgressiveness" xml:space="preserve">
-    <value>Aggressivität</value>
+    <value>Agresividad</value>
   </data>
   <data name="gsAreYouSure" xml:space="preserve">
-    <value>Sind Sie sicher?</value>
+    <value>Esta seguro?</value>
   </data>
   <data name="gsArea" xml:space="preserve">
-    <value>Fläche</value>
+    <value>Area</value>
+  </data>
+  <data name="gsAutoSteer" xml:space="preserve">
+    <value>Autoguiado</value>
+  </data>
+  <data name="gsConfiguration" xml:space="preserve">
+    <value>Configuración </value>
   </data>
   <data name="gsAutoSteerConfiguration" xml:space="preserve">
-    <value>Lenkungseinstellungen</value>
+    <value>Configuración Autoguiado</value>
   </data>
   <data name="gsAutoSteerPort" xml:space="preserve">
-    <value>AutoSteer Port</value>
+    <value>Puerto de Autoguiado</value>
   </data>
   <data name="gsBasedOnField" xml:space="preserve">
-    <value>Basierend auf Feld:</value>
+    <value>Basado en parcela:</value>
   </data>
   <data name="gsBoundary" xml:space="preserve">
-    <value>Schlaggrenze erstellen</value>
+    <value>Lindero</value>
   </data>
   <data name="gsBoundaryLineFilesAreCorrupt" xml:space="preserve">
-    <value>Außengrenze Datei fehlerhaft</value>
+    <value>Fichero de lindero corrupto</value>
   </data>
   <data name="gsBoundaryMenu" xml:space="preserve">
-    <value>Kontur an der Außengrenze</value>
+    <value>Contorno del lindero</value>
   </data>
   <data name="gsButFieldIsLoaded" xml:space="preserve">
-    <value>aber Feld wurde geladen</value>
+    <value>Parcela todavía cargada</value>
   </data>
   <data name="gsCentimeters" xml:space="preserve">
-    <value>Zentimeter</value>
+    <value>Centímetros</value>
   </data>
   <data name="gsCharts" xml:space="preserve">
-    <value>Diagramme</value>
+    <value>Gráfico</value>
   </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
-    <value>Wählen Sie ein anderes Feld</value>
+    <value>Seleccione otra Parcela</value>
   </data>
   <data name="gsChooseADifferentName" xml:space="preserve">
-    <value>Wählen Sie einen anderen Namen</value>
+    <value>Seleccione otro Nombre</value>
   </data>
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
-    <value>Wähle oder erstellen sie ein Anderes</value>
+    <value>Seleccione o cree otro</value>
   </data>
   <data name="gsClose" xml:space="preserve">
-    <value>Schließen</value>
+    <value>Cerrar</value>
   </data>
   <data name="gsCloseAllWindowsFirst" xml:space="preserve">
-    <value>Schließen Sie zunächst alle Fenster</value>
+    <value>Por favor, cierre primero todas las ventanas</value>
   </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
-    <value>Feld vorher schließen</value>
+    <value>Antes cierre el fichero</value>
   </data>
   <data name="gsColors" xml:space="preserve">
-    <value>Farben</value>
+    <value>Colores</value>
   </data>
   <data name="gsCompletelyDeleteBoundary" xml:space="preserve">
-    <value>Ganze Schlaggrenze löschen</value>
+    <value>Borrar completamente Linderos</value>
   </data>
   <data name="gsContourFileIsCorrupt" xml:space="preserve">
-    <value>Kontur Datei fehlerhaft</value>
+    <value>Fichero de contorno corrupto</value>
   </data>
   <data name="gsContourOn" xml:space="preserve">
-    <value>Kontur aktiviert</value>
+    <value>Contorno activado</value>
   </data>
   <data name="gsCouldntGenerateValidPath" xml:space="preserve">
-    <value>Kein gültiger Pfad</value>
+    <value>Ruta no válida</value>
   </data>
   <data name="gsCreateABoundaryFirst" xml:space="preserve">
-    <value>Zuerst eine Außengrenze erstellen</value>
+    <value>Crear antes  un lindero</value>
   </data>
   <data name="gsCreateNewField" xml:space="preserve">
-    <value>Neues Feld erstellen</value>
+    <value>Crear nueva Parcela</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Aktuell</value>
+    <value>Actual</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
-    <value>A-B Kurven Datei fehlerhaft</value>
+    <value>Fichero de línea curva corrupto</value>
   </data>
   <data name="gsCurveNotOn" xml:space="preserve">
-    <value>A-B Kurve nicht aktiv</value>
+    <value>Curva no activada</value>
   </data>
   <data name="gsDeleteAllContoursAndSections" xml:space="preserve">
-    <value>Alle Konturen und bearbeitete Fläche löschen</value>
+    <value>Borra todas las secciones y contornos</value>
   </data>
   <data name="gsDeleteAppliedArea" xml:space="preserve">
-    <value>Bearbeitete Fläche löschen</value>
+    <value>Borrar Area seleccionada</value>
   </data>
   <data name="gsDeleteContourPaths" xml:space="preserve">
-    <value>Konturpfade löschen</value>
+    <value>Borrar rutas de Contorno</value>
   </data>
   <data name="gsDeleteForSure" xml:space="preserve">
-    <value>Wirklich löschen?</value>
+    <value>¿Seguro que quiere borrar?</value>
   </data>
   <data name="gsDirectories" xml:space="preserve">
-    <value>Verzeichnisse</value>
+    <value>Carpetas</value>
   </data>
   <data name="gsDirectoryExists" xml:space="preserve">
-    <value>Verzeichnis existiert</value>
+    <value>Ya existe la carpeta</value>
   </data>
   <data name="gsDistance" xml:space="preserve">
-    <value>Entfernung</value>
+    <value>Distancia</value>
   </data>
   <data name="gsDriveIn" xml:space="preserve">
-    <value>Feld an aktueller Position</value>
+    <value>Conducir en</value>
   </data>
   <data name="gsDriveThru" xml:space="preserve">
-    <value>Durchfahren</value>
+    <value>Transitar</value>
   </data>
   <data name="gsDriving" xml:space="preserve">
-    <value>fahren</value>
+    <value>Conducir</value>
   </data>
   <data name="gsEast" xml:space="preserve">
-    <value>Ost</value>
+    <value>Este</value>
   </data>
   <data name="gsEditABCurve" xml:space="preserve">
-    <value>A-B Kurve bearbeiten</value>
+    <value>Editar curva AB</value>
   </data>
   <data name="gsEditABLine" xml:space="preserve">
-    <value>A-B Linie bearbeiten</value>
+    <value>Editar linea AB</value>
   </data>
   <data name="gsEditFieldName" xml:space="preserve">
-    <value>Feldname ändern</value>
+    <value>Editar el nombre de la parcela</value>
   </data>
   <data name="gsEncoderCounts" xml:space="preserve">
-    <value>Anzahl</value>
+    <value>Recuentos</value>
   </data>
   <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
-    <value>Koordinaten für Simulator eingeben</value>
+    <value>Introducir Coordenadas para simulador</value>
   </data>
   <data name="gsEnterFieldName" xml:space="preserve">
-    <value>Benennen Sie das Feld</value>
+    <value>Introducir nombre de Parcela</value>
   </data>
   <data name="gsEnterSimCoords" xml:space="preserve">
-    <value>Sim Koordinaten eingeben</value>
+    <value>Introducir coordenadas SIM</value>
   </data>
   <data name="gsError" xml:space="preserve">
-    <value>FEHLER</value>
+    <value>Error</value>
   </data>
   <data name="gsErrorreadingKML" xml:space="preserve">
-    <value>Fehler beim KML einlesen</value>
+    <value>Error lectura KML</value>
   </data>
   <data name="gsField" xml:space="preserve">
-    <value>Feld</value>
+    <value>Parcela</value>
   </data>
   <data name="gsFieldFileIsCorrupt" xml:space="preserve">
-    <value>Feld Datei ist fehlerhaft</value>
+    <value>Fichero de Parcela corrupto</value>
   </data>
   <data name="gsFieldIsOpen" xml:space="preserve">
-    <value>Feld ist geöffnet</value>
+    <value>Parcela abierta</value>
   </data>
   <data name="gsFieldNotOpen" xml:space="preserve">
-    <value>Feld nicht geöffnet</value>
+    <value>Parcela no abierta</value>
   </data>
   <data name="gsFileError" xml:space="preserve">
-    <value>Dateien fehlerhaft</value>
+    <value>Error de archivo</value>
   </data>
   <data name="gsFlagByLatLon" xml:space="preserve">
-    <value>Flagge von Lat Lon</value>
+    <value>Bandera de Lat Lon</value>
   </data>
   <data name="gsFlagFileIsCorrupt" xml:space="preserve">
-    <value>Flaggen Datei fehlerhaft</value>
+    <value>Fichero de marcas corrupto</value>
   </data>
   <data name="gsForNow" xml:space="preserve">
-    <value>Für jetzt</value>
+    <value>Ahora</value>
   </data>
   <data name="gsFromExisting" xml:space="preserve">
-    <value>aus Bestehendem</value>
+    <value>Desde existente</value>
   </data>
   <data name="gsFromKml" xml:space="preserve">
-    <value>aus KML</value>
+    <value>Desde KML</value>
   </data>
   <data name="gsHeadingChart" xml:space="preserve">
-    <value>Fahrtrichtung (heading)</value>
+    <value>Gráfico de rumbo</value>
   </data>
   <data name="gsHeadland" xml:space="preserve">
-    <value>Vorgewende</value>
+    <value>Cabecero</value>
   </data>
   <data name="gsHeadlandForm" xml:space="preserve">
-    <value>Vorgewende erstellen und bearbeiten</value>
+    <value>Crear o Editar Cabecero</value>
   </data>
   <data name="gsHelp" xml:space="preserve">
-    <value>Hilfe</value>
+    <value>Ayuda</value>
   </data>
   <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
-    <value>Falsche Richtung? Fahrzeug antippen</value>
+    <value>Direccion incorrecta? Toque el vehiculo</value>
   </data>
   <data name="gsInches" xml:space="preserve">
-    <value>Zoll</value>
+    <value>Pulgadas</value>
   </data>
   <data name="gsInner" xml:space="preserve">
-    <value>Innere</value>
+    <value>Interno</value>
   </data>
   <data name="gsKMH" xml:space="preserve">
     <value>km/h</value>
   </data>
   <data name="gsLanguage" xml:space="preserve">
-    <value>Sprache</value>
+    <value>Idioma</value>
   </data>
   <data name="gsMPH" xml:space="preserve">
-    <value>mp/h</value>
+    <value>Mph</value>
   </data>
   <data name="gsMachinePort" xml:space="preserve">
-    <value>Maschinen Port</value>
+    <value>Puerto del PCB</value>
   </data>
   <data name="gsMakeBoundaryContours" xml:space="preserve">
-    <value>Grenzkonturen erstellen</value>
+    <value>Crear contorno de parcela</value>
   </data>
   <data name="gsManual" xml:space="preserve">
-    <value>Manuell</value>
+    <value>Manual</value>
   </data>
   <data name="gsMeters" xml:space="preserve">
-    <value>Meter</value>
+    <value>Metros</value>
   </data>
   <data name="gsMissingABLinesFile" xml:space="preserve">
-    <value>A-B Datei fehlt</value>
+    <value>Sin fichero Líneas AB</value>
   </data>
   <data name="gsMissingBoundaryFile" xml:space="preserve">
-    <value>Außengrenze Datei fehlt</value>
+    <value>Sin fichero de lindero</value>
   </data>
   <data name="gsMissingContourFile" xml:space="preserve">
-    <value>Kontur Datei fehlt</value>
+    <value>Sin fichero de contorno</value>
   </data>
   <data name="gsMissingFlagsFile" xml:space="preserve">
-    <value>Flaggen Datei fehlt</value>
+    <value>Sin fichero de marcas</value>
   </data>
   <data name="gsMissingSectionFile" xml:space="preserve">
-    <value>Datei der bearbeiteten Fläche fehlt</value>
+    <value>Falta fichero de Sección</value>
   </data>
   <data name="gsN_East" xml:space="preserve">
-    <value>Nordost</value>
+    <value>Noreste</value>
   </data>
   <data name="gsN_West" xml:space="preserve">
-    <value>Nordwest</value>
+    <value>Noroeste</value>
   </data>
   <data name="gsNew" xml:space="preserve">
-    <value>Neu</value>
+    <value>Nuevo</value>
   </data>
   <data name="gsNoABLineActive" xml:space="preserve">
-    <value>Keine A-B Linie aktiv</value>
+    <value>Ninguna Línea AB activa</value>
   </data>
   <data name="gsNoBoundary" xml:space="preserve">
-    <value>Keine Außengrenze</value>
+    <value>Ningún contorno activo</value>
   </data>
   <data name="gsNoFieldsFound" xml:space="preserve">
-    <value>Kein Feld gefunden</value>
+    <value>Ninguna parcela encontrada</value>
   </data>
   <data name="gsNoGuidanceLines" xml:space="preserve">
-    <value>Keine Führungslinien</value>
+    <value>Ninguna línea de guía encontrada</value>
   </data>
   <data name="gsNoSettingsWithIMU" xml:space="preserve">
-    <value>keine Einstellung mit IMU nötig</value>
+    <value>Sin ajustes con IMU</value>
   </data>
   <data name="gsNone" xml:space="preserve">
-    <value>keine</value>
+    <value>Ninguno/a</value>
   </data>
   <data name="gsNoneUsed" xml:space="preserve">
-    <value>Keine verwendet</value>
+    <value>Ninguno en uso</value>
   </data>
   <data name="gsNorth" xml:space="preserve">
-    <value>Norden</value>
+    <value>Norte</value>
   </data>
   <data name="gsNothingDeleted" xml:space="preserve">
-    <value>Es wurde nichts gelöscht</value>
+    <value>Nada borrado</value>
   </data>
   <data name="gsOffset" xml:space="preserve">
-    <value>Offset</value>
+    <value>Offset (desfase)</value>
   </data>
   <data name="gsOffsetFix" xml:space="preserve">
-    <value>Offset Fix</value>
+    <value>Corregir desfase</value>
   </data>
   <data name="gsOpen" xml:space="preserve">
-    <value>Öffnen</value>
+    <value>Abrir</value>
   </data>
   <data name="gsOuter" xml:space="preserve">
-    <value>Äußere</value>
+    <value>Externo</value>
   </data>
   <data name="gsOvershootReduction" xml:space="preserve">
-    <value>Überschwingungsreduzierung</value>
+    <value>Reducción de sobreimpulso</value>
   </data>
   <data name="gsPass" xml:space="preserve">
-    <value>Durchgang #</value>
+    <value>Nº de Pasadas</value>
   </data>
   <data name="gsPasses" xml:space="preserve">
-    <value>Spuranzahl</value>
+    <value>Pasadas</value>
   </data>
   <data name="gsPause" xml:space="preserve">
-    <value>Pause</value>
+    <value>Pausa</value>
   </data>
   <data name="gsPleaseEnterABLine" xml:space="preserve">
-    <value>Bitte A-B Linie eingeben</value>
+    <value>Introducir una línea AB</value>
   </data>
   <data name="gsPressureSensorValueLabel" xml:space="preserve">
-    <value>Druck (bar)</value>
+    <value>Presión (bar)</value>
   </data>
   <data name="gsProblemMakingPath" xml:space="preserve">
-    <value>Problem beim Erstellen des Pfades</value>
+    <value>Problemas al crear una ruta</value>
   </data>
   <data name="gsProgramWillExitPleaseRestart" xml:space="preserve">
-    <value>Programm wird beendet – bitte neu starten</value>
+    <value>El programa se cerrará. Reinicie.</value>
   </data>
   <data name="gsReallyResetEverything" xml:space="preserve">
-    <value>Wirklich alles zurücksetzten</value>
+    <value>Necesario reiniciar todo</value>
   </data>
   <data name="gsRecord" xml:space="preserve">
-    <value>Aufzeichnung</value>
+    <value>Grabar</value>
   </data>
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
-    <value>Pfad Datei fehlerhaft</value>
+    <value>Fichero de ruta corrupto</value>
+  </data>
+  <data name="gsRecordedPathMenu" xml:space="preserve">
+    <value>Fichero de ruta</value>
   </data>
   <data name="gsResetAll" xml:space="preserve">
-    <value>Alles zurücksetzen</value>
+    <value>Reiniciar Todo</value>
   </data>
   <data name="gsResetAllForSure" xml:space="preserve">
-    <value>Wirklich alles zurücksetzten?</value>
+    <value>Seguro que desea reiniciar todo?</value>
   </data>
   <data name="gsResume" xml:space="preserve">
-    <value>Fortsetzen</value>
+    <value>Continuar</value>
   </data>
   <data name="gsS_East" xml:space="preserve">
-    <value>Südosten</value>
+    <value>Este</value>
   </data>
   <data name="gsS_West" xml:space="preserve">
-    <value>Südwesten</value>
+    <value>SudOeste</value>
   </data>
   <data name="gsSaveAndReturn" xml:space="preserve">
-    <value>Speichern und zurück</value>
+    <value>Guardar y Volver</value>
   </data>
   <data name="gsSaveAs" xml:space="preserve">
-    <value>Speichern unter</value>
+    <value>Guardar como</value>
   </data>
   <data name="gsSentToMachineModule" xml:space="preserve">
-    <value>Zum Maschinen Modul senden</value>
+    <value>Enviar al módulo PCB</value>
   </data>
   <data name="gsSetPoint" xml:space="preserve">
-    <value>Sollwert</value>
+    <value>Punto de ajuste</value>
   </data>
   <data name="gsShiftGPSPosition" xml:space="preserve">
-    <value>GPS Position verschieben (cm)</value>
+    <value>Cambiar posición GPS(cm)</value>
   </data>
   <data name="gsSimulatorOn" xml:space="preserve">
-    <value>Simulator Ein</value>
+    <value>Simulador Activado</value>
   </data>
   <data name="gsSlowDownBelow" xml:space="preserve">
-    <value>Langsamer fahren als</value>
+    <value>Reduzca la velocidad por debajo</value>
   </data>
   <data name="gsSmoothABCurve" xml:space="preserve">
-    <value>A-B-Kurve glätten</value>
+    <value>Curva AB Suave</value>
   </data>
   <data name="gsSort" xml:space="preserve">
-    <value>Sortieren</value>
+    <value>Ordenar</value>
   </data>
   <data name="gsSouth" xml:space="preserve">
-    <value>Süden</value>
+    <value>Sur</value>
   </data>
   <data name="gsSpacing" xml:space="preserve">
-    <value>Abstand (cm)</value>
+    <value>Espaciado (cm)</value>
   </data>
   <data name="gsStartDeleteABoundary" xml:space="preserve">
-    <value>Schlaggrenze erstellen oder löschen</value>
+    <value>Comience o borre un Lindero</value>
   </data>
   <data name="gsStartNewField" xml:space="preserve">
-    <value>Neues Feld starten</value>
+    <value>Empezar nueva Parcela</value>
   </data>
   <data name="gsSteerWizard" xml:space="preserve">
-    <value>Assistent Lenkeinstellungen</value>
+    <value>Asistente de configuración de guiado</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
-    <value>Grenze aufzeichnen, pausieren, stoppen</value>
+    <value>Parar Grabación pausa Linderos</value>
   </data>
   <data name="gsToFile" xml:space="preserve">
-    <value>in Datei</value>
+    <value>Al fichero</value>
   </data>
   <data name="gsTooFast" xml:space="preserve">
-    <value>Zu schnell</value>
+    <value>Demasiado rápida</value>
   </data>
   <data name="gsTopFieldView" xml:space="preserve">
-    <value>Feld Übersicht</value>
+    <value>Vista Aérea</value>
   </data>
   <data name="gsTramLines" xml:space="preserve">
-    <value>Fahrgassen</value>
+    <value>Lineas Paralelas</value>
   </data>
   <data name="gsTurnABCurveOn" xml:space="preserve">
-    <value>A-B Kurve einschalten</value>
+    <value>Activar Curva AB</value>
   </data>
   <data name="gsTurnOnContourOrMakeABLine" xml:space="preserve">
-    <value>Kontur aktivieren oder A-B Linie erstellen</value>
+    <value>Activar el contorno o crear Línea AB</value>
   </data>
   <data name="gsUseSelected" xml:space="preserve">
-    <value>Ausgewähltes verwenden</value>
+    <value>Usar seleccionado</value>
   </data>
   <data name="gsWebCam" xml:space="preserve">
-    <value>Webkamera</value>
+    <value>Cámara</value>
   </data>
   <data name="gsWest" xml:space="preserve">
-    <value>Westen</value>
+    <value>Oeste</value>
   </data>
   <data name="gsWindowsStillOpen" xml:space="preserve">
-    <value>Windows ist immer noch geöffnet</value>
+    <value>Hay ventanas abiertas</value>
+  </data>
+  <data name="gsWizards" xml:space="preserve">
+    <value>Asistentes de configuración</value>
   </data>
   <data name="gsXTEChart" xml:space="preserve">
-    <value>Abweichung von der Linie (XTE)</value>
+    <value>Gráfico XTE</value>
+  </data>
+  <data name="v_AboutIntro" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=iN2cZ8avHag</value>
+  </data>
+  <data name="v_RecordedPathForm" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=fE3TPRIRSFg</value>
+  </data>
+  <data name="v_SteerSettingsForm" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=3SdvYgx8HHc</value>
   </data>
 </root>

@@ -33,7 +33,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\AgOpenGPS_v63\</OutputPath>
+    <OutputPath>..\..\..\AgOpenGPS_v64\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -42,7 +42,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\AgOpenGPS_v63\</OutputPath>
+    <OutputPath>..\..\..\AgOpenGPS_v64\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -332,6 +332,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgIO_ico.ico" />
+    <None Include="btnImages\ModuleSim2.png" />
+    <None Include="btnImages\EthernetOff.png" />
+    <None Include="btnImages\WindowMinimize.png" />
+    <None Include="btnImages\WindowClose.png" />
     <None Include="btnImages\GPS_Out.png" />
     <None Include="Resources\TF012.WAV" />
     <None Include="btnImages\SerialMonitor.png" />

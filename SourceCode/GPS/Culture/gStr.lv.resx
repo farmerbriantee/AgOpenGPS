@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,379 +118,430 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="gsABCurve" xml:space="preserve">
-    <value>AB Eğri</value>
+    <value>AB Izliekta</value>
   </data>
   <data name="gsABline" xml:space="preserve">
-    <value>AB Çizgi</value>
+    <value>AB Līnija</value>
   </data>
   <data name="gsAbout" xml:space="preserve">
-    <value>Hakkında...</value>
+    <value>Par...</value>
   </data>
   <data name="gsActionHasBeenCancelled" xml:space="preserve">
-    <value>İşlem İptal Edildi</value>
+    <value>Darbība ir atcelta</value>
   </data>
   <data name="gsActual" xml:space="preserve">
-    <value>Actual</value>
+    <value>Faktiskais</value>
   </data>
   <data name="gsAgressiveness" xml:space="preserve">
-    <value>Agressif</value>
+    <value>Agresivitāte</value>
   </data>
   <data name="gsAreYouSure" xml:space="preserve">
-    <value>Emin misin ?</value>
+    <value>Vai tu esi pārliecināts ?</value>
   </data>
   <data name="gsArea" xml:space="preserve">
-    <value>Alan</value>
+    <value>Platība</value>
+  </data>
+  <data name="gsAutoSteer" xml:space="preserve">
+    <value>Automātiskās stūrēšanas</value>
+  </data>
+  <data name="gsConfiguration" xml:space="preserve">
+    <value>Konfigurācija</value>
   </data>
   <data name="gsAutoSteerConfiguration" xml:space="preserve">
-    <value>Otomatik Yönlendirme Yapılandırması</value>
+    <value>Automātiskās stūrēšanas konfigurācija</value>
   </data>
   <data name="gsAutoSteerPort" xml:space="preserve">
-    <value>Otomatik Yönlendirme Port</value>
+    <value>Automātiskās stūrēšanas ports</value>
   </data>
   <data name="gsBasedOnField" xml:space="preserve">
-    <value>Alana Göre:</value>
+    <value>Pamatojoties  no lauka:</value>
   </data>
   <data name="gsBoundary" xml:space="preserve">
-    <value>Sınır</value>
+    <value>Robeža</value>
   </data>
   <data name="gsBoundaryLineFilesAreCorrupt" xml:space="preserve">
-    <value>Sınır Çizgileri Dosyası Bozuk</value>
+    <value>Robežlīniju fails ir bojāts</value>
+  </data>
+  <data name="gsBoundaryMenu" xml:space="preserve">
+    <value>Robežas kontūra</value>
   </data>
   <data name="gsButFieldIsLoaded" xml:space="preserve">
-    
-  <value>Ama Alan Yüklendi</value></data>
+    <value>Bet, lauks ir ielādēts</value>
+  </data>
   <data name="gsCentimeters" xml:space="preserve">
-    <value>Santimetre</value>
+    <value>Centimetrs</value>
   </data>
   <data name="gsCharts" xml:space="preserve">
-    <value>Tablosu</value>
+    <value>Diagrammas</value>
   </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
-    <value>Farklı bir alan seçin</value>
+    <value>Izvēlieties citu lauku</value>
   </data>
   <data name="gsChooseADifferentName" xml:space="preserve">
-    <value>Farklı bir ad seçin</value>
+    <value>Izvēlieties citu nosaukumu</value>
   </data>
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
-    <value>Farklı Birini Seçin veya Oluşturun</value>
+    <value>Izvēlieties vai izveidojiet citu</value>
   </data>
   <data name="gsClose" xml:space="preserve">
-    <value>Kapamak</value>
+    <value>Slēgt</value>
   </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
-    <value>Önce Alanı Kapat</value>
+    <value>Vispirms aizveriet lauku</value>
   </data>
   <data name="gsColors" xml:space="preserve">
-    <value>Renkler</value>
+    <value>Krāsas</value>
   </data>
   <data name="gsCompletelyDeleteBoundary" xml:space="preserve">
-    <value>Sınırı Tamamen Sil</value>
+    <value>Pilnībā dzēst robežu</value>
   </data>
   <data name="gsContourFileIsCorrupt" xml:space="preserve">
-    <value>Kontur Dosyası Bozuk</value>
+    <value>Kontūras fails ir bojāts</value>
   </data>
   <data name="gsContourOn" xml:space="preserve">
-    <value>Kontur Açık</value>
+    <value>Kontūra ieslēgta</value>
   </data>
   <data name="gsCouldntGenerateValidPath" xml:space="preserve">
-    <value>Geçerli Yol Yok</value>
+    <value>Nav derīga ceļa</value>
   </data>
   <data name="gsCreateABoundaryFirst" xml:space="preserve">
-    <value>Önce Bir Sınır Oluşturun</value>
+    <value>Vispirms izveidojiet robežu</value>
   </data>
   <data name="gsCreateNewField" xml:space="preserve">
-    <value>Yeni Alan Oluştur</value>
+    <value>Izveidot jaunu lauku</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Akım</value>
+    <value>Strāva</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
-    <value>Eğri Çizgi Dosyası Bozuk</value>
+    <value>Līknes līnijas fails ir bojāts</value>
   </data>
   <data name="gsCurveNotOn" xml:space="preserve">
-    <value>Eğri AÇIK değil</value>
+    <value>Līkne nav IESLĒGTA</value>
   </data>
   <data name="gsDeleteAllContoursAndSections" xml:space="preserve">
-    <value>Tüm Bölümleri ve Konturları Sil</value>
+    <value>Dzēst visas sadaļas un kontūras</value>
   </data>
   <data name="gsDeleteAppliedArea" xml:space="preserve">
-    <value>Uygulanan Alanı Sil</value>
+    <value>Dzēst apstrādāto apgabalu</value>
   </data>
   <data name="gsDeleteContourPaths" xml:space="preserve">
-    <value>Kontur Yollarını Sil</value>
+    <value>Dzēst kontūru ceļus</value>
   </data>
   <data name="gsDeleteForSure" xml:space="preserve">
-    <value>Kesinlikle Silinsin mi?</value>
+    <value>Izdzēst, esi pārliezināts?</value>
   </data>
   <data name="gsDirectories" xml:space="preserve">
-    <value>Dizinler</value>
+    <value>Katalogi</value>
   </data>
   <data name="gsDirectoryExists" xml:space="preserve">
-    <value>Dizin Var</value>
+    <value>Katalogs pastāv</value>
+  </data>
+  <data name="gsDistance" xml:space="preserve">
+    <value>Attālums</value>
+  </data>
+  <data name="gsDriveIn" xml:space="preserve">
+    <value>Iebraukt</value>
   </data>
   <data name="gsDriveThru" xml:space="preserve">
-    <value>Araca servis</value>
+    <value>Brauc cauri</value>
   </data>
   <data name="gsDriving" xml:space="preserve">
-    <value>Hareket Ettirici</value>
+    <value>Braukšana</value>
   </data>
   <data name="gsEast" xml:space="preserve">
-    <value>Doğu</value>
+    <value>Austrumi</value>
   </data>
   <data name="gsEditABCurve" xml:space="preserve">
-    <value>AB Eğrisini Düzenle</value>
+    <value>Rediģēt AB līkni</value>
   </data>
   <data name="gsEditABLine" xml:space="preserve">
-    <value>AB Çizgisini Düzenle</value>
+    <value>Rediģēt AB līniju</value>
+  </data>
+  <data name="gsEditFieldName" xml:space="preserve">
+    <value>Rediģēt AB Rediģēt lauka nosaukumu</value>
   </data>
   <data name="gsEncoderCounts" xml:space="preserve">
-    <value>Sayımlar</value>
+    <value>Skaitās</value>
   </data>
   <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
-    <value>Simülatör için Koordinatları Girin</value>
+    <value>Ievadiet koordinātes simulatoram</value>
   </data>
   <data name="gsEnterFieldName" xml:space="preserve">
-    <value>Alan Adını Girin</value>
+    <value>Ievadiet lauka nosaukumu</value>
   </data>
   <data name="gsEnterSimCoords" xml:space="preserve">
-    <value>Sim Kodlarını Girin</value>
+    <value>Ievadiet Sim Coords</value>
   </data>
   <data name="gsError" xml:space="preserve">
-    <value>Hata!!!</value>
+    <value>Kļūda</value>
   </data>
   <data name="gsErrorreadingKML" xml:space="preserve">
-    <value>KML okunurken hata oluştu</value>
+    <value>Lasot KML, radās kļūda</value>
+  </data>
+  <data name="gsField" xml:space="preserve">
+    <value>Lauks</value>
   </data>
   <data name="gsFieldFileIsCorrupt" xml:space="preserve">
-    <value>Alan Dosyası Bozuk</value>
+    <value>Lauka fails ir bojāts</value>
   </data>
   <data name="gsFieldIsOpen" xml:space="preserve">
-    <value>Alan Açık</value>
+    <value>Lauks ir atvērts</value>
   </data>
   <data name="gsFieldNotOpen" xml:space="preserve">
-    <value>Alan Açık Değil</value>
+    <value>Lauks nav atvērts</value>
   </data>
   <data name="gsFileError" xml:space="preserve">
-    <value>Dosya hatası</value>
+    <value>Faila kļūda</value>
   </data>
   <data name="gsFlagByLatLon" xml:space="preserve">
-    <value>Lat Lon'a göre bayrak</value>
+    <value>Karogs ar Lat Lon</value>
   </data>
   <data name="gsFlagFileIsCorrupt" xml:space="preserve">
-    <value>Dosya Bozuk ile ilgili şikayetler</value>
+    <value>Bojāts karoga fails</value>
   </data>
   <data name="gsForNow" xml:space="preserve">
-    <value>Şimdilik</value>
+    <value>Tagad</value>
+  </data>
+  <data name="gsFromExisting" xml:space="preserve">
+    <value>No esošā</value>
+  </data>
+  <data name="gsFromKml" xml:space="preserve">
+    <value>No KML</value>
+  </data>
+  <data name="gsHeadingChart" xml:space="preserve">
+    <value>Heading Chart</value>
   </data>
   <data name="gsHeadland" xml:space="preserve">
-    <value>Sürülmemiş Alan</value>
+    <value>Laukmala</value>
   </data>
   <data name="gsHeadlandForm" xml:space="preserve">
-    <value>Sürülmeyen Alan Oluştur ve Düzenle</value>
+    <value>Izveidojiet un rediģējiet laukmalu</value>
   </data>
   <data name="gsHelp" xml:space="preserve">
-    <value>Yardım</value>
+    <value>Palīdzība</value>
   </data>
   <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
-    <value>Yanlış yön? Araç'a dokunun</value>
+    <value>Ja nepareizs virziens, pieskarieties transportlīdzeklim</value>
   </data>
   <data name="gsInches" xml:space="preserve">
-    <value>İnç</value>
+    <value>colla</value>
   </data>
   <data name="gsInner" xml:space="preserve">
-    <value>İç (Dahili)</value>
+    <value>Iekšējais</value>
   </data>
   <data name="gsKMH" xml:space="preserve">
     <value>kmh</value>
   </data>
   <data name="gsLanguage" xml:space="preserve">
-    <value>Lisan</value>
+    <value>Valoda</value>
   </data>
   <data name="gsMPH" xml:space="preserve">
     <value>mph</value>
   </data>
   <data name="gsMachinePort" xml:space="preserve">
-    <value>Makine Bağlantı Noktası</value>
+    <value>Mašīnas ports</value>
   </data>
   <data name="gsMakeBoundaryContours" xml:space="preserve">
-    <value>Sınır Konturları Yapın</value>
+    <value>Izveidojiet robežu kontūras</value>
   </data>
   <data name="gsManual" xml:space="preserve">
-    <value>El Kitabı</value>
+    <value>Manuāli</value>
   </data>
   <data name="gsMeters" xml:space="preserve">
-    <value>Sayaçlar</value>
+    <value>Metri</value>
   </data>
   <data name="gsMissingABLinesFile" xml:space="preserve">
-    <value>ABLInes Dosyası Eksik</value>
+    <value>Trūkst AB Līnijas faila</value>
   </data>
   <data name="gsMissingBoundaryFile" xml:space="preserve">
-    <value>Eksik Sınır Dosyası</value>
+    <value>Trūkst Robežas faila</value>
   </data>
   <data name="gsMissingContourFile" xml:space="preserve">
-    <value>Kontur Dosyası Eksik</value>
+    <value>Trūkst Kontūras faila</value>
   </data>
   <data name="gsMissingFlagsFile" xml:space="preserve">
-    <value>Eksik Bayrak Dosyası</value>
+    <value>Trūkst Karoga faila</value>
   </data>
   <data name="gsMissingSectionFile" xml:space="preserve">
-    <value>Eksik Bölüm Dosyası</value>
+    <value>Trūkst Sekciju faila</value>
   </data>
   <data name="gsN_East" xml:space="preserve">
-    <value>K Doğu</value>
+    <value>Z Austrumi</value>
   </data>
   <data name="gsN_West" xml:space="preserve">
-    <value>K Batı</value>
+    <value>Z Rietumi</value>
   </data>
   <data name="gsNew" xml:space="preserve">
-    <value>Yeni</value>
+    <value>Jauns</value>
   </data>
   <data name="gsNoABLineActive" xml:space="preserve">
-    <value>ABLine Etkin Değil</value>
+    <value>Nav AB Līnija aktīva</value>
   </data>
   <data name="gsNoBoundary" xml:space="preserve">
-    <value>Sınırsız</value>
+    <value>Nav robežu</value>
   </data>
   <data name="gsNoFieldsFound" xml:space="preserve">
-    <value>Alan Bulunamadı</value>
+    <value>Nav atrasts neviens lauks</value>
   </data>
   <data name="gsNoGuidanceLines" xml:space="preserve">
-    <value>Kılavuz Hat Yok</value>
+    <value>Nav navigācija līniju</value>
+  </data>
+  <data name="gsNoSettingsWithIMU" xml:space="preserve">
+    <value>Nav iestatījumu ar IMU</value>
   </data>
   <data name="gsNone" xml:space="preserve">
-    <value>Hiçbiri</value>
+    <value>Nav</value>
   </data>
   <data name="gsNoneUsed" xml:space="preserve">
-    <value>Hiçbiri kullanılmadı</value>
+    <value>Nav lietots</value>
   </data>
   <data name="gsNorth" xml:space="preserve">
-    <value>Kuzey</value>
+    <value>Ziemeļi</value>
   </data>
   <data name="gsNothingDeleted" xml:space="preserve">
-    <value>Hiçbir şey Silinmedi</value>
+    <value>Nekas nav dzēsts</value>
   </data>
   <data name="gsOffset" xml:space="preserve">
-    <value>Ofset</value>
+    <value>Nobīde</value>
   </data>
   <data name="gsOffsetFix" xml:space="preserve">
-    <value>Ofset Düzeltme</value>
+    <value>Nobīdes labojums</value>
   </data>
   <data name="gsOpen" xml:space="preserve">
-    <value>Açık</value>
+    <value>Atvērt</value>
   </data>
   <data name="gsOuter" xml:space="preserve">
-    <value>Dış</value>
+    <value>Ārējais</value>
   </data>
   <data name="gsOvershootReduction" xml:space="preserve">
-    <value>Limit aşımı Azaltma</value>
+    <value>Pārbrauciena samazināšana</value>
   </data>
   <data name="gsPass" xml:space="preserve">
-    <value>Pass #</value>
+    <value>Gājiens #</value>
   </data>
   <data name="gsPasses" xml:space="preserve">
-    <value>Passes</value>
+    <value>Gājieni</value>
   </data>
   <data name="gsPause" xml:space="preserve">
-    <value>Duraklat</value>
+    <value>Pauze</value>
   </data>
   <data name="gsPleaseEnterABLine" xml:space="preserve">
-    <value>Lütfen ABline girin</value>
+    <value>Lūdzu, ievadiet AB Līniju</value>
   </data>
   <data name="gsPressureSensorValueLabel" xml:space="preserve">
-    <value>Basınç (bar)</value>
+    <value>Spiediens (bar)</value>
   </data>
   <data name="gsProblemMakingPath" xml:space="preserve">
-    <value>Yol Yapma Problemi</value>
+    <value>Problēma veidojot ceļu</value>
   </data>
   <data name="gsProgramWillExitPleaseRestart" xml:space="preserve">
-    <value>Programdan Çıkılacak Lütfen Yeniden Başlatın</value>
+    <value>Programma tiks aizvērta, lūdzu, restartējiet</value>
   </data>
   <data name="gsReallyResetEverything" xml:space="preserve">
-    <value>Her Şeyi Gerçekten Sıfırla</value>
+    <value>Tiešām atiestatīt visu</value>
   </data>
   <data name="gsRecord" xml:space="preserve">
-    <value>Kayıt</value>
+    <value>Ieraksts</value>
   </data>
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
-    <value>Kayıtlı Yol Dosyası Bozuk</value>
+    <value>Ierakstītais ceļa fails ir bojāts</value>
+  </data>
+  <data name="gsRecordedPathMenu" xml:space="preserve">
+    <value>Ierakstītais ceļš</value>
   </data>
   <data name="gsResetAll" xml:space="preserve">
-    <value>Hepsini sıfırla</value>
+    <value>AtiestatīAtiestatīt visu</value>
   </data>
   <data name="gsResetAllForSure" xml:space="preserve">
-    <value>Her Şeyi Kesin Olarak Sıfırla?</value>
+    <value>Atiestatīt visu, Esi pārliecināts?</value>
   </data>
   <data name="gsResume" xml:space="preserve">
-    <value>Devam et</value>
+    <value>Turpināt</value>
   </data>
   <data name="gsS_East" xml:space="preserve">
-    <value>GD</value>
+    <value>DAustrumi</value>
   </data>
   <data name="gsS_West" xml:space="preserve">
-    <value>GB</value>
+    <value>DRietumi</value>
   </data>
   <data name="gsSaveAndReturn" xml:space="preserve">
-    <value>Kaydet ve Geri Dön</value>
+    <value>Saglabāt un atgriezt</value>
   </data>
   <data name="gsSaveAs" xml:space="preserve">
-    <value>Farklı kaydet</value>
+    <value>Saglabāt kā</value>
   </data>
   <data name="gsSentToMachineModule" xml:space="preserve">
-    <value>Makine Modülüne Gönderildi</value>
+    <value>Nosūtīts uz mašīnas moduli</value>
   </data>
   <data name="gsSetPoint" xml:space="preserve">
-    <value>Ayar Noktası</value>
+    <value>Iestatīšanas punkts</value>
   </data>
   <data name="gsShiftGPSPosition" xml:space="preserve">
-    <value>GPS Konumunu Değiştir (cm)</value>
+    <value>GPS pozīcijas maiņa (cm)</value>
   </data>
   <data name="gsSimulatorOn" xml:space="preserve">
-    <value>Simülatör Açık</value>
+    <value>Simulators ieslēgts</value>
+  </data>
+  <data name="gsSlowDownBelow" xml:space="preserve">
+    <value>Palēnināt zemāk</value>
   </data>
   <data name="gsSmoothABCurve" xml:space="preserve">
-    <value>Düzgün AB Eğrisi</value>
+    <value>Nogludināt AB līkni</value>
   </data>
   <data name="gsSort" xml:space="preserve">
-    <value>Çeşit</value>
+    <value>Kārtot</value>
   </data>
   <data name="gsSouth" xml:space="preserve">
-    <value>Güneş ışığı</value>
+    <value>Dienvidi</value>
   </data>
   <data name="gsSpacing" xml:space="preserve">
-    <value>Aralık (cm)</value>
+    <value>Atstatums (cm)</value>
   </data>
   <data name="gsStartDeleteABoundary" xml:space="preserve">
-    <value>Bir Sınırı Başlatın veya Silin</value>
+    <value>Sāciet vai dzēsiet robežu</value>
   </data>
   <data name="gsStartNewField" xml:space="preserve">
-    <value>Yeni Alan Başlat</value>
+    <value>Sākt jaunu lauku</value>
+  </data>
+  <data name="gsSteerWizard" xml:space="preserve">
+    <value>Stūrēšanas iestatīšana</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
-    <value>Durdur Kaydı Duraklat Sınır</value>
+    <value>Apturēt ierakstīšanu pauzēt robežu</value>
   </data>
   <data name="gsToFile" xml:space="preserve">
-    <value>Dosyalamak</value>
+    <value>Uz failu</value>
+  </data>
+  <data name="gsTooFast" xml:space="preserve">
+    <value>Par ātru</value>
   </data>
   <data name="gsTopFieldView" xml:space="preserve">
-    <value>Üst Alan Görünümü</value>
+    <value>Augšējais lauka skats</value>
   </data>
   <data name="gsTramLines" xml:space="preserve">
-    <value>Temel İlkeler</value>
+    <value>Tehnoloģiskās līnijas</value>
   </data>
   <data name="gsTurnABCurveOn" xml:space="preserve">
-    <value>AB Eğrisini Aç</value>
+    <value>Ieslēdziet AB līkni</value>
   </data>
   <data name="gsTurnOnContourOrMakeABLine" xml:space="preserve">
-    <value>AB Hattı Yap Konturunu Aç</value>
+    <value>Ieslēdziet AB līnijas kontūru</value>
   </data>
   <data name="gsUseSelected" xml:space="preserve">
-    <value>Seçileni Kullan</value>
+    <value>Izmantojiet atlasīto</value>
   </data>
   <data name="gsWebCam" xml:space="preserve">
-    <value>WebCam</value>
+    <value>Tīmekļa kamera</value>
   </data>
   <data name="gsWest" xml:space="preserve">
-    <value>Batı</value>
+    <value>Rietumi</value>
+  </data>
+  <data name="gsWizards" xml:space="preserve">
+    <value>Wizards</value>
+  </data>
+  <data name="gsXTEChart" xml:space="preserve">
+    <value>XTE Diagramma</value>
   </data>
   <data name="v_AboutIntro" xml:space="preserve">
     <value>https://www.youtube.com/watch?v=iN2cZ8avHag</value>

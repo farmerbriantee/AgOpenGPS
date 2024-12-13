@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgOpenGPS.Culture;
+using System;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -27,14 +28,13 @@ namespace AgOpenGPS
 
         private void tabAMachine_Enter(object sender, EventArgs e)
         {
+            pboxSendMachine.Visible = false;
 
             int sett = Properties.Settings.Default.setArdMac_setting0;
 
-            if ((sett & 1) == 0) cboxMachInvertRelays.Checked = false;
-            else cboxMachInvertRelays.Checked = true;
+            cboxMachInvertRelays.Checked = ((sett & 1) == 1);
 
-            if ((sett & 2) == 0) cboxIsHydOn.Checked = false;
-            else cboxIsHydOn.Checked = true;
+            cboxIsHydOn.Checked = ((sett & 2) == 2);
 
             if (cboxIsHydOn.Checked)
             {
@@ -123,7 +123,7 @@ namespace AgOpenGPS
                 pboxSendMachine.Visible = true;
             }
         }
-        private void cboxIsHydOn_CheckStateChanged(object sender, EventArgs e)
+        private void cboxIsHydOn_Click(object sender, EventArgs e)
         {
             if (cboxIsHydOn.Checked)
             {
@@ -139,7 +139,7 @@ namespace AgOpenGPS
                 nudLowerTime.Enabled = false;
                 nudRaiseTime.Enabled = false;
             }
-            //pboxSendMachine.Visible = true;
+            pboxSendMachine.Visible = true;
         }
 
         private void SaveSettingsMachine()

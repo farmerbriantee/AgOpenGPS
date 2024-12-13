@@ -63,7 +63,7 @@
             // 
             // nudPasses
             // 
-            this.nudPasses.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudPasses.BackColor = System.Drawing.Color.White;
             this.nudPasses.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudPasses.InterceptArrowKeys = false;
             this.nudPasses.Location = new System.Drawing.Point(121, 171);
@@ -126,7 +126,7 @@
             this.btnSwapAB.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSwapAB.ForeColor = System.Drawing.Color.White;
             this.btnSwapAB.Image = global::AgOpenGPS.Properties.Resources.ABSwapPoints;
-            this.btnSwapAB.Location = new System.Drawing.Point(37, 32);
+            this.btnSwapAB.Location = new System.Drawing.Point(29, 32);
             this.btnSwapAB.Name = "btnSwapAB";
             this.btnSwapAB.Size = new System.Drawing.Size(72, 62);
             this.btnSwapAB.TabIndex = 438;
