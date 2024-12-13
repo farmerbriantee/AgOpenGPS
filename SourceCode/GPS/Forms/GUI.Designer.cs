@@ -1077,6 +1077,8 @@ namespace AgOpenGPS
                         c.ForeColor = textColorDay;
                     }
                 }
+
+                btnChangeMappingColor.ForeColor = textColorDay;
             }
             else //nightmode
             {
@@ -1113,6 +1115,8 @@ namespace AgOpenGPS
                         c.ForeColor = textColorNight;
                     }
                 }
+
+                btnChangeMappingColor.ForeColor = textColorNight;
             }
 
             if (tool.isSectionsNotZones)
