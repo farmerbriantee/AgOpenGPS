@@ -60,6 +60,11 @@ namespace AgOpenGPS
         int deadCam = 0;
 
         StringBuilder sb = new StringBuilder();
+
+        vec2 left = new vec2();
+        vec2 right = new vec2();
+        vec2 ptTip = new vec2();
+
         private void oglMain_Paint(object sender, PaintEventArgs e)
         {
             if (sentenceCounter < 299)
@@ -98,6 +103,11 @@ namespace AgOpenGPS
 
                     GL.Enable(EnableCap.Blend);
                     //draw patches of sections
+
+                    //direction marker width
+                    double factor = 0.35;
+                    if (tool.width > 35) factor = 0.45;
+                    else if (tool.width > 16) factor = 0.4;
 
                     for (int j = 0; j < triStrip.Count; j++)
                     {
@@ -166,17 +176,42 @@ namespace AgOpenGPS
                                     else { for (int i = 1; i < count2; i++) GL.Vertex3(triList[i].easting, triList[i].northing, 0); }
                                     GL.End();
 
-                                    if (triList.Count > 15)
+                                    if (isDirectionMarkers)
                                     {
-                                        GL.Color4((byte)(255 - triList[0].easting), (byte)(255 - triList[0].northing), (byte)(255 - triList[0].heading), (byte)200);
-                                        //GL.LineWidth(3.0f);
-                                        GL.Begin(PrimitiveType.LineStrip);
-                                        GL.Vertex3((triList[1].easting + triList[2].easting) / 2, (triList[1].northing + triList[2].northing) / 2, 0);
-                                        GL.Vertex3((triList[4].easting + triList[5].easting) / 2, (triList[4].northing + triList[5].northing) / 2, 0);
-                                        GL.Vertex3(triList[2].easting, triList[2].northing, 0);
-                                        GL.End();
-                                    }
+                                        if (triList.Count > 42)
+                                        {
+                                            double headz =
+                                                Math.Atan2(triList[39].easting - triList[37].easting, triList[39].northing - triList[37].northing);
 
+                                            left = new vec2(
+                                                (triList[37].easting + factor * (triList[38].easting - triList[37].easting)),
+                                                (triList[37].northing + factor * (triList[38].northing - triList[37].northing)));
+                                            
+                                            factor = 1 - factor;
+
+                                            right = new vec2(
+                                                (triList[37].easting + factor * (triList[38].easting - triList[37].easting)),
+                                                (triList[37].northing + factor * (triList[38].northing - triList[37].northing)));
+
+                                            double disst = glm.Distance(left, right);
+                                            disst *= 1.5;
+
+                                            ptTip = new vec2((left.easting + right.easting) / 2, (left.northing + right.northing) / 2);
+
+                                            ptTip = new vec2(ptTip.easting + (Math.Sin(headz) * disst), ptTip.northing + (Math.Cos(headz) * disst));
+
+                                            GL.Color4((byte)(255 - triList[0].easting), (byte)(255 - triList[0].northing), (byte)(255 - triList[0].heading), (byte)150);
+                                            //GL.LineWidth(3.0f);
+
+                                            GL.Begin(PrimitiveType.Triangles);
+                                            GL.Vertex3(left.easting, left.northing, 0);
+                                            GL.Vertex3(right.easting, right.northing, 0);
+
+                                            GL.Color4(0.85, 0.85, 1, 1.0);
+                                            GL.Vertex3(ptTip.easting, ptTip.northing, 0);
+                                            GL.End();
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -382,6 +417,9 @@ namespace AgOpenGPS
                     {
                         if (isLightbarOn) DrawSteerBarText(); 
                     }
+
+                    if (trk.idx > -1 && !ct.isContourBtnOn) DrawTrackInfo();
+
 
                     if (bnd.bndList.Count > 0 && yt.isYouTurnBtnOn) DrawUTurnBtn();
 
@@ -1589,7 +1627,7 @@ namespace AgOpenGPS
         {
             GL.Enable(EnableCap.Texture2D);
 
-            int bottomSide = 30;
+            int bottomSide = 90;
 
             if (!isStanleyUsed && isUTurnOn)
             {
@@ -1609,7 +1647,7 @@ namespace AgOpenGPS
 
             //lateral line move
 
-            bottomSide += 60;
+            bottomSide += 80;
             if (isLateralOn)
             {
                 GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.Lateral]);        // Select Our Texture
@@ -1648,21 +1686,22 @@ namespace AgOpenGPS
                 p_239.pgn[p_239.uturn] = 1;
             }
 
+            int bottom = 90;
             int two3 = oglMain.Width / 5;
             GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
             if (!yt.isTurnLeft)
             {
-                GL.TexCoord2(0, 0); GL.Vertex2(-62 + two3, 40); // 
-                GL.TexCoord2(1, 0); GL.Vertex2(62 + two3, 40); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(62 + two3, 110); // 
-                GL.TexCoord2(0, 1); GL.Vertex2(-62 + two3, 110); //
+                GL.TexCoord2(0, 0); GL.Vertex2(-62 + two3, bottom); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(62 + two3,  bottom); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(62 + two3,  bottom+60); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(-62 + two3, bottom+60); //
             }
             else
             {
-                GL.TexCoord2(1, 0); GL.Vertex2(-62 + two3, 40); // 
-                GL.TexCoord2(0, 0); GL.Vertex2(62 + two3, 40); // 
-                GL.TexCoord2(0, 1); GL.Vertex2(62 + two3, 110); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(-62 + two3, 110); //
+                GL.TexCoord2(1, 0); GL.Vertex2(-62 + two3, bottom); // 
+                GL.TexCoord2(0, 0); GL.Vertex2(62 + two3,  bottom); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(62 + two3,  bottom+60); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(-62 + two3, bottom + 60); //
             }
             //
             GL.End();
@@ -1682,10 +1721,10 @@ namespace AgOpenGPS
 
             GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
             {
-                GL.TexCoord2(0, 0); GL.Vertex2(-32 + two3, 46); // 
-                GL.TexCoord2(1, 0); GL.Vertex2(32 + two3, 46); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(32 + two3, 110); // 
-                GL.TexCoord2(0, 1); GL.Vertex2(-32 + two3, 110); //
+                GL.TexCoord2(0, 0); GL.Vertex2(-32 + two3, 100); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(32 + two3, 100); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(32 + two3, 160); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(-32 + two3, 160); //
             }
             GL.End();
 
@@ -1699,22 +1738,22 @@ namespace AgOpenGPS
             {
                 if (!yt.isYouTurnTriggered)
                 {
-                    font.DrawText(-40 + two3, 80, DistPivotM);
+                    font.DrawText(-40 + two3, 120, DistPivotM);
                 }
                 else
                 {
-                    font.DrawText(-40 + two3, 80, yt.onA.ToString());
+                    font.DrawText(-40 + two3, 120, yt.onA.ToString());
                 }
             }
             else
             {
                 if (!yt.isYouTurnTriggered)
                 {
-                    font.DrawText(-40 + two3, 80, DistPivotFt);
+                    font.DrawText(-40 + two3, 120, DistPivotFt);
                 }
                 else
                 {
-                    font.DrawText(-40 + two3, 80, yt.onA.ToString());
+                    font.DrawText(-40 + two3, 120, yt.onA.ToString());
                 }
             }
         }
@@ -2136,58 +2175,67 @@ namespace AgOpenGPS
 
         private void DrawSteerBarText()
         {
-            GL.Disable(EnableCap.DepthTest);
 
             if (ct.isContourBtnOn || trk.idx > -1 || recPath.isDrivingRecordedPath)
             {
-                //GL.PushMatrix();
-                int spacing = oglMain.Width / 40;
+                GL.Disable(EnableCap.DepthTest);
+                int spacing = oglMain.Width / 50;
                 if (spacing < 28) spacing = 28;
                 int offset = (int)((double)oglMain.Height / 40);
-                
-                int down = (int)((double)oglMain.Height/38);
-                int bottom = 67 + (int)((double)(oglMain.Height - 600) / 10.5);
+                int line = 12;
+                int line2 = 8;
+
+                //int down = (int)((double)oglMain.Height/38);
+                int down = 58 + (int)((double)(oglMain.Height - 600) / 17);
 
                 double textSize = (100 + (double)(oglMain.Height - 600)) * 0.0012;
                 int pointy = 24;
                 
                 double alphaBar = 1.0;
-                if (isBtnAutoSteerOn) alphaBar = 0.4;
+                if (isBtnAutoSteerOn) alphaBar = 0.5;
 
                 avgPivDistance = avgPivDistance * 0.8 + lightbarDistance * 0.2;
-
-                if (avgPivDistance > 150) longAvgPivDistance = 150;
-                if (longAvgPivDistance > 150) longAvgPivDistance = 150;
-
-                longAvgPivDistance = longAvgPivDistance * 0.97 + Math.Abs(avgPivDistance) * 0.03;
 
                 // in millimeters
                 double avgPivotDistance = avgPivDistance * (isMetric ? 0.1 : 0.03937);
                 double err = (mc.actualSteerAngleDegrees - (double)(guidanceLineSteerAngle) * 0.01);
 
-                if (isBtnAutoSteerOn && Math.Abs(err) < 0.5) err = 0;
+                if (isBtnAutoSteerOn)
+                {
+                    if (Math.Abs(err) < 0.5) err = 0;
+                    offset = (int)((double)oglMain.Height / 60);
+                    line /= 2;
+                    line2 /= 2;
+                }
+                else
+                {
+                    if (Math.Abs(err) < 0.2) err = 0;
+                }
 
                 double errLine = err;
                 if (errLine > 9) errLine = 9;
                 if (errLine < -9) errLine = -9;
                 errLine *= spacing;
 
-                GL.Color4(0,0,0, alphaBar);
-                GL.LineWidth(12);
-                GL.Begin(PrimitiveType.Lines);
-                GL.Vertex2(0, down);
-                GL.Vertex2(errLine, down);
-                GL.End();
-                GL.Color4(0.950f, 0.986530f, 0.40f, alphaBar);
-                GL.LineWidth(8);
-                GL.Begin(PrimitiveType.Lines);
-                GL.Vertex2(0, down);
-                GL.Vertex2(errLine, down);
-                GL.End();
-
+                if (errLine > 0) errLine += 35;
+                else errLine -= 35;
 
                 if (err != 0)
                 {
+                    GL.Color4(0, 0, 0, alphaBar);
+                    GL.LineWidth(line);
+                    GL.Begin(PrimitiveType.Lines);
+                    GL.Vertex2(0, down);
+                    GL.Vertex2(errLine, down);
+                    GL.End();
+                    GL.Color4(0.950f, 0.986530f, 0.40f, alphaBar);
+                    GL.LineWidth(line2);
+                    GL.Begin(PrimitiveType.Lines);
+                    GL.Vertex2(0, down);
+                    GL.Vertex2(errLine, down);
+                    GL.End();
+
+
                     if ((err) > 0.0)
                     {
                         spacing *= -1;
@@ -2201,6 +2249,7 @@ namespace AgOpenGPS
                     GL.Vertex2((errLine + offset + pointy), down);
                     GL.Vertex2((errLine), down + offset);
                     GL.End();
+
                     GL.Color4(0.79, 0.79, 0, alphaBar);
 
                     GL.Begin(PrimitiveType.TriangleStrip);
@@ -2211,17 +2260,19 @@ namespace AgOpenGPS
 
                     GL.LineWidth(3);
                     GL.Color4(0, 0, 0, alphaBar);
+
                     GL.Begin(PrimitiveType.LineLoop);
                     GL.Vertex2((errLine), down - offset);
                     GL.Vertex2((errLine + offset + pointy), down);
                     GL.Vertex2((errLine), down + offset);
                     GL.End();
+
                     GL.Begin(PrimitiveType.LineLoop);
                     GL.Vertex2((0), down - offset);
                     GL.Vertex2((0 + offset + pointy), down);
                     GL.Vertex2((0), down + offset);
                     GL.End();
-                }                
+                }               
 
                 int center = 0;
                 string hede = "> 0 <";
@@ -2245,7 +2296,7 @@ namespace AgOpenGPS
                 }
 
 
-                int wide = (int)((double)oglMain.Width / 15);
+                int wide = (int)((double)oglMain.Width / 12);
                 if (wide < 65) wide = 65;
 
                 if (hede.Length > 5) 
@@ -2259,10 +2310,10 @@ namespace AgOpenGPS
                 else GL.Color4(0.952f, 0.750f, 0.350f, 1);
 
                 GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
-                GL.TexCoord2(0, 1); GL.Vertex2(-wide, bottom); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(wide, bottom); // 
-                GL.TexCoord2(1, 0); GL.Vertex2(wide, down * 2); // 
-                GL.TexCoord2(0, 0); GL.Vertex2(-wide, down * 2); //
+                GL.TexCoord2(0, 1); GL.Vertex2(-wide, 3); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(wide, 3); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(wide, 35*(1+textSize)); // 
+                GL.TexCoord2(0, 0); GL.Vertex2(-wide, 35 * (1 + textSize)); //
                 GL.End();
 
                 GL.Disable(EnableCap.Texture2D);
@@ -2271,17 +2322,48 @@ namespace AgOpenGPS
                 if (Math.Abs(avgPivDistance) < 50) GL.Color4(0.12f, 0.12770f, 0.120f, 1);
                 else GL.Color4(0.15752f, 0.1570f, 0.130f, 1);
 
-                font.DrawText(center, down*2, hede, 1.0+textSize);
-
-                if (longAvgPivDistance < 150)
-                {
-                    hede = (Math.Abs(longAvgPivDistance * (isMetric ? 0.1 : 0.03937))).ToString("N1");
-
-                    GL.Color3(0.950f, 0.952f, 0.3f);
-                    center = -(int)(((double)(hede.Length) * 0.5) * 16);
-                    font.DrawText(center, down*4-5, hede, 1);
-                }
+                font.DrawText(center, 2, hede, 1.0+textSize);
             }
+        }
+
+        private void DrawTrackInfo()
+        {
+            string offs = "";
+
+            if (trk.gArr[trk.idx].nudgeDistance != 0)
+                offs = ((int)(trk.gArr[trk.idx].nudgeDistance * m2InchOrCm)).ToString() + unitsInCmNS;
+            
+            string dire;
+
+            if (trk.gArr[trk.idx].mode == TrackMode.AB)
+            {
+                if (ABLine.isHeadingSameWay) dire = "{";
+                else dire = "}";
+
+                if (ABLine.howManyPathsAway > -1)
+                    dire = dire + (ABLine.howManyPathsAway + 1).ToString() + "R " + offs;
+                else
+                    dire = dire + (-ABLine.howManyPathsAway).ToString() + "L " + offs;
+            }
+            else
+            {
+                if (curve.isHeadingSameWay) dire = "{";
+                else dire = "}";
+
+                GL.Color4(1.269, 1.25, 1.2510, 0.87);
+                if (curve.howManyPathsAway > -1) 
+                    dire = dire + (curve.howManyPathsAway + 1).ToString() + "R " + offs;
+                else 
+                    dire = dire + (-curve.howManyPathsAway).ToString() + "L " + offs;
+            }
+
+            int start = -(int)(((double)(dire.Length) * 0.45) * (20 * (1.0)));
+            int down = 75 + (int)((double)(oglMain.Height - 600) / 12);
+            double textSize = (100 + (double)(oglMain.Height - 600)) * 0.0012 + 1;
+
+            GL.Color4(1.26, 1.25, 1.2510, 0.87);
+
+            font.DrawText(start, down, dire, textSize);
         }
 
         private void DrawCompassText()

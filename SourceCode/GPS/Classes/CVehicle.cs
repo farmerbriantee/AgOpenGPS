@@ -500,34 +500,6 @@ namespace AgOpenGPS
                 GL.End();
             }
 
-            if (mf.trk.idx > -1 && !mf.ct.isContourBtnOn)
-            {
-                string offs = "";
-                if (mf.trk.gArr[mf.trk.idx].nudgeDistance !=0)
-                    offs = ((int)(mf.trk.gArr[mf.trk.idx].nudgeDistance*mf.m2InchOrCm)).ToString() + mf.unitsInCmNS;
-                string dire;
-
-                if (mf.trk.gArr[mf.trk.idx].mode == TrackMode.AB)
-                {
-                    if (mf.ABLine.isHeadingSameWay) dire = "{";
-                    else dire = "}";
-                    GL.Color4(1.26, 1.25, 1.2510, 0.87);
-
-                    if (mf.ABLine.howManyPathsAway > -1)
-                        mf.font.DrawTextVehicle(2, wheelbase + 1,dire + (mf.ABLine.howManyPathsAway + 1).ToString() + "R " + offs, 1);
-                    else
-                        mf.font.DrawTextVehicle(2, wheelbase + 1, dire + (-mf.ABLine.howManyPathsAway).ToString() + "L " + offs, 1);
-                }
-                else
-                {
-                    if (mf.curve.isHeadingSameWay) dire = "{";
-                    else dire = "}";
-
-                    GL.Color4(1.269, 1.25, 1.2510, 0.87);
-                    if (mf.curve.howManyPathsAway > -1) mf.font.DrawTextVehicle(2, wheelbase + 1, dire + (mf.curve.howManyPathsAway + 1).ToString() + "R " + offs, 1);
-                    else mf.font.DrawTextVehicle(2, wheelbase + 1, dire + (-mf.curve.howManyPathsAway).ToString() + "L " + offs, 1);
-                }
-            }
             GL.LineWidth(1);
 
             //if (mf.camera.camSetDistance < -500)

@@ -54,7 +54,7 @@ namespace AgOpenGPS
         public bool isUTurnAlwaysOn, isCompassOn, isSpeedoOn, isSideGuideLines = true;
         public bool isPureDisplayOn = true, isSkyOn = true, isRollMeterOn = false, isTextureOn = true;
         public bool isDay = true, isDayTime = true, isBrightnessOn = true;
-        public bool isLogElevation = false;
+        public bool isLogElevation = false, isDirectionMarkers;
         public bool isKeyboardOn = true, isAutoStartAgIO = true, isSvennArrowOn = true, isTermsAccepted = false;
 
         public bool isLightBarNotSteerBar = false;
@@ -110,6 +110,14 @@ namespace AgOpenGPS
                 if (!isPauseFieldTextCounter)
                 {
                     if (++currentFieldTextCounter > 3) currentFieldTextCounter = 0;
+                }
+
+                if ((isBtnAutoSteerOn || manualBtnState == btnStates.On || autoBtnState == btnStates.Auto))
+                {
+                    if (this.WindowState == FormWindowState.Minimized)
+                    {
+                        this.WindowState = FormWindowState.Normal;
+                    }
                 }
 
                 //reset the counter
@@ -541,6 +549,8 @@ namespace AgOpenGPS
             isPureDisplayOn = Settings.Default.setMenu_isPureOn;
 
             isAutoStartAgIO = Settings.Default.setDisplay_isAutoStartAgIO;
+
+            isDirectionMarkers = Settings.Default.setTool_isDirectionMarkers;
 
             panelNavigation.Location = new System.Drawing.Point(90, 100);
             panelDrag.Location = new System.Drawing.Point(87, 268);
@@ -1067,6 +1077,8 @@ namespace AgOpenGPS
                         c.ForeColor = textColorDay;
                     }
                 }
+
+                btnChangeMappingColor.ForeColor = textColorDay;
             }
             else //nightmode
             {
@@ -1103,6 +1115,8 @@ namespace AgOpenGPS
                         c.ForeColor = textColorNight;
                     }
                 }
+
+                btnChangeMappingColor.ForeColor = textColorNight;
             }
 
             if (tool.isSectionsNotZones)
@@ -1212,7 +1226,7 @@ namespace AgOpenGPS
                     if (isBtnAutoSteerOn || yt.isYouTurnBtnOn)
                     {
                         //uturn and swap uturn direction
-                        if (point.Y < 90 && point.Y > 30 && (trk.idx > -1))
+                        if (point.Y < 150 && point.Y > 90 && (trk.idx > -1))
                         {
 
                             int middle = oglMain.Width / 2 + oglMain.Width / 5;
@@ -1242,7 +1256,7 @@ namespace AgOpenGPS
                             {
                                 //manual uturn triggering
                                 middle = oglMain.Width / 2 - oglMain.Width / 4;
-                                if (point.X > middle - 140 && point.X < middle && isUTurnOn)
+                                if (point.X > middle - 100 && point.X < middle && isUTurnOn)
                                 {
                                     if (yt.isYouTurnTriggered)
                                     {
@@ -1263,7 +1277,7 @@ namespace AgOpenGPS
                                     }
                                 }
 
-                                if (point.X > middle && point.X < middle + 140 && isUTurnOn)
+                                if (point.X > middle && point.X < middle + 100 && isUTurnOn)
                                 {
                                     if (yt.isYouTurnTriggered)
                                     {
@@ -1288,10 +1302,10 @@ namespace AgOpenGPS
                         }
 
                         //lateral
-                        if (point.Y < 150 && point.Y > 90 && (trk.idx > -1))
+                        if (point.Y < 240 && point.Y > 170 && (trk.idx > -1))
                         {
                             int middle = oglMain.Width / 2 - oglMain.Width / 4;
-                            if (point.X > middle - 160 && point.X < middle && isLateralOn)
+                            if (point.X > middle - 100 && point.X < middle && isLateralOn)
                             {
                                 if (vehicle.functionSpeedLimit > avgSpeed)
                                 {
@@ -1306,7 +1320,7 @@ namespace AgOpenGPS
                                 return;
                             }
 
-                            if (point.X > middle && point.X < middle + 160 && isLateralOn)
+                            if (point.X > middle && point.X < middle + 100 && isLateralOn)
                             {
                                 if (vehicle.functionSpeedLimit > avgSpeed)
                                 {

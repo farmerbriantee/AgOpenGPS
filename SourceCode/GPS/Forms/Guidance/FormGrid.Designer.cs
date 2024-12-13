@@ -35,6 +35,7 @@
             this.btnCancelTouch = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.btnAlignToTrack = new System.Windows.Forms.Button();
             this.tlp1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,7 +46,7 @@
             this.oglSelf.Location = new System.Drawing.Point(2, 2);
             this.oglSelf.Margin = new System.Windows.Forms.Padding(0);
             this.oglSelf.Name = "oglSelf";
-            this.oglSelf.Size = new System.Drawing.Size(350, 350);
+            this.oglSelf.Size = new System.Drawing.Size(500, 500);
             this.oglSelf.TabIndex = 183;
             this.oglSelf.VSync = false;
             this.oglSelf.Load += new System.EventHandler(this.oglSelf_Load);
@@ -65,16 +66,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tlp1.ColumnCount = 1;
             this.tlp1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlp1.Controls.Add(this.btnAlignToTrack, 0, 1);
             this.tlp1.Controls.Add(this.btnCancelTouch, 0, 0);
-            this.tlp1.Controls.Add(this.btnCancel, 0, 1);
-            this.tlp1.Controls.Add(this.btnExit, 0, 2);
-            this.tlp1.Location = new System.Drawing.Point(354, 2);
+            this.tlp1.Controls.Add(this.btnExit, 0, 3);
+            this.tlp1.Controls.Add(this.btnCancel, 0, 2);
+            this.tlp1.Location = new System.Drawing.Point(505, 2);
             this.tlp1.Name = "tlp1";
-            this.tlp1.RowCount = 3;
+            this.tlp1.RowCount = 4;
             this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlp1.Size = new System.Drawing.Size(60, 349);
+            this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 109F));
+            this.tlp1.Size = new System.Drawing.Size(99, 495);
             this.tlp1.TabIndex = 564;
             // 
             // btnCancelTouch
@@ -88,7 +91,7 @@
             this.btnCancelTouch.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancelTouch.Image = global::AgOpenGPS.Properties.Resources.HeadlandDeletePoints;
             this.btnCancelTouch.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancelTouch.Location = new System.Drawing.Point(3, 30);
+            this.btnCancelTouch.Location = new System.Drawing.Point(22, 36);
             this.btnCancelTouch.Name = "btnCancelTouch";
             this.btnCancelTouch.Size = new System.Drawing.Size(54, 56);
             this.btnCancelTouch.TabIndex = 470;
@@ -106,7 +109,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(3, 146);
+            this.btnCancel.Location = new System.Drawing.Point(22, 292);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(54, 56);
             this.btnCancel.TabIndex = 469;
@@ -123,19 +126,37 @@
             this.btnExit.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnExit.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnExit.Location = new System.Drawing.Point(3, 262);
+            this.btnExit.Location = new System.Drawing.Point(22, 411);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(54, 56);
             this.btnExit.TabIndex = 0;
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // btnAlignToTrack
+            // 
+            this.btnAlignToTrack.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAlignToTrack.BackColor = System.Drawing.Color.Transparent;
+            this.btnAlignToTrack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAlignToTrack.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnAlignToTrack.FlatAppearance.BorderSize = 0;
+            this.btnAlignToTrack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAlignToTrack.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnAlignToTrack.Image = global::AgOpenGPS.Properties.Resources.ABTrackAB;
+            this.btnAlignToTrack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnAlignToTrack.Location = new System.Drawing.Point(22, 151);
+            this.btnAlignToTrack.Name = "btnAlignToTrack";
+            this.btnAlignToTrack.Size = new System.Drawing.Size(54, 81);
+            this.btnAlignToTrack.TabIndex = 471;
+            this.btnAlignToTrack.UseVisualStyleBackColor = false;
+            this.btnAlignToTrack.Click += new System.EventHandler(this.btnAlignToTrack_Click);
+            // 
             // FormGrid
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(415, 355);
+            this.ClientSize = new System.Drawing.Size(605, 501);
             this.ControlBox = false;
             this.Controls.Add(this.oglSelf);
             this.Controls.Add(this.tlp1);
@@ -163,5 +184,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnCancelTouch;
         private System.Windows.Forms.TableLayoutPanel tlp1;
+        private System.Windows.Forms.Button btnAlignToTrack;
     }
 }
