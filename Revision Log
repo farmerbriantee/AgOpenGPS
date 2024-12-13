@@ -1,3 +1,37 @@
+version 6.4.0 release review:
+
+#improvements:
+- AB Curve calculation 
+- AB Curve recording options
+- Shutdown AgIO and option to shutdown machine from AgOpenGPS automatically 
+- Shutdown option if powerstate goes to battery (ignition on/off)
+- optional hardware messages in AgOpenGPS (depends on hardware if applicable)
+- GPS Output updated with roll corrected position 
+- AgIO UDP connection form simplied 
+- turn off autosteer if position jumps more then xx cm (setting)
+- PurePursuit form simplied and look aheads changed to Steer Response. Speed gain an Aquire slider removed. Automatically controlled now
+- Deadzone for steer angle (to calm down motor if angle error is below xx degree 
+- border around the GUI with red color if RTK Fix drops 
+- headland form rearranged 
+- new Steer Angle Bar option (in addition to XTE Bar) for visual guidance
+- new GUI for steer Angle bar
+- new XTE number texture with changing color to orange if XTE is higher then 4cm
+- small other GUI improvements 
+
+#fixes:
+- AB Curve Numbering 
+- version label in AgIO
+- Ntrip source table button disabled until return from searching table
+- tracks Menu now vertical
+- only show Hydraulic lift button if it’s enabled in settings 
+- Sim Box fixed 
+- version text now change text color when go to dark mode 
+- pass direction triangles updated and better visible 
+- if minimize AOG when autosteer is on, maximize again. OGL needs to be on screen to work properly 
+- pass number and offset now center top under XTE number 
+- Aquire to hold mode swap now >20cm XTE
+- tram button position 
+
 v 3.0 Feb 2018
 * NTRIP Client
 * Fixed offset for contour
