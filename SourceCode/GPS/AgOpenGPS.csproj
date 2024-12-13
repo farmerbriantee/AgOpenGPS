@@ -966,6 +966,9 @@
     <None Include="btnImages\Images\z_crossTrackBkgnd.png" />
     <None Include="btnImages\Config\ConD_SteerBarBar.png" />
     <None Include="btnImages\Config\ConD_DirectionMarker.png" />
+    <Content Include="License.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="ModSim.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
