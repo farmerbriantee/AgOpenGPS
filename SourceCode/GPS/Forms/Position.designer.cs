@@ -697,7 +697,6 @@ namespace AgOpenGPS
                             prevFix = pn.fix;
                         }
 
-
                         if (glm.Distance(lastReverseFix, pn.fix) > dualReverseDetectionDistance)
                         {
                             //most recent heading
@@ -1321,7 +1320,7 @@ namespace AgOpenGPS
             }
 
             //finally fixed distance for making a curve line
-            if (!curve.isRecordingCurve) sectionTriggerStepDistance = sectionTriggerStepDistance + 0.5;
+            if (!curve.isRecordingCurve) sectionTriggerStepDistance = sectionTriggerStepDistance + 2.0;
             //if (ct.isContourBtnOn) sectionTriggerStepDistance *=0.5;
 
             //precalc the sin and cos of heading * -1

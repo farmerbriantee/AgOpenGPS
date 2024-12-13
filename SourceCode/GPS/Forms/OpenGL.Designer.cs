@@ -60,6 +60,11 @@ namespace AgOpenGPS
         int deadCam = 0;
 
         StringBuilder sb = new StringBuilder();
+
+        vec2 left = new vec2();
+        vec2 right = new vec2();
+        vec2 ptTip = new vec2();
+
         private void oglMain_Paint(object sender, PaintEventArgs e)
         {
             if (sentenceCounter < 299)
@@ -98,6 +103,11 @@ namespace AgOpenGPS
 
                     GL.Enable(EnableCap.Blend);
                     //draw patches of sections
+
+                    //direction marker width
+                    double factor = 0.35;
+                    if (tool.width > 35) factor = 0.45;
+                    else if (tool.width > 16) factor = 0.4;
 
                     for (int j = 0; j < triStrip.Count; j++)
                     {
@@ -166,17 +176,42 @@ namespace AgOpenGPS
                                     else { for (int i = 1; i < count2; i++) GL.Vertex3(triList[i].easting, triList[i].northing, 0); }
                                     GL.End();
 
-                                    if (triList.Count > 15)
+                                    if (isDirectionMarkers)
                                     {
-                                        GL.Color4((byte)(255 - triList[0].easting), (byte)(255 - triList[0].northing), (byte)(255 - triList[0].heading), (byte)200);
-                                        //GL.LineWidth(3.0f);
-                                        GL.Begin(PrimitiveType.LineStrip);
-                                        GL.Vertex3((triList[1].easting + triList[2].easting) / 2, (triList[1].northing + triList[2].northing) / 2, 0);
-                                        GL.Vertex3((triList[4].easting + triList[5].easting) / 2, (triList[4].northing + triList[5].northing) / 2, 0);
-                                        GL.Vertex3(triList[2].easting, triList[2].northing, 0);
-                                        GL.End();
-                                    }
+                                        if (triList.Count > 42)
+                                        {
+                                            double headz =
+                                                Math.Atan2(triList[39].easting - triList[37].easting, triList[39].northing - triList[37].northing);
 
+                                            left = new vec2(
+                                                (triList[37].easting + factor * (triList[38].easting - triList[37].easting)),
+                                                (triList[37].northing + factor * (triList[38].northing - triList[37].northing)));
+                                            
+                                            factor = 1 - factor;
+
+                                            right = new vec2(
+                                                (triList[37].easting + factor * (triList[38].easting - triList[37].easting)),
+                                                (triList[37].northing + factor * (triList[38].northing - triList[37].northing)));
+
+                                            double disst = glm.Distance(left, right);
+                                            disst *= 1.5;
+
+                                            ptTip = new vec2((left.easting + right.easting) / 2, (left.northing + right.northing) / 2);
+
+                                            ptTip = new vec2(ptTip.easting + (Math.Sin(headz) * disst), ptTip.northing + (Math.Cos(headz) * disst));
+
+                                            GL.Color4((byte)(255 - triList[0].easting), (byte)(255 - triList[0].northing), (byte)(255 - triList[0].heading), (byte)150);
+                                            //GL.LineWidth(3.0f);
+
+                                            GL.Begin(PrimitiveType.Triangles);
+                                            GL.Vertex3(left.easting, left.northing, 0);
+                                            GL.Vertex3(right.easting, right.northing, 0);
+
+                                            GL.Color4(0.85, 0.85, 1, 1.0);
+                                            GL.Vertex3(ptTip.easting, ptTip.northing, 0);
+                                            GL.End();
+                                        }
+                                    }
                                 }
                             }
                         }

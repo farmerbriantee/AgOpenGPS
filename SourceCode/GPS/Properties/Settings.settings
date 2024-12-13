@@ -764,5 +764,8 @@
     <Setting Name="setMenu_isLightbarNotSteerBar" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="setTool_isDirectionMarkers" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

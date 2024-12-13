@@ -456,6 +456,8 @@ namespace AgOpenGPS
             mf.isSvennArrowOn = chkSvennArrow.Checked;
             mf.isLogElevation = chkDisplayLogElevation.Checked;
 
+            mf.isDirectionMarkers = chkDirectionMarkers.Checked;
+
             //mf.timeToShowMenus = (int)nudMenusOnTime.Value;
 
             Properties.Settings.Default.setDisplay_isBrightnessOn = mf.isBrightnessOn;
@@ -475,6 +477,8 @@ namespace AgOpenGPS
 
             if (rbtnDisplayMetric.Checked) { Properties.Settings.Default.setMenu_isMetric = true; mf.isMetric = true; }
             else { Properties.Settings.Default.setMenu_isMetric = false; mf.isMetric = false; }
+
+            Properties.Settings.Default.setTool_isDirectionMarkers = mf.isDirectionMarkers;
 
             Properties.Settings.Default.Save();
         }

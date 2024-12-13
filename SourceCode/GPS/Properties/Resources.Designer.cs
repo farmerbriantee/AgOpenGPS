@@ -982,6 +982,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ConD_DirectionMarker {
+            get {
+                object obj = ResourceManager.GetObject("ConD_DirectionMarker", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ConD_ExtraGuides {
             get {
                 object obj = ResourceManager.GetObject("ConD_ExtraGuides", resourceCulture);

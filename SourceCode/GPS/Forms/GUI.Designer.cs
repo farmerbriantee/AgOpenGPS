@@ -54,7 +54,7 @@ namespace AgOpenGPS
         public bool isUTurnAlwaysOn, isCompassOn, isSpeedoOn, isSideGuideLines = true;
         public bool isPureDisplayOn = true, isSkyOn = true, isRollMeterOn = false, isTextureOn = true;
         public bool isDay = true, isDayTime = true, isBrightnessOn = true;
-        public bool isLogElevation = false;
+        public bool isLogElevation = false, isDirectionMarkers;
         public bool isKeyboardOn = true, isAutoStartAgIO = true, isSvennArrowOn = true, isTermsAccepted = false;
 
         public bool isLightBarNotSteerBar = false;
@@ -549,6 +549,8 @@ namespace AgOpenGPS
             isPureDisplayOn = Settings.Default.setMenu_isPureOn;
 
             isAutoStartAgIO = Settings.Default.setDisplay_isAutoStartAgIO;
+
+            isDirectionMarkers = Settings.Default.setTool_isDirectionMarkers;
 
             panelNavigation.Location = new System.Drawing.Point(90, 100);
             panelDrag.Location = new System.Drawing.Point(87, 268);
