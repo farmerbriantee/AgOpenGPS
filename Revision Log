@@ -32,11 +32,392 @@ version 6.4.0 release review:
 - Aquire to hold mode swap now >20cm XTE
 - tram button position 
 
+v6.3.3
+
+13 July 2024
+Portuguese added
+Direction arrows on sections
+Minor fixes, Section color fix
+
+v6.3.2
+
+Kiosk mode
+Recenter lost windows
+AB+ lines have more decimals in name 25-May-2024
+Boundary curve using tasks
+Section sizing to make more legible 30 May 2024
 v 3.0 Feb 2018
 * NTRIP Client
 * Fixed offset for contour
 * Uturn byte sent with autosteer data
 * offset in UTUrn doesn't work quite right.
+
+6.3.1
+
+Remote Manual Autosteer button fix
+Decimal zones, AV on steer settings - May 08, 2024
+Add cm per pixel setting on steer form May 20, 2024, ffixed save
+
+
+Release 6.0.10
+
+trams off in headland
+curve follow turn
+section bytes fix
+
+Release 6.0.7
+
+Boundary following uturn with AB Lines
+
+Release 6.0.6
+
+No line selected upon load
+Trams extended like AB Lines
+Graphics fixed on wizard
+
+Release 6.0.5
+
+Lengthened AB lines to extend A and B
+Headland control on Main
+Tram manual control
+
+Release 6.0.4
+
+Tram manual Control
+Headland section control on main
+UTurn Alarm if too close
+
+Release 5.8.3
+
+Trams completely redone
+New graphix
+Holder Tractor 4WD
+Sort Curve Lines
+Resume field button
+
+Release 5.8.1
+
+Redo Slovak
+tram dots, field image clipped
+Youturn pixel size
+AB Draw select boundaries
+Rmove loops array and use fence directly
+Cycle lines up and down btns
+
+Release 5.8.0
+
+27 October 2023 Halloween special.
+
+Dual reverse set to 0.2m
+Dots for look ahead visible above vehicle
+Sim steer angle adapted to vehicle wheelbase
+Svenn arrow added with setting
+Boundary curve longer
+AutoSteer stops at end of curve
+Boundary curve for inner bnds as well
+KML import of AB and Curves
+K turn for AB Lines
+Language updates
+dual heading limits to < 360
+Angular velocity displayed and limited
+Reverse detection completely rewritten
+
+Release 5.7.2
+
+16 Feb 2023 - Mostly AgIO updates. Stanley fixed. Section boundary setting. 
+NTRIP updates. Able to set X and Y axis in steer settings 
+- must update ino which is the only change in the ino.
+
+Release 5.7.1
+
+Fixes include: Sections 8 thru 16 actually being sent, M and N shortcut key swap, MultiColor sections disabled for zones.
+
+New Ethernet setup and Serial Monitor dialogs. https://github.com/farmerbriantee/AgOpenGPS/wiki/05.-Ethernet-Setup
+
+You MUST install the updated 571 INO firmware.https://github.com/farmerbriantee/AgOpenGPS_Boards.
+
+Significant work on both the board and AgOpenGPS Wiki's.
+
+Release 5.7.0
+
+The latest stable version 5.7.0
+
+Boards are firmware are here: https://github.com/farmerbriantee/AgOpenGPS_Boards
+
+Be sure to update your firmware with this release.
+
+Don't think about it - just update to this version.
+
+Release 5.6.2
+
+Version 5.6.2 replaces 5.6 - The big change is Modules are 192.168.1.xxx
+
+Now ### 192.168.1.xxx
+
+AgIO Basics: https://youtu.be/Rx-ymbssRGE - is outdated for the .5 part.
+
+VTG is NOT required to be sent anymore. Speed is derived from fix to fix distance.
+
+Serial Modules do not need to be updated, but Ethernet UDP modules do
+
+Release 5.5.0
+
+Long Term Stable Release version 5.5
+Mar 03 - Zoom added to mapping
+
+Release 5.4.4
+
+Context sensitive help for many buttons and features.
+
+Several bug fixes.
+
+Release 5.4.2
+
+Most current release as of Nov 15, 2021
+
+Fixes the color on the screen limiting pixel color to 254 to prevent 
+thinking the pixel is a flag. An important fix.
+
+Release 5.4.0
+
+AutoSteer, UTurn, and Hyd Lift sounds
+Individual sounds can be turned on/off in Button settings on/off in Config
+CAN teensy code added to support
+Fixed boundary not drawn during creation
+Opacity setting fixed
+Website on About corrected
+
+Release 5.3.3
+
+Opacity bug wouldn't allow setting to 100 in Section Colours
+Added delay in AgIO for Mega to connect
+
+Release 5.3.0
+
+Keyboard fix, sections can be not controlled by headland, autosteer sound on/off, Branding for tractor image, Manually enter AB Line
+Streamline Boundary class. In terms of code, boundary is all the lines, fence is outer border, turnline, headland are all part of a boundary class.
+Radio channels for RTCM in AgIO
+Ability to set different colors for each section
+Dual antenna roll compensation when not using PAOGI
+Increase string limit of nmea to 250
+
+AgOpenGPS v5.2.3
+
+Added (back) dual roll compensation
+Added section colors
+Nmea length to 250
+
+AgOpenGPS v5.2.2
+
+Contour update, ABDraw has units fix, Wit motion support, recorded path more clear on operation, fix trigger uturn when no uturn buttons appear, lists preset to capacity, steer switch speed update.
+
+Update AgIO to work with new Septentrio Firmware. 02 August 2021
+
+AgOpenGPS v5.2.1
+
+Lightbar active all the time whenever a guidance line is active
+Steer switch updated ever 1/2 second.
+GGA Interval default set to 10 seconds
+
+AgOpenGPS v5.1.5
+
+This version is an attempt to fix delays some people are experiencing. 
+All i can suggest is give it a try. What it does is limit the number of 
+NMEA sentences to 10 hz instead of allowing many sentences that may have
+accumulated due to windows being busy and then overloading AOG by making a 
+zillion frame updates. They are simply dropped.
+
+KML now has RecPath, Zoom buttons fixed. Rate Controller is now in support.
+
+AgOpenGPS v5.1.4
+
+Save vehicle on Exit, Config, and Steer Form. Imperial Snap to 0.1". 
+Help brings up pdf manual. Lookahead Multiplier, UTurn Multiplier removed. 
+Italian updated. AB Line length setting. French Keyboard fix. 
+Danish translation added. Spanish Help added. Polish updated.
+
+AgOpenGPS v5.1.3
+
+Version 5 of AgOpenGPS. Download and right click on AgOpenGPS_v51.zip and in 
+Properties "Unblock" it. Unzip the file and run AgOpenGPS.exe
+
+Fixes/Updates: Config summary update when loading Vehicle. 
+Top Field Data Larger. French updated. Turn off field texture. 
+Machine Send Alert fix. Slovak updated. Russian added, but no translations. 
+Default to White tractor. 
+AB Edit not visible if ABLine selected within 3 seconds of opening field. 
+Min/Max fixed for radius and Track. Version in Mapping Color Button.
+Spanish and Russian Added
+
+AgOpenGPS v5.1.2
+
+Version 5 of AgOpenGPS. Download and right click on AgOpenGPS_v51.zip and in 
+Properties "Unblock" it. Unzip the file and run AgOpenGPS.exe
+Download and Unblock the Support.zip as well which contains all the firmware, 
+boards etc.
+Run XLoader.exe to load the hex ino files to the Arduino Nano or the Arduino IDE.
+Distance added to AutoSteerPGN
+
+AgOpenGPS v5.1.1
+
+Version 5 of AgOpenGPS. Download and right click on AgOpenGPS_v51.zip and in Properties "Unblock" it. Unzip the file and run AgOpenGPS.exe
+Download and Unblock the Support.zip as well which contains all the firmware, boards etc.
+Run XLoader.exe to load the hex ino files to the Arduino Nano or the Arduino IDE.
+Using vehicles from the Beta release is not recommended.
+5.1.1 fix to load old Beta Vehicles, Delete field in OpenField Picker
+20.April.2021 Support has schematics added to it.
+
+AgOpenGPS v5.1
+
+Version 5 of AgOpenGPS. Download and right click on AgOpenGPS_v51.zip and in 
+Properties "Unblock" it. Unzip the file and run AgOpenGPS.exe
+Download and Unblock the Support.zip as well which contains all the firmware, 
+boards etc.
+Run XLoader.exe to load the hex ino files to the Arduino Nano or the Arduino IDE.
+Using vehicles from the Beta release is not recommended.
+
+AgOpenGPS v4.3.10
+
+On the plus side, unlike v4.1 or v4.2 - this one mostly works. 
+Stop using those old v4's, they have many bugs.
+
+Run "Add or Remove Programs" In Windows Settings and uninstall AgOpenGPS.
+Install new Version. You must install the matching Arduino code.
+Update June 15, 2020 - Overshoot reduction setting wasn't being saved locally.
+
+Update May 21, 2020 - Format field size, added area/hr rate, 
+x track error in inches in imperial, new section graphics, 
+added offset to boundary recorder form, NEWS angles added to AB Form. 
+Fixed also the uturn distance limitation. Same version number so it will use 
+all your old settings.
+
+Update May 6, 2020 - Keypad.DLL copied on update now. 
+In Boundary when you click google earth the boundary form closes.
+Color has a cancel button now.
+
+This version needs you to set everything, and make new environment, 
+tool, and vehicle settings - yes again...
+
+NMEALog.txt is in the main Fields directory. It records all the NMEA all the 
+time and appends to existing file - so it will make a huge file if you 
+leave it on. Move and rename if you want to keep.
+
+AgOpenGPS v4.1.12
+
+4 April 2020 - AgOpenGPS - minor update and fixes. V4.1.12
+
+NTRIP fixes, Able to select the mount from Source Data
+
+Support files contain Arduino and PCB code.
+
+AgOpenGPS v4.1.1
+
+Update includes Autosteer INO files and installer for Application.
+
+Arvel installs Software and Firmware: https://www.youtube.com/watch?v=Ic4BtOzBtkk
+
+April 2, 2020 Arduino code and AgOpenGPS
+
+April 3: Encoder changed to Turn Sensor AgOpenGPS.msi
+
+"Encoder" is now called Turn Sensor for detecting steering wheel turns.
+NTRIP Source data is displayed for a caster as well as closest one of 
+all casters
+Auto/Manual autosteer button is now Remote/Manual - controlled by steer 
+switch if in Remote
+
+Be sure to watch this video: https://www.youtube.com/watch?v=XNqwzcfyq-8
+
+AgOpenGPS v4.1
+
+AgOpenGPS_v4.msi - The installer, run this to install
+Support_Files.Zip - Contains the all the Arduino code and PCB files - 
+26 Mar 2020
+
+This version will ignore all previous settings from v4.0 that was used 
+to test and debug.
+Previous fields made with v3 will not have mapping loaded in this version.
+
+** Highly recommended to download ***
+
+AgOpenGPS v4
+
+Special notes if still using v3
+
+v4 will not import existing section mapping from v3 fields.
+v4 will not load vehicles from v3, now there are vehicles, tools, and 
+environments that can be saved.
+Be sure to upload the new sketch to the arduino - really important. 
+All steer boards are compatible.
+There may be some bugs, please report on the forum, and we'll get this one 
+working well.
+
+The AgOpenGPS.msi will install the program as well as put the arduino code 
+on the desktop. The zipped version has program code for you to 
+put where you wish.
+
+Fixes:
+Icon for program
+Fix dual antenna roll logic for sidehill only.
+
+AgOpenGPS v9 Overlap Edition
+
+This version adds overlap calculation so you know exactly how much of your 
+previous applying is overlapped. Can work with or without a boundary.
+
+The installer can now put a directory of support files for arduino and 
+pcb right on the desktop so you don't have to get the source code any longer.
+
+AgOpenGPS v3.0.8
+Pre-release
+
+This is a pre-release version for a few days until a few people have made 
+sure there aren't too bugs. Keep the old version for now and 
+please test this one.
+
+New features and text. Also now uses an installer, simply run the msi 
+installer and the icon will appear on the desktop.
+
+*** Installer on hold till ErrorLog.txt issue is fixed
+
+*** Installer is back.
+
+There also is the zip file of the program directory like the old way. 
+Really good idea to delete your AppData\AgOpenGPS\ folder of config files 
+and start fresh.
+
+AgOpenGPS v3.0.7
+
+Few bugs fixed, mainly the opengl window for sections gets messed up, 
+the sizing of it all on its own - a microsoft feature!
+
+AgOpenGPS
+
+Old and the new. This is version 3.0.3 with the new GUI. 
+Will be much more careful going forward with changes.
+
+v3.0.3
+AgOpenGPS
+
+Updated guidance forms. Tool width reference lines. Fix window order.
+
+French added and global strings updated for culture. Thanks Maxime!
+
+v3.0.2
+AgOpenGPS
+
+No side tab, LineWidth, Boundary Alarm, 
+New guidance line creation, selection, deletion
+
+v3.0.1
+AgOpenGPS Application
+Adds tool width to the touch lines form
+
+v3.0.0
+AgOpenGPS Application
+
+First release of AgOpenGPS
+****************************************************************
 
 v2.8 Feb 2019
 * Flag for drive around boundaries added
@@ -46,12 +427,14 @@ v2.8 Feb 2019
 * Multi boundary import from google earth
 
 v2.8 Jan 2019
-* Fixed left turn bug - yes there was one, adding tails never updated list count, cut off early
+* Fixed left turn bug - yes there was one, adding tails never updated list 
+count, cut off early
 * Fixed point fixing on boundary, gaps at end not filling
 * Turn Lines point distance based on eq width
 * Fixed input ouput text boxes not labelled correct
 * Headings calc fixed in contour and AB Curve. 
-* Manual UTurn eludes fixing. Need a software dept meeting. Someone needs firing. 
+* Manual UTurn eludes fixing. Need a software dept meeting. 
+Someone needs firing. 
 * Firing helped, UTurn manual mostly works. 
 
 v2.3 Dec 15
