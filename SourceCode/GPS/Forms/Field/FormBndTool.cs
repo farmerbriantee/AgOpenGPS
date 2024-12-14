@@ -1087,7 +1087,7 @@ namespace AgOpenGPS
 
             if (mf.bnd.bndList.Count > 0)
             {
-                GL.Begin(PrimitiveType.LineLoop);
+                GL.Begin(BeginMode.LineLoop);
                 for (int i = 0; i < mf.bnd.bndList[0].fenceLine.Count; i++)
                 {
                     GL.Vertex3(mf.bnd.bndList[0].fenceLine[i].easting, mf.bnd.bndList[0].fenceLine[i].northing, 0);
@@ -1095,7 +1095,7 @@ namespace AgOpenGPS
                 GL.End();
 
                 GL.PointSize(4);
-                GL.Begin(PrimitiveType.Points);
+                GL.Begin(BeginMode.Points);
                 for (int i = 0; i < mf.bnd.bndList[0].fenceLine.Count; i++)
                 {
                     GL.Vertex3(mf.bnd.bndList[0].fenceLine[i].easting, mf.bnd.bndList[0].fenceLine[i].northing, 0);
@@ -1108,7 +1108,7 @@ namespace AgOpenGPS
             {
                 GL.LineWidth(2);
                 GL.Color3(0.90f, 0.25f, 0.10f);
-                GL.Begin(PrimitiveType.LineStrip);
+                GL.Begin(BeginMode.LineStrip);
                 for (int i = 0; i < bndList.Count; i++)
                 {
                     GL.Vertex3(bndList[i].easting, bndList[i].northing, 0);
@@ -1117,7 +1117,7 @@ namespace AgOpenGPS
 
                 GL.PointSize(4);
                 GL.Color3(0.90f, 0.25f, 0.910f);
-                GL.Begin(PrimitiveType.Points);
+                GL.Begin(BeginMode.Points);
                 for (int i = 0; i < bndList.Count; i++)
                 {
                     GL.Vertex3(bndList[i].easting, bndList[i].northing, 0);
@@ -1126,7 +1126,7 @@ namespace AgOpenGPS
 
 
                 GL.Color3(0.82f, 0.835f, 0.5f);
-                GL.Begin(PrimitiveType.LineLoop);
+                GL.Begin(BeginMode.LineLoop);
                 for (int j = 0; j < smooList.Count; j++)
                 {
                     GL.Vertex3(smooList[j].easting, smooList[j].northing, 0);
@@ -1145,7 +1145,7 @@ namespace AgOpenGPS
                 else
                     GL.Color3(1.0f, 1.0f, 0);
 
-                GL.Begin(PrimitiveType.Points);
+                GL.Begin(BeginMode.Points);
 
                 for (int j = 0; j < secList.Count; j++)
                     GL.Vertex3(secList[j].easting, secList[j].northing, 0);
@@ -1153,7 +1153,7 @@ namespace AgOpenGPS
 
                 //GL.PointSize(24);
                 //GL.Color3(0.90f, 0.25f, 0.910f);
-                //GL.Begin(PrimitiveType.Points);
+                //GL.Begin(BeginMode.Points);
                 //    GL.Vertex3(0,0, 0);
                 //GL.End();
             }
@@ -1170,7 +1170,7 @@ namespace AgOpenGPS
                     {
                         GL.LineWidth(4);
                         GL.Color3(0.90f, 0.5f, 0.25f);
-                        GL.Begin(PrimitiveType.LineStrip);
+                        GL.Begin(BeginMode.LineStrip);
                         {
                             GL.Vertex3(mf.bnd.bndList[0].fenceLine[start].easting, mf.bnd.bndList[0].fenceLine[start].northing, 0);
                             GL.Vertex3(pint.easting, pint.northing, 0);
@@ -1182,7 +1182,7 @@ namespace AgOpenGPS
                     {
                         GL.LineWidth(4);
                         GL.Color3(0.90f, 0.5f, 0.25f);
-                        GL.Begin(PrimitiveType.Lines);
+                        GL.Begin(BeginMode.Lines);
                         {
                             GL.Vertex3(mf.bnd.bndList[0].fenceLine[start].easting, mf.bnd.bndList[0].fenceLine[start].northing, 0);
                             GL.Vertex3(mf.bnd.bndList[0].fenceLine[end].easting, mf.bnd.bndList[0].fenceLine[end].northing, 0);
@@ -1200,7 +1200,7 @@ namespace AgOpenGPS
         private void DrawABTouchPoints()
         {
             GL.PointSize(24);
-            GL.Begin(PrimitiveType.Points);
+            GL.Begin(BeginMode.Points);
 
             if (mf.bnd.bndList.Count != 0)
             {
@@ -1210,7 +1210,7 @@ namespace AgOpenGPS
                 GL.End();
 
                 GL.PointSize(16);
-                GL.Begin(PrimitiveType.Points);
+                GL.Begin(BeginMode.Points);
 
                 GL.Color3(.950f, 0.75f, 0.50f);
                 if (start != 99999) GL.Vertex3(mf.bnd.bndList[bndSelect].fenceLine[start].easting, mf.bnd.bndList[bndSelect].fenceLine[start].northing, 0);
@@ -1226,7 +1226,7 @@ namespace AgOpenGPS
                 GL.End();
 
                 GL.PointSize(16);
-                GL.Begin(PrimitiveType.Points);
+                GL.Begin(BeginMode.Points);
 
                 GL.Color3(.950f, 0.75f, 0.50f);
                 if (start != 99999) GL.Vertex3(ptA.easting, ptA.northing, 0);

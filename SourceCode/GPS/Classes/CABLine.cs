@@ -338,7 +338,7 @@ namespace AgOpenGPS
         {
             //ABLine currently being designed
                 GL.LineWidth(lineWidth);
-                GL.Begin(PrimitiveType.Lines);
+                GL.Begin(BeginMode.Lines);
                 GL.Color3(0.95f, 0.70f, 0.50f);
                 GL.Vertex3(desLineEndA.easting, desLineEndA.northing, 0.0);
                 GL.Vertex3(desLineEndB.easting, desLineEndB.northing, 0.0);
@@ -353,7 +353,7 @@ namespace AgOpenGPS
         {
             //Draw AB Points
             GL.PointSize(8.0f);
-            GL.Begin(PrimitiveType.Points);
+            GL.Begin(BeginMode.Points);
 
             GL.Color3(0.0f, 0.90f, 0.95f);
             GL.Vertex3(mf.trk.gArr[mf.trk.idx].ptB.easting, mf.trk.gArr[mf.trk.idx].ptB.northing, 0.0);
@@ -375,7 +375,7 @@ namespace AgOpenGPS
             GL.LineWidth(4);
             GL.Enable(EnableCap.LineStipple);
             GL.LineStipple(1, 0x0F00);
-            GL.Begin(PrimitiveType.Lines);
+            GL.Begin(BeginMode.Lines);
             GL.Color3(0.930f, 0.2f, 0.2f);
             GL.Vertex3(mf.trk.gArr[mf.trk.idx].endPtA.easting, mf.trk.gArr[mf.trk.idx].endPtA.northing, 0);
             GL.Vertex3(mf.trk.gArr[mf.trk.idx].endPtB.easting, mf.trk.gArr[mf.trk.idx].endPtB.northing, 0);
@@ -391,7 +391,7 @@ namespace AgOpenGPS
 
             //shadow
             GL.Color4(0.5, 0.5, 0.5, 0.3);
-            GL.Begin(PrimitiveType.TriangleFan);
+            GL.Begin(BeginMode.TriangleFan);
             {
                 GL.Vertex3(currentLinePtA.easting - sinHL, currentLinePtA.northing - cosHL, 0);
                 GL.Vertex3(currentLinePtA.easting + sinHR, currentLinePtA.northing + cosHR, 0);
@@ -403,7 +403,7 @@ namespace AgOpenGPS
             //shadow lines
             GL.Color4(0.55, 0.55, 0.55, 0.3);
             GL.LineWidth(1);
-            GL.Begin(PrimitiveType.LineLoop);
+            GL.Begin(BeginMode.LineLoop);
             {
                 GL.Vertex3(currentLinePtA.easting - sinHL, currentLinePtA.northing - cosHL, 0);
                 GL.Vertex3(currentLinePtA.easting + sinHR, currentLinePtA.northing + cosHR, 0);
@@ -414,7 +414,7 @@ namespace AgOpenGPS
 
             //draw current AB Line
             GL.LineWidth(lineWidth);
-            GL.Begin(PrimitiveType.Lines);
+            GL.Begin(BeginMode.Lines);
             GL.Color3(0.95f, 0.20f, 0.950f);
             GL.Vertex3(currentLinePtA.easting, currentLinePtA.northing, 0.0);
             GL.Vertex3(currentLinePtB.easting, currentLinePtB.northing, 0.0);
@@ -433,7 +433,7 @@ namespace AgOpenGPS
                 GL.LineStipple(1, 0x0003);
 
                 GL.LineWidth(1);
-                GL.Begin(PrimitiveType.Lines);
+                GL.Begin(BeginMode.Lines);
 
                 /*
                 for (double i = -2.5; i < 3; i++)
@@ -492,7 +492,7 @@ namespace AgOpenGPS
             {
                 ////Draw lookahead Point
                 //GL.PointSize(16.0f);
-                //GL.Begin(PrimitiveType.Points);
+                //GL.Begin(BeginMode.Points);
                 //GL.Color3(1.0f, 1.0f, 0.0f);
                 //GL.Vertex3(goalPointAB.easting, goalPointAB.northing, 0.0);
                 ////GL.Vertex3(mf.gyd.rEastSteer, mf.gyd.rNorthSteer, 0.0);
@@ -512,7 +512,7 @@ namespace AgOpenGPS
 
                 //    GL.LineWidth(2);
                 //    GL.Color3(0.53f, 0.530f, 0.950f);
-                //    GL.Begin(PrimitiveType.Lines);
+                //    GL.Begin(BeginMode.Lines);
                 //    for (int ii = 0; ii < numSegments - 15; ii++)
                 //    {
                 //        //glVertex2f(x + cx, y + cy);//output vertex

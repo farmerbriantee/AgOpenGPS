@@ -53,7 +53,7 @@ namespace AgOpenGPS
             GL.Translate(panX, panY, 0); 
 
             ////draw the guide
-            //GL.Begin(PrimitiveType.Triangles);
+            //GL.Begin(BeginMode.Triangles);
             //GL.Color3(0.98f, 0.0f, 0.0f);
             //GL.Vertex3(0.0f, -2.0f, 0.0f);
             //GL.Color3(0.0f, 0.98f, 0.0f);

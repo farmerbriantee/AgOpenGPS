@@ -69,7 +69,7 @@ namespace AgOpenGPS
 
             GL.BindTexture(TextureTarget.Texture2D, mf.texture[(int)FormGPS.textures.Font]);
             GL.Enable(EnableCap.Texture2D);
-            GL.Begin(PrimitiveType.Quads);
+            GL.Begin(BeginMode.Quads);
 
             double u_step = GlyphWidth / (double)textureWidth;
             double v_step = GlyphHeight / (double)textureHeight;
@@ -131,7 +131,7 @@ namespace AgOpenGPS
 
             GL.BindTexture(TextureTarget.Texture2D, mf.texture[(int)FormGPS.textures.Font]);
             GL.Enable(EnableCap.Texture2D);
-            GL.Begin(PrimitiveType.Quads);
+            GL.Begin(BeginMode.Quads);
 
             double u_step = GlyphWidth / (double)textureWidth;
             double v_step = GlyphHeight / (double)textureHeight;
@@ -179,7 +179,7 @@ namespace AgOpenGPS
 
             GL.BindTexture(TextureTarget.Texture2D, mf.texture[(int)FormGPS.textures.Font]);
             GL.Enable(EnableCap.Texture2D);
-            GL.Begin(PrimitiveType.Quads);
+            GL.Begin(BeginMode.Quads);
 
             double u_step = GlyphWidth / (double)textureWidth;
             double v_step = GlyphHeight / (double)textureHeight;
@@ -217,7 +217,7 @@ namespace AgOpenGPS
             // Select Our Texture
             //GL.Color3(0.95f, 0.95f, 0.40f);
             GL.Enable(EnableCap.Texture2D);
-            GL.Begin(PrimitiveType.Quads);
+            GL.Begin(BeginMode.Quads);
 
             double u_step = GlyphWidth / (double)textureWidth;
             double v_step = GlyphHeight / (double)textureHeight;

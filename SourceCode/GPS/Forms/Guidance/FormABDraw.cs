@@ -710,7 +710,7 @@ namespace AgOpenGPS
                 else
                     GL.Color3(0.62f, 0.635f, 0.635f);
 
-                GL.Begin(PrimitiveType.LineLoop);
+                GL.Begin(BeginMode.LineLoop);
                 for (int i = 0; i < mf.bnd.bndList[j].fenceLineEar.Count; i++)
                 {
                     GL.Vertex3(mf.bnd.bndList[j].fenceLineEar[i].easting, mf.bnd.bndList[j].fenceLineEar[i].northing, 0);
@@ -720,13 +720,13 @@ namespace AgOpenGPS
 
             //the vehicle
             GL.PointSize(16.0f);
-            GL.Begin(PrimitiveType.Points);
+            GL.Begin(BeginMode.Points);
             GL.Color3(1.0f, 0.00f, 0.0f);
             GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0.0);
             GL.End();
 
             GL.PointSize(8.0f);
-            GL.Begin(PrimitiveType.Points);
+            GL.Begin(BeginMode.Points);
             GL.Color3(0.00f, 0.0f, 0.0f);
             GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0.0);
             GL.End();
@@ -764,7 +764,7 @@ namespace AgOpenGPS
                     
                     GL.Color3(1.0f, 0.20f, 0.20f);
 
-                    GL.Begin(PrimitiveType.Lines);
+                    GL.Begin(BeginMode.Lines);
 
                     GL.Vertex3(gTemp[i].ptA.easting - (Math.Sin(gTemp[i].heading) * mf.ABLine.abLength), gTemp[i].ptA.northing - (Math.Cos(gTemp[i].heading) * mf.ABLine.abLength), 0);
                     GL.Vertex3(gTemp[i].ptB.easting + (Math.Sin(gTemp[i].heading) * mf.ABLine.abLength), gTemp[i].ptB.northing + (Math.Cos(gTemp[i].heading) * mf.ABLine.abLength), 0);
@@ -778,7 +778,7 @@ namespace AgOpenGPS
                     //    GL.Color3(1.0f, 0.0f, 0.0f);
 
                     //    GL.LineWidth(4);
-                    //    GL.Begin(PrimitiveType.Lines);
+                    //    GL.Begin(BeginMode.Lines);
 
                     //    GL.Vertex3(gTemp[mf.ABLine.numABLineSelected - 1].ptA.easting - (Math.Sin(gTemp[mf.ABLine.numABLineSelected - 1].heading) * mf.ABLine.abLength),
                     //        gTemp[mf.ABLine.numABLineSelected - 1].ptA.northing - (Math.Cos(gTemp[mf.ABLine.numABLineSelected - 1].heading) * mf.ABLine.abLength), 0);
@@ -807,7 +807,7 @@ namespace AgOpenGPS
 
                     GL.Color3(0.30f, 0.97f, 0.30f);
                     if (gTemp[i].mode == TrackMode.bndCurve) GL.Color3(0.70f, 0.5f, 0.2f);
-                    GL.Begin(PrimitiveType.LineStrip);
+                    GL.Begin(BeginMode.LineStrip);
                     foreach (vec3 pts in gTemp[i].curvePts)
                     {
                         GL.Vertex3(pts.easting, pts.northing, 0);
@@ -820,7 +820,7 @@ namespace AgOpenGPS
                     else GL.PointSize(8);
 
                     GL.Color3(1.0f, 0.75f, 0.350f);
-                    GL.Begin(PrimitiveType.Points);
+                    GL.Begin(BeginMode.Points);
 
                     GL.Vertex3(gTemp[i].curvePts[0].easting,
                                 gTemp[i].curvePts[0].northing,
@@ -840,7 +840,7 @@ namespace AgOpenGPS
         {
             GL.Color3(0.65, 0.650, 0.0);
             GL.PointSize(24);
-            GL.Begin(PrimitiveType.Points);
+            GL.Begin(BeginMode.Points);
 
             GL.Color3(0, 0, 0);
             if (start != 99999) GL.Vertex3(mf.bnd.bndList[bndSelect].fenceLine[start].easting, mf.bnd.bndList[bndSelect].fenceLine[start].northing, 0);
@@ -848,7 +848,7 @@ namespace AgOpenGPS
             GL.End();
 
             GL.PointSize(16);
-            GL.Begin(PrimitiveType.Points);
+            GL.Begin(BeginMode.Points);
 
             GL.Color3(1.0f, 0.75f, 0.350f);
             if (start != 99999) GL.Vertex3(mf.bnd.bndList[bndSelect].fenceLine[start].easting, mf.bnd.bndList[bndSelect].fenceLine[start].northing, 0);
@@ -989,7 +989,7 @@ namespace AgOpenGPS
                     foreach (System.Collections.Generic.List<vec3> triList in mf.triStrip[j].patchList)
                     {
                         //draw the triangle in each triangle strip
-                        GL.Begin(PrimitiveType.TriangleStrip);
+                        GL.Begin(BeginMode.TriangleStrip);
                         cnt = triList.Count;
 
                         //if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles

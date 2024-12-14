@@ -628,7 +628,7 @@ namespace AgOpenGPS
             if (ptCount < 1) return;
             GL.LineWidth(1);
             GL.Color3(0.98f, 0.92f, 0.460f);
-            GL.Begin(PrimitiveType.LineStrip);
+            GL.Begin(BeginMode.LineStrip);
             for (int h = 0; h < ptCount; h++) GL.Vertex3(recList[h].easting, recList[h].northing, 0);
             GL.End();
 
@@ -636,7 +636,7 @@ namespace AgOpenGPS
             {
                 //Draw lookahead Point
                 GL.PointSize(16.0f);
-                GL.Begin(PrimitiveType.Points);
+                GL.Begin(BeginMode.Points);
 
                 //GL.Color(1.0f, 1.0f, 0.25f);
                 //GL.Vertex(rEast, rNorth, 0.0);
@@ -655,7 +655,7 @@ namespace AgOpenGPS
                 //GL.LineWidth(2);
                 GL.PointSize(2);
                 GL.Color3(0.298f, 0.96f, 0.2960f);
-                GL.Begin(PrimitiveType.Points);
+                GL.Begin(BeginMode.Points);
                 for (int h = 0; h < shuttleDubinsList.Count; h++)
                     GL.Vertex3(shuttleDubinsList[h].easting, shuttleDubinsList[h].northing, 0);
                 GL.End();

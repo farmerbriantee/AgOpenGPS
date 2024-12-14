@@ -79,7 +79,7 @@ namespace AgOpenGPS
             ////closest points  TooDoo
             //GL.Color3(0.70f, 0.95f, 0.95f);
             //GL.PointSize(6.0f);
-            //GL.Begin(PrimitiveType.Points);
+            //GL.Begin(BeginMode.Points);
             //GL.Vertex3(mf.bnd.closestTurnPt.easting, mf.bnd.closestTurnPt.northing, 0);
             //GL.End();
 
@@ -89,7 +89,7 @@ namespace AgOpenGPS
                 vec3 pivot = mf.pivotAxlePos;
                 GL.LineWidth(mf.ABLine.lineWidth);
                 GL.Color3(0.825f, 0.22f, 0.90f);
-                GL.Begin(PrimitiveType.LineStrip);
+                GL.Begin(BeginMode.LineStrip);
                 for (int h = 0; h < bndBeingMadePts.Count; h++) GL.Vertex3(bndBeingMadePts[h].easting, bndBeingMadePts[h].northing, 0);
                 GL.Color3(0.295f, 0.972f, 0.290f);
                 GL.Vertex3(bndBeingMadePts[0].easting, bndBeingMadePts[0].northing, 0);
@@ -99,7 +99,7 @@ namespace AgOpenGPS
                 GL.Color3(0.825f, 0.842f, 0.0f);
                 GL.Enable(EnableCap.LineStipple);
                 GL.LineStipple(1, 0x0700);
-                GL.Begin(PrimitiveType.LineStrip);
+                GL.Begin(BeginMode.LineStrip);
                 if (isDrawRightSide)
                 {
                     GL.Vertex3(bndBeingMadePts[0].easting, bndBeingMadePts[0].northing, 0);
@@ -122,7 +122,7 @@ namespace AgOpenGPS
                 //boundary points
                 GL.Color3(0.0f, 0.95f, 0.95f);
                 GL.PointSize(6.0f);
-                GL.Begin(PrimitiveType.Points);
+                GL.Begin(BeginMode.Points);
                 for (int h = 0; h < bndBeingMadePts.Count; h++) GL.Vertex3(bndBeingMadePts[h].easting, bndBeingMadePts[h].northing, 0);
                 GL.End();
             }

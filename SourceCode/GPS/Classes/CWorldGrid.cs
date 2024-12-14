@@ -80,7 +80,7 @@ namespace AgOpenGPS
                     GL.BindTexture(TextureTarget.Texture2D, mf.texture[(int)FormGPS.textures.Floor]);
                 }
 
-                GL.Begin(PrimitiveType.TriangleStrip);
+                GL.Begin(BeginMode.TriangleStrip);
                     GL.TexCoord2(0, 0);
                     GL.Vertex3(eastingMin, northingMax, -0.10);
                     GL.TexCoord2(Count, 0.0);
@@ -94,7 +94,7 @@ namespace AgOpenGPS
                 if (isGeoMap)
                 {
                     GL.BindTexture(TextureTarget.Texture2D, mf.texture[(int)FormGPS.textures.bingGrid]);
-                    GL.Begin(PrimitiveType.TriangleStrip);
+                    GL.Begin(BeginMode.TriangleStrip);
                         GL.Color4(0.6f, 0.6f, 0.6f, 0.5f);
                         GL.TexCoord2(0, 0);
                         GL.Vertex3(eastingMinGeo, northingMaxGeo, -0.05);
@@ -125,7 +125,7 @@ namespace AgOpenGPS
                 GL.Color3(0.17, 0.17, 0.17);
             }
             GL.LineWidth(1);
-            GL.Begin(PrimitiveType.Lines);
+            GL.Begin(BeginMode.Lines);
             for (double num = Math.Round(eastingMin / _gridZoom, MidpointRounding.AwayFromZero) * _gridZoom; num < eastingMax; num += _gridZoom)
             {
                 if (num < eastingMin) continue;

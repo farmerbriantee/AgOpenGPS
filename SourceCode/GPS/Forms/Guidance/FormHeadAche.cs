@@ -536,7 +536,7 @@ namespace AgOpenGPS
                 else
                     GL.Color3(0.50f, 0.25f, 0.10f);
 
-                GL.Begin(PrimitiveType.Lines);
+                GL.Begin(BeginMode.Lines);
                 for (int i = 0; i < mf.bnd.bndList[j].fenceLine.Count; i++)
                 {
                     GL.Vertex3(mf.bnd.bndList[j].fenceLine[i].easting, mf.bnd.bndList[j].fenceLine[i].northing, 0);
@@ -546,7 +546,7 @@ namespace AgOpenGPS
 
             //the vehicle
             //GL.PointSize(8.0f);
-            //GL.Begin(PrimitiveType.Points);
+            //GL.Begin(BeginMode.Points);
             //GL.Color3(0.95f, 0.90f, 0.0f);
             //GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0.0);
             //GL.End();
@@ -601,7 +601,7 @@ namespace AgOpenGPS
                         GL.Color3(0.3f, 0.99f, 0.20f);
                     }
 
-                    GL.Begin(PrimitiveType.Points);
+                    GL.Begin(BeginMode.Points);
                     foreach (vec3 item in mf.hdl.tracksArr[i].trackPts)
                     {
                         GL.Vertex3(item.easting, item.northing, 0);
@@ -616,7 +616,7 @@ namespace AgOpenGPS
                     GL.LineWidth(6);
                     GL.Color3(1.0f, 0.0f, 1.0f);
 
-                    GL.Begin(PrimitiveType.LineStrip);
+                    GL.Begin(BeginMode.LineStrip);
                     foreach (vec3 item in mf.hdl.tracksArr[mf.hdl.idx].trackPts)
                     {
                         GL.Vertex3(item.easting, item.northing, 0);
@@ -626,7 +626,7 @@ namespace AgOpenGPS
                     int cnt = mf.hdl.tracksArr[mf.hdl.idx].trackPts.Count - 1;
                     GL.PointSize(28);
                     GL.Color3(0,0,0);
-                    GL.Begin(PrimitiveType.Points);
+                    GL.Begin(BeginMode.Points);
                     GL.Vertex3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[0].easting, mf.hdl.tracksArr[mf.hdl.idx].trackPts[0].northing, 0);
                     GL.Color3(0,0,0);
                     GL.Vertex3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[cnt].easting, mf.hdl.tracksArr[mf.hdl.idx].trackPts[cnt].northing, 0);
@@ -634,7 +634,7 @@ namespace AgOpenGPS
 
                     GL.PointSize(20);
                     GL.Color3(1.0f, 0.7f, 0.35f);
-                    GL.Begin(PrimitiveType.Points);
+                    GL.Begin(BeginMode.Points);
                     GL.Vertex3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[0].easting, mf.hdl.tracksArr[mf.hdl.idx].trackPts[0].northing, 0);
                     GL.Color3(0.6f, 0.75f, 0.99f);
                     GL.Vertex3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[cnt].easting, mf.hdl.tracksArr[mf.hdl.idx].trackPts[cnt].northing, 0);
@@ -644,7 +644,7 @@ namespace AgOpenGPS
 
             GL.LineWidth(8);
             GL.Color3(0.93f, 0.899f, 0.50f);
-            GL.Begin(PrimitiveType.LineStrip);
+            GL.Begin(BeginMode.LineStrip);
 
             for (int i = 0; i < mf.bnd.bndList[0].hdLine.Count; i++)
             {
@@ -657,7 +657,7 @@ namespace AgOpenGPS
         {
             GL.Color3(0.65, 0.650, 0.0);
             GL.PointSize(24);
-            GL.Begin(PrimitiveType.Points);
+            GL.Begin(BeginMode.Points);
 
             GL.Color3(0, 0, 0);
             if (start != 99999) GL.Vertex3(mf.bnd.bndList[bndSelect].fenceLine[start].easting, mf.bnd.bndList[bndSelect].fenceLine[start].northing, 0);
@@ -665,7 +665,7 @@ namespace AgOpenGPS
             GL.End();
 
             GL.PointSize(16);
-            GL.Begin(PrimitiveType.Points);
+            GL.Begin(BeginMode.Points);
 
             GL.Color3(1.0f, 0.75f, 0.350f);
             if (start != 99999) GL.Vertex3(mf.bnd.bndList[bndSelect].fenceLine[start].easting, mf.bnd.bndList[bndSelect].fenceLine[start].northing, 0);

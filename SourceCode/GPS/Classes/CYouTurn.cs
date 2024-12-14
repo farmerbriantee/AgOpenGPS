@@ -2777,7 +2777,7 @@ namespace AgOpenGPS
             else
                 GL.Color3(0.395f, 0.925f, 0.30f);
 
-            GL.Begin(PrimitiveType.Points);
+            GL.Begin(BeginMode.Points);
             for (int i = 0; i < ytList.Count; i++)
             {
                 GL.Vertex3(ytList[i].easting, ytList[i].northing, 0);
@@ -2785,7 +2785,7 @@ namespace AgOpenGPS
             GL.End();
 
             //GL.PointSize(12.0f);
-            //GL.Begin(PrimitiveType.Points);
+            //GL.Begin(BeginMode.Points);
             //GL.Color3(0.95f, 0.73f, 1.0f);
             //GL.Vertex3(inClosestTurnPt.closePt.easting, inClosestTurnPt.closePt.northing, 0);
             //GL.Color3(0.395f, 0.925f, 0.30f);
@@ -2795,7 +2795,7 @@ namespace AgOpenGPS
 
             //if (nextCurve != null)
             //{
-            //    GL.Begin(PrimitiveType.Points);
+            //    GL.Begin(BeginMode.Points);
             //    GL.Color3(0.95f, 0.41f, 0.980f);
             //    for (int i = 0; i < nextCurve.curList.Count; i++)
             //    {
@@ -2808,7 +2808,7 @@ namespace AgOpenGPS
             //{
             //    GL.PointSize(mf.ABLine.lineWidth + 2);
             //    GL.Color3(0.3f, 0.941f, 0.980f);
-            //    GL.Begin(PrimitiveType.Points);
+            //    GL.Begin(BeginMode.Points);
             //    for (int i = 0; i < ytList2.Count; i++)
             //    {
             //        GL.Vertex3(ytList2[i].easting, ytList2[i].northing, 0);

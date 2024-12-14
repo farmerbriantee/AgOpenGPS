@@ -151,7 +151,7 @@ namespace AgOpenGPS
                 GL.LineWidth(6);
                 //draw the rigid hitch
                 GL.Color3(0, 0, 0);
-                GL.Begin(PrimitiveType.LineLoop);
+                GL.Begin(BeginMode.LineLoop);
                 GL.Vertex3(-0.57, trailingTank, 0);
                 GL.Vertex3(0, 0, 0);
                 GL.Vertex3(0.57, trailingTank, 0);
@@ -161,7 +161,7 @@ namespace AgOpenGPS
                 GL.LineWidth(1);
                 //draw the rigid hitch
                 GL.Color3(0.765f, 0.76f, 0.32f);
-                GL.Begin(PrimitiveType.LineLoop);
+                GL.Begin(BeginMode.LineLoop);
                 GL.Vertex3(-0.57, trailingTank, 0);
                 GL.Vertex3(0, 0, 0);
                 GL.Vertex3(0.57, trailingTank, 0);
@@ -170,13 +170,13 @@ namespace AgOpenGPS
 
                 //GL.LineWidth(4);
                 //GL.Color3(0.937f, 0.537f, 0.397f);
-                //GL.Begin(PrimitiveType.Lines);
+                //GL.Begin(BeginMode.Lines);
                 //GL.Vertex3(0, trailingTank, 0);
                 //GL.Vertex3(0, 0, 0);
                 //GL.End();
 
                 //GL.Color3(0.937f, 0.537f, 0.397f);
-                //GL.Begin(PrimitiveType.Lines);
+                //GL.Begin(BeginMode.Lines);
                 //GL.Vertex3(-1, trailingTank, 0);
                 //GL.Vertex3(1, trailingTank, 0);
                 //GL.End();
@@ -184,7 +184,7 @@ namespace AgOpenGPS
                 //pivot markers
                 //GL.Color3(0,0,0);
                 //GL.PointSize(8);
-                //GL.Begin(PrimitiveType.Points);
+                //GL.Begin(BeginMode.Points);
                 //GL.Vertex3(-1, trailingTank, 0.0);
                 //GL.Vertex3(1, trailingTank, 0.0);
                 //GL.End();
@@ -192,7 +192,7 @@ namespace AgOpenGPS
                     GL.Enable(EnableCap.Texture2D);
                     GL.Color4(1, 1, 1, 0.75);
                     GL.BindTexture(TextureTarget.Texture2D, mf.texture[(int)FormGPS.textures.ToolWheels]);        // Select Our Texture
-                    GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
+                    GL.Begin(BeginMode.TriangleStrip);              // Build Quad From A Triangle Strip
                     GL.TexCoord2(1, 0); GL.Vertex2(1.5, trailingTank + 1); // Top Right
                     GL.TexCoord2(0, 0); GL.Vertex2(-1.5, trailingTank + 1); // Top Left
                     GL.TexCoord2(1, 1); GL.Vertex2(1.5, trailingTank - 1); // Bottom Right
@@ -218,7 +218,7 @@ namespace AgOpenGPS
             {
                 GL.LineWidth(6);
                 GL.Color3(0, 0, 0);
-                GL.Begin(PrimitiveType.LineLoop);
+                GL.Begin(BeginMode.LineLoop);
                 GL.Vertex3(-0.65 + mf.tool.offset, trailingTool, 0);
                 GL.Vertex3(0, 0, 0);
                 GL.Vertex3(0.65 + mf.tool.offset, trailingTool, 0);
@@ -228,7 +228,7 @@ namespace AgOpenGPS
                 GL.LineWidth(1);
                 //draw the rigid hitch
                 GL.Color3(0.7f, 0.4f, 0.2f);
-                GL.Begin(PrimitiveType.LineLoop);
+                GL.Begin(BeginMode.LineLoop);
                 GL.Vertex3(-0.65 + mf.tool.offset, trailingTool, 0);
                 GL.Vertex3(0, 0, 0);
                 GL.Vertex3(0.65 + mf.tool.offset, trailingTool, 0);
@@ -241,13 +241,13 @@ namespace AgOpenGPS
                     GL.Enable(EnableCap.Texture2D);
                     GL.Color4(1, 1, 1, 0.75);
                     GL.BindTexture(TextureTarget.Texture2D, mf.texture[(int)FormGPS.textures.Tire]);        // Select Our Texture
-                    GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
+                    GL.Begin(BeginMode.TriangleStrip);              // Build Quad From A Triangle Strip
                     GL.TexCoord2(1, 0 + textRotate); GL.Vertex2(1.4 + offset, trailingTool + 0.51); // Top Right
                     GL.TexCoord2(0, 0 + textRotate); GL.Vertex2(0.75 + offset, trailingTool + 0.51); // Top Left
                     GL.TexCoord2(1, 1 + textRotate); GL.Vertex2(1.4 + offset, trailingTool - 0.51); // Bottom Right
                     GL.TexCoord2(0, 1 + textRotate); GL.Vertex2(0.75 + offset, trailingTool - 0.51); // Bottom Left
                     GL.End();                       // Done Building Triangle Strip
-                    GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
+                    GL.Begin(BeginMode.TriangleStrip);              // Build Quad From A Triangle Strip
                     GL.TexCoord2(1, 0 + textRotate); GL.Vertex2(-1.4 + offset, trailingTool + 0.51); // Top Right
                     GL.TexCoord2(0, 0 + textRotate); GL.Vertex2(-0.75 + offset, trailingTool + 0.51); // Top Left
                     GL.TexCoord2(1, 1 + textRotate); GL.Vertex2(-1.4 + offset, trailingTool - 0.51); // Bottom Right
@@ -261,7 +261,7 @@ namespace AgOpenGPS
                 //    GL.Enable(EnableCap.Texture2D);
                 //    GL.Color4(1, 1, 1, 0.75);
                 //    GL.BindTexture(TextureTarget.Texture2D, mf.texture[26]);        // Select Our Texture
-                //    GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
+                //    GL.Begin(BeginMode.TriangleStrip);              // Build Quad From A Triangle Strip
                 //    GL.TexCoord2(1, 0 + textRotate); GL.Vertex2(1.5 + offset, trailingTool + 1); // Top Right
                 //    GL.TexCoord2(0, 0 + textRotate); GL.Vertex2(-1.5 + offset, trailingTool + 1); // Top Left
                 //    GL.TexCoord2(1, 1 + textRotate); GL.Vertex2(1.5 + offset, trailingTool - 1); // Bottom Right
@@ -277,7 +277,7 @@ namespace AgOpenGPS
             {
                 //look ahead lines
                 GL.LineWidth(1);
-                GL.Begin(PrimitiveType.Lines);
+                GL.Begin(BeginMode.Lines);
 
                 //lookahead section on
                 GL.Color3(0.20f, 0.7f, 0.2f);
@@ -328,7 +328,7 @@ namespace AgOpenGPS
 
                     double mid = (mf.section[j].positionRight - mf.section[j].positionLeft) / 2 + mf.section[j].positionLeft;
 
-                    GL.Begin(PrimitiveType.TriangleFan);
+                    GL.Begin(BeginMode.TriangleFan);
                     {
                         GL.Vertex3(mf.section[j].positionLeft, trailingTool, 0);
                         GL.Vertex3(mf.section[j].positionLeft, trailingTool - hite, 0);
@@ -342,7 +342,7 @@ namespace AgOpenGPS
 
                     if (mf.camera.camSetDistance > -width * 200)
                     {
-                        GL.Begin(PrimitiveType.LineLoop);
+                        GL.Begin(BeginMode.LineLoop);
                         {
                             GL.Color3(0.0, 0.0, 0.0);
                             GL.Vertex3(mf.section[j].positionLeft, trailingTool, 0);
@@ -363,7 +363,7 @@ namespace AgOpenGPS
                 {
                     //GL.PointSize(8);
 
-                    GL.Begin(PrimitiveType.Lines);
+                    GL.Begin(BeginMode.Lines);
                     for (int i = 1; i < zones; i++)
                     {
                         GL.Color3(0.5f, 0.80f, 0.950f);
@@ -386,7 +386,7 @@ namespace AgOpenGPS
                         if (mf.tram.isOuter)
                         {
                             //section markers
-                            GL.Begin(PrimitiveType.Points);
+                            GL.Begin(BeginMode.Points);
 
                             //right side
                             if (((mf.tram.controlByte) & 1) == 1) GL.Color3(0.0f, 0.900f, 0.39630f);
@@ -401,7 +401,7 @@ namespace AgOpenGPS
                         }
                         else
                         {
-                            GL.Begin(PrimitiveType.Points);
+                            GL.Begin(BeginMode.Points);
 
                             //right side
                             if (((mf.tram.controlByte) & 1) == 1) GL.Color3(0.0f, 0.900f, 0.39630f);
@@ -426,7 +426,7 @@ namespace AgOpenGPS
             //    GL.Color3(0.0f, 0.0f, 0.0f);
             //    //section markers
             //    GL.PointSize(3.0f);
-            //    GL.Begin(PrimitiveType.Points);
+            //    GL.Begin(BeginMode.Points);
             //    for (int j = 0; j < numOfSections - 1; j++)
             //        GL.Vertex3(mf.section[j].positionRight, trailingTool, 0);
             //    GL.End();
@@ -435,7 +435,7 @@ namespace AgOpenGPS
             //GL.Color3(0.30f, 1.0f, 1.0f);
             ////section markers
             //GL.PointSize(4.0f);
-            //GL.Begin(PrimitiveType.Points);
+            //GL.Begin(BeginMode.Points);
             ////for (int j = 0; j < numOfSections - 1; j++)
             //GL.Vertex3(mf.section[0].positionLeft, (mf.vehicle.hydLiftLookAheadDistanceLeft * 0.1) + trailingTool, 0);
             //GL.Vertex3(mf.section[mf.tool.numOfSections - 1].positionRight, (mf.vehicle.hydLiftLookAheadDistanceRight * 0.1) + trailingTool, 0);

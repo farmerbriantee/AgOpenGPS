@@ -71,7 +71,7 @@ namespace AgOpenGPS
                 {
                     for (int i = 0; i < tramList.Count; i++)
                     {
-                        GL.Begin(PrimitiveType.LineStrip);
+                        GL.Begin(BeginMode.LineStrip);
                         for (int h = 0; h < tramList[i].Count; h++)
                             GL.Vertex3(tramList[i][h].easting, tramList[i][h].northing, 0);
                         GL.End();
@@ -83,10 +83,10 @@ namespace AgOpenGPS
             {
                 if (tramBndOuterArr.Count > 0)
                 {
-                    GL.Begin(PrimitiveType.LineStrip);
+                    GL.Begin(BeginMode.LineStrip);
                     for (int h = 0; h < tramBndOuterArr.Count; h++) GL.Vertex3(tramBndOuterArr[h].easting, tramBndOuterArr[h].northing, 0);
                     GL.End();
-                    GL.Begin(PrimitiveType.LineStrip);
+                    GL.Begin(BeginMode.LineStrip);
                     for (int h = 0; h < tramBndInnerArr.Count; h++) GL.Vertex3(tramBndInnerArr[h].easting, tramBndInnerArr[h].northing, 0);
                     GL.End();
                 }

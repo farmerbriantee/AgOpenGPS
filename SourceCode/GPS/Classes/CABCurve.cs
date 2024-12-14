@@ -795,13 +795,13 @@ namespace AgOpenGPS
             {
                 GL.Color3(0.95f, 0.42f, 0.750f);
                 GL.LineWidth(4.0f);
-                GL.Begin(PrimitiveType.LineStrip);
+                GL.Begin(BeginMode.LineStrip);
                 for (int h = 0; h < desList.Count; h++) GL.Vertex3(desList[h].easting, desList[h].northing, 0);
                 GL.End();
 
                 GL.Enable(EnableCap.LineStipple);
                 GL.LineStipple(1, 0x0F00);
-                GL.Begin(PrimitiveType.Lines);
+                GL.Begin(BeginMode.Lines);
                 GL.Color3(0.99f, 0.99f, 0.0);
                 GL.Vertex3(desList[desList.Count - 1].easting, desList[desList.Count - 1].northing, 0);
                 GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0);
@@ -823,7 +823,7 @@ namespace AgOpenGPS
 
                 GL.LineWidth(4);
                 GL.Color3(0.96, 0.2f, 0.2f);
-                GL.Begin(PrimitiveType.Lines);
+                GL.Begin(BeginMode.Lines);
 
                 for (int h = 0; h < ptCount; h++) GL.Vertex3(
                     mf.trk.gArr[mf.trk.idx].curvePts[h].easting,
@@ -846,7 +846,7 @@ namespace AgOpenGPS
 
                     GL.LineWidth(mf.ABLine.lineWidth);
                     GL.Color3(0.930f, 0.92f, 0.260f);
-                    GL.Begin(PrimitiveType.Lines);
+                    GL.Begin(BeginMode.Lines);
                     for (int h = 0; h < smooList.Count; h++) GL.Vertex3(smooList[h].easting, smooList[h].northing, 0);
                     GL.End();
                 }
@@ -861,19 +861,19 @@ namespace AgOpenGPS
                     //ablines and curves are a line - the rest a loop
                     if (mf.trk.gArr[mf.trk.idx].mode <= TrackMode.Curve)
                     {
-                        GL.Begin(PrimitiveType.LineStrip);
+                        GL.Begin(BeginMode.LineStrip);
                     }
                     else
                     {
                         if (mf.trk.gArr[mf.trk.idx].mode == TrackMode.waterPivot)
                         {
                             GL.PointSize(15.0f);
-                            GL.Begin(PrimitiveType.Points);
+                            GL.Begin(BeginMode.Points);
                             GL.Vertex3(mf.trk.gArr[mf.trk.idx].ptA.easting, mf.trk.gArr[mf.trk.idx].ptA.northing, 0);
                             GL.End();
                         }
 
-                        GL.Begin(PrimitiveType.LineLoop);
+                        GL.Begin(BeginMode.LineLoop);
                     }
                     for (int h = 0; h < curList.Count; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
                     GL.End();
@@ -882,7 +882,7 @@ namespace AgOpenGPS
                     {
                         //Draw lookahead Point
                         GL.PointSize(4.0f);
-                        GL.Begin(PrimitiveType.Points);
+                        GL.Begin(BeginMode.Points);
                         GL.Color3(1.0f, 0.95f, 0.195f);
                         GL.Vertex3(goalPointCu.easting, goalPointCu.northing, 0.0);
                         GL.End();
@@ -890,7 +890,7 @@ namespace AgOpenGPS
                     mf.yt.DrawYouTurn();
 
                     GL.PointSize(3.0f);
-                    GL.Begin(PrimitiveType.Points);
+                    GL.Begin(BeginMode.Points);
                     GL.Color3(0.920f, 0.6f, 0.950f);
                     for (int h = 0; h < curList.Count; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
                     GL.End();

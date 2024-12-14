@@ -175,14 +175,14 @@ namespace AgOpenGPS
                     GL.LineWidth(4);
                     //draw the rigid hitch
                     GL.Color3(0, 0, 0);
-                    GL.Begin(PrimitiveType.Lines);
+                    GL.Begin(BeginMode.Lines);
                     GL.Vertex3(0, mf.tool.hitchLength, 0);
                     GL.Vertex3(0, 0, 0);
                     GL.End();
 
                     GL.LineWidth(1);
                     GL.Color3(1.237f, 0.037f, 0.0397f);
-                    GL.Begin(PrimitiveType.Lines);
+                    GL.Begin(BeginMode.Lines);
                     GL.Vertex3(0, mf.tool.hitchLength, 0);
                     GL.Vertex3(0, 0, 0);
                     GL.End();
@@ -192,7 +192,7 @@ namespace AgOpenGPS
                     GL.LineWidth(4);
                     //draw the rigid hitch
                     GL.Color3(0, 0, 0);
-                    GL.Begin(PrimitiveType.Lines);
+                    GL.Begin(BeginMode.Lines);
                     GL.Vertex3(-0.35, mf.tool.hitchLength, 0);
                     GL.Vertex3(-0.350, 0, 0);
                     GL.Vertex3(0.35, mf.tool.hitchLength, 0);
@@ -201,7 +201,7 @@ namespace AgOpenGPS
 
                     GL.LineWidth(1);
                     GL.Color3(1.237f, 0.037f, 0.0397f);
-                    GL.Begin(PrimitiveType.Lines);
+                    GL.Begin(BeginMode.Lines);
                     GL.Vertex3(-0.35, mf.tool.hitchLength, 0);
                     GL.Vertex3(-0.35, 0, 0);
                     GL.Vertex3(0.35, mf.tool.hitchLength, 0);
@@ -218,7 +218,7 @@ namespace AgOpenGPS
                 GL.Enable(EnableCap.Texture2D);
                 GL.Color4(1,1,1, 0.75);
                 GL.BindTexture(TextureTarget.Texture2D, mf.texture[(int)FormGPS.textures.QuestionMark]);        // Select Our Texture
-                GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
+                GL.Begin(BeginMode.TriangleStrip);              // Build Quad From A Triangle Strip
                 GL.TexCoord2(1, 0); GL.Vertex2(5, 5); // Top Right
                 GL.TexCoord2(0, 0); GL.Vertex2(1, 5); // Top Left
                 GL.TexCoord2(1, 1); GL.Vertex2(5, 1); // Bottom Right
@@ -267,7 +267,7 @@ namespace AgOpenGPS
                         }
                     }
 
-                    GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
+                    GL.Begin(BeginMode.TriangleStrip);              // Build Quad From A Triangle Strip
                     GL.TexCoord2(1, 0); GL.Vertex2(trackWidth, wheelbase * 1.5); // Top Right
                     GL.TexCoord2(0, 0); GL.Vertex2(-trackWidth, wheelbase * 1.5); // Top Left
                     GL.TexCoord2(1, 1); GL.Vertex2(trackWidth, -wheelbase * 0.5); // Bottom Right
@@ -283,7 +283,7 @@ namespace AgOpenGPS
                     GL.BindTexture(TextureTarget.Texture2D, mf.texture[(int)FormGPS.textures.FrontWheels]);        // Select Our Texture
                     GL.Color4(mf.vehicleColor.R, mf.vehicleColor.G, mf.vehicleColor.B, mf.vehicleOpacityByte);
 
-                    GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
+                    GL.Begin(BeginMode.TriangleStrip);              // Build Quad From A Triangle Strip
                     GL.TexCoord2(1, 0); GL.Vertex2(trackWidth * 0.5, wheelbase * 0.75); // Top Right
                     GL.TexCoord2(0, 0); GL.Vertex2(-trackWidth * 0.5, wheelbase * 0.75); // Top Left
                     GL.TexCoord2(1, 1); GL.Vertex2(trackWidth * 0.5, -wheelbase * 0.75); // Bottom Right
@@ -298,7 +298,7 @@ namespace AgOpenGPS
                     GL.Translate(-trackWidth * 0.5, wheelbase, 0);
                     GL.Rotate(leftAckermam, 0, 0, 1);
 
-                    GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
+                    GL.Begin(BeginMode.TriangleStrip);              // Build Quad From A Triangle Strip
                     GL.TexCoord2(1, 0); GL.Vertex2(trackWidth * 0.5, wheelbase * 0.75); // Top Right
                     GL.TexCoord2(0, 0); GL.Vertex2(-trackWidth * 0.5, wheelbase * 0.75); // Top Left
                     GL.TexCoord2(1, 1); GL.Vertex2(trackWidth * 0.5, -wheelbase * 0.75); // Bottom Right
@@ -352,7 +352,7 @@ namespace AgOpenGPS
 
                     GL.BindTexture(TextureTarget.Texture2D, mf.texture[(int)FormGPS.textures.FrontWheels]);        // Select Our Texture
 
-                    GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
+                    GL.Begin(BeginMode.TriangleStrip);              // Build Quad From A Triangle Strip
                     GL.TexCoord2(1, 0); GL.Vertex2(trackWidth * 0.25, wheelbase * 0.5); // Top Right
                     GL.TexCoord2(0, 0); GL.Vertex2(-trackWidth * 0.25, wheelbase * 0.5); // Top Left
                     GL.TexCoord2(1, 1); GL.Vertex2(trackWidth * 0.25, -wheelbase * 0.5); // Bottom Right
@@ -367,7 +367,7 @@ namespace AgOpenGPS
                     GL.Translate(-trackWidth * 0.5, -wheelbase, 0);
                     GL.Rotate(leftAckermam, 0, 0, 1);
 
-                    GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
+                    GL.Begin(BeginMode.TriangleStrip);              // Build Quad From A Triangle Strip
                     GL.TexCoord2(1, 0); GL.Vertex2(trackWidth * 0.25, wheelbase * 0.5); // Top Right
                     GL.TexCoord2(0, 0); GL.Vertex2(-trackWidth * 0.25, wheelbase * 0.5); // Top Left
                     GL.TexCoord2(1, 1); GL.Vertex2(trackWidth * 0.25, -wheelbase * 0.5); // Bottom Right
@@ -378,7 +378,7 @@ namespace AgOpenGPS
 
                     GL.Color4(mf.vehicleColor.R, mf.vehicleColor.G, mf.vehicleColor.B, mf.vehicleOpacityByte);
                     GL.BindTexture(TextureTarget.Texture2D, mf.texture[(uint)FormGPS.textures.Harvester]);        // Select Our Texture
-                    GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
+                    GL.Begin(BeginMode.TriangleStrip);              // Build Quad From A Triangle Strip
                     GL.TexCoord2(1, 0); GL.Vertex2(trackWidth, wheelbase * 1.5); // Top Right
                     GL.TexCoord2(0, 0); GL.Vertex2(-trackWidth, wheelbase * 1.5); // Top Left
                     GL.TexCoord2(1, 1); GL.Vertex2(trackWidth, -wheelbase * 1.5); // Bottom Right
@@ -408,7 +408,7 @@ namespace AgOpenGPS
                     GL.Translate(0, -wheelbase * 0.5, 0);
                     GL.Rotate(modelSteerAngle, 0, 0, 1);
 
-                    GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
+                    GL.Begin(BeginMode.TriangleStrip);              // Build Quad From A Triangle Strip
                     GL.TexCoord2(1, 0); GL.Vertex2(trackWidth, wheelbase * 0.65); // Top Right
                     GL.TexCoord2(0, 0); GL.Vertex2(-trackWidth, wheelbase * 0.65); // Top Left
                     GL.TexCoord2(1, 1); GL.Vertex2(trackWidth, -wheelbase * 0.65); // Bottom Right
@@ -423,7 +423,7 @@ namespace AgOpenGPS
                     GL.Translate(0, wheelbase * 0.5, 0);
                     GL.Rotate(-modelSteerAngle, 0, 0, 1);
 
-                    GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
+                    GL.Begin(BeginMode.TriangleStrip);              // Build Quad From A Triangle Strip
                     GL.TexCoord2(1, 0); GL.Vertex2(trackWidth, wheelbase * 0.65); // Top Right
                     GL.TexCoord2(0, 0); GL.Vertex2(-trackWidth, wheelbase * 0.65); // Top Left
                     GL.TexCoord2(1, 1); GL.Vertex2(trackWidth, -wheelbase * 0.65); // Bottom Right
@@ -437,7 +437,7 @@ namespace AgOpenGPS
             else
             {
                 GL.Color4(1.2, 1.20, 0.0, mf.vehicleOpacity);
-                GL.Begin(PrimitiveType.TriangleFan);
+                GL.Begin(BeginMode.TriangleFan);
                 GL.Vertex3(0, antennaPivot, -0.0);
                 GL.Vertex3(1.0, -0, 0.0);
                 GL.Color4(0.0, 1.20, 1.22, mf.vehicleOpacity);
@@ -449,7 +449,7 @@ namespace AgOpenGPS
 
                 GL.LineWidth(3);
                 GL.Color3(0.12, 0.12, 0.12);
-                GL.Begin(PrimitiveType.LineLoop);
+                GL.Begin(BeginMode.LineLoop);
                 {
                     GL.Vertex3(-1.0, 0, 0);
                     GL.Vertex3(1.0, 0, 0);
@@ -462,13 +462,13 @@ namespace AgOpenGPS
             //{
             //    //draw the bright antenna dot
             //    GL.PointSize(16);
-            //    GL.Begin(PrimitiveType.Points);
+            //    GL.Begin(BeginMode.Points);
             //    GL.Color3(0, 0, 0);
             //    GL.Vertex3(-antennaOffset, antennaPivot, 0.1);
             //    GL.End();
 
             //    GL.PointSize(10);
-            //    GL.Begin(PrimitiveType.Points);
+            //    GL.Begin(BeginMode.Points);
             //    GL.Color3(0.20, 0.98, 0.98);
             //    GL.Vertex3(-antennaOffset, antennaPivot, 0.1);
             //    GL.End();
@@ -480,7 +480,7 @@ namespace AgOpenGPS
                 {
                     GL.LineWidth(2);
                     GL.Color3(0.0, 1.270, 0.0);
-                    GL.Begin(PrimitiveType.LineStrip);
+                    GL.Begin(BeginMode.LineStrip);
                     {
                         GL.Vertex3(0.0, 0, 0);
                         GL.Color3(1.270, 1.220, 0.20);
@@ -495,7 +495,7 @@ namespace AgOpenGPS
                 {
                     GL.LineWidth(2);
                     GL.Color3(0.0, 1.270, 0.0);
-                    GL.Begin(PrimitiveType.LineStrip);
+                    GL.Begin(BeginMode.LineStrip);
                     {
                         GL.Vertex3(0.0, 0, 0);
                         GL.Color3(1.270, 1.220, 0.20);
@@ -514,7 +514,7 @@ namespace AgOpenGPS
                 double svennWidth = svennDist * 0.22;
                 GL.LineWidth(mf.ABLine.lineWidth);
                 GL.Color3(1.2, 1.25, 0.10);
-                GL.Begin(PrimitiveType.LineStrip);
+                GL.Begin(BeginMode.LineStrip);
                 {
                     GL.Vertex3(svennWidth, wheelbase + svennDist, 0.0);
                     GL.Vertex3(0, wheelbase + svennWidth + 0.5 + svennDist, 0.0);
@@ -535,7 +535,7 @@ namespace AgOpenGPS
             //    double x = mf.camera.camSetDistance * -.015;//we start at angle = 0
             //    double y = 0;
             //    GL.LineWidth(1);
-            //    GL.Begin(PrimitiveType.TriangleFan);
+            //    GL.Begin(BeginMode.TriangleFan);
             //    GL.Vertex3(x, y, 0.0);
             //    for (int ii = 0; ii < 20; ii++)
             //    {
@@ -551,7 +551,7 @@ namespace AgOpenGPS
             //    GL.End();
             //    GL.Color3(0.5f, 1.2f, 0.2f);
             //    GL.LineWidth(2);
-            //    GL.Begin(PrimitiveType.LineLoop);
+            //    GL.Begin(BeginMode.LineLoop);
 
             //    for (int ii = 0; ii < 20; ii++)
             //    {
@@ -573,7 +573,7 @@ namespace AgOpenGPS
 //just a triangle for vehicle
 //GL.LineWidth(3);
 //GL.Color3(0.80, 0.80, 1.29);
-//GL.Begin(PrimitiveType.LineLoop);
+//GL.Begin(BeginMode.LineLoop);
 //{
 //    GL.Vertex3(-1.0, 0, 0);
 //    GL.Vertex3(1.0, 0, 0);
@@ -581,7 +581,7 @@ namespace AgOpenGPS
 //}
 //GL.End();
 
-//GL.Begin(PrimitiveType.TriangleFan);
+//GL.Begin(BeginMode.TriangleFan);
 //{
 //    GL.Color3(1.250, 1.25, 0.32);
 //    GL.Vertex3(0, 5.5, -0.0);
@@ -593,7 +593,7 @@ namespace AgOpenGPS
 //GL.End();
 
 //GL.LineWidth(1);
-//GL.Begin(PrimitiveType.LineLoop);
+//GL.Begin(BeginMode.LineLoop);
 //{
 //    GL.Color3(0.0, 0.0, 0.0);
 //    GL.Vertex3(0, 5.5, -0.0);
@@ -606,7 +606,7 @@ namespace AgOpenGPS
 //    GL.LineWidth(2);
 //    //Svenn Arrow
 //    GL.Color3(1.2, 1.25, 0.10);
-//    GL.Begin(PrimitiveType.LineStrip);
+//    GL.Begin(BeginMode.LineStrip);
 //    {
 //        GL.Vertex3(0.6, wheelbase + 6, 0.0);
 //        GL.Vertex3(0, wheelbase + 8, 0.0);
@@ -619,7 +619,7 @@ namespace AgOpenGPS
 //if (!mf.vehicle.isHydLiftOn)
 //{
 //    GL.Color3(1.2, 1.20, 0.0);
-//    GL.Begin(PrimitiveType.TriangleFan);
+//    GL.Begin(BeginMode.TriangleFan);
 //    GL.Vertex3(0, antennaPivot, -0.0);
 //    GL.Vertex3(1.0, -0, 0.0);
 //    GL.Color3(0.0, 1.20, 1.22);
@@ -634,7 +634,7 @@ namespace AgOpenGPS
 //    if (mf.hd.isToolUp)
 //    {
 //        GL.Color3(0.0, 1.250, 0.0);
-//        GL.Begin(PrimitiveType.TriangleFan);
+//        GL.Begin(BeginMode.TriangleFan);
 //        GL.Vertex3(0, antennaPivot, -0.0);
 //        GL.Vertex3(1.0, -0, 0.0);
 //        GL.Vertex3(0, wheelbase, 0.0);
@@ -645,7 +645,7 @@ namespace AgOpenGPS
 //    else
 //    {
 //        GL.Color3(1.250, 0.0, 0.0);
-//        GL.Begin(PrimitiveType.TriangleFan);
+//        GL.Begin(BeginMode.TriangleFan);
 //        GL.Vertex3(0, antennaPivot, -0.0);
 //        GL.Vertex3(1.0, -0, 0.0);
 //        GL.Vertex3(0, wheelbase, 0.0);

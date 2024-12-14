@@ -949,7 +949,7 @@ namespace AgOpenGPS
         public void DrawContourLine()
         {
             //GL.Color3(0.98f, 0.98f, 0.50f);
-            //GL.Begin(PrimitiveType.Lines);
+            //GL.Begin(BeginMode.Lines);
             //GL.Vertex3(boxA.easting, boxA.northing, 0);
             //GL.Vertex3(boxB.easting, boxB.northing, 0);
             //GL.End();
@@ -959,12 +959,12 @@ namespace AgOpenGPS
             if (ptCount < 2) return;
             GL.LineWidth(mf.ABLine.lineWidth);
             GL.Color3(0.98f, 0.2f, 0.980f);
-            GL.Begin(PrimitiveType.LineStrip);
+            GL.Begin(BeginMode.LineStrip);
             for (int h = 0; h < ptCount; h++) GL.Vertex3(ctList[h].easting, ctList[h].northing, 0);
             GL.End();
 
             GL.PointSize(mf.ABLine.lineWidth);
-            GL.Begin(PrimitiveType.Points);
+            GL.Begin(BeginMode.Points);
 
             GL.Color3(0.87f, 08.7f, 0.25f);
             for (int h = 0; h < ptCount; h++) GL.Vertex3(ctList[h].easting, ctList[h].northing, 0);
@@ -986,18 +986,18 @@ namespace AgOpenGPS
             //GL.PointSize(6.0f);
             if (stripNum > -1)
             {
-                GL.Begin(PrimitiveType.Points);
+                GL.Begin(BeginMode.Points);
                 for (int h = 0; h < stripList[stripNum].Count; h++) GL.Vertex3(stripList[stripNum][h].easting, stripList[stripNum][h].northing, 0);
                 GL.End();
             }
 
-            //GL.Begin(PrimitiveType.Points);
+            //GL.Begin(BeginMode.Points);
             //GL.Color3(1.0f, 0.95f, 0.095f);
             //GL.Vertex3(rEastCT, rNorthCT, 0.0);
             //GL.End();
             //GL.PointSize(1.0f);
 
-            //GL.Begin(PrimitiveType.LineStrip);
+            //GL.Begin(BeginMode.LineStrip);
             //GL.Vertex3(boxF.easting, boxF.northing, 0);
             //GL.Vertex3(boxH.easting, boxH.northing, 0);
             //GL.Vertex3(boxC.easting, boxC.northing, 0);
@@ -1013,7 +1013,7 @@ namespace AgOpenGPS
             //    if (ptCount > 0)
             //    {
             //        ptCount = stripList[closestRefPatch].Count;
-            //        GL.Begin(PrimitiveType.Points);
+            //        GL.Begin(BeginMode.Points);
             //        for (int i = 0; i < ptCount; i++)
             //        {
             //            GL.Vertex2(stripList[closestRefPatch][i].easting, stripList[closestRefPatch][i].northing);
@@ -1028,13 +1028,13 @@ namespace AgOpenGPS
             //    //draw closest point and side of line points
             //    GL.Color3(0.5f, 0.900f, 0.90f);
             //    GL.PointSize(4.0f);
-            //    GL.Begin(PrimitiveType.Points);
+            //    GL.Begin(BeginMode.Points);
             //    for (int i = 0; i < ptCount; i++) GL.Vertex3(conList[i].x, conList[i].z, 0);
             //    GL.End();
 
             GL.Color3(0.35f, 0.30f, 0.90f);
             GL.PointSize(6.0f);
-            GL.Begin(PrimitiveType.Points);
+            GL.Begin(BeginMode.Points);
             GL.Vertex3(stripList[stripNum][pt].easting, stripList[stripNum][pt].northing, 0);
             GL.End();
             //}
@@ -1052,7 +1052,7 @@ namespace AgOpenGPS
 
                 //    GL.LineWidth(1);
                 //    GL.Color3(0.795f, 0.230f, 0.7950f);
-                //    GL.Begin(PrimitiveType.LineLoop);
+                //    GL.Begin(BeginMode.LineLoop);
                 //    for (int ii = 0; ii < numSegments; ii++)
                 //    {
                 //        //glVertex2f(x + cx, y + cy);//output vertex
@@ -1068,7 +1068,7 @@ namespace AgOpenGPS
 
                 //Draw lookahead Point
                 GL.PointSize(6.0f);
-                GL.Begin(PrimitiveType.Points);
+                GL.Begin(BeginMode.Points);
 
                 GL.Color3(1.0f, 0.95f, 0.095f);
                 GL.Vertex3(goalPointCT.easting, goalPointCT.northing, 0.0);
