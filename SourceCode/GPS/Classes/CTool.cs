@@ -300,32 +300,32 @@ namespace AgOpenGPS
 
                 GL.End();
 
-                //draw the triangle in each triangle strip
-                GL.Begin(PrimitiveType.Triangles);
+                ////draw the triangle in each triangle strip
+                //GL.Begin(PrimitiveType.Triangles);
 
-                if (mf.isDay) GL.Color4(0.3020f, 0.5f, 0.302f, 0.25f);
-                else GL.Color4(0.3020f, 0.5f, 0.302f, 0.15f);
+                //if (mf.isDay) GL.Color4(0.3020f, 0.5f, 0.302f, 0.25f);
+                //else GL.Color4(0.3020f, 0.5f, 0.302f, 0.15f);
 
-                GL.Vertex3(mf.tool.farLeftPosition, (mf.tool.lookAheadDistanceOnPixelsLeft) * 0.1 + trailingTool, 0);
-                GL.Vertex3(mf.tool.farRightPosition, (mf.tool.lookAheadDistanceOnPixelsRight) * 0.1 + trailingTool, 0);
-                GL.Vertex3(mf.tool.farRightPosition, (mf.tool.lookAheadDistanceOffPixelsRight) * 0.1 + trailingTool, 0);
+                //GL.Vertex3(mf.tool.farLeftPosition, (mf.tool.lookAheadDistanceOnPixelsLeft) * 0.1 + trailingTool, 0);
+                //GL.Vertex3(mf.tool.farRightPosition, (mf.tool.lookAheadDistanceOnPixelsRight) * 0.1 + trailingTool, 0);
+                //GL.Vertex3(mf.tool.farRightPosition, (mf.tool.lookAheadDistanceOffPixelsRight) * 0.1 + trailingTool, 0);
 
-                GL.Vertex3(mf.tool.farRightPosition, (mf.tool.lookAheadDistanceOffPixelsRight) * 0.1 + trailingTool, 0);
-                GL.Vertex3(mf.tool.farLeftPosition, (mf.tool.lookAheadDistanceOffPixelsLeft) * 0.1 + trailingTool, 0);
-                GL.Vertex3(mf.tool.farLeftPosition, (mf.tool.lookAheadDistanceOnPixelsLeft) * 0.1 + trailingTool, 0);
+                //GL.Vertex3(mf.tool.farRightPosition, (mf.tool.lookAheadDistanceOffPixelsRight) * 0.1 + trailingTool, 0);
+                //GL.Vertex3(mf.tool.farLeftPosition, (mf.tool.lookAheadDistanceOffPixelsLeft) * 0.1 + trailingTool, 0);
+                //GL.Vertex3(mf.tool.farLeftPosition, (mf.tool.lookAheadDistanceOnPixelsLeft) * 0.1 + trailingTool, 0);
 
-                if (mf.isDay) GL.Color4(0.53020f, 0.305f, 0.302f, 0.25f);
-                else GL.Color4(0.53020f, 0.305f, 0.302f, 0.15f);
+                //if (mf.isDay) GL.Color4(0.53020f, 0.305f, 0.302f, 0.25f);
+                //else GL.Color4(0.53020f, 0.305f, 0.302f, 0.15f);
 
-                GL.Vertex3(mf.tool.farLeftPosition, trailingTool, 0);
-                GL.Vertex3(mf.tool.farLeftPosition, (mf.tool.lookAheadDistanceOffPixelsLeft) * 0.1 + trailingTool, 0);
-                GL.Vertex3(mf.tool.farRightPosition, (mf.tool.lookAheadDistanceOffPixelsRight) * 0.1 + trailingTool, 0);
+                //GL.Vertex3(mf.tool.farLeftPosition, trailingTool, 0);
+                //GL.Vertex3(mf.tool.farLeftPosition, (mf.tool.lookAheadDistanceOffPixelsLeft) * 0.1 + trailingTool, 0);
+                //GL.Vertex3(mf.tool.farRightPosition, (mf.tool.lookAheadDistanceOffPixelsRight) * 0.1 + trailingTool, 0);
 
-                GL.Vertex3(mf.tool.farRightPosition, (mf.tool.lookAheadDistanceOffPixelsRight) * 0.1 + trailingTool, 0);
-                GL.Vertex3(mf.tool.farRightPosition, trailingTool, 0);
-                GL.Vertex3(mf.tool.farLeftPosition, trailingTool, 0);
+                //GL.Vertex3(mf.tool.farRightPosition, (mf.tool.lookAheadDistanceOffPixelsRight) * 0.1 + trailingTool, 0);
+                //GL.Vertex3(mf.tool.farRightPosition, trailingTool, 0);
+                //GL.Vertex3(mf.tool.farLeftPosition, trailingTool, 0);
 
-                GL.End();
+                //GL.End();
 
             }
 

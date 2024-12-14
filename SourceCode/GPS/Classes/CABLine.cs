@@ -36,7 +36,7 @@ namespace AgOpenGPS
 
         public double snapDistance, lastSecond = 0;
         public double steerAngleAB;
-        public int lineWidth;
+        public int lineWidth, numGuideLines;
 
         //design
         public vec2 desPtA = new vec2(0.2, 0.15);
@@ -72,6 +72,7 @@ namespace AgOpenGPS
             //isOnTramLine = true;
             lineWidth = Properties.Settings.Default.setDisplay_lineWidth;
             abLength = 2000;
+            numGuideLines = Properties.Settings.Default.setAS_numGuideLines;
         }
 
         public void BuildCurrentABLineList(vec3 pivot)
@@ -445,7 +446,7 @@ namespace AgOpenGPS
 
                 if (toolOffset == 0)
                 {
-                    for (int i = 1; i < 12; i++)
+                    for (int i = 1; i <= numGuideLines; i++)
                     {
                         GL.Vertex3((cosHeading * (toolWidth * i)) + currentLinePtA.easting, (sinHeading * (toolWidth * i)) + currentLinePtA.northing, 0);
                         GL.Vertex3((cosHeading * (toolWidth * i)) + currentLinePtB.easting, (sinHeading * (toolWidth * i)) + currentLinePtB.northing, 0);
