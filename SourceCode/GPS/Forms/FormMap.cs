@@ -428,13 +428,13 @@ namespace AgOpenGPS
 
             mf.worldGrid.isGeoMap = true;
 
-            CornerPoint geoRef = mapControl.TopLeftCorner;
+            GeoPoint geoRef = mapControl.TopLeft;
             mf.pn.ConvertWGS84ToLocal(geoRef.Latitude, geoRef.Longitude, out double nor, out double eas);
             if (Math.Abs(nor) > 4000 || Math.Abs(eas) > 4000) mf.worldGrid.isGeoMap = false;
             mf.worldGrid.northingMaxGeo = nor;
             mf.worldGrid.eastingMinGeo = eas;
 
-            geoRef = mapControl.BottomRightCorner;
+            geoRef = mapControl.BottomRight;
             mf.pn.ConvertWGS84ToLocal(geoRef.Latitude, geoRef.Longitude, out nor, out eas);
             if (Math.Abs(nor) > 4000 || Math.Abs(eas) > 4000) mf.worldGrid.isGeoMap = false;
             mf.worldGrid.northingMinGeo = nor;
