@@ -111,7 +111,8 @@ namespace AgOpenGPS
                     mf.FileSaveTracks();
                     if (mf.isBtnAutoSteerOn)
                     {
-                       mf. btnAutoSteer.PerformClick();
+                        mf. btnAutoSteer.PerformClick();
+                        mf.TimedMessageBox(2000, gStr.gsGuidanceStopped, "Return From Editing");
                     }
                     if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
                 }
@@ -132,6 +133,7 @@ namespace AgOpenGPS
                         if (mf.trk.idx != originalLine)
                         {
                             if (mf.isBtnAutoSteerOn) mf.btnAutoSteer.PerformClick();
+                            mf.TimedMessageBox(2000, gStr.gsGuidanceStopped, "Return From Editing");
                             if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
                         }
 
@@ -168,6 +170,7 @@ namespace AgOpenGPS
                                 if (mf.isBtnAutoSteerOn)
                                 {
                                     mf.btnAutoSteer.PerformClick();
+                                    mf.TimedMessageBox(2000, gStr.gsGuidanceStopped, "Return From Editing");
                                 }
                                 if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
                             }

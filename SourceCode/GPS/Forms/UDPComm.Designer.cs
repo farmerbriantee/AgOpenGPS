@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Diagnostics;
 using System.Xml.Linq;
+using AgOpenGPS.Culture;
 
 namespace AgOpenGPS
 {
@@ -455,6 +456,7 @@ namespace AgOpenGPS
             if ((char)keyData == hotkeys[0]) //autosteer button on off
             {
                 btnAutoSteer.PerformClick();
+                if (!isBtnAutoSteerOn) TimedMessageBox(2000, gStr.gsGuidanceStopped, "Hotkey Triggered");
                 return true;    // indicate that you handled this keystroke
             }
 
@@ -635,7 +637,7 @@ namespace AgOpenGPS
                 curve.isCurveValid = false;
                 if (isBtnAutoSteerOn)
                 {
-                    btnAutoSteer.PerformClick();
+                    btnAutoYouTurn.PerformClick();
                 }
             }
 

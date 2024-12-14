@@ -130,6 +130,7 @@ namespace AgOpenGPS
             if (mf.isBtnAutoSteerOn)
             {
                 mf.btnAutoSteer.PerformClick();
+                mf.TimedMessageBox(2000, gStr.gsGuidanceStopped, "Return From Editing");
             }
             if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
 
@@ -199,6 +200,7 @@ namespace AgOpenGPS
                     if (mf.isBtnAutoSteerOn)
                     {
                         mf.btnAutoSteer.PerformClick();
+                        mf.TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsNoGuidanceLines);
                     }
                     Close();
                 }

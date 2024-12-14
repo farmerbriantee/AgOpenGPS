@@ -451,6 +451,7 @@ namespace AgOpenGPS
                                 if (isRTK_KillAutosteer && isBtnAutoSteerOn)
                                 {
                                     btnAutoSteer.PerformClick();
+                                    TimedMessageBox(3000, "Autosteer Turned Off", "RTK Alarm from Fix to Float");
                                 }
                             }
                             sounds.isRTKAlarming = true;

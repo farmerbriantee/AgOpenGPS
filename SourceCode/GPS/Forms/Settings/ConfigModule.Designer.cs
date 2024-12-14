@@ -188,7 +188,7 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.Save();
 
-            mf.TimedMessageBox(1000, gStr.gsMachinePort, gStr.gsSentToMachineModule);
+            mf.TimedMessageBox(2000, gStr.gsMachinePort, gStr.gsSentToMachineModule);
 
             pboxSendMachine.Visible = false;
         }
@@ -274,7 +274,7 @@ namespace AgOpenGPS
             SaveSettingsRelay();
             SendRelaySettingsToMachineModule();
 
-            mf.TimedMessageBox(1000, gStr.gsMachinePort, gStr.gsSentToMachineModule);
+            mf.TimedMessageBox(2000, gStr.gsMachinePort, gStr.gsSentToMachineModule);
 
             pboxSendRelay.Visible = false;
         }

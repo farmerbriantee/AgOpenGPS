@@ -392,10 +392,10 @@ namespace AgOpenGPS
                 }
 
                 //Make sure it is off when it should
-                if ((!ct.isContourBtnOn && trk.idx == -1 && isBtnAutoSteerOn)
-                    ) 
+                if (!ct.isContourBtnOn && trk.idx == -1 && isBtnAutoSteerOn) 
                 {
                     btnAutoSteer.PerformClick();
+                                            TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsNoGuidanceLines);
                 }
 
 
@@ -823,6 +823,7 @@ namespace AgOpenGPS
                     if (isBtnAutoSteerOn)
                     {
                         btnAutoSteer.PerformClick();
+                                                TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsNoGuidanceLines);
                     }
                     btnAutoSteer.Enabled = false;
                 }
