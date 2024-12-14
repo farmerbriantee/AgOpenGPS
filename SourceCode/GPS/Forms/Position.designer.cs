@@ -1,5 +1,6 @@
 ﻿//Please, if you use this, share the improvements
 
+using AgOpenGPS.Culture;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -778,7 +779,11 @@ namespace AgOpenGPS
             {
                 if (jumpDistance > jumpDistanceAlarm)
                 {
-                    if (isBtnAutoSteerOn) btnAutoSteer.PerformClick();
+                    if (isBtnAutoSteerOn)
+                    {
+                        btnAutoSteer.PerformClick();
+                        TimedMessageBox(3000, "Autosteer Turned Off", "Big Jump in GPS position:" + jumpDistance.ToString("N0") + " cm");
+                    }
                 }
             }
 
@@ -894,6 +899,10 @@ namespace AgOpenGPS
                     if (isBtnAutoSteerOn && avgSpeed > vehicle.maxSteerSpeed)
                     {
                         btnAutoSteer.PerformClick();
+                        if (isMetric)
+                            TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + vehicle.minSteerSpeed.ToString("N0") + " Kmh");
+                        else
+                            TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + (vehicle.minSteerSpeed * 0.621371).ToString("N1") + " MPH");
                     }
 
                     if (isBtnAutoSteerOn && avgSpeed < vehicle.minSteerSpeed)
@@ -1179,6 +1188,8 @@ namespace AgOpenGPS
                 if (isBtnAutoSteerOn)
                 {
                    btnAutoSteer.PerformClick();
+                    TimedMessageBox(2000, gStr.gsGuidanceStopped, "Panic Stop");
+
                 }
             }
 

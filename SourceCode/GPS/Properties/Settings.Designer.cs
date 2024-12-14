@@ -3083,5 +3083,17 @@ namespace AgOpenGPS.Properties {
                 this["setTool_isDirectionMarkers"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int setAS_numGuideLines {
+            get {
+                return ((int)(this["setAS_numGuideLines"]));
+            }
+            set {
+                this["setAS_numGuideLines"] = value;
+            }
+        }
     }
 }

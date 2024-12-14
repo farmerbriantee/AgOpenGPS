@@ -480,6 +480,8 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.setTool_isDirectionMarkers = mf.isDirectionMarkers;
 
+            Properties.Settings.Default.setAS_numGuideLines = mf.ABLine.numGuideLines;
+
             Properties.Settings.Default.Save();
         }
 

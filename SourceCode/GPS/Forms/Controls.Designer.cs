@@ -48,6 +48,7 @@ namespace AgOpenGPS
                 if (isBtnAutoSteerOn)
                 {
                     btnAutoSteer.PerformClick();
+                                            TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsContourOn);
                 }
 
             }
@@ -153,7 +154,6 @@ namespace AgOpenGPS
                         btnAutoSteer.Image = Properties.Resources.AutoSteerOff;
                         //if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
                         if (sounds.isSteerSoundOn) sounds.sndAutoSteerOff.Play();
-                        if (!isBtnAutoSteerOn) TimedMessageBox(1000, gStr.gsGuidanceStopped, gStr.gsGuidanceStopped);
                     }
 
                     if (isMetric)
@@ -171,7 +171,6 @@ namespace AgOpenGPS
                 btnAutoSteer.Image = Properties.Resources.AutoSteerOff;
                 //if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
                 if (sounds.isSteerSoundOn) sounds.sndAutoSteerOff.Play();
-                if (!isBtnAutoSteerOn) TimedMessageBox(1000, gStr.gsGuidanceStopped, gStr.gsGuidanceStopped);
             }
             else
             {
@@ -258,6 +257,7 @@ namespace AgOpenGPS
                 if (isBtnAutoSteerOn)
                 {
                     btnAutoSteer.PerformClick();
+                                            TimedMessageBox(2000, gStr.gsGuidanceStopped, "Track Changed");
                 }
 
                 if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
@@ -301,6 +301,7 @@ namespace AgOpenGPS
                 if (isBtnAutoSteerOn)
                 {
                     btnAutoSteer.PerformClick();
+                                            TimedMessageBox(2000, gStr.gsGuidanceStopped, "Track Changed");
                 }
 
                 lblNumCu.Text = (trk.idx + 1).ToString() + "/" + trk.gArr.Count.ToString();
@@ -728,6 +729,7 @@ namespace AgOpenGPS
             if (isBtnAutoSteerOn)
             {
                 btnAutoSteer.PerformClick();
+                                        TimedMessageBox(2000, gStr.gsGuidanceStopped, "Paths Enabled");
             }
 
             DisableYouTurnButtons();
@@ -2209,6 +2211,7 @@ namespace AgOpenGPS
             if (isBtnAutoSteerOn)
             {
                 btnAutoSteer.PerformClick();
+                                        TimedMessageBox(2000, gStr.gsGuidanceStopped, "Sim Reverse Touched");
             }
         }
         private void hsbarSteerAngle_Scroll(object sender, ScrollEventArgs e)

@@ -874,7 +874,7 @@ namespace AgOpenGPS
             mf.SendPgnToLoop(mf.p_251.pgn);
             pboxSendSteer.Visible = false;
 
-            mf.TimedMessageBox(1000, gStr.gsAutoSteerPort, "Settings Sent To Steer Module");
+            mf.TimedMessageBox(2000, gStr.gsAutoSteerPort, "Settings Sent To Steer Module");
         }
 
         private void SaveSettings()
