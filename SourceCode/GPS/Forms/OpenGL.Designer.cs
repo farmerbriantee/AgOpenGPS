@@ -159,8 +159,10 @@ namespace AgOpenGPS
                                     //draw the triangle in each triangle strip
                                     GL.Begin(PrimitiveType.TriangleStrip);
 
-                                    GL.Color4((byte)triList[0].easting, (byte)triList[0].northing, (byte)triList[0].heading, (byte)152);
+                                    //GL.Color4((byte)triList[0].easting, (byte)triList[0].northing, (byte)triList[0].heading, (byte)152);
                                     //else GL.Color4((byte)triList[0].easting, (byte)triList[0].northing, (byte)triList[0].heading, (byte)(152 * 0.5));
+                                    if (isDay) GL.Color4(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B, (byte)152);
+                                    else GL.Color4(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B, (byte)(76));
 
                                     //if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
                                     if (count2 >= (mipmap + 2))
@@ -186,7 +188,7 @@ namespace AgOpenGPS
                                             left = new vec2(
                                                 (triList[37].easting + factor * (triList[38].easting - triList[37].easting)),
                                                 (triList[37].northing + factor * (triList[38].northing - triList[37].northing)));
-                                            
+
                                             factor = 1 - factor;
 
                                             right = new vec2(
