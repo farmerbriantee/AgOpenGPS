@@ -24,7 +24,7 @@ namespace AgOpenGPS
         public double slowSpeedCutoff = 0;
 
         //autosteer values
-        public double goalPointLookAhead, goalPointLookAheadHold, goalPointLookAheadMult, uturnCompensation;
+        public double goalPointLookAheadHold, goalPointLookAheadMult, uturnCompensation;
 
         public double stanleyDistanceErrorGain, stanleyHeadingErrorGain;
         public double minLookAheadDistance = 2.0;
@@ -64,7 +64,6 @@ namespace AgOpenGPS
             slowSpeedCutoff = Properties.Settings.Default.setVehicle_slowSpeedCutoff;
 
             goalPointLookAheadHold = Properties.Settings.Default.setVehicle_goalPointLookAheadHold;
-            goalPointLookAhead = goalPointLookAheadHold * 0.75;
 
             goalPointLookAheadMult = Properties.Settings.Default.setVehicle_goalPointLookAheadMult;
 
@@ -112,24 +111,27 @@ namespace AgOpenGPS
             double xTE = Math.Abs(modeActualXTE);
             double goalPointDistance = mf.avgSpeed * 0.07; //0.05 * 1.4
 
+            double LoekiAhead = goalPointLookAheadHold;
+            if (!mf.isBtnAutoSteerOn) LoekiAhead = 5;
+
             if (xTE <= 0.1)
             {
-                goalPointDistance *= goalPointLookAheadHold; 
-                goalPointDistance += goalPointLookAheadHold;
+                goalPointDistance *= LoekiAhead; 
+                goalPointDistance += LoekiAhead;
             }
 
-            else if (xTE > 0.1 && xTE < 0.3)
+            else if (xTE > 0.1 && xTE < 0.4)
             {
                 xTE -= 0.1;
-                double ramp = 1- (xTE/0.8);
-                goalPointDistance *= goalPointLookAheadHold * ramp; 
-                goalPointDistance += goalPointLookAheadHold * ramp;
+                double ramp = 1- (xTE/1.2);
+                goalPointDistance *= LoekiAhead * ramp; 
+                goalPointDistance += LoekiAhead * ramp;
 
             }
             else
             {
-                goalPointDistance *= goalPointLookAheadHold * 0.75; 
-                goalPointDistance += goalPointLookAheadHold * 0.75;
+                goalPointDistance *= LoekiAhead * 0.75; 
+                goalPointDistance += LoekiAhead * 0.75;
             }
 
             ////how far should goal point be away  - speed * seconds * kmph -> m/s then limit min value

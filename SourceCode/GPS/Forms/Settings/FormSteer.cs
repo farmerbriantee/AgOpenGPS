@@ -358,8 +358,6 @@ namespace AgOpenGPS
             mf.vehicle.isInFreeDriveMode = false;
 
             Properties.Settings.Default.setVehicle_goalPointLookAheadHold = mf.vehicle.goalPointLookAheadHold;
-            mf.vehicle.goalPointLookAhead = mf.vehicle.goalPointLookAheadHold * 0.75;
-
             Properties.Settings.Default.setVehicle_goalPointLookAheadMult = mf.vehicle.goalPointLookAheadMult;
 
             Properties.Settings.Default.stanleyHeadingErrorGain = mf.vehicle.stanleyHeadingErrorGain;
@@ -395,17 +393,6 @@ namespace AgOpenGPS
 
             //save current vehicle
             SettingsIO.ExportAll(mf.vehiclesDirectory + mf.vehicleFileName + ".XML");
-
-            if (mf.isBtnAutoSteerOn)
-            {
-                Properties.Settings.Default.setVehicle_goalPointLookAheadHold = mf.vehicle.goalPointLookAheadHold;
-                mf.vehicle.goalPointLookAhead = mf.vehicle.goalPointLookAheadHold * 0.75;
-            }
-            else
-            {
-                mf.vehicle.goalPointLookAhead = 6;
-                mf.vehicle.goalPointLookAheadHold = 7;
-            }
         }
 
         private void tabSettings_Enter(object sender, EventArgs e)
@@ -769,7 +756,6 @@ namespace AgOpenGPS
         {
             mf.vehicle.goalPointLookAheadHold = hsbarHoldLookAhead.Value * 0.1;
             lblHoldLookAhead.Text = mf.vehicle.goalPointLookAheadHold.ToString();
-            mf.vehicle.goalPointLookAhead = mf.vehicle.goalPointLookAheadHold * 0.75;
         }
 
         private void hsbarLookAheadMult_ValueChanged(object sender, EventArgs e)

@@ -170,23 +170,8 @@ namespace AgOpenGPS
                     form.Show(this);
                 }
             }
-            if (isBtnAutoSteerOn)
-            {
-                vehicle.goalPointLookAheadHold = Properties.Settings.Default.setVehicle_goalPointLookAheadHold;
-                vehicle.goalPointLookAhead = vehicle.goalPointLookAheadHold * 0.75;
-            }
-            else
-            {
-                Form fcs = Application.OpenForms["FormSteer"];
-                Form fc = Application.OpenForms["FormSteerWiz"];
-
-                if (fcs == null && fc == null)
-                {
-                    vehicle.goalPointLookAheadHold = 7;
-                    vehicle.goalPointLookAhead = 6;
-                }
-            }
         }
+
         private void btnAutoYouTurn_Click(object sender, EventArgs e)
         {
             yt.isTurnCreationTooClose = false;
