@@ -77,10 +77,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\ColorPicker.dll</HintPath>
     </Reference>
-    <Reference Include="Control.Draggable, Version=1.0.7235.37687, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\References\Control.Draggable.dll</HintPath>
-    </Reference>
     <Reference Include="Keypad, Version=5.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\Keypad.dll</HintPath>
@@ -1349,6 +1345,7 @@
     <None Include="btnImages\FileUse.png" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Control.Draggable" Version="1.0.5049.269" />
     <PackageReference Include="Resource.Embedder" Version="2.2.0" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
     <PackageReference Include="WebEye.Controls.WinForms.WebCameraControl" Version="1.0.0" />
