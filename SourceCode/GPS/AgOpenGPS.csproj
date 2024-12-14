@@ -108,10 +108,6 @@
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="WebEye.Controls.WinForms.WebCameraControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\References\WebEye.Controls.WinForms.WebCameraControl.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\CBrightness.cs" />
@@ -1355,6 +1351,7 @@
   <ItemGroup>
     <PackageReference Include="Resource.Embedder" Version="2.2.0" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+    <PackageReference Include="WebEye.Controls.WinForms.WebCameraControl" Version="1.0.0" />
     <PackageReference Include="WinFormsMapControl" Version="1.1.0" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
