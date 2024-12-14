@@ -1397,7 +1397,7 @@ namespace AgOpenGPS
                 if (point.X > oglMain.Width - 80)
                 {
                     //---
-                    if (point.Y < 210 && point.Y > 120)
+                    if (point.Y < 260 && point.Y > 170)
                     {
                         if (camera.zoomValue <= 20) camera.zoomValue += camera.zoomValue * 0.2;
                         else camera.zoomValue += camera.zoomValue * 0.1;

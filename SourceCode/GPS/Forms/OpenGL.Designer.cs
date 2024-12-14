@@ -359,19 +359,19 @@ namespace AgOpenGPS
                     }
                     GL.PopMatrix();
 
-                    if (camera.camSetDistance > -150)
+                    if (camera.camSetDistance > -250)
                     {
                         if (trk.idx > -1)
                         {
                             if (trk.gArr[trk.idx].mode == TrackMode.AB)
                             {
-                                GL.PointSize(8);
+                                GL.PointSize(12);
                                 GL.Begin(PrimitiveType.Points);
                                 GL.Color3(0, 0, 0);
                                 GL.Vertex3(ABLine.goalPointAB.easting, ABLine.goalPointAB.northing, 0.0);
                                 GL.End();
 
-                                GL.PointSize(5);
+                                GL.PointSize(6);
                                 GL.Begin(PrimitiveType.Points);
                                 GL.Color3(0.98, 0.98, 0.098);
                                 GL.Vertex3(ABLine.goalPointAB.easting, ABLine.goalPointAB.northing, 0.0);
@@ -379,13 +379,13 @@ namespace AgOpenGPS
                             }
                             else
                             {
-                                GL.PointSize(8);
+                                GL.PointSize(12);
                                 GL.Begin(PrimitiveType.Points);
                                 GL.Color3(0, 0, 0);
                                 GL.Vertex3(curve.goalPointCu.easting, curve.goalPointCu.northing, 0.0);
                                 GL.End();
 
-                                GL.PointSize(5);
+                                GL.PointSize(6);
                                 GL.Begin(PrimitiveType.Points);
                                 GL.Color3(0.98, 0.98, 0.098);
                                 GL.Vertex3(curve.goalPointCu.easting, curve.goalPointCu.northing, 0.0);
@@ -2025,7 +2025,7 @@ namespace AgOpenGPS
             }
         }
 
-        private double avgPivDistance, lightbarDistance, longAvgPivDistance;
+        public double avgPivDistance, lightbarDistance, longAvgPivDistance;
 
         private void DrawLightBar(double Width, double Height, double offlineDistance)
         {
@@ -2213,8 +2213,8 @@ namespace AgOpenGPS
                 }
 
                 double errLine = err;
-                if (errLine > 9) errLine = 9;
-                if (errLine < -9) errLine = -9;
+                if (errLine > 12) errLine = 12;
+                if (errLine < -12) errLine = -12;
                 errLine *= spacing;
 
                 if (errLine > 0) errLine += 35;
@@ -2277,6 +2277,9 @@ namespace AgOpenGPS
                 int center = 0;
                 string hede = "> 0 <";
 
+                if (avgPivotDistance > 999) avgPivotDistance = 999;
+                if (avgPivotDistance < -999) avgPivotDistance = -999;
+
                 if (Math.Abs(avgPivotDistance) > 0.9999)
                 {
                     if (avgPivotDistance < 0.0)
@@ -2287,7 +2290,7 @@ namespace AgOpenGPS
                     else
                     {
                         hede = "< " + (Math.Abs(avgPivotDistance)).ToString("N0");
-                        center = -(int)(((double)(hede.Length) * 0.5) * (18*(1.0 + textSize)));
+                        center = -(int)(((double)(hede.Length) * 0.5) * (18* (1.0 + textSize)));
                     }
                 }
                 else
@@ -2296,11 +2299,9 @@ namespace AgOpenGPS
                 }
 
 
-                int wide = (int)((double)oglMain.Width / 12);
-                if (wide < 65) wide = 65;
+                int wide = (int)((double)oglMain.Width / 18);
+                if (wide < 64) wide = 64;
 
-                if (hede.Length > 5) 
-                    wide += 30;
 
                 // Select Our Texture
                 GL.Enable(EnableCap.Texture2D);
@@ -2386,10 +2387,10 @@ namespace AgOpenGPS
             GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.ZoomOut48]);        // Select Our Texture
             GL.Begin(PrimitiveType.Quads);             // Build Quad From A Triangle Strip
             {
-                GL.TexCoord2(0, 0); GL.Vertex2(center, 150); // 
-                GL.TexCoord2(1, 0); GL.Vertex2(center + 32, 150); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(center + 32, 182); // 
-                GL.TexCoord2(0, 1); GL.Vertex2(center, 182); //
+                GL.TexCoord2(0, 0); GL.Vertex2(center, 200); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(center + 32, 200); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(center + 32, 232); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(center, 232); //
             }
             GL.End();
 

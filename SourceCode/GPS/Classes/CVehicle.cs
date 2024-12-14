@@ -24,7 +24,7 @@ namespace AgOpenGPS
         public double slowSpeedCutoff = 0;
 
         //autosteer values
-        public double goalPointLookAhead, goalPointLookAheadHold, goalPointLookAheadMult, uturnCompensation;
+        public double goalPointLookAheadHold, goalPointLookAheadMult, uturnCompensation;
 
         public double stanleyDistanceErrorGain, stanleyHeadingErrorGain;
         public double minLookAheadDistance = 2.0;
@@ -64,7 +64,6 @@ namespace AgOpenGPS
             slowSpeedCutoff = Properties.Settings.Default.setVehicle_slowSpeedCutoff;
 
             goalPointLookAheadHold = Properties.Settings.Default.setVehicle_goalPointLookAheadHold;
-            goalPointLookAhead = goalPointLookAheadHold * 0.75;
 
             goalPointLookAheadMult = Properties.Settings.Default.setVehicle_goalPointLookAheadMult;
 
@@ -110,31 +109,55 @@ namespace AgOpenGPS
         public double UpdateGoalPointDistance()
         {
             double xTE = Math.Abs(modeActualXTE);
+            double goalPointDistance = mf.avgSpeed * 0.07; //0.05 * 1.4
 
-            //how far should goal point be away  - speed * seconds * kmph -> m/s then limit min value
-            //double goalPointDistance = mf.avgSpeed * goalPointLookAhead * 0.05 * goalPointLookAheadMult;
-            double goalPointDistance = mf.avgSpeed * goalPointLookAhead * 0.07; //0.05 * 1.4
-            goalPointDistance += goalPointLookAhead;
+            double LoekiAhead = goalPointLookAheadHold;
+            if (!mf.isBtnAutoSteerOn) LoekiAhead = 5;
 
-            if (xTE < (modeXTE))
+            if (xTE <= 0.1)
             {
-                if (modeTimeCounter > modeTime * 10)
-                {
-                    //goalPointDistance = mf.avgSpeed * goalPointLookAheadHold * 0.05 * goalPointLookAheadMult;
-                    goalPointDistance = mf.avgSpeed * goalPointLookAheadHold * 0.07; //0.05 * 1.4
-                    goalPointDistance += goalPointLookAheadHold;
-                }
-                else
-                {
-                    modeTimeCounter++;
-                }
+                goalPointDistance *= LoekiAhead; 
+                goalPointDistance += LoekiAhead;
+            }
+
+            else if (xTE > 0.1 && xTE < 0.4)
+            {
+                xTE -= 0.1;
+                double ramp = 1- (xTE/1.2);
+                goalPointDistance *= LoekiAhead * ramp; 
+                goalPointDistance += LoekiAhead * ramp;
+
             }
             else
             {
-                modeTimeCounter = 0;
+                goalPointDistance *= LoekiAhead * 0.75; 
+                goalPointDistance += LoekiAhead * 0.75;
             }
 
-            if (goalPointDistance < 1) goalPointDistance = 1;
+            ////how far should goal point be away  - speed * seconds * kmph -> m/s then limit min value
+            ////double goalPointDistance = mf.avgSpeed * goalPointLookAhead * 0.05 * goalPointLookAheadMult;
+            //double goalPointDistance = mf.avgSpeed * goalPointLookAhead * 0.07; //0.05 * 1.4
+            //goalPointDistance += goalPointLookAhead;
+
+            //if (xTE < (modeXTE))
+            //{
+            //    if (modeTimeCounter > modeTime * 10)
+            //    {
+            //        //goalPointDistance = mf.avgSpeed * goalPointLookAheadHold * 0.05 * goalPointLookAheadMult;
+            //        goalPointDistance = mf.avgSpeed * goalPointLookAheadHold * 0.07; //0.05 * 1.4
+            //        goalPointDistance += goalPointLookAheadHold;
+            //    }
+            //    else
+            //    {
+            //        modeTimeCounter++;
+            //    }
+            //}
+            //else
+            //{
+            //    modeTimeCounter = 0;
+            //}
+
+            if (goalPointDistance < 2) goalPointDistance = 2;
             goalDistance = goalPointDistance;
 
             return goalPointDistance;

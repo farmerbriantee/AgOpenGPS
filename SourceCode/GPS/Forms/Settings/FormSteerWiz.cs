@@ -225,7 +225,6 @@ namespace AgOpenGPS
             Properties.Settings.Default.stanleyIntegralGainAB = mf.vehicle.stanleyIntegralGainAB;
 
             Properties.Settings.Default.purePursuitIntegralGainAB = mf.vehicle.purePursuitIntegralGain;
-            Properties.Settings.Default.setVehicle_goalPointLookAhead = mf.vehicle.goalPointLookAhead;
             Properties.Settings.Default.setVehicle_goalPointLookAheadMult = mf.vehicle.goalPointLookAheadMult;
 
             Properties.Settings.Default.setVehicle_maxSteerAngle = mf.vehicle.maxSteerAngle;
