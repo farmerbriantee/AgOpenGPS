@@ -52,8 +52,9 @@ namespace AgOpenGPS
 
             }
 
-                PanelUpdateRightAndBottom();
-        }                
+            PanelUpdateRightAndBottom();
+        }
+        
         private void btnContourLock_Click(object sender, EventArgs e)
         {
             if (ct.isContourBtnOn)
@@ -141,6 +142,28 @@ namespace AgOpenGPS
         private void btnAutoSteer_Click(object sender, EventArgs e)
         {
             longAvgPivDistance = 0;
+
+            if (!timerSim.Enabled)
+            {
+                if (avgSpeed > vehicle.maxSteerSpeed)
+                {
+                    if (isBtnAutoSteerOn)
+                    {
+                        isBtnAutoSteerOn = false;
+                        btnAutoSteer.Image = Properties.Resources.AutoSteerOff;
+                        //if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
+                        if (sounds.isSteerSoundOn) sounds.sndAutoSteerOff.Play();
+                        if (!isBtnAutoSteerOn) TimedMessageBox(1000, gStr.gsGuidanceStopped, gStr.gsGuidanceStopped);
+                    }
+
+                    if (isMetric)
+                        TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + vehicle.maxSteerSpeed.ToString("N0") + " Kmh");
+                    else
+                        TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + (vehicle.maxSteerSpeed * 0.621371).ToString("N1") + " MPH");
+
+                    return;
+                }
+            }
 
             if (isBtnAutoSteerOn)
             {
