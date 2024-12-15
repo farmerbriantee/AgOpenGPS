@@ -452,7 +452,7 @@ namespace AgOpenGPS
                                 {
                                     btnAutoSteer.PerformClick();
                                     TimedMessageBox(3000, "Autosteer Turned Off", "RTK Alarm from Fix to Float");
-                                }
+                                    StopAutoSteerEventWriter("RTK Alarm from Fix to Float");                             }
                             }
                             sounds.isRTKAlarming = true;
                             DrawLostRTK();

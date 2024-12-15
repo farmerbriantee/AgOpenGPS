@@ -2466,6 +2466,14 @@ namespace AgOpenGPS
             pn.logNMEASentence.Clear();
         }
 
+        public void FileSaveAutoSteerEvents()
+        {
+            using (StreamWriter writer = new StreamWriter("zSteerEventsLog_log.txt", true))
+            {
+                writer.Write(sbAutosteerStopEvents.ToString());
+            }
+        }
+
         //save nmea sentences
         public void FileSaveElevation()
         {

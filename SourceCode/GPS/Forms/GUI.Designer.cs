@@ -11,6 +11,7 @@ using System.Media;
 using System.Reflection;
 using System.Collections.Generic;
 using AgOpenGPS.Culture;
+using System.Text;
 
 namespace AgOpenGPS
 {
@@ -93,7 +94,18 @@ namespace AgOpenGPS
 
         public List<int> buttonOrder = new List<int>();
 
+        public StringBuilder sbAutosteerStopEvents = new StringBuilder();
+
         //Timer triggers at 125 msec
+
+        public void StopAutoSteerEventWriter(string message)
+        {
+            sbAutosteerStopEvents.Append(DateTime.Now.ToString("T"));
+            sbAutosteerStopEvents.Append(":-> ");
+            sbAutosteerStopEvents.Append(message);
+            sbAutosteerStopEvents.Append("\r");
+        }
+
         private void tmrWatchdog_tick(object sender, EventArgs e)
         {
             //Check for a newline char, if none then just return
@@ -395,7 +407,8 @@ namespace AgOpenGPS
                 if (!ct.isContourBtnOn && trk.idx == -1 && isBtnAutoSteerOn) 
                 {
                     btnAutoSteer.PerformClick();
-                                            TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsNoGuidanceLines);
+                    TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsNoGuidanceLines);
+                    StopAutoSteerEventWriter("No Tracks, Index is -1");
                 }
 
 
@@ -823,7 +836,8 @@ namespace AgOpenGPS
                     if (isBtnAutoSteerOn)
                     {
                         btnAutoSteer.PerformClick();
-                                                TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsNoGuidanceLines);
+                        TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsNoGuidanceLines);
+                        StopAutoSteerEventWriter("No Tracks, Index is -1");
                     }
                     btnAutoSteer.Enabled = false;
                 }
