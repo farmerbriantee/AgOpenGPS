@@ -48,7 +48,8 @@ namespace AgOpenGPS
                 if (isBtnAutoSteerOn)
                 {
                     btnAutoSteer.PerformClick();
-                                            TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsContourOn);
+                    TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsContourOn);
+                    StopAutoSteerEventWriter("Steer On And Enable Contour");
                 }
 
             }
@@ -237,7 +238,6 @@ namespace AgOpenGPS
             trk.isAutoTrack = false;
             btnAutoTrack.Image = Resources.AutoTrackOff;
 
-
             if (trk.gArr.Count > 1)
             {
                 while (true)
@@ -257,7 +257,7 @@ namespace AgOpenGPS
                 if (isBtnAutoSteerOn)
                 {
                     btnAutoSteer.PerformClick();
-                                            TimedMessageBox(2000, gStr.gsGuidanceStopped, "Track Changed");
+                    TimedMessageBox(2000, gStr.gsGuidanceStopped, "Track Changed");
                 }
 
                 if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
@@ -301,7 +301,7 @@ namespace AgOpenGPS
                 if (isBtnAutoSteerOn)
                 {
                     btnAutoSteer.PerformClick();
-                                            TimedMessageBox(2000, gStr.gsGuidanceStopped, "Track Changed");
+                    TimedMessageBox(2000, gStr.gsGuidanceStopped, "Track Changed");
                 }
 
                 lblNumCu.Text = (trk.idx + 1).ToString() + "/" + trk.gArr.Count.ToString();
@@ -574,6 +574,9 @@ namespace AgOpenGPS
                     distance *= 100;
                     if (distance > 10) TimedMessageBox(2500, "High Field Start Distance Warning", "Field Start is "
                         + distance.ToString("N1") + " km From current position");
+                    
+                    sbAutosteerStopEvents.Clear();
+                    sbAutosteerStopEvents.Append(currentFieldDirectory + '\r');
                 }
             }
 
@@ -620,6 +623,9 @@ namespace AgOpenGPS
             ExportFieldAs_KML();
             ExportFieldAs_ISOXMLv3();
             ExportFieldAs_ISOXMLv4();
+
+            FileSaveAutoSteerEvents();
+            sbAutosteerStopEvents.Clear();
 
             Settings.Default.setF_CurrentDir = currentFieldDirectory;
             Settings.Default.Save();
@@ -729,7 +735,8 @@ namespace AgOpenGPS
             if (isBtnAutoSteerOn)
             {
                 btnAutoSteer.PerformClick();
-                                        TimedMessageBox(2000, gStr.gsGuidanceStopped, "Paths Enabled");
+                TimedMessageBox(2000, gStr.gsGuidanceStopped, "Paths Enabled");
+                StopAutoSteerEventWriter("Autosteer On While Enable Paths");
             }
 
             DisableYouTurnButtons();
@@ -2211,7 +2218,8 @@ namespace AgOpenGPS
             if (isBtnAutoSteerOn)
             {
                 btnAutoSteer.PerformClick();
-                                        TimedMessageBox(2000, gStr.gsGuidanceStopped, "Sim Reverse Touched");
+                TimedMessageBox(2000, gStr.gsGuidanceStopped, "Sim Reverse Touched");
+                StopAutoSteerEventWriter("Sim Reverse Activated");
             }
         }
         private void hsbarSteerAngle_Scroll(object sender, ScrollEventArgs e)

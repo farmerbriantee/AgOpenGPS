@@ -61,7 +61,6 @@ namespace AgOpenGPS
                     mf.btnAutoSteer.PerformClick();
                     mf.TimedMessageBox(2000, gStr.gsGuidanceStopped, "Steer Switch Activated");
                 }
-
             }
 
             if (isRemoteWorkSystemOn)

@@ -12,7 +12,7 @@ namespace AgOpenGPS
         private readonly FormGPS mf = null;
 
         private bool toSend = false, isSA = false;
-        private int counter = 0, cntr;
+        private int counter = 0, cntr, sbCntr=0;
         private vec3 startFix;
         private double diameter, steerAngleRight, dist;
         private int windowSizeState = 0;
@@ -48,6 +48,8 @@ namespace AgOpenGPS
 
         private void FormSteer_Load(object sender, EventArgs e)
         {
+            rtbAutoSteerStopEvents.HideSelection = false;
+
             mf.vehicle.goalPointLookAheadHold = Properties.Settings.Default.setVehicle_goalPointLookAheadHold;
 
             chkDisplayLightbar.Checked = mf.isLightbarOn;
@@ -317,7 +319,9 @@ namespace AgOpenGPS
             lblAV_Set.Text = mf.setAngVel.ToString("N1");
 
             lblPWMDisplay.Text = mf.mc.pwmDisplay.ToString();
+            
             counter++;
+
             if (toSend && counter > 4)
             {
                 Properties.Settings.Default.setAS_countsPerDegree = mf.p_252.pgn[mf.p_252.countsPerDegree] = unchecked((byte)hsbarCountsPerDegree.Value);
@@ -350,6 +354,16 @@ namespace AgOpenGPS
                     lblPercentFS.Text = ((int)((double)mf.mc.sensorData * 0.3921568627)).ToString() + "%";
                 else
                     lblPercentFS.Text = mf.mc.sensorData.ToString();
+            }
+
+            if (sbCntr++ > 8)
+            {
+                sbCntr = 0;
+                if (rtbAutoSteerStopEvents.TextLength != mf.sbAutosteerStopEvents.Length)
+                {
+                    rtbAutoSteerStopEvents.Clear();
+                    rtbAutoSteerStopEvents.AppendText(mf.sbAutosteerStopEvents.ToString());
+                }
             }
         }
 

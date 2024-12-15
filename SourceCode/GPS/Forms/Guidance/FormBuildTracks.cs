@@ -201,6 +201,8 @@ namespace AgOpenGPS
                     {
                         mf.btnAutoSteer.PerformClick();
                         mf.TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsNoGuidanceLines);
+                        mf.StopAutoSteerEventWriter("No Tracks Available");
+
                     }
                     Close();
                 }

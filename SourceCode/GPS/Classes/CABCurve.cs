@@ -724,6 +724,8 @@ namespace AgOpenGPS
                                 {
                                     mf.btnAutoSteer.PerformClick();
                                     mf.TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsPastEndOfCurve);
+                                    mf.StopAutoSteerEventWriter("Past End of Curve");
+
                                 }
                             }
                             else
@@ -732,6 +734,7 @@ namespace AgOpenGPS
                                 {
                                     mf.btnAutoSteer.PerformClick();
                                     mf.TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsPastEndOfCurve);
+                                    mf.StopAutoSteerEventWriter("Past End of Curve");
                                 }
                             }
                         }
