@@ -389,6 +389,8 @@ namespace AgOpenGPS
 
                 isFlashOnOff = !isFlashOnOff;
 
+                vehicle.deadZoneDelayCounter++;
+
                 //the main formgps window
                 if (isMetric)  //metric or imperial
                 {

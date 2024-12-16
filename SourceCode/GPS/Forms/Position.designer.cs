@@ -965,16 +965,24 @@ namespace AgOpenGPS
                     if (isReverse) p_254.pgn[p_254.status] = 0;
                 }
                 
-                vehicle.isInDeadZone = false;
 
+                //2 sec delay on dead zone.
                 if (p_254.pgn[p_254.status] == 1 && !isReverse
                     && Math.Abs(guidanceLineDistanceOff) < vehicle.deadZoneDistance
                             && Math.Abs(guidanceLineSteerAngle) < vehicle.deadZoneHeading)
                 {
-                    vehicle.isInDeadZone = true;
-                    p_254.pgn[p_254.status] = 0;
+                    if (vehicle.deadZoneDelayCounter > 4)
+                    {
+                        vehicle.isInDeadZone = true;
+                    }
                 }
                 else
+                {
+                    vehicle.deadZoneDelayCounter = 0;
+                    vehicle.isInDeadZone = false;
+                }
+
+                 if (!vehicle.isInDeadZone)
                 {
                     p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(guidanceLineSteerAngle >> 8));
                     p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(guidanceLineSteerAngle));
@@ -1322,7 +1330,7 @@ namespace AgOpenGPS
             //used to increase triangle countExit when going around corners, less on straight
             //pick the slow moving side edge of tool
             double distance = tool.width * 0.5;
-            if (distance > 5) distance = 5;
+            //if (distance > 5) distance = 5;
 
             //whichever is less
             if (tool.farLeftSpeed < tool.farRightSpeed)
@@ -1342,7 +1350,7 @@ namespace AgOpenGPS
             }
 
             //finally fixed distance for making a curve line
-            if (!curve.isRecordingCurve) sectionTriggerStepDistance = sectionTriggerStepDistance + 2.0;
+            if (!curve.isRecordingCurve) sectionTriggerStepDistance = sectionTriggerStepDistance + 1.0;
             //if (ct.isContourBtnOn) sectionTriggerStepDistance *=0.5;
 
             //precalc the sin and cos of heading * -1

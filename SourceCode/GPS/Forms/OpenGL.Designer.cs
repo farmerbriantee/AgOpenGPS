@@ -2316,8 +2316,11 @@ namespace AgOpenGPS
                 GL.Enable(EnableCap.Texture2D);
                 GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.CrossTrackBkgrnd]);
                 
+
                 if (Math.Abs(avgPivDistance) < 50) GL.Color4(0.2f, 0.992570f, 0.20f, 1);
-                else GL.Color4(0.952f, 0.750f, 0.350f, 1);
+                else GL.Color4(0.9952f, 0.450f, 0.250f, 1);
+
+                if (vehicle.isInDeadZone) GL.Color4(0.952f, 0.9750f, 0.0f, 0.7);
 
                 GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
                 GL.TexCoord2(0, 1); GL.Vertex2(-wide, 3); // 
@@ -2329,8 +2332,7 @@ namespace AgOpenGPS
                 GL.Disable(EnableCap.Texture2D);
 
 
-                if (Math.Abs(avgPivDistance) < 50) GL.Color4(0.12f, 0.12770f, 0.120f, 1);
-                else GL.Color4(0.15752f, 0.1570f, 0.130f, 1);
+                GL.Color4(0.12f, 0.12770f, 0.120f, 1);
 
                 font.DrawText(center, 2, hede, 1.0+textSize);
             }
