@@ -443,7 +443,7 @@ namespace AgOpenGPS
 
                     if (isRTK_AlarmOn)
                     {
-                        if (3 != 4)
+                        if (pn.fixQuality != 4)
                         { 
                             if (!sounds.isRTKAlarming)
                             {
