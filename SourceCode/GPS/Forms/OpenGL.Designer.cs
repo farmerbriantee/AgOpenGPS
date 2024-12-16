@@ -443,26 +443,30 @@ namespace AgOpenGPS
 
                     if (isRTK_AlarmOn)
                     {
-                        if (pn.fixQuality != 4)
-                        {
+                        if (3 != 4)
+                        { 
                             if (!sounds.isRTKAlarming)
                             {
                                 SystemEventWriter("RTK Alarm from Fix to Float");
                                 sounds.sndRTKAlarm.Play();
-                                if (isRTK_KillAutosteer && isBtnAutoSteerOn)
-                                {
-                                    btnAutoSteer.PerformClick();
-                                    TimedMessageBox(3000, "Autosteer Turned Off", "RTK Alarm from Fix to Float");
-                                    SystemEventWriter("Autosteer Off, RTK Alarm");                             
-                                }
                             }
                             sounds.isRTKAlarming = true;
                             DrawLostRTK();
                         }
                         else
                         {
+                            killAutosteerCounter = 0;
                             sounds.isRTKAlarming = false;
+                            isRTK_alreadyKilledAutosteer = false;
                         }
+                    }
+
+                    if (isRTK_KillAutosteer && isBtnAutoSteerOn && !isRTK_alreadyKilledAutosteer && killAutosteerCounter > 20 )
+                    {
+                        btnAutoSteer.PerformClick();
+                        TimedMessageBox(2000, "Autosteer Turned Off", "RTK Alarm from Fix to Float");
+                        SystemEventWriter("Autosteer Off, RTK Alarm");
+                        isRTK_alreadyKilledAutosteer = true;
                     }
 
                     if (pn.age > pn.ageAlarm) DrawAge();

@@ -338,6 +338,7 @@ namespace AgOpenGPS
 
                 //keeps autoTrack from changing too fast
                 trk.autoTrack3SecTimer++;
+                killAutosteerCounter++;
 
                 lblFix.Text = FixQuality + "Age: " + pn.age.ToString("N1");
 
