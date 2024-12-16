@@ -377,8 +377,6 @@ namespace AgOpenGPS
                 {
                     if (trackMethodPanelCounter-- < 1) flp1.Visible = false;
                 }
-
-                lblJumpDistanceMax.Text = jumpDistanceMax.ToString("N1");
             }
 
             //every half of a second update all status  ////////////////    0.5  0.5   0.5    0.5    /////////////////
@@ -804,7 +802,7 @@ namespace AgOpenGPS
                 btnChargeStatus.BackColor = Color.LightCoral;
             }
 
-            jumpDistanceAlarm = Settings.Default.setGPS_jumpFixAlarmDistance;
+            //jumpDistanceAlarm = Settings.Default.setGPS_jumpFixAlarmDistance;
 
         }
 

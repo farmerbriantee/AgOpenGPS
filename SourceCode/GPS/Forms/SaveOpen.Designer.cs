@@ -2471,7 +2471,7 @@ namespace AgOpenGPS
 
         public void FileSaveSystemEvents()
         {
-            using (StreamWriter writer = new StreamWriter("zSteerEventsLog_log.txt", true))
+            using (StreamWriter writer = new StreamWriter("zSystemEventsLog_log.txt", true))
             {
                 writer.Write(sbSystemEvents.ToString());
             }

@@ -116,10 +116,10 @@ namespace AgOpenGPS
 
         public int minSteerSpeedTimer = 0;
 
-        public vec2 jumpFix = new vec2(0, 0);
-        public double jumpDistance = 0, jumpDistanceMax;
-        public double jumpDistanceAlarm = 20;
-        public int jumpCounter = 0;
+        //public vec2 jumpFix = new vec2(0, 0);
+        //public double jumpDistance = 0, jumpDistanceMax;
+        //public double jumpDistanceAlarm = 20;
+        //public int jumpCounter = 0;
 
         public void UpdateFixPosition()
         {
@@ -316,7 +316,7 @@ namespace AgOpenGPS
                         }
 
                         //save a copy of previous for jump test
-                        jumpFix.easting = stepFixPts[0].easting; jumpFix.northing = stepFixPts[0].northing;
+                        //jumpFix.easting = stepFixPts[0].easting; jumpFix.northing = stepFixPts[0].northing;
                         
                         if ((fd.distanceUser += distanceCurrentStepFix) > 9999) fd.distanceUser = 0;
 
@@ -651,8 +651,8 @@ namespace AgOpenGPS
                         TheRest();
 
                         //most recent fixes are now the prev ones
-                        jumpFix = prevFix;
-                        prevFix = pn.fix;
+                        //jumpFix = prevFix;
+                        //prevFix = pn.fix;
 
                         break;
                     }
@@ -685,7 +685,7 @@ namespace AgOpenGPS
 
                         //grab the most current fix and save the distance from the last fix
                         distanceCurrentStepFix = glm.Distance(pn.fix, prevDistFix);
-                        jumpFix = prevDistFix;
+                        //jumpFix = prevDistFix;
                         prevDistFix  = pn.fix;
 
                         //userDistance can be reset
@@ -752,42 +752,45 @@ namespace AgOpenGPS
             if (fixHeading >= glm.twoPI)
                 fixHeading -= glm.twoPI;
 
-            vec2 ptA = new vec2(jumpFix.easting - (Math.Sin(gpsHeading) * 10), jumpFix.northing - (Math.Cos(gpsHeading) * 10));
-            vec2 ptB = new vec2(jumpFix.easting + (Math.Sin(gpsHeading) * 10), jumpFix.northing + (Math.Cos(gpsHeading) * 10));
+            //vec2 ptA = new vec2(jumpFix.easting - (Math.Sin(gpsHeading) * 10), jumpFix.northing - (Math.Cos(gpsHeading) * 10));
+            //vec2 ptB = new vec2(jumpFix.easting + (Math.Sin(gpsHeading) * 10), jumpFix.northing + (Math.Cos(gpsHeading) * 10));
 
-            double dx = ptB.easting - ptA.easting;
-            //z2-z1
-            double dy = ptB.northing - ptA.northing;
+            //double dx = ptB.easting - ptA.easting;
+            ////z2-z1
+            //double dy = ptB.northing - ptA.northing;
 
-            //how far from current AB Line is fix
-            jumpDistance = ((dy * pn.fix.easting) - (dx * pn.fix.northing) 
-                            + (ptB.easting * ptA.northing) - (ptB.northing * ptA.easting))
-                            / Math.Sqrt((dy * dy) + (dx * dx));
+            ////how far from current AB Line is fix
+            //jumpDistance = ((dy * pn.fix.easting) - (dx * pn.fix.northing) 
+            //                + (ptB.easting * ptA.northing) - (ptB.northing * ptA.easting))
+            //                / Math.Sqrt((dy * dy) + (dx * dx));
 
-            jumpDistance = Math.Abs(jumpDistance) * 100;
+            //jumpDistance = Math.Abs(jumpDistance) * 100;
 
-            if (jumpDistance > jumpDistanceMax) jumpDistanceMax = jumpDistance;
+            //if (jumpDistance > jumpDistanceMax) jumpDistanceMax = jumpDistance;
 
-            if (jumpCounter++ > 200)
-            {
-                jumpDistanceMax = jumpCounter = 0;
-                lblJumpDistanceMax.Text = "*";
-            }
+            //if (jumpCounter++ > 200)
+            //{
+            //    jumpDistanceMax = jumpCounter = 0;
+            //    lblJumpDistanceMax.Text = "*";
+            //}
 
-            if (jumpDistance > 200) jumpDistance = 0;
+            //if (jumpDistance > 200) jumpDistance = 0;
 
-            if (jumpDistanceAlarm > 0)
-            {
-                if (jumpDistance > jumpDistanceAlarm)
-                {
-                    if (isBtnAutoSteerOn)
-                    {
-                        btnAutoSteer.PerformClick();
-                        TimedMessageBox(3000, "Autosteer Turned Off", "Big Jump in GPS position:" + jumpDistance.ToString("N0") + " cm");
-                        SystemEventWriter("Jump in GPS position:" + jumpDistance.ToString("N0") + " cm");
-                    }
-                }
-            }
+            //if (isFirstHeadingSet && jumpDistanceAlarm > 0 && jumpDistance > jumpDistanceAlarm)
+            //{
+            //    SystemEventWriter(": " + jumpDistance.ToString("N0") + " cm");
+
+            //    if (isBtnAutoSteerOn)
+            //    {
+            //        btnAutoSteer.PerformClick();
+            //        TimedMessageBox(3000, gStr.gsAutoSteer, "Big Jump in GPS position:" + jumpDistance.ToString("N0") + " cm");
+            //        SystemEventWriter("Autosteer Off, Jump in GPS position: " + jumpDistance.ToString("N0") + " cm");
+            //    }
+
+            //}
+
+            //jumpFix.easting = pn.fix.easting;
+            //jumpFix.northing = pn.fix.northing;
 
             #endregion
 
@@ -1053,7 +1056,11 @@ namespace AgOpenGPS
                             if (yt.isTurnCreationTooClose && !yt.turnTooCloseTrigger)
                             {
                                 yt.turnTooCloseTrigger = true;
-                                if (sounds.isTurnSoundOn) sounds.sndUTurnTooClose.Play();
+                                if (sounds.isTurnSoundOn)
+                                {
+                                    sounds.sndUTurnTooClose.Play();
+                                    SystemEventWriter("U Turn Creation Failure");
+                                }
                             }
                         }
                         else if (yt.ytList.Count > 5)//wait to trigger the actual turn since its made and waiting

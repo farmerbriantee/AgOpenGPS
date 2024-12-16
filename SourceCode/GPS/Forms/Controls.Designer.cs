@@ -49,7 +49,6 @@ namespace AgOpenGPS
                 {
                     btnAutoSteer.PerformClick();
                     TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsContourOn);
-                    SystemEventWriter("Steer On And Enable Contour");
                 }
 
             }
@@ -508,6 +507,15 @@ namespace AgOpenGPS
             }
 
             f = null;
+            f = Application.OpenForms["FormEventViewer"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+            }
+
+            f = null;
             f = Application.OpenForms["FormPan"];
 
             if (f != null)
@@ -588,7 +596,7 @@ namespace AgOpenGPS
 
                     FileSaveSystemEvents();
                     sbSystemEvents.Clear();
-                    sbSystemEvents.Append(currentFieldDirectory + " " + (DateTime.Now.ToLongDateString()) + '\r');
+                    sbSystemEvents.Append(currentFieldDirectory + " *Opened* " + (DateTime.Now.ToLongDateString()) + '\r');
                 }
             }
 
@@ -635,6 +643,8 @@ namespace AgOpenGPS
             ExportFieldAs_KML();
             ExportFieldAs_ISOXMLv3();
             ExportFieldAs_ISOXMLv4();
+
+            SystemEventWriter(currentFieldDirectory + " ** Closed **");
 
             FileSaveSystemEvents();
             sbSystemEvents.Clear();
@@ -1198,6 +1208,42 @@ namespace AgOpenGPS
         }
         private void btnShutdown_Click(object sender, EventArgs e)
         {
+            Form f = Application.OpenForms["FormGPSData"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+            }
+
+            f = null;
+            f = Application.OpenForms["FormFieldData"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+            }
+
+            f = null;
+            f = Application.OpenForms["FormEventViewer"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+            }
+
+            f = null;
+            f = Application.OpenForms["FormPan"];
+
+            if (f != null)
+            {
+                isPanFormVisible = false;
+                f.Focus();
+                f.Close();
+            }
+
             Close();
         }
         private void btnMinimizeMainForm_Click(object sender, EventArgs e)
@@ -1358,6 +1404,10 @@ namespace AgOpenGPS
                     Settings.Default.setF_culture = "en";
                     Settings.Default.setF_workingDirectory = "Default";
                     Settings.Default.Save();
+
+                    //save event
+                    SystemEventWriter("Reset ALL event occured" );
+                    FileSaveSystemEvents();
 
                     MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
                     System.Environment.Exit(1);
@@ -1947,6 +1997,7 @@ namespace AgOpenGPS
                         FileCreateContour();
                         FileCreateSections();
 
+                        SystemEventWriter("All Section Mapping Deleted");
                     }
                     else
                     {
@@ -2004,6 +2055,12 @@ namespace AgOpenGPS
             Form formX = new FormGraphXTE(this);
             formX.Show(this);
         }
+        private void eventViewerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form form = new FormEventViewer(this);
+            form.Show(this);
+        }
+
         private void webcamToolStrip_Click(object sender, EventArgs e)
         {
             Form form = new FormWebCam();

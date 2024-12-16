@@ -3026,7 +3026,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int setGPS_jumpFixAlarmDistance {
             get {
                 return ((int)(this["setGPS_jumpFixAlarmDistance"]));

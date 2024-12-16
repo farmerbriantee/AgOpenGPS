@@ -48,8 +48,6 @@ namespace AgOpenGPS
 
         private void FormSteer_Load(object sender, EventArgs e)
         {
-            rtbAutoSteerStopEvents.HideSelection = false;
-
             mf.vehicle.goalPointLookAheadHold = Properties.Settings.Default.setVehicle_goalPointLookAheadHold;
 
             chkDisplayLightbar.Checked = mf.isLightbarOn;
@@ -352,16 +350,6 @@ namespace AgOpenGPS
                 else
                     lblPercentFS.Text = mf.mc.sensorData.ToString();
             }
-
-            if (sbCntr++ > 8)
-            {
-                sbCntr = 0;
-                if (rtbAutoSteerStopEvents.TextLength != mf.sbSystemEvents.Length)
-                {
-                    rtbAutoSteerStopEvents.Clear();
-                    rtbAutoSteerStopEvents.AppendText(mf.sbSystemEvents.ToString());
-                }
-            }
         }
 
         private void FormSteer_FormClosing(object sender, FormClosingEventArgs e)
@@ -549,6 +537,8 @@ namespace AgOpenGPS
                 MessageBoxDefaultButton.Button2);
             if (result3 == DialogResult.Yes)
             {
+                mf.SystemEventWriter("Steer Form - Steer Settings Set to Default");
+
                 mf.TimedMessageBox(2000, "Reset To Default", "Values Set to Inital Default");
                 Properties.Settings.Default.setVehicle_maxSteerAngle = mf.vehicle.maxSteerAngle
                     = 45;
@@ -888,6 +878,7 @@ namespace AgOpenGPS
             SaveSettings();
             mf.SendPgnToLoop(mf.p_251.pgn);
             pboxSendSteer.Visible = false;
+            mf.SystemEventWriter("Steer Form, Send and Save Pressed");
 
             mf.TimedMessageBox(2000, gStr.gsAutoSteerPort, "Settings Sent To Steer Module");
         }
@@ -1096,10 +1087,12 @@ namespace AgOpenGPS
             if (mf.isStanleyUsed)
             {
                 btnStanleyPure.Image = Resources.ModeStanley;
+                mf.SystemEventWriter("Stanley Steer Mode Selectede");
             }
             else
             {
                 btnStanleyPure.Image = Resources.ModePurePursuit;
+                mf.SystemEventWriter("Pure Pursuit Steer Mode Selected");
             }
 
             Properties.Settings.Default.setVehicle_isStanleyUsed = mf.isStanleyUsed;

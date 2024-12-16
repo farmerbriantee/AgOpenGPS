@@ -447,12 +447,14 @@ namespace AgOpenGPS
                         {
                             if (!sounds.isRTKAlarming)
                             {
+                                SystemEventWriter("RTK Alarm from Fix to Float");
                                 sounds.sndRTKAlarm.Play();
                                 if (isRTK_KillAutosteer && isBtnAutoSteerOn)
                                 {
                                     btnAutoSteer.PerformClick();
                                     TimedMessageBox(3000, "Autosteer Turned Off", "RTK Alarm from Fix to Float");
-                                    SystemEventWriter("RTK Alarm from Fix to Float");                             }
+                                    SystemEventWriter("Autosteer Off, RTK Alarm");                             
+                                }
                             }
                             sounds.isRTKAlarming = true;
                             DrawLostRTK();

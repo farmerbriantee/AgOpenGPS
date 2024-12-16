@@ -92,7 +92,6 @@ namespace AgOpenGPS
 
             mf.SystemEventWriter("Job Form, Field Resume");
 
-
             //back to FormGPS
             DialogResult = DialogResult.OK;
             Close();
@@ -109,7 +108,6 @@ namespace AgOpenGPS
                 {
                     if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
                     mf.FileOpenField(mf.filePickerFileAndDirectory);
-                    mf.SystemEventWriter("Job Form, Open Field");
 
                     Close();
                 }
