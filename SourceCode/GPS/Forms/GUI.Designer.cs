@@ -112,6 +112,7 @@ namespace AgOpenGPS
             if (++sentenceCounter > 20)
             {
                 ShowNoGPSWarning();
+                SystemEventWriter("No GPS Warning - Counter > 20");
                 return;
             }
 

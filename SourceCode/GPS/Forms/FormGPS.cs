@@ -18,6 +18,8 @@ using System.Net.Sockets;
 using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -463,147 +465,196 @@ namespace AgOpenGPS
             dir = Path.GetDirectoryName(fieldsDirectory);
             if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
 
-            //make sure current field directory exists, null if not
-            currentFieldDirectory = Settings.Default.setF_CurrentDir;
-
-            string curDir;
-            if (currentFieldDirectory != "")
+            //system event log file
+            FileInfo txtfile = new FileInfo("zSystemEventsLog_log.txt");
+            if (txtfile.Exists)
             {
-                curDir = fieldsDirectory + currentFieldDirectory + "//";
-                dir = Path.GetDirectoryName(curDir);
-                if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
+                if (txtfile.Length > (500000))       // ## NOTE: 0.5MB max file size
                 {
-                    currentFieldDirectory = "";
-                    Settings.Default.setF_CurrentDir = "";
-                    Settings.Default.Save();
-                }
-            }
+                    StringBuilder sbF = new StringBuilder();
+                    long lines = txtfile.Length - 450000;
+                    
+                    //create some extra space
+                    lines /= 30;
 
-            if (isBrightnessOn)
-            {
-                if (displayBrightness.isWmiMonitor)
-                {
-                    Settings.Default.setDisplay_brightnessSystem = displayBrightness.GetBrightness();
-                    Settings.Default.Save();
-                }
-                else
-                {
-                    btnBrightnessDn.Enabled = false;
-                    btnBrightnessUp.Enabled = false;
-                }
-
-                //display brightness
-                if (displayBrightness.isWmiMonitor)
-                {
-                    if (Settings.Default.setDisplay_brightness < Settings.Default.setDisplay_brightnessSystem)
+                    using (StreamReader reader = new StreamReader("zSystemEventsLog_log.txt"))
                     {
-                        Settings.Default.setDisplay_brightness = Settings.Default.setDisplay_brightnessSystem;
+                        try
+                        {
+                            //Date time line
+                            for (long i = 0; i < lines; i++)
+                            {
+                                reader.ReadLine();
+                            }
+
+                            while (!reader.EndOfStream)
+                            {
+                                sbF.AppendLine(reader.ReadLine());
+                            }
+                        }
+                        catch { }
+                    }
+
+                    using (StreamWriter writer = new StreamWriter("zSystemEventsLog_log.txt"))
+                    {
+                        writer.WriteLine(sbF);
+                    }
+                }
+
+                //make sure current field directory exists, null if not
+                currentFieldDirectory = Settings.Default.setF_CurrentDir;
+
+                string curDir;
+                if (currentFieldDirectory != "")
+                {
+                    curDir = fieldsDirectory + currentFieldDirectory + "//";
+                    dir = Path.GetDirectoryName(curDir);
+                    if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
+                    {
+                        currentFieldDirectory = "";
+                        Settings.Default.setF_CurrentDir = "";
                         Settings.Default.Save();
                     }
-
-                    displayBrightness.SetBrightness(Settings.Default.setDisplay_brightness);
                 }
-                else
+
+                sbSystemEvents.Append("AOG Version: ");
+                sbSystemEvents.Append(Application.ProductVersion.ToString(CultureInfo.InvariantCulture));
+                sbSystemEvents.Append("\r");
+
+                sbSystemEvents.Append("Current Field Directory: ");
+                sbSystemEvents.Append(fieldsDirectory + currentFieldDirectory);
+                sbSystemEvents.Append("\r");
+
+                FileSaveSystemEvents();
+                sbSystemEvents.Clear();
+
+
+                if (isBrightnessOn)
                 {
-                    btnBrightnessDn.Enabled = false;
-                    btnBrightnessUp.Enabled = false;
-                }
-            }
-
-            // load all the gui elements in gui.designer.cs
-            LoadSettings();
-
-            //for field data and overlap
-            oglZoom.Width = 400;
-            oglZoom.Height = 400;
-            oglZoom.Left = 100;
-            oglZoom.Top = 100;
-
-            if (Properties.Settings.Default.setDisplay_isAutoStartAgIO)
-            {
-                //Start AgIO process
-                Process[] processName = Process.GetProcessesByName("AgIO");
-                if (processName.Length == 0)
-                {
-                    //Start application here
-                    DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
-                    string strPath = di.ToString();
-                    strPath += "\\AgIO.exe";
-                    try
+                    if (displayBrightness.isWmiMonitor)
                     {
-                        ProcessStartInfo processInfo = new ProcessStartInfo
-                        {
-                            FileName = strPath,
-                            WorkingDirectory = Path.GetDirectoryName(strPath)
-                        };
-                        Process proc = Process.Start(processInfo);
+                        Settings.Default.setDisplay_brightnessSystem = displayBrightness.GetBrightness();
+                        Settings.Default.Save();
                     }
-                    catch
+                    else
                     {
-                        TimedMessageBox(2000, "No File Found", "Can't Find AgIO");
-                        SystemEventWriter("Can't Find AgIO");
+                        btnBrightnessDn.Enabled = false;
+                        btnBrightnessUp.Enabled = false;
+                    }
 
+                    //display brightness
+                    if (displayBrightness.isWmiMonitor)
+                    {
+                        if (Settings.Default.setDisplay_brightness < Settings.Default.setDisplay_brightnessSystem)
+                        {
+                            Settings.Default.setDisplay_brightness = Settings.Default.setDisplay_brightnessSystem;
+                            Settings.Default.Save();
+                        }
+
+                        displayBrightness.SetBrightness(Settings.Default.setDisplay_brightness);
+                    }
+                    else
+                    {
+                        btnBrightnessDn.Enabled = false;
+                        btnBrightnessUp.Enabled = false;
                     }
                 }
-            }
 
-            //nmea limiter
-            udpWatch.Start();
+                // load all the gui elements in gui.designer.cs
+                LoadSettings();
 
-            ControlExtension.Draggable(panelDrag, true);
+                //for field data and overlap
+                oglZoom.Width = 400;
+                oglZoom.Height = 400;
+                oglZoom.Left = 100;
+                oglZoom.Top = 100;
 
-            enterSimCoordsToolStripMenuItem.Text = gStr.gsEnterSimCoords;
-            aboutToolStripMenuItem.Text = gStr.gsAbout;
-            menustripLanguage.Text = gStr.gsLanguage;
-
-            simulatorOnToolStripMenuItem.Text = gStr.gsSimulatorOn;
-            resetALLToolStripMenuItem.Text = gStr.gsResetAll;
-
-            toolStripColors.Text = gStr.gsColors;
-            toolStripSectionColors.Text = "Section " + gStr.gsColors;
-            toolStripConfig.Text = gStr.gsConfiguration;
-            toolStripSteerSettings.Text = gStr.gsAutoSteer;
-            toolStripWorkingDirectories.Text = gStr.gsDirectories;
-           
-            resetEverythingToolStripMenuItem.Text = gStr.gsResetAllForSure;
-            steerChartStripMenu.Text = gStr.gsCharts;
-
-            //Tools Menu
-            SmoothABtoolStripMenu.Text = gStr.gsSmoothABCurve;
-            boundariesToolStripMenuItem.Text = gStr.gsBoundary;
-            headlandToolStripMenuItem.Text = gStr.gsHeadland;
-            headlandBuildToolStripMenuItem.Text = gStr.gsHeadland + " Builder";
-            deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
-            deleteAppliedToolStripMenuItem.Text = gStr.gsDeleteAppliedArea;
-            tramLinesMenuField.Text = gStr.gsTramLines;
-            recordedPathStripMenu.Text = gStr.gsRecordedPathMenu;
-            flagByLatLonToolStripMenuItem.Text = gStr.gsFlagByLatLon;
-            boundaryToolToolStripMenu.Text = gStr.gsBoundary + " Tool";
-
-            webcamToolStrip.Text = gStr.gsWebCam;
-            offsetFixToolStrip.Text = gStr.gsOffsetFix;
-            wizardsMenu.Text = gStr.gsWizards;
-            steerWizardMenuItem.Text = gStr.gsSteerWizard;
-            steerChartToolStripMenuItem.Text = gStr.gsSteerChart;
-            headingChartToolStripMenuItem.Text = gStr.gsHeadingChart;
-            xTEChartToolStripMenuItem.Text = gStr.gsXTEChart;
-
-            btnChangeMappingColor.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
-            //btnChangeMappingColor.Text = btnChangeMappingColor.Text.Substring(2);
-
-            hotkeys = new char[19];
-
-            hotkeys = Properties.Settings.Default.setKey_hotkeys.ToCharArray();
-
-            if (!isTermsAccepted)
-            {
-                if (!Properties.Settings.Default.setDisplay_isTermsAccepted)
+                if (Properties.Settings.Default.setDisplay_isAutoStartAgIO)
                 {
-                    using (var form = new Form_First(this))
+                    //Start AgIO process
+                    Process[] processName = Process.GetProcessesByName("AgIO");
+                    if (processName.Length == 0)
                     {
-                        if (form.ShowDialog(this) != DialogResult.OK)
+                        //Start application here
+                        DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
+                        string strPath = di.ToString();
+                        strPath += "\\AgIO.exe";
+                        try
                         {
-                            Close();
+                            ProcessStartInfo processInfo = new ProcessStartInfo
+                            {
+                                FileName = strPath,
+                                WorkingDirectory = Path.GetDirectoryName(strPath)
+                            };
+                            Process proc = Process.Start(processInfo);
+                        }
+                        catch
+                        {
+                            TimedMessageBox(2000, "No File Found", "Can't Find AgIO");
+                            SystemEventWriter("Can't Find AgIO");
+
+                        }
+                    }
+                }
+
+                //nmea limiter
+                udpWatch.Start();
+
+                ControlExtension.Draggable(panelDrag, true);
+
+                enterSimCoordsToolStripMenuItem.Text = gStr.gsEnterSimCoords;
+                aboutToolStripMenuItem.Text = gStr.gsAbout;
+                menustripLanguage.Text = gStr.gsLanguage;
+
+                simulatorOnToolStripMenuItem.Text = gStr.gsSimulatorOn;
+                resetALLToolStripMenuItem.Text = gStr.gsResetAll;
+
+                toolStripColors.Text = gStr.gsColors;
+                toolStripSectionColors.Text = "Section " + gStr.gsColors;
+                toolStripConfig.Text = gStr.gsConfiguration;
+                toolStripSteerSettings.Text = gStr.gsAutoSteer;
+                toolStripWorkingDirectories.Text = gStr.gsDirectories;
+
+                resetEverythingToolStripMenuItem.Text = gStr.gsResetAllForSure;
+                steerChartStripMenu.Text = gStr.gsCharts;
+
+                //Tools Menu
+                SmoothABtoolStripMenu.Text = gStr.gsSmoothABCurve;
+                boundariesToolStripMenuItem.Text = gStr.gsBoundary;
+                headlandToolStripMenuItem.Text = gStr.gsHeadland;
+                headlandBuildToolStripMenuItem.Text = gStr.gsHeadland + " Builder";
+                deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
+                deleteAppliedToolStripMenuItem.Text = gStr.gsDeleteAppliedArea;
+                tramLinesMenuField.Text = gStr.gsTramLines;
+                recordedPathStripMenu.Text = gStr.gsRecordedPathMenu;
+                flagByLatLonToolStripMenuItem.Text = gStr.gsFlagByLatLon;
+                boundaryToolToolStripMenu.Text = gStr.gsBoundary + " Tool";
+
+                webcamToolStrip.Text = gStr.gsWebCam;
+                offsetFixToolStrip.Text = gStr.gsOffsetFix;
+                wizardsMenu.Text = gStr.gsWizards;
+                steerWizardMenuItem.Text = gStr.gsSteerWizard;
+                steerChartToolStripMenuItem.Text = gStr.gsSteerChart;
+                headingChartToolStripMenuItem.Text = gStr.gsHeadingChart;
+                xTEChartToolStripMenuItem.Text = gStr.gsXTEChart;
+
+                btnChangeMappingColor.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
+                //btnChangeMappingColor.Text = btnChangeMappingColor.Text.Substring(2);
+
+                hotkeys = new char[19];
+
+                hotkeys = Properties.Settings.Default.setKey_hotkeys.ToCharArray();
+
+                if (!isTermsAccepted)
+                {
+                    if (!Properties.Settings.Default.setDisplay_isTermsAccepted)
+                    {
+                        using (var form = new Form_First(this))
+                        {
+                            if (form.ShowDialog(this) != DialogResult.OK)
+                            {
+                                Close();
+                            }
                         }
                     }
                 }

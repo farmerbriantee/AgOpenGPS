@@ -2473,7 +2473,7 @@ namespace AgOpenGPS
         {
             using (StreamWriter writer = new StreamWriter("zSystemEventsLog_log.txt", true))
             {
-                writer.Write(sbSystemEvents.ToString());
+                writer.Write(sbSystemEvents);
             }
         }
 
