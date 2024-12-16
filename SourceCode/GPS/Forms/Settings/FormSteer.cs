@@ -324,19 +324,16 @@ namespace AgOpenGPS
 
             if (toSend && counter > 4)
             {
-                Properties.Settings.Default.setAS_countsPerDegree = mf.p_252.pgn[mf.p_252.countsPerDegree] = unchecked((byte)hsbarCountsPerDegree.Value);
-                Properties.Settings.Default.setAS_ackerman = mf.p_252.pgn[mf.p_252.ackerman] = unchecked((byte)hsbarAckerman.Value);
+                mf.p_252.pgn[mf.p_252.countsPerDegree] = unchecked((byte)hsbarCountsPerDegree.Value);
+                mf.p_252.pgn[mf.p_252.ackerman] = unchecked((byte)hsbarAckerman.Value);
 
-                Properties.Settings.Default.setAS_wasOffset = hsbarWasOffset.Value;
                 mf.p_252.pgn[mf.p_252.wasOffsetHi] = unchecked((byte)(hsbarWasOffset.Value >> 8));
                 mf.p_252.pgn[mf.p_252.wasOffsetLo] = unchecked((byte)(hsbarWasOffset.Value));
 
-                Properties.Settings.Default.setAS_highSteerPWM = mf.p_252.pgn[mf.p_252.highPWM] = unchecked((byte)hsbarHighSteerPWM.Value);
-                Properties.Settings.Default.setAS_lowSteerPWM = mf.p_252.pgn[mf.p_252.lowPWM] = unchecked((byte)(hsbarHighSteerPWM.Value / 3));
-                Properties.Settings.Default.setAS_Kp = mf.p_252.pgn[mf.p_252.gainProportional] = unchecked((byte)hsbarProportionalGain.Value);
-                Properties.Settings.Default.setAS_minSteerPWM = mf.p_252.pgn[mf.p_252.minPWM] = unchecked((byte)hsbarMinPWM.Value);
-
-                Properties.Settings.Default.Save();
+                mf.p_252.pgn[mf.p_252.highPWM] = unchecked((byte)hsbarHighSteerPWM.Value);
+                mf.p_252.pgn[mf.p_252.lowPWM] = unchecked((byte)(hsbarHighSteerPWM.Value / 3));
+                mf.p_252.pgn[mf.p_252.gainProportional] = unchecked((byte)hsbarProportionalGain.Value);
+                mf.p_252.pgn[mf.p_252.minPWM] = unchecked((byte)hsbarMinPWM.Value);
 
                 mf.SendPgnToLoop(mf.p_252.pgn);
                 toSend = false;
@@ -359,10 +356,10 @@ namespace AgOpenGPS
             if (sbCntr++ > 8)
             {
                 sbCntr = 0;
-                if (rtbAutoSteerStopEvents.TextLength != mf.sbAutosteerStopEvents.Length)
+                if (rtbAutoSteerStopEvents.TextLength != mf.sbSystemEvents.Length)
                 {
                     rtbAutoSteerStopEvents.Clear();
-                    rtbAutoSteerStopEvents.AppendText(mf.sbAutosteerStopEvents.ToString());
+                    rtbAutoSteerStopEvents.AppendText(mf.sbSystemEvents.ToString());
                 }
             }
         }
@@ -684,7 +681,11 @@ namespace AgOpenGPS
         private void btnZeroWAS_Click(object sender, EventArgs e)
         {
             int offset = (int)(hsbarCountsPerDegree.Value * -mf.mc.actualSteerAngleDegrees + hsbarWasOffset.Value);
-            if (Math.Abs(offset) > 3900) mf.TimedMessageBox(2000, "Exceeded Range", "Excessive Steer Angle - Cannot Zero");
+            if (Math.Abs(offset) > 3900)
+            {
+                mf.TimedMessageBox(2000, "Exceeded Range", "Excessive Steer Angle - Cannot Zero");
+                mf.SystemEventWriter("Excessive Steer Angle, No Zero " + offset);
+            }
             else
             {
                 hsbarWasOffset.Value += (int)(hsbarCountsPerDegree.Value * -mf.mc.actualSteerAngleDegrees);

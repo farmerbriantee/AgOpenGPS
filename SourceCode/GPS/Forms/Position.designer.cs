@@ -274,6 +274,7 @@ namespace AgOpenGPS
 
                                 isFirstHeadingSet = true;
                                 TimedMessageBox(2000, "Direction Reset", "Forward is Set");
+                                SystemEventWriter("Forward Is Set");
 
                                 lastGPS = pn.fix;
 
@@ -783,7 +784,7 @@ namespace AgOpenGPS
                     {
                         btnAutoSteer.PerformClick();
                         TimedMessageBox(3000, "Autosteer Turned Off", "Big Jump in GPS position:" + jumpDistance.ToString("N0") + " cm");
-                        StopAutoSteerEventWriter("Jump in GPS position:" + jumpDistance.ToString("N0") + " cm");
+                        SystemEventWriter("Jump in GPS position:" + jumpDistance.ToString("N0") + " cm");
                     }
                 }
             }
@@ -904,7 +905,8 @@ namespace AgOpenGPS
                             TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + vehicle.minSteerSpeed.ToString("N0") + " Kmh");
                         else
                             TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + (vehicle.minSteerSpeed * 0.621371).ToString("N1") + " MPH");
-                        StopAutoSteerEventWriter("Exceed Safe Steering Speed");
+                        
+                        SystemEventWriter("Steer Off, Exceed Safe Steering Speed");
 
                     }
 
@@ -918,7 +920,8 @@ namespace AgOpenGPS
                                 TimedMessageBox(3000, "AutoSteer Disabled", "Below Minimum Safe Steering Speed: " + vehicle.minSteerSpeed.ToString("N0") + " Kmh");
                             else
                                 TimedMessageBox(3000, "AutoSteer Disabled", "Below Minimum Safe Steering Speed: " + (vehicle.minSteerSpeed * 0.621371).ToString("N1") + " MPH");
-                            StopAutoSteerEventWriter("Below Min Steering Speed");
+                            
+                            SystemEventWriter("Steer Off, Below Min Steering Speed");
                         }
                     }
                     else
@@ -1193,7 +1196,7 @@ namespace AgOpenGPS
                 {
                    btnAutoSteer.PerformClick();
                     TimedMessageBox(2000, gStr.gsGuidanceStopped, "Panic Stop");
-                    StopAutoSteerEventWriter("Panic Stop Exceeded");
+                    SystemEventWriter("Steer Off, Panic Stop Exceeded");
                 }
             }
 

@@ -285,6 +285,8 @@ namespace AgOpenGPS
             if (mf.tool.width < 0.2)
             {
                 mf.TimedMessageBox(2000, "Tool Error", "Your tool is too small");
+                mf.SystemEventWriter("Boundary, Tool is too narrow");
+
                 return;
             }
             panelMain.Visible = false;
@@ -397,6 +399,8 @@ namespace AgOpenGPS
                                 else
                                 {
                                     mf.TimedMessageBox(2000, gStr.gsErrorreadingKML, gStr.gsChooseBuildDifferentone);
+                                    mf.SystemEventWriter("KML Read Error to make new field");
+
                                 }
                                 if (button.Name == "btnLoadBoundaryFromGE")
                                 {

@@ -49,7 +49,7 @@ namespace AgOpenGPS
                 {
                     btnAutoSteer.PerformClick();
                     TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsContourOn);
-                    StopAutoSteerEventWriter("Steer On And Enable Contour");
+                    SystemEventWriter("Steer On And Enable Contour");
                 }
 
             }
@@ -157,6 +157,8 @@ namespace AgOpenGPS
                         if (sounds.isSteerSoundOn) sounds.sndAutoSteerOff.Play();
                     }
 
+                    SystemEventWriter("Above Max Safe Speed for Autosteer");
+
                     if (isMetric)
                         TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + vehicle.maxSteerSpeed.ToString("N0") + " Kmh");
                     else
@@ -202,6 +204,7 @@ namespace AgOpenGPS
             if (bnd.bndList.Count == 0)
             {
                 TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
+                SystemEventWriter("Uturn attempted without boundary");
                 return;
             }
 
@@ -468,6 +471,7 @@ namespace AgOpenGPS
         }
 
         public bool isCancelJobMenu;
+
         private void btnJobMenu_Click(object sender, EventArgs e)
         {
             if (!isFirstFixPositionSet || sentenceCounter > 299)
@@ -480,7 +484,9 @@ namespace AgOpenGPS
                 else
                 {
                     TimedMessageBox(2500, "No GPS", "No GPS Position Found");
+
                 }
+                SystemEventWriter("No GPS Position, Field Closed");
                 return;
             }
 
@@ -572,11 +578,17 @@ namespace AgOpenGPS
                     double distance = Math.Pow((pn.latStart - pn.latitude), 2) + Math.Pow((pn.lonStart - pn.longitude), 2);
                     distance = Math.Sqrt(distance);
                     distance *= 100;
-                    if (distance > 10) TimedMessageBox(2500, "High Field Start Distance Warning", "Field Start is "
+                    if (distance > 10)
+                    {
+                        TimedMessageBox(2500, "High Field Start Distance Warning", "Field Start is "
                         + distance.ToString("N1") + " km From current position");
-                    
-                    sbAutosteerStopEvents.Clear();
-                    sbAutosteerStopEvents.Append(currentFieldDirectory + '\r');
+
+                        SystemEventWriter("High Field Start Distance Warning");
+                    }
+
+                    FileSaveSystemEvents();
+                    sbSystemEvents.Clear();
+                    sbSystemEvents.Append(currentFieldDirectory + " " + (DateTime.Now.ToLongDateString()) + '\r');
                 }
             }
 
@@ -624,8 +636,8 @@ namespace AgOpenGPS
             ExportFieldAs_ISOXMLv3();
             ExportFieldAs_ISOXMLv4();
 
-            FileSaveAutoSteerEvents();
-            sbAutosteerStopEvents.Clear();
+            FileSaveSystemEvents();
+            sbSystemEvents.Clear();
 
             Settings.Default.setF_CurrentDir = currentFieldDirectory;
             Settings.Default.Save();
@@ -736,7 +748,7 @@ namespace AgOpenGPS
             {
                 btnAutoSteer.PerformClick();
                 TimedMessageBox(2000, gStr.gsGuidanceStopped, "Paths Enabled");
-                StopAutoSteerEventWriter("Autosteer On While Enable Paths");
+                SystemEventWriter("Autosteer On While Enable Paths");
             }
 
             DisableYouTurnButtons();
@@ -2219,7 +2231,7 @@ namespace AgOpenGPS
             {
                 btnAutoSteer.PerformClick();
                 TimedMessageBox(2000, gStr.gsGuidanceStopped, "Sim Reverse Touched");
-                StopAutoSteerEventWriter("Sim Reverse Activated");
+                SystemEventWriter("Steer Off, Sim Reverse Activated");
             }
         }
         private void hsbarSteerAngle_Scroll(object sender, ScrollEventArgs e)

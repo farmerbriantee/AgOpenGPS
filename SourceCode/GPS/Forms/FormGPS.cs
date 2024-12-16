@@ -293,7 +293,7 @@ namespace AgOpenGPS
             {
                 string bob = PowerState.GetPowerLineStatus().ToString();
 
-                //TimedMessageBox(2000, "Charging Status", "AC Adapter is: " + bob);
+                SystemEventWriter("Power Line Status Change to: " + bob);
 
                 if (bob == "Charging")
                 {
@@ -546,6 +546,8 @@ namespace AgOpenGPS
                     catch
                     {
                         TimedMessageBox(2000, "No File Found", "Can't Find AgIO");
+                        SystemEventWriter("Can't Find AgIO");
+
                     }
                 }
             }
@@ -615,8 +617,6 @@ namespace AgOpenGPS
 
         private void FormGPS_FormClosing(object sender, FormClosingEventArgs e)
         {
-            int choice = 0;
-
             Form f = Application.OpenForms["FormGPSData"];
 
             if (f != null)
@@ -658,7 +658,7 @@ namespace AgOpenGPS
             }
 
             bool closing = true;
-            choice = SaveOrNot(closing);
+            int choice = SaveOrNot(closing);
 
             //simple cancel return to AOG
             if (choice == 1)

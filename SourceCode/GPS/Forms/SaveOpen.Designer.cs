@@ -559,6 +559,7 @@ namespace AgOpenGPS
             if (!File.Exists(filename))
             {
                 TimedMessageBox(2000, gStr.gsFileError, "Missing Headlines File");
+                SystemEventWriter("Load Field, Missing Headlines File");
             }
             else
             {
@@ -753,6 +754,7 @@ namespace AgOpenGPS
             if (!File.Exists(filename))
             {
                 TimedMessageBox(2000, gStr.gsFileError, "Missing Tracks File");
+                SystemEventWriter("Load Field, Missing Tracks File");
             }
             else
             {
@@ -912,6 +914,7 @@ namespace AgOpenGPS
             if (!File.Exists(filename))
             {
                 TimedMessageBox(2000, gStr.gsFileError, "Missing Curve File");
+                SystemEventWriter("Load Field, Missing Curve File");
             }
             else
             {
@@ -2466,11 +2469,11 @@ namespace AgOpenGPS
             pn.logNMEASentence.Clear();
         }
 
-        public void FileSaveAutoSteerEvents()
+        public void FileSaveSystemEvents()
         {
             using (StreamWriter writer = new StreamWriter("zSteerEventsLog_log.txt", true))
             {
-                writer.Write(sbAutosteerStopEvents.ToString());
+                writer.Write(sbSystemEvents.ToString());
             }
         }
 
