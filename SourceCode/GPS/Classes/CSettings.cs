@@ -16,15 +16,15 @@ namespace AgOpenGPS
         //public bool ;
         public bool isHeadlandOn = true;
 
-        public bool isTramOn = true;
+        public bool isTramOn = false;
         public bool isBoundaryOn = true;
-        public bool isBndContourOn = true;
-        public bool isRecPathOn = true;
-        public bool isABSmoothOn = true;
+        public bool isBndContourOn = false;
+        public bool isRecPathOn = false;
+        public bool isABSmoothOn = false;
 
-        public bool isHideContourOn = true;
-        public bool isWebCamOn = true;
-        public bool isOffsetFixOn = true;
+        public bool isHideContourOn = false;
+        public bool isWebCamOn = false;
+        public bool isOffsetFixOn = false;
         public bool isAgIOOn = true;
 
         public bool isContourOn = true;
