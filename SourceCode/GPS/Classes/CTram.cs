@@ -60,10 +60,42 @@ namespace AgOpenGPS
 
         public void DrawTram()
         {
-            if (mf.camera.camSetDistance > -250) GL.LineWidth(4);
+            if (mf.camera.camSetDistance > -500)  GL.LineWidth(10);
+            else GL.LineWidth(6);
+
+            GL.Color4(0,0,0, 1.0);
+
+            if (mf.tram.displayMode == 1 || mf.tram.displayMode == 2)
+            {
+                if (tramList.Count > 0)
+                {
+                    for (int i = 0; i < tramList.Count; i++)
+                    {
+                        GL.Begin(PrimitiveType.LineStrip);
+                        for (int h = 0; h < tramList[i].Count; h++)
+                            GL.Vertex3(tramList[i][h].easting, tramList[i][h].northing, 0);
+                        GL.End();
+                    }
+                }
+            }
+
+            if (mf.tram.displayMode == 1 || mf.tram.displayMode == 3)
+            {
+                if (tramBndOuterArr.Count > 0)
+                {
+                    GL.Begin(PrimitiveType.LineStrip);
+                    for (int h = 0; h < tramBndOuterArr.Count; h++) GL.Vertex3(tramBndOuterArr[h].easting, tramBndOuterArr[h].northing, 0);
+                    GL.End();
+                    GL.Begin(PrimitiveType.LineStrip);
+                    for (int h = 0; h < tramBndInnerArr.Count; h++) GL.Vertex3(tramBndInnerArr[h].easting, tramBndInnerArr[h].northing, 0);
+                    GL.End();
+                }
+            }
+
+            if (mf.camera.camSetDistance > -500) GL.LineWidth(4);
             else GL.LineWidth(2);
 
-            GL.Color4(0.30f, 0.93692f, 0.7520f, 0.3);
+            GL.Color4(0.930f, 0.72f, 0.73530f, 0.8);
 
             if (mf.tram.displayMode == 1 || mf.tram.displayMode == 2)
             {
