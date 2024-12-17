@@ -960,8 +960,7 @@ namespace AgOpenGPS
 
                 // delay on dead zone.
                 if (p_254.pgn[p_254.status] == 1 && !isReverse
-                    && Math.Abs(guidanceLineDistanceOff) < vehicle.deadZoneDistance
-                            && Math.Abs(guidanceLineSteerAngle) < vehicle.deadZoneHeading)
+                    && Math.Abs(guidanceLineSteerAngle - mc.actualSteerAngleDegrees*100) < vehicle.deadZoneHeading)
                 {
                     if (vehicle.deadZoneDelayCounter > vehicle.deadZoneDelay)
                     {
