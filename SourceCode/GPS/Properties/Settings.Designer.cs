@@ -3095,5 +3095,17 @@ namespace AgOpenGPS.Properties {
                 this["setAS_numGuideLines"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int setAS_deadZoneDelay {
+            get {
+                return ((int)(this["setAS_deadZoneDelay"]));
+            }
+            set {
+                this["setAS_deadZoneDelay"] = value;
+            }
+        }
     }
 }

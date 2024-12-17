@@ -16,7 +16,7 @@ namespace AgOpenGPS
         public double antennaPivot;
         public double wheelbase;
         public double antennaOffset, panicStopSpeed;
-        public int deadZoneDistance, deadZoneHeading;
+        public int deadZoneDistance, deadZoneHeading, deadZoneDelay;
         public int vehicleType, deadZoneDelayCounter;
         public bool isInDeadZone;
 
@@ -87,6 +87,7 @@ namespace AgOpenGPS
             panicStopSpeed = Properties.Settings.Default.setVehicle_panicStopSpeed;
             deadZoneDistance = Properties.Settings.Default.setAS_deadZoneDistance;
             deadZoneHeading = Properties.Settings.Default.setAS_deadZoneHeading;
+            deadZoneDelay = Properties.Settings.Default.setAS_deadZoneDelay;
 
             isInFreeDriveMode = false;
 

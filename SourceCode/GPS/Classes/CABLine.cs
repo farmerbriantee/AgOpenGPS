@@ -429,20 +429,9 @@ namespace AgOpenGPS
                 double cosHeading = Math.Cos(-abHeading);
                 double sinHeading = Math.Sin(-abHeading);
 
-                GL.Color3(0.756f, 0.7650f, 0.7650f);
-                GL.Enable(EnableCap.LineStipple);
-                GL.LineStipple(1, 0x0003);
-
+                GL.Color4(0,0,0, 0.5);
                 GL.LineWidth(1);
                 GL.Begin(PrimitiveType.Lines);
-
-                /*
-                for (double i = -2.5; i < 3; i++)
-                {
-                    GL.Vertex3((cosHeading * ((mf.tool.toolWidth - mf.tool.toolOverlap) * (howManyPathsAway + i))) + mf.trk.gArr[mf.trk.idx].ptA.easting, (sinHeading * ((mf.tool.toolWidth - mf.tool.toolOverlap) * (howManyPathsAway + i))) + mf.trk.gArr[mf.trk.idx].ptA.northing, 0);
-                    GL.Vertex3((cosHeading * ((mf.tool.toolWidth - mf.tool.toolOverlap) * (howManyPathsAway + i))) + mf.trk.gArr[mf.trk.idx].ptB.easting, (sinHeading * ((mf.tool.toolWidth - mf.tool.toolOverlap) * (howManyPathsAway + i))) + mf.trk.gArr[mf.trk.idx].ptB.northing, 0);
-                }
-                */
 
                 if (toolOffset == 0)
                 {
@@ -454,6 +443,25 @@ namespace AgOpenGPS
                         GL.Vertex3((cosHeading * (-toolWidth * i)) + currentLinePtA.easting, (sinHeading * (-toolWidth * i)) + currentLinePtA.northing, 0);
                         GL.Vertex3((cosHeading * (-toolWidth * i)) + currentLinePtB.easting, (sinHeading * (-toolWidth * i)) + currentLinePtB.northing, 0);
                     }
+                    GL.End();
+                    GL.Enable(EnableCap.LineStipple);
+                    GL.LineStipple(1, 0x000F);
+
+                    GL.Color4(0.9907f, 0.990f, 0.9750f, 0.5f);
+                    GL.LineWidth(2);
+                    GL.Begin(PrimitiveType.Lines);
+
+                    for (int i = 1; i <= numGuideLines; i++)
+                    {
+                        GL.Vertex3((cosHeading * (toolWidth * i)) + currentLinePtA.easting, (sinHeading * (toolWidth * i)) + currentLinePtA.northing, 0);
+                        GL.Vertex3((cosHeading * (toolWidth * i)) + currentLinePtB.easting, (sinHeading * (toolWidth * i)) + currentLinePtB.northing, 0);
+
+                        GL.Vertex3((cosHeading * (-toolWidth * i)) + currentLinePtA.easting, (sinHeading * (-toolWidth * i)) + currentLinePtA.northing, 0);
+                        GL.Vertex3((cosHeading * (-toolWidth * i)) + currentLinePtB.easting, (sinHeading * (-toolWidth * i)) + currentLinePtB.northing, 0);
+                    }
+                    GL.End();
+
+
                 }
                 else
                 {
@@ -483,9 +491,9 @@ namespace AgOpenGPS
                         GL.Vertex3((cosHeading * (-toolWidth)) + currentLinePtA.easting, (sinHeading * (-toolWidth)) + currentLinePtA.northing, 0);
                         GL.Vertex3((cosHeading * (-toolWidth)) + currentLinePtB.easting, (sinHeading * (-toolWidth)) + currentLinePtB.northing, 0);
                     }
+                    GL.End();
 
                 }
-                GL.End();
                 GL.Disable(EnableCap.LineStipple);
             }
 

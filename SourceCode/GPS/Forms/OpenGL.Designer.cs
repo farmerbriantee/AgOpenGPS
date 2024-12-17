@@ -109,6 +109,8 @@ namespace AgOpenGPS
                     if (tool.width > 35) factor = 0.45;
                     else if (tool.width > 16) factor = 0.4;
 
+                    GL.LineWidth(2);
+
                     for (int j = 0; j < triStrip.Count; j++)
                     {
                         //every time the section turns off and on is a new patch //check if in frustum or not
@@ -125,9 +127,14 @@ namespace AgOpenGPS
                             if (camera.camSetDistance < -2400) mipmap = 8;
                             if (camera.camSetDistance < -5000) mipmap = 16;
 
+
                             //for every new chunk of patch
                             foreach (var triList in triStrip[j].patchList)
                             {
+                                //check for even
+                                if (triList.Count % 2 == 0)
+                                    break;
+
                                 isDraw = false;
                                 int count2 = triList.Count;
                                 for (int i = 1; i < count2; i += 3)
@@ -155,12 +162,8 @@ namespace AgOpenGPS
                                 {
 
                                     count2 = triList.Count;
-                                    //GL.Color4((byte)(count2), (byte)(count2*2), (byte)(count2*4), (byte)152);
-                                    //draw the triangle in each triangle strip
                                     GL.Begin(PrimitiveType.TriangleStrip);
 
-                                    //GL.Color4((byte)triList[0].easting, (byte)triList[0].northing, (byte)triList[0].heading, (byte)152);
-                                    //else GL.Color4((byte)triList[0].easting, (byte)triList[0].northing, (byte)triList[0].heading, (byte)(152 * 0.5));
                                     if (isDay) GL.Color4(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B, (byte)152);
                                     else GL.Color4(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B, (byte)(76));
 
@@ -177,6 +180,38 @@ namespace AgOpenGPS
                                     }
                                     else { for (int i = 1; i < count2; i++) GL.Vertex3(triList[i].easting, triList[i].northing, 0); }
                                     GL.End();
+
+                                    //highlight lines
+                                    GL.Color4(0.2,0.2,0.2,1.0);
+                                    GL.Begin(PrimitiveType.LineStrip);
+
+                                    //if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
+                                    if (count2 >= (mipmap + 2))
+                                    {
+                                        int step = mipmap;
+                                        for (int i = 1; i < count2; i += step + 2)
+                                        {
+                                            GL.Vertex3(triList[i].easting, triList[i].northing, 0);
+                                            if (count2 - i <= (mipmap + 2)) step = 0;//too small to mipmap it
+                                        }
+                                    }
+                                    else { for (int i = 1; i < count2; i += 2) GL.Vertex3(triList[i].easting, triList[i].northing, 0); }
+                                    GL.End();
+
+                                    GL.Begin(PrimitiveType.LineStrip);
+                                    //if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
+                                    if (count2 >= (mipmap + 2))
+                                    {
+                                        int step = mipmap;
+                                        for (int i = 2; i < count2; i += step + 2)
+                                        {
+                                            GL.Vertex3(triList[i].easting, triList[i].northing, 0);
+                                            if (count2 - i <= (mipmap + 2)) step = 0;//too small to mipmap it
+                                        }
+                                    }
+                                    else { for (int i = 2; i < count2; i += 2) GL.Vertex3(triList[i].easting, triList[i].northing, 0); }
+                                    GL.End();
+
 
                                     if (isDirectionMarkers)
                                     {
