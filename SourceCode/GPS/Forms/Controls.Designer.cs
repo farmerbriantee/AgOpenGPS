@@ -156,7 +156,7 @@ namespace AgOpenGPS
                         if (sounds.isSteerSoundOn) sounds.sndAutoSteerOff.Play();
                     }
 
-                    SystemEventWriter("Above Max Safe Speed for Autosteer");
+                    SystemEventWriter("Steer Off, Above Max Safe Speed for Autosteer");
 
                     if (isMetric)
                         TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + vehicle.maxSteerSpeed.ToString("N0") + " Kmh");
@@ -1738,13 +1738,11 @@ namespace AgOpenGPS
             }
 
         }
-
         private void btnAutoTrack_Click(object sender, EventArgs e)
         {
             trk.isAutoTrack = !trk.isAutoTrack;
             btnAutoTrack.Image = trk.isAutoTrack ? Resources.AutoTrack : Resources.AutoTrackOff;            
         }
-
         private void btnResetToolHeading_Click(object sender, EventArgs e)
         {
             tankPos.heading = fixHeading;
@@ -1755,7 +1753,6 @@ namespace AgOpenGPS
             toolPivotPos.easting = tankPos.easting + (Math.Sin(toolPivotPos.heading) * (tool.trailingHitchLength));
             toolPivotPos.northing = tankPos.northing + (Math.Cos(toolPivotPos.heading) * (tool.trailingHitchLength));
         }
-
         private void btnTramDisplayMode_Click(object sender, EventArgs e)
         {
             tram.isLeftManualOn = false;
@@ -1792,7 +1789,6 @@ namespace AgOpenGPS
                     break;
             }
         }
-
         public bool isPatchesChangingColor = false;
         private void btnChangeMappingColor_Click(object sender, EventArgs e)
         {
@@ -1838,8 +1834,7 @@ namespace AgOpenGPS
             Properties.Settings.Default.set_youSkipWidth = yt.rowSkipsWidth;
             Properties.Settings.Default.Save();
         }
-        private void 
-            btnHeadlandOnOff_Click(object sender, EventArgs e)
+        private void btnHeadlandOnOff_Click(object sender, EventArgs e)
         {
             bnd.isHeadlandOn = !bnd.isHeadlandOn;
             if (bnd.isHeadlandOn)
@@ -1861,7 +1856,6 @@ namespace AgOpenGPS
 
             PanelUpdateRightAndBottom();
         }
-
         private void cboxIsSectionControlled_Click(object sender, EventArgs e)
         {
             if (cboxIsSectionControlled.Checked) cboxIsSectionControlled.Image = Properties.Resources.HeadlandSectionOn;
@@ -1870,8 +1864,6 @@ namespace AgOpenGPS
             Properties.Settings.Default.setHeadland_isSectionControlled = cboxIsSectionControlled.Checked;
             Properties.Settings.Default.Save();
         }
-
-
         private void btnHydLift_Click(object sender, EventArgs e)
         {
             if (bnd.isHeadlandOn)
@@ -1904,9 +1896,15 @@ namespace AgOpenGPS
             Form form = new FormAllSettings(this);
             form.Show(this);
         }
+        private void guidelinesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isSideGuideLines = !isSideGuideLines;
+            if (isSideGuideLines) guidelinesToolStripMenuItem.Checked = true;
+            else guidelinesToolStripMenuItem.Checked = false;
 
-
-
+            Properties.Settings.Default.setMenu_isSideGuideLines = isSideGuideLines;
+            Properties.Settings.Default.Save();
+        }
         private void boundaryToolToolStripMenu_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -1917,7 +1915,6 @@ namespace AgOpenGPS
                 }
             }
         }
-
         private void SmoothABtoolStripMenu_Click(object sender, EventArgs e)
         {
             if (isJobStarted && trk.idx > -1)
@@ -2060,7 +2057,6 @@ namespace AgOpenGPS
             Form form = new FormEventViewer(this);
             form.Show(this);
         }
-
         private void webcamToolStrip_Click(object sender, EventArgs e)
         {
             Form form = new FormWebCam();
@@ -2099,7 +2095,6 @@ namespace AgOpenGPS
             if (camera.camPitch > -58) camera.camPitch = 0;
             navPanelCounter = 2;
         }
-
         private void btnTiltDn_Click(object sender, EventArgs e)
         {
             if (camera.camPitch > -59) camera.camPitch = -60;
@@ -2107,14 +2102,12 @@ namespace AgOpenGPS
             if (camera.camPitch < -70) camera.camPitch = -70;
             navPanelCounter = 2;
         }
-
         private void btnN2D_Click(object sender, EventArgs e)
         {
             camera.camFollowing = false;
             camera.camPitch = 0;
             navPanelCounter = 0;
         }
-
         private void btn2D_Click(object sender, EventArgs e)
         {
             camera.camFollowing = true;
@@ -2146,7 +2139,6 @@ namespace AgOpenGPS
                 form.Show(this);
             navPanelCounter = 0;
         }
-
         private void btnBrightnessUp_Click(object sender, EventArgs e)
         {
             if (displayBrightness.isWmiMonitor)
@@ -2186,7 +2178,6 @@ namespace AgOpenGPS
                 TimedMessageBox(2000, "No File Found", "Can't Find OGL");
             }
         }
-
         private void btnDayNightMode_Click(object sender, EventArgs e)
         {
             SwapDayNightMode();

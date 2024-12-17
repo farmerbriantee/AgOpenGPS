@@ -905,13 +905,6 @@ namespace AgOpenGPS
                     if (isBtnAutoSteerOn && avgSpeed > vehicle.maxSteerSpeed)
                     {
                         btnAutoSteer.PerformClick();
-                        if (isMetric)
-                            TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + vehicle.maxSteerSpeed.ToString("N0") + " Kmh");
-                        else
-                            TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + (vehicle.maxSteerSpeed * 0.621371).ToString("N1") + " MPH");
-                        
-                        SystemEventWriter("Steer Off, Exceed Safe Steering Speed");
-
                     }
 
                     if (isBtnAutoSteerOn && avgSpeed < vehicle.minSteerSpeed)
@@ -963,15 +956,14 @@ namespace AgOpenGPS
                 if (!isSteerInReverse)
                 {
                     if (isReverse) p_254.pgn[p_254.status] = 0;
-                }
-                
+                }                
 
-                //2 sec delay on dead zone.
+                // delay on dead zone.
                 if (p_254.pgn[p_254.status] == 1 && !isReverse
                     && Math.Abs(guidanceLineDistanceOff) < vehicle.deadZoneDistance
                             && Math.Abs(guidanceLineSteerAngle) < vehicle.deadZoneHeading)
                 {
-                    if (vehicle.deadZoneDelayCounter > 6)
+                    if (vehicle.deadZoneDelayCounter > vehicle.deadZoneDelay)
                     {
                         vehicle.isInDeadZone = true;
                     }

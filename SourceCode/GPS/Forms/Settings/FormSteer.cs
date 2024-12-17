@@ -145,6 +145,7 @@ namespace AgOpenGPS
 
             nudDeadZoneDistance.Value = (decimal)((double)(Properties.Settings.Default.setAS_deadZoneDistance)/10);
             nudDeadZoneHeading.Value = (decimal)((double)(Properties.Settings.Default.setAS_deadZoneHeading)/100);
+            nudDeadZoneDelay.Value = (decimal)(mf.vehicle.deadZoneDelay);
 
             //Stanley guidance
 
@@ -807,7 +808,13 @@ namespace AgOpenGPS
         private void nudDeadZoneHeading_Click(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NudlessNumericUpDown)sender, this);
-            mf.vehicle.deadZoneHeading = (int)(nudDeadZoneHeading.Value*100);
+            mf.vehicle.deadZoneHeading = (int)(nudDeadZoneHeading.Value * 100);
+        }
+
+        private void nudDeadZoneDelay_Click(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NudlessNumericUpDown)sender, this);
+            mf.vehicle.deadZoneDelay = (int)(nudDeadZoneDelay.Value);
         }
 
         private void EnableAlert_Click(object sender, EventArgs e)

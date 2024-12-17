@@ -467,6 +467,9 @@ namespace AgOpenGPS
             deleteContourPathsToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isHideContourOn;
             webcamToolStrip.Visible = Properties.Settings.Default.setFeatures.isWebCamOn;
             offsetFixToolStrip.Visible = Properties.Settings.Default.setFeatures.isOffsetFixOn;
+            if (isSideGuideLines) guidelinesToolStripMenuItem.Checked = true;
+            else guidelinesToolStripMenuItem.Checked = false;
+
 
             //left side
             btnStartAgIO.Visible = Properties.Settings.Default.setFeatures.isAgIOOn;
