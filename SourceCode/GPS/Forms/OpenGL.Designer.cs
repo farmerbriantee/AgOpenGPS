@@ -2149,10 +2149,20 @@ namespace AgOpenGPS
                 GL.Enable(EnableCap.Texture2D);
                 GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.CrossTrackBkgrnd]);        // Select Our Texture
 
-                if ((avgPivDistance) < 0) GL.Color4(0.2f, 0.992570f, 0.20f, 1);
-                else GL.Color4(0.952f, 0.50f, 0.350f, 1);
+                // Select Our Texture
+                GL.Enable(EnableCap.Texture2D);
+                GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.CrossTrackBkgrnd]);
 
-                if (Math.Abs(avgPivotDistance) < 5) GL.Color4(0.952f, 0.9650f, 0.250f, 0.85);
+                double green = Math.Abs(avgPivDistance);
+                double red = green;
+                if (green > 400) green = 400;
+                green *= .001;
+                green = (0.4 - green) + 0.6;
+
+                if (red > 400) red = 400;
+                red = 0.002 * red;
+
+                GL.Color4(red, green, 0.3, 1.0);
 
                 GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
 
@@ -2178,6 +2188,11 @@ namespace AgOpenGPS
                     GL.Color3(0.950f, 0.952f, 0.3f);
                     center = -(int)(((double)(hede.Length) * 0.5) * 16);
                     font.DrawText(center, 45, hede, 1);
+                }
+
+                if (vehicle.isInDeadZone)
+                {
+
                 }
             }
         }
@@ -2316,11 +2331,16 @@ namespace AgOpenGPS
                 GL.Enable(EnableCap.Texture2D);
                 GL.BindTexture(TextureTarget.Texture2D, texture[(int)FormGPS.textures.CrossTrackBkgrnd]);
                 
+                double green = Math.Abs(avgPivDistance);
+                double red = green;
+                if (green > 400) green = 400;
+                green *= .001;
+                green = (0.4 - green) + 0.6;
 
-                if (Math.Abs(avgPivDistance) < 50) GL.Color4(0.2f, 0.992570f, 0.20f, 1);
-                else GL.Color4(0.9952f, 0.450f, 0.250f, 1);
+                if (red > 400) red = 400;
+                red = 0.002 * red;
 
-                if (vehicle.isInDeadZone) GL.Color4(0.952f, 0.9750f, 0.0f, 0.7);
+                GL.Color4(red, green, 0.3, 1.0);
 
                 GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
                 GL.TexCoord2(0, 1); GL.Vertex2(-wide, 3); // 
@@ -2331,10 +2351,19 @@ namespace AgOpenGPS
 
                 GL.Disable(EnableCap.Texture2D);
 
-
                 GL.Color4(0.12f, 0.12770f, 0.120f, 1);
 
                 font.DrawText(center, 2, hede, 1.0+textSize);
+
+                if (vehicle.isInDeadZone)
+                {
+                    GL.Color4(0.512f, 0.9712770f, 0.5120f, 1);
+                    GL.LineWidth(4);
+                    GL.Begin(PrimitiveType.Lines);
+                    GL.Vertex2(-wide, 36 * (1 + textSize));
+                    GL.Vertex2(wide, 36 * (1 + textSize));
+                    GL.End();
+                }
             }
         }
 

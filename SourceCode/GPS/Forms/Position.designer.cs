@@ -971,7 +971,7 @@ namespace AgOpenGPS
                     && Math.Abs(guidanceLineDistanceOff) < vehicle.deadZoneDistance
                             && Math.Abs(guidanceLineSteerAngle) < vehicle.deadZoneHeading)
                 {
-                    if (vehicle.deadZoneDelayCounter > 4)
+                    if (vehicle.deadZoneDelayCounter > 6)
                     {
                         vehicle.isInDeadZone = true;
                     }
