@@ -198,7 +198,6 @@
             this.label52 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
             this.chkDisplayLightbar = new System.Windows.Forms.CheckBox();
-            this.label51 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.rbtnSteerBar = new System.Windows.Forms.RadioButton();
             this.label48 = new System.Windows.Forms.Label();
@@ -206,10 +205,8 @@
             this.label50 = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
-            this.label47 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.nudcmPerPixel = new AgOpenGPS.NudlessNumericUpDown();
-            this.nudDeadZoneDistance = new AgOpenGPS.NudlessNumericUpDown();
             this.nudDeadZoneHeading = new AgOpenGPS.NudlessNumericUpDown();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.label35 = new System.Windows.Forms.Label();
@@ -217,6 +214,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.pboxSendSteer = new System.Windows.Forms.PictureBox();
             this.btnSendSteerConfigPGN = new System.Windows.Forms.Button();
+            this.label51 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabInt.SuspendLayout();
             this.tabStan.SuspendLayout();
@@ -250,7 +248,6 @@
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudcmPerPixel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudDeadZoneDistance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDeadZoneHeading)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxSendSteer)).BeginInit();
             this.SuspendLayout();
@@ -964,7 +961,7 @@
             this.lblAV_Set.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAV_Set.AutoSize = true;
             this.lblAV_Set.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAV_Set.Location = new System.Drawing.Point(-239, 18);
+            this.lblAV_Set.Location = new System.Drawing.Point(-256, 18);
             this.lblAV_Set.Name = "lblAV_Set";
             this.lblAV_Set.Size = new System.Drawing.Size(51, 19);
             this.lblAV_Set.TabIndex = 529;
@@ -976,7 +973,7 @@
             this.lblAV_Act.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAV_Act.AutoSize = true;
             this.lblAV_Act.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAV_Act.Location = new System.Drawing.Point(-239, 42);
+            this.lblAV_Act.Location = new System.Drawing.Point(-256, 42);
             this.lblAV_Act.Name = "lblAV_Act";
             this.lblAV_Act.Size = new System.Drawing.Size(54, 19);
             this.lblAV_Act.TabIndex = 528;
@@ -999,7 +996,7 @@
             this.label36.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(-283, 44);
+            this.label36.Location = new System.Drawing.Point(-300, 44);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(50, 16);
             this.label36.TabIndex = 530;
@@ -1023,7 +1020,7 @@
             this.label38.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(-284, 20);
+            this.label38.Location = new System.Drawing.Point(-301, 20);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(51, 16);
             this.label38.TabIndex = 531;
@@ -1102,7 +1099,7 @@
             this.lblActualSteerAngleUpper.BackColor = System.Drawing.Color.Transparent;
             this.lblActualSteerAngleUpper.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblActualSteerAngleUpper.ForeColor = System.Drawing.Color.Black;
-            this.lblActualSteerAngleUpper.Location = new System.Drawing.Point(-478, 16);
+            this.lblActualSteerAngleUpper.Location = new System.Drawing.Point(-495, 16);
             this.lblActualSteerAngleUpper.Name = "lblActualSteerAngleUpper";
             this.lblActualSteerAngleUpper.Size = new System.Drawing.Size(39, 19);
             this.lblActualSteerAngleUpper.TabIndex = 324;
@@ -2574,10 +2571,8 @@
             this.tabOnTheLine.Controls.Add(this.groupBox6);
             this.tabOnTheLine.Controls.Add(this.label45);
             this.tabOnTheLine.Controls.Add(this.label46);
-            this.tabOnTheLine.Controls.Add(this.label47);
             this.tabOnTheLine.Controls.Add(this.pictureBox1);
             this.tabOnTheLine.Controls.Add(this.nudcmPerPixel);
-            this.tabOnTheLine.Controls.Add(this.nudDeadZoneDistance);
             this.tabOnTheLine.Controls.Add(this.nudDeadZoneHeading);
             this.tabOnTheLine.ImageIndex = 4;
             this.tabOnTheLine.Location = new System.Drawing.Point(4, 68);
@@ -2592,7 +2587,7 @@
             this.label54.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label54.ForeColor = System.Drawing.Color.Black;
             this.label54.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label54.Location = new System.Drawing.Point(428, 430);
+            this.label54.Location = new System.Drawing.Point(352, 430);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(123, 22);
             this.label54.TabIndex = 543;
@@ -2604,9 +2599,9 @@
             this.nudDeadZoneDelay.BackColor = System.Drawing.Color.White;
             this.nudDeadZoneDelay.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudDeadZoneDelay.InterceptArrowKeys = false;
-            this.nudDeadZoneDelay.Location = new System.Drawing.Point(436, 376);
+            this.nudDeadZoneDelay.Location = new System.Drawing.Point(360, 376);
             this.nudDeadZoneDelay.Maximum = new decimal(new int[] {
-            5,
+            10,
             0,
             0,
             0});
@@ -2646,7 +2641,7 @@
             this.label49.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label49.ForeColor = System.Drawing.Color.Black;
             this.label49.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label49.Location = new System.Drawing.Point(252, 431);
+            this.label49.Location = new System.Drawing.Point(176, 431);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(159, 22);
             this.label49.TabIndex = 539;
@@ -2673,17 +2668,6 @@
             this.chkDisplayLightbar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplayLightbar.UseVisualStyleBackColor = false;
             this.chkDisplayLightbar.Click += new System.EventHandler(this.chkDisplayLightbar_Click);
-            // 
-            // label51
-            // 
-            this.label51.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label51.ForeColor = System.Drawing.Color.Black;
-            this.label51.Location = new System.Drawing.Point(158, 326);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(347, 41);
-            this.label51.TabIndex = 541;
-            this.label51.Text = " ------ Dead Zone -----";
-            this.label51.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox6
             // 
@@ -2794,19 +2778,6 @@
             this.label46.Text = "cm";
             this.label46.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label47
-            // 
-            this.label47.BackColor = System.Drawing.Color.Transparent;
-            this.label47.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.ForeColor = System.Drawing.Color.Black;
-            this.label47.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label47.Location = new System.Drawing.Point(76, 431);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(159, 22);
-            this.label47.TabIndex = 536;
-            this.label47.Text = "Distance (cm)";
-            this.label47.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = global::AgOpenGPS.Properties.Resources.ConV_CmPixel;
@@ -2840,42 +2811,13 @@
             0});
             this.nudcmPerPixel.Click += new System.EventHandler(this.nudcmPerPixel_Click);
             // 
-            // nudDeadZoneDistance
-            // 
-            this.nudDeadZoneDistance.BackColor = System.Drawing.Color.White;
-            this.nudDeadZoneDistance.DecimalPlaces = 1;
-            this.nudDeadZoneDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudDeadZoneDistance.InterceptArrowKeys = false;
-            this.nudDeadZoneDistance.Location = new System.Drawing.Point(102, 377);
-            this.nudDeadZoneDistance.Maximum = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
-            this.nudDeadZoneDistance.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nudDeadZoneDistance.Name = "nudDeadZoneDistance";
-            this.nudDeadZoneDistance.ReadOnly = true;
-            this.nudDeadZoneDistance.Size = new System.Drawing.Size(107, 52);
-            this.nudDeadZoneDistance.TabIndex = 535;
-            this.nudDeadZoneDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudDeadZoneDistance.Value = new decimal(new int[] {
-            4,
-            0,
-            0,
-            0});
-            this.nudDeadZoneDistance.Click += new System.EventHandler(this.nudDeadZoneDistance_Click);
-            // 
             // nudDeadZoneHeading
             // 
             this.nudDeadZoneHeading.BackColor = System.Drawing.Color.White;
             this.nudDeadZoneHeading.DecimalPlaces = 1;
             this.nudDeadZoneHeading.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudDeadZoneHeading.InterceptArrowKeys = false;
-            this.nudDeadZoneHeading.Location = new System.Drawing.Point(278, 377);
+            this.nudDeadZoneHeading.Location = new System.Drawing.Point(202, 377);
             this.nudDeadZoneHeading.Maximum = new decimal(new int[] {
             5,
             0,
@@ -2978,6 +2920,17 @@
             this.btnSendSteerConfigPGN.UseVisualStyleBackColor = false;
             this.btnSendSteerConfigPGN.Click += new System.EventHandler(this.btnSendSteerConfigPGN_Click);
             // 
+            // label51
+            // 
+            this.label51.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label51.ForeColor = System.Drawing.Color.Black;
+            this.label51.Location = new System.Drawing.Point(158, 326);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(347, 41);
+            this.label51.TabIndex = 541;
+            this.label51.Text = " ------ Dead Zone -----";
+            this.label51.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormSteer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -3053,7 +3006,6 @@
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudcmPerPixel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudDeadZoneDistance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDeadZoneHeading)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxSendSteer)).EndInit();
             this.ResumeLayout(false);
@@ -3227,11 +3179,8 @@
         private NudlessNumericUpDown nudcmPerPixel;
         private System.Windows.Forms.Label label156;
         private System.Windows.Forms.CheckBox cboxSteerInReverse;
-        private System.Windows.Forms.Label label47;
-        private NudlessNumericUpDown nudDeadZoneDistance;
         private System.Windows.Forms.Label label49;
         private NudlessNumericUpDown nudDeadZoneHeading;
-        private System.Windows.Forms.Label label51;
         private System.Windows.Forms.TabPage tabOnTheLine;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.RadioButton rbtnSteerBar;
@@ -3248,5 +3197,6 @@
         private System.Windows.Forms.Label label52;
         private System.Windows.Forms.Label label54;
         private NudlessNumericUpDown nudDeadZoneDelay;
+        private System.Windows.Forms.Label label51;
     }
 }
