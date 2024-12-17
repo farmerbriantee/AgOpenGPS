@@ -339,6 +339,7 @@ namespace AgOpenGPS
                 //keeps autoTrack from changing too fast
                 trk.autoTrack3SecTimer++;
                 killAutosteerCounter++;
+                vehicle.deadZoneDelayCounter++;
 
                 lblFix.Text = FixQuality + "Age: " + pn.age.ToString("N1");
 
@@ -388,8 +389,6 @@ namespace AgOpenGPS
                 oneHalfSecondCounter = 0;
 
                 isFlashOnOff = !isFlashOnOff;
-
-                vehicle.deadZoneDelayCounter++;
 
                 //the main formgps window
                 if (isMetric)  //metric or imperial

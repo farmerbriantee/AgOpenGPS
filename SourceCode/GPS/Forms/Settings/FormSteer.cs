@@ -381,6 +381,7 @@ namespace AgOpenGPS
             Properties.Settings.Default.setVehicle_panicStopSpeed = mf.vehicle.panicStopSpeed;
             //Properties.Settings.Default.setAS_deadZoneDistance = mf.vehicle.deadZoneDistance;
             Properties.Settings.Default.setAS_deadZoneHeading = mf.vehicle.deadZoneHeading;
+            Properties.Settings.Default.setAS_deadZoneDelay = mf.vehicle.deadZoneDelay;
 
             Properties.Settings.Default.setAS_ModeXTE = mf.vehicle.modeXTE;
             Properties.Settings.Default.setAS_ModeTime = mf.vehicle.modeTime;
