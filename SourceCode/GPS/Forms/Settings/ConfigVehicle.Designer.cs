@@ -52,7 +52,6 @@ namespace AgOpenGPS
                 //save current vehicle
                 SettingsIO.ExportAll(mf.vehiclesDirectory + mf.vehicleFileName + ".XML");
 
-
                 if (lvVehicles.SelectedItems.Count > 0)
                 {
                     DialogResult result3 = MessageBox.Show(
@@ -131,6 +130,8 @@ namespace AgOpenGPS
 
                         ///Remind the user
                         mf.TimedMessageBox(2500, "Steer and Machine Settings Sent", "Were Modules Connected?");
+
+                        mf.SystemEventWriter("Vehicle Loaded: " + mf.vehicleFileName + ".XML");
                     }
 
                     UpdateVehicleListView();

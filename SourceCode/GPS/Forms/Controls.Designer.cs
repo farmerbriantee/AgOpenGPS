@@ -49,7 +49,6 @@ namespace AgOpenGPS
                 {
                     btnAutoSteer.PerformClick();
                     TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsContourOn);
-                    StopAutoSteerEventWriter("Steer On And Enable Contour");
                 }
 
             }
@@ -157,6 +156,8 @@ namespace AgOpenGPS
                         if (sounds.isSteerSoundOn) sounds.sndAutoSteerOff.Play();
                     }
 
+                    SystemEventWriter("Above Max Safe Speed for Autosteer");
+
                     if (isMetric)
                         TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + vehicle.maxSteerSpeed.ToString("N0") + " Kmh");
                     else
@@ -202,6 +203,7 @@ namespace AgOpenGPS
             if (bnd.bndList.Count == 0)
             {
                 TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
+                SystemEventWriter("Uturn attempted without boundary");
                 return;
             }
 
@@ -468,6 +470,7 @@ namespace AgOpenGPS
         }
 
         public bool isCancelJobMenu;
+
         private void btnJobMenu_Click(object sender, EventArgs e)
         {
             if (!isFirstFixPositionSet || sentenceCounter > 299)
@@ -480,7 +483,9 @@ namespace AgOpenGPS
                 else
                 {
                     TimedMessageBox(2500, "No GPS", "No GPS Position Found");
+
                 }
+                SystemEventWriter("No GPS Position, Field Closed");
                 return;
             }
 
@@ -494,6 +499,15 @@ namespace AgOpenGPS
 
             f = null;
             f = Application.OpenForms["FormFieldData"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+            }
+
+            f = null;
+            f = Application.OpenForms["FormEventViewer"];
 
             if (f != null)
             {
@@ -572,11 +586,17 @@ namespace AgOpenGPS
                     double distance = Math.Pow((pn.latStart - pn.latitude), 2) + Math.Pow((pn.lonStart - pn.longitude), 2);
                     distance = Math.Sqrt(distance);
                     distance *= 100;
-                    if (distance > 10) TimedMessageBox(2500, "High Field Start Distance Warning", "Field Start is "
+                    if (distance > 10)
+                    {
+                        TimedMessageBox(2500, "High Field Start Distance Warning", "Field Start is "
                         + distance.ToString("N1") + " km From current position");
-                    
-                    sbAutosteerStopEvents.Clear();
-                    sbAutosteerStopEvents.Append(currentFieldDirectory + '\r');
+
+                        SystemEventWriter("High Field Start Distance Warning");
+                    }
+
+                    FileSaveSystemEvents();
+                    sbSystemEvents.Clear();
+                    sbSystemEvents.Append(currentFieldDirectory + " *Opened* " + (DateTime.Now.ToLongDateString()) + '\r');
                 }
             }
 
@@ -624,8 +644,10 @@ namespace AgOpenGPS
             ExportFieldAs_ISOXMLv3();
             ExportFieldAs_ISOXMLv4();
 
-            FileSaveAutoSteerEvents();
-            sbAutosteerStopEvents.Clear();
+            SystemEventWriter(currentFieldDirectory + " ** Closed **");
+
+            FileSaveSystemEvents();
+            sbSystemEvents.Clear();
 
             Settings.Default.setF_CurrentDir = currentFieldDirectory;
             Settings.Default.Save();
@@ -736,7 +758,7 @@ namespace AgOpenGPS
             {
                 btnAutoSteer.PerformClick();
                 TimedMessageBox(2000, gStr.gsGuidanceStopped, "Paths Enabled");
-                StopAutoSteerEventWriter("Autosteer On While Enable Paths");
+                SystemEventWriter("Autosteer On While Enable Paths");
             }
 
             DisableYouTurnButtons();
@@ -1186,6 +1208,42 @@ namespace AgOpenGPS
         }
         private void btnShutdown_Click(object sender, EventArgs e)
         {
+            Form f = Application.OpenForms["FormGPSData"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+            }
+
+            f = null;
+            f = Application.OpenForms["FormFieldData"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+            }
+
+            f = null;
+            f = Application.OpenForms["FormEventViewer"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+            }
+
+            f = null;
+            f = Application.OpenForms["FormPan"];
+
+            if (f != null)
+            {
+                isPanFormVisible = false;
+                f.Focus();
+                f.Close();
+            }
+
             Close();
         }
         private void btnMinimizeMainForm_Click(object sender, EventArgs e)
@@ -1346,6 +1404,10 @@ namespace AgOpenGPS
                     Settings.Default.setF_culture = "en";
                     Settings.Default.setF_workingDirectory = "Default";
                     Settings.Default.Save();
+
+                    //save event
+                    SystemEventWriter("Reset ALL event occured" );
+                    FileSaveSystemEvents();
 
                     MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
                     System.Environment.Exit(1);
@@ -1935,6 +1997,7 @@ namespace AgOpenGPS
                         FileCreateContour();
                         FileCreateSections();
 
+                        SystemEventWriter("All Section Mapping Deleted");
                     }
                     else
                     {
@@ -1992,6 +2055,12 @@ namespace AgOpenGPS
             Form formX = new FormGraphXTE(this);
             formX.Show(this);
         }
+        private void eventViewerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form form = new FormEventViewer(this);
+            form.Show(this);
+        }
+
         private void webcamToolStrip_Click(object sender, EventArgs e)
         {
             Form form = new FormWebCam();
@@ -2193,20 +2262,20 @@ namespace AgOpenGPS
             if (sim.stepDistance < -0.5) sim.stepDistance = -0.5;
         }
 
-
+        short lastSimGuidanceAngle = 0;
         private void timerSim_Tick(object sender, EventArgs e)
         {
-            vehicle.isInDeadZone = false;
             if (recPath.isDrivingRecordedPath || isBtnAutoSteerOn && (guidanceLineDistanceOff != 32000))
             {
-                if (Math.Abs(guidanceLineDistanceOff) < vehicle.deadZoneDistance
-                    && Math.Abs(guidanceLineSteerAngle) < vehicle.deadZoneHeading)
+                if (vehicle.isInDeadZone)
                 {
-                    vehicle.isInDeadZone = true;
-                    guidanceLineSteerAngle = 0;
+                    sim.DoSimTick((double)lastSimGuidanceAngle * 0.01);
                 }
-
-                sim.DoSimTick(guidanceLineSteerAngle * 0.01);
+                else
+                {
+                    sim.DoSimTick((double)guidanceLineSteerAngle * 0.01);
+                    lastSimGuidanceAngle = guidanceLineSteerAngle;
+                }
             }
             else sim.DoSimTick(sim.steerAngleScrollBar);
         }
@@ -2219,7 +2288,7 @@ namespace AgOpenGPS
             {
                 btnAutoSteer.PerformClick();
                 TimedMessageBox(2000, gStr.gsGuidanceStopped, "Sim Reverse Touched");
-                StopAutoSteerEventWriter("Sim Reverse Activated");
+                SystemEventWriter("Steer Off, Sim Reverse Activated");
             }
         }
         private void hsbarSteerAngle_Scroll(object sender, ScrollEventArgs e)

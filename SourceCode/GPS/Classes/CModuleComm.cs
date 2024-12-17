@@ -59,7 +59,6 @@ namespace AgOpenGPS
                 if (steerSwitchHigh == mf.isBtnAutoSteerOn)
                 {
                     mf.btnAutoSteer.PerformClick();
-                    mf.TimedMessageBox(2000, gStr.gsGuidanceStopped, "Steer Switch Activated");
                 }
             }
 

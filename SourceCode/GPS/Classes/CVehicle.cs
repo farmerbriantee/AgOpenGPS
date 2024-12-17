@@ -17,7 +17,7 @@ namespace AgOpenGPS
         public double wheelbase;
         public double antennaOffset, panicStopSpeed;
         public int deadZoneDistance, deadZoneHeading;
-        public int vehicleType;
+        public int vehicleType, deadZoneDelayCounter;
         public bool isInDeadZone;
 
         //min vehicle speed allowed before turning shit off

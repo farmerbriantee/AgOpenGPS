@@ -94,16 +94,16 @@ namespace AgOpenGPS
 
         public List<int> buttonOrder = new List<int>();
 
-        public StringBuilder sbAutosteerStopEvents = new StringBuilder();
+        public StringBuilder sbSystemEvents = new StringBuilder();
 
         //Timer triggers at 125 msec
 
-        public void StopAutoSteerEventWriter(string message)
+        public void SystemEventWriter(string message)
         {
-            sbAutosteerStopEvents.Append(DateTime.Now.ToString("T"));
-            sbAutosteerStopEvents.Append(":-> ");
-            sbAutosteerStopEvents.Append(message);
-            sbAutosteerStopEvents.Append("\r");
+            sbSystemEvents.Append(DateTime.Now.ToString("T"));
+            sbSystemEvents.Append("-> ");
+            sbSystemEvents.Append(message);
+            sbSystemEvents.Append("\r");
         }
 
         private void tmrWatchdog_tick(object sender, EventArgs e)
@@ -112,6 +112,7 @@ namespace AgOpenGPS
             if (++sentenceCounter > 20)
             {
                 ShowNoGPSWarning();
+                SystemEventWriter("No GPS Warning - Counter > 20");
                 return;
             }
 
@@ -337,6 +338,7 @@ namespace AgOpenGPS
 
                 //keeps autoTrack from changing too fast
                 trk.autoTrack3SecTimer++;
+                killAutosteerCounter++;
 
                 lblFix.Text = FixQuality + "Age: " + pn.age.ToString("N1");
 
@@ -377,8 +379,6 @@ namespace AgOpenGPS
                 {
                     if (trackMethodPanelCounter-- < 1) flp1.Visible = false;
                 }
-
-                lblJumpDistanceMax.Text = jumpDistanceMax.ToString("N1");
             }
 
             //every half of a second update all status  ////////////////    0.5  0.5   0.5    0.5    /////////////////
@@ -388,6 +388,8 @@ namespace AgOpenGPS
                 oneHalfSecondCounter = 0;
 
                 isFlashOnOff = !isFlashOnOff;
+
+                vehicle.deadZoneDelayCounter++;
 
                 //the main formgps window
                 if (isMetric)  //metric or imperial
@@ -408,7 +410,7 @@ namespace AgOpenGPS
                 {
                     btnAutoSteer.PerformClick();
                     TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsNoGuidanceLines);
-                    StopAutoSteerEventWriter("No Tracks, Index is -1");
+                    SystemEventWriter("Steer Safe Off, No Tracks, Idx -1");
                 }
 
 
@@ -804,7 +806,7 @@ namespace AgOpenGPS
                 btnChargeStatus.BackColor = Color.LightCoral;
             }
 
-            jumpDistanceAlarm = Settings.Default.setGPS_jumpFixAlarmDistance;
+            //jumpDistanceAlarm = Settings.Default.setGPS_jumpFixAlarmDistance;
 
         }
 
@@ -837,7 +839,7 @@ namespace AgOpenGPS
                     {
                         btnAutoSteer.PerformClick();
                         TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsNoGuidanceLines);
-                        StopAutoSteerEventWriter("No Tracks, Index is -1");
+                        SystemEventWriter("Steer Safe Off, No Tracks, Idx -1");
                     }
                     btnAutoSteer.Enabled = false;
                 }
@@ -1445,6 +1447,8 @@ namespace AgOpenGPS
                     isFirstHeadingSet = false;
                     isReverse = false;
                     TimedMessageBox(2000, "Reset Direction", "Drive Forward > 1.5 kmh");
+                    SystemEventWriter("Direction Reset, Drive Forward");
+
                     return;
                 }
 
@@ -1457,14 +1461,17 @@ namespace AgOpenGPS
         {
             if (isMetric)
             {
-                TimedMessageBox(2000, gStr.gsTooFast, gStr.gsSlowDownBelow + " " 
-                    + vehicle.functionSpeedLimit.ToString("N0") + " "+ gStr.gsKMH);
+                TimedMessageBox(2000, gStr.gsTooFast, gStr.gsSlowDownBelow + " "
+                    + vehicle.functionSpeedLimit.ToString("N0") + " " + gStr.gsKMH);
             }
             else
             {
                 TimedMessageBox(2000, gStr.gsTooFast, gStr.gsSlowDownBelow + " "
-                    + (vehicle.functionSpeedLimit* 0.621371).ToString("N1") + " " + gStr.gsMPH);
-           }
+                    + (vehicle.functionSpeedLimit * 0.621371).ToString("N1") + " " + gStr.gsMPH);
+            }
+
+            SystemEventWriter("UTurn or Lateral Speed exceeded");
+
         }
 
         public void SwapDirection()

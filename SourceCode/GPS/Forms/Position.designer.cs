@@ -100,7 +100,8 @@ namespace AgOpenGPS
 
         private double nowHz = 0, filteredDelta = 0, delta = 0;
 
-        public bool isRTK_AlarmOn, isRTK_KillAutosteer;
+        public bool isRTK_AlarmOn, isRTK_KillAutosteer, isRTK_alreadyKilledAutosteer = false;
+        public int killAutosteerCounter = 20;
 
         public double headlandDistanceDelta = 0, boundaryDistanceDelta = 0;
 
@@ -116,10 +117,10 @@ namespace AgOpenGPS
 
         public int minSteerSpeedTimer = 0;
 
-        public vec2 jumpFix = new vec2(0, 0);
-        public double jumpDistance = 0, jumpDistanceMax;
-        public double jumpDistanceAlarm = 20;
-        public int jumpCounter = 0;
+        //public vec2 jumpFix = new vec2(0, 0);
+        //public double jumpDistance = 0, jumpDistanceMax;
+        //public double jumpDistanceAlarm = 20;
+        //public int jumpCounter = 0;
 
         public void UpdateFixPosition()
         {
@@ -274,6 +275,7 @@ namespace AgOpenGPS
 
                                 isFirstHeadingSet = true;
                                 TimedMessageBox(2000, "Direction Reset", "Forward is Set");
+                                SystemEventWriter("Forward Is Set");
 
                                 lastGPS = pn.fix;
 
@@ -315,7 +317,7 @@ namespace AgOpenGPS
                         }
 
                         //save a copy of previous for jump test
-                        jumpFix.easting = stepFixPts[0].easting; jumpFix.northing = stepFixPts[0].northing;
+                        //jumpFix.easting = stepFixPts[0].easting; jumpFix.northing = stepFixPts[0].northing;
                         
                         if ((fd.distanceUser += distanceCurrentStepFix) > 9999) fd.distanceUser = 0;
 
@@ -650,8 +652,8 @@ namespace AgOpenGPS
                         TheRest();
 
                         //most recent fixes are now the prev ones
-                        jumpFix = prevFix;
-                        prevFix = pn.fix;
+                        //jumpFix = prevFix;
+                        //prevFix = pn.fix;
 
                         break;
                     }
@@ -684,7 +686,7 @@ namespace AgOpenGPS
 
                         //grab the most current fix and save the distance from the last fix
                         distanceCurrentStepFix = glm.Distance(pn.fix, prevDistFix);
-                        jumpFix = prevDistFix;
+                        //jumpFix = prevDistFix;
                         prevDistFix  = pn.fix;
 
                         //userDistance can be reset
@@ -751,42 +753,45 @@ namespace AgOpenGPS
             if (fixHeading >= glm.twoPI)
                 fixHeading -= glm.twoPI;
 
-            vec2 ptA = new vec2(jumpFix.easting - (Math.Sin(gpsHeading) * 10), jumpFix.northing - (Math.Cos(gpsHeading) * 10));
-            vec2 ptB = new vec2(jumpFix.easting + (Math.Sin(gpsHeading) * 10), jumpFix.northing + (Math.Cos(gpsHeading) * 10));
+            //vec2 ptA = new vec2(jumpFix.easting - (Math.Sin(gpsHeading) * 10), jumpFix.northing - (Math.Cos(gpsHeading) * 10));
+            //vec2 ptB = new vec2(jumpFix.easting + (Math.Sin(gpsHeading) * 10), jumpFix.northing + (Math.Cos(gpsHeading) * 10));
 
-            double dx = ptB.easting - ptA.easting;
-            //z2-z1
-            double dy = ptB.northing - ptA.northing;
+            //double dx = ptB.easting - ptA.easting;
+            ////z2-z1
+            //double dy = ptB.northing - ptA.northing;
 
-            //how far from current AB Line is fix
-            jumpDistance = ((dy * pn.fix.easting) - (dx * pn.fix.northing) 
-                            + (ptB.easting * ptA.northing) - (ptB.northing * ptA.easting))
-                            / Math.Sqrt((dy * dy) + (dx * dx));
+            ////how far from current AB Line is fix
+            //jumpDistance = ((dy * pn.fix.easting) - (dx * pn.fix.northing) 
+            //                + (ptB.easting * ptA.northing) - (ptB.northing * ptA.easting))
+            //                / Math.Sqrt((dy * dy) + (dx * dx));
 
-            jumpDistance = Math.Abs(jumpDistance) * 100;
+            //jumpDistance = Math.Abs(jumpDistance) * 100;
 
-            if (jumpDistance > jumpDistanceMax) jumpDistanceMax = jumpDistance;
+            //if (jumpDistance > jumpDistanceMax) jumpDistanceMax = jumpDistance;
 
-            if (jumpCounter++ > 200)
-            {
-                jumpDistanceMax = jumpCounter = 0;
-                lblJumpDistanceMax.Text = "*";
-            }
+            //if (jumpCounter++ > 200)
+            //{
+            //    jumpDistanceMax = jumpCounter = 0;
+            //    lblJumpDistanceMax.Text = "*";
+            //}
 
-            if (jumpDistance > 200) jumpDistance = 0;
+            //if (jumpDistance > 200) jumpDistance = 0;
 
-            if (jumpDistanceAlarm > 0)
-            {
-                if (jumpDistance > jumpDistanceAlarm)
-                {
-                    if (isBtnAutoSteerOn)
-                    {
-                        btnAutoSteer.PerformClick();
-                        TimedMessageBox(3000, "Autosteer Turned Off", "Big Jump in GPS position:" + jumpDistance.ToString("N0") + " cm");
-                        StopAutoSteerEventWriter("Jump in GPS position:" + jumpDistance.ToString("N0") + " cm");
-                    }
-                }
-            }
+            //if (isFirstHeadingSet && jumpDistanceAlarm > 0 && jumpDistance > jumpDistanceAlarm)
+            //{
+            //    SystemEventWriter(": " + jumpDistance.ToString("N0") + " cm");
+
+            //    if (isBtnAutoSteerOn)
+            //    {
+            //        btnAutoSteer.PerformClick();
+            //        TimedMessageBox(3000, gStr.gsAutoSteer, "Big Jump in GPS position:" + jumpDistance.ToString("N0") + " cm");
+            //        SystemEventWriter("Autosteer Off, Jump in GPS position: " + jumpDistance.ToString("N0") + " cm");
+            //    }
+
+            //}
+
+            //jumpFix.easting = pn.fix.easting;
+            //jumpFix.northing = pn.fix.northing;
 
             #endregion
 
@@ -901,10 +906,11 @@ namespace AgOpenGPS
                     {
                         btnAutoSteer.PerformClick();
                         if (isMetric)
-                            TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + vehicle.minSteerSpeed.ToString("N0") + " Kmh");
+                            TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + vehicle.maxSteerSpeed.ToString("N0") + " Kmh");
                         else
-                            TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + (vehicle.minSteerSpeed * 0.621371).ToString("N1") + " MPH");
-                        StopAutoSteerEventWriter("Exceed Safe Steering Speed");
+                            TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + (vehicle.maxSteerSpeed * 0.621371).ToString("N1") + " MPH");
+                        
+                        SystemEventWriter("Steer Off, Exceed Safe Steering Speed");
 
                     }
 
@@ -918,7 +924,8 @@ namespace AgOpenGPS
                                 TimedMessageBox(3000, "AutoSteer Disabled", "Below Minimum Safe Steering Speed: " + vehicle.minSteerSpeed.ToString("N0") + " Kmh");
                             else
                                 TimedMessageBox(3000, "AutoSteer Disabled", "Below Minimum Safe Steering Speed: " + (vehicle.minSteerSpeed * 0.621371).ToString("N1") + " MPH");
-                            StopAutoSteerEventWriter("Below Min Steering Speed");
+                            
+                            SystemEventWriter("Steer Off, Below Min Steering Speed");
                         }
                     }
                     else
@@ -958,16 +965,24 @@ namespace AgOpenGPS
                     if (isReverse) p_254.pgn[p_254.status] = 0;
                 }
                 
-                vehicle.isInDeadZone = false;
 
+                //2 sec delay on dead zone.
                 if (p_254.pgn[p_254.status] == 1 && !isReverse
                     && Math.Abs(guidanceLineDistanceOff) < vehicle.deadZoneDistance
                             && Math.Abs(guidanceLineSteerAngle) < vehicle.deadZoneHeading)
                 {
-                    vehicle.isInDeadZone = true;
-                    p_254.pgn[p_254.status] = 0;
+                    if (vehicle.deadZoneDelayCounter > 6)
+                    {
+                        vehicle.isInDeadZone = true;
+                    }
                 }
                 else
+                {
+                    vehicle.deadZoneDelayCounter = 0;
+                    vehicle.isInDeadZone = false;
+                }
+
+                 if (!vehicle.isInDeadZone)
                 {
                     p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(guidanceLineSteerAngle >> 8));
                     p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(guidanceLineSteerAngle));
@@ -1050,7 +1065,11 @@ namespace AgOpenGPS
                             if (yt.isTurnCreationTooClose && !yt.turnTooCloseTrigger)
                             {
                                 yt.turnTooCloseTrigger = true;
-                                if (sounds.isTurnSoundOn) sounds.sndUTurnTooClose.Play();
+                                if (sounds.isTurnSoundOn)
+                                {
+                                    sounds.sndUTurnTooClose.Play();
+                                    SystemEventWriter("U Turn Creation Failure");
+                                }
                             }
                         }
                         else if (yt.ytList.Count > 5)//wait to trigger the actual turn since its made and waiting
@@ -1193,7 +1212,7 @@ namespace AgOpenGPS
                 {
                    btnAutoSteer.PerformClick();
                     TimedMessageBox(2000, gStr.gsGuidanceStopped, "Panic Stop");
-                    StopAutoSteerEventWriter("Panic Stop Exceeded");
+                    SystemEventWriter("Steer Off, Panic Stop Exceeded");
                 }
             }
 
@@ -1311,7 +1330,7 @@ namespace AgOpenGPS
             //used to increase triangle countExit when going around corners, less on straight
             //pick the slow moving side edge of tool
             double distance = tool.width * 0.5;
-            if (distance > 5) distance = 5;
+            //if (distance > 5) distance = 5;
 
             //whichever is less
             if (tool.farLeftSpeed < tool.farRightSpeed)
@@ -1331,7 +1350,7 @@ namespace AgOpenGPS
             }
 
             //finally fixed distance for making a curve line
-            if (!curve.isRecordingCurve) sectionTriggerStepDistance = sectionTriggerStepDistance + 2.0;
+            if (!curve.isRecordingCurve) sectionTriggerStepDistance = sectionTriggerStepDistance + 1.0;
             //if (ct.isContourBtnOn) sectionTriggerStepDistance *=0.5;
 
             //precalc the sin and cos of heading * -1
