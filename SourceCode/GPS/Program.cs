@@ -1,6 +1,8 @@
 ﻿using AgOpenGPS.Properties;
 using Microsoft.Win32;
 using System;
+using System.Configuration;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -16,7 +18,15 @@ namespace AgOpenGPS
         [STAThread]
         private static void Main()
         {
-            ////opening the subkey
+            string configPath = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath;
+            if (!File.Exists(configPath))
+            {
+                //Existing user config does not exist, so load settings from previous assembly
+                Settings.Default.Upgrade();
+                Settings.Default.Reload();
+                Settings.Default.Save();
+            }
+            //opening the subkey
             RegistryKey regKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\AgOpenGPS");
 
             ////create default keys if not existing
@@ -42,11 +52,18 @@ namespace AgOpenGPS
                 {
                     // Corrupted XML! Delete the file, the user can just reload when this fails to appear. No need to worry them
                     MessageBoxButtons btns = MessageBoxButtons.OK;
-                    System.Windows.Forms.MessageBox.Show("Error detected in config file - fixing it now, please close this and restart app", "Problem!", btns);
+                    System.Windows.Forms.MessageBox.Show("Error detected in config file - fixing it now", "Problem!", btns);
                     string filename = ((ex.InnerException as System.Configuration.ConfigurationErrorsException)?.Filename) as string;
                     System.IO.File.Delete(filename);
-                    Settings.Default.Reload();
-                    Application.Exit();
+
+                    configPath = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath;
+                    if (!File.Exists(configPath))
+                    {
+                        //Existing user config does not exist, so load settings from previous assembly
+                        Settings.Default.Upgrade();
+                        Settings.Default.Reload();
+                        Settings.Default.Save();
+                    }
                 }
 
                 Settings.Default.Save();
@@ -66,8 +83,5 @@ namespace AgOpenGPS
                 MessageBox.Show("AgOpenGPS is Already Running");
             }
         }
-
-        //[System.Runtime.InteropServices.DllImport("user32.dll")]
-        //private static extern bool SetProcessDPIAware();
     }
 }

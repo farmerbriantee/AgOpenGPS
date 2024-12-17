@@ -2253,19 +2253,19 @@ namespace AgOpenGPS
             if (sim.stepDistance < -0.5) sim.stepDistance = -0.5;
         }
 
-        short lastSimGuidanceAngle = 0;
+        double lastSimGuidanceAngle = 0;
         private void timerSim_Tick(object sender, EventArgs e)
         {
             if (recPath.isDrivingRecordedPath || isBtnAutoSteerOn && (guidanceLineDistanceOff != 32000))
             {
                 if (vehicle.isInDeadZone)
                 {
-                    sim.DoSimTick((double)lastSimGuidanceAngle * 0.01);
+                    sim.DoSimTick((double)lastSimGuidanceAngle);
                 }
                 else
                 {
-                    sim.DoSimTick((double)guidanceLineSteerAngle * 0.01);
-                    lastSimGuidanceAngle = guidanceLineSteerAngle;
+                    lastSimGuidanceAngle = (double)guidanceLineSteerAngle * 0.01 * 0.75;
+                    sim.DoSimTick(lastSimGuidanceAngle);
                 }
             }
             else sim.DoSimTick(sim.steerAngleScrollBar);
