@@ -18,14 +18,14 @@ namespace AgOpenGPS
         [STAThread]
         private static void Main()
         {
-            string configPath = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath;
-            if (!File.Exists(configPath))
-            {
-                //Existing user config does not exist, so load settings from previous assembly
-                Settings.Default.Upgrade();
-                Settings.Default.Reload();
-                Settings.Default.Save();
-            }
+            //string configPath = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath;
+            //if (!File.Exists(configPath))
+            //{
+            //    //Existing user config does not exist, so load settings from previous assembly
+            //    Settings.Default.Upgrade();
+            //    Settings.Default.Reload();
+            //    Settings.Default.Save();
+            //}
             //opening the subkey
             RegistryKey regKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\AgOpenGPS");
 
@@ -56,14 +56,14 @@ namespace AgOpenGPS
                     string filename = ((ex.InnerException as System.Configuration.ConfigurationErrorsException)?.Filename) as string;
                     System.IO.File.Delete(filename);
 
-                    configPath = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath;
-                    if (!File.Exists(configPath))
-                    {
-                        //Existing user config does not exist, so load settings from previous assembly
-                        Settings.Default.Upgrade();
-                        Settings.Default.Reload();
-                        Settings.Default.Save();
-                    }
+                    //configPath = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath;
+                    //if (!File.Exists(configPath))
+                    //{
+                    //    //Existing user config does not exist, so load settings from previous assembly
+                    //    Settings.Default.Upgrade();
+                    //    Settings.Default.Reload();
+                    //    Settings.Default.Save();
+                    //}
                 }
 
                 Settings.Default.Save();
