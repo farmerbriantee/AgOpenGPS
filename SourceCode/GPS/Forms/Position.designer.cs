@@ -906,9 +906,9 @@ namespace AgOpenGPS
                     {
                         btnAutoSteer.PerformClick();
                         if (isMetric)
-                            TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + vehicle.minSteerSpeed.ToString("N0") + " Kmh");
+                            TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + vehicle.maxSteerSpeed.ToString("N0") + " Kmh");
                         else
-                            TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + (vehicle.minSteerSpeed * 0.621371).ToString("N1") + " MPH");
+                            TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + (vehicle.maxSteerSpeed * 0.621371).ToString("N1") + " MPH");
                         
                         SystemEventWriter("Steer Off, Exceed Safe Steering Speed");
 
