@@ -100,8 +100,7 @@ namespace AgOpenGPS
 
         private double nowHz = 0, filteredDelta = 0, delta = 0;
 
-        public bool isRTK_AlarmOn, isRTK_KillAutosteer, isRTK_alreadyKilledAutosteer = false;
-        public int killAutosteerCounter = 20;
+        public bool isRTK_AlarmOn, isRTK_KillAutosteer;
 
         public double headlandDistanceDelta = 0, boundaryDistanceDelta = 0;
 

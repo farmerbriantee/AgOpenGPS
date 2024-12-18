@@ -62,18 +62,31 @@ namespace AgOpenGPS
         {
             if (!mf.mc.isOutOfBounds)
             {
-                GL.Color3(0.95f, 0.75f, 0.50f);
-                GL.LineWidth(1);
+                GL.Color4(0,0,0,0.8);
+                GL.LineWidth(6);
+
+                for (int i = 0; i < bndList.Count; i++)
+                {
+                    bndList[i].fenceLineEar.DrawPolygon();
+                }
+
+                GL.Color4(0.95f, 0.44f, 0.350f, 0.8f);
+                GL.LineWidth(2);
+
+                for (int i = 0; i < bndList.Count; i++)
+                {
+                    bndList[i].fenceLineEar.DrawPolygon();
+                }
             }
             else
             {
                 GL.LineWidth(mf.ABLine.lineWidth * 3);
                 GL.Color3(0.95f, 0.25f, 0.250f);
-            }
 
-            for (int i = 0; i < bndList.Count; i++)
-            {
-                bndList[i].fenceLineEar.DrawPolygon();
+                for (int i = 0; i < bndList.Count; i++)
+                {
+                    bndList[i].fenceLineEar.DrawPolygon();
+                }
             }
 
             ////closest points  TooDoo

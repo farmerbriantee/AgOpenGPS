@@ -860,6 +860,30 @@ namespace AgOpenGPS
             {
                 if (curList.Count > 0)
                 {
+                    GL.LineWidth(mf.ABLine.lineWidth*3);
+                    GL.Color3(0,0,0);
+
+                    //ablines and curves are a line - the rest a loop
+                    if (mf.trk.gArr[mf.trk.idx].mode <= TrackMode.Curve)
+                    {
+                        GL.Begin(PrimitiveType.LineStrip);
+                    }
+                    else
+                    {
+                        if (mf.trk.gArr[mf.trk.idx].mode == TrackMode.waterPivot)
+                        {
+                            GL.PointSize(15.0f);
+                            GL.Begin(PrimitiveType.Points);
+                            GL.Vertex3(mf.trk.gArr[mf.trk.idx].ptA.easting, mf.trk.gArr[mf.trk.idx].ptA.northing, 0);
+                            GL.End();
+                        }
+
+                        GL.Begin(PrimitiveType.LineLoop);
+                    }
+
+                    for (int h = 0; h < curList.Count; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
+                    GL.End();
+
                     GL.LineWidth(mf.ABLine.lineWidth);
                     GL.Color3(0.95f, 0.2f, 0.95f);
 
@@ -880,6 +904,7 @@ namespace AgOpenGPS
 
                         GL.Begin(PrimitiveType.LineLoop);
                     }
+
                     for (int h = 0; h < curList.Count; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
                     GL.End();
 
@@ -892,14 +917,15 @@ namespace AgOpenGPS
                         GL.Vertex3(goalPointCu.easting, goalPointCu.northing, 0.0);
                         GL.End();
                     }
+
                     mf.yt.DrawYouTurn();
 
-                    GL.PointSize(3.0f);
-                    GL.Begin(PrimitiveType.Points);
-                    GL.Color3(0.920f, 0.6f, 0.950f);
-                    for (int h = 0; h < curList.Count; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
-                    GL.End();
-                    GL.PointSize(1.0f);
+                    //GL.PointSize(3.0f);
+                    //GL.Begin(PrimitiveType.Points);
+                    //GL.Color3(0.920f, 0.6f, 0.950f);
+                    //for (int h = 0; h < curList.Count; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
+                    //GL.End();
+                    //GL.PointSize(1.0f);
                 }
             }
             GL.PointSize(1.0f);
