@@ -1,3 +1,12 @@
+****** Delete All Previous Versions of 6.4.x *****
+
+Fixes:
+FormGPS loads properly
+Black highlight for Fence, headland, Trams, guidance
+Alpha for tram visibility
+RTK Fix Alarm disables immediately Autosteer if enabled
+Can turn on Autosteer while RTK Fix alarm is active
+
 version 6.4.0 release review:
 
 #improvements:
