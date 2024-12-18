@@ -2022,56 +2022,61 @@ namespace AgOpenGPS
 
         private void DrawFlags()
         {
-            int flagCnt = flagPts.Count;
-            for (int f = 0; f < flagCnt; f++)
+
+            try
             {
-                GL.PointSize(8.0f);
-                GL.Begin(PrimitiveType.Points);
-                string flagColor = "&";
-                if (flagPts[f].color == 0)
+                int flagCnt = flagPts.Count;
+                for (int f = 0; f < flagCnt; f++)
                 {
-                    GL.Color3((byte)255, (byte)0, (byte)flagPts[f].ID);
-                }
-                if (flagPts[f].color == 1)
-                {
-                    GL.Color3((byte)0, (byte)255, (byte)flagPts[f].ID);
-                    flagColor = "|";
-                }
-                if (flagPts[f].color == 2)
-                {
-                    GL.Color3((byte)255, (byte)255, (byte)flagPts[f].ID);
-                    flagColor = "~";
+                    GL.PointSize(8.0f);
+                    GL.Begin(PrimitiveType.Points);
+                    string flagColor = "&";
+                    if (flagPts[f].color == 0)
+                    {
+                        GL.Color3((byte)255, (byte)0, (byte)flagPts[f].ID);
+                    }
+                    if (flagPts[f].color == 1)
+                    {
+                        GL.Color3((byte)0, (byte)255, (byte)flagPts[f].ID);
+                        flagColor = "|";
+                    }
+                    if (flagPts[f].color == 2)
+                    {
+                        GL.Color3((byte)255, (byte)255, (byte)flagPts[f].ID);
+                        flagColor = "~";
+                    }
+
+                    GL.Vertex3(flagPts[f].easting, flagPts[f].northing, 0);
+                    GL.End();
+
+                    font.DrawText3D(flagPts[f].easting, flagPts[f].northing, flagColor + flagPts[f].notes);
+                    //else
+                    //    font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&");
                 }
 
-                GL.Vertex3(flagPts[f].easting, flagPts[f].northing, 0);
-                GL.End();
+                if (flagNumberPicked != 0)
+                {
+                    ////draw the box around flag
+                    double offSet = (camera.zoomValue * camera.zoomValue * 0.01);
+                    GL.LineWidth(4);
+                    GL.Color3(0.980f, 0.0f, 0.980f);
+                    GL.Begin(PrimitiveType.LineStrip);
+                    GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing + offSet, 0);
+                    GL.Vertex3(flagPts[flagNumberPicked - 1].easting - offSet, flagPts[flagNumberPicked - 1].northing, 0);
+                    GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing - offSet, 0);
+                    GL.Vertex3(flagPts[flagNumberPicked - 1].easting + offSet, flagPts[flagNumberPicked - 1].northing, 0);
+                    GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing + offSet, 0);
+                    GL.End();
 
-                font.DrawText3D(flagPts[f].easting, flagPts[f].northing, flagColor + flagPts[f].notes);
-                //else
-                //    font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&");
+                    //draw the flag with a black dot inside
+                    //GL.PointSize(4.0f);
+                    //GL.Color3(0, 0, 0);
+                    //GL.Begin(PrimitiveType.Points);
+                    //GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing, 0);
+                    //GL.End();
+                }
             }
-
-            if (flagNumberPicked != 0)
-            {
-                ////draw the box around flag
-                double offSet = (camera.zoomValue * camera.zoomValue * 0.01);
-                GL.LineWidth(4);
-                GL.Color3(0.980f, 0.0f, 0.980f);
-                GL.Begin(PrimitiveType.LineStrip);
-                GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing + offSet, 0);
-                GL.Vertex3(flagPts[flagNumberPicked - 1].easting - offSet, flagPts[flagNumberPicked - 1].northing, 0);
-                GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing - offSet, 0);
-                GL.Vertex3(flagPts[flagNumberPicked - 1].easting + offSet, flagPts[flagNumberPicked - 1].northing, 0);
-                GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing + offSet, 0);
-                GL.End();
-
-                //draw the flag with a black dot inside
-                //GL.PointSize(4.0f);
-                //GL.Color3(0, 0, 0);
-                //GL.Begin(PrimitiveType.Points);
-                //GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing, 0);
-                //GL.End();
-            }
+            catch { }
         }
 
         public double avgPivDistance, lightbarDistance, longAvgPivDistance;
