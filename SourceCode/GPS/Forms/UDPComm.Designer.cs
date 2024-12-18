@@ -283,6 +283,26 @@ namespace AgOpenGPS
                             break;
                         }
 
+                    //back from spray controller
+                    case 224:
+                        {
+                            nozz.volumeApplied = (Int16)((data[6] << 8) + data[5]);
+                            nozz.volumeApplied *= 0.1;
+
+                            //times 100
+                            nozz.volumePerMinuteActual = (Int16)((data[8] << 8) + data[7]);
+
+                            nozz.pressureActual = data[9];
+
+                            nozz.isFlowingFlag = data[10];
+
+                            nozz.pwmDriveActual = data[11];
+                            if (data[12] == 0) nozz.pwmDriveActual *= -1;
+
+                            break;
+                        }
+
+
                     #region Remote Switches
                     case 234://MTZ8302 Feb 2020
                         {
@@ -671,7 +691,7 @@ namespace AgOpenGPS
             //turn right
             if (keyData == Keys.Right)
             {
-                sim.steerAngle += 0.5;
+                sim.steerAngle += 1.0;
                 if (sim.steerAngle > 40) sim.steerAngle = 40;
                 if (sim.steerAngle < -40) sim.steerAngle = -40;
                 sim.steerAngleScrollBar = sim.steerAngle;
@@ -683,7 +703,7 @@ namespace AgOpenGPS
             //turn left
             if (keyData == Keys.Left)
             {
-                sim.steerAngle -= 0.5;
+                sim.steerAngle -= 1.0;
                 if (sim.steerAngle > 40) sim.steerAngle = 40;
                 if (sim.steerAngle < -40) sim.steerAngle = -40;
                 sim.steerAngleScrollBar = sim.steerAngle;

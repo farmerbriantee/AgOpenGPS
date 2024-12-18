@@ -433,7 +433,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int setDisplay_lineWidth {
             get {
                 return ((int)(this["setDisplay_lineWidth"]));
@@ -3105,6 +3105,29 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setAS_deadZoneDelay"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::AgOpenGPS.CNozzleSettings setNozzleSettings {
+            get {
+                return ((global::AgOpenGPS.CNozzleSettings)(this["setNozzleSettings"]));
+            }
+            set {
+                this["setNozzleSettings"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setApp_isNozzleApp {
+            get {
+                return ((bool)(this["setApp_isNozzleApp"]));
+            }
+            set {
+                this["setApp_isNozzleApp"] = value;
             }
         }
         

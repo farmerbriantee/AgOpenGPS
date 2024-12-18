@@ -19,6 +19,137 @@ namespace AgOpenGPS
 {
     public partial class FormGPS
     {
+        #region Nozzzle
+        private void cboxRate1Rate2Select_Click(object sender, EventArgs e)
+        {
+            if (cboxRate1Rate2Select.Checked)
+            {
+                nozz.volumePerAreaSetSelected = Properties.Settings.Default.setNozzleSettings.volumePerAreaSet2;
+            }
+            else
+            {
+                nozz.volumePerAreaSetSelected = Properties.Settings.Default.setNozzleSettings.volumePerAreaSet1;
+            }
+
+            cboxRate1Rate2Select.Text = nozz.volumePerAreaSetSelected + nozz.unitsPerArea;
+        }
+
+        private void cboxSprayAutoManual_Click(object sender, EventArgs e)
+        {
+            if (cboxSprayAutoManual.Checked)
+            {
+                cboxSprayAutoManual.Text = "Auto";
+                nozz.isSprayAutoMode = true;
+
+                p_225.pgn[p_225.auto] = 1;
+            }
+            else
+            {
+                cboxSprayAutoManual.Text = "Manual";
+                nozz.isSprayAutoMode = false;
+
+                //manual mode 
+                p_225.pgn[p_225.auto] = 0;
+            }
+
+            SendPgnToLoop(p_225.pgn);
+        }
+
+        private void btnSprayVolumeTotal_Click(object sender, EventArgs e)
+        {
+            nozz.isAppliedUnitsNotTankDisplayed = !nozz.isAppliedUnitsNotTankDisplayed;
+            if (!nozz.isAppliedUnitsNotTankDisplayed)
+                lbl_Volume.Text = "Tank" + nozz.unitsApplied;
+            else
+                lbl_Volume.Text = "App" + nozz.unitsApplied;
+        }
+
+        private void btnSprayRate_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormNozSettings(this))
+            {
+                form.ShowDialog(this);
+            }
+
+            if (cboxRate1Rate2Select.Checked)
+            {
+                nozz.volumePerAreaSetSelected = Properties.Settings.Default.setNozzleSettings.volumePerAreaSet2;
+            }
+            else
+            {
+                nozz.volumePerAreaSetSelected = Properties.Settings.Default.setNozzleSettings.volumePerAreaSet1;
+            }
+
+            cboxRate1Rate2Select.Text = nozz.volumePerAreaSetSelected + nozz.unitsPerArea;
+        }
+
+        private void btnNozConfig_Click(object sender, EventArgs e)
+        {
+            Form f = Application.OpenForms["FormNozConfig"];
+
+            if (f != null)
+            {
+                f.Focus();
+                return;
+            }
+
+            Form form = new FormNozConfig(this);
+            form.Show(this);
+        }
+
+
+        private void btnSprayFlyout_Click(object sender, EventArgs e)
+        {
+            Form f = Application.OpenForms["FormNozConfig"];
+
+            if (f != null)
+            {
+                f.Focus();
+                return;
+            }
+
+            Form form = new FormNozConfig(this);
+            form.Show(this);
+        }
+
+        private void btnSprayRateDn_Click(object sender, EventArgs e)
+        {
+            if (!nozz.isSprayAutoMode)
+            {
+                p_225.pgn[p_225.dn] = 1;
+
+                SendPgnToLoop(p_225.pgn);
+
+                p_225.pgn[p_225.dn] = 0;
+            }
+            else
+            {
+                nozz.volumePerAreaSetSelected -= nozz.rateNudge;
+                if (nozz.volumePerAreaSetSelected < 2) nozz.volumePerAreaSetSelected = 2;
+                cboxRate1Rate2Select.Text = nozz.volumePerAreaSetSelected.ToString("N1") + nozz.unitsPerArea;
+            }
+        }
+
+        private void btnSprayRateUp_Click(object sender, EventArgs e)
+        {
+            if (!nozz.isSprayAutoMode)
+            {
+                p_225.pgn[p_225.up] = 1;
+
+                SendPgnToLoop(p_225.pgn);
+
+                p_225.pgn[p_225.up] = 0;
+            }
+            else
+            {
+                nozz.volumePerAreaSetSelected += nozz.rateNudge;
+                cboxRate1Rate2Select.Text = nozz.volumePerAreaSetSelected.ToString("N1") + nozz.unitsPerArea;
+            }
+        }
+
+        #endregion
+
+
         #region Right Menu
         public bool isABCyled = false;
         private void btnContour_Click(object sender, EventArgs e)
@@ -970,6 +1101,10 @@ namespace AgOpenGPS
                 f1.Close();
             }
 
+            //Nozzz
+            if (isNozzleApp) panelNavigation.Location = new System.Drawing.Point(250, 100);
+            else panelNavigation.Location = new System.Drawing.Point(90, 100);
+
             if (panelNavigation.Visible)
             {
                 panelNavigation.Visible = false;
@@ -1338,6 +1473,16 @@ namespace AgOpenGPS
             {
                 form.ShowDialog(this);
             }
+        }
+
+        private void nozzleAppToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isNozzleApp = !isNozzleApp;
+            nozzleAppToolStripMenuItem.Checked = isNozzleApp;
+            Settings.Default.setApp_isNozzleApp = isNozzleApp;
+            Settings.Default.Save();
+
+            PanelsAndOGLSize();
         }
 
         private void kioskModeToolStrip_Click(object sender, EventArgs e)

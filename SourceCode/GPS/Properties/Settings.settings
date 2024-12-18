@@ -105,7 +105,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setDisplay_lineWidth" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">3</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="setDisplay_panelSimLocation" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">97, 600</Value>
@@ -772,6 +772,12 @@
     </Setting>
     <Setting Name="setAS_deadZoneDelay" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="setNozzleSettings" Type="AgOpenGPS.CNozzleSettings" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="setApp_isNozzleApp" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setTram_alpha" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.8</Value>

@@ -53,6 +53,7 @@ namespace AgOpenGPS
                 1.0f, (float)(camDistanceFactor * camera.camSetDistance));
             GL.LoadMatrix(ref mat);
             GL.MatrixMode(MatrixMode.Modelview);
+            GL.Enable(EnableCap.LineSmooth);
         }
 
         //oglMain rendering, Draw
@@ -109,7 +110,7 @@ namespace AgOpenGPS
                     if (tool.width > 35) factor = 0.45;
                     else if (tool.width > 16) factor = 0.4;
 
-                    GL.LineWidth(1);
+                    GL.LineWidth(2);
 
                     for (int j = 0; j < triStrip.Count; j++)
                     {
@@ -363,12 +364,13 @@ namespace AgOpenGPS
                         //Draw headland
                         if (bnd.isHeadlandOn)
                         {
-                            GL.LineWidth(6);
-                            GL.Color4(0,0,0,0.8);
+                            GL.LineWidth(ABLine.lineWidth*3);
+
+                            GL.Color4(0,0,0, 0.80f);
                             bnd.bndList[0].hdLine.DrawPolygon();
 
-                            GL.LineWidth(2);
-                            GL.Color4(0.960f, 0.96232f, 0.30f, 0.8);
+                            GL.LineWidth(ABLine.lineWidth);
+                            GL.Color4(0.960f, 0.96232f, 0.30f, 1.0f);
                             bnd.bndList[0].hdLine.DrawPolygon();
                         }
                     }
@@ -484,7 +486,7 @@ namespace AgOpenGPS
                     if (isRTK_AlarmOn)
                     {
                         if (pn.fixQuality != 4)
-                        { 
+                        {
                             if (!sounds.isRTKAlarming)
                             {
                                 if (isRTK_KillAutosteer && isBtnAutoSteerOn)
@@ -1341,6 +1343,12 @@ namespace AgOpenGPS
             //send the byte out to section machines
             BuildMachineByte();
 
+            //Nozzz
+            if (isNozzleApp)
+            {
+                nozz.BuildRatePGN();
+            }
+
             ////Paint to context for troubleshooting
             //oglBack.MakeCurrent();
             //oglBack.SwapBuffers();
@@ -1981,6 +1989,7 @@ namespace AgOpenGPS
 
         private void MakeFlagMark()
         {
+
             leftMouseDownOnOpenGL = false;
 
             try
@@ -2026,7 +2035,6 @@ namespace AgOpenGPS
 
         private void DrawFlags()
         {
-
             try
             {
                 int flagCnt = flagPts.Count;
