@@ -109,7 +109,7 @@ namespace AgOpenGPS
                     if (tool.width > 35) factor = 0.45;
                     else if (tool.width > 16) factor = 0.4;
 
-                    GL.LineWidth(1);
+                    GL.LineWidth(2);
 
                     for (int j = 0; j < triStrip.Count; j++)
                     {
