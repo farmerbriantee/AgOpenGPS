@@ -134,6 +134,7 @@
     <Compile Include="Classes\CBoundary.cs" />
     <Compile Include="Classes\CGuidance.cs" />
     <Compile Include="Classes\CHeadLine.cs" />
+    <Compile Include="Classes\CNozzle.cs" />
     <Compile Include="Classes\CRecordedPath.cs" />
     <Compile Include="Classes\CPatches.cs" />
     <Compile Include="Classes\CSettings.cs" />
@@ -467,6 +468,18 @@
     </Compile>
     <Compile Include="Forms\Field\FormSaveOrNot.Designer.cs">
       <DependentUpon>FormSaveOrNot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Settings\FormNozConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings\FormNozConfig.Designer.cs">
+      <DependentUpon>FormNozConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Settings\FormNozSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings\FormNozSettings.Designer.cs">
+      <DependentUpon>FormNozSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Settings\FormSimCoords.cs">
       <SubType>Form</SubType>
@@ -803,6 +816,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Field\FormSaveOrNot.resx">
       <DependentUpon>FormSaveOrNot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings\FormNozConfig.resx">
+      <DependentUpon>FormNozConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings\FormNozSettings.resx">
+      <DependentUpon>FormNozSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\FormSimCoords.resx">
       <DependentUpon>FormSimCoords.cs</DependentUpon>
