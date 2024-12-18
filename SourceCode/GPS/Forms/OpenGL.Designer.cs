@@ -53,6 +53,7 @@ namespace AgOpenGPS
                 1.0f, (float)(camDistanceFactor * camera.camSetDistance));
             GL.LoadMatrix(ref mat);
             GL.MatrixMode(MatrixMode.Modelview);
+            GL.Enable(EnableCap.LineSmooth);
         }
 
         //oglMain rendering, Draw
@@ -363,8 +364,14 @@ namespace AgOpenGPS
                         //Draw headland
                         if (bnd.isHeadlandOn)
                         {
-                            GL.Color3(0.960f, 0.96232f, 0.30f);
-                                bnd.bndList[0].hdLine.DrawPolygon();
+                            GL.LineWidth(ABLine.lineWidth*3);
+
+                            GL.Color4(0,0,0, 0.80f);
+                            bnd.bndList[0].hdLine.DrawPolygon();
+
+                            GL.LineWidth(ABLine.lineWidth);
+                            GL.Color4(0.960f, 0.96232f, 0.30f, 1.0f);
+                            bnd.bndList[0].hdLine.DrawPolygon();
                         }
                     }
 

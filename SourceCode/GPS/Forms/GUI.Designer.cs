@@ -578,6 +578,8 @@ namespace AgOpenGPS
             CheckNozzleSettingsNotNull();
 
             isNozzleApp = Properties.Settings.Default.setApp_isNozzleApp;
+            nozzleAppToolStripMenuItem.Checked = isNozzleApp;
+            tlpNozzle.Visible = isNozzleApp;
 
             if (isNozzleApp)
             {
@@ -598,8 +600,6 @@ namespace AgOpenGPS
                 else
                     p_226.pgn[p_226.isBypass] = 0;
 
-                tlpNozzle.Visible = isNozzleApp;
-                nozzleAppToolStripMenuItem.Checked = isNozzleApp;
 
                 tlpNozzle.Width = 175;
 
