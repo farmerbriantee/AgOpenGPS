@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblSmallSnapRight = new System.Windows.Forms.Label();
-            this.nudPasses = new AgOpenGPS.NudlessNumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.btnMode = new System.Windows.Forms.Button();
             this.btnSwapAB = new System.Windows.Forms.Button();
@@ -45,6 +44,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnDnTrams = new System.Windows.Forms.Button();
             this.btnUpTrams = new System.Windows.Forms.Button();
+            this.tbarTramAlpha = new System.Windows.Forms.TrackBar();
+            this.lblAplha = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.nudPasses = new AgOpenGPS.NudlessNumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.tbarTramAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPasses)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,43 +65,14 @@
             this.lblSmallSnapRight.Text = "Spray";
             this.lblSmallSnapRight.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // nudPasses
-            // 
-            this.nudPasses.BackColor = System.Drawing.Color.White;
-            this.nudPasses.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudPasses.InterceptArrowKeys = false;
-            this.nudPasses.Location = new System.Drawing.Point(121, 171);
-            this.nudPasses.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.nudPasses.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudPasses.Name = "nudPasses";
-            this.nudPasses.ReadOnly = true;
-            this.nudPasses.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.nudPasses.Size = new System.Drawing.Size(92, 46);
-            this.nudPasses.TabIndex = 433;
-            this.nudPasses.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudPasses.Value = new decimal(new int[] {
-            777,
-            0,
-            0,
-            0});
-            this.nudPasses.Click += new System.EventHandler(this.nudPasses_Click);
-            // 
             // label3
             // 
             this.label3.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(101, 120);
+            this.label3.Location = new System.Drawing.Point(90, 120);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(124, 48);
+            this.label3.Size = new System.Drawing.Size(99, 48);
             this.label3.TabIndex = 435;
             this.label3.Text = "Passes";
             this.label3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -111,7 +86,7 @@
             this.btnMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMode.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMode.ForeColor = System.Drawing.Color.White;
-            this.btnMode.Location = new System.Drawing.Point(163, 19);
+            this.btnMode.Location = new System.Drawing.Point(135, 19);
             this.btnMode.Name = "btnMode";
             this.btnMode.Size = new System.Drawing.Size(86, 88);
             this.btnMode.TabIndex = 460;
@@ -126,7 +101,7 @@
             this.btnSwapAB.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSwapAB.ForeColor = System.Drawing.Color.White;
             this.btnSwapAB.Image = global::AgOpenGPS.Properties.Resources.ABSwapPoints;
-            this.btnSwapAB.Location = new System.Drawing.Point(29, 32);
+            this.btnSwapAB.Location = new System.Drawing.Point(1, 32);
             this.btnSwapAB.Name = "btnSwapAB";
             this.btnSwapAB.Size = new System.Drawing.Size(72, 62);
             this.btnSwapAB.TabIndex = 438;
@@ -162,7 +137,7 @@
             this.btnExit.ForeColor = System.Drawing.Color.White;
             this.btnExit.Image = global::AgOpenGPS.Properties.Resources.FileSave;
             this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExit.Location = new System.Drawing.Point(220, 260);
+            this.btnExit.Location = new System.Drawing.Point(256, 275);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(98, 67);
             this.btnExit.TabIndex = 234;
@@ -240,7 +215,7 @@
             this.label4.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(253, 52);
+            this.label4.Location = new System.Drawing.Point(155, 3);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 19);
             this.label4.TabIndex = 468;
@@ -255,7 +230,7 @@
             this.btnDnTrams.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDnTrams.ForeColor = System.Drawing.Color.White;
             this.btnDnTrams.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
-            this.btnDnTrams.Location = new System.Drawing.Point(25, 155);
+            this.btnDnTrams.Location = new System.Drawing.Point(-3, 155);
             this.btnDnTrams.Name = "btnDnTrams";
             this.btnDnTrams.Size = new System.Drawing.Size(72, 62);
             this.btnDnTrams.TabIndex = 469;
@@ -270,20 +245,92 @@
             this.btnUpTrams.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpTrams.ForeColor = System.Drawing.Color.White;
             this.btnUpTrams.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
-            this.btnUpTrams.Location = new System.Drawing.Point(233, 155);
+            this.btnUpTrams.Location = new System.Drawing.Point(205, 155);
             this.btnUpTrams.Name = "btnUpTrams";
             this.btnUpTrams.Size = new System.Drawing.Size(72, 62);
             this.btnUpTrams.TabIndex = 470;
             this.btnUpTrams.UseVisualStyleBackColor = false;
             this.btnUpTrams.Click += new System.EventHandler(this.btnUpTrams_Click);
             // 
+            // tbarTramAlpha
+            // 
+            this.tbarTramAlpha.LargeChange = 10;
+            this.tbarTramAlpha.Location = new System.Drawing.Point(303, 25);
+            this.tbarTramAlpha.Maximum = 100;
+            this.tbarTramAlpha.Minimum = 10;
+            this.tbarTramAlpha.Name = "tbarTramAlpha";
+            this.tbarTramAlpha.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.tbarTramAlpha.Size = new System.Drawing.Size(45, 216);
+            this.tbarTramAlpha.SmallChange = 10;
+            this.tbarTramAlpha.TabIndex = 471;
+            this.tbarTramAlpha.Value = 60;
+            this.tbarTramAlpha.Scroll += new System.EventHandler(this.tbarTramAlpha_Scroll);
+            // 
+            // lblAplha
+            // 
+            this.lblAplha.AutoSize = true;
+            this.lblAplha.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lblAplha.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAplha.ForeColor = System.Drawing.Color.Black;
+            this.lblAplha.Location = new System.Drawing.Point(287, 237);
+            this.lblAplha.Name = "lblAplha";
+            this.lblAplha.Size = new System.Drawing.Size(52, 19);
+            this.lblAplha.TabIndex = 472;
+            this.lblAplha.Text = "100%";
+            this.lblAplha.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(290, 3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(50, 19);
+            this.label2.TabIndex = 473;
+            this.label2.Text = "Alpha";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // nudPasses
+            // 
+            this.nudPasses.BackColor = System.Drawing.Color.White;
+            this.nudPasses.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudPasses.InterceptArrowKeys = false;
+            this.nudPasses.Location = new System.Drawing.Point(93, 171);
+            this.nudPasses.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nudPasses.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudPasses.Name = "nudPasses";
+            this.nudPasses.ReadOnly = true;
+            this.nudPasses.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.nudPasses.Size = new System.Drawing.Size(92, 46);
+            this.nudPasses.TabIndex = 433;
+            this.nudPasses.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudPasses.Value = new decimal(new int[] {
+            777,
+            0,
+            0,
+            0});
+            this.nudPasses.Click += new System.EventHandler(this.nudPasses_Click);
+            // 
             // FormTram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(330, 354);
+            this.ClientSize = new System.Drawing.Size(353, 354);
             this.ControlBox = false;
+            this.Controls.Add(this.lblAplha);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.tbarTramAlpha);
             this.Controls.Add(this.btnUpTrams);
             this.Controls.Add(this.btnDnTrams);
             this.Controls.Add(this.label4);
@@ -309,6 +356,7 @@
             this.Text = "AB Line Tramline";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormTram_FormClosing);
             this.Load += new System.EventHandler(this.FormTram_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.tbarTramAlpha)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPasses)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -332,5 +380,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnDnTrams;
         private System.Windows.Forms.Button btnUpTrams;
+        private System.Windows.Forms.TrackBar tbarTramAlpha;
+        private System.Windows.Forms.Label lblAplha;
+        private System.Windows.Forms.Label label2;
     }
 }
