@@ -487,7 +487,14 @@ namespace AgOpenGPS
                         { 
                             if (!sounds.isRTKAlarming)
                             {
-                                SystemEventWriter("RTK Alarm from Fix to Float");
+                                if (isRTK_KillAutosteer && isBtnAutoSteerOn)
+                                {
+                                    btnAutoSteer.PerformClick();
+                                    TimedMessageBox(2000, "Autosteer Turned Off", "RTK Fix Alarm");
+                                    SystemEventWriter("Autosteer Off, RTK Fix Alarm");
+                                }
+
+                                SystemEventWriter("RTK Alarm Fix is Lost");
                                 sounds.sndRTKAlarm.Play();
                             }
                             sounds.isRTKAlarming = true;
@@ -495,18 +502,8 @@ namespace AgOpenGPS
                         }
                         else
                         {
-                            killAutosteerCounter = 0;
                             sounds.isRTKAlarming = false;
-                            isRTK_alreadyKilledAutosteer = false;
                         }
-                    }
-
-                    if (isRTK_KillAutosteer && isBtnAutoSteerOn && !isRTK_alreadyKilledAutosteer && killAutosteerCounter > 20 )
-                    {
-                        btnAutoSteer.PerformClick();
-                        TimedMessageBox(2000, "Autosteer Turned Off", "RTK Alarm from Fix to Float");
-                        SystemEventWriter("Autosteer Off, RTK Alarm");
-                        isRTK_alreadyKilledAutosteer = true;
                     }
 
                     if (pn.age > pn.ageAlarm) DrawAge();
@@ -1985,38 +1982,45 @@ namespace AgOpenGPS
         private void MakeFlagMark()
         {
             leftMouseDownOnOpenGL = false;
-            byte[] data1 = new byte[768];
 
-            //scan the center of click and a set of square points around
-            GL.ReadPixels(mouseX - 8, mouseY - 8, 16, 16, PixelFormat.Rgb, PixelType.UnsignedByte, data1);
-
-            //made it here so no flag found
-            flagNumberPicked = 0;
-
-            for (int ctr = 0; ctr < 768; ctr += 3)
+            try
             {
-                if (data1[ctr] == 255 | data1[ctr + 1] == 255)
+                byte[] data1 = new byte[768];
+
+                //scan the center of click and a set of square points around
+                GL.ReadPixels(mouseX - 8, mouseY - 8, 16, 16, PixelFormat.Rgb, PixelType.UnsignedByte, data1);
+
+                //made it here so no flag found
+                flagNumberPicked = 0;
+
+                for (int ctr = 0; ctr < 768; ctr += 3)
                 {
-                    flagNumberPicked = data1[ctr + 2];
-                    break;
+                    if (data1[ctr] == 255 | data1[ctr + 1] == 255)
+                    {
+                        flagNumberPicked = data1[ctr + 2];
+                        break;
+                    }
+                }
+
+                if (flagNumberPicked > 0)
+                {
+                    Form fc = Application.OpenForms["FormFlags"];
+
+                    if (fc != null)
+                    {
+                        fc.Focus();
+                        return;
+                    }
+
+                    if (flagPts.Count > 0)
+                    {
+                        Form form = new FormFlags(this);
+                        form.Show(this);
+                    }
                 }
             }
-
-            if (flagNumberPicked > 0)
-            {
-                Form fc = Application.OpenForms["FormFlags"];
-
-                if (fc != null)
-                {
-                    fc.Focus();
-                    return;
-                }
-
-                if (flagPts.Count > 0)
-                {
-                    Form form = new FormFlags(this);
-                    form.Show(this);
-                }
+            catch {
+                flagNumberPicked = 0;
             }
         }
 
@@ -2202,7 +2206,7 @@ namespace AgOpenGPS
                 double red = green;
                 if (green > 400) green = 400;
                 green *= .001;
-                green = (0.4 - green) + 0.6;
+                green = (0.4 - green) + 0.58;
 
                 if (red > 400) red = 400;
                 red = 0.002 * red;
@@ -2380,7 +2384,7 @@ namespace AgOpenGPS
                 double red = green;
                 if (green > 400) green = 400;
                 green *= .001;
-                green = (0.4 - green) + 0.6;
+                green = (0.4 - green) + 0.58;
 
                 if (red > 400) red = 400;
                 red = 0.002 * red;
@@ -2444,10 +2448,10 @@ namespace AgOpenGPS
             }
 
             int start = -(int)(((double)(dire.Length) * 0.45) * (20 * (1.0)));
-            int down = 75 + (int)((double)(oglMain.Height - 600) / 12);
+            int down = 68 + (int)((double)(oglMain.Height - 600) / 12);
             double textSize = (100 + (double)(oglMain.Height - 600)) * 0.0012 + 1;
 
-            GL.Color4(1.26, 1.25, 1.2510, 0.87);
+            GL.Color4(0.9, 0.9, 0.9, 0.8);
 
             font.DrawText(start, down, dire, textSize);
         }
