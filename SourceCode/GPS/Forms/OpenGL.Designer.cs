@@ -363,8 +363,13 @@ namespace AgOpenGPS
                         //Draw headland
                         if (bnd.isHeadlandOn)
                         {
-                            GL.Color3(0.960f, 0.96232f, 0.30f);
-                                bnd.bndList[0].hdLine.DrawPolygon();
+                            GL.LineWidth(6);
+                            GL.Color4(0,0,0,0.8);
+                            bnd.bndList[0].hdLine.DrawPolygon();
+
+                            GL.LineWidth(2);
+                            GL.Color4(0.960f, 0.96232f, 0.30f, 0.8);
+                            bnd.bndList[0].hdLine.DrawPolygon();
                         }
                     }
 

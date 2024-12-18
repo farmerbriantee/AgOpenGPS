@@ -373,7 +373,7 @@ namespace AgOpenGPS
             GL.PointSize(1.0f);
 
             //Draw reference AB line
-            GL.LineWidth(4);
+            GL.LineWidth(2);
             GL.Enable(EnableCap.LineStipple);
             GL.LineStipple(1, 0x0F00);
             GL.Begin(PrimitiveType.Lines);
@@ -414,6 +414,13 @@ namespace AgOpenGPS
             GL.End();
 
             //draw current AB Line
+            GL.LineWidth(lineWidth*3);
+            GL.Begin(PrimitiveType.Lines);
+            GL.Color4(0,0,0, 0.7);
+            GL.Vertex3(currentLinePtA.easting, currentLinePtA.northing, 0.0);
+            GL.Vertex3(currentLinePtB.easting, currentLinePtB.northing, 0.0);
+            GL.End();
+
             GL.LineWidth(lineWidth);
             GL.Begin(PrimitiveType.Lines);
             GL.Color3(0.95f, 0.20f, 0.950f);
