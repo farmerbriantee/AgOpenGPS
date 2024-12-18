@@ -1298,9 +1298,9 @@ namespace AgOpenGPS
 
             form.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
             if (isPanelBottomHidden)
-                form.Left = this.Left + 2;
+                form.Left = this.Left + 5 + (isNozzleApp?tlpNozzle.Width:0);
             else
-                form.Left = this.Left + GPSDataWindowLeft;
+                form.Left = this.Left + GPSDataWindowLeft + 5 + (isNozzleApp ? tlpNozzle.Width : 0);
 
 
             Form ff = Application.OpenForms["FormGPS"];
@@ -1334,9 +1334,9 @@ namespace AgOpenGPS
 
             form.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
             if (isPanelBottomHidden)
-                form.Left = this.Left + 2;
+                form.Left = this.Left + 5 + (isNozzleApp ? tlpNozzle.Width : 0);
             else
-                form.Left = this.Left + GPSDataWindowLeft;
+                form.Left = this.Left + GPSDataWindowLeft + 5 + (isNozzleApp ? tlpNozzle.Width : 0); 
 
             Form ff = Application.OpenForms["FormGPS"];
             ff.Focus();
