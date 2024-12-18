@@ -29,6 +29,18 @@ See the PCB repo for PCB layouts, firmware for steering and rate control, machin
 Even on your desktop
 3. Run AgOpenGPS.exe
 
+## Contributing
+
+The `master` branch contains the most stable version of AgOpenGPS, while the `develop` branch
+is actively being worked on and may not be ready for production use.
+
+In order to contribute to AgOpenGPS, follow these steps:
+
+1. Checkout the `develop` branch
+2. Create a new branch named after your feature
+3. Make your changes and commit to this branch
+4. Create a PR targeting the `develop` branch
+
 ## Links
 
 - [AgOpenGPS Wiki](https://github.com/farmerbriantee/AgOpenGPS/wiki)
