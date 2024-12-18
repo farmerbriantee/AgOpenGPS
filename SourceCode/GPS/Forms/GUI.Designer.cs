@@ -338,7 +338,6 @@ namespace AgOpenGPS
 
                 //keeps autoTrack from changing too fast
                 trk.autoTrack3SecTimer++;
-                killAutosteerCounter++;
                 vehicle.deadZoneDelayCounter++;
 
                 lblFix.Text = FixQuality + "Age: " + pn.age.ToString("N1");
@@ -1404,14 +1403,6 @@ namespace AgOpenGPS
                     }
                 }
 
-                //prevent flag selection if flag form is up
-                Form fc = Application.OpenForms["Flags"];
-                if (fc != null)
-                {
-                    fc.Focus();
-                    return;
-                }
-
                 //zoom buttons
                 if (point.X > oglMain.Width - 80)
                 {
@@ -1456,6 +1447,15 @@ namespace AgOpenGPS
 
                 mouseX = point.X;
                 mouseY = oglMain.Height - point.Y;
+
+                //prevent flag selection if flag form is up
+                Form fc = Application.OpenForms["Flags"];
+                if (fc != null)
+                {
+                    fc.Focus();
+                    return;
+                }
+
                 leftMouseDownOnOpenGL = true;
             }
         }

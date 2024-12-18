@@ -105,7 +105,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setDisplay_lineWidth" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">2</Value>
+      <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="setDisplay_panelSimLocation" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">97, 600</Value>
@@ -636,7 +636,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setAS_functionSpeedLimit" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">8</Value>
+      <Value Profile="(Default)">12</Value>
     </Setting>
     <Setting Name="setAS_maxSteerSpeed" Type="System.Double" Scope="User">
       <Value Profile="(Default)">15</Value>
@@ -765,13 +765,16 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setTool_isDirectionMarkers" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setAS_numGuideLines" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="setAS_deadZoneDelay" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">3</Value>
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="setTram_alpha" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.8</Value>
     </Setting>
   </Settings>
 </SettingsFile>
