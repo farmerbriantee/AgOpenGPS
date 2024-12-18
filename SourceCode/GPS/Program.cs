@@ -26,6 +26,7 @@ namespace AgOpenGPS
             //    Settings.Default.Reload();
             //    Settings.Default.Save();
             //}
+
             //opening the subkey
             RegistryKey regKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\AgOpenGPS");
 
