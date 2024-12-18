@@ -771,7 +771,7 @@
       <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="setAS_deadZoneDelay" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="setNozzleSettings" Type="AgOpenGPS.CNozzleSettings" Scope="User">
       <Value Profile="(Default)" />

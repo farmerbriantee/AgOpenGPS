@@ -419,6 +419,7 @@ namespace AgOpenGPS
             //brightness object class
             displayBrightness = new CWindowsSettingsBrightnessController(Properties.Settings.Default.setDisplay_isBrightnessOn);
 
+            //Application rate controller
             nozz = new CNozzle(this);
         }
 
