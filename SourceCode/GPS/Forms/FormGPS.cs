@@ -1049,6 +1049,7 @@ namespace AgOpenGPS
             PanelUpdateRightAndBottom();
             PanelsAndOGLSize();
             SetZoom();
+
             fileSaveCounter = 25;
             lblGuidanceLine.Visible = false;
             lblHardwareMessage.Visible = false;
