@@ -773,5 +773,8 @@
     <Setting Name="setAS_deadZoneDelay" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5</Value>
     </Setting>
+    <Setting Name="setTram_alpha" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.8</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -3107,5 +3107,17 @@ namespace AgOpenGPS.Properties {
                 this["setAS_deadZoneDelay"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.8")]
+        public double setTram_alpha {
+            get {
+                return ((double)(this["setTram_alpha"]));
+            }
+            set {
+                this["setTram_alpha"] = value;
+            }
+        }
     }
 }
