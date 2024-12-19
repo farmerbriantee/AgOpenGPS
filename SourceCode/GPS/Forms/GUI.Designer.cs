@@ -618,9 +618,9 @@ namespace AgOpenGPS
                 btnSprayVolumeTotal.Text = nozz.volumeApplied.ToString();
 
                 if (!nozz.isAppliedUnitsNotTankDisplayed)
-                    lbl_Volume.Text = "Tank" + nozz.unitsApplied;
+                    lbl_Volume.Text = "Tank " + nozz.unitsApplied;
                 else
-                    lbl_Volume.Text = "App" + nozz.unitsApplied;
+                    lbl_Volume.Text = "App " + nozz.unitsApplied;
             }
 
 

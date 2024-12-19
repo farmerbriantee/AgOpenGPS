@@ -59,9 +59,9 @@ namespace AgOpenGPS
         {
             nozz.isAppliedUnitsNotTankDisplayed = !nozz.isAppliedUnitsNotTankDisplayed;
             if (!nozz.isAppliedUnitsNotTankDisplayed)
-                lbl_Volume.Text = "Tank" + nozz.unitsApplied;
+                lbl_Volume.Text = "Tank " + nozz.unitsApplied;
             else
-                lbl_Volume.Text = "App" + nozz.unitsApplied;
+                lbl_Volume.Text = "App " + nozz.unitsApplied;
         }
 
         private void btnSprayRate_Click(object sender, EventArgs e)
@@ -1477,10 +1477,32 @@ namespace AgOpenGPS
 
         private void nozzleAppToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (isJobStarted)
+            {
+                TimedMessageBox(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                SystemEventWriter("Turning Nozzle on or off while open field");
+                return;
+            }
+
             isNozzleApp = !isNozzleApp;
+
+            if (isNozzleApp)
+            {
+                TimedMessageBox(2000, "", "Nozzle App On");
+                SystemEventWriter("Turning Nozzle App On");
+            }
+            else
+            {
+                TimedMessageBox(2000, "", "Nozzle App Off");
+                SystemEventWriter("Turning Nozzle App Off");
+            }
+
+
             nozzleAppToolStripMenuItem.Checked = isNozzleApp;
             Settings.Default.setApp_isNozzleApp = isNozzleApp;
             Settings.Default.Save();
+
+            LoadSettings();
 
             PanelsAndOGLSize();
         }
