@@ -813,8 +813,8 @@ namespace AgOpenGPS
             f = Application.OpenForms["FormPan"];
             if (f != null)
             {
-                f.Top = this.Top + 90;
-                f.Left = this.Left + 120;
+                f.Top = this.Height / 3 + this.Top;
+                f.Left = this.Width - 400 + this.Left;
             }
         }
 
