@@ -52,12 +52,6 @@ namespace AgOpenGPS
         //current directory of vehicle
         public string vehiclesDirectory, vehicleFileName = "";
 
-        //current directory of tools
-        public string toolsDirectory, toolFileName = "";
-
-        //current directory of Environments
-        public string envDirectory, envFileName = "";
-
         //current fields and field directory
         public string fieldsDirectory, currentFieldDirectory, displayFieldName;
 
@@ -876,7 +870,6 @@ namespace AgOpenGPS
                 Settings.Default.setNozzleSettings = new CNozzleSettings();
             }
         }
-
 
         public enum textures : uint
         {
