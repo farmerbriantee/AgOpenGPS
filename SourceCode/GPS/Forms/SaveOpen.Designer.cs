@@ -1398,6 +1398,7 @@ namespace AgOpenGPS
                         {
                             double lat;
                             double longi;
+                            double elev;
                             double east;
                             double nort;
                             double head;
@@ -1409,30 +1410,32 @@ namespace AgOpenGPS
                                 line = reader.ReadLine();
                                 string[] words = line.Split(',');
 
-                                if (words.Length == 8)
+                                if (words.Length == 9)
                                 {
                                     lat = double.Parse(words[0], CultureInfo.InvariantCulture);
                                     longi = double.Parse(words[1], CultureInfo.InvariantCulture);
-                                    east = double.Parse(words[2], CultureInfo.InvariantCulture);
-                                    nort = double.Parse(words[3], CultureInfo.InvariantCulture);
-                                    head = double.Parse(words[4], CultureInfo.InvariantCulture);
-                                    color = int.Parse(words[5]);
-                                    ID = int.Parse(words[6]);
-                                    notes = words[7].Trim();
+                                    elev = double.Parse(words[2], CultureInfo.InvariantCulture);
+                                    east = double.Parse(words[3], CultureInfo.InvariantCulture);
+                                    nort = double.Parse(words[4], CultureInfo.InvariantCulture);
+                                    head = double.Parse(words[5], CultureInfo.InvariantCulture);
+                                    color = int.Parse(words[6]);
+                                    ID = int.Parse(words[7]);
+                                    notes = words[8].Trim();
                                 }
                                 else
                                 {
                                     lat = double.Parse(words[0], CultureInfo.InvariantCulture);
                                     longi = double.Parse(words[1], CultureInfo.InvariantCulture);
-                                    east = double.Parse(words[2], CultureInfo.InvariantCulture);
-                                    nort = double.Parse(words[3], CultureInfo.InvariantCulture);
+                                    elev = double.Parse(words[2], CultureInfo.InvariantCulture);
+                                    east = double.Parse(words[3], CultureInfo.InvariantCulture);
+                                    nort = double.Parse(words[4], CultureInfo.InvariantCulture);
                                     head = 0;
-                                    color = int.Parse(words[4]);
-                                    ID = int.Parse(words[5]);
+                                    color = int.Parse(words[5]);
+                                    ID = int.Parse(words[6]);
                                     notes = "";
                                 }
 
-                                CFlag flagPt = new CFlag(lat, longi, east, nort, head, color, ID, notes);
+                                CFlag flagPt = new CFlag(lat, longi, elev, east, nort, head, color, ID, notes);
                                 flagPts.Add(flagPt);
                             }
                         }
@@ -2008,6 +2011,7 @@ namespace AgOpenGPS
             {
                 //write paths # of sections
                 //writer.WriteLine("$Sectionsv4");
+                writer.WriteLine("Latitude, Longitude, Elevation, Easting, Northing, Heading, Color, ID, Notes");
             }
         }
 
@@ -2356,6 +2360,7 @@ namespace AgOpenGPS
                         writer.WriteLine(
                             flagPts[i].latitude.ToString(CultureInfo.InvariantCulture) + "," +
                             flagPts[i].longitude.ToString(CultureInfo.InvariantCulture) + "," +
+                            flagPts[i].elevation.ToString(CultureInfo.InvariantCulture) + "," +
                             flagPts[i].easting.ToString(CultureInfo.InvariantCulture) + "," +
                             flagPts[i].northing.ToString(CultureInfo.InvariantCulture) + "," +
                             flagPts[i].heading.ToString(CultureInfo.InvariantCulture) + "," +
@@ -2492,7 +2497,7 @@ namespace AgOpenGPS
         {
             double lat = 0;
             double lon = 0;
-
+            double elev = Math.Round(pn.altitude, 4);
             pn.ConvertLocalToWGS84(flagPts[flagNumber - 1].northing, flagPts[flagNumber - 1].easting, out lat, out lon);
 
             //get the directory and make sure it exists, create if not
@@ -2528,7 +2533,7 @@ namespace AgOpenGPS
                 writer.WriteLine(@"</IconStyle> </Style>");
                 writer.WriteLine(@" <name> " + flagNumber.ToString(CultureInfo.InvariantCulture) + @"</name>");
                 writer.WriteLine(@"<Point><coordinates> " +
-                                lon.ToString(CultureInfo.InvariantCulture) + "," + lat.ToString(CultureInfo.InvariantCulture) + ",0" +
+                                lon.ToString(CultureInfo.InvariantCulture) + "," + lat.ToString(CultureInfo.InvariantCulture) + "," + elev.ToString(CultureInfo.InvariantCulture) +
                                 @"</coordinates> </Point> ");
                 writer.WriteLine(@"  </Placemark>                                 ");
                 writer.WriteLine(@"</Document>");
@@ -2540,7 +2545,7 @@ namespace AgOpenGPS
         //generate KML file from flag
         public void FileSaveSingleFlagKML(int flagNumber)
         {
-
+            double elev = Math.Round(pn.altitude, 4);
             //get the directory and make sure it exists, create if not
             string dirField = fieldsDirectory + currentFieldDirectory + "\\";
 
@@ -2573,7 +2578,7 @@ namespace AgOpenGPS
                     writer.WriteLine(@"</IconStyle> </Style>");
                     writer.WriteLine(@" <name> " + flagNumber.ToString(CultureInfo.InvariantCulture) + @"</name>");
                     writer.WriteLine(@"<Point><coordinates> " +
-                                    flagPts[flagNumber-1].longitude.ToString(CultureInfo.InvariantCulture) + "," + flagPts[flagNumber-1].latitude.ToString(CultureInfo.InvariantCulture) + ",0" +
+                                    flagPts[flagNumber-1].longitude.ToString(CultureInfo.InvariantCulture) + "," + flagPts[flagNumber-1].latitude.ToString(CultureInfo.InvariantCulture) + "," + elev.ToString(CultureInfo.InvariantCulture) +
                                     @"</coordinates> </Point> ");
                     writer.WriteLine(@"  </Placemark>                                 ");
                 writer.WriteLine(@"</Document>");
@@ -2585,6 +2590,8 @@ namespace AgOpenGPS
         //generate KML file from flag
         public void FileMakeKMLFromCurrentPosition(double lat, double lon)
         {
+            double elev = Math.Round(pn.altitude, 4);
+
             //get the directory and make sure it exists, create if not
             string dirField = fieldsDirectory + currentFieldDirectory + "\\";
 
@@ -2609,7 +2616,7 @@ namespace AgOpenGPS
                 writer.WriteLine(@"</IconStyle> </Style>");
                 writer.WriteLine(@" <name> Your Current Position </name>");
                 writer.WriteLine(@"<Point><coordinates> " +
-                                lon.ToString(CultureInfo.InvariantCulture) + "," + lat.ToString(CultureInfo.InvariantCulture) + ",0" +
+                                lon.ToString(CultureInfo.InvariantCulture) + "," + lat.ToString(CultureInfo.InvariantCulture) + "," + elev.ToString(CultureInfo.InvariantCulture) +
                                 @"</coordinates> </Point> ");
                 writer.WriteLine(@"  </Placemark>                                 ");
                 writer.WriteLine(@"</Document>");
@@ -2827,7 +2834,7 @@ namespace AgOpenGPS
                 kml.WriteElementString("name", ((i + 1).ToString() + " " + flagPts[i].notes));
                 kml.WriteStartElement("Point");
                 kml.WriteElementString("coordinates", flagPts[i].longitude.ToString(CultureInfo.InvariantCulture) +
-                    "," + flagPts[i].latitude.ToString(CultureInfo.InvariantCulture) + ",0");
+                    "," + flagPts[i].latitude.ToString(CultureInfo.InvariantCulture) + "," + flagPts[i].elevation.ToString(CultureInfo.InvariantCulture));
                 kml.WriteEndElement(); //Point
                 kml.WriteEndElement(); // <Placemark>
             }

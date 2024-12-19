@@ -1097,7 +1097,7 @@ namespace AgOpenGPS
         private void btnFlag_Click(object sender, EventArgs e)
         {
             int nextflag = flagPts.Count + 1;
-            CFlag flagPt = new CFlag(pn.latitude, pn.longitude, pn.fix.easting, pn.fix.northing, 
+            CFlag flagPt = new CFlag(pn.latitude, pn.longitude, Math.Round(pn.altitude,4), pn.fix.easting, pn.fix.northing,
                 fixHeading, flagColor, nextflag, nextflag.ToString());
             flagPts.Add(flagPt);
             FileSaveFlags();
