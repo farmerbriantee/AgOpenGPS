@@ -219,9 +219,6 @@ namespace AgOpenGPS
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            mf.FileSaveSystemEvents();
-            mf.sbSystemEvents.Clear();
-
             isClosing = true;
             Close();
         }

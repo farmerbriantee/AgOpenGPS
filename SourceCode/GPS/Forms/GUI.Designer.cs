@@ -108,13 +108,19 @@ namespace AgOpenGPS
 
         private void tmrWatchdog_tick(object sender, EventArgs e)
         {
+            if (sentenceCounter == 19)
+            {
+                SystemEventWriter("No GPS Warning - Lost GPS");
+            }
+
             //Check for a newline char, if none then just return
             if (++sentenceCounter > 20)
             {
                 ShowNoGPSWarning();
-                SystemEventWriter("No GPS Warning - Counter > 20");
                 return;
             }
+
+
 
             ////////////////////////////////////////////// 10 second ///////////////////////////////////////////////////////
             //every 3 second update status

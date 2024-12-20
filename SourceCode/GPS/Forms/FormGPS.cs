@@ -421,6 +421,12 @@ namespace AgOpenGPS
         {
             this.MouseWheel += ZoomByMouseWheel;
 
+            sbSystemEvents.Append("\r");
+            sbSystemEvents.Append("Program Started: " + DateTime.Now.ToString("f", CultureInfo.CreateSpecificCulture(Settings.Default.setF_culture)) + "\r");
+            sbSystemEvents.Append("AOG Version: ");
+            sbSystemEvents.Append(Application.ProductVersion.ToString(CultureInfo.InvariantCulture));
+            sbSystemEvents.Append("\r");
+
             //The way we subscribe to the System Event to check when Power Mode has changed.
             Microsoft.Win32.SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
 
@@ -458,22 +464,30 @@ namespace AgOpenGPS
             //get the fields directory, if not exist, create
             fieldsDirectory = baseDirectory + "Fields\\";
             string dir = Path.GetDirectoryName(fieldsDirectory);
-            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
+            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir);
+                sbSystemEvents.Append("Fields Dir Created\r");
+            }
 
             //get the fields directory, if not exist, create
             vehiclesDirectory = baseDirectory + "Vehicles\\";
             dir = Path.GetDirectoryName(vehiclesDirectory);
-            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
+            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir);
+                sbSystemEvents.Append("Vehicles Dir Created\r");
+            }
 
             //get the fields directory, if not exist, create
             logsDirectory = baseDirectory + "Logs\\";
             dir = Path.GetDirectoryName(logsDirectory);
-            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
+            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir);
+                sbSystemEvents.Append("Logs Dir Created\r");
+            }
 
             //get the abLines directory, if not exist, create
             ablinesDirectory = baseDirectory + "ABLines\\";
             dir = Path.GetDirectoryName(fieldsDirectory);
-            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
+            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir);
+                sbSystemEvents.Append("ABLines Dir Created\r");
+            }
 
             //system event log file
             FileInfo txtfile = new FileInfo(logsDirectory + "zSystemEventsLog_log.txt");
@@ -481,6 +495,7 @@ namespace AgOpenGPS
             {
                 if (txtfile.Length > (500000))       // ## NOTE: 0.5MB max file size
                 {
+                    sbSystemEvents.Append("Log File Reduced by 100Kb\r");
                     StringBuilder sbF = new StringBuilder();
                     long lines = txtfile.Length - 450000;
 
@@ -511,6 +526,10 @@ namespace AgOpenGPS
                     }
                 }
             }
+            else
+            {
+                sbSystemEvents.Append("Events Log File Created\r");
+            }
 
             //make sure current field directory exists, null if not
             currentFieldDirectory = Settings.Default.setF_CurrentDir;
@@ -525,6 +544,7 @@ namespace AgOpenGPS
                     currentFieldDirectory = "";
                     Settings.Default.setF_CurrentDir = "";
                     Settings.Default.Save();
+                    sbSystemEvents.Append("Field Directory is Empty or Missing\r");
                 }
             }
 
@@ -570,21 +590,15 @@ namespace AgOpenGPS
                 vehicleFileName = "Default Vehicle";
                 Settings.Default.setVehicle_vehicleName = vehicleFileName;
                 Settings.Default.Save();
-                sbSystemEvents.Append("Settings Vehicle Not Found, Default Vehicle Loaded\r");
-
+                sbSystemEvents.Append("Set Vehicle Not Found, Default Vehicle Loaded\r");
             }
 
-            sbSystemEvents.Append("AOG Version: ");
-            sbSystemEvents.Append(Application.ProductVersion.ToString(CultureInfo.InvariantCulture));
-            sbSystemEvents.Append("\r");
-
-            sbSystemEvents.Append("Current Field Directory: ");
+            sbSystemEvents.Append("Directory: ");
             sbSystemEvents.Append(fieldsDirectory + currentFieldDirectory);
             sbSystemEvents.Append("\r");
 
-            FileSaveSystemEvents();
-            sbSystemEvents.Clear();
-
+            //FileSaveSystemEvents();
+            //sbSystemEvents.Clear();
 
             if (isBrightnessOn)
             {
@@ -781,7 +795,10 @@ namespace AgOpenGPS
             }
 
             SaveFormGPSWindowSettings();
-            FileUpdateAllFieldsKML();
+
+            //write the log file
+            FileSaveSystemEvents();
+
             //save current vehicle
             SettingsIO.ExportAll(vehiclesDirectory + vehicleFileName + ".XML");
 
