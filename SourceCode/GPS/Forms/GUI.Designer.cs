@@ -924,7 +924,8 @@ namespace AgOpenGPS
             //jumpDistanceAlarm = Settings.Default.setGPS_jumpFixAlarmDistance;
 
             if (vehicleFileName == "Default Vehicle")
-                YesMessageBox("Set to Default Vehicle, You need to Load Existing or Save to New !!!");
+                YesMessageBox("Using Default Vehicle" + "\r\n\r\n" + "Load Existing Vehicle or Save a New One !!!"
+                    + "\r\n\r\n" + "Changes will NOT be Saved");
         }
 
         public void PanelUpdateRightAndBottom()

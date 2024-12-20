@@ -725,8 +725,9 @@ namespace AgOpenGPS
                         SystemEventWriter("High Field Start Distance Warning");
                     }
 
-                    FileSaveSystemEvents();
-                    sbSystemEvents.Clear();
+                    //FileSaveSystemEvents();
+                    //sbSystemEvents.Clear();
+
                     sbSystemEvents.Append(currentFieldDirectory + " *Opened* " + (DateTime.Now.ToLongDateString()) + '\r');
                 }
             }
@@ -2431,7 +2432,7 @@ namespace AgOpenGPS
                 }
                 else
                 {
-                    lastSimGuidanceAngle = (double)guidanceLineSteerAngle * 0.01 * 0.75;
+                    lastSimGuidanceAngle = (double)guidanceLineSteerAngle * 0.01 * 0.9;
                     sim.DoSimTick(lastSimGuidanceAngle);
                 }
             }

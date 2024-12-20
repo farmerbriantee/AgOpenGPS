@@ -50,7 +50,7 @@ namespace AgOpenGPS
         public string baseDirectory;
 
         //current directory of vehicle
-        public string vehiclesDirectory, vehicleFileName = "";
+        public string vehiclesDirectory, vehicleFileName = "", logsDirectory;
 
         //current fields and field directory
         public string fieldsDirectory, currentFieldDirectory, displayFieldName;
@@ -465,13 +465,18 @@ namespace AgOpenGPS
             dir = Path.GetDirectoryName(vehiclesDirectory);
             if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
 
+            //get the fields directory, if not exist, create
+            logsDirectory = baseDirectory + "Logs\\";
+            dir = Path.GetDirectoryName(logsDirectory);
+            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
+
             //get the abLines directory, if not exist, create
             ablinesDirectory = baseDirectory + "ABLines\\";
             dir = Path.GetDirectoryName(fieldsDirectory);
             if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
 
             //system event log file
-            FileInfo txtfile = new FileInfo("zSystemEventsLog_log.txt");
+            FileInfo txtfile = new FileInfo(logsDirectory + "zSystemEventsLog_log.txt");
             if (txtfile.Exists)
             {
                 if (txtfile.Length > (500000))       // ## NOTE: 0.5MB max file size
@@ -482,7 +487,7 @@ namespace AgOpenGPS
                     //create some extra space
                     lines /= 30;
 
-                    using (StreamReader reader = new StreamReader("zSystemEventsLog_log.txt"))
+                    using (StreamReader reader = new StreamReader(logsDirectory + "zSystemEventsLog_log.txt"))
                     {
                         try
                         {
@@ -500,7 +505,7 @@ namespace AgOpenGPS
                         catch { }
                     }
 
-                    using (StreamWriter writer = new StreamWriter("zSystemEventsLog_log.txt"))
+                    using (StreamWriter writer = new StreamWriter(logsDirectory + "zSystemEventsLog_log.txt"))
                     {
                         writer.WriteLine(sbF);
                     }
@@ -521,6 +526,52 @@ namespace AgOpenGPS
                     Settings.Default.setF_CurrentDir = "";
                     Settings.Default.Save();
                 }
+            }
+
+            DirectoryInfo dinfo = new DirectoryInfo(vehiclesDirectory + vehicleFileName);
+            FileInfo[] Files = dinfo.GetFiles("*.xml");
+
+            if (Files.Length == 0)
+            {
+                SettingsIO.ExportAll(vehiclesDirectory + vehicleFileName + "Default Vehicle.xml");
+                sbSystemEvents.Append("Empty Dir, Default Vehicle.xml Created\r");
+            }
+
+            dinfo = new DirectoryInfo(vehiclesDirectory + vehicleFileName);
+            FileInfo[] Filess = dinfo.GetFiles("*.xml");
+
+            bool isDefault = false;
+            bool isVehicleExist = false;
+
+            vehicleFileName = Settings.Default.setVehicle_vehicleName;
+
+            foreach (FileInfo file in Filess)
+            {
+                string temp = Path.GetFileNameWithoutExtension(file.Name).Trim();
+                if (temp == "Default Vehicle")
+                {
+                    isDefault = true;
+                }
+
+                if (temp == vehicleFileName)
+                {
+                    isVehicleExist = true;
+                }
+            }
+
+            if (!isDefault)
+            {
+                SettingsIO.ExportAll(vehiclesDirectory + vehicleFileName + "Default Vehicle.xml");
+                sbSystemEvents.Append("Missing Default Vehicle.xml, Created\r");
+            }
+
+            if (!isVehicleExist)
+            {
+                vehicleFileName = "Default Vehicle";
+                Settings.Default.setVehicle_vehicleName = vehicleFileName;
+                Settings.Default.Save();
+                sbSystemEvents.Append("Settings Vehicle Not Found, Default Vehicle Loaded\r");
+
             }
 
             sbSystemEvents.Append("AOG Version: ");

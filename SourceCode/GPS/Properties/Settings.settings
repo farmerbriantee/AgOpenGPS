@@ -435,7 +435,7 @@
       <Value Profile="(Default)">0.1</Value>
     </Setting>
     <Setting Name="setVehicle_wheelbase" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">2.8</Value>
+      <Value Profile="(Default)">3.3</Value>
     </Setting>
     <Setting Name="setVehicle_hitchLength" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-1</Value>
@@ -777,13 +777,13 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="setApp_isNozzleApp" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setTram_alpha" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.8</Value>
     </Setting>
     <Setting Name="setVehicle_goalPointAcquireFactor" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.75</Value>
+      <Value Profile="(Default)">0.85</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -1,6 +1,7 @@
 ﻿//Please, if you use this, share the improvements
 
 using AgOpenGPS.Culture;
+using Microsoft.Win32;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -218,6 +219,9 @@ namespace AgOpenGPS
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            mf.FileSaveSystemEvents();
+            mf.sbSystemEvents.Clear();
+
             isClosing = true;
             Close();
         }
