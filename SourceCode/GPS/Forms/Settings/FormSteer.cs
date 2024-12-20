@@ -12,7 +12,7 @@ namespace AgOpenGPS
         private readonly FormGPS mf = null;
 
         private bool toSend = false, isSA = false;
-        private int counter = 0, cntr;
+        private int counter = 0, secondCntr = 0, cntr;
         private vec3 startFix;
         private double diameter, steerAngleRight, dist;
         private int windowSizeState = 0;
@@ -130,6 +130,9 @@ namespace AgOpenGPS
 
             hsbarLookAheadMult.Value = (Int16)(Properties.Settings.Default.setVehicle_goalPointLookAheadMult * 10);
             lblLookAheadMult.Text = mf.vehicle.goalPointLookAheadMult.ToString();
+
+            hsbarAcquireFactor.Value = (int)(Properties.Settings.Default.setVehicle_goalPointAcquireFactor * 100);
+            lblAcquireFactor.Text = mf.vehicle.goalPointAcquireFactor.ToString();
 
             hsbarUTurnCompensation.Value = (Int16)(mf.vehicle.uturnCompensation * 10);
             lblUTurnCompensation.Text = (hsbarUTurnCompensation.Value - 10).ToString();
@@ -339,6 +342,17 @@ namespace AgOpenGPS
                 counter = 0;
             }
 
+            if (secondCntr++ > 2)
+            {
+                secondCntr = 0;
+                lblHoldAdv.Text = mf.vehicle.goalPointLookAheadHold.ToString("N1");
+                lblAcqAdv.Text = (mf.vehicle.goalPointLookAheadHold * mf.vehicle.goalPointAcquireFactor).ToString("N1");
+                lblDistanceAdv.Text = mf.vehicle.goalDistance.ToString("N1");
+            }
+
+            lblHoldAdv.Text = mf.vehicle.goalPointLookAheadHold.ToString("N1");
+
+
             //if (hsbarMinPWM.Value > hsbarLowSteerPWM.Value) lblMinPWM.ForeColor = Color.OrangeRed;
             //else lblMinPWM.ForeColor = SystemColors.ControlText;
 
@@ -359,6 +373,7 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.setVehicle_goalPointLookAheadHold = mf.vehicle.goalPointLookAheadHold;
             Properties.Settings.Default.setVehicle_goalPointLookAheadMult = mf.vehicle.goalPointLookAheadMult;
+            Properties.Settings.Default.setVehicle_goalPointAcquireFactor = mf.vehicle.goalPointAcquireFactor;
 
             Properties.Settings.Default.stanleyHeadingErrorGain = mf.vehicle.stanleyHeadingErrorGain;
             Properties.Settings.Default.stanleyDistanceErrorGain = mf.vehicle.stanleyDistanceErrorGain;
@@ -564,9 +579,9 @@ namespace AgOpenGPS
 
                 Properties.Settings.Default.setArdSteer_maxPulseCounts = 0;
 
-                Properties.Settings.Default.setVehicle_goalPointLookAhead = 3;
+                Properties.Settings.Default.setVehicle_goalPointAcquireFactor = 0.75;
                 Properties.Settings.Default.setVehicle_goalPointLookAheadHold = 3;
-                Properties.Settings.Default.setVehicle_goalPointLookAheadMult = 1;
+                Properties.Settings.Default.setVehicle_goalPointLookAheadMult = 1.5;
 
                 Properties.Settings.Default.stanleyHeadingErrorGain = 1;
                 Properties.Settings.Default.stanleyDistanceErrorGain = 1;
@@ -769,6 +784,12 @@ namespace AgOpenGPS
         {
             mf.vehicle.goalPointLookAheadMult = hsbarLookAheadMult.Value * 0.1;
             lblLookAheadMult.Text = mf.vehicle.goalPointLookAheadMult.ToString();
+        }
+
+        private void hsbarAcquireFactor_ValueChanged(object sender, EventArgs e)
+        {
+            mf.vehicle.goalPointAcquireFactor = hsbarAcquireFactor.Value * 0.01;
+            lblAcquireFactor.Text = mf.vehicle.goalPointAcquireFactor.ToString();
         }
 
         private void expandWindow_Click(object sender, EventArgs e)
@@ -1072,6 +1093,7 @@ namespace AgOpenGPS
             else mf.vehicle.driveFreeSteerAngle = 0;
             //hSBarFreeDrive.Value = mf.driveFreeSteerAngle;
         }
+
 
         private void btnSteerAngleUp_MouseDown(object sender, MouseEventArgs e)
         {

@@ -206,6 +206,13 @@ namespace AgOpenGPS
             btnLeftRight.Image = mf.bnd.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
         }
 
+        private void btnAntennaTool_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.B) //autosteer button on off

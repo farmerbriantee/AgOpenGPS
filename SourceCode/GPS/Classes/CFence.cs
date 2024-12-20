@@ -11,7 +11,7 @@ namespace AgOpenGPS
         public double createBndOffset;
         public bool isBndBeingMade;
 
-        public bool isDrawRightSide = true, isOkToAddPoints = false;
+        public bool isDrawRightSide = true, isDrawAtPivot = true, isOkToAddPoints = false;
 
         public int closestFenceNum;
 

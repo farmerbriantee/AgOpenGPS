@@ -1970,7 +1970,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.5")]
         public double setVehicle_goalPointLookAheadMult {
             get {
                 return ((double)(this["setVehicle_goalPointLookAheadMult"]));
@@ -3140,6 +3140,18 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setTram_alpha"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.75")]
+        public double setVehicle_goalPointAcquireFactor {
+            get {
+                return ((double)(this["setVehicle_goalPointAcquireFactor"]));
+            }
+            set {
+                this["setVehicle_goalPointAcquireFactor"] = value;
             }
         }
     }

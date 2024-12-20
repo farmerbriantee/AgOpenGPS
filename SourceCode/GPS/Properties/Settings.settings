@@ -489,7 +489,7 @@
       <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="setVehicle_goalPointLookAheadMult" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">1.5</Value>
     </Setting>
     <Setting Name="stanleyDistanceErrorGain" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1</Value>
@@ -781,6 +781,9 @@
     </Setting>
     <Setting Name="setTram_alpha" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.8</Value>
+    </Setting>
+    <Setting Name="setVehicle_goalPointAcquireFactor" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.75</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -992,6 +992,8 @@
     <None Include="btnImages\Images\z_crossTrackBkgnd.png" />
     <None Include="btnImages\Config\ConD_SteerBarBar.png" />
     <None Include="btnImages\Config\ConD_DirectionMarker.png" />
+    <None Include="btnImages\BoundaryRecordPivot.png" />
+    <None Include="btnImages\BoundaryRecordTool.png" />
     <Content Include="License.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
