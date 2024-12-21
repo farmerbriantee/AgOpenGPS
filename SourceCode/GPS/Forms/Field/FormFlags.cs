@@ -23,6 +23,7 @@ namespace AgOpenGPS
             }
             lblLatStart.Text = mf.flagPts[mf.flagNumberPicked - 1].latitude.ToString();
             lblLonStart.Text = mf.flagPts[mf.flagNumberPicked - 1].longitude.ToString();
+            labelElevStart.Text = mf.flagPts[mf.flagNumberPicked - 1].elevation.ToString();
             lblEasting.Text = mf.flagPts[mf.flagNumberPicked - 1].easting.ToString("N2");
             lblNorthing.Text = mf.flagPts[mf.flagNumberPicked - 1].northing.ToString("N2");
             lblHeading.Text = glm.toDegrees(mf.flagPts[mf.flagNumberPicked - 1].heading).ToString("N2");

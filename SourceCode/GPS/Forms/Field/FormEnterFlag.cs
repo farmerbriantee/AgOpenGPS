@@ -72,9 +72,11 @@ namespace AgOpenGPS
 
             double east, nort;
 
+            double elevation = Math.Round(mf.pn.altitude, 4);
+
             mf.pn.ConvertWGS84ToLocal((double)nudLatitude.Value, (double)nudLongitude.Value, out nort, out east);
             int nextflag = mf.flagPts.Count + 1;
-            CFlag flagPt = new CFlag((double)nudLatitude.Value, (double)nudLongitude.Value, east, nort, 0, flagColor, nextflag, (nextflag).ToString());
+            CFlag flagPt = new CFlag((double)nudLatitude.Value, (double)nudLongitude.Value, elevation, east, nort, 0, flagColor, nextflag, (nextflag).ToString());
             mf.flagPts.Add(flagPt);
             mf.FileSaveFlags();
 

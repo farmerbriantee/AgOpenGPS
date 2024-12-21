@@ -1165,7 +1165,8 @@ namespace AgOpenGPS
                     + pn.fix.easting.ToString("N2", CultureInfo.InvariantCulture) + ","
                     + pn.fix.northing.ToString("N2", CultureInfo.InvariantCulture) + ","
                     + pivotAxlePos.heading.ToString("N3", CultureInfo.InvariantCulture) + ","
-                    + Math.Round(ahrs.imuRoll,3).ToString(CultureInfo.InvariantCulture) + 
+                    + Math.Round(ahrs.imuRoll,3).ToString(CultureInfo.InvariantCulture) + ","
+                    + DateTime.Now.ToString(CultureInfo.InvariantCulture)+
                     "\r\n");
 
                 prevGridPos.easting = pivotAxlePos.easting;
