@@ -106,10 +106,7 @@ namespace AgOpenGPS
                     //draw patches of sections
 
                     //direction marker width
-                    double factor = 0.27;
-                    if (tool.width > 35) factor = 0.42;
-                    else if (tool.width > 16) factor = 0.37;
-                    else if (tool.width > 8) factor = 0.32;
+                    double factor = 0.32;
 
                     GL.LineWidth(2);
 
