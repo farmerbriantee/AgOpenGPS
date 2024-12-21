@@ -554,7 +554,7 @@ namespace AgOpenGPS
             if (Files.Length == 0)
             {
                 SettingsIO.ExportAll(vehiclesDirectory + vehicleFileName + "Default Vehicle.xml");
-                sbSystemEvents.Append("Empty Dir, Default Vehicle.xml Created\r");
+                sbSystemEvents.Append("Empty Vehicles Dir, Default Vehicle.xml Created\r");
             }
 
             dinfo = new DirectoryInfo(vehiclesDirectory + vehicleFileName);
@@ -593,12 +593,8 @@ namespace AgOpenGPS
                 sbSystemEvents.Append("Set Vehicle Not Found, Default Vehicle Loaded\r");
             }
 
-            sbSystemEvents.Append("Directory: ");
-            sbSystemEvents.Append(fieldsDirectory + currentFieldDirectory);
-            sbSystemEvents.Append("\r");
-
-            //FileSaveSystemEvents();
-            //sbSystemEvents.Clear();
+            sbSystemEvents.Append("Program Directory: " + (baseDirectory) + "\r");
+            sbSystemEvents.Append("Fields Directory: " + (fieldsDirectory) + "\r");
 
             if (isBrightnessOn)
             {
@@ -795,6 +791,8 @@ namespace AgOpenGPS
             }
 
             SaveFormGPSWindowSettings();
+
+            sbSystemEvents.Append("Program Exit: " + DateTime.Now.ToString("f", CultureInfo.CreateSpecificCulture(Settings.Default.setF_culture)) + "\r");
 
             //write the log file
             FileSaveSystemEvents();

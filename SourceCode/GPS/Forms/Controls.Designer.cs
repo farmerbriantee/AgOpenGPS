@@ -725,7 +725,8 @@ namespace AgOpenGPS
                         SystemEventWriter("High Field Start Distance Warning");
                     }
 
-                    sbSystemEvents.Append(currentFieldDirectory + " *Opened* " + (DateTime.Now.ToLongDateString()) + '\r');
+                    SystemEventWriter(" *Opened* " + currentFieldDirectory);
+                    SystemEventWriter(DateTime.Now.ToString("f", CultureInfo.CreateSpecificCulture(Settings.Default.setF_culture)));
                 }
             }
 
@@ -774,9 +775,7 @@ namespace AgOpenGPS
             ExportFieldAs_ISOXMLv4();
 
             SystemEventWriter(currentFieldDirectory + " ** Closed **");
-
-            //FileSaveSystemEvents();
-            //sbSystemEvents.Clear();
+            SystemEventWriter(DateTime.Now.ToString("f", CultureInfo.CreateSpecificCulture(Settings.Default.setF_culture)));
 
             Settings.Default.setF_CurrentDir = currentFieldDirectory;
             Settings.Default.Save();
