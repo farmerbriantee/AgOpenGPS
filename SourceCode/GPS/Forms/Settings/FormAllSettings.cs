@@ -38,7 +38,7 @@ namespace AgOpenGPS
             label18.Text = Properties.Settings.Default.setAS_Kp.ToString();
             label20.Text = Properties.Settings.Default.setVehicle_panicStopSpeed.ToString();
            
-            label22.Text = Properties.Settings.Default.setVehicle_goalPointLookAhead.ToString();
+            label22.Text = Properties.Settings.Default.setVehicle_goalPointAcquireFactor.ToString("N2");
             label24.Text = Properties.Settings.Default.setVehicle_goalPointLookAheadHold.ToString();
             label168.Text = Properties.Settings.Default.setVehicle_goalPointLookAheadMult.ToString();
             label26.Text = Properties.Settings.Default.stanleyHeadingErrorGain.ToString();
@@ -110,6 +110,9 @@ namespace AgOpenGPS
             label162.Text = Properties.Settings.Default.setVehicle_vehicleType.ToString();
             label164.Text = Properties.Settings.Default.setAS_isSteerInReverse.ToString();
 
+            label251.Text = Settings.Default.setAS_deadZoneDelay.ToString();
+            label252.Text = Settings.Default.setAS_deadZoneHeading.ToString();
+
             lblFrameTime.Text = mf.frameTime.ToString("N1");
             lblTimeSlice.Text = (1 / mf.timeSliceOfLastFix).ToString("N3");
             lblHz.Text = mf.gpsHz.ToString("N1");
@@ -117,8 +120,8 @@ namespace AgOpenGPS
             lblEastingField.Text = Math.Round(mf.pn.fix.easting, 2).ToString();
             lblNorthingField.Text = Math.Round(mf.pn.fix.northing, 2).ToString();
 
-            lblLatitude.Text = mf.Latitude;
-            lblLongitude.Text = mf.Longitude;
+            //lblLatitude.Text = mf.Latitude;
+            //lblLongitude.Text = mf.Longitude;
 
             //lblEastingField2.Text = Math.Round(mf.pnTwo.fix.easting, 2).ToString();
             //lblNorthingField2.Text = Math.Round(mf.pnTwo.fix.northing, 2).ToString();

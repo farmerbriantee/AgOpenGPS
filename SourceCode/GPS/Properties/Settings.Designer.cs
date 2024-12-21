@@ -3154,5 +3154,17 @@ namespace AgOpenGPS.Properties {
                 this["setVehicle_goalPointAcquireFactor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setBnd_isDrawPivot {
+            get {
+                return ((bool)(this["setBnd_isDrawPivot"]));
+            }
+            set {
+                this["setBnd_isDrawPivot"] = value;
+            }
+        }
     }
 }
