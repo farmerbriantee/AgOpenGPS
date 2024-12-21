@@ -149,7 +149,7 @@ namespace AgOpenGPS
                 catch (Exception)
                 {
                     mf.TimedMessageBox(2000, "Exception", "Catch Exception");
-                    mf.SystemEventWriter("ISOXML Exception");
+                    mf.LogEventWriter("ISOXML Exception");
 
                     return;
                 }
@@ -265,7 +265,7 @@ namespace AgOpenGPS
             catch (Exception)
             {
                 mf.TimedMessageBox(2000, "Exception", "Catch Exception");
-                mf.SystemEventWriter("ISOXML Exception Loading");
+                mf.LogEventWriter("ISOXML Exception Loading");
 
                 return;
             }

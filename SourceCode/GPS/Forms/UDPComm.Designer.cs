@@ -269,7 +269,7 @@ namespace AgOpenGPS
                                 lblHardwareMessage.Visible = true;
                                 hardwareLineCounter = data[5] * 10;
 
-                                SystemEventWriter(lblHardwareMessage.Text);
+                                LogEventWriter(lblHardwareMessage.Text);
 
                                 //color based on byte 6
                                 if (data[6] == 0) lblHardwareMessage.BackColor = Color.Salmon;

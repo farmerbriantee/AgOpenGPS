@@ -106,9 +106,10 @@ namespace AgOpenGPS
                     //draw patches of sections
 
                     //direction marker width
-                    double factor = 0.35;
-                    if (tool.width > 35) factor = 0.45;
-                    else if (tool.width > 16) factor = 0.4;
+                    double factor = 0.27;
+                    if (tool.width > 35) factor = 0.42;
+                    else if (tool.width > 16) factor = 0.37;
+                    else if (tool.width > 8) factor = 0.32;
 
                     GL.LineWidth(2);
 
@@ -493,10 +494,10 @@ namespace AgOpenGPS
                                 {
                                     btnAutoSteer.PerformClick();
                                     TimedMessageBox(2000, "Autosteer Turned Off", "RTK Fix Alarm");
-                                    SystemEventWriter("Autosteer Off, RTK Fix Alarm");
+                                    LogEventWriter("Autosteer Off, RTK Fix Alarm");
                                 }
 
-                                SystemEventWriter("RTK Alarm Fix is Lost");
+                                LogEventWriter("RTK Alarm Fix is Lost");
                                 sounds.sndRTKAlarm.Play();
                             }
                             sounds.isRTKAlarming = true;

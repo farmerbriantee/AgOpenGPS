@@ -38,7 +38,7 @@ namespace AgOpenGPS
             if (dirs == null || dirs.Length < 1)
             {
                 mf.TimedMessageBox(2000, gStr.gsCreateNewField, gStr.gsFileError);
-                mf.SystemEventWriter("File Picker, No Fields");
+                mf.LogEventWriter("File Picker, No Fields");
                 Close();
                 return;
             }
@@ -194,7 +194,7 @@ namespace AgOpenGPS
             if (fileList == null || fileList.Count < 1)
             {
                 mf.TimedMessageBox(2000, gStr.gsNoFieldsFound, gStr.gsCreateNewField);
-                mf.SystemEventWriter("File Picker, No fields Sorted");
+                mf.LogEventWriter("File Picker, No fields Sorted");
                 Close();
                 return;
             }
@@ -221,7 +221,7 @@ namespace AgOpenGPS
             else
             {
                 mf.TimedMessageBox(2000, gStr.gsNoFieldsFound, gStr.gsCreateNewField);
-                mf.SystemEventWriter("File Picker, No Line items");
+                mf.LogEventWriter("File Picker, No Line items");
                 Close();
                 return;
             }

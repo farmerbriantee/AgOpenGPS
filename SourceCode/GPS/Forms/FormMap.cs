@@ -444,7 +444,7 @@ namespace AgOpenGPS
             if (!mf.worldGrid.isGeoMap)
             {
                 mf.TimedMessageBox(2000, "Map Error", "Map Too Large");
-                mf.SystemEventWriter("GeoMap, Map Too Large");
+                mf.LogEventWriter("GeoMap, Map Too Large");
                 ResetMapGrid();
                 return;
             }
@@ -476,7 +476,7 @@ namespace AgOpenGPS
             catch
             {
                 mf.TimedMessageBox(2000, "File in Use", "Try loading again");
-                mf.SystemEventWriter("GeoMap File in Use, Try Reload");
+                mf.LogEventWriter("GeoMap File in Use, Try Reload");
                 return;
             }
 

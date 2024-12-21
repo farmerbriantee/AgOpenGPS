@@ -244,9 +244,9 @@ namespace AgOpenGPS
         private void FormNozConfig_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!mf.nozz.isAppliedUnitsNotTankDisplayed)
-                mf.lbl_Volume.Text = "Tank" + mf.nozz.unitsApplied;
+                mf.lbl_Volume.Text = "Tank " + mf.nozz.unitsApplied;
             else
-                mf.lbl_Volume.Text = "App" + mf.nozz.unitsApplied;
+                mf.lbl_Volume.Text = "App " + mf.nozz.unitsApplied;
 
             Settings.Default.Save();
         }

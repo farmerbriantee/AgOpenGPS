@@ -90,7 +90,7 @@ namespace AgOpenGPS
             //open the Resume.txt and continue from last exit
             mf.FileOpenField("Resume");
 
-            mf.SystemEventWriter("Job Form, Field Resume");
+            mf.LogEventWriter("Job Form, Field Resume");
 
             //back to FormGPS
             DialogResult = DialogResult.OK;
