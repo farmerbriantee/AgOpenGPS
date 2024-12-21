@@ -559,7 +559,7 @@ namespace AgOpenGPS
             if (!File.Exists(filename))
             {
                 TimedMessageBox(2000, gStr.gsFileError, "Missing Headlines File");
-                SystemEventWriter("Load Field, Missing Headlines File");
+                LogEventWriter("Load Field, Missing Headlines File");
             }
             else
             {
@@ -754,7 +754,7 @@ namespace AgOpenGPS
             if (!File.Exists(filename))
             {
                 TimedMessageBox(2000, gStr.gsFileError, "Missing Tracks File");
-                SystemEventWriter("Load Field, Missing Tracks File");
+                LogEventWriter("Load Field, Missing Tracks File");
             }
             else
             {
@@ -914,7 +914,7 @@ namespace AgOpenGPS
             if (!File.Exists(filename))
             {
                 TimedMessageBox(2000, gStr.gsFileError, "Missing Curve File");
-                SystemEventWriter("Load Field, Missing Curve File");
+                LogEventWriter("Load Field, Missing Curve File");
             }
             else
             {

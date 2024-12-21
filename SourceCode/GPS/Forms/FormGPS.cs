@@ -295,7 +295,7 @@ namespace AgOpenGPS
             {
                 string bob = PowerState.GetPowerLineStatus().ToString();
 
-                SystemEventWriter("Power Line Status Change to: " + bob);
+                LogEventWriter("Power Line Status Change to: " + bob);
 
                 if (bob == "Charging")
                 {
@@ -658,7 +658,7 @@ namespace AgOpenGPS
                     catch
                     {
                         TimedMessageBox(2000, "No File Found", "Can't Find AgIO");
-                        SystemEventWriter("Can't Find AgIO");
+                        LogEventWriter("Can't Find AgIO");
 
                     }
                 }

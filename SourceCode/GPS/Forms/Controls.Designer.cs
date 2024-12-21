@@ -287,7 +287,7 @@ namespace AgOpenGPS
                         if (sounds.isSteerSoundOn) sounds.sndAutoSteerOff.Play();
                     }
 
-                    SystemEventWriter("Steer Off, Above Max Safe Speed for Autosteer");
+                    LogEventWriter("Steer Off, Above Max Safe Speed for Autosteer");
 
                     if (isMetric)
                         TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + vehicle.maxSteerSpeed.ToString("N0") + " Kmh");
@@ -334,7 +334,7 @@ namespace AgOpenGPS
             if (bnd.bndList.Count == 0)
             {
                 TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
-                SystemEventWriter("Uturn attempted without boundary");
+                LogEventWriter("Uturn attempted without boundary");
                 return;
             }
 
@@ -616,7 +616,7 @@ namespace AgOpenGPS
                     TimedMessageBox(2500, "No GPS", "No GPS Position Found");
 
                 }
-                SystemEventWriter("No GPS Position, Field Closed");
+                LogEventWriter("No GPS Position, Field Closed");
                 return;
             }
 
@@ -722,11 +722,11 @@ namespace AgOpenGPS
                         TimedMessageBox(2500, "High Field Start Distance Warning", "Field Start is "
                         + distance.ToString("N1") + " km From current position");
 
-                        SystemEventWriter("High Field Start Distance Warning");
+                        LogEventWriter("High Field Start Distance Warning");
                     }
 
-                    SystemEventWriter(" *Opened* " + currentFieldDirectory);
-                    SystemEventWriter(DateTime.Now.ToString("f", CultureInfo.CreateSpecificCulture(Settings.Default.setF_culture)));
+                    LogEventWriter(" *Opened* " + currentFieldDirectory);
+                    LogEventWriter(DateTime.Now.ToString("f", CultureInfo.CreateSpecificCulture(Settings.Default.setF_culture)));
                 }
             }
 
@@ -774,8 +774,8 @@ namespace AgOpenGPS
             ExportFieldAs_ISOXMLv3();
             ExportFieldAs_ISOXMLv4();
 
-            SystemEventWriter(currentFieldDirectory + " ** Closed **");
-            SystemEventWriter(DateTime.Now.ToString("f", CultureInfo.CreateSpecificCulture(Settings.Default.setF_culture)));
+            LogEventWriter(currentFieldDirectory + " ** Closed **");
+            LogEventWriter(DateTime.Now.ToString("f", CultureInfo.CreateSpecificCulture(Settings.Default.setF_culture)));
 
             Settings.Default.setF_CurrentDir = currentFieldDirectory;
             Settings.Default.Save();
@@ -886,7 +886,7 @@ namespace AgOpenGPS
             {
                 btnAutoSteer.PerformClick();
                 TimedMessageBox(2000, gStr.gsGuidanceStopped, "Paths Enabled");
-                SystemEventWriter("Autosteer On While Enable Paths");
+                LogEventWriter("Autosteer On While Enable Paths");
             }
 
             DisableYouTurnButtons();
@@ -1120,7 +1120,7 @@ namespace AgOpenGPS
         }
         private void btnStartAgIO_Click(object sender, EventArgs e)
         {
-            SystemEventWriter("AgIO Manually Started");
+            LogEventWriter("AgIO Manually Started");
 
             Process[] processName = Process.GetProcessesByName("AgIO");
             if (processName.Length == 0)
@@ -1142,7 +1142,7 @@ namespace AgOpenGPS
                 catch
                 {
                     TimedMessageBox(2000, "No File Found", "Can't Find AgIO");
-                    SystemEventWriter("AgIO Not Found");
+                    LogEventWriter("AgIO Not Found");
 
                 }
             }
@@ -1467,7 +1467,7 @@ namespace AgOpenGPS
             if (isJobStarted)
             {
                 TimedMessageBox(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
-                SystemEventWriter("Turning Nozzle on or off while open field");
+                LogEventWriter("Turning Nozzle on or off while open field");
                 return;
             }
 
@@ -1476,12 +1476,12 @@ namespace AgOpenGPS
             if (isNozzleApp)
             {
                 TimedMessageBox(2000, "", "Nozzle App On");
-                SystemEventWriter("Turning Nozzle App On");
+                LogEventWriter("Turning Nozzle App On");
             }
             else
             {
                 TimedMessageBox(2000, "", "Nozzle App Off");
-                SystemEventWriter("Turning Nozzle App Off");
+                LogEventWriter("Turning Nozzle App Off");
             }
 
 
@@ -1560,7 +1560,7 @@ namespace AgOpenGPS
                     Settings.Default.Save();
 
                     //save event
-                    SystemEventWriter("Reset ALL event occured" );
+                    LogEventWriter("Reset ALL event occured" );
                     FileSaveSystemEvents();
 
                     MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
@@ -2148,7 +2148,7 @@ namespace AgOpenGPS
                         FileCreateContour();
                         FileCreateSections();
 
-                        SystemEventWriter("All Section Mapping Deleted");
+                        LogEventWriter("All Section Mapping Deleted");
                     }
                     else
                     {
@@ -2433,7 +2433,7 @@ namespace AgOpenGPS
             {
                 btnAutoSteer.PerformClick();
                 TimedMessageBox(2000, gStr.gsGuidanceStopped, "Sim Reverse Touched");
-                SystemEventWriter("Steer Off, Sim Reverse Activated");
+                LogEventWriter("Steer Off, Sim Reverse Activated");
             }
         }
         private void hsbarSteerAngle_Scroll(object sender, ScrollEventArgs e)

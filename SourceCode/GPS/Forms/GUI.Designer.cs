@@ -98,7 +98,7 @@ namespace AgOpenGPS
 
         //Timer triggers at 125 msec
 
-        public void SystemEventWriter(string message)
+        public void LogEventWriter(string message)
         {
             sbSystemEvents.Append(DateTime.Now.ToString("T"));
             sbSystemEvents.Append("-> ");
@@ -110,7 +110,7 @@ namespace AgOpenGPS
         {
             if (sentenceCounter == 19)
             {
-                SystemEventWriter("No GPS Warning - Lost GPS");
+                LogEventWriter("No GPS Warning - Lost GPS");
             }
 
             //Check for a newline char, if none then just return
@@ -414,7 +414,7 @@ namespace AgOpenGPS
                 {
                     btnAutoSteer.PerformClick();
                     TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsNoGuidanceLines);
-                    SystemEventWriter("Steer Safe Off, No Tracks, Idx -1");
+                    LogEventWriter("Steer Safe Off, No Tracks, Idx -1");
                 }
 
 
@@ -931,7 +931,7 @@ namespace AgOpenGPS
 
             if (vehicleFileName == "Default Vehicle")
             {
-                SystemEventWriter("Using Default Vehicle At Start Warning");
+                LogEventWriter("Using Default Vehicle At Start Warning");
 
                 YesMessageBox("Using Default Vehicle" + "\r\n\r\n" + "Load Existing Vehicle or Save a New One !!!"
                     + "\r\n\r\n" + "Changes will NOT be Saved");
@@ -967,7 +967,7 @@ namespace AgOpenGPS
                     {
                         btnAutoSteer.PerformClick();
                         TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsNoGuidanceLines);
-                        SystemEventWriter("Steer Safe Off, No Tracks, Idx -1");
+                        LogEventWriter("Steer Safe Off, No Tracks, Idx -1");
                     }
                     btnAutoSteer.Enabled = false;
                 }
@@ -1592,7 +1592,7 @@ namespace AgOpenGPS
                     isFirstHeadingSet = false;
                     isReverse = false;
                     TimedMessageBox(2000, "Reset Direction", "Drive Forward > 1.5 kmh");
-                    SystemEventWriter("Direction Reset, Drive Forward");
+                    LogEventWriter("Direction Reset, Drive Forward");
 
                     return;
                 }
@@ -1624,7 +1624,7 @@ namespace AgOpenGPS
                     + (vehicle.functionSpeedLimit * 0.621371).ToString("N1") + " " + gStr.gsMPH);
             }
 
-            SystemEventWriter("UTurn or Lateral Speed exceeded");
+            LogEventWriter("UTurn or Lateral Speed exceeded");
 
         }
 

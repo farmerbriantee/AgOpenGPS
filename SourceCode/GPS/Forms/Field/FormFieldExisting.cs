@@ -43,7 +43,7 @@ namespace AgOpenGPS
             if (dirs == null || dirs.Length < 1)
             {
                 mf.TimedMessageBox(2000, gStr.gsCreateNewField, gStr.gsFileError);
-                mf.SystemEventWriter("File Error Load Existing Field");
+                mf.LogEventWriter("File Error Load Existing Field");
 
                 Close();
                 return;
@@ -200,7 +200,7 @@ namespace AgOpenGPS
             if (fileList == null || fileList.Count < 1)
             {
                 mf.TimedMessageBox(2000, gStr.gsNoFieldsFound, gStr.gsCreateNewField);
-                mf.SystemEventWriter("Create New Field, No Fields Found");
+                mf.LogEventWriter("Create New Field, No Fields Found");
 
                 Close();
                 return;
@@ -228,7 +228,7 @@ namespace AgOpenGPS
             else
             {
                 mf.TimedMessageBox(2000, gStr.gsNoFieldsFound, gStr.gsCreateNewField);
-                mf.SystemEventWriter("Field Existing, No Fields to List");
+                mf.LogEventWriter("Field Existing, No Fields to List");
 
                 Close();
                 return;
