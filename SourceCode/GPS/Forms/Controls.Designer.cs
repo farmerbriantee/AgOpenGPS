@@ -1861,6 +1861,17 @@ namespace AgOpenGPS
                 System.Environment.Exit(1);
             }
         }
+        private void systemLogViewerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FileSaveSystemEvents();
+            sbSystemEvents.Clear();
+
+            FileInfo txtfile = new FileInfo(logsDirectory + "zSystemEventsLog_log.txt");
+            if (txtfile.Exists)
+            {
+                Process.Start("notepad.exe", txtfile.FullName);
+            }
+        }
 
         #endregion
 

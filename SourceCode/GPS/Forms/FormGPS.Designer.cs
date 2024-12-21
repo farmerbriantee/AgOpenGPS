@@ -226,6 +226,7 @@
             this.btnSprayRateDn = new System.Windows.Forms.Button();
             this.btnNozConfig = new System.Windows.Forms.Button();
             this.lblGPM_Set = new System.Windows.Forms.Label();
+            this.systemLogViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -298,6 +299,7 @@
             this.resetALLToolStripMenuItem,
             this.aboutToolStripMenuItem,
             this.helpMenuItem,
+            this.systemLogViewerToolStripMenuItem,
             this.nozzleAppToolStripMenuItem});
             this.fileToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fileToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.fileMenu;
@@ -310,7 +312,7 @@
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(379, 6);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(405, 6);
             // 
             // menustripLanguage
             // 
@@ -335,7 +337,7 @@
             this.menuLanguageChinese,
             this.menuLanguageTest});
             this.menustripLanguage.Name = "menustripLanguage";
-            this.menustripLanguage.Size = new System.Drawing.Size(382, 50);
+            this.menustripLanguage.Size = new System.Drawing.Size(408, 50);
             this.menustripLanguage.Text = "Language";
             // 
             // menuLanguageDanish
@@ -480,32 +482,32 @@
             // toolStripSeparator11
             // 
             this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(379, 6);
+            this.toolStripSeparator11.Size = new System.Drawing.Size(405, 6);
             // 
             // simulatorOnToolStripMenuItem
             // 
             this.simulatorOnToolStripMenuItem.CheckOnClick = true;
             this.simulatorOnToolStripMenuItem.Name = "simulatorOnToolStripMenuItem";
-            this.simulatorOnToolStripMenuItem.Size = new System.Drawing.Size(382, 50);
+            this.simulatorOnToolStripMenuItem.Size = new System.Drawing.Size(408, 50);
             this.simulatorOnToolStripMenuItem.Text = "Simulator On";
             this.simulatorOnToolStripMenuItem.Click += new System.EventHandler(this.simulatorOnToolStripMenuItem_Click);
             // 
             // enterSimCoordsToolStripMenuItem
             // 
             this.enterSimCoordsToolStripMenuItem.Name = "enterSimCoordsToolStripMenuItem";
-            this.enterSimCoordsToolStripMenuItem.Size = new System.Drawing.Size(382, 50);
+            this.enterSimCoordsToolStripMenuItem.Size = new System.Drawing.Size(408, 50);
             this.enterSimCoordsToolStripMenuItem.Text = "Enter Sim Coords";
             this.enterSimCoordsToolStripMenuItem.Click += new System.EventHandler(this.enterSimCoordsToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(379, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(405, 6);
             // 
             // kioskModeToolStrip
             // 
             this.kioskModeToolStrip.Name = "kioskModeToolStrip";
-            this.kioskModeToolStrip.Size = new System.Drawing.Size(382, 50);
+            this.kioskModeToolStrip.Size = new System.Drawing.Size(408, 50);
             this.kioskModeToolStrip.Text = "Kiosk Mode";
             this.kioskModeToolStrip.Click += new System.EventHandler(this.kioskModeToolStrip_Click);
             // 
@@ -514,7 +516,7 @@
             this.resetALLToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.resetEverythingToolStripMenuItem});
             this.resetALLToolStripMenuItem.Name = "resetALLToolStripMenuItem";
-            this.resetALLToolStripMenuItem.Size = new System.Drawing.Size(382, 50);
+            this.resetALLToolStripMenuItem.Size = new System.Drawing.Size(408, 50);
             this.resetALLToolStripMenuItem.Text = "Reset All";
             // 
             // resetEverythingToolStripMenuItem
@@ -527,21 +529,21 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(382, 50);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(408, 50);
             this.aboutToolStripMenuItem.Text = "About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // helpMenuItem
             // 
             this.helpMenuItem.Name = "helpMenuItem";
-            this.helpMenuItem.Size = new System.Drawing.Size(382, 50);
+            this.helpMenuItem.Size = new System.Drawing.Size(408, 50);
             this.helpMenuItem.Text = "Help";
             this.helpMenuItem.Click += new System.EventHandler(this.helpMenuItem_Click);
             // 
             // nozzleAppToolStripMenuItem
             // 
             this.nozzleAppToolStripMenuItem.Name = "nozzleAppToolStripMenuItem";
-            this.nozzleAppToolStripMenuItem.Size = new System.Drawing.Size(382, 50);
+            this.nozzleAppToolStripMenuItem.Size = new System.Drawing.Size(408, 50);
             this.nozzleAppToolStripMenuItem.Text = "Nozzle App";
             this.nozzleAppToolStripMenuItem.Visible = false;
             this.nozzleAppToolStripMenuItem.Click += new System.EventHandler(this.nozzleAppToolStripMenuItem_Click);
@@ -1296,7 +1298,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
             this.panelSim.Controls.Add(this.btnSpeedDn, 5, 0);
             this.panelSim.Controls.Add(this.btnSimSpeedUp, 7, 0);
             this.panelSim.Controls.Add(this.btnResetSim, 0, 0);
@@ -1321,7 +1323,7 @@
             this.btnSpeedDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSpeedDn.Location = new System.Drawing.Point(342, 4);
             this.btnSpeedDn.Name = "btnSpeedDn";
-            this.btnSpeedDn.Size = new System.Drawing.Size(61, 34);
+            this.btnSpeedDn.Size = new System.Drawing.Size(60, 34);
             this.btnSpeedDn.TabIndex = 533;
             this.btnSpeedDn.UseVisualStyleBackColor = false;
             this.btnSpeedDn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSpeedDn_MouseDown);
@@ -1334,9 +1336,9 @@
             this.btnSimSpeedUp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSimSpeedUp.FlatAppearance.BorderSize = 0;
             this.btnSimSpeedUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSimSpeedUp.Location = new System.Drawing.Point(486, 4);
+            this.btnSimSpeedUp.Location = new System.Drawing.Point(485, 4);
             this.btnSimSpeedUp.Name = "btnSimSpeedUp";
-            this.btnSimSpeedUp.Size = new System.Drawing.Size(61, 34);
+            this.btnSimSpeedUp.Size = new System.Drawing.Size(60, 34);
             this.btnSimSpeedUp.TabIndex = 532;
             this.btnSimSpeedUp.UseVisualStyleBackColor = false;
             this.btnSimSpeedUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSimSpeedUp_MouseDown);
@@ -1350,7 +1352,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(410, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(409, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(69, 34);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -1367,7 +1369,7 @@
             this.btnSimReverseDirection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimReverseDirection.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimReverseDirection.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimReverseDirection.Location = new System.Drawing.Point(565, 4);
+            this.btnSimReverseDirection.Location = new System.Drawing.Point(564, 4);
             this.btnSimReverseDirection.Name = "btnSimReverseDirection";
             this.btnSimReverseDirection.Size = new System.Drawing.Size(35, 34);
             this.btnSimReverseDirection.TabIndex = 537;
@@ -3329,6 +3331,13 @@
             this.lblGPM_Set.Text = "Flow";
             this.lblGPM_Set.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // systemLogViewerToolStripMenuItem
+            // 
+            this.systemLogViewerToolStripMenuItem.Name = "systemLogViewerToolStripMenuItem";
+            this.systemLogViewerToolStripMenuItem.Size = new System.Drawing.Size(408, 50);
+            this.systemLogViewerToolStripMenuItem.Text = "System Log Viewer";
+            this.systemLogViewerToolStripMenuItem.Click += new System.EventHandler(this.systemLogViewerToolStripMenuItem_Click);
+            // 
             // FormGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -3608,6 +3617,7 @@
         public System.Windows.Forms.Button btnSprayRateDn;
         public System.Windows.Forms.Button btnNozConfig;
         private System.Windows.Forms.ToolStripMenuItem nozzleAppToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem systemLogViewerToolStripMenuItem;
     }
 }
 
