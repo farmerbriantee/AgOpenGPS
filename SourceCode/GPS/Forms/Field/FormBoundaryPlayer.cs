@@ -41,6 +41,8 @@ namespace AgOpenGPS
 
             btnPausePlay.Image = Properties.Resources.BoundaryRecord;
 
+            mf.bnd.isDrawAtPivot = Properties.Settings.Default.setBnd_isDrawPivot;
+
             btnLeftRight.Image = mf.bnd.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
             btnAntennaTool.Image = mf.bnd.isDrawAtPivot ? Properties.Resources.BoundaryRecordPivot : Properties.Resources.BoundaryRecordTool;
 
@@ -216,6 +218,8 @@ namespace AgOpenGPS
         {
             mf.bnd.isDrawAtPivot = !mf.bnd.isDrawAtPivot;
             btnAntennaTool.Image = mf.bnd.isDrawAtPivot ? Properties.Resources.BoundaryRecordPivot : Properties.Resources.BoundaryRecordTool;
+            Properties.Settings.Default.setBnd_isDrawPivot = mf.bnd.isDrawAtPivot;
+            Properties.Settings.Default.Save();
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)

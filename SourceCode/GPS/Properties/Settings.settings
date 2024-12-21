@@ -785,5 +785,8 @@
     <Setting Name="setVehicle_goalPointAcquireFactor" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.85</Value>
     </Setting>
+    <Setting Name="setBnd_isDrawPivot" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
