@@ -65,6 +65,7 @@
             this.resetEverythingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.systemLogViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nozzleAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tmrWatchdog = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStripFlag = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -226,7 +227,6 @@
             this.btnSprayRateDn = new System.Windows.Forms.Button();
             this.btnNozConfig = new System.Windows.Forms.Button();
             this.lblGPM_Set = new System.Windows.Forms.Label();
-            this.systemLogViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -539,6 +539,13 @@
             this.helpMenuItem.Size = new System.Drawing.Size(408, 50);
             this.helpMenuItem.Text = "Help";
             this.helpMenuItem.Click += new System.EventHandler(this.helpMenuItem_Click);
+            // 
+            // systemLogViewerToolStripMenuItem
+            // 
+            this.systemLogViewerToolStripMenuItem.Name = "systemLogViewerToolStripMenuItem";
+            this.systemLogViewerToolStripMenuItem.Size = new System.Drawing.Size(408, 50);
+            this.systemLogViewerToolStripMenuItem.Text = "System Log Viewer";
+            this.systemLogViewerToolStripMenuItem.Click += new System.EventHandler(this.systemLogViewerToolStripMenuItem_Click);
             // 
             // nozzleAppToolStripMenuItem
             // 
@@ -1072,7 +1079,7 @@
             this.oglMain.Location = new System.Drawing.Point(78, 50);
             this.oglMain.Margin = new System.Windows.Forms.Padding(0);
             this.oglMain.Name = "oglMain";
-            this.oglMain.Size = new System.Drawing.Size(847, 601);
+            this.oglMain.Size = new System.Drawing.Size(848, 601);
             this.oglMain.TabIndex = 180;
             this.oglMain.VSync = false;
             this.oglMain.Load += new System.EventHandler(this.oglMain_Load);
@@ -1298,7 +1305,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 68F));
             this.panelSim.Controls.Add(this.btnSpeedDn, 5, 0);
             this.panelSim.Controls.Add(this.btnSimSpeedUp, 7, 0);
             this.panelSim.Controls.Add(this.btnResetSim, 0, 0);
@@ -1323,7 +1330,7 @@
             this.btnSpeedDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSpeedDn.Location = new System.Drawing.Point(342, 4);
             this.btnSpeedDn.Name = "btnSpeedDn";
-            this.btnSpeedDn.Size = new System.Drawing.Size(60, 34);
+            this.btnSpeedDn.Size = new System.Drawing.Size(58, 34);
             this.btnSpeedDn.TabIndex = 533;
             this.btnSpeedDn.UseVisualStyleBackColor = false;
             this.btnSpeedDn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSpeedDn_MouseDown);
@@ -1336,9 +1343,9 @@
             this.btnSimSpeedUp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSimSpeedUp.FlatAppearance.BorderSize = 0;
             this.btnSimSpeedUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSimSpeedUp.Location = new System.Drawing.Point(485, 4);
+            this.btnSimSpeedUp.Location = new System.Drawing.Point(483, 4);
             this.btnSimSpeedUp.Name = "btnSimSpeedUp";
-            this.btnSimSpeedUp.Size = new System.Drawing.Size(60, 34);
+            this.btnSimSpeedUp.Size = new System.Drawing.Size(58, 34);
             this.btnSimSpeedUp.TabIndex = 532;
             this.btnSimSpeedUp.UseVisualStyleBackColor = false;
             this.btnSimSpeedUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSimSpeedUp_MouseDown);
@@ -1352,7 +1359,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(409, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(407, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(69, 34);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -1369,7 +1376,7 @@
             this.btnSimReverseDirection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimReverseDirection.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimReverseDirection.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimReverseDirection.Location = new System.Drawing.Point(564, 4);
+            this.btnSimReverseDirection.Location = new System.Drawing.Point(562, 4);
             this.btnSimReverseDirection.Name = "btnSimReverseDirection";
             this.btnSimReverseDirection.Size = new System.Drawing.Size(35, 34);
             this.btnSimReverseDirection.TabIndex = 537;
@@ -1670,7 +1677,7 @@
             this.lblSpeed.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSpeed.ForeColor = System.Drawing.Color.Black;
             this.lblSpeed.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblSpeed.Location = new System.Drawing.Point(145, 7);
+            this.lblSpeed.Location = new System.Drawing.Point(193, 7);
             this.lblSpeed.Margin = new System.Windows.Forms.Padding(0);
             this.lblSpeed.Name = "lblSpeed";
             this.lblSpeed.Size = new System.Drawing.Size(87, 35);
@@ -2901,9 +2908,9 @@
             this.panelControlBox.Controls.Add(this.btnMaximizeMainForm);
             this.panelControlBox.Controls.Add(this.btnMinimizeMainForm);
             this.panelControlBox.Controls.Add(this.btnFieldStats);
-            this.panelControlBox.Location = new System.Drawing.Point(556, 4);
+            this.panelControlBox.Location = new System.Drawing.Point(508, 4);
             this.panelControlBox.Name = "panelControlBox";
-            this.panelControlBox.Size = new System.Drawing.Size(441, 43);
+            this.panelControlBox.Size = new System.Drawing.Size(489, 43);
             this.panelControlBox.TabIndex = 542;
             // 
             // btnChargeStatus
@@ -2918,9 +2925,9 @@
             this.btnChargeStatus.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChargeStatus.Image = global::AgOpenGPS.Properties.Resources.ChargeIndicator;
             this.btnChargeStatus.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnChargeStatus.Location = new System.Drawing.Point(48, 5);
+            this.btnChargeStatus.Location = new System.Drawing.Point(86, 5);
             this.btnChargeStatus.Name = "btnChargeStatus";
-            this.btnChargeStatus.Size = new System.Drawing.Size(20, 32);
+            this.btnChargeStatus.Size = new System.Drawing.Size(25, 32);
             this.btnChargeStatus.TabIndex = 537;
             this.btnChargeStatus.UseVisualStyleBackColor = false;
             // 
@@ -2936,7 +2943,7 @@
             this.btnGPSData.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGPSData.Image = global::AgOpenGPS.Properties.Resources.GPSQuality;
             this.btnGPSData.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnGPSData.Location = new System.Drawing.Point(76, 2);
+            this.btnGPSData.Location = new System.Drawing.Point(124, 2);
             this.btnGPSData.Name = "btnGPSData";
             this.btnGPSData.Size = new System.Drawing.Size(52, 38);
             this.btnGPSData.TabIndex = 536;
@@ -2954,7 +2961,7 @@
             this.btnShutdown.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnShutdown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShutdown.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnShutdown.Location = new System.Drawing.Point(386, 3);
+            this.btnShutdown.Location = new System.Drawing.Point(434, 3);
             this.btnShutdown.Name = "btnShutdown";
             this.btnShutdown.Size = new System.Drawing.Size(52, 38);
             this.btnShutdown.TabIndex = 447;
@@ -2974,7 +2981,7 @@
             this.btnMaximizeMainForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMaximizeMainForm.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMaximizeMainForm.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnMaximizeMainForm.Location = new System.Drawing.Point(313, 3);
+            this.btnMaximizeMainForm.Location = new System.Drawing.Point(361, 3);
             this.btnMaximizeMainForm.Name = "btnMaximizeMainForm";
             this.btnMaximizeMainForm.Size = new System.Drawing.Size(52, 38);
             this.btnMaximizeMainForm.TabIndex = 482;
@@ -2994,7 +3001,7 @@
             this.btnMinimizeMainForm.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMinimizeMainForm.ForeColor = System.Drawing.Color.DimGray;
             this.btnMinimizeMainForm.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnMinimizeMainForm.Location = new System.Drawing.Point(242, 3);
+            this.btnMinimizeMainForm.Location = new System.Drawing.Point(290, 3);
             this.btnMinimizeMainForm.Name = "btnMinimizeMainForm";
             this.btnMinimizeMainForm.Size = new System.Drawing.Size(52, 38);
             this.btnMinimizeMainForm.TabIndex = 481;
@@ -3015,9 +3022,9 @@
             this.btnFieldStats.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFieldStats.Image = global::AgOpenGPS.Properties.Resources.FieldStats;
             this.btnFieldStats.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnFieldStats.Location = new System.Drawing.Point(-12, 2);
+            this.btnFieldStats.Location = new System.Drawing.Point(2, 2);
             this.btnFieldStats.Name = "btnFieldStats";
-            this.btnFieldStats.Size = new System.Drawing.Size(52, 38);
+            this.btnFieldStats.Size = new System.Drawing.Size(75, 38);
             this.btnFieldStats.TabIndex = 535;
             this.btnFieldStats.UseVisualStyleBackColor = false;
             this.btnFieldStats.Visible = false;
@@ -3330,13 +3337,6 @@
             this.lblGPM_Set.TabIndex = 612;
             this.lblGPM_Set.Text = "Flow";
             this.lblGPM_Set.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // systemLogViewerToolStripMenuItem
-            // 
-            this.systemLogViewerToolStripMenuItem.Name = "systemLogViewerToolStripMenuItem";
-            this.systemLogViewerToolStripMenuItem.Size = new System.Drawing.Size(408, 50);
-            this.systemLogViewerToolStripMenuItem.Text = "System Log Viewer";
-            this.systemLogViewerToolStripMenuItem.Click += new System.EventHandler(this.systemLogViewerToolStripMenuItem_Click);
             // 
             // FormGPS
             // 

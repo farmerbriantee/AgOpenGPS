@@ -2183,9 +2183,9 @@
             this.label167.ForeColor = System.Drawing.Color.DimGray;
             this.label167.Location = new System.Drawing.Point(811, 326);
             this.label167.Name = "label167";
-            this.label167.Size = new System.Drawing.Size(171, 22);
+            this.label167.Size = new System.Drawing.Size(134, 22);
             this.label167.TabIndex = 763;
-            this.label167.Text = "Look Speed Multi";
+            this.label167.Text = "Speed Factor";
             this.label167.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label168
